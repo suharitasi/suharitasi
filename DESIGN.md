@@ -2,6 +2,13 @@
 
 Bu belge bağlayıcıdır. Tasarım kararı bu belgeyle çelişiyorsa belge kazanır.
 
+## Ruh
+
+Ruh: itkan — kusursuz işçilik, cesur sahne. Hedef ödül (Awwwards)
+seviyesi: zengin animasyon, sinematik derinlik ve imza etkileşimler
+İSTENİR; sadelik amaç değildir. Yasak olan kalabalık değil,
+özensizliktir: her öğe bilinçli, her hareket anlamlı.
+
 ## Konsept: Derin su
 
 Gece denizinin içinden bakış. Sayfa bir yüzey değil, bir su kütlesinin içi:
