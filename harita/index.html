@@ -12,12 +12,19 @@
 <style>
   :root {
     --deniz: #04121F;
+    --deniz-ust: #061A2E;
     --yukselti: #071D2E;
     --akis-sonuk: #0E3247;
     --akuamarin: #4FC3D0;
     --kopuk: #A8DDE0;
     --metin: #DCE9ED;
     --metin-soluk: #6C8A96;
+    /* Atlas dili */
+    --atlas-krem: #F3EEE2;
+    --atlas-kahve: #4A3628;
+    --atlas-kahve-soluk: #6E5238;
+    --atlas-hardal: #C7B27B;
+    --atlas-kehribar: #D9A05B;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,15 +32,40 @@
   html, body { height: 100%; }
 
   body {
-    background: var(--deniz);
+    background: linear-gradient(180deg, var(--deniz-ust) 0%, var(--deniz) 100%);
     color: var(--metin);
     font-family: "Manrope", system-ui, sans-serif;
     overflow: hidden;
   }
 
-  #harita {
+  /* Su atmosferi (kabarcık / yoğuşma) */
+  .atmosfer {
     position: fixed;
     inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .kabarcik {
+    position: absolute;
+    bottom: -12px;
+    border-radius: 50%;
+    background: var(--akuamarin);
+    filter: blur(1px);
+    animation-name: yuksel;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes yuksel {
+    0%   { transform: translate(0, 0); }
+    50%  { transform: translate(8px, -55vh); }
+    100% { transform: translate(-5px, -108vh); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kabarcik { animation: none; opacity: 0 !important; }
   }
 
   /* Başlık şeridi */
@@ -44,9 +76,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem clamp(1.25rem, 3vw, 2rem);
+    padding: 0.9rem clamp(1.25rem, 3vw, 2rem);
     pointer-events: none;
-    background: linear-gradient(180deg, rgba(4, 18, 31, 0.85), rgba(4, 18, 31, 0));
   }
 
   .serit a {
@@ -64,18 +95,40 @@
     outline-offset: 4px;
   }
 
-  /* Bilgi kartı */
-  .kart {
+  /* Harita adası: koyu suyun üstünde yüzen aydınlık atlas */
+  .cerceve {
     position: fixed;
-    left: clamp(1rem, 3vw, 2rem);
-    bottom: clamp(1rem, 4vh, 2rem);
-    z-index: 10;
-    min-width: 13rem;
-    padding: 1.1rem 1.4rem 1.2rem;
-    background: rgba(7, 29, 46, 0.88);
-    border: 1px solid var(--akis-sonuk);
-    border-left: 2px solid var(--akuamarin);
-    backdrop-filter: blur(6px);
+    top: 3.9rem;
+    left: clamp(0.8rem, 2.5vw, 2.2rem);
+    right: clamp(0.8rem, 2.5vw, 2.2rem);
+    bottom: clamp(0.8rem, 3vh, 1.8rem);
+    z-index: 2;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(220, 233, 237, 0.07);
+    box-shadow:
+      0 30px 80px rgba(1, 6, 11, 0.65),
+      0 6px 22px rgba(1, 6, 11, 0.5);
+  }
+
+  #harita {
+    position: absolute;
+    inset: 0;
+    background: #A9C3B4;
+  }
+
+  /* Bilgi kartı: atlas lejantı */
+  .kart {
+    position: absolute;
+    left: clamp(0.9rem, 2vw, 1.6rem);
+    bottom: clamp(0.9rem, 2.5vh, 1.6rem);
+    z-index: 5;
+    min-width: 12.5rem;
+    padding: 1rem 1.3rem 1.1rem;
+    background: var(--atlas-krem);
+    border: 1px solid var(--atlas-hardal);
+    border-left: 3px solid var(--atlas-kehribar);
+    box-shadow: 0 10px 30px rgba(46, 33, 20, 0.25);
     opacity: 0;
     transform: translateY(8px);
     transition: opacity 0.35s ease, transform 0.35s ease;
@@ -91,17 +144,17 @@
     font-family: "Cormorant", Georgia, serif;
     font-style: italic;
     font-weight: 500;
-    font-size: 1.7rem;
+    font-size: 1.65rem;
     line-height: 1.15;
-    color: var(--kopuk);
+    color: var(--atlas-kahve);
   }
 
   .kart p {
-    margin-top: 0.35rem;
-    font-size: 0.78rem;
+    margin-top: 0.3rem;
+    font-size: 0.74rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--metin-soluk);
+    color: var(--atlas-kahve-soluk);
   }
 
   /* Yükleme durumu */
@@ -112,7 +165,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--deniz);
+    background: linear-gradient(180deg, var(--deniz-ust) 0%, var(--deniz) 100%);
     opacity: 1;
     transition: opacity 0.8s ease;
   }
@@ -143,36 +196,34 @@
   .maplibregl-canvas:focus { outline: none; }
 
   .maplibregl-ctrl-attrib {
-    background: rgba(7, 29, 46, 0.8) !important;
-    color: var(--metin-soluk);
+    background: rgba(243, 238, 226, 0.85) !important;
+    color: var(--atlas-kahve-soluk);
     font-family: "Manrope", system-ui, sans-serif;
     font-size: 0.62rem;
   }
 
-  .maplibregl-ctrl-attrib a { color: var(--metin-soluk); }
-
-  .maplibregl-ctrl-attrib-button {
-    filter: invert(0.7);
-  }
+  .maplibregl-ctrl-attrib a { color: var(--atlas-kahve-soluk); }
 </style>
 </head>
 <body>
-
-  <div id="harita" aria-label="Türkiye haritası"></div>
-
-  <div class="yukleniyor" id="yukleniyor" aria-hidden="true">
-    <p>harita derinleşiyor…</p>
-  </div>
 
   <header class="serit">
     <a href="/">su haritası</a>
     <span></span>
   </header>
 
-  <aside class="kart" id="kart" aria-live="polite">
-    <h2 id="kart-ad"></h2>
-    <p>veri yakında</p>
-  </aside>
+  <div class="cerceve">
+    <div id="harita" aria-label="Türkiye haritası"></div>
+
+    <aside class="kart" id="kart" aria-live="polite">
+      <h2 id="kart-ad"></h2>
+      <p>veri yakında</p>
+    </aside>
+  </div>
+
+  <div class="yukleniyor" id="yukleniyor" aria-hidden="true">
+    <p>harita derinleşiyor…</p>
+  </div>
 
   <script type="module" src="/harita/main.js"></script>
 </body>

@@ -3,10 +3,20 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import illerUrl from '../src/data/tr-iller.json?url';
 import nehirlerUrl from '../src/data/tr-nehirler.json?url';
 import gollerUrl from '../src/data/tr-goller.json?url';
+import atlasUrl from '../src/assets/tr-atlas.webp';
+import { atmosferKur } from './atmosfer.js';
+
+atmosferKur();
 
 // Türkiye sınır kutusu (il verisinden hesaplandı: 25.67–44.83 / 35.82–42.11)
 const TR_SINIR = [[25.67, 35.82], [44.83, 42.11]];
 const KILIT = [[23.5, 34.3], [47.0, 43.6]];
+
+// Atlas görselinin coğrafi kapsamı (z9 tile kenarları, üretim script'inden)
+const ATLAS_BATI = 24.609375;
+const ATLAS_DOGU = 45.703125;
+const ATLAS_KUZEY = 43.06888777416962;
+const ATLAS_GUNEY = 34.885930940753155;
 
 const map = new maplibregl.Map({
   container: 'harita',
@@ -14,19 +24,23 @@ const map = new maplibregl.Map({
   bounds: TR_SINIR,
   fitBoundsOptions: { padding: 40 },
   maxBounds: KILIT,
+  minZoom: 5,
+  maxZoom: 8.6, // atlas görselinin keskin kaldığı bant
   renderWorldCopies: false,
   dragRotate: false,
   pitchWithRotate: false,
   style: {
     version: 8,
     sources: {
-      dem: {
-        type: 'raster-dem',
-        tiles: ['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],
-        encoding: 'terrarium',
-        tileSize: 256,
-        maxzoom: 12,
-        attribution: 'Arazi: Mapzen Terrain Tiles (AWS) — SRTM/NASA vd.',
+      atlas: {
+        type: 'image',
+        url: atlasUrl,
+        coordinates: [
+          [ATLAS_BATI, ATLAS_KUZEY],
+          [ATLAS_DOGU, ATLAS_KUZEY],
+          [ATLAS_DOGU, ATLAS_GUNEY],
+          [ATLAS_BATI, ATLAS_GUNEY],
+        ],
       },
       iller: { type: 'geojson', data: illerUrl, generateId: true },
       nehirler: { type: 'geojson', data: nehirlerUrl, generateId: true },
@@ -34,69 +48,40 @@ const map = new maplibregl.Map({
     },
     layers: [
       {
+        // Deniz: atlas görselinin dışında kalan alan da adaçayı kalsın
         id: 'zemin',
         type: 'background',
-        paint: { 'background-color': '#04121F' },
+        paint: { 'background-color': '#A9C3B4' },
       },
       {
-        // Kara kütlesi: deniz ile kıyı ayrımı, rölyef bunun üstüne biner
-        id: 'kara',
-        type: 'fill',
-        source: 'iller',
-        paint: {
-          'fill-color': '#071D2E',
-          'fill-opacity': 0.75,
-        },
-      },
-      {
-        // Rölyef: dağlar kabartma gibi, derin-su tonlarında
         id: 'rolyef',
-        type: 'hillshade',
-        source: 'dem',
-        paint: {
-          'hillshade-shadow-color': '#020A12',
-          'hillshade-highlight-color': '#12354A',
-          'hillshade-accent-color': '#061A29',
-          'hillshade-exaggeration': 0.55,
-        },
+        type: 'raster',
+        source: 'atlas',
+        paint: { 'raster-fade-duration': 0 },
       },
       {
         id: 'gol-dolgu',
         type: 'fill',
         source: 'goller',
         paint: {
-          'fill-color': '#4FC3D0',
+          'fill-color': '#5E8A87',
           'fill-opacity': [
             'case',
             ['boolean', ['feature-state', 'canli'], false],
-            0.4,
-            0.22,
+            0.85,
+            0.6,
           ],
           'fill-opacity-transition': { duration: 450 },
         },
       },
       {
-        // Göl kıyısında hafif ışıma
-        id: 'gol-isilti',
+        id: 'gol-kiyi',
         type: 'line',
         source: 'goller',
         paint: {
-          'line-color': '#4FC3D0',
-          'line-width': 1.6,
-          'line-blur': 3,
-          'line-opacity': 0.5,
-        },
-      },
-      {
-        // Nehir ışıltısı: geniş, bulanık, çok soluk alt çizgi
-        id: 'nehir-isilti',
-        type: 'line',
-        source: 'nehirler',
-        paint: {
-          'line-color': '#4FC3D0',
-          'line-width': ['interpolate', ['linear'], ['zoom'], 5, 2.5, 9, 5],
-          'line-blur': 4,
-          'line-opacity': 0.16,
+          'line-color': '#5E8A87',
+          'line-width': 1,
+          'line-opacity': 0.7,
         },
       },
       {
@@ -104,18 +89,18 @@ const map = new maplibregl.Map({
         type: 'line',
         source: 'nehirler',
         paint: {
-          'line-color': '#4FC3D0',
-          'line-width': ['interpolate', ['linear'], ['zoom'], 5, 0.6, 9, 1.6],
-          'line-opacity': 0.55,
+          'line-color': '#5E8A87',
+          'line-width': ['interpolate', ['linear'], ['zoom'], 5, 0.7, 8.6, 1.8],
+          'line-opacity': 0.7,
         },
       },
       {
-        // Hover dolgusu: rölyef altından görünmeye devam etsin diye düşük opaklık
+        // Hover dolgusu: rölyef altta görünür kalsın
         id: 'il-dolgu',
         type: 'fill',
         source: 'iller',
         paint: {
-          'fill-color': '#4FC3D0',
+          'fill-color': '#D9A05B',
           'fill-opacity': [
             'case',
             ['boolean', ['feature-state', 'canli'], false],
@@ -130,9 +115,9 @@ const map = new maplibregl.Map({
         type: 'line',
         source: 'iller',
         paint: {
-          'line-color': '#0E3247',
-          'line-width': 1,
-          'line-opacity': 0.9,
+          'line-color': '#6E5238',
+          'line-width': 0.7,
+          'line-opacity': 0.35,
         },
       },
       {
@@ -140,12 +125,12 @@ const map = new maplibregl.Map({
         type: 'line',
         source: 'iller',
         paint: {
-          'line-color': '#4FC3D0',
+          'line-color': '#D9A05B',
           'line-width': 1.4,
           'line-opacity': [
             'case',
             ['boolean', ['feature-state', 'canli'], false],
-            0.85,
+            0.9,
             0,
           ],
           'line-opacity-transition': { duration: 450 },
@@ -156,9 +141,12 @@ const map = new maplibregl.Map({
 });
 
 map.touchZoomRotate.disableRotation();
-map.addControl(new maplibregl.AttributionControl({ compact: true }));
+map.addControl(new maplibregl.AttributionControl({
+  compact: true,
+  customAttribution: 'Arazi: Mapzen Terrain Tiles (AWS) verisinden türetildi — SRTM/NASA vd.',
+}));
 
-// Yükleme durumu: DEM tile'ları harici kaynaktan gelir, ilk boya gecikebilir
+// Yükleme durumu
 const yukleniyor = document.getElementById('yukleniyor');
 function yuklemeKapat() {
   yukleniyor.classList.add('bitti');

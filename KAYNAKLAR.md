@@ -11,18 +11,22 @@
 > (DSİ havza sınırları) — güvenilir açık kaynaklı havza GeoJSON'u
 > bulunduğunda bu veri değiştirilecek ve bu dosyaya işlenecek.
 
-## Arazi yükseklik verisi (DEM / hillshade)
+## Arazi görseli (hipsometrik atlas rölyefi)
 
-- Kaynak: AWS Open Data — Terrain Tiles (Mapzen mirası), `elevation-tiles-prod`
-  S3 kovası, terrarium PNG formatı:
-  `https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png`
-- Lisans: veri kamusal kaynaklardan derlenmiştir (SRTM/NASA, USGS vd.);
-  kullanım ücretsiz, atıf gerekli — haritada attribution kontrolüyle veriliyor.
-  Ayrıntı: https://registry.opendata.aws/terrain-tiles/
-- Kullanım tarihi: 2026-07-12
-- YAYIN ÖNCESİ NOT: Dış bağımlılığı azaltmak için Türkiye kapsamındaki
-  tile'ların kendi Cloudflare R2 kovamıza kopyalanması seçeneği
-  değerlendirilecek.
+- Dosyalar: `src/assets/tr-atlas.webp` (web, 3840px) +
+  `kaynak/tr-atlas-master.png` (master, 7680px — git dışında, yeniden
+  üretilebilir).
+- Üretim: `arac/atlas/indir.py` (terrarium tile'ları z9'da mozaikler,
+  EPSG:3857 DEM yazar) + `arac/atlas/boya.py` (gdaldem color-relief +
+  hillshade harmanı, deniz düz #A9C3B4). Kapsam: 24.61E–45.70E /
+  35.46N–42.55N (z9 tile kenarları).
+- Ham veri kaynağı: AWS Open Data — Terrain Tiles (Mapzen mirası),
+  `elevation-tiles-prod`, terrarium formatı. Lisans: kamusal kaynaklardan
+  derlenmiştir (SRTM/NASA, USGS vd.); atıf gerekli — haritada attribution
+  kontrolüyle veriliyor. Ayrıntı: https://registry.opendata.aws/terrain-tiles/
+- Üretim tarihi: 2026-07-12
+- Canlı S3 tile bağımlılığı KALDIRILDI (2026-07-12): rölyef artık repo
+  içindeki statik görselden servis ediliyor; R2 kopyalama notu geçersiz.
 
 ## Nehirler ve göller (GEÇİCİ/BAŞLANGIÇ VERİSİ)
 
