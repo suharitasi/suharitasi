@@ -114,47 +114,19 @@
   #harita {
     position: absolute;
     inset: 0;
-    background: #A9C3B4;
+    background: transparent;
   }
 
-  /* Bilgi kartı: atlas lejantı */
-  .kart {
+  /* Veri atfı */
+  .atif {
     position: absolute;
-    left: clamp(0.9rem, 2vw, 1.6rem);
-    bottom: clamp(0.9rem, 2.5vh, 1.6rem);
+    right: 0.8rem;
+    bottom: 0.6rem;
     z-index: 5;
-    min-width: 12.5rem;
-    padding: 1rem 1.3rem 1.1rem;
-    background: var(--atlas-krem);
-    border: 1px solid var(--atlas-hardal);
-    border-left: 3px solid var(--atlas-kehribar);
-    box-shadow: 0 10px 30px rgba(46, 33, 20, 0.25);
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.35s ease, transform 0.35s ease;
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+    color: var(--metin-soluk);
     pointer-events: none;
-  }
-
-  .kart.acik {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .kart h2 {
-    font-family: "Cormorant", Georgia, serif;
-    font-style: italic;
-    font-weight: 500;
-    font-size: 1.65rem;
-    line-height: 1.15;
-    color: var(--atlas-kahve);
-  }
-
-  .kart p {
-    margin-top: 0.3rem;
-    font-size: 0.74rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--atlas-kahve-soluk);
   }
 
   /* Yükleme durumu */
@@ -192,17 +164,11 @@
     .yukleniyor p { animation: none; }
   }
 
-  /* MapLibre varsayılanlarını bastır */
-  .maplibregl-canvas:focus { outline: none; }
-
-  .maplibregl-ctrl-attrib {
-    background: rgba(243, 238, 226, 0.85) !important;
-    color: var(--atlas-kahve-soluk);
-    font-family: "Manrope", system-ui, sans-serif;
-    font-size: 0.62rem;
+  #harita canvas {
+    display: block;
+    outline: none;
+    touch-action: none;
   }
-
-  .maplibregl-ctrl-attrib a { color: var(--atlas-kahve-soluk); }
 </style>
 </head>
 <body>
@@ -213,12 +179,9 @@
   </header>
 
   <div class="cerceve">
-    <div id="harita" aria-label="Türkiye haritası"></div>
+    <div id="harita" aria-label="Türkiye'nin üç boyutlu arazi haritası"></div>
 
-    <aside class="kart" id="kart" aria-live="polite">
-      <h2 id="kart-ad"></h2>
-      <p>veri yakında</p>
-    </aside>
+    <p class="atif">Arazi: Mapzen Terrain Tiles (AWS) — SRTM/NASA vd.</p>
   </div>
 
   <div class="yukleniyor" id="yukleniyor" aria-hidden="true">
