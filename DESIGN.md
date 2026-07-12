@@ -1,0 +1,49 @@
+# DESIGN.md — suharitasi.com
+
+Bu belge bağlayıcıdır. Tasarım kararı bu belgeyle çelişiyorsa belge kazanır.
+
+## Konsept: Derin su
+
+Gece denizinin içinden bakış. Sayfa bir yüzey değil, bir su kütlesinin içi:
+yukarısı görece aydınlık, aşağı indikçe koyulaşan ve seyrekleşen katmanlar.
+Jeoloji/dağ/harita-konturu hissi veren keskin tepeli biçimler kullanılmaz;
+tüm çizgiler yatay, uzun ve yumuşak dalga eğrileridir.
+
+## Palet
+
+| Rol | Hex |
+|---|---|
+| Zemin (derin deniz) | `#04121F` |
+| Yükselti / panel | `#071D2E` |
+| Akış çizgileri — sönük | `#0E3247` |
+| Akış çizgileri — imleçle canlanan | `#1E5A78` |
+| Ana ışıma / vurgu (akuamarin) | `#4FC3D0` |
+| İkincil ışıma (deniz köpüğü) | `#A8DDE0` |
+| Metin | `#DCE9ED` |
+| Soluk metin | `#6C8A96` |
+| Bakır | `#C08A4F` — YALNIZCA "yakında" ayracındaki ince çizgilerde. Başka hiçbir yerde kullanılmaz. |
+
+## Tipografi
+
+- Display: **Fraunces** (opsz/soft eksenli serif) — başlıklar, düşük ağırlık (340–400), geniş punto.
+- Gövde / utility: **IBM Plex Sans** — alt metin, etiketler; etiketlerde geniş harf aralığı (letter-spacing ≥ .18em) ve büyük harf.
+- Türkçe karakter desteği (latin-ext) zorunlu.
+
+## Hareket
+
+- Dalga katmanları: çok yavaş yatay sürüklenme; fark edilen değil hissedilen.
+- Su damarları: sayfanın alt yarısında, akuamarin ışımalı, farklı hız ve
+  saydamlıkta akan çizgiler (stroke-dash akışı). Canlı ama sakin.
+- İmleç: imlecin çevresinde dalga çizgileri canlanır — sönük `#0E3247`
+  çizgiler `#1E5A78`'e döner ve hafif akuamarin ışıma alır. Maske yumuşak
+  kenarlı radyal alandır; sert daire kenarı görünmez.
+- `prefers-reduced-motion`: tüm akış ve sürüklenme animasyonları kapanır,
+  statik kompozisyon tek başına ayakta durur.
+
+## Kırmızı çizgiler
+
+- Su damlası ikonu yok.
+- Klişe "kurumsal su firması mavisi" (parlak royal blue) yok.
+- Dağ silüeti, keskin tepeli kontur, topografya-harita klişesi yok.
+- Emoji yok. Arayüz dili Türkçe.
+- Bakır, "yakında" ayracı dışında hiçbir yerde kullanılmaz.
