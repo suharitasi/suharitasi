@@ -25,8 +25,8 @@ tüm çizgiler yatay, uzun ve yumuşak dalga eğrileridir.
 
 ## Tipografi
 
-- Display: **Fraunces** (opsz/soft eksenli serif) — başlıklar, düşük ağırlık (340–400), geniş punto.
-- Gövde / utility: **IBM Plex Sans** — alt metin, etiketler; etiketlerde geniş harf aralığı (letter-spacing ≥ .18em) ve büyük harf.
+- Display: **Cormorant** (serif) — başlıklar, ağırlık 400–500, geniş punto; italik vurgular serbest.
+- Gövde / utility: **Manrope** — alt metin, etiketler; etiketlerde geniş harf aralığı (letter-spacing ≥ .18em) ve büyük harf.
 - Türkçe karakter desteği (latin-ext) zorunlu.
 
 ## Hareket

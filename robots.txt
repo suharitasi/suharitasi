@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://suharitasi.com/sitemap.xml

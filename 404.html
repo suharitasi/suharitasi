@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sayfa bulunamadı — Su Haritası</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500&display=swap&subset=latin-ext" rel="stylesheet">
+<style>
+  :root {
+    --deniz: #04121F;
+    --yukselti: #071D2E;
+    --akis-sonuk: #0E3247;
+    --akuamarin: #4FC3D0;
+    --kopuk: #A8DDE0;
+    --metin: #DCE9ED;
+    --metin-soluk: #6C8A96;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    background: var(--deniz);
+    color: var(--metin);
+    font-family: "Manrope", system-ui, sans-serif;
+    overflow: hidden;
+    background-image:
+      radial-gradient(120vw 70vh at 50% -18vh, var(--yukselti) 0%, rgba(7, 29, 46, 0) 62%),
+      linear-gradient(180deg, var(--deniz) 0%, #030D17 100%);
+  }
+
+  .dalgalar {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .dalgalar svg { width: 100%; height: 100%; display: block; }
+
+  .dalgalar path {
+    fill: none;
+    stroke: var(--akis-sonuk);
+    stroke-width: 1.1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  main {
+    position: relative;
+    z-index: 2;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  h1 {
+    font-family: "Cormorant", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(2.4rem, 6.4vw, 4.6rem);
+    line-height: 1.15;
+    color: var(--kopuk);
+    max-width: 18ch;
+    text-wrap: balance;
+  }
+
+  p {
+    margin-top: 1.2rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--metin-soluk);
+  }
+
+  a {
+    margin-top: 2.4rem;
+    display: inline-block;
+    color: var(--akuamarin);
+    text-decoration: none;
+    font-size: 0.86rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(79, 195, 208, 0.35);
+    transition: border-color 0.25s ease, color 0.25s ease;
+  }
+
+  a:hover, a:focus-visible {
+    color: var(--kopuk);
+    border-color: var(--kopuk);
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--akuamarin);
+    outline-offset: 4px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="dalgalar" aria-hidden="true">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+      <path d="M -60 148 C 260 160, 520 134, 800 150 S 1260 162, 1500 146"/>
+      <path d="M -60 310 C 270 324, 540 296, 820 312 S 1270 326, 1500 308"/>
+      <path d="M -60 542 C 280 558, 560 526, 840 544 S 1280 560, 1500 540"/>
+      <path d="M -60 858 C 290 876, 570 842, 850 862 S 1280 878, 1500 856"/>
+    </svg>
+  </div>
+
+  <main>
+    <h1>Bu derinlikte bir şey yok.</h1>
+    <p>Aradığınız sayfa bulunamadı.</p>
+    <a href="/">Haritaya dön</a>
+  </main>
+
+</body>
+</html>
