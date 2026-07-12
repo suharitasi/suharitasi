@@ -4,15 +4,16 @@
 // (Aşağıdaki eski harita-gayzer kurulumu SİLİNMEDİ; artık çağrılmıyor.)
 import * as THREE_K from 'three';
 
-const KENARLAR = [
-  { x: -11.3, z: 6.2 },
-  { x: 11.5, z: 6.7 },
-  { x: 10.7, z: -6.3 },
-];
-
-export function kenarGayzerKur(rig, mobil) {
+export function kenarGayzerKur(rig, mobil, emitorlar) {
   const azHareket = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const SAYI = mobil ? 90 : 180; // toplam havuz (3 emitöre paylaşılır)
+  // emitorlar: sayfanın alt kenarı/köşelerine ekran-uzayından yerleştirilmiş
+  // dünya konumları; her biri farklı fazda "nefes alır"
+  const KENARLAR = emitorlar.map((e, i) => ({
+    ...e,
+    hizFaz: i * 2.1 + Math.random() * 0.5,
+    nefes: 0.13 + i * 0.035, // farklı zamanlama
+  }));
+  const SAYI = (mobil ? 30 : 45) * KENARLAR.length;
   const geo = new THREE_K.BufferGeometry();
   const pozlar = new Float32Array(SAYI * 3);
   const renkler = new Float32Array(SAYI * 3);
@@ -38,9 +39,11 @@ export function kenarGayzerKur(rig, mobil) {
   const renk = new THREE_K.Color();
   const DIP = new THREE_K.Color('#5E8A87');
   const UC = new THREE_K.Color('#DFF6F8'); // parlak uç: bloom yakalar
+  let t = 0;
 
   return function guncelle(dt) {
     if (azHareket) return;
+    t += dt;
     for (let j = 0; j < SAYI; j++) {
       const p = parcacik[j];
       const i = j * 3;
@@ -56,20 +59,25 @@ export function kenarGayzerKur(rig, mobil) {
         pozlar[i + 1] += p.hiz.y * dt;
         pozlar[i + 2] += p.hiz.z * dt;
         const parlaklik = Math.sin(Math.PI * (p.yas / p.omur)) * 0.9;
-        renk.lerpColors(DIP, UC, Math.min(1, (pozlar[i + 1] + 0.1) / 0.8));
+        renk.lerpColors(DIP, UC, Math.min(1, (pozlar[i + 1] - p.emitor.y) / 0.8));
         renkler[i] = renk.r * parlaklik;
         renkler[i + 1] = renk.g * parlaklik;
         renkler[i + 2] = renk.b * parlaklik;
-      } else if (Math.random() < 0.045) { // sakin, sürekli akış
-        p.canli = true;
-        p.yas = 0;
-        p.omur = 1.3 + Math.random() * 0.8;
-        const aci = Math.random() * Math.PI * 2;
-        const sac = 0.02 + Math.random() * 0.06;
-        p.hiz.set(Math.cos(aci) * sac, 0.85 + Math.random() * 0.35, Math.sin(aci) * sac);
-        pozlar[i] = p.emitor.x + (Math.random() - 0.5) * 0.06;
-        pozlar[i + 1] = -0.15;
-        pozlar[i + 2] = p.emitor.z + (Math.random() - 0.5) * 0.06;
+      } else {
+        // nefes: her emitör kendi fazında güçlenip söner
+        const kapi = Math.max(0, Math.sin(t * p.emitor.nefes * 2.4 + p.emitor.hizFaz));
+        if (Math.random() < 0.06 * kapi * kapi) {
+          p.canli = true;
+          p.yas = 0;
+          p.omur = 1.1 + Math.random() * 0.6;
+          const aci = Math.random() * Math.PI * 2;
+          const sac = 0.015 + Math.random() * 0.05;
+          // yükseklik: ekranın ~%10-15'i (dünya ~0.9-1.2 birim tepe)
+          p.hiz.set(Math.cos(aci) * sac, 1.7 + Math.random() * 0.35, Math.sin(aci) * sac);
+          pozlar[i] = p.emitor.x + (Math.random() - 0.5) * 0.05;
+          pozlar[i + 1] = p.emitor.y;
+          pozlar[i + 2] = p.emitor.z + (Math.random() - 0.5) * 0.05;
+        }
       }
     }
     geo.attributes.position.needsUpdate = true;

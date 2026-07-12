@@ -46,3 +46,9 @@
   Gayzerler haritadan kalktı, kenar fıskiyelerine dönüştü; su noktaları
   iki katman işaret (var/potansiyel) + krem etiket. Deniz ayrı yüzey,
   ufukta koyuya çözünüyor. EffectComposer bloom + ACES; orbit yaw ±60.
+- Nihai sahne kurgusu (v6): deniz tepsisi kaldırıldı — Türkiye kütlesi koyu
+  derin-su zeminde boşlukta, altında siluet ışıma havuzu. Kamera sabitlendi
+  (orbit kapalı; dalış koreografisi kurgu gereği kaldırıldı), idle nefes +
+  ±1° paralaks. Kenar gayzerleri ekran alt kenarına nefesli zamanlamayla
+  yerleşti; yukarıdan 5-8 sn'de bir süzülen damlalar + çarpma parıltısı.
+  İşaretler belirginleştirildi, kesit yumuşak sıcak toprağa çekildi.

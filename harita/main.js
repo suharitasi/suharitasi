@@ -12,6 +12,7 @@ import { atmosferKur } from './atmosfer.js';
 import { kenarGayzerKur } from './gayzer.js';
 import { isaretlerKur } from './isaretler.js';
 import { suKur } from './su.js';
+import { damlaKur } from './damla.js';
 
 atmosferKur();
 
@@ -131,46 +132,19 @@ const guncellenecekler = [paralaks];
 
 const yukleniyor = document.getElementById('yukleniyor');
 
-// Kamera koreografisi: su noktasına dalış / kadraja dönüş
-let ucus = null;
-let dalinanNokta = null;
+// Kamera sabit (nihai sahne kurgusu): dalış koreografisi kaldırıldı,
+// tek hareket idle nefes + paralaks + giriş animasyonu.
 
-function ucusBaslat(hedefPoz, hedefOdak, sure) {
-  if (azHareket) {
-    kamera.position.copy(hedefPoz);
-    kontrol.target.copy(hedefOdak);
-    kontrol.update();
-    return;
-  }
-  ucus = {
-    baslangic: performance.now(),
-    sure,
-    p0: kamera.position.clone(),
-    p1: hedefPoz,
-    o0: kontrol.target.clone(),
-    o1: hedefOdak,
-  };
-  kontrol.enabled = false;
-}
-
-function noktayaDal(nokta) {
-  dalinanNokta = nokta;
-  const sapma = new THREE.Vector3(-0.9, 0, 0.35);
-  const poz = BAKIS_YON.clone().multiplyScalar(4.2).add(nokta.poz).add(sapma);
-  ucusBaslat(poz, nokta.poz.clone(), 2.0);
-}
-
-function kadrajaDon() {
-  dalinanNokta = null;
-  ucusBaslat(kadrajOtur(), EV_HEDEF.clone(), 1.8);
-}
-
-function dalisTetikle(nokta) {
-  if (!nokta || nokta === dalinanNokta) {
-    if (dalinanNokta) kadrajaDon();
-  } else {
-    noktayaDal(nokta);
-  }
+// Sayfa alt kenarı/köşeleri için ekran->dünya yerleşimi (sabit kadraja göre)
+function ekranZemin(ndcX, ndcY, hedefPoz, y) {
+  const k = kamera.clone();
+  k.position.copy(hedefPoz);
+  k.lookAt(EV_HEDEF);
+  k.updateMatrixWorld();
+  const rc = new THREE.Raycaster();
+  rc.setFromCamera(new THREE.Vector2(ndcX, ndcY), k);
+  const t = (y - rc.ray.origin.y) / rc.ray.direction.y;
+  return rc.ray.origin.clone().add(rc.ray.direction.clone().multiplyScalar(t));
 }
 
 // Giriş animasyonu
@@ -193,8 +167,17 @@ araziOlustur(mobil).then(({ grup, ust }) => {
   bulutGolgesi(ust.material);
   rig.add(grup);
   suKur(rig, ust.material.alphaMap, uZaman, uIsikYon);
-  guncellenecekler.push(isaretlerKur(rig, kamera, ust, mobil, dalisTetikle));
-  guncellenecekler.push(kenarGayzerKur(rig, mobil));
+  guncellenecekler.push(isaretlerKur(rig, kamera, ust, mobil));
+
+  // Kenar gayzerleri: sayfanın alt kenarına ekran-uzayından yerleştirilir
+  const kadrajPoz = kadrajOtur();
+  const ndcListe = mobil
+    ? [[-0.6, -0.9], [0.05, -0.97], [0.65, -0.9]]
+    : [[-0.8, -0.85], [-0.35, -0.97], [0.3, -0.93], [0.82, -0.86]];
+  const emitorlar = ndcListe.map(([x, y]) => ekranZemin(x, y, kadrajPoz, -0.55));
+  guncellenecekler.push(kenarGayzerKur(rig, mobil, emitorlar));
+  guncellenecekler.push(damlaKur(rig, mobil));
+
   girisBaslat();
   yukleniyor.classList.add('bitti');
 });
@@ -225,28 +208,9 @@ renderer.setAnimationLoop(() => {
     const k = Math.min(1, (performance.now() - giris.baslangic) / 1000 / giris.sure);
     const e = 1 - Math.pow(1 - k, 3);
     kamera.position.lerpVectors(giris.basla, giris.hedef, e);
-    if (k >= 1) {
-      giris = null;
-      kontrol.enabled = true;
-    }
+    if (k >= 1) giris = null;
   }
-
-  if (ucus) {
-    const k = Math.min(1, (performance.now() - ucus.baslangic) / 1000 / ucus.sure);
-    const e = k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
-    kamera.position.lerpVectors(ucus.p0, ucus.p1, e);
-    kontrol.target.lerpVectors(ucus.o0, ucus.o1, e);
-    if (k >= 1) {
-      ucus = null;
-      kontrol.enabled = true;
-    }
-  }
-
-  if (giris || ucus) {
-    kamera.lookAt(kontrol.target);
-  } else {
-    kontrol.update();
-  }
+  kamera.lookAt(kontrol.target); // kamera sabit: kontrol girdisi kapalı
 
   for (const g of guncellenecekler) g(dt);
   composer.render();
@@ -267,5 +231,4 @@ renderer.setAnimationLoop(() => {
 window.abartmaAyarla = abartmaUygula;
 window.sahneAyar = AYAR;
 window.kamera3d = kamera;
-window.dalisTetikle = dalisTetikle;
 window.rig3d = rig;

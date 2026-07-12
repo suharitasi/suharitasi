@@ -119,9 +119,9 @@ function kesitOlustur() {
 
   return new THREE.Mesh(geo, new THREE.MeshStandardMaterial({
     map: katmanDokusu(),
-    color: '#B08A63', // doku ile çarpılır -> sıcak toprak
-    emissive: '#3A2A1C', // gölgede kalan yüzler simsiyah olmasın
-    roughness: 1,
+    color: '#CBA57B', // doku ile çarpılır -> posterdeki yumuşak sıcak toprak
+    emissive: '#5A4430', // gölgedeki yüzler de ışık alıyormuş gibi
+    roughness: 0.9,
     metalness: 0,
     side: THREE.DoubleSide,
   }));
@@ -133,9 +133,9 @@ function katmanDokusu() {
   c.width = 8;
   c.height = 128;
   const ctx = c.getContext('2d');
-  ctx.fillStyle = '#6E5238';
+  ctx.fillStyle = '#8A6B47';
   ctx.fillRect(0, 0, 8, 128);
-  ctx.fillStyle = 'rgba(30, 20, 12, 0.35)';
+  ctx.fillStyle = 'rgba(46, 32, 20, 0.28)';
   for (let y = 10; y < 128; y += 14) {
     ctx.fillRect(0, y, 8, 2);
   }

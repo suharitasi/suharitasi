@@ -1,14 +1,11 @@
-// Canlı su: deniz + göller. Deniz artık blok altında her yere uzanan ayrı
-// alçak yüzey; kara bloğu (KALDIRMA) denizden belirgin yükseklikte durur.
-// Dalgalar fragment'ta animasyonlu normal (GPU-dostu), güneş parıltısı,
-// kıyıya doğru renk geçişi (bulanık sınır maskesinden).
+// Su: göller (blok üstünde canlı yüzeyler) + kütlenin altında yansıma
+// havuzu. Dikdörtgen deniz tepsisi KALDIRILDI — Türkiye kütlesi koyu
+// derin-su zeminde boşlukta asılı durur; altındaki yumuşak akuamarin
+// ışıma "süzülüyor" hissini verir.
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import goller from '../src/data/tr-goller.json';
-import { PLAN_GEN, PLAN_DER, lonLatKonum } from './arazi.js';
-
-const DENIZ_GEN = 100;
-const DENIZ_DER = 60;
+import { PLAN_GEN, PLAN_DER, TABAN_Y, lonLatKonum } from './arazi.js';
 
 const VERT = /* glsl */ `
   varying vec2 vUv;
@@ -36,12 +33,6 @@ const FRAG = /* glsl */ `
 
   void main() {
     float karaYakin = 0.35;
-    if (uDeniz > 0.5) {
-      // dünya konumundan plaka uv'si; plaka dışı derin okunur
-      vec2 tuv = vec2(vDunya.x / ${PLAN_GEN.toFixed(1)} + 0.5,
-                      vDunya.z / ${PLAN_DER.toFixed(1)} + 0.5);
-      karaYakin = texture2D(uKiyi, clamp(tuv, 0.0, 1.0)).g * 0.9;
-    }
 
     vec2 p = vDunya.xz * 7.0;
     float t = uZaman;
@@ -61,15 +52,7 @@ const FRAG = /* glsl */ `
     vec3 renk = mix(DERIN, KIYI, karaYakin) * dif
               + (parilti + sacilim) * vec3(1.0, 0.98, 0.92);
 
-    float alfa = 1.0;
-    if (uDeniz > 0.5) {
-      float kx = smoothstep(0.0, 0.06, min(vUv.x, 1.0 - vUv.x));
-      float ky = smoothstep(0.0, 0.06, min(vUv.y, 1.0 - vUv.y));
-      // uzak deniz ufukta koyu zemine çözünür (beyaz sis değil)
-      float uzak = 1.0 - smoothstep(17.0, 28.0, distance(cameraPosition, vDunya));
-      alfa = kx * ky * uzak;
-    }
-    gl_FragColor = vec4(renk, alfa);
+    gl_FragColor = vec4(renk, 1.0);
   }
 `;
 
@@ -101,13 +84,25 @@ export function suKur(rig, maskeDoku, uZaman, uIsikYon) {
     uIsikYon,
   };
 
-  const deniz = new THREE.Mesh(
-    new THREE.PlaneGeometry(DENIZ_GEN, DENIZ_DER, 1, 1).rotateX(-Math.PI / 2),
-    malzemeYap(ortak, 1),
-  );
-  deniz.position.y = 0;
-  deniz.renderOrder = 1;
-  rig.add(deniz);
+  // Yansıma havuzu: kütlenin altında, siluetini izleyen yumuşak ışıma
+  const havuzDoku = kiyiAlani(maskeDoku);
+  function havuzKat(olcek, opaklik, y) {
+    const m = new THREE.Mesh(
+      new THREE.PlaneGeometry(PLAN_GEN * olcek, PLAN_DER * olcek, 1, 1).rotateX(-Math.PI / 2),
+      new THREE.MeshBasicMaterial({
+        color: '#4FC3D0',
+        alphaMap: havuzDoku,
+        transparent: true,
+        opacity: opaklik,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      }),
+    );
+    m.position.y = y;
+    rig.add(m);
+  }
+  havuzKat(1.02, 0.16, TABAN_Y - 0.16); // siluet ışıması
+  havuzKat(1.35, 0.06, TABAN_Y - 0.22); // geniş soluk hale
 
   // Göller: blok üstünde, kendi rakımlarında parlayan yüzeyler (tek mesh)
   const golGeolar = [];

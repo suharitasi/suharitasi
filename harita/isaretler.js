@@ -68,19 +68,19 @@ export function isaretlerKur(rig, kamera, arazi, mobil, dal) {
     if (!f.properties.ad) continue;
     const [lon, lat] = merkez(f);
     const poz = lonLatKonum(lon, lat);
-    const s = spriteYap('#BFF6FA', 0.85, 0.24);
-    s.position.copy(poz).y += 0.03;
+    const s = spriteYap('#E8FEFF', 1, 0.34);
+    s.position.copy(poz).y += 0.04;
     rig.add(s);
-    noktalar.push({ ad: f.properties.ad, poz, sprite: s, tabanOlcek: 0.24, tabanOpaklik: 0.85, tur: 'var' });
+    noktalar.push({ ad: f.properties.ad, poz, sprite: s, tabanOlcek: 0.34, tabanOpaklik: 1, tur: 'var' });
   }
 
   // (b) su bulunabilecek — soluk, nabızlı
   for (const p of POTANSIYEL) {
     const poz = lonLatKonum(p.lon, p.lat);
-    const s = spriteYap('#7FC9CF', 0.3, 0.17);
-    s.position.copy(poz).y += 0.03;
+    const s = spriteYap('#9FE2E8', 0.45, 0.24);
+    s.position.copy(poz).y += 0.04;
     rig.add(s);
-    noktalar.push({ ad: p.ad, poz, sprite: s, tabanOlcek: 0.17, tabanOpaklik: 0.3, tur: 'potansiyel' });
+    noktalar.push({ ad: p.ad, poz, sprite: s, tabanOlcek: 0.24, tabanOpaklik: 0.45, tur: 'potansiyel' });
   }
 
   // Etiket: krem lejant dili (DOM)
@@ -147,8 +147,8 @@ export function isaretlerKur(rig, kamera, arazi, mobil, dal) {
       let opaklik = n.tabanOpaklik;
       if (!azHareket && n.tur === 'potansiyel') {
         const nabiz = 0.5 + 0.5 * Math.sin(t * 1.6 + i * 1.3);
-        opaklik = 0.16 + 0.3 * nabiz;
-        olcek *= 0.9 + 0.18 * nabiz;
+        opaklik = 0.22 + 0.42 * nabiz;
+        olcek *= 0.88 + 0.24 * nabiz;
       }
       if (n === aktif) {
         olcek *= 1.55;
