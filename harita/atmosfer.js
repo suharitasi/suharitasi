@@ -1,7 +1,13 @@
-// Sayfa zemini su atmosferi. İki varyant: 'kabarcik' | 'yogusma'.
-// Karşılaştırma için ?doku= parametresiyle seçilebilir; varsayılan kabarcık.
+// Sayfa zemini su atmosferi: yavaş yükselen kabarcıklar.
+// (Yoğuşma varyantı denendi ve elendi — statik lekeler koyu zeminde
+// kir gibi okunuyordu; kabarcık harekette yaşayan bir doku veriyor.)
 
-function kabarcikKur(kap) {
+export function atmosferKur() {
+  const kap = document.createElement('div');
+  kap.className = 'atmosfer';
+  kap.setAttribute('aria-hidden', 'true');
+  document.body.prepend(kap);
+
   const SAYI = 20;
   for (let i = 0; i < SAYI; i++) {
     const b = document.createElement('span');
@@ -14,33 +20,5 @@ function kabarcikKur(kap) {
     b.style.cssText = `left:${sol}vw;width:${boy}px;height:${boy}px;` +
       `animation-duration:${sure}s;animation-delay:${gecikme}s;opacity:${opaklik};`;
     kap.appendChild(b);
-  }
-}
-
-function yogusmaKur(kap) {
-  const lekeler = [];
-  for (let i = 0; i < 34; i++) {
-    const x = (i * 37 + 11) % 100;
-    const y = (i * 61 + 29) % 100;
-    const r = 5 + ((i * 13) % 30); // 5-34px
-    const a = 0.035 + ((i % 3) * 0.02);
-    lekeler.push(
-      `radial-gradient(circle ${r}px at ${x}vw ${y}vh, rgba(168,221,224,${a}) 0%, rgba(168,221,224,${a * 0.5}) 55%, transparent 72%)`
-    );
-  }
-  kap.style.backgroundImage = lekeler.join(',');
-}
-
-export function atmosferKur() {
-  const kap = document.createElement('div');
-  kap.className = 'atmosfer';
-  kap.setAttribute('aria-hidden', 'true');
-  document.body.prepend(kap);
-
-  const doku = new URLSearchParams(location.search).get('doku') || 'kabarcik';
-  if (doku === 'yogusma') {
-    yogusmaKur(kap);
-  } else {
-    kabarcikKur(kap);
   }
 }
