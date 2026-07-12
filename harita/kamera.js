@@ -20,8 +20,9 @@ export function kameraKur(renderer, enBoy) {
   // pitch 40-70° -> polar (dikeyden) 20-50°
   kontrol.minPolarAngle = 20 * DERECE;
   kontrol.maxPolarAngle = 50 * DERECE;
-  kontrol.minAzimuthAngle = -30 * DERECE;
-  kontrol.maxAzimuthAngle = 30 * DERECE;
+  // Nesneyi çevreleme hissi
+  kontrol.minAzimuthAngle = -60 * DERECE;
+  kontrol.maxAzimuthAngle = 60 * DERECE;
   // Türkiye kadrajından çıkılamaz (dalışta göle yaklaşmaya izin var)
   kontrol.minDistance = 3.5;
   kontrol.maxDistance = 17;

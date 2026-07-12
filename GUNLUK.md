@@ -39,3 +39,10 @@
   bakır imza olarak footer'a işlendi (tamamı arslanhukuk.tr'ye link);
   koreografiye imza dokunuşu eklendi — son kelime otururken altından tek
   akuamarin damar ışıyıp geçiyor.
+- Nesne turu (v5): Türkiye sınırla kesilmiş extrude blok (üst rölyef +
+  katman çizgili yan kesit + kapalı taban; sinir.py il birleşimi).
+  Maskedeki il-arası sliver delikleri kapatıldı. Atlas doygun kalibre
+  edildi (poster referans dosyası bulunamadı, hex bantlarına göre).
+  Gayzerler haritadan kalktı, kenar fıskiyelerine dönüştü; su noktaları
+  iki katman işaret (var/potansiyel) + krem etiket. Deniz ayrı yüzey,
+  ufukta koyuya çözünüyor. EffectComposer bloom + ACES; orbit yaw ±60.

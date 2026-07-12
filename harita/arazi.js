@@ -1,14 +1,19 @@
-// Arazi: heightmap'ten gerçek geometri (CPU displacement).
-// Not: 16-bit PNG tarayıcı canvas'ında 8-bit'e düştüğü için yükselti
-// ham Uint16 .bin'den okunur; PNG arşiv/işleme içindir.
+// Arazi: Türkiye 3D NESNE — sınırla kesilmiş extrude blok.
+// Üst yüzey: heightmap rölyefi + atlas dokusu, sınır maskesiyle kesilir.
+// Yan yüzey: sınır halkalarından örülen kesit duvarı (koyu toprak, katman
+// çizgileri). Alt: kapalı taban. His: denizden yükselen müze maketi.
 import * as THREE from 'three';
 import atlasUrl from '../src/assets/tr-atlas.webp';
+import maskeUrl from '../src/assets/tr-maske.png';
 import yukseklikBinUrl from '../src/assets/tr-yukseklik.bin?url';
 import meta from '../src/assets/tr-yukseklik.json';
+import sinir from '../src/data/tr-sinir.json';
 
 // Sahne ölçüleri: atlas kapsamı 2:1 (7680x3840 mercator mozaik)
 export const PLAN_GEN = 20;
 export const PLAN_DER = 10;
+export const KALDIRMA = 0.14; // blok denizden belirgin yükseklikte
+export const TABAN_Y = -0.3;  // kesit tabanı
 
 // Gerçek dünya genişliği (merc kapsam ~21.09°, ~39N'de ≈ 1.825.000 m)
 const GERCEK_GEN_M = 1_825_000;
@@ -26,67 +31,143 @@ const KAPSAM = {
 };
 
 let geometriRef = null;
-let normalYukseklik = null; // 0-1 normalize vertex yükseklikleri
-let yukseklikVerisi = null; // ham Uint16 grid (lon/lat sorguları için)
-let kenarFaktor = null; // 1 iç, 0 kenar — plaka eteği için
+let normalYukseklik = null;
+let yukseklikVerisi = null;
 
 function birimYukseklik() {
-  // 1 m yükseltinin sahne birimi karşılığı
   return (PLAN_GEN / GERCEK_GEN_M) * meta.maksYukseltiM;
 }
 
+function yukseklikOku(u, v) {
+  if (!yukseklikVerisi) return 0;
+  const px = Math.min(meta.binGen - 1, Math.max(0, Math.round(u * (meta.binGen - 1))));
+  const py = Math.min(meta.binYuk - 1, Math.max(0, Math.round(v * (meta.binYuk - 1))));
+  return (yukseklikVerisi[py * meta.binGen + px] / 65535) * birimYukseklik() * AYAR.abartma;
+}
+
 export async function araziOlustur(mobil) {
-  const [bin, doku] = await Promise.all([
+  const yukleyici = new THREE.TextureLoader();
+  const [bin, doku, maske] = await Promise.all([
     fetch(yukseklikBinUrl).then((r) => r.arrayBuffer()),
-    new THREE.TextureLoader().loadAsync(atlasUrl),
+    yukleyici.loadAsync(atlasUrl),
+    yukleyici.loadAsync(maskeUrl),
   ]);
-  const yukseklik = new Uint16Array(bin);
-  yukseklikVerisi = yukseklik;
+  yukseklikVerisi = new Uint16Array(bin);
 
   doku.colorSpace = THREE.SRGBColorSpace;
   doku.anisotropy = 4;
 
   const seg = mobil ? [256, 128] : [512, 256];
   const geo = new THREE.PlaneGeometry(PLAN_GEN, PLAN_DER, seg[0], seg[1]);
-  geo.rotateX(-Math.PI / 2); // XZ düzlemine yatır (+z güney)
+  geo.rotateX(-Math.PI / 2);
 
   const poz = geo.attributes.position;
   const n = poz.count;
   normalYukseklik = new Float32Array(n);
-  kenarFaktor = new Float32Array(n);
-  const renkler = new Float32Array(n * 3);
-  const BANT = 0.022;      // etek dalış bandı (dik duvar)
-  const BANT_RENK = 0.075; // karartma bandı (duvardan önce koyulaşır)
-  const KENAR = [0.02, 0.07, 0.12]; // koyu zemine karışan etek rengi
-  const yum = (t) => { const k = Math.min(1, Math.max(0, t)); return k * k * (3 - 2 * k); };
   for (let i = 0; i < n; i++) {
     const u = poz.getX(i) / PLAN_GEN + 0.5;
     const v = poz.getZ(i) / PLAN_DER + 0.5;
     const px = Math.min(meta.binGen - 1, Math.round(u * (meta.binGen - 1)));
     const py = Math.min(meta.binYuk - 1, Math.round(v * (meta.binYuk - 1)));
-    normalYukseklik[i] = yukseklik[py * meta.binGen + px] / 65535;
-    const e = yum(Math.min(u, 1 - u) / BANT) * yum(Math.min(v, 1 - v) / BANT);
-    kenarFaktor[i] = e;
-    const er = yum(Math.min(u, 1 - u) / BANT_RENK) * yum(Math.min(v, 1 - v) / BANT_RENK);
-    renkler[i * 3] = KENAR[0] + (1 - KENAR[0]) * er;
-    renkler[i * 3 + 1] = KENAR[1] + (1 - KENAR[1]) * er;
-    renkler[i * 3 + 2] = KENAR[2] + (1 - KENAR[2]) * er;
+    normalYukseklik[i] = yukseklikVerisi[py * meta.binGen + px] / 65535;
   }
-  geo.setAttribute('color', new THREE.BufferAttribute(renkler, 3));
   geometriRef = geo;
   abartmaUygula(AYAR.abartma);
 
-  const malzeme = new THREE.MeshStandardMaterial({
+  // Üst yüzey: sınır maskesiyle piksel hassasiyetinde kesim
+  const ust = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({
     map: doku,
     roughness: 0.95,
     metalness: 0,
-    vertexColors: true, // kenar eteği karartması
-  });
+    alphaMap: maske,
+    alphaTest: 0.5,
+  }));
 
-  return new THREE.Mesh(geo, malzeme);
+  const grup = new THREE.Group();
+  grup.add(ust, kesitOlustur(), tabanOlustur());
+  return { grup, ust };
 }
 
-// lon/lat -> sahne konumu (y: arazi yüzeyi, mevcut abartmayla)
+// Yan kesit duvarı: sınır halkaları boyunca üstten tabana örülür
+function kesitOlustur() {
+  const pozlar = [];
+  const uvler = [];
+  const indeksler = [];
+  let taban = 0;
+  for (const halka of sinir.halkalar) {
+    let mesafe = 0;
+    for (let i = 0; i < halka.length; i++) {
+      const k = lonLatKonum(halka[i][0], halka[i][1]);
+      if (i > 0) {
+        const o = lonLatKonum(halka[i - 1][0], halka[i - 1][1]);
+        mesafe += Math.hypot(k.x - o.x, k.z - o.z);
+      }
+      pozlar.push(k.x, k.y + 0.004, k.z, k.x, TABAN_Y, k.z);
+      uvler.push(mesafe * 2, 1, mesafe * 2, 0);
+      if (i > 0) {
+        const a = taban + (i - 1) * 2;
+        indeksler.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
+      }
+    }
+    taban += halka.length * 2;
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.Float32BufferAttribute(pozlar, 3));
+  geo.setAttribute('uv', new THREE.Float32BufferAttribute(uvler, 2));
+  geo.setIndex(indeksler);
+  geo.computeVertexNormals();
+
+  return new THREE.Mesh(geo, new THREE.MeshStandardMaterial({
+    map: katmanDokusu(),
+    color: '#B08A63', // doku ile çarpılır -> sıcak toprak
+    emissive: '#3A2A1C', // gölgede kalan yüzler simsiyah olmasın
+    roughness: 1,
+    metalness: 0,
+    side: THREE.DoubleSide,
+  }));
+}
+
+// Kesit dokusu: ince yatay katman çizgileri (jeolojik tabaka hissi)
+function katmanDokusu() {
+  const c = document.createElement('canvas');
+  c.width = 8;
+  c.height = 128;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#6E5238';
+  ctx.fillRect(0, 0, 8, 128);
+  ctx.fillStyle = 'rgba(30, 20, 12, 0.35)';
+  for (let y = 10; y < 128; y += 14) {
+    ctx.fillRect(0, y, 8, 2);
+  }
+  const d = new THREE.CanvasTexture(c);
+  d.wrapS = THREE.RepeatWrapping;
+  d.colorSpace = THREE.SRGBColorSpace;
+  return d;
+}
+
+// Kapalı taban
+function tabanOlustur() {
+  const geolar = [];
+  for (const halka of sinir.halkalar) {
+    const sekil = new THREE.Shape();
+    halka.forEach((p, i) => {
+      const k = lonLatKonum(p[0], p[1]);
+      if (i === 0) sekil.moveTo(k.x, -k.z);
+      else sekil.lineTo(k.x, -k.z);
+    });
+    geolar.push(new THREE.ShapeGeometry(sekil).rotateX(-Math.PI / 2).translate(0, TABAN_Y, 0));
+  }
+  const grup = new THREE.Group();
+  const malzeme = new THREE.MeshStandardMaterial({
+    color: '#2A1E14',
+    roughness: 1,
+    side: THREE.DoubleSide,
+  });
+  for (const g of geolar) grup.add(new THREE.Mesh(g, malzeme));
+  return grup;
+}
+
+// lon/lat -> sahne konumu (y: arazi yüzeyi + blok kaldırması)
 function mercY(lat) {
   return Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
 }
@@ -98,13 +179,7 @@ export function lonLatKonum(lon, lat) {
   const v = (yK - mercY(lat)) / (yK - yG);
   const x = (u - 0.5) * PLAN_GEN;
   const z = (v - 0.5) * PLAN_DER;
-  let y = 0;
-  if (yukseklikVerisi) {
-    const px = Math.min(meta.binGen - 1, Math.max(0, Math.round(u * (meta.binGen - 1))));
-    const py = Math.min(meta.binYuk - 1, Math.max(0, Math.round(v * (meta.binYuk - 1))));
-    y = (yukseklikVerisi[py * meta.binGen + px] / 65535) * birimYukseklik() * AYAR.abartma;
-  }
-  return new THREE.Vector3(x, y, z);
+  return new THREE.Vector3(x, yukseklikOku(u, v) + KALDIRMA, z);
 }
 
 export function abartmaUygula(katsayi) {
@@ -113,8 +188,7 @@ export function abartmaUygula(katsayi) {
   const olcek = birimYukseklik() * katsayi;
   const poz = geometriRef.attributes.position;
   for (let i = 0; i < poz.count; i++) {
-    // Kenar eteği: plaka kenarları alçalarak koyu zemine gömülür
-    poz.setY(i, normalYukseklik[i] * olcek - (1 - kenarFaktor[i]) * 0.45);
+    poz.setY(i, normalYukseklik[i] * olcek + KALDIRMA);
   }
   poz.needsUpdate = true;
   geometriRef.computeVertexNormals();

@@ -28,6 +28,28 @@
 - Canlı S3 tile bağımlılığı KALDIRILDI (2026-07-12): rölyef artık repo
   içindeki statik görselden servis ediliyor; R2 kopyalama notu geçersiz.
 
+## Türkiye dış sınırı + kesim maskesi
+
+- Dosyalar: `src/data/tr-sinir.json` (sadeleştirilmiş halkalar) +
+  `src/assets/tr-maske.png` (2048x1024 kesim maskesi).
+- Üretim: `arac/atlas/sinir.py` — 81 il poligonunun shapely birleşimi,
+  0.015° sadeleştirme; kaynak veri il sınırlarıyla aynı (Apache-2.0).
+- Üretim tarihi: 2026-07-12
+
+## "Su bulunabilecek alanlar" işaretleri (TEMSİLİ — YER TUTUCU)
+
+- `harita/isaretler.js` içindeki 9 nokta (Taşeli, Kırkgöz, Konya kapalı
+  havzası, Gökova, Harran, Develi, Ergene, Bafra, Iğdır) TEMSİLİDİR;
+  hidrojeolojik veriye dayanmaz. Aşama 1 kazısında gerçek karst/akifer
+  verisiyle değiştirilecek.
+
+## Atlas renk kalibrasyonu notu
+
+- Kullanıcının verdiği poster referansı (`referans/atlas-stili.jpg`)
+  projede BULUNAMADI (2026-07-12); kalibrasyon brief'teki hex bantlarına
+  göre yapıldı, karşılaştırma görseli: `screenshots/atlas-renk-karsilastirma.png`.
+  Poster eklenirse yeniden kalibre edilecek.
+
 ## Nehirler ve göller (GEÇİCİ/BAŞLANGIÇ VERİSİ)
 
 - Dosyalar: `src/data/tr-nehirler.json`, `src/data/tr-goller.json`

@@ -1,11 +1,14 @@
-// Canlı su: deniz + göller. Vertex dalgalanma bu ölçekte kıyıları basacağı
-// için dalgalar fragment'ta animasyonlu normal olarak üretilir (GPU-dostu):
-// güneş parıltısı + kıyıya doğru renk geçişi. Deniz maskesi atlas
-// dokusundaki düz deniz renginden (#A9C3B4) piksel hassasiyetinde çıkarılır.
+// Canlı su: deniz + göller. Deniz artık blok altında her yere uzanan ayrı
+// alçak yüzey; kara bloğu (KALDIRMA) denizden belirgin yükseklikte durur.
+// Dalgalar fragment'ta animasyonlu normal (GPU-dostu), güneş parıltısı,
+// kıyıya doğru renk geçişi (bulanık sınır maskesinden).
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import goller from '../src/data/tr-goller.json';
 import { PLAN_GEN, PLAN_DER, lonLatKonum } from './arazi.js';
+
+const DENIZ_GEN = 100;
+const DENIZ_DER = 60;
 
 const VERT = /* glsl */ `
   varying vec2 vUv;
@@ -19,31 +22,27 @@ const VERT = /* glsl */ `
 `;
 
 const FRAG = /* glsl */ `
-  uniform sampler2D uAtlas;
-  uniform sampler2D uAtlasBulanik;
+  uniform sampler2D uKiyi; // bulanık Türkiye maskesi (kıyı yakınlığı)
   uniform float uZaman;
   uniform vec3 uIsikYon;
-  uniform float uMaskKullan; // 1: deniz (atlas maskesi + kenar solması), 0: göl
+  uniform float uDeniz; // 1: deniz (kıyı geçişi + kenar solması), 0: göl
   varying vec2 vUv;
   varying vec3 vDunya;
 
-  // sRGB dokular shader'da LINEAR okunur; referans da linear uzayda
-  const vec3 DENIZ_REF = vec3(0.404, 0.549, 0.456); // #A9C3B4 linear
-  const vec3 DERIN = vec3(0.086, 0.243, 0.278);     // açık deniz
-  const vec3 KIYI  = vec3(0.259, 0.427, 0.408);     // kıyı sığlığı
+  // Hedef ekran renkleri (composer linear->sRGB çevirir; değerler linear):
+  // kıyı #A9C3B4 adaçayı, açık deniz bir ton derin adaçayı
+  const vec3 DERIN = vec3(0.196, 0.331, 0.272);
+  const vec3 KIYI  = vec3(0.404, 0.549, 0.456);
 
   void main() {
-    float suMask = 1.0;
     float karaYakin = 0.35;
-    if (uMaskKullan > 0.5) {
-      vec3 keskin = texture2D(uAtlas, vUv).rgb;
-      suMask = 1.0 - smoothstep(0.03, 0.08, distance(keskin, DENIZ_REF));
-      if (suMask < 0.02) discard;
-      vec3 bulanik = texture2D(uAtlasBulanik, vUv).rgb;
-      karaYakin = clamp(distance(bulanik, DENIZ_REF) * 2.2, 0.0, 0.85);
+    if (uDeniz > 0.5) {
+      // dünya konumundan plaka uv'si; plaka dışı derin okunur
+      vec2 tuv = vec2(vDunya.x / ${PLAN_GEN.toFixed(1)} + 0.5,
+                      vDunya.z / ${PLAN_DER.toFixed(1)} + 0.5);
+      karaYakin = texture2D(uKiyi, clamp(tuv, 0.0, 1.0)).g * 0.9;
     }
 
-    // Animasyonlu dalga normalleri (üç yönlü sinüs karışımı)
     vec2 p = vDunya.xz * 7.0;
     float t = uZaman;
     float nx = sin(p.x * 1.35 + t * 0.55) * 0.5
@@ -55,68 +54,62 @@ const FRAG = /* glsl */ `
     vec3 L = normalize(uIsikYon);
     vec3 V = normalize(cameraPosition - vDunya);
     vec3 H = normalize(L + V);
-    float parilti = pow(max(dot(N, H), 0.0), 110.0) * 0.6; // güneş parıltısı
-    float sacilim = pow(max(dot(N, H), 0.0), 8.0) * 0.05;
+    float parilti = pow(max(dot(N, H), 0.0), 110.0) * 0.45;
+    float sacilim = pow(max(dot(N, H), 0.0), 8.0) * 0.035;
     float dif = 0.90 + 0.10 * max(dot(N, L), 0.0);
 
     vec3 renk = mix(DERIN, KIYI, karaYakin) * dif
               + (parilti + sacilim) * vec3(1.0, 0.98, 0.92);
 
-    float alfa = suMask;
-    if (uMaskKullan > 0.5) {
-      // plaka kenarında karanlık suya çözünme
-      float kx = smoothstep(0.0, 0.055, min(vUv.x, 1.0 - vUv.x));
-      float ky = smoothstep(0.0, 0.055, min(vUv.y, 1.0 - vUv.y));
-      alfa *= kx * ky;
+    float alfa = 1.0;
+    if (uDeniz > 0.5) {
+      float kx = smoothstep(0.0, 0.06, min(vUv.x, 1.0 - vUv.x));
+      float ky = smoothstep(0.0, 0.06, min(vUv.y, 1.0 - vUv.y));
+      // uzak deniz ufukta koyu zemine çözünür (beyaz sis değil)
+      float uzak = 1.0 - smoothstep(17.0, 28.0, distance(cameraPosition, vDunya));
+      alfa = kx * ky * uzak;
     }
     gl_FragColor = vec4(renk, alfa);
   }
 `;
 
-function bulanikAtlas(atlasDoku) {
+// Maske görüntüsünü küçük tuvale bulanık indirger (kıyı yakınlık alanı)
+function kiyiAlani(maskeDoku) {
   const c = document.createElement('canvas');
-  c.width = 96;
-  c.height = 48;
+  c.width = 128;
+  c.height = 64;
   const ctx = c.getContext('2d');
-  ctx.filter = 'blur(2px)';
-  ctx.drawImage(atlasDoku.image, 0, 0, 96, 48);
-  const d = new THREE.CanvasTexture(c);
-  d.colorSpace = THREE.SRGBColorSpace;
-  return d;
+  ctx.filter = 'blur(3px)';
+  ctx.drawImage(maskeDoku.image, 0, 0, 128, 64);
+  return new THREE.CanvasTexture(c);
 }
 
-function malzemeYap(uniforms, maskKullan) {
+function malzemeYap(uniforms, deniz) {
   return new THREE.ShaderMaterial({
     vertexShader: VERT,
     fragmentShader: FRAG,
-    uniforms: {
-      ...uniforms,
-      uMaskKullan: { value: maskKullan },
-    },
+    uniforms: { ...uniforms, uDeniz: { value: deniz } },
     transparent: true,
     depthWrite: false,
   });
 }
 
-export function suKur(rig, atlasDoku, uZaman, uIsikYon) {
+export function suKur(rig, maskeDoku, uZaman, uIsikYon) {
   const ortak = {
-    uAtlas: { value: atlasDoku },
-    uAtlasBulanik: { value: bulanikAtlas(atlasDoku) },
+    uKiyi: { value: kiyiAlani(maskeDoku) },
     uZaman,
     uIsikYon,
   };
 
-  // Deniz: tüm plakayı kaplar, atlas maskesiyle sadece deniz piksellerinde
   const deniz = new THREE.Mesh(
-    new THREE.PlaneGeometry(PLAN_GEN, PLAN_DER, 1, 1).rotateX(-Math.PI / 2),
+    new THREE.PlaneGeometry(DENIZ_GEN, DENIZ_DER, 1, 1).rotateX(-Math.PI / 2),
     malzemeYap(ortak, 1),
   );
-  deniz.position.y = 0.004;
+  deniz.position.y = 0;
   deniz.renderOrder = 1;
   rig.add(deniz);
 
-  // Göller: geojson halkalarından yüzey seviyesinde parlayan yüzeyler.
-  // Tek mesh'te birleştirilir (draw call tasarrufu).
+  // Göller: blok üstünde, kendi rakımlarında parlayan yüzeyler (tek mesh)
   const golGeolar = [];
   for (const f of goller.features) {
     const g = f.geometry;

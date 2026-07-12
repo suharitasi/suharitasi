@@ -2,7 +2,7 @@
 import subprocess
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageEnhance
 from osgeo import gdal
 
 gdal.UseExceptions()
@@ -30,7 +30,8 @@ golge = gdal.Open("golge.tif").ReadAsArray().astype(np.float32) / 255.0
 elev = gdal.Open("dem.tif").ReadAsArray()
 
 # Yumuşak harman: gölge rengin koyusu olur, sert siyah yok; aydınlık yamaç hafif açılır
-f = np.clip(0.55 + 0.55 * golge, 0.55, 1.12)
+# (v2 kalibrasyon: soluk/gri kalmasın — gölge tabanı yukarı, renkler doygun ve sıcak)
+f = np.clip(0.70 + 0.46 * golge, 0.70, 1.14)
 img = np.clip(renk * f[None, :, :], 0, 255).astype(np.uint8)
 img = np.moveaxis(img, 0, -1)  # (H,W,3)
 
@@ -39,6 +40,8 @@ DENIZ = np.array([169, 195, 180], dtype=np.uint8)  # #A9C3B4
 img[elev <= 0] = DENIZ
 
 master = Image.fromarray(img)
+master = ImageEnhance.Color(master).enhance(1.22)      # doygunluk
+master = ImageEnhance.Brightness(master).enhance(1.04) # hafif sıcaklık
 master.save("tr-atlas-master.png", optimize=True)
 
 web = master.resize((3840, master.height * 3840 // master.width), Image.LANCZOS)

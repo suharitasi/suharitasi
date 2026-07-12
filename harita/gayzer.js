@@ -1,3 +1,84 @@
+// KENAR FISKİYELERİ (nesne turu): haritada fışkırma yok; bu modülün
+// partikül sistemi sahne KENARLARINA taşındı — koyu zeminden yükselen
+// 2-3 dekoratif ince su fışkırması, sayfayla ilişkili atmosfer öğesi.
+// (Aşağıdaki eski harita-gayzer kurulumu SİLİNMEDİ; artık çağrılmıyor.)
+import * as THREE_K from 'three';
+
+const KENARLAR = [
+  { x: -11.3, z: 6.2 },
+  { x: 11.5, z: 6.7 },
+  { x: 10.7, z: -6.3 },
+];
+
+export function kenarGayzerKur(rig, mobil) {
+  const azHareket = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const SAYI = mobil ? 90 : 180; // toplam havuz (3 emitöre paylaşılır)
+  const geo = new THREE_K.BufferGeometry();
+  const pozlar = new Float32Array(SAYI * 3);
+  const renkler = new Float32Array(SAYI * 3);
+  geo.setAttribute('position', new THREE_K.BufferAttribute(pozlar, 3));
+  geo.setAttribute('color', new THREE_K.BufferAttribute(renkler, 3));
+  const puanlar = new THREE_K.Points(geo, new THREE_K.PointsMaterial({
+    size: 0.05,
+    vertexColors: true,
+    transparent: true,
+    depthWrite: false,
+    blending: THREE_K.AdditiveBlending,
+    sizeAttenuation: true,
+  }));
+  puanlar.frustumCulled = false;
+  puanlar.visible = !azHareket;
+  rig.add(puanlar);
+
+  const parcacik = Array.from({ length: SAYI }, (_, i) => ({
+    yas: 99, omur: 1, hiz: new THREE_K.Vector3(), canli: false,
+    emitor: KENARLAR[i % KENARLAR.length],
+  }));
+  const G = 1.6;
+  const renk = new THREE_K.Color();
+  const DIP = new THREE_K.Color('#5E8A87');
+  const UC = new THREE_K.Color('#DFF6F8'); // parlak uç: bloom yakalar
+
+  return function guncelle(dt) {
+    if (azHareket) return;
+    for (let j = 0; j < SAYI; j++) {
+      const p = parcacik[j];
+      const i = j * 3;
+      if (p.canli) {
+        p.yas += dt;
+        if (p.yas >= p.omur) {
+          p.canli = false;
+          renkler[i] = renkler[i + 1] = renkler[i + 2] = 0;
+          continue;
+        }
+        p.hiz.y -= G * dt;
+        pozlar[i] += p.hiz.x * dt;
+        pozlar[i + 1] += p.hiz.y * dt;
+        pozlar[i + 2] += p.hiz.z * dt;
+        const parlaklik = Math.sin(Math.PI * (p.yas / p.omur)) * 0.9;
+        renk.lerpColors(DIP, UC, Math.min(1, (pozlar[i + 1] + 0.1) / 0.8));
+        renkler[i] = renk.r * parlaklik;
+        renkler[i + 1] = renk.g * parlaklik;
+        renkler[i + 2] = renk.b * parlaklik;
+      } else if (Math.random() < 0.045) { // sakin, sürekli akış
+        p.canli = true;
+        p.yas = 0;
+        p.omur = 1.3 + Math.random() * 0.8;
+        const aci = Math.random() * Math.PI * 2;
+        const sac = 0.02 + Math.random() * 0.06;
+        p.hiz.set(Math.cos(aci) * sac, 0.85 + Math.random() * 0.35, Math.sin(aci) * sac);
+        pozlar[i] = p.emitor.x + (Math.random() - 0.5) * 0.06;
+        pozlar[i + 1] = -0.15;
+        pozlar[i + 2] = p.emitor.z + (Math.random() - 0.5) * 0.06;
+      }
+    }
+    geo.attributes.position.needsUpdate = true;
+    geo.attributes.color.needsUpdate = true;
+  };
+}
+
+// ============================================================
+// ESKİ HARİTA GAYZERİ (kullanım dışı, arşiv):
 // Gayzerler: su noktaları sürekli yaşar.
 // - Her noktada ince, nefes alan ışıma işareti (sürekli görünür)
 // - 5-10 sn arayla rastgele bir noktadan kendiliğinden ince fışkırma

@@ -1,21 +1,23 @@
-// Harita v4: Three.js 3D arazi. Modüler kurulum — güncellenecekler
-// listesine eklenen her fonksiyon karede çağrılır (Faz 2 partikül
-// sistemi buraya takılacak).
+// Harita v5 "nesne": Türkiye extrude blok + sinematik render.
+// Modüler kurulum — guncellenecekler listesine eklenen her fonksiyon
+// karede çağrılır.
 import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { araziOlustur, abartmaUygula, AYAR } from './arazi.js';
 import { kameraKur, paralaksKur, BAKIS_YON, EV_HEDEF } from './kamera.js';
 import { atmosferKur } from './atmosfer.js';
-import { gayzerKur } from './gayzer.js';
+import { kenarGayzerKur } from './gayzer.js';
+import { isaretlerKur } from './isaretler.js';
 import { suKur } from './su.js';
-import { camKur } from './cam.js';
 
 atmosferKur();
 
 const kap = document.getElementById('harita');
 const mobil = matchMedia('(pointer: coarse)').matches || innerWidth < 768;
 
-// WebGL yoksa (kapalı/engelli tarayıcı) sahne sessizce boş kalıyordu:
-// statik atlas görseline düş
 function yedegeDus() {
   document.getElementById('yukleniyor').classList.add('bitti');
   document.getElementById('yedek').classList.add('acik');
@@ -30,9 +32,8 @@ try {
 }
 renderer.setPixelRatio(Math.min(devicePixelRatio, mobil ? 1.5 : 2));
 renderer.setSize(kap.clientWidth, kap.clientHeight);
-renderer.setClearColor(0x000000, 0); // şeffaf: sayfa zemini görünsün
-renderer.toneMapping = THREE.NeutralToneMapping;
-renderer.toneMappingExposure = 1.32; // atlas renkleri canlı okunsun
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.35; // atlas ACES altında da doygun kalsın
 kap.appendChild(renderer.domElement);
 
 const azHareket = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -40,20 +41,35 @@ const uZaman = { value: 0 };
 const uIsikYon = { value: new THREE.Vector3(-9, 4.5, -5) };
 
 const sahne = new THREE.Scene();
-const rig = new THREE.Group(); // paralaks bu grubu salındırır
+const rig = new THREE.Group();
 sahne.add(rig);
 
-// Işık: kuzeybatıdan alçak açıyla — gölgeler derinlik versin; sert gölge yok
+// Zemin: sayfanın derin-su degradesi sahne içinde (bloom şeffaf arka planla
+// uyumsuz olduğundan degrade tam ekran quad olarak çizilir)
+const zemin = new THREE.Mesh(
+  new THREE.PlaneGeometry(2, 2),
+  new THREE.ShaderMaterial({
+    depthWrite: false,
+    depthTest: false,
+    vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.9999, 1.0); }',
+    // Hedef ekran renkleri #04121F -> #061A2E (composer linear->sRGB çevirdiğinden linear yazıldı)
+    fragmentShader: 'varying vec2 vUv; void main(){ gl_FragColor = vec4(mix(vec3(0.0013,0.0068,0.0148), vec3(0.0021,0.0128,0.0271), vUv.y), 1.0); }',
+  }),
+);
+zemin.frustumCulled = false;
+zemin.renderOrder = -1;
+sahne.add(zemin);
+
+// Işık: kuzeybatıdan alçak açıyla; sert gölge yok
 const gunes = new THREE.DirectionalLight(0xfff2dc, 2.6);
 gunes.position.set(-9, 4.5, -5);
 sahne.add(gunes);
 sahne.add(new THREE.AmbientLight(0xdce9ed, 0.65));
 
-// Güneş salınımı: ışık açısı dakikalar içinde hafifçe kayar
 const GUNES_TABAN = gunes.position.clone();
 function gunesSalinimi() {
   if (azHareket) return;
-  const a = Math.sin(uZaman.value * 0.03) * 0.18; // ~±10°, periyot ~3.5 dk
+  const a = Math.sin(uZaman.value * 0.03) * 0.18;
   const c = Math.cos(a);
   const s = Math.sin(a);
   gunes.position.set(
@@ -65,10 +81,22 @@ function gunesSalinimi() {
 }
 
 const { kamera, kontrol, kadrajOtur } = kameraKur(renderer, kap.clientWidth / kap.clientHeight);
-kamera.userData.kap = kap; // raycast için piksel->NDC dönüşümünde kullanılır
+kamera.userData.kap = kap;
 const paralaks = paralaksKur(rig, mobil);
 
-// Arazi üstünde süzülen hacimli bulut gölgeleri (fragment'ta 2-3 yumuşak leke)
+// Sinematik: bloom + ACES
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(sahne, kamera));
+const bloom = new UnrealBloomPass(
+  new THREE.Vector2(kap.clientWidth, kap.clientHeight),
+  mobil ? 0.4 : 0.55, // güç
+  0.4,                // yarıçap
+  0.8,                // eşik: yalnız ışıma noktaları/fıskiyeler
+);
+composer.addPass(bloom);
+composer.addPass(new OutputPass());
+
+// Bulut gölgeleri: arazi malzemesine fragment enjeksiyonu
 function bulutGolgesi(malzeme) {
   malzeme.onBeforeCompile = (shader) => {
     shader.uniforms.uZaman = uZaman;
@@ -98,12 +126,12 @@ function bulutGolgesi(malzeme) {
   };
 }
 
-// Faz 2+ için genişleme noktası
+// Faz 2+ genişleme noktası
 const guncellenecekler = [paralaks];
 
 const yukleniyor = document.getElementById('yukleniyor');
 
-// Kamera koreografisi (Faz 3B): su noktasına dalış / kadraja dönüş
+// Kamera koreografisi: su noktasına dalış / kadraja dönüş
 let ucus = null;
 let dalinanNokta = null;
 
@@ -115,7 +143,7 @@ function ucusBaslat(hedefPoz, hedefOdak, sure) {
     return;
   }
   ucus = {
-    baslangic: performance.now(), // duvar saati: yavaş cihazda da aynı süre
+    baslangic: performance.now(),
     sure,
     p0: kamera.position.clone(),
     p1: hedefPoz,
@@ -127,7 +155,6 @@ function ucusBaslat(hedefPoz, hedefOdak, sure) {
 
 function noktayaDal(nokta) {
   dalinanNokta = nokta;
-  // Yaklaşma: aynı bakış yönünde, hafif yana kaymış sinematik konum
   const sapma = new THREE.Vector3(-0.9, 0, 0.35);
   const poz = BAKIS_YON.clone().multiplyScalar(4.2).add(nokta.poz).add(sapma);
   ucusBaslat(poz, nokta.poz.clone(), 2.0);
@@ -138,7 +165,6 @@ function kadrajaDon() {
   ucusBaslat(kadrajOtur(), EV_HEDEF.clone(), 1.8);
 }
 
-// Tıklama semantiği: nokta -> dal; aynı nokta ya da boşluk -> dön
 function dalisTetikle(nokta) {
   if (!nokta || nokta === dalinanNokta) {
     if (dalinanNokta) kadrajaDon();
@@ -147,7 +173,7 @@ function dalisTetikle(nokta) {
   }
 }
 
-// Giriş animasyonu: kamera uzaktan süzülerek kadraja oturur
+// Giriş animasyonu
 let giris = null;
 function girisBaslat() {
   const hedef = kadrajOtur();
@@ -163,13 +189,12 @@ function girisBaslat() {
   giris = { baslangic: performance.now(), sure: 2.6, basla, hedef };
 }
 
-araziOlustur(mobil).then((arazi) => {
-  bulutGolgesi(arazi.material);
-  rig.add(arazi);
-  suKur(rig, arazi.material.map, uZaman, uIsikYon);
-  const sicrat = camKur(document.querySelector('.cerceve'));
-  window.camSicrat = sicrat; // konsoldan deneme
-  guncellenecekler.push(gayzerKur(rig, kamera, arazi, mobil, sicrat, dalisTetikle));
+araziOlustur(mobil).then(({ grup, ust }) => {
+  bulutGolgesi(ust.material);
+  rig.add(grup);
+  suKur(rig, ust.material.alphaMap, uZaman, uIsikYon);
+  guncellenecekler.push(isaretlerKur(rig, kamera, ust, mobil, dalisTetikle));
+  guncellenecekler.push(kenarGayzerKur(rig, mobil));
   girisBaslat();
   yukleniyor.classList.add('bitti');
 });
@@ -178,26 +203,27 @@ setTimeout(() => yukleniyor.classList.add('bitti'), 8000);
 addEventListener('resize', () => {
   kamera.aspect = kap.clientWidth / kap.clientHeight;
   renderer.setSize(kap.clientWidth, kap.clientHeight);
-  // Kadrajı yeni en-boy oranına oturt (yön değişiminde kompozisyon korunur)
+  composer.setSize(kap.clientWidth, kap.clientHeight);
   if (!giris) kamera.position.copy(kadrajOtur());
   else kamera.updateProjectionMatrix();
 });
 
-// FPS ölçümü
 let kare = 0;
 let fpsZaman = performance.now();
-const saat = new THREE.Clock();
-
-let fpsKalan = 5; // konsolu kirletme: ilk 5 örnek yeter
+let fpsKalan = 5;
+let sonZaman = performance.now();
 
 renderer.setAnimationLoop(() => {
-  const dt = Math.min(saat.getDelta(), 0.05);
-  if (!azHareket) uZaman.value += dt; // su/bulut/güneş animasyon saati
+  const simdiMs = performance.now();
+  const dt = Math.min((simdiMs - sonZaman) / 1000, 0.05);
+  sonZaman = simdiMs;
+
+  if (!azHareket) uZaman.value += dt;
   gunesSalinimi();
 
   if (giris) {
     const k = Math.min(1, (performance.now() - giris.baslangic) / 1000 / giris.sure);
-    const e = 1 - Math.pow(1 - k, 3); // ease-out cubic
+    const e = 1 - Math.pow(1 - k, 3);
     kamera.position.lerpVectors(giris.basla, giris.hedef, e);
     if (k >= 1) {
       giris = null;
@@ -207,7 +233,7 @@ renderer.setAnimationLoop(() => {
 
   if (ucus) {
     const k = Math.min(1, (performance.now() - ucus.baslangic) / 1000 / ucus.sure);
-    const e = k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2; // ease-in-out
+    const e = k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
     kamera.position.lerpVectors(ucus.p0, ucus.p1, e);
     kontrol.target.lerpVectors(ucus.o0, ucus.o1, e);
     if (k >= 1) {
@@ -216,15 +242,14 @@ renderer.setAnimationLoop(() => {
     }
   }
 
-  // Uçuş sırasında OrbitControls.update() mesafe/açı kelepçeleriyle
-  // animasyonla savaşır — o sürede yönelim manuel verilir
   if (giris || ucus) {
     kamera.lookAt(kontrol.target);
   } else {
     kontrol.update();
   }
+
   for (const g of guncellenecekler) g(dt);
-  renderer.render(sahne, kamera);
+  composer.render();
 
   kare++;
   const simdi = performance.now();
@@ -238,8 +263,9 @@ renderer.setAnimationLoop(() => {
   }
 });
 
-// Konsoldan ayar: abartmaAyarla(2.5)
+// Konsoldan ayar
 window.abartmaAyarla = abartmaUygula;
 window.sahneAyar = AYAR;
 window.kamera3d = kamera;
 window.dalisTetikle = dalisTetikle;
+window.rig3d = rig;

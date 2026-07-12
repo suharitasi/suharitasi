@@ -130,6 +130,29 @@
     pointer-events: none;
   }
 
+  /* Su noktası etiketi: krem lejant dili */
+  .etiket {
+    position: absolute;
+    z-index: 6;
+    transform: translate(-50%, -130%);
+    padding: 0.35rem 0.8rem;
+    background: var(--atlas-krem);
+    border: 1px solid var(--atlas-hardal);
+    border-left: 2px solid var(--atlas-kehribar);
+    box-shadow: 0 6px 18px rgba(46, 33, 20, 0.3);
+    font-family: "Cormorant", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--atlas-kahve);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+  }
+
+  .etiket.acik { opacity: 1; }
+
   /* Cam sıçraması (VIZYON madde 1 prototipi) */
   .cam {
     position: absolute;
