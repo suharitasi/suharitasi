@@ -26,3 +26,7 @@
   ile additive partikül sütunu + taban ışıması; reduced-motion'da statik
   işaret. 60 FPS doğrulaması gerçek GPU bekliyor (FAZ2 bitti tanımının
   açık kalemi).
+- Faz 3A: giriş animasyonu (kamera uzaktan kadraja süzülür, reduced-motion
+  atlar), mobil portre kadraj sığdırma (dinamik fov+mesafe), göl geometrileri
+  tek mesh'e birleştirildi, mobil pixelRatio 1.5, FPS logu 5 örnekle sınırlı.
+  3B (koreografi, seçim etkileşimi, son cila) kullanıcı yorumunu bekliyor.

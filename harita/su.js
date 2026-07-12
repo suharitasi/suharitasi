@@ -3,6 +3,7 @@
 // güneş parıltısı + kıyıya doğru renk geçişi. Deniz maskesi atlas
 // dokusundaki düz deniz renginden (#A9C3B4) piksel hassasiyetinde çıkarılır.
 import * as THREE from 'three';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import goller from '../src/data/tr-goller.json';
 import { PLAN_GEN, PLAN_DER, lonLatKonum } from './arazi.js';
 
@@ -114,8 +115,9 @@ export function suKur(rig, atlasDoku, uZaman, uIsikYon) {
   deniz.renderOrder = 1;
   rig.add(deniz);
 
-  // Göller: geojson halkalarından yüzey seviyesinde parlayan yüzeyler
-  const golMalzeme = malzemeYap(ortak, 0);
+  // Göller: geojson halkalarından yüzey seviyesinde parlayan yüzeyler.
+  // Tek mesh'te birleştirilir (draw call tasarrufu).
+  const golGeolar = [];
   for (const f of goller.features) {
     const g = f.geometry;
     const halkalar = g.type === 'Polygon' ? [g.coordinates[0]] : g.coordinates.map((p) => p[0]);
@@ -129,10 +131,11 @@ export function suKur(rig, atlasDoku, uZaman, uIsikYon) {
         else sekil.lineTo(k.x, -k.z);
       });
       const geo = new THREE.ShapeGeometry(sekil).rotateX(-Math.PI / 2);
-      const gol = new THREE.Mesh(geo, golMalzeme);
-      gol.position.y = tabanY + 0.006;
-      gol.renderOrder = 1;
-      rig.add(gol);
+      geo.translate(0, tabanY + 0.006, 0);
+      golGeolar.push(geo);
     }
   }
+  const golMesh = new THREE.Mesh(mergeGeometries(golGeolar), malzemeYap(ortak, 0));
+  golMesh.renderOrder = 1;
+  rig.add(golMesh);
 }

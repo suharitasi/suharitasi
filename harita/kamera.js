@@ -4,10 +4,12 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const DERECE = Math.PI / 180;
 
+// Bakış yönü: ~57° pitch, güneyden (kuzey yukarıda)
+const BAKIS_YON = new THREE.Vector3(0, 0.827, 0.567).normalize();
+const TABAN_MESAFE = 13.05;
+
 export function kameraKur(renderer, enBoy) {
   const kamera = new THREE.PerspectiveCamera(45, enBoy, 0.1, 200);
-  // ~57° pitch, tepeden kuşbakışına yakın; güneyden bakış (kuzey yukarıda)
-  kamera.position.set(0, 10.8, 7.0);
 
   const kontrol = new OrbitControls(kamera, renderer.domElement);
   kontrol.target.set(0, 0, -0.4);
@@ -22,9 +24,26 @@ export function kameraKur(renderer, enBoy) {
   // Türkiye kadrajından çıkılamaz
   kontrol.minDistance = 8;
   kontrol.maxDistance = 17;
+
+  // Kadraj: yatayda 20 birimlik plaka sığar; portrede fov + mesafe uyarlanır
+  function kadrajOtur() {
+    let fov = 45;
+    let mesafe = TABAN_MESAFE;
+    if (kamera.aspect < 0.9) {
+      fov = 50;
+      const yatayTan = Math.tan((fov * DERECE) / 2) * kamera.aspect;
+      mesafe = Math.max(TABAN_MESAFE, (10 * 1.06) / yatayTan);
+    }
+    kamera.fov = fov;
+    kamera.updateProjectionMatrix();
+    kontrol.maxDistance = Math.max(17, mesafe + 3);
+    return BAKIS_YON.clone().multiplyScalar(mesafe).add(kontrol.target);
+  }
+
+  kamera.position.copy(kadrajOtur());
   kontrol.update();
 
-  return { kamera, kontrol };
+  return { kamera, kontrol, kadrajOtur };
 }
 
 // Kamera nefesi: çok yavaş idle drift + imleç paralaksı üstüne biner

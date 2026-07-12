@@ -27,7 +27,7 @@ try {
   yedegeDus();
   throw new Error('WebGL kullanılamıyor — statik atlas görünümüne geçildi');
 }
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setPixelRatio(Math.min(devicePixelRatio, mobil ? 1.5 : 2));
 renderer.setSize(kap.clientWidth, kap.clientHeight);
 renderer.setClearColor(0x000000, 0); // şeffaf: sayfa zemini görünsün
 renderer.toneMapping = THREE.NeutralToneMapping;
@@ -63,7 +63,7 @@ function gunesSalinimi() {
   uIsikYon.value.copy(gunes.position);
 }
 
-const { kamera, kontrol } = kameraKur(renderer, kap.clientWidth / kap.clientHeight);
+const { kamera, kontrol, kadrajOtur } = kameraKur(renderer, kap.clientWidth / kap.clientHeight);
 kamera.userData.kap = kap; // raycast için piksel->NDC dönüşümünde kullanılır
 const paralaks = paralaksKur(rig, mobil);
 
@@ -102,19 +102,38 @@ const guncellenecekler = [paralaks];
 
 const yukleniyor = document.getElementById('yukleniyor');
 
+// Giriş animasyonu: kamera uzaktan süzülerek kadraja oturur
+let giris = null;
+function girisBaslat() {
+  const hedef = kadrajOtur();
+  if (azHareket) {
+    kamera.position.copy(hedef);
+    return;
+  }
+  const basla = kontrol.target.clone()
+    .add(hedef.clone().sub(kontrol.target).multiplyScalar(1.85))
+    .add(new THREE.Vector3(-2.4, 1.6, 0));
+  kamera.position.copy(basla);
+  kontrol.enabled = false;
+  giris = { t: 0, sure: 2.6, basla, hedef };
+}
+
 araziOlustur(mobil).then((arazi) => {
   bulutGolgesi(arazi.material);
   rig.add(arazi);
   suKur(rig, arazi.material.map, uZaman, uIsikYon);
   guncellenecekler.push(gayzerKur(rig, kamera, arazi, mobil));
+  girisBaslat();
   yukleniyor.classList.add('bitti');
 });
 setTimeout(() => yukleniyor.classList.add('bitti'), 8000);
 
 addEventListener('resize', () => {
   kamera.aspect = kap.clientWidth / kap.clientHeight;
-  kamera.updateProjectionMatrix();
   renderer.setSize(kap.clientWidth, kap.clientHeight);
+  // Kadrajı yeni en-boy oranına oturt (yön değişiminde kompozisyon korunur)
+  if (!giris) kamera.position.copy(kadrajOtur());
+  else kamera.updateProjectionMatrix();
 });
 
 // FPS ölçümü
@@ -122,10 +141,24 @@ let kare = 0;
 let fpsZaman = performance.now();
 const saat = new THREE.Clock();
 
+let fpsKalan = 5; // konsolu kirletme: ilk 5 örnek yeter
+
 renderer.setAnimationLoop(() => {
   const dt = Math.min(saat.getDelta(), 0.05);
   if (!azHareket) uZaman.value += dt; // su/bulut/güneş animasyon saati
   gunesSalinimi();
+
+  if (giris) {
+    giris.t += dt;
+    const k = Math.min(1, giris.t / giris.sure);
+    const e = 1 - Math.pow(1 - k, 3); // ease-out cubic
+    kamera.position.lerpVectors(giris.basla, giris.hedef, e);
+    if (k >= 1) {
+      giris = null;
+      kontrol.enabled = true;
+    }
+  }
+
   kontrol.update();
   for (const g of guncellenecekler) g(dt);
   renderer.render(sahne, kamera);
@@ -133,7 +166,10 @@ renderer.setAnimationLoop(() => {
   kare++;
   const simdi = performance.now();
   if (simdi - fpsZaman >= 2000) {
-    console.log(`FPS: ${Math.round((kare * 1000) / (simdi - fpsZaman))}`);
+    if (fpsKalan > 0) {
+      fpsKalan--;
+      console.log(`FPS: ${Math.round((kare * 1000) / (simdi - fpsZaman))}`);
+    }
     kare = 0;
     fpsZaman = simdi;
   }
