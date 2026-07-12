@@ -11,7 +11,20 @@ atmosferKur();
 const kap = document.getElementById('harita');
 const mobil = matchMedia('(pointer: coarse)').matches || innerWidth < 768;
 
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+// WebGL yoksa (kapalı/engelli tarayıcı) sahne sessizce boş kalıyordu:
+// statik atlas görseline düş
+function yedegeDus() {
+  document.getElementById('yukleniyor').classList.add('bitti');
+  document.getElementById('yedek').classList.add('acik');
+}
+
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+} catch {
+  yedegeDus();
+  throw new Error('WebGL kullanılamıyor — statik atlas görünümüne geçildi');
+}
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 renderer.setSize(kap.clientWidth, kap.clientHeight);
 renderer.setClearColor(0x000000, 0); // şeffaf: sayfa zemini görünsün
