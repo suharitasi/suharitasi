@@ -30,3 +30,5 @@
   atlar), mobil portre kadraj sığdırma (dinamik fov+mesafe), göl geometrileri
   tek mesh'e birleştirildi, mobil pixelRatio 1.5, FPS logu 5 örnekle sınırlı.
   3B (koreografi, seçim etkileşimi, son cila) kullanıcı yorumunu bekliyor.
+- VIZYON.md oluşturuldu (Sondaj Anı + ileri teknikler envanteri); madde 1
+  prototipi eklendi: gayzer tepe noktasında cam sıçraması (cam.js).
