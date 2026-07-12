@@ -104,13 +104,65 @@
     color: var(--metin-soluk);
   }
 
+  /* Yükleme durumu */
+  .yukleniyor {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--deniz);
+    opacity: 1;
+    transition: opacity 0.8s ease;
+  }
+
+  .yukleniyor.bitti {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .yukleniyor p {
+    font-size: 0.82rem;
+    letter-spacing: 0.22em;
+    text-transform: lowercase;
+    color: var(--metin-soluk);
+    animation: nefes 2.4s ease-in-out infinite;
+  }
+
+  @keyframes nefes {
+    0%, 100% { opacity: 0.45; }
+    50% { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .yukleniyor p { animation: none; }
+  }
+
   /* MapLibre varsayılanlarını bastır */
   .maplibregl-canvas:focus { outline: none; }
+
+  .maplibregl-ctrl-attrib {
+    background: rgba(7, 29, 46, 0.8) !important;
+    color: var(--metin-soluk);
+    font-family: "Manrope", system-ui, sans-serif;
+    font-size: 0.62rem;
+  }
+
+  .maplibregl-ctrl-attrib a { color: var(--metin-soluk); }
+
+  .maplibregl-ctrl-attrib-button {
+    filter: invert(0.7);
+  }
 </style>
 </head>
 <body>
 
   <div id="harita" aria-label="Türkiye haritası"></div>
+
+  <div class="yukleniyor" id="yukleniyor" aria-hidden="true">
+    <p>harita derinleşiyor…</p>
+  </div>
 
   <header class="serit">
     <a href="/">su haritası</a>
