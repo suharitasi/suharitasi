@@ -28,6 +28,7 @@ const KAPSAM = {
 let geometriRef = null;
 let normalYukseklik = null; // 0-1 normalize vertex yükseklikleri
 let yukseklikVerisi = null; // ham Uint16 grid (lon/lat sorguları için)
+let kenarFaktor = null; // 1 iç, 0 kenar — plaka eteği için
 
 function birimYukseklik() {
   // 1 m yükseltinin sahne birimi karşılığı
@@ -52,13 +53,26 @@ export async function araziOlustur(mobil) {
   const poz = geo.attributes.position;
   const n = poz.count;
   normalYukseklik = new Float32Array(n);
+  kenarFaktor = new Float32Array(n);
+  const renkler = new Float32Array(n * 3);
+  const BANT = 0.022;      // etek dalış bandı (dik duvar)
+  const BANT_RENK = 0.075; // karartma bandı (duvardan önce koyulaşır)
+  const KENAR = [0.02, 0.07, 0.12]; // koyu zemine karışan etek rengi
+  const yum = (t) => { const k = Math.min(1, Math.max(0, t)); return k * k * (3 - 2 * k); };
   for (let i = 0; i < n; i++) {
     const u = poz.getX(i) / PLAN_GEN + 0.5;
     const v = poz.getZ(i) / PLAN_DER + 0.5;
     const px = Math.min(meta.binGen - 1, Math.round(u * (meta.binGen - 1)));
     const py = Math.min(meta.binYuk - 1, Math.round(v * (meta.binYuk - 1)));
     normalYukseklik[i] = yukseklik[py * meta.binGen + px] / 65535;
+    const e = yum(Math.min(u, 1 - u) / BANT) * yum(Math.min(v, 1 - v) / BANT);
+    kenarFaktor[i] = e;
+    const er = yum(Math.min(u, 1 - u) / BANT_RENK) * yum(Math.min(v, 1 - v) / BANT_RENK);
+    renkler[i * 3] = KENAR[0] + (1 - KENAR[0]) * er;
+    renkler[i * 3 + 1] = KENAR[1] + (1 - KENAR[1]) * er;
+    renkler[i * 3 + 2] = KENAR[2] + (1 - KENAR[2]) * er;
   }
+  geo.setAttribute('color', new THREE.BufferAttribute(renkler, 3));
   geometriRef = geo;
   abartmaUygula(AYAR.abartma);
 
@@ -66,9 +80,7 @@ export async function araziOlustur(mobil) {
     map: doku,
     roughness: 0.95,
     metalness: 0,
-    // Kenarlar karanlık suya çözünsün: "havada yüzen dikdörtgen" hissi kalkar
-    alphaMap: kenarAlfaDokusu(),
-    transparent: true,
+    vertexColors: true, // kenar eteği karartması
   });
 
   return new THREE.Mesh(geo, malzeme);
@@ -95,37 +107,14 @@ export function lonLatKonum(lon, lat) {
   return new THREE.Vector3(x, y, z);
 }
 
-// Kenarlarda yumuşak alfa düşüşü (%9 bant)
-function kenarAlfaDokusu() {
-  const c = document.createElement('canvas');
-  c.width = 512;
-  c.height = 256;
-  const ctx = c.getContext('2d');
-  const veri = ctx.createImageData(c.width, c.height);
-  const bant = 0.09;
-  const duz = (t) => Math.min(1, Math.max(0, t));
-  const yumusak = (t) => { const k = duz(t); return k * k * (3 - 2 * k); };
-  for (let y = 0; y < c.height; y++) {
-    for (let x = 0; x < c.width; x++) {
-      const ax = yumusak(Math.min(x, c.width - 1 - x) / (c.width * bant));
-      const ay = yumusak(Math.min(y, c.height - 1 - y) / (c.height * bant));
-      const a = Math.round(ax * ay * 255);
-      const i = (y * c.width + x) * 4;
-      veri.data[i] = a; veri.data[i + 1] = a; veri.data[i + 2] = a; veri.data[i + 3] = 255;
-    }
-  }
-  ctx.putImageData(veri, 0, 0);
-  const doku = new THREE.CanvasTexture(c);
-  return doku;
-}
-
 export function abartmaUygula(katsayi) {
   if (!geometriRef) return;
   AYAR.abartma = katsayi;
   const olcek = birimYukseklik() * katsayi;
   const poz = geometriRef.attributes.position;
   for (let i = 0; i < poz.count; i++) {
-    poz.setY(i, normalYukseklik[i] * olcek);
+    // Kenar eteği: plaka kenarları alçalarak koyu zemine gömülür
+    poz.setY(i, normalYukseklik[i] * olcek - (1 - kenarFaktor[i]) * 0.45);
   }
   poz.needsUpdate = true;
   geometriRef.computeVertexNormals();

@@ -6,6 +6,7 @@ import { araziOlustur, abartmaUygula, AYAR } from './arazi.js';
 import { kameraKur, paralaksKur } from './kamera.js';
 import { atmosferKur } from './atmosfer.js';
 import { gayzerKur } from './gayzer.js';
+import { suKur } from './su.js';
 
 atmosferKur();
 
@@ -30,22 +31,71 @@ renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 renderer.setSize(kap.clientWidth, kap.clientHeight);
 renderer.setClearColor(0x000000, 0); // şeffaf: sayfa zemini görünsün
 renderer.toneMapping = THREE.NeutralToneMapping;
-renderer.toneMappingExposure = 1.15;
+renderer.toneMappingExposure = 1.32; // atlas renkleri canlı okunsun
 kap.appendChild(renderer.domElement);
+
+const azHareket = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const uZaman = { value: 0 };
+const uIsikYon = { value: new THREE.Vector3(-9, 4.5, -5) };
 
 const sahne = new THREE.Scene();
 const rig = new THREE.Group(); // paralaks bu grubu salındırır
 sahne.add(rig);
 
 // Işık: kuzeybatıdan alçak açıyla — gölgeler derinlik versin; sert gölge yok
-const gunes = new THREE.DirectionalLight(0xfff2dc, 2.4);
+const gunes = new THREE.DirectionalLight(0xfff2dc, 2.6);
 gunes.position.set(-9, 4.5, -5);
 sahne.add(gunes);
-sahne.add(new THREE.AmbientLight(0xdce9ed, 0.55));
+sahne.add(new THREE.AmbientLight(0xdce9ed, 0.65));
+
+// Güneş salınımı: ışık açısı dakikalar içinde hafifçe kayar
+const GUNES_TABAN = gunes.position.clone();
+function gunesSalinimi() {
+  if (azHareket) return;
+  const a = Math.sin(uZaman.value * 0.03) * 0.18; // ~±10°, periyot ~3.5 dk
+  const c = Math.cos(a);
+  const s = Math.sin(a);
+  gunes.position.set(
+    GUNES_TABAN.x * c - GUNES_TABAN.z * s,
+    GUNES_TABAN.y + Math.sin(uZaman.value * 0.021) * 0.9,
+    GUNES_TABAN.x * s + GUNES_TABAN.z * c,
+  );
+  uIsikYon.value.copy(gunes.position);
+}
 
 const { kamera, kontrol } = kameraKur(renderer, kap.clientWidth / kap.clientHeight);
 kamera.userData.kap = kap; // raycast için piksel->NDC dönüşümünde kullanılır
-const paralaks = paralaksKur(rig);
+const paralaks = paralaksKur(rig, mobil);
+
+// Arazi üstünde süzülen hacimli bulut gölgeleri (fragment'ta 2-3 yumuşak leke)
+function bulutGolgesi(malzeme) {
+  malzeme.onBeforeCompile = (shader) => {
+    shader.uniforms.uZaman = uZaman;
+    shader.defines = { ...shader.defines, BULUT: mobil ? 2 : 3 };
+    shader.vertexShader = shader.vertexShader
+      .replace('#include <common>', '#include <common>\nvarying vec3 vBulutDunya;')
+      .replace('#include <begin_vertex>', '#include <begin_vertex>\nvBulutDunya = (modelMatrix * vec4(position, 1.0)).xyz;');
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <common>', `#include <common>
+        uniform float uZaman;
+        varying vec3 vBulutDunya;
+        float bulutLeke(vec2 p, vec2 m, float r) {
+          return smoothstep(r, r * 0.3, distance(p, m));
+        }`)
+      .replace('#include <map_fragment>', `#include <map_fragment>
+        {
+          float bt = uZaman;
+          vec2 bq = vBulutDunya.xz;
+          float bg = 0.0;
+          bg += bulutLeke(bq, vec2(mod(bt * 0.10, 34.0) - 17.0, -1.8 + sin(bt * 0.05) * 0.8), 3.2);
+          bg += bulutLeke(bq, vec2(mod(bt * 0.065 + 14.0, 34.0) - 17.0, 1.6 + cos(bt * 0.04)), 2.4);
+          #if BULUT > 2
+          bg += bulutLeke(bq, vec2(mod(bt * 0.045 + 25.0, 34.0) - 17.0, 0.2 + sin(bt * 0.033) * 1.4), 4.0);
+          #endif
+          diffuseColor.rgb *= 1.0 - min(bg, 1.0) * 0.14;
+        }`);
+  };
+}
 
 // Faz 2+ için genişleme noktası
 const guncellenecekler = [paralaks];
@@ -53,7 +103,9 @@ const guncellenecekler = [paralaks];
 const yukleniyor = document.getElementById('yukleniyor');
 
 araziOlustur(mobil).then((arazi) => {
+  bulutGolgesi(arazi.material);
   rig.add(arazi);
+  suKur(rig, arazi.material.map, uZaman, uIsikYon);
   guncellenecekler.push(gayzerKur(rig, kamera, arazi, mobil));
   yukleniyor.classList.add('bitti');
 });
@@ -72,6 +124,8 @@ const saat = new THREE.Clock();
 
 renderer.setAnimationLoop(() => {
   const dt = Math.min(saat.getDelta(), 0.05);
+  if (!azHareket) uZaman.value += dt; // su/bulut/güneş animasyon saati
+  gunesSalinimi();
   kontrol.update();
   for (const g of guncellenecekler) g(dt);
   renderer.render(sahne, kamera);

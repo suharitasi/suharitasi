@@ -17,6 +17,11 @@
 - Faz 1 görsel düzeltme: pitch ~57°, kadraj dolduruldu, abartma 4.2x, alçak
   açılı ışık + NeutralToneMapping, kenarlar alphaMap+vignette ile suya
   çözünüyor. WebGL yoksa statik atlas yedeği eklendi.
+- "Canlı model" turu: animasyonlu deniz/göl shader'ı (atlas maskesi, güneş
+  parıltısı, kıyı geçişi), bulut gölgeleri (fragment enjeksiyonu), kamera
+  idle drift, güneş salınımı, sürekli yaşayan gayzerler (işaret ışımaları +
+  periyodik kendiliğinden fışkırma), kenar eteği geometrisi (alphaMap/vignette
+  kaldırıldı), exposure 1.32. Geometri sağlığı denetlendi: 4.2x'te artefakt yok.
 - Faz 2: gayzer etkileşimi — 7 su noktasında (göller/barajlar) hover/dokunma
   ile additive partikül sütunu + taban ışıması; reduced-motion'da statik
   işaret. 60 FPS doğrulaması gerçek GPU bekliyor (FAZ2 bitti tanımının

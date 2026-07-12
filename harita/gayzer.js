@@ -1,6 +1,8 @@
-// Faz 2: su noktalarında gayzer — hover'da yerden yükselen ışıltılı su
-// sütunu. Ses yok, abartısız; additive noktalar + tabanda yumuşak ışıma.
-// Su tonu atlas diline uygun (#5E8A87 -> beyaza), akuamarin değil.
+// Gayzerler: su noktaları sürekli yaşar.
+// - Her noktada ince, nefes alan ışıma işareti (sürekli görünür)
+// - 5-10 sn arayla rastgele bir noktadan kendiliğinden ince fışkırma
+// - Hover (mobilde dokunma) büyük sütunu tetikler
+// Su tonu atlas diline uygun (#5E8A87 -> beyaza), ses yok, abartısız.
 import * as THREE from 'three';
 import goller from '../src/data/tr-goller.json';
 import { lonLatKonum } from './arazi.js';
@@ -41,6 +43,34 @@ export function gayzerKur(rig, kamera, arazi, mobil) {
       return { ad: f.properties.ad, poz: lonLatKonum(lon, lat) };
     });
 
+  const doku = isiltiDokusu();
+
+  // Sürekli görünür ince işaret ışımaları
+  for (const n of noktalar) {
+    const s = new THREE.Sprite(new THREE.SpriteMaterial({
+      map: doku,
+      transparent: true,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+      opacity: 0.16,
+    }));
+    s.scale.set(0.2, 0.1, 1);
+    s.position.copy(n.poz).y += 0.015;
+    rig.add(s);
+    n.isaret = s;
+  }
+
+  // Aktif sütunun taban ışıması
+  const isilti = new THREE.Sprite(new THREE.SpriteMaterial({
+    map: doku,
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    opacity: 0,
+  }));
+  isilti.scale.set(0.9, 0.45, 1);
+  rig.add(isilti);
+
   // --- Partikül havuzu (tek geometri, tek aktif sütun) ---
   const MAX = mobil ? 160 : 320;
   const geo = new THREE.BufferGeometry();
@@ -60,36 +90,23 @@ export function gayzerKur(rig, kamera, arazi, mobil) {
   puanlar.visible = false;
   rig.add(puanlar);
 
-  // Tabanda yumuşak ışıma (reduced-motion'da tek başına gösterge)
-  const isilti = new THREE.Sprite(new THREE.SpriteMaterial({
-    map: isiltiDokusu(),
-    transparent: true,
-    depthWrite: false,
-    blending: THREE.AdditiveBlending,
-    opacity: 0,
-  }));
-  isilti.scale.set(0.9, 0.45, 1);
-  rig.add(isilti);
-
   const parcacik = Array.from({ length: MAX }, () => ({
     yas: 0, omur: 0, hiz: new THREE.Vector3(), canli: false,
   }));
 
-  let aktif = null; // nokta
-  let acilma = 0;   // 0-1 yumuşak aç/kapa
+  let hover = null;     // imleçle hedeflenen nokta
+  let kendince = null;  // kendiliğinden fışkıran nokta
+  let kendinceKalan = 0;
+  let bekleme = 2.5;    // ilk kendiliğinden fışkırmaya kadar
+  let acilma = 0;
 
   function hedefle(nokta) {
-    if (aktif === nokta) return;
-    aktif = nokta;
-    if (nokta) {
-      isilti.position.copy(nokta.poz).y += 0.02;
-      puanlar.visible = !azHareket;
-    }
+    if (hover === nokta) return;
+    hover = nokta;
   }
 
   // --- İşaretçi: hover (masaüstü) + dokunma (mobil) ---
   const raycaster = new THREE.Raycaster();
-  raycaster.params.Points.threshold = 0;
   const ndc = new THREE.Vector2();
 
   function noktaBul(clientX, clientY) {
@@ -113,37 +130,68 @@ export function gayzerKur(rig, kamera, arazi, mobil) {
   }
   addEventListener('click', (e) => {
     const n = noktaBul(e.clientX, e.clientY);
-    hedefle(aktif && n === aktif ? null : n); // ikinci dokunuş söndürür
+    hedefle(hover && n === hover ? null : n); // ikinci dokunuş söndürür
   });
 
-  function dogur(p) {
+  const aktifPoz = new THREE.Vector3();
+  const G = 2.1;
+  const renk = new THREE.Color();
+  let t = 0;
+
+  function dogur(p, guc) {
     p.canli = true;
     p.yas = 0;
-    p.omur = 1.1 + Math.random() * 0.6;
+    p.omur = (1.1 + Math.random() * 0.6) * (0.6 + 0.4 * guc);
     const aci = Math.random() * Math.PI * 2;
-    const sac = 0.04 + Math.random() * 0.12; // radyal saçılma
-    p.hiz.set(Math.cos(aci) * sac, 1.35 + Math.random() * 0.55, Math.sin(aci) * sac);
+    const sac = (0.04 + Math.random() * 0.12) * guc;
+    p.hiz.set(Math.cos(aci) * sac, (1.35 + Math.random() * 0.55) * (0.45 + 0.55 * guc), Math.sin(aci) * sac);
     const i = parcacik.indexOf(p) * 3;
     pozlar[i] = aktifPoz.x + (Math.random() - 0.5) * 0.05;
     pozlar[i + 1] = aktifPoz.y;
     pozlar[i + 2] = aktifPoz.z + (Math.random() - 0.5) * 0.05;
   }
 
-  const aktifPoz = new THREE.Vector3();
-  const G = 2.1; // yumuşak yerçekimi
-  const renk = new THREE.Color();
-
   // Konsoldan / testten erişim
   window.gayzer = { noktalar, hedefle };
 
   return function guncelle(dt) {
-    acilma += ((aktif ? 1 : 0) - acilma) * Math.min(1, dt * 3);
-    isilti.material.opacity = acilma * (azHareket ? 0.55 : 0.48);
+    t += dt;
 
-    if (azHareket) return; // statik ışıma yeterli
+    // İşaretler nefes alır
+    if (!azHareket) {
+      noktalar.forEach((n, i) => {
+        n.isaret.material.opacity = 0.13 + 0.06 * (1 + Math.sin(t * 1.4 + i * 1.7)) * 0.5;
+      });
+    }
+
+    // Kendiliğinden fışkırma zamanlayıcısı (hover yokken)
+    if (!azHareket) {
+      if (kendince) {
+        kendinceKalan -= dt;
+        if (kendinceKalan <= 0) kendince = null;
+      } else if (!hover) {
+        bekleme -= dt;
+        if (bekleme <= 0) {
+          kendince = noktalar[Math.floor(Math.random() * noktalar.length)];
+          kendinceKalan = 1.8 + Math.random() * 1.2;
+          bekleme = 5 + Math.random() * 5;
+        }
+      }
+    }
+
+    const kaynak = hover || kendince;
+    const guc = hover ? 1 : 0.5;
+
+    acilma += ((kaynak ? 1 : 0) - acilma) * Math.min(1, dt * 3);
+    if (kaynak) {
+      aktifPoz.copy(kaynak.poz);
+      isilti.position.copy(kaynak.poz).y += 0.02;
+      puanlar.visible = !azHareket;
+    }
+    isilti.material.opacity = acilma * (azHareket ? 0.55 : 0.42) * guc;
+
+    if (azHareket) return; // statik işaret + ışıma yeterli
     if (!puanlar.visible && acilma < 0.02) return;
-
-    if (aktif) aktifPoz.copy(aktif.poz);
 
     let canliSayisi = 0;
     for (let j = 0; j < MAX; j++) {
@@ -160,18 +208,18 @@ export function gayzerKur(rig, kamera, arazi, mobil) {
         pozlar[i] += p.hiz.x * dt;
         pozlar[i + 1] += p.hiz.y * dt;
         pozlar[i + 2] += p.hiz.z * dt;
-        const n = p.yas / p.omur;
-        const parlaklik = Math.sin(Math.PI * n) * acilma;
+        const nrm = p.yas / p.omur;
+        const parlaklik = Math.sin(Math.PI * nrm) * acilma * (0.55 + 0.45 * guc);
         renk.lerpColors(SU_DIP, SU_UC, Math.min(1, (pozlar[i + 1] - aktifPoz.y) / 0.9));
         renkler[i] = renk.r * parlaklik;
         renkler[i + 1] = renk.g * parlaklik;
         renkler[i + 2] = renk.b * parlaklik;
         canliSayisi++;
-      } else if (aktif && acilma > 0.05 && Math.random() < acilma * 0.12) {
-        dogur(p);
+      } else if (kaynak && acilma > 0.05 && Math.random() < acilma * 0.12 * guc) {
+        dogur(p, guc);
       }
     }
-    if (!aktif && canliSayisi === 0) puanlar.visible = false;
+    if (!kaynak && canliSayisi === 0) puanlar.visible = false;
 
     geo.attributes.position.needsUpdate = true;
     geo.attributes.color.needsUpdate = true;
