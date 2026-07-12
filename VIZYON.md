@@ -53,8 +53,9 @@ kullanıcı onayıyla.
 
 ## Uygulama sırası
 
-1. Faz 3A — giriş/mobil/performans
-2. Faz 3B — kamera + ekrana damla sıçraması
+1. [x] Faz 3A — giriş/mobil/performans (tamamlandı, 9aa7dc1)
+2. [~] Faz 3B — kamera + ekrana damla sıçraması (sıçrama prototipi hazır,
+   8263ac8; kamera koreografisi kullanıcı onayı bekliyor)
 3. Konum tabanlı kişisel açılış — ziyaretçinin ilinden başlayan kamera +
    "senin suyun" mesajı
 4. Post-processing (bloom/DOF/gren) + caustics + kinetik başlık

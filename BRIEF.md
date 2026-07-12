@@ -36,7 +36,7 @@ Menü: Harita / Havzalar / Rehberler / Su Kanunu / Hakkında.
 - Barındırma: Cloudflare Pages (statik, ücretsiz). Site sunucuya yük bindirmez.
 - Veri pipeline'ı: Hetzner VPS (2 vCPU/4GB — yeterli; yükseltme tetiği: müvekkil paneli canlı trafiği). Depo: SQLite.
 - Domainler: suharitasi.com (ana) + suharitasi.tr (301 → .com). Alındı.
-- Proje hafızası: BRIEF.md + CLAUDE.md + DESIGN.md + KAYNAKLAR.md + GUNLUK.md.
+- Proje hafızası: BRIEF.md + CLAUDE.md + DESIGN.md + KAYNAKLAR.md + GUNLUK.md + VIZYON.md (nihai deneyim hedefi).
 
 ## Çalışma disiplini
 Acele yok. Her aşamanın yazılı "bitti tanımı" var; karşılanmadan sonraki aşamaya geçilmez. Günlük 3-4 saatlik seanslar; seans başında tek hedef, seans sonunda commit + GUNLUK.md'ye iki satır not.
