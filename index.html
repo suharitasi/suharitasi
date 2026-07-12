@@ -236,6 +236,69 @@
     color: var(--metin-soluk);
   }
 
+  /* Arslan Hukuk imzası: süs değil, imza */
+  .imza {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.35em 0.45em;
+    padding: 0 1rem;
+    text-align: center;
+    color: var(--metin-soluk);
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+
+  .imza span { white-space: nowrap; }
+
+  .imza:hover, .imza:focus-visible {
+    color: var(--metin);
+  }
+
+  .imza:focus-visible {
+    outline: 2px solid var(--akuamarin);
+    outline-offset: 4px;
+  }
+
+  .imza svg {
+    height: 14px;
+    width: auto;
+    color: var(--bakir);
+    opacity: 0.75;
+    display: block;
+  }
+
+  /* İmza dokunuş: son kelime otururken altından ışıyıp geçen tek damar */
+  .imza-damar {
+    position: relative;
+    width: min(58vw, 26ch);
+    height: 0;
+  }
+
+  .imza-damar::before {
+    content: "";
+    position: absolute;
+    top: 0.55rem;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent, #4FC3D0 35%, #A8DDE0 50%, #4FC3D0 65%, transparent);
+    filter: drop-shadow(0 0 6px rgba(79, 195, 208, 0.8));
+    opacity: 0;
+  }
+
+  body.giris .imza-damar::before {
+    animation: imza-gec 1.2s 1.12s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  @keyframes imza-gec {
+    0%   { opacity: 0; transform: translateX(-42%) scaleX(0.55); }
+    35%  { opacity: 0.9; }
+    100% { opacity: 0; transform: translateX(42%) scaleX(0.6); }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .surukle, .damarlar path { animation: none; }
   }
@@ -342,12 +405,18 @@
 
     <main>
       <h1>Su, yerin altında <em>konuşur.</em></h1>
+      <div class="imza-damar" aria-hidden="true"></div>
       <p class="alt-metin">Türkiye'nin su verisi, havzaları ve su mevzuatı — tek haritada.</p>
       <div class="ayrac"><span>Yakında</span></div>
     </main>
 
     <footer>
-      <span>suharitasi.com · 2026</span>
+      <a class="imza" href="https://arslanhukuk.tr" target="_blank" rel="noopener">
+        <span>suharitasi.com ·</span>
+        <svg viewBox="0 0 77 109" aria-hidden="true"><path fill="currentColor" d="M 60.613281 72.335938 L 60.613281 72.339844 L 38.617188 89.519531 L 16.609375 72.339844 L 16.609375 15.898438 L 60.613281 15.898438 Z M 70.816406 77.316406 L 70.816406 5.699219 L 6.40625 5.699219 L 6.40625 77.320312 L 38.617188 102.464844 Z M 70.816406 77.316406"/><path fill="currentColor" d="M 57.265625 70.703125 L 57.265625 19.25 L 47.0625 19.25 L 47.0625 78.671875 Z M 57.265625 70.703125"/><path fill="currentColor" d="M 30.160156 78.671875 L 30.160156 19.25 L 19.957031 19.25 L 19.957031 70.703125 Z M 30.160156 78.671875"/><path fill="currentColor" d="M 57.265625 19.25 L 19.957031 19.25 L 19.957031 29.453125 L 57.265625 29.453125 Z M 57.265625 19.25"/><path fill="currentColor" d="M 46.324219 42.8125 L 31.261719 42.8125 L 31.261719 53.015625 L 46.324219 53.015625 Z M 46.324219 42.8125"/></svg>
+        <span>Arslan Hukuk Bürosu güvencesiyle</span>
+        <span>· 2026</span>
+      </a>
     </footer>
   </div>
 

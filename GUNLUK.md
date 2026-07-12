@@ -35,3 +35,7 @@
 - Faz 3B: kamera koreografisi — su noktasına tıklayınca sinematik dalış,
   boşluğa/aynı noktaya tıklayınca kadraja dönüş; uçuşlar duvar saatiyle
   (yavaş cihazda süre sabit), uçuş sırasında OrbitControls devre dışı.
+- Landing turu: Arslan kalkan logosu (arslanhukuk.tr assets'ten, currentColor)
+  bakır imza olarak footer'a işlendi (tamamı arslanhukuk.tr'ye link);
+  koreografiye imza dokunuşu eklendi — son kelime otururken altından tek
+  akuamarin damar ışıyıp geçiyor.
