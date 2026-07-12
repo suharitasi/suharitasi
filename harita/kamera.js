@@ -5,14 +5,15 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 const DERECE = Math.PI / 180;
 
 // Bakış yönü: ~57° pitch, güneyden (kuzey yukarıda)
-const BAKIS_YON = new THREE.Vector3(0, 0.827, 0.567).normalize();
+export const BAKIS_YON = new THREE.Vector3(0, 0.827, 0.567).normalize();
+export const EV_HEDEF = new THREE.Vector3(0, 0, -0.4); // kadraj odağı
 const TABAN_MESAFE = 13.05;
 
 export function kameraKur(renderer, enBoy) {
   const kamera = new THREE.PerspectiveCamera(45, enBoy, 0.1, 200);
 
   const kontrol = new OrbitControls(kamera, renderer.domElement);
-  kontrol.target.set(0, 0, -0.4);
+  kontrol.target.copy(EV_HEDEF);
   kontrol.enablePan = false;
   kontrol.enableDamping = true;
   kontrol.dampingFactor = 0.08;
@@ -21,8 +22,8 @@ export function kameraKur(renderer, enBoy) {
   kontrol.maxPolarAngle = 50 * DERECE;
   kontrol.minAzimuthAngle = -30 * DERECE;
   kontrol.maxAzimuthAngle = 30 * DERECE;
-  // Türkiye kadrajından çıkılamaz
-  kontrol.minDistance = 8;
+  // Türkiye kadrajından çıkılamaz (dalışta göle yaklaşmaya izin var)
+  kontrol.minDistance = 3.5;
   kontrol.maxDistance = 17;
 
   // Kadraj: yatayda 20 birimlik plaka sığar; portrede fov + mesafe uyarlanır
@@ -37,7 +38,7 @@ export function kameraKur(renderer, enBoy) {
     kamera.fov = fov;
     kamera.updateProjectionMatrix();
     kontrol.maxDistance = Math.max(17, mesafe + 3);
-    return BAKIS_YON.clone().multiplyScalar(mesafe).add(kontrol.target);
+    return BAKIS_YON.clone().multiplyScalar(mesafe).add(EV_HEDEF);
   }
 
   kamera.position.copy(kadrajOtur());

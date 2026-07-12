@@ -33,7 +33,7 @@ function isiltiDokusu() {
   return new THREE.CanvasTexture(c);
 }
 
-export function gayzerKur(rig, kamera, arazi, mobil, sicrat) {
+export function gayzerKur(rig, kamera, arazi, mobil, sicrat, dal) {
   const azHareket = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const noktalar = goller.features
@@ -133,7 +133,8 @@ export function gayzerKur(rig, kamera, arazi, mobil, sicrat) {
   }
   addEventListener('click', (e) => {
     const n = noktaBul(e.clientX, e.clientY);
-    hedefle(hover && n === hover ? null : n); // ikinci dokunuş söndürür
+    hedefle(n); // dokunmada fışkırma; boşluk söndürür
+    if (dal) dal(n); // kamera koreografisi: dal / kadraja dön
   });
 
   const aktifPoz = new THREE.Vector3();

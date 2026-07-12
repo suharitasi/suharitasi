@@ -3,7 +3,7 @@
 // sistemi buraya takılacak).
 import * as THREE from 'three';
 import { araziOlustur, abartmaUygula, AYAR } from './arazi.js';
-import { kameraKur, paralaksKur } from './kamera.js';
+import { kameraKur, paralaksKur, BAKIS_YON, EV_HEDEF } from './kamera.js';
 import { atmosferKur } from './atmosfer.js';
 import { gayzerKur } from './gayzer.js';
 import { suKur } from './su.js';
@@ -103,6 +103,50 @@ const guncellenecekler = [paralaks];
 
 const yukleniyor = document.getElementById('yukleniyor');
 
+// Kamera koreografisi (Faz 3B): su noktasına dalış / kadraja dönüş
+let ucus = null;
+let dalinanNokta = null;
+
+function ucusBaslat(hedefPoz, hedefOdak, sure) {
+  if (azHareket) {
+    kamera.position.copy(hedefPoz);
+    kontrol.target.copy(hedefOdak);
+    kontrol.update();
+    return;
+  }
+  ucus = {
+    baslangic: performance.now(), // duvar saati: yavaş cihazda da aynı süre
+    sure,
+    p0: kamera.position.clone(),
+    p1: hedefPoz,
+    o0: kontrol.target.clone(),
+    o1: hedefOdak,
+  };
+  kontrol.enabled = false;
+}
+
+function noktayaDal(nokta) {
+  dalinanNokta = nokta;
+  // Yaklaşma: aynı bakış yönünde, hafif yana kaymış sinematik konum
+  const sapma = new THREE.Vector3(-0.9, 0, 0.35);
+  const poz = BAKIS_YON.clone().multiplyScalar(4.2).add(nokta.poz).add(sapma);
+  ucusBaslat(poz, nokta.poz.clone(), 2.0);
+}
+
+function kadrajaDon() {
+  dalinanNokta = null;
+  ucusBaslat(kadrajOtur(), EV_HEDEF.clone(), 1.8);
+}
+
+// Tıklama semantiği: nokta -> dal; aynı nokta ya da boşluk -> dön
+function dalisTetikle(nokta) {
+  if (!nokta || nokta === dalinanNokta) {
+    if (dalinanNokta) kadrajaDon();
+  } else {
+    noktayaDal(nokta);
+  }
+}
+
 // Giriş animasyonu: kamera uzaktan süzülerek kadraja oturur
 let giris = null;
 function girisBaslat() {
@@ -116,7 +160,7 @@ function girisBaslat() {
     .add(new THREE.Vector3(-2.4, 1.6, 0));
   kamera.position.copy(basla);
   kontrol.enabled = false;
-  giris = { t: 0, sure: 2.6, basla, hedef };
+  giris = { baslangic: performance.now(), sure: 2.6, basla, hedef };
 }
 
 araziOlustur(mobil).then((arazi) => {
@@ -125,7 +169,7 @@ araziOlustur(mobil).then((arazi) => {
   suKur(rig, arazi.material.map, uZaman, uIsikYon);
   const sicrat = camKur(document.querySelector('.cerceve'));
   window.camSicrat = sicrat; // konsoldan deneme
-  guncellenecekler.push(gayzerKur(rig, kamera, arazi, mobil, sicrat));
+  guncellenecekler.push(gayzerKur(rig, kamera, arazi, mobil, sicrat, dalisTetikle));
   girisBaslat();
   yukleniyor.classList.add('bitti');
 });
@@ -152,8 +196,7 @@ renderer.setAnimationLoop(() => {
   gunesSalinimi();
 
   if (giris) {
-    giris.t += dt;
-    const k = Math.min(1, giris.t / giris.sure);
+    const k = Math.min(1, (performance.now() - giris.baslangic) / 1000 / giris.sure);
     const e = 1 - Math.pow(1 - k, 3); // ease-out cubic
     kamera.position.lerpVectors(giris.basla, giris.hedef, e);
     if (k >= 1) {
@@ -162,7 +205,24 @@ renderer.setAnimationLoop(() => {
     }
   }
 
-  kontrol.update();
+  if (ucus) {
+    const k = Math.min(1, (performance.now() - ucus.baslangic) / 1000 / ucus.sure);
+    const e = k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2; // ease-in-out
+    kamera.position.lerpVectors(ucus.p0, ucus.p1, e);
+    kontrol.target.lerpVectors(ucus.o0, ucus.o1, e);
+    if (k >= 1) {
+      ucus = null;
+      kontrol.enabled = true;
+    }
+  }
+
+  // Uçuş sırasında OrbitControls.update() mesafe/açı kelepçeleriyle
+  // animasyonla savaşır — o sürede yönelim manuel verilir
+  if (giris || ucus) {
+    kamera.lookAt(kontrol.target);
+  } else {
+    kontrol.update();
+  }
   for (const g of guncellenecekler) g(dt);
   renderer.render(sahne, kamera);
 
@@ -181,3 +241,5 @@ renderer.setAnimationLoop(() => {
 // Konsoldan ayar: abartmaAyarla(2.5)
 window.abartmaAyarla = abartmaUygula;
 window.sahneAyar = AYAR;
+window.kamera3d = kamera;
+window.dalisTetikle = dalisTetikle;

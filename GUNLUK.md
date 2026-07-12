@@ -32,3 +32,6 @@
   3B (koreografi, seçim etkileşimi, son cila) kullanıcı yorumunu bekliyor.
 - VIZYON.md oluşturuldu (Sondaj Anı + ileri teknikler envanteri); madde 1
   prototipi eklendi: gayzer tepe noktasında cam sıçraması (cam.js).
+- Faz 3B: kamera koreografisi — su noktasına tıklayınca sinematik dalış,
+  boşluğa/aynı noktaya tıklayınca kadraja dönüş; uçuşlar duvar saatiyle
+  (yavaş cihazda süre sabit), uçuş sırasında OrbitControls devre dışı.
