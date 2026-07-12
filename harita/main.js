@@ -7,6 +7,7 @@ import { kameraKur, paralaksKur } from './kamera.js';
 import { atmosferKur } from './atmosfer.js';
 import { gayzerKur } from './gayzer.js';
 import { suKur } from './su.js';
+import { camKur } from './cam.js';
 
 atmosferKur();
 
@@ -122,7 +123,9 @@ araziOlustur(mobil).then((arazi) => {
   bulutGolgesi(arazi.material);
   rig.add(arazi);
   suKur(rig, arazi.material.map, uZaman, uIsikYon);
-  guncellenecekler.push(gayzerKur(rig, kamera, arazi, mobil));
+  const sicrat = camKur(document.querySelector('.cerceve'));
+  window.camSicrat = sicrat; // konsoldan deneme
+  guncellenecekler.push(gayzerKur(rig, kamera, arazi, mobil, sicrat));
   girisBaslat();
   yukleniyor.classList.add('bitti');
 });

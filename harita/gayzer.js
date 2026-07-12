@@ -33,7 +33,7 @@ function isiltiDokusu() {
   return new THREE.CanvasTexture(c);
 }
 
-export function gayzerKur(rig, kamera, arazi, mobil) {
+export function gayzerKur(rig, kamera, arazi, mobil, sicrat) {
   const azHareket = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const noktalar = goller.features
@@ -100,9 +100,12 @@ export function gayzerKur(rig, kamera, arazi, mobil) {
   let bekleme = 2.5;    // ilk kendiliğinden fışkırmaya kadar
   let acilma = 0;
 
+  let sicradi = false; // her hover'da bir kez cam sıçraması
+
   function hedefle(nokta) {
     if (hover === nokta) return;
     hover = nokta;
+    sicradi = false;
   }
 
   // --- İşaretçi: hover (masaüstü) + dokunma (mobil) ---
@@ -189,6 +192,16 @@ export function gayzerKur(rig, kamera, arazi, mobil) {
       puanlar.visible = !azHareket;
     }
     isilti.material.opacity = acilma * (azHareket ? 0.55 : 0.42) * guc;
+
+    // Büyük fışkırma tepe noktasındayken cam sıçraması (VIZYON madde 1)
+    if (hover && !sicradi && !azHareket && acilma > 0.85 && sicrat) {
+      sicradi = true;
+      const tepe = hover.poz.clone();
+      tepe.y += 0.85;
+      tepe.project(kamera);
+      const r = kamera.userData.kap.getBoundingClientRect();
+      sicrat((tepe.x * 0.5 + 0.5) * r.width, (-tepe.y * 0.5 + 0.5) * r.height, mobil);
+    }
 
     if (azHareket) return; // statik işaret + ışıma yeterli
     if (!puanlar.visible && acilma < 0.02) return;
