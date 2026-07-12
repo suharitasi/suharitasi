@@ -38,3 +38,17 @@ Durum:
 
 Not: Bu liste hedef envanteri; sıralama ve dozaj faz faz, her fazda
 kullanıcı onayıyla.
+
+## Uygulama sırası
+
+1. Faz 3A — giriş/mobil/performans
+2. Faz 3B — kamera + ekrana damla sıçraması
+3. Konum tabanlı kişisel açılış — ziyaretçinin ilinden başlayan kamera +
+   "senin suyun" mesajı
+4. Post-processing (bloom/DOF/gren) + caustics + kinetik başlık
+5. Canlı veri nabzı — DSİ/MGM verisi sahneye işler (Aşama 2 pipeline ile)
+6. Derinlik kesiti + sesle gezinti + su ambiyansı
+7. Zaman yolculuğu kaydırıcısı (1990 -> bugün -> 2050 projeksiyonu)
+8. GPU akışkan simülasyonu / WebGPU (ufuk)
+
+Her madde ayrı faz, her fazda kullanıcı onayı.
