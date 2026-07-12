@@ -1,4 +1,16 @@
-# VIZYON.md — Harita nihai deneyim hedefi: "Sondaj Anı"
+# VIZYON.md
+
+## Kuzey Yıldızı
+
+Sitenin nihai deneyimi teknoloji gösterisi değil, kişisel hikâye:
+**"Senin Suyun"** — ziyaretçinin konumundan, içtiği suyun gerçek
+yolculuğunu (yağış→havza→baraj→musluk, canlı doluluk ve gün verisiyle)
+10 saniyelik sinematik kamera uçuşuyla anlatan açılış. Tüm teknik
+maddeler (3, 5, kamera, post-processing) bu deneyimin tuğlalarıdır.
+Ölçüt: ziyaretçi siteyi kapatırken bir şey öğrenmiş değil, bir şey
+HİSSETMİŞ olmalı — ve birine göstermek istemeli.
+
+## Harita nihai deneyim hedefi: "Sondaj Anı"
 
 1. **Gayzer fışkırması ekranın camına taşar:** tepe noktasında ekrana
    damla sıçraması, cam üzerinde ağır süzülen yoğuşma damlaları, ışık
