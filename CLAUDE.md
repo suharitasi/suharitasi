@@ -1,3 +1,5 @@
+Önce BRIEF.md'yi oku — projenin çatı belgesi.
+
 # suharitasi.com
 
 Türkiye'nin su verisi, havzaları ve su mevzuatını tek haritada birleştiren portal.
