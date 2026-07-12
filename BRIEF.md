@@ -27,7 +27,7 @@ Menü: Harita / Havzalar / Rehberler / Su Kanunu / Hakkında.
 - **Künye:** "Bu portalın hukuki içeriği Av. Serdar Arslan tarafından hazırlanmaktadır."
 
 ## Tasarım
-"Derin su" — gece denizi zemini (#04121F), akuamarin ışıma (#4FC3D0), Cormorant italik başlıklar + Manrope gövde. İtkan ilkesi: az öğe, kusursuz işçilik. Damla ikonu, stok görsel, kurumsal mavi, emoji yasak. Bağlayıcı belge: DESIGN.md.
+"Derin su" — gece denizi zemini (#04121F), akuamarin ışıma (#4FC3D0), Cormorant italik başlıklar + Manrope gövde. İtkan ilkesi: kusursuz işçilik, cesur sahne — hedef ödül (Awwwards) seviyesi; zengin animasyon, sinematik derinlik ve imza etkileşimler istenir, yasak olan kalabalık değil özensizliktir. Damla ikonu, stok görsel, kurumsal mavi, emoji yasak. Bağlayıcı belge: DESIGN.md.
 
 İstisna — harita adası: sayfa koyu kalır, harita alanı aydınlık hipsometrik atlas estetiğidir (adaçayı deniz, yeşil-hardal-kahve yükselti bantları, krem lejant kartı); ayrıntı DESIGN.md "Harita adası" bölümünde.
 
