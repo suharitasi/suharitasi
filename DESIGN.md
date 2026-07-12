@@ -40,6 +40,17 @@ tüm çizgiler yatay, uzun ve yumuşak dalga eğrileridir.
 - `prefers-reduced-motion`: tüm akış ve sürüklenme animasyonları kapanır,
   statik kompozisyon tek başına ayakta durur.
 
+## Harita adası
+
+Sayfa koyu kalır, harita alanı aydınlık hipsometrik atlas estetiğidir
+(palet: adaçayı #A9C3B4, yeşil #7C9B6E, hardal #C7B27B, kahve
+#8A6B47/#6E5238; kart krem #F3EEE2). Zemin atmosferi: derin su degrade +
+ince kabarcık/yoğuşma dokusu serbest; ikon-damla ve parlak kurumsal mavi
+yasak. Harita, koyu suyun üstünde yüzen aydınlık bir atlas parçası gibi
+hafif yükselmiş durur (yumuşak gölge çerçevesi). Akuamarin ışıma sitenin
+dilidir, haritanın değil — harita içinde su öğeleri #5E8A87, vurgu
+kehribar #D9A05B.
+
 ## Kırmızı çizgiler
 
 - Su damlası ikonu yok.

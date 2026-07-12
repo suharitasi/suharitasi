@@ -29,6 +29,8 @@ Menü: Harita / Havzalar / Rehberler / Su Kanunu / Hakkında.
 ## Tasarım
 "Derin su" — gece denizi zemini (#04121F), akuamarin ışıma (#4FC3D0), Cormorant italik başlıklar + Manrope gövde. İtkan ilkesi: az öğe, kusursuz işçilik. Damla ikonu, stok görsel, kurumsal mavi, emoji yasak. Bağlayıcı belge: DESIGN.md.
 
+İstisna — harita adası: sayfa koyu kalır, harita alanı aydınlık hipsometrik atlas estetiğidir (adaçayı deniz, yeşil-hardal-kahve yükselti bantları, krem lejant kartı); ayrıntı DESIGN.md "Harita adası" bölümünde.
+
 ## Teknik
 - Vanilla JS + Vite; harita MapLibre (harici tile servisi yok); içerik katmanı Astro; hero ileride Three.js. React/Next kullanılmaz.
 - Barındırma: Cloudflare Pages (statik, ücretsiz). Site sunucuya yük bindirmez.
@@ -42,7 +44,9 @@ Acele yok. Her aşamanın yazılı "bitti tanımı" var; karşılanmadan sonraki
 ## Yol haritası
 - [x] Aşama 0a — Repo: index (derin su), DESIGN.md, CLAUDE.md, _headers, robots.txt, 404, favicon, og meta.
 - [ ] Aşama 0b — Yayın: Gmail 2FA, Cloudflare hesabı, nameserver taşıma, Pages deploy, .tr→.com 301, SSL/başlık testleri (SSL Labs A+, securityheaders.com yeşil), Search Console + sitemap.
-- [ ] **Şu an: Harita prototipi** — il GeoJSON'uyla etkileşim mekaniği (hover'da canlanma, bilgi kartı, mobil dokunma). İller geçici; havza sınırları bulununca veri değişir, mekanik kalır.
+- [x] Harita prototipi — il GeoJSON'uyla etkileşim mekaniği (hover'da canlanma, bilgi kartı, mobil dokunma). İller geçici; havza sınırları bulununca veri değişir, mekanik kalır.
+- [x] Harita v2 — koyu rölyef + su/etkileşim katmanları
+- [ ] **Harita v3 — atlas boyaması + su atmosferi (şu an)**
 - [ ] Aşama 1 — Derin kazı: GitHub + açık veri + literatür (havza GeoJSON, DSİ/MGM araçları, MODFLOW ekosistemi, uydudan su tespiti, OpenAlex/DergiPark). Çıktı: KAYNAKLAR.md. Bitti tanımı: her veri kaleminin doğrulanmış kaynağı ve lisans notu var.
 - [ ] Aşama 2 — Veri modeli + pipeline: havza şeması, SQLite, ilk DSİ/SYGM çekimleri.
 - [ ] Aşama 3 — Gerçek havza haritası: 25 havza + rezerv/tahsis/risk katmanları.
