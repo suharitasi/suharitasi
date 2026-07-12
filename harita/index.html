@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harita — Su Haritası</title>
+<meta name="description" content="Türkiye'nin interaktif su haritası. Şimdilik il sınırları; havza verisi yolda.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500&display=swap&subset=latin-ext" rel="stylesheet">
+<style>
+  :root {
+    --deniz: #04121F;
+    --yukselti: #071D2E;
+    --akis-sonuk: #0E3247;
+    --akuamarin: #4FC3D0;
+    --kopuk: #A8DDE0;
+    --metin: #DCE9ED;
+    --metin-soluk: #6C8A96;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    background: var(--deniz);
+    color: var(--metin);
+    font-family: "Manrope", system-ui, sans-serif;
+    overflow: hidden;
+  }
+
+  #harita {
+    position: fixed;
+    inset: 0;
+  }
+
+  /* Başlık şeridi */
+  .serit {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem clamp(1.25rem, 3vw, 2rem);
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(4, 18, 31, 0.85), rgba(4, 18, 31, 0));
+  }
+
+  .serit a {
+    pointer-events: auto;
+    font-family: "Cormorant", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.3rem;
+    color: var(--kopuk);
+    text-decoration: none;
+  }
+
+  .serit a:focus-visible {
+    outline: 2px solid var(--akuamarin);
+    outline-offset: 4px;
+  }
+
+  /* Bilgi kartı */
+  .kart {
+    position: fixed;
+    left: clamp(1rem, 3vw, 2rem);
+    bottom: clamp(1rem, 4vh, 2rem);
+    z-index: 10;
+    min-width: 13rem;
+    padding: 1.1rem 1.4rem 1.2rem;
+    background: rgba(7, 29, 46, 0.88);
+    border: 1px solid var(--akis-sonuk);
+    border-left: 2px solid var(--akuamarin);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    pointer-events: none;
+  }
+
+  .kart.acik {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .kart h2 {
+    font-family: "Cormorant", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.7rem;
+    line-height: 1.15;
+    color: var(--kopuk);
+  }
+
+  .kart p {
+    margin-top: 0.35rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+
+  /* MapLibre varsayılanlarını bastır */
+  .maplibregl-canvas:focus { outline: none; }
+</style>
+</head>
+<body>
+
+  <div id="harita" aria-label="Türkiye haritası"></div>
+
+  <header class="serit">
+    <a href="/">su haritası</a>
+    <span></span>
+  </header>
+
+  <aside class="kart" id="kart" aria-live="polite">
+    <h2 id="kart-ad"></h2>
+    <p>veri yakında</p>
+  </aside>
+
+  <script type="module" src="/harita/main.js"></script>
+</body>
+</html>
