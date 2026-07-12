@@ -14,3 +14,10 @@
   MapLibre kodu src/harita-2d/ arşivinde. Faz 2 (gayzer) ve Faz 3 (cila)
   FAZ2.md/FAZ3.md'de tanımlı. Not: headless FPS ölçümü yazılım render'ı,
   gerçek GPU'da doğrulanacak.
+- Faz 1 görsel düzeltme: pitch ~57°, kadraj dolduruldu, abartma 4.2x, alçak
+  açılı ışık + NeutralToneMapping, kenarlar alphaMap+vignette ile suya
+  çözünüyor. WebGL yoksa statik atlas yedeği eklendi.
+- Faz 2: gayzer etkileşimi — 7 su noktasında (göller/barajlar) hover/dokunma
+  ile additive partikül sütunu + taban ışıması; reduced-motion'da statik
+  işaret. 60 FPS doğrulaması gerçek GPU bekliyor (FAZ2 bitti tanımının
+  açık kalemi).

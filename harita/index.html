@@ -117,6 +117,19 @@
     background: transparent;
   }
 
+  /* Kenarlara doğru yumuşak karartma: arazi karanlık suya gömülür */
+  .cerceve::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+    background: radial-gradient(120% 105% at 50% 46%,
+      transparent 68%,
+      rgba(4, 18, 31, 0.22) 88%,
+      rgba(4, 18, 31, 0.55) 100%);
+  }
+
   /* Veri atfı */
   .atif {
     position: absolute;

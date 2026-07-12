@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import { araziOlustur, abartmaUygula, AYAR } from './arazi.js';
 import { kameraKur, paralaksKur } from './kamera.js';
 import { atmosferKur } from './atmosfer.js';
+import { gayzerKur } from './gayzer.js';
 
 atmosferKur();
 
@@ -28,19 +29,22 @@ try {
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 renderer.setSize(kap.clientWidth, kap.clientHeight);
 renderer.setClearColor(0x000000, 0); // şeffaf: sayfa zemini görünsün
+renderer.toneMapping = THREE.NeutralToneMapping;
+renderer.toneMappingExposure = 1.15;
 kap.appendChild(renderer.domElement);
 
 const sahne = new THREE.Scene();
 const rig = new THREE.Group(); // paralaks bu grubu salındırır
 sahne.add(rig);
 
-// Işık: yumuşak, kuzeybatıdan (atlas gölgeleriyle uyumlu), sert gölge yok
-const gunes = new THREE.DirectionalLight(0xfff4e0, 1.7);
-gunes.position.set(-7, 9, -6);
+// Işık: kuzeybatıdan alçak açıyla — gölgeler derinlik versin; sert gölge yok
+const gunes = new THREE.DirectionalLight(0xfff2dc, 2.4);
+gunes.position.set(-9, 4.5, -5);
 sahne.add(gunes);
-sahne.add(new THREE.AmbientLight(0xdce9ed, 0.75));
+sahne.add(new THREE.AmbientLight(0xdce9ed, 0.55));
 
 const { kamera, kontrol } = kameraKur(renderer, kap.clientWidth / kap.clientHeight);
+kamera.userData.kap = kap; // raycast için piksel->NDC dönüşümünde kullanılır
 const paralaks = paralaksKur(rig);
 
 // Faz 2+ için genişleme noktası
@@ -50,6 +54,7 @@ const yukleniyor = document.getElementById('yukleniyor');
 
 araziOlustur(mobil).then((arazi) => {
   rig.add(arazi);
+  guncellenecekler.push(gayzerKur(rig, kamera, arazi, mobil));
   yukleniyor.classList.add('bitti');
 });
 setTimeout(() => yukleniyor.classList.add('bitti'), 8000);
@@ -63,10 +68,12 @@ addEventListener('resize', () => {
 // FPS ölçümü
 let kare = 0;
 let fpsZaman = performance.now();
+const saat = new THREE.Clock();
 
 renderer.setAnimationLoop(() => {
+  const dt = Math.min(saat.getDelta(), 0.05);
   kontrol.update();
-  for (const g of guncellenecekler) g();
+  for (const g of guncellenecekler) g(dt);
   renderer.render(sahne, kamera);
 
   kare++;

@@ -6,22 +6,22 @@ const DERECE = Math.PI / 180;
 
 export function kameraKur(renderer, enBoy) {
   const kamera = new THREE.PerspectiveCamera(45, enBoy, 0.1, 200);
-  // ~37° pitch, güneyden bakış (kuzey yukarıda)
-  kamera.position.set(0, 10.6, 14.1);
+  // ~57° pitch, tepeden kuşbakışına yakın; güneyden bakış (kuzey yukarıda)
+  kamera.position.set(0, 10.8, 7.0);
 
   const kontrol = new OrbitControls(kamera, renderer.domElement);
-  kontrol.target.set(0, 0, 0);
+  kontrol.target.set(0, 0, -0.4);
   kontrol.enablePan = false;
   kontrol.enableDamping = true;
   kontrol.dampingFactor = 0.08;
-  // pitch 25-55° -> polar (dikeyden) 35-65°
-  kontrol.minPolarAngle = 35 * DERECE;
-  kontrol.maxPolarAngle = 65 * DERECE;
+  // pitch 40-70° -> polar (dikeyden) 20-50°
+  kontrol.minPolarAngle = 20 * DERECE;
+  kontrol.maxPolarAngle = 50 * DERECE;
   kontrol.minAzimuthAngle = -30 * DERECE;
   kontrol.maxAzimuthAngle = 30 * DERECE;
   // Türkiye kadrajından çıkılamaz
-  kontrol.minDistance = 9;
-  kontrol.maxDistance = 19;
+  kontrol.minDistance = 8;
+  kontrol.maxDistance = 17;
   kontrol.update();
 
   return { kamera, kontrol };
