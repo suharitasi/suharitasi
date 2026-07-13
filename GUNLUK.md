@@ -52,3 +52,9 @@
   ±1° paralaks. Kenar gayzerleri ekran alt kenarına nefesli zamanlamayla
   yerleşti; yukarıdan 5-8 sn'de bir süzülen damlalar + çarpma parıltısı.
   İşaretler belirginleştirildi, kesit yumuşak sıcak toprağa çekildi.
+- HEDEF.png atmosfer turu (7 iterasyon, kiyas-1..7 + kiyas-son):
+  tüm karalar geri (kara maskesi), mat gri-yeşil su + güney teal, sıcak
+  alçak ışık + altın çekirdek (radyal), yeşil kıyı/zeytin/altın/kızıl
+  bantlar + orman benekleri, gölge + DOF + asılı damla bulutları + cam
+  kavis gayzerleri; sonda-imleç spot ışığı eklendi. Mobil portre kadraj
+  ortalandı.

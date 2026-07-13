@@ -5,6 +5,7 @@
 import * as THREE from 'three';
 import atlasUrl from '../src/assets/tr-atlas.webp';
 import maskeUrl from '../src/assets/tr-maske.png';
+import karaMaskeUrl from '../src/assets/tr-kara-maske.png';
 import yukseklikBinUrl from '../src/assets/tr-yukseklik.bin?url';
 import meta from '../src/assets/tr-yukseklik.json';
 import sinir from '../src/data/tr-sinir.json';
@@ -12,8 +13,8 @@ import sinir from '../src/data/tr-sinir.json';
 // Sahne ölçüleri: atlas kapsamı 2:1 (7680x3840 mercator mozaik)
 export const PLAN_GEN = 20;
 export const PLAN_DER = 10;
-export const KALDIRMA = 0.14; // blok denizden belirgin yükseklikte
-export const TABAN_Y = -0.3;  // kesit tabanı
+export const KALDIRMA = 0.05; // ince plaka: kara su yüzeyinin az üstünde
+export const TABAN_Y = -0.1;  // kesit tabanı (ince ve doğal kenar)
 
 // Gerçek dünya genişliği (merc kapsam ~21.09°, ~39N'de ≈ 1.825.000 m)
 const GERCEK_GEN_M = 1_825_000;
@@ -47,10 +48,11 @@ function yukseklikOku(u, v) {
 
 export async function araziOlustur(mobil) {
   const yukleyici = new THREE.TextureLoader();
-  const [bin, doku, maske] = await Promise.all([
+  const [bin, doku, maske, karaMaske] = await Promise.all([
     fetch(yukseklikBinUrl).then((r) => r.arrayBuffer()),
     yukleyici.loadAsync(atlasUrl),
     yukleyici.loadAsync(maskeUrl),
+    yukleyici.loadAsync(karaMaskeUrl),
   ]);
   yukseklikVerisi = new Uint16Array(bin);
 
@@ -74,18 +76,22 @@ export async function araziOlustur(mobil) {
   geometriRef = geo;
   abartmaUygula(AYAR.abartma);
 
-  // Üst yüzey: sınır maskesiyle piksel hassasiyetinde kesim
+  // Üst yüzey: HEDEF gibi TÜM kara parçaları görünür (adalar, Kıbrıs,
+  // komşu kıyılar) — kesim maskesi kara maskesi; Türkiye sınır maskesi
+  // (tr-maske) su/ışıma hesapları için ayrıca döndürülür
   const ust = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({
     map: doku,
     roughness: 0.95,
     metalness: 0,
-    alphaMap: maske,
+    alphaMap: karaMaske,
     alphaTest: 0.5,
   }));
+  ust.castShadow = true;
+  ust.receiveShadow = true;
 
   const grup = new THREE.Group();
   grup.add(ust, kesitOlustur(), tabanOlustur());
-  return { grup, ust };
+  return { grup, ust, trMaske: maske };
 }
 
 // Yan kesit duvarı: sınır halkaları boyunca üstten tabana örülür

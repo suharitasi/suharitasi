@@ -68,19 +68,19 @@ export function isaretlerKur(rig, kamera, arazi, mobil, dal) {
     if (!f.properties.ad) continue;
     const [lon, lat] = merkez(f);
     const poz = lonLatKonum(lon, lat);
-    const s = spriteYap('#E8FEFF', 1, 0.34);
+    const s = spriteYap('#E8FEFF', 0.95, 0.26);
     s.position.copy(poz).y += 0.04;
     rig.add(s);
-    noktalar.push({ ad: f.properties.ad, poz, sprite: s, tabanOlcek: 0.34, tabanOpaklik: 1, tur: 'var' });
+    noktalar.push({ ad: f.properties.ad, poz, sprite: s, tabanOlcek: 0.26, tabanOpaklik: 0.95, tur: 'var' });
   }
 
   // (b) su bulunabilecek — soluk, nabızlı
   for (const p of POTANSIYEL) {
     const poz = lonLatKonum(p.lon, p.lat);
-    const s = spriteYap('#9FE2E8', 0.45, 0.24);
+    const s = spriteYap('#9FE2E8', 0.45, 0.19);
     s.position.copy(poz).y += 0.04;
     rig.add(s);
-    noktalar.push({ ad: p.ad, poz, sprite: s, tabanOlcek: 0.24, tabanOpaklik: 0.45, tur: 'potansiyel' });
+    noktalar.push({ ad: p.ad, poz, sprite: s, tabanOlcek: 0.19, tabanOpaklik: 0.45, tur: 'potansiyel' });
   }
 
   // Etiket: krem lejant dili (DOM)

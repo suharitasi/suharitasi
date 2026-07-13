@@ -1,11 +1,9 @@
-// Su: göller (blok üstünde canlı yüzeyler) + kütlenin altında yansıma
-// havuzu. Dikdörtgen deniz tepsisi KALDIRILDI — Türkiye kütlesi koyu
-// derin-su zeminde boşlukta asılı durur; altındaki yumuşak akuamarin
-// ışıma "süzülüyor" hissini verir.
+// Su (HEDEF.png dili): mat, gri-yeşil, hafif kırışık su zemini — parlama
+// abartısız; Akdeniz tarafı derin teal. Göller blok üstünde soluk yüzeyler.
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import goller from '../src/data/tr-goller.json';
-import { PLAN_GEN, PLAN_DER, TABAN_Y, lonLatKonum } from './arazi.js';
+import { lonLatKonum } from './arazi.js';
 
 const VERT = /* glsl */ `
   varying vec2 vUv;
@@ -26,31 +24,34 @@ const FRAG = /* glsl */ `
   varying vec2 vUv;
   varying vec3 vDunya;
 
-  // Hedef ekran renkleri (composer linear->sRGB çevirir; değerler linear):
-  // kıyı #A9C3B4 adaçayı, açık deniz bir ton derin adaçayı
-  const vec3 DERIN = vec3(0.196, 0.331, 0.272);
-  const vec3 KIYI  = vec3(0.404, 0.549, 0.456);
+  // Ekran hedefleri (linear yazıldı): gri-yeşil mat su, güneyde derin teal
+  const vec3 GRIYESIL = vec3(0.278, 0.360, 0.298); // gri-yeşil, doygun
+  const vec3 DERINTEAL = vec3(0.012, 0.072, 0.081); // ~#1E4C50
+  const vec3 UZAK = vec3(0.355, 0.425, 0.345);      // ufka doğru hafif açılma
 
   void main() {
-    float karaYakin = 0.35;
+    // Akdeniz/güney: derin teal; kuzey/ege: açık gri-yeşil
+    float guney = smoothstep(1.2, 5.5, vDunya.z) * (1.0 - smoothstep(9.0, 12.0, vDunya.x));
+    vec3 taban = mix(GRIYESIL, DERINTEAL, guney * 0.9);
 
-    vec2 p = vDunya.xz * 7.0;
+    // İnce dalga kırışıkları — mat yüzey, abartısız parlama
+    vec2 p = vDunya.xz * 11.0;
     float t = uZaman;
-    float nx = sin(p.x * 1.35 + t * 0.55) * 0.5
-             + sin(p.x * 0.62 + p.y * 0.74 - t * 0.38) * 0.5;
-    float nz = sin(p.y * 1.18 - t * 0.47) * 0.5
-             + sin((p.x + p.y) * 0.81 + t * 0.62) * 0.5;
-    vec3 N = normalize(vec3(nx * 0.05, 1.0, nz * 0.05));
+    float nx = sin(p.x * 1.35 + t * 0.4) * 0.5
+             + sin(p.x * 0.57 + p.y * 0.83 - t * 0.3) * 0.5;
+    float nz = sin(p.y * 1.22 - t * 0.35) * 0.5
+             + sin((p.x + p.y) * 0.74 + t * 0.45) * 0.5;
+    vec3 N = normalize(vec3(nx * 0.09, 1.0, nz * 0.09));
 
     vec3 L = normalize(uIsikYon);
     vec3 V = normalize(cameraPosition - vDunya);
     vec3 H = normalize(L + V);
-    float parilti = pow(max(dot(N, H), 0.0), 110.0) * 0.45;
-    float sacilim = pow(max(dot(N, H), 0.0), 8.0) * 0.035;
-    float dif = 0.90 + 0.10 * max(dot(N, L), 0.0);
+    float parilti = pow(max(dot(N, H), 0.0), 90.0) * 0.10;
+    float dif = 0.86 + 0.14 * max(dot(N, L), 0.0);
 
-    vec3 renk = mix(DERIN, KIYI, karaYakin) * dif
-              + (parilti + sacilim) * vec3(1.0, 0.98, 0.92);
+    vec3 renk = taban * dif + parilti * vec3(1.0, 0.95, 0.85);
+    // uzak su hafif açılır (hava perspektifi)
+    renk = mix(renk, UZAK, smoothstep(17.0, 30.0, distance(cameraPosition, vDunya)));
 
     gl_FragColor = vec4(renk, 1.0);
   }
@@ -84,25 +85,13 @@ export function suKur(rig, maskeDoku, uZaman, uIsikYon) {
     uIsikYon,
   };
 
-  // Yansıma havuzu: kütlenin altında, siluetini izleyen yumuşak ışıma
-  const havuzDoku = kiyiAlani(maskeDoku);
-  function havuzKat(olcek, opaklik, y) {
-    const m = new THREE.Mesh(
-      new THREE.PlaneGeometry(PLAN_GEN * olcek, PLAN_DER * olcek, 1, 1).rotateX(-Math.PI / 2),
-      new THREE.MeshBasicMaterial({
-        color: '#4FC3D0',
-        alphaMap: havuzDoku,
-        transparent: true,
-        opacity: opaklik,
-        blending: THREE.AdditiveBlending,
-        depthWrite: false,
-      }),
-    );
-    m.position.y = y;
-    rig.add(m);
-  }
-  havuzKat(1.02, 0.16, TABAN_Y - 0.16); // siluet ışıması
-  havuzKat(1.35, 0.06, TABAN_Y - 0.22); // geniş soluk hale
+  // Su zemini: sahnenin tamamını kaplayan mat yüzey
+  const deniz = new THREE.Mesh(
+    new THREE.PlaneGeometry(100, 60, 1, 1).rotateX(-Math.PI / 2),
+    malzemeYap(ortak, 1),
+  );
+  deniz.position.y = 0;
+  rig.add(deniz);
 
   // Göller: blok üstünde, kendi rakımlarında parlayan yüzeyler (tek mesh)
   const golGeolar = [];

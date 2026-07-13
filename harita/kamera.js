@@ -4,10 +4,10 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const DERECE = Math.PI / 180;
 
-// Kahraman açısı: ~50° pitch + hafif yaw; kamera SABİT (orbit yok)
-export const BAKIS_YON = new THREE.Vector3(-0.089, 0.766, 0.637).normalize();
-export const EV_HEDEF = new THREE.Vector3(0, 0, -0.4); // kadraj odağı
-const TABAN_MESAFE = 15.6; // kütlenin etrafında nefes payı
+// HEDEF.png açısı: alçak sinematik (~34° pitch), güneybatıdan hafif çapraz
+export const BAKIS_YON = new THREE.Vector3(-0.17, 0.56, 0.81).normalize();
+export const EV_HEDEF = new THREE.Vector3(0.2, 0, -0.5);
+const TABAN_MESAFE = 13.6; // tüm ülke + çevre denizler kadrajda
 
 export function kameraKur(renderer, enBoy) {
   const kamera = new THREE.PerspectiveCamera(45, enBoy, 0.1, 200);
@@ -24,14 +24,18 @@ export function kameraKur(renderer, enBoy) {
   function kadrajOtur() {
     let fov = 45;
     let mesafe = TABAN_MESAFE;
-    if (kamera.aspect < 0.9) {
+    const portre = kamera.aspect < 0.9;
+    if (portre) {
       fov = 50;
       const yatayTan = Math.tan((fov * DERECE) / 2) * kamera.aspect;
-      mesafe = Math.max(TABAN_MESAFE, (10 * 1.06) / yatayTan);
+      mesafe = Math.max(TABAN_MESAFE, 8.8 / yatayTan);
     }
     kamera.fov = fov;
     kamera.updateProjectionMatrix();
-    return BAKIS_YON.clone().multiplyScalar(mesafe).add(EV_HEDEF);
+    // Portrede odak güneye kayar: kütle ekranda ortalanır
+    kontrol.target.copy(EV_HEDEF);
+    if (portre) kontrol.target.z = 2.6;
+    return BAKIS_YON.clone().multiplyScalar(mesafe).add(kontrol.target);
   }
 
   kamera.position.copy(kadrajOtur());

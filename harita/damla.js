@@ -51,11 +51,54 @@ export function damlaKur(rig, mobil) {
     return { aktif: false, x: 0, y: 0, z: 0, hiz: 0, parlama, parlamaT: 1 };
   });
 
+  // HEDEF: havada asılı, ışıkta parıldayan damla bulutları (üst bölge)
+  const BULUT_SAYI = mobil ? 30 : 80;
+  const bulutGeo = new THREE.BufferGeometry();
+  const bulutPoz = new Float32Array(BULUT_SAYI * 3);
+  const bulutRenk = new Float32Array(BULUT_SAYI * 3);
+  const bulutFaz = new Float32Array(BULUT_SAYI);
+  for (let i = 0; i < BULUT_SAYI; i++) {
+    // iki küme: sol-üst ve orta-üst
+    const kume = i % 2;
+    bulutPoz[i * 3] = (kume ? -0.5 : -5.5) + (Math.random() - 0.5) * 4.5;
+    bulutPoz[i * 3 + 1] = 1.6 + Math.random() * 2.2;
+    bulutPoz[i * 3 + 2] = -1 + Math.random() * 3.5;
+    bulutFaz[i] = Math.random() * Math.PI * 2;
+  }
+  bulutGeo.setAttribute('position', new THREE.BufferAttribute(bulutPoz, 3));
+  bulutGeo.setAttribute('color', new THREE.BufferAttribute(bulutRenk, 3));
+  const bulut = new THREE.Points(bulutGeo, new THREE.PointsMaterial({
+    size: 0.065,
+    vertexColors: true,
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    sizeAttenuation: true,
+  }));
+  bulut.frustumCulled = false;
+  bulut.visible = !azHareket;
+  rig.add(bulut);
+  const BULUT_RENK = new THREE.Color('#FFF2DC'); // ışıkta parıldar (sıcak)
+
   let sonraki = 2.5; // ilk damla erken gelsin
   const RENK = new THREE.Color('#A8DDE0');
+  let bt = 0;
 
   return function guncelle(dt) {
     if (azHareket) return;
+
+    // asılı bulut: yavaş süzülme + fazlı parıldama
+    bt += dt;
+    for (let i = 0; i < BULUT_SAYI; i++) {
+      bulutPoz[i * 3 + 1] -= dt * 0.055;
+      if (bulutPoz[i * 3 + 1] < 1.2) bulutPoz[i * 3 + 1] = 3.8;
+      const p = (0.3 + 0.9 * Math.pow(0.5 + 0.5 * Math.sin(bt * 1.8 + bulutFaz[i]), 3.0)) * 1.2;
+      bulutRenk[i * 3] = BULUT_RENK.r * p;
+      bulutRenk[i * 3 + 1] = BULUT_RENK.g * p;
+      bulutRenk[i * 3 + 2] = BULUT_RENK.b * p;
+    }
+    bulutGeo.attributes.position.needsUpdate = true;
+    bulutGeo.attributes.color.needsUpdate = true;
 
     sonraki -= dt;
     if (sonraki <= 0) {
