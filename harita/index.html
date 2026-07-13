@@ -23,85 +23,84 @@
   html, body { height: 100%; }
 
   body {
-    /* Boşluklar görselin kendi kenar tonlarından: üst gökyüzü -> alt deniz */
-    background: linear-gradient(180deg, #969885 0%, #7E908E 45%, #294B3E 100%);
+    /* Zemin: görselin adaçayı gri-yeşil kenar tonları */
+    background: linear-gradient(180deg, #99A091 0%, #86948A 55%, #6F8279 100%);
     font-family: "Manrope", system-ui, sans-serif;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
   }
 
-  /* Hero: HEDEF.png'nin kendisi — TAMAMI görünür, kırpma yok;
-     filtre/overlay/karartma YOK */
-  .hero {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
+  /* Çerçeveli tablo: görsel ~%88-90, ortalanmış, yumuşak gölge.
+     Görselin kendisine filtre/overlay YOK. */
+  .cerceve {
+    position: relative;
     opacity: 0;
     transition: opacity 1s ease;
   }
 
-  .hero.geldi { opacity: 1; }
+  .cerceve.geldi { opacity: 1; }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero { transition: none; opacity: 1; }
+    .cerceve { transition: none; opacity: 1; }
   }
 
-  .serit {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 10;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.9rem clamp(1.25rem, 3vw, 2rem);
-    pointer-events: none;
+  .hero {
+    display: block;
+    max-width: 89vw;
+    max-height: 88dvh;
+    width: auto;
+    height: auto;
+    border-radius: 3px;
+    box-shadow:
+      0 26px 64px rgba(22, 32, 27, 0.38),
+      0 6px 18px rgba(22, 32, 27, 0.28);
   }
 
-  .serit a {
-    pointer-events: auto;
+  .logo {
+    position: absolute;
+    top: clamp(0.7rem, 2.2vw, 1.3rem);
+    left: clamp(0.9rem, 2.6vw, 1.6rem);
     font-family: "Cormorant", Georgia, serif;
     font-style: italic;
     font-weight: 500;
-    font-size: 1.3rem;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
     color: var(--kopuk);
     text-decoration: none;
-    text-shadow: 0 1px 8px rgba(4, 18, 31, 0.5);
+    text-shadow: 0 1px 8px rgba(4, 18, 31, 0.55);
   }
 
-  .serit a:focus-visible {
+  .logo:focus-visible {
     outline: 2px solid var(--akuamarin);
     outline-offset: 4px;
   }
 
   .atif {
-    position: fixed;
-    right: 1rem;
-    bottom: 0.7rem;
-    z-index: 10;
-    font-size: 0.62rem;
+    position: absolute;
+    right: clamp(0.8rem, 2.2vw, 1.3rem);
+    bottom: clamp(0.6rem, 1.8vw, 1rem);
+    font-size: 0.6rem;
     letter-spacing: 0.05em;
-    color: rgba(220, 233, 237, 0.55);
-    text-shadow: 0 1px 6px rgba(4, 18, 31, 0.5);
+    color: rgba(220, 233, 237, 0.45);
+    text-shadow: 0 1px 6px rgba(4, 18, 31, 0.45);
     pointer-events: none;
   }
 </style>
 </head>
 <body>
 
-  <img class="hero" src="/hedef-hero.webp" alt="Türkiye'nin kabartma su haritası — sıcak gün ışığında, denizden yükselen su kavisleri ve süzülen damlalarla" fetchpriority="high" decoding="async">
-
-  <header class="serit">
-    <a href="/">su haritası</a>
-    <span></span>
-  </header>
-
-  <p class="atif">suharitasi.com · konsept görsel</p>
+  <figure class="cerceve">
+    <img class="hero" src="/hedef-hero.webp" alt="Türkiye'nin kabartma su haritası — sıcak gün ışığında, denizden yükselen su kavisleri ve süzülen damlalarla" fetchpriority="high" decoding="async">
+    <a class="logo" href="/">su haritası</a>
+    <p class="atif">suharitasi.com · konsept görsel</p>
+  </figure>
 
   <script>
+    const cerceve = document.querySelector('.cerceve');
     const hero = document.querySelector('.hero');
-    function goster() { hero.classList.add('geldi'); }
+    function goster() { cerceve.classList.add('geldi'); }
     if (hero.complete) goster();
     else hero.addEventListener('load', goster);
     setTimeout(goster, 2500); // emniyet
