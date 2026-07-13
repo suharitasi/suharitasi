@@ -2,7 +2,8 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
-1. HEDEF.png atmosfer turu — YAPILDI (7 iterasyon; kullanıcı kontrolü bekliyor)
+1. HEDEF.png hero — YAPILDI: görselin kendisi tam ekran hero oldu; 3D
+   atmosfer sahnesi src/harita-3d/ altına arşivlendi (silinmedi)
 2. Kullanıcı onayı → canlıya deploy (Production kontrolü)
 3. Landing giriş koreografisi + Arslan Hukuk footer imzası — YAPILDI
    (commit ce76b3a + 833fbb6); kullanıcı kontrolü bekliyor

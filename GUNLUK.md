@@ -58,3 +58,6 @@
   bantlar + orman benekleri, gölge + DOF + asılı damla bulutları + cam
   kavis gayzerleri; sonda-imleç spot ışığı eklendi. Mobil portre kadraj
   ortalandı.
+- Yön değişikliği: 3D sahne src/harita-3d/ altına arşivlendi; /harita/
+  hero'su artık HEDEF.png'nin kendisi (public/hedef-hero.webp q90, dokunulmadan,
+  fade-in + preload; orijinal PNG referans/ altında repoda).
