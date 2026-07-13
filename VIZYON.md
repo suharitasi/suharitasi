@@ -47,6 +47,9 @@ Durum:
    yaklaşınca su yüzeyi gibi dalgalanır (shader distortion).
 7. **WebGPU (ufuk):** gerçek akışkan simülasyonu, yüksek partikül —
    tarayıcı desteği olgunlaşınca, faz 5+.
+8. **İl adları katmanı (harita etkileşim fazına ek):** zoom/spot'a bağlı
+   katman — uzaktan temiz sahne, yaklaşınca/spot gezince o bölgenin il
+   adları zarif tipografiyle belirir (81 etiket aynı anda ASLA).
 
 Not: Bu liste hedef envanteri; sıralama ve dozaj faz faz, her fazda
 kullanıcı onayıyla.
@@ -59,7 +62,8 @@ kullanıcı onayıyla.
 3. Konum tabanlı kişisel açılış — ziyaretçinin ilinden başlayan kamera +
    "senin suyun" mesajı
 4. Post-processing (bloom/DOF/gren) + caustics + kinetik başlık
-5. Canlı veri nabzı — DSİ/MGM verisi sahneye işler (Aşama 2 pipeline ile)
+5. Canlı veri nabzı — DSİ/MGM verisi sahneye işler (Aşama 2 pipeline ile);
+   örnek: baraj hover kartı: ad + güncel doluluk % + trend
 6. Derinlik kesiti + sesle gezinti + su ambiyansı
 7. Zaman yolculuğu kaydırıcısı (1990 -> bugün -> 2050 projeksiyonu)
 8. GPU akışkan simülasyonu / WebGPU (ufuk)

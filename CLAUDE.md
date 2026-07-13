@@ -13,6 +13,9 @@ Sahibi: Serdar — Arslan Hukuk Bürosu. Amaç: su hukuku alanında otorite konu
 - Tasarım kararlarında DESIGN.md bağlayıcıdır, ondan sapma.
 - Haritanın nihai deneyim hedefi VIZYON.md'dedir ("Sondaj Anı") — fazlar
   halinde, her fazda kullanıcı onayıyla yürünür.
+- Her oturum başında SIRADAKILER.md'yi oku ve kullanıcıya ilk mesajında
+  "Sıradaki 3 iş: ..." diye özetle; biten işi kuyruktan düş, yeni
+  istekleri kuyruğa ekle.
 - Stack: vanilla JS + Vite; içerik katmanı Astro; React/Next kullanma.
 - Barındırma: Cloudflare Pages. Ağır sunucu bağımlılığı ekleme, site statik kalır.
 - Arayüz dili Türkçe. Emoji yok.
