@@ -61,3 +61,6 @@
 - Yön değişikliği: 3D sahne src/harita-3d/ altına arşivlendi; /harita/
   hero'su artık HEDEF.png'nin kendisi (public/hedef-hero.webp q90, dokunulmadan,
   fade-in + preload; orijinal PNG referans/ altında repoda).
+- Bant sorununa kesin çözüm: ImageMagick ile gerçek blur zemin dosyası
+  (hedef-zemin.v1.webp) üretildi; koyu body zemini kaldırıldı; sürümlü
+  dosya adlarıyla cache-bust. 1440x900 + 1280x1024 + mobil doğrulandı.

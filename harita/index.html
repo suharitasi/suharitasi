@@ -6,7 +6,7 @@
 <title>Harita — Su Haritası</title>
 <meta name="description" content="Türkiye'nin su haritası. Havza verisi ve etkileşimli katman yolda.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="preload" as="image" href="/hedef-hero.webp" fetchpriority="high">
+<link rel="preload" as="image" href="/hedef-hero.v2.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500&display=swap&subset=latin-ext" rel="stylesheet">
@@ -23,28 +23,15 @@
   html, body { height: 100%; }
 
   body {
-    /* Yedek zemin (blur katmanı yüklenene dek): kenar tonları */
-    background: linear-gradient(180deg,
-      #969885 0%, #8E9488 34%, #55705F 66%, #294B3E 100%);
+    /* Zemin: görselden ImageMagick ile üretilmiş gerçek blur dosyası.
+       Koyu renk zemin YOK; anlık yedek ton da görselin orta adaçayısı. */
+    background: #8A9489 url('/hedef-zemin.v1.webp') center / cover no-repeat fixed;
     font-family: "Manrope", system-ui, sans-serif;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100dvh;
-  }
-
-  /* Blur-extend: görselin kendisi, büyütülmüş + güçlü blur + hafif
-     karartılmış — tüm ekranı kaplayan zemin. Boşluklar görselin kendi
-     renklerinin devamı olur; bant algısı fiziksel olarak imkânsız. */
-  .zemin-blur {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(90px); /* karartma yok: parlaklık keskin görselle birebir */
-    transform: scale(1.15); /* blur kenar taşma payı */
   }
 
   /* Tam ekran, taşmasız: görselin tamamı her zaman görünür (contain).
@@ -106,10 +93,8 @@
 </head>
 <body>
 
-  <img class="zemin-blur" src="/hedef-hero.webp" alt="" aria-hidden="true" decoding="async">
-
   <figure class="cerceve">
-    <img class="hero" src="/hedef-hero.webp" alt="Türkiye'nin kabartma su haritası — sıcak gün ışığında, denizden yükselen su kavisleri ve süzülen damlalarla" fetchpriority="high" decoding="async">
+    <img class="hero" src="/hedef-hero.v2.webp" alt="Türkiye'nin kabartma su haritası — sıcak gün ışığında, denizden yükselen su kavisleri ve süzülen damlalarla" fetchpriority="high" decoding="async">
     <a class="logo" href="/">su haritası</a>
     <p class="atif">suharitasi.com · konsept görsel</p>
   </figure>
