@@ -43,8 +43,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: blur(50px) brightness(0.86);
-    transform: scale(1.12); /* blur kenar taşma payı */
+    filter: blur(90px); /* karartma yok: parlaklık keskin görselle birebir */
+    transform: scale(1.15); /* blur kenar taşma payı */
   }
 
   /* Tam ekran, taşmasız: görselin tamamı her zaman görünür (contain).
@@ -67,6 +67,11 @@
     max-height: 100dvh;
     width: auto;
     height: auto;
+    /* Dikişi erit: üst/alt kenar blur zeminine kenarsız karışır */
+    -webkit-mask-image: linear-gradient(180deg,
+      transparent 0, #000 46px, #000 calc(100% - 46px), transparent 100%);
+    mask-image: linear-gradient(180deg,
+      transparent 0, #000 46px, #000 calc(100% - 46px), transparent 100%);
   }
 
   .logo {
