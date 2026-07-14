@@ -26,6 +26,15 @@
   sim canlı ~62 FPS, ESC/focus/reduced-motion/no-JS geçti, 42 iç link
   0 kırık, Lighthouse performans 96 (CLS 0.02). Yeni JS toplam 7,1 KB
   gzip (sim dahil). Kullanıcı onayı bekliyor.
+- İş 5: tarayıcı öz-denetim altyapısı — @playwright/mcp@0.0.78 global
+  kuruldu (18 MB; tarayıcı önbelleği zaten mevcuttu, 646 MB); .mcp.json
+  headless chromium_headless_shell'e --executable-path ile bağlandı
+  (MCP varsayılanı Chrome arıyor, yok). stdio smoke-test geçti; çalışır
+  durumda RAM ~560 MB (MCP node ~210 + chromium süreçleri ~350).
+  Protokol CLAUDE.md'ye eklendi; MCP'siz oturumlar için arac/oz-denetim.mjs
+  (konsol + iç link + tam sayfa görüntü + menü etkileşim testi; headless
+  yazılımsal-GL sürücü uyarıları etiketlenip ayrı sayılır). Deneme
+  denetimi: 3 sayfa, 0 hata/uyarı, 31 iç link 0 kırık.
 - İş 3: mevzuat rehberleri paketi — Apilex çıktısı (14.07.2026)
   kaynak/apilex-sumevzuat.md olarak kaydedildi; 9 rehber üretildi
   (kuyu-ruhsati, ruhsatsiz-kuyu-cezalari, kaynak-suyu-kiralama,

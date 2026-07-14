@@ -4,3 +4,5 @@ kaynak/
 screenshots/
 *.zip
 .astro/
+cikti/
+.playwright-mcp/

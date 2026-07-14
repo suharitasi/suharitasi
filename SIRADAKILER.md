@@ -42,6 +42,10 @@
 18. Eksik rehber verileri ayrı kanaldan tamamlanacak: su kirliliği
     cezaları (2872/SKKY), koruma alanı yasak listesi, TBB reklam yasağı
     uyumu (KAYNAKLAR.md "VERİ YOK" bölümü)
+19a. Tarayıcı öz-denetim altyapısı — YAPILDI (2026-07-14): Playwright
+    MCP kuruldu (.mcp.json; yeni oturumda araç olarak aktif), protokol
+    CLAUDE.md'de, script yedeği arac/oz-denetim.mjs; deneme denetimi
+    temiz (0 hata, 0 kırık link, 3 görüntü cikti/denetim/).
 19. Menü + içerik sayfaları görsel yenileme (su hissi) — YAPILDI
     (2026-07-14): su damlası imleç, WebGL menü su simülasyonu, dergi
     listeler, hero şeridi. KULLANICI ONAYI BEKLİYOR: tarayıcıda menüyü
