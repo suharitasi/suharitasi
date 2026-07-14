@@ -13,9 +13,11 @@
    NS Cloudflare'de (damon/jasmine) ama A kaydı yok, site yanıtsız (000);
    301 kuralı kurulmamış (denetim 2026-07-14)
 6. Search Console + sitemap
-7. Sunucu reboot (bekleyen kernel) — BEKLİYOR: /var/run/reboot-required
+7. Kullanıcı kendi logosunu üretince /harita/ sayfasına logo eklenecek
+   (2026-07-14: logo + "konsept görsel" atıfı kaldırıldı, sayfa salt görsel)
+8. Sunucu reboot (bekleyen kernel) — BEKLİYOR: /var/run/reboot-required
    mevcut (denetim 2026-07-14)
-8. Faz 3B: kamera + ekrana damla sıçraması (Sondaj Anı-1)
-9. Aşama 1 derin kazı: havza GeoJSON + DSİ verisi + KAYNAKLAR
-10. Aşama 2 pipeline → canlı baraj doluluğu (VIZYON-5)
-11. Konum tabanlı kişisel açılış (VIZYON sırası 3)
+9. Faz 3B: kamera + ekrana damla sıçraması (Sondaj Anı-1)
+10. Aşama 1 derin kazı: havza GeoJSON + DSİ verisi + KAYNAKLAR
+11. Aşama 2 pipeline → canlı baraj doluluğu (VIZYON-5)
+12. Konum tabanlı kişisel açılış (VIZYON sırası 3)

@@ -7,9 +7,6 @@
 <meta name="description" content="Türkiye'nin su haritası. Havza verisi ve etkileşimli katman yolda.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preload" as="image" href="/hedef-hero.v2.webp" fetchpriority="high">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500&display=swap&subset=latin-ext" rel="stylesheet">
 <style>
   :root {
     --deniz: #04121F;
@@ -26,7 +23,7 @@
     /* Zemin: görselden ImageMagick ile üretilmiş gerçek blur dosyası.
        Koyu renk zemin YOK; anlık yedek ton da görselin orta adaçayısı. */
     background: #8A9489 url('/hedef-zemin.v1.webp') center / cover no-repeat fixed;
-    font-family: "Manrope", system-ui, sans-serif;
+    font-family: system-ui, sans-serif;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -61,42 +58,12 @@
       transparent 0, #000 46px, #000 calc(100% - 46px), transparent 100%);
   }
 
-  .logo {
-    position: absolute;
-    top: clamp(0.7rem, 2.2vw, 1.3rem);
-    left: clamp(0.9rem, 2.6vw, 1.6rem);
-    font-family: "Cormorant", Georgia, serif;
-    font-style: italic;
-    font-weight: 500;
-    font-size: clamp(1.05rem, 2vw, 1.3rem);
-    color: var(--kopuk);
-    text-decoration: none;
-    text-shadow: 0 1px 8px rgba(4, 18, 31, 0.55);
-  }
-
-  .logo:focus-visible {
-    outline: 2px solid var(--akuamarin);
-    outline-offset: 4px;
-  }
-
-  .atif {
-    position: absolute;
-    right: clamp(0.8rem, 2.2vw, 1.3rem);
-    bottom: clamp(0.6rem, 1.8vw, 1rem);
-    font-size: 0.6rem;
-    letter-spacing: 0.05em;
-    color: rgba(220, 233, 237, 0.45);
-    text-shadow: 0 1px 6px rgba(4, 18, 31, 0.45);
-    pointer-events: none;
-  }
-</style>
+  /* Görsel üstü öğe yok: logo kullanıcının kendi logosu üretilince eklenecek. */</style>
 </head>
 <body>
 
   <figure class="cerceve">
     <img class="hero" src="/hedef-hero.v2.webp" alt="Türkiye'nin kabartma su haritası — sıcak gün ışığında, denizden yükselen su kavisleri ve süzülen damlalarla" fetchpriority="high" decoding="async">
-    <a class="logo" href="/">su haritası</a>
-    <p class="atif">suharitasi.com · konsept görsel</p>
   </figure>
 
   <script>
