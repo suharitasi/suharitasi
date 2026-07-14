@@ -38,14 +38,17 @@ function kur() {
       overlay.insertBefore(canvas, overlay.firstChild);
       sim = m.baslat(canvas, {
         hata() {
-          // Context loss / düşük FPS: canvas yumuşak söner, statik zemin kalır.
-          simDurum = 'basarisiz';
+          /* Context loss / gerçekten aciz cihaz: canvas yumuşak söner,
+             statik zemin kalır. Durum 'yok'a döner — bir SONRAKİ menü
+             açılışında yeniden denenir (kalıcı kilit yok). */
+          simDurum = 'yok';
           if (canvas) { canvas.classList.remove('sv-canli'); setTimeout(() => canvas.remove(), 600); canvas = null; }
           sim = null;
         },
       });
       if (!sim) {
-        simDurum = 'basarisiz';
+        // WebGL2 / float render desteği yok: bu KALICI — yeniden denenmez.
+        simDurum = 'webgl-yok';
         canvas.remove(); canvas = null;
         return;
       }
@@ -54,7 +57,7 @@ function kur() {
         sim.ac(); canvas.classList.add('sv-canli');
       }
     } catch {
-      simDurum = 'basarisiz';
+      simDurum = 'webgl-yok'; // modül yüklenemedi: yeniden denemek anlamsız
       if (canvas) { canvas.remove(); canvas = null; }
     }
   }
@@ -67,6 +70,7 @@ function kur() {
     // Reflow sonrası sınıf: geçiş tetiklenir
     void overlay.offsetWidth;
     overlay.classList.add('sv-acik');
+    document.documentElement.classList.add('sv-menu-goruntude'); // imleç tonu
     dugme.setAttribute('aria-expanded', 'true');
     disAlanlar.forEach((a) => a.setAttribute('aria-hidden', 'true'));
 
@@ -86,6 +90,7 @@ function kur() {
 
   function kapa() {
     overlay.classList.remove('sv-acik');
+    document.documentElement.classList.remove('sv-menu-goruntude');
     disAlanlar.forEach((a) => a.removeAttribute('aria-hidden'));
     if (sim) { sim.kapa(); if (canvas) canvas.classList.remove('sv-canli'); }
     document.body.style.overflow = '';
@@ -116,14 +121,14 @@ function kur() {
     const t = performance.now();
     if (t - sonHareket < 28) return; // ~35 damla/sn üst sınır
     sonHareket = t;
-    sim.damla(e.clientX / overlay.clientWidth, e.clientY / overlay.clientHeight, 0.035);
+    sim.damla(e.clientX / overlay.clientWidth, e.clientY / overlay.clientHeight, 0.07);
   }, { passive: true });
 
   if (dokunmatik.matches) {
     overlay.addEventListener('touchmove', (e) => {
       if (!sim || !sim.calisiyorMu() || !e.touches[0]) return;
       const d = e.touches[0];
-      sim.damla(d.clientX / overlay.clientWidth, d.clientY / overlay.clientHeight, 0.045);
+      sim.damla(d.clientX / overlay.clientWidth, d.clientY / overlay.clientHeight, 0.08);
     }, { passive: true });
   }
 
@@ -131,7 +136,7 @@ function kur() {
   overlay.querySelectorAll('nav a').forEach((a) => {
     a.addEventListener('pointerenter', (e) => {
       if (sim && sim.calisiyorMu()) {
-        sim.damla(e.clientX / overlay.clientWidth, e.clientY / overlay.clientHeight, 0.09);
+        sim.damla(e.clientX / overlay.clientWidth, e.clientY / overlay.clientHeight, 0.15);
       }
     });
   });

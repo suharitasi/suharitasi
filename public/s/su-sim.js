@@ -39,6 +39,7 @@ uniform sampler2D uYuzey;
 uniform vec2 uEkran;
 uniform vec2 uTexel;
 uniform float uGorunum;
+uniform float uZaman;
 out vec4 o;
 void main(){
   vec2 uv = gl_FragCoord.xy / uEkran;
@@ -46,22 +47,31 @@ void main(){
   float r = texture(uYuzey, uv + vec2(uTexel.x, 0.)).r;
   float b = texture(uYuzey, uv - vec2(0., uTexel.y)).r;
   float t = texture(uYuzey, uv + vec2(0., uTexel.y)).r;
-  vec3 n = normalize(vec3(l - r, b - t, 0.14));
+
+  /* Idle swell: simden bağımsız, durağanken bile fark edilen ambient
+     dalgalanma — büyük ölçekli, yavaş, küçük genlik. */
+  vec2 sw = vec2(
+    sin(uv.x * 7.0 + uZaman * 0.55) * sin(uv.y * 5.0 - uZaman * 0.38),
+    sin(uv.x * 5.5 - uZaman * 0.42) * sin(uv.y * 6.5 + uZaman * 0.5)
+  ) * 0.016;
+
+  vec2 grad = vec2(l - r, b - t) + sw;
+  vec3 n = normalize(vec3(grad, 0.12));
 
   /* Derinlik zemini: #04121F, merkeze doğru hafif aydınlanan */
   vec3 derin = vec3(0.0157, 0.0706, 0.1216);
-  vec3 orta  = vec3(0.0353, 0.1216, 0.1804);
+  vec3 orta  = vec3(0.0431, 0.1451, 0.2118);
   float m = 1.0 - smoothstep(0.0, 0.85, distance(uv, vec2(0.5, 0.42)));
-  vec3 col = mix(derin, orta, m * 0.55);
+  vec3 col = mix(derin, orta, m * 0.6);
 
-  /* Dalga tepelerinde akuamarin kırılma parıltısı (#4FC3D0) */
+  /* Dalga tepelerinde akuamarin kırılma parıltısı (#4FC3D0) — net seçilir */
   vec3 aqua = vec3(0.310, 0.765, 0.816);
-  float egim = length(vec2(l - r, b - t));
-  col += aqua * min(egim * 9.0, 0.55);
+  float egim = length(grad);
+  col += aqua * min(egim * 17.0, 0.85);
 
   /* Tek alçak ışıktan yumuşak yansıma */
-  float spec = pow(max(dot(n, normalize(vec3(0.25, 0.4, 0.88))), 0.0), 60.0);
-  col += aqua * spec * 0.25;
+  float spec = pow(max(dot(n, normalize(vec3(0.25, 0.4, 0.88))), 0.0), 50.0);
+  col += aqua * spec * 0.4;
 
   o = vec4(col * uGorunum, 1.0);
 }`;
@@ -156,24 +166,31 @@ export function baslat(canvas, secenekler = {}) {
 
   function adim(t) {
     if (!calisiyor) return;
-    // İlk 60 karede FPS ölçümü; <45 → grid yarıya; hâlâ <30 → durdur.
+    /* FPS ölçümü: ilk 20 kare ISINMA (menü giriş animasyonu + derleme ana
+       thread'i meşgul eder; erken karelerle ölçüm yanıltır — canlıda erken
+       fallback'in kökü buydu). Sonraki 60 kare ölçülür. Eşikler kasıtlı
+       düşük: gerçek GPU'lu tarayıcı bunlara asla takılmaz; yalnız gerçekten
+       aciz cihaz korunur. Headless ölçümüne göre eşik AYARLANMAZ. */
     kare++;
-    if (kare === 60) {
+    if (kare === 20) olcumBasi = performance.now();
+    if (kare === 80) {
       const fps = 60000 / (performance.now() - olcumBasi);
-      if (fps < 30 && seviye >= 1) { ariza(); return; }
-      if (fps < 45 && seviye === 0) {
-        seviye = 1; genis = 144; yuksek = 81; dokuKur(); olcumSifirla();
-      } else if (fps < 30) {
+      if (secenekler.fps) secenekler.fps(Math.round(fps));
+      if (fps < 16 && seviye >= 1) { ariza(); return; }
+      if (fps < 26 && seviye === 0) {
         seviye = 1; genis = 144; yuksek = 81; dokuKur(); olcumSifirla();
       }
-      if (secenekler.fps) secenekler.fps(Math.round(fps));
     }
 
-    // Ambient: yüzey ölü kalmasın — ~1.6 sn'de bir çok küçük damla.
-    if (t - sonAmbient > 1600) {
+    // Ambient: yüzey ölü kalmasın — ~0.7 sn'de bir belirgin küçük damla.
+    if (t - sonAmbient > 700) {
       sonAmbient = t;
-      const a = t * 0.0004;
-      bekleyen.push({ x: 0.5 + 0.38 * Math.sin(a * 1.7), y: 0.5 + 0.32 * Math.cos(a * 2.3), g: 0.012 });
+      const a = t * 0.00037;
+      bekleyen.push({
+        x: 0.5 + 0.42 * Math.sin(a * 1.7) * Math.cos(a * 0.6),
+        y: 0.5 + 0.36 * Math.cos(a * 2.3),
+        g: 0.028,
+      });
     }
 
     // Sim geçişi
@@ -201,6 +218,7 @@ export function baslat(canvas, secenekler = {}) {
     gl.uniform2f(gl.getUniformLocation(cizP, 'uEkran'), canvas.width, canvas.height);
     gl.uniform2f(gl.getUniformLocation(cizP, 'uTexel'), 1 / genis, 1 / yuksek);
     gl.uniform1f(gl.getUniformLocation(cizP, 'uGorunum'), gorunum);
+    gl.uniform1f(gl.getUniformLocation(cizP, 'uZaman'), t * 0.001);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
 
     requestAnimationFrame(adim);
@@ -220,7 +238,7 @@ export function baslat(canvas, secenekler = {}) {
     kapa() { acik = false; calisiyor = false; },
     /* x, y: 0-1 aralığında overlay koordinatı */
     damla(x, y, guc = 0.05) {
-      if (calisiyor && bekleyen.length < 6) bekleyen.push({ x, y, g: guc });
+      if (calisiyor && bekleyen.length < 12) bekleyen.push({ x, y, g: guc });
     },
     calisiyorMu: () => calisiyor,
   };

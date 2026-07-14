@@ -1,6 +1,9 @@
 /* Su damlası imleç (sv-imlec)
    Landing + içerik sayfalarında yüklenir; /harita/ bu dosyayı hiç çağırmaz.
-   Dokunmatik cihazda ve prefers-reduced-motion'da hiç başlamaz: native imleç kalır.
+   Form: inline SVG damla — net kenar, üstte sivri / altta dolgun asimetrik
+   siluet, iç parlaklık + ince dış hat; blur yok. Zemine göre otomatik ton:
+   html[data-sv-ton="krem"] → koyu-akuamarin, koyu zemin → açık-akuamarin.
+   Dokunmatik cihazda ve prefers-reduced-motion'da hiç başlamaz.
    Bilinen sınır: iframe/embed üstünde damla kaybolur (şu an sitede iframe yok). */
 
 const kaba = window.matchMedia('(hover: none), (pointer: coarse)');
@@ -22,28 +25,28 @@ function baslat() {
     }
     #sv-imlec.sv-gorunur { opacity: 1; }
     #sv-imlec .sv-damla {
-      width: 12px; height: 12px;
-      margin: -6px 0 0 -6px;
-      border-radius: 52% 48% 56% 44% / 62% 58% 42% 38%;
-      background:
-        radial-gradient(circle at 32% 28%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 42%),
-        ${krem
-          ? 'radial-gradient(circle at 50% 55%, rgba(47,138,151,0.85) 0%, rgba(47,93,89,0.72) 78%)'
-          : 'radial-gradient(circle at 50% 55%, rgba(79,195,208,0.78) 0%, rgba(79,195,208,0.58) 78%)'};
+      width: 16px; height: 20px;
+      margin: -2px 0 0 -8px; /* sivri uç ~pointer noktası */
+      transform-origin: 50% 35%;
       transform: scale(1);
-      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
-                  border-radius 0.3s ease;
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+    #sv-imlec .sv-damla svg { display: block; width: 100%; height: 100%; }
+    /* Ton: krem sayfada koyu-akuamarin, koyu sayfada açık-akuamarin.
+       Menü katmanı (koyu) açıkken krem sayfada da açık varyanta geçilir. */
+    #sv-imlec .sv-v-${krem ? 'koyu' : 'krem'} { display: none; }
+    html.sv-menu-goruntude #sv-imlec .sv-v-koyu { display: initial; }
+    html.sv-menu-goruntude #sv-imlec .sv-v-krem { display: none; }
     #sv-imlec.sv-buyuk .sv-damla {
-      transform: scale(1.7);
+      transform: scale(1.65);
       animation: sv-yuzey 0.2s cubic-bezier(0.34, 1.8, 0.64, 1);
     }
     #sv-imlec.sv-bas .sv-damla { transform: scale(0.85); }
-    #sv-imlec.sv-buyuk.sv-bas .sv-damla { transform: scale(1.4); }
+    #sv-imlec.sv-buyuk.sv-bas .sv-damla { transform: scale(1.35); }
     @keyframes sv-yuzey {
-      0%   { transform: scale(1) scaleX(1); }
-      45%  { transform: scale(1.55) scaleX(1.18) scaleY(0.86); }
-      100% { transform: scale(1.7); }
+      0%   { transform: scale(1); }
+      45%  { transform: scale(1.5) scaleX(1.16) scaleY(0.88); }
+      100% { transform: scale(1.65); }
     }
   `;
   document.head.appendChild(stil);
@@ -51,7 +54,38 @@ function baslat() {
   const el = document.createElement('div');
   el.id = 'sv-imlec';
   el.setAttribute('aria-hidden', 'true');
-  el.innerHTML = '<div class="sv-damla"></div>';
+  // Asimetrik damla: üst sivri, alt dolgun; sağ omuz solundan hafif geniş.
+  // .sv-v-krem: krem zemin için koyu gövde; .sv-v-koyu: koyu zemin için açık.
+  const YOL = `M8 1.1
+    C 8 1.1 3.9 7.3 2.8 11.1
+    C 1.9 14.4 4.2 18.7 8.3 18.7
+    C 12.8 18.7 14.6 14.1 13.4 10.7
+    C 12.2 7.1 8 1.1 8 1.1 Z`;
+  el.innerHTML = `
+    <div class="sv-damla">
+      <svg viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="sv-dg-krem" x1="0.3" y1="0" x2="0.62" y2="1">
+            <stop offset="0" stop-color="#2E93A1"/>
+            <stop offset="1" stop-color="#17646F"/>
+          </linearGradient>
+          <linearGradient id="sv-dg-koyu" x1="0.3" y1="0" x2="0.62" y2="1">
+            <stop offset="0" stop-color="#8FDEE8"/>
+            <stop offset="1" stop-color="#4FC3D0"/>
+          </linearGradient>
+        </defs>
+        <g class="sv-v-krem">
+          <path d="${YOL}" fill="url(#sv-dg-krem)" stroke="rgba(10,56,63,0.9)" stroke-width="1"/>
+          <ellipse cx="5.9" cy="12.6" rx="1.5" ry="2.3"
+            fill="rgba(255,255,255,0.6)" transform="rotate(-16 5.9 12.6)"/>
+        </g>
+        <g class="sv-v-koyu">
+          <path d="${YOL}" fill="url(#sv-dg-koyu)" stroke="rgba(230,249,252,0.8)" stroke-width="1"/>
+          <ellipse cx="5.9" cy="12.6" rx="1.5" ry="2.3"
+            fill="rgba(255,255,255,0.8)" transform="rotate(-16 5.9 12.6)"/>
+        </g>
+      </svg>
+    </div>`;
   document.body.appendChild(el);
   kok.classList.add('sv-imlec-gizli');
 
