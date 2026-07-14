@@ -3,9 +3,13 @@ import { getCollection } from 'astro:content';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 
-const girisler = (await getCollection('havzalar')).sort(
-  (a, b) => a.data.baslik.localeCompare(b.data.baslik, 'tr')
-);
+// DSİ havza numarasına göre sırala; numarasızlar sona, ada göre
+const girisler = (await getCollection('havzalar')).sort((a, b) => {
+  if (a.data.no && b.data.no) return a.data.no.localeCompare(b.data.no);
+  if (a.data.no) return -1;
+  if (b.data.no) return 1;
+  return a.data.baslik.localeCompare(b.data.baslik, 'tr');
+});
 ---
 <Sayfa
   baslik="Havzalar"
@@ -19,7 +23,10 @@ const girisler = (await getCollection('havzalar')).sort(
     {girisler.map((g) => (
       <li>
         <a href={`/havzalar/${g.id}/`}>
-          <span class="liste-baslik">{g.data.baslik}</span>
+          <span class="liste-baslik">
+            {g.data.no && <span class="liste-no">{g.data.no}</span>}
+            {g.data.baslik}
+          </span>
           <span class="liste-ozet">{g.data.ozet}</span>
         </a>
       </li>
@@ -49,6 +56,17 @@ const girisler = (await getCollection('havzalar')).sort(
   }
 
   .liste a:hover .liste-baslik { color: var(--baglanti); }
+
+  /* DSİ havza numarası — resmî kod, dekor değil */
+  .liste-no {
+    display: inline-block;
+    min-width: 1.9rem;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--metin-soluk);
+  }
 
   .liste-ozet {
     display: block;

@@ -2,6 +2,7 @@
 baslik: "Sakarya Havzası"
 ozet: "İç Batı Anadolu'dan Karadeniz'e uzanan, Ankara ve Eskişehir'i besleyen havza — DSİ 2024 resmî istatistikleriyle."
 tarih: 2026-07-14
+no: "12"
 kunye:
   yillikPotansiyel: '6,01 km³/yıl — <a href="https://www.dsi.gov.tr/Sayfa/Detay/2186" target="_blank" rel="noopener">DSİ 2024 Resmî Su Kaynakları İstatistikleri, Tablo 1.2</a>'
   yasRezervi: 'Beslenim 2.197,1 hm³/yıl · işletme rezervi 1.545,2 hm³/yıl — <a href="https://www.dsi.gov.tr/Sayfa/Detay/2186" target="_blank" rel="noopener">DSİ 2024, Tablo 1.3</a>'

@@ -16,6 +16,7 @@ const havzalar = defineCollection({
     baslik: z.string(),
     ozet: z.string(),
     tarih: z.coerce.date(),
+    no: z.string().optional(), // DSİ havza numarası (01–25); listede sıralama
     // Künye alanları; dolduruluncaya dek "veri yükleniyor" gösterilir.
     kunye: z
       .object({
