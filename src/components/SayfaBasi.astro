@@ -1,0 +1,14 @@
+---
+interface Props {
+  etiket?: string;
+  baslik: string;
+  ozet?: string;
+}
+const { etiket, baslik, ozet } = Astro.props;
+---
+<div class="sayfa-basi">
+  {etiket && <p class="sayfa-etiket">{etiket}</p>}
+  <h1>{baslik}</h1>
+  <hr class="su-hatti" aria-hidden="true" />
+  {ozet && <p class="sayfa-ozet">{ozet}</p>}
+</div>

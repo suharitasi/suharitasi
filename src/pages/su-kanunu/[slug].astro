@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from 'astro:content';
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+
+export async function getStaticPaths() {
+  const girisler = await getCollection('su-kanunu');
+  return girisler.map((g) => ({ params: { slug: g.id }, props: { giris: g } }));
+}
+
+const { giris } = Astro.props;
+const { Content } = await render(giris);
+---
+<Sayfa baslik={giris.data.baslik} aciklama={giris.data.ozet}>
+  <SayfaBasi etiket="Su Kanunu" baslik={giris.data.baslik} ozet={giris.data.ozet} />
+  <div class="icerik">
+    <Content />
+  </div>
+</Sayfa>

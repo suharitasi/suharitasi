@@ -202,6 +202,8 @@
     display: flex;
     align-items: center;
     gap: 1.25rem;
+    /* keşfet bağlantısının çapası; kompozisyona yükseklik eklemez */
+    position: relative;
   }
 
   .ayrac::before,
@@ -226,6 +228,27 @@
     color: var(--metin);
     /* Son harfin aralığı sözcüğü sağa itmesin */
     margin-right: -0.42em;
+  }
+
+  /* Akış dışında durur: ortalanmış kolonun dengesini bozmaz */
+  .kesfet {
+    position: absolute;
+    top: calc(100% + 1.15rem);
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    color: var(--metin-soluk);
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+
+  .kesfet:hover { color: var(--kopuk); }
+
+  .kesfet:focus-visible {
+    outline: 2px solid var(--akuamarin);
+    outline-offset: 4px;
   }
 
   footer {
@@ -349,6 +372,10 @@
     animation: metin-yuksel 0.6s 1.55s cubic-bezier(0.33, 1, 0.68, 1) both;
   }
 
+  body.giris .kesfet {
+    animation: metin-yuksel 0.6s 1.68s cubic-bezier(0.33, 1, 0.68, 1) both;
+  }
+
   body.giris footer {
     animation: belir 0.8s 1.75s ease-out both;
   }
@@ -407,7 +434,7 @@
       <h1>Su, yerin altında <em>konuşur.</em></h1>
       <div class="imza-damar" aria-hidden="true"></div>
       <p class="alt-metin">Türkiye'nin su verisi, havzaları ve su mevzuatı — tek haritada.</p>
-      <div class="ayrac"><span>Yakında</span></div>
+      <div class="ayrac"><span>Yakında</span><a class="kesfet" href="/harita/">keşfet →</a></div>
     </main>
 
     <footer>

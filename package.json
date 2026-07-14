@@ -2,21 +2,22 @@
   "name": "suharitasi",
   "version": "0.1.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "suharitasi.com — Türkiye su verisi, havzaları ve su mevzuatı",
-  "devDependencies": {
-    "vite": "^8.1.4"
-  },
   "dependencies": {
+    "astro": "^5.18.2",
     "maplibre-gl": "^5.24.0",
     "three": "^0.185.1"
   },
   "private": true,
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "playwright-core": "^1.61.1"
+  }
 }

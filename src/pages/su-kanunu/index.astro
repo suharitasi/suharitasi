@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+
+const girisler = (await getCollection('su-kanunu')).sort(
+  (a, b) => b.data.tarih.valueOf() - a.data.tarih.valueOf()
+);
+const tarihYaz = (t: Date) =>
+  t.toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<Sayfa
+  baslik="Su Kanunu"
+  aciklama="Su mevzuatı kütüphanesi ve Su Kanunu taslağının güncel takibi: kaynak linkli, spekülasyonsuz."
+>
+  <SayfaBasi
+    baslik="Su Kanunu"
+    ozet="Yürürlükteki su mevzuatının kütüphanesi ve Su Kanunu taslağının tarih + kaynak bağlantılı takibi."
+  />
+  <ul class="liste">
+    {girisler.map((g) => (
+      <li>
+        <a href={`/su-kanunu/${g.id}/`}>
+          <span class="liste-tarih">{tarihYaz(g.data.tarih)}</span>
+          <span class="liste-baslik">{g.data.baslik}</span>
+          <span class="liste-ozet">{g.data.ozet}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Sayfa>
+
+<style>
+  .liste { list-style: none; }
+
+  .liste li + li { border-top: 1px solid var(--cizgi); }
+
+  .liste a {
+    display: block;
+    padding: 1.1rem 0;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .liste-tarih {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+
+  .liste-baslik {
+    display: block;
+    margin-top: 0.2rem;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.35rem;
+    line-height: 1.3;
+    transition: color 0.2s ease;
+  }
+
+  .liste a:hover .liste-baslik { color: var(--baglanti); }
+
+  .liste-ozet {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.92rem;
+    color: var(--metin-soluk);
+    max-width: 62ch;
+  }
+</style>

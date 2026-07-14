@@ -1,0 +1,90 @@
+---
+// İnce üst menü: landing hariç tüm içerik sayfalarında.
+const ogeler = [
+  { ad: 'Harita', yol: '/harita/' },
+  { ad: 'Havzalar', yol: '/havzalar/' },
+  { ad: 'Rehberler', yol: '/rehberler/' },
+  { ad: 'Su Kanunu', yol: '/su-kanunu/' },
+  { ad: 'Hakkında', yol: '/hakkinda/' },
+];
+const simdiki = Astro.url.pathname.endsWith('/')
+  ? Astro.url.pathname
+  : Astro.url.pathname + '/';
+---
+<header class="ust">
+  <nav aria-label="Site menüsü">
+    <a class="marka" href="/">su haritası</a>
+    <ul>
+      {ogeler.map((o) => (
+        <li>
+          <a
+            href={o.yol}
+            aria-current={simdiki.startsWith(o.yol) ? 'page' : undefined}
+          >{o.ad}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .ust {
+    border-bottom: 1px solid var(--cizgi);
+    background: var(--zemin);
+  }
+
+  nav {
+    max-width: 64rem;
+    margin: 0 auto;
+    height: 3.6rem;
+    padding: 0 clamp(1.25rem, 4vw, 2rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .marka {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.15rem;
+    color: var(--metin);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.9rem, 2.4vw, 1.7rem);
+    list-style: none;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  ul a {
+    display: inline-block;
+    padding: 0.35rem 0;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  ul a:hover { color: var(--metin); }
+
+  ul a[aria-current="page"] {
+    color: var(--metin);
+    border-bottom-color: var(--vurgu);
+  }
+
+  @media (max-width: 640px) {
+    nav { height: auto; padding-top: 0.8rem; padding-bottom: 0.8rem; flex-wrap: wrap; }
+  }
+</style>

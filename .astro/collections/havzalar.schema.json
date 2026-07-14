@@ -1,0 +1,61 @@
+{
+  "$ref": "#/definitions/havzalar",
+  "definitions": {
+    "havzalar": {
+      "type": "object",
+      "properties": {
+        "baslik": {
+          "type": "string"
+        },
+        "ozet": {
+          "type": "string"
+        },
+        "tarih": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "kunye": {
+          "type": "object",
+          "properties": {
+            "yillikPotansiyel": {
+              "type": "string"
+            },
+            "yasRezervi": {
+              "type": "string"
+            },
+            "tahsis": {
+              "type": "string"
+            },
+            "eylemPlani": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "default": {}
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "baslik",
+        "ozet",
+        "tarih"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

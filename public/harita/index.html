@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harita — Su Haritası</title>
+<meta name="description" content="Türkiye'nin su haritası. Havza verisi ve etkileşimli katman yolda.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" as="image" href="/hedef-hero.v2.webp" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&display=swap&subset=latin-ext" rel="stylesheet">
+<style>
+  :root {
+    --deniz: #04121F;
+    --kopuk: #A8DDE0;
+    --akuamarin: #4FC3D0;
+    --metin-soluk: #6C8A96;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    /* Zemin: görselden ImageMagick ile üretilmiş gerçek blur dosyası.
+       Koyu renk zemin YOK; anlık yedek ton da görselin orta adaçayısı. */
+    background: #8A9489 url('/hedef-zemin.v1.webp') center / cover no-repeat fixed;
+    font-family: system-ui, sans-serif;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+  }
+
+  /* Tam ekran, taşmasız: görselin tamamı her zaman görünür (contain).
+     Çerçeve/gölge/köşe YOK; görselin kendisine filtre/overlay YOK. */
+  .cerceve {
+    position: relative;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+
+  .cerceve.geldi { opacity: 1; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cerceve { transition: none; opacity: 1; }
+  }
+
+  .hero {
+    display: block;
+    max-width: 100vw;
+    max-height: 100dvh;
+    width: auto;
+    height: auto;
+    /* Dikişi erit: üst/alt kenar blur zeminine kenarsız karışır */
+    -webkit-mask-image: linear-gradient(180deg,
+      transparent 0, #000 46px, #000 calc(100% - 46px), transparent 100%);
+    mask-image: linear-gradient(180deg,
+      transparent 0, #000 46px, #000 calc(100% - 46px), transparent 100%);
+  }
+
+  /* Görsel üstünde tek öğe: sol üstteki "menü" tetikleyicisi.
+     Logo, kullanıcının kendi logosu üretilince eklenecek. */
+
+  .menu-ac {
+    position: fixed;
+    top: clamp(0.9rem, 2.4vw, 1.4rem);
+    left: clamp(1rem, 2.8vw, 1.7rem);
+    z-index: 10;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font-family: "Manrope", system-ui, sans-serif;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--kopuk);
+    text-shadow: 0 1px 8px rgba(4, 18, 31, 0.55);
+    padding: 0.4rem 0.2rem;
+    transition: color 0.25s ease;
+  }
+
+  .menu-ac:hover { color: #FFFFFF; }
+
+  .menu-ac:focus-visible {
+    outline: 2px solid var(--akuamarin);
+    outline-offset: 4px;
+  }
+
+  /* Tam ekran koyu menü katmanı */
+  .menu-katman {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(4, 18, 31, 0.96);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+  }
+
+  .menu-katman.acik { opacity: 1; visibility: visible; }
+
+  .menu-katman nav ul {
+    list-style: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.7rem, 2.4vh, 1.4rem);
+  }
+
+  .menu-katman nav a {
+    font-family: "Cormorant", Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(1.8rem, 4.6vw, 2.7rem);
+    line-height: 1.2;
+    color: #DCE9ED;
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+
+  .menu-katman nav a:hover { color: var(--akuamarin); }
+
+  .menu-katman nav a:focus-visible {
+    outline: 2px solid var(--akuamarin);
+    outline-offset: 6px;
+  }
+
+  .menu-katman nav a[aria-current="page"] { font-style: italic; color: var(--kopuk); }
+
+  .menu-kapat {
+    position: absolute;
+    top: clamp(0.9rem, 2.4vw, 1.4rem);
+    right: clamp(1rem, 2.8vw, 1.7rem);
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font-family: "Manrope", system-ui, sans-serif;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #6C8A96;
+    padding: 0.4rem 0.2rem;
+    transition: color 0.25s ease;
+  }
+
+  .menu-kapat:hover { color: #DCE9ED; }
+
+  .menu-kapat:focus-visible {
+    outline: 2px solid var(--akuamarin);
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-katman { transition: none; }
+  }</style>
+</head>
+<body>
+
+  <figure class="cerceve">
+    <img class="hero" src="/hedef-hero.v2.webp" alt="Türkiye'nin kabartma su haritası — sıcak gün ışığında, denizden yükselen su kavisleri ve süzülen damlalarla" fetchpriority="high" decoding="async">
+  </figure>
+
+  <button class="menu-ac" type="button" aria-haspopup="dialog" aria-expanded="false">menü</button>
+
+  <div class="menu-katman" role="dialog" aria-modal="true" aria-label="Site menüsü">
+    <button class="menu-kapat" type="button">kapat</button>
+    <nav>
+      <ul>
+        <li><a href="/harita/" aria-current="page">Harita</a></li>
+        <li><a href="/havzalar/">Havzalar</a></li>
+        <li><a href="/rehberler/">Rehberler</a></li>
+        <li><a href="/su-kanunu/">Su Kanunu</a></li>
+        <li><a href="/hakkinda/">Hakkında</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <script>
+    const cerceve = document.querySelector('.cerceve');
+    const hero = document.querySelector('.hero');
+    function goster() { cerceve.classList.add('geldi'); }
+    if (hero.complete) goster();
+    else hero.addEventListener('load', goster);
+    setTimeout(goster, 2500); // emniyet
+
+    // Menü katmanı: aç/kapat + ESC + odak yönetimi
+    const menuAc = document.querySelector('.menu-ac');
+    const menuKatman = document.querySelector('.menu-katman');
+    const menuKapat = document.querySelector('.menu-kapat');
+    const ilkBaglanti = menuKatman.querySelector('nav a');
+
+    function menuyuAc() {
+      menuKatman.classList.add('acik');
+      menuAc.setAttribute('aria-expanded', 'true');
+      ilkBaglanti.focus();
+    }
+
+    function menuyuKapat() {
+      menuKatman.classList.remove('acik');
+      menuAc.setAttribute('aria-expanded', 'false');
+      menuAc.focus();
+    }
+
+    menuAc.addEventListener('click', menuyuAc);
+    menuKapat.addEventListener('click', menuyuKapat);
+    addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuKatman.classList.contains('acik')) menuyuKapat();
+    });
+  </script>
+</body>
+</html>

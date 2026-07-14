@@ -1,0 +1,25 @@
+---
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+---
+<Sayfa
+  baslik="Hakkında"
+  aciklama="suharitasi.com: Türkiye'nin su verisi, havzaları ve su mevzuatını tek haritada birleştiren bağımsız bilgi portalı."
+>
+  <SayfaBasi baslik="Hakkında" />
+  <div class="icerik">
+    <p>
+      suharitasi.com, Türkiye'nin su verisi, havzaları ve su mevzuatını tek
+      haritada birleştiren bağımsız bir bilgi portalıdır.
+    </p>
+    <p>
+      Hukuki içerik <a href="https://arslanhukuk.tr" target="_blank" rel="noopener">Av. Serdar Arslan (Arslan Hukuk Bürosu)</a>
+      tarafından hazırlanmaktadır.
+    </p>
+    <p>
+      Portaldaki veriler kamu kurumlarının açık kaynaklarına dayanır ve her
+      veri alanında kaynağı ile birlikte sunulur. Doğrulanamayan hiçbir veri
+      doğrulanmış gibi gösterilmez.
+    </p>
+  </div>
+</Sayfa>

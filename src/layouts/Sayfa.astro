@@ -1,0 +1,210 @@
+---
+// İçerik sayfası çatısı: DESIGN.md "İçerik sayfaları" bölümüne bağlıdır.
+// Aydınlık atlas dünyası: krem-adaçayı zemin, koyu mürekkep, Cormorant + Manrope.
+import UstMenu from '../components/UstMenu.astro';
+
+interface Props {
+  baslik: string;
+  aciklama: string;
+}
+
+const { baslik, aciklama } = Astro.props;
+const yol = Astro.url.pathname.endsWith('/')
+  ? Astro.url.pathname
+  : Astro.url.pathname + '/';
+const canonical = new URL(yol, Astro.site).href;
+---
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{baslik} — Su Haritası</title>
+<meta name="description" content={aciklama} />
+<link rel="canonical" href={canonical} />
+<meta property="og:title" content={`${baslik} — Su Haritası`} />
+<meta property="og:description" content={aciklama} />
+<meta property="og:url" content={canonical} />
+<meta property="og:type" content="article" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&display=swap&subset=latin-ext" rel="stylesheet" />
+<style is:global>
+  :root {
+    /* — Pirimitif tokenlar (DESIGN.md paleti) — */
+    --krem: #F3EEE2;
+    --adacayi-krem: #E8EDE6;
+    --murekkep-900: #232E2B;
+    --murekkep-500: #5C6B66;
+    --su-700: #2F5D59;
+    --su-400: #5E8A87;
+    --kehribar: #D9A05B;
+    --deniz: #04121F;
+
+    /* — Anlamsal tokenlar — */
+    --zemin: var(--krem);
+    --zemin-kart: var(--adacayi-krem);
+    --metin: var(--murekkep-900);
+    --metin-soluk: var(--murekkep-500);
+    --baglanti: var(--su-700);
+    --vurgu: var(--kehribar);
+    --cizgi: rgba(35, 46, 43, 0.14);
+
+    --serif: "Cormorant", Georgia, serif;
+    --sans: "Manrope", system-ui, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--zemin);
+    color: var(--metin);
+    font-family: var(--sans);
+    font-size: 1.02rem;
+    line-height: 1.75;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a { color: var(--baglanti); }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--su-400);
+    outline-offset: 3px;
+  }
+
+  main.govde {
+    flex: 1;
+    width: 100%;
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: clamp(2.2rem, 6vh, 4rem) clamp(1.25rem, 4vw, 2rem) clamp(3rem, 8vh, 5rem);
+  }
+
+  /* Sayfa başı: başlık + su hattı (landing'deki imza-damarın aydınlık kardeşi) */
+  .sayfa-basi { margin-bottom: clamp(1.8rem, 4vh, 2.6rem); }
+
+  .sayfa-etiket {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+
+  .sayfa-basi h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2rem, 4.6vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-top: 0.5rem;
+    text-wrap: balance;
+  }
+
+  .su-hatti {
+    width: min(11rem, 40%);
+    height: 1px;
+    margin: 1.15rem 0 0;
+    border: 0;
+    background: linear-gradient(90deg, var(--su-400), rgba(94, 138, 135, 0));
+  }
+
+  .sayfa-ozet {
+    margin-top: 1rem;
+    color: var(--metin-soluk);
+    max-width: 58ch;
+  }
+
+  /* Markdown gövdesi */
+  .icerik { margin-top: 0.5rem; }
+
+  .icerik h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.65rem;
+    line-height: 1.25;
+    margin: 2.4rem 0 0.8rem;
+  }
+
+  .icerik h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin: 1.8rem 0 0.6rem;
+  }
+
+  .icerik p { margin: 0.9rem 0; max-width: 68ch; }
+
+  .icerik ul, .icerik ol { margin: 0.9rem 0 0.9rem 1.3rem; max-width: 66ch; }
+
+  .icerik li { margin: 0.35rem 0; }
+
+  .icerik a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+  .icerik blockquote {
+    margin: 1.4rem 0;
+    padding: 0.2rem 0 0.2rem 1.1rem;
+    border-left: 2px solid var(--su-400);
+    color: var(--metin-soluk);
+    font-family: var(--serif);
+    font-size: 1.12rem;
+  }
+
+  .icerik table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.4rem 0;
+    font-size: 0.95rem;
+  }
+
+  .icerik th, .icerik td {
+    text-align: left;
+    padding: 0.55rem 0.7rem;
+    border-bottom: 1px solid var(--cizgi);
+    vertical-align: top;
+  }
+
+  .icerik th {
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+
+  .veri-yok { color: var(--metin-soluk); font-style: italic; }
+
+  footer.alt {
+    border-top: 1px solid var(--cizgi);
+    padding: 1.4rem clamp(1.25rem, 4vw, 2rem);
+    text-align: center;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    color: var(--metin-soluk);
+  }
+
+  footer.alt a {
+    color: var(--metin-soluk);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  footer.alt a:hover { color: var(--metin); }
+</style>
+</head>
+<body>
+  <UstMenu />
+  <main class="govde">
+    <slot />
+  </main>
+  <footer class="alt">
+    <a href="https://arslanhukuk.tr" target="_blank" rel="noopener">suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026</a>
+  </footer>
+</body>
+</html>

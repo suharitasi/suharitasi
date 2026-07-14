@@ -58,6 +58,29 @@ hafif yükselmiş durur (yumuşak gölge çerçevesi). Akuamarin ışıma siteni
 dilidir, haritanın değil — harita içinde su öğeleri #5E8A87, vurgu
 kehribar #D9A05B.
 
+## İçerik sayfaları
+
+Atlas dünyasının aydınlık kardeşi; okunabilirlik önceliktir.
+
+- Zemin: krem `#F3EEE2`; kart/künye zemini adaçayı-krem `#E8EDE6`.
+- Metin: koyu mürekkep `#232E2B`; soluk metin `#5C6B66`.
+- Bağlantı: koyu su yeşili `#2F5D59` (krem üzerinde AA kontrast).
+  Dekoratif su çizgileri `#5E8A87`. Akuamarin ışıma koyu sayfaların
+  dilidir, aydınlık içerik sayfalarında kullanılmaz.
+- Vurgu: kehribar `#D9A05B` yalnızca aktif menü çizgisi gibi küçük
+  işaretlerde; metin rengi olarak kullanılmaz.
+- Tipografi: başlık Cormorant 500, gövde Manrope; gövde satır 1.75,
+  ölçü ≤ 68ch.
+- İmza öğesi: başlık altındaki "su hattı" — soldan sağa eriyen ince
+  su-yeşili degrade çizgi (landing'deki imza-damarın statik kardeşi).
+- Üst menü: ince (≤ 3.6rem), krem zeminle bütünleşik, alt kenarı
+  hairline; landing'de menü yok, /harita/'da tam ekran koyu katman
+  (`#04121F` %96) olarak açılır.
+- Hareket: içerik sayfalarında animasyon minimum; hover/focus geçişleri
+  yeterli. `prefers-reduced-motion` her geçişi kapatır.
+- Veri dürüstlüğü: boş veri alanı "veri yükleniyor" ya da
+  "veri yok (tarih)" olarak soluk italik gösterilir; uydurma değer yazılmaz.
+
 ## Kırmızı çizgiler
 
 - Su damlası ikonu yok.
