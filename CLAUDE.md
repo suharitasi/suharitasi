@@ -21,6 +21,8 @@ MCP — .mcp.json'da kayıtlı; MCP oturumda yoksa arac/oz-denetim.mjs):
 Bu öz-denetim kullanıcı onayının yerine GEÇMEZ; ön elemedir.
 
 ## Kurallar
+- Her işin sonunda commit + push OTOMATİK yapılır; push için ayrıca
+  onay sorulmaz (kullanıcı kararı, 2026-07-14).
 - Tasarım kararlarında DESIGN.md bağlayıcıdır, ondan sapma.
 - Haritanın nihai deneyim hedefi VIZYON.md'dedir ("Sondaj Anı") — fazlar
   halinde, her fazda kullanıcı onayıyla yürünür.
