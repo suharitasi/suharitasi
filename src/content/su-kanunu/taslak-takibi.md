@@ -28,6 +28,18 @@ Kaynak: [Tarım Dünyası, 08.05.2026 tarihli haberdeki aktarım](https://www.ta
 2026'da yeniden görüşe açılmış durumda.
 Kaynak: [Tarım Dünyası, 08.05.2026](https://www.tarimdunyasi.net/haber/su-kanunu-taslagi-13-yil-sonra-bir-kez-daha-goruse-acildi/)
 
+## Taslak kavramlar: "su tahsis belgesi" ve "su verimliliği belgesi"
+
+Yürürlükteki mevzuat metinlerinde bu adlarla kurulmuş açık ve genel bir
+belge rejimi **bulunmamaktadır**. Mevcut düzenlemelerde "su tahsisi",
+"su tahsis talebi", "tahsis yapılması" ve DSİ'ye yapılan tahsis
+müracaatı vardır; ancak bu kavramlar ayrı bir belge statüsü olarak
+yürürlükteki temel mevzuatta tanımlanmış değildir. Bu isimlerle anılan
+belgeler ancak taslak düzeyde veya ikincil düzenlemelerde geçiyor
+olabilir; normatif dayanağı doğrulanamamaktadır.
+Kaynak: Apilex hukuki araştırma çıktısı, 14.07.2026 (repo:
+kaynak/apilex-sumevzuat.md, Bölüm 12).
+
 ## Doğrulanamayanlar
 
 - Taslağın TBMM'ye sevk edildiğine dair resmî bir kayıt **bulunamadı**

@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
+import ilKurum from '../../../data/il-kurum.json';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('havzalar');
@@ -18,6 +19,20 @@ const alanlar = [
   { ad: 'Tahsis durumu', deger: k.tahsis },
   { ad: 'Havza koruma eylem planı', deger: k.eylemPlani },
 ];
+
+// İller ve yetkili kurumlar: havza no → il listesi → DSİ bölgesi + su idaresi
+const havzaIl = giris.data.no ? ilKurum.havzaIlleri[giris.data.no] : undefined;
+const ilBolge = {};
+for (const [no, b] of Object.entries(ilKurum.dsiBolgeleri)) {
+  for (const il of b.iller) ilBolge[il] = { no, merkez: b.merkez };
+}
+const ilSatirlari = (havzaIl?.iller ?? []).map((il) => ({
+  il,
+  bolge: ilBolge[il]
+    ? `DSİ ${Number(ilBolge[il].no)}. Bölge Müdürlüğü (${ilBolge[il].merkez})`
+    : null,
+  suIdaresi: ilKurum.suIdareleri[il] ?? 'İl Özel İdaresi / belediye',
+}));
 ---
 <Sayfa baslik={giris.data.baslik} aciklama={giris.data.ozet}>
   <SayfaBasi etiket="Havza" baslik={giris.data.baslik} ozet={giris.data.ozet} />
@@ -38,6 +53,40 @@ const alanlar = [
   <div class="icerik">
     <Content />
   </div>
+
+  {ilSatirlari.length > 0 && (
+    <section class="il-kurum">
+      <h2>İller ve yetkili kurumlar</h2>
+      <div class="tablo-kaydir">
+        <table>
+          <thead>
+            <tr>
+              <th>İl</th>
+              <th>DSİ bölge müdürlüğü</th>
+              <th>Su ve kanalizasyon idaresi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ilSatirlari.map((s) => (
+              <tr>
+                <td>{s.il}</td>
+                <td>{s.bolge ?? <span class="veri-yok">veri yok</span>}</td>
+                <td>{s.suIdaresi}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="kaynak-notu">
+        İl listesi resmî havza belgesinden derlendi
+        (<a href={havzaIl.kaynak} target="_blank" rel="noopener">kaynak</a>);
+        iller havzaya kısmen girebilir.
+        {havzaIl.not ? ` ${havzaIl.not}.` : ''}
+        Büyükşehir olmayan illerde köy içme suları İl Özel İdaresi / belediye
+        görev alanındadır. Derleme: {ilKurum.derlemeTarihi}.
+      </p>
+    </section>
+  )}
 </Sayfa>
 
 <style>
@@ -71,4 +120,46 @@ const alanlar = [
   @media (max-width: 560px) {
     .kunye-satir { grid-template-columns: 1fr; gap: 0.1rem; }
   }
+
+  .il-kurum { margin-top: 2.4rem; }
+
+  .il-kurum h2 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.9rem;
+  }
+
+  .tablo-kaydir { overflow-x: auto; }
+
+  .il-kurum table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+
+  .il-kurum th {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    text-align: left;
+    padding: 0.45rem 0.9rem 0.45rem 0;
+    border-bottom: 1px solid var(--cizgi);
+  }
+
+  .il-kurum td {
+    padding: 0.5rem 0.9rem 0.5rem 0;
+    border-bottom: 1px solid var(--cizgi);
+    vertical-align: top;
+  }
+
+  .kaynak-notu {
+    margin-top: 0.8rem;
+    font-size: 0.82rem;
+    color: var(--metin-soluk);
+  }
+
+  .kaynak-notu a { color: var(--baglanti); }
 </style>

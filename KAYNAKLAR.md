@@ -136,6 +136,50 @@
   içerik analizi, somut süreç bilgisi YOK; yalnızca bağlam.
 - TBMM'ye sevk kaydı BULUNAMADI (tarama 14.07.2026).
 
+## İl-kurum katmanı (data/il-kurum.json)
+
+- İl → DSİ bölge eşlemesi: 26 bölgenin resmî "Görev Alanı ve Tarihçe"
+  sayfaları (bolgeXX.dsi.gov.tr), sayfa bazında kaynak URL'leri JSON
+  içinde. Tarama araçları: `arac/dsi-bolge-tara.py` (ham cümleler) +
+  elle derleme. 16. Bölge (Mardin) Ilısu Projesi ile sınırlı; il
+  ataması yok. 17. Bölge (Van) il adları "4 il" ifadesi + kuruluş
+  kapsamı + sınır tarifinden çıkarıldı (JSON'da not alanında).
+- Havza → il listeleri: SYGM havza tanıtım PDF'leri
+  (tarimorman.gov.tr/SYGM/Belgeler/, iki klasör; `arac/havza-il-tara.py`
+  + elle tamamlama). Fırat-Dicle: tanıtım PDF'lerinde il listesi YOK;
+  liste Fırat ve Dicle alt havzası Taşkın Yönetim Planı yönetici
+  özetlerinden (Taşkın Yönetim Planları 26.12.2022 klasörü) birleşim
+  olarak derlendi; broşürdeki "22 il" özeti ile aradaki fark JSON'da
+  not edildi. Seyhan ve Konya Kapalı: TÜBİTAK MAM Havza Koruma Eylem
+  Planı raporlarındaki il tabloları esas alındı.
+- Su/kanalizasyon idareleri: 2560 sayılı Kanun rejimi; 30 büyükşehir
+  idaresinin ad/kısaltmaları listelendi, diğer 51 ilde İl Özel
+  İdaresi / belediye gösterimi kullanılıyor.
+- Derleme tarihi: 2026-07-14. Kullanım yeri: havza sayfaları "İller ve
+  yetkili kurumlar" bloğu + kuyu-ruhsati rehberindeki 81 il tablosu
+  (`src/components/IlKurumTablosu.astro`).
+
+## Apilex hukuki araştırma çıktısı (kaynak/apilex-sumevzuat.md)
+
+- Tarih: 14.07.2026. Kapsam: yeraltı suyu kuyu rejimi, yaptırımlar,
+  kaynak suyu kiralama, su tahsisi, işletme sahası, kaynak hakkı,
+  belge ret/iptal davaları, baraj kamulaştırması, jeotermal ruhsat,
+  taslak kavramlar (Bölüm 12).
+- KARAR KÜNYELERİ DOĞRULANMADI — yayın öncesi doğrulama zorunlu
+  (SIRADAKILER.md'de yayın kilidi olarak kayıtlı). Çelişkili künye:
+  Danıştay 13. D. 2020/1104 E.-2023/4576 K. vs 2020/1093 E.-2023/2584 K.
+- Kullanım yeri: src/content/rehberler/ altındaki 9 mevzuat rehberi +
+  su-kanunu/taslak-takibi.md Bölüm 12 tespiti. Rehberlere bu metin
+  dışından hukuki iddia eklenmez.
+
+## Mevzuat rehberleri — VERİ YOK, ayrı kanaldan tamamlanacak
+
+- Su kirliliği cezaları (2872 sayılı Çevre Kanunu / SKKY): Apilex
+  çıktısında bu bölüm yer almadı; rehber üretilmedi.
+- İçme suyu koruma alanı yasak listesi (mutlak/kısa/orta/uzun mesafe):
+  veri yok.
+- TBB reklam yasağı uyumu (rehber sayfa altlıkları için): veri yok.
+
 ## Havza tahsis durumu — BULUNAMADI
 
 - Havza bazlı su tahsis verisi (sektörel tahsis/kullanım) kamuya açık

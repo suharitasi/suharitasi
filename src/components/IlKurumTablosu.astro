@@ -1,0 +1,121 @@
+---
+// 81 il için yetkili kurum tablosu; veri kaynağı data/il-kurum.json.
+// Kuyu ruhsatı gibi rehberlerde frontmatter `ilKurumTablosu: true` ile açılır.
+import ilKurum from '../../data/il-kurum.json';
+import havzaVeri from '../../data/havza-veri.json';
+
+const havzaAd = Object.fromEntries(
+  havzaVeri.havzalar.map((h) => [h.no, h.ad.replace(' Havzası', '')])
+);
+
+const ilBolge = {};
+for (const [no, b] of Object.entries(ilKurum.dsiBolgeleri)) {
+  for (const il of b.iller) ilBolge[il] = { no, merkez: b.merkez, not: b.not };
+}
+
+const ilHavzalar = {};
+for (const [no, h] of Object.entries(ilKurum.havzaIlleri)) {
+  for (const il of h.iller) (ilHavzalar[il] ??= []).push(no);
+}
+
+const iller = Object.keys(ilBolge).sort((a, b) => a.localeCompare(b, 'tr'));
+
+const satirlar = iller.map((il) => ({
+  il,
+  bolge: `${Number(ilBolge[il].no)}. Bölge (${ilBolge[il].merkez})`,
+  havzalar: (ilHavzalar[il] ?? [])
+    .sort()
+    .map((no) => havzaAd[no] ?? no)
+    .join(', '),
+  suIdaresi: ilKurum.suIdareleri[il] ?? 'İl Özel İdaresi / belediye',
+}));
+---
+<section class="il-kurum-tablosu">
+  <h2>81 il için yetkili kurumlar</h2>
+  <p>
+    Arama, kullanma ve ıslah-tadil belgesi başvuruları ilin bağlı olduğu DSİ
+    bölge müdürlüğüne yapılır. Tablo, her il için yetkili DSİ bölgesini, ilin
+    içinde bulunduğu havzaları ve içme suyu hizmetinden sorumlu idareyi
+    gösterir.
+  </p>
+  <div class="tablo-kaydir">
+    <table>
+      <thead>
+        <tr>
+          <th>İl</th>
+          <th>DSİ bölge müdürlüğü</th>
+          <th>Havza(lar)</th>
+          <th>Su ve kanalizasyon idaresi</th>
+        </tr>
+      </thead>
+      <tbody>
+        {satirlar.map((s) => (
+          <tr>
+            <td>{s.il}</td>
+            <td>{s.bolge}</td>
+            <td>{s.havzalar || <span class="veri-yok">veri yok</span>}</td>
+            <td>{s.suIdaresi}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="kaynak-notu">
+    İl-bölge eşlemesi her bölgenin resmî "Görev Alanı ve Tarihçe" sayfasından,
+    havza-il listeleri SYGM havza belgelerinden derlendi; iller havzalara
+    kısmen girebilir. DSİ 16. Bölge (Mardin) Ilısu Projesi ile sınırlı bir
+    proje bölge müdürlüğüdür; Mardin'in genel işleri 10. Bölge'dedir.
+    Büyükşehir olmayan illerde köy içme suları İl Özel İdaresi / belediye
+    görev alanındadır (442, 5302, 5393 sayılı Kanunlar). Derleme:
+    {ilKurum.derlemeTarihi}.
+  </p>
+</section>
+
+<style>
+  .il-kurum-tablosu { margin-top: 2.4rem; }
+
+  .il-kurum-tablosu h2 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+
+  .il-kurum-tablosu > p {
+    margin-bottom: 1rem;
+    color: var(--metin);
+  }
+
+  .tablo-kaydir { overflow-x: auto; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+
+  th {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    text-align: left;
+    padding: 0.45rem 0.9rem 0.45rem 0;
+    border-bottom: 1px solid var(--cizgi);
+  }
+
+  td {
+    padding: 0.45rem 0.9rem 0.45rem 0;
+    border-bottom: 1px solid var(--cizgi);
+    vertical-align: top;
+  }
+
+  .veri-yok { color: var(--metin-soluk); font-style: italic; }
+
+  .kaynak-notu {
+    margin-top: 0.8rem;
+    font-size: 0.82rem;
+    color: var(--metin-soluk);
+  }
+</style>

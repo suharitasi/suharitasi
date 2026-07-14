@@ -7,6 +7,8 @@ const rehberler = defineCollection({
     baslik: z.string(),
     ozet: z.string(),
     tarih: z.coerce.date(),
+    // true ise sayfa sonuna 81 il / yetkili kurum tablosu eklenir (data/il-kurum.json)
+    ilKurumTablosu: z.boolean().optional(),
   }),
 });
 

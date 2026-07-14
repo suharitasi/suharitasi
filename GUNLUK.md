@@ -1,5 +1,27 @@
 # GUNLUK.md — seans notları
 
+## 2026-07-14
+- İş 1 (önceki oturum): 25 havza sayfasının tamamı havza-veri.json
+  künyelerinden üretildi (commit 6aa5117).
+- İş 2: il/kurum katmanı — data/il-kurum.json derlendi: 81 il → 26 DSİ
+  bölgesi (her bölgenin resmî görev alanı sayfasından; 16. Bölge Ilısu
+  Projesi'yle sınırlı, il ataması yok) + 25 havzanın il listeleri (SYGM
+  tanıtım PDF'leri; eksik kalan Meriç-Ergene/Marmara/Batı Akdeniz/Batı
+  Karadeniz/Asi doğru dosya adlarıyla SharePoint REST üzerinden bulundu;
+  Fırat-Dicle listesi Fırat+Dicle alt havzası taşkın yönetim planlarından,
+  Seyhan ve Konya Kapalı TÜBİTAK MAM HKEP il tablolarından) + 30
+  büyükşehir su idaresi. Havza sayfalarına "İller ve yetkili kurumlar"
+  bloğu, kuyu-ruhsati rehberine 81 il tablosu (IlKurumTablosu.astro)
+  eklendi.
+- İş 3: mevzuat rehberleri paketi — Apilex çıktısı (14.07.2026)
+  kaynak/apilex-sumevzuat.md olarak kaydedildi; 9 rehber üretildi
+  (kuyu-ruhsati, ruhsatsiz-kuyu-cezalari, kaynak-suyu-kiralama,
+  su-tahsisi-oncelik-sirasi, yeralti-suyu-isletme-sahasi,
+  kaynak-hakki-komsu-su, kuyu-belgesi-iptal-davalari, jeotermal-ruhsat,
+  baraj-kamulastirmasi); taslak-takibi'ne Bölüm 12 tespiti ("su tahsis
+  belgesi"/"su verimliliği belgesi" yürürlükte yok) eklendi. Karar
+  künyeleri DOĞRULANMADI — yayın kilidi SIRADAKILER 17'de.
+
 ## 2026-07-12
 - Repo sıfırdan kuruldu (önceki oturumun dosyaları kaydedilmemişti): derin-su
   landing, DESIGN.md, deploy dosyaları (_headers, robots, 404, favicon, og).
