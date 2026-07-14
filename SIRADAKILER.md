@@ -7,16 +7,14 @@
 2. Kullanıcı onayı → canlıya deploy (Production kontrolü)
 3. Landing giriş koreografisi + Arslan Hukuk footer imzası — YAPILDI,
    DENETLENDİ (2026-07-14): kelime kelime animasyon + imza kökte MEVCUT
-4. www.suharitasi.com custom domain ekleme (Cloudflare, 2 dk) — YAPILMADI:
-   522 sürüyor (denetim 2026-07-14)
-5. suharitasi.tr Active kontrolü + .tr→.com 301 kuralı — YAPILMADI:
-   NS Cloudflare'de (damon/jasmine) ama A kaydı yok, site yanıtsız (000);
-   301 kuralı kurulmamış (denetim 2026-07-14)
-6. Search Console + sitemap
+4. www.suharitasi.com custom domain ekleme — YAPILDI (2026-07-14):
+   kullanıcı panelden ekledi, test edildi
+5. suharitasi.tr → suharitasi.com 301 — YAPILDI (2026-07-14):
+   kullanıcı panelden kurdu, çalışıyor (test edildi)
+6. Search Console + sitemap — YAPILDI (2026-07-14)
 7. Kullanıcı kendi logosunu üretince /harita/ sayfasına logo eklenecek
    (2026-07-14: logo + "konsept görsel" atıfı kaldırıldı, sayfa salt görsel)
-8. Sunucu reboot (bekleyen kernel) — BEKLİYOR: /var/run/reboot-required
-   mevcut (denetim 2026-07-14)
+8. Sunucu reboot (bekleyen kernel) — YAPILDI (2026-07-14)
 9. Faz 3B: kamera + ekrana damla sıçraması (Sondaj Anı-1)
 10. Aşama 1 derin kazı: havza GeoJSON + DSİ verisi + KAYNAKLAR
 11. Aşama 2 pipeline → canlı baraj doluluğu (VIZYON-5)
