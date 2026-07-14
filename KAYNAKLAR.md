@@ -68,3 +68,78 @@
   İznik/Burdur/Uluabat gibi orta boy göller NE 10m'de Türkiye için yok —
   Aşama 1'de daha zengin hidrografi kaynağıyla (ör. DSİ/HydroSHEDS)
   değiştirilmesi değerlendirilecek.
+
+## 25 havza sınırları (data/havzalar/)
+
+- Dosyalar: `data/havzalar/havzalar-ham.geojson` (2,7 MB, 27 poligon) +
+  `data/havzalar/havzalar-web.geojson` (90 KB, 25 havza — Marmara
+  parçaları birleştirildi, 0.01° sadeleştirme, `arac/havza-sadelestir.py`).
+- Kaynak: ArcGIS Online feature service "Türkiye Havzalar"
+  (services-eu1.arcgis.com/LHwUjP01iDaGy6Hk/.../Türkiye_Havzalar),
+  öğe: arcgis.com item 8bb6457512914c359fc6be676f0aa391 (sahibi:
+  esra_aydin, Aralık 2023).
+- Lisans: öğede lisans BELİRTİLMEMİŞ; topluluk verisi, resmî kaynak
+  değil. Kullanım: web görselleştirme; sınırlar "temsilî" etiketiyle
+  gösterilmeli.
+- DOĞRULAMA DURUMU: 25 havza adı/numarası DSİ 2024 tablolarıyla eşleşti
+  (Fırat-Dicle: kaynakta 26 → DSİ standardı 21'e çevrildi; "Meriç-Erhene"
+  yazım hatası düzeltildi). Geometri resmî kaynakla DOĞRULANMADI — resmî
+  CBS uçları (geodata.tarimorman.gov.tr, cbs.dsi.gov.tr) yurt dışından
+  erişilemedi (000, denetim 2026-07-14).
+- İndirme tarihi: 2026-07-14. Kullanım yeri: 2D havza haritası (Faz 2)
+  + havza sayfaları.
+
+## DSİ 2024 resmî su kaynakları istatistikleri (data/havza-veri.json)
+
+- Kaynak sayfa: https://www.dsi.gov.tr/Sayfa/Detay/2186
+  (DSİ 2024 Yılı Resmi Su Kaynakları İstatistikleri, yayım 11.12.2025).
+- İndirilen dosyalar (kaynak/dsi/ — gitignore'da, yeniden indirilebilir):
+  - Tablo 1.2 havzalara göre yıllık ortalama yüzeysuyu potansiyeli
+    (2013–2024) — cdniys.tarimorman.gov.tr/api/File/GetGaleriFile/425/DosyaGaleri/8848/1.2.havzalara_gore_yillik_ortalama_yuzeysuyu_su_potansiyeli_20132024.xlsx
+  - Tablo 1.3 havzalara göre yıllık yeraltısuyu potansiyeli (2013–2024)
+    — .../1.3.havzalara_gore_yillik_yeraltisuyu_potansiyeli_20132024.xlsx
+  - Tablo 1.5 yeraltısuyu işletme rezervi (1995–2024) — .../1.5....xlsx
+  - Tablo 4.7 havza bazında baraj doluluk oranları (2010–2024) —
+    .../4.7....xls (İLERİDE: VIZYON-5 canlı doluluk işinde kullanılacak)
+- Lisans/kullanım: kamu kurumu resmî istatistik yayını; kaynak
+  gösterilerek kullanılıyor.
+- İndirme tarihi: 2026-07-14. Türetilen dosya: `data/havza-veri.json`
+  (`arac/havza-veri-cikar.py`; 2024 sütunları esas alındı).
+- NOT: DSİ numaralandırmasında Fırat-Dicle 21'dir; sitede bu standart
+  kullanılıyor.
+
+## SYGM havza koruma eylem planları
+
+- Giriş sayfası: https://www.tarimorman.gov.tr/SYGM/Sayfalar/Detay.aspx?SayfaId=6
+- 21/25 havzanın PDF bağlantısı HTTP 200 ile doğrulandı (2026-07-14);
+  tam liste `data/havza-veri.json` içinde havza bazında.
+- BULUNAMADI (2026-07-14): Asi, Çoruh, Aras, Fırat-Dicle HKEP PDF'leri
+  (ad varyasyonları denendi). Meriç-Ergene için HKEP yerine Nehir
+  Havzası Yönetim Planı bulundu:
+  https://www.tarimorman.gov.tr/SYGM/Belgeler/NHYP%20DENİZ/MERİÇ-ERGENE%20NEHİR%20HAVZASI%20YÖNETİM%20PLANI.pdf
+
+## Su mevzuatı tam metin bağlantıları
+
+- mevzuat.gov.tr üzerindeki tüm bağlantılar (831, 167, 6200, 5686
+  sayılı kanunlar; Yeraltı Suları Tüzüğü; 6 yönetmelik/tebliğ)
+  14.07.2026'da HTTP 200 + içerik başlığı kontrolüyle doğrulandı.
+  Liste: `src/content/su-kanunu/mevzuat-kutuphanesi.md`.
+
+## Su Kanunu taslağı takip kaynakları
+
+- Tarım Dünyası (Ali Ekber Yıldırım), 08.05.2026: "Su Kanunu Taslağı 13
+  yıl sonra bir kez daha görüşe açıldı" —
+  https://www.tarimdunyasi.net/haber/su-kanunu-taslagi-13-yil-sonra-bir-kez-daha-goruse-acildi/
+  (15.04.2026'da 268 kuruma görüş; 5 bölüm 19 madde; Aralık 2025
+  Ulusal Su Kurulu 5. toplantısı aktarımı).
+- Dünya Gazetesi (Prof. Dr. Aykut Gül), 12.05.2026 köşe yazısı —
+  içerik analizi, somut süreç bilgisi YOK; yalnızca bağlam.
+- TBMM'ye sevk kaydı BULUNAMADI (tarama 14.07.2026).
+
+## Havza tahsis durumu — BULUNAMADI
+
+- Havza bazlı su tahsis verisi (sektörel tahsis/kullanım) kamuya açık
+  bir veri seti olarak BULUNAMADI (2026-07-14). DSİ istatistikleri
+  sektörel kullanımı ülke toplamında veriyor, havza kırılımı yok.
+  USBS (usbs.tarimorman.gov.tr) portal arayüzü var; anonim REST ucu
+  bulunamadı. Alan tüm havzalarda "veri yok" işaretli.
