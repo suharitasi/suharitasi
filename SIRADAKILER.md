@@ -46,7 +46,8 @@
     MCP kuruldu (.mcp.json; yeni oturumda araç olarak aktif), protokol
     CLAUDE.md'de, script yedeği arac/oz-denetim.mjs; deneme denetimi
     temiz (0 hata, 0 kırık link, 3 görüntü cikti/denetim/).
-19. Menü + içerik sayfaları görsel yenileme (su hissi) — YAPILDI
-    (2026-07-14): su damlası imleç, WebGL menü su simülasyonu, dergi
-    listeler, hero şeridi. KULLANICI ONAYI BEKLİYOR: tarayıcıda menüyü
-    açıp imleci gezdirerek nihai onay verilecek; onaysız yayına alınmaz.
+19. Menü + içerik sayfaları görsel yenileme (su hissi) — KULLANICI
+    ONAYI BEKLİYOR (2026-07-14): ilk sürüm canlıda başarısız (sim
+    görünmüyor, imleç topak, şerit soluk); düzeltme b32f7fa push'landı
+    (sim görünürlüğü + FPS ısınması + SVG damla + belirgin şerit).
+    Kullanıcı canlıda tekrar test edecek; onaysız kapatılmaz.

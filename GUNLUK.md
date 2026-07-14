@@ -26,6 +26,16 @@
   sim canlı ~62 FPS, ESC/focus/reduced-motion/no-JS geçti, 42 iç link
   0 kırık, Lighthouse performans 96 (CLS 0.02). Yeni JS toplam 7,1 KB
   gzip (sim dahil). Kullanıcı onayı bekliyor.
+- DERS (canlı test başarısızlığı): menü su simülasyonu, imleç ve hero
+  şeridi headless denetimden geçti ama canlıda başarısız bulundu.
+  Kök nedenler: (1) GPU'suz headless'a bakıp "çalışıyor" denmesi — oysa
+  simülasyon fark edilmeyecek kadar kısıktı (ambient g=0.012/1.6s) ve
+  FPS ölçümü menü giriş animasyonu sırasındaki karelerle yapılıp gerçek
+  tarayıcıda erken+kalıcı fallback'e düşebiliyordu; (2) imleç CSS
+  gradient'inin yumuşak alfa kenarı 12px'te "bulanık gri topak" görünümü
+  vermesi; (3) hero degrade/konturunun görünmezlik sınırında kısılması.
+  Düzeltme b32f7fa; üç yeni kural CLAUDE.md'de (GPU, görünürlük, iş
+  kapanış).
 - İş 5: tarayıcı öz-denetim altyapısı — @playwright/mcp@0.0.78 global
   kuruldu (18 MB; tarayıcı önbelleği zaten mevcuttu, 646 MB); .mcp.json
   headless chromium_headless_shell'e --executable-path ile bağlandı

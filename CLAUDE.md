@@ -20,6 +20,28 @@ MCP — .mcp.json'da kayıtlı; MCP oturumda yoksa arac/oz-denetim.mjs):
 6. Sonuçları rapora yaz.
 Bu öz-denetim kullanıcı onayının yerine GEÇMEZ; ön elemedir.
 
+## GPU kuralı
+Bu sunucunun headless tarayıcısında GPU YOKTUR (yazılımsal GL).
+WebGL/canvas/animasyon içeren her işte:
+- Headless test yalnız hata/link/etkileşim için geçerlidir; görsel
+  kalite kanıtı SAYILMAZ.
+- GPU'lu gerçek tarayıcı yolunun fallback'e düşmediği kod incelemesiyle
+  satır satır doğrulanır ve raporlanır.
+- FPS/performans eşikleri headless ölçümüne göre AYARLANMAZ.
+
+## Görünürlük kuralı
+Görsel efektlerde (doku, degrade, animasyon, imleç) "teknik olarak var"
+yetmez — "İLK BAKIŞTA fark edilir" olmalıdır. DESIGN.md ilkesi geçerli:
+sadelik amaç değildir; bir efekt kısılacaksa görünmez olana kadar değil,
+zarif kalana kadar kısılır. Şüphede kalırsan soluk olanı değil belirgin
+olanı üret; kısmak kolay, yok olanı fark etmek zordur.
+
+## İş kapanış kuralı
+Görsel/UI işleri "YAPILDI" olarak işaretlenmez; "KULLANICI ONAYI
+BEKLİYOR" olarak işaretlenir ve SIRADAKILER'de kullanıcı canlıda
+onaylayana kadar açık kalır. Headless kanıt = ön eleme; nihai kanıt =
+kullanıcının canlı testi.
+
 ## Kurallar
 - Her işin sonunda commit + push OTOMATİK yapılır; push için ayrıca
   onay sorulmaz (kullanıcı kararı, 2026-07-14).
