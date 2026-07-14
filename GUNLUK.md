@@ -118,3 +118,9 @@
 - Bant sorununa kesin çözüm: ImageMagick ile gerçek blur zemin dosyası
   (hedef-zemin.v1.webp) üretildi; koyu body zemini kaldırıldı; sürümlü
   dosya adlarıyla cache-bust. 1440x900 + 1280x1024 + mobil doğrulandı.
+
+## 2026-07-14 (pazarlama danışmanlığı)
+- GitHub skill kazısı: 25 aday puanlandı; marketingskills (39k★) +
+  claude-seo (11k★) ~/.claude/skills/ altına kuruldu ve doğrulandı.
+- 3 persona tanımlandı, 11 sayfa canlıda tarandı (0 hata, 0 kırık link),
+  rapor/pazarlama-danismanligi.md yazıldı — salt analiz, site değişmedi.

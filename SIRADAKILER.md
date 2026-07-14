@@ -51,3 +51,9 @@
     görünmüyor, imleç topak, şerit soluk); düzeltme b32f7fa push'landı
     (sim görünürlüğü + FPS ısınması + SVG damla + belirgin şerit).
     Kullanıcı canlıda tekrar test edecek; onaysız kapatılmaz.
+20. Pazarlama/CRO skill kazısı + danışmanlık raporu — YAPILDI
+    (2026-07-14): 25 aday puanlandı, 2 skill seti kuruldu
+    (marketingskills + claude-seo, ~/.claude/skills/), 11 sayfa canlı
+    tarandı, rapor/pazarlama-danismanligi.md yazıldı (salt analiz,
+    uygulama yok). Rapordaki İLK 5 HAMLE kullanıcı onayı/seçimi
+    bekliyor; onaylananlar ayrı iş olarak kuyruğa girer.

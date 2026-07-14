@@ -1,0 +1,1343 @@
+{
+  "rapor": [
+    {
+      "yol": "/",
+      "slug": "landing",
+      "title": "Su Haritası — Su, yerin altında konuşur.",
+      "metaDesc": "Türkiye'nin su verisi, havzaları ve su mevzuatı — tek haritada. Yakında.",
+      "basliklar": [
+        "h1: Su, yerin altında konuşur."
+      ],
+      "ilkEkran": [
+        "<span> Su Haritası",
+        "<span> Su,",
+        "<span> yerin",
+        "<span> altında",
+        "<span> konuşur.",
+        "<p> Türkiye'nin su verisi, havzaları ve su mevzuatı — tek haritada.",
+        "<span> Yakında",
+        "<a> keşfet →",
+        "<span> suharitasi.com ·",
+        "<span> Arslan Hukuk Bürosu güvencesiyle",
+        "<span> · 2026"
+      ],
+      "linkler": [
+        {
+          "metin": "keşfet →",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+          "href": "https://arslanhukuk.tr",
+          "footer": true
+        }
+      ],
+      "butonlar": [],
+      "footer": "suharitasi.com ·\nArslan Hukuk Bürosu güvencesiyle\n· 2026",
+      "konsol": [],
+      "menu": "(menü butonu bulunamadı)"
+    },
+    {
+      "yol": "/harita/",
+      "slug": "harita",
+      "title": "Harita — Su Haritası",
+      "metaDesc": "Türkiye'nin su haritası. Havza verisi ve etkileşimli katman yolda.",
+      "basliklar": [],
+      "ilkEkran": [
+        "<button> menü"
+      ],
+      "linkler": [
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        }
+      ],
+      "butonlar": [
+        "menü",
+        "kapat"
+      ],
+      "footer": "(footer yok)",
+      "konsol": [],
+      "menu": null
+    },
+    {
+      "yol": "/havzalar/",
+      "slug": "havzalar",
+      "title": "Havzalar — Su Haritası",
+      "metaDesc": "Türkiye'nin 25 su havzası: sınırlar, su potansiyeli, tahsis durumu ve koruma eylem planları.",
+      "basliklar": [
+        "h1: Havzalar"
+      ],
+      "ilkEkran": [
+        "<a> su haritası",
+        "<a> Harita",
+        "<a> Havzalar",
+        "<a> Rehberler",
+        "<a> Su Kanunu",
+        "<a> Hakkında",
+        "<button> menü",
+        "<h1> Havzalar",
+        "<p> Türkiye'nin 25 su havzası, havza bazında veri künyeleriyle. Sayfalar açık kaynaklardan doğrulanmış veriyle adım adım doluyor.",
+        "<span> 01",
+        "<span> Meriç-Ergene Havzası",
+        "<span> Yağış alanı 14.486 km²; yıllık ortalama yüzey suyu potansiyeli 1,62 km³ (DSİ 2024).",
+        "<span> 14.486 km²",
+        "<span> 1,617 km³/yıl",
+        "<span> 02",
+        "<span> Marmara Havzası",
+        "<span> Yağış alanı 23.074 km²; yıllık ortalama yüzey suyu potansiyeli 7,36 km³ (DSİ 2024).",
+        "<span> 23.074 km²",
+        "<span> 7,36 km³/yıl",
+        "<span> 03",
+        "<span> Susurluk Havzası",
+        "<span> Yağış alanı 24.319 km²; yıllık ortalama yüzey suyu potansiyeli 4,47 km³ (DSİ 2024).",
+        "<span> 24.319 km²",
+        "<span> 4,471 km³/yıl",
+        "<span> 04",
+        "<span> Kuzey Ege Havzası",
+        "<span> Yağış alanı 9.861 km²; yıllık ortalama yüzey suyu potansiyeli 1,78 km³ (DSİ 2024).",
+        "<span> 9.861 km²",
+        "<span> 1,784 km³/yıl",
+        "<span> 05",
+        "<span> Gediz Havzası",
+        "<span> 17.137 km²"
+      ],
+      "linkler": [
+        {
+          "metin": "su haritası",
+          "href": "/",
+          "footer": false
+        },
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        },
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        },
+        {
+          "metin": "01 Meriç-Ergene Havzası Yağış alanı 14.486 km²; yıllık ortalama yüzey suyu potansiyeli 1,62 km³ (DSİ 2024). 14.486 km² 1",
+          "href": "/havzalar/meric-ergene/",
+          "footer": false
+        },
+        {
+          "metin": "02 Marmara Havzası Yağış alanı 23.074 km²; yıllık ortalama yüzey suyu potansiyeli 7,36 km³ (DSİ 2024). 23.074 km² 7,36 k",
+          "href": "/havzalar/marmara/",
+          "footer": false
+        },
+        {
+          "metin": "03 Susurluk Havzası Yağış alanı 24.319 km²; yıllık ortalama yüzey suyu potansiyeli 4,47 km³ (DSİ 2024). 24.319 km² 4,471",
+          "href": "/havzalar/susurluk/",
+          "footer": false
+        },
+        {
+          "metin": "04 Kuzey Ege Havzası Yağış alanı 9.861 km²; yıllık ortalama yüzey suyu potansiyeli 1,78 km³ (DSİ 2024). 9.861 km² 1,784 ",
+          "href": "/havzalar/kuzey-ege/",
+          "footer": false
+        },
+        {
+          "metin": "05 Gediz Havzası Yağış alanı 17.137 km²; yıllık ortalama yüzey suyu potansiyeli 1,45 km³ (DSİ 2024). 17.137 km² 1,454 km",
+          "href": "/havzalar/gediz/",
+          "footer": false
+        },
+        {
+          "metin": "06 Küçük Menderes Havzası Yağış alanı 6.963 km²; yıllık ortalama yüzey suyu potansiyeli 0,54 km³ (DSİ 2024). 6.963 km² 0",
+          "href": "/havzalar/kucuk-menderes/",
+          "footer": false
+        },
+        {
+          "metin": "07 Büyük Menderes Havzası Yağış alanı 25.960 km²; yıllık ortalama yüzey suyu potansiyeli 2,73 km³ (DSİ 2024). 25.960 km²",
+          "href": "/havzalar/buyuk-menderes/",
+          "footer": false
+        },
+        {
+          "metin": "08 Batı Akdeniz Havzası Yağış alanı 20.956 km²; yıllık ortalama yüzey suyu potansiyeli 6,21 km³ (DSİ 2024). 20.956 km² 6",
+          "href": "/havzalar/bati-akdeniz/",
+          "footer": false
+        },
+        {
+          "metin": "09 Antalya Havzası Yağış alanı 20.249 km²; yıllık ortalama yüzey suyu potansiyeli 12,80 km³ (DSİ 2024). 20.249 km² 12,79",
+          "href": "/havzalar/antalya/",
+          "footer": false
+        },
+        {
+          "metin": "10 Burdur Havzası Yağış alanı 6.294 km²; yıllık ortalama yüzey suyu potansiyeli 0,22 km³ (DSİ 2024). 6.294 km² 0,223 km³",
+          "href": "/havzalar/burdur/",
+          "footer": false
+        },
+        {
+          "metin": "11 Akarçay Havzası Yağış alanı 7.995 km²; yıllık ortalama yüzey suyu potansiyeli 0,39 km³ (DSİ 2024). 7.995 km² 0,387 km",
+          "href": "/havzalar/akarcay/",
+          "footer": false
+        },
+        {
+          "metin": "12 Sakarya Havzası İç Batı Anadolu'dan Karadeniz'e uzanan, Ankara ve Eskişehir'i besleyen havza — DSİ 2024 resmî istatis",
+          "href": "/havzalar/sakarya/",
+          "footer": false
+        },
+        {
+          "metin": "13 Batı Karadeniz Havzası Yağış alanı 28.855 km²; yıllık ortalama yüzey suyu potansiyeli 10,25 km³ (DSİ 2024). 28.855 km",
+          "href": "/havzalar/bati-karadeniz/",
+          "footer": false
+        },
+        {
+          "metin": "14 Yeşilırmak Havzası Yağış alanı 39.595 km²; yıllık ortalama yüzey suyu potansiyeli 6,89 km³ (DSİ 2024). 39.595 km² 6,8",
+          "href": "/havzalar/yesilirmak/",
+          "footer": false
+        },
+        {
+          "metin": "15 Kızılırmak Havzası Yağış alanı 82.181 km²; yıllık ortalama yüzey suyu potansiyeli 6,46 km³ (DSİ 2024). 82.181 km² 6,4",
+          "href": "/havzalar/kizilirmak/",
+          "footer": false
+        },
+        {
+          "metin": "16 Konya Kapalı Havzası Yağış alanı 49.930 km²; yıllık ortalama yüzey suyu potansiyeli 2,17 km³ (DSİ 2024). 49.930 km² 2",
+          "href": "/havzalar/konya-kapali/",
+          "footer": false
+        },
+        {
+          "metin": "17 Doğu Akdeniz Havzası Yağış alanı 21.150 km²; yıllık ortalama yüzey suyu potansiyeli 7,00 km³ (DSİ 2024). 21.150 km² 6",
+          "href": "/havzalar/dogu-akdeniz/",
+          "footer": false
+        },
+        {
+          "metin": "18 Seyhan Havzası Yağış alanı 22.035 km²; yıllık ortalama yüzey suyu potansiyeli 6,17 km³ (DSİ 2024). 22.035 km² 6,175 k",
+          "href": "/havzalar/seyhan/",
+          "footer": false
+        },
+        {
+          "metin": "19 Asi Havzası Yağış alanı 7.886 km²; yıllık ortalama yüzey suyu potansiyeli 1,62 km³ (DSİ 2024). 7.886 km² 1,623 km³/yı",
+          "href": "/havzalar/asi/",
+          "footer": false
+        },
+        {
+          "metin": "20 Ceyhan Havzası Yağış alanı 21.391 km²; yıllık ortalama yüzey suyu potansiyeli 7,43 km³ (DSİ 2024). 21.391 km² 7,431 k",
+          "href": "/havzalar/ceyhan/",
+          "footer": false
+        },
+        {
+          "metin": "21 Fırat-Dicle Havzası Yağış alanı 176.143 km²; yıllık ortalama yüzey suyu potansiyeli 54,50 km³ (DSİ 2024). 176.143 km²",
+          "href": "/havzalar/firat-dicle/",
+          "footer": false
+        },
+        {
+          "metin": "22 Doğu Karadeniz Havzası Yağış alanı 22.846 km²; yıllık ortalama yüzey suyu potansiyeli 16,37 km³ (DSİ 2024). 22.846 km",
+          "href": "/havzalar/dogu-karadeniz/",
+          "footer": false
+        },
+        {
+          "metin": "23 Çoruh Havzası Yağış alanı 20.248 km²; yıllık ortalama yüzey suyu potansiyeli 7,14 km³ (DSİ 2024). 20.248 km² 7,14 km³",
+          "href": "/havzalar/coruh/",
+          "footer": false
+        },
+        {
+          "metin": "24 Aras Havzası Yağış alanı 27.775 km²; yıllık ortalama yüzey suyu potansiyeli 4,57 km³ (DSİ 2024). 27.775 km² 4,569 km³",
+          "href": "/havzalar/aras/",
+          "footer": false
+        },
+        {
+          "metin": "25 Van Gölü Havzası Yağış alanı 17.861 km²; yıllık ortalama yüzey suyu potansiyeli 2,53 km³ (DSİ 2024). 17.861 km² 2,534",
+          "href": "/havzalar/van-golu/",
+          "footer": false
+        },
+        {
+          "metin": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+          "href": "https://arslanhukuk.tr",
+          "footer": true
+        }
+      ],
+      "butonlar": [
+        "menü",
+        "kapat"
+      ],
+      "footer": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+      "konsol": [],
+      "menu": null
+    },
+    {
+      "yol": "/havzalar/sakarya/",
+      "slug": "havza-sakarya",
+      "title": "Sakarya Havzası — Su Haritası",
+      "metaDesc": "İç Batı Anadolu'dan Karadeniz'e uzanan, Ankara ve Eskişehir'i besleyen havza — DSİ 2024 resmî istatistikleriyle.",
+      "basliklar": [
+        "h1: Sakarya Havzası",
+        "h2: Su varlığı",
+        "h2: Planlama ve koruma",
+        "h2: Veri notu",
+        "h2: İller ve yetkili kurumlar"
+      ],
+      "ilkEkran": [
+        "<a> su haritası",
+        "<a> Harita",
+        "<a> Havzalar",
+        "<a> Rehberler",
+        "<a> Su Kanunu",
+        "<a> Hakkında",
+        "<button> menü",
+        "<p> Havza",
+        "<h1> Sakarya Havzası",
+        "<p> İç Batı Anadolu'dan Karadeniz'e uzanan, Ankara ve Eskişehir'i besleyen havza — DSİ 2024 resmî istatistikleriyle.",
+        "<a> DSİ 2024 Resmî Su Kaynakları İstatistikleri, Tablo 1.2",
+        "<a> DSİ 2024, Tablo 1.3",
+        "<span> veri yok (14.07.2026)",
+        "<a> Sakarya Havzası Koruma Eylem Planı (SYGM, PDF)",
+        "<h2> Su varlığı"
+      ],
+      "linkler": [
+        {
+          "metin": "su haritası",
+          "href": "/",
+          "footer": false
+        },
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        },
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        },
+        {
+          "metin": "DSİ 2024 Resmî Su Kaynakları İstatistikleri, Tablo 1.2",
+          "href": "https://www.dsi.gov.tr/Sayfa/Detay/2186",
+          "footer": false
+        },
+        {
+          "metin": "DSİ 2024, Tablo 1.3",
+          "href": "https://www.dsi.gov.tr/Sayfa/Detay/2186",
+          "footer": false
+        },
+        {
+          "metin": "Sakarya Havzası Koruma Eylem Planı (SYGM, PDF)",
+          "href": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Sakarya_web.pdf",
+          "footer": false
+        },
+        {
+          "metin": "Sakarya Havzası Koruma Eylem Planı’nda",
+          "href": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Sakarya_web.pdf",
+          "footer": false
+        },
+        {
+          "metin": "dsi.gov.tr",
+          "href": "https://www.dsi.gov.tr/Sayfa/Detay/2186",
+          "footer": false
+        },
+        {
+          "metin": "kaynak",
+          "href": "https://www.tarimorman.gov.tr/SYGM/Belgeler/Havzalar%C4%B1m%C4%B1z%C4%B1%20Tan%C4%B1yal%C4%B1m/Sakarya%20Havzas%C4%B1%20Tan%C4%B1t%C4%B1m.pdf",
+          "footer": false
+        },
+        {
+          "metin": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+          "href": "https://arslanhukuk.tr",
+          "footer": true
+        }
+      ],
+      "butonlar": [
+        "menü",
+        "kapat"
+      ],
+      "footer": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+      "konsol": [],
+      "menu": null
+    },
+    {
+      "yol": "/rehberler/",
+      "slug": "rehberler",
+      "title": "Rehberler — Su Haritası",
+      "metaDesc": "Su hukuku rehberleri: kuyu ruhsatı, tahsis, içme suyu koruma alanları ve daha fazlası.",
+      "basliklar": [
+        "h1: Rehberler"
+      ],
+      "ilkEkran": [
+        "<a> su haritası",
+        "<a> Harita",
+        "<a> Havzalar",
+        "<a> Rehberler",
+        "<a> Su Kanunu",
+        "<a> Hakkında",
+        "<button> menü",
+        "<h1> Rehberler",
+        "<p> Su hukukunun pratik soruları için adım adım rehberler. Her rehber mevzuata tam metin bağlantısıyla atıf verir.",
+        "<span> 01",
+        "<span> 14 Temmuz 2026",
+        "<span> Baraj kamulaştırması, kamulaştırmasız el atma ve ecrimisil",
+        "<span> 02",
+        "<span> Kaynak hakkı, mecra irtifakı ve komşu parselden su alma",
+        "<span> TMK 718 ve 756 çerçevesinde kaynak üzerindeki hak, yeraltı suyunun kamu suyu niteliği ve Yeraltı Suları Tüzüğü m.16 uyarınca komşu arazideki yeraltı suyundan şartlı yararlanma.",
+        "<span> 03",
+        "<span> Kaynak suyu kiralama: yetki, ihale zorunluluğu ve sözleşme"
+      ],
+      "linkler": [
+        {
+          "metin": "su haritası",
+          "href": "/",
+          "footer": false
+        },
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        },
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        },
+        {
+          "metin": "01 14 Temmuz 2026 Baraj kamulaştırması, kamulaştırmasız el atma ve ecrimisil Baraj ve gölet projelerinde taşınmazı su al",
+          "href": "/rehberler/baraj-kamulastirmasi/",
+          "footer": false
+        },
+        {
+          "metin": "02 14 Temmuz 2026 Kaynak hakkı, mecra irtifakı ve komşu parselden su alma TMK 718 ve 756 çerçevesinde kaynak üzerindeki ",
+          "href": "/rehberler/kaynak-hakki-komsu-su/",
+          "footer": false
+        },
+        {
+          "metin": "03 14 Temmuz 2026 Kaynak suyu kiralama: yetki, ihale zorunluluğu ve sözleşme Kaynak sularının kim tarafından, hangi usul",
+          "href": "/rehberler/kaynak-suyu-kiralama/",
+          "footer": false
+        },
+        {
+          "metin": "04 14 Temmuz 2026 Kuyu belgesi ret ve iptal davaları: DSİ işlemlerine karşı yargı yolu DSİ'nin arama veya kullanma belge",
+          "href": "/rehberler/kuyu-belgesi-iptal-davalari/",
+          "footer": false
+        },
+        {
+          "metin": "05 14 Temmuz 2026 Kuyu ruhsatı: yeraltı suyu arama, kullanma ve ıslah-tadil belgeleri 167 sayılı Yeraltı Suları Hakkında",
+          "href": "/rehberler/kuyu-ruhsati/",
+          "footer": false
+        },
+        {
+          "metin": "06 14 Temmuz 2026 Ruhsatsız kuyu açmanın ve belge dışı su kullanmanın cezaları Belgesiz kuyu açmanın, kasten yanlış bilg",
+          "href": "/rehberler/ruhsatsiz-kuyu-cezalari/",
+          "footer": false
+        },
+        {
+          "metin": "07 14 Temmuz 2026 Su tahsisinde öncelik sırası ve tahsis kriterleri DSİ'ye su tahsis başvurusu nasıl yapılır, talepler h",
+          "href": "/rehberler/su-tahsisi-oncelik-sirasi/",
+          "footer": false
+        },
+        {
+          "metin": "08 14 Temmuz 2026 Yeraltı suyu işletme sahası ilanının hukuki sonuçları Bir bölgenin 'yeraltı suyu işletme sahası' ilan ",
+          "href": "/rehberler/yeralti-suyu-isletme-sahasi/",
+          "footer": false
+        },
+        {
+          "metin": "09 14 Temmuz 2026 Jeotermal ruhsat: arama, işletme ve uyuşmazlıklar 5686 sayılı Kanun kapsamında jeotermal kaynak ve doğ",
+          "href": "/rehberler/jeotermal-ruhsat/",
+          "footer": false
+        },
+        {
+          "metin": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+          "href": "https://arslanhukuk.tr",
+          "footer": true
+        }
+      ],
+      "butonlar": [
+        "menü",
+        "kapat"
+      ],
+      "footer": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+      "konsol": [],
+      "menu": null
+    },
+    {
+      "yol": "/rehberler/kuyu-belgesi-iptal-davalari/",
+      "slug": "rehber-kuyu-ruhsati",
+      "title": "Kuyu belgesi ret ve iptal davaları: DSİ işlemlerine karşı yargı yolu — Su Haritası",
+      "metaDesc": "DSİ'nin arama veya kullanma belgesi başvurusunu reddetmesi ya da mevcut belgeyi iptal etmesi halinde iptal davasının eksenleri: sebep unsuru, kazanılmış hak, idari yetki ve teknik değerlendirme zorunluluğu.",
+      "basliklar": [
+        "h1: Kuyu belgesi ret ve iptal davaları: DSİ işlemlerine karşı yargı yolu",
+        "h2: Davanın eksenleri",
+        "h2: İptal davası ekseni",
+        "h2: İlgili hükümler",
+        "h2: Dayanak",
+        "h2: Emsal kararlar"
+      ],
+      "ilkEkran": [
+        "<a> su haritası",
+        "<a> Harita",
+        "<a> Havzalar",
+        "<a> Rehberler",
+        "<a> Su Kanunu",
+        "<a> Hakkında",
+        "<button> menü",
+        "<p> Rehber",
+        "<h1> Kuyu belgesi ret ve iptal davaları: DSİ işlemlerine karşı yargı yolu",
+        "<h2> Davanın eksenleri",
+        "<p> İçtihattan çıkan üç kritik çizgi:"
+      ],
+      "linkler": [
+        {
+          "metin": "su haritası",
+          "href": "/",
+          "footer": false
+        },
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        },
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        },
+        {
+          "metin": "kuyu ruhsatı",
+          "href": "/rehberler/kuyu-ruhsati/",
+          "footer": false
+        },
+        {
+          "metin": "ruhsatsız kuyu cezaları",
+          "href": "/rehberler/ruhsatsiz-kuyu-cezalari/",
+          "footer": false
+        },
+        {
+          "metin": "167 sayılı Yeraltı Suları Hakkında Kanun",
+          "href": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=167&mevzuatTur=1&mevzuatTertip=4",
+          "footer": false
+        },
+        {
+          "metin": "Yeraltı Suları Tüzüğü",
+          "href": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=51465&mevzuatTur=2&mevzuatTertip=4",
+          "footer": false
+        },
+        {
+          "metin": "5686 sayılı Jeotermal Kaynaklar ve Doğal Mineralli Sular Kanunu",
+          "href": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=5686&mevzuatTur=1&mevzuatTertip=5",
+          "footer": false
+        },
+        {
+          "metin": "Apilex",
+          "href": "https://app.apilex.ai/shared-document/9894-ec23-cd16-d777.md",
+          "footer": false
+        },
+        {
+          "metin": "Apilex",
+          "href": "https://app.apilex.ai/shared-document/4c54-1b94-efc8-457c.md",
+          "footer": false
+        },
+        {
+          "metin": "Apilex",
+          "href": "https://app.apilex.ai/shared-document/937c-5e3e-330c-3e32.md",
+          "footer": false
+        },
+        {
+          "metin": "Av. Serdar Arslan (Arslan Hukuk Bürosu)",
+          "href": "https://arslanhukuk.tr",
+          "footer": false
+        },
+        {
+          "metin": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+          "href": "https://arslanhukuk.tr",
+          "footer": true
+        }
+      ],
+      "butonlar": [
+        "menü",
+        "kapat"
+      ],
+      "footer": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+      "konsol": [],
+      "menu": null
+    },
+    {
+      "yol": "/rehberler/baraj-kamulastirmasi/",
+      "slug": "rehber-baraj-kamulastirmasi",
+      "title": "Baraj kamulaştırması, kamulaştırmasız el atma ve ecrimisil — Su Haritası",
+      "metaDesc": "Baraj ve gölet projelerinde taşınmazı su altında kalanların hukuki durumu: 2942 sayılı Kamulaştırma Kanunu çerçevesi, kamulaştırmasız el atma ve ecrimisil tartışması, 6200 sayılı Kanun'un geçiş hükümleri.",
+      "basliklar": [
+        "h1: Baraj kamulaştırması, kamulaştırmasız el atma ve ecrimisil",
+        "h2: Üç ihtimal",
+        "h2: İmar kısıtlılığı ve geçiş hükümleri",
+        "h2: Baraj kamulaştırması çerçevesi",
+        "h2: Madde metni",
+        "h2: Dikkat",
+        "h2: Dayanak",
+        "h2: Emsal kararlar"
+      ],
+      "ilkEkran": [
+        "<a> su haritası",
+        "<a> Harita",
+        "<a> Havzalar",
+        "<a> Rehberler",
+        "<a> Su Kanunu",
+        "<a> Hakkında",
+        "<button> menü",
+        "<p> Rehber",
+        "<h1> Baraj kamulaştırması, kamulaştırmasız el atma ve ecrimisil",
+        "<h2> Üç ihtimal"
+      ],
+      "linkler": [
+        {
+          "metin": "su haritası",
+          "href": "/",
+          "footer": false
+        },
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        },
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        },
+        {
+          "metin": "2942 sayılı Kamulaştırma Kanunu",
+          "href": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=2942&mevzuatTur=1&mevzuatTertip=5",
+          "footer": false
+        },
+        {
+          "metin": "6200 sayılı Kanun",
+          "href": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=6200&mevzuatTur=1&mevzuatTertip=3",
+          "footer": false
+        },
+        {
+          "metin": "Av. Serdar Arslan (Arslan Hukuk Bürosu)",
+          "href": "https://arslanhukuk.tr",
+          "footer": false
+        },
+        {
+          "metin": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+          "href": "https://arslanhukuk.tr",
+          "footer": true
+        }
+      ],
+      "butonlar": [
+        "menü",
+        "kapat"
+      ],
+      "footer": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+      "konsol": [],
+      "menu": null
+    },
+    {
+      "yol": "/su-kanunu/",
+      "slug": "su-kanunu",
+      "title": "Su Kanunu — Su Haritası",
+      "metaDesc": "Su mevzuatı kütüphanesi ve Su Kanunu taslağının güncel takibi: kaynak linkli, spekülasyonsuz.",
+      "basliklar": [
+        "h1: Su Kanunu"
+      ],
+      "ilkEkran": [
+        "<a> su haritası",
+        "<a> Harita",
+        "<a> Havzalar",
+        "<a> Rehberler",
+        "<a> Su Kanunu",
+        "<a> Hakkında",
+        "<button> menü",
+        "<h1> Su Kanunu",
+        "<p> Yürürlükteki su mevzuatının kütüphanesi ve Su Kanunu taslağının tarih + kaynak bağlantılı takibi.",
+        "<span> 01",
+        "<span> 14 Temmuz 2026",
+        "<span> Su mevzuatı kütüphanesi",
+        "<span> Yürürlükteki temel su mevzuatı: kanunlar, tüzük ve yönetmelikler — resmî tam metin bağlantılarıyla.",
+        "<span> 02",
+        "<span> Su Kanunu taslağı: güncel durum takibi",
+        "<span> Su Kanunu taslağının yasalaşma sürecindeki somut gelişmeler; tarih ve kaynak bağlantısıyla, spekülasyonsuz.",
+        "<a> suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026"
+      ],
+      "linkler": [
+        {
+          "metin": "su haritası",
+          "href": "/",
+          "footer": false
+        },
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        },
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        },
+        {
+          "metin": "01 14 Temmuz 2026 Su mevzuatı kütüphanesi Yürürlükteki temel su mevzuatı: kanunlar, tüzük ve yönetmelikler — resmî tam m",
+          "href": "/su-kanunu/mevzuat-kutuphanesi/",
+          "footer": false
+        },
+        {
+          "metin": "02 14 Temmuz 2026 Su Kanunu taslağı: güncel durum takibi Su Kanunu taslağının yasalaşma sürecindeki somut gelişmeler; ta",
+          "href": "/su-kanunu/taslak-takibi/",
+          "footer": false
+        },
+        {
+          "metin": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+          "href": "https://arslanhukuk.tr",
+          "footer": true
+        }
+      ],
+      "butonlar": [
+        "menü",
+        "kapat"
+      ],
+      "footer": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+      "konsol": [],
+      "menu": null
+    },
+    {
+      "yol": "/hakkinda/",
+      "slug": "hakkinda",
+      "title": "Hakkında — Su Haritası",
+      "metaDesc": "suharitasi.com: Türkiye'nin su verisi, havzaları ve su mevzuatını tek haritada birleştiren bağımsız bilgi portalı.",
+      "basliklar": [
+        "h1: Hakkında"
+      ],
+      "ilkEkran": [
+        "<a> su haritası",
+        "<a> Harita",
+        "<a> Havzalar",
+        "<a> Rehberler",
+        "<a> Su Kanunu",
+        "<a> Hakkında",
+        "<button> menü",
+        "<h1> Hakkında",
+        "<p> suharitasi.com, Türkiye'nin su verisi, havzaları ve su mevzuatını tek haritada birleştiren bağımsız bir bilgi portalıdır.",
+        "<a> Av. Serdar Arslan (Arslan Hukuk Bürosu)",
+        "<p> Portaldaki veriler kamu kurumlarının açık kaynaklarına dayanır ve her veri alanında kaynağı ile birlikte sunulur. Doğrulanamayan hiçbir veri doğrulanmış gibi gösterilmez.",
+        "<a> suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026"
+      ],
+      "linkler": [
+        {
+          "metin": "su haritası",
+          "href": "/",
+          "footer": false
+        },
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        },
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        },
+        {
+          "metin": "Av. Serdar Arslan (Arslan Hukuk Bürosu)",
+          "href": "https://arslanhukuk.tr",
+          "footer": false
+        },
+        {
+          "metin": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+          "href": "https://arslanhukuk.tr",
+          "footer": true
+        }
+      ],
+      "butonlar": [
+        "menü",
+        "kapat"
+      ],
+      "footer": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+      "konsol": [],
+      "menu": null
+    },
+    {
+      "yol": "/rehberler/kuyu-ruhsati/",
+      "slug": "rehber-kuyu-ruhsati",
+      "title": "Kuyu ruhsatı: yeraltı suyu arama, kullanma ve ıslah-tadil belgeleri — Su Haritası",
+      "metaDesc": "167 sayılı Yeraltı Suları Hakkında Kanun uyarınca kuyu açmadan önce alınması zorunlu arama belgesi, suyu kullanmak için gereken kullanma belgesi ve mevcut kuyuya müdahale için ıslah-tadil belgesi: kimden, hangi belgelerle, hangi sürede alınır.",
+      "basliklar": [
+        "h1: Kuyu ruhsatı: yeraltı suyu arama, kullanma ve ıslah-tadil belgeleri",
+        "h2: Rejimin mantığı",
+        "h2: Üç belge tek zincir",
+        "h2: Belge yapısı",
+        "h2: Başvuru akışı",
+        "h2: Madde metni",
+        "h2: Dikkat",
+        "h2: Dayanak",
+        "h2: Emsal kararlar",
+        "h2: 81 il için yetkili kurumlar"
+      ],
+      "ilkEkran": [
+        "<a> su haritası",
+        "<a> Harita",
+        "<a> Havzalar",
+        "<a> Rehberler",
+        "<a> Su Kanunu",
+        "<a> Hakkında",
+        "<button> menü",
+        "<p> Rehber",
+        "<h1> Kuyu ruhsatı: yeraltı suyu arama, kullanma ve ıslah-tadil belgeleri",
+        "<h2> Rejimin mantığı"
+      ],
+      "linkler": [
+        {
+          "metin": "su haritası",
+          "href": "/",
+          "footer": false
+        },
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        },
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        },
+        {
+          "metin": "167 sayılı Yeraltı Suları Hakkında Kanun",
+          "href": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=167&mevzuatTur=1&mevzuatTertip=4",
+          "footer": false
+        },
+        {
+          "metin": "Yeraltı Suları Tüzüğü",
+          "href": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=51465&mevzuatTur=2&mevzuatTertip=4",
+          "footer": false
+        },
+        {
+          "metin": "Apilex",
+          "href": "https://app.apilex.ai/shared-document/b60c-29c3-2224-1cd8.md",
+          "footer": false
+        },
+        {
+          "metin": "Av. Serdar Arslan (Arslan Hukuk Bürosu)",
+          "href": "https://arslanhukuk.tr",
+          "footer": false
+        },
+        {
+          "metin": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+          "href": "https://arslanhukuk.tr",
+          "footer": true
+        }
+      ],
+      "footer": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+      "konsol": []
+    },
+    {
+      "yol": "/rehberler/kaynak-suyu-kiralama/",
+      "slug": "rehber-kaynak-suyu-kiralama",
+      "title": "Kaynak suyu kiralama: yetki, ihale zorunluluğu ve sözleşme — Su Haritası",
+      "metaDesc": "Kaynak sularının kim tarafından, hangi usulle kiraya verilebileceği: 167 sayılı Kanun m.4, 5393 sayılı Belediye Kanunu m.15 ve 831 sayılı Sular Hakkında Kanun çerçevesi; 2886 sayılı Devlet İhale Kanunu'na uygun ihale zorunluluğu.",
+      "basliklar": [
+        "h1: Kaynak suyu kiralama: yetki, ihale zorunluluğu ve sözleşme",
+        "h2: Kiralamaya kim yetkili?",
+        "h2: İhale zorunluluğu",
+        "h2: Süre, devir ve fesih",
+        "h2: Kiralama çerçevesi",
+        "h2: Madde metni",
+        "h2: Dikkat",
+        "h2: Dayanak",
+        "h2: Emsal kararlar"
+      ],
+      "ilkEkran": [
+        "<a> su haritası",
+        "<a> Harita",
+        "<a> Havzalar",
+        "<a> Rehberler",
+        "<a> Su Kanunu",
+        "<a> Hakkında",
+        "<button> menü",
+        "<p> Rehber",
+        "<h1> Kaynak suyu kiralama: yetki, ihale zorunluluğu ve sözleşme",
+        "<h2> Kiralamaya kim yetkili?"
+      ],
+      "linkler": [
+        {
+          "metin": "su haritası",
+          "href": "/",
+          "footer": false
+        },
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        },
+        {
+          "metin": "Harita",
+          "href": "/harita/",
+          "footer": false
+        },
+        {
+          "metin": "Havzalar",
+          "href": "/havzalar/",
+          "footer": false
+        },
+        {
+          "metin": "Rehberler",
+          "href": "/rehberler/",
+          "footer": false
+        },
+        {
+          "metin": "Su Kanunu",
+          "href": "/su-kanunu/",
+          "footer": false
+        },
+        {
+          "metin": "Hakkında",
+          "href": "/hakkinda/",
+          "footer": false
+        },
+        {
+          "metin": "167 sayılı Yeraltı Suları Hakkında Kanun",
+          "href": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=167&mevzuatTur=1&mevzuatTertip=4",
+          "footer": false
+        },
+        {
+          "metin": "2886 sayılı Devlet İhale Kanunu",
+          "href": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=2886&mevzuatTur=1&mevzuatTertip=5",
+          "footer": false
+        },
+        {
+          "metin": "831 sayılı Sular Hakkında Kanun",
+          "href": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=831&mevzuatTur=1&mevzuatTertip=3",
+          "footer": false
+        },
+        {
+          "metin": "5393 sayılı Belediye Kanunu",
+          "href": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=5393&mevzuatTur=1&mevzuatTertip=5",
+          "footer": false
+        },
+        {
+          "metin": "Apilex",
+          "href": "https://app.apilex.ai/shared-document/536d-4fa9-71d7-89da.md",
+          "footer": false
+        },
+        {
+          "metin": "Apilex",
+          "href": "https://app.apilex.ai/shared-document/7e0f-ccaa-c43d-1200.md",
+          "footer": false
+        },
+        {
+          "metin": "Apilex",
+          "href": "https://app.apilex.ai/shared-document/5563-8f8b-3621-1c3e.md",
+          "footer": false
+        },
+        {
+          "metin": "Av. Serdar Arslan (Arslan Hukuk Bürosu)",
+          "href": "https://arslanhukuk.tr",
+          "footer": false
+        },
+        {
+          "metin": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+          "href": "https://arslanhukuk.tr",
+          "footer": true
+        }
+      ],
+      "footer": "suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026",
+      "konsol": []
+    }
+  ],
+  "tumLinkler": [
+    "/",
+    "/hakkinda/",
+    "/harita/",
+    "/havzalar/",
+    "/havzalar/akarcay/",
+    "/havzalar/antalya/",
+    "/havzalar/aras/",
+    "/havzalar/asi/",
+    "/havzalar/bati-akdeniz/",
+    "/havzalar/bati-karadeniz/",
+    "/havzalar/burdur/",
+    "/havzalar/buyuk-menderes/",
+    "/havzalar/ceyhan/",
+    "/havzalar/coruh/",
+    "/havzalar/dogu-akdeniz/",
+    "/havzalar/dogu-karadeniz/",
+    "/havzalar/firat-dicle/",
+    "/havzalar/gediz/",
+    "/havzalar/kizilirmak/",
+    "/havzalar/konya-kapali/",
+    "/havzalar/kucuk-menderes/",
+    "/havzalar/kuzey-ege/",
+    "/havzalar/marmara/",
+    "/havzalar/meric-ergene/",
+    "/havzalar/sakarya/",
+    "/havzalar/seyhan/",
+    "/havzalar/susurluk/",
+    "/havzalar/van-golu/",
+    "/havzalar/yesilirmak/",
+    "/rehberler/",
+    "/rehberler/baraj-kamulastirmasi/",
+    "/rehberler/jeotermal-ruhsat/",
+    "/rehberler/kaynak-hakki-komsu-su/",
+    "/rehberler/kaynak-suyu-kiralama/",
+    "/rehberler/kuyu-belgesi-iptal-davalari/",
+    "/rehberler/kuyu-ruhsati/",
+    "/rehberler/ruhsatsiz-kuyu-cezalari/",
+    "/rehberler/su-tahsisi-oncelik-sirasi/",
+    "/rehberler/yeralti-suyu-isletme-sahasi/",
+    "/su-kanunu/",
+    "/su-kanunu/mevzuat-kutuphanesi/",
+    "/su-kanunu/taslak-takibi/"
+  ],
+  "kirik": []
+}
