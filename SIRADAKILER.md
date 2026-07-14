@@ -42,3 +42,7 @@
 18. Eksik rehber verileri ayrı kanaldan tamamlanacak: su kirliliği
     cezaları (2872/SKKY), koruma alanı yasak listesi, TBB reklam yasağı
     uyumu (KAYNAKLAR.md "VERİ YOK" bölümü)
+19. Menü + içerik sayfaları görsel yenileme (su hissi) — YAPILDI
+    (2026-07-14): su damlası imleç, WebGL menü su simülasyonu, dergi
+    listeler, hero şeridi. KULLANICI ONAYI BEKLİYOR: tarayıcıda menüyü
+    açıp imleci gezdirerek nihai onay verilecek; onaysız yayına alınmaz.

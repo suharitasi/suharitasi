@@ -8,6 +8,7 @@ const girisler = (await getCollection('su-kanunu')).sort(
 );
 const tarihYaz = (t: Date) =>
   t.toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' });
+const noYaz = (i: number) => String(i + 1).padStart(2, '0');
 ---
 <Sayfa
   baslik="Su Kanunu"
@@ -17,13 +18,16 @@ const tarihYaz = (t: Date) =>
     baslik="Su Kanunu"
     ozet="Yürürlükteki su mevzuatının kütüphanesi ve Su Kanunu taslağının tarih + kaynak bağlantılı takibi."
   />
-  <ul class="liste">
-    {girisler.map((g) => (
+  <ul class="sv-liste">
+    {girisler.map((g, i) => (
       <li>
         <a href={`/su-kanunu/${g.id}/`}>
-          <span class="liste-tarih">{tarihYaz(g.data.tarih)}</span>
-          <span class="liste-baslik">{g.data.baslik}</span>
-          <span class="liste-ozet">{g.data.ozet}</span>
+          <span class="sv-no" aria-hidden="true">{noYaz(i)}</span>
+          <span class="sv-metin">
+            <span class="sv-tarih">{tarihYaz(g.data.tarih)}</span>
+            <span class="sv-baslik">{g.data.baslik}</span>
+            <span class="sv-ozet">{g.data.ozet}</span>
+          </span>
         </a>
       </li>
     ))}
@@ -31,18 +35,37 @@ const tarihYaz = (t: Date) =>
 </Sayfa>
 
 <style>
-  .liste { list-style: none; }
+  .sv-liste { list-style: none; }
 
-  .liste li + li { border-top: 1px solid var(--cizgi); }
+  .sv-liste li + li { border-top: 1px solid var(--cizgi); }
 
-  .liste a {
-    display: block;
-    padding: 1.1rem 0;
+  .sv-liste a {
+    display: grid;
+    grid-template-columns: 3.4rem 1fr;
+    align-items: baseline;
+    gap: 0 1rem;
+    padding: 1.25rem 0.4rem;
     text-decoration: none;
     color: inherit;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
   }
 
-  .liste-tarih {
+  .sv-liste a:hover { transform: translateY(-4px); }
+
+  .sv-no {
+    font-family: var(--sans);
+    font-variant-numeric: tabular-nums;
+    font-size: 1.7rem;
+    font-weight: 500;
+    line-height: 1;
+    color: rgba(92, 107, 102, 0.42);
+    transition: color 0.25s ease;
+  }
+
+  .sv-liste a:hover .sv-no { color: var(--akuamarin); }
+
+  .sv-tarih {
     display: block;
     font-size: 0.72rem;
     letter-spacing: 0.12em;
@@ -50,7 +73,7 @@ const tarihYaz = (t: Date) =>
     color: var(--metin-soluk);
   }
 
-  .liste-baslik {
+  .sv-baslik {
     display: block;
     margin-top: 0.2rem;
     font-family: var(--serif);
@@ -60,13 +83,23 @@ const tarihYaz = (t: Date) =>
     transition: color 0.2s ease;
   }
 
-  .liste a:hover .liste-baslik { color: var(--baglanti); }
+  .sv-liste a:hover .sv-baslik { color: var(--su-700); }
 
-  .liste-ozet {
+  .sv-ozet {
     display: block;
     margin-top: 0.25rem;
     font-size: 0.92rem;
     color: var(--metin-soluk);
     max-width: 62ch;
+  }
+
+  @media (max-width: 640px) {
+    .sv-liste a { grid-template-columns: 2.6rem 1fr; }
+    .sv-no { font-size: 1.3rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sv-liste a { transition: none; }
+    .sv-liste a:hover { transform: none; }
   }
 </style>

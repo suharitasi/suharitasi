@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
+import havzaVeri from '../../../data/havza-veri.json';
 
 // DSİ havza numarasına göre sırala; numarasızlar sona, ada göre
 const girisler = (await getCollection('havzalar')).sort((a, b) => {
@@ -10,6 +11,10 @@ const girisler = (await getCollection('havzalar')).sort((a, b) => {
   if (b.data.no) return 1;
   return a.data.baslik.localeCompare(b.data.baslik, 'tr');
 });
+
+// Veri rozeti: MEVCUT havza-veri.json künyesinden (yeni veri eklenmez)
+const kunye = Object.fromEntries(havzaVeri.havzalar.map((h) => [h.no, h]));
+const sayi = (n: number) => n.toLocaleString('tr-TR');
 ---
 <Sayfa
   baslik="Havzalar"
@@ -19,34 +24,65 @@ const girisler = (await getCollection('havzalar')).sort((a, b) => {
     baslik="Havzalar"
     ozet="Türkiye'nin 25 su havzası, havza bazında veri künyeleriyle. Sayfalar açık kaynaklardan doğrulanmış veriyle adım adım doluyor."
   />
-  <ul class="liste">
-    {girisler.map((g) => (
-      <li>
-        <a href={`/havzalar/${g.id}/`}>
-          <span class="liste-baslik">
-            {g.data.no && <span class="liste-no">{g.data.no}</span>}
-            {g.data.baslik}
-          </span>
-          <span class="liste-ozet">{g.data.ozet}</span>
-        </a>
-      </li>
-    ))}
+  <ul class="sv-liste">
+    {girisler.map((g) => {
+      const v = g.data.no ? kunye[g.data.no] : undefined;
+      return (
+        <li>
+          <a href={`/havzalar/${g.id}/`}>
+            {g.data.no && <span class="sv-no" aria-hidden="true">{g.data.no}</span>}
+            <span class="sv-metin">
+              <span class="sv-baslik">{g.data.baslik}</span>
+              <span class="sv-ozet">{g.data.ozet}</span>
+            </span>
+            {v && v.yagisAlani_km2 && (
+              <span class="sv-rozet">
+                <span>{sayi(v.yagisAlani_km2)} km²</span>
+                {v.yuzeysuyuPotansiyeli_km3 != null && (
+                  <span>{v.yuzeysuyuPotansiyeli_km3.toLocaleString('tr-TR')} km³/yıl</span>
+                )}
+              </span>
+            )}
+          </a>
+        </li>
+      );
+    })}
   </ul>
 </Sayfa>
 
 <style>
-  .liste { list-style: none; }
+  .sv-liste { list-style: none; }
 
-  .liste li + li { border-top: 1px solid var(--cizgi); }
+  .sv-liste li + li { border-top: 1px solid var(--cizgi); }
 
-  .liste a {
-    display: block;
-    padding: 1.1rem 0;
+  .sv-liste a {
+    display: grid;
+    grid-template-columns: 3.4rem 1fr auto;
+    align-items: baseline;
+    gap: 0 1rem;
+    padding: 1.25rem 0.4rem;
     text-decoration: none;
     color: inherit;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
   }
 
-  .liste-baslik {
+  .sv-liste a:hover { transform: translateY(-4px); }
+
+  /* Sol büyük numara: resmî DSİ kodu */
+  .sv-no {
+    font-family: var(--sans);
+    font-variant-numeric: tabular-nums;
+    font-size: 1.7rem;
+    font-weight: 500;
+    line-height: 1;
+    color: rgba(92, 107, 102, 0.42);
+    transition: color 0.25s ease;
+  }
+
+  .sv-liste a:hover .sv-no { color: var(--akuamarin); }
+
+  .sv-baslik {
     display: block;
     font-family: var(--serif);
     font-weight: 500;
@@ -55,24 +91,50 @@ const girisler = (await getCollection('havzalar')).sort((a, b) => {
     transition: color 0.2s ease;
   }
 
-  .liste a:hover .liste-baslik { color: var(--baglanti); }
+  .sv-liste a:hover .sv-baslik { color: var(--su-700); }
 
-  /* DSİ havza numarası — resmî kod, dekor değil */
-  .liste-no {
-    display: inline-block;
-    min-width: 1.9rem;
-    font-family: var(--sans);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    color: var(--metin-soluk);
-  }
-
-  .liste-ozet {
+  .sv-ozet {
     display: block;
     margin-top: 0.25rem;
     font-size: 0.92rem;
     color: var(--metin-soluk);
-    max-width: 62ch;
+    max-width: 52ch;
+  }
+
+  /* Veri rozeti: yağış alanı + yüzey suyu potansiyeli (havza-veri.json) */
+  .sv-rozet {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-self: center;
+  }
+
+  .sv-rozet span {
+    display: inline-block;
+    padding: 0.18rem 0.66rem;
+    border-radius: 999px;
+    background: var(--adacayi-krem);
+    border: 1px solid rgba(35, 46, 43, 0.08);
+    font-size: 0.72rem;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.03em;
+    color: var(--murekkep-500);
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .sv-liste a { grid-template-columns: 2.6rem 1fr; }
+    .sv-no { font-size: 1.3rem; }
+    .sv-rozet {
+      grid-column: 2;
+      flex-direction: row;
+      margin-top: 0.55rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sv-liste a { transition: none; }
+    .sv-liste a:hover { transform: none; }
   }
 </style>

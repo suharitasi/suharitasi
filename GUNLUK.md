@@ -13,6 +13,19 @@
   büyükşehir su idaresi. Havza sayfalarına "İller ve yetkili kurumlar"
   bloğu, kuyu-ruhsati rehberine 81 il tablosu (IlKurumTablosu.astro)
   eklendi.
+- İş 4: menü + içerik sayfaları görsel yenileme (su hissi) — public/s/
+  altında 4 modül: imlec.js (damla imleç, lerp+durumlar, /harita/ hariç),
+  su-sim.js (raw WebGL2 dalga simülasyonu, RG16F ping-pong; FPS<45 grid
+  yarıya, <30 fallback; three.js gerekmedi), menu.js (tam ekran overlay,
+  lazy sim, focus trap, ESC, scroll kilidi), sayfa.js (tek-observer
+  reveal + sentinel'li yüzen nav). UstMenu tam ekran menü kazandı;
+  Sayfa.astro'ya hero şeridi + blockquote/tablo/ayraç rötuşları; üç
+  indeks "dergi" satır anatomisine geçti (numara + havzalarda veri
+  rozeti). Landing'e tek satır imleç script'i; landing/harita görsel
+  olarak korundu. Doğrulama (arac/tasarim-dogrula.mjs): 0 konsol hatası,
+  sim canlı ~62 FPS, ESC/focus/reduced-motion/no-JS geçti, 42 iç link
+  0 kırık, Lighthouse performans 96 (CLS 0.02). Yeni JS toplam 7,1 KB
+  gzip (sim dahil). Kullanıcı onayı bekliyor.
 - İş 3: mevzuat rehberleri paketi — Apilex çıktısı (14.07.2026)
   kaynak/apilex-sumevzuat.md olarak kaydedildi; 9 rehber üretildi
   (kuyu-ruhsati, ruhsatsiz-kuyu-cezalari, kaynak-suyu-kiralama,
