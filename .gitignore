@@ -1,6 +1,8 @@
 node_modules/
 dist/
 kaynak/
+!kaynak/dsi-arsiv/
+!kaynak/dsi-arsiv/**
 screenshots/
 *.zip
 .astro/

@@ -108,6 +108,22 @@
 - NOT: DSİ numaralandırmasında Fırat-Dicle 21'dir; sitede bu standart
   kullanılıyor.
 
+## DSİ istatistik arşivi yerel kopyası (kaynak/dsi-arsiv/)
+
+- İndirme 15.07.2026; silinme riskine karşı arşivlendi. DSİ Resmî Su Kaynakları
+  İstatistikleri 2014–2024 baskıları (2021–2022 zaten silinmiş, yok): 229 dosya,
+  54,5 MB, xlsx/xls/docx. Kaynak: cdniys.tarimorman.gov.tr CDN (2020/2023
+  baskıları web.archive.org galeri snapshot'larından kurtarıldı — DSİ sayfa
+  linkleri kırık/boşaltılmış).
+- .gitignore'da `kaynak/` yok sayılıyor ama `kaynak/dsi-arsiv/` istisna ile
+  izleniyor (repoya dahil — 55 MB; arşiv değeri için bilinçli tercih).
+- Her dosya HTTP 200 + dosya imzası + sha256 ile doğrulandı; künye:
+  `kaynak/dsi-arsiv/MANIFEST.md`. İndirilemeyen 6 dosya (WAF 246 reddi + arşiv
+  de reddi kopyalamış) ikincil tablolardır (baraj/gölet/HES inşa, sulama alanı);
+  çekirdek su verisi (yüzeysuyu/YAS potansiyeli, işletme rezervi, baraj doluluk)
+  9 baskının tamamında mevcut.
+- rapor/kaynak-haritasi.md madde 5 "acil arşiv uyarısı" bu işle kapatıldı.
+
 ## SYGM havza koruma eylem planları
 
 - Giriş sayfası: https://www.tarimorman.gov.tr/SYGM/Sayfalar/Detay.aspx?SayfaId=6
