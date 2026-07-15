@@ -77,11 +77,13 @@ import TamEkranMenu from '../components/TamEkranMenu.astro';
     position: fixed;
     left: clamp(18px, 5vw, 64px);
     top: 50%;
-    transform: translateY(-50%);
+    /* --dy: JS'in sürdüğü yönlü kayma (giden yukarı, gelen alttan) — kesişimde
+       iki metnin aynı yerde üst üste binmesini (hayalet) önler. */
+    transform: translateY(calc(-50% + var(--dy, 0px)));
     width: min(42vw, 460px);
     z-index: 5;
     opacity: 0;
-    will-change: opacity;
+    will-change: opacity, transform;
     pointer-events: none;
   }
   .kopya__ust {
@@ -154,7 +156,7 @@ import TamEkranMenu from '../components/TamEkranMenu.astro';
     .kopya {
       left: clamp(16px, 5vw, 40px); right: clamp(16px, 5vw, 40px);
       top: auto; bottom: calc(clamp(56px, 12vh, 96px) + env(safe-area-inset-bottom));
-      transform: none; width: auto; max-width: 560px;
+      transform: translateY(var(--dy, 0px)); width: auto; max-width: 560px;
     }
     .ray { display: none; }
   }
@@ -292,13 +294,26 @@ import TamEkranMenu from '../components/TamEkranMenu.astro';
       function applyCopy(p) {
         // Motor koreografisi: ilk bölüm açılışta karşılar, son bölüm sonda tutar,
         // ortadakiler kendi merkezinde belirip söner.
+        // Plato + kısa dikiş takası: her metin kendi bölümü boyunca TAM opaklıkta
+        // durur (sönük an yok), yalnız iki bölüm arasındaki dar dikiş bandında
+        // (RW) hızlıca el değiştirir. Böylece ne uzun sönük an ne uzun çakışma
+        // olur — sadece kısa, yönlü kaymalı bir takas.
+        const span = 1 / (N - 1);       // bölüm merkezleri arası
+        const RW = 0.34 * span;          // dikiş geçiş bandı (dar = kısa takas)
+        const SHIFT = 60;                // px — takası yönlendiren kayma
+        // e kenarında 0→1 yumuşak rampa (e-RW/2'de 0, e+RW/2'de 1)
+        const rampa = (x, e) => smooth((x - e + RW / 2) / RW);
         kopya.forEach((el, i) => {
           const cp = i / (N - 1);
-          let op;
-          if (i === 0)       op = smooth(1 - p / (0.85 / (N - 1)));
-          else if (i === N-1) op = smooth((p - (cp - 0.85 / (N - 1))) / (0.85 / (N - 1)));
-          else               op = smooth(1 - Math.abs(p - cp) / (0.9 / (N - 1)));
-          el.style.opacity = clamp(op);
+          const solDikis = cp - span / 2, sagDikis = cp + span / 2;
+          const gelen  = i === 0     ? 1 : rampa(p, solDikis);       // soldan belir
+          const giden  = i === N - 1 ? 0 : rampa(p, sagDikis);       // sağda çık
+          el.style.opacity = clamp(gelen * (1 - giden));
+          // Giden yukarı süzülür, gelen alttan; dikişte kısa yönlü kayma
+          let dy = 0;
+          if (i !== N - 1 && p > cp) dy = -smooth(rampa(p, sagDikis)) * SHIFT;      // çıkış: yukarı
+          else if (i !== 0 && p < cp) dy = smooth(1 - rampa(p, solDikis)) * SHIFT;  // giriş: alttan
+          el.style.setProperty('--dy', dy.toFixed(1) + 'px');
         });
         // Aktif rail noktası
         const active = Math.round(p * (N - 1));
