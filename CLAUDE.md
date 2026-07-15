@@ -54,6 +54,15 @@ BEKLİYOR" olarak işaretlenir ve SIRADAKILER'de kullanıcı canlıda
 onaylayana kadar açık kalır. Headless kanıt = ön eleme; nihai kanıt =
 kullanıcının canlı testi.
 
+## Kopyalanma direnci ilkesi
+Kaynak kodun 'nasıl yapıldığı' kolayca çözülmesin ve toplu indirilmesin diye:
+1. Build çıktısında JS/CSS minify + obfuscate (okunur değişken adları, yorumlar çıktıya girmez) — ANCAK çalışmayı, performansı (Lighthouse ≥90) ve erişilebilirliği bozmayacak seviyede; aşırıya kaçıp siteyi kırmak yasak.
+2. Source map üretilmez (geliştirici araçlarında okunur koda dönüşmez).
+3. Cloudflare'de kötü-niyetli scraper/site-kopyalama botlarına karşı koruma + rate-limit. KRİTİK İSTİSNA: arama motoru botları (Googlebot, Bingbot) ve izin verilen AI-arama botları (GPTBot, ClaudeBot, PerplexityBot) ASLA engellenmez — SEO/GEO hedefi kopyalama-önlemeden önce gelir. robots.txt ve Cloudflare kuralları bu ayrımı korur.
+4. view-source/sağ-tık caydırması eklenebilir AMA meşru kullanıcının normal metin seçme/kopyalama davranışı engellenmez (yalnız kaynak-inceleme caydırılır, okuma serbest).
+Not: Bu caydırıcıdır, mutlak değildir — hiçbir site tam kopyalanamaz yapılamaz. Asıl direnç koddan değil, veri arşivi + avukat yetkisiyle elde edilen özel veri + otoriteden gelir (bkz. HENDEK). Kod gizleme ikincil katmandır.
+Her yeni sayfa/bileşen bu ilkeye uyar.
+
 ## İçerik ilkesi — cevap önce, dayanak sonra
 Sitedeki her içerik sayfası (rehber, havza, araç) başlıktan hemen sonra ~280 karakterlik ÖZ CEVAP bloğu taşır: ziyaretçinin (avukat/işadamı dahil) sorusunun cevabını 10 saniyede veren damıtılmış özet. Madde/tablo/detay ALTTA kalır; isteyen derine iner. Ziyaretçi metin duvarı okumaz. Bu blok aynı zamanda meta-description ve FAQPage/AI-arama alıntı cümlesi kaynağıdır. İçerik yalnız mevcut doğrulanmış metinden damıtılır; yeni hukuki iddia üretilmez. Bağlayıcı ilkedir.
 

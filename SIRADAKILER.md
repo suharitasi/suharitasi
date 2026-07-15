@@ -98,3 +98,10 @@
     ayda yeraltı suyu en çok azalan/toparlayan havza), (b) ayrı 'su
     nerede azalıyor/artıyor' değişim haritası. HENDEK FAZ 1 verisi
     kurulunca yapılır.
+28. KOPYALANMA DİRENCİ UYGULAMASI: (a) Astro build'e minify+obfuscate
+    (çalışmayı/perf bozmadan) + source-map kapatma; (b) Cloudflare
+    scraper koruması + rate-limit, arama/AI botları beyaz listede;
+    (c) ölçülü view-source caydırma. KANIT: build sonrası JS okunamaz +
+    source map yok teyidi; Googlebot/GPTBot hâlâ erişiyor testi;
+    Lighthouse ≥90 korundu. Uygulama sırası: mevcut görsel/veri işleri
+    sonrası, tek brief.
