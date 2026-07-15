@@ -9,6 +9,18 @@ Sahibi: Serdar — Arslan Hukuk Bürosu. Amaç: su hukuku alanında otorite konu
 - Şu an: "yakında" landing sayfası (index.html).
 - Sırada: MapLibre ile 2D interaktif Türkiye havza haritası (25 havza, hover'da dolum animasyonu, rezerv/tahsis/risk verisi), Astro ile SEO'lu içerik katmanı (mevzuat rehberleri, havza sayfaları), Three.js hero (Anadolu DEM'inden terrain, imleçle canlanan su damarları).
 
+## Kalıcı yetki kuralı (tam otomatik mod — kullanıcı onayı 2026-07-15)
+Hiçbir iş için ÖN ONAY SORULMAZ: commit + push otomatik, fazlar arası
+bekleme yok, dosya/komut izinleri otomatik. Yap, raporla, devam et;
+kullanıcı çıktıyı incelerken müdahale eder.
+TEK İSTİSNA — yalnız şunlar önce sorulur:
+- geri alınamaz işlem (veri silme vb.),
+- ücretli servis/abonelik başlatma,
+- DNS/domain değişikliği.
+Diğer her şey serbest. Not: "İş kapanış kuralı"ndaki KULLANICI ONAYI
+BEKLİYOR etiketi ön onay değil, canlı test kaydıdır — iş yapılıp
+push'lanır, etiket yalnız kuyrukta açık kalır.
+
 ## Tarayıcı öz-denetim protokolü
 Görsel/UI içeren HER işin bitti-tanımına şunlar dahildir (araç: Playwright
 MCP — .mcp.json'da kayıtlı; MCP oturumda yoksa arac/oz-denetim.mjs):
