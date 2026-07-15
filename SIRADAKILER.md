@@ -73,7 +73,16 @@
     soru-cevap bölümü yok (5'inde "Dikkat" tek paragraf, 4'ünde yok).
     Olmayan içeriği işaretlemek Google kurallarına aykırı. Rehberlere
     gerçek SSS bölümü eklenirse (Serdar'ın kalemi) şema da eklenir.
-24. Dalga 2 adayları (rapordan, onay bekler): bölgesel rapor sayfası
-    (TAKTİK-3), kuyu ruhsatı kontrol listesi PDF (TAKTİK-5), menü
-    vitrini (GÖRSEL-1a), 81 il programatik sayfa (TAKTİK-7), kalan 24
-    havzanın hukuk bloğu (içerik kullanıcıdan).
+24. Dalga 2+ adayları (rapordan, onay bekler): bölgesel rapor sayfası
+    (TAKTİK-3), kuyu ruhsatı kontrol listesi PDF (TAKTİK-5), 81 il
+    programatik sayfa (TAKTİK-7), kalan 24 havzanın hukuk bloğu
+    (içerik kullanıcıdan).
+25. Dalga 2 — menü vitrini + deneyim yenileme — KULLANICI ONAYI
+    BEKLİYOR (2026-07-15): tam ekran menü keşif yüzeyine dönüştü
+    (sol: 5 bölüm + alt-etiket; sağ vitrin: son 3 rehber + kanun son
+    durum + öne çıkan havza — tümü build-time otomatik, elle metin
+    yok); iki menü kodu tekilleşti (/harita/ artık src/pages/
+    harita.astro, ortak TamEkranMenu). Headless kanıt: 38/38 test
+    (ESC/focus trap/reduced-motion/mobil/kaydırma), kaynak→menü veri
+    eşlemesi 5/5, konsol 0, kırık link 0. Su simülasyonu GPU'suz
+    görüntülenemedi — nihai onay kullanıcının canlı menü gezintisi.

@@ -137,3 +137,13 @@
   Not: PDF metin çıkarımı görünürlük kanıtı DEĞİL (saydam metni de çıkarır);
   yük taşıyan ölçüt hesaplanmış opaklık.
 - AÇIK: bülten (Buttondown hesabı kullanıcıda), FAQPage (görünür SSS yok).
+
+## 2026-07-15 (Dalga 2: menü vitrini)
+- Tam ekran menü "5 çıplak link"ten keşif yüzeyine: sol bölümler +
+  alt-etiketler, sağ vitrin (son rehberler, kanun son durumu, öne çıkan
+  havza) — tümü build-time türetilir, elle metin yok (kanıt: kaynak→menü
+  eşlemesi 5/5). Kademeli giriş tek sekans (75ms), KAPAT belirginleşti.
+- İki menü kodu tekilleşti: /harita/ Astro sayfası oldu, ortak TamEkranMenu +
+  menu.js kullanıyor; sayfanın kendi görünümü aynen. Kod incelemesinde kendi
+  hatam yakalandı: transform'lu overlay içinde fixed katmanlar kaydırmada
+  kayardı — kaydırma iç sarmalayıcıya alındı, KAPAT sabitliği testle kanıtlı.

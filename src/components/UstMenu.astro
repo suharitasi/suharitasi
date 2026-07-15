@@ -1,7 +1,9 @@
 ---
-// Üst menü + tam ekran menü katmanı: landing hariç tüm içerik sayfalarında.
-// Overlay zemini: /s/su-sim.js (lazy, ilk açılışta); fallback statik derinlik
-// zemini CSS'te hazır. Davranış /s/menu.js'te.
+// Üst menü çubuğu: landing hariç tüm içerik sayfalarında.
+// Tam ekran katman ayrı bileşendedir (TamEkranMenu — /harita/ ile ortak);
+// davranış /s/menu.js'te.
+import TamEkranMenu from './TamEkranMenu.astro';
+
 const ogeler = [
   { ad: 'Harita', yol: '/harita/' },
   { ad: 'Havzalar', yol: '/havzalar/' },
@@ -36,22 +38,7 @@ const simdiki = Astro.url.pathname.endsWith('/')
   </nav>
 </header>
 
-<div id="sv-menu" class="sv-menu" role="dialog" aria-modal="true" aria-label="Site menüsü" hidden>
-  <div class="sv-menu-vinyet" aria-hidden="true"></div>
-  <nav class="sv-menu-icerik" aria-label="Tam ekran menü">
-    <ul>
-      {ogeler.map((o) => (
-        <li>
-          <a
-            href={o.yol}
-            aria-current={simdiki.startsWith(o.yol) ? 'page' : undefined}
-          >{o.ad}</a>
-        </li>
-      ))}
-    </ul>
-  </nav>
-  <button class="sv-menu-kapat" type="button">kapat</button>
-</div>
+<TamEkranMenu />
 
 <style>
   .ust {
@@ -148,145 +135,4 @@ const simdiki = Astro.url.pathname.endsWith('/')
     nav { height: auto; padding-top: 0.8rem; padding-bottom: 0.8rem; flex-wrap: wrap; }
   }
 
-  /* ---------- Tam ekran menü katmanı ---------- */
-
-  .sv-menu {
-    position: fixed;
-    inset: 0;
-    z-index: 90;
-    /* Fallback zemin: derinlik gradyanı + landing kontur ailesinden soluk
-       halkalar. WebGL yoksa / reduced-motion'da / FPS düşükse görünen budur;
-       boş düz lacivert hiçbir durumda görünmez. */
-    background:
-      repeating-radial-gradient(circle at 68% 30%,
-        rgba(79, 195, 208, 0.045) 0 1px, transparent 1px 84px),
-      repeating-radial-gradient(circle at 22% 78%,
-        rgba(79, 195, 208, 0.035) 0 1px, transparent 1px 110px),
-      radial-gradient(110vw 80vh at 50% 118%,
-        rgba(79, 195, 208, 0.10) 0%, rgba(79, 195, 208, 0) 55%),
-      radial-gradient(90vw 70vh at 50% -22%,
-        rgba(15, 45, 62, 0.9) 0%, rgba(4, 18, 31, 0) 68%),
-      #04121F;
-    opacity: 0;
-    transform: scale(0.98);
-    transition: opacity 0.36s ease, transform 0.36s ease;
-  }
-
-  .sv-menu:global(.sv-acik) {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  .sv-menu :global(.sv-menu-canvas) {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.9s ease;
-  }
-
-  .sv-menu :global(.sv-menu-canvas.sv-canli) { opacity: 1; }
-
-  /* Okunabilirlik vinyeti: merkez %0 – kenar %25 karartma; yalnız burada */
-  .sv-menu-vinyet {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: radial-gradient(120% 120% at 50% 50%,
-      rgba(4, 18, 31, 0) 40%, rgba(4, 18, 31, 0.25) 100%);
-  }
-
-  .sv-menu-icerik {
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .sv-menu-icerik ul {
-    display: block;
-    list-style: none;
-    text-align: center;
-    overflow: visible;
-  }
-
-  .sv-menu-icerik li {
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  /* Overlay girişi (360ms) bittikten sonra 75ms arayla belir */
-  .sv-menu:global(.sv-acik) .sv-menu-icerik li {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .sv-menu:global(.sv-acik) .sv-menu-icerik li:nth-child(1) { transition-delay: 0.36s; }
-  .sv-menu:global(.sv-acik) .sv-menu-icerik li:nth-child(2) { transition-delay: 0.435s; }
-  .sv-menu:global(.sv-acik) .sv-menu-icerik li:nth-child(3) { transition-delay: 0.51s; }
-  .sv-menu:global(.sv-acik) .sv-menu-icerik li:nth-child(4) { transition-delay: 0.585s; }
-  .sv-menu:global(.sv-acik) .sv-menu-icerik li:nth-child(5) { transition-delay: 0.66s; }
-
-  .sv-menu-icerik a {
-    display: inline-block;
-    padding: 0.55rem 1.2rem;
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(1.9rem, 5.2vw, 3.1rem);
-    line-height: 1.25;
-    color: #DCE9ED;
-    text-decoration: none;
-    transition: color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .sv-menu-icerik a:hover {
-    color: var(--akuamarin);
-    transform: translateX(7px);
-  }
-
-  .sv-menu-icerik a[aria-current="page"] {
-    color: var(--akuamarin);
-    border-bottom: 1px solid rgba(79, 195, 208, 0.55);
-  }
-
-  .sv-menu-icerik a:focus-visible {
-    outline: 2px solid var(--akuamarin);
-    outline-offset: 4px;
-  }
-
-  .sv-menu-kapat {
-    position: absolute;
-    top: 1.3rem;
-    right: clamp(1.25rem, 4vw, 2rem);
-    border: 0;
-    background: none;
-    padding: 0.4rem 0.2rem;
-    font-family: var(--sans);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: #8FA8B5;
-    cursor: pointer;
-    transition: color 0.2s ease;
-  }
-
-  .sv-menu-kapat:hover { color: #DCE9ED; }
-
-  .sv-menu-kapat:focus-visible {
-    outline: 2px solid var(--akuamarin);
-    outline-offset: 3px;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .sv-menu,
-    .sv-menu-icerik li,
-    .sv-menu-icerik a { transition: none; }
-    .sv-menu { transform: none; }
-    .sv-menu-icerik li { opacity: 1; transform: none; }
-  }
 </style>

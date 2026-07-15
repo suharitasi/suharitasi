@@ -1,0 +1,436 @@
+---
+// Tam ekran menü: navigasyon (sol) + vitrin (sağ) — keşif yüzeyi.
+// Vitrin içeriği ELLE YAZILMAZ: rehberler collection'dan, taslak-takibi
+// gövdesinden ve havza-veri.json'dan build-time türetilir; menü açılışında
+// ek istek yoktur. Davranış /s/menu.js'te; su simülasyonu zemini korunur.
+import { getCollection } from 'astro:content';
+import havzaVeri from '../../data/havza-veri.json';
+import taslakHam from '../content/su-kanunu/taslak-takibi.md?raw';
+import { ONE_CIKAN_HAVZA_NO } from '../data/menu';
+
+const ogeler = [
+  { ad: 'Harita', yol: '/harita/', not: 'Türkiye’nin su atlası' },
+  { ad: 'Havzalar', yol: '/havzalar/', not: '25 havzanın veri künyeleri' },
+  { ad: 'Rehberler', yol: '/rehberler/', not: 'kuyu ruhsatından ceza iptaline pratik hukuk' },
+  { ad: 'Su Kanunu', yol: '/su-kanunu/', not: 'mevzuat kütüphanesi ve taslak takibi' },
+  { ad: 'Hakkında', yol: '/hakkinda/', not: 'portalın yöntemi ve künyesi' },
+];
+
+const simdiki = Astro.url.pathname.endsWith('/')
+  ? Astro.url.pathname
+  : Astro.url.pathname + '/';
+
+// — (a) Son rehberler: tarihe göre en yeni 3 (eş tarihte ad sırası: deterministik)
+const sonRehberler = (await getCollection('rehberler'))
+  .sort(
+    (a, b) =>
+      b.data.tarih.valueOf() - a.data.tarih.valueOf() ||
+      a.id.localeCompare(b.id, 'tr')
+  )
+  .slice(0, 3)
+  .map((g) => ({ baslik: g.data.baslik, ozet: g.data.ozet, yol: `/rehberler/${g.id}/` }));
+
+// — (b) Su Kanunu son durum: taslak-takibi "Gelişmeler" bölümündeki EN YENİ
+//   tarihli kayıt. Kayıt biçimi: "**<tarih> — <başlık>.**". Sıraya güvenilmez;
+//   tarih ayrıştırılıp en büyüğü seçilir. Hiç kayıt bulunamazsa build DÜŞER —
+//   vitrin sessizce boş kalmaz.
+const AYLAR: Record<string, number> = {
+  ocak: 1, şubat: 2, mart: 3, nisan: 4, mayıs: 5, haziran: 6,
+  temmuz: 7, ağustos: 8, eylül: 9, ekim: 10, kasım: 11, aralık: 12,
+};
+const gelismelerBolumu = taslakHam.split(/^## Gelişmeler\s*$/m)[1]?.split(/^## /m)[0] ?? '';
+const kayitlar = [...gelismelerBolumu.matchAll(/\*\*([^*]*?\d{4}) — ([^*]+?)\*\*/g)]
+  .map((m) => {
+    const tarihMetni = m[1].trim();
+    const p = tarihMetni.toLocaleLowerCase('tr-TR').match(/(?:(\d{1,2})\s+)?(\p{L}+)\s+(\d{4})/u);
+    const deger = p
+      ? Number(p[3]) * 10000 + (AYLAR[p[2]] ?? 0) * 100 + Number(p[1] ?? 0)
+      : 0;
+    return { tarih: tarihMetni, baslik: m[2].trim().replace(/\.$/, ''), deger };
+  })
+  .filter((k) => k.deger > 0);
+if (kayitlar.length === 0) {
+  throw new Error(
+    'TamEkranMenu: taslak-takibi.md "Gelişmeler" bölümünde "**<tarih> — <başlık>**" ' +
+      'biçiminde kayıt bulunamadı; vitrin boş bırakılamaz.'
+  );
+}
+const kanunSon = kayitlar.reduce((a, b) => (b.deger > a.deger ? b : a));
+
+// — (c) Öne çıkan havza: no → havza-veri.json kaydı + collection'dan slug.
+//   Yanlış no build'i düşürür.
+const havzaKaydi = havzaVeri.havzalar.find((h) => h.no === ONE_CIKAN_HAVZA_NO);
+const havzaGirisi = (await getCollection('havzalar')).find(
+  (g) => g.data.no === ONE_CIKAN_HAVZA_NO
+);
+if (!havzaKaydi || !havzaGirisi) {
+  throw new Error(`TamEkranMenu: havza no "${ONE_CIKAN_HAVZA_NO}" bulunamadı (menu.ts).`);
+}
+const sayi = (n: number, ondalik: number) =>
+  n.toLocaleString('tr-TR', { minimumFractionDigits: ondalik, maximumFractionDigits: ondalik });
+const havzaSatiri = [
+  havzaKaydi.yuzeysuyuPotansiyeli_km3 != null &&
+    `yüzey suyu ${sayi(havzaKaydi.yuzeysuyuPotansiyeli_km3, 2)} km³/yıl`,
+  havzaKaydi.yasIsletmeRezervi_hm3 != null &&
+    `YAS rezervi ${sayi(havzaKaydi.yasIsletmeRezervi_hm3, 1)} hm³/yıl`,
+]
+  .filter(Boolean)
+  .join(' · ') + (havzaKaydi.yuzeysuyuYili ? ` (DSİ ${havzaKaydi.yuzeysuyuYili})` : '');
+const havza = {
+  ad: havzaKaydi.ad,
+  satir: havzaSatiri,
+  yol: `/havzalar/${havzaGirisi.id}/`,
+};
+
+// Kademeli giriş sırası: sol 5 link 0-4, vitrin öğeleri 5'ten devam eder.
+// CSS: gecikme = 0.36s + sıra × 75ms (menü açılış geçişi bitince başlar).
+let sira = 0;
+const kademe = () => ({ '--kademe': String(sira++) });
+---
+<div id="sv-menu" class="sv-menu" role="dialog" aria-modal="true" aria-label="Site menüsü" hidden>
+  <div class="sv-menu-vinyet" aria-hidden="true"></div>
+
+  <div class="sv-menu-kaydirici">
+  <div class="sv-menu-duzen">
+    <nav class="sv-menu-icerik" aria-label="Site bölümleri">
+      <ul>
+        {ogeler.map((o) => (
+          <li class="sv-kademe" style={kademe()}>
+            <a
+              href={o.yol}
+              aria-current={simdiki.startsWith(o.yol) ? 'page' : undefined}
+            >{o.ad}</a>
+            <span class="sv-alt-not" aria-hidden="true">{o.not}</span>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="sv-ayrac" aria-hidden="true"></div>
+
+    <nav class="sv-vitrin" aria-label="Öne çıkan içerik">
+      <section class="sv-vitrin-rehberler">
+        <h2 class="sv-vitrin-baslik sv-kademe" style={kademe()}>Son rehberler</h2>
+        <ul>
+          {sonRehberler.map((r) => (
+            <li class="sv-kademe" style={kademe()}>
+              <a href={r.yol}>
+                <span class="sv-vitrin-ad">{r.baslik}</span>
+                <span class="sv-vitrin-ozet">{r.ozet}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="sv-vitrin-kanun">
+        <h2 class="sv-vitrin-baslik sv-kademe" style={kademe()}>Su Kanunu — son durum</h2>
+        <p class="sv-kademe" style={kademe()}>
+          <a href="/su-kanunu/taslak-takibi/">
+            <span class="sv-vitrin-tarih">{kanunSon.tarih}</span>
+            <span class="sv-vitrin-ad">{kanunSon.baslik}</span>
+          </a>
+        </p>
+      </section>
+
+      <section class="sv-vitrin-havza">
+        <h2 class="sv-vitrin-baslik sv-kademe" style={kademe()}>Öne çıkan havza</h2>
+        <p class="sv-kademe" style={kademe()}>
+          <a href={havza.yol}>
+            <span class="sv-vitrin-ad">{havza.ad}</span>
+            <span class="sv-vitrin-ozet">{havza.satir}</span>
+          </a>
+        </p>
+      </section>
+    </nav>
+  </div>
+  </div>
+
+  <button class="sv-menu-kapat" type="button">kapat</button>
+</div>
+
+<style>
+  .sv-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    /* Fallback zemin: derinlik gradyanı + landing kontur ailesinden soluk
+       halkalar. WebGL yoksa / reduced-motion'da / FPS düşükse görünen budur;
+       boş düz lacivert hiçbir durumda görünmez. */
+    background:
+      repeating-radial-gradient(circle at 68% 30%,
+        rgba(79, 195, 208, 0.045) 0 1px, transparent 1px 84px),
+      repeating-radial-gradient(circle at 22% 78%,
+        rgba(79, 195, 208, 0.035) 0 1px, transparent 1px 110px),
+      radial-gradient(110vw 80vh at 50% 118%,
+        rgba(79, 195, 208, 0.10) 0%, rgba(79, 195, 208, 0) 55%),
+      radial-gradient(90vw 70vh at 50% -22%,
+        rgba(15, 45, 62, 0.9) 0%, rgba(4, 18, 31, 0) 68%),
+      #04121F;
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 0.36s ease, transform 0.36s ease;
+  }
+
+  .sv-menu:global(.sv-acik) {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* DİKKAT: .sv-menu'de transform var — içeride position:fixed KULLANILMAZ
+     (transform'lu ata fixed'i kendine bağlar). Sabit katmanlar absolute'tur;
+     kaydırma yalnız .sv-menu-kaydirici içindedir, bu yüzden canvas/vinyet/
+     kapat içerikle kaymaz. */
+  .sv-menu :global(.sv-menu-canvas) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+  }
+
+  .sv-menu :global(.sv-menu-canvas.sv-canli) { opacity: 1; }
+
+  /* Okunabilirlik vinyeti: merkez %0 – kenar %25 karartma; yalnız burada */
+  .sv-menu-vinyet {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(120% 120% at 50% 50%,
+      rgba(4, 18, 31, 0) 40%, rgba(4, 18, 31, 0.25) 100%);
+  }
+
+  /* Kaydırma katmanı: içerik ekrana sığmazsa yalnız bu sarmalayıcı kayar */
+  .sv-menu-kaydirici {
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ---------- Düzen: sol dar navigasyon + ayraç + sağ geniş vitrin ---------- */
+
+  .sv-menu-duzen {
+    position: relative;
+    min-height: 100%;
+    display: grid;
+    grid-template-columns: minmax(15rem, 2fr) 1px minmax(20rem, 3fr);
+    align-items: center;
+    gap: 0 clamp(2rem, 5vw, 4.5rem);
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: clamp(4.5rem, 10vh, 6rem) clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  /* Sol ile sağı bağlayan ince dikey su hattı */
+  .sv-ayrac {
+    align-self: stretch;
+    background: linear-gradient(180deg,
+      rgba(79, 195, 208, 0) 0%,
+      rgba(79, 195, 208, 0.22) 30%,
+      rgba(79, 195, 208, 0.22) 70%,
+      rgba(79, 195, 208, 0) 100%);
+  }
+
+  /* ---------- Kademeli giriş (sol linkler + vitrin, tek sekans) ---------- */
+
+  .sv-kademe {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .sv-menu:global(.sv-acik) .sv-kademe {
+    opacity: 1;
+    transform: translateY(0);
+    /* Overlay girişi (360ms) bittikten sonra 75ms arayla belir */
+    transition-delay: calc(0.36s + var(--kademe, 0) * 75ms);
+  }
+
+  /* ---------- Sol: bölümler ---------- */
+
+  .sv-menu-icerik ul { list-style: none; }
+
+  .sv-menu-icerik li + li { margin-top: clamp(0.9rem, 2.6vh, 1.5rem); }
+
+  .sv-menu-icerik a {
+    display: inline-block;
+    font-family: var(--serif, Georgia, serif);
+    font-weight: 500;
+    font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+    line-height: 1.2;
+    color: #DCE9ED;
+    text-decoration: none;
+    transition: color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .sv-menu-icerik a:hover {
+    color: var(--akuamarin, #4FC3D0);
+    transform: translateX(7px);
+  }
+
+  .sv-menu-icerik a[aria-current="page"] {
+    color: var(--akuamarin, #4FC3D0);
+    border-bottom: 1px solid rgba(79, 195, 208, 0.55);
+  }
+
+  .sv-menu-icerik a:focus-visible {
+    outline: 2px solid var(--akuamarin, #4FC3D0);
+    outline-offset: 4px;
+  }
+
+  .sv-alt-not {
+    display: block;
+    margin-top: 0.15rem;
+    font-family: var(--sans, system-ui, sans-serif);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: rgba(140, 168, 181, 0.62);
+  }
+
+  /* ---------- Sağ: vitrin ---------- */
+
+  .sv-vitrin {
+    position: relative;
+    font-family: var(--sans, system-ui, sans-serif);
+  }
+
+  /* Vitrin okunabilirlik katmanı: sim üstünde metin net kalsın diye çok
+     hafif yerel karartma — vinyet dilinde, yalnız bu kolonun arkasında. */
+  .sv-vitrin::before {
+    content: "";
+    position: absolute;
+    inset: -1.6rem -2rem;
+    pointer-events: none;
+    background: radial-gradient(100% 100% at 50% 50%,
+      rgba(4, 18, 31, 0.38) 0%, rgba(4, 18, 31, 0) 78%);
+  }
+
+  .sv-vitrin section { position: relative; }
+
+  .sv-vitrin section + section { margin-top: clamp(1.4rem, 3.4vh, 2.2rem); }
+
+  .sv-vitrin-baslik {
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #8FA8B5;
+    margin-bottom: 0.55rem;
+  }
+
+  .sv-vitrin ul { list-style: none; }
+
+  .sv-vitrin li + li { margin-top: 0.65rem; }
+
+  .sv-vitrin a {
+    display: block;
+    text-decoration: none;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .sv-vitrin a:hover { transform: translateY(-2px); }
+
+  .sv-vitrin a:focus-visible {
+    outline: 2px solid var(--akuamarin, #4FC3D0);
+    outline-offset: 4px;
+  }
+
+  .sv-vitrin-ad {
+    display: block;
+    font-family: var(--serif, Georgia, serif);
+    font-size: clamp(1.02rem, 1.5vw, 1.18rem);
+    font-weight: 500;
+    line-height: 1.35;
+    color: #DCE9ED;
+    transition: color 0.25s ease;
+  }
+
+  .sv-vitrin a:hover .sv-vitrin-ad { color: var(--akuamarin, #4FC3D0); }
+
+  .sv-vitrin-ozet {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: rgba(140, 168, 181, 0.75);
+    /* Uzun özet vitrini boğmasın: iki satırda kes */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .sv-vitrin-tarih {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--akuamarin, #4FC3D0);
+    margin-bottom: 0.2rem;
+  }
+
+  /* ---------- Kapat ---------- */
+
+  .sv-menu-kapat {
+    position: absolute;
+    top: 1.3rem;
+    right: clamp(1.25rem, 4vw, 2rem);
+    border: 0;
+    background: none;
+    padding: 0.4rem 0.2rem;
+    font-family: var(--sans, system-ui, sans-serif);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    /* Belirgin ama aynı dil: soluk gri yerine okunur köpük tonu */
+    color: #C9DBE2;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .sv-menu-kapat:hover { color: #FFFFFF; }
+
+  .sv-menu-kapat:focus-visible {
+    outline: 2px solid var(--akuamarin, #4FC3D0);
+    outline-offset: 3px;
+  }
+
+  /* ---------- Mobil: tek kolon, sade ---------- */
+
+  @media (max-width: 760px) {
+    .sv-menu-duzen {
+      grid-template-columns: 1fr;
+      gap: clamp(1.6rem, 4vh, 2.4rem) 0;
+      align-items: start;
+      align-content: center;
+      text-align: center;
+      padding-top: 4.5rem;
+    }
+
+    .sv-ayrac { display: none; }
+
+    .sv-alt-not { display: none; }
+
+    /* Dikey yük: mobilde vitrinden yalnız son rehberler kalır */
+    .sv-vitrin-kanun, .sv-vitrin-havza { display: none; }
+
+    .sv-vitrin::before { inset: -1rem; }
+
+    .sv-vitrin-ozet { display: none; }
+
+    .sv-menu-icerik li + li { margin-top: 0.75rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sv-menu,
+    .sv-kademe,
+    .sv-menu-icerik a,
+    .sv-vitrin a { transition: none; }
+    .sv-menu { transform: none; }
+    .sv-kademe { opacity: 1; transform: none; }
+  }
+</style>

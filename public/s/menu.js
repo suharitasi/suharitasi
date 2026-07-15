@@ -21,7 +21,12 @@ function kur() {
   let canvas = null;
   let kilitScroll = 0;
 
-  const disAlanlar = [document.querySelector('main'), document.querySelector('footer'), document.querySelector('header.ust')].filter(Boolean);
+  // Menü açıkken ekran okuyucudan saklanacak arka alanlar. İçerik sayfaları:
+  // main/footer/header; /harita/ gibi kendine özgü sayfalar öğelerini
+  // data-menu-dis ile işaretler — sayfa bazlı seçici listesi büyümez.
+  const disAlanlar = [
+    ...document.querySelectorAll('main, footer, header.ust, [data-menu-dis]'),
+  ];
 
   function odaklanabilir() {
     return overlay.querySelectorAll('a[href], button:not([disabled])');
@@ -132,8 +137,9 @@ function kur() {
     }, { passive: true });
   }
 
-  /* Menü öğesi hover: o anda imleç konumuna ekstra damla (imleç-su-menü bağı) */
-  overlay.querySelectorAll('nav a').forEach((a) => {
+  /* Menü öğesi hover: o anda imleç konumuna ekstra damla (imleç-su-menü bağı).
+     Vitrin linkleri dahil — keşif yüzeyinin tamamı suya dokunur. */
+  overlay.querySelectorAll('a[href]').forEach((a) => {
     a.addEventListener('pointerenter', (e) => {
       if (sim && sim.calisiyorMu()) {
         sim.damla(e.clientX / overlay.clientWidth, e.clientY / overlay.clientHeight, 0.15);
