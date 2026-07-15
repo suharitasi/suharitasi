@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import { readdir, writeFile } from 'node:fs/promises';
+import { readdir, writeFile, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { join, relative } from 'node:path';
 
@@ -19,6 +19,9 @@ function sitemapOlustur() {
             const yol = join(dizin, giris.name);
             if (giris.isDirectory()) await tara(yol);
             else if (giris.name === 'index.html') {
+              // noindex sayfalar (ör. /harita-pilot/) sitemap dışı kalır
+              const html = await readFile(yol, 'utf8');
+              if (/name=["']robots["'][^>]*noindex/i.test(html)) continue;
               const gorece = relative(kok, dizin).split('\\').join('/');
               urller.push(gorece === '' ? `${SITE}/` : `${SITE}/${gorece}/`);
             }

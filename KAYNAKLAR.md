@@ -124,6 +124,20 @@
   9 baskının tamamında mevcut.
 - rapor/kaynak-haritasi.md madde 5 "acil arşiv uyarısı" bu işle kapatıldı.
 
+## scroll-world motoru (pilot — /harita-pilot/)
+
+- Kaynak: github.com/oso95/scroll-world, `skills/scroll-world/references/
+  scrub-engine.js` (MIT, telif 2026 cyw). Pilotta bu motorun scroll-scrub
+  grameri (smoothstep, lingerEase, segment eşlemesi, bölüm-copy koreografisi,
+  route rail, rAF yumuşatma) `src/pages/harita-pilot.astro`'ya porta edildi.
+- Higgsfield / AI video / ücretli hiçbir adım kullanılmadı: motorun video
+  katmanı yerine tek onaylı görselden (HEDEF.png → /hedef-hero.v2.webp) CSS
+  kamera transformu sürülüyor. Sunucuda ffmpeg olmadığından ken-burns MP4
+  üretilemedi; CSS-only parallax yolu seçildi (near-sıfır ek ağırlık).
+- Lisans: MIT — atıf bu satır + sayfa başındaki yorum bloğuyla veriliyor.
+- Pilot tarihi: 2026-07-15. noindex; sitemap dışı (astro.config.mjs noindex
+  filtresi). Nihai görsel yargı kullanıcının canlı scroll testinde.
+
 ## SYGM havza koruma eylem planları
 
 - Giriş sayfası: https://www.tarimorman.gov.tr/SYGM/Sayfalar/Detay.aspx?SayfaId=6
