@@ -54,6 +54,9 @@ BEKLİYOR" olarak işaretlenir ve SIRADAKILER'de kullanıcı canlıda
 onaylayana kadar açık kalır. Headless kanıt = ön eleme; nihai kanıt =
 kullanıcının canlı testi.
 
+## İçerik ilkesi — cevap önce, dayanak sonra
+Sitedeki her içerik sayfası (rehber, havza, araç) başlıktan hemen sonra ~280 karakterlik ÖZ CEVAP bloğu taşır: ziyaretçinin (avukat/işadamı dahil) sorusunun cevabını 10 saniyede veren damıtılmış özet. Madde/tablo/detay ALTTA kalır; isteyen derine iner. Ziyaretçi metin duvarı okumaz. Bu blok aynı zamanda meta-description ve FAQPage/AI-arama alıntı cümlesi kaynağıdır. İçerik yalnız mevcut doğrulanmış metinden damıtılır; yeni hukuki iddia üretilmez. Bağlayıcı ilkedir.
+
 ## Kurallar
 - Her işin sonunda commit + push OTOMATİK yapılır; push için ayrıca
   onay sorulmaz (kullanıcı kararı, 2026-07-14).

@@ -86,3 +86,15 @@
     (ESC/focus trap/reduced-motion/mobil/kaydırma), kaynak→menü veri
     eşlemesi 5/5, konsol 0, kırık link 0. Su simülasyonu GPU'suz
     görüntülenemedi — nihai onay kullanıcının canlı menü gezintisi.
+26. 280 KARAKTER KATMANI: mevcut 9 rehber + havza sayfalarına geriye
+    dönük ÖZ CEVAP bloğu eklenir (yukarıdaki ilkeye göre). Örnek/
+    kuyu-ruhsati: 'Su temini için kuyu açmadan önce DSİ'den belge şart
+    (167 s.K. m.8). Üç belge: arama, kullanma, ıslah-tadil. Başvuru DSİ
+    Bölge Müdürlüğü'ne, cevap süresi bir ay, belgeler harçtan muaf.
+    Belgesiz kuyu: idari para cezası + kuyu kapatma.'
+27. SU NABZI KATMANI (GRACE): kaynak keşfinde doğrulanan UNL GRACE
+    haftalık yeraltı suyu verisinden (2003–13.07.2026, kayıtsız açık,
+    TR-IP yok) — (a) menü/landing'e tek satır canlı gösterge (son 12
+    ayda yeraltı suyu en çok azalan/toparlayan havza), (b) ayrı 'su
+    nerede azalıyor/artıyor' değişim haritası. HENDEK FAZ 1 verisi
+    kurulunca yapılır.
