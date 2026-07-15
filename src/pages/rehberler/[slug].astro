@@ -3,6 +3,9 @@ import { getCollection, render } from 'astro:content';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import IlKurumTablosu from '../../components/IlKurumTablosu.astro';
+import YazarKutusu from '../../components/YazarKutusu.astro';
+import IlgiliRehberler from '../../components/IlgiliRehberler.astro';
+import { YAZAR, OG_GORSEL } from '../../data/site';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('rehberler');
@@ -11,11 +14,49 @@ export async function getStaticPaths() {
 
 const { giris } = Astro.props;
 const { Content } = await render(giris);
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL(`/rehberler/${giris.id}/`, Astro.site).href;
+const tarihISO = giris.data.tarih.toISOString();
+
+// Article: YMYL (hukuk) içerikte yazar kimliği en güçlü E-E-A-T sinyali.
+// FAQPage bilinçli olarak YOK: rehberlerde görünür soru-cevap bölümü
+// bulunmuyor; olmayan içeriği işaretlemek Google yapılandırılmış veri
+// kurallarına aykırıdır. Rehberlere gerçek SSS bölümü eklenirse eklenir.
+const sema = [
+  {
+    '@type': 'Article',
+    headline: giris.data.baslik,
+    description: giris.data.ozet,
+    datePublished: tarihISO,
+    dateModified: tarihISO,
+    inLanguage: 'tr-TR',
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+    image: new URL(OG_GORSEL, Astro.site).href,
+    author: {
+      '@type': 'Person',
+      '@id': `${kok}hakkinda/#yazar`,
+      name: YAZAR.adSade,
+      jobTitle: YAZAR.unvan,
+      url: YAZAR.buroUrl,
+      worksFor: { '@type': 'Organization', name: YAZAR.buro, url: YAZAR.buroUrl },
+    },
+    publisher: { '@id': `${kok}#kurum` },
+  },
+];
 ---
-<Sayfa baslik={giris.data.baslik} aciklama={giris.data.ozet}>
-  <SayfaBasi etiket="Rehber" baslik={giris.data.baslik} ozet={giris.data.ozet} />
+<Sayfa baslik={giris.data.baslik} aciklama={giris.data.ozet} sema={sema}>
+  <SayfaBasi
+    etiket="Rehber"
+    baslik={giris.data.baslik}
+    ozet={giris.data.ozet}
+    tarih={giris.data.tarih}
+    yazarli
+  />
   <div class="icerik">
     <Content />
   </div>
   {giris.data.ilKurumTablosu && <IlKurumTablosu />}
+  <YazarKutusu />
+  <IlgiliRehberler slugler={giris.data.ilgili} haric={giris.id} />
 </Sayfa>

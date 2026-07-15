@@ -1,0 +1,59 @@
+---
+// Sayfa sonu yazar kutusu: E-E-A-T kimlik sinyali.
+// TBB uyumu: nesnel kimlik + erişim bilgisi; hizmet vaadi veya davet cümlesi
+// içermez ("bize ulaşın", "dava alırız" vb. bu kutuya asla girmez).
+import { YAZAR } from '../data/site';
+---
+<aside class="yazar-kutusu">
+  <p class="yazar-etiket">Bu rehberi hazırlayan</p>
+  <p class="yazar-ad">{YAZAR.ad}</p>
+  <p class="yazar-bio">{YAZAR.bio}</p>
+  <p class="yazar-baglantilar">
+    <a href={YAZAR.buroUrl} target="_blank" rel="noopener">{YAZAR.buro}</a>
+    <span aria-hidden="true">·</span>
+    <a href="/hakkinda/">Portal hakkında</a>
+  </p>
+</aside>
+
+<style>
+  .yazar-kutusu {
+    margin-top: 2.8rem;
+    padding: 1.3rem 1.4rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-left: 3px solid var(--su-400);
+  }
+
+  .yazar-etiket {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+
+  .yazar-ad {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-top: 0.35rem;
+  }
+
+  .yazar-bio {
+    margin-top: 0.5rem;
+    font-size: 0.92rem;
+    color: var(--metin-soluk);
+    max-width: 62ch;
+  }
+
+  .yazar-baglantilar {
+    margin-top: 0.7rem;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .yazar-baglantilar span { color: var(--cizgi); }
+</style>

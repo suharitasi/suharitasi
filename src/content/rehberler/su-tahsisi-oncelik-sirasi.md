@@ -2,6 +2,8 @@
 baslik: "Su tahsisinde öncelik sırası ve tahsis kriterleri"
 ozet: "DSİ'ye su tahsis başvurusu nasıl yapılır, talepler hangi ölçütlerle değerlendirilir: Su Tahsisleri Hakkında Yönetmelik m.8-10 ve Yeraltı Suları Tüzüğü m.15'teki kullanım öncelik sıralaması (içme, temizlik, hayvan sulaması, zirai sulama, sanayi, sportif tesisler)."
 tarih: 2026-07-14
+kume: surec
+ilgili: [kuyu-ruhsati, kaynak-suyu-kiralama, yeralti-suyu-isletme-sahasi]
 ---
 
 Kaynak, akarsu, yeraltı suyu, baraj, göl ve gölet gibi su
@@ -98,7 +100,3 @@ almamaktadır; tahsisle bağlantılı belge uyuşmazlıkları için
 [kuyu belgesi ret ve iptal davaları](/rehberler/kuyu-belgesi-iptal-davalari/)
 rehberine bakınız.
 
----
-
-Hukuki içerik [Av. Serdar Arslan (Arslan Hukuk Bürosu)](https://arslanhukuk.tr)
-tarafından hazırlanmaktadır.

@@ -2,6 +2,8 @@
 baslik: "Jeotermal ruhsat: arama, işletme ve uyuşmazlıklar"
 ozet: "5686 sayılı Kanun kapsamında jeotermal kaynak ve doğal mineralli su ruhsatları: arama ruhsatında öncelik hakkı, işletme ruhsatına zamanında başvuru zorunluluğu, 30 yıllık işletme süresi ve iptal-ihale mekanizması."
 tarih: 2026-07-14
+kume: surec
+ilgili: [kuyu-ruhsati, kaynak-suyu-kiralama, su-tahsisi-oncelik-sirasi]
 ---
 
 Jeotermal kaynaklar ve doğal mineralli sular Devletin hüküm ve
@@ -106,7 +108,3 @@ Karar künyeleri yayın öncesi doğrulama sürecindedir.
 Bu iki karar birlikte, 5686 uyuşmazlıklarında hem geçiş rejiminin hem
 yetki unsurunun belirleyici olduğunu gösterir.
 
----
-
-Hukuki içerik [Av. Serdar Arslan (Arslan Hukuk Bürosu)](https://arslanhukuk.tr)
-tarafından hazırlanmaktadır.

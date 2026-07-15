@@ -4,12 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Su Haritası — Su, yerin altında konuşur.</title>
-<meta name="description" content="Türkiye'nin su verisi, havzaları ve su mevzuatı — tek haritada. Yakında.">
+<meta name="description" content="Türkiye'nin 25 su havzası: DSİ verisi, kuyu ruhsatı ve su mevzuatı rehberleri, Su Kanunu taslak takibi — tek portalda.">
+<link rel="canonical" href="https://suharitasi.com/">
 <meta property="og:title" content="su haritası — Türkiye'nin su verisi ve mevzuatı">
-<meta property="og:description" content="Türkiye'nin su verisi, havzaları ve su mevzuatı — tek haritada. Yakında.">
+<meta property="og:description" content="Türkiye'nin 25 su havzası: DSİ verisi, kuyu ruhsatı ve su mevzuatı rehberleri, Su Kanunu taslak takibi — tek portalda.">
 <meta property="og:url" content="https://suharitasi.com">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Su Haritası">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://suharitasi.com/og-suharitasi.v1.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Su Haritası — Türkiye'nin su verisi ve mevzuatı">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://suharitasi.com/og-suharitasi.v1.png">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,12 +163,52 @@
     padding: clamp(1.5rem, 4vw, 3rem);
   }
 
+  /* Üst şerit: marka + bölüm linkleri. Sahnenin üstünde yüzer, zemin
+     eklemez — gece denizi kompozisyonu bozulmaz. */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
   .marka {
     font-size: 0.72rem;
     font-weight: 500;
     letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--metin-soluk);
+  }
+
+  .ust-nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.9rem, 2.2vw, 1.6rem);
+    flex-wrap: wrap;
+  }
+
+  .ust-nav a {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    text-decoration: none;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid transparent;
+    white-space: nowrap;
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .ust-nav a:hover {
+    color: var(--kopuk);
+    border-bottom-color: rgba(79, 195, 208, 0.5);
+  }
+
+  .ust-nav a:focus-visible {
+    outline: 2px solid var(--akuamarin);
+    outline-offset: 3px;
   }
 
   main {
@@ -197,58 +245,94 @@
     max-width: 44ch;
   }
 
-  .ayrac {
+  /* Üç kapı: "Yakında" rozetinin yerini alan canlı girişler. Bakır ayraç
+     dili korunur — kapı sırasının iki yanında eriyen çizgiler durur. */
+  .kapilar {
     margin-top: clamp(2.6rem, 6vh, 4rem);
     display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    /* keşfet bağlantısının çapası; kompozisyona yükseklik eklemez */
+    align-items: stretch;
+    justify-content: center;
+    gap: clamp(0.6rem, 2vw, 1.4rem);
+    flex-wrap: wrap;
     position: relative;
   }
 
-  .ayrac::before,
-  .ayrac::after {
+  .kapilar::before,
+  .kapilar::after {
     content: "";
+    align-self: center;
     display: block;
-    width: clamp(3rem, 9vw, 6.5rem);
+    width: clamp(2rem, 7vw, 5rem);
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--bakir));
     opacity: 0.75;
+    flex: none;
   }
 
-  .ayrac::after {
+  .kapilar::after {
     background: linear-gradient(270deg, transparent, var(--bakir));
   }
 
-  .ayrac span {
-    font-size: 0.74rem;
+  .kapilar a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.7rem 1.15rem;
+    text-decoration: none;
+    border: 1px solid rgba(79, 195, 208, 0.34);
+    border-radius: 2px;
+    /* Zemin yeterince koyu olmalı: akan su damarları kapının içinden geçip
+       alt etiketi kesiyordu. Derin su rengi korunur, okunabilirlik kazanılır. */
+    background: rgba(5, 22, 36, 0.82);
+    transition: border-color 0.25s ease, background-color 0.25s ease,
+      transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @supports (backdrop-filter: blur(1px)) {
+    .kapilar a {
+      background: rgba(5, 22, 36, 0.62);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+    }
+  }
+
+  .kapilar a:hover {
+    border-color: var(--akuamarin);
+    background: rgba(14, 50, 71, 0.9);
+    transform: translateY(-2px);
+  }
+
+  .kapilar a:focus-visible {
+    outline: 2px solid var(--akuamarin);
+    outline-offset: 3px;
+  }
+
+  .kapi-ad {
+    font-size: 0.76rem;
     font-weight: 500;
-    letter-spacing: 0.42em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--metin);
-    /* Son harfin aralığı sözcüğü sağa itmesin */
-    margin-right: -0.42em;
+    margin-right: -0.2em;
   }
 
-  /* Akış dışında durur: ortalanmış kolonun dengesini bozmaz */
-  .kesfet {
-    position: absolute;
-    top: calc(100% + 1.15rem);
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-size: 0.8rem;
-    letter-spacing: 0.14em;
+  .kapi-not {
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
     color: var(--metin-soluk);
-    text-decoration: none;
-    transition: color 0.25s ease;
   }
 
-  .kesfet:hover { color: var(--kopuk); }
+  .kapilar a:hover .kapi-not { color: var(--kopuk); }
 
-  .kesfet:focus-visible {
-    outline: 2px solid var(--akuamarin);
-    outline-offset: 4px;
+  @media (max-width: 560px) {
+    /* Dar ekranda yan çizgiler kapıları sıkıştırmasın */
+    .kapilar::before, .kapilar::after { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kapilar a { transition: none; }
+    .kapilar a:hover { transform: none; }
   }
 
   footer {
@@ -358,6 +442,11 @@
     animation: belir 0.5s 0.15s cubic-bezier(0.33, 1, 0.68, 1) both;
   }
 
+  /* Nav markadan hemen sonra: üst şerit tek hamlede kurulur */
+  body.giris .ust-nav {
+    animation: belir 0.6s 0.28s cubic-bezier(0.33, 1, 0.68, 1) both;
+  }
+
   /* Dalga ve damar çizgileri başlıktan hemen önce soluk belirir */
   body.giris .dalgalar,
   body.giris .damarlar {
@@ -368,13 +457,19 @@
     animation: metin-yuksel 0.6s 1.25s cubic-bezier(0.33, 1, 0.68, 1) both;
   }
 
-  body.giris .ayrac {
+  /* Kapılar, eski ayracın yerinde ve onun zamanlamasında belirir; ardından
+     üç kapı 90ms arayla sırayla oturur (sekans korunur, hız değişmez). */
+  body.giris .kapilar {
     animation: metin-yuksel 0.6s 1.55s cubic-bezier(0.33, 1, 0.68, 1) both;
   }
 
-  body.giris .kesfet {
-    animation: metin-yuksel 0.6s 1.68s cubic-bezier(0.33, 1, 0.68, 1) both;
+  body.giris .kapilar a {
+    animation: metin-yuksel 0.5s cubic-bezier(0.33, 1, 0.68, 1) both;
   }
+
+  body.giris .kapilar a:nth-of-type(1) { animation-delay: 1.68s; }
+  body.giris .kapilar a:nth-of-type(2) { animation-delay: 1.77s; }
+  body.giris .kapilar a:nth-of-type(3) { animation-delay: 1.86s; }
 
   body.giris footer {
     animation: belir 0.8s 1.75s ease-out both;
@@ -429,13 +524,33 @@
   <div class="sahne">
     <header>
       <span class="marka">Su Haritası</span>
+      <nav class="ust-nav" aria-label="Site menüsü">
+        <a href="/harita/">Harita</a>
+        <a href="/havzalar/">Havzalar</a>
+        <a href="/rehberler/">Rehberler</a>
+        <a href="/su-kanunu/">Su Kanunu</a>
+        <a href="/hakkinda/">Hakkında</a>
+      </nav>
     </header>
 
     <main>
       <h1>Su, yerin altında <em>konuşur.</em></h1>
       <div class="imza-damar" aria-hidden="true"></div>
       <p class="alt-metin">Türkiye'nin su verisi, havzaları ve su mevzuatı — tek haritada.</p>
-      <div class="ayrac"><span>Yakında</span><a class="kesfet" href="/harita/">keşfet →</a></div>
+      <nav class="kapilar" aria-label="Portal bölümleri">
+        <a href="/harita/">
+          <span class="kapi-ad">Harita</span>
+          <span class="kapi-not">havza atlası</span>
+        </a>
+        <a href="/rehberler/">
+          <span class="kapi-ad">Rehberler</span>
+          <span class="kapi-not">mevzuat rehberleri</span>
+        </a>
+        <a href="/su-kanunu/">
+          <span class="kapi-ad">Su Kanunu</span>
+          <span class="kapi-not">taslak takibi</span>
+        </a>
+      </nav>
     </main>
 
     <footer>

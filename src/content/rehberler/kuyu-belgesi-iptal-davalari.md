@@ -2,6 +2,8 @@
 baslik: "Kuyu belgesi ret ve iptal davaları: DSİ işlemlerine karşı yargı yolu"
 ozet: "DSİ'nin arama veya kullanma belgesi başvurusunu reddetmesi ya da mevcut belgeyi iptal etmesi halinde iptal davasının eksenleri: sebep unsuru, kazanılmış hak, idari yetki ve teknik değerlendirme zorunluluğu."
 tarih: 2026-07-14
+kume: uyusmazlik
+ilgili: [kuyu-ruhsati, ruhsatsiz-kuyu-cezalari, su-tahsisi-oncelik-sirasi]
 ---
 
 DSİ'nin belge başvurusunu reddetmesi veya mevcut belgeyi iptal etmesi
@@ -73,7 +75,3 @@ Karar künyeleri yayın öncesi doğrulama sürecindedir.
   çevredeki kaynak sularına etkisi bakımından teknik değerlendirme
   yapılmalıdır; yalnızca soyut gerekçeyle işlem tesis edilemez.
 
----
-
-Hukuki içerik [Av. Serdar Arslan (Arslan Hukuk Bürosu)](https://arslanhukuk.tr)
-tarafından hazırlanmaktadır.

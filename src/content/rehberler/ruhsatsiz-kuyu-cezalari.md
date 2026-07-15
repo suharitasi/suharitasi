@@ -2,6 +2,8 @@
 baslik: "Ruhsatsız kuyu açmanın ve belge dışı su kullanmanın cezaları"
 ozet: "Belgesiz kuyu açmanın, kasten yanlış bilgi vermenin ve belge şartlarına aykırı su kullanmanın yaptırımları: 167 sayılı Kanun m.18 uyarınca idari para cezası ve kuyu kapatma; cezayı mahallî mülkî amir verir."
 tarih: 2026-07-14
+kume: uyusmazlik
+ilgili: [kuyu-ruhsati, kuyu-belgesi-iptal-davalari, yeralti-suyu-isletme-sahasi]
 ---
 
 Ruhsatsız kuyu iki ayrı yoldan yaptırıma yol açar: ya kuyu baştan
@@ -86,7 +88,3 @@ Ortak çizgi: ruhsatsız veya izin aşımı kullanımlar yaptırımsız kalmaz;
 ancak yaptırımın dayanağı ve yetkili idare doğru kurulmadığında işlem
 iptal edilebilir.
 
----
-
-Hukuki içerik [Av. Serdar Arslan (Arslan Hukuk Bürosu)](https://arslanhukuk.tr)
-tarafından hazırlanmaktadır.

@@ -1,0 +1,94 @@
+---
+// Sayfa sonu "İlgili rehberler": okuru çıkmaz sokakta bırakmayan tek blok.
+// Slug'lar derleme sırasında doğrulanır — olmayan slug build'i düşürür,
+// sessizce kaybolmaz.
+import { getCollection } from 'astro:content';
+
+interface Props {
+  slugler: string[];
+  // Kendi sayfasının slug'ı: yanlışlıkla kendine link verilmesini engeller.
+  haric?: string;
+}
+
+const { slugler, haric } = Astro.props;
+const hepsi = await getCollection('rehberler');
+
+const kartlar = slugler
+  .filter((s) => s !== haric)
+  .map((s) => {
+    const g = hepsi.find((r) => r.id === s);
+    if (!g) {
+      throw new Error(
+        `IlgiliRehberler: "${s}" adlı rehber yok (kaynak: ${haric ?? 'bilinmiyor'}).`
+      );
+    }
+    return g;
+  });
+---
+{kartlar.length > 0 && (
+  <nav class="ilgili" aria-label="İlgili rehberler">
+    <h2>İlgili rehberler</h2>
+    <ul>
+      {kartlar.map((g) => (
+        <li>
+          <a href={`/rehberler/${g.id}/`}>
+            <span class="ilgili-baslik">{g.data.baslik}</span>
+            <span class="ilgili-ozet">{g.data.ozet}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
+
+<style>
+  .ilgili { margin-top: 2.8rem; }
+
+  .ilgili h2 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.9rem;
+  }
+
+  .ilgili ul { list-style: none; }
+
+  .ilgili li + li { border-top: 1px solid var(--cizgi); }
+
+  .ilgili a {
+    display: block;
+    padding: 0.95rem 0.4rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .ilgili a:hover { transform: translateX(4px); }
+
+  .ilgili-baslik {
+    display: block;
+    font-family: var(--serif);
+    font-size: 1.12rem;
+    color: var(--baglanti);
+  }
+
+  .ilgili a:hover .ilgili-baslik { text-decoration: underline; }
+
+  .ilgili-ozet {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--metin-soluk);
+    /* Özetler uzun; iki satırda kes — blok listesi ritmi bozulmasın. */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ilgili a { transition: none; }
+    .ilgili a:hover { transform: none; }
+  }
+</style>

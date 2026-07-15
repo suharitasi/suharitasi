@@ -3,6 +3,8 @@ baslik: "Kuyu ruhsatı: yeraltı suyu arama, kullanma ve ıslah-tadil belgeleri"
 ozet: "167 sayılı Yeraltı Suları Hakkında Kanun uyarınca kuyu açmadan önce alınması zorunlu arama belgesi, suyu kullanmak için gereken kullanma belgesi ve mevcut kuyuya müdahale için ıslah-tadil belgesi: kimden, hangi belgelerle, hangi sürede alınır."
 tarih: 2026-07-14
 ilKurumTablosu: true
+kume: surec
+ilgili: [ruhsatsiz-kuyu-cezalari, kuyu-belgesi-iptal-davalari, su-tahsisi-oncelik-sirasi]
 ---
 
 Türkiye'de yeraltı suyu, kamu yararına ait sulardandır; arazinize sahip
@@ -150,7 +152,3 @@ Karar künyeleri yayın öncesi doğrulama sürecindedir.
 - Danıştay 8. Daire 2022/3005 E., 2022/3470 K. — 167'nin arama belgesi
   mekanizması yeraltı suyu rejiminin çekirdeğidir.
 
----
-
-Hukuki içerik [Av. Serdar Arslan (Arslan Hukuk Bürosu)](https://arslanhukuk.tr)
-tarafından hazırlanmaktadır.

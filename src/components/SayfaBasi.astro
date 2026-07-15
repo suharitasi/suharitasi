@@ -1,14 +1,57 @@
 ---
+// Sayfa başlığı + su hattı. Rehberlerde başlığın hemen altına künye satırı
+// (tarih + hukuki içeriği hazırlayan) düşer: E-E-A-T kimlik sinyali ilk
+// ekranda görünür olur, sayfanın dibinde kalmaz.
+import { YAZAR } from '../data/site';
+
 interface Props {
   etiket?: string;
   baslik: string;
   ozet?: string;
+  tarih?: Date;
+  // true ise "Hukuki içerik: Av. Serdar Arslan" satırı gösterilir.
+  yazarli?: boolean;
 }
-const { etiket, baslik, ozet } = Astro.props;
+
+const { etiket, baslik, ozet, tarih, yazarli } = Astro.props;
+
+const tarihYaz = (t: Date) =>
+  t.toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
 <div class="sayfa-basi">
   {etiket && <p class="sayfa-etiket">{etiket}</p>}
   <h1>{baslik}</h1>
+  {(tarih || yazarli) && (
+    <p class="sayfa-kunye">
+      {tarih && (
+        <span>
+          Güncelleme: <time datetime={tarih.toISOString().slice(0, 10)}>{tarihYaz(tarih)}</time>
+        </span>
+      )}
+      {tarih && yazarli && <span class="kunye-ayrac" aria-hidden="true">·</span>}
+      {yazarli && (
+        <span>
+          Hukuki içerik: <a href="/hakkinda/">{YAZAR.ad}</a>
+        </span>
+      )}
+    </p>
+  )}
   <hr class="su-hatti" aria-hidden="true" />
   {ozet && <p class="sayfa-ozet">{ozet}</p>}
 </div>
+
+<style>
+  .sayfa-kunye {
+    margin-top: 0.75rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    color: var(--metin-soluk);
+  }
+
+  .sayfa-kunye a { color: var(--baglanti); }
+
+  .kunye-ayrac { color: var(--cizgi); }
+</style>

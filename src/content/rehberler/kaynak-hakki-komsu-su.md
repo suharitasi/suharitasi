@@ -2,6 +2,8 @@
 baslik: "Kaynak hakkı, mecra irtifakı ve komşu parselden su alma"
 ozet: "TMK 718 ve 756 çerçevesinde kaynak üzerindeki hak, yeraltı suyunun kamu suyu niteliği ve Yeraltı Suları Tüzüğü m.16 uyarınca komşu arazideki yeraltı suyundan şartlı yararlanma."
 tarih: 2026-07-14
+kume: uyusmazlik
+ilgili: [kaynak-suyu-kiralama, kuyu-ruhsati, yeralti-suyu-isletme-sahasi]
 ---
 
 Arazinizden kaynak çıkıyorsa kaynak arazinin bütünleyici parçasıdır ve
@@ -93,7 +95,3 @@ Karar künyeleri yayın öncesi doğrulama sürecindedir.
   önlenmesi, ecrimisil, eski hale getirme ve kal taleplerinde TMK 718
   ve 756'nın uygulama alanı.
 
----
-
-Hukuki içerik [Av. Serdar Arslan (Arslan Hukuk Bürosu)](https://arslanhukuk.tr)
-tarafından hazırlanmaktadır.

@@ -124,3 +124,16 @@
   claude-seo (11k★) ~/.claude/skills/ altına kuruldu ve doğrulandı.
 - 3 persona tanımlandı, 11 sayfa canlıda tarandı (0 hata, 0 kırık link),
   rapor/pazarlama-danismanligi.md yazıldı — salt analiz, site değişmedi.
+
+## 2026-07-15 (Dalga 1: pazarlama raporu uygulaması)
+- Landing çıkmaz sokaktan çıktı: üst nav + üç kapı; "Yakında" kalktı,
+  sahne/koreografi korundu (kapı zemini damarlar metni kesiyordu, koyultuldu).
+- E-E-A-T: künye satırı, yazar kutusu, Article/Person/Breadcrumb/Organization/
+  WebSite JSON-LD (130 nesne, schema.org sözlüğüne karşı doğrulandı), og:image
+  (marka fontlarıyla Playwright'ta üretildi, arac/og-uret.mjs).
+- Rehber ağı: ilgili rehberler + süreç/uyuşmazlık kümeleri; Sakarya hukuk
+  bloğu pilotu (havzaya özgü kısıt: doğrulanmadı — uydurulmadı).
+- Yazdırma düzeltmesi kanıtlandı: print medyasında gizli .sv-reveal = 0/36.
+  Not: PDF metin çıkarımı görünürlük kanıtı DEĞİL (saydam metni de çıkarır);
+  yük taşıyan ölçüt hesaplanmış opaklık.
+- AÇIK: bülten (Buttondown hesabı kullanıcıda), FAQPage (görünür SSS yok).

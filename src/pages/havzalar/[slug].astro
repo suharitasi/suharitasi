@@ -9,9 +9,27 @@ export async function getStaticPaths() {
   return girisler.map((g) => ({ params: { slug: g.id }, props: { giris: g } }));
 }
 
+const tumRehberler = await getCollection('rehberler');
+
 const { giris } = Astro.props;
 const { Content } = await render(giris);
 const k = giris.data.kunye;
+
+// Boş künye alanı "veri yok (14.07.2026)" olarak işaretlenir — Sakarya'nın
+// tahsis alanındaki mevcut kalıpla aynı. Statik sitede hiçbir şey
+// "yükleniyor" olamaz; dürüst dil tek biçim (rapor KOD-6).
+const [yy, aa, gg] = ilKurum.derlemeTarihi.split('-');
+const derleme = `${gg}.${aa}.${yy}`;
+
+// "Bu havzada hukuki durum" bloğu: yalnız frontmatter'ında hukuk alanı olan
+// havzalarda çıkar (şu an Sakarya pilotu). Rehber slug'ları derlemede
+// doğrulanır — kırık slug build'i düşürür, sessizce kaybolmaz.
+const hukuk = giris.data.hukuk;
+const hukukRehberleri = (hukuk?.rehberler ?? []).map((s) => {
+  const r = tumRehberler.find((x) => x.id === s);
+  if (!r) throw new Error(`havza "${giris.id}" hukuk.rehberler: "${s}" adlı rehber yok.`);
+  return r;
+});
 
 const alanlar = [
   { ad: 'Yıllık ortalama su potansiyeli', deger: k.yillikPotansiyel },
@@ -44,7 +62,7 @@ const ilSatirlari = (havzaIl?.iller ?? []).map((il) => ({
         <dd>
           {a.deger
             ? <Fragment set:html={a.deger} />
-            : <span class="veri-yok">veri yükleniyor</span>}
+            : <span class="veri-yok">veri yok ({derleme})</span>}
         </dd>
       </div>
     ))}
@@ -53,6 +71,40 @@ const ilSatirlari = (havzaIl?.iller ?? []).map((il) => ({
   <div class="icerik">
     <Content />
   </div>
+
+  {hukuk && (
+    <section class="hukuk">
+      <h2>Bu havzada hukuki durum</h2>
+
+      <div class="hukuk-govde" set:html={hukuk.cerceve} />
+
+      <div class="hukuk-kisit">
+        <p class="hukuk-alt-baslik">Havzaya özgü kısıtlar</p>
+        {hukuk.kisitlar
+          ? <Fragment set:html={hukuk.kisitlar} />
+          : (
+            <p class="veri-yok">
+              Havzaya özgü kısıt verisi: doğrulanmadı ({derleme}). Kapalı havza
+              ilanı, kuyu derinliği sınırı veya çekim kısıtı gibi havza bazlı
+              kararlar resmî kaynakta kamuya açık ve derli biçimde
+              yayımlanmadığından bu alan boş bırakılmıştır; doğrulanmamış bilgi
+              yazılmaz.
+            </p>
+          )}
+      </div>
+
+      {hukukRehberleri.length > 0 && (
+        <nav class="hukuk-rehberler" aria-label="Havzayla ilgili rehberler">
+          <p class="hukuk-alt-baslik">Bu havzada işinize yarayacak rehberler</p>
+          <ul>
+            {hukukRehberleri.map((r) => (
+              <li><a href={`/rehberler/${r.id}/`}>{r.data.baslik}</a></li>
+            ))}
+          </ul>
+        </nav>
+      )}
+    </section>
+  )}
 
   {ilSatirlari.length > 0 && (
     <section class="il-kurum">
@@ -120,6 +172,63 @@ const ilSatirlari = (havzaIl?.iller ?? []).map((il) => ({
   @media (max-width: 560px) {
     .kunye-satir { grid-template-columns: 1fr; gap: 0.1rem; }
   }
+
+  /* Bu havzada hukuki durum: veriyle hukukun aynı ekranda buluştuğu blok
+     (BRIEF). Künyeyle aynı kart dilini kullanır, akuamarin kenarla ayrılır. */
+  .hukuk {
+    margin-top: 2.6rem;
+    padding: 1.4rem 1.5rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-left: 3px solid var(--akuamarin);
+  }
+
+  .hukuk h2 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .hukuk-govde :global(p) { margin: 0.7rem 0; font-size: 0.95rem; }
+
+  .hukuk-govde :global(ul) {
+    margin: 0.7rem 0 0.7rem 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  .hukuk-govde :global(li) { margin: 0.3rem 0; }
+
+  .hukuk-govde :global(a) { color: var(--baglanti); }
+
+  .hukuk-alt-baslik {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    margin-bottom: 0.4rem;
+  }
+
+  .hukuk-kisit {
+    margin-top: 1.3rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--cizgi);
+  }
+
+  .hukuk-kisit :global(p) { font-size: 0.92rem; margin: 0.4rem 0; }
+
+  .hukuk-rehberler {
+    margin-top: 1.3rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--cizgi);
+  }
+
+  .hukuk-rehberler ul { list-style: none; }
+
+  .hukuk-rehberler li { margin: 0.35rem 0; font-size: 0.95rem; }
+
+  .hukuk-rehberler a { color: var(--baglanti); }
 
   .il-kurum { margin-top: 2.4rem; }
 

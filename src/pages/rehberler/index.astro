@@ -3,38 +3,79 @@ import { getCollection } from 'astro:content';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 
-const girisler = (await getCollection('rehberler')).sort(
-  (a, b) => b.data.tarih.valueOf() - a.data.tarih.valueOf()
-);
-const tarihYaz = (t: Date) =>
-  t.toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' });
+// İki küme: izin/başvuru süreci arayan okur (P3) ile yaptırım/dava ekseninde
+// okuyan (P1) aynı düz listede kaybolmasın. Küme içi sıralama başlığa göre;
+// 9 rehber de aynı tarihli olduğundan tarih listede sıralama ölçütü değil
+// (tarih rehberin kendi sayfasında künye satırında durur).
+const girisler = await getCollection('rehberler');
+const kumele = (k: 'surec' | 'uyusmazlik') =>
+  girisler
+    .filter((g) => g.data.kume === k)
+    .sort((a, b) => a.data.baslik.localeCompare(b.data.baslik, 'tr'));
+
+const kumeler = [
+  {
+    anahtar: 'surec' as const,
+    ad: 'Süreç rehberleri',
+    ozet: 'İzin, başvuru ve belge süreçleri: hangi belge, kimden, hangi sürede.',
+    girisler: kumele('surec'),
+  },
+  {
+    anahtar: 'uyusmazlik' as const,
+    ad: 'Uyuşmazlık rehberleri',
+    ozet: 'Yaptırım, dava ve ihtilaf ekseni: ceza, iptal davası, kamulaştırma.',
+    girisler: kumele('uyusmazlik'),
+  },
+];
+
 const noYaz = (i: number) => String(i + 1).padStart(2, '0');
 ---
 <Sayfa
   baslik="Rehberler"
-  aciklama="Su hukuku rehberleri: kuyu ruhsatı, tahsis, içme suyu koruma alanları ve daha fazlası."
+  aciklama="Su hukuku rehberleri: kuyu ruhsatı, su tahsisi, ruhsatsız kuyu cezaları, kuyu belgesi iptal davaları ve daha fazlası."
 >
   <SayfaBasi
     baslik="Rehberler"
     ozet="Su hukukunun pratik soruları için adım adım rehberler. Her rehber mevzuata tam metin bağlantısıyla atıf verir."
   />
-  <ul class="sv-liste">
-    {girisler.map((g, i) => (
-      <li>
-        <a href={`/rehberler/${g.id}/`}>
-          <span class="sv-no" aria-hidden="true">{noYaz(i)}</span>
-          <span class="sv-metin">
-            <span class="sv-tarih">{tarihYaz(g.data.tarih)}</span>
-            <span class="sv-baslik">{g.data.baslik}</span>
-            <span class="sv-ozet">{g.data.ozet}</span>
-          </span>
-        </a>
-      </li>
-    ))}
-  </ul>
+  {kumeler.map((k) => (
+    <section class="kume">
+      <h2 class="kume-ad">{k.ad}</h2>
+      <p class="kume-ozet">{k.ozet}</p>
+      <ul class="sv-liste">
+        {k.girisler.map((g, i) => (
+          <li>
+            <a href={`/rehberler/${g.id}/`}>
+              <span class="sv-no" aria-hidden="true">{noYaz(i)}</span>
+              <span class="sv-metin">
+                <span class="sv-baslik">{g.data.baslik}</span>
+                <span class="sv-ozet">{g.data.ozet}</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
 </Sayfa>
 
 <style>
+  .kume + .kume { margin-top: 2.8rem; }
+
+  .kume-ad {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.65rem;
+    line-height: 1.25;
+  }
+
+  .kume-ozet {
+    margin-top: 0.35rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.88rem;
+    color: var(--metin-soluk);
+  }
+
   .sv-liste { list-style: none; }
 
   .sv-liste li + li { border-top: 1px solid var(--cizgi); }
@@ -65,17 +106,8 @@ const noYaz = (i: number) => String(i + 1).padStart(2, '0');
 
   .sv-liste a:hover .sv-no { color: var(--akuamarin); }
 
-  .sv-tarih {
-    display: block;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--metin-soluk);
-  }
-
   .sv-baslik {
     display: block;
-    margin-top: 0.2rem;
     font-family: var(--serif);
     font-weight: 500;
     font-size: 1.35rem;

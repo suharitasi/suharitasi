@@ -2,17 +2,81 @@
 // İçerik sayfası çatısı: DESIGN.md "İçerik sayfaları" bölümüne bağlıdır.
 // Aydınlık atlas dünyası: krem-adaçayı zemin, koyu mürekkep, Cormorant + Manrope.
 import UstMenu from '../components/UstMenu.astro';
+import AltBilgi from '../components/AltBilgi.astro';
+import { SITE_ADI, YAZAR, OG_GORSEL } from '../data/site';
 
 interface Props {
   baslik: string;
   aciklama: string;
+  // Sayfaya özgü ek JSON-LD nesneleri (Article, FAQPage, Person...).
+  // Organization + WebSite + BreadcrumbList burada otomatik üretilir.
+  sema?: Record<string, unknown>[];
 }
 
-const { baslik, aciklama } = Astro.props;
+const { baslik, aciklama, sema = [] } = Astro.props;
 const yol = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname
   : Astro.url.pathname + '/';
 const canonical = new URL(yol, Astro.site).href;
+const ogGorselTam = new URL(OG_GORSEL, Astro.site).href;
+const kok = new URL('/', Astro.site).href;
+
+// — Kırıntı zinciri: /rehberler/kuyu-ruhsati/ → Ana sayfa > Rehberler > başlık
+const bolumAdlari: Record<string, string> = {
+  harita: 'Harita',
+  havzalar: 'Havzalar',
+  rehberler: 'Rehberler',
+  'su-kanunu': 'Su Kanunu',
+  hakkinda: 'Hakkında',
+};
+const parcalar = yol.split('/').filter(Boolean);
+const kirintilar = [
+  { ad: 'Ana sayfa', url: kok },
+  ...parcalar.map((p, i) => ({
+    // Son parça sayfanın kendisi: başlığını kullan (slug'ı değil).
+    ad: i === parcalar.length - 1 ? baslik : (bolumAdlari[p] ?? p),
+    url: new URL(parcalar.slice(0, i + 1).join('/') + '/', Astro.site).href,
+  })),
+];
+
+const kurum = {
+  '@type': 'Organization',
+  '@id': `${kok}#kurum`,
+  name: SITE_ADI,
+  url: kok,
+  description:
+    "Türkiye'nin su verisi, havzaları ve su mevzuatını tek haritada birleştiren bağımsız bilgi portalı.",
+  founder: { '@type': 'Person', name: YAZAR.adSade, jobTitle: YAZAR.unvan },
+};
+
+const semalar = [
+  kurum,
+  {
+    '@type': 'WebSite',
+    '@id': `${kok}#site`,
+    name: SITE_ADI,
+    url: kok,
+    inLanguage: 'tr-TR',
+    publisher: { '@id': `${kok}#kurum` },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: kirintilar.map((k, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: k.ad,
+      item: k.url,
+    })),
+  },
+  ...sema,
+];
+
+// Künye alanları HTML içerdiğinden (kaynak linkleri) JSON gövdesinde "<"
+// kaçırılır: aksi halde içerikteki bir </script> etiketi bloğu erken kapatır.
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': semalar,
+}).replace(/</g, '\\u003c');
 ---
 <!DOCTYPE html>
 <html lang="tr" data-sv-ton="krem">
@@ -26,7 +90,16 @@ const canonical = new URL(yol, Astro.site).href;
 <meta property="og:description" content={aciklama} />
 <meta property="og:url" content={canonical} />
 <meta property="og:type" content="article" />
+<meta property="og:site_name" content={SITE_ADI} />
+<meta property="og:locale" content="tr_TR" />
+<meta property="og:image" content={ogGorselTam} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Su Haritası — Türkiye'nin su verisi ve mevzuatı" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content={ogGorselTam} />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<script type="application/ld+json" is:inline set:html={jsonLd} />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&display=swap&subset=latin-ext" rel="stylesheet" />
@@ -111,6 +184,16 @@ const canonical = new URL(yol, Astro.site).href;
   @media print {
     .sv-hero { display: none; }
     main.govde { margin-top: 0; padding-top: 1.5rem; }
+
+    /* Scroll reveal yazdırmayı boş bırakmasın: ekranda görünmemiş tablolar,
+       havza kartları ve başlıklar kâğıda/PDF'e dolu basılır (rapor KOD-5).
+       CSS tek başına yeterli değil — sayfa.js beforeprint'te sınıfları da
+       açar; ikisi birlikte no-JS ve JS'li yolu birden kapatır. */
+    .sv-reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
   }
 
   /* Sayfa başı: başlık + su hattı (landing'deki imza-damarın aydınlık kardeşi) */
@@ -230,23 +313,6 @@ const canonical = new URL(yol, Astro.site).href;
 
   .veri-yok { color: var(--metin-soluk); font-style: italic; }
 
-  footer.alt {
-    border-top: 1px solid var(--cizgi);
-    padding: 1.4rem clamp(1.25rem, 4vw, 2rem);
-    text-align: center;
-    font-size: 0.78rem;
-    letter-spacing: 0.05em;
-    color: var(--metin-soluk);
-  }
-
-  footer.alt a {
-    color: var(--metin-soluk);
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
-
-  footer.alt a:hover { color: var(--metin); }
-
   /* Scroll reveal: sınıfları sayfa.js ekler; no-JS'te içerik hiç gizlenmez.
      Yalnız transform/opacity — CLS üretmez. */
   .sv-reveal {
@@ -267,9 +333,7 @@ const canonical = new URL(yol, Astro.site).href;
   <main class="govde">
     <slot />
   </main>
-  <footer class="alt">
-    <a href="https://arslanhukuk.tr" target="_blank" rel="noopener">suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026</a>
-  </footer>
+  <AltBilgi />
   <script type="module" src="/s/imlec.js" is:inline></script>
   <script type="module" src="/s/sayfa.js" is:inline></script>
   <script type="module" src="/s/menu.js" is:inline></script>

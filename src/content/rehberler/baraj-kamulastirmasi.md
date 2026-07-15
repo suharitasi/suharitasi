@@ -2,6 +2,8 @@
 baslik: "Baraj kamulaştırması, kamulaştırmasız el atma ve ecrimisil"
 ozet: "Baraj ve gölet projelerinde taşınmazı su altında kalanların hukuki durumu: 2942 sayılı Kamulaştırma Kanunu çerçevesi, kamulaştırmasız el atma ve ecrimisil tartışması, 6200 sayılı Kanun'un geçiş hükümleri."
 tarih: 2026-07-14
+kume: uyusmazlik
+ilgili: [su-tahsisi-oncelik-sirasi, kaynak-hakki-komsu-su, kuyu-belgesi-iptal-davalari]
 ---
 
 Baraj ve gölet projeleri, geniş arazilerin kamulaştırılmasını veya
@@ -108,7 +110,3 @@ Su altında kalan taşınmazlara ilişkin güncel Yargıtay içtihadı, kaynak
 araştırmanın veri tabanında bulunmamaktadır; bu başlıkta doğrudan
 içtihat künyesi verilememektedir.
 
----
-
-Hukuki içerik [Av. Serdar Arslan (Arslan Hukuk Bürosu)](https://arslanhukuk.tr)
-tarafından hazırlanmaktadır.

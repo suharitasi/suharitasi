@@ -2,6 +2,8 @@
 baslik: "Yeraltı suyu işletme sahası ilanının hukuki sonuçları"
 ozet: "Bir bölgenin 'yeraltı suyu işletme sahası' ilan edilmesi ne anlama gelir: Yeraltı Suları Tüzüğü m.2 uyarınca Resmî Gazete ilanı, kuyu derinliği sınırları, DSİ'nin sürekli kontrol yetkisi ve mevcut belge sahiplerinin durumu."
 tarih: 2026-07-14
+kume: surec
+ilgili: [kuyu-ruhsati, ruhsatsiz-kuyu-cezalari, su-tahsisi-oncelik-sirasi]
 ---
 
 Bir bölge "yeraltı suyu işletme sahası" ilan edildiğinde, o sahadaki
@@ -83,7 +85,3 @@ Karar künyeleri yayın öncesi doğrulama sürecindedir.
 İlan öncesi açılmış kuyuların kazanılmış hakları hakkında doğrudan
 içtihat, kaynak araştırmanın veri tabanında bulunmamaktadır.
 
----
-
-Hukuki içerik [Av. Serdar Arslan (Arslan Hukuk Bürosu)](https://arslanhukuk.tr)
-tarafından hazırlanmaktadır.

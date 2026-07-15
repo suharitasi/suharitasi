@@ -1,25 +1,114 @@
 ---
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
+import { YAZAR, EPOSTA, OG_GORSEL } from '../data/site';
+
+const kok = new URL('/', Astro.site).href;
+
+// Person: rehberlerdeki Article.author bu kimliğe (@id) bağlanır — Google
+// için tek ve tutarlı yazar varlığı oluşur.
+const sema = [
+  {
+    '@type': 'Person',
+    '@id': `${kok}hakkinda/#yazar`,
+    name: YAZAR.adSade,
+    jobTitle: YAZAR.unvan,
+    description: YAZAR.bio,
+    url: YAZAR.buroUrl,
+    image: new URL(OG_GORSEL, Astro.site).href,
+    worksFor: {
+      '@type': 'Organization',
+      name: YAZAR.buro,
+      url: YAZAR.buroUrl,
+    },
+    knowsAbout: [
+      'Su hukuku',
+      'Yeraltı suyu mevzuatı',
+      'İdari yargı',
+      'Kamulaştırma hukuku',
+    ],
+  },
+];
 ---
 <Sayfa
   baslik="Hakkında"
-  aciklama="suharitasi.com: Türkiye'nin su verisi, havzaları ve su mevzuatını tek haritada birleştiren bağımsız bilgi portalı."
+  aciklama="suharitasi.com: Türkiye'nin su verisi, havzaları ve su mevzuatını tek haritada birleştiren bağımsız bilgi portalı. İçeriği kim, hangi yöntemle hazırlıyor."
+  sema={sema}
 >
-  <SayfaBasi baslik="Hakkında" />
+  <SayfaBasi
+    baslik="Hakkında"
+    ozet="Bu portalın ne olduğu, içeriği kimin hazırladığı ve verinin hangi yöntemle derlendiği."
+  />
   <div class="icerik">
     <p>
       suharitasi.com, Türkiye'nin su verisi, havzaları ve su mevzuatını tek
-      haritada birleştiren bağımsız bir bilgi portalıdır.
+      haritada birleştiren bağımsız bir bilgi portalıdır. Amacı, dağınık
+      biçimde yayımlanan resmî su verisi ile bu veriye uygulanan mevzuatı
+      aynı ekranda okunabilir hale getirmektir.
+    </p>
+
+    <h2>İçeriği kim hazırlıyor</h2>
+    <p>
+      Portaldaki hukuki içerik ve mevzuat analizleri
+      <a href={YAZAR.buroUrl} target="_blank" rel="noopener">{YAZAR.ad} ({YAZAR.buro})</a>
+      tarafından hazırlanmaktadır. {YAZAR.uzmanlik}
     </p>
     <p>
-      Hukuki içerik <a href="https://arslanhukuk.tr" target="_blank" rel="noopener">Av. Serdar Arslan (Arslan Hukuk Bürosu)</a>
-      tarafından hazırlanmaktadır.
+      Rehberlerin her biri yayın ve güncelleme tarihiyle birlikte yayımlanır;
+      mevzuat değiştiğinde ilgili rehber güncellenir ve tarihi yenilenir.
     </p>
+
+    <h2>Hukuki içerik nasıl hazırlanıyor</h2>
+    <ul>
+      <li>
+        Her rehber, dayandığı kanun, tüzük veya yönetmeliğin
+        <a href="https://www.mevzuat.gov.tr" target="_blank" rel="noopener">mevzuat.gov.tr</a>
+        üzerindeki resmî tam metnine bağlantı verir.
+      </li>
+      <li>
+        Madde metinleri özetlenmez; kritik hükümler birebir alıntılanır ve
+        alıntı olduğu görsel olarak ayrılır.
+      </li>
+      <li>
+        Emsal karar künyeleri resmî kaynaktan doğrulanana kadar
+        "doğrulama sürecindedir" şerhiyle yayımlanır; şerh kalkmadan karar
+        kesinleşmiş içtihat gibi sunulmaz.
+      </li>
+      <li>
+        Rehberler bilgilendirme amaçlıdır; somut bir uyuşmazlığa dair hukuki
+        görüş veya tavsiye niteliği taşımaz.
+      </li>
+    </ul>
+
+    <h2>Veri kaynağı politikası</h2>
+    <ul>
+      <li>
+        Sayısal veriler kamu kurumlarının açık kaynaklarından derlenir —
+        başlıca
+        <a href="https://www.dsi.gov.tr/Sayfa/Detay/2186" target="_blank" rel="noopener">DSİ Resmî Su Kaynakları İstatistikleri</a>
+        ve Tarım ve Orman Bakanlığı Su Yönetimi Genel Müdürlüğü (SYGM) havza
+        koruma eylem planları.
+      </li>
+      <li>
+        Her veri alanı, kaynağı ve kaynağın yılı ile birlikte sunulur;
+        okuyucu sayıyı kaynağına kadar takip edebilir.
+      </li>
+      <li>
+        Doğrulanamayan hiçbir veri doğrulanmış gibi gösterilmez. Kamuya açık
+        kaynağı bulunmayan alanlar "veri yok" olarak, derleme tarihiyle
+        birlikte işaretlenir — tahmin veya ara değer üretilmez.
+      </li>
+      <li>
+        Havza sınırları ve il eşleşmeleri resmî havza tanıtım belgelerinden
+        derlenmiştir; iller havzalara kısmen girebildiğinden eşleşmeler
+        yaklaşıktır ve bu not ilgili sayfalarda görünür.
+      </li>
+    </ul>
+
+    <h2>İletişim</h2>
     <p>
-      Portaldaki veriler kamu kurumlarının açık kaynaklarına dayanır ve her
-      veri alanında kaynağı ile birlikte sunulur. Doğrulanamayan hiçbir veri
-      doğrulanmış gibi gösterilmez.
+      Portaldaki veri veya kaynak hatalarını bildirmek için:
+      <a href={`mailto:${EPOSTA}`}>{EPOSTA}</a>
     </p>
   </div>
 </Sayfa>

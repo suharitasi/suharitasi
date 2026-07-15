@@ -55,5 +55,25 @@
     (2026-07-14): 25 aday puanlandı, 2 skill seti kuruldu
     (marketingskills + claude-seo, ~/.claude/skills/), 11 sayfa canlı
     tarandı, rapor/pazarlama-danismanligi.md yazıldı (salt analiz,
-    uygulama yok). Rapordaki İLK 5 HAMLE kullanıcı onayı/seçimi
-    bekliyor; onaylananlar ayrı iş olarak kuyruğa girer.
+    uygulama yok).
+21. Dalga 1 — rapor uygulaması (İLK 5 HAMLE + 2 ek) — KULLANICI ONAYI
+    BEKLİYOR (2026-07-15): landing nav + üç kapı ("Yakında" kalktı),
+    E-E-A-T paketi (künye satırı + yazar kutusu + Article/Person/
+    Breadcrumb/Organization/WebSite JSON-LD + og:image), rehber ağı
+    (ilgili rehberler + iki küme), Sakarya hukuk bloğu pilotu, yazdırma
+    düzeltmesi, 3 kolonlu footer, KOD-6/KOD-9. Headless kanıt temiz
+    (build 40 sayfa, konsol 0, kırık link 0, JSON-LD 130 nesne
+    schema.org uyumlu, yazdırmada gizli 0); nihai görsel yargı
+    kullanıcının canlı testinde.
+22. AÇIK — Su Kanunu bülteni canlıya alınamadı: Buttondown hesabı
+    kullanıcıda. Form kodu hazır ve test edildi; src/data/bulten.ts'ye
+    kullanıcı adı yazılınca açılır (README-BULTEN.md). Hesap açılana
+    dek form hiçbir sayfada görünmez (sahte form yayınlanmaz).
+23. AÇIK — FAQPage şeması eklenmedi: 9 rehberin hiçbirinde görünür
+    soru-cevap bölümü yok (5'inde "Dikkat" tek paragraf, 4'ünde yok).
+    Olmayan içeriği işaretlemek Google kurallarına aykırı. Rehberlere
+    gerçek SSS bölümü eklenirse (Serdar'ın kalemi) şema da eklenir.
+24. Dalga 2 adayları (rapordan, onay bekler): bölgesel rapor sayfası
+    (TAKTİK-3), kuyu ruhsatı kontrol listesi PDF (TAKTİK-5), menü
+    vitrini (GÖRSEL-1a), 81 il programatik sayfa (TAKTİK-7), kalan 24
+    havzanın hukuk bloğu (içerik kullanıcıdan).

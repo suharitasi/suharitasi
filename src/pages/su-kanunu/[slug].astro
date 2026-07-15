@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
+import Bulten from '../../components/Bulten.astro';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('su-kanunu');
@@ -10,10 +11,20 @@ export async function getStaticPaths() {
 
 const { giris } = Astro.props;
 const { Content } = await render(giris);
+
+// Bülten yalnız taslak takibi sayfasında: mevzuat kütüphanesi durağan bir
+// referans, bildirime konu değil.
+const bultenli = giris.id === 'taslak-takibi';
 ---
 <Sayfa baslik={giris.data.baslik} aciklama={giris.data.ozet}>
-  <SayfaBasi etiket="Su Kanunu" baslik={giris.data.baslik} ozet={giris.data.ozet} />
+  <SayfaBasi
+    etiket="Su Kanunu"
+    baslik={giris.data.baslik}
+    ozet={giris.data.ozet}
+    tarih={giris.data.tarih}
+  />
   <div class="icerik">
     <Content />
   </div>
+  {bultenli && <Bulten etiket="taslak-takibi" />}
 </Sayfa>

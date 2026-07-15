@@ -17,6 +17,16 @@ if (ust) {
   }).observe(nobetci);
 }
 
+/* --- Yazdırma: gizli kalmış içeriği aç ---
+   Kâğıda/PDF'e basarken henüz görünür alana girmemiş tablolar ve kartlar
+   boş basılmasın (rapor KOD-5). CSS'teki @media print kuralı da aynı işi
+   yapar; bu dinleyici sınıfı da açarak reveal'ı geri döndürülemez kılar. */
+addEventListener('beforeprint', () => {
+  document
+    .querySelectorAll('.sv-reveal:not(.sv-goster)')
+    .forEach((e) => e.classList.add('sv-goster'));
+});
+
 /* --- Scroll reveal --- */
 if (!azHareket.matches) {
   const hedefler = document.querySelectorAll(

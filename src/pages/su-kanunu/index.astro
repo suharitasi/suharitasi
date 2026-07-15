@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
+import Bulten from '../../components/Bulten.astro';
 
 const girisler = (await getCollection('su-kanunu')).sort(
   (a, b) => b.data.tarih.valueOf() - a.data.tarih.valueOf()
@@ -32,6 +33,7 @@ const noYaz = (i: number) => String(i + 1).padStart(2, '0');
       </li>
     ))}
   </ul>
+  <Bulten etiket="su-kanunu" />
 </Sayfa>
 
 <style>

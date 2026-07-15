@@ -9,6 +9,11 @@ const rehberler = defineCollection({
     tarih: z.coerce.date(),
     // true ise sayfa sonuna 81 il / yetkili kurum tablosu eklenir (data/il-kurum.json)
     ilKurumTablosu: z.boolean().optional(),
+    // Sayfa sonundaki "İlgili rehberler" bloğu; slug listesi (2-3 önerilir).
+    // Slug'lar derleme sırasında doğrulanır: olmayan slug build'i düşürür.
+    ilgili: z.array(z.string()).default([]),
+    // Rehberin ait olduğu küme; /rehberler/ listesi bu alanla gruplanır.
+    kume: z.enum(['surec', 'uyusmazlik']),
   }),
 });
 
@@ -28,6 +33,18 @@ const havzalar = defineCollection({
         eylemPlani: z.string().optional(),
       })
       .default({}),
+    // "Bu havzada hukuki durum" bloğu (BRIEF: veriyle hukuku aynı ekranda
+    // evlendiren katman). Yoksa blok hiç render edilmez — boş başlık çıkmaz.
+    // cerceve: her havzada geçerli rejim, kaynak atıflı HTML.
+    // kisitlar: havzaya ÖZGÜ kısıt; doğrulanmadıysa alan boş bırakılır ve
+    //           şablon "doğrulanmadı" satırını kendisi yazar (uydurma yasağı).
+    hukuk: z
+      .object({
+        cerceve: z.string(),
+        kisitlar: z.string().optional(),
+        rehberler: z.array(z.string()).default([]),
+      })
+      .optional(),
   }),
 });
 
