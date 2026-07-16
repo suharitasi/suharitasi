@@ -105,15 +105,17 @@
     source map yok teyidi; Googlebot/GPTBot hâlâ erişiyor testi;
     Lighthouse ≥90 korundu. Uygulama sırası: mevcut görsel/veri işleri
     sonrası, tek brief.
-29. HENDEK FAZ 1 — EPİAŞ baraj pipeline — KURULDU, KİMLİK BEKLİYOR
-    (2026-07-16): arac/baraj-cek.mjs (TGT + havza→baraj eşleme + doluluk/
+29. HENDEK FAZ 1 — EPİAŞ baraj pipeline — ÇALIŞIYOR (2026-07-16):
+    kimlik .env'e girildi, İLK GERÇEK ÇEKİM BAŞARILI (TGT 201; 17 havza,
+    116 baraj eşleme, 64 günlük kayıt; kayıt başlangıcı 2026-07-16;
+    Sakarya sayfasında gerçek tablo doğrulandı). Altyapı: arac/baraj-cek.mjs (TGT + havza→baraj eşleme + doluluk/
     kot/hacim, sayfalı, ham arşiv data/arsiv/baraj/ + normalize
     data/canli/baraj.json) + günlük cron 18:00 TR kurulu + havza
     sayfalarında BarajDoluluk bloğu (build-time SVG; veri yokken hiç
     çıkmaz, tek günde "kayıt yeni başladı", ortalama yalnız gerçek
     kayıttan "N gün" ibresiyle). Mock testten geçti (mutlu yol + arıza
-    yolu + sızıntı taraması 0). AÇIK: kullanıcı .env'i dolduracak
-    (EPIAS_USER/EPIAS_PASS — README-BARAJ.md); ilk gerçek çekim +
-    lisansın girişli ekrandan kesin teyidi + deploy hook (opsiyonel)
-    kullanıcıda. İlk çekim sonrası: EPİAŞ havza adları ↔ site havza
+    yolu + sızıntı taraması 0). AÇIK KALAN: lisansın girişli
+    ekrandan kesin teyidi + deploy hook (opsiyonel) kullanıcıda; EPİAŞ
+    setinde Fırat-Dicle, Konya Kapalı vb. 8 havza YOK (kaynak vermiyor —
+    kapsam şerhi sayfada), Ceyhan/Asi bugün 0 kayıt döndü (izlenecek). İlk çekim sonrası: EPİAŞ havza adları ↔ site havza
     eşleşmesi gözden geçirilecek (Fırat-Dicle gibi bileşik adlar).

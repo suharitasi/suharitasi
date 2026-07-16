@@ -157,3 +157,7 @@
   "veri alınamadı" işaretlenir, ortalama yalnız gerçek kayıttan "N gün"
   ibaresiyle. Mock testte iki yol da kanıtlandı; görsel kanıt alınıp test
   verisi iskelete döndürüldü. Gerçek çekim kullanıcının .env'ine kilitli.
+- Kimlik geldi → İLK GERÇEK ÇEKİM: TGT 201, 17 havza / 116 baraj / 64 kayıt;
+  kayıt başlangıcı 16.07.2026. EPİAŞ seti sitedeki 25 havzanın 17'sini
+  kapsıyor (Fırat-Dicle yok — kaynak şerhi düşüldü). Cron yarın 18:00 TR'de
+  devralır.

@@ -1,12 +1,755 @@
 {
-  "kunye": {
-    "kaynak": "EPİAŞ Şeffaflık Platformu (seffaflik.epias.com.tr)",
-    "lisansNotu": "İçerik ve veriler kaynak gösterilmek suretiyle çoğaltılabilir ve kullanılabilir (EPİAŞ platform beyanı).",
-    "aciklama": "Günlük baraj doluluk/kot kaydı. EPİAŞ geriye dönük veri vermez; bu arşiv kayıt başlangıcından itibaren gün gün birikir. Başlangıçtan önceki günler için veri YOKTUR ve üretilmez.",
-    "kayitBaslangici": null,
-    "sonGuncelleme": null,
-    "sonDurum": "henüz çekim yapılmadı (EPİAŞ kimlik bilgisi bekleniyor: .env)"
+ "kunye": {
+  "kaynak": "EPİAŞ Şeffaflık Platformu (seffaflik.epias.com.tr)",
+  "lisansNotu": "İçerik ve veriler kaynak gösterilmek suretiyle çoğaltılabilir ve kullanılabilir (EPİAŞ platform beyanı).",
+  "aciklama": "Günlük baraj doluluk/kot kaydı. EPİAŞ geriye dönük veri vermez; bu arşiv kayıt başlangıcından itibaren gün gün birikir. Başlangıçtan önceki günler için veri YOKTUR ve üretilmez.",
+  "kayitBaslangici": "2026-07-16",
+  "sonGuncelleme": "2026-07-16",
+  "sonDurum": "ok"
+ },
+ "gunler": {
+  "2026-07-16": {
+   "cekimUTC": "2026-07-16T08:27:01.917Z",
+   "durum": "ok",
+   "barajKaydi": 64
+  }
+ },
+ "havzalar": {
+  "Doğu Akdeniz": {
+   "barajlar": {
+    "BERDAN": {
+     "seri": {}
+    },
+    "PAMUKLUK": {
+     "seri": {}
+    },
+    "GEZENDE": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 53.85672827249122,
+       "kot": 324.44
+      }
+     }
+    },
+    "ERMENEK": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 92.7852809888978,
+       "kot": 691.87
+      }
+     }
+    },
+    "GÖKÇELER": {
+     "seri": {}
+    },
+    "ALAKÖPRÜ": {
+     "seri": {}
+    },
+    "BALKUSAN": {
+     "seri": {}
+    },
+    "AKSIFAT": {
+     "seri": {}
+    },
+    "KONYA-BOZKIR": {
+     "seri": {}
+    },
+    "MERSİN SORGUN": {
+     "seri": {}
+    },
+    "YALNIZARDIÇ": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 86.95473673406548,
+       "kot": 1354.62
+      }
+     }
+    },
+    "KONYA AFŞAR": {
+     "seri": {}
+    }
+   }
   },
-  "gunler": {},
-  "havzalar": {}
+  "Ceyhan": {
+   "barajlar": {
+    "ASLANTAŞ": {
+     "seri": {}
+    },
+    "KANDİL HES": {
+     "seri": {}
+    },
+    "ADATEPE": {
+     "seri": {}
+    },
+    "SARIGÜZEL HES": {
+     "seri": {}
+    },
+    "SUÇATI": {
+     "seri": {}
+    },
+    "SIRIMTAŞ HES": {
+     "seri": {}
+    },
+    "MEHMETLİ ( KESİKSUYU )": {
+     "seri": {}
+    },
+    "BERKE ": {
+     "seri": {}
+    },
+    "SIR": {
+     "seri": {}
+    },
+    "KOZAN": {
+     "seri": {}
+    },
+    "KILAVUZLU": {
+     "seri": {}
+    },
+    "MENZELET": {
+     "seri": {}
+    },
+    "KARTALKAYA": {
+     "seri": {}
+    }
+   }
+  },
+  "Batı Karadeniz": {
+   "barajlar": {
+    "KİRAZLIKÖPRÜ": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 1.5686274509803921,
+       "kot": 76.15
+      }
+     }
+    },
+    "KIZILCAPINAR": {
+     "seri": {}
+    },
+    "HASANLAR": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 85.48481308411215,
+       "kot": 253.42
+      }
+     }
+    },
+    "KÖPRÜBAŞI": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 86.41569459172852,
+       "kot": 440.66
+      }
+     }
+    },
+    "Araç Barajı": {
+     "seri": {}
+    },
+    "ARAÇ BARAJI": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 59.718866681309024,
+       "kot": 731.3
+      }
+     }
+    }
+   }
+  },
+  "Antalya": {
+   "barajlar": {
+    "NARAS": {
+     "seri": {}
+    },
+    "DİM": {
+     "seri": {}
+    },
+    "SORGUN": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 94.34724091520862,
+       "kot": 1397.55
+      }
+     }
+    },
+    "KARACAÖREN II": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 56.15079365079365,
+       "kot": 186.44
+      }
+     }
+    },
+    "OYMAPINAR": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 70.23166486616253,
+       "kot": 179.01
+      }
+     }
+    },
+    "KARACAÖREN I": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 55.94674422799423,
+       "kot": 261.12
+      }
+     }
+    },
+    "MANAVGAT": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 93.24832214765101,
+       "kot": 31.72
+      }
+     }
+    }
+   }
+  },
+  "Van Gölü": {
+   "barajlar": {
+    "KOÇKÖPRÜ": {
+     "seri": {}
+    },
+    "ZERNEK": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 98.25506499590117,
+       "kot": 1934.69
+      }
+     }
+    },
+    "MORGEDİK": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 80.66198595787363,
+       "kot": 2227
+      }
+     }
+    },
+    "SARIMEHMET": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 40.82992663941312,
+       "kot": 2003.8
+      }
+     }
+    }
+   }
+  },
+  "Seyhan": {
+   "barajlar": {
+    "FEKE-2": {
+     "seri": {}
+    },
+    "MENGE HES": {
+     "seri": {}
+    },
+    "KAVŞAKBENDİ HES": {
+     "seri": {}
+    },
+    "BAHÇELİK": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 89.99450549450549,
+       "kot": 1498.42
+      }
+     }
+    },
+    "GÜMÜŞÖREN": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 94.94426229508197,
+       "kot": 1296.56
+      }
+     }
+    },
+    "ÇATALAN": {
+     "seri": {}
+    },
+    "SEYHAN-I": {
+     "seri": {}
+    },
+    "KÖPRÜ": {
+     "seri": {}
+    },
+    "YEDİGÖZE": {
+     "seri": {}
+    },
+    "GÖKTAŞ-1": {
+     "seri": {}
+    },
+    "KARAKUZ": {
+     "seri": {}
+    }
+   }
+  },
+  "Marmara": {
+   "barajlar": {
+    "YENİCE-GÖNEN": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 80.84315375982042,
+       "kot": 155.67
+      }
+     }
+    }
+   }
+  },
+  "Batı Akdeniz": {
+   "barajlar": {
+    "EŞEN 1": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 81.52709359605912,
+       "kot": 1114.02
+      }
+     }
+    },
+    "AKKÖPRÜ": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 60.759210349612786,
+       "kot": 193.53
+      }
+     }
+    },
+    "ALAKIR": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 71.02815979043876,
+       "kot": 133.62
+      }
+     }
+    }
+   }
+  },
+  "Yeşilırmak": {
+   "barajlar": {
+    "H.UĞURLU": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 79.08269382485835,
+       "kot": 184.59
+      }
+     }
+    },
+    "TEPEKIŞLA": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 48.76543209876543,
+       "kot": 249.34
+      }
+     }
+    },
+    "ÇEKEREK": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 96.51134557654953,
+       "kot": 854.2
+      }
+     }
+    },
+    "ÇAMLIGÖZE": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 91.27553837658752,
+       "kot": 749.6
+      }
+     }
+    },
+    "SÜREYYABEY (ÇEKEREK)": {
+     "seri": {}
+    },
+    "KILIÇKAYA": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 91.64295530650563,
+       "kot": 848.66
+      }
+     }
+    },
+    "GÖLOVA": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 100.02004008016031,
+       "kot": 1293
+      }
+     }
+    },
+    "YAPRAK I BARAJI": {
+     "seri": {}
+    },
+    "S.UĞURLU": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 61.813292354975026,
+       "kot": 60.39
+      }
+     }
+    },
+    "OMALA BARAJI VE HES": {
+     "seri": {}
+    },
+    "ALMUS": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 95.29577668498699,
+       "kot": 803.36
+      }
+     }
+    },
+    "ATAKÖY": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 74.77477477477477,
+       "kot": 732.7
+      }
+     }
+    },
+    "UMUT I BARAJI": {
+     "seri": {}
+    }
+   }
+  },
+  "Asi": {
+   "barajlar": {
+    "BÜYÜK KARAÇAY": {
+     "seri": {}
+    }
+   }
+  },
+  "Susurluk": {
+   "barajlar": {
+    "ÇAYGÖREN": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 70.23113338902813,
+       "kot": 266.14
+      }
+     }
+    },
+    "ÇINARCIK": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 80.72701964773275,
+       "kot": 325.95
+      }
+     }
+    },
+    "DEVECİKONAĞI": {
+     "seri": {}
+    },
+    "MANYAS": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 73.94736842105263,
+       "kot": 115.23
+      }
+     }
+    }
+   }
+  },
+  "Kuzey Ege": {
+   "barajlar": {
+    "BAYRAMİÇ": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 68.00046258818087,
+       "kot": 139.6
+      }
+     }
+    }
+   }
+  },
+  "Doğu Karadeniz": {
+   "barajlar": {
+    "KÜRTÜN": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 92.43934549558021,
+       "kot": 638.29
+      }
+     }
+    },
+    "ATASU": {
+     "seri": {}
+    },
+    "AKKÖY 1": {
+     "seri": {}
+    },
+    "TOPÇAM-ORDU": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 79.23881673881674,
+       "kot": 901.95
+      }
+     }
+    },
+    "GÖKÇEBEL": {
+     "seri": {}
+    },
+    "ALADEREÇAM": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 49.923780487804876,
+       "kot": 1833.5
+      }
+     }
+    },
+    "YAŞMAKLI": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 93.31168831168831,
+       "kot": 1625.39
+      }
+     }
+    },
+    "TORUL": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 87.88169245515542,
+       "kot": 914.44
+      }
+     }
+    }
+   }
+  },
+  "Sakarya": {
+   "barajlar": {
+    "KARGI BARAJI VE HES": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 55.623721881390594,
+       "kot": 555.33
+      }
+     }
+    },
+    "YENİCE": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 3.640256959314775,
+       "kot": 272.04
+      }
+     }
+    },
+    "SARIYAR": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 75.65618479335212,
+       "kot": 470.04
+      }
+     }
+    },
+    "KUNDUZLAR": {
+     "seri": {}
+    },
+    "GÜRSÖĞÜT-1": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 29.42008486562942,
+       "kot": 644.06
+      }
+     }
+    },
+    "GÖKÇEKAYA": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 66.6380595329509,
+       "kot": 385.43
+      }
+     }
+    },
+    "BOĞAZKÖY": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 90.47001620745543,
+       "kot": 265.48
+      }
+     }
+    },
+    "GÜRSÖĞÜT-1 BARAJI": {
+     "seri": {}
+    },
+    "GÜRSÖĞÜT-2": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 24.068767908309457,
+       "kot": 583.82
+      }
+     }
+    },
+    "PORSUK": {
+     "seri": {}
+    }
+   }
+  },
+  "Kızılırmak": {
+   "barajlar": {
+    "ALTINKAYA": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 37.47337482710927,
+       "kot": 172.98
+      }
+     }
+    },
+    "KAPULUKAYA": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 90.28096836896978,
+       "kot": 723.37
+      }
+     }
+    },
+    "HİRFANLI": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 44.29071190296064,
+       "kot": 846.43
+      }
+     }
+    },
+    "YAMULA": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 89.82658959537572,
+       "kot": 1097.44
+      }
+     }
+    },
+    "KARGI KIZILIRMAK": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 33.84301732925586,
+       "kot": 403.27
+      }
+     }
+    },
+    "KESİKKÖPRÜ": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 98.88365602651317,
+       "kot": 785.45
+      }
+     }
+    },
+    "BAYRAMHACILI HES": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 82.18181818181819,
+       "kot": 979.11
+      }
+     }
+    },
+    "ÇERMİKLER": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 75.07246376811594,
+       "kot": 1190.41
+      }
+     }
+    },
+    "DURUÇAY ": {
+     "seri": {}
+    },
+    "BOYABAT": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 80.26961483594864,
+       "kot": 325.52
+      }
+     }
+    },
+    "OBRUK": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 46.25309023485785,
+       "kot": 508.26
+      }
+     }
+    },
+    "DERBENT": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 75.40167458701063,
+       "kot": 56.8
+      }
+     }
+    },
+    "GÜLDÜRCEK": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 47.237770747140424,
+       "kot": 1500.54
+      }
+     }
+    }
+   }
+  },
+  "Büyük Menderes": {
+   "barajlar": {
+    "GÖKBEL": {
+     "seri": {}
+    },
+    "KEMER": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 59.46349542504955,
+       "kot": 280.28
+      }
+     }
+    },
+    "ADIGÜZEL": {
+     "seri": {}
+    },
+    "AYDINLAR AKBAŞ ": {
+     "seri": {}
+    },
+    "ADIGÜZEL-2 HES": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 74.09420289855072,
+       "kot": 316.25
+      }
+     }
+    },
+    "CİNDERE": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 69.49777495232041,
+       "kot": 258.42
+      }
+     }
+    },
+    "ÇİNE ADNAN MENDERES": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 62.97124600638978,
+       "kot": 245.8
+      }
+     }
+    },
+    "ÇAPALI DİNAR KARAKUYU": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 99.80366492146597,
+       "kot": 1007.12
+      }
+     }
+    }
+   }
+  },
+  "Gediz": {
+   "barajlar": {
+    "DEMİRKÖPRÜ": {
+     "seri": {
+      "2026-07-16": {
+       "doluluk": 67.54996337762897,
+       "kot": 238.57
+      }
+     }
+    }
+   }
+  }
+ }
 }
