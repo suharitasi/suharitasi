@@ -86,7 +86,12 @@
     (ESC/focus trap/reduced-motion/mobil/kaydırma), kaynak→menü veri
     eşlemesi 5/5, konsol 0, kırık link 0. Su simülasyonu GPU'suz
     görüntülenemedi — nihai onay kullanıcının canlı menü gezintisi.
-26. 280 KARAKTER KATMANI: mevcut 9 rehber + havza sayfalarına geriye
+26. 280 KARAKTER ÖZ-CEVAP KATMANI — YAPILDI (2026-07-16): 9 rehber +
+    25 havza sayfasına başlık altı öz-cevap kutusu; rehber özleri elle
+    doğrulanmış metinden damıtıldı (künye no yok), havza özleri
+    havza-veri.json + GRACE'ten otomatik. Meta description'lar öz-cevaptan
+    türüyor. Kanıt: meta==kutu 34/34, uydurma kontrolü temiz, build temiz.
+    [ESKİ NOT] 280 KARAKTER KATMANI: mevcut 9 rehber + havza sayfalarına geriye
     dönük ÖZ CEVAP bloğu eklenir (yukarıdaki ilkeye göre). Örnek/
     kuyu-ruhsati: 'Su temini için kuyu açmadan önce DSİ'den belge şart
     (167 s.K. m.8). Üç belge: arama, kullanma, ıslah-tadil. Başvuru DSİ

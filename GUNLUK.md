@@ -172,3 +172,15 @@
 - VARSAYIM DÜZELTMESİ: GRACE "yeraltı suyu" değil TOPLAM su depolaması
   değişimi ölçer; site dili ve başlık buna göre kuruldu (dur/sor yerine
   raporla kuralı gereği not düşüldü).
+
+## 2026-07-16 (280 karakter öz-cevap katmanı)
+- "Cevap önce, dayanak sonra" (CLAUDE.md) 9 rehber + 25 havza sayfasına
+  geriye dönük uygulandı: başlık altında damıtılmış öz-cevap kutusu
+  (akuamarin kenar, su-tonlu zemin). Rehber özleri elle her sayfanın
+  DOĞRULANMIŞ metninden damıtıldı (madde no korundu, künye no verilmedi —
+  hepsi "doğrulama sürecinde"); havza özleri havza-veri.json + GRACE
+  eğiliminden otomatik türedi (eksik alan jenerikle doldurulmadı).
+- Meta description'lar artık öz-cevaptan türüyor (rehberde Article JSON-LD
+  description de). Kanıt: meta==kutu 34/34; uydurma kontrolü — öz-cevaptaki
+  her madde/kanun no kaynak metinde mevcut, hiçbirinde dava künyesi yok;
+  liste/statik sayfalara sızıntı yok; build temiz.

@@ -14,6 +14,11 @@ const rehberler = defineCollection({
     ilgili: z.array(z.string()).default([]),
     // Rehberin ait olduğu küme; /rehberler/ listesi bu alanla gruplanır.
     kume: z.enum(['surec', 'uyusmazlik']),
+    // "Cevap önce, dayanak sonra" (CLAUDE.md): başlıktan hemen sonra çıkan
+    // ~280 karakterlik damıtılmış öz cevap. YALNIZ bu sayfanın doğrulanmış
+    // içeriğinden damıtılır; yeni iddia/künye eklenmez. Meta description'ın
+    // da kaynağıdır. Uzunluk build'de sınırlanır (aşırıysa hata).
+    ozCevap: z.string().min(120).max(340),
   }),
 });
 

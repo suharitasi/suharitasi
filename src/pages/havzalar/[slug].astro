@@ -2,9 +2,12 @@
 import { getCollection, render } from 'astro:content';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
 import BarajDoluluk from '../../components/BarajDoluluk.astro';
 import GraceEgilim from '../../components/GraceEgilim.astro';
 import ilKurum from '../../../data/il-kurum.json';
+import havzaVeri from '../../../data/havza-veri.json';
+import graceHavza from '../../../data/canli/grace-havza.json';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('havzalar');
@@ -53,9 +56,56 @@ const ilSatirlari = (havzaIl?.iller ?? []).map((il) => ({
     : null,
   suIdaresi: ilKurum.suIdareleri[il] ?? 'İl Özel İdaresi / belediye',
 }));
+
+// — ÖZ CEVAP (CLAUDE.md): TAMAMEN mevcut doğrulanmış veriden türetilir.
+//   Kaynak: havza-veri.json (yağış alanı, yüzey suyu potansiyeli) +
+//   grace-havza.json (son 5 yıl su depolaması eğilimi). Eksik alan JENERİK
+//   metinle DOLDURULMAZ — o cümle atlanır (uydurma yasağı).
+const vd = havzaVeri.havzalar.find((h) => h.no === giris.data.no);
+const sayi = (n, ondalik) =>
+  n.toLocaleString('tr-TR', { minimumFractionDigits: ondalik, maximumFractionDigits: ondalik });
+
+const cumleler = [];
+// 1) Ad + yağış alanı + yüzey suyu potansiyeli (DSİ 2024)
+if (vd) {
+  const parcalar = [];
+  if (vd.yagisAlani_km2 != null) parcalar.push(`${sayi(vd.yagisAlani_km2, 0)} km² yağış alanı`);
+  if (vd.yuzeysuyuPotansiyeli_km3 != null)
+    parcalar.push(`${sayi(vd.yuzeysuyuPotansiyeli_km3, 2)} km³/yıl yüzey suyu potansiyeli`);
+  if (parcalar.length)
+    cumleler.push(`${giris.data.baslik}, DSİ ${vd.yuzeysuyuYili ?? 2024} verisine göre ${parcalar.join(' ve ')}ne sahiptir.`);
+}
+// 2) GRACE eğilimi (son 5 yıl gerçek aylardan) — "değişim, mutlak miktar değil"
+const gkayit = graceHavza.havzalar?.[giris.data.baslik];
+if (gkayit) {
+  const aylar = Object.keys(gkayit.seri).sort();
+  const sonAy = aylar[aylar.length - 1];
+  const [sy, sm] = sonAy.split('-').map(Number);
+  const esik = `${sy - 5}-${String(sm).padStart(2, '0')}`;
+  const son5 = aylar.filter((a) => a > esik);
+  if (son5.length >= 24) {
+    const x = son5.map((a) => Number(a.slice(0, 4)) + (Number(a.slice(5, 7)) - 0.5) / 12);
+    const y = son5.map((a) => gkayit.seri[a]);
+    const n = x.length;
+    const xo = x.reduce((t, v) => t + v, 0) / n, yo = y.reduce((t, v) => t + v, 0) / n;
+    let pay = 0, payda = 0;
+    for (let i = 0; i < n; i++) { pay += (x[i] - xo) * (y[i] - yo); payda += (x[i] - xo) ** 2; }
+    const egim = pay / payda;
+    const yon = egim <= -0.5 ? 'azalma' : egim >= 0.5 ? 'toparlanma' : 'belirgin değişim göstermeyen';
+    cumleler.push(
+      yon === 'belirgin değişim göstermeyen'
+        ? `GRACE uydu ölçümüne göre son 5 yılda toplam su depolaması belirgin değişim göstermemektedir (değişim verisidir, mutlak miktar değildir).`
+        : `GRACE uydu ölçümüne göre son 5 yılda toplam su depolaması ${yon} eğilimindedir (değişim verisidir, mutlak miktar değildir).`
+    );
+  }
+}
+const havzaOzCevap = cumleler.join(' ');
+const aciklama = havzaOzCevap || giris.data.ozet;
 ---
-<Sayfa baslik={giris.data.baslik} aciklama={giris.data.ozet}>
+<Sayfa baslik={giris.data.baslik} aciklama={aciklama}>
   <SayfaBasi etiket="Havza" baslik={giris.data.baslik} ozet={giris.data.ozet} />
+
+  {havzaOzCevap && <OzCevap metin={havzaOzCevap} />}
 
   <dl class="kunye">
     {alanlar.map((a) => (

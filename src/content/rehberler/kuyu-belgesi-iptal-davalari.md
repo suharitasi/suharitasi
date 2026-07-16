@@ -3,6 +3,7 @@ baslik: "Kuyu belgesi ret ve iptal davaları: DSİ işlemlerine karşı yargı y
 ozet: "DSİ'nin arama veya kullanma belgesi başvurusunu reddetmesi ya da mevcut belgeyi iptal etmesi halinde iptal davasının eksenleri: sebep unsuru, kazanılmış hak, idari yetki ve teknik değerlendirme zorunluluğu."
 tarih: 2026-07-14
 kume: uyusmazlik
+ozCevap: "DSİ'nin belge başvurusunu reddi veya mevcut belgeyi iptali idari işlemdir ve iptal davasına konu olur. Danıştay içtihadında işlemin sebebi somut kurulmalıdır: mevcut belgeye dayalı statü yok sayılamaz, işlemi yetkili idare tesis etmeli, teknik değerlendirme yapılmalıdır (167 s.K. m.13 ve m.18)."
 ilgili: [kuyu-ruhsati, ruhsatsiz-kuyu-cezalari, su-tahsisi-oncelik-sirasi]
 ---
 

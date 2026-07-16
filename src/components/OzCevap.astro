@@ -1,0 +1,31 @@
+---
+// "Cevap önce, dayanak sonra" (CLAUDE.md) — başlıktan hemen sonra çıkan
+// damıtılmış öz cevap kutusu. Mevcut blockquote diliyle uyumlu: sol akuamarin
+// çizgi + hafif su-tonlu zemin; ayırt edilir ama abartısız. Emoji/ikon yok.
+// Build-time statik (kopyalanma direnci ilkesi). İçerik props ile gelir —
+// bileşen metin ÜRETMEZ, yalnız sunar.
+interface Props {
+  metin: string;
+}
+const { metin } = Astro.props;
+---
+<p class="oz-cevap" role="doc-abstract">{metin}</p>
+
+<style>
+  .oz-cevap {
+    margin: 0 0 1.8rem;
+    padding: 1rem 1.2rem;
+    border-left: 3px solid var(--akuamarin);
+    background: rgba(79, 195, 208, 0.06);
+    font-size: 1.06rem;
+    line-height: 1.6;
+    color: var(--metin);
+    max-width: 66ch;
+    /* Metin duvarı değil, tek nefeslik özet: hafifçe öne çıkar */
+    font-weight: 500;
+  }
+
+  @media print {
+    .oz-cevap { background: none; }
+  }
+</style>

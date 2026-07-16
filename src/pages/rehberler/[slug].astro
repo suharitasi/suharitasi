@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
 import IlKurumTablosu from '../../components/IlKurumTablosu.astro';
 import YazarKutusu from '../../components/YazarKutusu.astro';
 import IlgiliRehberler from '../../components/IlgiliRehberler.astro';
@@ -27,7 +28,8 @@ const sema = [
   {
     '@type': 'Article',
     headline: giris.data.baslik,
-    description: giris.data.ozet,
+    // AI-arama alıntı yüzeyi de öz cevaptan beslenir (CLAUDE.md)
+    description: giris.data.ozCevap,
     datePublished: tarihISO,
     dateModified: tarihISO,
     inLanguage: 'tr-TR',
@@ -45,7 +47,7 @@ const sema = [
   },
 ];
 ---
-<Sayfa baslik={giris.data.baslik} aciklama={giris.data.ozet} sema={sema}>
+<Sayfa baslik={giris.data.baslik} aciklama={giris.data.ozCevap} sema={sema}>
   <SayfaBasi
     etiket="Rehber"
     baslik={giris.data.baslik}
@@ -53,6 +55,7 @@ const sema = [
     tarih={giris.data.tarih}
     yazarli
   />
+  <OzCevap metin={giris.data.ozCevap} />
   <div class="icerik">
     <Content />
   </div>
