@@ -1,0 +1,221 @@
+---
+// HENDEK FAZ 2 — programatik il sayfası: /kuyu-ruhsati/[il]/
+// TEK kaynaktan (il-profil.js) türetilir; araçla aynı veriyi kullanır.
+//
+// İNCE İÇERİK / DUPLICATE ÖNLEMİ (brief'in çekirdeği):
+// - getStaticPaths YALNIZ "3+ gerçek unsur" eşiğini geçen illeri üretir.
+// - Genel kuyu ruhsatı süreci bu sayfaya KOPYALANMAZ: il sayfası yalnız
+//   İL-ÖZGÜ veriyi taşır, genel süreç için ana rehbere gövde linki verir.
+// - Her veri kaleminin kaynağı ve tarihi sayfa sonunda künyelidir.
+import { getCollection } from 'astro:content';
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import IlgiliRehberler from '../../components/IlgiliRehberler.astro';
+import { yayinlananIller } from '../../data/il-profil.js';
+import { YAZAR, OG_GORSEL } from '../../data/site';
+
+export async function getStaticPaths() {
+  return yayinlananIller().map((p) => ({ params: { il: p.slug }, props: { profil: p } }));
+}
+
+const { profil: p } = Astro.props;
+
+const tumHavzalar = await getCollection('havzalar');
+const havzaSlug = (ad) => tumHavzalar.find((h) => h.data.baslik === ad)?.id;
+
+const sayi = (n, o) =>
+  n.toLocaleString('tr-TR', { minimumFractionDigits: o, maximumFractionDigits: o });
+const trTarih = (iso) => iso.split('-').reverse().join('.');
+const trAy = (iso) => {
+  const adlar = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+  return `${adlar[Number(iso.slice(5, 7)) - 1]} ${iso.slice(0, 4)}`;
+};
+
+// — ÖZ CEVAP: tamamen bu ilin profil verisinden damıtılır (uydurma yok)
+const anaHavza = p.havzalar[0];
+const bolgeMetni = p.dsiBolgeleri
+  .map((b) => `DSİ ${b.no}. Bölge Müdürlüğü (${b.merkez})`)
+  .join(' ve ');
+const cumleler = [];
+if (anaHavza && bolgeMetni) {
+  const havzaAdlari = p.havzalar.map((h) => h.ad).join(', ');
+  cumleler.push(
+    `${p.il} ili ${havzaAdlari} sınırları içindedir; kuyu ruhsatı (arama, kullanma, ıslah-tadil belgeleri) başvurusunun muhatabı ${bolgeMetni}'dür.`
+  );
+}
+if (p.suIdaresi) cumleler.push(`İçme suyu ve kanalizasyonda yetkili idare: ${p.suIdaresi}.`);
+const azalanlar = p.havzalar.filter((h) => h.egilim?.yon === 'azalma');
+if (azalanlar.length)
+  cumleler.push(`Uydu ölçümüne göre havzada su depolaması son 5 yılda azalma eğilimindedir.`);
+const ozCevap = cumleler.join(' ');
+
+const baslik = `Kuyu ruhsatı — ${p.il}`;
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL(`/kuyu-ruhsati/${p.slug}/`, Astro.site).href;
+
+const sema = [
+  {
+    '@type': 'Article',
+    headline: `${p.il} ilinde kuyu ruhsatı: yetkili merci ve su rejimi`,
+    description: ozCevap,
+    inLanguage: 'tr-TR',
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+    image: new URL(OG_GORSEL, Astro.site).href,
+    author: {
+      '@type': 'Person',
+      '@id': `${kok}hakkinda/#yazar`,
+      name: YAZAR.adSade,
+      jobTitle: YAZAR.unvan,
+      url: YAZAR.buroUrl,
+      worksFor: { '@type': 'Organization', name: YAZAR.buro, url: YAZAR.buroUrl },
+    },
+    publisher: { '@id': `${kok}#kurum` },
+  },
+];
+---
+<Sayfa baslik={baslik} aciklama={ozCevap} sema={sema}>
+  <SayfaBasi etiket="İl rejimi" baslik={baslik} yazarli />
+
+  <OzCevap metin={ozCevap} />
+
+  <section class="il-blok">
+    <h2>Yetkili merci ve havza</h2>
+    <dl class="il-kunye">
+      <div>
+        <dt>Kuyu belgeleri için başvuru mercii</dt>
+        <dd>{bolgeMetni || <span class="veri-yok">veri yok</span>}</dd>
+      </div>
+      <div>
+        <dt>Su ve kanalizasyon idaresi</dt>
+        <dd>{p.suIdaresi ?? 'İl Özel İdaresi / belediye (il özelinde açık kayıt yok)'}</dd>
+      </div>
+      {p.havzalar.map((h) => (
+        <div>
+          <dt>{h.ad}</dt>
+          <dd>
+            {havzaSlug(h.ad)
+              ? <a href={`/havzalar/${havzaSlug(h.ad)}/`}>{h.ad} sayfası</a>
+              : h.ad}
+            {h.yagisAlani_km2 != null && ` — yağış alanı ${sayi(h.yagisAlani_km2, 0)} km²`}
+            {h.yuzeysuyuPotansiyeli_km3 != null &&
+              `, yüzey suyu potansiyeli ${sayi(h.yuzeysuyuPotansiyeli_km3, 2)} km³/yıl`}
+            {h.veriYili && ` (DSİ ${h.veriYili})`}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  {p.havzalar.some((h) => h.egilim || h.baraj) && (
+    <section class="il-blok">
+      <h2>Havzada güncel su durumu</h2>
+      <ul class="durum-listesi">
+        {p.havzalar.map((h) => (
+          <>
+            {h.egilim && (
+              <li>
+                {h.ad}: uydu ölçümüne göre son 5 yılda toplam su depolaması
+                {h.egilim.yon === 'sabit'
+                  ? ' belirgin değişim göstermiyor'
+                  : ` ${h.egilim.yon} eğiliminde`}
+                {' '}({h.egilim.egim > 0 ? '+' : ''}{sayi(h.egilim.egim, 2)} cm/yıl,
+                {' '}{h.egilim.aySayisi} gerçek aylık ölçümden; değişim verisidir,
+                mutlak miktar değildir).
+              </li>
+            )}
+            {h.baraj && (
+              <li>
+                {h.ad}: enerji rezervuarlarında ortalama aktif doluluk
+                %{sayi(h.baraj.ortalamaDoluluk, 1)}
+                {' '}({h.baraj.barajSayisi} baraj, {trTarih(h.baraj.tarih)} kaydı).
+              </li>
+            )}
+          </>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <section class="il-blok">
+    <h2>Belge süreci</h2>
+    <p>
+      Arama, kullanma ve ıslah-tadil belgelerinin şartları, süreleri ve
+      yaptırımları Türkiye genelinde aynıdır; adım adım süreç, madde
+      metinleri ve başvuru akışı
+      <a href="/rehberler/kuyu-ruhsati/">kuyu ruhsatı rehberinde</a>
+      tek merkezde anlatılır. Bu sayfa yalnız {p.il} iline özgü merci ve
+      havza verisini taşır.
+    </p>
+  </section>
+
+  <IlgiliRehberler
+    slugler={['kuyu-ruhsati', 'ruhsatsiz-kuyu-cezalari', 'su-tahsisi-oncelik-sirasi']}
+  />
+
+  <p class="veri-kunyesi">
+    Veri künyesi: il–bölge/havza eşlemesi resmî kaynaklardan derlendi
+    ({trTarih(p.veriKunyesi.ilKurumDerleme)}); havza sayıları
+    {' '}{p.veriKunyesi.havzaVeriKaynak} kaynaklıdır; su depolaması eğilimi
+    {' '}{p.veriKunyesi.graceKaynak}, baraj doluluk {p.veriKunyesi.barajKaynak}
+    verisidir. İller havzalara kısmen girebilir; bu sayfa hukuki görüş değildir.
+  </p>
+</Sayfa>
+
+<style>
+  .il-blok { margin-top: 2.2rem; }
+
+  .il-blok h2 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .il-kunye {
+    padding: 1.2rem 1.3rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+  }
+
+  .il-kunye div {
+    display: grid;
+    grid-template-columns: minmax(11rem, 16rem) 1fr;
+    gap: 0.3rem 1.2rem;
+    padding: 0.45rem 0;
+  }
+
+  .il-kunye div + div { border-top: 1px solid var(--cizgi); }
+
+  .il-kunye dt {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    align-self: center;
+  }
+
+  .il-kunye dd { font-size: 0.95rem; }
+
+  @media (max-width: 560px) {
+    .il-kunye div { grid-template-columns: 1fr; gap: 0.1rem; }
+  }
+
+  .durum-listesi {
+    list-style: none;
+    padding: 1rem 1.2rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-left: 3px solid var(--akuamarin);
+  }
+
+  .durum-listesi li { margin: 0.4rem 0; font-size: 0.94rem; }
+
+  .veri-kunyesi {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    line-height: 1.65;
+    color: var(--metin-soluk);
+  }
+</style>

@@ -8,6 +8,8 @@ import GraceEgilim from '../../components/GraceEgilim.astro';
 import ilKurum from '../../../data/il-kurum.json';
 import havzaVeri from '../../../data/havza-veri.json';
 import graceHavza from '../../../data/canli/grace-havza.json';
+import { graceEgilim } from '../../data/grace-hesap.js';
+import { yayinlananIller } from '../../data/il-profil.js';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('havzalar');
@@ -49,8 +51,12 @@ const ilBolge = {};
 for (const [no, b] of Object.entries(ilKurum.dsiBolgeleri)) {
   for (const il of b.iller) ilBolge[il] = { no, merkez: b.merkez };
 }
+// İl sayfası yayında olan iller tabloda linklenir (topic cluster:
+// havza → il → rehber). Yayında olmayan il düz metin kalır.
+const ilSayfalari = Object.fromEntries(yayinlananIller().map((p) => [p.il, p.slug]));
 const ilSatirlari = (havzaIl?.iller ?? []).map((il) => ({
   il,
+  ilYolu: ilSayfalari[il] ? `/kuyu-ruhsati/${ilSayfalari[il]}/` : null,
   bolge: ilBolge[il]
     ? `DSİ ${Number(ilBolge[il].no)}. Bölge Müdürlüğü (${ilBolge[il].merkez})`
     : null,
@@ -75,29 +81,16 @@ if (vd) {
   if (parcalar.length)
     cumleler.push(`${giris.data.baslik}, DSİ ${vd.yuzeysuyuYili ?? 2024} verisine göre ${parcalar.join(' ve ')}ne sahiptir.`);
 }
-// 2) GRACE eğilimi (son 5 yıl gerçek aylardan) — "değişim, mutlak miktar değil"
+// 2) GRACE eğilimi (son 5 yıl gerçek aylardan) — "değişim, mutlak miktar değil".
+//    Hesap tek bakım noktasından (grace-hesap.js).
 const gkayit = graceHavza.havzalar?.[giris.data.baslik];
-if (gkayit) {
-  const aylar = Object.keys(gkayit.seri).sort();
-  const sonAy = aylar[aylar.length - 1];
-  const [sy, sm] = sonAy.split('-').map(Number);
-  const esik = `${sy - 5}-${String(sm).padStart(2, '0')}`;
-  const son5 = aylar.filter((a) => a > esik);
-  if (son5.length >= 24) {
-    const x = son5.map((a) => Number(a.slice(0, 4)) + (Number(a.slice(5, 7)) - 0.5) / 12);
-    const y = son5.map((a) => gkayit.seri[a]);
-    const n = x.length;
-    const xo = x.reduce((t, v) => t + v, 0) / n, yo = y.reduce((t, v) => t + v, 0) / n;
-    let pay = 0, payda = 0;
-    for (let i = 0; i < n; i++) { pay += (x[i] - xo) * (y[i] - yo); payda += (x[i] - xo) ** 2; }
-    const egim = pay / payda;
-    const yon = egim <= -0.5 ? 'azalma' : egim >= 0.5 ? 'toparlanma' : 'belirgin değişim göstermeyen';
-    cumleler.push(
-      yon === 'belirgin değişim göstermeyen'
-        ? `GRACE uydu ölçümüne göre son 5 yılda toplam su depolaması belirgin değişim göstermemektedir (değişim verisidir, mutlak miktar değildir).`
-        : `GRACE uydu ölçümüne göre son 5 yılda toplam su depolaması ${yon} eğilimindedir (değişim verisidir, mutlak miktar değildir).`
-    );
-  }
+const gSonuc = gkayit ? graceEgilim(gkayit.seri) : null;
+if (gSonuc) {
+  cumleler.push(
+    gSonuc.yon === 'sabit'
+      ? `GRACE uydu ölçümüne göre son 5 yılda toplam su depolaması belirgin değişim göstermemektedir (değişim verisidir, mutlak miktar değildir).`
+      : `GRACE uydu ölçümüne göre son 5 yılda toplam su depolaması ${gSonuc.yon} eğilimindedir (değişim verisidir, mutlak miktar değildir).`
+  );
 }
 const havzaOzCevap = cumleler.join(' ');
 const aciklama = havzaOzCevap || giris.data.ozet;
@@ -177,7 +170,7 @@ const aciklama = havzaOzCevap || giris.data.ozet;
           <tbody>
             {ilSatirlari.map((s) => (
               <tr>
-                <td>{s.il}</td>
+                <td>{s.ilYolu ? <a href={s.ilYolu}>{s.il}</a> : s.il}</td>
                 <td>{s.bolge ?? <span class="veri-yok">veri yok</span>}</td>
                 <td>{s.suIdaresi}</td>
               </tr>

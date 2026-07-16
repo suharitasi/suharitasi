@@ -1,0 +1,54 @@
+---
+// İl sayfaları indeksi: yalnız yayınlanan (3+ gerçek unsur) iller listelenir.
+// Ana rehber → bu indeks → il sayfası → havza (topic cluster omurgası).
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import { yayinlananIller } from '../../data/il-profil.js';
+
+const iller = yayinlananIller();
+const aciklama =
+  `Kuyu ruhsatında ilinize göre yetkili DSİ bölge müdürlüğü, bağlı havza ve ` +
+  `güncel su durumu: ${iller.length} il için il-özgü veri sayfası. Genel süreç ` +
+  `kuyu ruhsatı rehberinde tek merkezde anlatılır.`;
+---
+<Sayfa baslik="Kuyu ruhsatı — il rejimi sayfaları" aciklama={aciklama}>
+  <SayfaBasi
+    etiket="İl rejimi"
+    baslik="Kuyu ruhsatında iliniz"
+    ozet={`Belgelerin şartları Türkiye genelinde aynı, muhatap merci ve havza verisi ilden ile değişir. ${iller.length} il için il-özgü sayfa; hızlı bakış için il rejimi aracını da kullanabilirsiniz.`}
+  />
+
+  <p class="arac-baglanti">
+    <a href="/arac/il-rejimi/">İl rejimi aracı</a> ile ilinizi seçip özeti tek
+    ekranda görün; genel süreç için
+    <a href="/rehberler/kuyu-ruhsati/">kuyu ruhsatı rehberi</a>ne bakın.
+  </p>
+
+  <ul class="il-listesi">
+    {iller.map((p) => (
+      <li>
+        <a href={`/kuyu-ruhsati/${p.slug}/`}>{p.il}</a>
+      </li>
+    ))}
+  </ul>
+</Sayfa>
+
+<style>
+  .arac-baglanti { margin-bottom: 1.6rem; }
+
+  .il-listesi {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    gap: 0.4rem 1rem;
+  }
+
+  .il-listesi a {
+    display: block;
+    padding: 0.35rem 0;
+    text-decoration: none;
+    border-bottom: 1px solid var(--cizgi);
+  }
+
+  .il-listesi a:hover { color: var(--su-700); text-decoration: underline; }
+</style>

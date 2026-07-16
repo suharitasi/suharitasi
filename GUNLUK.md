@@ -184,3 +184,11 @@
   description de). Kanıt: meta==kutu 34/34; uydurma kontrolü — öz-cevaptaki
   her madde/kanun no kaynak metinde mevcut, hiçbirinde dava künyesi yok;
   liste/statik sayfalara sızıntı yok; build temiz.
+
+## 2026-07-16 (HENDEK FAZ 2: il rejimi — araç + 81 il sayfası)
+- Tek mimari kuruldu: il-profil.js üreticisi hem /arac/il-rejimi/ aracını
+  hem /kuyu-ruhsati/[il]/ statik sayfalarını besliyor (çift bakım yok);
+  GRACE eğim hesabı da grace-hesap.js'te tekilleşti.
+- İnce içerik eşiği dürüst uygulandı: 81/81 il 3+ gerçek unsurla geçti.
+  Duplicate/uydurma/sitemap/JSON-LD kontrolleri temiz; JS'siz erişim
+  kanıtlı. Build 125 sayfa.

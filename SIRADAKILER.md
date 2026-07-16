@@ -138,3 +138,14 @@
     dışında bırakıldı): "su nerede azalıyor/artıyor" interaktif harita
     + menü/landing tek satır canlı gösterge (SIRADAKILER 27a) —
     data/canli/grace-havza.json hazır, harita işi onayla başlar.
+32. HENDEK FAZ 2 — il rejimi aracı + programatik il sayfaları — YAPILDI
+    (2026-07-16): TEK üretici (src/data/il-profil.js) → /arac/il-rejimi/
+    (JS'siz çekirdek: 81 statik linke düşer; JS'le panel + ?il= paylaşım)
+    + /kuyu-ruhsati/[il]/ 81 sayfa + indeks. İnce içerik eşiği 81/81
+    geçti (dürüst denetim: 14×3, 43×4, 24×5 unsur); genel süreç
+    kopyalanmadı (kontrol: 0 ihlal, ana rehbere link); uydurma kontrolü
+    5 örnek ilde temiz; JSON-LD 330 nesne geçerli; sitemap yalnız
+    üretilen sayfaları içeriyor (81+2). GRACE eğim hesabı tek bakım
+    noktasına alındı (grace-hesap.js — 3 kopya tekilleşti). Görsel
+    onay: il-konya/il-bolu/arac-*.png. Not: baraj/GRACE verisi cron'la
+    güncellendikçe il sayfaları da sonraki build'de tazelenir.

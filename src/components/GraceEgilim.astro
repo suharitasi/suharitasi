@@ -7,6 +7,8 @@
 // şerh buna göre yazılır. Eğim yalnız GERÇEK aylardan hesaplanır ve kaç aya
 // dayandığı açıkça yazılır. Mascon ~3° çözünürlük → "havza yaklaşık" şerhi.
 import grace from '../../data/canli/grace-havza.json';
+// Eğim hesabı tek bakım noktasından (il-profil ve havza öz-cevabıyla aynı)
+import { graceEgilim } from '../data/grace-hesap.js';
 
 interface Props {
   havzaBaslik: string;
@@ -14,38 +16,17 @@ interface Props {
 
 const { havzaBaslik } = Astro.props;
 const kayit = (grace.havzalar as Record<string, any>)[havzaBaslik];
+const sonuc = kayit ? graceEgilim(kayit.seri) : null;
 
-// Son 5 yılın GERÇEK aylarından doğrusal eğim (cm/yıl).
-let egim: number | null = null;
-let aySayisi = 0;
-let aralik = '';
-let sonDeger: { ay: string; deger: number } | null = null;
-if (kayit) {
-  const aylar = Object.keys(kayit.seri).sort();
-  const sonAy = aylar[aylar.length - 1];
-  sonDeger = { ay: sonAy, deger: kayit.seri[sonAy] };
-  const [sy, sm] = sonAy.split('-').map(Number);
-  const esik = `${sy - 5}-${String(sm).padStart(2, '0')}`;
-  const son5 = aylar.filter((a) => a > esik);
-  aySayisi = son5.length;
-  if (aySayisi >= 24) {
-    // En küçük kareler eğimi; x = yıl (ondalık)
-    const x = son5.map((a) => Number(a.slice(0, 4)) + (Number(a.slice(5, 7)) - 0.5) / 12);
-    const y = son5.map((a) => kayit.seri[a] as number);
-    const n = x.length;
-    const xo = x.reduce((t, v) => t + v, 0) / n;
-    const yo = y.reduce((t, v) => t + v, 0) / n;
-    let pay = 0, payda = 0;
-    for (let i = 0; i < n; i++) { pay += (x[i] - xo) * (y[i] - yo); payda += (x[i] - xo) ** 2; }
-    egim = pay / payda;
-    aralik = `${son5[0]} – ${sonAy}`;
-  }
-}
+const egim = sonuc?.egim ?? null;
+const aySayisi = sonuc?.aySayisi ?? 0;
+const aralik = sonuc?.aralik ?? '';
+const sonDeger = sonuc ? { ay: sonuc.sonAy, deger: sonuc.sonDeger } : null;
 
 const yon =
-  egim == null ? null
-  : egim <= -0.5 ? { isaret: '↓', metin: 'azalma eğilimi', sinif: 'azaliyor' }
-  : egim >= 0.5 ? { isaret: '↑', metin: 'toparlanma eğilimi', sinif: 'artiyor' }
+  sonuc == null ? null
+  : sonuc.yon === 'azalma' ? { isaret: '↓', metin: 'azalma eğilimi', sinif: 'azaliyor' }
+  : sonuc.yon === 'toparlanma' ? { isaret: '↑', metin: 'toparlanma eğilimi', sinif: 'artiyor' }
   : { isaret: '→', metin: 'belirgin eğilim yok', sinif: 'sabit' };
 
 const trAy = (iso: string) => {

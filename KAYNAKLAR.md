@@ -263,3 +263,16 @@
 - Ham 530MB NetCDF GitHub 100MB limiti nedeniyle sunucu arşivinde
   (gitignore); bütünlük kanıtı sha256 + Last-Modified damgası git'te.
 - Lisans: NASA verisi kamu malı (ABD federal); kaynak atfı sayfada.
+
+## İl rejimi katmanı (src/data/il-profil.js — türetilmiş, yeni kaynak yok)
+
+- /arac/il-rejimi/ aracı ve /kuyu-ruhsati/[il]/ statik sayfaları TEK
+  üreticiden türetilir; kaynaklar bu dosyada zaten künyeli olan
+  il-kurum.json + havza-veri.json + grace-havza.json + baraj.json'dur.
+  Yeni veri girişi yapılmamıştır.
+- İnce içerik kuralı: il sayfası yalnız 5 il-özgü unsurdan (DSİ bölge,
+  havza künyesi, GRACE eğilimi, baraj durumu, açık su idaresi kaydı) en
+  az 3'ü doluysa üretilir. 2026-07-16 denetimi: 81/81 il eşiği geçti
+  (14 il 3 unsur, 43 il 4, 24 il 5). Jenerik fallback unsur SAYILMAZ.
+- Duplicate önlemi: genel kuyu ruhsatı süreci il sayfalarına
+  kopyalanmaz; ana rehbere gövde linki verilir.

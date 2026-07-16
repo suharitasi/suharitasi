@@ -1,0 +1,188 @@
+---
+// HENDEK FAZ 2 — "İlinin su rejimi" aracı: /arac/il-rejimi/
+// Veri, il-profil.js'ten (statik il sayfalarıyla AYNI üretici) build-time
+// gömülür; çalışma anında hiçbir istek atılmaz.
+//
+// İlerlemeli geliştirme: JS'siz çekirdek = aşağıdaki il bağlantı listesi
+// (statik sayfalara götürür). JS varsa liste hızlı-seçime dönüşür ve profil
+// sayfaya gitmeden gösterilir; ?il= parametresiyle paylaşılabilir.
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import { tumIlProfilleri } from '../../data/il-profil.js';
+
+const profiller = tumIlProfilleri();
+
+// Araca gömülecek KOMPAKT veri (tam profil değil; sayfa ağırlığı kontrolü)
+const gomulu = profiller.map((p) => ({
+  il: p.il,
+  slug: p.slug,
+  sayfa: p.sayfaVar,
+  bolgeler: p.dsiBolgeleri.map((b) => `DSİ ${b.no}. Bölge Müdürlüğü (${b.merkez})`),
+  idare: p.suIdaresi,
+  havzalar: p.havzalar.map((h) => ({
+    ad: h.ad,
+    slug: h.slug,
+    alan: h.yagisAlani_km2,
+    pot: h.yuzeysuyuPotansiyeli_km3,
+    yil: h.veriYili,
+    egilim: h.egilim ? { yon: h.egilim.yon, egim: Number(h.egilim.egim.toFixed(2)), ay: h.egilim.aySayisi } : null,
+    baraj: h.baraj ? { n: h.baraj.barajSayisi, ort: Number(h.baraj.ortalamaDoluluk.toFixed(1)), tarih: h.baraj.tarih } : null,
+  })),
+}));
+
+const aciklama =
+  'İlinizi seçin: kuyu belgelerinde muhatap DSİ bölge müdürlüğü, bağlı havza ' +
+  've künyesi, uydu ölçümlü su depolaması eğilimi ve baraj doluluk durumu tek ekranda.';
+---
+<Sayfa baslik="İlinin su rejimi" aciklama={aciklama}>
+  <SayfaBasi
+    etiket="Araç"
+    baslik="İlinin su rejimi"
+    ozet="Kuyu belgelerinde hangi DSİ bölgesine başvurulur, iliniz hangi havzada, havzada su ne durumda — ilinizi seçin, özet tek ekranda. Genel süreç kuyu ruhsatı rehberindedir."
+  />
+
+  <div class="arac" data-arac>
+    <label class="arac-etiket" for="il-secim">İl seçin</label>
+    <select id="il-secim" class="arac-secim" hidden>
+      <option value="">— il seçin —</option>
+      {gomulu.map((p) => (
+        <option value={p.slug}>{p.il}</option>
+      ))}
+    </select>
+
+    <div class="arac-panel" data-panel aria-live="polite" hidden></div>
+
+    {/* JS'siz çekirdek: her il statik sayfasına bağlanır (ilerlemeli geliştirme) */}
+    <ul class="arac-liste" data-liste>
+      {gomulu.map((p) => (
+        <li>
+          {p.sayfa
+            ? <a href={`/kuyu-ruhsati/${p.slug}/`}>{p.il}</a>
+            : <span>{p.il}</span>}
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <script type="application/json" id="il-verisi" set:html={JSON.stringify(gomulu).replace(/</g, '\\u003c')} />
+
+  <script>
+    // Araç davranışı: veri build-time gömülü; ağ isteği yok.
+    const veri = JSON.parse(document.getElementById('il-verisi').textContent);
+    const secim = document.getElementById('il-secim');
+    const panel = document.querySelector('[data-panel]');
+    const liste = document.querySelector('[data-liste]');
+    const sayi = (n, o) => n.toLocaleString('tr-TR', { minimumFractionDigits: o, maximumFractionDigits: o });
+    const trTarih = (iso) => iso.split('-').reverse().join('.');
+
+    function goster(slug) {
+      const p = veri.find((x) => x.slug === slug);
+      if (!p) { panel.hidden = true; return; }
+      const kisim = [];
+      kisim.push(`<h2>${p.il}</h2>`);
+      if (p.bolgeler.length)
+        kisim.push(`<p><strong>Kuyu belgelerinde muhatap:</strong> ${p.bolgeler.join(' ve ')}</p>`);
+      kisim.push(`<p><strong>Su ve kanalizasyon idaresi:</strong> ${p.idare ?? 'İl Özel İdaresi / belediye (açık kayıt yok)'}</p>`);
+      for (const h of p.havzalar) {
+        const satir = [];
+        if (h.alan != null) satir.push(`yağış alanı ${sayi(h.alan, 0)} km²`);
+        if (h.pot != null) satir.push(`yüzey suyu potansiyeli ${sayi(h.pot, 2)} km³/yıl`);
+        let m = `<strong><a href="/havzalar/${h.slug}/">${h.ad}</a></strong>`;
+        if (satir.length) m += ` — ${satir.join(', ')}${h.yil ? ` (DSİ ${h.yil})` : ''}`;
+        if (h.egilim) {
+          const yon = h.egilim.yon === 'sabit' ? 'belirgin değişim yok'
+            : h.egilim.yon === 'azalma' ? 'azalma eğiliminde' : 'toparlanma eğiliminde';
+          m += `<br>Su depolaması son 5 yılda ${yon} (${h.egilim.egim > 0 ? '+' : ''}${sayi(h.egilim.egim, 2)} cm/yıl, ${h.egilim.ay} gerçek aydan; değişim verisidir, mutlak miktar değildir).`;
+        }
+        if (h.baraj)
+          m += `<br>Enerji rezervuarlarında ortalama aktif doluluk %${sayi(h.baraj.ort, 1)} (${h.baraj.n} baraj, ${trTarih(h.baraj.tarih)}).`;
+        kisim.push(`<p class="panel-havza">${m}</p>`);
+      }
+      kisim.push(
+        p.sayfa
+          ? `<p><a href="/kuyu-ruhsati/${p.slug}/">${p.il} il sayfası</a> · <a href="/rehberler/kuyu-ruhsati/">Genel süreç: kuyu ruhsatı rehberi</a></p>`
+          : `<p>Bu il için ayrı sayfa henüz yok. <a href="/rehberler/kuyu-ruhsati/">Genel süreç: kuyu ruhsatı rehberi</a></p>`
+      );
+      panel.innerHTML = kisim.join('');
+      panel.hidden = false;
+      history.replaceState(null, '', `?il=${slug}`);
+    }
+
+    secim.hidden = false;
+    liste.classList.add('arac-liste-kucuk');
+    secim.addEventListener('change', () => goster(secim.value));
+
+    const parametre = new URLSearchParams(location.search).get('il');
+    if (parametre && veri.some((x) => x.slug === parametre)) {
+      secim.value = parametre;
+      goster(parametre);
+    }
+  </script>
+</Sayfa>
+
+<style>
+  .arac-etiket {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    margin-bottom: 0.4rem;
+  }
+
+  .arac-secim {
+    width: 100%;
+    max-width: 22rem;
+    padding: 0.65rem 0.8rem;
+    font-family: var(--sans);
+    font-size: 1rem;
+    color: var(--metin);
+    background: var(--zemin-kart);
+    border: 1px solid var(--su-400);
+    border-radius: 2px;
+  }
+
+  .arac-secim:focus-visible {
+    outline: 2px solid var(--su-400);
+    outline-offset: 2px;
+  }
+
+  .arac-panel {
+    margin-top: 1.4rem;
+    padding: 1.2rem 1.4rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-left: 3px solid var(--akuamarin);
+  }
+
+  .arac-panel :global(h2) {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+
+  .arac-panel :global(p) { margin: 0.5rem 0; font-size: 0.95rem; }
+
+  .arac-panel :global(.panel-havza) {
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--cizgi);
+    line-height: 1.7;
+  }
+
+  .arac-liste {
+    margin-top: 1.6rem;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    gap: 0.35rem 1rem;
+  }
+
+  .arac-liste a { text-decoration: none; }
+
+  .arac-liste a:hover { text-decoration: underline; color: var(--su-700); }
+
+  /* JS aktifken liste yedek dizine küçülür (kaldırılmaz: ilerlemeli) */
+  .arac-liste-kucuk { font-size: 0.85rem; opacity: 0.85; }
+</style>

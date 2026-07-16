@@ -3,6 +3,13 @@
 // Kuyu ruhsatı gibi rehberlerde frontmatter `ilKurumTablosu: true` ile açılır.
 import ilKurum from '../../data/il-kurum.json';
 import havzaVeri from '../../data/havza-veri.json';
+import { yayinlananIller } from '../data/il-profil.js';
+
+// İl adları, il rejimi sayfası yayında olanlarda o sayfaya linklenir
+// (topic cluster: rehber → il → havza).
+const ilYolu = Object.fromEntries(
+  yayinlananIller().map((p) => [p.il, `/kuyu-ruhsati/${p.slug}/`])
+);
 
 const havzaAd = Object.fromEntries(
   havzaVeri.havzalar.map((h) => [h.no, h.ad.replace(' Havzası', '')])
@@ -36,7 +43,9 @@ const satirlar = iller.map((il) => ({
     Arama, kullanma ve ıslah-tadil belgesi başvuruları ilin bağlı olduğu DSİ
     bölge müdürlüğüne yapılır. Tablo, her il için yetkili DSİ bölgesini, ilin
     içinde bulunduğu havzaları ve içme suyu hizmetinden sorumlu idareyi
-    gösterir.
+    gösterir. İl adına tıklayarak o ilin
+    <a href="/kuyu-ruhsati/">il rejimi sayfasına</a> geçebilir, hızlı bakış
+    için <a href="/arac/il-rejimi/">il rejimi aracını</a> kullanabilirsiniz.
   </p>
   <div class="tablo-kaydir">
     <table>
@@ -51,7 +60,7 @@ const satirlar = iller.map((il) => ({
       <tbody>
         {satirlar.map((s) => (
           <tr>
-            <td>{s.il}</td>
+            <td>{ilYolu[s.il] ? <a href={ilYolu[s.il]}>{s.il}</a> : s.il}</td>
             <td>{s.bolge}</td>
             <td>{s.havzalar || <span class="veri-yok">veri yok</span>}</td>
             <td>{s.suIdaresi}</td>
