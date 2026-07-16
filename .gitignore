@@ -8,3 +8,7 @@ screenshots/
 .astro/
 cikti/
 .playwright-mcp/
+
+# Kimlik bilgileri — ASLA commit edilmez (HENDEK FAZ 1)
+.env
+.claude/settings.local.json*

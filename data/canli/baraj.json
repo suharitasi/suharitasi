@@ -1,0 +1,12 @@
+{
+  "kunye": {
+    "kaynak": "EPİAŞ Şeffaflık Platformu (seffaflik.epias.com.tr)",
+    "lisansNotu": "İçerik ve veriler kaynak gösterilmek suretiyle çoğaltılabilir ve kullanılabilir (EPİAŞ platform beyanı).",
+    "aciklama": "Günlük baraj doluluk/kot kaydı. EPİAŞ geriye dönük veri vermez; bu arşiv kayıt başlangıcından itibaren gün gün birikir. Başlangıçtan önceki günler için veri YOKTUR ve üretilmez.",
+    "kayitBaslangici": null,
+    "sonGuncelleme": null,
+    "sonDurum": "henüz çekim yapılmadı (EPİAŞ kimlik bilgisi bekleniyor: .env)"
+  },
+  "gunler": {},
+  "havzalar": {}
+}

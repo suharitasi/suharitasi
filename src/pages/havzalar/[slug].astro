@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
+import BarajDoluluk from '../../components/BarajDoluluk.astro';
 import ilKurum from '../../../data/il-kurum.json';
 
 export async function getStaticPaths() {
@@ -71,6 +72,8 @@ const ilSatirlari = (havzaIl?.iller ?? []).map((il) => ({
   <div class="icerik">
     <Content />
   </div>
+
+  <BarajDoluluk havzaBaslik={giris.data.baslik} />
 
   {hukuk && (
     <section class="hukuk">

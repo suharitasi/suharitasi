@@ -147,3 +147,13 @@
   menu.js kullanıyor; sayfanın kendi görünümü aynen. Kod incelemesinde kendi
   hatam yakalandı: transform'lu overlay içinde fixed katmanlar kaydırmada
   kayardı — kaydırma iç sarmalayıcıya alındı, KAPAT sabitliği testle kanıtlı.
+
+## 2026-07-16 (HENDEK FAZ 1: EPİAŞ baraj pipeline)
+- EPİAŞ dams endpoint'leri doğrulandı (aktif doluluk % + kot + hacim,
+  havza parametreli; auth=TGT; 401 auth'suz teyitli; lisans "kaynak
+  göstererek" — girişli ekran teyidi kullanıcıda). Pipeline sıfır
+  bağımlılık: ham arşiv değiştirilmeden + normalize seri + günlük cron.
+- Uydurma yasağı koda gömüldü: geriye dönük veri üretilmez, başarısız gün
+  "veri alınamadı" işaretlenir, ortalama yalnız gerçek kayıttan "N gün"
+  ibaresiyle. Mock testte iki yol da kanıtlandı; görsel kanıt alınıp test
+  verisi iskelete döndürüldü. Gerçek çekim kullanıcının .env'ine kilitli.

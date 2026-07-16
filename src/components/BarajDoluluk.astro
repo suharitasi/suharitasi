@@ -1,0 +1,192 @@
+---
+// HENDEK FAZ 1 — havza sayfası baraj doluluk bloğu.
+// Veri build'e gömülür (data/canli/baraj.json); çalışma anında istek YOK.
+// Grafik: elle üretilen statik SVG — kütüphane seçim gerekçesi: seri küçük
+// (gün başına 1 nokta), build-time SVG sıfır bağımlılık + sıfır çalışma anı
+// JS demektir; Chart.js/uPlot bu iş için gereksiz yük. Kopyalanma direnci
+// ilkesiyle de uyumlu: sayfaya grafik kodu değil bitmiş SVG gider.
+//
+// UYDURMA YASAĞI: blok yalnız GERÇEK kayıt varsa çıkar; tek günlük veride
+// çizgi çizilmez ("kayıt yeni başladı"); ortalama kaç gün/barajdan
+// hesaplandığını açıkça yazar. Kayıt başlangıcı beyanı bloğun içindedir.
+import canli from '../../data/canli/baraj.json';
+
+interface Props {
+  havzaBaslik: string; // örn. "Sakarya Havzası"
+}
+
+const { havzaBaslik } = Astro.props;
+
+// EPİAŞ havza adı ("Sakarya") ↔ site başlığı ("Sakarya Havzası") eşlemesi:
+// normalize edip kapsama testi. Eşleşme yoksa blok hiç çıkmaz.
+const kucult = (s: string) =>
+  s.toLocaleLowerCase('tr-TR').replace(/\s*havzas[ıi]\s*$/, '').trim();
+const hedef = kucult(havzaBaslik);
+const epiasAdi = Object.keys(canli.havzalar ?? {}).find((h) => {
+  const e = kucult(h);
+  return e === hedef || hedef.includes(e) || e.includes(hedef);
+});
+const havza = epiasAdi ? (canli.havzalar as Record<string, any>)[epiasAdi] : undefined;
+
+const trTarih = (iso: string) => {
+  const [y, a, g] = iso.split('-');
+  return `${g}.${a}.${y}`;
+};
+
+// — Barajların son değerleri + havza günlük ortalama serisi (yalnız gerçek günler)
+let barajSatirlari: { ad: string; tarih: string; doluluk?: number; kot?: number }[] = [];
+let ortalamaSeri: { gun: string; ort: number; barajSayisi: number }[] = [];
+if (havza) {
+  for (const [ad, b] of Object.entries<any>(havza.barajlar)) {
+    const gunler = Object.keys(b.seri).sort();
+    if (!gunler.length) continue;
+    const son = gunler[gunler.length - 1];
+    barajSatirlari.push({ ad, tarih: son, ...b.seri[son] });
+  }
+  barajSatirlari.sort((a, b) => (b.doluluk ?? -1) - (a.doluluk ?? -1));
+
+  const gunToplam: Record<string, { t: number; n: number }> = {};
+  for (const b of Object.values<any>(havza.barajlar)) {
+    for (const [gun, v] of Object.entries<any>(b.seri)) {
+      if (v.doluluk == null) continue;
+      (gunToplam[gun] ??= { t: 0, n: 0 });
+      gunToplam[gun].t += v.doluluk;
+      gunToplam[gun].n += 1;
+    }
+  }
+  ortalamaSeri = Object.entries(gunToplam)
+    .map(([gun, { t, n }]) => ({ gun, ort: t / n, barajSayisi: n }))
+    .sort((a, b) => a.gun.localeCompare(b.gun));
+}
+
+const goster = !!havza && barajSatirlari.length > 0;
+const baslangic = canli.kunye.kayitBaslangici;
+const sonGuncelleme = canli.kunye.sonGuncelleme;
+
+// — SVG grafik (yalnız >= 2 gerçek gün varsa)
+const W = 640, H = 180, PAD = 34;
+let cizgi = '';
+let eksen: { x: number; etiket: string }[] = [];
+if (ortalamaSeri.length >= 2) {
+  const min = Math.max(0, Math.min(...ortalamaSeri.map((p) => p.ort)) - 5);
+  const max = Math.min(100, Math.max(...ortalamaSeri.map((p) => p.ort)) + 5);
+  const X = (i: number) => PAD + (i * (W - 2 * PAD)) / (ortalamaSeri.length - 1);
+  const Y = (v: number) => H - PAD - ((v - min) * (H - 2 * PAD)) / (max - min || 1);
+  cizgi = ortalamaSeri.map((p, i) => `${X(i).toFixed(1)},${Y(p.ort).toFixed(1)}`).join(' ');
+  const adim = Math.max(1, Math.ceil(ortalamaSeri.length / 6));
+  eksen = ortalamaSeri
+    .filter((_, i) => i % adim === 0 || i === ortalamaSeri.length - 1)
+    .map((p) => ({ x: X(ortalamaSeri.indexOf(p)), etiket: trTarih(p.gun).slice(0, 5) }));
+}
+---
+{goster && (
+  <section class="baraj-doluluk" aria-labelledby="baraj-doluluk-baslik">
+    <h2 id="baraj-doluluk-baslik">Baraj doluluk — günlük kayıt</h2>
+
+    {ortalamaSeri.length >= 2 ? (
+      <figure class="doluluk-grafik">
+        <svg viewBox={`0 0 ${W} ${H}`} role="img"
+          aria-label={`${havzaBaslik} baraj doluluk ortalaması zaman serisi`}>
+          <polyline points={cizgi} fill="none" stroke="var(--su-400)" stroke-width="2" />
+          {eksen.map((e) => (
+            <text x={e.x} y={H - 10} text-anchor="middle" font-size="10"
+              fill="var(--metin-soluk)">{e.etiket}</text>
+          ))}
+        </svg>
+        <figcaption>
+          Havza ortalaması — <strong>{ortalamaSeri.length} gün gerçek kayıttan</strong>
+          {' '}(günde {ortalamaSeri[ortalamaSeri.length - 1].barajSayisi} baraj).
+          Ortalama yalnız fiilen kaydedilen günlerden hesaplanır.
+        </figcaption>
+      </figure>
+    ) : (
+      <p class="kayit-yeni">
+        Günlük kayıt {baslangic ? trTarih(baslangic) : ''} tarihinde başladı;
+        zaman serisi grafiği kayıtlar biriktikçe oluşacak. Sahte/geçmişe dönük
+        veri üretilmez.
+      </p>
+    )}
+
+    <div class="tablo-kaydir">
+      <table>
+        <thead>
+          <tr><th>Baraj</th><th>Aktif doluluk</th><th>Kot</th><th>Kayıt tarihi</th></tr>
+        </thead>
+        <tbody>
+          {barajSatirlari.map((b) => (
+            <tr>
+              <td>{b.ad}</td>
+              <td>{b.doluluk != null
+                ? `%${b.doluluk.toLocaleString('tr-TR', { maximumFractionDigits: 1 })}`
+                : <span class="veri-yok">veri yok</span>}</td>
+              <td>{b.kot != null
+                ? `${b.kot.toLocaleString('tr-TR', { maximumFractionDigits: 2 })} m`
+                : <span class="veri-yok">veri yok</span>}</td>
+              <td>{trTarih(b.tarih)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="doluluk-kunye">
+      Kaynak: EPİAŞ Şeffaflık Platformu (veriler kaynak gösterilerek
+      kullanılabilir); kapsam enerji üretimiyle ilişkili rezervuarlardır.
+      Son güncelleme: {sonGuncelleme ? trTarih(sonGuncelleme) : 'veri yok'}.
+      Bu portal {baslangic ? trTarih(baslangic) : '—'} tarihinden itibaren
+      günlük kayıt tutmaktadır; bu tarihten önceki dönem için kayıt yoktur.
+    </p>
+  </section>
+)}
+
+<style>
+  .baraj-doluluk {
+    margin-top: 2.6rem;
+    padding: 1.4rem 1.5rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+  }
+
+  .baraj-doluluk h2 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.9rem;
+  }
+
+  .doluluk-grafik { margin: 0 0 1rem; }
+
+  .doluluk-grafik svg { width: 100%; height: auto; display: block; }
+
+  .doluluk-grafik figcaption,
+  .kayit-yeni,
+  .doluluk-kunye {
+    font-size: 0.82rem;
+    color: var(--metin-soluk);
+    margin-top: 0.5rem;
+  }
+
+  .kayit-yeni { margin-bottom: 1rem; }
+
+  .tablo-kaydir { overflow-x: auto; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+
+  th {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    text-align: left;
+    padding: 0.45rem 0.9rem 0.45rem 0;
+    border-bottom: 1px solid var(--cizgi);
+  }
+
+  td {
+    padding: 0.5rem 0.9rem 0.5rem 0;
+    border-bottom: 1px solid var(--cizgi);
+  }
+
+  .doluluk-kunye { margin-top: 0.9rem; }
+</style>

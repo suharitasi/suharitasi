@@ -217,3 +217,25 @@
   sektörel kullanımı ülke toplamında veriyor, havza kırılımı yok.
   USBS (usbs.tarimorman.gov.tr) portal arayüzü var; anonim REST ucu
   bulunamadı. Alan tüm havzalarda "veri yok" işaretli.
+
+## EPİAŞ günlük baraj verisi (data/arsiv/baraj/ + data/canli/baraj.json)
+
+- Kaynak: EPİAŞ Şeffaflık Platformu — https://seffaflik.epias.com.tr
+  (electricity-service, markets-dams-controller: aktif doluluk %, günlük
+  kot, günlük hacim; havza parametreli)
+- Erişim: üyelik + CAS TGT bileti (kimlik yalnız sunucuda .env'de;
+  repoya girmez). Çekim: arac/baraj-cek.mjs, günlük cron 18:00 TR.
+- Lisans: "İçerik ve veriler kaynak gösterilmek suretiyle çoğaltılabilir
+  ve kullanılabilir" — EPİAŞ platform beyanı; ifade web aramasıyla
+  EPİAŞ'ın kendi sayfası kaynaklı teyit edildi (2026-07-16), canlı sayfa
+  bu sunucudan açılamadığı için kesin teyit girişli ekrandan yapılacak
+  (kullanıcıda). Yeniden-satış izni AYRICA teyit edilmeden ücretli
+  katmanda kullanılmaz.
+- Kapsam şerhi: EPİAŞ enerji piyasası platformudur — kapsam enerji
+  üretimiyle ilişkili rezervuarlardır; içme suyu barajları kapsam dışı
+  olabilir (ilk gerçek çekimde doğrulanacak).
+- KRİTİK: EPİAŞ geriye dönük veri VERMEZ ("Geriye dönük veri
+  bulunmamaktadır" — teknik doküman). Arşiv kayıt başlangıcından itibaren
+  gün gün birikir; başlangıç öncesi için veri yoktur ve üretilmez.
+- İlk kayıt tarihi: henüz yok (kullanıcı .env doldurunca başlar;
+  data/canli/baraj.json künyesindeki kayitBaslangici alanı otomatik dolar).
