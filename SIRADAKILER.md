@@ -149,3 +149,12 @@
     noktasına alındı (grace-hesap.js — 3 kopya tekilleşti). Görsel
     onay: il-konya/il-bolu/arac-*.png. Not: baraj/GRACE verisi cron'la
     güncellendikçe il sayfaları da sonraki build'de tazelenir.
+33. TASARIM ANAYASASI FAZ 0 — KULLANICI ONAYI BEKLİYOR (2026-07-16):
+    DESIGN.md 2.0 yazıldı (üç font hiyerarşisi: Cormorant + Manrope +
+    IBM Plex Mono; kicker sistemi; 6 kart ton ailesi — düz ton kararı;
+    easing/durum sözlüğü; veri bandı dili; iki hız sınıfı; 11 maddelik
+    başarısızlık listesi; akuamarin çift-ton kuralı #4FC3D0/#0F7A8A).
+    Örnek sayfa /stil-pilot/ canlıda (noindex, sitemap dışı) — kuyu
+    ruhsatı rehberi yeni dille. ONAY KAPISI: kullanıcı canlıda "bu dil,
+    devam" demeden FAZ 1 (toplu giydirme), FAZ 2 (menü), FAZ 3 (deneyim
+    sahnesi) BAŞLAMAZ.

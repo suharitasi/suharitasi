@@ -1,0 +1,320 @@
+---
+// STİL PİLOTU — FAZ 0 örnek sayfası (DESIGN.md 2.0 anayasasının canlı kanıtı).
+// İçerik: kuyu-ruhsati rehberinin AYNISI (collection'dan; kopya değil, aynı
+// kaynak) — değişen yalnız giydirme. Mevcut sayfalara DOKUNULMAZ; kullanıcı
+// bu sayfayı canlıda onaylarsa dil FAZ 1'de tüm iş sayfalarına taşınır.
+// noindex + sitemap dışı: pilot, arama motorlarına açılmaz.
+import { getCollection, render } from 'astro:content';
+import { YAZAR } from '../data/site';
+
+const giris = (await getCollection('rehberler')).find((g) => g.id === 'kuyu-ruhsati');
+if (!giris) throw new Error('stil-pilot: kuyu-ruhsati bulunamadı');
+const { Content } = await render(giris);
+
+const ilgili = (await getCollection('rehberler')).filter((g) =>
+  giris.data.ilgili.includes(g.id)
+);
+// Kart kimliği: küme → ton ailesi (anayasa §7)
+const aile = { surec: 'suyesili', uyusmazlik: 'kehribar' };
+
+const tarihYaz = giris.data.tarih.toLocaleDateString('tr-TR', {
+  year: 'numeric', month: 'long', day: 'numeric',
+});
+---
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Stil pilotu — kuyu ruhsatı (DESIGN 2.0) — Su Haritası</title>
+<meta name="description" content="Tasarım anayasası 2.0 örnek sayfası — onay için pilot." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap&subset=latin-ext" rel="stylesheet" />
+<style is:global>
+  /* ═══ DESIGN 2.0 token seti (anayasa §4-8) — pilot kapsamı ═══ */
+  :root {
+    --krem: #F3EEE2;
+    --kart: #E8EDE6;
+    --murekkep: #232E2B;
+    --soluk: #5C6B66;
+    --baglanti: #2F5D59;
+    --su-cizgi: #5E8A87;
+    --vurgu: #0F7A8A;            /* derin akuamarin — aydınlık dünya vurgusu */
+    --vurgu-hairline: #4FC3D0;   /* parlak ton yalnız dekoratif hairline */
+    --kehribar: #B9853F;
+    --suyesili: #2F5D59;
+    --cizgi: rgba(35, 46, 43, 0.14);
+
+    --serif: "Cormorant", Georgia, serif;
+    --sans: "Manrope", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+
+    --e-su: cubic-bezier(0.16, 1, 0.3, 1);
+    --e-dalga: cubic-bezier(0.33, 1, 0.68, 1);
+    --e-akis: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--krem);
+    color: var(--murekkep);
+    font-family: var(--sans);
+    font-size: 1.02rem;
+    line-height: 1.75;
+  }
+
+  a { color: var(--baglanti); transition: color 120ms var(--e-akis); }
+  a:hover { color: var(--vurgu); }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--vurgu);
+    outline-offset: 3px;
+  }
+
+  /* ── Üst şerit: pilot kimliği ── */
+  .pilot-serit {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: var(--murekkep);
+    color: var(--krem);
+    padding: 0.5rem clamp(1.25rem, 4vw, 2rem);
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .pilot-serit a { color: #A8DDE0; text-decoration: none; }
+  .pilot-serit a:hover { color: #FFFFFF; }
+
+  header.ust {
+    border-bottom: 1px solid var(--cizgi);
+    padding: 0.9rem clamp(1.25rem, 4vw, 2rem);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .marka { font-family: var(--serif); font-style: italic; font-weight: 500;
+    font-size: 1.3rem; color: var(--murekkep); text-decoration: none; }
+  .ust-meta { font-family: var(--mono); font-size: 0.66rem;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--soluk); }
+
+  main { max-width: 46rem; margin: 0 auto;
+    padding: clamp(2.2rem, 6vh, 3.5rem) clamp(1.25rem, 4vw, 2rem) 5rem; }
+
+  /* ═══ §6 KICKER SİSTEMİ ═══ */
+  .kicker {
+    display: flex; align-items: center; gap: 0.7rem;
+    font-family: var(--mono); font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--vurgu);
+  }
+  .kicker::before { content: ""; width: 1.6rem; height: 1px;
+    background: var(--vurgu-hairline); }
+  .kicker-sub { margin-top: 0.3rem; font-family: var(--mono);
+    font-size: 0.68rem; color: var(--soluk); letter-spacing: 0.06em; }
+
+  h1 {
+    margin-top: 0.9rem;
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(2.1rem, 4.8vw, 3.1rem); line-height: 1.14;
+    letter-spacing: -0.01em; text-wrap: balance;
+  }
+  h1 em { font-style: italic; color: var(--vurgu); }
+
+  .sayfa-kunye { margin-top: 0.9rem; font-family: var(--mono);
+    font-size: 0.7rem; letter-spacing: 0.05em; color: var(--soluk);
+    display: flex; gap: 0.9rem; flex-wrap: wrap; }
+  .sayfa-kunye a { color: var(--baglanti); }
+
+  .su-hatti { width: 100%; height: 1px; border: 0; margin: 1.3rem 0 0;
+    background: linear-gradient(90deg, rgba(94,138,135,0) 0%,
+      var(--su-cizgi) 14%, var(--su-cizgi) 62%, rgba(94,138,135,0) 100%); }
+
+  /* ═══ §9 VERİ BANDI ═══ */
+  .veri-bandi {
+    margin: 1.8rem 0 0; padding: 1.1rem 1.3rem;
+    background: var(--kart); border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--vurgu);
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+  }
+  @media (max-width: 560px) { .veri-bandi { grid-template-columns: 1fr; } }
+  .veri-bandi .rakam { font-family: var(--serif); font-weight: 500;
+    font-size: 2rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .veri-bandi .etiket { font-family: var(--mono); font-size: 0.62rem;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--soluk);
+    margin-top: 0.25rem; }
+  .veri-kaynak { grid-column: 1 / -1; font-family: var(--mono);
+    font-size: 0.62rem; color: var(--soluk); border-top: 1px solid var(--cizgi);
+    padding-top: 0.6rem; }
+
+  /* ── Öz cevap (anayasa diliyle) ── */
+  .oz-cevap {
+    margin: 1.8rem 0 0; padding: 1.1rem 1.3rem;
+    border-left: 3px solid var(--vurgu-hairline);
+    background: rgba(15, 122, 138, 0.05);
+    font-size: 1.06rem; line-height: 1.6; font-weight: 500; max-width: 66ch;
+  }
+  .oz-cevap .oz-etiket { display: block; font-family: var(--mono);
+    font-weight: 500; font-size: 0.64rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--vurgu); margin-bottom: 0.45rem; }
+
+  /* ═══ İçerik: bölüm kicker'ları CSS sayaçla (içerikten türeyen numara) ═══ */
+  .icerik { counter-reset: bolum; margin-top: 1rem; }
+  .icerik h2 {
+    counter-increment: bolum;
+    font-family: var(--serif); font-weight: 500; font-size: 1.7rem;
+    line-height: 1.25; margin: 2.6rem 0 0.8rem;
+  }
+  .icerik h2::before {
+    content: "BÖLÜM " counter(bolum, decimal-leading-zero);
+    display: flex; align-items: center; gap: 0.7rem;
+    font-family: var(--mono); font-size: 0.66rem; font-weight: 500;
+    letter-spacing: 0.22em; color: var(--vurgu); margin-bottom: 0.55rem;
+  }
+  .icerik h2::after { content: ""; display: block; width: 2.6rem; height: 1px;
+    background: var(--vurgu-hairline); margin-top: 0.55rem; }
+
+  .icerik p { margin: 0.9rem 0; max-width: 68ch; }
+  .icerik ul, .icerik ol { margin: 0.9rem 0 0.9rem 1.3rem; max-width: 66ch; }
+  .icerik li { margin: 0.35rem 0; }
+  .icerik a { text-decoration-thickness: 1px; text-underline-offset: 3px;
+    transition: color 120ms var(--e-akis), text-decoration-thickness 120ms var(--e-akis); }
+  .icerik a:hover { text-decoration-thickness: 2px; }
+
+  .icerik blockquote {
+    margin: 1.4rem 0; padding: 0.85rem 1.1rem;
+    border-left: 3px solid var(--vurgu-hairline);
+    background: rgba(35, 46, 43, 0.035);
+    color: var(--soluk); font-family: var(--serif); font-size: 1.1rem;
+  }
+
+  .icerik table { width: 100%; border-collapse: collapse; margin: 1.4rem 0;
+    font-size: 0.95rem; }
+  .icerik th {
+    font-family: var(--mono); font-weight: 500; font-size: 0.66rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--soluk);
+    background: var(--kart); text-align: left; padding: 0.55rem 0.7rem;
+    border-bottom: 2px solid var(--vurgu);
+  }
+  .icerik td { text-align: left; padding: 0.55rem 0.7rem;
+    border-bottom: 1px solid var(--cizgi); vertical-align: top; }
+  .icerik tbody tr { transition: background-color 120ms var(--e-akis); }
+  .icerik tbody tr:hover { background: rgba(15, 122, 138, 0.05); }
+
+  /* ═══ §7 KART KİMLİKLERİ — ilgili rehberler ═══ */
+  .ilgili { margin-top: 3rem; }
+  .ilgili-kartlar { display: grid; gap: 0.8rem; margin-top: 1rem; }
+  .kart {
+    display: block; padding: 1rem 1.2rem; text-decoration: none;
+    background: var(--kart); border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--ton, var(--vurgu));
+    transition: transform 240ms var(--e-su), background-color 240ms var(--e-akis);
+  }
+  .kart:hover { transform: translateY(-2px); background: var(--ton-zemin, var(--kart)); }
+  .kart:active { transform: translateY(0) scale(0.985); transition-duration: 120ms; }
+  .kart.suyesili { --ton: var(--suyesili); --ton-zemin: rgba(47, 93, 89, 0.07); }
+  .kart.kehribar { --ton: var(--kehribar); --ton-zemin: rgba(185, 133, 63, 0.08); }
+  .kart-kicker { font-family: var(--mono); font-size: 0.62rem; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--ton); }
+  .kart-baslik { display: block; margin-top: 0.35rem; font-family: var(--serif);
+    font-weight: 500; font-size: 1.18rem; line-height: 1.3; color: var(--murekkep); }
+  .kart-ozet { display: block; margin-top: 0.3rem; font-size: 0.85rem;
+    line-height: 1.55; color: var(--soluk); }
+
+  /* ── Yazar kutusu (mürekkep ailesi) ── */
+  .yazar { margin-top: 3rem; padding: 1.2rem 1.3rem; background: var(--kart);
+    border: 1px solid var(--cizgi); border-top: 2px solid var(--murekkep); }
+  .yazar .kart-kicker { color: var(--murekkep); }
+  .yazar-ad { font-family: var(--serif); font-size: 1.3rem; font-weight: 500;
+    margin-top: 0.35rem; }
+  .yazar-bio { margin-top: 0.45rem; font-size: 0.9rem; color: var(--soluk);
+    max-width: 62ch; }
+  .yazar-meta { margin-top: 0.6rem; font-family: var(--mono); font-size: 0.7rem;
+    letter-spacing: 0.05em; }
+
+  footer { border-top: 1px solid var(--cizgi); margin-top: 4rem;
+    padding: 1.4rem; text-align: center; font-family: var(--mono);
+    font-size: 0.68rem; letter-spacing: 0.08em; color: var(--soluk); }
+  footer a { color: var(--soluk); text-decoration: none; }
+  footer a:hover { color: var(--murekkep); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+  <div class="pilot-serit">
+    <span>STİL PİLOTU — DESIGN 2.0 ÖRNEK SAYFA · ONAY BEKLİYOR</span>
+    <a href="/rehberler/kuyu-ruhsati/">mevcut sayfayla karşılaştır →</a>
+  </div>
+
+  <header class="ust">
+    <a class="marka" href="/">su haritası</a>
+    <span class="ust-meta">Rehber · Süreç</span>
+  </header>
+
+  <main>
+    <p class="kicker">Rehber · Süreç</p>
+    <p class="kicker-sub">167 sayılı Kanun rejimi — {tarihYaz}</p>
+    <h1>Kuyu ruhsatı: yeraltı suyunun <em>üç belgesi</em></h1>
+    <p class="sayfa-kunye">
+      <span>GÜNCELLEME: {tarihYaz}</span>
+      <span>HUKUKİ İÇERİK: <a href="/hakkinda/">{YAZAR.ad}</a></span>
+    </p>
+    <hr class="su-hatti" />
+
+    <div class="veri-bandi">
+      <div><div class="rakam">3</div><div class="etiket">Belge zinciri: arama · kullanma · ıslah-tadil</div></div>
+      <div><div class="rakam">1 ay</div><div class="etiket">Başvuruya cevap süresi (Tüzük m.13)</div></div>
+      <div><div class="rakam">0</div><div class="etiket">Harç, damga, rüsum — muaf (167 m.12)</div></div>
+      <div class="veri-kaynak">KAYNAK: 167 sayılı Kanun + Yeraltı Suları Tüzüğü — sayfadaki madde metinlerinden; {tarihYaz}</div>
+    </div>
+
+    <p class="oz-cevap">
+      <span class="oz-etiket">Öz cevap — 10 saniyede</span>
+      {giris.data.ozCevap}
+    </p>
+
+    <div class="icerik">
+      <Content />
+    </div>
+
+    <section class="yazar">
+      <p class="kart-kicker">Bu rehberi hazırlayan</p>
+      <p class="yazar-ad">{YAZAR.ad}</p>
+      <p class="yazar-bio">{YAZAR.bio}</p>
+      <p class="yazar-meta">
+        <a href={YAZAR.buroUrl} target="_blank" rel="noopener">{YAZAR.buro}</a> ·
+        <a href="/hakkinda/">portal hakkında</a>
+      </p>
+    </section>
+
+    <section class="ilgili">
+      <p class="kicker">Sonraki adım</p>
+      <h2 style="font-family: var(--serif); font-weight: 500; font-size: 1.7rem; margin-top: 0.6rem;">
+        İlgili <em style="color: var(--vurgu);">rehberler</em>
+      </h2>
+      <div class="ilgili-kartlar">
+        {ilgili.map((g) => (
+          <a class={`kart ${aile[g.data.kume]}`} href={`/rehberler/${g.id}/`}>
+            <span class="kart-kicker">{g.data.kume === 'surec' ? 'Rehber · Süreç' : 'Rehber · Uyuşmazlık'}</span>
+            <span class="kart-baslik">{g.data.baslik}</span>
+            <span class="kart-ozet">{g.data.ozet.slice(0, 110)}…</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="https://arslanhukuk.tr" target="_blank" rel="noopener">suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026</a>
+  </footer>
+</body>
+</html>

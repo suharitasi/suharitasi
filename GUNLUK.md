@@ -192,3 +192,12 @@
 - İnce içerik eşiği dürüst uygulandı: 81/81 il 3+ gerçek unsurla geçti.
   Duplicate/uydurma/sitemap/JSON-LD kontrolleri temiz; JS'siz erişim
   kanıtlı. Build 125 sayfa.
+
+## 2026-07-16 (Tasarım anayasası FAZ 0)
+- DESIGN.md 2.0: zanaat sistemleri eklendi (font üçlüsü + mono öneri
+  gerekçeli, kicker imzası, kart kimlikleri düz-ton kararıyla, tanımlı
+  easing/durum sözlüğü, veri bandı, iki hız sınıfı, başarısızlık listesi).
+  Eski "akuamarin aydınlıkta yasak" kuralı çift-ton kuralına evrildi.
+- /stil-pilot/ örnek sayfası yayında (noindex): kuyu ruhsatı rehberi yeni
+  dille. Cormorant'ta ₺ glifi yok bulgusu → veri bandında rakam "0"a
+  çevrildi. FAZ 1-3 kullanıcı onay kapısının arkasında.
