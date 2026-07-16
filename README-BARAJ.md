@@ -30,7 +30,7 @@ hook GEREKMEZ. Yine de bağımsız tetikleyici istersen:
 1. Cloudflare panel → Workers & Pages → suharitasi → **Settings**
 2. **Builds & deployments → Deploy hooks → Add deploy hook**
 3. Ad: `baraj-gunluk`, branch: `main` → **Add** → çıkan URL'yi kopyala
-4. `.env` içine yapıştır: `DEPLOY_HOOK_URL=https://api.cloudflare.com/...`
+4. `.env` içine yapıştır: `CF_DEPLOY_HOOK=https://api.cloudflare.com/...`
 
 ## 3) Arıza uyarısı hakkında not
 

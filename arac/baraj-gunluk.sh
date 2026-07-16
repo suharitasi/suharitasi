@@ -21,11 +21,22 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
   git push -q || echo "[$(date -u +%FT%TZ)] git push BAŞARISIZ" >> data/arsiv/baraj/log/cron-hata.log
 fi
 
-# Deploy hook (opsiyonel — .env'de DEPLOY_HOOK_URL doluysa)
-HOOK=$(grep -E '^DEPLOY_HOOK_URL=.+' .env 2>/dev/null | cut -d= -f2-)
-if [ -n "${HOOK:-}" ]; then
-  curl -s -m 30 -X POST "$HOOK" -o /dev/null -w "[deploy hook HTTP %{http_code}]\n" \
-    >> data/arsiv/baraj/log/cron.log 2>&1
+# Cloudflare deploy hook — SON adım. Kurallar:
+#  - YALNIZ başarılı çekimde (CEKIM=0) tetiklenir: veri alınamayan günde
+#    boşuna deploy yok.
+#  - Pipeline'ı ASLA çökertmez: ağ/HTTP hatası yalnız log'lanır; asıl değer
+#    arşivdir ve o bu noktada zaten yazılmıştır — çıkış kodu değişmez.
+#  - URL .env'de (CF_DEPLOY_HOOK) — tek kaynaktan yönetim.
+if [ "$CEKIM" -eq 0 ]; then
+  HOOK=$(grep -E '^CF_DEPLOY_HOOK=.+' .env 2>/dev/null | cut -d= -f2-)
+  if [ -n "${HOOK:-}" ]; then
+    HKOD=$(curl -s -m 30 -o /dev/null -w "%{http_code}" -X POST "$HOOK" 2>/dev/null) || HKOD="AG-HATASI"
+    if [ "$HKOD" = "200" ]; then
+      echo "[$(date -u +%FT%TZ)] deploy hook tetiklendi (HTTP 200)" >> data/arsiv/baraj/log/cron.log
+    else
+      echo "[$(date -u +%FT%TZ)] deploy hook BAŞARISIZ ($HKOD) — arşiv yazıldı, pipeline başarılı sayılır; gerekirse manuel deploy" >> data/arsiv/baraj/log/cron.log
+    fi
+  fi
 fi
 
 exit $CEKIM
