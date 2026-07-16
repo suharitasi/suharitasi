@@ -201,3 +201,15 @@
 - /stil-pilot/ örnek sayfası yayında (noindex): kuyu ruhsatı rehberi yeni
   dille. Cormorant'ta ₺ glifi yok bulgusu → veri bandında rakam "0"a
   çevrildi. FAZ 1-3 kullanıcı onay kapısının arkasında.
+
+## 2026-07-16 (Yön yükseltmesi: SU-DİLİ FAZ 0 tamamlandı)
+- Anayasa 3.0: dil suyun kendisinden — derinlik skalası HEDEF görselinden
+  px-örneklemeli (yüzey #E9EBE7 / sığ #4F7B78 / derin #175E56 / dip
+  #0C332C), akuamarin kıyasta elendi; 4 su-ivmesi eğrisi; kırılma
+  vurgusu; kot cetveli; TEK MOD; kıyaslar (2 skala + 2 tipografi) kayıtlı.
+- HEDEF sahnelendi: 1x/2x AVIF(85/179KB)+WebP+JPEG + 488B LQIP; iki menü
+  varyantı (A sol-üst dikey / B alt-kenar yatay), renkler görselden,
+  AA kanıtlı, overlay çalışır. Denetimde 2 başarısızlık yakalanıp
+  düzeltildi: dokunma hedefleri 37→47px; A'nın alt linkleri kara
+  dokusuna taşıyordu → kolon gök bandına sıkıştı, mobilde denize inip
+  köpüğe döndü. WebGL rafa.

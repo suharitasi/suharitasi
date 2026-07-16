@@ -1,0 +1,49 @@
+---
+// HEDEF sahnelemesi (anayasa §13): görsel OLDUĞU GİBİ, kusursuz işçilikle.
+// Retina 1x/2x (upscale yok — 2x = 2944w orijinal), AVIF→WebP→JPEG,
+// gömülü LQIP blur-up (beyaz/boş ekran anı asla), art direction:
+// dar ekranda Türkiye merkezde (object-position).
+import lqip from '../data/hedef-lqip.txt?raw';
+const LQIP = `data:image/jpeg;base64,${lqip.trim()}`;
+---
+<div class="sahne" style={`background-image:url("${LQIP}")`}>
+  <picture>
+    <source
+      type="image/avif"
+      srcset="/hedef/hedef-1472.avif 1472w, /hedef/hedef-2944.avif 2944w"
+      sizes="100vw"
+    />
+    <source
+      type="image/webp"
+      srcset="/hedef/hedef-1472.webp 1472w, /hedef/hedef-2944.webp 2944w"
+      sizes="100vw"
+    />
+    <img
+      src="/hedef/hedef-1472.jpg"
+      srcset="/hedef/hedef-1472.jpg 1472w, /hedef/hedef-2944.jpg 2944w"
+      sizes="100vw"
+      alt="Türkiye'nin kabartma su haritası — gün ışığında, denizden yükselen su kavisleri ve süzülen damlalarla"
+      fetchpriority="high"
+      decoding="async"
+    />
+  </picture>
+</div>
+
+<style is:global>
+  .sahne {
+    position: fixed;
+    inset: 0;
+    /* LQIP zemin: görsel inene kadar bulanık önizleme — boş ekran anı yok */
+    background-size: cover;
+    background-position: 52% 42%;
+  }
+
+  .sahne img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Türkiye kadraj merkezi: dar/dikey ekranda da merkezde kalır */
+    object-position: 52% 42%;
+    display: block;
+  }
+</style>

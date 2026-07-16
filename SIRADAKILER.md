@@ -158,3 +158,19 @@
     ruhsatı rehberi yeni dille. ONAY KAPISI: kullanıcı canlıda "bu dil,
     devam" demeden FAZ 1 (toplu giydirme), FAZ 2 (menü), FAZ 3 (deneyim
     sahnesi) BAŞLAMAZ.
+34. YÖN YÜKSELTMESİ — SU-DİLİ FAZ 0 (madde 33'ün yerine geçer) —
+    KULLANICI ONAYI BEKLİYOR (2026-07-16): DESIGN.md 3.0 su-dili
+    anayasası (derinlik skalası HEDEF'ten örneklenmiş — kıyas kayıtlı:
+    petrol skalası kazandı, akuamarin/gece-lacivert elendi; 4 akış
+    eğrisi; ışık kırılması vurgusu; kot cetveli ölçüm esteti; TEK MOD
+    kararı gerekçeli; mobil birinci sınıf). /stil-pilot/ v3 skalasına
+    güncellendi. /harita-stil/ (varyant A: sol üst dikey) +
+    /harita-stil/b/ (alt kenar yatay) kuruldu — HEDEF sahnelemesi
+    (retina 1x/2x, AVIF/WebP/JPEG, LQIP blur-up, mobilde Türkiye
+    merkezde, menü renkleri görselden örnekli + AA kanıtlı, overlay
+    menü çalışır). ONAY: kullanıcı canlıda (1) iç sayfa dili
+    /stil-pilot/, (2) menü varyantı A mı B mi — ikisini birden
+    bildirmeden FAZ 1-2-3 başlamaz.
+35. WebGL DENEYİM SAHNESİ — RAFTA (yön yükseltmesi kararı, 2026-07-16):
+    canlı su sahnesi iptal değil ertelendi; öncelik su-dili + HEDEF
+    sahnelemesi. Kullanıcı isterse ayrı brief'le döner.

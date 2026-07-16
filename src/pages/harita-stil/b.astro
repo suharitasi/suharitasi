@@ -1,0 +1,159 @@
+---
+// /harita-stil/b/ — VARYANT B: alt kenar, ufuk/kıyı hattına hizalı yatay dizilim.
+// Menü tipografisi görselin KENDİ paletinden: köpük #E8ECEA (derin deniz
+// #2D4E4B üstünde 7.65:1; en açık zemin örneği adaçayı #586C57 üstünde
+// 4.76:1 AA). Kutu/bar yok; alt kenarda görselin KENDİ dip tonundan
+// (%12 → 0) yumuşak scrim — anayasa §13 sınırı içinde.
+// FAZ 0 pilotu: noindex + sitemap dışı. Karşılaştırma: /harita-stil/
+import HedefSahne from '../../components/HedefSahne.astro';
+import TamEkranMenu from '../../components/TamEkranMenu.astro';
+
+const ogeler = [
+  { ad: 'Harita', yol: '/harita/' },
+  { ad: 'Havzalar', yol: '/havzalar/' },
+  { ad: 'Rehberler', yol: '/rehberler/' },
+  { ad: 'Su Kanunu', yol: '/su-kanunu/' },
+  { ad: 'Hakkında', yol: '/hakkinda/' },
+];
+---
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Harita stili — varyant B (alt kenar, yatay) — Su Haritası</title>
+<meta name="description" content="HEDEF sahnelemesi pilotu — menü varyant B." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;1,500&family=Manrope:wght@500;600&family=IBM+Plex+Mono:wght@400;500&display=swap&subset=latin-ext" rel="stylesheet" />
+<style is:global>
+  :root {
+    --serif: "Cormorant", Georgia, serif;
+    --sans: "Manrope", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --e-suzul: cubic-bezier(0.22, 1, 0.36, 1);
+    --e-akinti: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    /* Görselden örneklenen menü tonları (denetim 2026-07-16) */
+    --menu-metin: #E8ECEA;   /* köpük — derin deniz üstünde 7.65:1 */
+    --akuamarin: #7FB5AE;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; overflow: hidden; }
+  body { font-family: var(--sans); }
+
+  /* Alt kenar: görselin kendi dip tonundan yumuşak scrim (%12→0, bar değil) */
+  .kiyi-scrim {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    height: 26vh;
+    z-index: 5;
+    pointer-events: none;
+    background: linear-gradient(180deg,
+      rgba(12, 51, 44, 0) 0%, rgba(12, 51, 44, 0.12) 100%);
+  }
+
+  /* ── VARYANT B: alt kenar, ufuk/kıyı hattına hizalı yatay dizilim ── */
+  .menu-b {
+    position: fixed;
+    left: 0; right: 0;
+    bottom: clamp(1.2rem, 3.5vh, 2.4rem);
+    z-index: 10;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: clamp(1.1rem, 3.2vw, 2.6rem);
+    flex-wrap: wrap;
+    padding: 0 clamp(1rem, 3vw, 2rem);
+  }
+
+  .marka {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.4rem;
+    color: var(--menu-metin);
+    text-decoration: none;
+    margin-right: clamp(0.4rem, 2vw, 1.6rem);
+  }
+
+  .menu-b a:not(.marka), .menu-ac {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--menu-metin);
+    text-decoration: none;
+    opacity: 0.82;
+    transition: opacity 240ms var(--e-suzul), letter-spacing 240ms var(--e-suzul);
+    padding: 0.6rem 0; /* dokunma hedefi */
+  }
+
+  .menu-b a:not(.marka):hover, .menu-ac:hover {
+    opacity: 1;
+    letter-spacing: 0.3em;
+  }
+
+  .menu-b a:focus-visible, .menu-ac:focus-visible {
+    outline: 2px solid var(--menu-metin);
+    outline-offset: 3px;
+    opacity: 1;
+  }
+
+  .menu-ac { background: none; border: 0; cursor: pointer; opacity: 0.62; }
+
+  .varyant-gecis {
+    position: fixed;
+    right: clamp(1rem, 2.5vw, 2rem);
+    top: clamp(1rem, 2.5vh, 1.6rem);
+    z-index: 10;
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #12312B;
+    text-decoration: none;
+    opacity: 0.85;
+    transition: opacity 240ms var(--e-suzul), letter-spacing 240ms var(--e-suzul);
+  }
+  .varyant-gecis:hover { opacity: 1; letter-spacing: 0.2em; }
+  .varyant-gecis:focus-visible { outline: 2px solid #12312B; outline-offset: 3px; }
+
+  @media (max-width: 700px) {
+    /* Mobil: yatay sıra dar ekranda iki satıra akar; hedefler ≥44px */
+    .menu-b { gap: 0.4rem 1.3rem; bottom: 1rem; }
+    .menu-b a:not(.marka), .menu-ac { padding: 1.05rem 0.2rem; font-size: 0.68rem; }
+    .marka { flex-basis: 100%; text-align: center; margin-right: 0; }
+    .kiyi-scrim { height: 34vh; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-b a, .menu-ac, .varyant-gecis { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <HedefSahne />
+  <div class="kiyi-scrim" aria-hidden="true"></div>
+
+  <nav class="menu-b" aria-label="Site menüsü" data-menu-dis>
+    <a class="marka" href="/">su haritası</a>
+    {ogeler.map((o) => <a href={o.yol}>{o.ad}</a>)}
+    <button
+      class="menu-ac sv-menu-ac"
+      type="button"
+      aria-haspopup="dialog"
+      aria-expanded="false"
+      aria-controls="sv-menu"
+    >menü</button>
+  </nav>
+
+  <a class="varyant-gecis" href="/harita-stil/">← varyant A'yı gör</a>
+
+  <TamEkranMenu />
+  <script type="module" src="/s/menu.js" is:inline></script>
+</body>
+</html>
