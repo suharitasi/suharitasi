@@ -12,3 +12,5 @@ cikti/
 # Kimlik bilgileri — ASLA commit edilmez (HENDEK FAZ 1)
 .env
 .claude/settings.local.json*
+# GRACE ham NetCDF: GitHub 100MB dosya limiti — sunucu arşivi (sha256 kaydı git'te)
+data/arsiv/grace/ham/

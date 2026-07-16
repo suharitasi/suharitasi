@@ -161,3 +161,14 @@
   kayıt başlangıcı 16.07.2026. EPİAŞ seti sitedeki 25 havzanın 17'sini
   kapsıyor (Fırat-Dicle yok — kaynak şerhi düşüldü). Cron yarın 18:00 TR'de
   devralır.
+
+## 2026-07-16 (HENDEK FAZ 1-B: GRACE su nabzı)
+- Kaynak yarışı test edildi: GSFC mascon AÇIK (200, tokensız) kazandı;
+  JPL 302→login, CSR 000, UNL yalnız PNG. 530MB NetCDF indirildi (sha256
+  git'te; ham dosya GitHub 100MB limiti nedeniyle sunucu arşivinde).
+- 25 havza alan-ağırlıklı TWS anomali serisi çıkarıldı (254 gerçek ay;
+  34 eksik ay dolgusuz). Sakarya son 5 yıl: -0,70 cm/yıl (60 aydan).
+  Havza sayfalarına eğilim göstergesi + tam şerh seti; haftalık cron.
+- VARSAYIM DÜZELTMESİ: GRACE "yeraltı suyu" değil TOPLAM su depolaması
+  değişimi ölçer; site dili ve başlık buna göre kuruldu (dur/sor yerine
+  raporla kuralı gereği not düşüldü).

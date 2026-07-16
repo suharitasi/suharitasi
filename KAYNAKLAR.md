@@ -239,3 +239,27 @@
   gün gün birikir; başlangıç öncesi için veri yoktur ve üretilmez.
 - İlk kayıt tarihi: henüz yok (kullanıcı .env doldurunca başlar;
   data/canli/baraj.json künyesindeki kayitBaslangici alanı otomatik dolar).
+
+## GRACE su depolaması anomalisi (data/canli/grace-*.json + arşiv)
+
+- Kaynak: NASA GSFC GRACE/GRACE-FO mascon RL06 v2.0, yarım-derece grid —
+  earth.gsfc.nasa.gov/geo/data/grace-mascons (açık, KAYITSIZ; test
+  2026-07-16: HTTP 200, 530.877.840 bayt indirildi, sha256 kaydı
+  data/arsiv/grace/ham-sha256.txt). Karşılaştırılan alternatifler:
+  JPL/PO.DAAC (302→Earthdata login), CSR Texas (bu sunucudan 000),
+  UNL nasagrace.unl.edu (yalnız PNG/PDF — sayısal değil). "Kayıtsız >
+  tokenlı" kuralıyla GSFC seçildi; EARTHDATA_TOKEN şu an GEREKMİYOR.
+- İçerik: lwe_thickness — TOPLAM su depolaması (TWS) anomalisi, cm sıvı su
+  eşdeğeri, 2004-2009 ortalamasına göre; 255 gerçek ay (2002-04→2026-03),
+  34 eksik ay (2017-18 GRACE/GRACE-FO boşluğu dahil) DOLDURULMADAN taşınır.
+- ÖNEMLİ: bu veri yeraltı suyu + toprak nemi + kar + yüzey suyu TOPLAMININ
+  değişimidir — "yeraltı suyu miktarı" olarak sunulamaz; mutlak rezerv
+  vermez. Mascon gerçek çözünürlüğü ~3° (~300 km) → havza ortalamaları
+  YAKLAŞIK (0,25° iddiası yalnız UNL görsel ürünü içindi).
+- İşleme: arac/grace-isle.py (python3-gdal + numpy, pip kurulumu YOK) —
+  Türkiye kırpma + 25 havza alan-ağırlıklı seri (havza sınırları temsilî,
+  bkz. yukarıdaki havza kaydı). Güncelleme: arac/grace-guncelle.sh,
+  haftalık cron (Pzt 06:00 UTC), Last-Modified karşılaştırmalı.
+- Ham 530MB NetCDF GitHub 100MB limiti nedeniyle sunucu arşivinde
+  (gitignore); bütünlük kanıtı sha256 + Last-Modified damgası git'te.
+- Lisans: NASA verisi kamu malı (ABD federal); kaynak atfı sayfada.

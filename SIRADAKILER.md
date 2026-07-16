@@ -119,3 +119,17 @@
     setinde Fırat-Dicle, Konya Kapalı vb. 8 havza YOK (kaynak vermiyor —
     kapsam şerhi sayfada), Ceyhan/Asi bugün 0 kayıt döndü (izlenecek). İlk çekim sonrası: EPİAŞ havza adları ↔ site havza
     eşleşmesi gözden geçirilecek (Fırat-Dicle gibi bileşik adlar).
+30. HENDEK FAZ 1-B — GRACE "su nabzı" — ÇALIŞIYOR (2026-07-16): GSFC
+    mascon (açık, tokensız — Earthdata GEREKMEDİ, test kanıtlı) 530MB
+    indirildi, 25 havza + ülke serisi çıkarıldı (254 gerçek ay,
+    2017-18 boşluğu dolgusuz), havza sayfalarında "su depolaması
+    eğilimi" göstergesi (son 5 yıl eğimi, "N gerçek aydan" ibresiyle).
+    Haftalık cron Pzt 06:00 UTC + deploy hook. VARSAYIM DÜZELTMESİ
+    (raporlandı): GRACE yeraltı suyu değil TOPLAM su depolaması (YAS +
+    toprak nemi + kar + yüzey suyu) değişimi verir — site dili buna
+    göre "su depolaması eğilimi"; 0,25° çözünürlük UNL görsel ürünüydü,
+    sayısal mascon ~3° — "havza yaklaşık" şerhi sayfada.
+31. GRACE TAM DEĞİŞİM HARİTASI (MapLibre) — AYRI İŞ (FAZ 1-B kapsamı
+    dışında bırakıldı): "su nerede azalıyor/artıyor" interaktif harita
+    + menü/landing tek satır canlı gösterge (SIRADAKILER 27a) —
+    data/canli/grace-havza.json hazır, harita işi onayla başlar.

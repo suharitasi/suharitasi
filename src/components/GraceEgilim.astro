@@ -1,0 +1,124 @@
+---
+// HENDEK FAZ 1-B — havza sayfası "su depolaması eğilimi" göstergesi.
+// Veri build'e gömülür (data/canli/grace-havza.json); çalışma anında JS yok.
+//
+// DÜRÜSTLÜK: GRACE TOPLAM su depolaması (yeraltı suyu + toprak nemi + kar +
+// yüzey suyu) DEĞİŞİMİNİ verir — "yeraltı suyu miktarı" DEĞİL; başlık ve
+// şerh buna göre yazılır. Eğim yalnız GERÇEK aylardan hesaplanır ve kaç aya
+// dayandığı açıkça yazılır. Mascon ~3° çözünürlük → "havza yaklaşık" şerhi.
+import grace from '../../data/canli/grace-havza.json';
+
+interface Props {
+  havzaBaslik: string;
+}
+
+const { havzaBaslik } = Astro.props;
+const kayit = (grace.havzalar as Record<string, any>)[havzaBaslik];
+
+// Son 5 yılın GERÇEK aylarından doğrusal eğim (cm/yıl).
+let egim: number | null = null;
+let aySayisi = 0;
+let aralik = '';
+let sonDeger: { ay: string; deger: number } | null = null;
+if (kayit) {
+  const aylar = Object.keys(kayit.seri).sort();
+  const sonAy = aylar[aylar.length - 1];
+  sonDeger = { ay: sonAy, deger: kayit.seri[sonAy] };
+  const [sy, sm] = sonAy.split('-').map(Number);
+  const esik = `${sy - 5}-${String(sm).padStart(2, '0')}`;
+  const son5 = aylar.filter((a) => a > esik);
+  aySayisi = son5.length;
+  if (aySayisi >= 24) {
+    // En küçük kareler eğimi; x = yıl (ondalık)
+    const x = son5.map((a) => Number(a.slice(0, 4)) + (Number(a.slice(5, 7)) - 0.5) / 12);
+    const y = son5.map((a) => kayit.seri[a] as number);
+    const n = x.length;
+    const xo = x.reduce((t, v) => t + v, 0) / n;
+    const yo = y.reduce((t, v) => t + v, 0) / n;
+    let pay = 0, payda = 0;
+    for (let i = 0; i < n; i++) { pay += (x[i] - xo) * (y[i] - yo); payda += (x[i] - xo) ** 2; }
+    egim = pay / payda;
+    aralik = `${son5[0]} – ${sonAy}`;
+  }
+}
+
+const yon =
+  egim == null ? null
+  : egim <= -0.5 ? { isaret: '↓', metin: 'azalma eğilimi', sinif: 'azaliyor' }
+  : egim >= 0.5 ? { isaret: '↑', metin: 'toparlanma eğilimi', sinif: 'artiyor' }
+  : { isaret: '→', metin: 'belirgin eğilim yok', sinif: 'sabit' };
+
+const trAy = (iso: string) => {
+  const adlar = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+  return `${adlar[Number(iso.slice(5, 7)) - 1]} ${iso.slice(0, 4)}`;
+};
+---
+{kayit && yon && (
+  <section class="grace-egilim" aria-labelledby="grace-baslik">
+    <h2 id="grace-baslik">Su depolaması eğilimi — uydu ölçümü</h2>
+    <p class={`egilim-satir ${yon.sinif}`}>
+      <span class="egilim-isaret" aria-hidden="true">{yon.isaret}</span>
+      <span class="egilim-metin">
+        Son 5 yılda <strong>{yon.metin}</strong>
+        {egim != null && (
+          <span class="egilim-deger">
+            ({egim > 0 ? '+' : ''}{egim.toLocaleString('tr-TR', { maximumFractionDigits: 2 })} cm/yıl)
+          </span>
+        )}
+      </span>
+    </p>
+    <p class="egilim-detay">
+      {aralik} arası <strong>{aySayisi} gerçek aylık ölçümden</strong> hesaplandı;
+      uydu ara dönemlerindeki boşluklar doldurulmadı. Son ölçüm:
+      {' '}{sonDeger ? `${trAy(sonDeger.ay)}, ${sonDeger.deger > 0 ? '+' : ''}${sonDeger.deger.toLocaleString('tr-TR')} cm` : ''}
+      {' '}(2004-2009 ortalamasına göre).
+    </p>
+    <p class="egilim-serh">
+      Kaynak: NASA GRACE/GRACE-FO (GSFC mascon). Bu veri yeraltı suyu, toprak
+      nemi, kar ve yüzey suyunun <strong>toplam değişimini</strong> gösterir —
+      mutlak su miktarı değildir. Uydunun gerçek çözünürlüğü ~300 km olduğundan
+      havza değeri yaklaşıktır; il/ilçe ölçeğinde kullanılamaz.
+    </p>
+  </section>
+)}
+
+<style>
+  .grace-egilim {
+    margin-top: 2.6rem;
+    padding: 1.4rem 1.5rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+  }
+
+  .grace-egilim h2 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .egilim-satir {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-size: 1.08rem;
+  }
+
+  .egilim-isaret {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .azaliyor .egilim-isaret { color: var(--kehribar); }
+  .artiyor .egilim-isaret { color: var(--su-700); }
+  .sabit .egilim-isaret { color: var(--metin-soluk); }
+
+  .egilim-deger { color: var(--metin-soluk); font-size: 0.92rem; }
+
+  .egilim-detay, .egilim-serh {
+    margin-top: 0.6rem;
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: var(--metin-soluk);
+  }
+</style>
