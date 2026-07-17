@@ -6,3 +6,4 @@
 [2026-07-16T15:00:07.761Z] daily-volume: 88 kayıt, 1 sayfa
 [2026-07-16T15:00:07.765Z] normalize tamam: 88 baraj kaydı → data/canli/baraj.json
 [2026-07-16T15:00:09Z] deploy hook tetiklendi (HTTP 200)
+[2026-07-17T05:06:57Z] deploy hook tetiklendi (HTTP 200)
