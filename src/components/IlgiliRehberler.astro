@@ -24,6 +24,8 @@ const kartlar = slugler
     }
     return g;
   });
+
+const kicker = (k) => (k === 'surec' ? 'Rehber · Süreç' : 'Rehber · Uyuşmazlık');
 ---
 {kartlar.length > 0 && (
   <nav class="ilgili" aria-label="İlgili rehberler">
@@ -31,7 +33,8 @@ const kartlar = slugler
     <ul>
       {kartlar.map((g) => (
         <li>
-          <a href={`/rehberler/${g.id}/`}>
+          <a class={`kart-${g.data.kume}`} href={`/rehberler/${g.id}/`}>
+            <span class="ilgili-kicker">{kicker(g.data.kume)}</span>
             <span class="ilgili-baslik">{g.data.baslik}</span>
             <span class="ilgili-ozet">{g.data.ozet}</span>
           </a>
@@ -51,28 +54,48 @@ const kartlar = slugler
     margin-bottom: 0.9rem;
   }
 
-  .ilgili ul { list-style: none; }
+  .ilgili ul { list-style: none; display: grid; gap: 0.8rem; }
 
-  .ilgili li + li { border-top: 1px solid var(--cizgi); }
-
+  /* Kart kimliği (DESIGN.md §8): üst hairline + kicker + hover tür tonu */
   .ilgili a {
     display: block;
-    padding: 0.95rem 0.4rem;
+    padding: 1rem 1.2rem;
     text-decoration: none;
     color: inherit;
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    transition: transform 240ms var(--e-suzul), background-color 240ms var(--e-akinti);
   }
 
-  .ilgili a:hover { transform: translateX(4px); }
+  .ilgili a.kart-surec { border-top: 2px solid var(--yesil-kara); }
+  .ilgili a.kart-uyusmazlik { border-top: 2px solid var(--kehribar); }
+
+  .ilgili a:hover { transform: translateY(-2px); }
+  .ilgili a.kart-surec:hover { background: rgba(62, 92, 68, 0.07); }
+  .ilgili a.kart-uyusmazlik:hover { background: rgba(184, 134, 59, 0.08); }
+  .ilgili a:active { transform: translateY(0) scale(0.985); transition-duration: 120ms; }
+
+  .ilgili-kicker {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .kart-surec .ilgili-kicker { color: var(--yesil-kara); }
+  .kart-uyusmazlik .ilgili-kicker { color: var(--kehribar-metin); }
 
   .ilgili-baslik {
     display: block;
+    margin-top: 0.35rem;
     font-family: var(--serif);
-    font-size: 1.12rem;
-    color: var(--baglanti);
+    font-size: 1.15rem;
+    color: var(--metin);
   }
 
-  .ilgili a:hover .ilgili-baslik { text-decoration: underline; }
+  .ilgili a:hover .ilgili-baslik { color: var(--su-700); }
 
   .ilgili-ozet {
     display: block;
@@ -89,6 +112,6 @@ const kartlar = slugler
 
   @media (prefers-reduced-motion: reduce) {
     .ilgili a { transition: none; }
-    .ilgili a:hover { transform: none; }
+    .ilgili a:hover, .ilgili a:active { transform: none; }
   }
 </style>

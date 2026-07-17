@@ -3,7 +3,6 @@ import { getCollection } from 'astro:content';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import havzaVeri from '../../../data/havza-veri.json';
-import GorselSlot from '../../components/GorselSlot.astro';
 
 // DSİ havza numarasına göre sırala; numarasızlar sona, ada göre
 const girisler = (await getCollection('havzalar')).sort((a, b) => {
@@ -18,6 +17,7 @@ const kunye = Object.fromEntries(havzaVeri.havzalar.map((h) => [h.no, h]));
 const sayi = (n: number) => n.toLocaleString('tr-TR');
 ---
 <Sayfa
+  heroSlot="bolum-vinyeti"
   baslik="Havzalar"
   aciklama="Türkiye'nin 25 su havzası: sınırlar, su potansiyeli, tahsis durumu ve koruma eylem planları."
 >
@@ -25,11 +25,6 @@ const sayi = (n: number) => n.toLocaleString('tr-TR');
     baslik="Havzalar"
     ozet="Türkiye'nin 25 su havzası, havza bazında veri künyeleriyle. Sayfalar açık kaynaklardan doğrulanmış veriyle adım adım doluyor."
   />
-
-  {/* Görsel slot sözleşmesi: 'havza-kart-zemini' — görsel gelince tek
-      config değişimiyle oturur (src/data/gorseller.js) */}
-  <GorselSlot ad="havza-kart-zemini" yukseklik="clamp(120px, 16vh, 170px)" alt="" />
-
   <ul class="sv-liste">
     {girisler.map((g) => {
       const v = g.data.no ? kunye[g.data.no] : undefined;

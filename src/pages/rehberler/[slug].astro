@@ -47,9 +47,9 @@ const sema = [
   },
 ];
 ---
-<Sayfa baslik={giris.data.baslik} aciklama={giris.data.ozCevap} sema={sema}>
+<Sayfa baslik={giris.data.baslik} aciklama={giris.data.ozCevap} sema={sema} heroSlot="rehber-hero">
   <SayfaBasi
-    etiket="Rehber"
+    etiket={giris.data.kume === 'surec' ? 'Rehber · Süreç' : 'Rehber · Uyuşmazlık'}
     baslik={giris.data.baslik}
     ozet={giris.data.ozet}
     tarih={giris.data.tarih}

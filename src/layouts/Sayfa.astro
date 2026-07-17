@@ -3,6 +3,7 @@
 // Aydınlık atlas dünyası: krem-adaçayı zemin, koyu mürekkep, Cormorant + Manrope.
 import UstMenu from '../components/UstMenu.astro';
 import AltBilgi from '../components/AltBilgi.astro';
+import GorselSlot from '../components/GorselSlot.astro';
 import { SITE_ADI, YAZAR, OG_GORSEL } from '../data/site';
 
 interface Props {
@@ -11,9 +12,13 @@ interface Props {
   // Sayfaya özgü ek JSON-LD nesneleri (Article, FAQPage, Person...).
   // Organization + WebSite + BreadcrumbList burada otomatik üretilir.
   sema?: Record<string, unknown>[];
+  // Görsel slot sözleşmesi (DESIGN.md §14): doluysa üstteki su bandının
+  // YERİNE o slot render edilir (görsel yokken degrade placeholder —
+  // görünüm su bandıyla aynı aileden; iki bant üst üste asla binmez).
+  heroSlot?: 'rehber-hero' | 'bolum-vinyeti';
 }
 
-const { baslik, aciklama, sema = [] } = Astro.props;
+const { baslik, aciklama, sema = [], heroSlot } = Astro.props;
 const yol = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname
   : Astro.url.pathname + '/';
@@ -193,6 +198,24 @@ const jsonLd = JSON.stringify({
     max-width: 46rem;
     margin: calc(-1 * clamp(120px, 16vh, 158px)) auto 0;
     padding: 0 clamp(1.25rem, 4vw, 2rem) clamp(3rem, 8vh, 5rem);
+    /* Banda binen başlık, hero scrim'inin ÜSTÜNDE kalır */
+    position: relative;
+    z-index: 1;
+  }
+
+  .sv-hero-slot { background: none; box-shadow: none; position: relative; }
+  .sv-hero-slot :global(.gorsel-slot) { height: 100%; }
+
+  /* Gerçek görsel geldiğinde başlık okunurluğu: bandın alt yarısı YÜZEY
+     tonuna erir (anayasa §13 scrim kuralı — kutu değil, eriyen geçiş).
+     Placeholder degrade'de de zararsız. */
+  .sv-hero-slot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg,
+      rgba(233, 235, 231, 0) 45%, rgba(233, 235, 231, 0.9) 100%);
   }
 
   @media print {
@@ -388,7 +411,9 @@ const jsonLd = JSON.stringify({
 </head>
 <body>
   <UstMenu />
-  <div class="sv-hero" aria-hidden="true"></div>
+  {heroSlot
+    ? <div class="sv-hero sv-hero-slot" aria-hidden="true"><GorselSlot ad={heroSlot} yukseklik="100%" /></div>
+    : <div class="sv-hero" aria-hidden="true"></div>}
   <main class="govde">
     <slot />
   </main>

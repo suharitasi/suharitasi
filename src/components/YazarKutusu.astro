@@ -16,20 +16,22 @@ import { YAZAR } from '../data/site';
 </aside>
 
 <style>
+  /* Mürekkep ailesi (DESIGN.md §8): kurumsal kimlik — üst hairline */
   .yazar-kutusu {
-    margin-top: 2.8rem;
+    margin-top: clamp(2.8rem, 6vh, 4rem);
     padding: 1.3rem 1.4rem;
     background: var(--zemin-kart);
     border: 1px solid var(--cizgi);
-    border-left: 3px solid var(--su-400);
+    border-top: 2px solid var(--murekkep-900);
   }
 
   .yazar-etiket {
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--metin-soluk);
+    color: var(--murekkep-900);
   }
 
   .yazar-ad {
