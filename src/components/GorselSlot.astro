@@ -1,0 +1,56 @@
+---
+// Görsel slotu (DESIGN.md §14): sabit isimli slot — içerik gorseller.js'ten.
+// Görsel tanımlıysa <img> (lazy, örtücü); değilse derinlik-skalası
+// tonlarından degrade placeholder. Boş gri kutu asla.
+import { GORSELLER } from '../data/gorseller.js';
+
+interface Props {
+  ad: keyof typeof GORSELLER;
+  // Slotun sayfadaki yüksekliği (CSS değeri); oran görselin sözleşmesinden.
+  yukseklik?: string;
+  alt?: string;
+}
+
+const { ad, yukseklik = 'clamp(150px, 22vh, 220px)', alt = '' } = Astro.props;
+const yol = GORSELLER[ad];
+
+// Slot başına placeholder degradesi — hepsi derinlik skalasından
+const degrade: Record<string, string> = {
+  'rehber-hero':
+    'radial-gradient(90% 160% at 85% 110%, rgba(23,94,86,0.34) 0%, rgba(23,94,86,0) 60%),' +
+    'repeating-radial-gradient(circle at 12% -30%, rgba(79,123,120,0.12) 0 1.5px, transparent 1.5px 58px),' +
+    'linear-gradient(160deg, #DCE3DE 0%, rgba(79,123,120,0.22) 55%, #E9EBE7 100%)',
+  'havza-kart-zemini':
+    'radial-gradient(120% 140% at 20% 120%, rgba(79,123,120,0.28) 0%, rgba(79,123,120,0) 62%),' +
+    'linear-gradient(150deg, #E0E5DF 0%, rgba(23,94,86,0.16) 100%)',
+  'bolum-vinyeti':
+    'repeating-radial-gradient(circle at 70% 140%, rgba(79,123,120,0.10) 0 1px, transparent 1px 44px),' +
+    'linear-gradient(170deg, #DCE3DE 0%, rgba(79,123,120,0.14) 60%, #E9EBE7 100%)',
+};
+---
+{yol ? (
+  <div class="gorsel-slot" style={`height:${yukseklik}`}>
+    <img src={yol} alt={alt} loading="lazy" decoding="async" />
+  </div>
+) : (
+  <div
+    class="gorsel-slot"
+    style={`height:${yukseklik};background:${degrade[ad]}`}
+    aria-hidden="true"
+  ></div>
+)}
+
+<style>
+  .gorsel-slot {
+    width: 100%;
+    overflow: hidden;
+    background-size: cover;
+  }
+
+  .gorsel-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+</style>

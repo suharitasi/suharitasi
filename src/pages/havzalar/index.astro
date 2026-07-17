@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import havzaVeri from '../../../data/havza-veri.json';
+import GorselSlot from '../../components/GorselSlot.astro';
 
 // DSİ havza numarasına göre sırala; numarasızlar sona, ada göre
 const girisler = (await getCollection('havzalar')).sort((a, b) => {
@@ -24,6 +25,11 @@ const sayi = (n: number) => n.toLocaleString('tr-TR');
     baslik="Havzalar"
     ozet="Türkiye'nin 25 su havzası, havza bazında veri künyeleriyle. Sayfalar açık kaynaklardan doğrulanmış veriyle adım adım doluyor."
   />
+
+  {/* Görsel slot sözleşmesi: 'havza-kart-zemini' — görsel gelince tek
+      config değişimiyle oturur (src/data/gorseller.js) */}
+  <GorselSlot ad="havza-kart-zemini" yukseklik="clamp(120px, 16vh, 170px)" alt="" />
+
   <ul class="sv-liste">
     {girisler.map((g) => {
       const v = g.data.no ? kunye[g.data.no] : undefined;
@@ -51,7 +57,7 @@ const sayi = (n: number) => n.toLocaleString('tr-TR');
 </Sayfa>
 
 <style>
-  .sv-liste { list-style: none; }
+  .sv-liste { list-style: none; margin-top: 1.6rem; }
 
   .sv-liste li + li { border-top: 1px solid var(--cizgi); }
 
@@ -63,24 +69,27 @@ const sayi = (n: number) => n.toLocaleString('tr-TR');
     padding: 1.25rem 0.4rem;
     text-decoration: none;
     color: inherit;
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 240ms var(--e-suzul), background-color 240ms var(--e-akinti);
     will-change: transform;
   }
 
-  .sv-liste a:hover { transform: translateY(-4px); }
+  .sv-liste a:hover { transform: translateY(-2px); background: rgba(79, 123, 120, 0.06); }
+
+  .sv-liste a:active { transform: translateY(0) scale(0.995); transition-duration: 120ms; }
 
   /* Sol büyük numara: resmî DSİ kodu */
+  /* DSİ kodu mono katmanda: kot/etiket estetiği (DESIGN.md §5-6) */
   .sv-no {
-    font-family: var(--sans);
+    font-family: var(--mono);
     font-variant-numeric: tabular-nums;
-    font-size: 1.7rem;
-    font-weight: 500;
+    font-size: 1.45rem;
+    font-weight: 400;
     line-height: 1;
-    color: rgba(92, 107, 102, 0.42);
-    transition: color 0.25s ease;
+    color: rgba(90, 107, 98, 0.45);
+    transition: color 120ms var(--e-akinti);
   }
 
-  .sv-liste a:hover .sv-no { color: var(--akuamarin); }
+  .sv-liste a:hover .sv-no { color: var(--su-400); }
 
   .sv-baslik {
     display: block;
@@ -88,7 +97,7 @@ const sayi = (n: number) => n.toLocaleString('tr-TR');
     font-weight: 500;
     font-size: 1.35rem;
     line-height: 1.3;
-    transition: color 0.2s ease;
+    transition: color 120ms var(--e-akinti);
   }
 
   .sv-liste a:hover .sv-baslik { color: var(--su-700); }
@@ -111,16 +120,17 @@ const sayi = (n: number) => n.toLocaleString('tr-TR');
 
   .sv-rozet span {
     display: inline-block;
-    padding: 0.18rem 0.66rem;
-    border-radius: 999px;
+    padding: 0.2rem 0.66rem;
     background: var(--adacayi-krem);
-    border: 1px solid rgba(35, 46, 43, 0.08);
-    font-size: 0.72rem;
+    border: 1px solid rgba(28, 43, 36, 0.08);
+    border-left: 2px solid var(--su-400);
+    font-family: var(--mono);
+    font-size: 0.66rem;
     font-variant-numeric: tabular-nums;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
     color: var(--murekkep-500);
     white-space: nowrap;
-    text-align: center;
+    text-align: left;
   }
 
   @media (max-width: 640px) {

@@ -41,14 +41,18 @@ const tarihYaz = (t: Date) =>
 </div>
 
 <style>
+  /* Künye satırı mono katmanda (DESIGN.md §6): ölçüm/kayıt estetiği */
   .sayfa-kunye {
-    margin-top: 0.75rem;
+    margin-top: 0.8rem;
     display: flex;
     align-items: baseline;
-    gap: 0.5rem;
+    gap: 0.9rem;
     flex-wrap: wrap;
-    font-size: 0.82rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
     color: var(--metin-soluk);
+    text-transform: uppercase;
   }
 
   .sayfa-kunye a { color: var(--baglanti); }

@@ -159,14 +159,14 @@ const kademe = () => ({ '--kademe': String(sira++) });
        boş düz lacivert hiçbir durumda görünmez. */
     background:
       repeating-radial-gradient(circle at 68% 30%,
-        rgba(79, 195, 208, 0.045) 0 1px, transparent 1px 84px),
+        rgba(127, 181, 174, 0.045) 0 1px, transparent 1px 84px),
       repeating-radial-gradient(circle at 22% 78%,
-        rgba(79, 195, 208, 0.035) 0 1px, transparent 1px 110px),
+        rgba(127, 181, 174, 0.035) 0 1px, transparent 1px 110px),
       radial-gradient(110vw 80vh at 50% 118%,
-        rgba(79, 195, 208, 0.10) 0%, rgba(79, 195, 208, 0) 55%),
+        rgba(127, 181, 174, 0.10) 0%, rgba(127, 181, 174, 0) 55%),
       radial-gradient(90vw 70vh at 50% -22%,
-        rgba(15, 45, 62, 0.9) 0%, rgba(4, 18, 31, 0) 68%),
-      #04121F;
+        rgba(23, 94, 86, 0.55) 0%, rgba(12, 51, 44, 0) 68%),
+      #0C332C;
     opacity: 0;
     transform: scale(0.98);
     transition: opacity 0.36s ease, transform 0.36s ease;
@@ -199,7 +199,7 @@ const kademe = () => ({ '--kademe': String(sira++) });
     inset: 0;
     pointer-events: none;
     background: radial-gradient(120% 120% at 50% 50%,
-      rgba(4, 18, 31, 0) 40%, rgba(4, 18, 31, 0.25) 100%);
+      rgba(12, 51, 44, 0) 40%, rgba(12, 51, 44, 0.25) 100%);
   }
 
   /* Kaydırma katmanı: içerik ekrana sığmazsa yalnız bu sarmalayıcı kayar */
@@ -228,10 +228,10 @@ const kademe = () => ({ '--kademe': String(sira++) });
   .sv-ayrac {
     align-self: stretch;
     background: linear-gradient(180deg,
-      rgba(79, 195, 208, 0) 0%,
-      rgba(79, 195, 208, 0.22) 30%,
-      rgba(79, 195, 208, 0.22) 70%,
-      rgba(79, 195, 208, 0) 100%);
+      rgba(127, 181, 174, 0) 0%,
+      rgba(127, 181, 174, 0.22) 30%,
+      rgba(127, 181, 174, 0.22) 70%,
+      rgba(127, 181, 174, 0) 100%);
   }
 
   /* ---------- Kademeli giriş (sol linkler + vitrin, tek sekans) ---------- */
@@ -239,7 +239,7 @@ const kademe = () => ({ '--kademe': String(sira++) });
   .sv-kademe {
     opacity: 0;
     transform: translateY(12px);
-    transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.45s ease, transform 0.45s var(--e-suzul, cubic-bezier(0.22, 1, 0.36, 1));
   }
 
   .sv-menu:global(.sv-acik) .sv-kademe {
@@ -261,30 +261,30 @@ const kademe = () => ({ '--kademe': String(sira++) });
     font-weight: 500;
     font-size: clamp(1.7rem, 3.4vw, 2.5rem);
     line-height: 1.2;
-    color: #DCE9ED;
+    color: #DFE3E2;
     text-decoration: none;
-    transition: color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color 0.25s ease, transform 0.25s var(--e-suzul, cubic-bezier(0.22, 1, 0.36, 1));
   }
 
   .sv-menu-icerik a:hover {
-    color: var(--akuamarin, #4FC3D0);
+    color: var(--akuamarin, #7FB5AE);
     transform: translateX(7px);
   }
 
   .sv-menu-icerik a[aria-current="page"] {
-    color: var(--akuamarin, #4FC3D0);
-    border-bottom: 1px solid rgba(79, 195, 208, 0.55);
+    color: var(--akuamarin, #7FB5AE);
+    border-bottom: 1px solid rgba(127, 181, 174, 0.55);
   }
 
   .sv-menu-icerik a:focus-visible {
-    outline: 2px solid var(--akuamarin, #4FC3D0);
+    outline: 2px solid var(--akuamarin, #7FB5AE);
     outline-offset: 4px;
   }
 
   .sv-alt-not {
     display: block;
     margin-top: 0.15rem;
-    font-family: var(--sans, system-ui, sans-serif);
+    font-family: var(--mono, ui-monospace, monospace);
     font-size: 0.78rem;
     letter-spacing: 0.04em;
     color: rgba(140, 168, 181, 0.62);
@@ -305,7 +305,7 @@ const kademe = () => ({ '--kademe': String(sira++) });
     inset: -1.6rem -2rem;
     pointer-events: none;
     background: radial-gradient(100% 100% at 50% 50%,
-      rgba(4, 18, 31, 0.38) 0%, rgba(4, 18, 31, 0) 78%);
+      rgba(12, 51, 44, 0.38) 0%, rgba(12, 51, 44, 0) 78%);
   }
 
   .sv-vitrin section { position: relative; }
@@ -313,11 +313,12 @@ const kademe = () => ({ '--kademe': String(sira++) });
   .sv-vitrin section + section { margin-top: clamp(1.4rem, 3.4vh, 2.2rem); }
 
   .sv-vitrin-baslik {
+    font-family: var(--mono, ui-monospace, monospace);
     font-size: 0.66rem;
     font-weight: 600;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: #8FA8B5;
+    color: #9DB3AC;
     margin-bottom: 0.55rem;
   }
 
@@ -328,13 +329,13 @@ const kademe = () => ({ '--kademe': String(sira++) });
   .sv-vitrin a {
     display: block;
     text-decoration: none;
-    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.25s var(--e-suzul, cubic-bezier(0.22, 1, 0.36, 1));
   }
 
   .sv-vitrin a:hover { transform: translateY(-2px); }
 
   .sv-vitrin a:focus-visible {
-    outline: 2px solid var(--akuamarin, #4FC3D0);
+    outline: 2px solid var(--akuamarin, #7FB5AE);
     outline-offset: 4px;
   }
 
@@ -344,11 +345,11 @@ const kademe = () => ({ '--kademe': String(sira++) });
     font-size: clamp(1.02rem, 1.5vw, 1.18rem);
     font-weight: 500;
     line-height: 1.35;
-    color: #DCE9ED;
+    color: #DFE3E2;
     transition: color 0.25s ease;
   }
 
-  .sv-vitrin a:hover .sv-vitrin-ad { color: var(--akuamarin, #4FC3D0); }
+  .sv-vitrin a:hover .sv-vitrin-ad { color: var(--akuamarin, #7FB5AE); }
 
   .sv-vitrin-ozet {
     display: block;
@@ -365,10 +366,11 @@ const kademe = () => ({ '--kademe': String(sira++) });
 
   .sv-vitrin-tarih {
     display: block;
+    font-family: var(--mono, ui-monospace, monospace);
     font-size: 0.72rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--akuamarin, #4FC3D0);
+    color: var(--akuamarin, #7FB5AE);
     margin-bottom: 0.2rem;
   }
 
@@ -387,7 +389,7 @@ const kademe = () => ({ '--kademe': String(sira++) });
     letter-spacing: 0.22em;
     text-transform: uppercase;
     /* Belirgin ama aynı dil: soluk gri yerine okunur köpük tonu */
-    color: #C9DBE2;
+    color: #CFDCD7;
     cursor: pointer;
     transition: color 0.2s ease;
   }
@@ -395,7 +397,7 @@ const kademe = () => ({ '--kademe': String(sira++) });
   .sv-menu-kapat:hover { color: #FFFFFF; }
 
   .sv-menu-kapat:focus-visible {
-    outline: 2px solid var(--akuamarin, #4FC3D0);
+    outline: 2px solid var(--akuamarin, #7FB5AE);
     outline-offset: 3px;
   }
 
