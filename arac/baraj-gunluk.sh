@@ -13,7 +13,8 @@ CEKIM=$?
 [ $CEKIM -eq 2 ] && exit 2
 
 # Başarıda da başarısızlıkta da gün kaydı/log değişti — arşivle.
-git add data/arsiv/baraj data/canli/baraj.json UYARI-BARAJ.md 2>/dev/null
+git add data/arsiv/baraj data/canli/baraj.json
+[ -f UYARI-BARAJ.md ] && git add UYARI-BARAJ.md
 if ! git diff --cached --quiet; then
   git commit -q -m "Baraj arşivi: $(date -u +%Y-%m-%d) günlük çekim (otomatik)
 
