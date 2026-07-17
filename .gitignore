@@ -8,6 +8,8 @@ screenshots/
 .astro/
 cikti/
 .playwright-mcp/
+# Geçici görsel paylaşımı — tek seferlik, git add -f ile zorlanır, iş bitince silinir
+public/gecici/
 
 # Kimlik bilgileri — ASLA commit edilmez (HENDEK FAZ 1)
 .env
