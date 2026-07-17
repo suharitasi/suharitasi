@@ -32,7 +32,7 @@ denetim 2026-07-16).
 | **DERİN** | `#175E56` | derin deniz `#0C362D`/`#2D4E4B` rafinesi | **VURGU SESİ:** kicker, vurgu kelimesi, bağlantı hover (YÜZEY üstünde 6.31:1 AA) |
 | **DİP** | `#0C332C` | deniz dibi `#0C362D` | Koyu dünya zemini (menü katmanı, deneyim sahneleri, derin veri blokları) |
 | Mürekkep | `#1C2B24` | koyu kara `#16301F` | Metin (12.3:1) |
-| Soluk | `#5A6B62` | — türev | İkincil metin |
+| Soluk | `#54655C` | — türev | İkincil metin (kart zemininde 4.85:1 AA — Lighthouse denetimiyle koyulaştırıldı 2026-07-17) |
 | Köpük | `#DFE3E2` | su kavisleri/köpük | DİP üstünde metin (10.6:1) |
 | Plato kehribarı | `#B8863B` (hairline) / `#7D5B24` (metin) | plato altını `#F4D585`→`#AD945F` | Sıcak ikinci ses; metin daima koyu türev |
 

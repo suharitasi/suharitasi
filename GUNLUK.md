@@ -213,3 +213,12 @@
   düzeltildi: dokunma hedefleri 37→47px; A'nın alt linkleri kara
   dokusuna taşıyordu → kolon gök bandına sıkıştı, mobilde denize inip
   köpüğe döndü. WebGL rafa.
+
+## 2026-07-17 (SU-DİLİ FAZ 1: 116 iş sayfası giydirildi)
+- 5 tür 5 commit'te (kesinti dayanıklılığı): çekirdek token seti v3
+  skalasına (Sayfa.astro — tüm sayfalar tek merkezden), kicker/BÖLÜM/
+  kırılma vurgusu/kot cetveli/kart aileleri türlere yayıldı; koyu dünya
+  (menü+su-sim shader) DİP paletine geçti.
+- Denetim 4 başarısızlık yakaladı, dördü düzeltildi (çifte bant, scrim
+  z-index, 26px dokunma hedefi, 4.42:1 kontrast). Lighthouse: il sayfası
+  4×100, rehber 97/100. Görsel slotlar tek-config sözleşmesiyle hazır.

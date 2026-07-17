@@ -158,8 +158,8 @@
     ruhsatı rehberi yeni dille. ONAY KAPISI: kullanıcı canlıda "bu dil,
     devam" demeden FAZ 1 (toplu giydirme), FAZ 2 (menü), FAZ 3 (deneyim
     sahnesi) BAŞLAMAZ.
-34. YÖN YÜKSELTMESİ — SU-DİLİ FAZ 0 (madde 33'ün yerine geçer) —
-    KULLANICI ONAYI BEKLİYOR (2026-07-16): DESIGN.md 3.0 su-dili
+34. YÖN YÜKSELTMESİ — SU-DİLİ FAZ 0 — ONAYLANDI (2026-07-16;
+    Varyant A + iç sayfa dili "bu dil, devam"): DESIGN.md 3.0 su-dili
     anayasası (derinlik skalası HEDEF'ten örneklenmiş — kıyas kayıtlı:
     petrol skalası kazandı, akuamarin/gece-lacivert elendi; 4 akış
     eğrisi; ışık kırılması vurgusu; kot cetveli ölçüm esteti; TEK MOD
@@ -174,3 +174,18 @@
 35. WebGL DENEYİM SAHNESİ — RAFTA (yön yükseltmesi kararı, 2026-07-16):
     canlı su sahnesi iptal değil ertelendi; öncelik su-dili + HEDEF
     sahnelemesi. Kullanıcı isterse ayrı brief'le döner.
+36. SU-DİLİ FAZ 1 — TÜM İŞ SAYFALARI GİYDİRİLDİ — KULLANICI ONAYI
+    BEKLİYOR (2026-07-17): 5 tür, 5 ayrı commit (FAZ1-a..e): çekirdek+
+    indeksler / 9 rehber / 25 havza / 81 il+indeks / araç+hakkında+
+    su-kanunu. Kicker sistemi, derinlik skalası, su-ivmesi easing'leri,
+    kırılma vurgusu, kot-cetvelli veri bandları, kart aileleri, tanımlı
+    hover/focus/press her türde; içerik/veri/URL/JSON-LD değişmedi.
+    Görsel slot sözleşmesi: src/data/gorseller.js (rehber-hero /
+    havza-kart-zemini / bolum-vinyeti) — Midjourney görselleri gelince
+    TEK config değişimiyle oturur; şimdilik skala-degrade placeholder.
+    Denetimde yakalanıp düzeltilen: çifte hero bandı, scrim z-katmanı,
+    mobil nav hedefleri 26→45px, soluk metin kontrastı 4.42→4.85 (AA).
+    Kanıt: konsol 0, kırık link 0/124, Lighthouse il 100/100/100/100 +
+    rehber 97/100, görüntüler cikti/faz1/ (masaüstü 9 + mobil 4 tür).
+    Kullanıcı canlı turu sonrası: FAZ 2 (menü) + /harita-stil/ taşıma
+    kararı birlikte.

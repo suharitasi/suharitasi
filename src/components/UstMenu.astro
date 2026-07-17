@@ -132,7 +132,15 @@ const simdiki = Astro.url.pathname.endsWith('/')
   .sv-menu-ac:hover { color: var(--su-700); }
 
   @media (max-width: 640px) {
-    nav { height: auto; padding-top: 0.8rem; padding-bottom: 0.8rem; flex-wrap: wrap; }
+    nav { height: auto; padding-top: 0.4rem; padding-bottom: 0.4rem; flex-wrap: wrap; }
+
+    /* Dokunma hedefi ≥44px (DESIGN.md §12) */
+    .ust ul a,
+    .sv-menu-ac,
+    .marka {
+      padding-top: 0.95rem;
+      padding-bottom: 0.95rem;
+    }
   }
 
 </style>
