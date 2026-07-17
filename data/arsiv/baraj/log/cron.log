@@ -7,3 +7,4 @@
 [2026-07-16T15:00:07.765Z] normalize tamam: 88 baraj kaydı → data/canli/baraj.json
 [2026-07-16T15:00:09Z] deploy hook tetiklendi (HTTP 200)
 [2026-07-17T05:06:57Z] deploy hook tetiklendi (HTTP 200)
+[2026-07-17T05:09:46Z] deploy hook BAŞARISIZ (304) — arşiv yazıldı, pipeline başarılı sayılır; gerekirse manuel deploy

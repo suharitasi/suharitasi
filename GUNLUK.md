@@ -222,3 +222,13 @@
 - Denetim 4 başarısızlık yakaladı, dördü düzeltildi (çifte bant, scrim
   z-index, 26px dokunma hedefi, 4.42:1 kontrast). Lighthouse: il sayfası
   4×100, rehber 97/100. Görsel slotlar tek-config sözleşmesiyle hazır.
+
+## 2026-07-17 (CC root→suha taşıma)
+- Proje mv+chown ile /home/suha altına (güvenlik-doğru: /root'a traverse
+  izni açmak yerine tam izolasyon). Tüm hardcoded /root/ yolları güncellendi
+  (grep=0), playwright cache kopyalandı. suha: sudo+SSH+CC bypassPermissions.
+- Pipeline suha'da uçtan uca kanıtlandı; baraj-gunluk.sh'te önceden var olan
+  bir bug bulundu (git add UYARI-BARAJ.md yokken exit 128 → günlük veri hiç
+  commit edilmiyordu) ve düzeltildi. Cron suha'ya taşındı, root boşaltıldı.
+- Güvenlik: token remote URL'den credential store'a alındı (borç kapatıldı)
+  AMA token çıktıya sızdı → İPTAL+yenileme kullanıcıda.

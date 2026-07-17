@@ -189,3 +189,10 @@
     rehber 97/100, görüntüler cikti/faz1/ (masaüstü 9 + mobil 4 tür).
     Kullanıcı canlı turu sonrası: FAZ 2 (menü) + /harita-stil/ taşıma
     kararı birlikte.
+37. CC ROOT'TAN SUHA'YA TAŞINDI — YAPILDI (2026-07-17): proje
+    /home/suha/projeler/suharitasi (mv+chown, güvenlik: /root izolasyonu
+    korundu), suha kullanıcısı + sudo + SSH, CC 2.1.212 bypassPermissions
+    (agresif mod fiili test edildi), MCP Playwright çalışır, cron suha'ya
+    taşındı (root boş), git credential store (token URL'den çıkarıldı).
+    Arşiv 26 değişmez varlık birebir sha256. AÇIK: sızan eski GitHub PAT
+    kullanıcı tarafından İPTAL+YENİLENMELİ (transkriptte göründü).
