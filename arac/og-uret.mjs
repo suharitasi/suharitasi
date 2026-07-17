@@ -5,11 +5,11 @@
 
    Çalıştır:  node arac/og-uret.mjs
    Çıktı:     public/og-suharitasi.v1.png  (dosya adı sürümlü: cache-bust) */
-import { chromium } from '/root/projeler/suharitasi/node_modules/playwright-core/index.mjs';
+import { chromium } from '/home/suha/projeler/suharitasi/node_modules/playwright-core/index.mjs';
 import { mkdir } from 'node:fs/promises';
 
-const CIKTI = '/root/projeler/suharitasi/public/og-suharitasi.v1.png';
-const EXE = '/root/.cache/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell';
+const CIKTI = '/home/suha/projeler/suharitasi/public/og-suharitasi.v1.png';
+const EXE = '/home/suha/.cache/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell';
 
 const sahne = `<!DOCTYPE html>
 <html lang="tr"><head><meta charset="utf-8">
@@ -84,7 +84,7 @@ const sayfa = await tarayici.newPage({
 await sayfa.setContent(sahne, { waitUntil: 'networkidle' });
 // Google Fonts inip yerleşmeden kare alınırsa başlık fallback serif çıkar.
 await sayfa.evaluate(() => document.fonts.ready);
-await mkdir('/root/projeler/suharitasi/public', { recursive: true });
+await mkdir('/home/suha/projeler/suharitasi/public', { recursive: true });
 await sayfa.screenshot({ path: CIKTI });
 await tarayici.close();
 console.log(`og:image yazıldı → ${CIKTI} (1200x630)`);

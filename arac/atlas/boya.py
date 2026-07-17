@@ -70,5 +70,5 @@ master = ImageEnhance.Contrast(master).enhance(1.05)
 master.save("tr-atlas-master.png", optimize=True)
 
 web = master.resize((3840, master.height * 3840 // master.width), Image.LANCZOS)
-web.save("/root/projeler/suharitasi/src/assets/tr-atlas.webp", "WEBP", quality=82, method=6)
+web.save("/home/suha/projeler/suharitasi/src/assets/tr-atlas.webp", "WEBP", quality=82, method=6)
 print("master:", master.size, "| web: 3840px webp yazıldı")

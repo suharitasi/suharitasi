@@ -23,7 +23,7 @@ from osgeo import gdal
 
 gdal.UseExceptions()
 
-KOK = '/root/projeler/suharitasi'
+KOK = '/home/suha/projeler/suharitasi'
 HAM = f'{KOK}/data/arsiv/grace/ham/gsfc.glb_.200204_202603_rl06v2.0_obp-ice6gd_halfdegree.nc'
 HAVZA_GEO = f'{KOK}/data/havzalar/havzalar-web.geojson'
 

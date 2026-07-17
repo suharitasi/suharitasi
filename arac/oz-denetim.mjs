@@ -2,12 +2,12 @@
    link, tam sayfa görüntüler (cikti/denetim/), temel etkileşim testi.
    Kullanım: dist'i bir portta servis et, sonra:
      node arac/oz-denetim.mjs [yol1 yol2 ...]   (varsayılan: / /havzalar/ /rehberler/kuyu-ruhsati/) */
-import { chromium } from '/root/projeler/suharitasi/node_modules/playwright-core/index.mjs';
+import { chromium } from '/home/suha/projeler/suharitasi/node_modules/playwright-core/index.mjs';
 import { mkdirSync } from 'node:fs';
 
 const TABAN = process.env.TABAN || 'http://localhost:5197';
-const CIKTI = '/root/projeler/suharitasi/cikti/denetim';
-const EXE = '/root/.cache/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell';
+const CIKTI = '/home/suha/projeler/suharitasi/cikti/denetim';
+const EXE = '/home/suha/.cache/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell';
 const yollar = process.argv.slice(2).length ? process.argv.slice(2) : ['/', '/havzalar/', '/rehberler/kuyu-ruhsati/'];
 
 mkdirSync(CIKTI, { recursive: true });

@@ -2,12 +2,12 @@
    Kullanım: dist'i 5197'de servis et, sonra: node arac/dalga2-denetim.mjs
    GPU YOK: su simülasyonunun görsel kalitesi burada YARGILANMAZ; test edilen
    davranış (aç/kapat, focus, ESC, reduced-motion) ve statik düzendir. */
-import { chromium } from '/root/projeler/suharitasi/node_modules/playwright-core/index.mjs';
+import { chromium } from '/home/suha/projeler/suharitasi/node_modules/playwright-core/index.mjs';
 import { mkdirSync } from 'node:fs';
 
 const TABAN = process.env.TABAN || 'http://localhost:5197';
-const CIKTI = '/root/projeler/suharitasi/cikti/dalga2';
-const EXE = '/root/.cache/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell';
+const CIKTI = '/home/suha/projeler/suharitasi/cikti/dalga2';
+const EXE = '/home/suha/.cache/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell';
 
 mkdirSync(CIKTI, { recursive: true });
 const sonuc = [];

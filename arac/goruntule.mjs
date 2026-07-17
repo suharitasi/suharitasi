@@ -1,7 +1,7 @@
-import { chromium } from '/root/projeler/suharitasi/node_modules/playwright-core/index.mjs';
+import { chromium } from '/home/suha/projeler/suharitasi/node_modules/playwright-core/index.mjs';
 
 const TABAN = 'http://localhost:5197';
-const CIKTI = '/root/projeler/suharitasi/screenshots';
+const CIKTI = '/home/suha/projeler/suharitasi/screenshots';
 
 const sayfalar = [
   ['/', 'yeni-landing'],
@@ -16,7 +16,7 @@ const sayfalar = [
 ];
 
 const tarayici = await chromium.launch({
-  executablePath: '/root/.cache/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell',
+  executablePath: '/home/suha/.cache/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell',
   args: ['--no-sandbox'],
 });
 const baglam = await tarayici.newContext({

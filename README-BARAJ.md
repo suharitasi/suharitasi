@@ -6,7 +6,7 @@ Pipeline kurulu ve mock testten geçti. Gerçek çekimin başlaması için
 ## 1) EPİAŞ kimliği (zorunlu, 1 dakika)
 
 ```bash
-cd /root/projeler/suharitasi
+cd /home/suha/projeler/suharitasi
 cp .env.example .env
 nano .env        # EPIAS_USER=üyelik e-postan, EPIAS_PASS=şifren
 ```

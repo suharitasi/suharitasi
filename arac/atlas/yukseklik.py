@@ -29,11 +29,11 @@ def olcekle(gen, yuk):
     return np.clip(kucuk / maks * 65535, 0, 65535).astype(np.uint16)
 
 png16 = olcekle(2048, 1024)
-Image.fromarray(png16).save("/root/projeler/suharitasi/src/assets/tr-yukseklik-2048.png")
+Image.fromarray(png16).save("/home/suha/projeler/suharitasi/src/assets/tr-yukseklik-2048.png")
 
 binv = olcekle(1024, 512)
-binv.tofile("/root/projeler/suharitasi/src/assets/tr-yukseklik.bin")
+binv.tofile("/home/suha/projeler/suharitasi/src/assets/tr-yukseklik.bin")
 
 json.dump({"maksYukseltiM": maks, "binGen": 1024, "binYuk": 512},
-          open("/root/projeler/suharitasi/src/assets/tr-yukseklik.json", "w"))
+          open("/home/suha/projeler/suharitasi/src/assets/tr-yukseklik.json", "w"))
 print("yazıldı: tr-yukseklik-2048.png, tr-yukseklik.bin, tr-yukseklik.json")

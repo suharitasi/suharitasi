@@ -13,7 +13,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, appendFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 
-const KOK = process.env.BARAJ_TEST_KOK || '/root/projeler/suharitasi';
+const KOK = process.env.BARAJ_TEST_KOK || '/home/suha/projeler/suharitasi';
 const GIRIS = process.env.BARAJ_TEST_GIRIS || 'https://giris.epias.com.tr/cas/v1/tickets';
 const API = process.env.BARAJ_TEST_API || 'https://seffaflik.epias.com.tr/electricity-service';
 

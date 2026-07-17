@@ -1,10 +1,10 @@
 /* Tasarım yenileme doğrulaması: konsol hataları, menü etkileşimi,
    su simülasyonu ripple kareleri, FPS, reduced-motion ve no-JS senaryoları. */
-import { chromium } from '/root/projeler/suharitasi/node_modules/playwright-core/index.mjs';
+import { chromium } from '/home/suha/projeler/suharitasi/node_modules/playwright-core/index.mjs';
 
 const TABAN = 'http://localhost:5197';
-const CIKTI = '/root/projeler/suharitasi/screenshots';
-const EXE = '/root/.cache/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell';
+const CIKTI = '/home/suha/projeler/suharitasi/screenshots';
+const EXE = '/home/suha/.cache/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell';
 
 const tarayici = await chromium.launch({
   executablePath: EXE,

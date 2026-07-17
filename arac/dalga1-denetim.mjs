@@ -1,14 +1,14 @@
 /* Dalga 1 öz-denetimi: konsol, kırık link, görüntüler, yazdırma kanıtı.
    Kullanım: dist'i bir portta servis et, sonra:
      node arac/dalga1-denetim.mjs                                        */
-import { chromium } from '/root/projeler/suharitasi/node_modules/playwright-core/index.mjs';
+import { chromium } from '/home/suha/projeler/suharitasi/node_modules/playwright-core/index.mjs';
 import { mkdirSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 
 const TABAN = process.env.TABAN || 'http://localhost:5197';
-const KOK = '/root/projeler/suharitasi';
+const KOK = '/home/suha/projeler/suharitasi';
 const CIKTI = `${KOK}/cikti/dalga1`;
-const EXE = '/root/.cache/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell';
+const EXE = '/home/suha/.cache/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell';
 
 const YOLLAR = [
   ['/', 'landing'],

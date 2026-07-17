@@ -5,7 +5,7 @@
 # Dayanıklılık baraj pipeline'ıyla aynı: hata log'lanır, son geçerli veri
 # sitede kalır, 3 ardışık hata → UYARI dosyası.
 set -u
-KOK=/root/projeler/suharitasi
+KOK=/home/suha/projeler/suharitasi
 URL="https://earth.gsfc.nasa.gov/sites/default/files/geo/gsfc.glb_.200204_202603_rl06v2.0_obp-ice6gd_halfdegree.nc"
 HAM_DIZIN="$KOK/data/arsiv/grace/ham"
 DURUM="$KOK/data/arsiv/grace/durum.json"

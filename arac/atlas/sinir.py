@@ -15,7 +15,7 @@ from shapely.ops import unary_union
 KAPSAM = dict(bati=24.609375, dogu=45.703125,
               guney=34.885930940753155, kuzey=43.06888777416962)
 
-iller = json.load(open("/root/projeler/suharitasi/src/data/tr-iller.json"))
+iller = json.load(open("/home/suha/projeler/suharitasi/src/data/tr-iller.json"))
 birlik = unary_union([shape(f["geometry"]).buffer(0) for f in iller["features"]])
 birlik = birlik.simplify(0.015, preserve_topology=True)
 
@@ -30,7 +30,7 @@ print("parça sayısı:", len(geoms), "| toplam nokta:",
 
 halkalar = [[[round(x, 4), round(y, 4)] for x, y in g.exterior.coords] for g in geoms]
 json.dump({"halkalar": halkalar},
-          open("/root/projeler/suharitasi/src/data/tr-sinir.json", "w"),
+          open("/home/suha/projeler/suharitasi/src/data/tr-sinir.json", "w"),
           separators=(",", ":"))
 
 # Maske: mercator uv (heightmap ile birebir aynı projeksiyon)
@@ -48,5 +48,5 @@ im = Image.new("L", (GEN, YUK), 0)
 ciz = ImageDraw.Draw(im)
 for g in geoms:
     ciz.polygon([uv(x, y) for x, y in g.exterior.coords], fill=255)
-im.save("/root/projeler/suharitasi/src/assets/tr-maske.png")
+im.save("/home/suha/projeler/suharitasi/src/assets/tr-maske.png")
 print("tr-sinir.json + tr-maske.png yazıldı")

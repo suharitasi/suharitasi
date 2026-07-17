@@ -4,7 +4,7 @@
 # git'e bağlıysa push build'i tetikler) → deploy hook (doluysa).
 # .env ASLA commit edilmez (gitignore); şifre/TGT hiçbir çıktıya yazılmaz.
 set -u
-KOK=/root/projeler/suharitasi
+KOK=/home/suha/projeler/suharitasi
 cd "$KOK" || exit 1
 
 node arac/baraj-cek.mjs
