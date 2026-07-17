@@ -163,7 +163,7 @@ const sema = [
 </Sayfa>
 
 <style>
-  .il-blok { margin-top: 2.2rem; }
+  .il-blok { margin-top: clamp(2.2rem, 5vh, 3.4rem); }
 
   .il-blok h2 {
     font-family: var(--serif);
@@ -172,10 +172,26 @@ const sema = [
     margin-bottom: 0.8rem;
   }
 
+  /* İl künyesi = veri bandı (§5): DERİN hairline + kot cetveli */
   .il-kunye {
-    padding: 1.2rem 1.3rem;
+    padding: 1.2rem 1.3rem 1.2rem 1.8rem;
     background: var(--zemin-kart);
     border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+    position: relative;
+  }
+
+  .il-kunye::before {
+    content: "";
+    position: absolute;
+    left: 0.6rem;
+    top: 1rem;
+    bottom: 1rem;
+    width: 6px;
+    background:
+      repeating-linear-gradient(180deg,
+        rgba(79, 123, 120, 0.4) 0 1px, transparent 1px 7px),
+      linear-gradient(90deg, rgba(79, 123, 120, 0.4) 0 1px, transparent 1px);
   }
 
   .il-kunye div {
@@ -188,9 +204,10 @@ const sema = [
   .il-kunye div + div { border-top: 1px solid var(--cizgi); }
 
   .il-kunye dt {
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--metin-soluk);
     align-self: center;
@@ -207,14 +224,15 @@ const sema = [
     padding: 1rem 1.2rem;
     background: var(--zemin-kart);
     border: 1px solid var(--cizgi);
-    border-left: 3px solid var(--su-400);
+    border-top: 2px solid var(--su-700);
   }
 
   .durum-listesi li { margin: 0.4rem 0; font-size: 0.94rem; }
 
   .veri-kunyesi {
-    margin-top: 2rem;
-    font-size: 0.8rem;
+    margin-top: clamp(2rem, 5vh, 3rem);
+    font-family: var(--mono);
+    font-size: 0.68rem;
     line-height: 1.65;
     color: var(--metin-soluk);
   }
