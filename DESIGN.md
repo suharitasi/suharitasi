@@ -186,6 +186,12 @@ kusursuz sahnelenir:
 - Yükleme: gömülü LQIP blur-up; beyaz/boş ekran anı ASLA.
 - Üzerine binen tipografi görselin KENDİ paletinden örneklenir (hex +
   kontrast raporlu); kutu/bar yasak, gerekirse görsel-tonlu ≤%12 scrim.
+- **Menü yerleşimi (KULLANICI KARARI 2026-07-16): VARYANT A** — sol üst,
+  dikey dizilim, koyu petrol `#12312B`. Dar-oran davranışı A'nın KENDİ
+  zarafetidir (B'ye düşülmez): kolon gök bandında kalır (üst sınır
+  ~56vh); viewport oranı 4:3'ten darsa kolon alt-sol DENİZE iner ve
+  metin bölge zeminine göre köpüğe (`#E8ECEA`) döner; her iki halde
+  görselin kendi tonundan ≤%12 yumuşak scrim eşlik eder.
 
 ## 14. İÇ SAYFA GÖRSEL AİLESİ (HEDEF ailesinden)
 
@@ -205,7 +211,7 @@ kullanılmaz).
 Genel: (1) kart donuk/default; (2) font düşmüş halde kanıt
 (`document.fonts.ready` beklenmemiş); (3) devam yolu görünmüyor;
 (4) menü takılıyor; (5) bölüm/tablo görünmez (reveal/print);
-(6) kicker'sız önemli bölüm ya da vurgusuz ana başlık; (7) YÜZEY
+(6) kicker'sız önemli bölüm ya da vurgusuz KURGULANMIŞ ana başlık (özel ad/varlık başlıkları — "Sakarya Havzası" gibi — vurgu zorunluluğu dışındadır); (7) YÜZEY
 üstünde SIĞ küçük-punto metin (kontrast); (8) sözlük dışı easing/süre;
 (9) iş sayfası Lighthouse < 90; (10) emoji/damla ikonu/royal-blue/keskin
 tepe; (11) künyesiz veya uydurma sayı; (12) mobilde ezik çıktı.
