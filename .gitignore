@@ -21,3 +21,8 @@ data/arsiv/grace/ham/
 
 # Ham Midjourney videoları (encode edilmiş sürümler public/deneyim/video/ altına girer)
 kaynak-video/
+
+# Skill altyapısı — yerel araç, repoya sızmaz (CLAUDE.md tasarım skill kuralı)
+.agents/
+.claude/skills/
+skills-lock.json
