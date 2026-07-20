@@ -66,6 +66,27 @@ Her yeni sayfa/bileşen bu ilkeye uyar.
 ## İçerik ilkesi — cevap önce, dayanak sonra
 Sitedeki her içerik sayfası (rehber, havza, araç) başlıktan hemen sonra ~280 karakterlik ÖZ CEVAP bloğu taşır: ziyaretçinin (avukat/işadamı dahil) sorusunun cevabını 10 saniyede veren damıtılmış özet. Madde/tablo/detay ALTTA kalır; isteyen derine iner. Ziyaretçi metin duvarı okumaz. Bu blok aynı zamanda meta-description ve FAQPage/AI-arama alıntı cümlesi kaynağıdır. İçerik yalnız mevcut doğrulanmış metinden damıtılır; yeni hukuki iddia üretilmez. Bağlayıcı ilkedir.
 
+## Sessiz hata yasağı (pipeline scriptleri — 2026-07-20)
+Veri çeken/yazan/commit eden her script (baraj, GRACE, gelecek pipeline'lar)
+sessizce başarısız olup veri kaybetmemeli. Bağlayıcı kurallar:
+- `set -euo pipefail` zorunlu. Hata-toleransı gereken satır KÖR set -e ile
+  değil, tek tek `|| true` / `if ... fi` / `|| logla` ile ayrılır ve neden
+  korunduğu yorumda belirtilir. Kör set -e yeni sessiz-durma yaratır.
+- `2>/dev/null` yalnız GERÇEK beklenen gürültü için (örn. var-olmayan opsiyonel
+  dosya). Hata gizleyen her `2>/dev/null` ya açılır ya `log/pipeline.log`'a
+  yönlendirilir. Özellikle `git add ... 2>/dev/null` YASAK (eski bug ikizi).
+- `git add` KOŞULLU: `[ -f DOSYA ] && git add DOSYA` — var-olmayan dosyada
+  exit 128 + sessiz durma olmasın.
+- Başarı metriği = commit teyidi: `git rev-parse HEAD` önce/sonra karşılaştırılır;
+  commit atılmadıysa exit≠0 + log. Deploy hook HTTP kodu başarı SAYILMAZ.
+  Push başarısızlığı loglanır ve exit 0 dönülmez.
+- Hata sayacı / durum sıfırlaması ancak commit teyidinden SONRA yapılır;
+  commit koparsa sayaç korunur (N-ardışık-hata uyarısı çalışsın).
+- Bağımsız sağlık bekçisi (`saglik-bekcisi.sh`, günlük 07:00 UTC) pipeline'dan
+  AYRI çalışır: son commit yaşı, baraj.json tazeliği, GRACE durum.json canlılığı.
+  Pipeline kendini denetleyemez. Eşikler gerçek cron takvimine göre kalibre
+  edilir (takvim-günü değil saat/gün penceresi — yanlış alarm üretme).
+
 ## Kurallar
 - Her işin sonunda commit + push OTOMATİK yapılır; push için ayrıca
   onay sorulmaz (kullanıcı kararı, 2026-07-14).
