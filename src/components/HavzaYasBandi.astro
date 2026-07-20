@@ -1,0 +1,238 @@
+---
+// HENDEK FAZ 3 — havza sayfası "resmî yeraltısuyu verisi" bandı.
+// TEK kaynak: data/canli/havza-yas.json (arac/havza-yas-seri-cikar.py üretir;
+// DSİ Tablo 1.3/1.5/1.6). Build'e gömülür, çalışma anında JS yok.
+//
+// DÜRÜSTLÜK: yalnız xlsx'te GERÇEKTEN olan yıl/değer gösterilir; DSİ değeri
+// yıllar arası taşıyorsa sparkline düz görünür (bu gerçektir, uydurma değil).
+// Havza potansiyel/rezerv = havza-özgü (1.3); sektör tahsisi = ULUSAL (1.6'da
+// havza kırılımı yok — öyle etiketlenir). GRACE değeri yalnızca headline;
+// tam şerh alttaki GraceEgilim bölümünde.
+import yasVeri from '../../data/canli/havza-yas.json';
+import { graceEgilim } from '../data/grace-hesap.js';
+import grace from '../../data/canli/grace-havza.json';
+
+interface Props {
+  havzaNo?: string;
+  havzaBaslik: string;
+}
+const { havzaNo, havzaBaslik } = Astro.props;
+const h = havzaNo ? (yasVeri.havzalar as Record<string, any>)[havzaNo] : undefined;
+
+const yillar: number[] = yasVeri.yillar;
+const tr = (n: number, ond = 1) =>
+  n.toLocaleString('tr-TR', { minimumFractionDigits: ond, maximumFractionDigits: ond });
+
+// Seri → {sonYil, sonDeger, ilkDeger, degisimYuzde, noktalar[]} (yalnız dolu yıllar)
+function seriHazirla(seri: Record<string, number>) {
+  const dolu = yillar.filter((y) => seri[String(y)] != null);
+  if (!dolu.length) return null;
+  const degerler = dolu.map((y) => seri[String(y)]);
+  const ilk = degerler[0];
+  const son = degerler[degerler.length - 1];
+  const min = Math.min(...degerler);
+  const max = Math.max(...degerler);
+  // GÖRSEL DÜRÜSTLÜK: %0,5 altı oynama "düz" sayılır. DSİ değerleri yıllar
+  // arası ~yuvarlama farkıyla (ör. 1545,17→1545,20) taşınıyor; min-max
+  // normalizasyonu bu ihmal edilebilir farkı dramatik sıçrama gibi
+  // gösterirdi. Gerçek adım değişimleri (ör. Gediz 555→1156) eşik üstü kalır.
+  const yayilim = max - min;
+  const duz = yayilim <= max * 0.005;
+  const noktalar = dolu
+    .map((y, i) => {
+      const x = dolu.length === 1 ? 50 : (i / (dolu.length - 1)) * 100;
+      const yy = duz ? 13 : 24 - ((degerler[i] - min) / yayilim) * 22;
+      return `${x.toFixed(1)},${yy.toFixed(1)}`;
+    })
+    .join(' ');
+  const degisim = ilk === 0 ? null : ((son - ilk) / ilk) * 100;
+  return {
+    sonYil: dolu[dolu.length - 1],
+    ilkYil: dolu[0],
+    son,
+    degisim,
+    duz,
+    noktalar,
+  };
+}
+
+const pot = h ? seriHazirla(h.potansiyel) : null;
+const rez = h ? seriHazirla(h.rezerv) : null;
+
+const ulusal = yasVeri.ulusal;
+const tahsis = ulusal.tahsisSonYil;
+
+// GRACE headline (tam şerh alttaki bölümde)
+const gkayit = (grace.havzalar as Record<string, any>)[havzaBaslik];
+const gsonuc = gkayit ? graceEgilim(gkayit.seri) : null;
+const gYon =
+  gsonuc == null ? null
+  : gsonuc.yon === 'azalma' ? { s: '↓', t: 'azalma', c: 'azaliyor' }
+  : gsonuc.yon === 'toparlanma' ? { s: '↑', t: 'toparlanma', c: 'artiyor' }
+  : { s: '→', t: 'sabit', c: 'sabit' };
+
+const k = yasVeri.kaynak;
+const [yy, aa, gg] = k.havzaPotansiyelRezerv.indirmeTarihi.split('-');
+const kunyeTarih = `${gg}.${aa}.${yy}`;
+
+function degisimEtiket(s: ReturnType<typeof seriHazirla>) {
+  if (!s) return '';
+  if (s.duz) return `${s.ilkYil}–${s.sonYil}: DSİ aynı değeri taşıyor`;
+  const isaret = (s.degisim ?? 0) >= 0 ? '+' : '';
+  return `${s.ilkYil}→${s.sonYil}: ${isaret}${tr(s.degisim ?? 0, 1)}%`;
+}
+---
+{h && (pot || rez) && (
+  <section class="yas-bandi" aria-labelledby="yas-baslik">
+    <h2 id="yas-baslik">Resmî yeraltısuyu verisi</h2>
+
+    <div class="yas-izgara">
+      {pot && (
+        <div class="yas-metrik">
+          <span class="yas-etiket">Yıllık potansiyel · beslenim</span>
+          <span class="yas-deger">{tr(pot.son)}<span class="yas-birim">hm³/yıl</span></span>
+          <svg class="yas-spark" viewBox="0 0 100 26" preserveAspectRatio="none" aria-hidden="true">
+            <polyline points={pot.noktalar} />
+          </svg>
+          <span class="yas-trend">{degisimEtiket(pot)}</span>
+        </div>
+      )}
+      {rez && (
+        <div class="yas-metrik">
+          <span class="yas-etiket">Emniyetli işletme rezervi</span>
+          <span class="yas-deger">{tr(rez.son)}<span class="yas-birim">hm³/yıl</span></span>
+          <svg class="yas-spark" viewBox="0 0 100 26" preserveAspectRatio="none" aria-hidden="true">
+            <polyline points={rez.noktalar} />
+          </svg>
+          <span class="yas-trend">{degisimEtiket(rez)}</span>
+        </div>
+      )}
+      {tahsis && (
+        <div class="yas-metrik yas-ulusal">
+          <span class="yas-etiket">Sektör tahsisi · ulusal <abbr title="DSİ 1.6 tablosunda havza kırılımı yayımlanmıyor">*</abbr></span>
+          <span class="yas-deger">{tr(tahsis.toplam, 2)}<span class="yas-birim">km³/yıl</span></span>
+          <span class="yas-alt">
+            {tahsis.yil} · sulama {tr(tahsis.sulama, 2)} · içme/sanayi {tr(tahsis.icmeSanayi, 2)}
+          </span>
+        </div>
+      )}
+      {gYon && (
+        <div class={`yas-metrik yas-grace ${gYon.c}`}>
+          <span class="yas-etiket">Su depolaması eğilimi · GRACE</span>
+          <span class="yas-deger">
+            <span class="yas-ok" aria-hidden="true">{gYon.s}</span>{gYon.t}
+          </span>
+          <span class="yas-alt">
+            {gsonuc?.egim != null && `${gsonuc.egim > 0 ? '+' : ''}${tr(gsonuc.egim, 2)} cm/yıl · son 5 yıl`}
+          </span>
+        </div>
+      )}
+    </div>
+
+    <p class="yas-kunye">
+      Kaynak: DSİ Resmî Su Kaynakları İstatistikleri — potansiyel/rezerv
+      <a href={k.havzaPotansiyelRezerv.url} target="_blank" rel="noopener">Tablo 1.3</a>,
+      tahsis <a href={k.ulusalTahsis.url} target="_blank" rel="noopener">Tablo 1.6</a>
+      (indirme {kunyeTarih}). <abbr title="ulusal">*</abbr> Sektör tahsisi ulusal toplamdır.
+    </p>
+  </section>
+)}
+
+<style>
+  .yas-bandi {
+    margin-top: clamp(2.4rem, 5vh, 3.4rem);
+    padding: 1.4rem 1.5rem 1.3rem 1.8rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+    position: relative;
+  }
+  /* Kot cetveli sol kenar motifi (DESIGN.md §5-6) */
+  .yas-bandi::before {
+    content: "";
+    position: absolute;
+    left: 0.6rem;
+    top: 1.1rem;
+    bottom: 1.1rem;
+    width: 6px;
+    background:
+      repeating-linear-gradient(180deg,
+        rgba(79, 123, 120, 0.4) 0 1px, transparent 1px 7px),
+      linear-gradient(90deg, rgba(79, 123, 120, 0.4) 0 1px, transparent 1px);
+  }
+  .yas-bandi h2 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .yas-izgara {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.1rem 1.4rem;
+  }
+  .yas-metrik {
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+  }
+  .yas-etiket {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+  .yas-etiket abbr { text-decoration: none; color: var(--su-700); cursor: help; }
+  .yas-deger {
+    font-family: var(--serif);
+    font-size: 1.85rem;
+    font-weight: 500;
+    line-height: 1.05;
+    font-variant-numeric: tabular-nums;
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+  }
+  .yas-birim {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    font-weight: 400;
+    color: var(--metin-soluk);
+    letter-spacing: 0.02em;
+  }
+  .yas-spark {
+    width: 100%;
+    height: 20px;
+    margin: 0.15rem 0 0.1rem;
+  }
+  .yas-spark polyline {
+    fill: none;
+    stroke: var(--su-700);
+    stroke-width: 1.4;
+    vector-effect: non-scaling-stroke;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+  .yas-trend, .yas-alt {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    color: var(--metin-soluk);
+    letter-spacing: 0.01em;
+  }
+  .yas-ok { font-size: 1.15rem; margin-right: 0.2rem; }
+  .yas-grace.azaliyor .yas-ok { color: var(--kehribar-metin); }
+  .yas-grace.artiyor .yas-ok { color: var(--su-700); }
+  .yas-grace.sabit .yas-ok { color: var(--metin-soluk); }
+  .yas-grace .yas-deger { font-size: 1.15rem; align-items: center; }
+
+  .yas-kunye {
+    margin-top: 1rem;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    line-height: 1.6;
+    color: var(--metin-soluk);
+  }
+  .yas-kunye a { color: var(--su-700); }
+  .yas-kunye abbr { text-decoration: none; }
+</style>
