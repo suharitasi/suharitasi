@@ -54,13 +54,29 @@
     // clip = MP4 H.264 (Safari/iOS scrub uyumu en yüksek); WebM alternatif encode
     //   diskte (public/deneyim/video/*.webm) — motor tekil URL yüklediğinden MP4 kullanılır.
     // still = poster JPG (ilk kare). Metinler PLACEHOLDER.
+    // Sahne metinleri — atmosferik, rakamsız/iddiasız (veri sayfaları ayrı).
+    // Ton: bilgilendirme portalı sofistikasyonu; pazarlama klişesi yok.
+    // S5 (Hukuk) varlık bildirir, davet etmez — "suyun bir hukuku var".
+    // Kullanıcı bu metinleri tek dosyadan (bu array) düzenleyebilir.
     const sahneler = [
-      { id: 'sondaj',       label: 'Sondaj',        n: 1, accent: '#7FB5AE' },
-      { id: 'akifer',       label: 'Akifer',        n: 2, accent: '#5FA39A' },
-      { id: 'baraj',        label: 'Baraj',         n: 3, accent: '#4F7B78' },
-      { id: 'sehir',        label: 'Şehir',         n: 4, accent: '#C9A24B' },
-      { id: 'hukuk',        label: 'Hukuk',         n: 5, accent: '#8FA9A2' },
-      { id: 'gol-kasabasi', label: 'Göl kasabası',  n: 6, accent: '#7FB5AE' },
+      { id: 'sondaj',       label: 'Sondaj',       n: 1, accent: '#7FB5AE',
+        kicker: 'SUYUN ARAYIŞI',    baslik: 'Toprağın altındaki soru',
+        metin: 'Her kuyu, yerin altında suyun olup olmadığını sınayan bir arayışla başlar.' },
+      { id: 'akifer',       label: 'Akifer',       n: 2, accent: '#5FA39A',
+        kicker: 'GÖRÜNMEYEN KATMAN', baslik: 'Kayanın içindeki su',
+        metin: 'Akifer, gözden uzak katmanlarda yavaşça biriken ve sessizce hareket eden yeraltı suyudur.' },
+      { id: 'baraj',        label: 'Baraj',        n: 3, accent: '#4F7B78',
+        kicker: 'TUTULAN SU',       baslik: 'Tutulan ve ölçülen',
+        metin: 'Baraj akışı durdurur; suyu görünür, sayılabilir ve yönetilebilir kılar.' },
+      { id: 'sehir',        label: 'Şehir',        n: 4, accent: '#C9A24B',
+        kicker: 'İNSANA DOĞRU',     baslik: 'Şehre ulaşan damar',
+        metin: 'Su, borular ve şebekeler boyunca ilerleyerek gündelik hayatın içine karışır.' },
+      { id: 'hukuk',        label: 'Hukuk',        n: 5, accent: '#8FA9A2',
+        kicker: 'SUYUN DÜZENİ',     baslik: 'Suyun bir hukuku var',
+        metin: 'Kuyudan tahsise kadar her kullanım bir kurala bağlıdır; su, görünmez bir düzenin içinde akar.' },
+      { id: 'gol-kasabasi', label: 'Göl kasabası', n: 6, accent: '#7FB5AE',
+        kicker: 'SESSİZ DENGE',     baslik: 'Suyla kurulan hayat',
+        metin: 'Kıyıya yerleşen her yaşam, suyun sunduğu kırılgan dengeye yaslanır.' },
     ];
 
     const sections = sahneler.map((s) => ({
@@ -69,10 +85,9 @@
       still: `${V}/sahne${s.n}.jpg`,
       clip: `${V}/sahne${s.n}.mp4`,
       accent: s.accent,
-      eyebrow: `[SAHNE-${s.n}-KICKER]`,
-      title: `[SAHNE-${s.n}-BASLIK]`,
-      body: `[SAHNE-${s.n}-METIN]`,
-      // son sahne CTA'sı da metin onayıyla gelecek — şimdilik yok.
+      eyebrow: s.kicker,
+      title: s.baslik,
+      body: s.metin,
     }));
 
     mountScrollWorld(document.getElementById('world'), {

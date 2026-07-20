@@ -22,6 +22,9 @@ telif dışıdır, ancak derleme/sunum korunabilir. Kullanım varsayımı: KAYNA
 GÖSTERİLEREK (DSİ, dosya adı, erişim tarihi) havza düzeyi türetilmiş veri
 yayını. YAYIN ÖNCESİ HUKUKİ TEYİT EDİLECEK (site sahibi hukukçu — uygun).
 
+**Onay kaydı:** Kullanıcı (Av. Serdar Arslan) kaynak-atıflı türetilmiş veri
+yayınını 20.07.2026'da onayladı.
+
 ## Dosyalar
 
 ### 2024 seti (Detay/2186 · DosyaGaleri 8848 · en güncel)
