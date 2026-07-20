@@ -1,6 +1,7 @@
 # DESIGN.md — SU-DİLİ ANAYASASI (suharitasi.com)
 
-Bu belge bağlayıcıdır; çelişen karar kaybeder. Sürüm 3.0 (2026-07-16).
+Bu belge bağlayıcıdır; çelişen karar kaybeder. Sürüm 3.1 (2026-07-20 —
+§17 Sayfa Mimarisi eklendi, Faz 0 teşhisine dayanır).
 Kaynak soru: **"Su nedir ve suyun sitesi nasıl görünür?"** Su yalnız renk
 değil davranıştır; bu belge o davranışı sisteme çevirir. Sitenin en
 görkemli karesi HEDEF görselidir (referans/HEDEF.png) — dil onu taklit
@@ -225,3 +226,72 @@ ekran anı · menü okunmuyor VEYA görsele hükmediyor.
 Su damlası ikonu yok. Emoji yok. Royal-blue yok. Keskin tepeli kontur
 klişesi yok. Kehribar/SIĞ küçük puntoda metin olamaz. Arayüz dili
 Türkçe. Veri dürüstlüğü ve kopyalanma direnci (CLAUDE.md) her yüzeyde.
+
+## 17. SAYFA MİMARİSİ — sunum reformu (2026-07-20)
+
+Dayanak: Faz 0 teşhisi (rapor B1–B17, K1–K4; ekran kanıtları
+cikti/denetim/faz0/). Kullanıcı tespiti: "bilgi yığını; kimse havzalara
+tek tek tıklamaz." Sorun içerik değil SUNUM mimarisidir; içerik/veri/
+SEO-GEO katmanları korunur. Bu bölüm şablon-düzeyi kuraldır: kalıp
+düzelince ondan türeyen her sayfa düzelir.
+
+### (a) 3-SANİYE KURALI
+İlk ekran tek bakışta ana mesajı verir: büyük değer VEYA damıtılmış
+cevap + eğilim + tek cümle. İlk ekranda kesintisiz metin ≤ 3 satır.
+- *Gerekçe:* Teşhiste üç sayfanın üçünde de ilk ekran %100 metindi
+  (B1, B7, B15); rehberde fold'a kadar ~15 satır kesintisiz metin
+  ölçüldü. "Su verisi portalı" ilk bakışta metin sitesi gibi görünüyor
+  (K1).
+- Çifte özet yasağı: `ozet` + `ozCevap` art arda iki paragraf olarak
+  RENDER EDİLMEZ (K3); göz hiyerarşisinde tek özet yaşar, diğeri
+  meta/arka plan katmanına iner (DOM'dan silinmez — bkz. b).
+
+### (b) KATMANLI SUNUM
+Detay varsayılan KAPALIDIR (accordion/sekme/`<details>`); metin duvarı
+yasaktır. Referans blokları (81-il tablosu, madde metinleri, künye
+ayrıntısı) katmana iner.
+- *Gerekçe:* Rehberde 5.000px'lik il tablosu sayfanın %44'ünü kaplayıp
+  "Dikkat/Dayanak/Emsal" bölümlerini eziyordu (B9); kanun alıntıları
+  gövdede açıktı (B12); sitede accordion kullanımı sıfırdı (K4).
+  ui-ux-pro-max kuralı: uzun içerik kes + genişlet; her şeyi baştan
+  yükleme.
+- SEO/GEO DOKUNULMAZI: 280-cevap, JSON-LD, tüm metin içerik DOM'da
+  eksiksiz kalır ve JS'siz erişilebilir olur (İş sınıfı sayfada çalışma
+  anı JS ~0 — §10). Katman yalnız GÖZ hiyerarşisini yönetir, arama/AI
+  botunun gördüğünü değil.
+
+### (c) VERİ GÖRSEL KAHRAMAN
+Sayı, eğilim ve grafik metinden önce gelir. Havza tipi sayfada ilk
+ekran kahramanı VERİdir (büyük değer + eğilim oku + sparkline); sayı
+paragraf içine gömülmez. Sparkline okunur boyutta çizilir — süs değil
+enstrüman (§5 ölçüm estetiği aynen geçerli: künyesiz sayı yayınlanmaz).
+- *Gerekçe:* Sakarya'da sitenin koz verileri 857–3.000px aralığına
+  gömülüydü (B1, B5); vakada kahraman sayı (3.395,33 ha / 2056) paragraf
+  içindeydi (B15).
+- Eşik (ui-ux-pro-max chart DB): ≥4 veri noktası varsa çizgi/sparkline;
+  <4 noktada stat kartı — 3 noktalık seriye grafik çizilmez.
+
+### (d) KART DİLİ
+Çoklu öğe (havza listesi, içindekiler, baraj satırları, olay adımları)
+liste-yığını değil KART/GRID dilinde sunulur; §8 kart aileleri ve SU-DİLİ
+paleti aynen. Gerçek sıralar (başvuru akışı, olay şeridi) görsel sıra
+dilini hak eder: adım kartı / zaman şeridi — süs numarası değil, gerçek
+kronoloji/prosedür olduğu için (frontend-design: "yapı bilgidir").
+- *Gerekçe:* Sakarya'da kart dili var/yok salınıyordu (B4); baraj
+  tablosu ham 6 satırdı (B6); MEYSU "olay akışı" zaman çizgisi değil
+  çizgili listeydi (B14); rehberin "Başvuru akışı" süreci görsel adım
+  dili taşımıyordu (B11).
+
+### (e) MOBİL-ÖNCELİK
+Her kalıp önce 375px'te tasarlanır, masaüstüne genişletilir (§12'yi
+sertleştirir: "mobilde de iyi" değil, "mobilde DOĞAR"). İlk ekran bütçesi
+375×812'de hesaplanır; üst menü ilk ekranın küçük bir şeridini aşamaz.
+- *Gerekçe:* Mobil menü iki satıra kırılıp ilk ekranın ~%28'ini yiyordu
+  (K2, B2); rehber 375px'te 22,9 ekran kesintisiz kaydırmaydı (B7).
+  Trafiğin çoğu mobil olacak.
+
+### (f) SU-DİLİ UYUMU
+§1–16 aynen geçerlidir; bu bölüm onları TAMAMLAR, çelişmez. Çelişki
+görünürse §1–16 kazanır ve çelişki rapor edilir. Görünürlük kuralı
+(CLAUDE.md) burada da bağlayıcı: katmanlama efektleri ilk bakışta fark
+edilir olmalı, görünmezleşene kadar kısılmaz.
