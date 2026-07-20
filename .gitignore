@@ -8,6 +8,8 @@ screenshots/
 .astro/
 cikti/
 .playwright-mcp/
+# Pipeline hata günlüğü (sessiz hata yasağı) — kök log/, arşiv altındakiler tracked kalır
+/log/
 # Geçici görsel paylaşımı — tek seferlik, git add -f ile zorlanır, iş bitince silinir
 public/gecici/
 
