@@ -11,6 +11,7 @@ import havzaVeri from '../../../data/havza-veri.json';
 import graceHavza from '../../../data/canli/grace-havza.json';
 import { graceEgilim } from '../../data/grace-hesap.js';
 import { yayinlananIller } from '../../data/il-profil.js';
+import { havzaYasGeo } from '../../data/havza-yas-geo.js';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('havzalar');
@@ -95,8 +96,22 @@ if (gSonuc) {
 }
 const havzaOzCevap = cumleler.join(' ');
 const aciklama = havzaOzCevap || giris.data.ozet;
+
+// — FAQPage JSON-LD: YAS potansiyeli öz-cevabı (AI-arama alıntısı). Tek
+//   kaynak havza-yas-geo.js; verisi yoksa şema eklenmez (uydurma yok).
+const yasGeo = havzaYasGeo(giris.data.no);
+const semalar = yasGeo
+  ? [{
+      '@type': 'FAQPage',
+      mainEntity: [{
+        '@type': 'Question',
+        name: `${giris.data.baslik} yeraltı suyu potansiyeli nedir?`,
+        acceptedAnswer: { '@type': 'Answer', text: yasGeo.cumle },
+      }],
+    }]
+  : [];
 ---
-<Sayfa baslik={giris.data.baslik} aciklama={aciklama}>
+<Sayfa baslik={giris.data.baslik} aciklama={aciklama} sema={semalar}>
   <SayfaBasi etiket="Havza" baslik={giris.data.baslik} ozet={giris.data.ozet} />
 
   {havzaOzCevap && <OzCevap metin={havzaOzCevap} />}

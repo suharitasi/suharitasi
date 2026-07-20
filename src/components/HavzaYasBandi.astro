@@ -10,6 +10,7 @@
 // tam şerh alttaki GraceEgilim bölümünde.
 import yasVeri from '../../data/canli/havza-yas.json';
 import { graceEgilim } from '../data/grace-hesap.js';
+import { havzaYasGeo } from '../data/havza-yas-geo.js';
 import grace from '../../data/canli/grace-havza.json';
 
 interface Props {
@@ -18,6 +19,8 @@ interface Props {
 }
 const { havzaNo, havzaBaslik } = Astro.props;
 const h = havzaNo ? (yasVeri.havzalar as Record<string, any>)[havzaNo] : undefined;
+// GEO/öz-cevap cümlesi (AI-arama alıntısı + FAQPage ile aynı kaynak)
+const geo = havzaYasGeo(havzaNo);
 
 const yillar: number[] = yasVeri.yillar;
 const tr = (n: number, ond = 1) =>
@@ -85,6 +88,8 @@ function degisimEtiket(s: ReturnType<typeof seriHazirla>) {
 {h && (pot || rez) && (
   <section class="yas-bandi" aria-labelledby="yas-baslik">
     <h2 id="yas-baslik">Resmî yeraltısuyu verisi</h2>
+
+    {geo && <p class="yas-geo">{geo.cumle}</p>}
 
     <div class="yas-izgara">
       {pot && (
@@ -164,7 +169,16 @@ function degisimEtiket(s: ReturnType<typeof seriHazirla>) {
     font-family: var(--serif);
     font-size: 1.5rem;
     font-weight: 500;
-    margin-bottom: 1rem;
+    margin-bottom: 0.7rem;
+  }
+  /* GEO/öz-cevap: AI-arama alıntı cümlesi — gövde dili (Manrope) */
+  .yas-geo {
+    font-family: var(--sans);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: var(--metin);
+    max-width: 62ch;
+    margin-bottom: 1.1rem;
   }
   .yas-izgara {
     display: grid;
