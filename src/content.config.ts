@@ -29,6 +29,10 @@ const havzalar = defineCollection({
     ozet: z.string(),
     tarih: z.coerce.date(),
     no: z.string().optional(), // DSİ havza numarası (01–25); listede sıralama
+    // Sayfa mimarisi kalıbı (DESIGN.md §17). 2 = reform kalıbı (kahraman
+    // veri bandı + katmanlı sunum). Yalnız pilotlarda açılır; alan yoksa
+    // eski kalıp aynen render edilir — pilot dışı sayfa değişmez.
+    kalip: z.literal(2).optional(),
     // Künye alanları; dolduruluncaya dek "veri yükleniyor" gösterilir.
     kunye: z
       .object({

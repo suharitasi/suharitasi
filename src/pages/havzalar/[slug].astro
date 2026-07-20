@@ -6,6 +6,8 @@ import OzCevap from '../../components/OzCevap.astro';
 import BarajDoluluk from '../../components/BarajDoluluk.astro';
 import GraceEgilim from '../../components/GraceEgilim.astro';
 import HavzaYasBandi from '../../components/HavzaYasBandi.astro';
+import HavzaKahraman from '../../components/HavzaKahraman.astro';
+import Katman from '../../components/Katman.astro';
 import ilKurum from '../../../data/il-kurum.json';
 import havzaVeri from '../../../data/havza-veri.json';
 import graceHavza from '../../../data/canli/grace-havza.json';
@@ -112,6 +114,126 @@ const semalar = yasGeo
   : [];
 ---
 <Sayfa baslik={giris.data.baslik} aciklama={aciklama} sema={semalar}>
+{giris.data.kalip === 2 ? (
+  <Fragment>
+    {/* ——— KALIP 2 (DESIGN.md §17, pilot): kahraman veri bandı + katmanlı
+        sunum. Çifte özet yasağı: SayfaBasi'ya ozet GEÇİLMEZ — görünür tek
+        özet OzCevap'tır (ozet, liste kartları + og metni olarak yaşar).
+        Yayılım notu: eski kalıpla ortak hukuk/il-kurum işaretlemesi yayılım
+        fazında tekilleştirilir; pilotta eski yol bilerek DOKUNULMAMIŞTIR. */}
+    <SayfaBasi etiket="Havza" baslik={giris.data.baslik} />
+
+    <HavzaKahraman havzaNo={giris.data.no} havzaBaslik={giris.data.baslik} />
+
+    {havzaOzCevap && <OzCevap metin={havzaOzCevap} />}
+
+    <Katman baslik="Resmî yeraltısuyu verisi" ipucu="DSİ Tablo 1.3 / 1.6 · yıl serileri">
+      <HavzaYasBandi havzaNo={giris.data.no} havzaBaslik={giris.data.baslik} />
+    </Katman>
+
+    <Katman baslik="Havza profili" ipucu="su varlığı · planlama ve koruma · veri notu">
+      <div class="icerik">
+        <Content />
+      </div>
+    </Katman>
+
+    <Katman baslik="Baraj doluluk" ipucu="günlük kayıt · EPİAŞ Şeffaflık">
+      <BarajDoluluk havzaBaslik={giris.data.baslik} />
+    </Katman>
+
+    <Katman baslik="Su depolaması eğilimi" ipucu="GRACE uydu ölçümü · tam şerh">
+      <GraceEgilim havzaBaslik={giris.data.baslik} />
+    </Katman>
+
+    {hukuk && (
+      <Katman baslik="Bu havzada hukuki durum" ipucu="izin rejimi · kısıtlar · rehberler" ton="kehribar">
+        <section class="hukuk">
+          <h2>Bu havzada hukuki durum</h2>
+
+          <div class="hukuk-govde" set:html={hukuk.cerceve} />
+
+          <div class="hukuk-kisit">
+            <p class="hukuk-alt-baslik">Havzaya özgü kısıtlar</p>
+            {hukuk.kisitlar
+              ? <Fragment set:html={hukuk.kisitlar} />
+              : (
+                <p class="veri-yok">
+                  Havzaya özgü kısıt verisi: doğrulanmadı ({derleme}). Kapalı havza
+                  ilanı, kuyu derinliği sınırı veya çekim kısıtı gibi havza bazlı
+                  kararlar resmî kaynakta kamuya açık ve derli biçimde
+                  yayımlanmadığından bu alan boş bırakılmıştır; doğrulanmamış bilgi
+                  yazılmaz.
+                </p>
+              )}
+          </div>
+
+          {hukukRehberleri.length > 0 && (
+            <nav class="hukuk-rehberler" aria-label="Havzayla ilgili rehberler">
+              <p class="hukuk-alt-baslik">Bu havzada işinize yarayacak rehberler</p>
+              <ul>
+                {hukukRehberleri.map((r) => (
+                  <li><a href={`/rehberler/${r.id}/`}>{r.data.baslik}</a></li>
+                ))}
+              </ul>
+            </nav>
+          )}
+        </section>
+      </Katman>
+    )}
+
+    {ilSatirlari.length > 0 && (
+      <Katman baslik="İller ve yetkili kurumlar" ipucu={`${ilSatirlari.length} il · DSİ bölgeleri · su idareleri`} ton="murekkep">
+        <section class="il-kurum">
+          <h2>İller ve yetkili kurumlar</h2>
+          <div class="tablo-kaydir">
+            <table>
+              <thead>
+                <tr>
+                  <th>İl</th>
+                  <th>DSİ bölge müdürlüğü</th>
+                  <th>Su ve kanalizasyon idaresi</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ilSatirlari.map((s) => (
+                  <tr>
+                    <td>{s.ilYolu ? <a href={s.ilYolu}>{s.il}</a> : s.il}</td>
+                    <td>{s.bolge ?? <span class="veri-yok">veri yok</span>}</td>
+                    <td>{s.suIdaresi}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="kaynak-notu">
+            İl listesi resmî havza belgesinden derlendi
+            (<a href={havzaIl.kaynak} target="_blank" rel="noopener">kaynak</a>);
+            iller havzaya kısmen girebilir.
+            {havzaIl.not ? ` ${havzaIl.not}.` : ''}
+            Büyükşehir olmayan illerde köy içme suları İl Özel İdaresi / belediye
+            görev alanındadır. Derleme: {ilKurum.derlemeTarihi}.
+          </p>
+        </section>
+      </Katman>
+    )}
+
+    <Katman baslik="Kaynak künyesi" ipucu="resmî kaynak bağlantıları · eylem planı" ton="murekkep">
+      <dl class="kunye kunye-katman">
+        {alanlar.map((a) => (
+          <div class="kunye-satir">
+            <dt>{a.ad}</dt>
+            <dd>
+              {a.deger
+                ? <Fragment set:html={a.deger} />
+                : <span class="veri-yok">veri yok ({derleme})</span>}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </Katman>
+  </Fragment>
+) : (
+  <Fragment>
   <SayfaBasi etiket="Havza" baslik={giris.data.baslik} ozet={giris.data.ozet} />
 
   {havzaOzCevap && <OzCevap metin={havzaOzCevap} />}
@@ -206,6 +328,8 @@ const semalar = yasGeo
       </p>
     </section>
   )}
+  </Fragment>
+)}
 </Sayfa>
 
 <style>
@@ -256,6 +380,17 @@ const semalar = yasGeo
   @media (max-width: 560px) {
     .kunye-satir { grid-template-columns: 1fr; gap: 0.1rem; }
   }
+
+  /* Kalıp 2: künye katman içinde — kart kabuğu katmandan gelir, çifte
+     çerçeve/kot motifi olmasın */
+  .kunye-katman {
+    margin: 0;
+    padding: 0.4rem 0 0;
+    background: transparent;
+    border: 0;
+  }
+
+  .kunye-katman::before { display: none; }
 
   /* Bu havzada hukuki durum: veriyle hukukun aynı ekranda buluştuğu blok
      (BRIEF). Künyeyle aynı kart dilini kullanır, akuamarin kenarla ayrılır. */

@@ -1,0 +1,291 @@
+---
+// SAYFA MİMARİSİ §17(a)+(c) — havza ilk-ekran kahraman veri bandı.
+// Tek bakışta: büyük değer + eğilim oku + GRACE sparkline + künye.
+// Build-time statik SVG (BarajDoluluk ile aynı gerekçe: küçük seri,
+// sıfır çalışma anı JS, kopyalanma direnci). Hover katmanı bilinçli YOK:
+// İş sınıfı sayfada çalışma anı JS ~0 (DESIGN.md §10) sparkline hover'ından
+// üstün kural; ayrıntı GRACE katmanında metin olarak mevcut.
+//
+// dataviz uyum notu: tek seri → lejant yok (başlık adlandırır); sıfır
+// ekseni hairline; son değer doğrudan etiket; çizgi DERİN #175E56
+// (zemin kontrastı ≥3:1 validator PASS); künyesiz sayı yayınlanmaz (§5).
+import yasVeri from '../../data/canli/havza-yas.json';
+import grace from '../../data/canli/grace-havza.json';
+import havzaVeri from '../../data/havza-veri.json';
+import { graceEgilim } from '../data/grace-hesap.js';
+
+interface Props {
+  havzaNo?: string;
+  havzaBaslik: string;
+}
+const { havzaNo, havzaBaslik } = Astro.props;
+
+const tr = (n: number, ond = 1) =>
+  n.toLocaleString('tr-TR', { minimumFractionDigits: ond, maximumFractionDigits: ond });
+
+// — Büyük değer: DSİ yüzey suyu potansiyeli (FAZ 3 panel kartıyla aynı metrik)
+const vd = havzaVeri.havzalar.find((h: any) => h.no === havzaNo);
+const potansiyel =
+  vd?.yuzeysuyuPotansiyeli_km3 != null
+    ? { deger: tr(vd.yuzeysuyuPotansiyeli_km3, 2), yil: vd.yuzeysuyuYili ?? 2024 }
+    : null;
+
+// — İkincil değer: YAS emniyetli işletme rezervi (Tablo 1.3, son dolu yıl)
+const hYas = havzaNo ? (yasVeri.havzalar as Record<string, any>)[havzaNo] : undefined;
+let rezerv: { deger: string; yil: number } | null = null;
+if (hYas?.rezerv) {
+  const dolu = (yasVeri.yillar as number[]).filter((y) => hYas.rezerv[String(y)] != null);
+  if (dolu.length) {
+    const y = dolu[dolu.length - 1];
+    rezerv = { deger: tr(hYas.rezerv[String(y)]), yil: y };
+  }
+}
+
+// — GRACE: son 5 yılın gerçek aylarından sparkline + eğilim
+//   (grace-hesap.js ile aynı pencere mantığı — tek bakım noktası oradadır,
+//   burada yalnız çizim noktaları türetilir).
+const gkayit = (grace.havzalar as Record<string, any>)[havzaBaslik];
+const gSonuc = gkayit ? graceEgilim(gkayit.seri) : null;
+let spark: {
+  cizgi: string;
+  sifirY: number;
+  sonX: number;
+  sonY: number;
+  sonEtiket: string;
+  aySayisi: number;
+  aralik: string;
+} | null = null;
+if (gkayit && gSonuc) {
+  const aylar = Object.keys(gkayit.seri).sort();
+  const sonAy = aylar[aylar.length - 1];
+  const [sy, sm] = sonAy.split('-').map(Number);
+  const esik = `${sy - 5}-${String(sm).padStart(2, '0')}`;
+  const son5 = aylar.filter((a) => a > esik);
+  const degerler = son5.map((a) => gkayit.seri[a] as number);
+  const min = Math.min(...degerler, 0);
+  const max = Math.max(...degerler, 0);
+  const yayilim = max - min || 1;
+  const W = 100;
+  const H = 30;
+  const PAD = 3;
+  const yHesap = (v: number) => PAD + ((max - v) / yayilim) * (H - PAD * 2);
+  const noktalar = son5.map((a, i) => {
+    const x = (i / (son5.length - 1)) * W;
+    return `${x.toFixed(1)},${yHesap(degerler[i]).toFixed(1)}`;
+  });
+  const trAy = (iso: string) => {
+    const adlar = ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+    return `${adlar[Number(iso.slice(5, 7)) - 1]} ${iso.slice(0, 4)}`;
+  };
+  const sonDeger = degerler[degerler.length - 1];
+  spark = {
+    cizgi: noktalar.join(' '),
+    sifirY: yHesap(0),
+    sonX: W,
+    sonY: yHesap(sonDeger),
+    sonEtiket: `${trAy(sonAy)}: ${sonDeger > 0 ? '+' : ''}${tr(sonDeger, 1)} cm`,
+    aySayisi: gSonuc.aySayisi,
+    aralik: gSonuc.aralik,
+  };
+}
+const yon =
+  gSonuc == null ? null
+  : gSonuc.yon === 'azalma' ? { s: '↓', t: 'azalma', sinif: 'azaliyor' }
+  : gSonuc.yon === 'toparlanma' ? { s: '↑', t: 'toparlanma', sinif: 'artiyor' }
+  : { s: '→', t: 'belirgin eğilim yok', sinif: 'sabit' };
+
+const k = yasVeri.kaynak;
+const [ky, ka, kg] = k.havzaPotansiyelRezerv.indirmeTarihi.split('-');
+---
+{(potansiyel || rezerv || spark) && (
+  <section class="kahraman" aria-label="Havza özet verisi">
+    <div class="kahraman-izgara">
+      {potansiyel && (
+        <div class="kahraman-ana">
+          <span class="kahraman-etiket">Yıllık su potansiyeli · DSİ {potansiyel.yil}</span>
+          <span class="kahraman-deger">
+            {potansiyel.deger}<span class="kahraman-birim">km³/yıl</span>
+          </span>
+          {rezerv && (
+            <span class="kahraman-ikincil">
+              YAS işletme rezervi <strong>{rezerv.deger} hm³/yıl</strong> ({rezerv.yil})
+            </span>
+          )}
+        </div>
+      )}
+      {yon && spark && (
+        <div class={`kahraman-grace ${yon.sinif}`}>
+          <span class="kahraman-etiket">Su depolaması · GRACE uydusu · son 5 yıl</span>
+          <span class="kahraman-egilim">
+            <span class="kahraman-ok" aria-hidden="true">{yon.s}</span>
+            {yon.t}
+            {gSonuc?.egim != null && (
+              <span class="kahraman-egim">
+                {gSonuc.egim > 0 ? '+' : ''}{tr(gSonuc.egim, 2)} cm/yıl
+              </span>
+            )}
+          </span>
+          <svg
+            class="kahraman-spark"
+            viewBox="0 0 100 30"
+            preserveAspectRatio="none"
+            role="img"
+            aria-label={`GRACE su depolaması anomalisi, ${spark.aralik}, ${spark.aySayisi} aylık seri; son ölçüm ${spark.sonEtiket}`}
+          >
+            <line class="spark-sifir" x1="0" y1={spark.sifirY} x2="100" y2={spark.sifirY} />
+            <polyline class="spark-cizgi" points={spark.cizgi} />
+            <circle class="spark-son" cx={spark.sonX} cy={spark.sonY} r="1.6" />
+          </svg>
+          <span class="kahraman-spark-etiket">{spark.sonEtiket}{' '}<span class="spark-serh">(2004-2009 ort. göre değişim)</span></span>
+        </div>
+      )}
+    </div>
+    <p class="kahraman-kunye">
+      Kaynak: DSİ Resmî Su Kaynakları İstatistikleri ({kg}.{ka}.{ky}) ·
+      NASA GRACE/GRACE-FO, {spark ? `${spark.aySayisi} gerçek aylık ölçüm` : 'uydu ölçümü'} —
+      değişim verisidir, mutlak miktar değildir.
+    </p>
+  </section>
+)}
+
+<style>
+  /* Veri bandı dili (DESIGN.md §5): kot cetveli + DERİN hairline üst */
+  .kahraman {
+    margin: 0 0 1.6rem;
+    padding: 1.3rem 1.5rem 1.1rem 1.9rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+    position: relative;
+  }
+
+  .kahraman::before {
+    content: "";
+    position: absolute;
+    left: 0.6rem;
+    top: 1rem;
+    bottom: 1rem;
+    width: 6px;
+    background:
+      repeating-linear-gradient(180deg,
+        rgba(79, 123, 120, 0.4) 0 1px, transparent 1px 7px),
+      linear-gradient(90deg, rgba(79, 123, 120, 0.4) 0 1px, transparent 1px);
+  }
+
+  .kahraman-izgara {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    gap: 1.2rem 2.2rem;
+    align-items: start;
+  }
+
+  .kahraman-etiket {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    margin-bottom: 0.35rem;
+  }
+
+  /* Büyük değer: sayfanın kahramanı — Cormorant 500 (§5 bant seçimi) */
+  .kahraman-deger {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 6vw, 3.6rem);
+    font-weight: 500;
+    line-height: 0.95;
+    font-variant-numeric: tabular-nums;
+    color: var(--metin);
+  }
+
+  .kahraman-birim {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: var(--metin-soluk);
+    letter-spacing: 0.02em;
+  }
+
+  .kahraman-ikincil {
+    display: block;
+    margin-top: 0.55rem;
+    font-size: 0.92rem;
+    color: var(--metin);
+  }
+
+  .kahraman-ikincil strong { font-weight: 600; }
+
+  .kahraman-egilim {
+    display: flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    font-size: 1.12rem;
+    font-weight: 500;
+  }
+
+  .kahraman-ok { font-size: 1.4rem; line-height: 1; }
+  .azaliyor .kahraman-ok { color: var(--kehribar-metin); }
+  .artiyor .kahraman-ok { color: var(--su-700); }
+  .sabit .kahraman-ok { color: var(--metin-soluk); }
+
+  .kahraman-egim {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--metin-soluk);
+  }
+
+  /* Sparkline OKUNUR boyutta (§17c): süs değil enstrüman */
+  .kahraman-spark {
+    display: block;
+    width: 100%;
+    height: 56px;
+    margin: 0.55rem 0 0.25rem;
+  }
+
+  .spark-cizgi {
+    fill: none;
+    stroke: var(--su-700);
+    stroke-width: 1.6;
+    vector-effect: non-scaling-stroke;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+
+  .spark-sifir {
+    stroke: rgba(79, 123, 120, 0.4);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 3 3;
+  }
+
+  .spark-son { fill: var(--su-700); }
+
+  .kahraman-spark-etiket {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    color: var(--metin-soluk);
+  }
+
+  .spark-serh { letter-spacing: 0.01em; }
+
+  .kahraman-kunye {
+    margin-top: 0.9rem;
+    padding-top: 0.7rem;
+    border-top: 1px solid var(--cizgi);
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    line-height: 1.6;
+    color: var(--metin-soluk);
+  }
+
+  /* Mobil-öncelik (§17e): 375px'te tek kolon, değer önce */
+  @media (max-width: 700px) {
+    .kahraman { padding: 1.1rem 1.1rem 1rem 1.6rem; }
+    .kahraman-izgara { grid-template-columns: 1fr; gap: 1.1rem; }
+    .kahraman-spark { height: 48px; }
+  }
+</style>

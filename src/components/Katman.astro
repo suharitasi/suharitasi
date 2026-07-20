@@ -1,0 +1,142 @@
+---
+// SAYFA MİMARİSİ §17(b) — katmanlı sunum sarmalayıcısı.
+// Detay varsayılan KAPALI; içerik DOM'da eksiksiz durur (SEO/GEO dokunulmazı:
+// arama ve AI botu tam metni görür, katman yalnız göz hiyerarşisini yönetir).
+// Native <details> = çalışma anı JS sıfır (İş sınıfı, DESIGN.md §10).
+//
+// transitions-dev uyarlaması: panel-reveal deseninin (translate + fade)
+// vanilla <details> hali; easing SU-DİLİ sözlüğünden --e-suzul (t-* varsayılan
+// eğrisiyle birebir aynı: cubic-bezier(0.22,1,0.36,1)). Süre 420ms = §3 panel
+// ölçüsü. prefers-reduced-motion korunur.
+interface Props {
+  baslik: string;
+  // Kapalı haldeyken içeriği adlandıran mono alt satır (ör. kaynak/kapsam).
+  ipucu?: string;
+  // Kart ailesi hairline tonu (DESIGN.md §8); varsayılan derin petrol.
+  ton?: 'petrol' | 'kehribar' | 'murekkep';
+  // true → sayfa açılışında katman açık gelir (varsayılan kapalı).
+  acik?: boolean;
+}
+const { baslik, ipucu, ton = 'petrol', acik = false } = Astro.props;
+---
+<details class={`katman katman-${ton}`} open={acik}>
+  <summary>
+    <span class="katman-ok" aria-hidden="true">
+      <svg viewBox="0 0 12 12" width="12" height="12">
+        <path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </span>
+    <span class="katman-baslik-grup">
+      <span class="katman-baslik">{baslik}</span>
+      {ipucu && <span class="katman-ipucu">{ipucu}</span>}
+    </span>
+  </summary>
+  <div class="katman-govde">
+    <slot />
+  </div>
+</details>
+
+<style>
+  .katman {
+    margin-top: 1rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+  }
+
+  .katman-kehribar { border-top-color: var(--kehribar, #B8863B); }
+  .katman-murekkep { border-top-color: var(--metin); }
+
+  summary {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1rem 1.3rem;
+    cursor: pointer;
+    list-style: none;
+    -webkit-tap-highlight-color: transparent;
+    /* Dokunma hedefi ≥44px (§12) */
+    min-height: 44px;
+    transition: background-color 240ms var(--e-akinti);
+  }
+
+  summary::-webkit-details-marker { display: none; }
+
+  summary:hover { background: rgba(79, 123, 120, 0.07); }
+
+  summary:focus-visible {
+    outline: 2px solid var(--su-700);
+    outline-offset: 3px;
+  }
+
+  .katman-ok {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    color: var(--su-700);
+    transition: transform 240ms var(--e-suzul);
+  }
+
+  [open] > summary .katman-ok { transform: rotate(180deg); }
+
+  .katman-baslik-grup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+
+  .katman-baslik {
+    font-family: var(--serif);
+    font-size: 1.22rem;
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--metin);
+  }
+
+  .katman-ipucu {
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+
+  .katman-govde {
+    padding: 0.2rem 1.3rem 1.3rem;
+    border-top: 1px solid var(--cizgi);
+  }
+
+  /* İç bileşenler kendi kart kabuğunu taşır; katman içinde kabuk sadeleşir
+     (çifte çerçeve olmasın) ve kendi h2'si gizlenir — başlığı summary taşıyor.
+     display:none DOM'dan silmez; SEO metni aynen durur. */
+  .katman-govde > :global(section) {
+    margin-top: 0.6rem;
+    padding-left: 0;
+    padding-right: 0;
+    background: transparent;
+    border: 0;
+  }
+  .katman-govde > :global(section::before) { display: none; }
+  .katman-govde > :global(section > h2:first-child) { display: none; }
+
+  /* Panel açılış koreografisi (transitions-dev panel-reveal uyarlaması) */
+  @media (prefers-reduced-motion: no-preference) {
+    [open] > .katman-govde {
+      animation: katman-acil 420ms var(--e-suzul);
+    }
+  }
+
+  @keyframes katman-acil {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

@@ -196,3 +196,22 @@
     taşındı (root boş), git credential store (token URL'den çıkarıldı).
     Arşiv 26 değişmez varlık birebir sha256. AÇIK: sızan eski GitHub PAT
     kullanıcı tarafından İPTAL+YENİLENMELİ (transkriptte göründü).
+38. SUNUM REFORMU FAZ 0+1 — YAPILDI (2026-07-20): üç temsilci sayfa
+    teşhisi (B1-B17, K1-K4; kanıt cikti/denetim/faz0/) + DESIGN.md §17
+    "Sayfa Mimarisi" (3-saniye, katmanlı sunum, veri kahraman, kart
+    dili, mobil-öncelik, SU-DİLİ uyumu). Kullanıcı ilke onayı verildi.
+39. SUNUM REFORMU FAZ 2a — HAVZA KALIBI PİLOTU (Sakarya) — KULLANICI
+    ONAYI BEKLİYOR (2026-07-20): kalip:2 frontmatter kapısı (yalnız
+    Sakarya; 24 havza + diğer sayfalar bit-değişmedi, curl kanıtlı).
+    HavzaKahraman bandı (6,01 km³/yıl + YAS rezervi + GRACE ↓azalma +
+    59-ay sparkline + künye) + Katman bileşeni (native details, JS 0,
+    7 katman varsayılan kapalı; --e-suzul 420ms açılış, reduced-motion
+    korumalı). Çifte özet kaldırıldı (ozet yalnız meta/kartlarda).
+    Metrikler: masaüstü 6,0→2,1 ekran; 375px 10,7→3,2; ilk ekran görsel
+    öğe 0→2 (büyük değer + sparkline). Lighthouse 96/100/100/100.
+    GEO kanıtı: öz-cevap + FAQPage JSON-LD + katman içi tam metin
+    curl'la JS'siz doğrulandı. Kanıt: cikti/denetim/faz2/ (AB-* yan
+    yana dahil). Mobil menü dar-şerit yalnız MOCK (koda girmedi;
+    faz2-sakarya-mobil-menumock.jpeg) — menü reformu üç kalıp onayı
+    sonrası ayrı site-geneli adım. ONAY SONRASI: rehber + vaka kalıbı
+    pilotları (kullanıcı onayı gelmeden BAŞLANMAZ).
