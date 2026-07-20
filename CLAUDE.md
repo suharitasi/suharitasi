@@ -32,6 +32,19 @@ MCP — .mcp.json'da kayıtlı; MCP oturumda yoksa arac/oz-denetim.mjs):
 6. Sonuçları rapora yaz.
 Bu öz-denetim kullanıcı onayının yerine GEÇMEZ; ön elemedir.
 
+## Tasarım skill kuralı (2026-07-20)
+Tasarım/görsel/grafik içeren HER işte ilgili skill İŞ BAŞLAMADAN devreye
+alınır (öncelik + kapsam global CLAUDE.md "TASARIM SKILL ÖNCELİK
+KURALLARI"nda). Kısa özet:
+- ui-ux-pro-max > frontend-design > dataviz > transitions-dev.
+- dataviz her grafik/veri-görsel işinde ZORUNLU; ilk grafik satırından ÖNCE.
+- transitions-dev: geçiş/hover/mikro-animasyon (t-* vanilla CSS; .agents/skills/).
+- superpowers'tan YALNIZ brainstorming + verification-before-completion.
+Raporda hangi skill'in ne önerdiği ve neyin uygulandığı belirtilir. Skill
+altyapısı user-scope plugin + proje .agents/skills/ ile kurulu
+(envanter/onarım kaydı 2026-07-20). Not: .agents/ ve .claude/skills/
+symlink repoya COMMIT EDİLMEZ (yerel araç); gerekirse .gitignore'a alınır.
+
 ## GPU kuralı
 Bu sunucunun headless tarayıcısında GPU YOKTUR (yazılımsal GL).
 WebGL/canvas/animasyon içeren her işte:
