@@ -1,0 +1,90 @@
+---
+// /deneyim/ — 6 sahne scroll-scrub kamera akışı (S1 sondaj → S6 göl kasabası).
+// Motor: src/scripts/scrub-engine.js (oso95/scroll-world, MIT — bkz CREDITS.md).
+// İZOLASYON: motor JS/CSS'i YALNIZ bu sayfada import edilir; @layer sw + .sw-root
+// namespace'i ile landing/harita/içerik rotalarına sızmaz. Bu sayfa Sayfa
+// layout'unu KULLANMAZ (tam-ekran devralma) — kendi minimal head'i.
+//
+// METİN: sahne başlık/metinleri PLACEHOLDER ([SAHNE-N-...]) — uydurma yok,
+// kullanıcı onayıyla ayrı gelecek. Sahne ADLARI (route etiketi) brief'te
+// tanımlı olduğundan kullanılır.
+//
+// UPSCALE YOK: kaynak 832×464 native; canlı test sonrası karar.
+---
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Deneyim — Su Haritası</title>
+  <meta name="description" content="Sondajdan göl kasabasına: Türkiye'nin su hikâyesini kaydırarak izleyin." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap&subset=latin-ext" rel="stylesheet" />
+  <style>
+    /* Motor teması — DESIGN.md koyu dünya (deneyim sahneleri): DİP zemin,
+       Köpük metin, SIĞ ışıma aksanı. Bu değişkenler @layer sw varsayılanlarını
+       ezer (unlayered kazanır). */
+    :root, .sw-root {
+      --sw-bg: #0C332C;          /* DİP — sahne zemini + letterbox */
+      --sw-ink: #DFE3E2;         /* Köpük — DİP üstünde metin */
+      --sw-ink-soft: #9FB2AB;    /* köpük türevi, ikincil */
+      --sw-accent: #7FB5AE;      /* SIĞ ışıma; sahneler runtime'da ezer */
+      --sw-font-display: "Cormorant", Georgia, serif;
+      --sw-font-body: "Manrope", system-ui, sans-serif;
+    }
+    /* KIRPMASIZ: kaynak 832×464 kompozisyonu bozulmasın — contain (letterbox
+       DİP tonunda, sinematik). cover tam-kaplar ama kenardan kırpar; kullanıcı
+       canlıda ikisini değerlendirip seçecek (brief C-4). */
+    .sw-scene__video, .sw-scene__still { object-fit: contain !important; background: var(--sw-bg); }
+    .sw-brand__name { font-family: "Cormorant", Georgia, serif; font-style: italic; font-weight: 500; letter-spacing: 0.01em; }
+    .sw-copy__num, .sw-copy__eyebrow { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  </style>
+</head>
+<body>
+  <div id="top"></div>
+  <div id="world"></div>
+
+  <script>
+    import { mountScrollWorld } from '../scripts/scrub-engine.js';
+
+    const V = '/deneyim/video';
+    // Sahne sırası brief C-4: 1 Sondaj → 2 Akifer → 3 Baraj → 4 Şehir → 5 Hukuk → 6 Göl kasabası.
+    // clip = MP4 H.264 (Safari/iOS scrub uyumu en yüksek); WebM alternatif encode
+    //   diskte (public/deneyim/video/*.webm) — motor tekil URL yüklediğinden MP4 kullanılır.
+    // still = poster JPG (ilk kare). Metinler PLACEHOLDER.
+    const sahneler = [
+      { id: 'sondaj',       label: 'Sondaj',        n: 1, accent: '#7FB5AE' },
+      { id: 'akifer',       label: 'Akifer',        n: 2, accent: '#5FA39A' },
+      { id: 'baraj',        label: 'Baraj',         n: 3, accent: '#4F7B78' },
+      { id: 'sehir',        label: 'Şehir',         n: 4, accent: '#C9A24B' },
+      { id: 'hukuk',        label: 'Hukuk',         n: 5, accent: '#8FA9A2' },
+      { id: 'gol-kasabasi', label: 'Göl kasabası',  n: 6, accent: '#7FB5AE' },
+    ];
+
+    const sections = sahneler.map((s) => ({
+      id: s.id,
+      label: s.label,
+      still: `${V}/sahne${s.n}.jpg`,
+      clip: `${V}/sahne${s.n}.mp4`,
+      accent: s.accent,
+      eyebrow: `[SAHNE-${s.n}-KICKER]`,
+      title: `[SAHNE-${s.n}-BASLIK]`,
+      body: `[SAHNE-${s.n}-METIN]`,
+      // son sahne CTA'sı da metin onayıyla gelecek — şimdilik yok.
+    }));
+
+    mountScrollWorld(document.getElementById('world'), {
+      brand: { name: 'su haritası', href: '/' },
+      hint: 'kaydırarak in',
+      nav: true,
+      atmosphere: true,
+      diveScroll: 1.4,
+      crossfade: 0.14,
+      sections,
+      connectors: [],   // connector video YOK — sahneler doğrudan crossfade
+    });
+  </script>
+</body>
+</html>
