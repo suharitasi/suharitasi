@@ -1,0 +1,13 @@
+128ee2b9ee8b37cd128c85c93e3b4dc97c2b41f8d7926c62435a8f4a8206f28a  ./2019-seti/1.3.Havzalara Göre Yıllık Yeraltısuyu Potansiyeli, 2013-2019.xlsx
+032d17c7f528c2aa60fac3f5a883ddf3c32a6c6e07e0efdbcc1b0776d05c449e  ./2019-seti/3.1.Yeraltısuyu İşletme Rezervi, 1995-2019.xlsx
+8a26cd019295e1d5f86f3f591fcd670e79a5be6eb59bd0e42b18c8faf04bfd7b  ./2019-seti/3.2.Sektör Bazında Yeraltısuyundan Yapılan Tahsis Miktarı, 1995-2019.xlsx
+4e3e031444fc45e39eb16b1e1126271d1ad2b2a41b6937156774f9971cbdf536  ./2019-seti/3.3.Havza Bazında Yeraltısuyu Seviye Gözlem Kuyuları,2013-2019.xlsx
+683fe04e44385dd4556f6b23abdc3e73a6b0881f5498949b45f297cee5f0b5f2  ./2019-seti/3.4.Yıllar İtibariyle Yeraltısuyu Seviye Gözlem Kuyuları, 1975-2019.xlsx
+5152016569a83ed4cc239bfd5af0b1b08a5a6af40921e0fc85dc5445bd6b29ea  ./2019-seti/3.5.DSİ Su Sondaj Kuyuları, 1996-2019.xlsx
+cb41428efc2348facaddd57f95fc885ba3e9e7ad5464c222069afcf8164e30b0  ./2019-seti/3.6.Yeraltısuyu Sulama Kooperatiflerince İşletilen Sulamalar, 2013-2019.xlsx
+75d2d2ee1a7e10321f1d28a702af1b3cf2cec9f8863baa82ebdc49a6e8c7e804  ./2024-seti/1.3.havzalara_gore_yillik_yeraltisuyu_potansiyeli_20132024.xlsx
+6b8c07d605b5be25fa5d134bb12e381b79d4286173385b0209c9e1e9f660dd10  ./2024-seti/1.5.yeraltisuyu_isletme_rezervi_19952024.xlsx
+1b264136323ffd905f163254c14ce11aec0144d5ad6a4682357f287ced083f10  ./2024-seti/1.6.sektor_bazinda_yeraltisuyundan_yapilan_tahsis_miktari_19952024.xlsx
+29b2820169420cc488faaba43ed0a59f01d8c289ce9e51f8f5a7daf2ce0c0b06  ./2024-seti/1.7.havza_bazinda_yeraltisuyu_seviye_gozlem_kuyulari20132024.xlsx
+1008578e2a0928b11882ae48e989969c8ba76b77371b195c00f6e54fd26742b0  ./2024-seti/1.8.yillar_itibariyle_yeraltisuyu_seviye_gozlem_kuyulari_19752024.xlsx
+97b3cb84d562b246b6bc89b285f1a8e32d6c7071c0ec6b7bd59591b9e324b450  ./2024-seti/1.9.dsi_su_sondaj_kuyulari_19962024.xlsx
