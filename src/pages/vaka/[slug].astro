@@ -1,0 +1,161 @@
+---
+import { getCollection, render } from 'astro:content';
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import YazarKutusu from '../../components/YazarKutusu.astro';
+import { YAZAR, OG_GORSEL } from '../../data/site';
+
+export async function getStaticPaths() {
+  const girisler = await getCollection('vakalar');
+  return girisler.map((g) => ({ params: { slug: g.id }, props: { giris: g } }));
+}
+
+const { giris } = Astro.props;
+const { Content } = await render(giris);
+const d = giris.data;
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL(`/vaka/${giris.id}/`, Astro.site).href;
+const tarihISO = d.tarih.toISOString();
+
+// Article: YMYL benzeri; yazar kimliği E-E-A-T sinyali (rehber ailesiyle aynı).
+const sema = [
+  {
+    '@type': 'Article',
+    headline: d.baslik,
+    description: d.ozCevap,
+    datePublished: tarihISO,
+    dateModified: tarihISO,
+    inLanguage: 'tr-TR',
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+    image: new URL(OG_GORSEL, Astro.site).href,
+    author: {
+      '@type': 'Person',
+      '@id': `${kok}hakkinda/#yazar`,
+      name: YAZAR.adSade,
+      jobTitle: YAZAR.unvan,
+      url: YAZAR.buroUrl,
+      worksFor: { '@type': 'Organization', name: YAZAR.buro, url: YAZAR.buroUrl },
+    },
+    publisher: { '@id': `${kok}#kurum` },
+  },
+];
+
+// (c) Hukuki bölüm YALNIZ hukukiYol='yayin' ve gövde doluysa render edilir —
+// yarım/inşaat-halinde bölüm canlıda görünmez (brief C-2d).
+const hukukAcik = d.hukukiYol === 'yayin' && !!d.hukukiYolGovde;
+---
+<Sayfa baslik={d.baslik} aciklama={d.ozCevap} sema={sema} heroSlot="rehber-hero">
+  <SayfaBasi etiket="Vaka" baslik={d.baslik} ozet={d.ozet} tarih={d.tarih} yazarli />
+
+  <OzCevap metin={d.ozCevap} />
+
+  <div class="icerik">
+    <Content />
+  </div>
+
+  {d.olaylar.length > 0 && (
+    <section class="vaka-akis" aria-labelledby="akis-baslik">
+      <h2 id="akis-baslik">Olay akışı</h2>
+      <ol>
+        {d.olaylar.map((o) => (
+          <li>
+            <div class="vaka-akis__tarih">{o.tarih}</div>
+            <div class="vaka-akis__govde">
+              <p class="vaka-akis__olay">{o.olay}</p>
+              <p class="vaka-akis__kunye">
+                {o.tur && <span class="vaka-akis__tur">{o.tur}</span>}
+                <a href={o.url} target="_blank" rel="noopener">
+                  KAP bildirimi{o.bildirim ? ` · ${o.bildirim}` : ''}
+                </a>
+              </p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )}
+
+  {hukukAcik && (
+    <section class="vaka-hukuk" aria-labelledby="hukuk-baslik">
+      <h2 id="hukuk-baslik">Bu yol nasıl işler</h2>
+      <div class="vaka-hukuk__govde" set:html={d.hukukiYolGovde} />
+    </section>
+  )}
+
+  <section class="vaka-kaynak" aria-labelledby="kaynak-baslik">
+    <h2 id="kaynak-baslik">Kaynaklar</h2>
+    <ul>
+      {d.kaynaklar.map((k) => (
+        <li>
+          <a href={k.url} target="_blank" rel="noopener">{k.ad}</a>
+        </li>
+      ))}
+    </ul>
+    <p class="vaka-kaynak__erisim">
+      Erişim tarihi: {d.erisimTarihi}. Bu sayfa yalnız kamuya açık KAP
+      bildirimlerindeki olgulara dayanır.
+    </p>
+  </section>
+
+  <YazarKutusu />
+</Sayfa>
+
+<style>
+  .vaka-akis, .vaka-hukuk, .vaka-kaynak { margin-top: clamp(2.4rem, 6vh, 3.6rem); }
+
+  .vaka-akis h2, .vaka-hukuk h2, .vaka-kaynak h2 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+  }
+
+  .vaka-akis ol { list-style: none; margin: 0; padding: 0; }
+
+  .vaka-akis li {
+    display: grid;
+    grid-template-columns: 6.2rem 1fr;
+    gap: 0 1.2rem;
+    padding: 1.1rem 0;
+    border-top: 1px solid var(--cizgi);
+  }
+  .vaka-akis li:last-child { border-bottom: 1px solid var(--cizgi); }
+
+  .vaka-akis__tarih {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--su-700);
+    padding-top: 0.15rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .vaka-akis__olay { margin: 0; line-height: 1.6; }
+  .vaka-akis__kunye {
+    margin: 0.5rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.9rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+  }
+  .vaka-akis__tur { color: var(--metin-soluk); letter-spacing: 0.04em; }
+  .vaka-akis__kunye a { color: var(--su-700); }
+
+  .vaka-hukuk__govde { line-height: 1.75; }
+
+  .vaka-kaynak ul { margin: 0; padding-left: 1.1rem; line-height: 1.7; }
+  .vaka-kaynak a { color: var(--su-700); }
+  .vaka-kaynak__erisim {
+    margin-top: 0.9rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--metin-soluk);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 560px) {
+    .vaka-akis li { grid-template-columns: 1fr; gap: 0.35rem; }
+  }
+</style>

@@ -62,4 +62,40 @@ const suKanunu = defineCollection({
   }),
 });
 
-export const collections = { rehberler, havzalar, 'su-kanunu': suKanunu };
+const vakalar = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/vakalar' }),
+  schema: z.object({
+    baslik: z.string(),
+    ozet: z.string(),
+    tarih: z.coerce.date(),
+    // Şirket adı (KAP kayıtlı unvan).
+    sirket: z.string(),
+    // "Cevap önce" öz cevap — YALNIZ doğrulanmış olgudan; iddia/yorum yok.
+    ozCevap: z.string().min(120).max(340),
+    // Olay akışı — her olay bir KAP bildirimine bağlı (künye zorunlu, url).
+    olaylar: z
+      .array(
+        z.object({
+          tarih: z.string(),
+          olay: z.string(),
+          tur: z.string().optional(),
+          bildirim: z.string().optional(), // KAP bildirim no
+          url: z.string().url(),
+        }),
+      )
+      .default([]),
+    // Sayfa sonu kaynak künyesi.
+    kaynaklar: z
+      .array(z.object({ ad: z.string(), url: z.string().url() }))
+      .default([]),
+    erisimTarihi: z.string(),
+    // "Bu yol nasıl işler" hukuki bölüm: 'taslak' → canlıda RENDER EDİLMEZ
+    // (iskelet .md yorum satırlarında bekler); 'yayin' → bölüm açılır.
+    // Kullanıcı onayıyla değişir. Yarım bölüm asla görünmez.
+    hukukiYol: z.enum(['taslak', 'yayin']).default('taslak'),
+    // hukukiYol='yayin' olunca render edilecek HTML gövde (onay öncesi boş).
+    hukukiYolGovde: z.string().optional(),
+  }),
+});
+
+export const collections = { rehberler, havzalar, 'su-kanunu': suKanunu, vakalar };

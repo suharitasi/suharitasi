@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content';
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+
+const girisler = (await getCollection('vakalar')).sort(
+  (a, b) => b.data.tarih.getTime() - a.data.tarih.getTime(),
+);
+---
+<Sayfa
+  baslik="Vakalar"
+  aciklama="Şirketlerin su kaynağını nasıl güvenceye aldığını gösteren, yalnız kamuya açık KAP bildirimlerine dayanan vaka incelemeleri."
+>
+  <SayfaBasi
+    etiket="Vakalar"
+    baslik="Vakalar"
+    ozet="Şirketlerin su kaynağını güvenceye alma süreçleri — yalnız kamuya açık, doğrulanmış KAP bildirimlerine dayanan olgu incelemeleri."
+  />
+
+  <ul class="vaka-liste">
+    {girisler.map((g) => (
+      <li>
+        <a href={`/vaka/${g.id}/`}>
+          <span class="vaka-liste__sirket">{g.data.sirket}</span>
+          <span class="vaka-liste__baslik">{g.data.baslik}</span>
+          <span class="vaka-liste__ozet">{g.data.ozet}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <p class="vaka-not">Yeni vakalar eklenecektir.</p>
+</Sayfa>
+
+<style>
+  .vaka-liste { list-style: none; margin: 1.8rem 0 0; padding: 0; }
+  .vaka-liste li + li { border-top: 1px solid var(--cizgi); }
+  .vaka-liste a {
+    display: block;
+    padding: 1.4rem 0.4rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 240ms var(--e-suzul), background-color 240ms var(--e-akinti);
+  }
+  .vaka-liste a:hover { transform: translateY(-2px); background: rgba(79, 123, 120, 0.06); }
+  .vaka-liste__sirket {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--su-700);
+    margin-bottom: 0.4rem;
+  }
+  .vaka-liste__baslik {
+    display: block;
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+  }
+  .vaka-liste__ozet { display: block; color: var(--metin-soluk); line-height: 1.55; max-width: 60ch; }
+  .vaka-not {
+    margin-top: 2rem;
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    color: var(--metin-soluk);
+    letter-spacing: 0.02em;
+  }
+</style>
