@@ -35,6 +35,20 @@ canlı teyit beklemede (İş kapanış kuralı). Kaynak keşfi v2 (700f216) da T
 C UYAP künye teyidi · D SEO/GEO denetim skill · E NACE Ek-2 + KAP tarama);
 durum tablosu PAKET SONU'nda. Kuyruk sırası korunur.
 
+TAMAM (2026-07-21): GECE PAKETİ v2 — 4 bölüm push+canlı (894d7e3 A ·
+459c3c6 B · d3b7a55 C · 08c2566 D). A: NACE Ek-2 OCR (tesseract-tur;
+31 ana faaliyet doğrulandı → 31 persona; nace-ek2.json + persona.json).
+B: /rehberler/kuyu-tasima/ rehberi (Apilex kaynağı yerleştirildi; ayrı
+özel sayfa; hücre birebir; FAQPage+Article; LH a11y/best/seo 100). C:
+bellek-log cron */10 + saglik-bekcisi pencere eşiği (4 senaryo test). D:
+NACE persona sayfalaşması (durumum index gruplama). Canlı test kullanıcıda.
+AÇIK (kullanıcı): (1) durumum iletişim-notu kontrast hatası #9FB3AD
+(su-700 üstünde 3.44) — [persona].astro'da da var, ayrı işte düzeltilecek
+(kuyu-tasima'da düzeltildi). (2) 31 NACE personası küratörlük/budama
+kullanıcıda. (3) m.18 güncel ceza tutarı [APILEX teyit]. (4) NACE detay
+alt-kod listesi eksik (~58 satır ayrıştırılamadı; gerekirse yüksek-DPI
+segmentasyon).
+
 1. HEDEF.png hero — YAPILDI: görselin kendisi tam ekran hero oldu; 3D
    atmosfer sahnesi src/harita-3d/ altına arşivlendi (silinmedi)
 2. Kullanıcı onayı → canlıya deploy (Production kontrolü)
