@@ -115,7 +115,7 @@ m1_rg(){
     fi
     # yayınlandı: KANUN özetini ve OLAY'ları işle
     local kn; kn=$(printf '%s' "$rgout" | sed -n 's/^KANUN maddeleri: //p' | head -1)
-    kanun_ozet="${kanun_ozet}${et}:${kn:-0}madde "
+    kanun_ozet="${kanun_ozet}${et}:${kn:-0} kanun-maddesi; "
     while IFS= read -r ol; do
       [ -n "$ol" ] || continue
       olay_ekle "RG-fihrist($et)" "$ol"
