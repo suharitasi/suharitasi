@@ -58,6 +58,25 @@ else
   ekle "izleme/DURUM.md YOK — su-izleme hiç koşmamış olabilir"
 fi
 
+# (e) bellek eşiği (bellek-log.txt; her 10 dk). PENCERE-tabanlı: tek ölçüm ASLA
+#     alarm üretmez. Eşik: SON 6 ÖLÇÜMÜN TAMAMINDA swap used > 2048MB VEYA
+#     SON 3 ÖLÇÜMÜN TAMAMINDA available < 500MB. Pencere dolmamışsa (soğuk
+#     başlangıç) alarm YOK — yanlış alarm üretme. Env BELLEK_LOG ile test
+#     kopyası verilebilir (gerçek loga dokunmadan sentetik eşik testi).
+BLOG="${BELLEK_LOG:-$HOME/bellek-log.txt}"
+if [ -f "$BLOG" ]; then
+  mapfile -t SW < <(grep -o 'swap_used_mb=[0-9]*' "$BLOG" | tail -6 | grep -o '[0-9]*$' || true)
+  mapfile -t AV < <(grep -o 'mem_avail_mb=[0-9]*' "$BLOG" | tail -3 | grep -o '[0-9]*$' || true)
+  if [ "${#SW[@]}" -eq 6 ]; then
+    HEP=1; for v in "${SW[@]}"; do [ "$v" -gt 2048 ] || HEP=0; done
+    if [ "$HEP" -eq 1 ]; then ekle "🔴 bellek eşiği — sunucu yükseltme değerlendirilmeli (son 6 ölçümde swap used >2048MB)"; fi
+  fi
+  if [ "${#AV[@]}" -eq 3 ]; then
+    HEP=1; for v in "${AV[@]}"; do [ "$v" -lt 500 ] || HEP=0; done
+    if [ "$HEP" -eq 1 ]; then ekle "🔴 bellek eşiği — sunucu yükseltme değerlendirilmeli (son 3 ölçümde available <500MB)"; fi
+  fi
+fi
+
 if [ -n "$SORUN" ]; then
   printf '# SAĞLIK BEKÇİSİ UYARISI\n\n%s\n\n%s' "$(date -u)" "$SORUN" > "$UYARI"
   printf '%s' "$SORUN" | while IFS= read -r s; do
