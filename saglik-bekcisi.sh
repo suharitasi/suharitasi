@@ -46,6 +46,18 @@ else
   ekle "data/arsiv/grace/durum.json YOK"
 fi
 
+# (d) su-izleme canlılığı: DURUM.md HER koşuda yeniden yazılır (05:30+16:00 UTC).
+#     eşik 14s gerekçe: 16:00→05:30 arası en uzun boşluk 13.5s; 05:30 koşusu
+#     kaçarsa 07:00 bekçisinde DURUM.md ~15s eski görünür → alarm. Sağlıklı
+#     işleyişte 07:00'de DURUM ~1.5s taze. (grace durum.json deseniyle aynı
+#     mantık: "cron gerçekten koştu mu" sinyali.)
+if [ -f izleme/DURUM.md ]; then
+  IS=$(( (NOW - $(date -u -r izleme/DURUM.md +%s)) / 3600 ))
+  [ "$IS" -gt 14 ] && ekle "su-izleme ${IS} saat koşmadı (DURUM.md bayat, >14s) — Su Kanunu izleme cron'u durmuş olabilir"
+else
+  ekle "izleme/DURUM.md YOK — su-izleme hiç koşmamış olabilir"
+fi
+
 if [ -n "$SORUN" ]; then
   printf '# SAĞLIK BEKÇİSİ UYARISI\n\n%s\n\n%s' "$(date -u)" "$SORUN" > "$UYARI"
   printf '%s' "$SORUN" | while IFS= read -r s; do
@@ -57,5 +69,5 @@ fi
 
 # sorun yok: eski uyarı dosyası varsa temizle (durum düzelmiş)
 [ -f "$UYARI" ] && rm -f "$UYARI"
-echo "sağlık OK (commit ${CS:-?}s, baraj ${BS:-?}s, grace ${GS:-?}g)"
+echo "sağlık OK (commit ${CS:-?}s, baraj ${BS:-?}s, grace ${GS:-?}g, su-izleme ${IS:-?}s)"
 exit 0
