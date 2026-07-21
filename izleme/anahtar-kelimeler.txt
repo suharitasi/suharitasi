@@ -1,0 +1,7 @@
+# Su Kanunu izleme — anahtar kelimeler (satır başına bir ifade).
+# Eşleşme HARF DUYARSIZ + Türkçe normalizeli (İ→i, I→ı): "SU KANUNU" ↔ "su kanunu".
+# '#' ile başlayan satır yorumdur. Bu dosya düzenlenebilir; koda gömülü DEĞİLDİR.
+su kanunu
+su yönetimi kanunu
+taşkın
+yeraltı suları
