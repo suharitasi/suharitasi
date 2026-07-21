@@ -19,10 +19,11 @@
     }
   },
   "naceEk2": {
-    "durum": "liste beklemede",
-    "neden": "Ek-2 NACE listesi taranmış/görüntü-tabanlı ekler PDF'indedir; OCR olmadan güvenilir çıkarım yok. Uydurma yasağı: liste üretilmedi.",
-    "ref": "data/lead/nace-ek2.json",
-    "kullaniciGorevi": "Ek-2 NACE listesinin makine-okunur kaynağı (RG makine-okunur sürüm veya OCR onayı) verilince NACE-özgü personalar bu dosyaya eklenir."
+    "durum": "ocr-cikarildi",
+    "kaynak": "data/lead/nace-ek2.json",
+    "anaFaaliyetSayisi": 31,
+    "personaOlarakEklenen": 31,
+    "not": "Ek-2 ana faaliyetler (31) OCR ile doğrulandı; her biri kaynak='nace-ek2' NACE-türevli persona oldu. Detay alt-kodlar nace-ek2.json'da güven-işaretli (persona kaynağı ana faaliyet düzeyidir)."
   },
   "personalar": [
     {
@@ -31,8 +32,12 @@
       "yukumluluk": "Organize sanayi bölgesi / endüstri bölgesi / serbest bölgede faaliyet: yeşil su verimliliği belgesi + tesis su tahsisi.",
       "sonTarih": "2029-12-27",
       "sonTarihDurum": "dogrulandi",
-      "dayanak": ["Su Verimliliği Yönetmeliği md.(3) — OSB/serbest/endüstri bölgesi açıkça sayılı"],
-      "ilgiliIcerik": ["/rehberler/su-tahsisinde-oncelik-sirasi/"],
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — OSB/serbest/endüstri bölgesi açıkça sayılı"
+      ],
+      "ilgiliIcerik": [
+        "/rehberler/su-tahsisinde-oncelik-sirasi/"
+      ],
       "oneri": false
     },
     {
@@ -41,8 +46,14 @@
       "yukumluluk": "Müvekkil/müşteri adına kuyu ruhsatı (arama-kullanma-ıslah) süreçleri; belgesiz kuyu = idari para cezası + kuyu kapatma riski.",
       "sonTarih": null,
       "sonTarihDurum": "dogrulanamadi — süreç-bağlı, sabit yasal son tarih yok",
-      "dayanak": ["/rehberler/kuyu-ruhsati/ (167 s.K. m.8)", "/rehberler/ruhsatsiz-kuyu-cezalari/"],
-      "ilgiliIcerik": ["/rehberler/kuyu-ruhsati/", "/rehberler/ruhsatsiz-kuyu-cezalari/"],
+      "dayanak": [
+        "/rehberler/kuyu-ruhsati/ (167 s.K. m.8)",
+        "/rehberler/ruhsatsiz-kuyu-cezalari/"
+      ],
+      "ilgiliIcerik": [
+        "/rehberler/kuyu-ruhsati/",
+        "/rehberler/ruhsatsiz-kuyu-cezalari/"
+      ],
       "oneri": false
     },
     {
@@ -51,8 +62,14 @@
       "yukumluluk": "Parselde su temini: kuyu ruhsatı, komşu parselden su alma / kaynak hakkı / mecra irtifakı; projede su güvencesi.",
       "sonTarih": null,
       "sonTarihDurum": "dogrulanamadi — projeye bağlı",
-      "dayanak": ["/rehberler/kaynak-hakki-mecra-irtifaki/", "/rehberler/kuyu-ruhsati/"],
-      "ilgiliIcerik": ["/rehberler/kaynak-hakki-mecra-irtifaki/", "/rehberler/kuyu-ruhsati/"],
+      "dayanak": [
+        "/rehberler/kaynak-hakki-mecra-irtifaki/",
+        "/rehberler/kuyu-ruhsati/"
+      ],
+      "ilgiliIcerik": [
+        "/rehberler/kaynak-hakki-mecra-irtifaki/",
+        "/rehberler/kuyu-ruhsati/"
+      ],
       "oneri": false
     },
     {
@@ -61,8 +78,14 @@
       "yukumluluk": "Tarımsal su tahsisi ve öncelik sırası; yeraltı suyu işletme sahası ilanının getirdiği kısıtlar; sulama kuyuları.",
       "sonTarih": null,
       "sonTarihDurum": "dogrulanamadi — tahsis işlemine bağlı",
-      "dayanak": ["/rehberler/su-tahsisinde-oncelik-sirasi/", "/rehberler/yeralti-suyu-isletme-sahasi/"],
-      "ilgiliIcerik": ["/rehberler/su-tahsisinde-oncelik-sirasi/", "/rehberler/yeralti-suyu-isletme-sahasi/"],
+      "dayanak": [
+        "/rehberler/su-tahsisinde-oncelik-sirasi/",
+        "/rehberler/yeralti-suyu-isletme-sahasi/"
+      ],
+      "ilgiliIcerik": [
+        "/rehberler/su-tahsisinde-oncelik-sirasi/",
+        "/rehberler/yeralti-suyu-isletme-sahasi/"
+      ],
       "oneri": false
     },
     {
@@ -71,8 +94,12 @@
       "yukumluluk": "Büyük tesiste su verimliliği sistemi; kapsam ve belge türü tesis eşiğine / Ek-2 NACE'e bağlıdır.",
       "sonTarih": null,
       "sonTarihDurum": "dogrulanamadi — AVM/site gövde md.(3) listesinde açıkça sayılmıyor; kapsam Ek-2'ye bağlı",
-      "dayanak": ["Su Verimliliği Yönetmeliği (kapsam gövde metninde; sektör eşiği Ek-1/Ek-2'de)"],
-      "ilgiliIcerik": ["/su-kanunu/"],
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği (kapsam gövde metninde; sektör eşiği Ek-1/Ek-2'de)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
       "oneri": false
     },
     {
@@ -81,8 +108,14 @@
       "yukumluluk": "JES: jeotermal kaynak arama/işletme ruhsatı ve uyuşmazlıklar. HES: su kullanım hakkı + baraj/isale hattı kamulaştırması.",
       "sonTarih": null,
       "sonTarihDurum": "dogrulanamadi — ruhsat/proje sürecine bağlı",
-      "dayanak": ["/rehberler/jeotermal-ruhsat/", "/rehberler/baraj-kamulastirma/"],
-      "ilgiliIcerik": ["/rehberler/jeotermal-ruhsat/", "/rehberler/baraj-kamulastirma/"],
+      "dayanak": [
+        "/rehberler/jeotermal-ruhsat/",
+        "/rehberler/baraj-kamulastirma/"
+      ],
+      "ilgiliIcerik": [
+        "/rehberler/jeotermal-ruhsat/",
+        "/rehberler/baraj-kamulastirma/"
+      ],
       "oneri": false
     },
     {
@@ -91,8 +124,13 @@
       "yukumluluk": "Proses/maden suyu tahsisi ve öncelik; madencilik NACE faaliyeti Ek-2 kapsamındaysa yeşil su verimliliği belgesi.",
       "sonTarih": null,
       "sonTarihDurum": "dogrulanamadi — Ek-2 NACE listesi doğrulanınca netleşir",
-      "dayanak": ["/rehberler/su-tahsisinde-oncelik-sirasi/", "Su Verimliliği Yönetmeliği md.(3)-(4) Ek-2"],
-      "ilgiliIcerik": ["/rehberler/su-tahsisinde-oncelik-sirasi/"],
+      "dayanak": [
+        "/rehberler/su-tahsisinde-oncelik-sirasi/",
+        "Su Verimliliği Yönetmeliği md.(3)-(4) Ek-2"
+      ],
+      "ilgiliIcerik": [
+        "/rehberler/su-tahsisinde-oncelik-sirasi/"
+      ],
       "oneri": false
     },
     {
@@ -101,8 +139,15 @@
       "yukumluluk": "Kaynak/mineralli su işletme ruhsatı ve su güvencesi (bkz. Meysu vakası); içecek/gıda imalatı Ek-2 NACE kapsamındaysa yeşil su verimliliği belgesi.",
       "sonTarih": null,
       "sonTarihDurum": "dogrulanamadi — Ek-2 NACE listesi doğrulanınca netleşir; kaynak suyu ruhsatı süreç-bağlı",
-      "dayanak": ["/rehberler/kaynak-suyu-kiralama/", "/vaka/meysu/", "Su Verimliliği Yönetmeliği md.(3) Ek-2"],
-      "ilgiliIcerik": ["/rehberler/kaynak-suyu-kiralama/", "/vaka/meysu/"],
+      "dayanak": [
+        "/rehberler/kaynak-suyu-kiralama/",
+        "/vaka/meysu/",
+        "Su Verimliliği Yönetmeliği md.(3) Ek-2"
+      ],
+      "ilgiliIcerik": [
+        "/rehberler/kaynak-suyu-kiralama/",
+        "/vaka/meysu/"
+      ],
       "oneri": false
     },
     {
@@ -111,8 +156,12 @@
       "yukumluluk": "250 oda ve üstü konaklamalı turizm işletmesi: yeşil su verimliliği belgesi başvurusu.",
       "sonTarih": "2029-12-27",
       "sonTarihDurum": "dogrulandi",
-      "dayanak": ["Su Verimliliği Yönetmeliği md.(3) — '250 oda ve üstü kapasiteli konaklamalı turizm işletmeleri' açıkça sayılı"],
-      "ilgiliIcerik": ["/su-kanunu/"],
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — '250 oda ve üstü kapasiteli konaklamalı turizm işletmeleri' açıkça sayılı"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
       "oneri": true
     },
     {
@@ -121,8 +170,12 @@
       "yukumluluk": "Üniversite kampüsü: yeşil su verimliliği belgesi başvurusu.",
       "sonTarih": "2029-12-27",
       "sonTarihDurum": "dogrulandi",
-      "dayanak": ["Su Verimliliği Yönetmeliği md.(3) — 'üniversite kampüsleri' açıkça sayılı"],
-      "ilgiliIcerik": ["/su-kanunu/"],
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — 'üniversite kampüsleri' açıkça sayılı"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
       "oneri": true
     },
     {
@@ -131,9 +184,509 @@
       "yukumluluk": "Havalimanı: yeşil su verimliliği belgesi başvurusu.",
       "sonTarih": "2029-12-27",
       "sonTarihDurum": "dogrulandi",
-      "dayanak": ["Su Verimliliği Yönetmeliği md.(3) — 'havalimanları' açıkça sayılı"],
-      "ilgiliIcerik": ["/su-kanunu/"],
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — 'havalimanları' açıkça sayılı"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
       "oneri": true
+    },
+    {
+      "ad": "Tarımsal ve hayvansal üretim (NACE 01)",
+      "kaynak": "nace-ek2",
+      "nace": "01",
+      "yukumluluk": "Bitkisel ve hayvansal üretim ile avcılık ve ilgili hizmet faaliyetleri faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 1 · kod 01 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Balıkçılık ve su ürünleri yetiştiriciliği (NACE 03)",
+      "kaynak": "nace-ek2",
+      "nace": "03",
+      "yukumluluk": "Balıkçılık ve su ürünleri yetiştiriciliği faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 2 · kod 03 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Kömür ve linyit çıkarımı (NACE 05)",
+      "kaynak": "nace-ek2",
+      "nace": "05",
+      "yukumluluk": "Kömür ve linyit çıkartılması faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 3 · kod 05 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Metal cevherleri madenciliği (NACE 07)",
+      "kaynak": "nace-ek2",
+      "nace": "07",
+      "yukumluluk": "Metal cevherleri madenciliği faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 4 · kod 07 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Diğer madencilik ve taş ocakçılığı (NACE 08)",
+      "kaynak": "nace-ek2",
+      "nace": "08",
+      "yukumluluk": "Diğer madencilik ve taş ocakçılığı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 5 · kod 08 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Madenciliği destekleyici hizmetler (NACE 09)",
+      "kaynak": "nace-ek2",
+      "nace": "09",
+      "yukumluluk": "Madenciliği destekleyici hizmet faaliyetleri faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 6 · kod 09 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Gıda ürünleri imalatı (NACE 10)",
+      "kaynak": "nace-ek2",
+      "nace": "10",
+      "yukumluluk": "Gıda ürünlerinin imalatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 7 · kod 10 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "İçecek imalatı (NACE 11)",
+      "kaynak": "nace-ek2",
+      "nace": "11",
+      "yukumluluk": "İçeceklerin imalatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 8 · kod 11 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Tütün ürünleri imalatı (NACE 12)",
+      "kaynak": "nace-ek2",
+      "nace": "12",
+      "yukumluluk": "Tütün ürünleri imalatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 9 · kod 12 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Tekstil ürünleri imalatı (NACE 13)",
+      "kaynak": "nace-ek2",
+      "nace": "13",
+      "yukumluluk": "Tekstil ürünlerinin imalatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 10 · kod 13 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Giyim eşyası imalatı (NACE 14)",
+      "kaynak": "nace-ek2",
+      "nace": "14",
+      "yukumluluk": "Giyim eşyalarının imalatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 11 · kod 14 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Deri ve ilgili ürünler imalatı (NACE 15)",
+      "kaynak": "nace-ek2",
+      "nace": "15",
+      "yukumluluk": "Deri ve ilgili ürünlerin imalatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 12 · kod 15 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Ağaç ve ağaç ürünleri imalatı (NACE 16)",
+      "kaynak": "nace-ek2",
+      "nace": "16",
+      "yukumluluk": "Ağaç, ağaç ürünleri ve mantar ürünleri imalatı (mobilya hariç); saz, saman ve benzeri malzemelerden örülerek yapılan eşyaların imalatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 13 · kod 16 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Kağıt ve kağıt ürünleri imalatı (NACE 17)",
+      "kaynak": "nace-ek2",
+      "nace": "17",
+      "yukumluluk": "Kağıt ve kağıt ürünlerinin imalatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 14 · kod 17 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Kok kömürü ve rafine petrol ürünleri imalatı (NACE 19)",
+      "kaynak": "nace-ek2",
+      "nace": "19",
+      "yukumluluk": "Kok kömürü ve rafine edilmiş petrol ürünleri imalatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 15 · kod 19 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Kimyasal madde ve ürün imalatı (NACE 20)",
+      "kaynak": "nace-ek2",
+      "nace": "20",
+      "yukumluluk": "Kimyasalların ve kimyasal ürünlerin imalatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 16 · kod 20 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Temel eczacılık ürünleri imalatı (NACE 21)",
+      "kaynak": "nace-ek2",
+      "nace": "21",
+      "yukumluluk": "Temel eczacılık ürünlerinin ve eczacılığa ilişkin malzemelerin imalatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 17 · kod 21 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Kauçuk ve plastik ürünler imalatı (NACE 22)",
+      "kaynak": "nace-ek2",
+      "nace": "22",
+      "yukumluluk": "Kauçuk ve plastik ürünlerin imalatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 18 · kod 22 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Metalik olmayan mineral ürünler imalatı (NACE 23)",
+      "kaynak": "nace-ek2",
+      "nace": "23",
+      "yukumluluk": "Diğer metalik olmayan mineral ürünlerin imalatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 19 · kod 23 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Ana metal sanayii (NACE 24)",
+      "kaynak": "nace-ek2",
+      "nace": "24",
+      "yukumluluk": "Ana metal sanayii faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 20 · kod 24 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Fabrikasyon metal ürünleri imalatı (NACE 25)",
+      "kaynak": "nace-ek2",
+      "nace": "25",
+      "yukumluluk": "Fabrikasyon metal ürünleri imalatı (makine ve teçhizat hariç) faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 21 · kod 25 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Bilgisayar, elektronik ve optik ürün imalatı (NACE 26)",
+      "kaynak": "nace-ek2",
+      "nace": "26",
+      "yukumluluk": "Bilgisayarların, elektronik ve optik ürünlerin imalatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 22 · kod 26 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Elektrikli teçhizat imalatı (NACE 27)",
+      "kaynak": "nace-ek2",
+      "nace": "27",
+      "yukumluluk": "Elektrikli teçhizat imalatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 23 · kod 27 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Makine ve ekipman imalatı (NACE 28)",
+      "kaynak": "nace-ek2",
+      "nace": "28",
+      "yukumluluk": "Başka yerde sınıflandırılmamış makine ve ekipman imalatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 24 · kod 28 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Motorlu kara taşıtı imalatı (NACE 29)",
+      "kaynak": "nace-ek2",
+      "nace": "29",
+      "yukumluluk": "Motorlu kara taşıtı, treyler (römork) ve yarı treyler (yarı römork) imalatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 25 · kod 29 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Diğer ulaşım araçları imalatı (NACE 30)",
+      "kaynak": "nace-ek2",
+      "nace": "30",
+      "yukumluluk": "Diğer ulaşım araçlarının imalatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 26 · kod 30 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Diğer imalatlar (NACE 32)",
+      "kaynak": "nace-ek2",
+      "nace": "32",
+      "yukumluluk": "Diğer imalatlar faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 27 · kod 32 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Makine ve ekipman kurulum-onarımı (NACE 33)",
+      "kaynak": "nace-ek2",
+      "nace": "33",
+      "yukumluluk": "Makine ve ekipmanların kurulumu ve onarımı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 28 · kod 33 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Elektrik, gaz ve buhar üretim-dağıtımı (NACE 35)",
+      "kaynak": "nace-ek2",
+      "nace": "35",
+      "yukumluluk": "Elektrik, gaz, buhar ve havalandırma sistemi üretim ve dağıtımı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 29 · kod 35 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Atık toplama, ıslah ve geri kazanım (NACE 38)",
+      "kaynak": "nace-ek2",
+      "nace": "38",
+      "yukumluluk": "Atığın toplanması, ıslahı ve bertarafı faaliyetleri; maddelerin geri kazanımı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 30 · kod 38 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
+    },
+    {
+      "ad": "Bina dışı yapı inşaatı (NACE 42)",
+      "kaynak": "nace-ek2",
+      "nace": "42",
+      "yukumluluk": "Bina dışı yapıların inşaatı faaliyeti Su Verimliliği Yönetmeliği Ek-2 kapsamındadır: en fazla beş yıl içinde yeşil su verimliliği belgesi başvurusu yapılır.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": [
+        "Su Verimliliği Yönetmeliği md.(3) — Ek-2 NACE kodu bazında faaliyetler 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu",
+        "Ek-2 NACE listesi, sıra 31 · kod 42 (OCR doğrulaması: data/lead/nace-ek2.json)"
+      ],
+      "ilgiliIcerik": [
+        "/su-kanunu/"
+      ],
+      "oneri": false
     }
   ]
 }
