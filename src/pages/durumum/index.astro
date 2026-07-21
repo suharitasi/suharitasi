@@ -34,6 +34,14 @@ const aramaEk = {
   'havalimani-isletmecisi': 'havalimanı havaalanı',
 };
 
+// İki grup: genel sektör kapıları (küratörlü) + NACE Ek-2 faaliyetleri (OCR
+// doğrulaması, Bölüm A). Aynı .pk kartı — yeni tasarım yok; yalnız 42 kart
+// duvara dönmesin diye kaynağa göre gruplanır. NACE kod sırasıyla dizilir.
+const genel = personalar.filter((p) => p.kaynak !== 'nace-ek2');
+const nace = personalar
+  .filter((p) => p.kaynak === 'nace-ek2')
+  .sort((a, b) => Number(a.nace) - Number(b.nace));
+
 // GEO: sektör kapısı bir liste — ItemList şeması.
 const sema = [
   {
@@ -62,16 +70,41 @@ const sema = [
       <a href={`mailto:${EPOSTA}?subject=${encodeURIComponent('Sektör durumu')}`}>doğrudan iletin</a>.</p>
   </div>
 
-  <div id="durumum-izgara" class="izgara">
-    {personalar.map((p) => (
-      <a class={`pk${p.oneri ? ' oneri' : ''}`} href={`/durumum/${p.slug}/`}
-         data-ara={`${p.ad} ${p.yukumluluk} ${aramaEk[p.slug] ?? ''}`.toLocaleLowerCase('tr-TR')}>
-        <span class="pk-k">{kicker(p.ad)}{p.oneri && ' · öneri'}</span>
-        <span class="pk-ad">{p.ad}</span>
-        <span class="pk-y">{p.yukumluluk}</span>
-        {p.sonTarihMetni && <span class="pk-t">Son başvuru {p.sonTarihMetni}</span>}
-      </a>
-    ))}
+  <div id="durumum-izgara">
+    <section class="grup" aria-label="Sektör kapıları">
+      <p class="grup-etiket">Sektör kapıları</p>
+      <div class="izgara">
+        {genel.map((p) => (
+          <a class={`pk${p.oneri ? ' oneri' : ''}`} href={`/durumum/${p.slug}/`}
+             data-ara={`${p.ad} ${p.yukumluluk} ${aramaEk[p.slug] ?? ''}`.toLocaleLowerCase('tr-TR')}>
+            <span class="pk-k">{kicker(p.ad)}{p.oneri && ' · öneri'}</span>
+            <span class="pk-ad">{p.ad}</span>
+            <span class="pk-y">{p.yukumluluk}</span>
+            {p.sonTarihMetni && <span class="pk-t">Son başvuru {p.sonTarihMetni}</span>}
+          </a>
+        ))}
+      </div>
+    </section>
+
+    {nace.length > 0 && (
+      <section class="grup" aria-label="NACE Ek-2 faaliyetleri">
+        <p class="grup-etiket">NACE Ek-2 faaliyetleri · yeşil su verimliliği belgesi</p>
+        <p class="grup-not">Su Verimliliği Yönetmeliği Ek-2’de sayılan NACE
+          kodu bazında faaliyetler; son başvuru 27 Aralık 2029.</p>
+        <div class="izgara">
+          {nace.map((p) => (
+            <a class="pk" href={`/durumum/${p.slug}/`}
+               data-ara={`${p.ad} ${p.yukumluluk} nace ${p.nace ?? ''}`.toLocaleLowerCase('tr-TR')}>
+              <span class="pk-k">NACE {p.nace}</span>
+              <span class="pk-ad">{p.ad}</span>
+              <span class="pk-y">{p.yukumluluk}</span>
+              {p.sonTarihMetni && <span class="pk-t">Son başvuru {p.sonTarihMetni}</span>}
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
     <div class="yok">
       Listede yoksanız — durumunuzu
       <a href={`mailto:${EPOSTA}?subject=${encodeURIComponent('Sektör durumu')}`}>doğrudan iletin</a>,
@@ -101,6 +134,16 @@ const sema = [
     margin-top: 0.45rem;
   }
   .ara-bos a { color: var(--su-700); }
+
+  .grup + .grup { margin-top: 2rem; }
+  /* Grup etiketi: rehberler indeksindeki kume-kicker diliyle aynı imza */
+  .grup-etiket {
+    display: flex; align-items: center; gap: 0.7rem;
+    font-family: var(--mono); font-size: 0.66rem; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--su-700);
+  }
+  .grup-etiket::before { content: ""; width: 1.6rem; height: 1px; background: var(--su-400); }
+  .grup-not { margin: 0.35rem 0 0.8rem; font-family: var(--mono); font-size: 0.7rem; color: var(--metin-soluk); }
 
   .izgara { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
 
@@ -133,7 +176,12 @@ const sema = [
     font-weight: 600;
     line-height: 1.12;
   }
-  .pk-y { font-size: 0.82rem; color: var(--metin-soluk); line-height: 1.45; }
+  .pk-y {
+    font-size: 0.82rem; color: var(--metin-soluk); line-height: 1.45;
+    /* Grid ritmi bozulmasın: uzun NACE yükümlülükleri üç satırda kesilir
+       (tam metin sonuç sayfasında). */
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  }
   .pk-t {
     font-family: var(--mono);
     font-size: 0.68rem;
@@ -142,7 +190,7 @@ const sema = [
   }
 
   .yok {
-    grid-column: 1 / -1;
+    margin-top: 2rem;
     padding: 1.1rem;
     border: 1px dashed var(--su-400);
     text-align: center;
