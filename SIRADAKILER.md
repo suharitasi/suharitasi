@@ -4,6 +4,8 @@
 
 KUYRUK BAŞI (sıradaki iş): Opus paketi A-E (işleniyor) → sonra kuyruk sırası.
 
+Ödül-üstü programı — çatı: ODUL-USTU.md, sıradaki: Faz 1
+
 TAMAM (2026-07-21): Su Kanunu TBMM izleme sistemi v3 KURULDU — izleme/ +
 cron (05:30+16:00 UTC) + saglik-bekcisi tazelik kontrolü; T1-T5 kanıtlı
 (cikti/denetim/su-izleme/KURULUM.md). ŞERH: ilk gerçek cron fire 16:00 UTC —
