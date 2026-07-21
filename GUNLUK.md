@@ -259,3 +259,18 @@
   büyütüyordu → `.ust nav`).
 - Kanıt: cikti/denetim/faz-a-on/. FAZ A (menü reformu) kullanıcı onayı
   bekliyor; push yok.
+
+## 2026-07-21 (FAZ A+B: site-geneli mobil menü reformu — dar şerit)
+- Mock (faz2-sakarya-mobil-menumock.jpeg) tek kaynaktan koda: ≤640px'te
+  header tek dar şerit (marka + MENÜ; içerik 226,4→85,8px, landing
+  104,6→84,8px, hedef 85±4). Satır-içi linkler yalnız görsel katmandan
+  çekildi (DOM'da gerçek <a>, JS'siz crawl); gezinme tam-ekran panelde.
+  Yeni JS 0 bayt (davranış mevcut menu.js).
+- Denetim CANLIDA DA VAR OLAN bir hata yakaladı: landing'de <main>
+  (translateY) header'a binip masaüstünde 5/5 nav linkinin tıklamasını
+  yutuyordu → header.koyu z-index düzeltmesi (görsel fark 0 piksel,
+  elementFromPoint + pixelmatch kanıtlı).
+- Lighthouse ilk ölçümde 85 görüldü → A/B analizi (reform ↔ eski build
+  eşzamanlı 3'er tur) dalgalanmanın her iki build'de aynı olduğunu
+  gösterdi (medyan 96): localhost gürültüsünü eşik ihlali sanma —
+  A/B'siz karar verme. Kanıt: cikti/denetim/menu/. PUSH YOK, onay kapısı.

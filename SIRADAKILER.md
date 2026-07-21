@@ -250,3 +250,20 @@
     izolasyonu: bit düzeyinde tek değişen sayfa /vaka/meysu/. Kanıt:
     cikti/denetim/faz2/faz2c-*. Not: kalıpların koreografi/katman CSS'i
     yayılım fazında tekilleştirilecek (şimdilik pilot-başına scoped).
+42. SİTE-GENELİ MOBİL MENÜ REFORMU (FAZ A-ÖN + FAZ A) — KULLANICI ONAYI
+    BEKLİYOR, PUSH YAPILMADI (2026-07-21, yerel commit e299c66 + 5e1de81):
+    (a) FAZ A-ÖN: landing header'ı tek kaynağa alındı (UstMenu tema
+    varyantı aydinlik/koyu; landing src/pages/index.astro'ya taşındı,
+    eski statik arsiv/landing-statik/). Görsel birebir: pixelmatch
+    %0,000 (1440+375), computed birebir, canlı↔yerel SEO/GEO eşit.
+    (b) FAZ A: mock'tan dar şerit — ≤640px'te marka+MENÜ, kapalı işgal
+    içerik 226,4→85,8px / landing 104,6→84,8px (hedef 85±4); linkler
+    DOM'da kalır (JS'siz crawl), panel=TamEkranMenu, yeni JS 0 bayt.
+    Denetimin yakaladığı CANLIDA DA VAR hata düzeltildi: landing <main>
+    nav tıklamalarını yutuyordu (masaüstü 5/5 link engelliydi) →
+    header.koyu z-index (görsel fark 0 piksel). Lighthouse sakarya
+    4×100, kuyu-ruhsati medyan 96 (A/B gürültü kanıtlı). Kanıt:
+    cikti/denetim/faz-a-on/ + cikti/denetim/menu/ (RAPOR.md'ler).
+    ONAY SONRASI: push talimatı ayrıca gelir; push sonrası Cloudflare
+    cache purge gerekebilir (otomasyon yok). Gerçek iOS Safari testi
+    kullanıcıda (emülasyon şerhi).

@@ -31,14 +31,27 @@ const simdiki = Astro.url.pathname.endsWith('/')
   : Astro.url.pathname + '/';
 ---
 {tema === 'koyu' ? (
-  <header class="koyu">
-    <span class="marka-koyu">Su Haritası</span>
-    <nav class="ust-nav" aria-label="Site menüsü">
-      {koyuOgeler.map((o) => (
-        <a href={o.yol}>{o.ad}</a>
-      ))}
-    </nav>
-  </header>
+  <Fragment>
+    <header class="koyu" data-menu-dis>
+      <span class="marka-koyu">Su Haritası</span>
+      <nav class="ust-nav" aria-label="Site menüsü">
+        {koyuOgeler.map((o) => (
+          <a href={o.yol}>{o.ad}</a>
+        ))}
+      </nav>
+      {/* FAZ A dar-şerit tetikleyicisi: yalnız ≤640px'te görünür (masaüstü
+          landing görünümü değişmez); paneli /s/menu.js yönetir. */}
+      <button
+        class="sv-menu-ac sv-menu-ac-koyu"
+        type="button"
+        aria-haspopup="dialog"
+        aria-expanded="false"
+        aria-controls="sv-menu"
+      >menü</button>
+    </header>
+
+    <TamEkranMenu />
+  </Fragment>
 ) : (
   <Fragment>
     <header class="ust">
@@ -77,6 +90,13 @@ const simdiki = Astro.url.pathname.endsWith('/')
     justify-content: space-between;
     gap: 1.5rem;
     flex-wrap: wrap;
+    /* HATA DÜZELTMESİ (FAZ A denetiminde yakalandı; canlıda da mevcut):
+       kardeş <main> translateY(-6vh) ile header'ın üstüne binip nav
+       linklerinin/tetikleyicinin tıklamasını yutuyordu (masaüstünde 5/5
+       link engelliydi — elementFromPoint kanıtı raporda). Görsel etkisi
+       sıfır; yalnız isabet/boya sırası düzelir. */
+    position: relative;
+    z-index: 3;
   }
 
   .marka-koyu {
@@ -227,14 +247,67 @@ const simdiki = Astro.url.pathname.endsWith('/')
 
   .sv-menu-ac:hover { color: var(--su-700); }
 
-  @media (max-width: 640px) {
-    /* '.ust nav': çıplak seçici koyu dala sızmasın (yukarıdaki not) */
-    .ust nav { height: auto; padding-top: 0.4rem; padding-bottom: 0.4rem; flex-wrap: wrap; }
+  /* Koyu dal tetikleyicisi: masaüstünde YOK (landing masaüstü değişmez);
+     stiller landing paletiyle açık yazılır (--sans/--su-700 landing
+     :root'unda tanımsız — kırık var() bırakılmaz). */
+  .sv-menu-ac-koyu {
+    display: none;
+    font-family: "Manrope", system-ui, sans-serif;
+    color: var(--metin-soluk);
+  }
 
-    /* Dokunma hedefi ≥44px (DESIGN.md §12) */
-    .ust ul a,
+  .sv-menu-ac-koyu:hover { color: var(--kopuk, #A8DDE0); }
+
+  .sv-menu-ac-koyu:focus-visible {
+    outline: 2px solid var(--akuamarin, #4FC3D0);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 640px) {
+    /* ——— FAZ A MOBİL REFORMU (tek gerçek kaynak: mock
+       cikti/denetim/faz2/faz2-sakarya-mobil-menumock.jpeg) ———
+       Kapalı durum = tek dar şerit: marka solda + MENÜ sağda; hedef
+       85px ±4 (5.3rem = 84.8px). Satır-içi linkler yalnız GÖRSEL
+       katmandan çekilir (display:none) — DOM'da gerçek <a> olarak
+       dururlar (JS'siz crawl edilebilir); gezinme yüzeyi tam-ekran
+       panel (TamEkranMenu, /s/menu.js). */
+    .ust nav {
+      height: 5.3rem;
+      padding-top: 0;
+      padding-bottom: 0;
+      flex-wrap: nowrap;
+    }
+
+    .ust ul { display: none; }
+
+    /* Dokunma hedefi ≥44px (DESIGN.md §12): tetikleyici + marka */
     .sv-menu-ac,
     .marka {
+      padding-top: 0.95rem;
+      padding-bottom: 0.95rem;
+    }
+
+    .sv-menu-ac { min-height: 44px; min-width: 44px; }
+
+    /* Koyu dal (landing) aynı kalıp: linkler görsel katmandan çekilir,
+       MENÜ tetikleyicisi görünür; şerit 85px ±4. */
+    header.koyu {
+      height: 5.3rem;
+      flex-wrap: nowrap;
+      align-items: center;
+    }
+
+    header.koyu .ust-nav { display: none; }
+
+    .sv-menu-ac-koyu {
+      display: block;
+      min-height: 44px;
+      min-width: 44px;
+      padding-top: 0.95rem;
+      padding-bottom: 0.95rem;
+    }
+
+    .marka-koyu {
       padding-top: 0.95rem;
       padding-bottom: 0.95rem;
     }

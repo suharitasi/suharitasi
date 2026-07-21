@@ -436,4 +436,10 @@ const kademe = () => ({ '--kademe': String(sira++) });
     .sv-menu { transform: none; }
     .sv-kademe { opacity: 1; transform: none; }
   }
+
+  /* Yazdırmada menü katmanı asla basılmaz (açıkken yazdırılsa bile);
+     içerik tam basılır — FAZ A şartı A.2d. */
+  @media print {
+    .sv-menu { display: none !important; }
+  }
 </style>
