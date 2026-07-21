@@ -4,6 +4,11 @@ ozet: "167 sayılı Yeraltı Suları Hakkında Kanun uyarınca kuyu açmadan ön
 tarih: 2026-07-14
 ilKurumTablosu: true
 kume: surec
+kalip: 2
+cozer:
+  - "Hangi belge gerekir: arama, kullanma ve ıslah-tadil zincirinden hangisinin sizin durumunuzu karşıladığı"
+  - "Başvuru nereye ve nasıl yapılır: DSİ bölge müdürlüğü, bir aylık cevap süresi, harç muafiyeti"
+  - "Kritik şartlar: ölçüm sistemi zorunluluğu ve belgesiz kuyunun hukuki sonuçları"
 ozCevap: "Su temini için kuyu açmadan önce DSİ'den belge şart (167 s.K. m.8). Üç belge: arama, kullanma, ıslah-tadil. Başvuru ilin bağlı olduğu DSİ Bölge Müdürlüğü'ne yapılır, cevap süresi bir ay, belgeler harçtan muaftır (m.12). Belgesiz açım yasak; kullanma belgesi için ölçüm sistemi zorunlu."
 ilgili: [ruhsatsiz-kuyu-cezalari, kuyu-belgesi-iptal-davalari, su-tahsisi-oncelik-sirasi]
 ---

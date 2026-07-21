@@ -214,4 +214,21 @@
     yana dahil). Mobil menü dar-şerit yalnız MOCK (koda girmedi;
     faz2-sakarya-mobil-menumock.jpeg) — menü reformu üç kalıp onayı
     sonrası ayrı site-geneli adım. ONAY SONRASI: rehber + vaka kalıbı
-    pilotları (kullanıcı onayı gelmeden BAŞLANMAZ).
+    pilotları (kullanıcı onayı gelmeden BAŞLANMAZ). → Onay geldi
+    (2026-07-21); 2b+2c pilotları yapıldı (madde 40-41).
+40. SUNUM REFORMU FAZ 2b — REHBER KALIBI PİLOTU (kuyu-ruhsati) —
+    KULLANICI ONAYI BEKLİYOR (2026-07-21): kalip:2 kapısı (yalnız
+    kuyu-ruhsati; diğer 8 rehber DOM-eşit — tek fark görünmez scoped-css
+    kimlik attribute'u; 25 havza + tüm diğer sayfalar bit-eşit). İlk
+    ekran: 280-cevap + "bu rehber ne çözer" (frontmatter cozer, damıtık)
+    + içindekiler kartları (başlıklardan otomatik, BÖLÜM sayacıyla aynı
+    numara). Katmanlar (varsayılan kapalı): madde metinleri + 81-il
+    tablosu. Başvuru akışı tablosu → 4 numaralı adım kartı (dikey ray;
+    hücre metinleri birebir korundu). Giriş koreografisi: .gk sıralı
+    fadeUp 100ms kademe, --e-suzul, reduced-motion/print korumalı;
+    başlık bloğu LCP için gizlenmeden süzülür. Belge tablosu kendi
+    kabında kayar (375px gövde taşması 0). Metrikler: masaüstü 12,8→6,0
+    ekran; 375px 22,9→9,4; ilk ekran görsel öğe 0→3; kesintisiz metin
+    17→7 satır. Lighthouse 94/100/100/100 (pilot dışı referans 96).
+    GEO: 280-cevap + Article JSON-LD + madde/il/adım tam metinleri
+    curl'la JS'siz DOM'da doğrulandı. Kanıt: cikti/denetim/faz2/faz2b-*.

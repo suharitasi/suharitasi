@@ -14,6 +14,14 @@ const rehberler = defineCollection({
     ilgili: z.array(z.string()).default([]),
     // Rehberin ait olduğu küme; /rehberler/ listesi bu alanla gruplanır.
     kume: z.enum(['surec', 'uyusmazlik']),
+    // Sayfa mimarisi kalıbı (DESIGN.md §17). 2 = reform kalıbı (ilk ekran
+    // öz-cevap + "ne çözer" + içindekiler kartları; referans blokları
+    // katmanda). Yalnız pilotlarda açılır; alan yoksa eski kalıp aynen
+    // render edilir — pilot dışı sayfa değişmez.
+    kalip: z.literal(2).optional(),
+    // Kalıp 2 ilk ekranı: "bu rehber ne çözer" maddeleri. YALNIZ doğrulanmış
+    // gövde metninden damıtılır; yeni hukuki iddia/künye üretilmez.
+    cozer: z.array(z.string().min(20).max(160)).min(2).max(4).optional(),
     // "Cevap önce, dayanak sonra" (CLAUDE.md): başlıktan hemen sonra çıkan
     // ~280 karakterlik damıtılmış öz cevap. YALNIZ bu sayfanın doğrulanmış
     // içeriğinden damıtılır; yeni iddia/künye eklenmez. Meta description'ın
