@@ -309,3 +309,15 @@
   toparlama v2, kaynak keşfi v2, izleme kurulumu v3 → **+3**. Eşik 5;
   **mevcut 3/5 — henüz aşılmadı.** NOT: Opus paketi (A-E, 5 bölüm) SÜRÜYOR;
   bölüm sayımı PAKET SONU'nda yapılacak (yalnız TAMAM biten bölümler eklenir).
+
+## 2026-07-21 (KAPANIŞ: Opus paketi A-E)
+- 5 bölüm tamamlandı (her biri kendi commit'i): A belge arşivi (7abccc1) ·
+  B kayıt (5313961) · C UYAP künye teyidi (4a597db) · D SEO/GEO denetim skill
+  (b1dcd3e) · E NACE Ek-2 + KAP (f7696d5).
+- Şerhler (dürüst kısmi sonuç, uydurma yok): C — meysu taslağında künye yok
+  (UYAP sorgusu gereksiz). E — Ek-2 ayrı TARANMIŞ ekte (OCR'sız ayrıştırılamaz,
+  liste üretilmedi); KAP API Next.js'e taşınmış, eski byCriteria 500 → erişilemedi
+  (sahte kayıt yok). D — ilk taramada 131 sayfa/215 bulgu tespit edildi (düzeltme yok).
+- Opus periyodik denetim sayacı: önceki 3/5 + paketin 5 TAMAM bölümü (A-E; hepsi
+  deliverable üretti — E şerhli ama tespit/rapor deliverable'ı tam) → **8/5**.
+  **Eşik 5 AŞILDI → yeni tur Opus denetimi beklemede.**
