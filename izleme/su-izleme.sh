@@ -24,7 +24,6 @@ MOTOR="$IZ/lib/motor.py"
 UA="Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0"
 RUN_UTC=$(date -u +%Y-%m-%dT%H-%M-%SZ)
 BUGUN=$(date -u +%Y-%m-%d)
-LAST_EFF=""   # http_get yan etkisi: son etkin URL (yönlendirme tespiti)
 
 # --- toplayıcılar (geçici; DURUM.md render için) ---
 STATUSF=$(mktemp) ; EVENTF=$(mktemp)
@@ -38,20 +37,35 @@ olay_ekle(){  # $1 hedef  $2 açıklama
   OLAY_SAYAC=$((OLAY_SAYAC+1))
 }
 
-# HTTP GET: $1 url $2 outfile -> stdout=http_code; dönüş 0=curl koştu, 1=ağ hatası.
-# Yan etki: LAST_EFF = son etkin URL (yönlendirme sonrası) — RG mükerrer/beklemede
-# tespiti için (mükerrer yoksa server '/' ana sayfaya yönlendirir).
+# HTTP GET (-L: yönlendirmeleri izler) — M2/M3 içerik çekimi.
+# $1 url $2 outfile -> stdout=http_code; dönüş 0=curl koştu, 1=ağ hatası.
 # İç retry: ağ hatası / 5xx'te bir kez, 5 sn sonra.
 http_get(){
-  local url="$1" out="$2" res code
-  res=$(curl -sSL --compressed --max-time 45 -A "$UA" -o "$out" \
-        -w '%{http_code}|%{url_effective}' "$url" 2>>"$LOGP") || res="AG|"
-  code="${res%%|*}"; LAST_EFF="${res#*|}"
+  local url="$1" out="$2" code
+  code=$(curl -sSL --compressed --max-time 45 -A "$UA" -o "$out" \
+         -w '%{http_code}' "$url" 2>>"$LOGP") || code="AG"
   if [ "$code" = "AG" ] || [ "${code:0:1}" = "5" ]; then
     sleep 5
-    res=$(curl -sSL --compressed --max-time 45 -A "$UA" -o "$out" \
-          -w '%{http_code}|%{url_effective}' "$url" 2>>"$LOGP") || res="AG|"
-    code="${res%%|*}"; LAST_EFF="${res#*|}"
+    code=$(curl -sSL --compressed --max-time 45 -A "$UA" -o "$out" \
+           -w '%{http_code}' "$url" 2>>"$LOGP") || code="AG"
+  fi
+  echo "$code"
+  [ "$code" = "AG" ] && return 1 || return 0
+}
+
+# HTTP GET (-L YOK: yönlendirmeyi İZLEMEZ) — yalnız M1/RG.
+# RG mantığı: geçerli fihrist doğrudan 200; mükerrer-yok/henüz-yayınlanmadı ise
+# server 302 ile '/' ana sayfaya yönlendirir. 3xx'i homepage sanıp ayıklamamak
+# için -L kullanılmaz; 302 = 'yok/beklemede' net sinyali. (url_effective glitch'i
+# güvenilmez çıktı — 2026-07-21 T2'de boş döndü; ham status koduna geçildi.)
+http_get_noredir(){
+  local url="$1" out="$2" code
+  code=$(curl -sS --compressed --max-time 45 -A "$UA" -o "$out" \
+         -w '%{http_code}' "$url" 2>>"$LOGP") || code="AG"
+  if [ "$code" = "AG" ] || [ "${code:0:1}" = "5" ]; then
+    sleep 5
+    code=$(curl -sS --compressed --max-time 45 -A "$UA" -o "$out" \
+           -w '%{http_code}' "$url" 2>>"$LOGP") || code="AG"
   fi
   echo "$code"
   [ "$code" = "AG" ] && return 1 || return 0
@@ -79,21 +93,15 @@ m1_rg(){
     local url="$1" et="$2"
     local ham="$adir/fihrist-$et-ham.html"
     local code madde rgout
-    code=$(http_get "$url" "$ham") || true
+    code=$(http_get_noredir "$url" "$ham") || true
     if [ "$code" = "AG" ]; then
       logla "M1 RG $et: ağ hatası ($url)"; return 2
     fi
-    if [ "$code" = "404" ]; then rm -f "$ham"; return 1; fi
-    if [ "$code" != "200" ]; then
-      logla "M1 RG $et: beklenm/dık HTTP $code ($url)"; return 2
-    fi
-    # 200 ama fihrist DEĞİL: mükerrer yoksa / gün henüz yayınlanmadıysa server
-    # ana sayfaya ('/') yönlendirir. url_effective 'fihrist' içermiyorsa geçersiz
-    # → beklemede/dur (homepage'i fihrist sanıp ayıklamaya SOKMA).
-    case "$LAST_EFF" in
-      *fihrist*) : ;;
-      *) logla "M1 RG $et: fihrist değil, '$LAST_EFF' yönlendirmesi → beklemede/dur"
-         rm -f "$ham"; return 1 ;;
+    case "$code" in
+      200) : ;;   # geçerli fihrist → ayıklamaya devam
+      3??) rm -f "$ham"; return 1 ;;   # 302→homepage: mükerrer yok / henüz yayınlanmadı
+      404) rm -f "$ham"; return 1 ;;
+      *)   logla "M1 RG $et: beklenmedik HTTP $code ($url)"; return 2 ;;
     esac
     # 200: madde var mı? motor.py ile analiz + keyword
     rgout=$("$PY" "$MOTOR" rg "$ham" "$KW") || { logla "M1 RG $et: motor hata"; return 2; }

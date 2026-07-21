@@ -1,6 +1,6 @@
 # Su Kanunu İzleme — DURUM
 
-Son koşu (UTC): **2026-07-21T13-18-40Z**
+Son koşu (UTC): **2026-07-21T13-23-05Z**
 
 Özet: 11 hedef · ✳ olay: 0 · 🔴 hata: 0
 
@@ -8,7 +8,7 @@ Son koşu (UTC): **2026-07-21T13-18-40Z**
 
 | Hedef | Katman | Durum | Not |
 |---|---|---|---|
-| RG-gunluk | M1 | 🟡 beklemede | günün sayısı henüz yayınlanmadı (2026-07-21) |
+| RG-gunluk | M1 | 🟢 tamam | yayınlandı, eşleşme yok (ana:0madde ) |
 | tbmm-kanun-teklifleri | K1 | 🟢 tamam | değişiklik yok |
 | tbmm-cevre-komisyonu | K1 | 🟢 tamam | değişiklik yok |
 | tbmm-tarim-orman-komisyonu | K1 | 🟢 tamam | değişiklik yok |
