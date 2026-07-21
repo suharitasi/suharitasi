@@ -19,14 +19,17 @@ const ogeler = [
   { ad: 'Havzalar', yol: '/havzalar/' },
   { ad: 'Rehberler', yol: '/rehberler/' },
   { ad: 'Su Kanunu', yol: '/su-kanunu/' },
+  { ad: 'Durumum', yol: '/durumum/' },
   { ad: 'Vakalar', yol: '/vaka/' },
   { ad: 'Hakkında', yol: '/hakkinda/' },
   { ad: 'Deneyim', yol: '/deneyim/' },
 ];
-// Landing bugün Vakalar ve Deneyim linklerini taşımıyor (A-ÖN görsel birebir
-// şartı); koyu dal listesi tek kaynaktan süzülür. FAZ A'da mobil panel
-// (TamEkranMenu) Vakalar+Deneyim dahil tam listeyi zaten verir.
-const koyuOgeler = ogeler.filter((o) => o.yol !== '/vaka/' && o.yol !== '/deneyim/');
+// Landing bugün Vakalar, Deneyim ve Durumum linklerini taşımıyor (A-ÖN görsel
+// birebir şartı); koyu dal listesi tek kaynaktan süzülür. FAZ A'da mobil panel
+// (TamEkranMenu) tam listeyi zaten verir.
+const koyuOgeler = ogeler.filter(
+  (o) => o.yol !== '/vaka/' && o.yol !== '/deneyim/' && o.yol !== '/durumum/',
+);
 const simdiki = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname
   : Astro.url.pathname + '/';

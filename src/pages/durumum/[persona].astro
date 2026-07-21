@@ -1,0 +1,171 @@
+---
+// FAZ 7 AŞAMA 2 — /durumum/[persona]/ sektör sonuç sayfası.
+// İçerik YALNIZ doğrulanmış persona.json'dan: yükümlülük (kaynak künyeli),
+// sabit son tarih (doğrulanmışsa). Risk = onaylı GENEL çerçeve dili (hukuki
+// iddia değil; yaptırım/tutar [APILEX]). İlk adımlar generic süreç. Çalışma
+// anı JS: yalnız "kalan gün" (≤0,5KB, progressive — JS yoksa sabit tarih).
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import { getCollection } from 'astro:content';
+import { personalar } from '../../data/persona.js';
+import { EPOSTA, YAZAR } from '../../data/site';
+
+export async function getStaticPaths() {
+  return personalar.map((p) => ({ params: { persona: p.slug }, props: { p } }));
+}
+
+const { p } = Astro.props;
+
+// Çapraz bağ etiketleri: rehber başlıkları koleksiyondan; diğerleri sabit harita.
+const rehberler = await getCollection('rehberler');
+const rehberBaslik = new Map(rehberler.map((r) => [`/rehberler/${r.id}/`, r.data.baslik]));
+const sabitEtiket = {
+  '/su-kanunu/': 'Su Kanunu merkezi',
+  '/vaka/meysu/': 'Vaka: Meysu su güvencesi',
+  '/harita/': 'Havza haritası',
+};
+const baglar = (p.ilgiliIcerik || [])
+  .map((yol) => ({ yol, ad: rehberBaslik.get(yol) || sabitEtiket[yol] || yol }))
+  .filter((b, i, a) => a.findIndex((x) => x.yol === b.yol) === i);
+
+const tarihli = !!p.sonTarihMetni;
+
+// Öz-cevap (≤280): yükümlülük + (varsa) sabit tarih.
+let ozCevap = p.yukumluluk;
+if (tarihli) ozCevap += ` Son başvuru: ${p.sonTarihMetni}.`;
+ozCevap = ozCevap.slice(0, 280);
+
+// Risk çerçevesi (onaylı GENEL dil; hukuki hüküm değil). İki varyant.
+const riskMetni = tarihli
+  ? 'Yükümlülüğü son ana bırakan işletme; sistem kurulumu, iş termin planı ve başvuru değerlendirmesini aynı dar pencereye sıkıştırmak zorunda kalır. Planlamaya bugün başlamak, hem uyum maliyetini hem denetim riskini yönetilebilir kılar.'
+  : 'Su hakkınızı veya ruhsat sürecinizi erken ve doğru kurgulamak; sonradan itiraz, ceza ve iş kaybı riskini azaltır. Süreç ilerledikçe hatayı düzeltmek pahalılaşır.';
+
+// GEO: sektör yükümlülüğü bir soru-cevap — FAQPage (doğrulanmış cevap).
+const sema = [
+  {
+    '@type': 'FAQPage',
+    mainEntity: [{
+      '@type': 'Question',
+      name: `${p.ad} su hukukunda neyle yükümlü?`,
+      acceptedAnswer: { '@type': 'Answer', text: ozCevap },
+    }],
+  },
+];
+---
+<Sayfa baslik={`${p.ad}: su hukukunda durumunuz`} aciklama={ozCevap} sema={sema}>
+  <SayfaBasi etiket="Sektör sonucu" baslik={`${p.ad}: su hukukunda durumunuz`} />
+
+  <OzCevap metin={ozCevap} />
+
+  {/* 3-saniye ilk ekran: hüküm + (varsa) SABİT tarih */}
+  <section class="kahraman" aria-label="Yükümlülük ve son tarih">
+    <span class="kh-e">Yükümlülük · dayanak künyeli</span>
+    <p class="kh-hukum">{p.yukumluluk}</p>
+    {tarihli ? (
+      <>
+        <span class="kh-e kh-e2">Son başvuru (sabit tarih)</span>
+        <span class="kh-tarih">
+          <time datetime={p.sonTarih}>{p.sonTarihMetni}</time>
+          <span class="kalan" data-son={p.sonTarih} hidden></span>
+        </span>
+      </>
+    ) : (
+      <p class="kh-not">Bu sektör için sabit bir yasal son başvuru tarihi
+        yok; yükümlülük süreç/işleme bağlıdır ({p.sonTarihDurum.replace(/^dogrulanamadi\s*[—-]?\s*/, '')}).</p>
+    )}
+    <p class="kh-dayanak">Dayanak: {p.dayanak.join(' · ')}</p>
+  </section>
+
+  {/* Risk çerçevesi (onaylı genel dil; yaptırım [APILEX]) */}
+  <aside class="risk" aria-label="Risk">
+    <span class="risk-b">Neden şimdi</span>
+    <p>{riskMetni} <span class="apilex">Somut yaptırım/tutar için ilgili mevzuat maddesi esastır.</span></p>
+  </aside>
+
+  {/* İlk adımlar (genel süreç) */}
+  <h2 class="blok-baslik">İlk adımlar</h2>
+  <ol class="adimlar">
+    <li class="adim"><span class="adim-no">1</span><p>Durumunuzu belirleyin:
+      faaliyet, kapasite ve (varsa) NACE kodunuz kapsamı ve yükümlülüğü tayin eder.</p></li>
+    <li class="adim"><span class="adim-no">2</span><p>Hukuki hazırlık: yükümlülüğü
+      ve gereken belgeleri aşağıdaki ilgili rehberler ışığında değerlendirin.</p></li>
+    <li class="adim"><span class="adim-no">3</span><p>Başvuru ve takip: yetkili
+      kuruma başvuru ve süreç yönetimi. Somut usul/süre için ilgili mevzuat esastır.</p></li>
+  </ol>
+
+  {baglar.length > 0 && (
+    <nav class="capraz" aria-label="İlgili içerik">
+      {baglar.map((b) => <a href={b.yol}>→ {b.ad}</a>)}
+    </nav>
+  )}
+
+  {/* İletişim (form kapsam dışı — e-posta + künye) */}
+  <section class="iletisim" aria-label="İletişim">
+    <p class="il-b">Uyum planlaması için iletişim</p>
+    <p class="il-a">Sektörünüze özel yükümlülük ve takvim değerlendirmesi için ulaşın.</p>
+    <p class="il-l">
+      <a href={`mailto:${EPOSTA}?subject=${encodeURIComponent(p.ad + ' — su hukuku')}`}>{EPOSTA}</a>
+      <span class="il-ayr">·</span>
+      <a href="/hakkinda/">Künye ve yöntem</a>
+    </p>
+    <p class="il-not">Hukuki içerik {YAZAR.buro} tarafından hazırlanır.</p>
+  </section>
+
+  {/* İstemci: "kalan gün" (progressive; JS yoksa sabit tarih durur). Arama+
+      kalan tek dosyada (durumum.js) — index ve sonuç sayfası aynı script. */}
+  <script type="module" src="/s/durumum.js" is:inline></script>
+</Sayfa>
+
+<style>
+  .kahraman {
+    margin: 1rem 0 1.2rem;
+    padding: 1.3rem 1.5rem 1.1rem 1.9rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+    position: relative;
+  }
+  .kahraman::before {
+    content: "";
+    position: absolute;
+    left: 0.6rem; top: 1rem; bottom: 1rem;
+    width: 6px;
+    background: repeating-linear-gradient(180deg, rgba(79, 123, 120, 0.4) 0 1px, transparent 1px 7px);
+  }
+  .kh-e {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+  .kh-e2 { margin-top: 0.7rem; }
+  .kh-hukum { font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 500; margin: 0.3rem 0; line-height: 1.2; }
+  .kh-tarih { display: inline-flex; align-items: baseline; gap: 0.5rem; font-family: var(--serif); font-size: clamp(1.9rem, 4vw, 2.5rem); font-weight: 600; color: var(--su-700); }
+  .kh-tarih .kalan { font-family: var(--mono); font-size: 0.8rem; color: var(--kehribar-metin); }
+  .kh-not { margin-top: 0.6rem; color: var(--metin-soluk); font-size: 0.95rem; }
+  .kh-dayanak { margin-top: 0.9rem; padding-top: 0.7rem; border-top: 1px solid var(--cizgi); font-family: var(--mono); font-size: 0.66rem; color: var(--metin-soluk); line-height: 1.6; }
+
+  .risk { background: #F3ECE0; border-left: 3px solid var(--kehribar); padding: 1rem 1.2rem; margin: 1.2rem 0; }
+  .risk-b { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--kehribar-metin); }
+  .risk p { margin-top: 0.4rem; }
+  .apilex { color: var(--metin-soluk); font-size: 0.9em; }
+
+  .blok-baslik { font-family: var(--serif); font-weight: 500; font-size: 1.5rem; margin: 1.6rem 0 0.7rem; }
+  .adimlar { list-style: none; display: grid; gap: 0.6rem; margin: 0 0 1.2rem; padding: 0; }
+  .adim { display: flex; gap: 0.8rem; padding: 0.85rem 1rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); }
+  .adim-no { font-family: var(--mono); color: var(--su-700); font-weight: 600; }
+
+  .capraz { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
+  .capraz a { font-family: var(--mono); font-size: 0.8rem; color: var(--su-700); border: 1px solid var(--cizgi); padding: 0.4rem 0.7rem; text-decoration: none; }
+  .capraz a:hover { background: var(--zemin-kart); }
+
+  .iletisim { background: var(--su-700); color: #E9EBE7; padding: 1.2rem 1.4rem; margin-top: 1.4rem; }
+  .il-b { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; }
+  .il-a { color: #DFE3E2; margin: 0.4rem 0 0.7rem; font-size: 0.95rem; }
+  .il-l a { color: #E9EBE7; font-family: var(--mono); font-size: 0.85rem; }
+  .il-ayr { margin: 0 0.4rem; color: #9FB3AD; }
+  .il-not { color: #9FB3AD; font-family: var(--mono); font-size: 0.66rem; margin-top: 0.6rem; }
+</style>

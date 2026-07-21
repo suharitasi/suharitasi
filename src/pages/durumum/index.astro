@@ -1,0 +1,158 @@
+---
+// FAZ 7 AŞAMA 2 — /durumum/ sektör kapısı (giriş sayfası).
+// Persona kart ızgarası (persona.json'dan build-time) + istemci arama
+// (progressive: JS yoksa kartların tamamı listede) + "listede yoksanız" kartı.
+// SU-DİLİ mevcut değişkenler (palet ayrı iş). Çalışma anı JS: yalnız arama
+// (durumum.js, ≤2KB; kapalıyken tam liste görünür — GEO/curl etkilenmez).
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import { personalar } from '../../data/persona.js';
+import { EPOSTA } from '../../data/site';
+
+const ozCevap =
+  'Sektörünüzü seçin; yükümlülüğünüzü, son başvuru tarihini ve ilk adımları ' +
+  'tek ekranda görün. Yeşil su verimliliği belgesi yükümlüsü sektörler için ' +
+  'son başvuru 27 Aralık 2029. Listede yoksanız doğrudan ulaşın.';
+
+// Kısa kicker: ad'ın ilk anlamlı sözcüğü (mock deseni)
+const kicker = (ad) => ad.split(/[\s/(]/)[0].toLocaleUpperCase('tr-TR');
+
+// Arama eş-anlamlıları: kullanıcı "otel" arar ama persona "konaklamalı turizm".
+// Bunlar arama yardımcısıdır (içerik iddiası değil) — data-ara'ya eklenir.
+const aramaEk = {
+  'konaklamali-turizm-isletmesi-250-oda-ve-ustu': 'otel konaklama tesis',
+  'gida-icecek-ureticisi': 'fabrika içecek gıda su üretim',
+  'sanayi-osb-yatirimcisi': 'fabrika sanayi organize bölge tesis',
+  'sondaj-aritma-firmasi': 'kuyu sondaj arıtma',
+  'maden-isletmecisi': 'maden ocak',
+  'enerji-yatirimcisi-hes-jes': 'hes jes enerji santral jeotermal',
+  'ziraat-odasi-sulama-kooperatifi': 'tarım sulama çiftçi ziraat kooperatif',
+  'gayrimenkul-gelistirici': 'inşaat konut proje gayrimenkul arsa',
+  'site-avm-yonetimi': 'site avm apartman yönetim bina',
+  'universite-kampusu': 'üniversite kampüs okul',
+  'havalimani-isletmecisi': 'havalimanı havaalanı',
+};
+
+// GEO: sektör kapısı bir liste — ItemList şeması.
+const sema = [
+  {
+    '@type': 'ItemList',
+    name: 'Su hukukunda sektörler',
+    itemListElement: personalar.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: p.ad,
+      url: new URL(`/durumum/${p.slug}/`, Astro.site).href,
+    })),
+  },
+];
+---
+<Sayfa baslik="Su hukukunda durumunuz ne?" aciklama={ozCevap} sema={sema}>
+  <SayfaBasi etiket="Sektör kapısı" baslik="Su hukukunda durumunuz ne?" />
+  <OzCevap metin={ozCevap} />
+
+  <div class="ara">
+    <input id="durumum-ara" type="search" autocomplete="off"
+      placeholder="Sektör / faaliyet ara (ör. otel, sondaj, gıda…)"
+      aria-label="Sektör ara" aria-controls="durumum-izgara" />
+    <p class="ara-not">Arama build-time listeden istemci-tarafı; JavaScript
+      kapalıysa sektörlerin tamamı zaten aşağıda listelidir.</p>
+    <p id="durumum-bos" class="ara-bos" hidden>Eşleşen sektör yok — aşağıdan
+      <a href={`mailto:${EPOSTA}?subject=${encodeURIComponent('Sektör durumu')}`}>doğrudan iletin</a>.</p>
+  </div>
+
+  <div id="durumum-izgara" class="izgara">
+    {personalar.map((p) => (
+      <a class={`pk${p.oneri ? ' oneri' : ''}`} href={`/durumum/${p.slug}/`}
+         data-ara={`${p.ad} ${p.yukumluluk} ${aramaEk[p.slug] ?? ''}`.toLocaleLowerCase('tr-TR')}>
+        <span class="pk-k">{kicker(p.ad)}{p.oneri && ' · öneri'}</span>
+        <span class="pk-ad">{p.ad}</span>
+        <span class="pk-y">{p.yukumluluk}</span>
+        {p.sonTarihMetni && <span class="pk-t">Son başvuru {p.sonTarihMetni}</span>}
+      </a>
+    ))}
+    <div class="yok">
+      Listede yoksanız — durumunuzu
+      <a href={`mailto:${EPOSTA}?subject=${encodeURIComponent('Sektör durumu')}`}>doğrudan iletin</a>,
+      size özel değerlendirelim.
+    </div>
+  </div>
+
+  <script type="module" src="/s/durumum.js" is:inline></script>
+</Sayfa>
+
+<style>
+  .ara { margin: 0 0 1.6rem; max-width: 560px; }
+  .ara input {
+    width: 100%;
+    font: inherit;
+    padding: 0.75rem 0.95rem;
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+    background: var(--zemin-kart);
+    color: var(--metin);
+  }
+  .ara input:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+  .ara-not, .ara-bos {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--metin-soluk);
+    margin-top: 0.45rem;
+  }
+  .ara-bos a { color: var(--su-700); }
+
+  .izgara { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+
+  .pk {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1rem 1.1rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+    text-decoration: none;
+    color: var(--metin);
+    transition: transform 0.24s var(--e-suzul), background-color 0.24s var(--e-akinti);
+  }
+  .pk:hover { transform: translateY(-2px); background: #DFE3E2; }
+  .pk:focus-visible { outline: 2px solid var(--su-700); outline-offset: 3px; }
+  .pk.oneri { border-top-color: var(--kehribar); }
+
+  .pk-k {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    color: var(--metin-soluk);
+  }
+  .oneri .pk-k { color: var(--kehribar-metin); }
+  .pk-ad {
+    font-family: var(--serif);
+    font-size: 1.22rem;
+    font-weight: 600;
+    line-height: 1.12;
+  }
+  .pk-y { font-size: 0.82rem; color: var(--metin-soluk); line-height: 1.45; }
+  .pk-t {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--kehribar-metin);
+    margin-top: 0.15rem;
+  }
+
+  .yok {
+    grid-column: 1 / -1;
+    padding: 1.1rem;
+    border: 1px dashed var(--su-400);
+    text-align: center;
+    color: var(--metin-soluk);
+  }
+  .yok a { color: var(--su-700); font-weight: 600; }
+
+  @media (max-width: 640px) { .izgara { grid-template-columns: repeat(2, 1fr); } }
+  @media (prefers-reduced-motion: reduce) {
+    .pk { transition: none; }
+    .pk:hover { transform: none; }
+  }
+</style>
