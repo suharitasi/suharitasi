@@ -82,6 +82,25 @@ const vakalar = defineCollection({
     tarih: z.coerce.date(),
     // Şirket adı (KAP kayıtlı unvan).
     sirket: z.string(),
+    // Sayfa mimarisi kalıbı (DESIGN.md §17). 2 = reform kalıbı (kahraman
+    // stat kartları + zaman çizgisi sahnesi). Yalnız pilotlarda açılır;
+    // alan yoksa eski kalıp aynen render edilir.
+    kalip: z.literal(2).optional(),
+    // Kalıp 2 ilk ekranı: kahraman stat kartları. YALNIZ bu sayfanın
+    // doğrulanmış olgularından (olaylar/KAP); künyesiz sayı yayınlanmaz
+    // (DESIGN.md §5) — kaynak alanı zorunlu.
+    kahraman: z
+      .array(
+        z.object({
+          deger: z.string(),
+          birim: z.string().optional(),
+          etiket: z.string(),
+          kaynak: z.string(),
+        }),
+      )
+      .min(2)
+      .max(3)
+      .optional(),
     // "Cevap önce" öz cevap — YALNIZ doğrulanmış olgudan; iddia/yorum yok.
     ozCevap: z.string().min(120).max(340),
     // Olay akışı — her olay bir KAP bildirimine bağlı (künye zorunlu, url).

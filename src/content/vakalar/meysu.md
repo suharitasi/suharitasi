@@ -5,6 +5,21 @@ tarih: 2026-05-11
 sirket: "Meysu Gıda Sanayi ve Ticaret A.Ş."
 erisimTarihi: "20.07.2026"
 hukukiYol: taslak
+kalip: 2
+# Kahraman değerler YALNIZ aşağıdaki olay kayıtlarından (KAP 1604957);
+# yeni olgu üretilmez, künyesiz sayı yayınlanmaz.
+kahraman:
+  - deger: "3.395,33"
+    birim: "hektar"
+    etiket: "İşletme ruhsatlı saha alanı"
+    kaynak: "KAP bildirimi 1604957 · 11.05.2026"
+  - deger: "2056"
+    etiket: "Ruhsat bitiş yılı (05.03.2056)"
+    kaynak: "KAP bildirimi 1604957 · 11.05.2026"
+  - deger: "3"
+    birim: "bildirim"
+    etiket: "KAP olay kaydı (27.04 – 11.05.2026)"
+    kaynak: "KAP · İncesu Subaşı sahası"
 ozCevap: >
   Meysu Gıda, mineralli su kaynağını İncesu Subaşı doğal mineralli su sahasının
   işletme ruhsatını alarak güvenceye aldı. KAP bildirimlerine göre şirket, Nisan

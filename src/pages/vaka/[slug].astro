@@ -45,8 +45,106 @@ const sema = [
 // (c) Hukuki bölüm YALNIZ hukukiYol='yayin' ve gövde doluysa render edilir —
 // yarım/inşaat-halinde bölüm canlıda görünmez (brief C-2d).
 const hukukAcik = d.hukukiYol === 'yayin' && !!d.hukukiYolGovde;
+
+// ——— KALIP 2 (DESIGN.md §17, pilot): kahraman stat kartları + zaman
+// çizgisi sahnesi. İçerik KISALTILMAZ (Faz 0 B17: sorun boğulma değil
+// sahne eksikliği): aynı olgular görsel sahneye taşınır. Üçlü özet
+// tekilleşir: görünür tek özet OzCevap'tır (ozet meta/liste katmanında
+// yaşar); gövde paragrafı özet değil akışa giriş — aynen kalır.
+const kalip2 = d.kalip === 2;
+if (kalip2 && !d.kahraman)
+  throw new Error(`vaka "${giris.id}": kalip 2 için kahraman alanı zorunlu.`);
 ---
 <Sayfa baslik={d.baslik} aciklama={d.ozCevap} sema={sema} heroSlot="rehber-hero">
+{kalip2 ? (
+  <Fragment>
+    <div class="gk gk-baslik" style="--gk:0">
+      <SayfaBasi etiket="Vaka" baslik={d.baslik} tarih={d.tarih} yazarli />
+    </div>
+
+    {/* Kahraman stat kartları (§17c): sayı paragraftan çıkar, ilk ekrana
+        büyük değer olarak yerleşir. <4 veri noktası → grafik değil stat
+        kartı (dataviz eşiği). Künyesiz sayı yayınlanmaz (§5). */}
+    <section class="kahraman gk" style="--gk:1" aria-label="Vaka özet verisi">
+      <div class="kahraman-izgara">
+        {d.kahraman.map((k) => (
+          <div class="stat">
+            <span class="stat-etiket">{k.etiket}</span>
+            <span class="stat-deger">
+              {k.deger}{k.birim && <span class="stat-birim">{k.birim}</span>}
+            </span>
+            <span class="stat-kaynak">{k.kaynak}</span>
+          </div>
+        ))}
+      </div>
+      <p class="kahraman-kunye">
+        {d.sirket} · Erişim: {d.erisimTarihi} — yalnız kamuya açık KAP
+        bildirimlerindeki olgular.
+      </p>
+    </section>
+
+    <div class="gk" style="--gk:2">
+      <OzCevap metin={d.ozCevap} />
+    </div>
+
+    <div class="icerik gk" style="--gk:3">
+      <Content />
+    </div>
+
+    {/* Zaman çizgisi (§17d): olay akışı gerçek kronolojidir — tarih
+        düğümleri + şerit görsel sıra dilini hak eder; süs değil. Son düğüm
+        dolu: sürecin vardığı sonucu (ruhsat) işaretler. */}
+    {d.olaylar.length > 0 && (
+      <section class="zaman" aria-labelledby="akis-baslik">
+        <h2 id="akis-baslik">Olay akışı</h2>
+        <ol class="zaman-serit">
+          {d.olaylar.map((o, i) => (
+            <li class={`zaman-olay${i === d.olaylar.length - 1 ? ' zaman-son' : ''}`}>
+              <span class="zaman-dugum" aria-hidden="true"></span>
+              <time class="zaman-tarih" datetime={o.tarih.split('.').reverse().join('-')}>
+                {o.tarih}
+              </time>
+              <div class="zaman-kart">
+                <p class="zaman-metin">{o.olay}</p>
+                <p class="zaman-kunye">
+                  {o.tur && <span class="zaman-tur">{o.tur}</span>}
+                  <a href={o.url} target="_blank" rel="noopener">
+                    KAP bildirimi{o.bildirim ? ` · ${o.bildirim}` : ''}
+                  </a>
+                </p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    )}
+
+    {hukukAcik && (
+      <section class="vaka-hukuk" aria-labelledby="hukuk-baslik">
+        <h2 id="hukuk-baslik">Bu yol nasıl işler</h2>
+        <div class="vaka-hukuk__govde" set:html={d.hukukiYolGovde} />
+      </section>
+    )}
+
+    <section class="vaka-kaynak" aria-labelledby="kaynak-baslik">
+      <h2 id="kaynak-baslik">Kaynaklar</h2>
+      <ul>
+        {d.kaynaklar.map((k) => (
+          <li>
+            <a href={k.url} target="_blank" rel="noopener">{k.ad}</a>
+          </li>
+        ))}
+      </ul>
+      <p class="vaka-kaynak__erisim">
+        Erişim tarihi: {d.erisimTarihi}. Bu sayfa yalnız kamuya açık KAP
+        bildirimlerindeki olgulara dayanır.
+      </p>
+    </section>
+
+    <YazarKutusu />
+  </Fragment>
+) : (
+  <Fragment>
   <SayfaBasi etiket="Vaka" baslik={d.baslik} ozet={d.ozet} tarih={d.tarih} yazarli />
 
   <OzCevap metin={d.ozCevap} />
@@ -100,9 +198,210 @@ const hukukAcik = d.hukukiYol === 'yayin' && !!d.hukukiYolGovde;
   </section>
 
   <YazarKutusu />
+  </Fragment>
+)}
 </Sayfa>
 
 <style>
+  /* ——— Giriş koreografisi (transitions-dev fadeUp uyarlaması; rehber
+     kalıbıyla aynı sözlük — yayılım fazında tekilleştirilecek) ——— */
+  @media (prefers-reduced-motion: no-preference) {
+    .gk {
+      animation: gk-fadeup 480ms var(--e-suzul) both;
+      animation-delay: calc(var(--gk) * 100ms);
+    }
+
+    /* Başlık bloğu LCP öğesidir: gizlenmez, yalnız süzülür. */
+    .gk-baslik { animation-name: gk-yuksel; }
+  }
+
+  @keyframes gk-fadeup {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  @keyframes gk-yuksel {
+    from { transform: translateY(14px); }
+    to { transform: none; }
+  }
+
+  @media print {
+    .gk { animation: none !important; }
+  }
+
+  /* ——— Kahraman stat bandı: veri bandı dili (DESIGN.md §5) — kot cetveli
+     + DERİN hairline; HavzaKahraman ile aynı aile ——— */
+  .kahraman {
+    margin: 0 0 1.6rem;
+    padding: 1.3rem 1.5rem 1.1rem 1.9rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+    position: relative;
+  }
+
+  .kahraman::before {
+    content: "";
+    position: absolute;
+    left: 0.6rem;
+    top: 1rem;
+    bottom: 1rem;
+    width: 6px;
+    background:
+      repeating-linear-gradient(180deg,
+        rgba(79, 123, 120, 0.4) 0 1px, transparent 1px 7px),
+      linear-gradient(90deg, rgba(79, 123, 120, 0.4) 0 1px, transparent 1px);
+  }
+
+  .kahraman-izgara {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.1rem 2rem;
+    align-items: start;
+  }
+
+  .stat-etiket {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    margin-bottom: 0.35rem;
+  }
+
+  /* Büyük değer: sayfanın kahramanı — Cormorant 500 (§5 bant seçimi) */
+  .stat-deger {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-family: var(--serif);
+    font-size: clamp(2.1rem, 4.5vw, 2.9rem);
+    font-weight: 500;
+    line-height: 0.95;
+    font-variant-numeric: tabular-nums;
+    color: var(--metin);
+  }
+
+  .stat-birim {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: var(--metin-soluk);
+    letter-spacing: 0.02em;
+  }
+
+  .stat-kaynak {
+    display: block;
+    margin-top: 0.45rem;
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    line-height: 1.5;
+    color: var(--metin-soluk);
+  }
+
+  .kahraman-kunye {
+    margin-top: 0.9rem;
+    padding-top: 0.7rem;
+    border-top: 1px solid var(--cizgi);
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    line-height: 1.6;
+    color: var(--metin-soluk);
+  }
+
+  /* ——— Zaman çizgisi: dikey şerit + tarih düğümleri ——— */
+  .zaman { margin-top: clamp(2.4rem, 6vh, 3.6rem); }
+
+  .zaman h2 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 1.4rem;
+  }
+
+  .zaman-serit {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+
+  /* Şerit: su-degrade dikey hat — iki ucu erir (su-hatti ailesi) */
+  .zaman-serit::before {
+    content: "";
+    position: absolute;
+    left: 0.55rem;
+    top: 0.4rem;
+    bottom: 0.4rem;
+    width: 2px;
+    background: linear-gradient(180deg,
+      rgba(79, 123, 120, 0) 0%,
+      var(--su-400) 8%,
+      var(--su-700) 88%,
+      rgba(23, 94, 86, 0) 100%);
+  }
+
+  .zaman-olay {
+    position: relative;
+    display: grid;
+    grid-template-columns: 7.4rem 1fr;
+    gap: 0.2rem 1.3rem;
+    padding: 0 0 1.5rem 2.2rem;
+  }
+
+  .zaman-olay:last-child { padding-bottom: 0.2rem; }
+
+  /* Tarih düğümü: kot işareti — içi boş halka; son düğüm DOLU (sonuç) */
+  .zaman-dugum {
+    position: absolute;
+    left: 0.55rem;
+    top: 0.32rem;
+    transform: translateX(-50%);
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--zemin);
+    border: 2px solid var(--su-700);
+    box-shadow: 0 0 0 3px var(--zemin);
+  }
+
+  .zaman-son .zaman-dugum { background: var(--su-700); }
+
+  .zaman-tarih {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--su-700);
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.15rem;
+  }
+
+  .zaman-kart {
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-left: 2px solid var(--su-400);
+    padding: 0.85rem 1.1rem;
+  }
+
+  .zaman-son .zaman-kart { border-left-color: var(--su-700); }
+
+  .zaman-metin { margin: 0; line-height: 1.6; font-size: 0.97rem; }
+
+  .zaman-kunye {
+    margin: 0.55rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.9rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+  }
+
+  .zaman-tur { color: var(--metin-soluk); letter-spacing: 0.04em; }
+  .zaman-kunye a { color: var(--su-700); }
+
+  /* ——— Eski kalıp + ortak alt bölümler ——— */
   .vaka-akis, .vaka-hukuk, .vaka-kaynak { margin-top: clamp(2.4rem, 6vh, 3.6rem); }
 
   .vaka-akis h2, .vaka-hukuk h2, .vaka-kaynak h2 {
@@ -153,6 +452,14 @@ const hukukAcik = d.hukukiYol === 'yayin' && !!d.hukukiYolGovde;
     font-size: 0.72rem;
     color: var(--metin-soluk);
     line-height: 1.6;
+  }
+
+  /* Mobil-öncelik (§17e): stat kartları tek kolon; zaman çizgisinde tarih
+     kartın üstüne alınır, şerit ve düğümler korunur */
+  @media (max-width: 700px) {
+    .kahraman { padding: 1.1rem 1.1rem 1rem 1.6rem; }
+    .kahraman-izgara { grid-template-columns: 1fr; gap: 1rem; }
+    .zaman-olay { grid-template-columns: 1fr; gap: 0.25rem; }
   }
 
   @media (max-width: 560px) {

@@ -232,3 +232,21 @@
     17→7 satır. Lighthouse 94/100/100/100 (pilot dışı referans 96).
     GEO: 280-cevap + Article JSON-LD + madde/il/adım tam metinleri
     curl'la JS'siz DOM'da doğrulandı. Kanıt: cikti/denetim/faz2/faz2b-*.
+41. SUNUM REFORMU FAZ 2c — VAKA KALIBI PİLOTU (/vaka/meysu/) —
+    KULLANICI ONAYI BEKLİYOR (2026-07-21): yol teyidi — sayfa
+    /vaka/meysu/ (brief'teki "meysu-su-guvensi" değil; slug dosya
+    adından). B17 gereği içerik KISALTILMADI (görünür kelime 226→257):
+    sahne eklendi. Kahraman stat kartları ilk ekranda (3.395,33 ha /
+    2056 / 3 bildirim — frontmatter kahraman alanı, her değer KAP
+    1604957 künyeli; <4 nokta → grafik değil stat kartı, dataviz
+    eşiği). Olay akışı → dikey zaman çizgisi (su-degrade şerit + tarih
+    düğümleri; son düğüm dolu = sonuç). Üçlü özet tekilleşti: görünür
+    tek özet öz-cevap (ozet meta/listede; gövde paragrafı özet değil,
+    akış girişi — aynen durur). Giriş koreografisi 2b ile aynı sözlük.
+    Metrikler: ilk ekran görsel öğe 0→4 (masaüstü); kesintisiz metin
+    15→10; mobil 3,9→4,4 ekran (sahne eklendi, içerik korundu).
+    Lighthouse 100/100/100/100. GEO: öz-cevap + Article JSON-LD +
+    olay/kahraman tam metinleri curl'la JS'siz doğrulandı. Pilot
+    izolasyonu: bit düzeyinde tek değişen sayfa /vaka/meysu/. Kanıt:
+    cikti/denetim/faz2/faz2c-*. Not: kalıpların koreografi/katman CSS'i
+    yayılım fazında tekilleştirilecek (şimdilik pilot-başına scoped).
