@@ -10,7 +10,7 @@ cozer:
   - "Başvuru nereye ve nasıl yapılır: DSİ bölge müdürlüğü, bir aylık cevap süresi, harç muafiyeti"
   - "Kritik şartlar: ölçüm sistemi zorunluluğu ve belgesiz kuyunun hukuki sonuçları"
 ozCevap: "Su temini için kuyu açmadan önce DSİ'den belge şart (167 s.K. m.8). Üç belge: arama, kullanma, ıslah-tadil. Başvuru ilin bağlı olduğu DSİ Bölge Müdürlüğü'ne yapılır, cevap süresi bir ay, belgeler harçtan muaftır (m.12). Belgesiz açım yasak; kullanma belgesi için ölçüm sistemi zorunlu."
-ilgili: [ruhsatsiz-kuyu-cezalari, kuyu-belgesi-iptal-davalari, su-tahsisi-oncelik-sirasi]
+ilgili: [kuyu-tasima, ruhsatsiz-kuyu-cezalari, kuyu-belgesi-iptal-davalari, su-tahsisi-oncelik-sirasi]
 ---
 
 Türkiye'de yeraltı suyu, kamu yararına ait sulardandır; arazinize sahip

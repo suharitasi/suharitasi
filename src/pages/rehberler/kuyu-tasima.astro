@@ -1,0 +1,621 @@
+---
+// REHBER — kuyu taşıma. kuyu-ruhsati kalıp-2 emsalinin görsel dilini kullanan
+// ÖZEL sayfa (5-durum karar akışı, 7-adım rayı, katmanlı karşılaştırma/evrak
+// kalıp-2 iskeletine oturmadığından ayrı render edilir; [slug].astro'dan hariç).
+// İçerik KAYNAK metinden (icerik-taslak/kuyu-tasima-kaynak.md, Av. Serdar
+// Arslan) yerleştirilmiştir; yeni hüküm eklenmedi, yalnız yeniden biçimlendi.
+// İçerik KISALTILMADI (B17): tüm tablo hücreleri ve listeler DOM'da tam.
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import Katman from '../../components/Katman.astro';
+import YazarKutusu from '../../components/YazarKutusu.astro';
+import IlgiliRehberler from '../../components/IlgiliRehberler.astro';
+import { getEntry } from 'astro:content';
+import { YAZAR, OG_GORSEL, EPOSTA } from '../../data/site';
+
+const giris = await getEntry('rehberler', 'kuyu-tasima');
+if (!giris) throw new Error('kuyu-tasima koleksiyon girişi yok — sayfa render edilemez.');
+const d = giris.data;
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/rehberler/kuyu-tasima/', Astro.site).href;
+const tarihISO = d.tarih.toISOString();
+
+// ——— İÇERİK (kaynaktan birebir) ———
+
+// §II Kavramsal ayrım — dört hâl (sebep listeleri korunur)
+const haller = [
+  {
+    ad: 'Kuyu kuruması',
+    metin: 'Kuyunun kuruması; yeraltı su seviyesinin düşmesi, akiferin besleniminin azalması, mevsimsel ya da kalıcı hidrojeolojik değişiklikler veya DSİ’nin emniyetli verim değerlendirmesindeki değişikliklerden kaynaklanabilir. Sorun çoğu kez kuyunun fiziksel yapısından değil, suya erişimin artık sürdürülememesinden doğar.',
+    etiket: 'Öncelikli yaklaşım',
+    liste: [
+      'Kuyunun temizlenmesi',
+      'Filtre ve muhafaza borularının kontrolü',
+      'Pompa ve tesisatın gözden geçirilmesi',
+      'Kuyu içi tortu birikiminin giderilmesi',
+      'Gerekirse kuyu derinliği ve çekim rejiminin DSİ’ye sunulması',
+    ],
+    sonuc: 'Sorun bu müdahalelerle çözülebiliyorsa ıslah-tadil belgesi en uygun araçtır. Kuruma kalıcıysa ve yeni nokta gerekiyorsa çoğu durumda yeni arama belgesi ve ardından yeni kullanma belgesi gerekir.',
+  },
+  {
+    ad: 'Kuyu çökmesi',
+    metin: 'Kuyu çökmesi; kuyu gövdesinin, muhafazasının, sondaj açıklığının veya çevre zeminin çökmesi nedeniyle kuyunun kullanılamaz hale gelmesidir.',
+    etiket: 'En muhtemel sebepler',
+    liste: [
+      'Doğal zemin oturması',
+      'Hatalı sondaj uygulaması',
+      'Deprem',
+      'Heyelan',
+      'Toprak kayması',
+      'Yeraltı boşalması',
+      'Yapısal zayıflık',
+    ],
+    sonuc: 'En önemli ayrım, çökmenin onarımla giderilip giderilemeyeceğidir. Çökme kısmi ise ve teknik onarımla kuyu eski yerinde işletilebiliyorsa ıslah-tadil tercih edilebilir. Çökme tam ise ve eski kuyu terk edilmek zorundaysa yeni kuyu için ayrı izin süreci gerekir.',
+  },
+  {
+    ad: 'Kirlilik',
+    metin: 'Kuyu kirliliği, suyun fiziksel, kimyasal veya mikrobiyolojik bakımdan kullanılamaz hale gelmesidir.',
+    etiket: 'En muhtemel sebepler',
+    liste: [
+      'Kanalizasyon sızıntısı',
+      'Tarımsal gübre ve pestisit bulaşması',
+      'Sanayi atığı',
+      'Yüzey suyu infiltrasyonu',
+      'Tuzlanma',
+      'Çevresel kirlenme',
+    ],
+    sonuc: 'Aynı kuyunun yeniden kullanımı çoğu zaman yalnız teknik değil, kamu sağlığı yönünden de değerlendirilir: mevcut kuyunun kullanımının durdurulması, çevre ve sağlık idaresine bildirim, gerektiğinde yeni lokasyon belirlenmesi ve yeni başvuru süreci gündeme gelir.',
+  },
+  {
+    ad: 'Taşınma',
+    metin: 'Kuyu taşınması, halk arasında mevcut kuyunun “aynı ruhsatla başka yere alınması” şeklinde anlaşılır. Hukuken bu, çoğu durumda otomatik bir hak değildir.',
+    etiket: 'Yeni kuyu niteliği doğuran değişiklikler',
+    liste: [
+      'Yeni sondaj',
+      'Yeni koordinat',
+      'Farklı hidrojeolojik birim',
+      'Farklı derinlik',
+      'Farklı çekim rejimi',
+    ],
+    sonuc: '“Taşınma” ile “ıslah-tadil” aynı şey değildir. Islah-tadil, mevcut kuyu üzerinde teknik müdahaledir; taşınma ise çoğu kez yeni izin gerektirir.',
+  },
+];
+
+// §III 5-durum karar tablosu → karar kartları (5 kolon; hücreler birebir)
+const kararKolon = { nitelik: 'Olayın niteliği', yol: 'Uygun hukuki yol', talep: 'DSİ’ye talep', sonuc: 'Sonuç' };
+const kararlar = [
+  { durum: 'Kuruma', nitelik: 'Su seviyesi düşmüş, kuyu su vermiyor', yol: 'Önce teknik rehabilitasyon, sonra gerekirse yeni izin', talep: 'Islah-tadil veya yeni arama/kullanma', sonuc: 'Çözüm ihtimaline göre değişir' },
+  { durum: 'Çökme', nitelik: 'Kuyu gövdesi/zemin çökmüş', yol: 'Kısmi ise ıslah-tadil, tam ise yeni izin', talep: 'Islah-tadil veya yeni arama/kullanma', sonuc: 'Teknik imkâna bağlıdır' },
+  { durum: 'Kirlilik', nitelik: 'Su kalitesi bozulmuş', yol: 'Sağlık ve çevre incelemesi, gerekirse yeni kuyu', talep: 'Bildirim + yeni izin', sonuc: 'Eski kuyu kapatılabilir' },
+  { durum: 'Taşınma', nitelik: 'Kuyu başka yere alınacak', yol: 'Çoğu halde yeni kuyu açma', talep: 'Yeni arama + yeni kullanma', sonuc: 'Aynı ruhsat otomatik taşınmaz', vurgu: true },
+  { durum: 'Küçük teknik revizyon', nitelik: 'Kuyu aynı yerde korunuyor', yol: 'Islah ve tadil', talep: 'Islah-tadil', sonuc: 'Belge ile mümkündür' },
+];
+
+// §V 7-adım başvuru şeması → numaralı adım kartları (5 kolon; hücreler birebir)
+const adimEtiket = { dayanak: 'Dayanak', belge: 'DSİ’ye sunulacak belge', cikti: 'Çıktı' };
+const adimlar = [
+  { asama: 'Kuyu sorununu belirleme', dayanak: 'Teknik inceleme ihtiyacı', belge: 'Teknik rapor', cikti: 'Sorunun türü tespit edilir' },
+  { asama: 'Eski kuyuyu ayırma', dayanak: 'Fiili terk / kapatma ihtimali', belge: 'Tutanak / fotoğraf / rapor', cikti: 'Eski kuyu statüsü netleşir' },
+  { asama: 'Yeni yer seçimi', dayanak: 'Yeni sondaj ihtiyacı', belge: 'Kuyu yeri krokisi', cikti: 'Yeni koordinat belirlenir' },
+  { asama: 'Arama belgesi başvurusu', dayanak: '167 m.8, Tüzük m.13', belge: 'Dilekçe + proje + ekler', cikti: 'Arama izni süreci başlar' },
+  { asama: 'Sondaj ve teknik uygulama', dayanak: 'DSİ onayı sonrası', belge: 'Sondaj raporu', cikti: 'Kuyu açılır' },
+  { asama: 'Ölçüm sistemi kurulması', dayanak: '167 m.10', belge: 'Sayaç / ölçüm belgesi', cikti: 'Kullanma şartı oluşur' },
+  { asama: 'Kullanma belgesi başvurusu', dayanak: '167 m.10, Tüzük m.13', belge: 'Dilekçe + ölçüm sistemi', cikti: 'Kullanma belgesi alınır' },
+];
+
+// §IX dikkat edilecek hususlar
+const dikkat = [
+  'Islah-tadil talebinde, mevcut kuyunun kurtarılabilir olduğu anlatılmalıdır.',
+  'Yeni arama başvurusunda, eski kuyunun neden kullanılamadığı teknik olarak açıklanmalıdır.',
+  'Kuyu taşınması ifadesi yerine, hukuken daha doğru biçimde “mevcut kuyunun kullanılamaz hale gelmesi nedeniyle yeni sondaj yeri talebi” veya “mevcut kuyu üzerinde ıslah ve tadil işlemi yapılması talebi” denilmelidir.',
+  'Kuyu kirliliğinde mutlaka laboratuvar analizleri eklenmelidir.',
+  'Kuyu çökmesinde fotoğraf, video, mühendis raporu çok önemlidir.',
+  'Kuruma halinde, debideki düşüşü gösteren geçmiş ve güncel ölçümler kıymetlidir.',
+  'Başvuru yazısı, DSİ’ye teknik bir dosya mantığıyla sunulmalıdır.',
+  'Eğer kuyu taşınacaksa, eski kuyunun akıbeti ayrıca belirtilmelidir.',
+  'Komşu parsele yakın yeni kuyu planlanıyorsa, komşuluk etkisi ayrıca açıklanmalıdır.',
+  'Yeni kullanma belgesi için ölçüm sistemi kurulmadan başvuru eksik kalır.',
+];
+
+// §X kısa hukuki sonuç
+const sonucList = [
+  'Kuruyan kuyu için önce ıslah-tadil, olmazsa yeni arama/kullanma başvurusu gerekir.',
+  'Çöken kuyu için çökme giderilebilir ise ıslah-tadil; giderilemez ise yeni kuyu süreci gerekir.',
+  'Kirlilik halinde sağlık ve çevre boyutu devreye girer; çoğu zaman yeni kuyu ve yeni izin gerekir.',
+  'Kuyu taşınması, kural olarak otomatik bir hak değildir; çoğu kez yeni sondaj ve yeni izin anlamına gelir.',
+  'Islah ve tadil belgesi, mevcut kuyu üzerinde teknik müdahale için kullanılır; yeni lokasyona taşınma belgesi değildir.',
+  'Yeni arama belgesi + kullanma belgesi, yeni noktada kuyu açılacaksa çoğu durumda zorunludur.',
+];
+
+// §I madde metinleri (birebir) — katmanda
+const maddeler = [
+  { baslik: '167 sayılı Yeraltı Suları Hakkında Kanun, Madde 8', metin: 'Aşağıdaki (a) ve (b) fıkralarında beyan edilen kazıların yapılması veya kuyuların açılması için Devlet Su İşleri Umum Müdürlüğünden belge alınması mecburidir: a) Su temini maksadıyla, kesitleri ne olursa olsun, tabii zemin üstünden itibaren derinliği Devlet Su İşleri Genel Müdürlüğü tarafından tesbit ve ilgili bakanlığın onayından sonra ilan olunan haddi aşan her türlü çukur, sondaj ve kuyular (el ile açılan kuyular hariç), b) Su temini maksadiyle, boyları ve kesitleri ne olursa olsun, ufki veya meyilli her türlü galeriler ve tüneller. Bu kazıların yapılması ve kuyuların açılması su temini maksadını gütmemesi halinde, bunlar hakkında belge aranmamakla beraber, Devlet Su İşleri Umum Müdürlüğünün talebi üzerine bilgi verilmesi mecburidir.' },
+  { baslik: 'Madde 10', metin: 'Arama belgesine dayanarak arazisinde yeraltı suyu bulunan kimse, bu suyu kullanabilir. Ancak, bir ay içinde Devlet Su İşleri Umum Müdürlüğüne müracaat ederek kullanma belgesi alır. Kuyu, galeri, tünel ve benzerlerine ölçüm sistemleri kurulmadan kullanma belgesi verilemez.' },
+  { baslik: 'Madde 11', metin: 'Kullanma belgesini haiz bir kimse arazisindeki kuyuların veya yeraltı suyu menbalarının verimini artırmak veya başka bir maksadı sağlamak gibi mülahazalarla bunlar üzerinde kendiliğinden her hangi bir müdahalede bulunamaz veya kuyuların kullanma şeklini değiştiremez. Ancak, Devlet Su İşleri Umum Müdürlüğünden “ıslah ve tadil belgesi” almak suretiyle, böyle bir ameliyeye girişebilir.' },
+  { baslik: 'Madde 12', metin: 'Dokuz, on ve onbirinci maddelerde sözü geçen belgeler hiçbir ücrete, damga resmine, harca ve sair rüsumata tabi değildir.' },
+  { baslik: 'Madde 13', metin: 'Bu maddelerde sözü geçen belgeler için müracaat, Devlet Su İşleri teşkilatına yapılır. DSİ teşkilatı bulunmıyan yerlerde en yakın mülkiye amiri vasıtası ile başvurulur. Müracaat sahibine bir ay içinde belge verilmek veya reddedilmek sureti ile cevap verilir.' },
+  { baslik: 'Madde 18 (Değişik: 23/1/2008-5728/270 md.)', metin: 'Bu Kanundaki vecibeleri yerine getirmeyenler bu hareketlerinden dolayı, diğer kanunlara göre suç oluşturmadığı takdirde, bu madde hükmüne göre cezalandırılırlar. a) Belge almadan 8 inci maddedeki işleri yapanlar ile kasten yanlış bilgi verenler bin Türk Lirasından beşbin Türk Lirasına kadar idarî para cezası ile cezalandırılır. Ceza alınmakla beraber, kuyunun açılıp işletilmesinde Devlet Su İşleri Genel Müdürlüğünce bir mahzur görülmezse, sahibine gerekli belge verilir. Aksi hâlde, kuyu kapatılır ve masrafı kuyuyu açtırandan alınır. b) 10 ve 11 inci madde hükümlerine aykırı hareket edenlerle arama, kullanma, ıslah ve tadil faaliyetleri sırasında konulan şartlara riayet etmeyenler, müracaat formlarında istenen bilgileri vermeyenler, 8 inci maddenin son fıkrasındaki mecburiyete riayet etmeyenler beşyüz Türk Lirasından ikibin Türk Lirasına kadar idarî para cezası ile cezalandırılır. Ayrıca, kuyu kapatılarak masrafı açtırandan alınır. Bu Kanunda yazılı olan idarî para cezaları mahallî mülkî amir tarafından verilir.' },
+  { baslik: 'Yeraltı Suları Tüzüğü, Madde 2', metin: 'Yeraltı suyu işletme sahalarının sınırları ve karakteristikleri Devlet Su İşleri (DSİ) Genel Müdürlüğünce tayin ve tesbit edildikçe, gerekli Bakanlar Kurulu Kararı alınmak üzere keyfiyet Bayındırlık Bakanlığına intikal ettirilir. Çıkacak karara göre “Yeraltı Suyu İşletme Sahaları” DSİ tarafından Resmi Gazete ile ve ayrıca mahallerinde çıkan gazetelerde, gazete çıkmayan yerlerde de mütat vasıtalarla ilan olunur.' },
+  { baslik: 'Tüzük, Madde 4', metin: 'a) Belge alınarak açılacak kuyu derinlikleri DSİ tarafından bölge bölge tesbit edilerek Bakanlar Kurulunun tasvibinden sonra ilan olunur. b) Yeraltı suyu araştırmaları ilerledikçe yeraltı suyu deposunun korunması bakımından zaruret hasıl olursa, (a) fıkrasında tesbit ve ilan olunan derinlikler yer yer değiştirilir ve Bakanlar Kurulunun tasvibi alınmak suretiyle yeni kuyu derinlikleri ilan olunur.' },
+  { baslik: 'Tüzük, Madde 11', metin: 'DSİ, yeraltı suları rejimini murakabe eder. Ayrıca, kuyuların kullanma şartlarına riayet edilip edilmediğini kontrol eder; uygun bulunmayan haller zabıtla tesbit olunur.' },
+  { baslik: 'Tüzük, Madde 13', metin: 'Arama, kullanma ve ıslah-tadil belgesi almak isteyen kimse, DSİ teşkilatına müracaat eder. DSİ teşkilatı bulunmayan yerlerde en yakın mülkiye amiri vasıtasiyle müracaat yapılır. Müracaat sahibine bir ay içinde belge verilmesi veya reddedilmesi gerekir.' },
+  { baslik: 'Tüzük, Madde 15', metin: 'Yeraltı suyundan faydalı ihtiyaç miktarı hesap edilirken içme, temizlik, belediye hizmetleri, hayvan sulaması, zirai sulama, maden ve sanayi suyu, sportif ve benzeri tesislerin faydalı kullanış miktarı gözönünde tutulur.' },
+  { baslik: 'Tüzük, Madde 16', metin: 'Komşu arazilerdeki yeraltı suyundan yararlanma, zararların tazmini ve masraflara katılma esaslarına tabidir.' },
+];
+
+// §VI karşılaştırmalı tablo (6 kolon × 3 satır) — katmanda
+const karsBas = ['Başlık', 'Tanım', 'En muhtemel sebep', 'DSİ’ye sunulacak talep', 'Uygun hukuki yol', 'Risk'];
+const karsSatir = [
+  ['Kuruma', 'Kuyu su vermiyor veya debi çok düşmüş', 'Su seviyesi düşüşü, akifer zayıflaması, emniyetli verim azalması', 'Islah-tadil veya yeni arama', 'Önce rehabilitasyon, olmazsa yeni izin', 'Yanlış işlem yeni kuyu sayılabilir'],
+  ['Çökme', 'Kuyu yapısı veya zemin çökmüş', 'Zemin oturması, afet, hatalı yapım', 'Islah-tadil veya yeni arama', 'Kısmi ise tadil, tam ise yeni izin', 'Teknik risk yüksek'],
+  ['Kirlilik', 'Su kalitesi bozulmuş', 'Kanalizasyon, tarım kimyasalları, sanayi, yüzey sızıntısı', 'Bildirim + yeni değerlendirme', 'Sağlık ve çevre incelemesi', 'Kullanım tamamen durabilir'],
+];
+
+// §VII evrak — hukuki + teknik liste (kaynaktaki başlık+açıklama çiftleri korunur)
+const evrakHukuki = [
+  ['Başvuru dilekçesi', 'Islah-tadil talebi veya yeni arama/kullanma talebi açıkça yazılmalıdır.'],
+  ['Kimlik / tüzel kişi belgeleri', 'Gerçek kişi ise kimlik bilgisi; tüzel kişi ise ticaret sicil gazetesi, imza sirküleri, vergi kaydı.'],
+  ['Tapu kaydı veya kullanım hakkını gösteren belge', 'Taşınmaz üzerindeki hak sıfatını gösterir.'],
+  ['Mevcut kuyuya ilişkin belge örnekleri', 'Arama belgesi, kullanma belgesi, varsa ıslah-tadil evrakı.'],
+  ['Yetki belgesi / vekâletname', 'Başvuruyu vekil yapıyorsa gerekir.'],
+  ['Eski kuyunun durumu hakkında açıklama yazısı', 'Kuruma, çökme, kirlilik veya terk nedeni açıklanmalıdır.'],
+  ['Varsa idari yazışmalar', 'DSİ, belediye, il özel idaresi, sağlık birimi veya diğer idarelerle yapılan yazışmalar.'],
+  ['Tespit tutanağı', 'Kuyu çökmesi, kuruması veya kirliliği resmi olarak tespit edilmişse eklenmelidir.'],
+];
+const evrakTeknik = [
+  ['Kuyu yeri krokisi / koordinat bilgisi', 'Yeni yer için zorunlu önemdedir.'],
+  ['Jeolojik / hidrojeolojik ön rapor', 'Zeminin ve su potansiyelinin değerlendirilmesi için.'],
+  ['Sondaj teknik raporu', 'Kuyunun açılışına, çapına, derinliğine, muhafaza borusuna ilişkin bilgiler.'],
+  ['Debi testi / pompa testi raporu', 'Yeni veya mevcut kuyunun verimini gösterir.'],
+  ['Su analiz raporu', 'Kirlilik iddiası varsa mutlaka eklenmelidir.'],
+  ['Fotoğraf ve video kayıtları', 'Kuyu çökmesi, ağız deformasyonu, suyun çekilmemesi, kirlenme belirtisi gibi durumlar için.'],
+  ['Mühendislik raporu', 'Jeoloji, hidrojeoloji veya maden mühendisi raporu.'],
+  ['Tesisat ve ölçüm sistemi bilgileri', 'Sayaç, ölçüm sistemi, pompa, boru hattı, enerji altyapısı.'],
+  ['Komşu etkisi değerlendirmesi', 'Yeni kuyu komşu parsellere zarar verebilir mi sorusuna cevap verir.'],
+  ['Terk ve kapatma önerisi', 'Eski kuyu tamamen kullanılamazsa kapatma planı.'],
+];
+
+// §VII evrak sistematik tablo (4 kolon × 11 satır) — katmanda
+const evrakBas = ['Evrak grubu', 'Belge', 'Neden gerekli', 'Hangi başvuruda zorunlu'];
+const evrakSatir = [
+  ['Hukuki', 'Başvuru dilekçesi', 'Talebin çerçevesini kurar', 'Hepsinde'],
+  ['Hukuki', 'Tapu / kullanım belgesi', 'Hak sahipliğini gösterir', 'Hepsinde'],
+  ['Hukuki', 'Mevcut ruhsat belgeleri', 'Mevcut statüyü gösterir', 'Islah-tadil ve yeni başvuru'],
+  ['Hukuki', 'Vekâletname', 'Temsil yetkisi', 'Vekil başvurularında'],
+  ['Teknik', 'Kuyu krokisi / koordinat', 'Yer belirlenir', 'Yeni arama / yeni kuyu'],
+  ['Teknik', 'Hidrojeolojik rapor', 'Su potansiyeli incelenir', 'Hepsinde güçlü delil'],
+  ['Teknik', 'Debi testi', 'Verim gösterir', 'Kullanma ve tadilde'],
+  ['Teknik', 'Su analiz raporu', 'Kirlilik tespiti', 'Kirlilik halinde'],
+  ['Teknik', 'Foto/video', 'Fiili durumu gösterir', 'Hepsinde yardımcı'],
+  ['Teknik', 'Mühendis raporu', 'Bilimsel destek sağlar', 'Hepsinde'],
+  ['Teknik', 'Sayaç / ölçüm sistemi bilgisi', 'Kullanma belgesinin şartı', 'Yeni kullanma belgesi'],
+];
+
+// §VIII tam akış tablo (4 kolon × 8 satır) — katmanda
+const akisBas = ['Sıra', 'İşlem', 'Amaç', 'Sonuç'];
+const akisSatir = [
+  ['1', 'Mevcut kuyunun durumunu tespit et', 'Kuruma / çökme / kirlilik / teknik bozulma ayrımı', 'Sorun türü netleşir'],
+  ['2', 'Teknik rapor al', 'Sorunun niteliğini belgele', 'DSİ’ye sunulabilir delil oluşur'],
+  ['3', 'Eski kuyuyu ayır / terk et', 'Eski kuyunun işletmeye uygun olmadığını göster', 'Yeni süreç başlar'],
+  ['4', 'Islah-tadil mümkün mü bak', 'Aynı kuyu üzerinde müdahale imkânı', 'Uygunsa yeni kuyu gerekmez'],
+  ['5', 'Uygun değilse yeni arama başvurusu yap', 'Yeni yer için izin al', 'Yeni sondaj yolu açılır'],
+  ['6', 'Yeni kuyu aç', 'DSİ onayına uygun şekilde', 'Fiziki kuyu oluşur'],
+  ['7', 'Ölçüm sistemi kur', 'Kullanma belgesi için şart', 'Belgeye geçiş sağlanır'],
+  ['8', 'Kullanma belgesi al', 'Yeraltı suyunu hukuka uygun kullan', 'Nihai işletme başlar'],
+];
+
+// İçindekiler (görünür bölümler + katmanlar "EK")
+const icindekiler = [
+  { no: '01', ad: 'Kavramsal ayrım: kuruma, çökme, kirlilik, taşınma', href: '#kavramsal-ayrim' },
+  { no: '02', ad: 'Hangi hâlde hangi hukuki yol', href: '#karar' },
+  { no: '03', ad: 'Yeni başvuru şeması: yedi adım', href: '#adimlar' },
+  { no: '04', ad: 'İdari para cezası (m.18)', href: '#ceza' },
+  { no: '05', ad: 'DSİ başvurusunda dikkat', href: '#dikkat' },
+  { no: '06', ad: 'Kısa hukuki sonuç', href: '#sonuc' },
+  { no: 'EK', ad: 'Madde metinleri (birebir)', href: '#madde-metinleri' },
+  { no: 'EK', ad: 'Karşılaştırmalı tablo', href: '#karsilastirma' },
+  { no: 'EK', ad: 'Evrak listesi (tam)', href: '#evrak' },
+  { no: 'EK', ad: 'Tam akış tablosu', href: '#tam-akis' },
+];
+
+// /durumum/ ilgili personalar (çapraz bağ — B6)
+const personaBaglar = [
+  { yol: '/durumum/sondaj-aritma-firmasi/', ad: 'Sektör: Sondaj / arıtma firması' },
+  { yol: '/durumum/gayrimenkul-gelistirici/', ad: 'Sektör: Gayrimenkul geliştirici' },
+];
+
+// ——— JSON-LD ———
+// FAQPage: sorular YALNIZ kaynak bölüm başlıklarından; cevaplar kaynak metinden özet.
+const sss = [
+  {
+    s: 'Hangi hâlde hangi hukuki yol gerekir?',
+    c: 'Kuruma ve çökmede önce ıslah-tadil, giderilemezse yeni arama/kullanma; kirlilikte sağlık-çevre incelemesi ve çoğu kez yeni izin; taşınmada aynı ruhsat otomatik taşınmaz, çoğu halde yeni kuyu açma gerekir; kuyu aynı yerde korunuyorsa ıslah-tadil belgesi yeterlidir.',
+  },
+  {
+    s: 'Kuyu taşınması aynı ruhsatla mı yapılır?',
+    c: 'Hayır. Kuyu taşınması, halk arasında “aynı ruhsatla başka yere alma” sanılsa da hukuken çoğu durumda otomatik hak değildir; yeni sondaj, yeni koordinat veya farklı hidrojeolojik birim söz konusuysa işlem yeni kuyu açma niteliği taşır ve yeni arama + yeni kullanma belgesi gerektirir.',
+  },
+  {
+    s: 'Islah-tadil ile taşınma aynı şey midir?',
+    c: 'Değildir. Islah-tadil, mevcut kuyu üzerinde yapılan teknik müdahaledir (derinleştirme, kapasite artırma, amaç değişikliği). Taşınma ise yeni noktada yeni kuyu demektir ve çoğu kez yeni izin gerektirir; ıslah-tadil belgesi yeni lokasyona taşınma belgesi değildir.',
+  },
+  {
+    s: 'Yeni arama ve kullanma belgesi için başvuru nasıl yürür?',
+    c: 'Önce kuyu sorunu ve eski kuyunun statüsü tespit edilir, yeni yer seçilir; 167 m.8 ve Tüzük m.13 uyarınca arama belgesi başvurusu yapılır, sondaj yapılıp ölçüm sistemi kurulur; ardından 167 m.10 uyarınca kullanma belgesi başvurusu yapılır. Belgeler m.12 gereği harca tabi değildir.',
+  },
+];
+
+const sema = [
+  {
+    '@type': 'Article',
+    headline: d.baslik,
+    description: d.ozCevap,
+    datePublished: tarihISO,
+    dateModified: tarihISO,
+    inLanguage: 'tr-TR',
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+    image: new URL(OG_GORSEL, Astro.site).href,
+    author: {
+      '@type': 'Person',
+      '@id': `${kok}hakkinda/#yazar`,
+      name: YAZAR.adSade,
+      jobTitle: YAZAR.unvan,
+      url: YAZAR.buroUrl,
+      worksFor: { '@type': 'Organization', name: YAZAR.buro, url: YAZAR.buroUrl },
+    },
+    publisher: { '@id': `${kok}#kurum` },
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: sss.map((q) => ({
+      '@type': 'Question',
+      name: q.s,
+      acceptedAnswer: { '@type': 'Answer', text: q.c },
+    })),
+  },
+];
+---
+<Sayfa baslik={d.baslik} aciklama={d.ozCevap} sema={sema} heroSlot="rehber-hero">
+  <div class="gk gk-baslik" style="--gk:0">
+    <SayfaBasi etiket="Rehber · Süreç" baslik={d.baslik} tarih={d.tarih} yazarli />
+  </div>
+
+  <div class="gk" style="--gk:1">
+    <OzCevap metin={d.ozCevap} />
+  </div>
+
+  <section class="cozer gk" style="--gk:2" aria-label="Bu rehber ne çözer">
+    <p class="blok-etiket">Bu rehber ne çözer</p>
+    <ul>
+      <li>Kuyunuz kuruduğunda, çöktüğünde veya kirlendiğinde hangi hukuki yolun (ıslah-tadil mi, yeni ruhsat mı) gerektiği</li>
+      <li>Kuyu taşımanın neden çoğu kez yeni arama + yeni kullanma belgesi anlamına geldiği</li>
+      <li>Yeni başvuruda DSİ’ye sunulacak teknik ve hukuki evrakın tam listesi ve adım sırası</li>
+    </ul>
+  </section>
+
+  <nav class="icindekiler gk" style="--gk:3" aria-label="İçindekiler">
+    <p class="blok-etiket">İçindekiler</p>
+    <ul>
+      {icindekiler.map((b) => (
+        <li>
+          <a href={b.href}>
+            <span class="ic-no" aria-hidden="true">{b.no}</span>
+            <span class="ic-ad">{b.ad}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <div class="icerik">
+    <p class="giris">
+      Kuruyan, çöken veya kirlenen bir yeraltı suyu kuyusunda hangi hukuki
+      yolun izleneceği; kuyunun aynı yerde onarımı ile yeni bir noktada
+      kuyu açılması arasındaki ayrıma bağlıdır. Bu ayrım, 167 sayılı
+      Yeraltı Suları Hakkında Kanun (m.8, 10, 11, 12, 13, 18) ile Yeraltı
+      Suları Tüzüğü (m.2, 4, 11, 13, 15, 16) çerçevesinde kurulur.
+    </p>
+
+    <h2 id="kavramsal-ayrim">Kavramsal ayrım: kuruma, çökme, kirlilik, taşınma</h2>
+    <p>
+      Kuyu kullanılamaz hale geldiğinde tercih edilecek hukuki yol, sorunun
+      niteliğine göre değişir. Dört hâl ayrı ayrı değerlendirilmelidir.
+    </p>
+    <div class="haller">
+      {haller.map((h) => (
+        <section class="hal">
+          <h3>{h.ad}</h3>
+          <p>{h.metin}</p>
+          <p class="hal-etiket">{h.etiket}</p>
+          <ul class="hal-liste">
+            {h.liste.map((x) => <li>{x}</li>)}
+          </ul>
+          <p class="hal-sonuc">{h.sonuc}</p>
+        </section>
+      ))}
+    </div>
+
+    <h2 id="karar">Hangi hâlde hangi hukuki yol</h2>
+    <p>
+      Aşağıdaki beş durum, kuyu kullanılamaz hale geldiğinde hangi yolun
+      tercih edileceğini gösterir. En kritik ayrım taşınmadadır: aynı ruhsat
+      otomatik olarak yeni yere taşınmaz.
+    </p>
+    <div class="kararlar">
+      {kararlar.map((k) => (
+        <article class={`karar${k.vurgu ? ' karar-vurgu' : ''}`}>
+          <p class="karar-durum">{k.durum}</p>
+          <dl>
+            <div><dt>{kararKolon.nitelik}</dt><dd>{k.nitelik}</dd></div>
+            <div><dt>{kararKolon.yol}</dt><dd>{k.yol}</dd></div>
+            <div><dt>{kararKolon.talep}</dt><dd>{k.talep}</dd></div>
+            <div><dt>{kararKolon.sonuc}</dt><dd>{k.sonuc}</dd></div>
+          </dl>
+        </article>
+      ))}
+    </div>
+
+    <h2 id="adimlar">Yeni başvuru şeması: yedi adım</h2>
+    <p>
+      Mevcut kuyunun aynı yerde onarımla sürdürülemediği ve yeni noktada yeni
+      sondaj gerektiği hallerde başvuru süreci aşağıdaki sırayla yürür.
+    </p>
+    <ol class="adimlar" aria-label="Yeni başvuru şeması adımları">
+      {adimlar.map((a, i) => (
+        <li class="adim">
+          <span class="adim-no" aria-hidden="true">{i + 1}</span>
+          <div class="adim-govde">
+            <p class="adim-asama">{a.asama}</p>
+            <p class="adim-alt">
+              <span class="adim-c"><span class="adim-et">{adimEtiket.dayanak}</span> {a.dayanak}</span>
+              <span class="adim-c"><span class="adim-et">{adimEtiket.belge}</span> {a.belge}</span>
+              <span class="adim-c"><span class="adim-et">{adimEtiket.cikti}</span> {a.cikti}</span>
+            </p>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <h2 id="ceza">İdari para cezası (167 m.18)</h2>
+    <div class="ceza">
+      <p>
+        167 sayılı Kanun’un 18. maddesine göre (23/1/2008-5728 s.K. ile
+        değişik): belge almadan m.8’deki işleri yapanlar ya da kasten yanlış
+        bilgi verenler <strong>bin Türk Lirasından beşbin Türk Lirasına
+        kadar</strong>; m.10-11’e aykırı hareket edenler veya arama, kullanma,
+        ıslah-tadil şartlarına uymayanlar <strong>beşyüz Türk Lirasından
+        ikibin Türk Lirasına kadar</strong> idari para cezası ile
+        cezalandırılır. Ayrıca kuyu kapatılır ve masrafı açtırandan alınır;
+        ceza mahallî mülkî amir tarafından verilir.
+      </p>
+      <p class="apilex-not">
+        Yukarıdaki tutarlar <strong>2008 metnindeki tabandır</strong>; idari
+        para cezaları her yıl yeniden değerleme oranıyla artmaktadır. Güncel
+        tutar için: <span class="apilex-bosluk">[APILEX teyit]</span>.
+      </p>
+    </div>
+
+    <h2 id="dikkat">DSİ başvurusunda dikkat edilecek hususlar</h2>
+    <ol class="numara-liste">
+      {dikkat.map((x) => <li>{x}</li>)}
+    </ol>
+
+    <h2 id="sonuc">Kısa hukuki sonuç</h2>
+    <ul class="sonuc-liste">
+      {sonucList.map((x) => <li>{x}</li>)}
+    </ul>
+  </div>
+
+  {/* Referans blokları katmanda, varsayılan kapalı (§17b). Tam metin DOM'da
+      eksiksiz ve JS'siz erişilebilir. */}
+  <div id="madde-metinleri" class="katman-capa">
+    <Katman baslik="Madde metinleri" ipucu="167 s. Kanun · Yeraltı Suları Tüzüğü — birebir">
+      <div class="katman-icerik">
+        {maddeler.map((m) => (
+          <blockquote class="madde">
+            <p class="madde-b">{m.baslik}</p>
+            <p>{m.metin}</p>
+          </blockquote>
+        ))}
+      </div>
+    </Katman>
+  </div>
+
+  <div id="karsilastirma" class="katman-capa">
+    <Katman baslik="Karşılaştırmalı tablo — kuruma, çökme, kirlilik" ipucu="Tanım · sebep · talep · yol · risk" ton="murekkep">
+      <div class="tablo-kap">
+        <table>
+          <thead><tr>{karsBas.map((h) => <th>{h}</th>)}</tr></thead>
+          <tbody>{karsSatir.map((r) => <tr>{r.map((c) => <td>{c}</td>)}</tr>)}</tbody>
+        </table>
+      </div>
+    </Katman>
+  </div>
+
+  <div id="evrak" class="katman-capa">
+    <Katman baslik="DSİ’ye sunulacak evrak (tam liste)" ipucu="Hukuki + teknik belgeler · sistematik tablo" ton="murekkep">
+      <div class="katman-icerik">
+        <h3 class="evrak-h">A. Hukuki belgeler</h3>
+        <dl class="evrak-liste">
+          {evrakHukuki.map(([b, a]) => <div><dt>{b}</dt><dd>{a}</dd></div>)}
+        </dl>
+        <h3 class="evrak-h">B. Teknik belgeler</h3>
+        <dl class="evrak-liste">
+          {evrakTeknik.map(([b, a]) => <div><dt>{b}</dt><dd>{a}</dd></div>)}
+        </dl>
+        <h3 class="evrak-h">Sistematik tablo</h3>
+        <div class="tablo-kap">
+          <table>
+            <thead><tr>{evrakBas.map((h) => <th>{h}</th>)}</tr></thead>
+            <tbody>{evrakSatir.map((r) => <tr>{r.map((c) => <td>{c}</td>)}</tr>)}</tbody>
+          </table>
+        </div>
+      </div>
+    </Katman>
+  </div>
+
+  <div id="tam-akis" class="katman-capa">
+    <Katman baslik="Yeni başvuru şeması — tam akış" ipucu="Sekiz adım · işlem · amaç · sonuç" ton="murekkep">
+      <div class="tablo-kap">
+        <table>
+          <thead><tr>{akisBas.map((h) => <th>{h}</th>)}</tr></thead>
+          <tbody>{akisSatir.map((r) => <tr>{r.map((c) => <td>{c}</td>)}</tr>)}</tbody>
+        </table>
+      </div>
+    </Katman>
+  </div>
+
+  {/* Risk çerçevesi (/durumum/ onaylı dil tonu) */}
+  <aside class="risk" aria-label="Neden şimdi">
+    <span class="risk-b">Neden şimdi</span>
+    <p>
+      Kuyu kuruması, çökmesi veya kirliliği fark edildiğinde izlenecek yol
+      —ıslah-tadil mi, yeni ruhsat mı— baştan doğru kurulmazsa, yanlış
+      başvuru yeni kuyu sayılabilir ve süreç uzar. Sorunu teknik raporla
+      belgeleyip doğru hukuki yolu erken seçmek, hem uyum maliyetini hem
+      denetim riskini yönetilebilir kılar.
+      <span class="apilex"> Somut yaptırım/tutar için ilgili mevzuat maddesi esastır.</span>
+    </p>
+  </aside>
+
+  <section class="iletisim" aria-label="İletişim">
+    <p class="il-b">Kuyu sürecinizi doğru kurgulamak için iletişim</p>
+    <p class="il-a">Kuyunuzun durumuna göre ıslah-tadil mi yoksa yeni ruhsat mı gerektiği ve başvuru dosyasının kurgusu için ulaşın.</p>
+    <p class="il-l">
+      <a href={`mailto:${EPOSTA}?subject=${encodeURIComponent('Kuyu taşıma / ıslah-tadil — su hukuku')}`}>{EPOSTA}</a>
+      <span class="il-ayr">·</span>
+      <a href="/hakkinda/">Künye ve yöntem</a>
+    </p>
+    <p class="il-not">Hukuki içerik {YAZAR.buro} tarafından hazırlanır.</p>
+  </section>
+
+  <nav class="capraz" aria-label="İlgili sektör sayfaları">
+    {personaBaglar.map((b) => <a href={b.yol}>→ {b.ad}</a>)}
+  </nav>
+
+  <YazarKutusu />
+  <IlgiliRehberler slugler={d.ilgili} haric={giris.id} />
+</Sayfa>
+
+<style>
+  .blok-etiket {
+    display: flex; align-items: center; gap: 0.7rem;
+    font-family: var(--mono); font-size: 0.66rem; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--su-700);
+  }
+  .blok-etiket::before { content: ""; width: 1.6rem; height: 1px; background: var(--su-400); }
+
+  .cozer {
+    margin: 0 0 1.3rem; padding: 1.05rem 1.3rem 1.15rem;
+    background: var(--zemin-kart); border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+  }
+  .cozer ul { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem 1.4rem; margin: 0.75rem 0 0; padding: 0; }
+  .cozer li { font-size: 0.9rem; line-height: 1.55; padding-left: 0.8rem; border-left: 2px solid var(--su-400); }
+
+  .icindekiler { margin: 0 0 2.4rem; }
+  .icindekiler ul { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.55rem; margin: 0.75rem 0 0; padding: 0; }
+  .icindekiler a {
+    display: flex; align-items: baseline; gap: 0.6rem; min-height: 44px;
+    padding: 0.55rem 0.8rem; background: var(--zemin-kart); border: 1px solid var(--cizgi);
+    text-decoration: none; color: var(--metin);
+    transition: transform 240ms var(--e-suzul), background-color 240ms var(--e-akinti), border-color 240ms var(--e-akinti);
+  }
+  .icindekiler a:hover { transform: translateY(-2px); background: var(--kopuk); border-color: var(--su-400); }
+  .ic-no { flex: none; font-family: var(--mono); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.08em; color: var(--su-700); }
+  .ic-ad { font-family: var(--serif); font-size: 1.02rem; font-weight: 500; line-height: 1.25; }
+
+  .icerik .giris { font-size: 1.02rem; }
+
+  /* Dört hâl kartları */
+  .haller { display: grid; gap: 1rem; margin: 1.1rem 0 0; }
+  .hal { padding: 1.1rem 1.3rem 1.2rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); border-top: 2px solid var(--su-700); }
+  .hal h3 { font-family: var(--serif); font-weight: 500; font-size: 1.35rem; margin: 0 0 0.4rem; }
+  .hal p { margin: 0; max-width: 68ch; }
+  .hal-etiket { margin-top: 0.8rem !important; font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--metin-soluk); }
+  .hal-liste { margin: 0.4rem 0 0; padding-left: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 0.35rem 0.5rem; }
+  .hal-liste li { font-family: var(--mono); font-size: 0.74rem; padding: 0.2rem 0.55rem; background: var(--kopuk, rgba(79,123,120,0.06)); border: 1px solid var(--cizgi); }
+  .hal-sonuc { margin-top: 0.85rem !important; padding-top: 0.7rem; border-top: 1px solid var(--cizgi); font-size: 0.95rem; }
+
+  /* Karar kartları (5-durum karar akışı) */
+  .kararlar { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.9rem; margin: 1.1rem 0 0; }
+  .karar { padding: 1rem 1.2rem 1.1rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); border-top: 2px solid var(--su-400); }
+  .karar-vurgu { border-top-color: var(--kehribar, #B8863B); border-left: 3px solid var(--kehribar, #B8863B); }
+  .karar-durum { font-family: var(--serif); font-weight: 600; font-size: 1.25rem; margin: 0 0 0.6rem; color: var(--su-700); }
+  .karar-vurgu .karar-durum { color: var(--kehribar-metin); }
+  .karar dl { margin: 0; display: grid; gap: 0.55rem; }
+  .karar dl div { display: grid; gap: 0.1rem; }
+  .karar dt { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--metin-soluk); }
+  .karar dd { margin: 0; font-size: 0.92rem; line-height: 1.45; }
+
+  /* Adım rayı (7 adım) */
+  .adimlar { list-style: none; margin: 1.1rem 0 0; padding: 0; position: relative; max-width: 70ch; }
+  .adimlar::before { content: ""; position: absolute; left: 1.15rem; top: 1rem; bottom: 1rem; width: 1px; background: linear-gradient(180deg, var(--su-400) 0%, var(--su-400) 82%, rgba(79,123,120,0) 100%); }
+  .adim { position: relative; display: grid; grid-template-columns: 2.3rem 1fr; gap: 0 1.1rem; padding: 0.8rem 0; margin: 0; }
+  .adim-no { position: relative; z-index: 1; display: grid; place-items: center; width: 2.3rem; height: 2.3rem; font-family: var(--mono); font-size: 0.82rem; font-weight: 500; color: var(--su-700); background: var(--zemin-kart); border: 1px solid var(--su-400); border-radius: 50%; }
+  .adim-govde > p { margin: 0; max-width: none; }
+  .adim-asama { font-family: var(--serif); font-size: 1.18rem; font-weight: 500; line-height: 1.3; padding-top: 0.3rem; }
+  .adim-alt { display: grid; gap: 0.25rem; margin-top: 0.5rem !important; }
+  .adim-c { font-size: 0.86rem; line-height: 1.5; }
+  .adim-et { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--metin-soluk); margin-right: 0.4rem; }
+
+  /* Ceza bloğu */
+  .ceza { background: #F3ECE0; border-left: 3px solid var(--kehribar, #B8863B); padding: 1rem 1.2rem; margin: 0.6rem 0 0; }
+  .ceza p { margin: 0; max-width: 70ch; }
+  .apilex-not { margin-top: 0.7rem !important; font-size: 0.9rem; color: var(--metin-soluk); }
+  .apilex-bosluk { font-family: var(--mono); font-size: 0.8rem; color: var(--kehribar-metin); }
+
+  .numara-liste, .sonuc-liste { max-width: 72ch; }
+  .numara-liste li, .sonuc-liste li { margin: 0.4rem 0; line-height: 1.6; }
+
+  /* Katman içerikleri */
+  .madde { margin: 0 0 1rem; padding: 0.2rem 0 0.2rem 1rem; border-left: 3px solid var(--su-400); }
+  .madde:last-child { margin-bottom: 0; }
+  .madde-b { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--su-700); margin: 0 0 0.3rem; text-transform: uppercase; }
+  .madde p { margin: 0; }
+
+  .evrak-h { font-family: var(--serif); font-weight: 500; font-size: 1.2rem; margin: 1.1rem 0 0.5rem; }
+  .evrak-h:first-child { margin-top: 0; }
+  .evrak-liste { margin: 0; display: grid; gap: 0.5rem; }
+  .evrak-liste div { display: grid; grid-template-columns: minmax(0, 15rem) 1fr; gap: 0.2rem 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--cizgi); }
+  .evrak-liste dt { font-family: var(--serif); font-size: 1rem; font-weight: 500; }
+  .evrak-liste dd { margin: 0; font-size: 0.9rem; color: var(--metin-soluk); line-height: 1.5; }
+
+  .tablo-kap { overflow-x: auto; margin-top: 0.6rem; }
+  .tablo-kap table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: 0.88rem; }
+  .tablo-kap th, .tablo-kap td { text-align: left; padding: 0.55rem 0.7rem; border: 1px solid var(--cizgi); vertical-align: top; line-height: 1.45; }
+  .tablo-kap thead th { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--su-700); background: var(--kopuk, rgba(79,123,120,0.06)); }
+
+  .katman-capa { scroll-margin-top: 5rem; }
+
+  /* Risk + iletişim (/durumum/ dili) */
+  .risk { background: #F3ECE0; border-left: 3px solid var(--kehribar, #B8863B); padding: 1rem 1.2rem; margin: 2rem 0 1.2rem; }
+  .risk-b { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--kehribar-metin); }
+  .risk p { margin-top: 0.4rem; max-width: 72ch; }
+  .apilex { color: var(--metin-soluk); font-size: 0.9em; }
+
+  .iletisim { background: var(--su-700); color: #E9EBE7; padding: 1.2rem 1.4rem; margin-top: 1.2rem; }
+  .il-b { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; }
+  .il-a { color: #DFE3E2; margin: 0.4rem 0 0.7rem; font-size: 0.95rem; }
+  .il-l a { color: #E9EBE7; font-family: var(--mono); font-size: 0.85rem; }
+  .il-ayr { margin: 0 0.4rem; color: #C8D2CE; }
+  .il-not { color: #C8D2CE; font-family: var(--mono); font-size: 0.66rem; margin-top: 0.6rem; }
+
+  .capraz { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.2rem 0; }
+  .capraz a { font-family: var(--mono); font-size: 0.8rem; color: var(--su-700); border: 1px solid var(--cizgi); padding: 0.4rem 0.7rem; text-decoration: none; }
+  .capraz a:hover { background: var(--zemin-kart); }
+
+  @media (max-width: 700px) {
+    .cozer ul { grid-template-columns: 1fr; gap: 0.7rem; }
+    .icindekiler ul { grid-template-columns: repeat(2, 1fr); }
+    .kararlar { grid-template-columns: 1fr; }
+    .evrak-liste div { grid-template-columns: 1fr; gap: 0.1rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .icindekiler a { transition: none; }
+    .icindekiler a:hover { transform: none; }
+  }
+</style>

@@ -11,7 +11,13 @@ import { YAZAR, OG_GORSEL } from '../../data/site';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('rehberler');
-  return girisler.map((g) => ({ params: { slug: g.id }, props: { giris: g } }));
+  // kuyu-tasima kendi özel sayfasıyla render edilir (src/pages/rehberler/
+  // kuyu-tasima.astro); farklı yapısı (5-durum karar akışı, 7-adım, katmanlı
+  // karşılaştırma/evrak tabloları) kalıp-2 iskeletine oturmaz. Buradan HARİÇ
+  // tutulur → rota çakışması olmaz. Diğer rehberlerin render'ı DEĞİŞMEZ.
+  return girisler
+    .filter((g) => g.id !== 'kuyu-tasima')
+    .map((g) => ({ params: { slug: g.id }, props: { giris: g } }));
 }
 
 const { giris } = Astro.props;
