@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FAZ 7 mock — sektör kapısı + persona sonuç</title>
+<style>
+  :root{
+    --zemin:#E9EBE7;--kart:#E0E5DF;--metin:#1C2B24;--soluk:#54655C;--derin:#175E56;
+    --sig:#4F7B78;--kehribar:#B8863B;--kehribarM:#7D5B24;--cizgi:rgba(28,43,36,.14);
+    --serif:Georgia,'Cormorant',serif;--sans:'Manrope',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--zemin);color:var(--metin);font-family:var(--sans);line-height:1.6}
+  .mock-etiket{background:var(--derin);color:#E9EBE7;font-family:var(--mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;padding:8px 20px}
+  .kap{max-width:1000px;margin:0 auto;padding:32px 24px 64px}
+  .kicker{display:flex;align-items:center;gap:.7rem;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--derin)}
+  .kicker::before{content:"";width:1.6rem;height:1px;background:var(--sig)}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,4vw,2.9rem);margin:.4rem 0 .3rem;line-height:1.05}
+  .alt{color:var(--soluk);max-width:60ch;margin-bottom:1.6rem}
+  /* Arama kutusu */
+  .ara{display:flex;gap:.5rem;margin:0 0 1.5rem;max-width:520px}
+  .ara input{flex:1;font:inherit;padding:.7rem .9rem;border:1px solid var(--cizgi);border-top:2px solid var(--derin);background:var(--kart);color:var(--metin)}
+  .ara .not{font-family:var(--mono);font-size:11px;color:var(--soluk);margin-top:.4rem}
+  /* Persona ızgara */
+  .izgara{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
+  .pk{display:flex;flex-direction:column;gap:.3rem;padding:1rem 1.1rem;background:var(--kart);border:1px solid var(--cizgi);border-top:2px solid var(--derin);text-decoration:none;color:var(--metin);transition:transform .24s cubic-bezier(.22,1,.36,1)}
+  .pk:hover{transform:translateY(-2px)}
+  .pk.oneri{border-top-color:var(--kehribar)}
+  .pk-k{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--soluk)}
+  .pk-ad{font-family:var(--serif);font-size:1.25rem;font-weight:600;line-height:1.1}
+  .pk-y{font-size:.82rem;color:var(--soluk)}
+  .pk-t{font-family:var(--mono);font-size:.7rem;color:var(--kehribarM);margin-top:.2rem}
+  .yok{grid-column:1/-1;padding:1.1rem;background:transparent;border:1px dashed var(--sig);text-align:center}
+  .yok a{color:var(--derin);font-weight:600}
+  /* Persona sonuç */
+  .sonuc{margin-top:56px;border-top:2px solid var(--derin);padding-top:8px}
+  .kahraman{background:var(--kart);border:1px solid var(--cizgi);border-top:2px solid var(--derin);padding:1.4rem 1.6rem 1.2rem 1.9rem;position:relative;margin:1rem 0}
+  .kahraman::before{content:"";position:absolute;left:.6rem;top:1rem;bottom:1rem;width:6px;background:repeating-linear-gradient(180deg,rgba(79,123,120,.4) 0 1px,transparent 1px 7px)}
+  .kh-e{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--soluk)}
+  .kh-hukum{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2rem);font-weight:500;margin:.3rem 0}
+  .kh-tarih{display:inline-flex;align-items:baseline;gap:.5rem;font-family:var(--serif);font-size:2.4rem;font-weight:600;color:var(--derin)}
+  .kh-tarih .kalan{font-family:var(--mono);font-size:.8rem;color:var(--kehribarM)}
+  .risk{background:#F3ECE0;border-left:3px solid var(--kehribar);padding:1rem 1.2rem;margin:1.2rem 0}
+  .risk .b{font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--kehribarM)}
+  .risk p{margin-top:.4rem}
+  .adimlar{display:grid;gap:.6rem;margin:1rem 0}
+  .adim{display:flex;gap:.8rem;padding:.8rem 1rem;background:var(--kart);border:1px solid var(--cizgi)}
+  .adim-no{font-family:var(--mono);color:var(--derin);font-weight:600}
+  .capraz{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
+  .capraz a{font-family:var(--mono);font-size:.8rem;color:var(--derin);border:1px solid var(--cizgi);padding:.35rem .7rem;text-decoration:none}
+  .iletisim{background:var(--derin);color:#E9EBE7;padding:1.2rem 1.4rem;margin-top:1.2rem}
+  .iletisim .b{font-family:var(--serif);font-size:1.3rem;font-weight:600}
+  .iletisim a{color:#E9EBE7;font-family:var(--mono);font-size:.85rem}
+  .not2{font-family:var(--mono);font-size:11px;color:var(--soluk);margin-top:.6rem}
+  @media(max-width:640px){.izgara{grid-template-columns:repeat(2,1fr)}}
+</style></head>
+<body>
+<div class="mock-etiket">MOCK · FAZ 7 · onay bekliyor · rota adı + risk dili karar</div>
+
+<!-- ——— 1. GİRİŞ SAYFASI (/durumum/) ——— -->
+<section class="kap">
+  <p class="kicker">Sektör kapısı</p>
+  <h1>Su hukukunda durumunuz ne?</h1>
+  <p class="alt">Sektörünüzü seçin; yükümlülüğünüzü, son tarihinizi ve ilk adımları
+    tek ekranda görün. Listede yoksanız doğrudan ulaşın.</p>
+
+  <div class="ara">
+    <input placeholder="Sektör / faaliyet ara (ör. otel, sondaj, gıda…)">
+  </div>
+  <p class="not" style="font-family:var(--mono);font-size:11px;color:var(--soluk);margin:-1.2rem 0 1.5rem">
+    Arama build-time listeden istemci-tarafı; JS yoksa kartların tamamı zaten aşağıda listede.</p>
+
+  <div class="izgara">
+    <a class="pk" href="#"><span class="pk-k">SANAYİ</span><span class="pk-ad">Sanayi / OSB yatırımcısı</span><span class="pk-y">Yeşil su verimliliği belgesi + tesis su tahsisi</span><span class="pk-t">SON BAŞVURU 27.12.2029</span></a>
+    <a class="pk" href="#"><span class="pk-k">SONDAJ</span><span class="pk-ad">Sondaj / arıtma firması</span><span class="pk-y">Kuyu ruhsatı süreçleri; belgesiz kuyu cezası</span></a>
+    <a class="pk" href="#"><span class="pk-k">GAYRİMENKUL</span><span class="pk-ad">Gayrimenkul geliştirici</span><span class="pk-y">Parselde su temini, kaynak hakkı, mecra irtifakı</span></a>
+    <a class="pk" href="#"><span class="pk-k">TARIM</span><span class="pk-ad">Ziraat odası / kooperatif</span><span class="pk-y">Tarımsal su tahsisi, işletme sahası kısıtları</span></a>
+    <a class="pk" href="#"><span class="pk-k">ENERJİ</span><span class="pk-ad">Enerji yatırımcısı (HES/JES)</span><span class="pk-y">Jeotermal ruhsat; su kullanım hakkı; kamulaştırma</span></a>
+    <a class="pk" href="#"><span class="pk-k">GIDA-İÇECEK</span><span class="pk-ad">Gıda-içecek üreticisi</span><span class="pk-y">Kaynak/mineralli su ruhsatı; su güvencesi</span></a>
+    <a class="pk oneri" href="#"><span class="pk-k">TURİZM · öneri</span><span class="pk-ad">Konaklamalı turizm (250 oda+)</span><span class="pk-y">Yeşil su verimliliği belgesi</span><span class="pk-t">SON BAŞVURU 27.12.2029</span></a>
+    <a class="pk oneri" href="#"><span class="pk-k">MADEN</span><span class="pk-ad">Maden işletmecisi</span><span class="pk-y">Proses suyu tahsisi; Ek-2 kapsamı</span></a>
+    <div class="yok">Listede yoksanız — durumunuzu <a href="#">doğrudan iletin</a>, size özel değerlendirelim.</div>
+  </div>
+</section>
+
+<!-- ——— 2. PERSONA SONUÇ KALIBI (örnek: Otel) ——— -->
+<section class="kap sonuc">
+  <p class="kicker">Sektör sonucu · Konaklamalı turizm</p>
+  <h1>250 oda ve üstü otel: su verimliliği yükümlülüğünüz</h1>
+
+  <!-- 3-saniye ilk ekran: hüküm + SON TARİH (madde 2+3) -->
+  <div class="kahraman">
+    <span class="kh-e">Yükümlülük · Su Verimliliği Yönetmeliği md.(3)</span>
+    <p class="kh-hukum">250 oda ve üstü konaklamalı turizm işletmeleri, yeşil su
+      verimliliği belgesi için başvurmakla yükümlüdür.</p>
+    <span class="kh-e" style="margin-top:.6rem;display:block">Son başvuru (sabit tarih)</span>
+    <span class="kh-tarih">27 Aralık 2029 <span class="kalan">· ~3 yıl 5 ay kaldı*</span></span>
+    <p class="not2">*"kalan süre" istemci hesabı, sabit tarihten (isteğe bağlı, ≤0,5KB; JS yoksa sabit tarih görünür). Uzatma: Bakanlık görüşüyle en fazla 27.12.2031.</p>
+  </div>
+
+  <!-- Risk bloğu (profesyonel-kışkırtıcı ÖRNEK metin — onaya) -->
+  <div class="risk">
+    <span class="b">Risk · örnek dil (onaya)</span>
+    <p>Süreyi kaçıran işletme, belge zorunluluğunu son ana bıraktığında sistem
+      kurulumu, iş termin planı ve başvuru değerlendirmesini aynı pencereye
+      sıkıştırmak zorunda kalır. Planlamaya bugün başlamak, hem uyum maliyetini
+      hem denetim riskini yönetilebilir kılar. [Yaptırım hükmü: APILEX]</p>
+  </div>
+
+  <!-- İlk adımlar -->
+  <p class="kicker" style="margin-top:1.4rem">İlk adımlar</p>
+  <div class="adimlar">
+    <div class="adim"><span class="adim-no">1</span><div>Tesis kapasitenizi ve NACE faaliyet kodunuzu belirleyin (kapsam kontrolü).</div></div>
+    <div class="adim"><span class="adim-no">2</span><div>Su verimliliği sistemi + iş termin planı için teknik/hukuki hazırlık.</div></div>
+    <div class="adim"><span class="adim-no">3</span><div>Su verimliliği bilgi sistemi üzerinden başvuru (60 gün değerlendirme). [Detay: APILEX]</div></div>
+  </div>
+
+  <!-- Çapraz bağlar -->
+  <div class="capraz">
+    <a href="#">→ Su tahsisinde öncelik</a>
+    <a href="#">→ Su Kanunu taslak takibi</a>
+    <a href="#">→ Vaka: Meysu su güvencesi</a>
+    <a href="#">→ Cezalar ve yaptırımlar</a>
+  </div>
+
+  <!-- İletişim bloğu (form KAPSAM DIŞI) -->
+  <div class="iletisim">
+    <div class="b">Uyum planlaması için iletişim</div>
+    <p style="color:#DFE3E2;margin:.4rem 0 .6rem;font-size:.95rem">Sektörünüze özel yükümlülük ve takvim değerlendirmesi için doğrudan ulaşın.</p>
+    <a href="tel:[KULLANICI]">[KULLANICI: telefon]</a> &nbsp;·&nbsp; <a href="mailto:[KULLANICI]">[KULLANICI: e-posta]</a>
+    <p class="not2" style="color:#9FB3AD">Form altyapısı ayrı karar (kapsam dışı) — şimdilik tel/e-posta.</p>
+  </div>
+</section>
+</body></html>

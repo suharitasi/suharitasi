@@ -1,0 +1,67 @@
+<!-- BÜLTEN ŞABLONU (ODUL-USTU FAZ 7 AŞAMA 1 · madde 5) — HTML e-posta, SU-DİLİ sade.
+     Örnek sayı: izleme/OLAYLAR.md BOŞ → "bu sayı için yeni olay yok" hali.
+     İmza [KULLANICI] placeholder — büro bilgisi UYDURULMAZ. Buttondown hesabı
+     kullanıcıda; şablon hazır bekler. E-posta uyumu için inline stil + tablo. -->
+<!doctype html>
+<html lang="tr">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#E9EBE7;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#1C2B24;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#E9EBE7;">
+    <tr><td align="center" style="padding:28px 16px;">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#E0E5DF;border-top:3px solid #175E56;">
+        <!-- Başlık -->
+        <tr><td style="padding:28px 32px 8px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#175E56;">Su Haritası Bülteni · [SAYI/TARİH]</div>
+          <div style="font-family:Georgia,serif;font-size:26px;font-weight:600;color:#1C2B24;margin-top:6px;">Bu ayın su gündemi</div>
+        </td></tr>
+
+        <!-- OLAYLAR özet blokları (izleme OLAYLAR.md'den; BOŞSA aşağıdaki hal) -->
+        <tr><td style="padding:16px 32px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#54655C;border-bottom:1px solid rgba(28,43,36,.14);padding-bottom:6px;">Mevzuat hareketi</div>
+          <!-- ÖRNEK SAYI: OLAYLAR.md boş → -->
+          <p style="font-size:15px;line-height:1.6;color:#54655C;margin:12px 0;">Bu sayı için izlemede yeni mevzuat olayı kaydedilmedi. Su Kanunu taslak takibi ve 25 havzanın güncel verisi portalda güncel tutuluyor.</p>
+          <!-- OLAY VARSA blok kalıbı (her olay): -->
+          <!--
+          <p style="font-size:15px;line-height:1.6;margin:12px 0;"><strong>[TARİH]</strong> — [olay tek cümle]. <a href="[link]" style="color:#175E56;">Detay</a></p>
+          -->
+        </td></tr>
+
+        <!-- Veri manşeti -->
+        <tr><td style="padding:8px 32px 16px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#54655C;border-bottom:1px solid rgba(28,43,36,.14);padding-bottom:6px;">Veri manşeti</div>
+          <p style="font-size:15px;line-height:1.6;margin:12px 0;">Son 5 yılda su deposu en hızlı azalan havza: <strong>[HAVZA]</strong> ([DEĞER] cm/yıl, NASA GRACE). Havza tablosu ve hukuki karşılığı için haritaya bakın.</p>
+        </td></tr>
+
+        <!-- Rehber bağları -->
+        <tr><td style="padding:8px 32px 16px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#54655C;border-bottom:1px solid rgba(28,43,36,.14);padding-bottom:6px;">Bu ay okunası</div>
+          <p style="font-size:15px;line-height:1.9;margin:12px 0;">
+            → <a href="https://suharitasi.com/rehberler/kuyu-ruhsati/" style="color:#175E56;">Kuyu ruhsatı: arama, kullanma, ıslah belgeleri</a><br>
+            → <a href="https://suharitasi.com/rehberler/su-tahsisinde-oncelik-sirasi/" style="color:#175E56;">Su tahsisinde öncelik sırası</a><br>
+            → <a href="https://suharitasi.com/vaka/meysu/" style="color:#175E56;">Vaka: Meysu su kaynağını nasıl güvenceye aldı</a>
+          </p>
+        </td></tr>
+
+        <!-- B2B RAPOR TEASER -->
+        <tr><td style="padding:8px 32px 20px;">
+          <table role="presentation" width="100%" style="background:#175E56;border-radius:2px;"><tr><td style="padding:18px 22px;">
+            <div style="font-family:Georgia,serif;font-size:18px;color:#E9EBE7;font-weight:600;">Havzanıza özel su raporu</div>
+            <p style="font-size:14px;line-height:1.6;color:#DFE3E2;margin:8px 0 12px;">Bölgenizin su verisi, tahsis durumu ve hukuki risklerini tek raporda derliyoruz. Talep için yanıtlayın.</p>
+            <a href="mailto:[KULLANICI-EPOSTA]?subject=Havza%20raporu%20talebi" style="display:inline-block;background:#E9EBE7;color:#175E56;font-weight:600;font-size:14px;text-decoration:none;padding:9px 16px;border-radius:2px;">Rapor talep et</a>
+          </td></tr></table>
+        </td></tr>
+
+        <!-- İmza [KULLANICI] -->
+        <tr><td style="padding:16px 32px 28px;border-top:1px solid rgba(28,43,36,.14);">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.7;color:#54655C;margin:0;">
+            [KULLANICI: Av. Serdar Arslan · Arslan Hukuk Bürosu]<br>
+            [KULLANICI: tel · e-posta]<br>
+            suharitasi.com — Türkiye'nin su verisi ve hukuku<br>
+            <a href="[ABONELIK-IPTAL]" style="color:#54655C;">Abonelikten çık</a>
+          </p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>
