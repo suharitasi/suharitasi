@@ -1,0 +1,139 @@
+{
+  "kayitTarihi": "2026-07-21",
+  "aciklama": "Sektör kapıları/persona sisteminin veri temeli (ODUL-USTU FAZ 7). Yükümlülükler ve son tarihler YALNIZ doğrulanmış kaynaktan (Su Verimliliği Yönetmeliği gövde metni + mevcut rehber içeriği). Doğrulanamayan süre 'sonTarihDurum: dogrulanamadi' kalır ve sayfaya kesin tarih olarak GİRMEZ. Aritmetik türetme: rapor/persona-turetme.md.",
+  "yonetmelik": {
+    "ad": "Su Verimliliği Yönetmeliği",
+    "rgTarih": "2024-12-27",
+    "arsiv": "data/arsiv/mevzuat/su-verimliligi-yonetmeligi-20241227.htm",
+    "dogrulanmisSureler": {
+      "yesilBelgeSonBasvuru": {
+        "tarih": "2029-12-27",
+        "gerekce": "Gövde md. (3): 250 oda+ turizm, havalimanı, üniversite kampüsü, OSB, serbest bölge, endüstri bölgeleri ve Ek-2 NACE faaliyetleri 'en fazla beş yıl içinde' yeşil su verimliliği belgesi başvurusu yapar. 2024-12-27 + 5 yıl."
+      },
+      "yesilBelgeUzatma": {
+        "tarih": "2031-12-27",
+        "gerekce": "Gövde md. (4): iş termin planıyla Bakanlığın uygun görüşü ile başvuru süresi 'en fazla yedi yıla' uzatılabilir. 2024-12-27 + 7 yıl."
+      },
+      "belgeGecerlilik": "5 yıl (gövde metni)",
+      "ek1SistemKurulumSuresi": "dogrulanamadi — 'Ek-1'de belirlenen süre' sektör bazında Ek-1 tablosundadır; Ek-1 taranmış ekler PDF'inde (metin katmanı yok)."
+    }
+  },
+  "naceEk2": {
+    "durum": "liste beklemede",
+    "neden": "Ek-2 NACE listesi taranmış/görüntü-tabanlı ekler PDF'indedir; OCR olmadan güvenilir çıkarım yok. Uydurma yasağı: liste üretilmedi.",
+    "ref": "data/lead/nace-ek2.json",
+    "kullaniciGorevi": "Ek-2 NACE listesinin makine-okunur kaynağı (RG makine-okunur sürüm veya OCR onayı) verilince NACE-özgü personalar bu dosyaya eklenir."
+  },
+  "personalar": [
+    {
+      "ad": "Sanayi / OSB yatırımcısı",
+      "kaynak": "genel",
+      "yukumluluk": "Organize sanayi bölgesi / endüstri bölgesi / serbest bölgede faaliyet: yeşil su verimliliği belgesi + tesis su tahsisi.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": ["Su Verimliliği Yönetmeliği md.(3) — OSB/serbest/endüstri bölgesi açıkça sayılı"],
+      "ilgiliIcerik": ["/rehberler/su-tahsisinde-oncelik-sirasi/"],
+      "oneri": false
+    },
+    {
+      "ad": "Sondaj / arıtma firması",
+      "kaynak": "genel",
+      "yukumluluk": "Müvekkil/müşteri adına kuyu ruhsatı (arama-kullanma-ıslah) süreçleri; belgesiz kuyu = idari para cezası + kuyu kapatma riski.",
+      "sonTarih": null,
+      "sonTarihDurum": "dogrulanamadi — süreç-bağlı, sabit yasal son tarih yok",
+      "dayanak": ["/rehberler/kuyu-ruhsati/ (167 s.K. m.8)", "/rehberler/ruhsatsiz-kuyu-cezalari/"],
+      "ilgiliIcerik": ["/rehberler/kuyu-ruhsati/", "/rehberler/ruhsatsiz-kuyu-cezalari/"],
+      "oneri": false
+    },
+    {
+      "ad": "Gayrimenkul geliştirici",
+      "kaynak": "genel",
+      "yukumluluk": "Parselde su temini: kuyu ruhsatı, komşu parselden su alma / kaynak hakkı / mecra irtifakı; projede su güvencesi.",
+      "sonTarih": null,
+      "sonTarihDurum": "dogrulanamadi — projeye bağlı",
+      "dayanak": ["/rehberler/kaynak-hakki-mecra-irtifaki/", "/rehberler/kuyu-ruhsati/"],
+      "ilgiliIcerik": ["/rehberler/kaynak-hakki-mecra-irtifaki/", "/rehberler/kuyu-ruhsati/"],
+      "oneri": false
+    },
+    {
+      "ad": "Ziraat odası / sulama kooperatifi",
+      "kaynak": "genel",
+      "yukumluluk": "Tarımsal su tahsisi ve öncelik sırası; yeraltı suyu işletme sahası ilanının getirdiği kısıtlar; sulama kuyuları.",
+      "sonTarih": null,
+      "sonTarihDurum": "dogrulanamadi — tahsis işlemine bağlı",
+      "dayanak": ["/rehberler/su-tahsisinde-oncelik-sirasi/", "/rehberler/yeralti-suyu-isletme-sahasi/"],
+      "ilgiliIcerik": ["/rehberler/su-tahsisinde-oncelik-sirasi/", "/rehberler/yeralti-suyu-isletme-sahasi/"],
+      "oneri": false
+    },
+    {
+      "ad": "Site / AVM yönetimi",
+      "kaynak": "genel",
+      "yukumluluk": "Büyük tesiste su verimliliği sistemi; kapsam ve belge türü tesis eşiğine / Ek-2 NACE'e bağlıdır.",
+      "sonTarih": null,
+      "sonTarihDurum": "dogrulanamadi — AVM/site gövde md.(3) listesinde açıkça sayılmıyor; kapsam Ek-2'ye bağlı",
+      "dayanak": ["Su Verimliliği Yönetmeliği (kapsam gövde metninde; sektör eşiği Ek-1/Ek-2'de)"],
+      "ilgiliIcerik": ["/su-kanunu/"],
+      "oneri": false
+    },
+    {
+      "ad": "Enerji yatırımcısı (HES / JES)",
+      "kaynak": "genel",
+      "yukumluluk": "JES: jeotermal kaynak arama/işletme ruhsatı ve uyuşmazlıklar. HES: su kullanım hakkı + baraj/isale hattı kamulaştırması.",
+      "sonTarih": null,
+      "sonTarihDurum": "dogrulanamadi — ruhsat/proje sürecine bağlı",
+      "dayanak": ["/rehberler/jeotermal-ruhsat/", "/rehberler/baraj-kamulastirma/"],
+      "ilgiliIcerik": ["/rehberler/jeotermal-ruhsat/", "/rehberler/baraj-kamulastirma/"],
+      "oneri": false
+    },
+    {
+      "ad": "Maden işletmecisi",
+      "kaynak": "genel",
+      "yukumluluk": "Proses/maden suyu tahsisi ve öncelik; madencilik NACE faaliyeti Ek-2 kapsamındaysa yeşil su verimliliği belgesi.",
+      "sonTarih": null,
+      "sonTarihDurum": "dogrulanamadi — Ek-2 NACE listesi doğrulanınca netleşir",
+      "dayanak": ["/rehberler/su-tahsisinde-oncelik-sirasi/", "Su Verimliliği Yönetmeliği md.(3)-(4) Ek-2"],
+      "ilgiliIcerik": ["/rehberler/su-tahsisinde-oncelik-sirasi/"],
+      "oneri": false
+    },
+    {
+      "ad": "Gıda-içecek üreticisi",
+      "kaynak": "genel",
+      "yukumluluk": "Kaynak/mineralli su işletme ruhsatı ve su güvencesi (bkz. Meysu vakası); içecek/gıda imalatı Ek-2 NACE kapsamındaysa yeşil su verimliliği belgesi.",
+      "sonTarih": null,
+      "sonTarihDurum": "dogrulanamadi — Ek-2 NACE listesi doğrulanınca netleşir; kaynak suyu ruhsatı süreç-bağlı",
+      "dayanak": ["/rehberler/kaynak-suyu-kiralama/", "/vaka/meysu/", "Su Verimliliği Yönetmeliği md.(3) Ek-2"],
+      "ilgiliIcerik": ["/rehberler/kaynak-suyu-kiralama/", "/vaka/meysu/"],
+      "oneri": false
+    },
+    {
+      "ad": "Konaklamalı turizm işletmesi (250 oda ve üstü)",
+      "kaynak": "genel",
+      "yukumluluk": "250 oda ve üstü konaklamalı turizm işletmesi: yeşil su verimliliği belgesi başvurusu.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": ["Su Verimliliği Yönetmeliği md.(3) — '250 oda ve üstü kapasiteli konaklamalı turizm işletmeleri' açıkça sayılı"],
+      "ilgiliIcerik": ["/su-kanunu/"],
+      "oneri": true
+    },
+    {
+      "ad": "Üniversite kampüsü",
+      "kaynak": "genel",
+      "yukumluluk": "Üniversite kampüsü: yeşil su verimliliği belgesi başvurusu.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": ["Su Verimliliği Yönetmeliği md.(3) — 'üniversite kampüsleri' açıkça sayılı"],
+      "ilgiliIcerik": ["/su-kanunu/"],
+      "oneri": true
+    },
+    {
+      "ad": "Havalimanı işletmecisi",
+      "kaynak": "genel",
+      "yukumluluk": "Havalimanı: yeşil su verimliliği belgesi başvurusu.",
+      "sonTarih": "2029-12-27",
+      "sonTarihDurum": "dogrulandi",
+      "dayanak": ["Su Verimliliği Yönetmeliği md.(3) — 'havalimanları' açıkça sayılı"],
+      "ilgiliIcerik": ["/su-kanunu/"],
+      "oneri": true
+    }
+  ]
+}

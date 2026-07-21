@@ -31,11 +31,22 @@ VIZYON.md (ne). BRIEF.md çatı kuralları her zaman üstündür.
 ## Fazlar (sıralı; her faz kendi uygulama briefini Fable'dan alır; onay
 kapısı geçilmeden sonraki faz AÇILMAZ)
 
+FAZ NUMARALARI SABİTTİR. Uygulama sırası (2026-07-21 kullanıcı kararı):
+**1 → 7 → 2 → 3 → 4 → 5** (Faz 6 içerik derinliği paralel akar, kapıya tabi
+değil). Faz 1 TAMAM (2026-07-21). Sıradaki uygulama: Faz 7.
+
+DİL NOTU (2026-07-21 kullanıcı kararı, tüm fazlar için bağlayıcı): "TBB-çekingen
+dil kaldırıldı — profesyonel, sonuç-odaklı, iletişime çağıran dil serbest ve
+isteniyor; bayağılık yok." Önceki "bilgilendirme portalı / huni yok" kısıtı
+gevşetildi: iletişime çağrı (tel/e-posta), B2B rapor teklifi, sektör kapıları
+serbest. TBB reklam yasağına aykırı vaat/abartı yine YASAK; ölçü: profesyonel,
+kanıta dayalı, sonuç-odaklı.
+
 FAZ 1 — SÖZLÜK VE BORÇ: Koreografi/katman CSS tekilleştirme (SIRADAKILER
 40-41) + hareket sözlüğünün (--e-suzul ailesi) site geneline tutarlı yayılımı;
 sayı-canlanma deseni (baraj yüzdesi vb. görünüme girerken dolar). Görsel mock
 gerektirmez (mevcut onaylı desenlerin yayılımı). Bitti: tekil kaynak, görsel
-regresyon kıyasları, Lighthouse korunumu.
+regresyon kıyasları, Lighthouse korunumu. **DURUM: TAMAM (2026-07-21).**
 
 FAZ 2 — "BUGÜN TÜRKİYE'DE SU" NABIZ ŞERİDİ: Ana sayfada üç canlı değer
 (baraj doluluk, GRACE eğim, son mevzuat hareketi) + tarih damgası; build-time
@@ -60,11 +71,36 @@ havuzu, Su Verimliliği Belgesi rehberi (süreler işliyor — öncelikli), vaka
 kütüphanesi büyümesi (KAP taraması adayları), lead segmenti. Kalıplar:
 DESIGN.md §17.
 
+FAZ 7 — SONUÇ ZİNCİRİ VE PAZARLAMA (sıralamada Faz 1'den hemen sonra):
+ziyaretçiyi okurdan müvekkile taşıyan zincir + pazarlama altyapısı. İçerik
+JS~0 ve GEO/curl korunur (Korunacaklar geçerli); dil serbestisi yukarıdaki
+DİL NOTU'na tabidir.
+
+- ZİNCİR (üç halka): (1) **İlgilendirme** — sektör kapısı/persona sayfası
+  ziyaretçiyi "bu beni ilgilendiriyor" noktasına getirir. (2) **Ciddileştirme**
+  — risk bloğu + ceza/yaptırım içeriği + SABİT son-tarih ("Son başvuru:
+  27 Aralık 2029" gibi) aciliyet verir. (3) **Yol gösterme** — "ilk adımlar" +
+  rehber/vaka çapraz bağları + iletişim bloğu (tel/e-posta; form ayrı karar).
+- SEKTÖR KAPILARI: persona kart ızgaralı giriş sayfası (rota adı kullanıcı
+  onaylı: /kim/, /durumum/, /yukumluluk/ havuzu) + persona sonuç kalıbı.
+  Kaynak: data/lead/persona.json (Ek-1/Ek-2 NACE + genel personalar).
+- RİSK BLOKLARI + CEZA İÇERİĞİ: hükümler [APILEX] — Claude Code hukuki hüküm
+  yazmaz; iskelet + veri-tarafı öz-cevaplar üretir, hukuki metin Serdar'ın kalemi.
+- "KUYU ÇIKAR MI" — AYRI FAZ olarak tanımlıdır (jeolojik/hidrojeolojik tahmin
+  aracı); bu fazın kapsamında değil, ileride ayrı brief.
+- PAZARLAMA KANALLARI: bülten (izleme OLAYLAR'dan, ayda ~2), çeyreklik
+  "Türkiye Su Raporu" basın servisi, B2B rapor teaser'ı, GBP/yerel SEO
+  ("su hukuku avukatı"), GEO nabzı, LinkedIn vaka kartları, webinar programı.
+  Her kanal: altyapı/şablon burada; hesap açılışı + ritim kararı kullanıcıda.
+Bitti: persona sistemi + sektör kapıları canlı, pazarlama altyapısı (şablon/
+iskelet) hazır, GEO/curl/JS~0 kanıtlı; uygulama AŞAMA 1 mock onayı sonrası.
+
 ## Açık kararlar (kullanıcıda — KARAR BEKLİYOR)
-- /deneyim/: menüye bağlanması (öneri: "Senin Suyun"un final sahnesi) / kalkması.
-- src/harita-3d/: arşivde kalması / silinmesi.
+- /deneyim/: menüye bağlandı (2026-07-21 kullanıcı kararı — KAPANDI).
+- src/harita-3d/: arşivde kalır (2026-07-21 kullanıcı kararı — KAPANDI).
 - Birleşik panorama: /harita/ hero'ya girmesi (raf).
 - Upscale: canlı "yumuşak" kararına bağlı.
+- Faz 7 rota adı (/kim/ · /durumum/ · /yukumluluk/) + risk-bloğu dili: AŞAMA 1 mock onayında.
 
 ## İşleyiş
 Her faz: Fable uygulama briefi (ön-denetimli, düşman geçişli) → kullanıcı
