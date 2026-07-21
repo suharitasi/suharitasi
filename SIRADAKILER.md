@@ -267,3 +267,12 @@
     ONAY SONRASI: push talimatı ayrıca gelir; push sonrası Cloudflare
     cache purge gerekebilir (otomasyon yok). Gerçek iOS Safari testi
     kullanıcıda (emülasyon şerhi).
+43. FAZ 3 — /HARİTA/ CANLI VERİ PANELİ — KULLANICI ONAYI BEKLİYOR,
+    PUSH YAPILMADI (2026-07-21): hero altında 25 havza kartı (HavzaPaneli,
+    build-time statik, çalışma anı JS 0); GRACE eğimine göre sıralı, eşik
+    A ≤-1,5 (5 kritik: Asi, Fırat-Dicle, Van Gölü, Ceyhan, Seyhan; onaylı),
+    mobil iki kolon (onaylı), YAS rezerv havza-bazlı teyitli. Hero pixel
+    %0,000 değişmedi (1440+375); Lighthouse medyan 74→75; 25 kart→25
+    benzersiz link 0 kırık; düz-çizgi kuralı sentetik+gerçek seriyle
+    kanıtlı; konsol 0, taşma 0. Bilinçli sapmalar raporda (yön dili tek
+    bakım noktası; tr-TR yuvarlama). Kanıt: cikti/denetim/faz3/RAPOR.md.

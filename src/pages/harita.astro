@@ -2,7 +2,12 @@
 // Harita sayfası: tam ekran hero görseli (HEDEF.png) — görünümü kendine özgü,
 // Sayfa layout'u KULLANMAZ. Menü, sitenin ortak tam ekran katmanıdır
 // (TamEkranMenu + /s/menu.js) — iki ayrı menü kodu dönemi kapandı (KOD-8).
+// FAZ 3 (2026-07-21): hero'nun ALTINA 25 havza kartlık canlı veri paneli
+// (HavzaPaneli). Hero markup/CSS'ine dokunulmadı; eski "kaydırmasız sahne"
+// düzeni body'den .hero-sahne kabına taşındı ki ilk ekran birebir kalsın
+// (pixel kanıtı cikti/denetim/faz3/) ve sayfa panel için kaydırılabilsin.
 import TamEkranMenu from '../components/TamEkranMenu.astro';
+import HavzaPaneli from '../components/HavzaPaneli.astro';
 ---
 <!DOCTYPE html>
 <html lang="tr">
@@ -28,7 +33,7 @@ import TamEkranMenu from '../components/TamEkranMenu.astro';
 <link rel="preload" as="image" href="/hedef-hero.v2.webp" fetchpriority="high" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&display=swap&subset=latin-ext" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap&subset=latin-ext" rel="stylesheet" />
 <style is:global>
   :root {
     --deniz: #04121F;
@@ -42,14 +47,20 @@ import TamEkranMenu from '../components/TamEkranMenu.astro';
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html, body { height: 100%; }
+  html { height: 100%; }
 
   body {
     /* Zemin: görselden ImageMagick ile üretilmiş gerçek blur dosyası.
        Koyu renk zemin YOK; anlık yedek ton da görselin orta adaçayısı. */
     background: #8A9489 url('/hedef-zemin.v1.webp') center / cover no-repeat fixed;
     font-family: system-ui, sans-serif;
-    overflow: hidden;
+    min-height: 100%;
+  }
+
+  /* Eski kaydırmasız sahnenin düzeni body'den bu kaba taşındı (FAZ 3):
+     hero kompozisyonu birebir aynı (ortalanmış, 100dvh), sayfa artık
+     panel için aşağı kaydırılabilir. Hero (.cerceve/.hero) CSS'i AYNEN. */
+  .hero-sahne {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -115,9 +126,11 @@ import TamEkranMenu from '../components/TamEkranMenu.astro';
 </head>
 <body>
 
-  <figure class="cerceve" data-menu-dis>
-    <img class="hero" src="/hedef-hero.v2.webp" alt="Türkiye'nin kabartma su haritası — sıcak gün ışığında, denizden yükselen su kavisleri ve süzülen damlalarla" fetchpriority="high" decoding="async" />
-  </figure>
+  <div class="hero-sahne">
+    <figure class="cerceve" data-menu-dis>
+      <img class="hero" src="/hedef-hero.v2.webp" alt="Türkiye'nin kabartma su haritası — sıcak gün ışığında, denizden yükselen su kavisleri ve süzülen damlalarla" fetchpriority="high" decoding="async" />
+    </figure>
+  </div>
 
   <button
     class="sv-menu-ac"
@@ -126,6 +139,10 @@ import TamEkranMenu from '../components/TamEkranMenu.astro';
     aria-expanded="false"
     aria-controls="sv-menu"
   >menü</button>
+
+  <main data-menu-dis>
+    <HavzaPaneli />
+  </main>
 
   <TamEkranMenu />
 

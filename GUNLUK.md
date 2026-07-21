@@ -274,3 +274,18 @@
   eşzamanlı 3'er tur) dalgalanmanın her iki build'de aynı olduğunu
   gösterdi (medyan 96): localhost gürültüsünü eşik ihlali sanma —
   A/B'siz karar verme. Kanıt: cikti/denetim/menu/. PUSH YOK, onay kapısı.
+
+## 2026-07-21 (FAZ 3: /harita/ canlı veri paneli — 25 havza kartı)
+- Hero altına build-time statik panel (HavzaPaneli): kartlar GRACE
+  son-5-yıl eğimine göre sıralı ("veri seçer"), eşik A (≤-1,5 → 5 kritik,
+  kullanıcı onaylı), mobil iki kolon (onaylı), YAS rezerv satırı dosya
+  kanıtıyla havza-bazlı çıktı ve kaldı (brief'in "ulusaldır" tespiti
+  dosya doğrulamasıyla düzeltildi). Tahsis 0/25 ve baraj 17/25+5gün
+  karta girmedi (veri dürüstlüğü).
+- Hero dokunulmazlığı pixel kanıtlı (%0,000, 1440+375); Lighthouse
+  medyan 74→75. Doğrulama yine gerçek kusur yakaladı: sparkline düzlük
+  ölçüsüne sıfır-çapası karışıyordu (sabit seri "oynak" sanılırdı) —
+  seri-yayılımı/çizim-ölçeği ayrıldı, sentetik seriyle test edildi.
+- Yön dili mock'taki ara eşikten TEK bakım noktasına (grace-hesap ±0,5)
+  çekildi — sayfalar arası dil tutarlılığı mock sadakatinden önce gelir
+  (raporda gerekçeli sapma). PUSH YOK; kanıt: cikti/denetim/faz3/.

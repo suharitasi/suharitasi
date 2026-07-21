@@ -1,0 +1,302 @@
+---
+// FAZ 3 — /harita/ canlı veri paneli: 25 havza kartı, "en önemliyi
+// kullanıcı seçmez, veri seçer" — kartlar GRACE son-5-yıl eğimine göre
+// sıralıdır, kritik eşiğin altındakiler kehribar vurgu alır.
+// Onaylı mock: cikti/denetim/faz3/mock-panel-*.png (eşik A + iki kolon +
+// rezerv satırı — kullanıcı onayı 2026-07-21).
+// VERİ DÜRÜSTLÜĞÜ: yalnız havza-bazlı gerçek alanlar (potansiyel DSİ 2024,
+// YAS rezervi Tablo 1.3, GRACE trendi); tahsis (0/25) ve baraj (17/25 +
+// 5 günlük kayıt) karta girmez. Eğim/yön dili TEK bakım noktasından
+// (grace-hesap.js) — mock'taki ara ok dili değil, site kuralı (±0,5).
+// Çalışma anı JS: 0 (build-time statik; İş sınıfı, DESIGN.md §10).
+import { getCollection } from 'astro:content';
+import havzaVeri from '../../data/havza-veri.json';
+import yasVeri from '../../data/canli/havza-yas.json';
+import grace from '../../data/canli/grace-havza.json';
+import { graceEgilim } from '../data/grace-hesap.js';
+import { graceSpark } from '../data/grace-spark.js';
+
+// Kritik eşik: GRACE son-5-yıl eğimi ≤ -1,5 cm/yıl (dağılımın doğal
+// kırılması -1,54/-1,46; kullanıcı onayı 2026-07-21 — seçenek A).
+const KRITIK_ESIK = -1.5;
+
+// Havza no → sayfa slug'ı: kırık slug build'i düşürür, sessizce kaybolmaz.
+const havzaSayfalari = await getCollection('havzalar');
+const slugNo = new Map(havzaSayfalari.map((h) => [h.data.no, h.id]));
+
+const tr = (n, ond = 2) =>
+  n.toLocaleString('tr-TR', { minimumFractionDigits: ond, maximumFractionDigits: ond });
+
+const kartlar = havzaVeri.havzalar.map((h) => {
+  const gkayit = grace.havzalar[h.ad];
+  if (!gkayit) throw new Error(`HavzaPaneli: "${h.ad}" GRACE dosyasında yok.`);
+  const egilim = graceEgilim(gkayit.seri);
+  if (!egilim) throw new Error(`HavzaPaneli: "${h.ad}" eğimi hesaplanamadı (<24 ay).`);
+  const spark = graceSpark(gkayit.seri);
+  const slug = slugNo.get(h.no);
+  if (!slug) throw new Error(`HavzaPaneli: havza no "${h.no}" için sayfa yok.`);
+  const rezerv = yasVeri.havzalar[h.no]?.rezerv?.['2024'];
+  if (h.yuzeysuyuPotansiyeli_km3 == null)
+    throw new Error(`HavzaPaneli: "${h.ad}" yüzey suyu potansiyeli boş.`);
+  return {
+    no: h.no,
+    ad: h.ad.replace(' Havzası', ''),
+    slug,
+    pot: h.yuzeysuyuPotansiyeli_km3,
+    potYil: h.yuzeysuyuYili ?? 2024,
+    rezerv,
+    egim: egilim.egim,
+    yon: egilim.yon,
+    kritik: egilim.egim <= KRITIK_ESIK,
+    spark,
+  };
+}).sort((a, b) => a.egim - b.egim);
+
+const kritikSayisi = kartlar.filter((k) => k.kritik).length;
+const yonYazi = { azalma: 'azalma', toparlanma: 'toparlanma', sabit: 'belirgin eğilim yok' };
+const yonOk = { azalma: '↓', toparlanma: '↑', sabit: '→' };
+const aySayisi = kartlar[0].spark.aySayisi;
+const [ky, ka, kg] = yasVeri.kaynak.havzaPotansiyelRezerv.indirmeTarihi.split('-');
+---
+<section class="panel" aria-label="25 havzanın su verisi paneli">
+  <div class="panel-ic">
+    <p class="panel-kicker">Havza paneli · veri seçti</p>
+    <h2>Suyun durumu: 25 havza</h2>
+    <p class="panel-aciklama">
+      Kartlar GRACE son-5-yıl su depolaması eğimine göre sıralıdır — en hızlı
+      azalan en önde. Kehribar çizgili {kritikSayisi} kart kritik eşiğin
+      (≤ −1,5 cm/yıl) altındadır.
+    </p>
+
+    <div class="izgara">
+      {kartlar.map((k) => (
+        <a class={`kart${k.kritik ? ' kritik' : ''}`} href={`/havzalar/${k.slug}/`}>
+          <span class="kart-kicker">{k.no}{k.kritik && ' · KRİTİK'}</span>
+          <span class="kart-ad">{k.ad}</span>
+          <span class="kart-stat">
+            {tr(k.pot)}<span class="kart-birim">km³/yıl</span>
+          </span>
+          {k.rezerv != null && (
+            <span class="kart-rezerv">YAS rezervi {tr(k.rezerv, 1)} hm³/yıl</span>
+          )}
+          <svg class="kart-spark" viewBox="0 0 100 26" preserveAspectRatio="none" aria-hidden="true">
+            <line class="spark-sifir" x1="0" y1={k.spark.sifirY} x2="100" y2={k.spark.sifirY} />
+            <polyline class="spark-cizgi" points={k.spark.cizgi} />
+          </svg>
+          <span class={`kart-egilim ${k.yon}`}>
+            <span class="kart-ok" aria-hidden="true">{yonOk[k.yon]}</span>
+            {k.spark.duz ? 'aynı değer' : yonYazi[k.yon]}
+            <span class="kart-egim">{k.egim > 0 ? '+' : ''}{tr(k.egim)} cm/yıl</span>
+          </span>
+        </a>
+      ))}
+    </div>
+
+    <p class="panel-kunye">
+      Kaynak: DSİ Resmî Su Kaynakları İstatistikleri {kartlar[0].potYil}
+      (yüzey suyu potansiyeli · YAS işletme rezervi 2024, Tablo 1.3;
+      erişim {kg}.{ka}.{ky}) · NASA GRACE/GRACE-FO toplam su depolaması
+      anomalisi, son 5 yıl ({aySayisi} aylık ölçüm; 2004-2009 ortalamasına
+      göre DEĞİŞİM verisidir, mutlak miktar değildir; havza sınırları
+      yarım-derece grid yaklaşığıdır). Kart, havza sayfasına gider.
+    </p>
+  </div>
+</section>
+
+<style>
+  /* SU-DİLİ tokenları: /harita/ sayfası kendi minimal :root'unu taşır —
+     panel değerleri burada yerelde tanımlı (Sayfa.astro ile aynı değerler;
+     tekilleştirme yayılım fazının işi). */
+  .panel {
+    --pk-zemin: #E9EBE7;
+    --pk-kart: #E0E5DF;
+    --pk-metin: #1C2B24;
+    --pk-soluk: #54655C;
+    --pk-derin: #175E56;
+    --pk-sig: #4F7B78;
+    --pk-kehribar: #B8863B;
+    --pk-kehribar-m: #7D5B24;
+    --pk-cizgi: rgba(28, 43, 36, 0.14);
+    --pk-e-suzul: cubic-bezier(0.22, 1, 0.36, 1);
+    --pk-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+    background: var(--pk-zemin);
+    color: var(--pk-metin);
+    font-family: var(--sans, "Manrope", system-ui, sans-serif);
+    border-top: 1px solid rgba(28, 43, 36, 0.2);
+  }
+
+  .panel-ic {
+    max-width: 84rem;
+    margin: 0 auto;
+    padding: clamp(2.2rem, 5vh, 3.4rem) clamp(1.25rem, 4vw, 3rem) clamp(2.6rem, 6vh, 4rem);
+  }
+
+  .panel-kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: var(--pk-mono);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--pk-derin);
+  }
+
+  .panel-kicker::before {
+    content: "";
+    width: 1.6rem;
+    height: 1px;
+    background: var(--pk-sig);
+  }
+
+  h2 {
+    font-family: var(--serif, "Cormorant", Georgia, serif);
+    font-weight: 500;
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    margin: 0.5rem 0 0.3rem;
+  }
+
+  .panel-aciklama {
+    color: var(--pk-soluk);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    max-width: 60ch;
+    margin-bottom: 1.6rem;
+  }
+
+  .izgara {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.7rem;
+  }
+
+  .kart {
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+    padding: 0.95rem 1.05rem;
+    background: var(--pk-kart);
+    border: 1px solid var(--pk-cizgi);
+    border-top: 2px solid var(--pk-derin);
+    text-decoration: none;
+    color: var(--pk-metin);
+    transition: transform 240ms var(--pk-e-suzul), background-color 240ms ease;
+  }
+
+  .kart:hover { transform: translateY(-2px); background: #DFE3E2; }
+
+  .kart:focus-visible {
+    outline: 2px solid var(--pk-derin);
+    outline-offset: 3px;
+  }
+
+  .kart.kritik { border-top-color: var(--pk-kehribar); }
+
+  .kart-kicker {
+    font-family: var(--pk-mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: var(--pk-soluk);
+  }
+
+  .kritik .kart-kicker { color: var(--pk-kehribar-m); }
+
+  .kart-ad {
+    font-family: var(--serif, "Cormorant", Georgia, serif);
+    font-size: 1.18rem;
+    font-weight: 500;
+    line-height: 1.15;
+  }
+
+  .kart-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    font-family: var(--serif, "Cormorant", Georgia, serif);
+    font-size: 1.85rem;
+    font-weight: 500;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    margin-top: 0.15rem;
+  }
+
+  .kart-birim {
+    font-family: var(--pk-mono);
+    font-size: 0.6rem;
+    color: var(--pk-soluk);
+  }
+
+  .kart-rezerv { font-size: 0.74rem; color: var(--pk-soluk); }
+
+  .kart-spark { width: 100%; height: 34px; margin-top: 0.3rem; }
+
+  .spark-cizgi {
+    fill: none;
+    stroke: var(--pk-derin);
+    stroke-width: 1.4;
+    vector-effect: non-scaling-stroke;
+    stroke-linejoin: round;
+  }
+
+  .spark-sifir {
+    stroke: rgba(79, 123, 120, 0.4);
+    stroke-width: 1;
+    stroke-dasharray: 3 3;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .kart-egilim {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .kart-ok { font-size: 1rem; line-height: 1; }
+  .azalma .kart-ok { color: var(--pk-kehribar-m); }
+  .toparlanma .kart-ok { color: var(--pk-derin); }
+  .sabit .kart-ok { color: var(--pk-soluk); }
+
+  .kart-egim {
+    font-family: var(--pk-mono);
+    font-size: 0.66rem;
+    font-weight: 400;
+    color: var(--pk-soluk);
+  }
+
+  .panel-kunye {
+    margin-top: 1.4rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--pk-cizgi);
+    font-family: var(--pk-mono);
+    font-size: 0.66rem;
+    line-height: 1.6;
+    color: var(--pk-soluk);
+    max-width: 74ch;
+  }
+
+  /* Ara genişlikler: 5 kolon sıkışmadan önce kademeli düşer */
+  @media (max-width: 1100px) { .izgara { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 880px) { .izgara { grid-template-columns: repeat(3, 1fr); } }
+
+  /* Mobil: İKİ KOLON (onaylı seçim) — kompakt kart */
+  @media (max-width: 640px) {
+    .izgara { grid-template-columns: repeat(2, 1fr); gap: 0.55rem; }
+    .kart { padding: 0.75rem 0.8rem; }
+    .kart-stat { font-size: 1.5rem; }
+    .kart-ad { font-size: 1.05rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kart { transition: none; }
+    .kart:hover { transform: none; }
+  }
+
+  @media print {
+    .kart { break-inside: avoid; }
+  }
+</style>
