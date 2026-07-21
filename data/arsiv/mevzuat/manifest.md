@@ -21,3 +21,10 @@ açık-veri/CC lisansı veya özel kullanım-koşulu sayfası BULUNAMADI. Değer
 resmî mevzuat metinleri (kanun/yönetmelik) çoğu düzende telif dışıdır; Ulusal Su
 Planı bir kurum yayınıdır. Kullanım varsayımı: **resmî kaynak, açık lisans beyanı
 yok — arşiv + atıf amaçlı; yayın/türetme kararı kullanıcıda (Av. Serdar Arslan).**
+
+## Ek belge (BÖLÜM E — 2026-07-21)
+- `su-verimliligi-yonetmeligi-ekler-20241227-3-1.pdf` — Su Verimliliği Yönetmeliği
+  EKLERİ (Ek-1..Ek-5; Ek-2 = NACE kodu bazında faaliyetler listesi). Kaynak:
+  https://www.resmigazete.gov.tr/eskiler/2024/12/20241227-3-1.pdf (2026-07-21, HTTP 200).
+  NOT: Bu PDF **taranmış/görüntü-tabanlıdır** (CCITT stencil; metin katmanı yok) →
+  Ek-2 NACE tablosu OCR'sız güvenilir ayrıştırılamaz. Ayrıntı: data/lead/nace-ek2.json.

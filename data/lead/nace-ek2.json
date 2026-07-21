@@ -1,0 +1,13 @@
+{
+  "durum": "ek-2-ayri-belgede-taranmis-pdf",
+  "aciklama": "Su Verimliliği Yönetmeliği'nin gövde HTML'i (20241227-3.htm) Ek-2 NACE listesini İÇERMEZ; gövde 'Ekleri için tıklayınız' ile ekler belgesine yönlendirir. Ek-2 (yeşil su verimliliği belgesi yükümlüsü NACE kodu bazında faaliyetler) ayrı ekler PDF'indedir.",
+  "kaynak_ek_url": "https://www.resmigazete.gov.tr/eskiler/2024/12/20241227-3-1.pdf",
+  "arsiv_dosyasi": "data/arsiv/mevzuat/su-verimliligi-yonetmeligi-ekler-20241227-3-1.pdf",
+  "arsiv_sha256": "e69d5b524b45049834becc4fe115b1cafec2f9d25f364c28266e35a2a6311212",
+  "ayristirma_durumu": "OTOMATİK AYRIŞTIRILAMADI — ekler PDF'i taranmış/görüntü-tabanlıdır (CCITT stencil görüntüler; metin katmanı yalnız sayfa filigranı). NACE kod tablosu görüntülerin içindedir; güvenilir metin çıkarımı OCR gerektirir.",
+  "uydurma_yasagi": "Tahmini/OCR-tahmini NACE listesi ÜRETİLMEDİ (brief kuralı: uydurarak tamamlama yasak). Liste kod+faaliyet adı ile ancak resmî metinden (OCR doğrulaması veya RG makine-okunur sürümü) elde edildiğinde doldurulacaktır.",
+  "yonetmelik_govde_atif": "Ek-2'de yer alan NACE kodu bazında faaliyetler en fazla beş yıl içinde yeşil su verimliliği belgesi için başvuru yapmakla yükümlüdür.",
+  "kayit_tarihi": "2026-07-21",
+  "karar": "Kullanıcıya devredildi: Ek-2 NACE listesinin çıkarımı (OCR/manuel) ve lead hedeflemesinde kullanımı.",
+  "liste": []
+}
