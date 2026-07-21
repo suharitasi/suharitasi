@@ -55,6 +55,29 @@ denetim 2026-07-16).
   ışığıyla aynı sıcaklık bandı — YÜZEY tonu zaten oraya evrildi) ve
   kehribar (artık kaynağı görselin platosu; alışkanlık değil örnekleme).
 
+### Landing İstisnası (bilinçli — palet denetiminden muaf)
+
+Landing (`src/pages/index.astro` hero) koyu **derin-su / "gece denizi"**
+paletini kullanır: bu SU-DİLİ aydınlık derinlik skalasının DIŞINDADIR ve
+bilinçli tasarım kararıdır. Landing bir giriş atmosferi/koreografisidir;
+iç sayfaların aydınlık iş dilini taşımaz. Bu tonlar palet uyum
+denetimlerinde İSTİSNA sayılır — "palet-dışı hex" bulgusu değildir.
+(Renk değiştirilmez; yalnız belgelenir. Kaynak: index.astro `:root`,
+2026-07-21 okumasıyla.)
+
+| Değişken | Hex |
+|---|---|
+| `--deniz` | `#04121F` |
+| `--yukselti` | `#071D2E` |
+| `--akis-sonuk` | `#0E3247` |
+| `--akis-canli` | `#1E5A78` |
+| `--akuamarin` | `#4FC3D0` |
+| `--kopuk` | `#A8DDE0` |
+| `--metin` | `#DCE9ED` |
+| `--metin-soluk` | `#6C8A96` |
+| `--bakir` | `#C08A4F` |
+| (en dip gölge) | `#030D17` |
+
 ## 3. AKIŞ — suyun ivmesi (easing sözlüğü)
 
 Su aniden durmaz, aniden fırlamaz. Dört adlandırılmış eğri; HER geçiş

@@ -48,8 +48,11 @@ KUYRUK BAŞI (sıradaki iş): Su Kanunu TBMM izleme sistemi.
     MCP kuruldu (.mcp.json; yeni oturumda araç olarak aktif), protokol
     CLAUDE.md'de, script yedeği arac/oz-denetim.mjs; deneme denetimi
     temiz (0 hata, 0 kırık link, 3 görüntü cikti/denetim/).
-19. Menü + içerik sayfaları görsel yenileme (su hissi) — KULLANICI
-    ONAYI BEKLİYOR (2026-07-14): ilk sürüm canlıda başarısız (sim
+19. Menü + içerik sayfaları görsel yenileme (su hissi) — SÜPERSEDE
+    (2026-07-21 kapanış): bu "su hissi" katmanı SU-DİLİ anayasasıyla
+    (madde 34 ONAYLANDI + madde 36 FAZ 1) tümüyle değiştirildi; eski
+    sürüm sitede yok. Kapatıldı. Tarihsel not aşağıda korunur:
+    [ESKİ] KULLANICI ONAYI BEKLİYOR (2026-07-14): ilk sürüm canlıda başarısız (sim
     görünmüyor, imleç topak, şerit soluk); düzeltme b32f7fa push'landı
     (sim görünürlüğü + FPS ısınması + SVG damla + belirgin şerit).
     Kullanıcı canlıda tekrar test edecek; onaysız kapatılmaz.
@@ -58,8 +61,16 @@ KUYRUK BAŞI (sıradaki iş): Su Kanunu TBMM izleme sistemi.
     (marketingskills + claude-seo, ~/.claude/skills/), 11 sayfa canlı
     tarandı, rapor/pazarlama-danismanligi.md yazıldı (salt analiz,
     uygulama yok).
-21. Dalga 1 — rapor uygulaması (İLK 5 HAMLE + 2 ek) — KULLANICI ONAYI
-    BEKLİYOR (2026-07-15): landing nav + üç kapı ("Yakında" kalktı),
+21. Dalga 1 — rapor uygulaması (İLK 5 HAMLE + 2 ek) — CANLI/ABSORBE
+    (2026-07-21 kapanış): landing nav + üç kapı, E-E-A-T künye/yazar
+    kutusu, rehber ağı, footer canlıda (curl doğrulandı) ve sonraki
+    onaylı işlere (FAZ A-ÖN/A landing yeniden-inşası, madde 42) absorbe
+    edildi. TEK AÇIK KALAN: landing WebSite/Organization JSON-LD FAZ A-ÖN
+    yeniden-inşasında düşmüştü; WebSite şeması 2026-07-21 düzeltmesinde
+    geri eklendi (DUZELTME.md madde 1), Organization/LegalService kapsam
+    dışı (TBB dili — künye işi). İlk-sürüm ayrı canlı-onayı GUNLUK'ta
+    kayıtlı değil; içerik canlı olduğundan kapatıldı. Tarihsel not:
+    [ESKİ] KULLANICI ONAYI BEKLİYOR (2026-07-15): landing nav + üç kapı ("Yakında" kalktı),
     E-E-A-T paketi (künye satırı + yazar kutusu + Article/Person/
     Breadcrumb/Organization/WebSite JSON-LD + og:image), rehber ağı
     (ilgili rehberler + iki küme), Sakarya hukuk bloğu pilotu, yazdırma
@@ -79,8 +90,11 @@ KUYRUK BAŞI (sıradaki iş): Su Kanunu TBMM izleme sistemi.
     (TAKTİK-3), kuyu ruhsatı kontrol listesi PDF (TAKTİK-5), 81 il
     programatik sayfa (TAKTİK-7), kalan 24 havzanın hukuk bloğu
     (içerik kullanıcıdan).
-25. Dalga 2 — menü vitrini + deneyim yenileme — KULLANICI ONAYI
-    BEKLİYOR (2026-07-15): tam ekran menü keşif yüzeyine dönüştü
+25. Dalga 2 — menü vitrini + deneyim yenileme — CANLI/ABSORBE
+    (2026-07-21 kapanış): TamEkranMenu vitrini canlıda (curl: sv-vitrin);
+    menü kabuğu FAZ A site-geneli reformuyla (madde 42, onaylı+canlı)
+    yeniden ele alındı. Absorbe edildi, kapatıldı. Tarihsel not:
+    [ESKİ] KULLANICI ONAYI BEKLİYOR (2026-07-15): tam ekran menü keşif yüzeyine dönüştü
     (sol: 5 bölüm + alt-etiket; sağ vitrin: son 3 rehber + kanun son
     durum + öne çıkan havza — tümü build-time otomatik, elle metin
     yok); iki menü kodu tekilleşti (/harita/ artık src/pages/
@@ -151,7 +165,12 @@ KUYRUK BAŞI (sıradaki iş): Su Kanunu TBMM izleme sistemi.
     noktasına alındı (grace-hesap.js — 3 kopya tekilleşti). Görsel
     onay: il-konya/il-bolu/arac-*.png. Not: baraj/GRACE verisi cron'la
     güncellendikçe il sayfaları da sonraki build'de tazelenir.
-33. TASARIM ANAYASASI FAZ 0 — KULLANICI ONAYI BEKLİYOR (2026-07-16):
+33. TASARIM ANAYASASI FAZ 0 — SÜPERSEDE (madde 34 ile tekilleştirildi):
+    DESIGN.md 2.0 önerisi, madde 34 "YÖN YÜKSELTMESİ — SU-DİLİ FAZ 0"
+    ile DESIGN.md 3.0'a yükseltilip ONAYLANDI ("bu dil, devam"). Bu
+    madde artık madde 34'e bağlıdır; tek geçerli tasarım onayı 34'tedir.
+    Kapatıldı. Tarihsel not:
+    [ESKİ] KULLANICI ONAYI BEKLİYOR (2026-07-16):
     DESIGN.md 2.0 yazıldı (üç font hiyerarşisi: Cormorant + Manrope +
     IBM Plex Mono; kicker sistemi; 6 kart ton ailesi — düz ton kararı;
     easing/durum sözlüğü; veri bandı dili; iki hız sınıfı; 11 maddelik
@@ -202,8 +221,9 @@ KUYRUK BAŞI (sıradaki iş): Su Kanunu TBMM izleme sistemi.
     teşhisi (B1-B17, K1-K4; kanıt cikti/denetim/faz0/) + DESIGN.md §17
     "Sayfa Mimarisi" (3-saniye, katmanlı sunum, veri kahraman, kart
     dili, mobil-öncelik, SU-DİLİ uyumu). Kullanıcı ilke onayı verildi.
-39. SUNUM REFORMU FAZ 2a — HAVZA KALIBI PİLOTU (Sakarya) — KULLANICI
-    ONAYI BEKLİYOR (2026-07-20): kalip:2 frontmatter kapısı (yalnız
+39. SUNUM REFORMU FAZ 2a — HAVZA KALIBI PİLOTU (Sakarya) — TAMAM
+    (kullanıcı canlı onayı 2026-07-21, GUNLUK KAPANIŞ; Sakarya kalip:2
+    canlıda curl'la doğrulandı — zincirin ilk halkası): kalip:2 frontmatter kapısı (yalnız
     Sakarya; 24 havza + diğer sayfalar bit-değişmedi, curl kanıtlı).
     HavzaKahraman bandı (6,01 km³/yıl + YAS rezervi + GRACE ↓azalma +
     59-ay sparkline + künye) + Katman bileşeni (native details, JS 0,

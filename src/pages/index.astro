@@ -25,6 +25,14 @@ import UstMenu from '../components/UstMenu.astro';
 <meta property="og:image:alt" content="Su Haritası — Türkiye'nin su verisi ve mevzuatı" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://suharitasi.com/og-suharitasi.v1.png" />
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Su Haritası",
+  "url": "https://suharitasi.com",
+  "inLanguage": "tr",
+  "description": "Türkiye'nin 25 su havzası: DSİ verisi, kuyu ruhsatı ve su mevzuatı rehberleri, Su Kanunu taslak takibi — tek portalda."
+})} />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
