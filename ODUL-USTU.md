@@ -31,9 +31,9 @@ VIZYON.md (ne). BRIEF.md çatı kuralları her zaman üstündür.
 ## Fazlar (sıralı; her faz kendi uygulama briefini Fable'dan alır; onay
 kapısı geçilmeden sonraki faz AÇILMAZ)
 
-FAZ NUMARALARI SABİTTİR. Uygulama sırası (2026-07-21 kullanıcı kararı):
-**1 → 7 → 2 → 3 → 4 → 5** (Faz 6 içerik derinliği paralel akar, kapıya tabi
-değil). Faz 1 TAMAM (2026-07-21). Sıradaki uygulama: Faz 7.
+FAZ NUMARALARI SABİTTİR. Uygulama sırası (2026-07-21 kullanıcı kararı, FAZ 8
+eklendi): **1 → 7 → 8 → 2 → 3 → 4 → 5** (Faz 6 içerik derinliği paralel akar,
+kapıya tabi değil). Faz 1 ve Faz 7 TAMAM (2026-07-21). Sıradaki uygulama: Faz 8.
 
 DİL NOTU (2026-07-21 kullanıcı kararı, tüm fazlar için bağlayıcı): "TBB-çekingen
 dil kaldırıldı — profesyonel, sonuç-odaklı, iletişime çağıran dil serbest ve
@@ -94,6 +94,25 @@ DİL NOTU'na tabidir.
   Her kanal: altyapı/şablon burada; hesap açılışı + ritim kararı kullanıcıda.
 Bitti: persona sistemi + sektör kapıları canlı, pazarlama altyapısı (şablon/
 iskelet) hazır, GEO/curl/JS~0 kanıtlı; uygulama AŞAMA 1 mock onayı sonrası.
+
+FAZ 8 — PALET YENİLEME (sıralamada Faz 7'den hemen sonra, Faz 2'den önce):
+kullanıcı kararı 21.07 — mevcut SU-DİLİ adaçayı-petrol ailesi "yeşilimsi"
+bulundu; hedef "canlı ve suya uyumlu" ana palet. **Kapsam: SU-DİLİ ANA
+paletin yenilenmesi.** Landing İstisnası (koyu "gece denizi" derin-su)
+KORUNUR — paletten muaf, değişmez. Referans-önce: seçim kelime tarifiyle
+değil KIYAS KARESİYLE yapılır.
+- AŞAMA 0 — KIYAS TURU: TAMAM (2026-07-21). 3 aday (A doygun turkuaz+okyanus /
+  B petrol+cyan enjeksiyonu evrimsel / C açık mavi zemin+lacivert devrimsel),
+  tam değişken setleri + WCAG AA kontrast tabloları (hepsi geçer) + 4'lü kıyas
+  kareleri: `cikti/denetim/faz8-palet/` (RAPOR.md + kareler/ + ham/). Kaynağa
+  dokunulmadı; kıyas dist kopyalarında hex remap ile üretildi.
+- AŞAMA 1 — SEÇİM (kullanıcıda, KARAR BEKLİYOR): A / B / C / melez. Hiçbir aday
+  "önerilen" işaretlenmedi (artı-eksi verildi, seçim kullanıcıda).
+- AŞAMA 2 — UYGULAMA (seçim sonrası ayrı iş): DESIGN.md §2 güncellemesi +
+  kaynak `:root` uygulaması + tam öz-denetim + Lighthouse korunumu. Landing
+  paleti ELLENMEZ.
+Bitti: seçilen palet kaynağa uygulanır, DESIGN.md güncellenir, öz-denetim
+kanıtlı, Lighthouse tabanları korunur, GEO/JS~0 bozulmaz.
 
 ## Açık kararlar (kullanıcıda — KARAR BEKLİYOR)
 - /deneyim/: menüye bağlandı (2026-07-21 kullanıcı kararı — KAPANDI).

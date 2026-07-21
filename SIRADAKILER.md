@@ -2,9 +2,13 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
-KUYRUK BAŞI (sıradaki iş): Ödül-üstü FAZ 2 — "Bugün Türkiye'de Su" nabız
-şeridi (ana sayfada 3 canlı değer + tarih damgası; mock onayı → uygulama).
-Uygulama sırası 1→7→2→3→4→5; FAZ 1 ve FAZ 7 TAMAM.
+KUYRUK BAŞI (sıradaki iş): Ödül-üstü FAZ 8 — PALET YENİLEME. Kıyas turu
+TAMAM (2026-07-21): 3 aday (A turkuaz+okyanus / B petrol+cyan / C mavi
+zemin+lacivert), AA kontrast + 4'lü kıyas kareleri
+cikti/denetim/faz8-palet/ (RAPOR.md). KARAR BEKLİYOR: kullanıcı A/B/C/melez
+seçer → seçim sonrası ayrı işte kaynak uygulaması + DESIGN.md §2 güncellemesi.
+Landing İstisnası korunur. Sonra FAZ 2 nabız şeridi.
+Uygulama sırası 1→7→8→2→3→4→5; FAZ 1 ve FAZ 7 TAMAM.
 
 FAZ 7 (Sonuç Zinciri) TAMAM (2026-07-21; AŞAMA 0 162d182 · AŞAMA 1 88c7a72 ·
 AŞAMA 2 27dd472, push+canlı): /durumum/ sektör kapısı + 11 persona sonuç
