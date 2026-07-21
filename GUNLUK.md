@@ -289,3 +289,11 @@
 - Yön dili mock'taki ara eşikten TEK bakım noktasına (grace-hesap ±0,5)
   çekildi — sayfalar arası dil tutarlılığı mock sadakatinden önce gelir
   (raporda gerekçeli sapma). PUSH YOK; kanıt: cikti/denetim/faz3/.
+
+## 2026-07-21 (KAPANIŞ: sunum reformu zinciri canlı onayı)
+- 21.07 push d2fea9d..fd4ec5e canlı; kullanıcı canlı testini bu kaydın
+  yapıştırıldığı mesajla onayladı (zincir: 2b, 2c, A-ÖN, FAZ A menü,
+  FAZ 3 panel).
+- Fable periyodik denetim sayacı: sunum reformu zinciri iş briefi sayımı
+  (2b+2c birleşik=2, A-ÖN+A birleşik=2, FAZ 3=1 → +5; önceki 2/5 → 7,
+  eşik 5 AŞILDI — yeni tur denetim Fable'da beklemede).

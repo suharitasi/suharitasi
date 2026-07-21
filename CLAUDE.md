@@ -100,6 +100,22 @@ sessizce başarısız olup veri kaybetmemeli. Bağlayıcı kurallar:
   Pipeline kendini denetleyemez. Eşikler gerçek cron takvimine göre kalibre
   edilir (takvim-günü değil saat/gün penceresi — yanlış alarm üretme).
 
+## Brief ön-denetim kontrol listesi (2026-07-21)
+Her brief tesliminden ÖNCE zorunlu ön-denetim listesi (kaynak: GUNLUK.md
+21.07 "HATA KAYDI + KURAL" kaydı):
+1. Her referans (dosya, mock, commit, yol) somut mu, yoksa "bulunur
+   varsayımı" mı?
+2. Her bitti-tanımı/şart ortamda GERÇEKTEN denetlenebilir mi?
+   (denetlenemezler ölçülebilire çevrilir ya da kullanıcıya devredilir)
+3. Belirsiz parametre kaldı mı? (breakpoint, eşik, tolerans — tanımsızsa
+   "dur ve sor")
+4. Kapsam dışı liste tam mı, brief kendi içinde çelişiyor mu?
+Bu liste geçilmeden brief teslim edilmez; geçemeyen brief düzeltilir.
+- Denetlenemez şart briefe yazılmaz (bit-kıyas, gerçek cihaz testi) —
+  ölçülebilire çevrilir ya da kullanıcıya devredilir.
+- Lighthouse tek ölçümle karar verilmez — 3 tur medyan; localhost
+  gürültüsü eşik ihlali sanılmaz.
+
 ## Kurallar
 - Her işin sonunda commit + push OTOMATİK yapılır; push için ayrıca
   onay sorulmaz (kullanıcı kararı, 2026-07-14).

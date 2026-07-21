@@ -2,6 +2,8 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
+KUYRUK BAŞI (sıradaki iş): Su Kanunu TBMM izleme sistemi.
+
 1. HEDEF.png hero — YAPILDI: görselin kendisi tam ekran hero oldu; 3D
    atmosfer sahnesi src/harita-3d/ altına arşivlendi (silinmedi)
 2. Kullanıcı onayı → canlıya deploy (Production kontrolü)
@@ -217,7 +219,7 @@
     pilotları (kullanıcı onayı gelmeden BAŞLANMAZ). → Onay geldi
     (2026-07-21); 2b+2c pilotları yapıldı (madde 40-41).
 40. SUNUM REFORMU FAZ 2b — REHBER KALIBI PİLOTU (kuyu-ruhsati) —
-    KULLANICI ONAYI BEKLİYOR (2026-07-21): kalip:2 kapısı (yalnız
+    TAMAM (kullanıcı canlı onayı 2026-07-21): kalip:2 kapısı (yalnız
     kuyu-ruhsati; diğer 8 rehber DOM-eşit — tek fark görünmez scoped-css
     kimlik attribute'u; 25 havza + tüm diğer sayfalar bit-eşit). İlk
     ekran: 280-cevap + "bu rehber ne çözer" (frontmatter cozer, damıtık)
@@ -233,7 +235,7 @@
     GEO: 280-cevap + Article JSON-LD + madde/il/adım tam metinleri
     curl'la JS'siz DOM'da doğrulandı. Kanıt: cikti/denetim/faz2/faz2b-*.
 41. SUNUM REFORMU FAZ 2c — VAKA KALIBI PİLOTU (/vaka/meysu/) —
-    KULLANICI ONAYI BEKLİYOR (2026-07-21): yol teyidi — sayfa
+    TAMAM (kullanıcı canlı onayı 2026-07-21): yol teyidi — sayfa
     /vaka/meysu/ (brief'teki "meysu-su-guvensi" değil; slug dosya
     adından). B17 gereği içerik KISALTILMADI (görünür kelime 226→257):
     sahne eklendi. Kahraman stat kartları ilk ekranda (3.395,33 ha /
@@ -250,8 +252,8 @@
     izolasyonu: bit düzeyinde tek değişen sayfa /vaka/meysu/. Kanıt:
     cikti/denetim/faz2/faz2c-*. Not: kalıpların koreografi/katman CSS'i
     yayılım fazında tekilleştirilecek (şimdilik pilot-başına scoped).
-42. SİTE-GENELİ MOBİL MENÜ REFORMU (FAZ A-ÖN + FAZ A) — KULLANICI ONAYI
-    BEKLİYOR, PUSH YAPILMADI (2026-07-21, yerel commit e299c66 + 5e1de81):
+42. SİTE-GENELİ MOBİL MENÜ REFORMU (FAZ A-ÖN + FAZ A) — TAMAM
+    (2026-07-21: push d2fea9d..fd4ec5e canlı, kullanıcı canlı onayı):
     (a) FAZ A-ÖN: landing header'ı tek kaynağa alındı (UstMenu tema
     varyantı aydinlik/koyu; landing src/pages/index.astro'ya taşındı,
     eski statik arsiv/landing-statik/). Görsel birebir: pixelmatch
@@ -264,11 +266,11 @@
     header.koyu z-index (görsel fark 0 piksel). Lighthouse sakarya
     4×100, kuyu-ruhsati medyan 96 (A/B gürültü kanıtlı). Kanıt:
     cikti/denetim/faz-a-on/ + cikti/denetim/menu/ (RAPOR.md'ler).
-    ONAY SONRASI: push talimatı ayrıca gelir; push sonrası Cloudflare
-    cache purge gerekebilir (otomasyon yok). Gerçek iOS Safari testi
+    Push yapıldı, canlı onaylandı; Cloudflare cache purge gerekirse
+    kullanıcı panelden yapar (otomasyon yok). Gerçek iOS Safari testi
     kullanıcıda (emülasyon şerhi).
-43. FAZ 3 — /HARİTA/ CANLI VERİ PANELİ — KULLANICI ONAYI BEKLİYOR,
-    PUSH YAPILMADI (2026-07-21): hero altında 25 havza kartı (HavzaPaneli,
+43. FAZ 3 — /HARİTA/ CANLI VERİ PANELİ — TAMAM (2026-07-21: push
+    d2fea9d..fd4ec5e canlı, kullanıcı canlı onayı): hero altında 25 havza kartı (HavzaPaneli,
     build-time statik, çalışma anı JS 0); GRACE eğimine göre sıralı, eşik
     A ≤-1,5 (5 kritik: Asi, Fırat-Dicle, Van Gölü, Ceyhan, Seyhan; onaylı),
     mobil iki kolon (onaylı), YAS rezerv havza-bazlı teyitli. Hero pixel
