@@ -110,6 +110,8 @@ Her brief tesliminden ÖNCE zorunlu ön-denetim listesi (kaynak: GUNLUK.md
 3. Belirsiz parametre kaldı mı? (breakpoint, eşik, tolerans — tanımsızsa
    "dur ve sor")
 4. Kapsam dışı liste tam mı, brief kendi içinde çelişiyor mu?
+5. Düşman geçişi: briefi FAIL ettirmenin yollarını ara — çelişen şart,
+   geçemeyecek test, boş çıkacak referans. (Bulunanlar 1-4'e geri beslenir.)
 Bu liste geçilmeden brief teslim edilmez; geçemeyen brief düzeltilir.
 - Denetlenemez şart briefe yazılmaz (bit-kıyas, gerçek cihaz testi) —
   ölçülebilire çevrilir ya da kullanıcıya devredilir.

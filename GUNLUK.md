@@ -297,3 +297,15 @@
 - Fable periyodik denetim sayacı: sunum reformu zinciri iş briefi sayımı
   (2b+2c birleşik=2, A-ÖN+A birleşik=2, FAZ 3=1 → +5; önceki 2/5 → 7,
   eşik 5 AŞILDI — yeni tur denetim Fable'da beklemede).
+
+## 2026-07-21 (Opus tarafı: izleme v3 + belge arşivi + Opus paketi A-E)
+- Su Kanunu izleme sistemi v3 KURULDU: izleme/ (su-izleme.sh + lib/motor.py +
+  hedefler.conf + anahtar-kelimeler.txt), 11 hedef (M1 RG deterministik + M2
+  TBMM + M3 Bakanlık/DSİ fark motoru). T1-T5 kanıtlı (KURULUM.md
+  cikti/denetim/su-izleme/). Cron 05:30+16:00 UTC kuruldu; saglik-bekcisi'ne
+  su-izleme tazelik kontrolü (DURUM.md ≥14s) eklendi. İlk GERÇEK cron fire
+  16:00 UTC — canlı teyit beklemede.
+- Opus periyodik denetim sayacı: denetim-2 (2ba78e5) sonrası BİTMİŞ işler —
+  toparlama v2, kaynak keşfi v2, izleme kurulumu v3 → **+3**. Eşik 5;
+  **mevcut 3/5 — henüz aşılmadı.** NOT: Opus paketi (A-E, 5 bölüm) SÜRÜYOR;
+  bölüm sayımı PAKET SONU'nda yapılacak (yalnız TAMAM biten bölümler eklenir).

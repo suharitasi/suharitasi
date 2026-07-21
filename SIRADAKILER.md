@@ -2,7 +2,16 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
-KUYRUK BAŞI (sıradaki iş): Su Kanunu TBMM izleme sistemi.
+KUYRUK BAŞI (sıradaki iş): Opus paketi A-E (işleniyor) → sonra kuyruk sırası.
+
+TAMAM (2026-07-21): Su Kanunu TBMM izleme sistemi v3 KURULDU — izleme/ +
+cron (05:30+16:00 UTC) + saglik-bekcisi tazelik kontrolü; T1-T5 kanıtlı
+(cikti/denetim/su-izleme/KURULUM.md). ŞERH: ilk gerçek cron fire 16:00 UTC —
+canlı teyit beklemede (İş kapanış kuralı). Kaynak keşfi v2 (700f216) da TAMAM.
+
+İŞLENİYOR (2026-07-21): Opus paketi 5 bölüm (A belge arşivi · B kayıt ·
+C UYAP künye teyidi · D SEO/GEO denetim skill · E NACE Ek-2 + KAP tarama);
+durum tablosu PAKET SONU'nda. Kuyruk sırası korunur.
 
 1. HEDEF.png hero — YAPILDI: görselin kendisi tam ekran hero oldu; 3D
    atmosfer sahnesi src/harita-3d/ altına arşivlendi (silinmedi)
