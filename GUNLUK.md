@@ -232,3 +232,30 @@
   commit edilmiyordu) ve düzeltildi. Cron suha'ya taşındı, root boşaltıldı.
 - Güvenlik: token remote URL'den credential store'a alındı (borç kapatıldı)
   AMA token çıktıya sızdı → İPTAL+yenileme kullanıcıda.
+
+## 2026-07-21 (HATA KAYDI + KURAL: brief ön-denetim kontrol listesi)
+- HATA: Menü reformu brief'inin ilk sürümü denetlenemez/belirsiz şartlar
+  taşıyordu (bit-kıyas beklentisi, gerçek cihaz testi, tanımsız breakpoint,
+  "mock bulunur" varsayımı). DERS: denetlenemez şart briefe yazılmaz —
+  ölçülebilir kritere çevrilir ya da açık şerhle kullanıcıya devredilir.
+- YENİ KURAL (her brief tesliminden ÖNCE zorunlu ön-denetim listesi):
+  1. Her referans (dosya, mock, commit, yol) somut mu, yoksa "bulunur
+     varsayımı" mı?
+  2. Her bitti-tanımı/şart ortamda GERÇEKTEN denetlenebilir mi?
+     (denetlenemezler ölçülebilire çevrilir ya da kullanıcıya devredilir)
+  3. Belirsiz parametre kaldı mı? (breakpoint, eşik, tolerans — tanımsızsa
+     "dur ve sor")
+  4. Kapsam dışı liste tam mı, brief kendi içinde çelişiyor mu?
+  Bu liste geçilmeden brief teslim edilmez; geçemeyen brief düzeltilir.
+
+## 2026-07-21 (FAZ A-ÖN: landing header birleştirme — tek kaynak)
+- Landing public/index.html → src/pages/index.astro; header tek kaynağa
+  indi: UstMenu.astro tema varyantı (aydinlik/koyu). Eski dosya silinmedi,
+  arsiv/landing-statik/'e taşındı (route çakışması çözümü).
+- Görsel değişmezlik kanıtla: pixelmatch %0,000 fark (1440+375, reduced-motion
+  deterministik kare), computed-style birebir, canlı↔yerel SEO/GEO diff eşit,
+  kelime animasyonu frame dizisiyle aynı. Denetimde 1 gerçek sızıntı yakalandı
+  ve düzeltildi (çıplak `nav` seçicisi koyu dala scoped-cid ile sızıp şeridi
+  büyütüyordu → `.ust nav`).
+- Kanıt: cikti/denetim/faz-a-on/. FAZ A (menü reformu) kullanıcı onayı
+  bekliyor; push yok.

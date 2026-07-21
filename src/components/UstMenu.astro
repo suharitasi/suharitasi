@@ -1,8 +1,18 @@
 ---
-// Üst menü çubuğu: landing hariç tüm içerik sayfalarında.
-// Tam ekran katman ayrı bileşendedir (TamEkranMenu — /harita/ ile ortak);
-// davranış /s/menu.js'te.
+// Üst menü — TEK KAYNAK (FAZ A-ÖN birleştirmesi, 2026-07-21):
+// - tema="aydinlik" (varsayılan): içerik sayfaları — krem sticky bar +
+//   satır-içi linkler + menü butonu + TamEkranMenu katmanı.
+// - tema="koyu": landing — gece denizi sahnesinde yüzen şerit; landing'in
+//   eski statik header'ı buraya birebir taşındı (görsel değişmezlik A-ÖN
+//   şartı). Koyu dalda menü butonu/TamEkranMenu RENDER EDİLMEZ; FAZ A
+//   (menü reformu) bu dala da tek kaynaktan işleyecek.
+// Davranış /s/menu.js'te.
 import TamEkranMenu from './TamEkranMenu.astro';
+
+interface Props {
+  tema?: 'aydinlik' | 'koyu';
+}
+const { tema = 'aydinlik' } = Astro.props;
 
 const ogeler = [
   { ad: 'Harita', yol: '/harita/' },
@@ -12,36 +22,118 @@ const ogeler = [
   { ad: 'Vakalar', yol: '/vaka/' },
   { ad: 'Hakkında', yol: '/hakkinda/' },
 ];
+// Landing bugün Vakalar linkini taşımıyor (A-ÖN görsel birebir şartı);
+// koyu dal listesi tek kaynaktan süzülür. FAZ A'da mobil panel
+// (TamEkranMenu) Vakalar dahil tam listeyi zaten verir.
+const koyuOgeler = ogeler.filter((o) => o.yol !== '/vaka/');
 const simdiki = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname
   : Astro.url.pathname + '/';
 ---
-<header class="ust">
-  <nav aria-label="Site menüsü">
-    <a class="marka" href="/">su haritası</a>
-    <ul>
-      {ogeler.map((o) => (
-        <li>
-          <a
-            href={o.yol}
-            aria-current={simdiki.startsWith(o.yol) ? 'page' : undefined}
-          >{o.ad}</a>
-        </li>
+{tema === 'koyu' ? (
+  <header class="koyu">
+    <span class="marka-koyu">Su Haritası</span>
+    <nav class="ust-nav" aria-label="Site menüsü">
+      {koyuOgeler.map((o) => (
+        <a href={o.yol}>{o.ad}</a>
       ))}
-    </ul>
-    <button
-      class="sv-menu-ac"
-      type="button"
-      aria-haspopup="dialog"
-      aria-expanded="false"
-      aria-controls="sv-menu"
-    >menü</button>
-  </nav>
-</header>
+    </nav>
+  </header>
+) : (
+  <Fragment>
+    <header class="ust">
+      <nav aria-label="Site menüsü">
+        <a class="marka" href="/">su haritası</a>
+        <ul>
+          {ogeler.map((o) => (
+            <li>
+              <a
+                href={o.yol}
+                aria-current={simdiki.startsWith(o.yol) ? 'page' : undefined}
+              >{o.ad}</a>
+            </li>
+          ))}
+        </ul>
+        <button
+          class="sv-menu-ac"
+          type="button"
+          aria-haspopup="dialog"
+          aria-expanded="false"
+          aria-controls="sv-menu"
+        >menü</button>
+      </nav>
+    </header>
 
-<TamEkranMenu />
+    <TamEkranMenu />
+  </Fragment>
+)}
 
 <style>
+  /* ——— KOYU tema (landing): eski public/index.html header CSS'i birebir.
+     Renk değişkenleri sayfanın :root'undan gelir (landing paleti). ——— */
+  header.koyu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .marka-koyu {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+
+  .ust-nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.9rem, 2.2vw, 1.6rem);
+    flex-wrap: wrap;
+  }
+
+  .ust-nav a {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    text-decoration: none;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid transparent;
+    white-space: nowrap;
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .ust-nav a:hover {
+    color: var(--kopuk);
+    border-bottom-color: rgba(79, 195, 208, 0.5);
+  }
+
+  .ust-nav a:focus-visible {
+    outline: 2px solid var(--akuamarin);
+    outline-offset: 3px;
+  }
+
+  /* Giriş koreografisi kancaları: body.giris'i landing JS'i takar (scoped
+     kapsam dışı olduğundan :global). belir keyframe'i burada tanımlı ki
+     Astro scoped ad yeniden-yazımı tutarlı kalsın. */
+  :global(body.giris) .marka-koyu {
+    animation: belir 0.5s 0.15s cubic-bezier(0.33, 1, 0.68, 1) both;
+  }
+
+  :global(body.giris) .ust-nav {
+    animation: belir 0.6s 0.28s cubic-bezier(0.33, 1, 0.68, 1) both;
+  }
+
+  @keyframes belir {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* ——— AYDINLIK tema (içerik sayfaları) — DOKUNULMADI ——— */
   .ust {
     position: sticky;
     top: 0;
@@ -65,7 +157,10 @@ const simdiki = Astro.url.pathname.endsWith('/')
     }
   }
 
-  nav {
+  /* '.ust nav' (çıplak 'nav' DEĞİL): scoped cid koyu daldaki .ust-nav'a da
+     düşer; çıplak seçici landing şeridini 3.6rem'e büyütüyordu (A-ÖN
+     doğrulamasında yakalandı). Bildirimler aynı — aydınlık görünüm değişmez. */
+  .ust nav {
     max-width: 64rem;
     margin: 0 auto;
     height: 3.6rem;
@@ -133,7 +228,8 @@ const simdiki = Astro.url.pathname.endsWith('/')
   .sv-menu-ac:hover { color: var(--su-700); }
 
   @media (max-width: 640px) {
-    nav { height: auto; padding-top: 0.4rem; padding-bottom: 0.4rem; flex-wrap: wrap; }
+    /* '.ust nav': çıplak seçici koyu dala sızmasın (yukarıdaki not) */
+    .ust nav { height: auto; padding-top: 0.4rem; padding-bottom: 0.4rem; flex-wrap: wrap; }
 
     /* Dokunma hedefi ≥44px (DESIGN.md §12) */
     .ust ul a,
