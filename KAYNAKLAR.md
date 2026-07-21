@@ -276,3 +276,14 @@
   (14 il 3 unsur, 43 il 4, 24 il 5). Jenerik fallback unsur SAYILMAZ.
 - Duplicate önlemi: genel kuyu ruhsatı süreci il sayfalarına
   kopyalanmaz; ana rehbere gövde linki verilir.
+
+## Mevzuat belge arşivi (Su Kanunu bağlamı)
+
+- Dosyalar: `data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf` (22.2 MB) +
+  `data/arsiv/mevzuat/su-verimliligi-yonetmeligi-20241227.htm` (RG 27.12.2024/32765).
+- Kaynak URL'ler:
+  - Ulusal Su Planı (2026-2035): https://www.tarimorman.gov.tr/SYGM/Belgeler/Ulusal%20Su%20Plan%C4%B1%20%20Resmi%20Gazete/Ulusal%20Su%20Plan%C4%B1%20(2026-2035).pdf
+  - Su Verimliliği Yönetmeliği: https://www.resmigazete.gov.tr/eskiler/2024/12/20241227-3.htm
+- Erişim tarihi: 2026-07-21 (curl, HTTP 200, imza doğrulandı; sha256 → `data/arsiv/mevzuat/sha256.txt`).
+- Lisans: resmî kaynak, açık lisans beyanı yok — arşiv + atıf amaçlı; yayın/türetme
+  kararı kullanıcıda (Av. Serdar Arslan). Manifest: `data/arsiv/mevzuat/manifest.md`.
