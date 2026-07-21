@@ -104,7 +104,7 @@ const [ky, ka, kg] = k.havzaPotansiyelRezerv.indirmeTarihi.split('-');
         <div class="kahraman-ana">
           <span class="kahraman-etiket">Yıllık su potansiyeli · DSİ {potansiyel.yil}</span>
           <span class="kahraman-deger">
-            {potansiyel.deger}<span class="kahraman-birim">km³/yıl</span>
+            <span class="kahraman-sayi" data-canlan={vd.yuzeysuyuPotansiyeli_km3} data-ond="2">{potansiyel.deger}</span><span class="kahraman-birim">km³/yıl</span>
           </span>
           {rezerv && (
             <span class="kahraman-ikincil">
@@ -147,6 +147,10 @@ const [ky, ka, kg] = k.havzaPotansiyelRezerv.indirmeTarihi.split('-');
     </p>
   </section>
 )}
+
+{/* Sayı-canlanma (opt-in [data-canlan]): kahraman potansiyel değeri görünüme
+    girince son %20'yi doldurur; no-JS/reduced-motion'da zaten son hâlde. */}
+<script type="module" src="/s/canlan.js" is:inline></script>
 
 <style>
   /* Veri bandı dili (DESIGN.md §5): kot cetveli + DERİN hairline üst */

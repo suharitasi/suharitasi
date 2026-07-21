@@ -74,7 +74,7 @@ const [ky, ka, kg] = yasVeri.kaynak.havzaPotansiyelRezerv.indirmeTarihi.split('-
           <span class="kart-kicker">{k.no}{k.kritik && ' · KRİTİK'}</span>
           <span class="kart-ad">{k.ad}</span>
           <span class="kart-stat">
-            {tr(k.pot)}<span class="kart-birim">km³/yıl</span>
+            <span class="kart-sayi" data-canlan={k.pot} data-ond="2">{tr(k.pot)}</span><span class="kart-birim">km³/yıl</span>
           </span>
           {k.rezerv != null && (
             <span class="kart-rezerv">YAS rezervi {tr(k.rezerv, 1)} hm³/yıl</span>
@@ -103,10 +103,14 @@ const [ky, ka, kg] = yasVeri.kaynak.havzaPotansiyelRezerv.indirmeTarihi.split('-
   </div>
 </section>
 
+{/* Sayı-canlanma (opt-in [data-canlan]): kart hero değeri görünüme girince
+    son %20'yi doldurur. no-JS/reduced-motion'da değer zaten son hâlinde. */}
+<script type="module" src="/s/canlan.js" is:inline></script>
+
 <style>
-  /* SU-DİLİ tokenları: /harita/ sayfası kendi minimal :root'unu taşır —
-     panel değerleri burada yerelde tanımlı (Sayfa.astro ile aynı değerler;
-     tekilleştirme yayılım fazının işi). */
+  /* SU-DİLİ tokenları: /harita/ sayfası kendi minimal :root'unu taşır;
+     hareket sözlüğü (--e-suzul/--e-akinti) hareket.css'ten (harita.astro
+     import eder) gelir — panel renk değerleri burada yerel. */
   .panel {
     --pk-zemin: #E9EBE7;
     --pk-kart: #E0E5DF;
@@ -117,7 +121,6 @@ const [ky, ka, kg] = yasVeri.kaynak.havzaPotansiyelRezerv.indirmeTarihi.split('-
     --pk-kehribar: #B8863B;
     --pk-kehribar-m: #7D5B24;
     --pk-cizgi: rgba(28, 43, 36, 0.14);
-    --pk-e-suzul: cubic-bezier(0.22, 1, 0.36, 1);
     --pk-mono: "IBM Plex Mono", ui-monospace, monospace;
 
     background: var(--pk-zemin);
@@ -182,7 +185,7 @@ const [ky, ka, kg] = yasVeri.kaynak.havzaPotansiyelRezerv.indirmeTarihi.split('-
     border-top: 2px solid var(--pk-derin);
     text-decoration: none;
     color: var(--pk-metin);
-    transition: transform 240ms var(--pk-e-suzul), background-color 240ms ease;
+    transition: transform 240ms var(--e-suzul), background-color 240ms var(--e-akinti);
   }
 
   .kart:hover { transform: translateY(-2px); background: #DFE3E2; }

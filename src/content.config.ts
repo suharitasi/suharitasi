@@ -96,6 +96,9 @@ const vakalar = defineCollection({
           birim: z.string().optional(),
           etiket: z.string(),
           kaynak: z.string(),
+          // Sayı-canlanma opt-in'i: YALNIZ gerçek büyüklüklerde true; yıl/
+          // küçük sayım işaretlenmez (ödül-üstü Faz 1, kullanıcı kararı).
+          canlan: z.boolean().optional(),
         }),
       )
       .min(2)

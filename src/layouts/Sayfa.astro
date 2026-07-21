@@ -5,6 +5,8 @@ import UstMenu from '../components/UstMenu.astro';
 import AltBilgi from '../components/AltBilgi.astro';
 import GorselSlot from '../components/GorselSlot.astro';
 import { SITE_ADI, YAZAR, OG_GORSEL } from '../data/site';
+// Hareket sözlüğü + giriş koreografisi TEK KAYNAK (ödül-üstü Faz 1).
+import '../styles/hareket.css';
 
 interface Props {
   baslik: string;
@@ -140,11 +142,8 @@ const jsonLd = JSON.stringify({
     --sans: "Manrope", system-ui, sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, monospace;
 
-    /* — Akış: suyun ivmesi (DESIGN.md §3) — */
-    --e-suzul: cubic-bezier(0.22, 1, 0.36, 1);
-    --e-kabar: cubic-bezier(0.35, 0, 0.15, 1);
-    --e-akinti: cubic-bezier(0.45, 0.05, 0.55, 0.95);
-    --e-cekil: cubic-bezier(0.55, 0, 0.85, 0.5);
+    /* — Akış: suyun ivmesi (DESIGN.md §3) — sözlük src/styles/hareket.css'te
+       tek kaynaktan gelir (--e-suzul/--e-kabar/--e-akinti/--e-cekil). — */
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }

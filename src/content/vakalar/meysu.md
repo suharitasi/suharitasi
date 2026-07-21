@@ -13,6 +13,7 @@ kahraman:
     birim: "hektar"
     etiket: "İşletme ruhsatlı saha alanı"
     kaynak: "KAP bildirimi 1604957 · 11.05.2026"
+    canlan: true
   - deger: "2056"
     etiket: "Ruhsat bitiş yılı (05.03.2056)"
     kaynak: "KAP bildirimi 1604957 · 11.05.2026"

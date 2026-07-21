@@ -67,15 +67,25 @@ if (kalip2 && !d.kahraman)
         kartı (dataviz eşiği). Künyesiz sayı yayınlanmaz (§5). */}
     <section class="kahraman gk" style="--gk:1" aria-label="Vaka özet verisi">
       <div class="kahraman-izgara">
-        {d.kahraman.map((k) => (
-          <div class="stat">
-            <span class="stat-etiket">{k.etiket}</span>
-            <span class="stat-deger">
-              {k.deger}{k.birim && <span class="stat-birim">{k.birim}</span>}
-            </span>
-            <span class="stat-kaynak">{k.kaynak}</span>
-          </div>
-        ))}
+        {d.kahraman.map((k) => {
+          // Sayı-canlanma YALNIZ opt-in (canlan:true) gerçek büyüklüklerde;
+          // yıl/küçük sayım işaretlenmez (kullanıcı kararı 2026-07-21). Ham
+          // sayı ve ondalık, tr-TR string'inden türetilir (yeni veri yok).
+          const canlan = k.canlan === true;
+          const ham = canlan ? Number(k.deger.replace(/\./g, '').replace(',', '.')) : NaN;
+          const ond = canlan ? (k.deger.split(',')[1] || '').length : 0;
+          return (
+            <div class="stat">
+              <span class="stat-etiket">{k.etiket}</span>
+              <span class="stat-deger">
+                {canlan && Number.isFinite(ham)
+                  ? <span data-canlan={ham} data-ond={ond}>{k.deger}</span>
+                  : k.deger}{k.birim && <span class="stat-birim">{k.birim}</span>}
+              </span>
+              <span class="stat-kaynak">{k.kaynak}</span>
+            </div>
+          );
+        })}
       </div>
       <p class="kahraman-kunye">
         {d.sirket} · Erişim: {d.erisimTarihi} — yalnız kamuya açık KAP
@@ -142,6 +152,11 @@ if (kalip2 && !d.kahraman)
     </section>
 
     <YazarKutusu />
+
+    {/* Sayı-canlanma (opt-in [data-canlan]): yalnız gerçek büyüklük stat
+        kartı görünüme girince son %20'yi doldurur; no-JS/reduced-motion'da
+        değer zaten son hâlinde DOM'dadır (GEO/curl etkilenmez). */}
+    <script type="module" src="/s/canlan.js" is:inline></script>
   </Fragment>
 ) : (
   <Fragment>
@@ -203,31 +218,8 @@ if (kalip2 && !d.kahraman)
 </Sayfa>
 
 <style>
-  /* ——— Giriş koreografisi (transitions-dev fadeUp uyarlaması; rehber
-     kalıbıyla aynı sözlük — yayılım fazında tekilleştirilecek) ——— */
-  @media (prefers-reduced-motion: no-preference) {
-    .gk {
-      animation: gk-fadeup 480ms var(--e-suzul) both;
-      animation-delay: calc(var(--gk) * 100ms);
-    }
-
-    /* Başlık bloğu LCP öğesidir: gizlenmez, yalnız süzülür. */
-    .gk-baslik { animation-name: gk-yuksel; }
-  }
-
-  @keyframes gk-fadeup {
-    from { opacity: 0; transform: translateY(14px); }
-    to { opacity: 1; transform: none; }
-  }
-
-  @keyframes gk-yuksel {
-    from { transform: translateY(14px); }
-    to { transform: none; }
-  }
-
-  @media print {
-    .gk { animation: none !important; }
-  }
+  /* Giriş koreografisi (.gk) TEK KAYNAK: src/styles/hareket.css
+     (Sayfa layout import eder). Önce rehber kalıbıyla birebir kopyaydı. */
 
   /* ——— Kahraman stat bandı: veri bandı dili (DESIGN.md §5) — kot cetveli
      + DERİN hairline; HavzaKahraman ile aynı aile ——— */

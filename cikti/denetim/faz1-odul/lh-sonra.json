@@ -1,0 +1,26 @@
+{
+  "sakarya": {
+    "turlar": [
+      91,
+      92,
+      83
+    ],
+    "medyan": 91
+  },
+  "kuyu-ruhsati": {
+    "turlar": [
+      99,
+      92,
+      90
+    ],
+    "medyan": 92
+  },
+  "harita": {
+    "turlar": [
+      70,
+      75,
+      70
+    ],
+    "medyan": 70
+  }
+}

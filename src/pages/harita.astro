@@ -8,6 +8,9 @@
 // (pixel kanıtı cikti/denetim/faz3/) ve sayfa panel için kaydırılabilsin.
 import TamEkranMenu from '../components/TamEkranMenu.astro';
 import HavzaPaneli from '../components/HavzaPaneli.astro';
+// Hareket sözlüğü tek kaynak: /harita/ sahne rotası da --e-* eğrilerini
+// buradan alır (HavzaPaneli yerel --pk-e-suzul kopyası kaldırıldı).
+import '../styles/hareket.css';
 ---
 <!DOCTYPE html>
 <html lang="tr">
@@ -113,7 +116,7 @@ import HavzaPaneli from '../components/HavzaPaneli.astro';
     color: var(--kopuk);
     text-shadow: 0 1px 8px rgba(4, 18, 31, 0.55);
     padding: 0.4rem 0.2rem;
-    transition: color 0.25s ease;
+    transition: color 0.25s var(--e-akinti);
   }
 
   .sv-menu-ac:hover { color: #FFFFFF; }
