@@ -2,9 +2,16 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
-KUYRUK BAŞI (sıradaki iş): Opus paketi A-E (işleniyor) → sonra kuyruk sırası.
+KUYRUK BAŞI (sıradaki iş): SONUÇ ZİNCİRİ v5 briefi (Faz 1 + Toplu Canlı v3
+sonrası; AŞAMA 0 çatı+veri → AŞAMA 1 mock/iskelet → DUR onay). Bu brief
+ODUL-USTU'ya Faz 7 ekler ve uygulama sırasını 1→7→2→3→4→5 yapar (6 paralel).
 
-Ödül-üstü programı — çatı: ODUL-USTU.md, sıradaki: Faz 1
+Ödül-üstü programı — çatı: ODUL-USTU.md. Faz 1 (Sözlük ve Borç v2) TAMAM
+(2026-07-21, 68e340a push+canlı; kullanıcı canlı testi açık — İş kapanış
+kuralı bu brief kapsamında peşin onaylı). /deneyim/ menüye TAMAM (2026-07-21;
+UstMenu+TamEkranMenu tek kaynak, landing birebir, 375px kanıtlı). src/harita-3d
+arşivde kalır (route yok, teyit). Sıradaki ödül-üstü fazı: v5 sırasına göre
+Faz 7 → sonra Faz 2 nabız şeridi.
 
 TAMAM (2026-07-21): Su Kanunu TBMM izleme sistemi v3 KURULDU — izleme/ +
 cron (05:30+16:00 UTC) + saglik-bekcisi tazelik kontrolü; T1-T5 kanıtlı

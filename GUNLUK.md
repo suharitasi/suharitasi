@@ -321,3 +321,24 @@
 - Opus periyodik denetim sayacı: önceki 3/5 + paketin 5 TAMAM bölümü (A-E; hepsi
   deliverable üretti — E şerhli ama tespit/rapor deliverable'ı tam) → **8/5**.
   **Eşik 5 AŞILDI → yeni tur Opus denetimi beklemede.**
+
+## 2026-07-21 (Ödül-üstü Faz 1 + Toplu Canlı v3)
+- **Ödül-üstü Faz 1 (Sözlük ve Borç v2)** yapıldı+push (68e340a): koreografi/
+  sözlük tek kaynağa (src/styles/hareket.css; .gk kopyası 0), --e-suzul yayılımı
+  (HavzaPaneli/harita/Bulten/su-kanunu; istisna adayları landing-shared chrome +
+  hero reveal + pilotlar, karar kullanıcıda), sayı-canlanma (public/s/canlan.js,
+  opt-in [data-canlan], yalnız gerçek büyüklükler — yıl/küçük sayım hariç,
+  kullanıcı kararı). Kanıt: piksel regresyon %0,0000 (12/12), Lighthouse A/B
+  düşüş yok (sakarya 87→91, kuyu 82→92, harita 68→70), konsol 0, 375px taşma 0,
+  JS bütçe ham gzip 992B/min+gzip 473B ≤1KB (cikti/denetim/faz1-odul/RAPOR.md).
+- **21.07 kullanıcı kararı:** bekleyen işler peşin onaylı canlıya; /deneyim/
+  menüye; bu kapsam için canlı-öncesi onay kapısı kaldırıldı, kanıt üretimi
+  devam eder (İş kapanış kuralı bu brief kapsamında askıya alındı, peşin onay).
+- **/deneyim/ menüye** (ayrı commit, Faz-1-sonrası ayrı iş): UstMenu +
+  TamEkranMenu tek kaynaklarına "Deneyim" kalemi (mevcutların sonuna). Landing
+  masaüstü nav birebir (Deneyim/Vakalar landing'de gizli, A-ÖN şartı; pixel
+  1440 %0,0000). Kanıt: 375px kapalı şerit landing 85px/içerik 86px (85±4),
+  açık panel yatay taşma 0, panel taşma 0, Deneyim panelde; içerik nav 7 kalem
+  700px'te bile taşma 0; /deneyim/ 200. (cikti/denetim/deneyim-menu/)
+- src/harita-3d/: arşivde kalır — hiçbir sayfadan import edilmiyor, route
+  üretmiyor (teyit edildi); deneyim.astro harita-3d kullanmıyor.

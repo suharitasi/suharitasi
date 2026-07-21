@@ -21,11 +21,12 @@ const ogeler = [
   { ad: 'Su Kanunu', yol: '/su-kanunu/' },
   { ad: 'Vakalar', yol: '/vaka/' },
   { ad: 'Hakkında', yol: '/hakkinda/' },
+  { ad: 'Deneyim', yol: '/deneyim/' },
 ];
-// Landing bugün Vakalar linkini taşımıyor (A-ÖN görsel birebir şartı);
-// koyu dal listesi tek kaynaktan süzülür. FAZ A'da mobil panel
-// (TamEkranMenu) Vakalar dahil tam listeyi zaten verir.
-const koyuOgeler = ogeler.filter((o) => o.yol !== '/vaka/');
+// Landing bugün Vakalar ve Deneyim linklerini taşımıyor (A-ÖN görsel birebir
+// şartı); koyu dal listesi tek kaynaktan süzülür. FAZ A'da mobil panel
+// (TamEkranMenu) Vakalar+Deneyim dahil tam listeyi zaten verir.
+const koyuOgeler = ogeler.filter((o) => o.yol !== '/vaka/' && o.yol !== '/deneyim/');
 const simdiki = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname
   : Astro.url.pathname + '/';
