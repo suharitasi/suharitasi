@@ -2,9 +2,18 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
-KUYRUK BAŞI (sıradaki iş): SONUÇ ZİNCİRİ v5 briefi (Faz 1 + Toplu Canlı v3
-sonrası; AŞAMA 0 çatı+veri → AŞAMA 1 mock/iskelet → DUR onay). Bu brief
-ODUL-USTU'ya Faz 7 ekler ve uygulama sırasını 1→7→2→3→4→5 yapar (6 paralel).
+KUYRUK BAŞI (sıradaki iş): Ödül-üstü FAZ 2 — "Bugün Türkiye'de Su" nabız
+şeridi (ana sayfada 3 canlı değer + tarih damgası; mock onayı → uygulama).
+Uygulama sırası 1→7→2→3→4→5; FAZ 1 ve FAZ 7 TAMAM.
+
+FAZ 7 (Sonuç Zinciri) TAMAM (2026-07-21; AŞAMA 0 162d182 · AŞAMA 1 88c7a72 ·
+AŞAMA 2 27dd472, push+canlı): /durumum/ sektör kapısı + 11 persona sonuç
+sayfası canlı; pazarlama altyapısı (bülten/LinkedIn/webinar/rapor iskeletleri)
+hazır. AÇIK (kullanıcı görevleri): Buttondown hesabı, Google Business Profile,
+LinkedIn ritmi, webinar tarihi, GEO nabzı kurulum kararı, büro bilgileri
+(künye şeması), vaka adayı seçimi (KAP yeni API ucu), soru havuzu Apilex
+doldurma, Ek-2 NACE makine-okunur kaynağı, /durumum/ renk paleti (ayrı iş),
+kuyu taşıma içeriği. Canlı test kullanıcıda.
 
 Ödül-üstü programı — çatı: ODUL-USTU.md. Faz 1 (Sözlük ve Borç v2) TAMAM
 (2026-07-21, 68e340a push+canlı; kullanıcı canlı testi açık — İş kapanış

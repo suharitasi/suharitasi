@@ -342,3 +342,22 @@
   700px'te bile taşma 0; /deneyim/ 200. (cikti/denetim/deneyim-menu/)
 - src/harita-3d/: arşivde kalır — hiçbir sayfadan import edilmiyor, route
   üretmiyor (teyit edildi); deneyim.astro harita-3d kullanmıyor.
+
+## 2026-07-21 (Ödül-üstü FAZ 7 — Sonuç Zinciri, AŞAMA 0+1+2)
+- **AŞAMA 0** (162d182): ODUL-USTU FAZ 7 çatısı (zincir + sektör kapıları +
+  pazarlama kanalları) + uygulama sırası 1→7→2→3→4→5 + DİL NOTU (TBB-çekingen
+  dil kaldırıldı). data/lead/persona.json (11 persona; yeşil belge son başvuru
+  27.12.2029 doğrulandı — yönetmelik md.3 "5 yıl" + yürürlük 2024-12-27).
+  NACE Ek-2 (taranmış PDF) + KAP (API taşınmış) uydurulmadı → kullanıcı görevi.
+  rapor/: sorgu-haritasi, geo-nabiz-plan, persona-turetme.
+- **AŞAMA 1** (88c7a72): 12 madde mock/şablon/iskelet — sektör kapısı+persona
+  mock, ceza iskeleti, bülten HTML, Türkiye Su Raporu iskelet, LinkedIn kart
+  altyapısı+3 kart, webinar, iç bağlantı planı, künye şema, soru havuzu 40,
+  vaka adayları. Kullanıcı onayı: rota /durumum/ + risk dili.
+- **AŞAMA 2** (27dd472): /durumum/ giriş (persona ızgara + arama durumum.js
+  ≤2KB progressive + eş-anlam) + 11 persona sonuç sayfası (hüküm + sabit tarih
+  27.12.2029 + kalan-gün progressive + risk bloğu onaylı dil + ilk adımlar +
+  çapraz bağ + iletişim + FAQPage). Menüye Durumum (landing nav birebir). İçerik
+  yalnız persona.json (uydurma yok; hukuki [APILEX]). Kanıt: öz-cevap+FAQPage+
+  sabit tarih JS'siz DOM; konsol 0; nav/375 taşma 0. Palet ayrı iş (mevcut
+  SU-DİLİ değişkenleriyle). Push+canlı; kullanıcı canlı testi açık.
