@@ -42,9 +42,9 @@ B: /rehberler/kuyu-tasima/ rehberi (Apilex kaynağı yerleştirildi; ayrı
 özel sayfa; hücre birebir; FAQPage+Article; LH a11y/best/seo 100). C:
 bellek-log cron */10 + saglik-bekcisi pencere eşiği (4 senaryo test). D:
 NACE persona sayfalaşması (durumum index gruplama). Canlı test kullanıcıda.
-AÇIK (kullanıcı): (1) durumum iletişim-notu kontrast hatası #9FB3AD
-(su-700 üstünde 3.44) — [persona].astro'da da var, ayrı işte düzeltilecek
-(kuyu-tasima'da düzeltildi). (2) 31 NACE personası küratörlük/budama
+AÇIK (kullanıcı): (1) durumum iletişim-notu kontrastı — KAPANDI (625e3fe:
+#9FB3AD→#C8D2CE, su-700 üstünde 3.44→4.89; LH a11y persona+index 100).
+(2) 31 NACE personası küratörlük/budama
 kullanıcıda. (3) m.18 güncel ceza tutarı [APILEX teyit]. (4) NACE detay
 alt-kod listesi eksik (~58 satır ayrıştırılamadı; gerekirse yüksek-DPI
 segmentasyon).
