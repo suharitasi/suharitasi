@@ -1,8 +1,8 @@
 # Su Kanunu İzleme — DURUM
 
-Son koşu (UTC): **2026-07-21T16-00-01Z**
+Son koşu (UTC): **2026-07-22T05-30-01Z**
 
-Özet: 11 hedef · ✳ olay: 0 · 🔴 hata: 0
+Özet: 11 hedef · ✳ olay: 1 · 🔴 hata: 0
 
 ## Hedef durumları
 
@@ -14,7 +14,7 @@ Son koşu (UTC): **2026-07-21T16-00-01Z**
 | tbmm-tarim-orman-komisyonu | K1 | 🟢 tamam | değişiklik yok |
 | tbmm-komisyon-gundemleri | K1 | 🟢 tamam | değişiklik yok |
 | tarimorman-sygm | K4 | 🟢 tamam | değişiklik yok |
-| tarimorman-anasayfa | K4 | 🟢 tamam | değişiklik yok |
+| tarimorman-anasayfa | K4 | ✳ OLAY | içerik değişti (~4 satır) |
 | dsi-duyuru-listesi | K4 | 🟢 tamam | değişiklik yok |
 | su-kanunu-taslak-pdf | K4 | 🟢 tamam | Last-Modified değişmedi (Thu, 31 Oct 2019 08:20:54 GMT) |
 | susurasi | K4 | 🟢 tamam | değişiklik yok |
@@ -22,7 +22,7 @@ Son koşu (UTC): **2026-07-21T16-00-01Z**
 
 ## Son 10 olay
 
-_(henüz olay yok)_
+- 2026-07-22T05-30-01Z | tarimorman-anasayfa | içerik değişti (~4 satır) → arsiv/tarimorman-anasayfa/2026-07-22T05-30-01Z/
 
 ---
 _Cron: 05:30 + 16:00 UTC · fark motoru + RG deterministik · kaynak: rapor/su-kanunu-kaynak-kesif.md (700f216)_
