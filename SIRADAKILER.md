@@ -2,6 +2,17 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
+AKTİF BRIEF — /HARİTA/ DÖNÜŞÜMÜ (DENEYİM GÖMME v2 NİHAİ): AŞAMA 1 TAMAM
+(2026-07-22, kod yok) — KULLANICI ONAYI BEKLİYOR. Hero kalkar, 6 sahne
+scroll-scrub /harita/'ya girer, panel+GEO aynen altta, /deneyim/ kapanır.
+Çıktı: cikti/denetim/harita-donusum/ (yerlesim-semasi-1440.png + mock.html +
+kareler/ + RAPOR.md). Ölçülen taban: /harita/ LH masaüstü medyan 94, mobil 72
+(LCP 8,3sn = ağır hero webp 989KB); 6 video MP4 7,95MB, motor ZATEN lazy
+(ilk yük yalnız sahne1 poster 51KB+sahne1.mp4 1,3MB). GEÇİŞ 2 alternatif:
+A "yüzeye çıkış" (öneri, panel-reveal cross-blur) / B "kot cetveli eşiği".
+KULLANICI KARARI: (1) geçiş A/B, (2) ağırlık tablosu kabul mü. Onaysız
+AŞAMA 2 (taşıma + /deneyim/ 301 + menü + link + sitemap + kanıt) BAŞLAMAZ.
+
 KUYRUK BAŞI (sıradaki iş): Ödül-üstü FAZ 8 — PALET YENİLEME. Kıyas turu
 TAMAM (2026-07-21): 3 aday (A turkuaz+okyanus / B petrol+cyan / C mavi
 zemin+lacivert), AA kontrast + 4'lü kıyas kareleri
