@@ -1,10 +1,55 @@
 ---
-// LANDING — FAZ A-ÖN birleştirmesi (2026-07-21): public/index.html buraya
-// birebir taşındı (yedek: arsiv/landing-statik/index.html). Tek değişiklik:
-// header bloğu artık tek kaynaktan gelir (<UstMenu tema="koyu" /> — eski
-// header markup/CSS'i o komponentte, değer değer aynı). Geri kalan head,
-// stil ve script'ler is:global / is:inline ile dokunulmadan korunur.
+// ANA SAYFA — 6 SAHNE + 7 SÜZÜLEN SORU (AŞAMA 2, brief 23.07).
+// Koyu hero + kelime koreografisi KALKTI; sahne akışı açılıştır.
+// Eski landing SİLİNMEDİ: arsiv/landing-koyu/index.astro (geri dönüş yolu).
+// Eski /deneyim/ rotası kapandı: arsiv/deneyim-rota/deneyim.astro + _redirects 301.
+//
+// Motor: src/scripts/scrub-engine.js (oso95/scroll-world, MIT — CREDITS.md).
+//   VENDOR'A DOKUNULMADI; tema yalnız --sw-* değişkenleriyle ezilir.
+//   Lazy: motor sahneyi ±1.6vh menzile girince yükler → ilk yükte yalnız
+//   sahne1 posteri + sahne1 klibi iner (brief T-1).
+// Sahne METİNLERİ kaldırıldı (kullanıcı kararı) → .sw-copylayer hiç render
+//   edilmez (motorun vinyet degradesi de böylece kadrajdan çıkar).
+// Soru şeridi: R2 ALT ŞERİT. 7 <a> DOM'da GERÇEK linktir; JS'siz ve
+//   reduced-motion'da şerit statik listedir, 7'si de tıklanabilir (brief T-2/T-3).
 import UstMenu from '../components/UstMenu.astro';
+import AltBilgi from '../components/AltBilgi.astro';
+import { SORULAR } from '../data/anasayfa-sorular.js';
+import { personalar } from '../data/persona.js';
+import '../styles/hareket.css';
+
+// Öz-cevap (CLAUDE.md "cevap önce, dayanak sonra"; ≤280 karakter).
+// Yalnız mevcut doğrulanmış içerikten damıtıldı — yeni hukuki iddia yok.
+const ozCevap =
+  "Türkiye'nin 25 su havzası tek portalda: havza künyeleri ve yeraltı suyu " +
+  'eğilimi, kuyu ruhsatı ile su tahsisi rehberleri, Su Kanunu taslak takibi. ' +
+  'Şeritteki sorulardan birini seçin ya da sektörünüzü seçip yükümlülüğünüzü görün.';
+
+// İniş bölümü: persona ızgarasının İLK 6 KARTI (NACE Ek-2 grubu hariç —
+// /durumum/ sayfasındaki "Sektör kapıları" grubunun sırası birebir).
+// KOPYA-İÇERİK ÖNLEMİ: yükümlülük metinleri BURAYA GİRMEZ (o metin
+// /durumum/'da kanonik kalır); ana sayfada yalnız kart adı + son tarih.
+const ilkAltiPersona = personalar.filter((p) => p.kaynak !== 'nace-ek2').slice(0, 6);
+const kicker = (ad) => ad.split(/[\s/(]/)[0].toLocaleUpperCase('tr-TR');
+
+// Sahne akışı — sıra AŞAMA 1'de sabitlendi (S1 sondaj → S6 göl kasabası).
+// Aksan renkleri FAZ 8 palet C ailesindendir (DESIGN.md §2).
+const V = '/deneyim/video';
+const SAHNELER = [
+  { id: 'sondaj', label: 'Sondaj', n: 1, accent: '#57BAE0' },
+  { id: 'akifer', label: 'Akifer', n: 2, accent: '#2E7EA0' },
+  { id: 'baraj', label: 'Baraj', n: 3, accent: '#0C5A7C' },
+  { id: 'sehir', label: 'Şehir', n: 4, accent: '#C0883A' },
+  { id: 'hukuk', label: 'Hukuk', n: 5, accent: '#2C5570' },
+  { id: 'gol-kasabasi', label: 'Göl kasabası', n: 6, accent: '#57BAE0' },
+];
+const sahneVeri = SAHNELER.map((s) => ({
+  id: s.id,
+  label: s.label,
+  still: `${V}/sahne${s.n}.jpg`,
+  clip: `${V}/sahne${s.n}.mp4`,
+  accent: s.accent,
+}));
 ---
 <html lang="tr">
 <head>
@@ -34,566 +79,600 @@ import UstMenu from '../components/UstMenu.astro';
   "description": "Türkiye'nin 25 su havzası: DSİ verisi, kuyu ruhsatı ve su mevzuatı rehberleri, Su Kanunu taslak takibi — tek portalda."
 })} />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<!-- LCP: akış ilk karesi = sahne 1 posteri (motor lazy yükler; preload onu öne çeker) -->
+<link rel="preload" as="image" href="/deneyim/video/sahne1.jpg" fetchpriority="high" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500&display=swap&subset=latin-ext" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap&subset=latin-ext" rel="stylesheet" />
 <style is:global>
+  /* — SU-DİLİ derinlik skalası (DESIGN.md §2 — aday C). İniş bölümü, şerit
+       ve alt bilgi bu tokenlardan beslenir; koyu menü şeridi kendi kabında
+       tokenları ezer (aşağıda .ust-sabit). — */
   :root {
-    --deniz: #04121F;
-    --yukselti: #071D2E;
-    --akis-sonuk: #0E3247;
-    --akis-canli: #1E5A78;
-    --akuamarin: #4FC3D0;
-    --kopuk: #A8DDE0;
-    --metin: #DCE9ED;
-    --metin-soluk: #6C8A96;
-    --bakir: #C08A4F;
-    --mx: 50vw;
-    --my: 42vh;
+    --krem: #E9F0F4;
+    --adacayi-krem: #DFE9F0;
+    --murekkep-900: #132A3F;
+    --murekkep-500: #48627A;
+    --su-700: #0C5A7C;
+    --su-400: #2E7EA0;
+    --kehribar: #C0883A;
+    --kehribar-metin: #875518;
+    /* Yalnız ana sayfa soru şeridi hedef satırı (DESIGN.md §2, 23.07 kararı).
+       kritik-vurgu #875518 DEĞİŞMEZ. */
+    --kehribar-koyu: #6B4412;
+    --deniz: #0A2740;
+    --akuamarin: #57BAE0;
+    --kopuk: #DBEAF4;
+
+    --zemin: var(--krem);
+    --zemin-kart: var(--adacayi-krem);
+    --metin: var(--murekkep-900);
+    --metin-soluk: var(--murekkep-500);
+    --baglanti: var(--su-700);
+    --cizgi: rgba(19, 42, 63, 0.14);
+
+    --serif: "Cormorant", Georgia, serif;
+    --sans: "Manrope", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+
+    /* Şerit geometrisi — rev1 ölçümüyle aynı bant (31px), iki yuva arası
+       ≥8px (ui-ux-pro-max "Touch Spacing"); burada 20px. */
+    --serit-yuk: 31px;
+    --serit-ara: 20px;
+  }
+
+  /* Motor teması: @layer sw varsayılanlarını ezer (unlayered kazanır).
+     .sw-root AYRICA hedeflenir — motor kendi kabına layered `.sw-root{--sw-bg}`
+     yazar; yalnız :root yazmak yetmez, kabın kendi bildirimi kalıtımı keser
+     (denetimde krem letterbox olarak yakalandı). */
+  :root, .sw-root {
+    --sw-bg: #0A2740;          /* DİP — sahne zemini + letterbox */
+    --sw-ink: #DBEAF4;         /* Köpük */
+    --sw-ink-soft: #8FB2C4;
+    --sw-accent: #57BAE0;
+    --sw-font-display: "Cormorant", Georgia, serif;
+    --sw-font-body: "Manrope", system-ui, sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html, body { height: 100%; }
-
   body {
-    background: var(--deniz);
+    background: var(--zemin);
     color: var(--metin);
-    font-family: "Manrope", system-ui, sans-serif;
-    overflow: hidden;
-    /* Yukarısı görece aydınlık, aşağısı derin */
-    background-image:
-      radial-gradient(120vw 70vh at 50% -18vh, var(--yukselti) 0%, rgba(7, 29, 46, 0) 62%),
-      linear-gradient(180deg, var(--deniz) 0%, #030D17 100%);
+    font-family: var(--sans);
+    font-size: 1.02rem;
+    line-height: 1.75;
   }
 
-  /* ---------- Dalga katmanları (derinlik konturları) ---------- */
-
-  .dalgalar {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  .dalgalar svg { width: 100%; height: 100%; display: block; }
-
-  .dalgalar path {
-    fill: none;
-    stroke: var(--akis-sonuk);
-    stroke-width: 1.1;
-    vector-effect: non-scaling-stroke;
-  }
-
-  /* İmleçle canlanan katman: aynı dalgalar, maskeyle açılır */
-  .dalgalar--canli path {
-    stroke: var(--akis-canli);
-    stroke-width: 1.2;
-  }
-
-  .dalgalar--canli {
-    filter: drop-shadow(0 0 7px rgba(79, 195, 208, 0.28));
-    -webkit-mask-image: radial-gradient(circle 24rem at var(--mx) var(--my),
-      rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.55) 42%, transparent 74%);
-    mask-image: radial-gradient(circle 24rem at var(--mx) var(--my),
-      rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.55) 42%, transparent 74%);
-  }
-
-  /* Canlanan katmanda çizgiler hafifçe akuamarine döner:
-     üstüne çok düşük saydamlıkta akuamarin es geçirilir */
-  .dalgalar--canli path:nth-child(odd) { stroke: #2A6B84; }
-
-  .surukle {
-    animation: surukle 70s ease-in-out infinite alternate;
-  }
-
-  @keyframes surukle {
-    from { transform: translateX(-34px); }
-    to   { transform: translateX(34px); }
-  }
-
-  /* ---------- Su damarları (alt yarıda yaşayan akıntı) ---------- */
-
-  .damarlar {
-    position: fixed;
-    left: 0; right: 0; bottom: 0;
-    height: 54vh;
-    pointer-events: none;
-  }
-
-  .damarlar svg { width: 100%; height: 100%; display: block; }
-
-  .damarlar path {
-    fill: none;
-    stroke: var(--akuamarin);
-    stroke-linecap: round;
-    vector-effect: non-scaling-stroke;
-  }
-
-  .damar-1 {
-    stroke-width: 1.6;
-    opacity: 0.5;
-    stroke-dasharray: 170 340;
-    animation: akinti 14s linear infinite;
-    filter: drop-shadow(0 0 9px rgba(79, 195, 208, 0.55));
-  }
-  .damar-2 {
-    stroke: var(--kopuk);
-    stroke-width: 1.2;
-    opacity: 0.32;
-    stroke-dasharray: 120 420;
-    animation: akinti 22s linear infinite;
-    animation-delay: -8s;
-    filter: drop-shadow(0 0 7px rgba(168, 221, 224, 0.4));
-  }
-  .damar-3 {
-    stroke-width: 1.3;
-    opacity: 0.22;
-    stroke-dasharray: 220 380;
-    animation: akinti 30s linear infinite;
-    animation-delay: -14s;
-    filter: drop-shadow(0 0 6px rgba(79, 195, 208, 0.35));
-  }
-  .damar-4 {
-    stroke-width: 1;
-    opacity: 0.14;
-    stroke-dasharray: 90 300;
-    animation: akinti 42s linear infinite;
-    animation-delay: -20s;
-  }
-
-  @keyframes akinti {
-    to { stroke-dashoffset: -1020; }
-  }
-
-  /* ---------- İçerik ---------- */
-
-  .sahne {
-    position: relative;
-    z-index: 2;
-    height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    padding: clamp(1.5rem, 4vw, 3rem);
-  }
-
-  /* Üst şerit stilleri UstMenu bileşenine taşındı (tema="koyu") —
-     FAZ A-ÖN birleştirmesi. */
-
-  main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    /* İçerik üst yarıda otursun, damarlara yer kalsın */
-    transform: translateY(-6vh);
-  }
-
-  h1 {
-    font-family: "Cormorant", Georgia, serif;
-    font-weight: 500;
-    font-size: clamp(2.4rem, 6.4vw, 4.9rem);
-    line-height: 1.12;
-    letter-spacing: -0.012em;
-    max-width: 16ch;
-    text-wrap: balance;
-  }
-
-  h1 em {
-    font-style: italic;
-    color: var(--kopuk);
-  }
-
-  .alt-metin {
-    margin-top: 1.4rem;
-    font-size: clamp(0.95rem, 1.6vw, 1.08rem);
-    line-height: 1.6;
-    color: var(--metin-soluk);
-    max-width: 44ch;
-  }
-
-  /* Üç kapı: "Yakında" rozetinin yerini alan canlı girişler. Bakır ayraç
-     dili korunur — kapı sırasının iki yanında eriyen çizgiler durur. */
-  .kapilar {
-    margin-top: clamp(2.6rem, 6vh, 4rem);
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-    gap: clamp(0.6rem, 2vw, 1.4rem);
-    flex-wrap: wrap;
-    position: relative;
-  }
-
-  .kapilar::before,
-  .kapilar::after {
-    content: "";
-    align-self: center;
-    display: block;
-    width: clamp(2rem, 7vw, 5rem);
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--bakir));
-    opacity: 0.75;
-    flex: none;
-  }
-
-  .kapilar::after {
-    background: linear-gradient(270deg, transparent, var(--bakir));
-  }
-
-  .kapilar a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 0.7rem 1.15rem;
-    text-decoration: none;
-    border: 1px solid rgba(79, 195, 208, 0.34);
-    border-radius: 2px;
-    /* Zemin yeterince koyu olmalı: akan su damarları kapının içinden geçip
-       alt etiketi kesiyordu. Derin su rengi korunur, okunabilirlik kazanılır. */
-    background: rgba(5, 22, 36, 0.82);
-    transition: border-color 0.25s ease, background-color 0.25s ease,
-      transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  @supports (backdrop-filter: blur(1px)) {
-    .kapilar a {
-      background: rgba(5, 22, 36, 0.62);
-      backdrop-filter: blur(3px);
-      -webkit-backdrop-filter: blur(3px);
-    }
-  }
-
-  .kapilar a:hover {
-    border-color: var(--akuamarin);
-    background: rgba(14, 50, 71, 0.9);
-    transform: translateY(-2px);
-  }
-
-  .kapilar a:focus-visible {
+  a:focus-visible, button:focus-visible {
     outline: 2px solid var(--akuamarin);
     outline-offset: 3px;
   }
 
-  .kapi-ad {
-    font-size: 0.76rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--metin);
-    margin-right: -0.2em;
+  /* KIRPMASIZ (brief T-1): kaynak 832×464 kompozisyonu bozulmasın — contain,
+     letterbox DİP tonunda. */
+  .sw-scene__video, .sw-scene__still {
+    object-fit: contain !important;
+    background: var(--sw-bg);
   }
 
-  .kapi-not {
-    font-size: 0.68rem;
-    letter-spacing: 0.04em;
-    color: var(--metin-soluk);
+  /* Sahne metni yok → motorun kopya katmanı ve vinyet degradesi kadrajdan
+     çıkar. Motorun kendi üst şeridi de kullanılmaz (tek kaynak UstMenu). */
+  .sw-copylayer, .sw-topbar { display: none !important; }
+
+  /* Akış bitince sahne katmanı iniş bölümünün altında kalır: yüzen motor
+     öğeleri, soru şeridi ve KOYU menü şeridi kapanır.
+     Menü şeridi "akış boyunca SABİT"tir (brief) — akış bitince kapanmalıdır:
+     sabit şerit aydınlık iniş bölümünün üst 85px'ini örtüyordu (denetimde
+     footer başlıkları şeridin altında kalırken yakalandı). İniş bölümünde
+     gezinme yüzeyi alt bilgidir (Bölümler kolonu = aynı 5 rota). */
+  html.akis-bitti .sw-route,
+  html.akis-bitti .sw-hint,
+  html.akis-bitti .sw-scrollbar,
+  html.akis-bitti .soru-serit,
+  html.akis-bitti .ust-sabit { opacity: 0; pointer-events: none; }
+
+  .sw-route, .sw-hint, .sw-scrollbar, .soru-serit, .ust-sabit {
+    transition: opacity 240ms var(--e-akinti);
   }
 
-  .kapilar a:hover .kapi-not { color: var(--kopuk); }
 
-  @media (max-width: 560px) {
-    /* Dar ekranda yan çizgiler kapıları sıkıştırmasın */
-    .kapilar::before, .kapilar::after { display: none; }
+  /* Kaydırma ipucu şeridin ÜSTÜNDE durur (çakışma yok). Sahne parlaklığı
+     kareden kareye değiştiği için ipucu kendi DİP plakasını taşır — çıplak
+     hâlinde açık sahnede kontrast 4.5:1'in altına düşüyordu. */
+  .sw-hint {
+    bottom: calc(3.2vh + var(--serit-yuk) + 22px) !important;
+    padding: 5px 11px 8px;
+    border-radius: 2px;
+    background: rgba(10, 39, 64, 0.78);
+    color: var(--kopuk);
   }
+
+  .sw-hint i { border-color: rgba(219, 234, 244, 0.55); }
+
+  /* Rota etiketi AÇIK bir hap üstünde durur; motorun varsayılanı --sw-ink
+     (Köpük) olduğundan koyu temada metin görünmez oluyordu (denetimde boş hap
+     olarak yakalandı) — DİP'e alınır. */
+  .sw-route__label { color: var(--deniz); }
 
   @media (prefers-reduced-motion: reduce) {
-    .kapilar a { transition: none; }
-    .kapilar a:hover { transform: none; }
+    .sw-route, .sw-hint, .sw-scrollbar, .soru-serit, .ust-sabit { transition: none; }
   }
 
-  footer {
-    display: flex;
-    justify-content: center;
-    font-size: 0.74rem;
-    letter-spacing: 0.06em;
-    color: var(--metin-soluk);
-  }
-
-  /* Arslan Hukuk imzası: süs değil, imza */
-  .imza {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.35em 0.45em;
-    padding: 0 1rem;
-    text-align: center;
-    color: var(--metin-soluk);
-    text-decoration: none;
-    transition: color 0.25s ease;
-  }
-
-  .imza span { white-space: nowrap; }
-
-  .imza:hover, .imza:focus-visible {
-    color: var(--metin);
-  }
-
-  .imza:focus-visible {
-    outline: 2px solid var(--akuamarin);
-    outline-offset: 4px;
-  }
-
-  .imza svg {
-    height: 14px;
-    width: auto;
-    color: var(--bakir);
-    opacity: 0.75;
-    display: block;
-  }
-
-  /* İmza dokunuş: son kelime otururken altından ışıyıp geçen tek damar */
-  .imza-damar {
-    position: relative;
-    width: min(58vw, 26ch);
-    height: 0;
-  }
-
-  .imza-damar::before {
-    content: "";
-    position: absolute;
-    top: 0.55rem;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg,
-      transparent, #4FC3D0 35%, #A8DDE0 50%, #4FC3D0 65%, transparent);
-    filter: drop-shadow(0 0 6px rgba(79, 195, 208, 0.8));
-    opacity: 0;
-  }
-
-  body.giris .imza-damar::before {
-    animation: imza-gec 1.2s 1.12s cubic-bezier(0.4, 0, 0.2, 1) both;
-  }
-
-  @keyframes imza-gec {
-    0%   { opacity: 0; transform: translateX(-42%) scaleX(0.55); }
-    35%  { opacity: 0.9; }
-    100% { opacity: 0; transform: translateX(42%) scaleX(0.6); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .surukle, .damarlar path { animation: none; }
-  }
-
-  /* ---------- Giriş koreografisi (yalnızca body.giris varsa) ---------- */
-
-  .kelime {
-    display: inline-block;
-    overflow: hidden;
-    vertical-align: bottom;
-  }
-
-  .kelime-ic {
-    display: inline-block;
-    animation: kelime-kay 0.7s cubic-bezier(0.33, 1, 0.68, 1) both;
-  }
-
-  @keyframes kelime-kay {
-    from { transform: translateY(110%); }
-    to   { transform: translateY(0); }
-  }
-
-  @keyframes belir {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-
-  @keyframes metin-yuksel {
-    from { opacity: 0; transform: translateY(14px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* body.giris .marka / .ust-nav kuralları UstMenu bileşeninde
-     (tema="koyu" dalı) — FAZ A-ÖN birleştirmesi. */
-
-  /* Dalga ve damar çizgileri başlıktan hemen önce soluk belirir */
-  body.giris .dalgalar,
-  body.giris .damarlar {
-    animation: belir 1.1s 0.35s ease-out both;
-  }
-
-  body.giris .alt-metin {
-    animation: metin-yuksel 0.6s 1.25s cubic-bezier(0.33, 1, 0.68, 1) both;
-  }
-
-  /* Kapılar, eski ayracın yerinde ve onun zamanlamasında belirir; ardından
-     üç kapı 90ms arayla sırayla oturur (sekans korunur, hız değişmez). */
-  body.giris .kapilar {
-    animation: metin-yuksel 0.6s 1.55s cubic-bezier(0.33, 1, 0.68, 1) both;
-  }
-
-  body.giris .kapilar a {
-    animation: metin-yuksel 0.5s cubic-bezier(0.33, 1, 0.68, 1) both;
-  }
-
-  body.giris .kapilar a:nth-of-type(1) { animation-delay: 1.68s; }
-  body.giris .kapilar a:nth-of-type(2) { animation-delay: 1.77s; }
-  body.giris .kapilar a:nth-of-type(3) { animation-delay: 1.86s; }
-
-  body.giris footer {
-    animation: belir 0.8s 1.75s ease-out both;
+  @media print {
+    #world, .sw-sky, .sw-stage, .sw-route, .sw-hint, .sw-scrollbar { display: none !important; }
   }
 </style>
-<script type="module" src="/s/imlec.js" is:inline></script>
-<!-- FAZ A: dar-şerit MENÜ tetikleyicisi (≤640px) tam-ekran paneli açar;
-     davranış site-geneli tek dosyada (/s/menu.js), yeni JS yazılmadı. -->
 <script type="module" src="/s/menu.js" is:inline></script>
 </head>
 <body>
 
-  <!-- Sönük derinlik katmanları -->
-  <div class="dalgalar" aria-hidden="true">
-    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
-      <g class="surukle">
-        <path d="M -60 84  C 240 72,  480 96,  760 82  S 1240 70, 1500 86"/>
-        <path d="M -60 148 C 260 160, 520 134, 800 150 S 1260 162, 1500 146"/>
-        <path d="M -60 222 C 230 208, 500 236, 780 220 S 1250 206, 1500 224"/>
-        <path d="M -60 310 C 270 324, 540 296, 820 312 S 1270 326, 1500 308"/>
-        <path d="M -60 416 C 250 400, 520 432, 810 414 S 1260 398, 1500 418"/>
-        <path d="M -60 542 C 280 558, 560 526, 840 544 S 1280 560, 1500 540"/>
-        <path d="M -60 690 C 260 672, 540 708, 830 688 S 1270 670, 1500 692"/>
-        <path d="M -60 858 C 290 876, 570 842, 850 862 S 1280 878, 1500 856"/>
-      </g>
-    </svg>
-  </div>
-
-  <!-- İmleçle canlanan katman: aynı dalgalar -->
-  <div class="dalgalar dalgalar--canli" aria-hidden="true">
-    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
-      <g class="surukle">
-        <path d="M -60 84  C 240 72,  480 96,  760 82  S 1240 70, 1500 86"/>
-        <path d="M -60 148 C 260 160, 520 134, 800 150 S 1260 162, 1500 146"/>
-        <path d="M -60 222 C 230 208, 500 236, 780 220 S 1250 206, 1500 224"/>
-        <path d="M -60 310 C 270 324, 540 296, 820 312 S 1270 326, 1500 308"/>
-        <path d="M -60 416 C 250 400, 520 432, 810 414 S 1260 398, 1500 418"/>
-        <path d="M -60 542 C 280 558, 560 526, 840 544 S 1280 560, 1500 540"/>
-        <path d="M -60 690 C 260 672, 540 708, 830 688 S 1270 670, 1500 692"/>
-        <path d="M -60 858 C 290 876, 570 842, 850 862 S 1280 878, 1500 856"/>
-      </g>
-    </svg>
-  </div>
-
-  <!-- Su damarları: alt yarıda yaşayan akıntı -->
-  <div class="damarlar" aria-hidden="true">
-    <svg viewBox="0 0 1440 486" preserveAspectRatio="xMidYMid slice">
-      <path class="damar-1" d="M -60 130 C 220 108, 430 168, 700 142 S 1180 96, 1500 134"/>
-      <path class="damar-2" d="M -60 218 C 260 246, 510 186, 790 216 S 1240 258, 1500 210"/>
-      <path class="damar-3" d="M -60 316 C 240 288, 520 348, 800 314 S 1260 282, 1500 320"/>
-      <path class="damar-4" d="M -60 414 C 280 438, 540 386, 820 416 S 1270 442, 1500 408"/>
-    </svg>
-  </div>
-
-  <div class="sahne">
+  <!-- Menü şeridi akış boyunca SABİT (brief). Koyu dünya tokenları yalnız
+       bu kapta ezilir; scrim olmadan video üzerinde AA tutmaz. -->
+  <div class="ust-sabit">
     <UstMenu tema="koyu" />
-
-    <main>
-      <h1>Su, yerin altında <em>konuşur.</em></h1>
-      <div class="imza-damar" aria-hidden="true"></div>
-      <p class="alt-metin">Türkiye'nin su verisi, havzaları ve su mevzuatı — tek haritada.</p>
-      <nav class="kapilar" aria-label="Portal bölümleri">
-        <a href="/harita/">
-          <span class="kapi-ad">Harita</span>
-          <span class="kapi-not">havza atlası</span>
-        </a>
-        <a href="/rehberler/">
-          <span class="kapi-ad">Rehberler</span>
-          <span class="kapi-not">mevzuat rehberleri</span>
-        </a>
-        <a href="/su-kanunu/">
-          <span class="kapi-ad">Su Kanunu</span>
-          <span class="kapi-not">taslak takibi</span>
-        </a>
-      </nav>
-    </main>
-
-    <footer>
-      <a class="imza" href="https://arslanhukuk.tr" target="_blank" rel="noopener">
-        <span>suharitasi.com ·</span>
-        <svg viewBox="0 0 77 109" aria-hidden="true"><path fill="currentColor" d="M 60.613281 72.335938 L 60.613281 72.339844 L 38.617188 89.519531 L 16.609375 72.339844 L 16.609375 15.898438 L 60.613281 15.898438 Z M 70.816406 77.316406 L 70.816406 5.699219 L 6.40625 5.699219 L 6.40625 77.320312 L 38.617188 102.464844 Z M 70.816406 77.316406"/><path fill="currentColor" d="M 57.265625 70.703125 L 57.265625 19.25 L 47.0625 19.25 L 47.0625 78.671875 Z M 57.265625 70.703125"/><path fill="currentColor" d="M 30.160156 78.671875 L 30.160156 19.25 L 19.957031 19.25 L 19.957031 70.703125 Z M 30.160156 78.671875"/><path fill="currentColor" d="M 57.265625 19.25 L 19.957031 19.25 L 19.957031 29.453125 L 57.265625 29.453125 Z M 57.265625 19.25"/><path fill="currentColor" d="M 46.324219 42.8125 L 31.261719 42.8125 L 31.261719 53.015625 L 46.324219 53.015625 Z M 46.324219 42.8125"/></svg>
-        <span>Arslan Hukuk Bürosu güvencesiyle</span>
-        <span>· 2026</span>
-      </a>
-    </footer>
   </div>
 
-<script is:inline>
-  // İmleç: canlanan dalga katmanının maskesini imlece bağla
+  <div id="world"></div>
+
+  <!-- 7 SÜZÜLEN SORU — DOM'da gerçek <a>. JS yoksa / reduced-motion'da
+       şerit statik listedir; 7'si de görünür ve tıklanabilir. -->
+  <nav class="soru-serit" aria-label="Sık sorulan sorular">
+    {SORULAR.map((s) => (
+      <a class="soru" href={s.hedef}>
+        <span class="soru-metin">{s.soru}</span>
+        <span class="soru-hedef" aria-hidden="true">
+          <span class="hedef-genis">{s.etiket}</span>
+          <span class="hedef-dar">{s.etiketMobil}</span>
+          <span class="ok"> →</span>
+        </span>
+      </a>
+    ))}
+  </nav>
+
+  <!-- AKIŞ SONU İNİŞ BÖLÜMÜ -->
+  <section class="inis">
+    <p class="inis-kicker">Su Haritası</p>
+    <h1>Su, yerin altında <em>konuşur.</em></h1>
+    <p class="oz-cevap" role="doc-abstract">{ozCevap}</p>
+    <p class="davet">Otelden madene, sanayiden sulama kooperatifine — hangi kapıdan
+      girdiğiniz suyla ilişkinizi belirler.</p>
+
+    <div class="izgara">
+      {ilkAltiPersona.map((p) => (
+        <a class="pk" href={`/durumum/${p.slug}/`}>
+          <span class="pk-k">{kicker(p.ad)}</span>
+          <span class="pk-ad">{p.ad}</span>
+          {p.sonTarihMetni && <span class="pk-t">Son başvuru {p.sonTarihMetni}</span>}
+        </a>
+      ))}
+    </div>
+
+    <p class="tumu"><a href="/durumum/">Tüm sektörleri gör →</a></p>
+  </section>
+
+  <div class="alt-kap"><AltBilgi /></div>
+
+<script type="application/json" id="sahne-veri" is:inline set:html={JSON.stringify(sahneVeri)}></script>
+<script>
+  import { mountScrollWorld } from '../scripts/scrub-engine.js';
+
+  const sahneler = JSON.parse(document.getElementById('sahne-veri').textContent);
+
+  mountScrollWorld(document.getElementById('world'), {
+    brand: null,        // üst şerit tek kaynak: UstMenu
+    nav: false,
+    hint: 'kaydırarak in',
+    atmosphere: true,
+    // 1.6 (deneyim'deki 1.4 değil): motorun klip ön-yükleme penceresi
+    // `y > start - 1.6vh`. 1.4'te sahne 2'nin klibi daha y=0'da iniyordu
+    // (ölçüm: ilk yükte 2 mp4). 1.6'da sahne 2 ancak KAYDIRINCA iner —
+    // brief T-1'in "kalanlar kaydırdıkça" şartı. Sahne başına oyalanma
+    // farkı %14; vendor'a dokunulmadı.
+    diveScroll: 1.6,
+    crossfade: 0.14,
+    sections: sahneler,
+    connectors: [],     // connector video YOK — sahneler doğrudan crossfade
+  });
+
+  /* POSTER ERTELEME (brief T-1) — motorun tüm sahne <img>'leri sabit ve
+     kadraj içindedir, bu yüzden loading="lazy" iş görmez: 6 poster de ilk
+     yükte iniyordu (ölçüm). Sahne 1 dışındakilerin src'si alınır ve klip
+     penceresiyle AYNI eşikte (start - 1.6vh) geri verilir.
+     VENDOR'A DOKUNULMADI — bu sayfa katmanında çalışır. */
+  const sahneKaplari = [...document.querySelectorAll('#world .sw-scene')];
+  const bekleyenPoster = sahneKaplari.map((el, i) => {
+    const img = el.querySelector('.sw-scene__still');
+    if (i === 0 || !img || !img.getAttribute('src')) return null;
+    const src = img.getAttribute('src');
+    img.removeAttribute('src');
+    return { img, src, sira: i };
+  }).filter(Boolean);
+
+  function posterleriAc() {
+    for (let j = bekleyenPoster.length - 1; j >= 0; j--) {
+      const p = bekleyenPoster[j];
+      if (scrollY > (p.sira * 1.6 - 1.6) * innerHeight) {
+        p.img.setAttribute('src', p.src);
+        bekleyenPoster.splice(j, 1);
+      }
+    }
+  }
+
+  /* — SORU ŞERİDİ SÜRÜCÜSÜ —
+     Ritim: akış (0-100%) 7 eşit dilime bölünür; dilim i'de yuvalar
+     (i, i+1 mod 7) sorularını taşır. Zamanlayıcı/karusel YOK — konum
+     yalnız kaydırma yüzdesinden türer.
+     reduced-motion: sürücü HİÇ kurulmaz → şerit statik liste kalır. */
   const kok = document.documentElement;
-  let hedefX = innerWidth / 2, hedefY = innerHeight * 0.42;
-  let x = hedefX, y = hedefY;
+  const serit = document.querySelector('.soru-serit');
+  const ogeler = [...serit.querySelectorAll('.soru')];
+  const azHareket = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const dar = matchMedia('(max-width: 860px)');
+  const N = ogeler.length;
 
-  addEventListener("pointermove", (e) => {
-    hedefX = e.clientX;
-    hedefY = e.clientY;
-  }, { passive: true });
+  if (!azHareket) kok.classList.add('js-serit');
 
-  // Yumuşak takip: maske imlecin hafif gerisinden gelir (su gibi)
-  function akit() {
-    x += (hedefX - x) * 0.08;
-    y += (hedefY - y) * 0.08;
-    kok.style.setProperty("--mx", x + "px");
-    kok.style.setProperty("--my", y + "px");
-    requestAnimationFrame(akit);
+  let iz = null;
+  function akisUzunlugu() {
+    // Motorun kaydırma iskeleti: track yüksekliği = akış + 1vh (son uçuş).
+    if (!iz) iz = document.querySelector('#world .sw-track');
+    return iz ? Math.max(1, iz.offsetHeight - innerHeight) : 1;
   }
 
-  const azHareket = matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  // Giriş koreografisi: başlığı kelimelere böl, sekansı başlat
-  if (!azHareket) {
-    document.body.classList.add("giris");
-    let sira = 0;
-    const BASLANGIC = 0.55; // başlık, çizgilerin belirmesinden hemen sonra
-    const ADIM = 0.12;
-    function kelimelereBol(dugum) {
-      [...dugum.childNodes].forEach((c) => {
-        if (c.nodeType === Node.TEXT_NODE) {
-          const kelimeler = c.textContent.split(/\s+/).filter(Boolean);
-          const parca = document.createDocumentFragment();
-          kelimeler.forEach((k) => {
-            const dis = document.createElement("span");
-            dis.className = "kelime";
-            const ic = document.createElement("span");
-            ic.className = "kelime-ic";
-            ic.textContent = k;
-            ic.style.animationDelay = (BASLANGIC + sira++ * ADIM) + "s";
-            dis.appendChild(ic);
-            parca.appendChild(dis);
-            parca.appendChild(document.createTextNode(" "));
-          });
-          c.replaceWith(parca);
-        } else if (c.nodeType === Node.ELEMENT_NODE) {
-          kelimelereBol(c); // <em> içindeki kelimeler stilini korur
-        }
-      });
-    }
-    kelimelereBol(document.querySelector("h1"));
+  let sonDilim = -1;
+  function guncelle() {
+    if (bekleyenPoster.length) posterleriAc();
+    const uz = akisUzunlugu();
+    const p = Math.min(1, Math.max(0, scrollY / uz));
+    kok.classList.toggle('akis-bitti', scrollY > uz - 8);
+    if (azHareket) return;
+    const dilim = Math.min(N - 1, Math.floor(p * N));
+    if (dilim === sonDilim) return;
+    sonDilim = dilim;
+    const sag = (dilim + 1) % N;
+    ogeler.forEach((a, i) => {
+      const sagda = i === sag && !dar.matches;
+      a.classList.toggle('sag', sagda);
+      a.classList.toggle('gorunur', i === dilim || sagda);
+    });
   }
 
-  if (azHareket) {
-    kok.style.setProperty("--mx", hedefX + "px");
-    kok.style.setProperty("--my", hedefY + "px");
-    addEventListener("pointermove", (e) => {
-      kok.style.setProperty("--mx", e.clientX + "px");
-      kok.style.setProperty("--my", e.clientY + "px");
-    }, { passive: true });
-  } else {
-    akit();
-
-    // Dokunmatik cihazda imleç yok: maske yavaşça gezinsin
-    if (matchMedia("(pointer: coarse)").matches) {
-      let t = 0;
-      setInterval(() => {
-        t += 0.012;
-        hedefX = innerWidth  * (0.5 + 0.34 * Math.sin(t));
-        hedefY = innerHeight * (0.45 + 0.22 * Math.cos(t * 0.7));
-      }, 40);
-    }
-  }
+  addEventListener('scroll', () => requestAnimationFrame(guncelle), { passive: true });
+  addEventListener('resize', () => { sonDilim = -1; guncelle(); });
+  addEventListener('load', () => { sonDilim = -1; guncelle(); });
+  guncelle();
 </script>
+
+<style>
+  /* ——— MENÜ ŞERİDİ (sabit, koyu) ———
+     Video üzerinde AA için DİP scrim'i: üstte α.82, aşağı doğru erir. */
+  .ust-sabit {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
+    /* Koyu dünya tokenları — UstMenu tema="koyu" bunları okur */
+    --metin: #DCE9ED;
+    --metin-soluk: #DBEAF4;
+    --kopuk: #FFFFFF;
+    --akuamarin: #57BAE0;
+    background: linear-gradient(180deg,
+      rgba(10, 39, 64, 0.82) 0%,
+      rgba(10, 39, 64, 0.62) 52%,
+      rgba(10, 39, 64, 0) 100%);
+  }
+
+  /* ——— SORU ŞERİDİ — R2 ALT ŞERİT ———
+     Varsayılan (JS YOK / reduced-motion): statik liste, 7 soru da görünür.
+     .js-serit: iki yuvalı tek satır bandı + çapraz geçiş. */
+  .soru-serit {
+    position: fixed;
+    left: 4%; right: 4%;
+    bottom: 3.2vh;
+    z-index: 45;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-height: 44vh;
+    overflow-y: auto;
+    padding: 6px 14px;
+    border-radius: 2px;
+    /* Şerit zemini α.80 (kullanıcı kararı 23.07) */
+    background: rgba(233, 240, 244, 0.80);
+    border-left: 2px solid var(--kehribar);
+    box-shadow: 0 8px 22px rgba(10, 39, 64, 0.26);
+  }
+
+  @supports (backdrop-filter: blur(1px)) {
+    .soru-serit { backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+  }
+
+  /* Etiket soruya BİTİŞİK durur (space-between DEĞİL): iki yuva yan yanayken
+     "soru … etiket | soru … etiket" okunuşu belirsizleşiyordu — denetim
+     ekranında yakalandı. Şimdi her yuva tek okuma birimi, yuvalar arası
+     boşluk + hairline ayraç ayırır. */
+  .soru {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 12px;
+    min-height: 30px;
+    text-decoration: none;
+    color: var(--murekkep-900);
+  }
+
+  .soru-metin {
+    flex: 0 1 auto;
+    min-width: 0;
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    line-height: 1.15;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .soru-hedef {
+    font-family: var(--mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    /* Koyu kehribar: α.80 plakada AA üstü (rev1 ölçümü 4,64:1) */
+    color: var(--kehribar-koyu);
+  }
+
+  .hedef-dar { display: none; }
+
+  .soru:hover .soru-metin { color: var(--su-700); }
+  .soru:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+
+  /* — JS'li kip: tek satır bandı, iki yuva — */
+  :global(html.js-serit) .soru-serit {
+    display: block;
+    position: fixed;
+    height: var(--serit-yuk);
+    max-height: none;
+    overflow: visible;
+    padding: 0 14px;
+  }
+
+  /* Yuva ayracı: yalnız iki yuvalı kipte, salt yapısal hairline (imza değil —
+     imza şeridin sol kehribar kenarıdır). */
+  :global(html.js-serit) .soru-serit::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    bottom: 20%;
+    width: 1px;
+    background: var(--cizgi);
+  }
+
+  @media (max-width: 860px) {
+    :global(html.js-serit) .soru-serit::before { display: none; }
+  }
+
+  /* transitions-dev "text states swap" grameri (süzülme + bulanıklık),
+     easing DESIGN.md §3 sözlüğüne uyarlandı: konum --e-suzul, yüzey
+     --e-akinti; süre 240ms (standart). Skill'in kendi cubic-bezier'i
+     KULLANILMADI — proje sözlüğü üstündür. */
+  :global(html.js-serit) .soru {
+    position: absolute;
+    top: 0;
+    left: 14px;
+    width: calc(50% - 14px - var(--serit-ara) / 2);
+    height: var(--serit-yuk);
+    align-items: center;
+    opacity: 0;
+    filter: blur(2px);
+    transform: translateX(0) translateY(6px);
+    pointer-events: none;
+    transition:
+      transform 240ms var(--e-suzul),
+      opacity 240ms var(--e-akinti),
+      filter 240ms var(--e-akinti);
+  }
+
+  :global(html.js-serit) .soru.sag {
+    transform: translateX(calc(100% + var(--serit-ara))) translateY(6px);
+  }
+
+  :global(html.js-serit) .soru.gorunur {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0) translateY(0);
+    pointer-events: auto;
+  }
+
+  :global(html.js-serit) .soru.gorunur.sag {
+    transform: translateX(calc(100% + var(--serit-ara))) translateY(0);
+  }
+
+  /* Dokunma hedefi ≥44px: görünür bant 31px kalır, saydam ::after tıklamayı
+     taşır. (rev1 ölçümü: ::before{z-index:-1} hit-test'te ÇALIŞMIYOR.) */
+  .soru::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: max(44px, 100%);
+  }
+
+  :global(html:not(.js-serit)) .soru { position: relative; }
+
+  @media (max-width: 860px) {
+    .soru-serit { left: 3%; right: 3%; bottom: 2.6vh; }
+    .soru-metin { font-size: 0.82rem; }
+    .hedef-genis { display: none; }
+    .hedef-dar { display: inline; }
+    /* 375: TEK yuva — sağ yuva yoktur (sürücü de atamaz) */
+    :global(html.js-serit) .soru { width: calc(100% - 28px); }
+    :global(html.js-serit) .soru.sag { transform: translateX(0) translateY(6px); }
+    :global(html.js-serit) .soru.gorunur.sag { transform: translateX(0) translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .soru { transition: none; }
+  }
+
+  /* ——— İNİŞ BÖLÜMÜ ———
+     Akıştan sonra gelir; sabit sahne katmanının ÜSTÜNE biner (z-index 30). */
+  .inis {
+    position: relative;
+    z-index: 30;
+    background: var(--zemin);
+    border-top: 1px solid var(--cizgi);
+    padding: clamp(3rem, 9vh, 5.5rem) clamp(1.25rem, 4vw, 2rem) clamp(2rem, 5vh, 3rem);
+  }
+
+  .inis > * { max-width: 64rem; margin-left: auto; margin-right: auto; }
+
+  .inis-kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--su-700);
+  }
+
+  .inis-kicker::before {
+    content: "";
+    width: 1.6rem;
+    height: 1px;
+    background: var(--su-400);
+  }
+
+  .inis h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2rem, 4.6vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-top: 0.6rem;
+    text-wrap: balance;
+  }
+
+  /* Işık kırılması vurgusu (DESIGN.md §4) */
+  .inis h1 em {
+    font-style: italic;
+    background: linear-gradient(105deg, #0C5A7C 0%, #2E7EA0 45%, #186789 60%, #0C5A7C 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .oz-cevap {
+    margin-top: 1.4rem;
+    padding: 1rem 1.2rem;
+    border-left: 3px solid var(--su-400);
+    background: rgba(46, 126, 160, 0.06);
+    font-size: 1.06rem;
+    line-height: 1.6;
+    font-weight: 500;
+    max-width: 66ch;
+  }
+
+  .davet {
+    margin-top: 1.6rem;
+    color: var(--metin-soluk);
+    max-width: 58ch;
+  }
+
+  .izgara {
+    margin-top: 1.6rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+  }
+
+  .pk {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1rem 1.1rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+    text-decoration: none;
+    color: var(--metin);
+    transition: transform 240ms var(--e-suzul), background-color 240ms var(--e-akinti);
+  }
+
+  .pk:hover { transform: translateY(-2px); background: #DBEAF4; }
+  .pk:focus-visible { outline: 2px solid var(--su-700); outline-offset: 3px; }
+
+  .pk-k {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    color: var(--metin-soluk);
+  }
+
+  .pk-ad {
+    font-family: var(--serif);
+    font-size: 1.22rem;
+    font-weight: 600;
+    line-height: 1.12;
+  }
+
+  .pk-t {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--kehribar-metin);
+    margin-top: 0.15rem;
+  }
+
+  /* Alt bilgi de sabit sahne katmanının ÜSTÜNE biner. AltBilgi'nin kendi
+     margin-top'u SIFIRLANIR (boşluk padding'e taşınır): margin boşluğu opak
+     değildir, arkasındaki sabit sahne katmanı oradan sızıyordu — denetim
+     ekranında koyu bant olarak yakalandı. */
+  .alt-kap {
+    position: relative;
+    z-index: 30;
+    background: var(--zemin);
+  }
+
+  .alt-kap :global(footer.alt) {
+    margin-top: 0;
+    padding-top: clamp(3rem, 8vh, 5rem);
+  }
+
+  .tumu { margin-top: 1.4rem; }
+
+  .tumu a {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--su-700);
+    text-decoration: none;
+    border-bottom: 1px solid var(--su-400);
+    padding-bottom: 2px;
+  }
+
+  .tumu a:hover { color: var(--murekkep-900); }
+
+  @media (max-width: 640px) {
+    .izgara { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pk { transition: none; }
+    .pk:hover { transform: none; }
+  }
+
+  /* Yazdırma: şerit ve akış katmanı gizlenir, iniş içeriği bozulmadan basılır. */
+  @media print {
+    .soru-serit, .ust-sabit { display: none; }
+    .inis { padding-top: 1rem; }
+  }
+</style>
 </body>
 </html>

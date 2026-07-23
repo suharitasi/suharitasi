@@ -16,8 +16,9 @@ const ogeler = [
   { ad: 'Durumum', yol: '/durumum/', not: 'sektörünüze göre yükümlülük ve son tarih' },
   { ad: 'Vakalar', yol: '/vaka/', not: 'şirketlerin su güvencesi — KAP vakaları' },
   { ad: 'Hakkında', yol: '/hakkinda/', not: 'portalın yöntemi ve künyesi' },
-  { ad: 'Deneyim', yol: '/deneyim/', not: 'sondajdan göl kasabasına — kaydırmalı su hikâyesi' },
 ];
+// "Deneyim" 23.07'de kaldırıldı: /deneyim/ rotası kapandı (301 → /), sahne
+// akışı ana sayfanın açılışı oldu.
 
 const simdiki = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname

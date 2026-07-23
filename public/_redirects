@@ -1,0 +1,7 @@
+# Cloudflare Pages yönlendirmeleri.
+# /deneyim/ ROTA KAPANIŞI (23.07): 6 sahne akışı ana sayfaya taşındı,
+# sayfa arşive alındı (arsiv/deneyim-rota/deneyim.astro).
+# Kural TAM YOL eşleşmesidir — /deneyim/video/* varlıkları etkilenmez
+# (sahne klipleri ve posterleri hâlâ oradan servis edilir).
+/deneyim   /   301
+/deneyim/  /   301

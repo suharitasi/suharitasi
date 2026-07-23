@@ -8,21 +8,22 @@ oturumu (yayına değer mi / sorumluluk çerçevesi / saha doğrulaması) →
 [SERDAR-HUKUK] onayı → uygulama briefi. (İlke: ODUL-USTU.md "Korunacaklar"
 — altyapıda hızlı, iddiada yavaş.)
 
-AKTİF BRIEF — ANA SAYFA: 6 SAHNE + 7 SÜZÜLEN SORU. AŞAMA 1 (mock v5) TAMAM
-(2026-07-23, kod yok) — KULLANICI KARARI BEKLİYOR. Çıktı:
-cikti/denetim/anasayfa-sahne/ (mock.html + RAPOR.md + mock-1440/375.png +
-kiyas-A/B.png + kontrast.json + lighthouse-taban.json + oz-denetim.json).
-Ölçülen taban: ana sayfa LH masaüstü 99 / mobil 89 (LCP 3,02sn = h1 metin,
-transfer 187KB) — 6 sahne akışı bu tabanı KORUYAMAZ, kabul edilebilir düşüş
-kullanıcı kararı. 7 hedef linkin tamamı canlıda 200. Kontrast: A plaka α.90
-en kötü 11,82:1 (öneri); B koyu tül α.75 6,24:1; brief'teki "yalnız
-gölge/kenarlık" hali 1,07:1 ile ELENDİ. 7 açık karar RAPOR.md §9'da.
-KARTÇIK REVİZYONU v3 (23.07 geri bildirimi "kartçık büyük, sahneyi eziyor"):
-rev1/ altında R1 (küçültülmüş kartçık %26) ↔ R2 (alt şerit) üçlü kıyası +
-yuva haritası (6 sahne × 5 kare) + dokunma ölçümü. Kritik bulgu: kehribar
-hedef satırı α .70-.90'da AA'yı GEÇMİYOR (eşik α≈0,92) → ya koyu kehribar
-#6B4412 + α.80 ya da α.92. 4 açık karar rev1/RAPOR.md §8'de.
-Onaysız AŞAMA 2 (kod) BAŞLAMAZ.
+ANA SAYFA — 6 SAHNE + 7 SÜZÜLEN SORU: AŞAMA 2 (KOD) UYGULANDI,
+KULLANICI ONAYI BEKLİYOR (2026-07-23). Koyu hero kalktı, sahne akışı açılış
+oldu; R2 alt şerit (α.80 + koyu kehribar #6B4412, DESIGN.md §2'ye eklendi);
+akış sonu iniş bölümü (6 persona kartı + /durumum/ bağı); /deneyim/ 301 → /
+ve menüden kalktı. Kanıt: cikti/denetim/anasayfa-asama2/ (RAPOR.md + 14 ekran
++ oz-denetim.json + lighthouse-3tur.json). Ölçüm: LH 3-tur medyan masaüstü 99
+(eşik 85) / mobil 85 (eşik 70); konsol 0, kırık link 0, 375 taşma 0; şerit
+kontrastı en kötü karede soru 8,17:1 · hedef 4,75:1 (AA üstü); dokunma 44px;
+reduced-motion ve JS'siz halde 7 sorunun tamamı erişilebilir; "aynı hedef aynı
+anda" ihlali 0/7 (build-time assert ile korunuyor). İlk yük 8 dosya → 2 dosya
+(3972KB → 1657KB). AÇIK KULLANICI GÖREVİ: (1) canlı test = nihai onay —
+özellikle video scrub akıcılığı (headless GPU'suz, kanıt sayılmaz),
+(2) Cloudflare "Purge Everything" (ana sayfa tamamen değişti), (3) RAPOR.md
+§9'daki tek açık karar: "Barajlarımızda ne kadar su var?" hedefi /harita/
+kalsın mı (baraj doluluk verisi havza sayfalarında).
+Eski landing ve /deneyim/ SİLİNMEDİ: arsiv/landing-koyu/, arsiv/deneyim-rota/.
 
 SAHNELERİN EVİ = ANA SAYFA (22.07 kullanıcı kararı): 6 sahne + 7 süzülen soru
 ana sayfaya girer. /harita/ dönüşüm mock'u (fd699ff çıktısı) GEÇERSİZ;

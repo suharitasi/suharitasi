@@ -22,13 +22,13 @@ const ogeler = [
   { ad: 'Durumum', yol: '/durumum/' },
   { ad: 'Vakalar', yol: '/vaka/' },
   { ad: 'Hakkında', yol: '/hakkinda/' },
-  { ad: 'Deneyim', yol: '/deneyim/' },
 ];
-// Landing bugün Vakalar, Deneyim ve Durumum linklerini taşımıyor (A-ÖN görsel
-// birebir şartı); koyu dal listesi tek kaynaktan süzülür. FAZ A'da mobil panel
-// (TamEkranMenu) tam listeyi zaten verir.
+// "Deneyim" 23.07'de menüden KALKTI: /deneyim/ rotası kapandı (301 → /),
+// sahne akışı ana sayfaya taşındı. Tek kaynak burasıdır.
+// Landing (koyu dal) Vakalar ve Durumum linklerini taşımıyor; koyu dal listesi
+// tek kaynaktan süzülür. Mobil panel (TamEkranMenu) tam listeyi zaten verir.
 const koyuOgeler = ogeler.filter(
-  (o) => o.yol !== '/vaka/' && o.yol !== '/deneyim/' && o.yol !== '/durumum/',
+  (o) => o.yol !== '/vaka/' && o.yol !== '/durumum/',
 );
 const simdiki = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname

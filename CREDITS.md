@@ -4,7 +4,7 @@
 - **Kaynak:** [oso95/scroll-world](https://github.com/oso95/scroll-world)
 - **Telif:** © 2026 cyw
 - **Lisans:** MIT
-- **Kullanım:** `/deneyim/` rotasındaki scroll-scrub kamera motoru
+- **Kullanım:** ana sayfanın (`/`) 6 sahnelik scroll-scrub kamera akışı (23.07 öncesi `/deneyim/` rotasındaydı; o rota kapandı, 301 → `/`)
   (`src/scripts/scrub-engine.js`). Yukarı-akış dosyasının birebir kopyasıdır;
   tek uyarlama Astro ESM import'u için eklenen `export { mountScrollWorld }`
   satırıdır. Motorun asset-üretim pipeline'ı (Higgsfield tabanlı, ücretli

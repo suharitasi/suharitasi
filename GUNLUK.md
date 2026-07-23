@@ -393,3 +393,29 @@
   ÖLÇÜM 3: dokunma — görünmez pad'in ilk hali (::before z-index:-1) hit-test'te
   ÇALIŞMADI, saydam ::after ile düzeltildi; şerit 31px görsel → 44px etkin.
   375'te R1 tüm sorular tek satır; R2'de 7'de 1 soru 4px kırpılıyor.
+
+## 23 Temmuz 2026 — Ana sayfa AŞAMA 2 (kod): 6 sahne + 7 süzülen soru
+
+Ana sayfa yeniden yazıldı. Koyu hero + kelime koreografisi kalktı; 6 sahnelik
+scroll-scrub akışı sayfanın açılışı oldu. Sorular R2 alt şeritte: 1440'ta tek
+şerit iki yuva (aynı anda 2 soru), 375'te tek yuva; ritim kaydırma yüzdesinden
+türer (7 eşit dilim), zamanlayıcı yok. Şerit zemini α.80, hedef satırı yeni
+`--kehribar-koyu #6B4412` (DESIGN.md §2'ye eklendi; kritik-vurgu `#875518`
+değişmedi). Akış sonunda iniş bölümü: h1 + öz-cevap + 6 persona kartı +
+/durumum/ bağı. `/deneyim/` rotası kapandı (301 → /), menüden kalktı; eski
+landing ve deneyim sayfası `arsiv/` altına taşındı (geri dönüş yolu açık).
+
+Ölçüm: LH 3-tur medyan masaüstü 99 / mobil 85 (eşikler 85 ve 70). Şerit
+kontrastı en kötü karede soru 8,17:1, hedef 4,75:1 — α.80 + `#6B4412`
+bileşiminin AA'yı geçen tek bileşim olduğu rev1 bulgusu doğrulandı.
+
+**Ders (yükleme):** motorun `loading="lazy"` posterleri iş görmüyordu — tüm
+sahne `<img>`'leri sabit ve kadraj içinde olduğu için tarayıcı hepsini
+"görünür" sayıyor. Ölçmeden "lazy" demek yanlış olurdu: ilk yük 8 dosya /
+3972 KB çıktı. Poster erteleme + `diveScroll` 1,4→1,6 ile ilk yük 2 dosya /
+1657 KB'ye indi. Vendor'a dokunulmadı.
+
+**Ders (denetim):** altı görsel hata yalnız ekran görüntüsüne BAKARAK
+yakalandı (krem letterbox, boş rota etiketi, belirsiz şerit okunuşu, ipucu
+kontrastı, footer boşluğundan sızan sahne, sabit menünün footer'ı örtmesi).
+Sayısal öz-denetim hepsinde "0 hata" diyordu. Ölçüm bakmanın yerini tutmuyor.
