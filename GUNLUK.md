@@ -451,3 +451,31 @@ kullandım ve commit'lenmemiş iki cron log dosyasındaki 23.07 satırları gitt
 (`data/arsiv/baraj/log/cron.log`, `data/arsiv/grace/log-2026-07.log`).
 Veri dosyaları etkilenmedi, loglar sonraki koşuda yeniden yazılacak. Sınama
 için ayrı bir worktree kullanmalıydım.
+
+## 23 Temmuz 2026 (3) — Sürekli site sağlık sistemi
+
+Tek script (`arac/site-saglik.mjs`), üç mod, 10 kontrol, iki cron (07:30 +
+19:30 UTC). Sınırlı otomatik onarım: CSP direktifi (yalnız izinli-kaynaklar
+listesinden), kaybolan 301, sitemap'te 404. Performans, tasarım, içerik,
+JSON-LD şeması, veri kaynağı, mimari = kara liste, DUR + bildir.
+
+**Sistem daha ilk koşusunda işe yaradı:** persona.json'da üç rehber bağı
+yanlış slug'a gidiyordu, canlıda 404'tü. Kimse fark etmemişti. Sistem
+bunları otomatik onarmadı (hedef 301 zinciriyle bulunamıyor → devret) ve
+doğru davrandı; elle düzelttim.
+
+**Ders (ölçüm aracı da yanlış ölçer):** `--test` senaryolarını yazarken iki
+kez kendi aracım beni yanılttı. (1) Sanal sunucu sabit port kullanıyordu;
+çöken bir koşudan kalan zombi süreç portu tutunca yeni sunucu SESSİZCE
+bağlanamadı ve 7 senaryonun 5'i eski kopyayı ölçüp "kaldı" dedi. (2) Senaryo
+regex'i `_headers`'ın YORUM bloğundaki `media-src` ifadesini yakalayıp gerçek
+direktifi bırakıyordu. İkisi de "kanıt üreten aracın kendisi kanıtlanmalı"
+dersinin örneği; ikisi de rapora yazıldı. Artık sunucu imza dosyasıyla
+doğrulanıyor, doğrulanamazsa koşu hata ile duruyor.
+
+**Kayıt (brief varsayımı düzeltildi):** brief "5 otomatik commit'çi" diyordu;
+depoda 3 vardı (baraj, GRACE, su-izleme), site-saglik 4. oldu.
+`saglik-bekcisi.sh` git işlemi yapmıyor — kilit takılmadı, gerekçesi yazıldı.
+
+Açık kalan: /harita/ öz-cevap + JSON-LD yok (kara liste, kullanıcı kararı);
+SMTP bilgileri beklemede.

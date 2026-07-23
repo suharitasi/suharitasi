@@ -67,6 +67,9 @@ async function korumali(ad, modlar, fn) {
 }
 
 function bellekMB() {
+  // Test kancası (saglik-bekcisi.sh'teki BELLEK_LOG deseniyle aynı): eşik
+  // dalının GERÇEKTEN çalıştığı, gerçek belleği doldurmadan kanıtlanabilsin.
+  if (process.env.SAGLIK_BELLEK_MB) return Number(process.env.SAGLIK_BELLEK_MB);
   // MemAvailable = gerçekten kullanılabilir bellek (free ≠ available).
   const mi = readFileSync('/proc/meminfo', 'utf8');
   const m = /MemAvailable:\s+(\d+) kB/.exec(mi);

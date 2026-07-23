@@ -8,6 +8,22 @@ oturumu (yayına değer mi / sorumluluk çerçevesi / saha doğrulaması) →
 [SERDAR-HUKUK] onayı → uygulama briefi. (İlke: ODUL-USTU.md "Korunacaklar"
 — altyapıda hızlı, iddiada yavaş.)
 
+SÜREKLİ SİTE SAĞLIK SİSTEMİ — KURULDU (2026-07-23, commit 975a288).
+arac/site-saglik.mjs: 10 kontrol, üç mod (--tam cron 07:30+19:30 UTC, --hizli
+deploy sonrası, --test sanal doğrulama). Sınırlı otomatik onarım (beyaz liste)
++ kara liste (performans/tasarım/içerik/JSON-LD/veri kaynağı/mimari = DUR).
+Ortak git kilidi 4 commit'çide kurulu; bekçinin bekçisi saglik-bekcisi.sh'te.
+Kanıt: cikti/denetim/site-saglik/ (RAPOR.md + 7/7 test senaryosu + ilk tam
+koşu + SHA-bekleme + bellek kuralı + kilit deneyi + crontab kaydı).
+Sistem ilk koşuda 3 kırık iç link buldu (persona.json yanlış slug) — elle
+düzeltildi, şimdi 167 linkte kırık 0.
+AÇIK KULLANICI KARARI (sistem kara liste gereği dokunmadı):
+  /harita/ sayfasında ÖZ-CEVAP ve JSON-LD yok. Ya (a) eklensin ya da
+  (b) çekirdek setin GEO kontrolünden gerekçeli muaf tutulsun. Karar
+  verilene kadar SITE-DURUM.md 🔴 kalır.
+BEKLEMEDE: SMTP bilgileri (.env'de SMTP_HOST/SMTP_USER/SMTP_PASS/ALARM_TO).
+  Gelince e-posta alarmı açılır + sentetik 🔴 ile test maili atılır.
+
 ANA SAYFA — 6 SAHNE + 7 SÜZÜLEN SORU: AŞAMA 2 + CANLI TEST DÜZELTMELERİ
 UYGULANDI, KULLANICI ONAYI BEKLİYOR (2026-07-23). Koyu hero kalktı, sahne
 akışı açılış oldu; R2 alt şerit; akış sonu iniş bölümü; /deneyim/ 301 → /.
