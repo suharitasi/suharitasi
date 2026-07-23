@@ -61,6 +61,12 @@ sadelik amaç değildir; bir efekt kısılacaksa görünmez olana kadar değil,
 zarif kalana kadar kısılır. Şüphede kalırsan soluk olanı değil belirgin
 olanı üret; kısmak kolay, yok olanı fark etmek zordur.
 
+## Altyapıda hızlı, iddiada yavaş (2026-07-23)
+Geri alınabilir işler (içerik, altyapı, düzen) hızlı akar; kullanıcıyı maddi
+karara yönlendiren iddialı araçlar (ör. Kuyu Çıkar Mı) hız hedefi TAŞIMAZ —
+zorunlu sıra: keşif raporu → kullanıcı değerlendirme oturumu → [SERDAR-HUKUK]
+onayı → uygulama briefi (ayrıntı: ODUL-USTU.md "Korunacaklar").
+
 ## İş kapanış kuralı
 Görsel/UI işleri "YAPILDI" olarak işaretlenmez; "KULLANICI ONAYI
 BEKLİYOR" olarak işaretlenir ve SIRADAKILER'de kullanıcı canlıda

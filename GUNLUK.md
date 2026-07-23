@@ -361,3 +361,11 @@
   yalnız persona.json (uydurma yok; hukuki [APILEX]). Kanıt: öz-cevap+FAQPage+
   sabit tarih JS'siz DOM; konsol 0; nav/375 taşma 0. Palet ayrı iş (mevcut
   SU-DİLİ değişkenleriyle). Push+canlı; kullanıcı canlı testi açık.
+
+## 2026-07-22/23 (kayıt: palet, güvenlik, cache)
+- FAZ 8 palet C canlıda (adc56f2); kullanıcı canlı testi ERTELENDİ — nihai
+  görsel onay beklemede.
+- Güvenlik taraması (claude-security, tüm repo, medium): doğrulamayı geçen
+  bulgu YOK; rapor CLAUDE-SECURITY-20260722-195547/, commit dışı.
+- Cache/purge işleri gündem dışı (site inşaat halinde, ziyaretçi yok) —
+  canlı kontrolde hard refresh yeter.

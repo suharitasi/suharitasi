@@ -20,6 +20,16 @@ VIZYON.md (ne). BRIEF.md çatı kuralları her zaman üstündür.
 - Veri dürüstlüğü: düz-çizgi kuralı, "ulusaldır" etiketi, uydurma yasağı.
 - TBB dili: bilgilendirme portalı; huni/CTA agresifliği yok.
 - SU-DİLİ + Landing İstisnası (DESIGN.md).
+- ALTYAPIDA HIZLI, İDDİADA YAVAŞ: Geri alınabilir işler (içerik, altyapı,
+  düzen) hızlı akar; kullanıcıyı maddi karara yönlendiren iddialı araçlar
+  (ör. Kuyu Çıkar Mı) hız hedefi TAŞIMAZ — yayın öncesi zorunlu sıra:
+  keşif raporu → kullanıcı değerlendirme oturumu (yayına değer mi /
+  sorumluluk çerçevesi / saha doğrulaması) → [SERDAR-HUKUK] onayı →
+  ancak o zaman uygulama briefi.
+- SAHNELERİN EVİ = ANA SAYFA (22.07 kullanıcı kararı): 6 sahne + 7 süzülen
+  soru ana sayfaya girer; /harita/ dönüşüm mock'u (fd699ff çıktısı)
+  GEÇERSİZ — /harita/ veri sayfası olarak kalır; /deneyim/ 301 planı ana
+  sayfa Aşama 2'de ele alınır.
 
 ## Retler (bilinçli, gerekçeli)
 - WebGPU/3D dönüşü: imza etkileşimi gölgeler, istikrar riski. (VIZYON ufkunda

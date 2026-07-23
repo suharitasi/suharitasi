@@ -2,7 +2,20 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
-AKTİF BRIEF — /HARİTA/ DÖNÜŞÜMÜ (DENEYİM GÖMME v2 NİHAİ): AŞAMA 1 TAMAM
+KUYU ÇIKAR MI — keşif tamam (bf8e5fd); KULLANICI DEĞERLENDİRME OTURUMU
+bekleniyor, otomatik kur briefi YASAK. Sıra: keşif raporu → değerlendirme
+oturumu (yayına değer mi / sorumluluk çerçevesi / saha doğrulaması) →
+[SERDAR-HUKUK] onayı → uygulama briefi. (İlke: ODUL-USTU.md "Korunacaklar"
+— altyapıda hızlı, iddiada yavaş.)
+
+SAHNELERİN EVİ = ANA SAYFA (22.07 kullanıcı kararı): 6 sahne + 7 süzülen soru
+ana sayfaya girer. /harita/ dönüşüm mock'u (fd699ff çıktısı) GEÇERSİZ;
+/harita/ veri sayfası olarak kalır. /deneyim/ 301 planı ana sayfa Aşama 2'de
+ele alınır. Aşağıdaki /harita/ dönüşüm briefi bu kararla HÜKÜMSÜZDÜR (kayıt
+olarak duruyor).
+
+AKTİF BRIEF (HÜKÜMSÜZ — 22.07 kararıyla iptal) — /HARİTA/ DÖNÜŞÜMÜ
+(DENEYİM GÖMME v2 NİHAİ): AŞAMA 1 TAMAM
 (2026-07-22, kod yok) — KULLANICI ONAYI BEKLİYOR. Hero kalkar, 6 sahne
 scroll-scrub /harita/'ya girer, panel+GEO aynen altta, /deneyim/ kapanır.
 Çıktı: cikti/denetim/harita-donusum/ (yerlesim-semasi-1440.png + mock.html +
