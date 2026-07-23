@@ -11,6 +11,130 @@ import HavzaPaneli from '../components/HavzaPaneli.astro';
 // Hareket sözlüğü tek kaynak: /harita/ sahne rotası da --e-* eğrilerini
 // buradan alır (HavzaPaneli yerel --pk-e-suzul kopyası kaldırıldı).
 import '../styles/hareket.css';
+// GEO/SEO açığı kapatma (2026-07-23): sağlık sistemi bu sayfada öz-cevap ve
+// JSON-LD bulunmadığını raporladı. Sayfa Sayfa.astro layout'unu kullanmadığı
+// için ikisi de yoktu. Şema değerleri UYDURULMAZ — panelin beslendiği aynı
+// veri dosyalarından build-time türetilir.
+import havzaVeri from '../../data/havza-veri.json';
+import yasVeri from '../../data/canli/havza-yas.json';
+import grace from '../../data/canli/grace-havza.json';
+import { SITE_ADI, YAZAR } from '../data/site';
+
+const KOK_URL = 'https://suharitasi.com/';
+const SAYFA_URL = 'https://suharitasi.com/harita/';
+
+const havzaSayisi = havzaVeri.havzalar.length;
+
+// GRACE serisinin gerçek zaman aralığı (temporalCoverage uydurulmaz).
+const graceAylar = Object.keys(grace.havzalar[Object.keys(grace.havzalar)[0]].seri).sort();
+const graceIlk = graceAylar[0];
+const graceSon = graceAylar[graceAylar.length - 1];
+
+const dsiKunye = yasVeri.kaynak.havzaPotansiyelRezerv;
+const potYil = havzaVeri.havzalar[0].yuzeysuyuYili ?? 2024;
+
+// ÖZ-CEVAP (CLAUDE.md "cevap önce, dayanak sonra", ≤280 karakter).
+// DİKKAT: bu sayfa BARAJ DOLULUĞU taşımaz (panel yorumu: "tahsis ve baraj
+// karta girmez"); baraj doluluk verisi havza sayfalarındadır. Öz-cevap bu
+// yüzden baraj iddiası ETMEZ — sayfanın gerçekten gösterdiğini anlatır.
+const ozCevap =
+  `Türkiye'nin ${havzaSayisi} su havzası tek haritada: her havzanın yüzey suyu ` +
+  'potansiyeli, yeraltı suyu işletme rezervi ve GRACE uydu ölçümüyle son 5 yılın ' +
+  'yeraltı suyu eğilimi. Kartlar en hızlı azalan havzadan başlar; her kart o ' +
+  'havzanın veri künyesine açılır.';
+if (ozCevap.length > 280) {
+  // Sessiz hata yasağı: sınır aşılırsa build DÜŞER, kırpılıp sessizce bozulmaz.
+  throw new Error(`/harita/ öz-cevap ${ozCevap.length} karakter — sınır 280.`);
+}
+
+/* JSON-LD — ŞEMA SEÇİMİ VE GEREKÇESİ
+   · WebPage: sayfanın kendisi (ad, açıklama, dil, birincil görsel, site
+     ilişkisi). Her sayfada olması gereken taban tip.
+   · Dataset: sayfanın gövdesi bir VERİ SUNUMUDUR — 25 havza × üç ölçülen
+     değişken (yüzey suyu potansiyeli km³/yıl, YAS işletme rezervi hm³/yıl,
+     GRACE su depolaması eğimi cm/yıl), adlandırılmış kaynaklarla. Dataset
+     Google Dataset Search'ün indekslediği tiptir ve AI-aramada "hangi veri,
+     hangi kaynak, hangi dönem" sorularına doğrudan cevap verir.
+   · SEÇİLMEYENLER ve NEDENİ: Map/Place — sayfa coğrafi bir yer tarif etmiyor,
+     ölçüm sunuyor. Article — analiz metni yok, künye ve veri var.
+     Table — sunum biçimi, içerik tipi değil. ItemList — 25 kart bir liste ama
+     asıl varlık ölçülen veri; Dataset onu variableMeasured ile daha doğru
+     tarif ediyor.
+   · license alanı YAZILMADI: DSİ istatistiklerinin açık lisans etiketi
+     doğrulanamadı, NASA GRACE kamu malı — karışık kümeye tek lisans
+     yazmak uydurma olurdu. Yerine citation + isBasedOn kullanıldı.
+   · distribution YAZILMADI: indirilebilir veri dosyası yayımlanmıyor. */
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${KOK_URL}#kurum`,
+      name: SITE_ADI,
+      url: KOK_URL,
+      description:
+        "Türkiye'nin su verisi, havzaları ve su mevzuatını tek haritada birleştiren bağımsız bilgi portalı.",
+      founder: { '@type': 'Person', name: YAZAR.adSade, jobTitle: YAZAR.unvan },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${KOK_URL}#site`,
+      name: SITE_ADI,
+      url: KOK_URL,
+      inLanguage: 'tr-TR',
+      publisher: { '@id': `${KOK_URL}#kurum` },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${SAYFA_URL}#sayfa`,
+      url: SAYFA_URL,
+      name: 'Harita — Su Haritası',
+      description: ozCevap,
+      inLanguage: 'tr-TR',
+      isPartOf: { '@id': `${KOK_URL}#site` },
+      primaryImageOfPage: { '@type': 'ImageObject', url: `${KOK_URL}hedef-hero.v2.webp` },
+      mainEntity: { '@id': `${SAYFA_URL}#veri` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Ana sayfa', item: KOK_URL },
+        { '@type': 'ListItem', position: 2, name: 'Harita', item: SAYFA_URL },
+      ],
+    },
+    {
+      '@type': 'Dataset',
+      '@id': `${SAYFA_URL}#veri`,
+      name: `Türkiye ${havzaSayisi} su havzası — yüzey suyu potansiyeli, yeraltı suyu rezervi ve su depolaması eğilimi`,
+      description:
+        `Türkiye'nin ${havzaSayisi} su havzası için havza bazında yüzey suyu potansiyeli ` +
+        `(DSİ ${potYil}), yeraltı suyu işletme rezervi (DSİ Tablo 1.3) ve NASA ` +
+        'GRACE/GRACE-FO toplam su depolaması anomalisinin son 5 yıllık eğimi. ' +
+        'GRACE değeri DEĞİŞİM verisidir (2004-2009 ortalamasına göre), mutlak su ' +
+        'miktarı değildir; havza ortalamaları yarım-derece grid yaklaşığıdır.',
+      inLanguage: 'tr-TR',
+      isAccessibleForFree: true,
+      creator: { '@id': `${KOK_URL}#kurum` },
+      includedInDataCatalog: { '@id': `${KOK_URL}#site` },
+      spatialCoverage: { '@type': 'Place', name: 'Türkiye' },
+      temporalCoverage: `${graceIlk}/${graceSon}`,
+      variableMeasured: [
+        { '@type': 'PropertyValue', name: 'Yüzey suyu potansiyeli', unitText: 'km³/yıl' },
+        { '@type': 'PropertyValue', name: 'Yeraltı suyu işletme rezervi', unitText: 'hm³/yıl' },
+        {
+          '@type': 'PropertyValue',
+          name: 'Toplam su depolaması anomalisi eğimi (son 5 yıl)',
+          unitText: 'cm/yıl',
+        },
+      ],
+      citation: [
+        `${dsiKunye.ad} (erişim ${dsiKunye.indirmeTarihi})`,
+        grace.kunye.kaynak,
+      ],
+      isBasedOn: [dsiKunye.url, 'https://earth.gsfc.nasa.gov/geo/data/grace-mascons'],
+    },
+  ],
+}).replace(/</g, '\\u003c');
 ---
 <!DOCTYPE html>
 <html lang="tr">
@@ -33,6 +157,7 @@ import '../styles/hareket.css';
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://suharitasi.com/og-suharitasi.v1.png" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<script type="application/ld+json" is:inline set:html={jsonLd} />
 <link rel="preload" as="image" href="/hedef-hero.v2.webp" fetchpriority="high" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -125,6 +250,39 @@ import '../styles/hareket.css';
     outline: 2px solid var(--akuamarin);
     outline-offset: 4px;
   }
+
+  /* ——— ÖZ-CEVAP SLABI (2026-07-23) ———
+     Panelle AYNI açık zemin (#E9F0F4) kullanılır ki hero'dan sonra tek bir
+     aydınlık gövde başlasın; panelin kendi border-top'u ikisini ayırır.
+     Renkler panelin yerel değerleriyle birebir (SU-DİLİ aday C). */
+  .oz-kap {
+    background: #E9F0F4;
+    border-top: 1px solid rgba(19, 42, 63, 0.2);
+  }
+
+  .oz-ic {
+    max-width: 84rem;
+    margin: 0 auto;
+    padding: clamp(1.8rem, 4vh, 2.6rem) clamp(1.25rem, 4vw, 3rem)
+             clamp(1.4rem, 3vh, 2rem);
+  }
+
+  .oz-cevap {
+    margin: 0;
+    padding: 1rem 1.2rem;
+    border-left: 3px solid #2E7EA0;
+    background: rgba(46, 126, 160, 0.06);
+    color: #132A3F;
+    font-family: var(--sans);
+    font-size: 1.06rem;
+    font-weight: 500;
+    line-height: 1.6;
+    max-width: 66ch;
+  }
+
+  @media print {
+    .oz-cevap { background: none; }
+  }
 </style>
 </head>
 <body>
@@ -144,6 +302,13 @@ import '../styles/hareket.css';
   >menü</button>
 
   <main data-menu-dis>
+    {/* ÖZ-CEVAP: hero'dan hemen sonra, panelden önce. Panelle aynı açık
+        slab üstünde durur ki iki ayrı zemin görünmesin. JS'siz DOM'da. */}
+    <section class="oz-kap" aria-label="Sayfa özeti">
+      <div class="oz-ic">
+        <p class="oz-cevap" role="doc-abstract">{ozCevap}</p>
+      </div>
+    </section>
     <HavzaPaneli />
   </main>
 
