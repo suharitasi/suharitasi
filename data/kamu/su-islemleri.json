@@ -1,0 +1,130 @@
+{
+ "_sema_surumu": 1,
+ "olusturma": "2026-07-23",
+ "son_guncelleme": "2026-07-23",
+ "aciklama": "4a — İŞLEM KEŞFİ. Su mevzuatındaki 41 belgede işlem sözcüğü (izin, ruhsat, belge, başvuru, bildirim, tahsis, onay, beyan, tescil, görüş) taranarak 1001 ham aday çıkarıldı; vatandaşın/şirketin BİZZAT yaptığı işlemler süzüldü. Elenenler: kurumlar arası 'uygun görüş' hükümleri, denetim/ceza fıkraları, ayrıştırma gürültüsü.",
+ "ham_aday_sayisi": 1001,
+ "islem_sayisi": 20,
+ "islemler": [
+  {
+   "id": "yas-arama-belgesi",
+   "islem_adi": "Yeraltı suyu arama belgesi",
+   "dayanak": "167 s. Yeraltısuları Hk. K. md.8 ve md.9 (bir sene süreli; süre sonunda temdit)",
+   "kaynak": "167 s.K."
+  },
+  {
+   "id": "yas-kullanma-belgesi",
+   "islem_adi": "Yeraltı suyu kullanma belgesi",
+   "dayanak": "167 s.K. md.10 (arama belgesine dayanarak su bulan kimse bir ay içinde müracaat eder; ölçüm sistemi kurulmadan belge verilemez)",
+   "kaynak": "167 s.K."
+  },
+  {
+   "id": "yas-islah-tadil-belgesi",
+   "islem_adi": "Yeraltı suyu ıslah ve tadil belgesi",
+   "dayanak": "167 s.K. md.11 (kuyu verimini artırma veya kullanma şeklini değiştirme)",
+   "kaynak": "167 s.K."
+  },
+  {
+   "id": "su-tahsis-talebi",
+   "islem_adi": "Su tahsis talebi (yüzey ve yeraltı suyu)",
+   "dayanak": "Su Tahsisleri Hk. Yön. md.8 (gerçek veya tüzel kişiler DSİ’ye müracaat eder) ve md.9 (başvuru yöntemi)",
+   "kaynak": "Su Tahsisleri Hk. Yön."
+  },
+  {
+   "id": "su-tahsis-azaltma",
+   "islem_adi": "Tahsis edilen su miktarının azaltılması talebi",
+   "dayanak": "Su Tahsisleri Hk. Yön. md. (su ihtiyacının azalması durumunda dilekçe ile başvuru)",
+   "kaynak": "Su Tahsisleri Hk. Yön."
+  },
+  {
+   "id": "su-kanalizasyon-durum-belgesi",
+   "islem_adi": "Su ve kanalizasyon durum belgesi",
+   "dayanak": "2560 s. İSKİ K. md.18 (yapı ruhsatı isteyen gerçek ve tüzel kişiler önce İSKİ’den belge almak zorundadır)",
+   "kaynak": "2560 s.K."
+  },
+  {
+   "id": "kanalizasyon-baglanti",
+   "islem_adi": "Kanalizasyona bağlantı (taşınmazın bağlanması)",
+   "dayanak": "2560 s. İSKİ K. md.17 (bedeli taşınmaz sahibinden alınmak suretiyle İSKİ tarafından yapılır)",
+   "kaynak": "2560 s.K."
+  },
+  {
+   "id": "atiksu-baglanti-izni",
+   "islem_adi": "Atıksu bağlantı izni (evsel atıksu)",
+   "dayanak": "Su Kirliliği Kontrolü Yön. md.44 (atıksu altyapı tesisleri yönetimince yazılı belge karşılığında verilir)",
+   "kaynak": "SKKY"
+  },
+  {
+   "id": "baglanti-kalite-kontrol-izni",
+   "islem_adi": "Bağlantı kalite kontrol izin belgesi (endüstriyel/karışık atıksu)",
+   "dayanak": "Su Kirliliği Kontrolü Yön. md.44 ve md.45-48",
+   "kaynak": "SKKY"
+  },
+  {
+   "id": "su-verimliligi-belgesi",
+   "islem_adi": "Su verimliliği belgesi (mavi/yeşil/turkuaz)",
+   "dayanak": "Su Verimliliği Yön. md.7 (üç seviye), md.8 (başvuru), md.9 (beş yıl geçerlilik)",
+   "kaynak": "Su Verimliliği Yön."
+  },
+  {
+   "id": "sydf-izin-belgesi",
+   "islem_adi": "Su Yapıları Yetkili Denetim Firması (SYDF) izin belgesi",
+   "dayanak": "Su Yapıları Denetim Hizmetleri Yön. md.16 (firmalar belgeleri tamamlayarak DSİ’ye dilekçe ile başvurur; md.16/3 devredilemez)",
+   "kaynak": "Su Yapıları Denetim Hiz. Yön."
+  },
+  {
+   "id": "su-urunleri-ruhsat-tezkeresi",
+   "islem_adi": "Su ürünleri ruhsat tezkeresi",
+   "dayanak": "1380 s. Su Ürünleri K. md.3 (ticari amaçlı su ürünleri avcılığı için Tarım ve Orman Bakanlığından ruhsat tezkeresi veya izin alınması zorunludur)",
+   "kaynak": "1380 s.K."
+  },
+  {
+   "id": "su-urunleri-yetistiricilik-izni",
+   "islem_adi": "Su ürünleri yetiştiricilik tesisi izni",
+   "dayanak": "1380 s. Su Ürünleri K. ve Su Ürünleri Yön.; Devletin hüküm ve tasarrufundaki alanlarda Millî Emlak birimleri marifetiyle",
+   "kaynak": "1380 s.K. + Su Ürünleri Yön."
+  },
+  {
+   "id": "jeotermal-arama-ruhsati",
+   "islem_adi": "Jeotermal kaynak ve doğal mineralli su arama ruhsatı",
+   "dayanak": "5686 s. Jeotermal Kaynaklar ve Doğal Mineralli Sular K. md.4 ve md.6",
+   "kaynak": "5686 s.K."
+  },
+  {
+   "id": "jeotermal-isletme-ruhsati",
+   "islem_adi": "Jeotermal kaynak ve doğal mineralli su işletme ruhsatı",
+   "dayanak": "5686 s.K. md.4 vd. (arama süresi sonunda işletme projesi ile idareye başvuru)",
+   "kaynak": "5686 s.K."
+  },
+  {
+   "id": "dogal-mineralli-su-tesis-izni",
+   "islem_adi": "Doğal mineralli su tesis izni",
+   "dayanak": "Doğal Mineralli Sular Hk. Yön. md.4/1-g (tesis izni) ve ilgili maddeler; Bilimsel Değerlendirme Komisyonu Raporu aranır",
+   "kaynak": "Doğal Mineralli Sular Hk. Yön."
+  },
+  {
+   "id": "hammadde-uretim-izni",
+   "islem_adi": "Hammadde üretim izni (kum-çakıl vb.)",
+   "dayanak": "3213 s. Maden K. (hammadde üretim izni); akarsu yatağında ise taşkın ve rüsubat mevzuatı da uygulanır",
+   "kaynak": "3213 s.K."
+  },
+  {
+   "id": "sulak-alan-faaliyet-izni",
+   "islem_adi": "Sulak alanda faaliyet izni",
+   "dayanak": "Sulak Alanların Korunması Yön. md.9 (kum alımı vb. için Genel Müdürlük/Bölge Müdürlüğü uygun görüşü) ve md.39 (başvuru formları ve izin belgeleri)",
+   "kaynak": "Sulak Alanların Korunması Yön."
+  },
+  {
+   "id": "atiksu-enerji-tesviki",
+   "islem_adi": "Atıksu arıtma tesisi elektrik enerjisi teşviki (geri ödeme belgesi)",
+   "dayanak": "Atıksu Arıtma Tesisi Enerji Teşviki Yön. (geri ödeme belgesi; SGK borcu yoktur yazısı aranır)",
+   "kaynak": "Atıksu Arıtma Tesisi Enerji Teşviki Yön."
+  },
+  {
+   "id": "su-kullanim-hakki-anlasmasi",
+   "islem_adi": "Su kullanım hakkı anlaşması (HES/üretim tesisi)",
+   "dayanak": "4 s. CBK DSİ bölümü (işletmeye açılan hidroelektrik santrallerin su kullanım hakkı anlaşmalarına uygunluğu); 6446 s. Elektrik Piyasası K.",
+   "kaynak": "4 s. CBK + 6446 s.K."
+  }
+ ]
+}

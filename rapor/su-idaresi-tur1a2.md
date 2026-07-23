@@ -1,5 +1,7 @@
 # TÜRKİYE SU İDARESİ — TUR 1A-2: TERİM GENİŞLEMESİYLE YENİDEN TARAMA VE KAPANIŞ DENETİMİ
 
+> Bu rapor TUR 1A-2'ye aittir; seri KAPANDI. Güncel nihai durum için `rapor/su-idaresi-tur1a3.md`'ye bakınız (155 kurum).
+
 **Tarih:** 2026-07-23 · **Kapsam:** keşif + veri üretimi; site/kod değişikliği YOK.
 **Önceki tur:** `rapor/su-idaresi-tur1a.md` (commit 32c6943) — LİSTE KAPANMADI.
 **Bütçe:** 50 istek (üst sınır 100), istekler arası ≥5 sn.

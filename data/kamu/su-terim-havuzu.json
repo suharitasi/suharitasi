@@ -1,8 +1,8 @@
 {
  "uretim_tarihi": "2026-07-23",
  "tohum": "su",
- "tur_sayisi": 3,
- "terim_sayisi": 119,
+ "tur_sayisi": 4,
+ "terim_sayisi": 126,
  "terimler": [
   {
    "terim": "su",
@@ -718,6 +718,48 @@
    "kaynak": "Ulusal Su Planı 2026-2035 (arşiv, birincil kaynak)",
    "eklenme_turu": 3,
    "kume": "islem"
+  },
+  {
+   "terim": "kurakçıl peyzaj",
+   "kaynak": "Ulusal Su Planı 2026-2035 eylem tabloları — Eylem 3.3.2",
+   "eklenme_turu": 4,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "alt havza",
+   "kaynak": "Ulusal Su Planı 2026-2035 eylem tabloları — havza ölçekli eylemler",
+   "eklenme_turu": 4,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "su iletişim planı",
+   "kaynak": "Ulusal Su Planı 2026-2035 eylem tabloları — Eylem 8.1.x",
+   "eklenme_turu": 4,
+   "kume": "islem"
+  },
+  {
+   "terim": "atıksu geri kazanımı",
+   "kaynak": "Ulusal Su Planı 2026-2035 eylem tabloları — Eylem 8.2.3",
+   "eklenme_turu": 4,
+   "kume": "islem"
+  },
+  {
+   "terim": "nitrat",
+   "kaynak": "Ulusal Su Planı 2026-2035 eylem tabloları — su kalitesi eylemleri",
+   "eklenme_turu": 4,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "taşkın erken uyarı sistemi",
+   "kaynak": "Ulusal Su Planı 2026-2035 eylem tabloları — Eylem 4.x (TEUS)",
+   "eklenme_turu": 4,
+   "kume": "islem"
+  },
+  {
+   "terim": "ulusal su bilgi sistemi",
+   "kaynak": "Ulusal Su Planı 2026-2035 eylem tabloları — USBS eylemleri",
+   "eklenme_turu": 4,
+   "kume": "islem"
   }
  ],
  "tur_gecmisi": [
@@ -736,6 +778,12 @@
    "yeni": 12,
    "kumulatif": 119,
    "kaynak": "TUR 1A-2'de açılan 3 yönetmelik + Ulusal Su Planı 2026-2035 (arşiv)"
+  },
+  {
+   "tur": 4,
+   "yeni": 7,
+   "kumulatif": 126,
+   "kaynak": "Ulusal Su Planı 2026-2035 eylem tabloları (141 eylem başlığı + gösterge sütunu)"
   }
  ]
 }

@@ -20,7 +20,591 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "1.1.1",
+     "baslik": "Su kaynaklarının yönetiminde havza ölçeğinde bütünleşik izleme ve takip sistemi geliştiril"
+    },
+    {
+     "eylem_no": "1.1.2",
+     "baslik": "Su Kurullarında alınan kararların ulusal ve yerel düzeyde uygulanması ve takibi yapılacakt"
+    },
+    {
+     "eylem_no": "1.1.4",
+     "baslik": "Sulama birlikleri, sulama kooperatifleri ve halk sulamaları tek çatı altında toplanacak, e"
+    },
+    {
+     "eylem_no": "1.2.1",
+     "baslik": "Su Kanunu hazırlık çalışmaları tamamlanacaktır."
+    },
+    {
+     "eylem_no": "1.2.2",
+     "baslik": "Taşkın Kanunu hazırlık çalışmaları tamamlanacaktır. *Kurum/Kuruluş eylemin koordinasyonund"
+    },
+    {
+     "eylem_no": "1.2.3",
+     "baslik": "Tarımsal, endüstriyel ve kentsel başta olmak üzere su yönetimi konusunda ikincil mevzuat h"
+    },
+    {
+     "eylem_no": "1.2.4",
+     "baslik": "167 Sayılı Yeraltı Suları Hakkında Kanunda düzenleme yapılacaktır."
+    },
+    {
+     "eylem_no": "1.2.5",
+     "baslik": "Su kaynaklarının kalite ve miktarının korunması için havza bazlı bütünleşik takip/inceleme"
+    },
+    {
+     "eylem_no": "1.2.6",
+     "baslik": "Su tahsisine ilişkin yetkilerin tek çatı altında toplanması ile tahsislerin havza esaslı s"
+    },
+    {
+     "eylem_no": "2.1.1",
+     "baslik": "Havza izleme programları, havzadaki kurumsal ihtiyaçlar ve maliyetlerin düşürülmesi doğrul"
+    },
+    {
+     "eylem_no": "2.1.2",
+     "baslik": "Havza izleme programlarına uygun şekilde sürekli izlemeler yapılacaktır."
+    },
+    {
+     "eylem_no": "2.1.3",
+     "baslik": "Su ile ilgili analizleri gerçekleştiren kamu laboratuvarlarının teknik ve personel kapasit"
+    },
+    {
+     "eylem_no": "2.1.4",
+     "baslik": "Yeraltı sularının miktar takibi ve kalite izlemeleri yapılacaktır."
+    },
+    {
+     "eylem_no": "2.1.5",
+     "baslik": "Su tahsisi yapılan tüm tesislerde ölçüm ve izleme sistemleri yaygınlaştırılacaktır."
+    },
+    {
+     "eylem_no": "2.1.6",
+     "baslik": "Hidrometeorolojik veri ağının güçlendirilmesi sağlanacaktır."
+    },
+    {
+     "eylem_no": "2.2.1",
+     "baslik": "Nehir Havza Yönetim Planları tamamlanacak, uygulanacak ve takibi yapılacaktır."
+    },
+    {
+     "eylem_no": "2.2.3",
+     "baslik": "Nitrata Hassas Bölgeler ilan edilerek Çevre Dostu Tarımsal Uygulamalar çerçevesinde Nitrat"
+    },
+    {
+     "eylem_no": "2.2.4",
+     "baslik": "Pestisit kaynaklı kirliliğin azaltılması ve önlenmesi için izleme takip ve denetim sistemi"
+    },
+    {
+     "eylem_no": "2.2.8",
+     "baslik": "Yeraltı suyu tahsisine kapalı havzalar öncelikli olmak üzere havza ve alt havza bazında en"
+    },
+    {
+     "eylem_no": "2.2.9",
+     "baslik": "İçme-kullanma suları hariç olmak üzere yeraltı sularından emniyetli rezervin üzerinde çeki"
+    },
+    {
+     "eylem_no": "2.3.1",
+     "baslik": "Doğa temelli çözümleri içerecek rehber doküman hazırlanacaktır."
+    },
+    {
+     "eylem_no": "2.3.2",
+     "baslik": "Havza ölçekli planlarda doğa temelli çözümleri içerecek şekilde rehabilitasyon ve restoras"
+    },
+    {
+     "eylem_no": "2.5.1",
+     "baslik": "Havza Master Planları güncellenecektir."
+    },
+    {
+     "eylem_no": "2.5.2",
+     "baslik": "Havza bazlı Hidrojeolojik Etüt Raporları hazırlanacaktır."
+    },
+    {
+     "eylem_no": "2.6.1",
+     "baslik": "İçme-kullanma suyu havzaları başta olmak üzere, su kaynaklarının korunmasına yönelik denet"
+    },
+    {
+     "eylem_no": "2.6.3",
+     "baslik": "Yeraltı sularına yapılan deşarjların kontrolüne ve denetimine ilişkin mekanizmalar güçlend"
+    },
+    {
+     "eylem_no": "2.6.4",
+     "baslik": "Yeraltı suyu miktarının korunmasında etkin denetim ve yaptırım mekanizması geliştirilerek "
+    },
+    {
+     "eylem_no": "2.6.5",
+     "baslik": "Ticari maksatlı kullanılan doğal mineralli sular ve kaynak suların takip ve denetimine yön"
+    },
+    {
+     "eylem_no": "2.7.1",
+     "baslik": "Kaynaktan musluğa içme-kullanma suyu güvenliği sistemi geliştirilecektir."
+    },
+    {
+     "eylem_no": "2.7.2",
+     "baslik": "İçme-kullanma suyu olarak kullanılan/kullanımı planlanan yerüstü su kaynaklarının hidroloj"
+    },
+    {
+     "eylem_no": "2.7.3",
+     "baslik": "İçme-Kullanma Suyu Havzası Koruma Planlarını kapsayan Su Güvenliği Planları hazırlanacaktı"
+    },
+    {
+     "eylem_no": "2.7.4",
+     "baslik": "İçme-Kullanma Suyu Güvenliği Planlarının uygulanması ve takibi yapılacaktır."
+    },
+    {
+     "eylem_no": "2.7.5",
+     "baslik": "İçme suyu temin edilen yeraltı suyu kaynaklarının envanteri oluşturulacak ve bu kaynakları"
+    },
+    {
+     "eylem_no": "2.7.6",
+     "baslik": "Kırsalda içme suyu güvenliğinin sağlanması için gerekli yasal, idari ve teknik altyapı mek"
+    },
+    {
+     "eylem_no": "2.7.8",
+     "baslik": "İçme suyu arıtma tesislerini işleten personelin kapasitesi artırılacak ve sertifikalandırı"
+    },
+    {
+     "eylem_no": "2.7.9",
+     "baslik": "İçme suyu kaynaklarında ve içme suyu arıtma tesislerinde düzenli izlemeler yapılacaktır."
+    },
+    {
+     "eylem_no": "2.7.11",
+     "baslik": "İçme sularında başta mikrokirleticiler olmak üzere izleme parametrelerinin belirlenmesine "
+    },
+    {
+     "eylem_no": "2.8.1",
+     "baslik": "Biyolojik filtrasyon sistemleri ve yenilikçi dezenfeksiyon yöntemleri gibi su arıtma tekno"
+    },
+    {
+     "eylem_no": "2.8.3",
+     "baslik": "İklim değişikliğine bağlı su kıtlığı ve aşırı yağışlardan kaynaklanan sağlık riskleri mini"
+    },
+    {
+     "eylem_no": "2.8.7",
+     "baslik": "İnsan, hayvan, bitki ve çevre sağlığı değerlendirmesinde atıksu ve çevresel sürveyans uygu"
+    },
+    {
+     "eylem_no": "2.9.1",
+     "baslik": "Yeraltı suyu depolama tesisleri ve yeraltı suyu suni besleme yapıları inşa edilecektir."
+    },
+    {
+     "eylem_no": "2.9.2",
+     "baslik": "Uygun yerlerde baraj ve gölet yatırımları yapılacaktır."
+    },
+    {
+     "eylem_no": "3.1.1",
+     "baslik": "Havza bazında, su kaynaklarında ve depolamalı tesislerde iklim değişikliğinin etkileri ana"
+    },
+    {
+     "eylem_no": "3.1.2",
+     "baslik": "İklim değişikliğinin deniz seviyesi, kıyılar, göller ve sulak alanlar üzerindeki etkileri "
+    },
+    {
+     "eylem_no": "3.1.3",
+     "baslik": "İklim değişikliğinin su kaynakları üzerindeki etkisi kalite ve miktar olarak ele alınacakt"
+    },
+    {
+     "eylem_no": "3.2.1",
+     "baslik": "Havza bütünlüğü esas alınarak iklim değişikliği ile mücadele kapsamında arazi tahribatının"
+    },
+    {
+     "eylem_no": "3.2.2",
+     "baslik": "Taşkın ve kuraklık yönetiminin entegrasyonu sağlanacak ve taşkın/sellerle gelen suların ye"
+    },
+    {
+     "eylem_no": "3.2.3",
+     "baslik": "Taşkın önlemleri için ekosistem esaslı yaklaşım kapsamında doğal su tutma uygulamaları ger"
+    },
+    {
+     "eylem_no": "3.2.5",
+     "baslik": "Yerüstü su kaynaklarında buharlaşmanın önlenmesi için yüzer GES ve benzeri uygulamalar ger"
+    },
+    {
+     "eylem_no": "3.3.1",
+     "baslik": "Değişen İklime Uyum Çerçevesinde Su Verimliliği Strateji Belgesi ve Eylem Planında yer ala"
+    },
+    {
+     "eylem_no": "3.3.2",
+     "baslik": "Kurakçıl Peyzaj Uygulamalarına İlişkin Usul ve Esaslar kapsamında kurakçıl peyzaj uygulama"
+    },
+    {
+     "eylem_no": "3.3.3",
+     "baslik": "Su verimliliği kapsamında kurumlar arasında iş birliğinin güçlendirilmesi sağlanacaktır."
+    },
+    {
+     "eylem_no": "3.3.4",
+     "baslik": "Su verimliliği il planları hazırlanacaktır."
+    },
+    {
+     "eylem_no": "4.1.1",
+     "baslik": "Taşkın Yönetim Planları tüm havzalar için tamamlanacak ve güncelleme çalışmaları sürdürüle"
+    },
+    {
+     "eylem_no": "4.1.2",
+     "baslik": "Taşkın Yönetim Planlarında belirlenen tedbirlerin uygulanması koordine edilecek ve izlenec"
+    },
+    {
+     "eylem_no": "4.1.4",
+     "baslik": "Taşkın Risk Yönetim Planlarında yer alan tedbirler uygulanacaktır."
+    },
+    {
+     "eylem_no": "4.1.5",
+     "baslik": "Akarsu yataklarına müdahaleler önlenecek, hafriyat, çöp vb. maddelerin atılması engellenec"
+    },
+    {
+     "eylem_no": "4.1.7",
+     "baslik": "Taşkın riski yüksek olan illerde taşkın riskini azaltmaya yönelik yatırımlara öncelik veri"
+    },
+    {
+     "eylem_no": "4.1.8",
+     "baslik": "Mutlak taşkın alanları güncellenerek ilan edilecektir."
+    },
+    {
+     "eylem_no": "4.2.1",
+     "baslik": "Kuraklık riski yüksek olan havzalarda kuraklık riskini azaltmaya yönelik yatırımlara öncel"
+    },
+    {
+     "eylem_no": "4.2.2",
+     "baslik": "Kuraklık Yönetim Planlarında yer alan tedbirler uygulanacak ve takip edilecektir."
+    },
+    {
+     "eylem_no": "4.3.1",
+     "baslik": "Su erozyonunun etkilerini azaltmak için yukarı havzalarda sedimantasyon kontrolü ve arazi "
+    },
+    {
+     "eylem_no": "4.3.3",
+     "baslik": "Bütünleşik doğal kaynak yönetimini destekleyecek planlama, uygulama ve izleme faaliyetleri"
+    },
+    {
+     "eylem_no": "5.1.1",
+     "baslik": "Su kaynakları yönetimine ilişkin verilerin tek çatı altında toplanması, siber güvenliğin s"
+    },
+    {
+     "eylem_no": "5.1.3",
+     "baslik": "Sektörel su kullanımlarında (içme-kullanma suyu, tarım ve sanayi) sürekli ve güvenilir ver"
+    },
+    {
+     "eylem_no": "5.2.1",
+     "baslik": "Su kaynakları ile atıksuların kalite ve miktarına ilişkin verilerin toplanması, değerlendi"
+    },
+    {
+     "eylem_no": "5.2.2",
+     "baslik": "Su kaynaklarına ilişkin olarak kamu kurum ve kuruluşları tarafından işletilen mevcut bilgi"
+    },
+    {
+     "eylem_no": "5.2.3",
+     "baslik": "Su kalitesi ve miktarının tespitine yönelik dijital ikiz, yapay zekâ ve uzaktan algılama g"
+    },
+    {
+     "eylem_no": "5.2.4",
+     "baslik": "Tarımsal su tüketimi uydu görüntüleri ile izlenecek ve düzenli raporlama yapılarak izleme "
+    },
+    {
+     "eylem_no": "5.2.5",
+     "baslik": "Ulusal Su Bilgi Sistemi; gerçek zamanlı izleme sistemleri (SCADA), yapay zekâ, dijital iki"
+    },
+    {
+     "eylem_no": "5.2.6",
+     "baslik": "Türkiye’ye özgü hidrolojik, hidrodinamik, hidrojeolojik, su kalitesi, ekolojik ve su tahsi"
+    },
+    {
+     "eylem_no": "5.2.7",
+     "baslik": "SUTEM Bilgi Sistemi kapsamı genişletilecek, tüm sulamalarda izleme ve performans değerlend"
+    },
+    {
+     "eylem_no": "5.2.8",
+     "baslik": "Sulama şebekelerinde suyun ölçülü ve verimli dağıtımını teminen ön ödemeli sayaç uygulamal"
+    },
+    {
+     "eylem_no": "5.2.9",
+     "baslik": "Kullanılan bitki koruma ilaçlarının takibine ilişkin grup ve aktif madde bazında bilgileri"
+    },
+    {
+     "eylem_no": "5.2.10",
+     "baslik": "Su yönetiminde teknolojik gelişmeleri takip edip uygulayacak bir inovasyon birimi kurulaca"
+    },
+    {
+     "eylem_no": "5.2.11",
+     "baslik": "Karar destek ve bilgi sistemlerinin geliştirilmesi ve sürdürülebilirliğinin sağlanması içi"
+    },
+    {
+     "eylem_no": "5.3.1",
+     "baslik": "Yapay zeka ve fizik tabanlı modellemeyle desteklenen Taşkın Tahmini ve Erken Uyarı Sisteml"
+    },
+    {
+     "eylem_no": "5.3.2",
+     "baslik": "Kuraklık Tahmini ve Erken Uyarı Sistemi kurulacak ve yaygınlaştırılacaktır."
+    },
+    {
+     "eylem_no": "5.4.2",
+     "baslik": "Hizmete erişimin kısıtlı olduğu bölgelerde su ihtiyacına göre mikro şebekeler, güneş panel"
+    },
+    {
+     "eylem_no": "5.4.3",
+     "baslik": "Sağlıklı toprak, su verimliliği, kirliliğin azaltılması, verimlilik artışı ve düşük karbon"
+    },
+    {
+     "eylem_no": "5.4.4",
+     "baslik": "Su kaynaklarında antibiyotik varlıklarının ve direnç genlerinin araştırılması ve arıtılmas"
+    },
+    {
+     "eylem_no": "6.1.1",
+     "baslik": "Havza ölçekli planlar ve mevcut/potansiyel riskler dikkate alınarak yatırımlara ilişkin ön"
+    },
+    {
+     "eylem_no": "6.1.2",
+     "baslik": "Belirlenen ihtiyaçlar doğrultusunda proje ve yatırımların sürdürülebilirliğinin sağlanması"
+    },
+    {
+     "eylem_no": "6.2.1",
+     "baslik": "Mevcut ve yeni kurulacak su ve atıksu altyapı tesislerinde alternatif enerji kaynaklarının"
+    },
+    {
+     "eylem_no": "6.2.4",
+     "baslik": "Sudan elde edilen gelirlerin su yatırımlarında kullanılması oranı artırılacaktır."
+    },
+    {
+     "eylem_no": "6.3.1",
+     "baslik": "Suyun gelecekteki varlığı dikkate alınarak tüm sektörlerde verimli kullanımını teşvik edec"
+    },
+    {
+     "eylem_no": "6.3.3",
+     "baslik": "Finansal kaynakların optimizasyonu için kuraklık ve taşkın riski olan havzalarda suya iliş"
+    },
+    {
+     "eylem_no": "7.1.1",
+     "baslik": "Enerji talebi ile diğer sektörlerin ihtiyacı ve suyun doğal akışa bırakılması süreçlerinin"
+    },
+    {
+     "eylem_no": "7.2.1",
+     "baslik": "İçme-kullanma suyu, sanayi, tarım sektörlerinde su yönetimi ile ilgili iş birliği ve farkı"
+    },
+    {
+     "eylem_no": "7.2.2",
+     "baslik": "Su, gıda ve enerji alanlarında sektörel yönelimleri destekleyen girişimlerin hayata geçmes"
+    },
+    {
+     "eylem_no": "7.2.3",
+     "baslik": "Su, gıda ve enerji politikalarına yönelik çözüm önerilerinin geliştirilmesi için çapraz se"
+    },
+    {
+     "eylem_no": "7.2.4",
+     "baslik": "Kamu, özel sektör, akademi ve sivil toplum arasında iş birliği ve sektörel sinerjilerin ge"
+    },
+    {
+     "eylem_no": "7.3.1",
+     "baslik": "Gıda ve enerji sektörlerine ilişkin konuların Ulusal Su Kurulu, Havza Su Kurulu ve İl Su K"
+    },
+    {
+     "eylem_no": "7.3.3",
+     "baslik": "Çevre dostu ürün ve teknolojilerin üretimi ile ulusal ve uluslararası ticareti teşvik edec"
+    },
+    {
+     "eylem_no": "7.4.2",
+     "baslik": "Suya göre planlama esasına dayalı havzalararası su transferine ilişkin çevresel, sosyal ve"
+    },
+    {
+     "eylem_no": "7.4.3",
+     "baslik": "Kurak dönemler özelinde havza ve alt havza bazında sektörel su ihtiyaçları ve ihtiyaçların"
+    },
+    {
+     "eylem_no": "8.1.1",
+     "baslik": "Bilgilendirme, danışma ve karar alma süreçlerini içeren “Su İletişim Planı” hazırlanacaktı"
+    },
+    {
+     "eylem_no": "8.1.2",
+     "baslik": "Su İletişim Planı dahilinde bilgilendirme aşaması uygulanacaktır (Kamu Spotları, Temel Bil"
+    },
+    {
+     "eylem_no": "8.1.3",
+     "baslik": "Su İletişim Planı dahilinde danışma süreci (USBS Vatandaş Portalı, Bir Fikrim Var, Bakanlı"
+    },
+    {
+     "eylem_no": "8.1.4",
+     "baslik": "Ulusal ve uluslararası düzeyde dijital mecralar dahil eğitim programları hazırlanacak ve ("
+    },
+    {
+     "eylem_no": "8.2.1",
+     "baslik": "Çevre dostu tarımsal uygulamalar ve sularda nitrat kirliliğinin önlenmesine yönelik eğitim"
+    },
+    {
+     "eylem_no": "8.2.2",
+     "baslik": "Tarımsal sulamada su verimliliğinin sağlanmasına yönelik çiftçi eğitimleri düzenlenecektir"
+    },
+    {
+     "eylem_no": "8.2.3",
+     "baslik": "Sanayi bölgelerinde atıksu geri kazanımı ve yeniden kullanım uygulamalarıyla suyun döngüse"
+    },
+    {
+     "eylem_no": "8.2.4",
+     "baslik": "Geleneksel olmayan su kaynakları konusunda paydaşların teknik bilgi, tecrübe ve farkındalı"
+    },
+    {
+     "eylem_no": "8.2.6",
+     "baslik": "Su baskını, sel, taşkın afetleri konusunda toplumda farkındalık artırma ve bilinçlendirme "
+    },
+    {
+     "eylem_no": "8.2.7",
+     "baslik": "Su kıtlığı, kuraklık riskine karşı kapasite geliştirme ve farkındalığın artırılması çalışm"
+    },
+    {
+     "eylem_no": "8.2.8",
+     "baslik": "Temiz su, sanitasyon ve güvenli su kullanımı konularında toplum bilincini artırmak için eğ"
+    },
+    {
+     "eylem_no": "8.2.9",
+     "baslik": "Su tasarrufu, su verimliliği ve su kaynaklarının korunması konularında sosyal medya, yerel"
+    },
+    {
+     "eylem_no": "8.2.10",
+     "baslik": "İklim değişikliğinin su kaynaklarına etkileri hususunda farkındalık ve bilinçlendirme faal"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.2.5",
+     "baslik": "Evsel ve kentsel atıksu arıtma tesisleri tamamlanacak ve deşarj kriterlerine uygun olarak "
+    },
+    {
+     "eylem_no": "2.2.6",
+     "baslik": "Endüstriyel kuruluşlarda atıksu arıtma tesisleri tamamlanarak deşarj kriterlerine uygun şe"
+    },
+    {
+     "eylem_no": "2.2.7",
+     "baslik": "Arıtma çamurlarının nihai bertarafı kapsamında entegre çözümler hayata geçirilecektir."
+    },
+    {
+     "eylem_no": "2.4.1",
+     "baslik": "İhtiyaç duyulan konu ve alanlarda hidropolitik strateji belgesi(leri) hazırlanacaktır."
+    },
+    {
+     "eylem_no": "2.4.2",
+     "baslik": "Uluslararası kuruluşlarda mukim su ve iklim konusundaki temsilcilerin istişare maksadıyla "
+    },
+    {
+     "eylem_no": "2.5.3",
+     "baslik": "İçme Suyu, Atıksu ve Yağmur Suyu Master Planları tamamlanacak/güncellenecektir."
+    },
+    {
+     "eylem_no": "2.7.7",
+     "baslik": "İçme suyu arıtma tesislerinin revizyon ve rehabilitasyonu yapılacaktır."
+    },
+    {
+     "eylem_no": "2.7.8",
+     "baslik": "İçme suyu arıtma tesislerini işleten personelin kapasitesi artırılacak ve sertifikalandırı"
+    },
+    {
+     "eylem_no": "2.7.9",
+     "baslik": "İçme suyu kaynaklarında ve içme suyu arıtma tesislerinde düzenli izlemeler yapılacaktır."
+    },
+    {
+     "eylem_no": "2.7.10",
+     "baslik": "Kırsal bölgelerde ve kentlerde içme suyunun dezenfeksiyonu ile su depolarının temizlik ve "
+    },
+    {
+     "eylem_no": "2.8.2",
+     "baslik": "Temiz suya erişimi olmayan kırsal ve düşük gelirli bölgelerde temiz içme suyuna erişimi sa"
+    },
+    {
+     "eylem_no": "2.8.7",
+     "baslik": "İnsan, hayvan, bitki ve çevre sağlığı değerlendirmesinde atıksu ve çevresel sürveyans uygu"
+    },
+    {
+     "eylem_no": "3.1.2",
+     "baslik": "İklim değişikliğinin deniz seviyesi, kıyılar, göller ve sulak alanlar üzerindeki etkileri "
+    },
+    {
+     "eylem_no": "3.1.3",
+     "baslik": "İklim değişikliğinin su kaynakları üzerindeki etkisi kalite ve miktar olarak ele alınacakt"
+    },
+    {
+     "eylem_no": "3.2.1",
+     "baslik": "Havza bütünlüğü esas alınarak iklim değişikliği ile mücadele kapsamında arazi tahribatının"
+    },
+    {
+     "eylem_no": "3.2.2",
+     "baslik": "Taşkın ve kuraklık yönetiminin entegrasyonu sağlanacak ve taşkın/sellerle gelen suların ye"
+    },
+    {
+     "eylem_no": "3.2.3",
+     "baslik": "Taşkın önlemleri için ekosistem esaslı yaklaşım kapsamında doğal su tutma uygulamaları ger"
+    },
+    {
+     "eylem_no": "4.1.2",
+     "baslik": "Taşkın Yönetim Planlarında belirlenen tedbirlerin uygulanması koordine edilecek ve izlenec"
+    },
+    {
+     "eylem_no": "4.1.3",
+     "baslik": "İl Risk Azaltma Planları (İRAP) ve Mekânsal Planlama Çalışmaları, Taşkın Yönetim Planları "
+    },
+    {
+     "eylem_no": "4.1.4",
+     "baslik": "Taşkın Risk Yönetim Planlarında yer alan tedbirler uygulanacaktır."
+    },
+    {
+     "eylem_no": "4.1.6",
+     "baslik": "Taşkın Riskini azaltmaya yönelik kamulaştırma çalışmalarının yapılması sağlanacaktır."
+    },
+    {
+     "eylem_no": "4.1.7",
+     "baslik": "Taşkın riski yüksek olan illerde taşkın riskini azaltmaya yönelik yatırımlara öncelik veri"
+    },
+    {
+     "eylem_no": "4.1.8",
+     "baslik": "Mutlak taşkın alanları güncellenerek ilan edilecektir."
+    },
+    {
+     "eylem_no": "4.2.1",
+     "baslik": "Kuraklık riski yüksek olan havzalarda kuraklık riskini azaltmaya yönelik yatırımlara öncel"
+    },
+    {
+     "eylem_no": "4.3.2",
+     "baslik": "Toprak koruma ve erozyonla mücadele politikalarının ve araçlarının (ulusal çölleşme modeli"
+    },
+    {
+     "eylem_no": "4.3.3",
+     "baslik": "Bütünleşik doğal kaynak yönetimini destekleyecek planlama, uygulama ve izleme faaliyetleri"
+    },
+    {
+     "eylem_no": "5.2.7",
+     "baslik": "SUTEM Bilgi Sistemi kapsamı genişletilecek, tüm sulamalarda izleme ve performans değerlend"
+    },
+    {
+     "eylem_no": "5.2.8",
+     "baslik": "Sulama şebekelerinde suyun ölçülü ve verimli dağıtımını teminen ön ödemeli sayaç uygulamal"
+    },
+    {
+     "eylem_no": "5.2.9",
+     "baslik": "Kullanılan bitki koruma ilaçlarının takibine ilişkin grup ve aktif madde bazında bilgileri"
+    },
+    {
+     "eylem_no": "5.4.1",
+     "baslik": "Sürdürülebilir uygulamalar kapsamında mikrobiyal yakıt hücrelerinin su havzalarının korunm"
+    },
+    {
+     "eylem_no": "5.4.2",
+     "baslik": "Hizmete erişimin kısıtlı olduğu bölgelerde su ihtiyacına göre mikro şebekeler, güneş panel"
+    },
+    {
+     "eylem_no": "5.4.3",
+     "baslik": "Sağlıklı toprak, su verimliliği, kirliliğin azaltılması, verimlilik artışı ve düşük karbon"
+    },
+    {
+     "eylem_no": "5.4.4",
+     "baslik": "Su kaynaklarında antibiyotik varlıklarının ve direnç genlerinin araştırılması ve arıtılmas"
+    },
+    {
+     "eylem_no": "7.1.3",
+     "baslik": "Gıda, enerji, su ve ulaşım gibi sektörlerde yapılan düzenlemeler ile sağlanan teşvik ve de"
+    },
+    {
+     "eylem_no": "7.4.3",
+     "baslik": "Kurak dönemler özelinde havza ve alt havza bazında sektörel su ihtiyaçları ve ihtiyaçların"
+    },
+    {
+     "eylem_no": "8.2.5",
+     "baslik": "Örgün ve yaygın eğitim öğretim programında su kaynaklarının önemi ve verimli kullanılmasın"
+    }
+   ]
   },
   {
    "id": "cevre-sehircilik-iklim-bakanligi",
@@ -39,7 +623,267 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "1.1.1",
+     "baslik": "Su kaynaklarının yönetiminde havza ölçeğinde bütünleşik izleme ve takip sistemi geliştiril"
+    },
+    {
+     "eylem_no": "1.1.3",
+     "baslik": "Büyükşehir dışındaki il belediyelerinde su ve atıksu hizmetlerinin etkinliğinin ve sürdürü"
+    },
+    {
+     "eylem_no": "1.2.5",
+     "baslik": "Su kaynaklarının kalite ve miktarının korunması için havza bazlı bütünleşik takip/inceleme"
+    },
+    {
+     "eylem_no": "1.3.1",
+     "baslik": "Başta yerel yönetim birimlerinde olmak üzere su kaynaklarının planlanması, yönetimi ve den"
+    },
+    {
+     "eylem_no": "2.1.3",
+     "baslik": "Su ile ilgili analizleri gerçekleştiren kamu laboratuvarlarının teknik ve personel kapasit"
+    },
+    {
+     "eylem_no": "2.1.6",
+     "baslik": "Hidrometeorolojik veri ağının güçlendirilmesi sağlanacaktır."
+    },
+    {
+     "eylem_no": "2.2.2",
+     "baslik": "Çevresel Kalite Standartları ile uyumlu olarak alıcı ortam bazlı deşarj limitleri belirlen"
+    },
+    {
+     "eylem_no": "2.2.7",
+     "baslik": "Arıtma çamurlarının nihai bertarafı kapsamında entegre çözümler hayata geçirilecektir."
+    },
+    {
+     "eylem_no": "2.3.2",
+     "baslik": "Havza ölçekli planlarda doğa temelli çözümleri içerecek şekilde rehabilitasyon ve restoras"
+    },
+    {
+     "eylem_no": "2.5.3",
+     "baslik": "İçme Suyu, Atıksu ve Yağmur Suyu Master Planları tamamlanacak/güncellenecektir."
+    },
+    {
+     "eylem_no": "2.6.1",
+     "baslik": "İçme-kullanma suyu havzaları başta olmak üzere, su kaynaklarının korunmasına yönelik denet"
+    },
+    {
+     "eylem_no": "2.6.2",
+     "baslik": "Evsel ve endüstriyel atıksu arıtma tesislerinin bütünleşik denetimi sağlanacaktır."
+    },
+    {
+     "eylem_no": "2.6.3",
+     "baslik": "Yeraltı sularına yapılan deşarjların kontrolüne ve denetimine ilişkin mekanizmalar güçlend"
+    },
+    {
+     "eylem_no": "2.8.1",
+     "baslik": "Biyolojik filtrasyon sistemleri ve yenilikçi dezenfeksiyon yöntemleri gibi su arıtma tekno"
+    },
+    {
+     "eylem_no": "2.8.4",
+     "baslik": "Mikroplastiklerin ve mikrokirleticilerin neden olduğu su kirliliğinin önlenmesi için tedbi"
+    },
+    {
+     "eylem_no": "3.2.1",
+     "baslik": "Havza bütünlüğü esas alınarak iklim değişikliği ile mücadele kapsamında arazi tahribatının"
+    },
+    {
+     "eylem_no": "3.2.4",
+     "baslik": "Kuraklık riski altında olan göller için Eylem Planı hazırlanacak ve uygulanacaktır."
+    },
+    {
+     "eylem_no": "4.1.3",
+     "baslik": "İl Risk Azaltma Planları (İRAP) ve Mekânsal Planlama Çalışmaları, Taşkın Yönetim Planları "
+    },
+    {
+     "eylem_no": "4.2.2",
+     "baslik": "Kuraklık Yönetim Planlarında yer alan tedbirler uygulanacak ve takip edilecektir."
+    },
+    {
+     "eylem_no": "4.3.1",
+     "baslik": "Su erozyonunun etkilerini azaltmak için yukarı havzalarda sedimantasyon kontrolü ve arazi "
+    },
+    {
+     "eylem_no": "4.3.2",
+     "baslik": "Toprak koruma ve erozyonla mücadele politikalarının ve araçlarının (ulusal çölleşme modeli"
+    },
+    {
+     "eylem_no": "5.4.1",
+     "baslik": "Sürdürülebilir uygulamalar kapsamında mikrobiyal yakıt hücrelerinin su havzalarının korunm"
+    },
+    {
+     "eylem_no": "5.4.2",
+     "baslik": "Hizmete erişimin kısıtlı olduğu bölgelerde su ihtiyacına göre mikro şebekeler, güneş panel"
+    },
+    {
+     "eylem_no": "6.1.1",
+     "baslik": "Havza ölçekli planlar ve mevcut/potansiyel riskler dikkate alınarak yatırımlara ilişkin ön"
+    },
+    {
+     "eylem_no": "6.1.2",
+     "baslik": "Belirlenen ihtiyaçlar doğrultusunda proje ve yatırımların sürdürülebilirliğinin sağlanması"
+    },
+    {
+     "eylem_no": "6.2.1",
+     "baslik": "Mevcut ve yeni kurulacak su ve atıksu altyapı tesislerinde alternatif enerji kaynaklarının"
+    },
+    {
+     "eylem_no": "6.2.2",
+     "baslik": "Suya ilişkin yatırımların etkin şekilde işletilmesi için idarelerin personel kapasitesi iy"
+    },
+    {
+     "eylem_no": "6.2.3",
+     "baslik": "Teknik olarak uygun yerlerde yağmur suyu ve atıksu toplama hatları ayrık sistem olarak pro"
+    },
+    {
+     "eylem_no": "6.2.4",
+     "baslik": "Sudan elde edilen gelirlerin su yatırımlarında kullanılması oranı artırılacaktır."
+    },
+    {
+     "eylem_no": "6.3.1",
+     "baslik": "Suyun gelecekteki varlığı dikkate alınarak tüm sektörlerde verimli kullanımını teşvik edec"
+    },
+    {
+     "eylem_no": "6.3.2",
+     "baslik": "Ulusal, uluslararası finansman programları ve dış kaynaklı fonlarda su verimliliği alanınd"
+    },
+    {
+     "eylem_no": "6.3.3",
+     "baslik": "Finansal kaynakların optimizasyonu için kuraklık ve taşkın riski olan havzalarda suya iliş"
+    },
+    {
+     "eylem_no": "7.4.1",
+     "baslik": "Stratejik, master, mekânsal vb. tüm plan ve stratejilerde tarım, sanayi, kentsel ve turizm"
+    },
+    {
+     "eylem_no": "8.2.3",
+     "baslik": "Sanayi bölgelerinde atıksu geri kazanımı ve yeniden kullanım uygulamalarıyla suyun döngüse"
+    },
+    {
+     "eylem_no": "8.2.4",
+     "baslik": "Geleneksel olmayan su kaynakları konusunda paydaşların teknik bilgi, tecrübe ve farkındalı"
+    },
+    {
+     "eylem_no": "8.2.8",
+     "baslik": "Temiz su, sanitasyon ve güvenli su kullanımı konularında toplum bilincini artırmak için eğ"
+    },
+    {
+     "eylem_no": "8.2.9",
+     "baslik": "Su tasarrufu, su verimliliği ve su kaynaklarının korunması konularında sosyal medya, yerel"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.2.5",
+     "baslik": "Evsel ve kentsel atıksu arıtma tesisleri tamamlanacak ve deşarj kriterlerine uygun olarak "
+    },
+    {
+     "eylem_no": "2.2.6",
+     "baslik": "Endüstriyel kuruluşlarda atıksu arıtma tesisleri tamamlanarak deşarj kriterlerine uygun şe"
+    },
+    {
+     "eylem_no": "2.4.1",
+     "baslik": "İhtiyaç duyulan konu ve alanlarda hidropolitik strateji belgesi(leri) hazırlanacaktır."
+    },
+    {
+     "eylem_no": "2.4.2",
+     "baslik": "Uluslararası kuruluşlarda mukim su ve iklim konusundaki temsilcilerin istişare maksadıyla "
+    },
+    {
+     "eylem_no": "2.5.3",
+     "baslik": "İçme Suyu, Atıksu ve Yağmur Suyu Master Planları tamamlanacak/güncellenecektir."
+    },
+    {
+     "eylem_no": "2.6.5",
+     "baslik": "Ticari maksatlı kullanılan doğal mineralli sular ve kaynak suların takip ve denetimine yön"
+    },
+    {
+     "eylem_no": "2.7.7",
+     "baslik": "İçme suyu arıtma tesislerinin revizyon ve rehabilitasyonu yapılacaktır."
+    },
+    {
+     "eylem_no": "2.7.8",
+     "baslik": "İçme suyu arıtma tesislerini işleten personelin kapasitesi artırılacak ve sertifikalandırı"
+    },
+    {
+     "eylem_no": "2.8.2",
+     "baslik": "Temiz suya erişimi olmayan kırsal ve düşük gelirli bölgelerde temiz içme suyuna erişimi sa"
+    },
+    {
+     "eylem_no": "2.8.3",
+     "baslik": "İklim değişikliğine bağlı su kıtlığı ve aşırı yağışlardan kaynaklanan sağlık riskleri mini"
+    },
+    {
+     "eylem_no": "3.1.1",
+     "baslik": "Havza bazında, su kaynaklarında ve depolamalı tesislerde iklim değişikliğinin etkileri ana"
+    },
+    {
+     "eylem_no": "3.1.2",
+     "baslik": "İklim değişikliğinin deniz seviyesi, kıyılar, göller ve sulak alanlar üzerindeki etkileri "
+    },
+    {
+     "eylem_no": "3.1.3",
+     "baslik": "İklim değişikliğinin su kaynakları üzerindeki etkisi kalite ve miktar olarak ele alınacakt"
+    },
+    {
+     "eylem_no": "3.2.2",
+     "baslik": "Taşkın ve kuraklık yönetiminin entegrasyonu sağlanacak ve taşkın/sellerle gelen suların ye"
+    },
+    {
+     "eylem_no": "3.2.5",
+     "baslik": "Yerüstü su kaynaklarında buharlaşmanın önlenmesi için yüzer GES ve benzeri uygulamalar ger"
+    },
+    {
+     "eylem_no": "4.1.1",
+     "baslik": "Taşkın Yönetim Planları tüm havzalar için tamamlanacak ve güncelleme çalışmaları sürdürüle"
+    },
+    {
+     "eylem_no": "4.1.2",
+     "baslik": "Taşkın Yönetim Planlarında belirlenen tedbirlerin uygulanması koordine edilecek ve izlenec"
+    },
+    {
+     "eylem_no": "4.2.1",
+     "baslik": "Kuraklık riski yüksek olan havzalarda kuraklık riskini azaltmaya yönelik yatırımlara öncel"
+    },
+    {
+     "eylem_no": "4.3.3",
+     "baslik": "Bütünleşik doğal kaynak yönetimini destekleyecek planlama, uygulama ve izleme faaliyetleri"
+    },
+    {
+     "eylem_no": "5.3.1",
+     "baslik": "Yapay zeka ve fizik tabanlı modellemeyle desteklenen Taşkın Tahmini ve Erken Uyarı Sisteml"
+    },
+    {
+     "eylem_no": "5.3.2",
+     "baslik": "Kuraklık Tahmini ve Erken Uyarı Sistemi kurulacak ve yaygınlaştırılacaktır."
+    },
+    {
+     "eylem_no": "5.4.2",
+     "baslik": "Hizmete erişimin kısıtlı olduğu bölgelerde su ihtiyacına göre mikro şebekeler, güneş panel"
+    },
+    {
+     "eylem_no": "5.4.4",
+     "baslik": "Su kaynaklarında antibiyotik varlıklarının ve direnç genlerinin araştırılması ve arıtılmas"
+    },
+    {
+     "eylem_no": "6.1.4",
+     "baslik": "Yenilenebilir enerji altyapılarının artırılması, suyun geri kazanımı ve diğer doğal kaynak"
+    },
+    {
+     "eylem_no": "6.2.1",
+     "baslik": "Mevcut ve yeni kurulacak su ve atıksu altyapı tesislerinde alternatif enerji kaynaklarının"
+    },
+    {
+     "eylem_no": "7.1.3",
+     "baslik": "Gıda, enerji, su ve ulaşım gibi sektörlerde yapılan düzenlemeler ile sağlanan teşvik ve de"
+    },
+    {
+     "eylem_no": "8.2.10",
+     "baslik": "İklim değişikliğinin su kaynaklarına etkileri hususunda farkındalık ve bilinçlendirme faal"
+    }
+   ]
   },
   {
    "id": "disisleri-bakanligi",
@@ -58,7 +902,21 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "2.4.1",
+     "baslik": "İhtiyaç duyulan konu ve alanlarda hidropolitik strateji belgesi(leri) hazırlanacaktır."
+    },
+    {
+     "eylem_no": "2.4.2",
+     "baslik": "Uluslararası kuruluşlarda mukim su ve iklim konusundaki temsilcilerin istişare maksadıyla "
+    },
+    {
+     "eylem_no": "7.1.1",
+     "baslik": "Enerji talebi ile diğer sektörlerin ihtiyacı ve suyun doğal akışa bırakılması süreçlerinin"
+    }
+   ]
   },
   {
    "id": "ulastirma-altyapi-bakanligi",
@@ -77,7 +935,51 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "4.1.4",
+     "baslik": "Taşkın Risk Yönetim Planlarında yer alan tedbirler uygulanacaktır."
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "4.1.1",
+     "baslik": "Taşkın Yönetim Planları tüm havzalar için tamamlanacak ve güncelleme çalışmaları sürdürüle"
+    },
+    {
+     "eylem_no": "4.1.2",
+     "baslik": "Taşkın Yönetim Planlarında belirlenen tedbirlerin uygulanması koordine edilecek ve izlenec"
+    },
+    {
+     "eylem_no": "4.1.5",
+     "baslik": "Akarsu yataklarına müdahaleler önlenecek, hafriyat, çöp vb. maddelerin atılması engellenec"
+    },
+    {
+     "eylem_no": "4.1.6",
+     "baslik": "Taşkın Riskini azaltmaya yönelik kamulaştırma çalışmalarının yapılması sağlanacaktır."
+    },
+    {
+     "eylem_no": "4.1.7",
+     "baslik": "Taşkın riski yüksek olan illerde taşkın riskini azaltmaya yönelik yatırımlara öncelik veri"
+    },
+    {
+     "eylem_no": "4.1.8",
+     "baslik": "Mutlak taşkın alanları güncellenerek ilan edilecektir."
+    },
+    {
+     "eylem_no": "4.3.1",
+     "baslik": "Su erozyonunun etkilerini azaltmak için yukarı havzalarda sedimantasyon kontrolü ve arazi "
+    },
+    {
+     "eylem_no": "6.1.4",
+     "baslik": "Yenilenebilir enerji altyapılarının artırılması, suyun geri kazanımı ve diğer doğal kaynak"
+    },
+    {
+     "eylem_no": "7.1.3",
+     "baslik": "Gıda, enerji, su ve ulaşım gibi sektörlerde yapılan düzenlemeler ile sağlanan teşvik ve de"
+    }
+   ]
   },
   {
    "id": "saglik-bakanligi",
@@ -96,7 +998,67 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "2.1.1",
+     "baslik": "Havza izleme programları, havzadaki kurumsal ihtiyaçlar ve maliyetlerin düşürülmesi doğrul"
+    },
+    {
+     "eylem_no": "2.1.2",
+     "baslik": "Havza izleme programlarına uygun şekilde sürekli izlemeler yapılacaktır."
+    },
+    {
+     "eylem_no": "2.1.3",
+     "baslik": "Su ile ilgili analizleri gerçekleştiren kamu laboratuvarlarının teknik ve personel kapasit"
+    },
+    {
+     "eylem_no": "2.6.5",
+     "baslik": "Ticari maksatlı kullanılan doğal mineralli sular ve kaynak suların takip ve denetimine yön"
+    },
+    {
+     "eylem_no": "2.7.6",
+     "baslik": "Kırsalda içme suyu güvenliğinin sağlanması için gerekli yasal, idari ve teknik altyapı mek"
+    },
+    {
+     "eylem_no": "2.7.11",
+     "baslik": "İçme sularında başta mikrokirleticiler olmak üzere izleme parametrelerinin belirlenmesine "
+    },
+    {
+     "eylem_no": "2.8.3",
+     "baslik": "İklim değişikliğine bağlı su kıtlığı ve aşırı yağışlardan kaynaklanan sağlık riskleri mini"
+    },
+    {
+     "eylem_no": "2.8.5",
+     "baslik": "Su kaynaklı hastalık ve salgınların epidemiyolojisinin anlaşılması için halk sağlığı gözet"
+    },
+    {
+     "eylem_no": "2.8.6",
+     "baslik": "Dünya Sağlık Örgütü’nün önerdiği Sağlık Etki Değerlendirmesi (SED) yöntemine ilişkin çalış"
+    },
+    {
+     "eylem_no": "8.2.8",
+     "baslik": "Temiz su, sanitasyon ve güvenli su kullanımı konularında toplum bilincini artırmak için eğ"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.7.1",
+     "baslik": "Kaynaktan musluğa içme-kullanma suyu güvenliği sistemi geliştirilecektir."
+    },
+    {
+     "eylem_no": "2.7.10",
+     "baslik": "Kırsal bölgelerde ve kentlerde içme suyunun dezenfeksiyonu ile su depolarının temizlik ve "
+    },
+    {
+     "eylem_no": "5.4.2",
+     "baslik": "Hizmete erişimin kısıtlı olduğu bölgelerde su ihtiyacına göre mikro şebekeler, güneş panel"
+    },
+    {
+     "eylem_no": "5.4.4",
+     "baslik": "Su kaynaklarında antibiyotik varlıklarının ve direnç genlerinin araştırılması ve arıtılmas"
+    }
+   ]
   },
   {
    "id": "enerji-tabii-kaynaklar-bakanligi",
@@ -115,7 +1077,43 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "6.1.4",
+     "baslik": "Yenilenebilir enerji altyapılarının artırılması, suyun geri kazanımı ve diğer doğal kaynak"
+    },
+    {
+     "eylem_no": "7.1.1",
+     "baslik": "Enerji talebi ile diğer sektörlerin ihtiyacı ve suyun doğal akışa bırakılması süreçlerinin"
+    },
+    {
+     "eylem_no": "7.1.3",
+     "baslik": "Gıda, enerji, su ve ulaşım gibi sektörlerde yapılan düzenlemeler ile sağlanan teşvik ve de"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.4.1",
+     "baslik": "İhtiyaç duyulan konu ve alanlarda hidropolitik strateji belgesi(leri) hazırlanacaktır."
+    },
+    {
+     "eylem_no": "2.4.2",
+     "baslik": "Uluslararası kuruluşlarda mukim su ve iklim konusundaki temsilcilerin istişare maksadıyla "
+    },
+    {
+     "eylem_no": "2.6.5",
+     "baslik": "Ticari maksatlı kullanılan doğal mineralli sular ve kaynak suların takip ve denetimine yön"
+    },
+    {
+     "eylem_no": "3.2.5",
+     "baslik": "Yerüstü su kaynaklarında buharlaşmanın önlenmesi için yüzer GES ve benzeri uygulamalar ger"
+    },
+    {
+     "eylem_no": "7.1.3",
+     "baslik": "Gıda, enerji, su ve ulaşım gibi sektörlerde yapılan düzenlemeler ile sağlanan teşvik ve de"
+    }
+   ]
   },
   {
    "id": "icisleri-bakanligi",
@@ -134,7 +1132,51 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "2.7.6",
+     "baslik": "Kırsalda içme suyu güvenliğinin sağlanması için gerekli yasal, idari ve teknik altyapı mek"
+    },
+    {
+     "eylem_no": "2.8.2",
+     "baslik": "Temiz suya erişimi olmayan kırsal ve düşük gelirli bölgelerde temiz içme suyuna erişimi sa"
+    },
+    {
+     "eylem_no": "4.1.3",
+     "baslik": "İl Risk Azaltma Planları (İRAP) ve Mekânsal Planlama Çalışmaları, Taşkın Yönetim Planları "
+    },
+    {
+     "eylem_no": "8.2.6",
+     "baslik": "Su baskını, sel, taşkın afetleri konusunda toplumda farkındalık artırma ve bilinçlendirme "
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.7.1",
+     "baslik": "Kaynaktan musluğa içme-kullanma suyu güvenliği sistemi geliştirilecektir."
+    },
+    {
+     "eylem_no": "4.1.1",
+     "baslik": "Taşkın Yönetim Planları tüm havzalar için tamamlanacak ve güncelleme çalışmaları sürdürüle"
+    },
+    {
+     "eylem_no": "4.1.2",
+     "baslik": "Taşkın Yönetim Planlarında belirlenen tedbirlerin uygulanması koordine edilecek ve izlenec"
+    },
+    {
+     "eylem_no": "4.1.7",
+     "baslik": "Taşkın riski yüksek olan illerde taşkın riskini azaltmaya yönelik yatırımlara öncelik veri"
+    },
+    {
+     "eylem_no": "4.1.8",
+     "baslik": "Mutlak taşkın alanları güncellenerek ilan edilecektir."
+    },
+    {
+     "eylem_no": "4.2.1",
+     "baslik": "Kuraklık riski yüksek olan havzalarda kuraklık riskini azaltmaya yönelik yatırımlara öncel"
+    }
+   ]
   },
   {
    "id": "hazine-maliye-bakanligi",
@@ -153,7 +1195,33 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "6.1.2",
+     "baslik": "Belirlenen ihtiyaçlar doğrultusunda proje ve yatırımların sürdürülebilirliğinin sağlanması"
+    },
+    {
+     "eylem_no": "6.1.3",
+     "baslik": "Önceliklendirme programına uygun olarak su yönetimi yatırımları yatırım programına alınaca"
+    },
+    {
+     "eylem_no": "6.1.4",
+     "baslik": "Yenilenebilir enerji altyapılarının artırılması, suyun geri kazanımı ve diğer doğal kaynak"
+    },
+    {
+     "eylem_no": "6.2.4",
+     "baslik": "Sudan elde edilen gelirlerin su yatırımlarında kullanılması oranı artırılacaktır."
+    },
+    {
+     "eylem_no": "7.1.3",
+     "baslik": "Gıda, enerji, su ve ulaşım gibi sektörlerde yapılan düzenlemeler ile sağlanan teşvik ve de"
+    },
+    {
+     "eylem_no": "7.3.2",
+     "baslik": "Uygulanan politikaların ekonomik sürdürülebilirliği ile iş gücü üzerindeki etkileri düzenl"
+    }
+   ]
   },
   {
    "id": "kultur-turizm-bakanligi",
@@ -172,7 +1240,17 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "2.8.4",
+     "baslik": "Mikroplastiklerin ve mikrokirleticilerin neden olduğu su kirliliğinin önlenmesi için tedbi"
+    },
+    {
+     "eylem_no": "3.3.2",
+     "baslik": "Kurakçıl Peyzaj Uygulamalarına İlişkin Usul ve Esaslar kapsamında kurakçıl peyzaj uygulama"
+    }
+   ]
   },
   {
    "id": "milli-egitim-bakanligi",
@@ -191,7 +1269,47 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "8.1.1",
+     "baslik": "Bilgilendirme, danışma ve karar alma süreçlerini içeren “Su İletişim Planı” hazırlanacaktı"
+    },
+    {
+     "eylem_no": "8.1.2",
+     "baslik": "Su İletişim Planı dahilinde bilgilendirme aşaması uygulanacaktır (Kamu Spotları, Temel Bil"
+    },
+    {
+     "eylem_no": "8.1.3",
+     "baslik": "Su İletişim Planı dahilinde danışma süreci (USBS Vatandaş Portalı, Bir Fikrim Var, Bakanlı"
+    },
+    {
+     "eylem_no": "8.1.4",
+     "baslik": "Ulusal ve uluslararası düzeyde dijital mecralar dahil eğitim programları hazırlanacak ve ("
+    },
+    {
+     "eylem_no": "8.2.5",
+     "baslik": "Örgün ve yaygın eğitim öğretim programında su kaynaklarının önemi ve verimli kullanılmasın"
+    },
+    {
+     "eylem_no": "8.2.6",
+     "baslik": "Su baskını, sel, taşkın afetleri konusunda toplumda farkındalık artırma ve bilinçlendirme "
+    },
+    {
+     "eylem_no": "8.2.7",
+     "baslik": "Su kıtlığı, kuraklık riskine karşı kapasite geliştirme ve farkındalığın artırılması çalışm"
+    },
+    {
+     "eylem_no": "8.2.8",
+     "baslik": "Temiz su, sanitasyon ve güvenli su kullanımı konularında toplum bilincini artırmak için eğ"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "8.2.10",
+     "baslik": "İklim değişikliğinin su kaynaklarına etkileri hususunda farkındalık ve bilinçlendirme faal"
+    }
+   ]
   },
   {
    "id": "sanayi-teknoloji-bakanligi",
@@ -210,7 +1328,63 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "2.2.6",
+     "baslik": "Endüstriyel kuruluşlarda atıksu arıtma tesisleri tamamlanarak deşarj kriterlerine uygun şe"
+    },
+    {
+     "eylem_no": "2.8.4",
+     "baslik": "Mikroplastiklerin ve mikrokirleticilerin neden olduğu su kirliliğinin önlenmesi için tedbi"
+    },
+    {
+     "eylem_no": "3.3.2",
+     "baslik": "Kurakçıl Peyzaj Uygulamalarına İlişkin Usul ve Esaslar kapsamında kurakçıl peyzaj uygulama"
+    },
+    {
+     "eylem_no": "6.1.4",
+     "baslik": "Yenilenebilir enerji altyapılarının artırılması, suyun geri kazanımı ve diğer doğal kaynak"
+    },
+    {
+     "eylem_no": "6.2.1",
+     "baslik": "Mevcut ve yeni kurulacak su ve atıksu altyapı tesislerinde alternatif enerji kaynaklarının"
+    },
+    {
+     "eylem_no": "6.2.3",
+     "baslik": "Teknik olarak uygun yerlerde yağmur suyu ve atıksu toplama hatları ayrık sistem olarak pro"
+    },
+    {
+     "eylem_no": "6.3.3",
+     "baslik": "Finansal kaynakların optimizasyonu için kuraklık ve taşkın riski olan havzalarda suya iliş"
+    },
+    {
+     "eylem_no": "7.1.3",
+     "baslik": "Gıda, enerji, su ve ulaşım gibi sektörlerde yapılan düzenlemeler ile sağlanan teşvik ve de"
+    },
+    {
+     "eylem_no": "7.3.3",
+     "baslik": "Çevre dostu ürün ve teknolojilerin üretimi ile ulusal ve uluslararası ticareti teşvik edec"
+    },
+    {
+     "eylem_no": "8.2.3",
+     "baslik": "Sanayi bölgelerinde atıksu geri kazanımı ve yeniden kullanım uygulamalarıyla suyun döngüse"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.2.6",
+     "baslik": "Endüstriyel kuruluşlarda atıksu arıtma tesisleri tamamlanarak deşarj kriterlerine uygun şe"
+    },
+    {
+     "eylem_no": "2.8.1",
+     "baslik": "Biyolojik filtrasyon sistemleri ve yenilikçi dezenfeksiyon yöntemleri gibi su arıtma tekno"
+    },
+    {
+     "eylem_no": "3.2.5",
+     "baslik": "Yerüstü su kaynaklarında buharlaşmanın önlenmesi için yüzer GES ve benzeri uygulamalar ger"
+    }
+   ]
   },
   {
    "id": "milli-savunma-bakanligi",
@@ -229,7 +1403,13 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "3.1.2",
+     "baslik": "İklim değişikliğinin deniz seviyesi, kıyılar, göller ve sulak alanlar üzerindeki etkileri "
+    }
+   ]
   },
   {
    "id": "su-yonetimi-gm",
@@ -248,7 +1428,351 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "1.1.1",
+     "baslik": "Su kaynaklarının yönetiminde havza ölçeğinde bütünleşik izleme ve takip sistemi geliştiril"
+    },
+    {
+     "eylem_no": "1.1.2",
+     "baslik": "Su Kurullarında alınan kararların ulusal ve yerel düzeyde uygulanması ve takibi yapılacakt"
+    },
+    {
+     "eylem_no": "1.2.1",
+     "baslik": "Su Kanunu hazırlık çalışmaları tamamlanacaktır."
+    },
+    {
+     "eylem_no": "1.2.2",
+     "baslik": "Taşkın Kanunu hazırlık çalışmaları tamamlanacaktır. *Kurum/Kuruluş eylemin koordinasyonund"
+    },
+    {
+     "eylem_no": "1.2.3",
+     "baslik": "Tarımsal, endüstriyel ve kentsel başta olmak üzere su yönetimi konusunda ikincil mevzuat h"
+    },
+    {
+     "eylem_no": "1.2.5",
+     "baslik": "Su kaynaklarının kalite ve miktarının korunması için havza bazlı bütünleşik takip/inceleme"
+    },
+    {
+     "eylem_no": "1.2.6",
+     "baslik": "Su tahsisine ilişkin yetkilerin tek çatı altında toplanması ile tahsislerin havza esaslı s"
+    },
+    {
+     "eylem_no": "2.1.1",
+     "baslik": "Havza izleme programları, havzadaki kurumsal ihtiyaçlar ve maliyetlerin düşürülmesi doğrul"
+    },
+    {
+     "eylem_no": "2.1.2",
+     "baslik": "Havza izleme programlarına uygun şekilde sürekli izlemeler yapılacaktır."
+    },
+    {
+     "eylem_no": "2.1.3",
+     "baslik": "Su ile ilgili analizleri gerçekleştiren kamu laboratuvarlarının teknik ve personel kapasit"
+    },
+    {
+     "eylem_no": "2.2.1",
+     "baslik": "Nehir Havza Yönetim Planları tamamlanacak, uygulanacak ve takibi yapılacaktır."
+    },
+    {
+     "eylem_no": "2.3.1",
+     "baslik": "Doğa temelli çözümleri içerecek rehber doküman hazırlanacaktır."
+    },
+    {
+     "eylem_no": "2.3.2",
+     "baslik": "Havza ölçekli planlarda doğa temelli çözümleri içerecek şekilde rehabilitasyon ve restoras"
+    },
+    {
+     "eylem_no": "2.6.1",
+     "baslik": "İçme-kullanma suyu havzaları başta olmak üzere, su kaynaklarının korunmasına yönelik denet"
+    },
+    {
+     "eylem_no": "2.7.1",
+     "baslik": "Kaynaktan musluğa içme-kullanma suyu güvenliği sistemi geliştirilecektir."
+    },
+    {
+     "eylem_no": "2.7.2",
+     "baslik": "İçme-kullanma suyu olarak kullanılan/kullanımı planlanan yerüstü su kaynaklarının hidroloj"
+    },
+    {
+     "eylem_no": "2.7.3",
+     "baslik": "İçme-Kullanma Suyu Havzası Koruma Planlarını kapsayan Su Güvenliği Planları hazırlanacaktı"
+    },
+    {
+     "eylem_no": "2.7.4",
+     "baslik": "İçme-Kullanma Suyu Güvenliği Planlarının uygulanması ve takibi yapılacaktır."
+    },
+    {
+     "eylem_no": "2.7.6",
+     "baslik": "Kırsalda içme suyu güvenliğinin sağlanması için gerekli yasal, idari ve teknik altyapı mek"
+    },
+    {
+     "eylem_no": "2.7.8",
+     "baslik": "İçme suyu arıtma tesislerini işleten personelin kapasitesi artırılacak ve sertifikalandırı"
+    },
+    {
+     "eylem_no": "2.7.11",
+     "baslik": "İçme sularında başta mikrokirleticiler olmak üzere izleme parametrelerinin belirlenmesine "
+    },
+    {
+     "eylem_no": "3.1.1",
+     "baslik": "Havza bazında, su kaynaklarında ve depolamalı tesislerde iklim değişikliğinin etkileri ana"
+    },
+    {
+     "eylem_no": "3.1.2",
+     "baslik": "İklim değişikliğinin deniz seviyesi, kıyılar, göller ve sulak alanlar üzerindeki etkileri "
+    },
+    {
+     "eylem_no": "3.1.3",
+     "baslik": "İklim değişikliğinin su kaynakları üzerindeki etkisi kalite ve miktar olarak ele alınacakt"
+    },
+    {
+     "eylem_no": "3.2.3",
+     "baslik": "Taşkın önlemleri için ekosistem esaslı yaklaşım kapsamında doğal su tutma uygulamaları ger"
+    },
+    {
+     "eylem_no": "3.3.1",
+     "baslik": "Değişen İklime Uyum Çerçevesinde Su Verimliliği Strateji Belgesi ve Eylem Planında yer ala"
+    },
+    {
+     "eylem_no": "3.3.2",
+     "baslik": "Kurakçıl Peyzaj Uygulamalarına İlişkin Usul ve Esaslar kapsamında kurakçıl peyzaj uygulama"
+    },
+    {
+     "eylem_no": "3.3.3",
+     "baslik": "Su verimliliği kapsamında kurumlar arasında iş birliğinin güçlendirilmesi sağlanacaktır."
+    },
+    {
+     "eylem_no": "3.3.4",
+     "baslik": "Su verimliliği il planları hazırlanacaktır."
+    },
+    {
+     "eylem_no": "4.1.1",
+     "baslik": "Taşkın Yönetim Planları tüm havzalar için tamamlanacak ve güncelleme çalışmaları sürdürüle"
+    },
+    {
+     "eylem_no": "4.1.2",
+     "baslik": "Taşkın Yönetim Planlarında belirlenen tedbirlerin uygulanması koordine edilecek ve izlenec"
+    },
+    {
+     "eylem_no": "4.1.8",
+     "baslik": "Mutlak taşkın alanları güncellenerek ilan edilecektir."
+    },
+    {
+     "eylem_no": "4.2.1",
+     "baslik": "Kuraklık riski yüksek olan havzalarda kuraklık riskini azaltmaya yönelik yatırımlara öncel"
+    },
+    {
+     "eylem_no": "4.2.2",
+     "baslik": "Kuraklık Yönetim Planlarında yer alan tedbirler uygulanacak ve takip edilecektir."
+    },
+    {
+     "eylem_no": "5.1.1",
+     "baslik": "Su kaynakları yönetimine ilişkin verilerin tek çatı altında toplanması, siber güvenliğin s"
+    },
+    {
+     "eylem_no": "5.2.1",
+     "baslik": "Su kaynakları ile atıksuların kalite ve miktarına ilişkin verilerin toplanması, değerlendi"
+    },
+    {
+     "eylem_no": "5.2.2",
+     "baslik": "Su kaynaklarına ilişkin olarak kamu kurum ve kuruluşları tarafından işletilen mevcut bilgi"
+    },
+    {
+     "eylem_no": "5.2.3",
+     "baslik": "Su kalitesi ve miktarının tespitine yönelik dijital ikiz, yapay zekâ ve uzaktan algılama g"
+    },
+    {
+     "eylem_no": "5.2.4",
+     "baslik": "Tarımsal su tüketimi uydu görüntüleri ile izlenecek ve düzenli raporlama yapılarak izleme "
+    },
+    {
+     "eylem_no": "5.2.5",
+     "baslik": "Ulusal Su Bilgi Sistemi; gerçek zamanlı izleme sistemleri (SCADA), yapay zekâ, dijital iki"
+    },
+    {
+     "eylem_no": "5.2.6",
+     "baslik": "Türkiye’ye özgü hidrolojik, hidrodinamik, hidrojeolojik, su kalitesi, ekolojik ve su tahsi"
+    },
+    {
+     "eylem_no": "5.3.1",
+     "baslik": "Yapay zeka ve fizik tabanlı modellemeyle desteklenen Taşkın Tahmini ve Erken Uyarı Sisteml"
+    },
+    {
+     "eylem_no": "5.3.2",
+     "baslik": "Kuraklık Tahmini ve Erken Uyarı Sistemi kurulacak ve yaygınlaştırılacaktır."
+    },
+    {
+     "eylem_no": "5.4.4",
+     "baslik": "Su kaynaklarında antibiyotik varlıklarının ve direnç genlerinin araştırılması ve arıtılmas"
+    },
+    {
+     "eylem_no": "6.1.1",
+     "baslik": "Havza ölçekli planlar ve mevcut/potansiyel riskler dikkate alınarak yatırımlara ilişkin ön"
+    },
+    {
+     "eylem_no": "6.3.1",
+     "baslik": "Suyun gelecekteki varlığı dikkate alınarak tüm sektörlerde verimli kullanımını teşvik edec"
+    },
+    {
+     "eylem_no": "7.2.1",
+     "baslik": "İçme-kullanma suyu, sanayi, tarım sektörlerinde su yönetimi ile ilgili iş birliği ve farkı"
+    },
+    {
+     "eylem_no": "7.2.2",
+     "baslik": "Su, gıda ve enerji alanlarında sektörel yönelimleri destekleyen girişimlerin hayata geçmes"
+    },
+    {
+     "eylem_no": "7.2.3",
+     "baslik": "Su, gıda ve enerji politikalarına yönelik çözüm önerilerinin geliştirilmesi için çapraz se"
+    },
+    {
+     "eylem_no": "7.2.4",
+     "baslik": "Kamu, özel sektör, akademi ve sivil toplum arasında iş birliği ve sektörel sinerjilerin ge"
+    },
+    {
+     "eylem_no": "7.3.1",
+     "baslik": "Gıda ve enerji sektörlerine ilişkin konuların Ulusal Su Kurulu, Havza Su Kurulu ve İl Su K"
+    },
+    {
+     "eylem_no": "7.4.3",
+     "baslik": "Kurak dönemler özelinde havza ve alt havza bazında sektörel su ihtiyaçları ve ihtiyaçların"
+    },
+    {
+     "eylem_no": "8.1.1",
+     "baslik": "Bilgilendirme, danışma ve karar alma süreçlerini içeren “Su İletişim Planı” hazırlanacaktı"
+    },
+    {
+     "eylem_no": "8.1.2",
+     "baslik": "Su İletişim Planı dahilinde bilgilendirme aşaması uygulanacaktır (Kamu Spotları, Temel Bil"
+    },
+    {
+     "eylem_no": "8.1.3",
+     "baslik": "Su İletişim Planı dahilinde danışma süreci (USBS Vatandaş Portalı, Bir Fikrim Var, Bakanlı"
+    },
+    {
+     "eylem_no": "8.2.3",
+     "baslik": "Sanayi bölgelerinde atıksu geri kazanımı ve yeniden kullanım uygulamalarıyla suyun döngüse"
+    },
+    {
+     "eylem_no": "8.2.4",
+     "baslik": "Geleneksel olmayan su kaynakları konusunda paydaşların teknik bilgi, tecrübe ve farkındalı"
+    },
+    {
+     "eylem_no": "8.2.6",
+     "baslik": "Su baskını, sel, taşkın afetleri konusunda toplumda farkındalık artırma ve bilinçlendirme "
+    },
+    {
+     "eylem_no": "8.2.7",
+     "baslik": "Su kıtlığı, kuraklık riskine karşı kapasite geliştirme ve farkındalığın artırılması çalışm"
+    },
+    {
+     "eylem_no": "8.2.8",
+     "baslik": "Temiz su, sanitasyon ve güvenli su kullanımı konularında toplum bilincini artırmak için eğ"
+    },
+    {
+     "eylem_no": "8.2.9",
+     "baslik": "Su tasarrufu, su verimliliği ve su kaynaklarının korunması konularında sosyal medya, yerel"
+    },
+    {
+     "eylem_no": "8.2.10",
+     "baslik": "İklim değişikliğinin su kaynaklarına etkileri hususunda farkındalık ve bilinçlendirme faal"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.2.5",
+     "baslik": "Evsel ve kentsel atıksu arıtma tesisleri tamamlanacak ve deşarj kriterlerine uygun olarak "
+    },
+    {
+     "eylem_no": "2.2.6",
+     "baslik": "Endüstriyel kuruluşlarda atıksu arıtma tesisleri tamamlanarak deşarj kriterlerine uygun şe"
+    },
+    {
+     "eylem_no": "2.2.7",
+     "baslik": "Arıtma çamurlarının nihai bertarafı kapsamında entegre çözümler hayata geçirilecektir."
+    },
+    {
+     "eylem_no": "2.4.1",
+     "baslik": "İhtiyaç duyulan konu ve alanlarda hidropolitik strateji belgesi(leri) hazırlanacaktır."
+    },
+    {
+     "eylem_no": "2.4.2",
+     "baslik": "Uluslararası kuruluşlarda mukim su ve iklim konusundaki temsilcilerin istişare maksadıyla "
+    },
+    {
+     "eylem_no": "2.5.3",
+     "baslik": "İçme Suyu, Atıksu ve Yağmur Suyu Master Planları tamamlanacak/güncellenecektir."
+    },
+    {
+     "eylem_no": "2.7.7",
+     "baslik": "İçme suyu arıtma tesislerinin revizyon ve rehabilitasyonu yapılacaktır."
+    },
+    {
+     "eylem_no": "2.7.9",
+     "baslik": "İçme suyu kaynaklarında ve içme suyu arıtma tesislerinde düzenli izlemeler yapılacaktır."
+    },
+    {
+     "eylem_no": "2.7.10",
+     "baslik": "Kırsal bölgelerde ve kentlerde içme suyunun dezenfeksiyonu ile su depolarının temizlik ve "
+    },
+    {
+     "eylem_no": "3.2.1",
+     "baslik": "Havza bütünlüğü esas alınarak iklim değişikliği ile mücadele kapsamında arazi tahribatının"
+    },
+    {
+     "eylem_no": "3.2.2",
+     "baslik": "Taşkın ve kuraklık yönetiminin entegrasyonu sağlanacak ve taşkın/sellerle gelen suların ye"
+    },
+    {
+     "eylem_no": "3.2.3",
+     "baslik": "Taşkın önlemleri için ekosistem esaslı yaklaşım kapsamında doğal su tutma uygulamaları ger"
+    },
+    {
+     "eylem_no": "4.1.3",
+     "baslik": "İl Risk Azaltma Planları (İRAP) ve Mekânsal Planlama Çalışmaları, Taşkın Yönetim Planları "
+    },
+    {
+     "eylem_no": "4.1.4",
+     "baslik": "Taşkın Risk Yönetim Planlarında yer alan tedbirler uygulanacaktır."
+    },
+    {
+     "eylem_no": "4.1.6",
+     "baslik": "Taşkın Riskini azaltmaya yönelik kamulaştırma çalışmalarının yapılması sağlanacaktır."
+    },
+    {
+     "eylem_no": "4.1.7",
+     "baslik": "Taşkın riski yüksek olan illerde taşkın riskini azaltmaya yönelik yatırımlara öncelik veri"
+    },
+    {
+     "eylem_no": "4.3.3",
+     "baslik": "Bütünleşik doğal kaynak yönetimini destekleyecek planlama, uygulama ve izleme faaliyetleri"
+    },
+    {
+     "eylem_no": "5.2.7",
+     "baslik": "SUTEM Bilgi Sistemi kapsamı genişletilecek, tüm sulamalarda izleme ve performans değerlend"
+    },
+    {
+     "eylem_no": "5.2.8",
+     "baslik": "Sulama şebekelerinde suyun ölçülü ve verimli dağıtımını teminen ön ödemeli sayaç uygulamal"
+    },
+    {
+     "eylem_no": "5.2.9",
+     "baslik": "Kullanılan bitki koruma ilaçlarının takibine ilişkin grup ve aktif madde bazında bilgileri"
+    },
+    {
+     "eylem_no": "5.4.1",
+     "baslik": "Sürdürülebilir uygulamalar kapsamında mikrobiyal yakıt hücrelerinin su havzalarının korunm"
+    },
+    {
+     "eylem_no": "5.4.3",
+     "baslik": "Sağlıklı toprak, su verimliliği, kirliliğin azaltılması, verimlilik artışı ve düşük karbon"
+    },
+    {
+     "eylem_no": "8.2.5",
+     "baslik": "Örgün ve yaygın eğitim öğretim programında su kaynaklarının önemi ve verimli kullanılmasın"
+    }
+   ]
   },
   {
    "id": "balikcilik-su-urunleri-gm",
@@ -267,7 +1791,21 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "2.1.1",
+     "baslik": "Havza izleme programları, havzadaki kurumsal ihtiyaçlar ve maliyetlerin düşürülmesi doğrul"
+    },
+    {
+     "eylem_no": "2.1.2",
+     "baslik": "Havza izleme programlarına uygun şekilde sürekli izlemeler yapılacaktır."
+    },
+    {
+     "eylem_no": "5.4.3",
+     "baslik": "Sağlıklı toprak, su verimliliği, kirliliğin azaltılması, verimlilik artışı ve düşük karbon"
+    }
+   ]
   },
   {
    "id": "tarim-reformu-gm",
@@ -286,7 +1824,83 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "1.1.4",
+     "baslik": "Sulama birlikleri, sulama kooperatifleri ve halk sulamaları tek çatı altında toplanacak, e"
+    },
+    {
+     "eylem_no": "2.1.1",
+     "baslik": "Havza izleme programları, havzadaki kurumsal ihtiyaçlar ve maliyetlerin düşürülmesi doğrul"
+    },
+    {
+     "eylem_no": "2.1.2",
+     "baslik": "Havza izleme programlarına uygun şekilde sürekli izlemeler yapılacaktır."
+    },
+    {
+     "eylem_no": "2.2.3",
+     "baslik": "Nitrata Hassas Bölgeler ilan edilerek Çevre Dostu Tarımsal Uygulamalar çerçevesinde Nitrat"
+    },
+    {
+     "eylem_no": "2.6.1",
+     "baslik": "İçme-kullanma suyu havzaları başta olmak üzere, su kaynaklarının korunmasına yönelik denet"
+    },
+    {
+     "eylem_no": "4.2.1",
+     "baslik": "Kuraklık riski yüksek olan havzalarda kuraklık riskini azaltmaya yönelik yatırımlara öncel"
+    },
+    {
+     "eylem_no": "4.2.2",
+     "baslik": "Kuraklık Yönetim Planlarında yer alan tedbirler uygulanacak ve takip edilecektir."
+    },
+    {
+     "eylem_no": "5.2.4",
+     "baslik": "Tarımsal su tüketimi uydu görüntüleri ile izlenecek ve düzenli raporlama yapılarak izleme "
+    },
+    {
+     "eylem_no": "5.2.8",
+     "baslik": "Sulama şebekelerinde suyun ölçülü ve verimli dağıtımını teminen ön ödemeli sayaç uygulamal"
+    },
+    {
+     "eylem_no": "5.3.2",
+     "baslik": "Kuraklık Tahmini ve Erken Uyarı Sistemi kurulacak ve yaygınlaştırılacaktır."
+    },
+    {
+     "eylem_no": "5.4.3",
+     "baslik": "Sağlıklı toprak, su verimliliği, kirliliğin azaltılması, verimlilik artışı ve düşük karbon"
+    },
+    {
+     "eylem_no": "6.3.1",
+     "baslik": "Suyun gelecekteki varlığı dikkate alınarak tüm sektörlerde verimli kullanımını teşvik edec"
+    },
+    {
+     "eylem_no": "8.2.1",
+     "baslik": "Çevre dostu tarımsal uygulamalar ve sularda nitrat kirliliğinin önlenmesine yönelik eğitim"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "3.2.1",
+     "baslik": "Havza bütünlüğü esas alınarak iklim değişikliği ile mücadele kapsamında arazi tahribatının"
+    },
+    {
+     "eylem_no": "4.3.2",
+     "baslik": "Toprak koruma ve erozyonla mücadele politikalarının ve araçlarının (ulusal çölleşme modeli"
+    },
+    {
+     "eylem_no": "5.2.7",
+     "baslik": "SUTEM Bilgi Sistemi kapsamı genişletilecek, tüm sulamalarda izleme ve performans değerlend"
+    },
+    {
+     "eylem_no": "5.2.9",
+     "baslik": "Kullanılan bitki koruma ilaçlarının takibine ilişkin grup ve aktif madde bazında bilgileri"
+    },
+    {
+     "eylem_no": "5.4.1",
+     "baslik": "Sürdürülebilir uygulamalar kapsamında mikrobiyal yakıt hücrelerinin su havzalarının korunm"
+    }
+   ]
   },
   {
    "id": "tagem",
@@ -305,7 +1919,31 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "2.1.1",
+     "baslik": "Havza izleme programları, havzadaki kurumsal ihtiyaçlar ve maliyetlerin düşürülmesi doğrul"
+    },
+    {
+     "eylem_no": "2.1.2",
+     "baslik": "Havza izleme programlarına uygun şekilde sürekli izlemeler yapılacaktır."
+    },
+    {
+     "eylem_no": "5.4.3",
+     "baslik": "Sağlıklı toprak, su verimliliği, kirliliğin azaltılması, verimlilik artışı ve düşük karbon"
+    },
+    {
+     "eylem_no": "5.4.4",
+     "baslik": "Su kaynaklarında antibiyotik varlıklarının ve direnç genlerinin araştırılması ve arıtılmas"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "5.2.9",
+     "baslik": "Kullanılan bitki koruma ilaçlarının takibine ilişkin grup ve aktif madde bazında bilgileri"
+    }
+   ]
   },
   {
    "id": "cevre-yonetimi-gm",
@@ -324,7 +1962,35 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "2.2.7",
+     "baslik": "Arıtma çamurlarının nihai bertarafı kapsamında entegre çözümler hayata geçirilecektir."
+    },
+    {
+     "eylem_no": "8.2.3",
+     "baslik": "Sanayi bölgelerinde atıksu geri kazanımı ve yeniden kullanım uygulamalarıyla suyun döngüse"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.2.5",
+     "baslik": "Evsel ve kentsel atıksu arıtma tesisleri tamamlanacak ve deşarj kriterlerine uygun olarak "
+    },
+    {
+     "eylem_no": "2.2.6",
+     "baslik": "Endüstriyel kuruluşlarda atıksu arıtma tesisleri tamamlanarak deşarj kriterlerine uygun şe"
+    },
+    {
+     "eylem_no": "2.4.1",
+     "baslik": "İhtiyaç duyulan konu ve alanlarda hidropolitik strateji belgesi(leri) hazırlanacaktır."
+    },
+    {
+     "eylem_no": "2.5.3",
+     "baslik": "İçme Suyu, Atıksu ve Yağmur Suyu Master Planları tamamlanacak/güncellenecektir."
+    }
+   ]
   },
   {
    "id": "ced-izin-denetim-gm",
@@ -343,7 +2009,27 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "2.6.2",
+     "baslik": "Evsel ve endüstriyel atıksu arıtma tesislerinin bütünleşik denetimi sağlanacaktır."
+    },
+    {
+     "eylem_no": "2.6.3",
+     "baslik": "Yeraltı sularına yapılan deşarjların kontrolüne ve denetimine ilişkin mekanizmalar güçlend"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.2.5",
+     "baslik": "Evsel ve kentsel atıksu arıtma tesisleri tamamlanacak ve deşarj kriterlerine uygun olarak "
+    },
+    {
+     "eylem_no": "2.2.6",
+     "baslik": "Endüstriyel kuruluşlarda atıksu arıtma tesisleri tamamlanarak deşarj kriterlerine uygun şe"
+    }
+   ]
   },
   {
    "id": "colllesme-erozyon-gm",
@@ -362,7 +2048,39 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "2.3.2",
+     "baslik": "Havza ölçekli planlarda doğa temelli çözümleri içerecek şekilde rehabilitasyon ve restoras"
+    },
+    {
+     "eylem_no": "3.2.1",
+     "baslik": "Havza bütünlüğü esas alınarak iklim değişikliği ile mücadele kapsamında arazi tahribatının"
+    },
+    {
+     "eylem_no": "4.3.1",
+     "baslik": "Su erozyonunun etkilerini azaltmak için yukarı havzalarda sedimantasyon kontrolü ve arazi "
+    },
+    {
+     "eylem_no": "4.3.2",
+     "baslik": "Toprak koruma ve erozyonla mücadele politikalarının ve araçlarının (ulusal çölleşme modeli"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.4.1",
+     "baslik": "İhtiyaç duyulan konu ve alanlarda hidropolitik strateji belgesi(leri) hazırlanacaktır."
+    },
+    {
+     "eylem_no": "4.1.1",
+     "baslik": "Taşkın Yönetim Planları tüm havzalar için tamamlanacak ve güncelleme çalışmaları sürdürüle"
+    },
+    {
+     "eylem_no": "4.2.1",
+     "baslik": "Kuraklık riski yüksek olan havzalarda kuraklık riskini azaltmaya yönelik yatırımlara öncel"
+    }
+   ]
   },
   {
    "id": "tabiat-varliklari-koruma-gm",
@@ -381,7 +2099,13 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "2.6.1",
+     "baslik": "İçme-kullanma suyu havzaları başta olmak üzere, su kaynaklarının korunmasına yönelik denet"
+    }
+   ]
   },
   {
    "id": "enerji-cevre-sinirasan-sular-gm",
@@ -419,7 +2143,13 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "8.2.8",
+     "baslik": "Temiz su, sanitasyon ve güvenli su kullanımı konularında toplum bilincini artırmak için eğ"
+    }
+   ]
   },
   {
    "id": "altyapi-yatirimlari-gm",
@@ -476,7 +2206,307 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "1.1.4",
+     "baslik": "Sulama birlikleri, sulama kooperatifleri ve halk sulamaları tek çatı altında toplanacak, e"
+    },
+    {
+     "eylem_no": "1.2.4",
+     "baslik": "167 Sayılı Yeraltı Suları Hakkında Kanunda düzenleme yapılacaktır."
+    },
+    {
+     "eylem_no": "1.2.6",
+     "baslik": "Su tahsisine ilişkin yetkilerin tek çatı altında toplanması ile tahsislerin havza esaslı s"
+    },
+    {
+     "eylem_no": "2.1.1",
+     "baslik": "Havza izleme programları, havzadaki kurumsal ihtiyaçlar ve maliyetlerin düşürülmesi doğrul"
+    },
+    {
+     "eylem_no": "2.1.2",
+     "baslik": "Havza izleme programlarına uygun şekilde sürekli izlemeler yapılacaktır."
+    },
+    {
+     "eylem_no": "2.1.3",
+     "baslik": "Su ile ilgili analizleri gerçekleştiren kamu laboratuvarlarının teknik ve personel kapasit"
+    },
+    {
+     "eylem_no": "2.1.4",
+     "baslik": "Yeraltı sularının miktar takibi ve kalite izlemeleri yapılacaktır."
+    },
+    {
+     "eylem_no": "2.1.5",
+     "baslik": "Su tahsisi yapılan tüm tesislerde ölçüm ve izleme sistemleri yaygınlaştırılacaktır."
+    },
+    {
+     "eylem_no": "2.1.6",
+     "baslik": "Hidrometeorolojik veri ağının güçlendirilmesi sağlanacaktır."
+    },
+    {
+     "eylem_no": "2.2.8",
+     "baslik": "Yeraltı suyu tahsisine kapalı havzalar öncelikli olmak üzere havza ve alt havza bazında en"
+    },
+    {
+     "eylem_no": "2.2.9",
+     "baslik": "İçme-kullanma suları hariç olmak üzere yeraltı sularından emniyetli rezervin üzerinde çeki"
+    },
+    {
+     "eylem_no": "2.3.1",
+     "baslik": "Doğa temelli çözümleri içerecek rehber doküman hazırlanacaktır."
+    },
+    {
+     "eylem_no": "2.3.2",
+     "baslik": "Havza ölçekli planlarda doğa temelli çözümleri içerecek şekilde rehabilitasyon ve restoras"
+    },
+    {
+     "eylem_no": "2.5.1",
+     "baslik": "Havza Master Planları güncellenecektir."
+    },
+    {
+     "eylem_no": "2.5.2",
+     "baslik": "Havza bazlı Hidrojeolojik Etüt Raporları hazırlanacaktır."
+    },
+    {
+     "eylem_no": "2.6.1",
+     "baslik": "İçme-kullanma suyu havzaları başta olmak üzere, su kaynaklarının korunmasına yönelik denet"
+    },
+    {
+     "eylem_no": "2.6.3",
+     "baslik": "Yeraltı sularına yapılan deşarjların kontrolüne ve denetimine ilişkin mekanizmalar güçlend"
+    },
+    {
+     "eylem_no": "2.6.4",
+     "baslik": "Yeraltı suyu miktarının korunmasında etkin denetim ve yaptırım mekanizması geliştirilerek "
+    },
+    {
+     "eylem_no": "2.6.5",
+     "baslik": "Ticari maksatlı kullanılan doğal mineralli sular ve kaynak suların takip ve denetimine yön"
+    },
+    {
+     "eylem_no": "2.7.2",
+     "baslik": "İçme-kullanma suyu olarak kullanılan/kullanımı planlanan yerüstü su kaynaklarının hidroloj"
+    },
+    {
+     "eylem_no": "2.7.5",
+     "baslik": "İçme suyu temin edilen yeraltı suyu kaynaklarının envanteri oluşturulacak ve bu kaynakları"
+    },
+    {
+     "eylem_no": "2.7.6",
+     "baslik": "Kırsalda içme suyu güvenliğinin sağlanması için gerekli yasal, idari ve teknik altyapı mek"
+    },
+    {
+     "eylem_no": "2.7.9",
+     "baslik": "İçme suyu kaynaklarında ve içme suyu arıtma tesislerinde düzenli izlemeler yapılacaktır."
+    },
+    {
+     "eylem_no": "2.8.1",
+     "baslik": "Biyolojik filtrasyon sistemleri ve yenilikçi dezenfeksiyon yöntemleri gibi su arıtma tekno"
+    },
+    {
+     "eylem_no": "2.8.3",
+     "baslik": "İklim değişikliğine bağlı su kıtlığı ve aşırı yağışlardan kaynaklanan sağlık riskleri mini"
+    },
+    {
+     "eylem_no": "2.9.1",
+     "baslik": "Yeraltı suyu depolama tesisleri ve yeraltı suyu suni besleme yapıları inşa edilecektir."
+    },
+    {
+     "eylem_no": "2.9.2",
+     "baslik": "Uygun yerlerde baraj ve gölet yatırımları yapılacaktır."
+    },
+    {
+     "eylem_no": "3.1.1",
+     "baslik": "Havza bazında, su kaynaklarında ve depolamalı tesislerde iklim değişikliğinin etkileri ana"
+    },
+    {
+     "eylem_no": "3.1.2",
+     "baslik": "İklim değişikliğinin deniz seviyesi, kıyılar, göller ve sulak alanlar üzerindeki etkileri "
+    },
+    {
+     "eylem_no": "3.2.2",
+     "baslik": "Taşkın ve kuraklık yönetiminin entegrasyonu sağlanacak ve taşkın/sellerle gelen suların ye"
+    },
+    {
+     "eylem_no": "3.2.3",
+     "baslik": "Taşkın önlemleri için ekosistem esaslı yaklaşım kapsamında doğal su tutma uygulamaları ger"
+    },
+    {
+     "eylem_no": "3.2.5",
+     "baslik": "Yerüstü su kaynaklarında buharlaşmanın önlenmesi için yüzer GES ve benzeri uygulamalar ger"
+    },
+    {
+     "eylem_no": "4.1.4",
+     "baslik": "Taşkın Risk Yönetim Planlarında yer alan tedbirler uygulanacaktır."
+    },
+    {
+     "eylem_no": "4.1.5",
+     "baslik": "Akarsu yataklarına müdahaleler önlenecek, hafriyat, çöp vb. maddelerin atılması engellenec"
+    },
+    {
+     "eylem_no": "4.1.7",
+     "baslik": "Taşkın riski yüksek olan illerde taşkın riskini azaltmaya yönelik yatırımlara öncelik veri"
+    },
+    {
+     "eylem_no": "4.1.8",
+     "baslik": "Mutlak taşkın alanları güncellenerek ilan edilecektir."
+    },
+    {
+     "eylem_no": "4.2.1",
+     "baslik": "Kuraklık riski yüksek olan havzalarda kuraklık riskini azaltmaya yönelik yatırımlara öncel"
+    },
+    {
+     "eylem_no": "4.2.2",
+     "baslik": "Kuraklık Yönetim Planlarında yer alan tedbirler uygulanacak ve takip edilecektir."
+    },
+    {
+     "eylem_no": "4.3.1",
+     "baslik": "Su erozyonunun etkilerini azaltmak için yukarı havzalarda sedimantasyon kontrolü ve arazi "
+    },
+    {
+     "eylem_no": "4.3.3",
+     "baslik": "Bütünleşik doğal kaynak yönetimini destekleyecek planlama, uygulama ve izleme faaliyetleri"
+    },
+    {
+     "eylem_no": "5.1.1",
+     "baslik": "Su kaynakları yönetimine ilişkin verilerin tek çatı altında toplanması, siber güvenliğin s"
+    },
+    {
+     "eylem_no": "5.1.3",
+     "baslik": "Sektörel su kullanımlarında (içme-kullanma suyu, tarım ve sanayi) sürekli ve güvenilir ver"
+    },
+    {
+     "eylem_no": "5.2.2",
+     "baslik": "Su kaynaklarına ilişkin olarak kamu kurum ve kuruluşları tarafından işletilen mevcut bilgi"
+    },
+    {
+     "eylem_no": "5.2.4",
+     "baslik": "Tarımsal su tüketimi uydu görüntüleri ile izlenecek ve düzenli raporlama yapılarak izleme "
+    },
+    {
+     "eylem_no": "5.2.7",
+     "baslik": "SUTEM Bilgi Sistemi kapsamı genişletilecek, tüm sulamalarda izleme ve performans değerlend"
+    },
+    {
+     "eylem_no": "5.2.8",
+     "baslik": "Sulama şebekelerinde suyun ölçülü ve verimli dağıtımını teminen ön ödemeli sayaç uygulamal"
+    },
+    {
+     "eylem_no": "5.3.1",
+     "baslik": "Yapay zeka ve fizik tabanlı modellemeyle desteklenen Taşkın Tahmini ve Erken Uyarı Sisteml"
+    },
+    {
+     "eylem_no": "5.3.2",
+     "baslik": "Kuraklık Tahmini ve Erken Uyarı Sistemi kurulacak ve yaygınlaştırılacaktır."
+    },
+    {
+     "eylem_no": "5.4.2",
+     "baslik": "Hizmete erişimin kısıtlı olduğu bölgelerde su ihtiyacına göre mikro şebekeler, güneş panel"
+    },
+    {
+     "eylem_no": "5.4.3",
+     "baslik": "Sağlıklı toprak, su verimliliği, kirliliğin azaltılması, verimlilik artışı ve düşük karbon"
+    },
+    {
+     "eylem_no": "6.1.1",
+     "baslik": "Havza ölçekli planlar ve mevcut/potansiyel riskler dikkate alınarak yatırımlara ilişkin ön"
+    },
+    {
+     "eylem_no": "6.1.2",
+     "baslik": "Belirlenen ihtiyaçlar doğrultusunda proje ve yatırımların sürdürülebilirliğinin sağlanması"
+    },
+    {
+     "eylem_no": "6.2.1",
+     "baslik": "Mevcut ve yeni kurulacak su ve atıksu altyapı tesislerinde alternatif enerji kaynaklarının"
+    },
+    {
+     "eylem_no": "6.2.4",
+     "baslik": "Sudan elde edilen gelirlerin su yatırımlarında kullanılması oranı artırılacaktır."
+    },
+    {
+     "eylem_no": "6.3.1",
+     "baslik": "Suyun gelecekteki varlığı dikkate alınarak tüm sektörlerde verimli kullanımını teşvik edec"
+    },
+    {
+     "eylem_no": "6.3.3",
+     "baslik": "Finansal kaynakların optimizasyonu için kuraklık ve taşkın riski olan havzalarda suya iliş"
+    },
+    {
+     "eylem_no": "7.1.1",
+     "baslik": "Enerji talebi ile diğer sektörlerin ihtiyacı ve suyun doğal akışa bırakılması süreçlerinin"
+    },
+    {
+     "eylem_no": "7.4.2",
+     "baslik": "Suya göre planlama esasına dayalı havzalararası su transferine ilişkin çevresel, sosyal ve"
+    },
+    {
+     "eylem_no": "7.4.3",
+     "baslik": "Kurak dönemler özelinde havza ve alt havza bazında sektörel su ihtiyaçları ve ihtiyaçların"
+    },
+    {
+     "eylem_no": "8.2.4",
+     "baslik": "Geleneksel olmayan su kaynakları konusunda paydaşların teknik bilgi, tecrübe ve farkındalı"
+    },
+    {
+     "eylem_no": "8.2.6",
+     "baslik": "Su baskını, sel, taşkın afetleri konusunda toplumda farkındalık artırma ve bilinçlendirme "
+    },
+    {
+     "eylem_no": "8.2.7",
+     "baslik": "Su kıtlığı, kuraklık riskine karşı kapasite geliştirme ve farkındalığın artırılması çalışm"
+    },
+    {
+     "eylem_no": "8.2.8",
+     "baslik": "Temiz su, sanitasyon ve güvenli su kullanımı konularında toplum bilincini artırmak için eğ"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.4.1",
+     "baslik": "İhtiyaç duyulan konu ve alanlarda hidropolitik strateji belgesi(leri) hazırlanacaktır."
+    },
+    {
+     "eylem_no": "2.4.2",
+     "baslik": "Uluslararası kuruluşlarda mukim su ve iklim konusundaki temsilcilerin istişare maksadıyla "
+    },
+    {
+     "eylem_no": "2.5.3",
+     "baslik": "İçme Suyu, Atıksu ve Yağmur Suyu Master Planları tamamlanacak/güncellenecektir."
+    },
+    {
+     "eylem_no": "2.7.7",
+     "baslik": "İçme suyu arıtma tesislerinin revizyon ve rehabilitasyonu yapılacaktır."
+    },
+    {
+     "eylem_no": "2.7.8",
+     "baslik": "İçme suyu arıtma tesislerini işleten personelin kapasitesi artırılacak ve sertifikalandırı"
+    },
+    {
+     "eylem_no": "2.8.2",
+     "baslik": "Temiz suya erişimi olmayan kırsal ve düşük gelirli bölgelerde temiz içme suyuna erişimi sa"
+    },
+    {
+     "eylem_no": "3.2.1",
+     "baslik": "Havza bütünlüğü esas alınarak iklim değişikliği ile mücadele kapsamında arazi tahribatının"
+    },
+    {
+     "eylem_no": "3.3.4",
+     "baslik": "Su verimliliği il planları hazırlanacaktır."
+    },
+    {
+     "eylem_no": "4.1.2",
+     "baslik": "Taşkın Yönetim Planlarında belirlenen tedbirlerin uygulanması koordine edilecek ve izlenec"
+    },
+    {
+     "eylem_no": "4.1.6",
+     "baslik": "Taşkın Riskini azaltmaya yönelik kamulaştırma çalışmalarının yapılması sağlanacaktır."
+    },
+    {
+     "eylem_no": "5.4.1",
+     "baslik": "Sürdürülebilir uygulamalar kapsamında mikrobiyal yakıt hücrelerinin su havzalarının korunm"
+    }
+   ]
   },
   {
    "id": "orman-gm",
@@ -495,7 +2525,59 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "2.3.2",
+     "baslik": "Havza ölçekli planlarda doğa temelli çözümleri içerecek şekilde rehabilitasyon ve restoras"
+    },
+    {
+     "eylem_no": "3.2.1",
+     "baslik": "Havza bütünlüğü esas alınarak iklim değişikliği ile mücadele kapsamında arazi tahribatının"
+    },
+    {
+     "eylem_no": "4.1.4",
+     "baslik": "Taşkın Risk Yönetim Planlarında yer alan tedbirler uygulanacaktır."
+    },
+    {
+     "eylem_no": "4.3.1",
+     "baslik": "Su erozyonunun etkilerini azaltmak için yukarı havzalarda sedimantasyon kontrolü ve arazi "
+    },
+    {
+     "eylem_no": "4.3.3",
+     "baslik": "Bütünleşik doğal kaynak yönetimini destekleyecek planlama, uygulama ve izleme faaliyetleri"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "3.3.4",
+     "baslik": "Su verimliliği il planları hazırlanacaktır."
+    },
+    {
+     "eylem_no": "4.1.2",
+     "baslik": "Taşkın Yönetim Planlarında belirlenen tedbirlerin uygulanması koordine edilecek ve izlenec"
+    },
+    {
+     "eylem_no": "4.1.6",
+     "baslik": "Taşkın Riskini azaltmaya yönelik kamulaştırma çalışmalarının yapılması sağlanacaktır."
+    },
+    {
+     "eylem_no": "4.1.7",
+     "baslik": "Taşkın riski yüksek olan illerde taşkın riskini azaltmaya yönelik yatırımlara öncelik veri"
+    },
+    {
+     "eylem_no": "4.1.8",
+     "baslik": "Mutlak taşkın alanları güncellenerek ilan edilecektir."
+    },
+    {
+     "eylem_no": "4.2.1",
+     "baslik": "Kuraklık riski yüksek olan havzalarda kuraklık riskini azaltmaya yönelik yatırımlara öncel"
+    },
+    {
+     "eylem_no": "4.3.2",
+     "baslik": "Toprak koruma ve erozyonla mücadele politikalarının ve araçlarının (ulusal çölleşme modeli"
+    }
+   ]
   },
   {
    "id": "suen",
@@ -514,7 +2596,39 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "2.8.7",
+     "baslik": "İnsan, hayvan, bitki ve çevre sağlığı değerlendirmesinde atıksu ve çevresel sürveyans uygu"
+    },
+    {
+     "eylem_no": "8.1.4",
+     "baslik": "Ulusal ve uluslararası düzeyde dijital mecralar dahil eğitim programları hazırlanacak ve ("
+    },
+    {
+     "eylem_no": "8.2.4",
+     "baslik": "Geleneksel olmayan su kaynakları konusunda paydaşların teknik bilgi, tecrübe ve farkındalı"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.4.1",
+     "baslik": "İhtiyaç duyulan konu ve alanlarda hidropolitik strateji belgesi(leri) hazırlanacaktır."
+    },
+    {
+     "eylem_no": "2.4.2",
+     "baslik": "Uluslararası kuruluşlarda mukim su ve iklim konusundaki temsilcilerin istişare maksadıyla "
+    },
+    {
+     "eylem_no": "2.7.8",
+     "baslik": "İçme suyu arıtma tesislerini işleten personelin kapasitesi artırılacak ve sertifikalandırı"
+    },
+    {
+     "eylem_no": "5.4.4",
+     "baslik": "Su kaynaklarında antibiyotik varlıklarının ve direnç genlerinin araştırılması ve arıtılmas"
+    }
+   ]
   },
   {
    "id": "dkmp",
@@ -533,7 +2647,25 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "2.3.2",
+     "baslik": "Havza ölçekli planlarda doğa temelli çözümleri içerecek şekilde rehabilitasyon ve restoras"
+    },
+    {
+     "eylem_no": "2.6.1",
+     "baslik": "İçme-kullanma suyu havzaları başta olmak üzere, su kaynaklarının korunmasına yönelik denet"
+    },
+    {
+     "eylem_no": "3.1.2",
+     "baslik": "İklim değişikliğinin deniz seviyesi, kıyılar, göller ve sulak alanlar üzerindeki etkileri "
+    },
+    {
+     "eylem_no": "3.2.3",
+     "baslik": "Taşkın önlemleri için ekosistem esaslı yaklaşım kapsamında doğal su tutma uygulamaları ger"
+    }
+   ]
   },
   {
    "id": "mapeg",
@@ -590,7 +2722,47 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "4.1.3",
+     "baslik": "İl Risk Azaltma Planları (İRAP) ve Mekânsal Planlama Çalışmaları, Taşkın Yönetim Planları "
+    },
+    {
+     "eylem_no": "8.2.6",
+     "baslik": "Su baskını, sel, taşkın afetleri konusunda toplumda farkındalık artırma ve bilinçlendirme "
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.7.1",
+     "baslik": "Kaynaktan musluğa içme-kullanma suyu güvenliği sistemi geliştirilecektir."
+    },
+    {
+     "eylem_no": "4.1.1",
+     "baslik": "Taşkın Yönetim Planları tüm havzalar için tamamlanacak ve güncelleme çalışmaları sürdürüle"
+    },
+    {
+     "eylem_no": "4.1.2",
+     "baslik": "Taşkın Yönetim Planlarında belirlenen tedbirlerin uygulanması koordine edilecek ve izlenec"
+    },
+    {
+     "eylem_no": "4.1.7",
+     "baslik": "Taşkın riski yüksek olan illerde taşkın riskini azaltmaya yönelik yatırımlara öncelik veri"
+    },
+    {
+     "eylem_no": "4.1.8",
+     "baslik": "Mutlak taşkın alanları güncellenerek ilan edilecektir."
+    },
+    {
+     "eylem_no": "4.2.1",
+     "baslik": "Kuraklık riski yüksek olan havzalarda kuraklık riskini azaltmaya yönelik yatırımlara öncel"
+    },
+    {
+     "eylem_no": "5.3.1",
+     "baslik": "Yapay zeka ve fizik tabanlı modellemeyle desteklenen Taşkın Tahmini ve Erken Uyarı Sisteml"
+    }
+   ]
   },
   {
    "id": "tuik",
@@ -609,7 +2781,13 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "5.1.2",
+     "baslik": "TÜİK tarafından 2 yılda bir olacak şekilde su yönetimine ilişkin havza ölçekli istatistikl"
+    }
+   ]
   },
   {
    "id": "tubitak",
@@ -628,7 +2806,17 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "5.4.1",
+     "baslik": "Sürdürülebilir uygulamalar kapsamında mikrobiyal yakıt hücrelerinin su havzalarının korunm"
+    },
+    {
+     "eylem_no": "5.4.3",
+     "baslik": "Sağlıklı toprak, su verimliliği, kirliliğin azaltılması, verimlilik artışı ve düşük karbon"
+    }
+   ]
   },
   {
    "id": "strateji-butce-baskanligi",
@@ -666,7 +2854,13 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "7.3.3",
+     "baslik": "Çevre dostu ürün ve teknolojilerin üretimi ile ulusal ve uluslararası ticareti teşvik edec"
+    }
+   ]
   },
   {
    "id": "turkiye-belediyeler-birligi",
@@ -685,7 +2879,21 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.7.8",
+     "baslik": "İçme suyu arıtma tesislerini işleten personelin kapasitesi artırılacak ve sertifikalandırı"
+    },
+    {
+     "eylem_no": "5.4.2",
+     "baslik": "Hizmete erişimin kısıtlı olduğu bölgelerde su ihtiyacına göre mikro şebekeler, güneş panel"
+    },
+    {
+     "eylem_no": "8.2.4",
+     "baslik": "Geleneksel olmayan su kaynakları konusunda paydaşların teknik bilgi, tecrübe ve farkındalı"
+    }
+   ]
   },
   {
    "id": "ulusal-su-kurulu",
@@ -1220,7 +3428,71 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "1.1.4",
+     "baslik": "Sulama birlikleri, sulama kooperatifleri ve halk sulamaları tek çatı altında toplanacak, e"
+    },
+    {
+     "eylem_no": "2.1.5",
+     "baslik": "Su tahsisi yapılan tüm tesislerde ölçüm ve izleme sistemleri yaygınlaştırılacaktır."
+    },
+    {
+     "eylem_no": "2.5.3",
+     "baslik": "İçme Suyu, Atıksu ve Yağmur Suyu Master Planları tamamlanacak/güncellenecektir."
+    },
+    {
+     "eylem_no": "2.6.5",
+     "baslik": "Ticari maksatlı kullanılan doğal mineralli sular ve kaynak suların takip ve denetimine yön"
+    },
+    {
+     "eylem_no": "2.7.6",
+     "baslik": "Kırsalda içme suyu güvenliğinin sağlanması için gerekli yasal, idari ve teknik altyapı mek"
+    },
+    {
+     "eylem_no": "2.7.7",
+     "baslik": "İçme suyu arıtma tesislerinin revizyon ve rehabilitasyonu yapılacaktır."
+    },
+    {
+     "eylem_no": "2.7.10",
+     "baslik": "Kırsal bölgelerde ve kentlerde içme suyunun dezenfeksiyonu ile su depolarının temizlik ve "
+    },
+    {
+     "eylem_no": "2.8.2",
+     "baslik": "Temiz suya erişimi olmayan kırsal ve düşük gelirli bölgelerde temiz içme suyuna erişimi sa"
+    },
+    {
+     "eylem_no": "4.1.3",
+     "baslik": "İl Risk Azaltma Planları (İRAP) ve Mekânsal Planlama Çalışmaları, Taşkın Yönetim Planları "
+    },
+    {
+     "eylem_no": "5.4.2",
+     "baslik": "Hizmete erişimin kısıtlı olduğu bölgelerde su ihtiyacına göre mikro şebekeler, güneş panel"
+    },
+    {
+     "eylem_no": "6.2.4",
+     "baslik": "Sudan elde edilen gelirlerin su yatırımlarında kullanılması oranı artırılacaktır."
+    },
+    {
+     "eylem_no": "8.2.2",
+     "baslik": "Tarımsal sulamada su verimliliğinin sağlanmasına yönelik çiftçi eğitimleri düzenlenecektir"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.7.8",
+     "baslik": "İçme suyu arıtma tesislerini işleten personelin kapasitesi artırılacak ve sertifikalandırı"
+    },
+    {
+     "eylem_no": "4.1.1",
+     "baslik": "Taşkın Yönetim Planları tüm havzalar için tamamlanacak ve güncelleme çalışmaları sürdürüle"
+    },
+    {
+     "eylem_no": "4.1.2",
+     "baslik": "Taşkın Yönetim Planlarında belirlenen tedbirlerin uygulanması koordine edilecek ve izlenec"
+    }
+   ]
   },
   {
    "id": "yikob",
@@ -1239,7 +3511,13 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "2.6.5",
+     "baslik": "Ticari maksatlı kullanılan doğal mineralli sular ve kaynak suların takip ve denetimine yön"
+    }
+   ]
   },
   {
    "id": "orman-su-isleri-bakanligi",
@@ -1377,7 +3655,31 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "5.2.8",
+     "baslik": "Sulama şebekelerinde suyun ölçülü ve verimli dağıtımını teminen ön ödemeli sayaç uygulamal"
+    },
+    {
+     "eylem_no": "6.2.4",
+     "baslik": "Sudan elde edilen gelirlerin su yatırımlarında kullanılması oranı artırılacaktır."
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.1.4",
+     "baslik": "Yeraltı sularının miktar takibi ve kalite izlemeleri yapılacaktır."
+    },
+    {
+     "eylem_no": "5.2.4",
+     "baslik": "Tarımsal su tüketimi uydu görüntüleri ile izlenecek ve düzenli raporlama yapılarak izleme "
+    },
+    {
+     "eylem_no": "5.2.7",
+     "baslik": "SUTEM Bilgi Sistemi kapsamı genişletilecek, tüm sulamalarda izleme ve performans değerlend"
+    }
+   ]
   },
   {
    "id": "yuksek-cevre-kurulu",
@@ -1438,7 +3740,183 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "1.1.1",
+     "baslik": "Su kaynaklarının yönetiminde havza ölçeğinde bütünleşik izleme ve takip sistemi geliştiril"
+    },
+    {
+     "eylem_no": "2.1.1",
+     "baslik": "Havza izleme programları, havzadaki kurumsal ihtiyaçlar ve maliyetlerin düşürülmesi doğrul"
+    },
+    {
+     "eylem_no": "2.1.2",
+     "baslik": "Havza izleme programlarına uygun şekilde sürekli izlemeler yapılacaktır."
+    },
+    {
+     "eylem_no": "2.1.3",
+     "baslik": "Su ile ilgili analizleri gerçekleştiren kamu laboratuvarlarının teknik ve personel kapasit"
+    },
+    {
+     "eylem_no": "2.2.5",
+     "baslik": "Evsel ve kentsel atıksu arıtma tesisleri tamamlanacak ve deşarj kriterlerine uygun olarak "
+    },
+    {
+     "eylem_no": "2.2.7",
+     "baslik": "Arıtma çamurlarının nihai bertarafı kapsamında entegre çözümler hayata geçirilecektir."
+    },
+    {
+     "eylem_no": "2.5.3",
+     "baslik": "İçme Suyu, Atıksu ve Yağmur Suyu Master Planları tamamlanacak/güncellenecektir."
+    },
+    {
+     "eylem_no": "2.7.3",
+     "baslik": "İçme-Kullanma Suyu Havzası Koruma Planlarını kapsayan Su Güvenliği Planları hazırlanacaktı"
+    },
+    {
+     "eylem_no": "2.7.4",
+     "baslik": "İçme-Kullanma Suyu Güvenliği Planlarının uygulanması ve takibi yapılacaktır."
+    },
+    {
+     "eylem_no": "2.7.6",
+     "baslik": "Kırsalda içme suyu güvenliğinin sağlanması için gerekli yasal, idari ve teknik altyapı mek"
+    },
+    {
+     "eylem_no": "2.7.7",
+     "baslik": "İçme suyu arıtma tesislerinin revizyon ve rehabilitasyonu yapılacaktır."
+    },
+    {
+     "eylem_no": "2.7.9",
+     "baslik": "İçme suyu kaynaklarında ve içme suyu arıtma tesislerinde düzenli izlemeler yapılacaktır."
+    },
+    {
+     "eylem_no": "2.7.10",
+     "baslik": "Kırsal bölgelerde ve kentlerde içme suyunun dezenfeksiyonu ile su depolarının temizlik ve "
+    },
+    {
+     "eylem_no": "2.8.2",
+     "baslik": "Temiz suya erişimi olmayan kırsal ve düşük gelirli bölgelerde temiz içme suyuna erişimi sa"
+    },
+    {
+     "eylem_no": "2.8.3",
+     "baslik": "İklim değişikliğine bağlı su kıtlığı ve aşırı yağışlardan kaynaklanan sağlık riskleri mini"
+    },
+    {
+     "eylem_no": "2.8.4",
+     "baslik": "Mikroplastiklerin ve mikrokirleticilerin neden olduğu su kirliliğinin önlenmesi için tedbi"
+    },
+    {
+     "eylem_no": "3.2.4",
+     "baslik": "Kuraklık riski altında olan göller için Eylem Planı hazırlanacak ve uygulanacaktır."
+    },
+    {
+     "eylem_no": "4.3.1",
+     "baslik": "Su erozyonunun etkilerini azaltmak için yukarı havzalarda sedimantasyon kontrolü ve arazi "
+    },
+    {
+     "eylem_no": "5.4.2",
+     "baslik": "Hizmete erişimin kısıtlı olduğu bölgelerde su ihtiyacına göre mikro şebekeler, güneş panel"
+    },
+    {
+     "eylem_no": "6.1.1",
+     "baslik": "Havza ölçekli planlar ve mevcut/potansiyel riskler dikkate alınarak yatırımlara ilişkin ön"
+    },
+    {
+     "eylem_no": "6.1.2",
+     "baslik": "Belirlenen ihtiyaçlar doğrultusunda proje ve yatırımların sürdürülebilirliğinin sağlanması"
+    },
+    {
+     "eylem_no": "6.2.1",
+     "baslik": "Mevcut ve yeni kurulacak su ve atıksu altyapı tesislerinde alternatif enerji kaynaklarının"
+    },
+    {
+     "eylem_no": "6.2.3",
+     "baslik": "Teknik olarak uygun yerlerde yağmur suyu ve atıksu toplama hatları ayrık sistem olarak pro"
+    },
+    {
+     "eylem_no": "6.2.4",
+     "baslik": "Sudan elde edilen gelirlerin su yatırımlarında kullanılması oranı artırılacaktır."
+    },
+    {
+     "eylem_no": "6.3.1",
+     "baslik": "Suyun gelecekteki varlığı dikkate alınarak tüm sektörlerde verimli kullanımını teşvik edec"
+    },
+    {
+     "eylem_no": "7.3.2",
+     "baslik": "Uygulanan politikaların ekonomik sürdürülebilirliği ile iş gücü üzerindeki etkileri düzenl"
+    },
+    {
+     "eylem_no": "8.2.2",
+     "baslik": "Tarımsal sulamada su verimliliğinin sağlanmasına yönelik çiftçi eğitimleri düzenlenecektir"
+    },
+    {
+     "eylem_no": "8.2.6",
+     "baslik": "Su baskını, sel, taşkın afetleri konusunda toplumda farkındalık artırma ve bilinçlendirme "
+    },
+    {
+     "eylem_no": "8.2.7",
+     "baslik": "Su kıtlığı, kuraklık riskine karşı kapasite geliştirme ve farkındalığın artırılması çalışm"
+    },
+    {
+     "eylem_no": "8.2.8",
+     "baslik": "Temiz su, sanitasyon ve güvenli su kullanımı konularında toplum bilincini artırmak için eğ"
+    },
+    {
+     "eylem_no": "8.2.9",
+     "baslik": "Su tasarrufu, su verimliliği ve su kaynaklarının korunması konularında sosyal medya, yerel"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "1.1.4",
+     "baslik": "Sulama birlikleri, sulama kooperatifleri ve halk sulamaları tek çatı altında toplanacak, e"
+    },
+    {
+     "eylem_no": "2.2.6",
+     "baslik": "Endüstriyel kuruluşlarda atıksu arıtma tesisleri tamamlanarak deşarj kriterlerine uygun şe"
+    },
+    {
+     "eylem_no": "2.7.1",
+     "baslik": "Kaynaktan musluğa içme-kullanma suyu güvenliği sistemi geliştirilecektir."
+    },
+    {
+     "eylem_no": "2.7.8",
+     "baslik": "İçme suyu arıtma tesislerini işleten personelin kapasitesi artırılacak ve sertifikalandırı"
+    },
+    {
+     "eylem_no": "2.7.11",
+     "baslik": "İçme sularında başta mikrokirleticiler olmak üzere izleme parametrelerinin belirlenmesine "
+    },
+    {
+     "eylem_no": "2.8.1",
+     "baslik": "Biyolojik filtrasyon sistemleri ve yenilikçi dezenfeksiyon yöntemleri gibi su arıtma tekno"
+    },
+    {
+     "eylem_no": "3.2.2",
+     "baslik": "Taşkın ve kuraklık yönetiminin entegrasyonu sağlanacak ve taşkın/sellerle gelen suların ye"
+    },
+    {
+     "eylem_no": "3.2.3",
+     "baslik": "Taşkın önlemleri için ekosistem esaslı yaklaşım kapsamında doğal su tutma uygulamaları ger"
+    },
+    {
+     "eylem_no": "5.4.1",
+     "baslik": "Sürdürülebilir uygulamalar kapsamında mikrobiyal yakıt hücrelerinin su havzalarının korunm"
+    },
+    {
+     "eylem_no": "5.4.4",
+     "baslik": "Su kaynaklarında antibiyotik varlıklarının ve direnç genlerinin araştırılması ve arıtılmas"
+    },
+    {
+     "eylem_no": "8.2.4",
+     "baslik": "Geleneksel olmayan su kaynakları konusunda paydaşların teknik bilgi, tecrübe ve farkındalı"
+    },
+    {
+     "eylem_no": "8.2.10",
+     "baslik": "İklim değişikliğinin su kaynaklarına etkileri hususunda farkındalık ve bilinçlendirme faal"
+    }
+   ]
   },
   {
    "id": "belediyeler",
@@ -1457,7 +3935,243 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "1.1.1",
+     "baslik": "Su kaynaklarının yönetiminde havza ölçeğinde bütünleşik izleme ve takip sistemi geliştiril"
+    },
+    {
+     "eylem_no": "1.1.3",
+     "baslik": "Büyükşehir dışındaki il belediyelerinde su ve atıksu hizmetlerinin etkinliğinin ve sürdürü"
+    },
+    {
+     "eylem_no": "2.1.1",
+     "baslik": "Havza izleme programları, havzadaki kurumsal ihtiyaçlar ve maliyetlerin düşürülmesi doğrul"
+    },
+    {
+     "eylem_no": "2.1.2",
+     "baslik": "Havza izleme programlarına uygun şekilde sürekli izlemeler yapılacaktır."
+    },
+    {
+     "eylem_no": "2.1.3",
+     "baslik": "Su ile ilgili analizleri gerçekleştiren kamu laboratuvarlarının teknik ve personel kapasit"
+    },
+    {
+     "eylem_no": "2.1.5",
+     "baslik": "Su tahsisi yapılan tüm tesislerde ölçüm ve izleme sistemleri yaygınlaştırılacaktır."
+    },
+    {
+     "eylem_no": "2.2.5",
+     "baslik": "Evsel ve kentsel atıksu arıtma tesisleri tamamlanacak ve deşarj kriterlerine uygun olarak "
+    },
+    {
+     "eylem_no": "2.2.7",
+     "baslik": "Arıtma çamurlarının nihai bertarafı kapsamında entegre çözümler hayata geçirilecektir."
+    },
+    {
+     "eylem_no": "2.5.3",
+     "baslik": "İçme Suyu, Atıksu ve Yağmur Suyu Master Planları tamamlanacak/güncellenecektir."
+    },
+    {
+     "eylem_no": "2.7.3",
+     "baslik": "İçme-Kullanma Suyu Havzası Koruma Planlarını kapsayan Su Güvenliği Planları hazırlanacaktı"
+    },
+    {
+     "eylem_no": "2.7.4",
+     "baslik": "İçme-Kullanma Suyu Güvenliği Planlarının uygulanması ve takibi yapılacaktır."
+    },
+    {
+     "eylem_no": "2.7.6",
+     "baslik": "Kırsalda içme suyu güvenliğinin sağlanması için gerekli yasal, idari ve teknik altyapı mek"
+    },
+    {
+     "eylem_no": "2.7.7",
+     "baslik": "İçme suyu arıtma tesislerinin revizyon ve rehabilitasyonu yapılacaktır."
+    },
+    {
+     "eylem_no": "2.7.9",
+     "baslik": "İçme suyu kaynaklarında ve içme suyu arıtma tesislerinde düzenli izlemeler yapılacaktır."
+    },
+    {
+     "eylem_no": "2.7.10",
+     "baslik": "Kırsal bölgelerde ve kentlerde içme suyunun dezenfeksiyonu ile su depolarının temizlik ve "
+    },
+    {
+     "eylem_no": "2.8.1",
+     "baslik": "Biyolojik filtrasyon sistemleri ve yenilikçi dezenfeksiyon yöntemleri gibi su arıtma tekno"
+    },
+    {
+     "eylem_no": "2.8.2",
+     "baslik": "Temiz suya erişimi olmayan kırsal ve düşük gelirli bölgelerde temiz içme suyuna erişimi sa"
+    },
+    {
+     "eylem_no": "2.8.3",
+     "baslik": "İklim değişikliğine bağlı su kıtlığı ve aşırı yağışlardan kaynaklanan sağlık riskleri mini"
+    },
+    {
+     "eylem_no": "2.8.4",
+     "baslik": "Mikroplastiklerin ve mikrokirleticilerin neden olduğu su kirliliğinin önlenmesi için tedbi"
+    },
+    {
+     "eylem_no": "3.2.2",
+     "baslik": "Taşkın ve kuraklık yönetiminin entegrasyonu sağlanacak ve taşkın/sellerle gelen suların ye"
+    },
+    {
+     "eylem_no": "3.2.3",
+     "baslik": "Taşkın önlemleri için ekosistem esaslı yaklaşım kapsamında doğal su tutma uygulamaları ger"
+    },
+    {
+     "eylem_no": "3.2.4",
+     "baslik": "Kuraklık riski altında olan göller için Eylem Planı hazırlanacak ve uygulanacaktır."
+    },
+    {
+     "eylem_no": "4.1.3",
+     "baslik": "İl Risk Azaltma Planları (İRAP) ve Mekânsal Planlama Çalışmaları, Taşkın Yönetim Planları "
+    },
+    {
+     "eylem_no": "4.1.4",
+     "baslik": "Taşkın Risk Yönetim Planlarında yer alan tedbirler uygulanacaktır."
+    },
+    {
+     "eylem_no": "4.1.5",
+     "baslik": "Akarsu yataklarına müdahaleler önlenecek, hafriyat, çöp vb. maddelerin atılması engellenec"
+    },
+    {
+     "eylem_no": "4.1.6",
+     "baslik": "Taşkın Riskini azaltmaya yönelik kamulaştırma çalışmalarının yapılması sağlanacaktır."
+    },
+    {
+     "eylem_no": "4.1.7",
+     "baslik": "Taşkın riski yüksek olan illerde taşkın riskini azaltmaya yönelik yatırımlara öncelik veri"
+    },
+    {
+     "eylem_no": "4.2.1",
+     "baslik": "Kuraklık riski yüksek olan havzalarda kuraklık riskini azaltmaya yönelik yatırımlara öncel"
+    },
+    {
+     "eylem_no": "4.2.2",
+     "baslik": "Kuraklık Yönetim Planlarında yer alan tedbirler uygulanacak ve takip edilecektir."
+    },
+    {
+     "eylem_no": "5.4.2",
+     "baslik": "Hizmete erişimin kısıtlı olduğu bölgelerde su ihtiyacına göre mikro şebekeler, güneş panel"
+    },
+    {
+     "eylem_no": "6.1.1",
+     "baslik": "Havza ölçekli planlar ve mevcut/potansiyel riskler dikkate alınarak yatırımlara ilişkin ön"
+    },
+    {
+     "eylem_no": "6.1.2",
+     "baslik": "Belirlenen ihtiyaçlar doğrultusunda proje ve yatırımların sürdürülebilirliğinin sağlanması"
+    },
+    {
+     "eylem_no": "6.2.1",
+     "baslik": "Mevcut ve yeni kurulacak su ve atıksu altyapı tesislerinde alternatif enerji kaynaklarının"
+    },
+    {
+     "eylem_no": "6.2.3",
+     "baslik": "Teknik olarak uygun yerlerde yağmur suyu ve atıksu toplama hatları ayrık sistem olarak pro"
+    },
+    {
+     "eylem_no": "6.2.4",
+     "baslik": "Sudan elde edilen gelirlerin su yatırımlarında kullanılması oranı artırılacaktır."
+    },
+    {
+     "eylem_no": "6.3.1",
+     "baslik": "Suyun gelecekteki varlığı dikkate alınarak tüm sektörlerde verimli kullanımını teşvik edec"
+    },
+    {
+     "eylem_no": "7.3.2",
+     "baslik": "Uygulanan politikaların ekonomik sürdürülebilirliği ile iş gücü üzerindeki etkileri düzenl"
+    },
+    {
+     "eylem_no": "8.2.2",
+     "baslik": "Tarımsal sulamada su verimliliğinin sağlanmasına yönelik çiftçi eğitimleri düzenlenecektir"
+    },
+    {
+     "eylem_no": "8.2.6",
+     "baslik": "Su baskını, sel, taşkın afetleri konusunda toplumda farkındalık artırma ve bilinçlendirme "
+    },
+    {
+     "eylem_no": "8.2.9",
+     "baslik": "Su tasarrufu, su verimliliği ve su kaynaklarının korunması konularında sosyal medya, yerel"
+    },
+    {
+     "eylem_no": "8.2.10",
+     "baslik": "İklim değişikliğinin su kaynaklarına etkileri hususunda farkındalık ve bilinçlendirme faal"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "1.1.4",
+     "baslik": "Sulama birlikleri, sulama kooperatifleri ve halk sulamaları tek çatı altında toplanacak, e"
+    },
+    {
+     "eylem_no": "2.2.6",
+     "baslik": "Endüstriyel kuruluşlarda atıksu arıtma tesisleri tamamlanarak deşarj kriterlerine uygun şe"
+    },
+    {
+     "eylem_no": "2.6.5",
+     "baslik": "Ticari maksatlı kullanılan doğal mineralli sular ve kaynak suların takip ve denetimine yön"
+    },
+    {
+     "eylem_no": "2.7.1",
+     "baslik": "Kaynaktan musluğa içme-kullanma suyu güvenliği sistemi geliştirilecektir."
+    },
+    {
+     "eylem_no": "2.7.8",
+     "baslik": "İçme suyu arıtma tesislerini işleten personelin kapasitesi artırılacak ve sertifikalandırı"
+    },
+    {
+     "eylem_no": "2.7.11",
+     "baslik": "İçme sularında başta mikrokirleticiler olmak üzere izleme parametrelerinin belirlenmesine "
+    },
+    {
+     "eylem_no": "4.1.1",
+     "baslik": "Taşkın Yönetim Planları tüm havzalar için tamamlanacak ve güncelleme çalışmaları sürdürüle"
+    },
+    {
+     "eylem_no": "4.1.2",
+     "baslik": "Taşkın Yönetim Planlarında belirlenen tedbirlerin uygulanması koordine edilecek ve izlenec"
+    },
+    {
+     "eylem_no": "4.1.8",
+     "baslik": "Mutlak taşkın alanları güncellenerek ilan edilecektir."
+    },
+    {
+     "eylem_no": "4.3.1",
+     "baslik": "Su erozyonunun etkilerini azaltmak için yukarı havzalarda sedimantasyon kontrolü ve arazi "
+    },
+    {
+     "eylem_no": "4.3.2",
+     "baslik": "Toprak koruma ve erozyonla mücadele politikalarının ve araçlarının (ulusal çölleşme modeli"
+    },
+    {
+     "eylem_no": "4.3.3",
+     "baslik": "Bütünleşik doğal kaynak yönetimini destekleyecek planlama, uygulama ve izleme faaliyetleri"
+    },
+    {
+     "eylem_no": "5.3.1",
+     "baslik": "Yapay zeka ve fizik tabanlı modellemeyle desteklenen Taşkın Tahmini ve Erken Uyarı Sisteml"
+    },
+    {
+     "eylem_no": "5.3.2",
+     "baslik": "Kuraklık Tahmini ve Erken Uyarı Sistemi kurulacak ve yaygınlaştırılacaktır."
+    },
+    {
+     "eylem_no": "5.4.1",
+     "baslik": "Sürdürülebilir uygulamalar kapsamında mikrobiyal yakıt hücrelerinin su havzalarının korunm"
+    },
+    {
+     "eylem_no": "5.4.4",
+     "baslik": "Su kaynaklarında antibiyotik varlıklarının ve direnç genlerinin araştırılması ve arıtılmas"
+    },
+    {
+     "eylem_no": "8.2.4",
+     "baslik": "Geleneksel olmayan su kaynakları konusunda paydaşların teknik bilgi, tecrübe ve farkındalı"
+    }
+   ]
   },
   {
    "id": "buyuksehir-belediyeleri",
@@ -1477,7 +4191,207 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "1.1.1",
+     "baslik": "Su kaynaklarının yönetiminde havza ölçeğinde bütünleşik izleme ve takip sistemi geliştiril"
+    },
+    {
+     "eylem_no": "2.1.1",
+     "baslik": "Havza izleme programları, havzadaki kurumsal ihtiyaçlar ve maliyetlerin düşürülmesi doğrul"
+    },
+    {
+     "eylem_no": "2.1.2",
+     "baslik": "Havza izleme programlarına uygun şekilde sürekli izlemeler yapılacaktır."
+    },
+    {
+     "eylem_no": "2.1.3",
+     "baslik": "Su ile ilgili analizleri gerçekleştiren kamu laboratuvarlarının teknik ve personel kapasit"
+    },
+    {
+     "eylem_no": "2.1.5",
+     "baslik": "Su tahsisi yapılan tüm tesislerde ölçüm ve izleme sistemleri yaygınlaştırılacaktır."
+    },
+    {
+     "eylem_no": "2.2.7",
+     "baslik": "Arıtma çamurlarının nihai bertarafı kapsamında entegre çözümler hayata geçirilecektir."
+    },
+    {
+     "eylem_no": "2.5.3",
+     "baslik": "İçme Suyu, Atıksu ve Yağmur Suyu Master Planları tamamlanacak/güncellenecektir."
+    },
+    {
+     "eylem_no": "2.6.5",
+     "baslik": "Ticari maksatlı kullanılan doğal mineralli sular ve kaynak suların takip ve denetimine yön"
+    },
+    {
+     "eylem_no": "2.7.3",
+     "baslik": "İçme-Kullanma Suyu Havzası Koruma Planlarını kapsayan Su Güvenliği Planları hazırlanacaktı"
+    },
+    {
+     "eylem_no": "2.7.4",
+     "baslik": "İçme-Kullanma Suyu Güvenliği Planlarının uygulanması ve takibi yapılacaktır."
+    },
+    {
+     "eylem_no": "2.8.1",
+     "baslik": "Biyolojik filtrasyon sistemleri ve yenilikçi dezenfeksiyon yöntemleri gibi su arıtma tekno"
+    },
+    {
+     "eylem_no": "2.8.2",
+     "baslik": "Temiz suya erişimi olmayan kırsal ve düşük gelirli bölgelerde temiz içme suyuna erişimi sa"
+    },
+    {
+     "eylem_no": "2.8.3",
+     "baslik": "İklim değişikliğine bağlı su kıtlığı ve aşırı yağışlardan kaynaklanan sağlık riskleri mini"
+    },
+    {
+     "eylem_no": "2.8.4",
+     "baslik": "Mikroplastiklerin ve mikrokirleticilerin neden olduğu su kirliliğinin önlenmesi için tedbi"
+    },
+    {
+     "eylem_no": "2.9.2",
+     "baslik": "Uygun yerlerde baraj ve gölet yatırımları yapılacaktır."
+    },
+    {
+     "eylem_no": "3.2.2",
+     "baslik": "Taşkın ve kuraklık yönetiminin entegrasyonu sağlanacak ve taşkın/sellerle gelen suların ye"
+    },
+    {
+     "eylem_no": "3.2.3",
+     "baslik": "Taşkın önlemleri için ekosistem esaslı yaklaşım kapsamında doğal su tutma uygulamaları ger"
+    },
+    {
+     "eylem_no": "3.2.4",
+     "baslik": "Kuraklık riski altında olan göller için Eylem Planı hazırlanacak ve uygulanacaktır."
+    },
+    {
+     "eylem_no": "4.1.3",
+     "baslik": "İl Risk Azaltma Planları (İRAP) ve Mekânsal Planlama Çalışmaları, Taşkın Yönetim Planları "
+    },
+    {
+     "eylem_no": "4.1.4",
+     "baslik": "Taşkın Risk Yönetim Planlarında yer alan tedbirler uygulanacaktır."
+    },
+    {
+     "eylem_no": "4.1.5",
+     "baslik": "Akarsu yataklarına müdahaleler önlenecek, hafriyat, çöp vb. maddelerin atılması engellenec"
+    },
+    {
+     "eylem_no": "4.1.6",
+     "baslik": "Taşkın Riskini azaltmaya yönelik kamulaştırma çalışmalarının yapılması sağlanacaktır."
+    },
+    {
+     "eylem_no": "4.1.7",
+     "baslik": "Taşkın riski yüksek olan illerde taşkın riskini azaltmaya yönelik yatırımlara öncelik veri"
+    },
+    {
+     "eylem_no": "4.2.1",
+     "baslik": "Kuraklık riski yüksek olan havzalarda kuraklık riskini azaltmaya yönelik yatırımlara öncel"
+    },
+    {
+     "eylem_no": "4.2.2",
+     "baslik": "Kuraklık Yönetim Planlarında yer alan tedbirler uygulanacak ve takip edilecektir."
+    },
+    {
+     "eylem_no": "5.4.2",
+     "baslik": "Hizmete erişimin kısıtlı olduğu bölgelerde su ihtiyacına göre mikro şebekeler, güneş panel"
+    },
+    {
+     "eylem_no": "6.1.2",
+     "baslik": "Belirlenen ihtiyaçlar doğrultusunda proje ve yatırımların sürdürülebilirliğinin sağlanması"
+    },
+    {
+     "eylem_no": "6.2.1",
+     "baslik": "Mevcut ve yeni kurulacak su ve atıksu altyapı tesislerinde alternatif enerji kaynaklarının"
+    },
+    {
+     "eylem_no": "6.2.3",
+     "baslik": "Teknik olarak uygun yerlerde yağmur suyu ve atıksu toplama hatları ayrık sistem olarak pro"
+    },
+    {
+     "eylem_no": "8.2.2",
+     "baslik": "Tarımsal sulamada su verimliliğinin sağlanmasına yönelik çiftçi eğitimleri düzenlenecektir"
+    },
+    {
+     "eylem_no": "8.2.6",
+     "baslik": "Su baskını, sel, taşkın afetleri konusunda toplumda farkındalık artırma ve bilinçlendirme "
+    },
+    {
+     "eylem_no": "8.2.9",
+     "baslik": "Su tasarrufu, su verimliliği ve su kaynaklarının korunması konularında sosyal medya, yerel"
+    },
+    {
+     "eylem_no": "8.2.10",
+     "baslik": "İklim değişikliğinin su kaynaklarına etkileri hususunda farkındalık ve bilinçlendirme faal"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "1.1.4",
+     "baslik": "Sulama birlikleri, sulama kooperatifleri ve halk sulamaları tek çatı altında toplanacak, e"
+    },
+    {
+     "eylem_no": "2.2.5",
+     "baslik": "Evsel ve kentsel atıksu arıtma tesisleri tamamlanacak ve deşarj kriterlerine uygun olarak "
+    },
+    {
+     "eylem_no": "2.2.6",
+     "baslik": "Endüstriyel kuruluşlarda atıksu arıtma tesisleri tamamlanarak deşarj kriterlerine uygun şe"
+    },
+    {
+     "eylem_no": "2.7.8",
+     "baslik": "İçme suyu arıtma tesislerini işleten personelin kapasitesi artırılacak ve sertifikalandırı"
+    },
+    {
+     "eylem_no": "2.7.11",
+     "baslik": "İçme sularında başta mikrokirleticiler olmak üzere izleme parametrelerinin belirlenmesine "
+    },
+    {
+     "eylem_no": "4.1.1",
+     "baslik": "Taşkın Yönetim Planları tüm havzalar için tamamlanacak ve güncelleme çalışmaları sürdürüle"
+    },
+    {
+     "eylem_no": "4.1.2",
+     "baslik": "Taşkın Yönetim Planlarında belirlenen tedbirlerin uygulanması koordine edilecek ve izlenec"
+    },
+    {
+     "eylem_no": "4.1.8",
+     "baslik": "Mutlak taşkın alanları güncellenerek ilan edilecektir."
+    },
+    {
+     "eylem_no": "4.3.1",
+     "baslik": "Su erozyonunun etkilerini azaltmak için yukarı havzalarda sedimantasyon kontrolü ve arazi "
+    },
+    {
+     "eylem_no": "4.3.2",
+     "baslik": "Toprak koruma ve erozyonla mücadele politikalarının ve araçlarının (ulusal çölleşme modeli"
+    },
+    {
+     "eylem_no": "4.3.3",
+     "baslik": "Bütünleşik doğal kaynak yönetimini destekleyecek planlama, uygulama ve izleme faaliyetleri"
+    },
+    {
+     "eylem_no": "5.3.1",
+     "baslik": "Yapay zeka ve fizik tabanlı modellemeyle desteklenen Taşkın Tahmini ve Erken Uyarı Sisteml"
+    },
+    {
+     "eylem_no": "5.3.2",
+     "baslik": "Kuraklık Tahmini ve Erken Uyarı Sistemi kurulacak ve yaygınlaştırılacaktır."
+    },
+    {
+     "eylem_no": "5.4.1",
+     "baslik": "Sürdürülebilir uygulamalar kapsamında mikrobiyal yakıt hücrelerinin su havzalarının korunm"
+    },
+    {
+     "eylem_no": "5.4.4",
+     "baslik": "Su kaynaklarında antibiyotik varlıklarının ve direnç genlerinin araştırılması ve arıtılmas"
+    },
+    {
+     "eylem_no": "8.2.4",
+     "baslik": "Geleneksel olmayan su kaynakları konusunda paydaşların teknik bilgi, tecrübe ve farkındalı"
+    }
+   ]
   },
   {
    "id": "istanbul-buyuksehir-belediyesi",
@@ -1763,7 +4677,27 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "5.2.8",
+     "baslik": "Sulama şebekelerinde suyun ölçülü ve verimli dağıtımını teminen ön ödemeli sayaç uygulamal"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.1.4",
+     "baslik": "Yeraltı sularının miktar takibi ve kalite izlemeleri yapılacaktır."
+    },
+    {
+     "eylem_no": "5.2.4",
+     "baslik": "Tarımsal su tüketimi uydu görüntüleri ile izlenecek ve düzenli raporlama yapılarak izleme "
+    },
+    {
+     "eylem_no": "5.2.7",
+     "baslik": "SUTEM Bilgi Sistemi kapsamı genişletilecek, tüm sulamalarda izleme ve performans değerlend"
+    }
+   ]
   },
   {
    "id": "toprak-koruma-kurulu",
@@ -1820,7 +4754,17 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "2.2.6",
+     "baslik": "Endüstriyel kuruluşlarda atıksu arıtma tesisleri tamamlanarak deşarj kriterlerine uygun şe"
+    },
+    {
+     "eylem_no": "3.3.2",
+     "baslik": "Kurakçıl Peyzaj Uygulamalarına İlişkin Usul ve Esaslar kapsamında kurakçıl peyzaj uygulama"
+    }
+   ]
   },
   {
    "id": "yerel-yonetimler-gm",
@@ -1839,7 +4783,19 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "8.2.9",
+     "baslik": "Su tasarrufu, su verimliliği ve su kaynaklarının korunması konularında sosyal medya, yerel"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.6.5",
+     "baslik": "Ticari maksatlı kullanılan doğal mineralli sular ve kaynak suların takip ve denetimine yön"
+    }
+   ]
   },
   {
    "id": "tbmm-su-arastirma-komisyonu",
@@ -1918,7 +4874,63 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "5.4.2",
+     "baslik": "Hizmete erişimin kısıtlı olduğu bölgelerde su ihtiyacına göre mikro şebekeler, güneş panel"
+    },
+    {
+     "eylem_no": "6.1.1",
+     "baslik": "Havza ölçekli planlar ve mevcut/potansiyel riskler dikkate alınarak yatırımlara ilişkin ön"
+    },
+    {
+     "eylem_no": "6.1.2",
+     "baslik": "Belirlenen ihtiyaçlar doğrultusunda proje ve yatırımların sürdürülebilirliğinin sağlanması"
+    },
+    {
+     "eylem_no": "6.2.3",
+     "baslik": "Teknik olarak uygun yerlerde yağmur suyu ve atıksu toplama hatları ayrık sistem olarak pro"
+    },
+    {
+     "eylem_no": "6.2.4",
+     "baslik": "Sudan elde edilen gelirlerin su yatırımlarında kullanılması oranı artırılacaktır."
+    },
+    {
+     "eylem_no": "6.3.1",
+     "baslik": "Suyun gelecekteki varlığı dikkate alınarak tüm sektörlerde verimli kullanımını teşvik edec"
+    },
+    {
+     "eylem_no": "6.3.2",
+     "baslik": "Ulusal, uluslararası finansman programları ve dış kaynaklı fonlarda su verimliliği alanınd"
+    },
+    {
+     "eylem_no": "6.3.3",
+     "baslik": "Finansal kaynakların optimizasyonu için kuraklık ve taşkın riski olan havzalarda suya iliş"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.7.7",
+     "baslik": "İçme suyu arıtma tesislerinin revizyon ve rehabilitasyonu yapılacaktır."
+    },
+    {
+     "eylem_no": "2.7.8",
+     "baslik": "İçme suyu arıtma tesislerini işleten personelin kapasitesi artırılacak ve sertifikalandırı"
+    },
+    {
+     "eylem_no": "2.8.2",
+     "baslik": "Temiz suya erişimi olmayan kırsal ve düşük gelirli bölgelerde temiz içme suyuna erişimi sa"
+    },
+    {
+     "eylem_no": "2.8.3",
+     "baslik": "İklim değişikliğine bağlı su kıtlığı ve aşırı yağışlardan kaynaklanan sağlık riskleri mini"
+    },
+    {
+     "eylem_no": "6.2.1",
+     "baslik": "Mevcut ve yeni kurulacak su ve atıksu altyapı tesislerinde alternatif enerji kaynaklarının"
+    }
+   ]
   },
   {
    "id": "turkiye-cevre-ajansi",
@@ -2115,7 +5127,43 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "4.1.4",
+     "baslik": "Taşkın Risk Yönetim Planlarında yer alan tedbirler uygulanacaktır."
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "4.1.1",
+     "baslik": "Taşkın Yönetim Planları tüm havzalar için tamamlanacak ve güncelleme çalışmaları sürdürüle"
+    },
+    {
+     "eylem_no": "4.1.2",
+     "baslik": "Taşkın Yönetim Planlarında belirlenen tedbirlerin uygulanması koordine edilecek ve izlenec"
+    },
+    {
+     "eylem_no": "4.1.5",
+     "baslik": "Akarsu yataklarına müdahaleler önlenecek, hafriyat, çöp vb. maddelerin atılması engellenec"
+    },
+    {
+     "eylem_no": "4.1.6",
+     "baslik": "Taşkın Riskini azaltmaya yönelik kamulaştırma çalışmalarının yapılması sağlanacaktır."
+    },
+    {
+     "eylem_no": "4.1.7",
+     "baslik": "Taşkın riski yüksek olan illerde taşkın riskini azaltmaya yönelik yatırımlara öncelik veri"
+    },
+    {
+     "eylem_no": "4.1.8",
+     "baslik": "Mutlak taşkın alanları güncellenerek ilan edilecektir."
+    },
+    {
+     "eylem_no": "4.3.1",
+     "baslik": "Su erozyonunun etkilerini azaltmak için yukarı havzalarda sedimantasyon kontrolü ve arazi "
+    }
+   ]
   },
   {
    "id": "kultur-varliklari-koruma-bolge-kurulu",
@@ -2252,7 +5300,19 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "5.4.3",
+     "baslik": "Sağlıklı toprak, su verimliliği, kirliliğin azaltılması, verimlilik artışı ve düşük karbon"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "7.4.3",
+     "baslik": "Kurak dönemler özelinde havza ve alt havza bazında sektörel su ihtiyaçları ve ihtiyaçların"
+    }
+   ]
   },
   {
    "id": "ticaret-bakanligi",
@@ -2271,7 +5331,21 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "6.1.4",
+     "baslik": "Yenilenebilir enerji altyapılarının artırılması, suyun geri kazanımı ve diğer doğal kaynak"
+    },
+    {
+     "eylem_no": "7.1.3",
+     "baslik": "Gıda, enerji, su ve ulaşım gibi sektörlerde yapılan düzenlemeler ile sağlanan teşvik ve de"
+    },
+    {
+     "eylem_no": "7.3.3",
+     "baslik": "Çevre dostu ürün ve teknolojilerin üretimi ile ulusal ve uluslararası ticareti teşvik edec"
+    }
+   ]
   },
   {
    "id": "denizcilik-mustesarligi",
@@ -2433,7 +5507,43 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "2.1.6",
+     "baslik": "Hidrometeorolojik veri ağının güçlendirilmesi sağlanacaktır."
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.4.1",
+     "baslik": "İhtiyaç duyulan konu ve alanlarda hidropolitik strateji belgesi(leri) hazırlanacaktır."
+    },
+    {
+     "eylem_no": "3.1.1",
+     "baslik": "Havza bazında, su kaynaklarında ve depolamalı tesislerde iklim değişikliğinin etkileri ana"
+    },
+    {
+     "eylem_no": "4.1.1",
+     "baslik": "Taşkın Yönetim Planları tüm havzalar için tamamlanacak ve güncelleme çalışmaları sürdürüle"
+    },
+    {
+     "eylem_no": "4.1.2",
+     "baslik": "Taşkın Yönetim Planlarında belirlenen tedbirlerin uygulanması koordine edilecek ve izlenec"
+    },
+    {
+     "eylem_no": "4.2.1",
+     "baslik": "Kuraklık riski yüksek olan havzalarda kuraklık riskini azaltmaya yönelik yatırımlara öncel"
+    },
+    {
+     "eylem_no": "5.3.1",
+     "baslik": "Yapay zeka ve fizik tabanlı modellemeyle desteklenen Taşkın Tahmini ve Erken Uyarı Sisteml"
+    },
+    {
+     "eylem_no": "5.3.2",
+     "baslik": "Kuraklık Tahmini ve Erken Uyarı Sistemi kurulacak ve yaygınlaştırılacaktır."
+    }
+   ]
   },
   {
    "id": "iklim-degisikligi-baskanligi",
@@ -2454,7 +5564,17 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.4.1",
+     "baslik": "İhtiyaç duyulan konu ve alanlarda hidropolitik strateji belgesi(leri) hazırlanacaktır."
+    },
+    {
+     "eylem_no": "4.2.1",
+     "baslik": "Kuraklık riski yüksek olan havzalarda kuraklık riskini azaltmaya yönelik yatırımlara öncel"
+    }
+   ]
   },
   {
    "id": "kalkinma-ajanslari",
@@ -2473,7 +5593,13 @@
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
-   "son_guncelleme": "2026-07-23"
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "6.3.3",
+     "baslik": "Finansal kaynakların optimizasyonu için kuraklık ve taşkın riski olan havzalarda suya iliş"
+    }
+   ]
   },
   {
    "id": "il-saglik-mudurlugu",
@@ -2649,9 +5775,679 @@
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
    "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tob-egitim-yayin-dairesi",
+   "ad_resmi": "Eğitim ve Yayın Dairesi Başkanlığı",
+   "kisaltma": "EYDB",
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "daire",
+   "dayanak": "1 s. CBK md.412/1-ö (Tarım ve Orman Bakanlığı hizmet birimi); Ulusal Su Planı 2026-2035 eylem tabloları — 6 eylemde sorumlu kuruluş (su farkındalık ve eğitim eylemleri)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "Ç6-USP"
+   ],
+   "kaynak_url": "data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf",
+   "erisim_notu": "Ulusal Su Planı 2026-2035 eylem tabloları (s.91-109, 141 eylem) koordinat tabanlı ayrıştırmayla okundu; CBK madde atıfları 1 ve 4 s. CBK tam metinlerinden teyit edildi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "8.1.1",
+     "baslik": "Bilgilendirme, danışma ve karar alma süreçlerini içeren “Su İletişim Planı” hazırlanacaktı"
+    },
+    {
+     "eylem_no": "8.1.2",
+     "baslik": "Su İletişim Planı dahilinde bilgilendirme aşaması uygulanacaktır (Kamu Spotları, Temel Bil"
+    },
+    {
+     "eylem_no": "8.1.3",
+     "baslik": "Su İletişim Planı dahilinde danışma süreci (USBS Vatandaş Portalı, Bir Fikrim Var, Bakanlı"
+    },
+    {
+     "eylem_no": "8.2.1",
+     "baslik": "Çevre dostu tarımsal uygulamalar ve sularda nitrat kirliliğinin önlenmesine yönelik eğitim"
+    },
+    {
+     "eylem_no": "8.2.2",
+     "baslik": "Tarımsal sulamada su verimliliğinin sağlanmasına yönelik çiftçi eğitimleri düzenlenecektir"
+    },
+    {
+     "eylem_no": "8.2.8",
+     "baslik": "Temiz su, sanitasyon ve güvenli su kullanımı konularında toplum bilincini artırmak için eğ"
+    }
+   ]
+  },
+  {
+   "id": "tob-bilgi-teknolojileri-gm",
+   "ad_resmi": "Bilgi Teknolojileri Genel Müdürlüğü",
+   "kisaltma": "BTGM",
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "GM",
+   "dayanak": "1 s. CBK md.412/1-j; Ulusal Su Planı 2026-2035 eylem tabloları — Eylem 5.2.11 (karar destek ve bilgi sistemleri) sorumlu kuruluşu",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "Ç6-USP"
+   ],
+   "kaynak_url": "data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf",
+   "erisim_notu": "Ulusal Su Planı 2026-2035 eylem tabloları (s.91-109, 141 eylem) koordinat tabanlı ayrıştırmayla okundu; CBK madde atıfları 1 ve 4 s. CBK tam metinlerinden teyit edildi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "5.1.1",
+     "baslik": "Su kaynakları yönetimine ilişkin verilerin tek çatı altında toplanması, siber güvenliğin s"
+    },
+    {
+     "eylem_no": "5.2.10",
+     "baslik": "Su yönetiminde teknolojik gelişmeleri takip edip uygulayacak bir inovasyon birimi kurulaca"
+    },
+    {
+     "eylem_no": "5.2.11",
+     "baslik": "Karar destek ve bilgi sistemlerinin geliştirilmesi ve sürdürülebilirliğinin sağlanması içi"
+    }
+   ]
+  },
+  {
+   "id": "tob-ab-dis-iliskiler-gm",
+   "ad_resmi": "Avrupa Birliği ve Dış İlişkiler Genel Müdürlüğü (Tarım ve Orman Bakanlığı)",
+   "kisaltma": "ABDGM",
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "GM",
+   "dayanak": "1 s. CBK md.412/1-h ve md.422; Ulusal Su Planı 2026-2035 eylem tabloları — 2 eylemde ilgili kuruluş",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "Ç6-USP"
+   ],
+   "kaynak_url": "data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf",
+   "erisim_notu": "Ulusal Su Planı 2026-2035 eylem tabloları (s.91-109, 141 eylem) koordinat tabanlı ayrıştırmayla okundu; CBK madde atıfları 1 ve 4 s. CBK tam metinlerinden teyit edildi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23",
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.4.1",
+     "baslik": "İhtiyaç duyulan konu ve alanlarda hidropolitik strateji belgesi(leri) hazırlanacaktır."
+    },
+    {
+     "eylem_no": "2.4.2",
+     "baslik": "Uluslararası kuruluşlarda mukim su ve iklim konusundaki temsilcilerin istişare maksadıyla "
+    }
+   ]
+  },
+  {
+   "id": "gida-kontrol-gm",
+   "ad_resmi": "Gıda ve Kontrol Genel Müdürlüğü",
+   "kisaltma": "GKGM",
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "GM",
+   "dayanak": "1 s. CBK md.412/1-a ve md.413; Ulusal Su Planı 2026-2035 eylem tabloları — 2 eylemde sorumlu kuruluş",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "Ç6-USP"
+   ],
+   "kaynak_url": "data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf",
+   "erisim_notu": "Ulusal Su Planı 2026-2035 eylem tabloları (s.91-109, 141 eylem) koordinat tabanlı ayrıştırmayla okundu; CBK madde atıfları 1 ve 4 s. CBK tam metinlerinden teyit edildi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "2.2.4",
+     "baslik": "Pestisit kaynaklı kirliliğin azaltılması ve önlenmesi için izleme takip ve denetim sistemi"
+    },
+    {
+     "eylem_no": "5.2.9",
+     "baslik": "Kullanılan bitki koruma ilaçlarının takibine ilişkin grup ve aktif madde bazında bilgileri"
+    }
+   ]
+  },
+  {
+   "id": "harita-gm",
+   "ad_resmi": "Harita Genel Müdürlüğü",
+   "kisaltma": "HGM",
+   "alias": [],
+   "ust_kurum_id": "milli-savunma-bakanligi",
+   "tur": "kuruluş",
+   "dayanak": "4 s. CBK md.168-169 (Millî Savunma Bakanlığı bağlı kuruluşu); Ulusal Su Planı 2026-2035 eylem tabloları — Eylem 3.1.2 (deniz seviyesi, kıyılar, göller ve sulak alanlar) ilgili kuruluşu",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "Ç6-USP"
+   ],
+   "kaynak_url": "data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf",
+   "erisim_notu": "Ulusal Su Planı 2026-2035 eylem tabloları (s.91-109, 141 eylem) koordinat tabanlı ayrıştırmayla okundu; CBK madde atıfları 1 ve 4 s. CBK tam metinlerinden teyit edildi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23",
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "3.1.2",
+     "baslik": "İklim değişikliğinin deniz seviyesi, kıyılar, göller ve sulak alanlar üzerindeki etkileri "
+    }
+   ]
+  },
+  {
+   "id": "dhmi",
+   "ad_resmi": "Devlet Hava Meydanları İşletmesi Genel Müdürlüğü",
+   "kisaltma": "DHMİ",
+   "alias": [],
+   "ust_kurum_id": "ulastirma-altyapi-bakanligi",
+   "tur": "kuruluş",
+   "dayanak": "Ulusal Su Planı 2026-2035 eylem tabloları — Eylem 3.3.2 (kurakçıl peyzaj uygulamaları) sorumlu kuruluşu",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "Ç6-USP"
+   ],
+   "kaynak_url": "data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf",
+   "erisim_notu": "Ulusal Su Planı 2026-2035 eylem tabloları (s.91-109, 141 eylem) koordinat tabanlı ayrıştırmayla okundu; CBK madde atıfları 1 ve 4 s. CBK tam metinlerinden teyit edildi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "3.3.2",
+     "baslik": "Kurakçıl Peyzaj Uygulamalarına İlişkin Usul ve Esaslar kapsamında kurakçıl peyzaj uygulama"
+    }
+   ]
+  },
+  {
+   "id": "genclik-spor-bakanligi",
+   "ad_resmi": "Gençlik ve Spor Bakanlığı",
+   "kisaltma": "GSB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "1 s. CBK md.184; Ulusal Su Planı 2026-2035 eylem tabloları — Eylem 3.3.2 (golf, futbol ve atletizm sahalarında kurakçıl peyzaj) sorumlu kuruluşu. TUR 1A'da 'kayıt açılmayan 5 bakanlık'tan biriydi.",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "Ç6-USP"
+   ],
+   "kaynak_url": "data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf",
+   "erisim_notu": "Ulusal Su Planı 2026-2035 eylem tabloları (s.91-109, 141 eylem) koordinat tabanlı ayrıştırmayla okundu; CBK madde atıfları 1 ve 4 s. CBK tam metinlerinden teyit edildi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "3.3.2",
+     "baslik": "Kurakçıl Peyzaj Uygulamalarına İlişkin Usul ve Esaslar kapsamında kurakçıl peyzaj uygulama"
+    }
+   ]
+  },
+  {
+   "id": "calisma-sosyal-guvenlik-bakanligi",
+   "ad_resmi": "Çalışma ve Sosyal Güvenlik Bakanlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "1 s. CBK md.170 vd.; Ulusal Su Planı 2026-2035 eylem tabloları — Eylem 7.3.2 (su politikalarının iş gücü üzerindeki etkileri) ilgili kuruluşu. TUR 1A'da 'kayıt açılmayan 5 bakanlık'tan biriydi.",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "Ç6-USP"
+   ],
+   "kaynak_url": "data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf",
+   "erisim_notu": "Ulusal Su Planı 2026-2035 eylem tabloları (s.91-109, 141 eylem) koordinat tabanlı ayrıştırmayla okundu; CBK madde atıfları 1 ve 4 s. CBK tam metinlerinden teyit edildi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "7.3.2",
+     "baslik": "Uygulanan politikaların ekonomik sürdürülebilirliği ile iş gücü üzerindeki etkileri düzenl"
+    }
+   ]
+  },
+  {
+   "id": "yok",
+   "ad_resmi": "Yükseköğretim Kurulu",
+   "kisaltma": "YÖK",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kurul",
+   "dayanak": "2547 s. Yükseköğretim K. md.7/d (uygulama ve araştırma merkezi açılmasına karar verir); Ulusal Su Planı 2026-2035 eylem tabloları — 4 eylemde sorumlu kuruluş (su eğitimi ve araştırma). TUR 1A-2'de dayanak yetersiz görülüp REDDEDİLMİŞTİ; USP eylem tabloları bu kararı düşürdü.",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "Ç6-USP"
+   ],
+   "kaynak_url": "data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf",
+   "erisim_notu": "Ulusal Su Planı 2026-2035 eylem tabloları (s.91-109, 141 eylem) koordinat tabanlı ayrıştırmayla okundu; CBK madde atıfları 1 ve 4 s. CBK tam metinlerinden teyit edildi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "7.1.2",
+     "baslik": "Sektörel eğitim programları sayesinde, farklı sektörler arasındaki iş birliğini anlayan ve"
+    },
+    {
+     "eylem_no": "8.1.1",
+     "baslik": "Bilgilendirme, danışma ve karar alma süreçlerini içeren “Su İletişim Planı” hazırlanacaktı"
+    },
+    {
+     "eylem_no": "8.1.2",
+     "baslik": "Su İletişim Planı dahilinde bilgilendirme aşaması uygulanacaktır (Kamu Spotları, Temel Bil"
+    },
+    {
+     "eylem_no": "8.1.3",
+     "baslik": "Su İletişim Planı dahilinde danışma süreci (USBS Vatandaş Portalı, Bir Fikrim Var, Bakanlı"
+    }
+   ]
+  },
+  {
+   "id": "universiteler",
+   "ad_resmi": "Üniversiteler",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "yok",
+   "tur": "kuruluş",
+   "dayanak": "Ulusal Su Planı 2026-2035 eylem tabloları — 3 eylemde sorumlu, 12 eylemde ilgili kuruluş. Üniversite bünyesindeki su merkezleri ayrı kayıttadır ([[universite-su-arastirma-merkezleri]]).",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "Ç6-USP"
+   ],
+   "kaynak_url": "data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf",
+   "erisim_notu": "Ulusal Su Planı 2026-2035 eylem tabloları (s.91-109, 141 eylem) koordinat tabanlı ayrıştırmayla okundu; CBK madde atıfları 1 ve 4 s. CBK tam metinlerinden teyit edildi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "3.3.2",
+     "baslik": "Kurakçıl Peyzaj Uygulamalarına İlişkin Usul ve Esaslar kapsamında kurakçıl peyzaj uygulama"
+    },
+    {
+     "eylem_no": "7.1.2",
+     "baslik": "Sektörel eğitim programları sayesinde, farklı sektörler arasındaki iş birliğini anlayan ve"
+    },
+    {
+     "eylem_no": "7.2.4",
+     "baslik": "Kamu, özel sektör, akademi ve sivil toplum arasında iş birliği ve sektörel sinerjilerin ge"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.4.2",
+     "baslik": "Uluslararası kuruluşlarda mukim su ve iklim konusundaki temsilcilerin istişare maksadıyla "
+    },
+    {
+     "eylem_no": "5.4.1",
+     "baslik": "Sürdürülebilir uygulamalar kapsamında mikrobiyal yakıt hücrelerinin su havzalarının korunm"
+    },
+    {
+     "eylem_no": "5.4.3",
+     "baslik": "Sağlıklı toprak, su verimliliği, kirliliğin azaltılması, verimlilik artışı ve düşük karbon"
+    },
+    {
+     "eylem_no": "5.4.4",
+     "baslik": "Su kaynaklarında antibiyotik varlıklarının ve direnç genlerinin araştırılması ve arıtılmas"
+    },
+    {
+     "eylem_no": "8.2.1",
+     "baslik": "Çevre dostu tarımsal uygulamalar ve sularda nitrat kirliliğinin önlenmesine yönelik eğitim"
+    },
+    {
+     "eylem_no": "8.2.2",
+     "baslik": "Tarımsal sulamada su verimliliğinin sağlanmasına yönelik çiftçi eğitimleri düzenlenecektir"
+    },
+    {
+     "eylem_no": "8.2.3",
+     "baslik": "Sanayi bölgelerinde atıksu geri kazanımı ve yeniden kullanım uygulamalarıyla suyun döngüse"
+    },
+    {
+     "eylem_no": "8.2.4",
+     "baslik": "Geleneksel olmayan su kaynakları konusunda paydaşların teknik bilgi, tecrübe ve farkındalı"
+    },
+    {
+     "eylem_no": "8.2.5",
+     "baslik": "Örgün ve yaygın eğitim öğretim programında su kaynaklarının önemi ve verimli kullanılmasın"
+    },
+    {
+     "eylem_no": "8.2.6",
+     "baslik": "Su baskını, sel, taşkın afetleri konusunda toplumda farkındalık artırma ve bilinçlendirme "
+    },
+    {
+     "eylem_no": "8.2.7",
+     "baslik": "Su kıtlığı, kuraklık riskine karşı kapasite geliştirme ve farkındalığın artırılması çalışm"
+    },
+    {
+     "eylem_no": "8.2.8",
+     "baslik": "Temiz su, sanitasyon ve güvenli su kullanımı konularında toplum bilincini artırmak için eğ"
+    }
+   ]
+  },
+  {
+   "id": "valilikler",
+   "ad_resmi": "Valilikler",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "icisleri-bakanligi",
+   "tur": "yerel",
+   "dayanak": "5442 s. İl İdaresi K.; Ulusal Su Planı 2026-2035 eylem tabloları — 9 eylemde sorumlu, 12 eylemde ilgili kuruluş. Su Kurulları Yön. md.8/2 uyarınca il su kurullarına vali başkanlık eder.",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "Ç6-USP"
+   ],
+   "kaynak_url": "data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf",
+   "erisim_notu": "Ulusal Su Planı 2026-2035 eylem tabloları (s.91-109, 141 eylem) koordinat tabanlı ayrıştırmayla okundu; CBK madde atıfları 1 ve 4 s. CBK tam metinlerinden teyit edildi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "1.1.1",
+     "baslik": "Su kaynaklarının yönetiminde havza ölçeğinde bütünleşik izleme ve takip sistemi geliştiril"
+    },
+    {
+     "eylem_no": "1.1.3",
+     "baslik": "Büyükşehir dışındaki il belediyelerinde su ve atıksu hizmetlerinin etkinliğinin ve sürdürü"
+    },
+    {
+     "eylem_no": "2.6.5",
+     "baslik": "Ticari maksatlı kullanılan doğal mineralli sular ve kaynak suların takip ve denetimine yön"
+    },
+    {
+     "eylem_no": "2.7.4",
+     "baslik": "İçme-Kullanma Suyu Güvenliği Planlarının uygulanması ve takibi yapılacaktır."
+    },
+    {
+     "eylem_no": "4.1.3",
+     "baslik": "İl Risk Azaltma Planları (İRAP) ve Mekânsal Planlama Çalışmaları, Taşkın Yönetim Planları "
+    },
+    {
+     "eylem_no": "6.1.1",
+     "baslik": "Havza ölçekli planlar ve mevcut/potansiyel riskler dikkate alınarak yatırımlara ilişkin ön"
+    },
+    {
+     "eylem_no": "6.3.1",
+     "baslik": "Suyun gelecekteki varlığı dikkate alınarak tüm sektörlerde verimli kullanımını teşvik edec"
+    },
+    {
+     "eylem_no": "7.3.2",
+     "baslik": "Uygulanan politikaların ekonomik sürdürülebilirliği ile iş gücü üzerindeki etkileri düzenl"
+    },
+    {
+     "eylem_no": "8.2.9",
+     "baslik": "Su tasarrufu, su verimliliği ve su kaynaklarının korunması konularında sosyal medya, yerel"
+    },
+    {
+     "eylem_no": "8.2.10",
+     "baslik": "İklim değişikliğinin su kaynaklarına etkileri hususunda farkındalık ve bilinçlendirme faal"
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "2.7.1",
+     "baslik": "Kaynaktan musluğa içme-kullanma suyu güvenliği sistemi geliştirilecektir."
+    },
+    {
+     "eylem_no": "3.3.4",
+     "baslik": "Su verimliliği il planları hazırlanacaktır."
+    },
+    {
+     "eylem_no": "4.1.2",
+     "baslik": "Taşkın Yönetim Planlarında belirlenen tedbirlerin uygulanması koordine edilecek ve izlenec"
+    },
+    {
+     "eylem_no": "4.1.5",
+     "baslik": "Akarsu yataklarına müdahaleler önlenecek, hafriyat, çöp vb. maddelerin atılması engellenec"
+    },
+    {
+     "eylem_no": "4.1.6",
+     "baslik": "Taşkın Riskini azaltmaya yönelik kamulaştırma çalışmalarının yapılması sağlanacaktır."
+    },
+    {
+     "eylem_no": "4.3.2",
+     "baslik": "Toprak koruma ve erozyonla mücadele politikalarının ve araçlarının (ulusal çölleşme modeli"
+    },
+    {
+     "eylem_no": "4.3.3",
+     "baslik": "Bütünleşik doğal kaynak yönetimini destekleyecek planlama, uygulama ve izleme faaliyetleri"
+    },
+    {
+     "eylem_no": "5.3.1",
+     "baslik": "Yapay zeka ve fizik tabanlı modellemeyle desteklenen Taşkın Tahmini ve Erken Uyarı Sisteml"
+    },
+    {
+     "eylem_no": "5.3.2",
+     "baslik": "Kuraklık Tahmini ve Erken Uyarı Sistemi kurulacak ve yaygınlaştırılacaktır."
+    },
+    {
+     "eylem_no": "8.2.6",
+     "baslik": "Su baskını, sel, taşkın afetleri konusunda toplumda farkındalık artırma ve bilinçlendirme "
+    },
+    {
+     "eylem_no": "8.2.7",
+     "baslik": "Su kıtlığı, kuraklık riskine karşı kapasite geliştirme ve farkındalığın artırılması çalışm"
+    },
+    {
+     "eylem_no": "8.2.8",
+     "baslik": "Temiz su, sanitasyon ve güvenli su kullanımı konularında toplum bilincini artırmak için eğ"
+    }
+   ]
+  },
+  {
+   "id": "kaymakamliklar",
+   "ad_resmi": "Kaymakamlıklar",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "icisleri-bakanligi",
+   "tur": "yerel",
+   "dayanak": "5442 s. İl İdaresi K.; Ulusal Su Planı 2026-2035 eylem tabloları — Eylem 4.1.5 (akarsu yataklarına müdahalelerin önlenmesi) ilgili kuruluşu",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "Ç6-USP"
+   ],
+   "kaynak_url": "data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf",
+   "erisim_notu": "Ulusal Su Planı 2026-2035 eylem tabloları (s.91-109, 141 eylem) koordinat tabanlı ayrıştırmayla okundu; CBK madde atıfları 1 ve 4 s. CBK tam metinlerinden teyit edildi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23",
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "4.1.5",
+     "baslik": "Akarsu yataklarına müdahaleler önlenecek, hafriyat, çöp vb. maddelerin atılması engellenec"
+    }
+   ]
+  },
+  {
+   "id": "tcdd",
+   "ad_resmi": "Türkiye Cumhuriyeti Devlet Demiryolları İşletmesi Genel Müdürlüğü",
+   "kisaltma": "TCDD",
+   "alias": [],
+   "ust_kurum_id": "ulastirma-altyapi-bakanligi",
+   "tur": "kuruluş",
+   "dayanak": "Ulusal Su Planı 2026-2035 eylem tabloları — Eylem 4.1.1 (taşkın yönetim planları) sorumlu, 4 eylemde ilgili kuruluş",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "Ç6-USP"
+   ],
+   "kaynak_url": "data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf",
+   "erisim_notu": "Ulusal Su Planı 2026-2035 eylem tabloları (s.91-109, 141 eylem) koordinat tabanlı ayrıştırmayla okundu; CBK madde atıfları 1 ve 4 s. CBK tam metinlerinden teyit edildi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "4.1.4",
+     "baslik": "Taşkın Risk Yönetim Planlarında yer alan tedbirler uygulanacaktır."
+    }
+   ],
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "4.1.1",
+     "baslik": "Taşkın Yönetim Planları tüm havzalar için tamamlanacak ve güncelleme çalışmaları sürdürüle"
+    },
+    {
+     "eylem_no": "4.1.2",
+     "baslik": "Taşkın Yönetim Planlarında belirlenen tedbirlerin uygulanması koordine edilecek ve izlenec"
+    },
+    {
+     "eylem_no": "4.1.5",
+     "baslik": "Akarsu yataklarına müdahaleler önlenecek, hafriyat, çöp vb. maddelerin atılması engellenec"
+    },
+    {
+     "eylem_no": "4.1.6",
+     "baslik": "Taşkın Riskini azaltmaya yönelik kamulaştırma çalışmalarının yapılması sağlanacaktır."
+    }
+   ]
+  },
+  {
+   "id": "trt",
+   "ad_resmi": "Türkiye Radyo Televizyon Kurumu",
+   "kisaltma": "TRT",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kuruluş",
+   "dayanak": "Ulusal Su Planı 2026-2035 eylem tabloları — 3 eylemde sorumlu kuruluş (su baskını, sel, taşkın afetlerinde toplumsal farkındalık)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "Ç6-USP"
+   ],
+   "kaynak_url": "data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf",
+   "erisim_notu": "Ulusal Su Planı 2026-2035 eylem tabloları (s.91-109, 141 eylem) koordinat tabanlı ayrıştırmayla okundu; CBK madde atıfları 1 ve 4 s. CBK tam metinlerinden teyit edildi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "8.2.6",
+     "baslik": "Su baskını, sel, taşkın afetleri konusunda toplumda farkındalık artırma ve bilinçlendirme "
+    },
+    {
+     "eylem_no": "8.2.7",
+     "baslik": "Su kıtlığı, kuraklık riskine karşı kapasite geliştirme ve farkındalığın artırılması çalışm"
+    },
+    {
+     "eylem_no": "8.2.8",
+     "baslik": "Temiz su, sanitasyon ve güvenli su kullanımı konularında toplum bilincini artırmak için eğ"
+    }
+   ]
+  },
+  {
+   "id": "rtuk",
+   "ad_resmi": "Radyo ve Televizyon Üst Kurulu",
+   "kisaltma": "RTÜK",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kurul",
+   "dayanak": "Ulusal Su Planı 2026-2035 eylem tabloları — Eylem 8.1.2 (Su İletişim Planı bilgilendirme aşaması) ilgili kuruluşu",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "Ç6-USP"
+   ],
+   "kaynak_url": "data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf",
+   "erisim_notu": "Ulusal Su Planı 2026-2035 eylem tabloları (s.91-109, 141 eylem) koordinat tabanlı ayrıştırmayla okundu; CBK madde atıfları 1 ve 4 s. CBK tam metinlerinden teyit edildi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "8.1.2",
+     "baslik": "Su İletişim Planı dahilinde bilgilendirme aşaması uygulanacaktır (Kamu Spotları, Temel Bil"
+    }
+   ]
+  },
+  {
+   "id": "tzob",
+   "ad_resmi": "Türkiye Ziraat Odaları Birliği",
+   "kisaltma": "TZOB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "birlik",
+   "dayanak": "Ulusal Su Planı 2026-2035 eylem tabloları — Eylem 5.4.3 (sağlıklı toprak, su verimliliği, kirliliğin azaltılması) ilgili kuruluşu",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "Ç6-USP"
+   ],
+   "kaynak_url": "data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf",
+   "erisim_notu": "Ulusal Su Planı 2026-2035 eylem tabloları (s.91-109, 141 eylem) koordinat tabanlı ayrıştırmayla okundu; CBK madde atıfları 1 ve 4 s. CBK tam metinlerinden teyit edildi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23",
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "5.4.3",
+     "baslik": "Sağlıklı toprak, su verimliliği, kirliliğin azaltılması, verimlilik artışı ve düşük karbon"
+    }
+   ]
+  },
+  {
+   "id": "osbuk",
+   "ad_resmi": "Organize Sanayi Bölgeleri Üst Kuruluşu",
+   "kisaltma": "OSBÜK",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "birlik",
+   "dayanak": "4562 s. OSB K. md.2 ve md.3/1-i; Ulusal Su Planı 2026-2035 eylem tabloları — Eylem 8.2.3 (sanayi bölgelerinde atıksu geri kazanımı) ilgili kuruluşu",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "Ç6-USP"
+   ],
+   "kaynak_url": "data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf",
+   "erisim_notu": "Ulusal Su Planı 2026-2035 eylem tabloları (s.91-109, 141 eylem) koordinat tabanlı ayrıştırmayla okundu; CBK madde atıfları 1 ve 4 s. CBK tam metinlerinden teyit edildi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23",
+   "usp_ilgili_eylemler": [
+    {
+     "eylem_no": "8.2.3",
+     "baslik": "Sanayi bölgelerinde atıksu geri kazanımı ve yeniden kullanım uygulamalarıyla suyun döngüse"
+    }
+   ]
+  },
+  {
+   "id": "mekansal-planlama-gm",
+   "ad_resmi": "Mekânsal Planlama Genel Müdürlüğü",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "cevre-sehircilik-iklim-bakanligi",
+   "tur": "GM",
+   "dayanak": "1 s. CBK md.101/1-c ve md.102; Ulusal Su Planı 2026-2035 eylem tabloları — 1 eylemde sorumlu kuruluş",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "Ç6-USP"
+   ],
+   "kaynak_url": "data/arsiv/mevzuat/ulusal-su-plani-2026-2035.pdf",
+   "erisim_notu": "Ulusal Su Planı 2026-2035 eylem tabloları (s.91-109, 141 eylem) koordinat tabanlı ayrıştırmayla okundu; CBK madde atıfları 1 ve 4 s. CBK tam metinlerinden teyit edildi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23",
+   "usp_sorumlu_eylemler": [
+    {
+     "eylem_no": "4.1.3",
+     "baslik": "İl Risk Azaltma Planları (İRAP) ve Mekânsal Planlama Çalışmaları, Taşkın Yönetim Planları "
+    }
+   ]
   }
  ],
- "kayit_sayisi": 137,
+ "kayit_sayisi": 155,
  "dogrulanmamis_adaylar": [],
- "dogrulanmamis_aday_sayisi": 0
+ "dogrulanmamis_aday_sayisi": 0,
+ "_sema_surumu": 2,
+ "_sema_notu": "Sürüm 2 (TUR 1A-3): usp_sorumlu_eylemler[] ve usp_ilgili_eylemler[] alanları OPSİYONELDİR — yalnız Ulusal Su Planı 2026-2035 eylem tablolarında adı geçen kayıtlarda bulunur. Yokluğu hata değildir."
 }

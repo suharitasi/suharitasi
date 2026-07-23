@@ -2,20 +2,19 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
-SU İDARESİ KURUM LİSTESİ — TUR 1A-2 TAMAMLANDI, **LİSTE KAPANMADI** (2026-07-23).
-Güncel nihai durum: rapor/su-idaresi-tur1a2.md (TUR 1A raporu artık geçmiş kayıt).
-Çıktı: data/kamu/su-birimleri.json (**137 kayıt**, doğrulanmamış aday 0),
-su-terim-havuzu.json (**119 terim**), ct3-kuyruk.json (101 işlendi / 36 beklemede).
-Düşen üç şart: (1) Ç3 tur-4 tamamlanmadı + 23 yeni kurum, (2) Ç4 bağımsız denetim
-9 kurum kaçırıldı, (4) ayırt edici terimler Ç2b-EK'te 8 yeni kurum getirdi.
-Şart (3) sağlandı: Ç1-TEKRAR kapsamı %100.
-Turun asıl bulgusu: TUR 1A'nın "havuz terimi geçen cümle" kapısı, su
-mevzuatının kendi görev maddelerindeki kurumları kaçırıyordu (2872 md.12).
-TUR 1A-3 gerekli — 7 maddelik yapılacaklar listesi raporun sonunda; en yüksek
-getirili ve 0 istekli madde: Ulusal Su Planı 2026-2035 eylem tablolarının
-kurum kurum taranması.
-site-saglik.mjs'e eklenecek — su-birimleri.json geçerli JSON mu + kayıt sayısı son
-koşuya göre azalmadı mı (azalma = 🟡). Uygulaması ayrı küçük iş.
+SU İDARESİ KURUM LİSTESİ — TUR 1A SERİSİ KAPANDI (TUR 1A-3, 2026-07-23).
+Güncel nihai durum: rapor/su-idaresi-tur1a3.md. Çıktı: su-birimleri.json
+(**155 kayıt**, şema_sürümü 2, 64 kayıtta USP eylem bağı), su-terim-havuzu.json
+(**126 terim**), ct3-kuyruk.json (**137 işlendi / 0 beklemede**), + YENİ:
+su-islemleri.json (20 işlem), hangi-kapi.json (20 satır; 11 doğrulandı, 9 APILEX bekliyor).
+Kapanış: 4 şarttan 3'ü (1,2,3) sağlandı; şart (4) yapısal olarak sağlanamaz
+(terim havuzu her yeni birincil kaynakta büyüyor). TUR 1A-4 AÇILMAZ — kalan
+boşluklar raporun "BİLİNEN EKSİKLER" başlığında (SYGM daireleri, 132 s.K.,
+Havza Yönetim Heyeti bileşimi, Ç5 sayımları, 9 APILEX satırı).
+TUR 1B'ye hazır girdi: kurum×faaliyet matrisi (USP eylem bağı) + hangi-kapı iskeleti.
+site-saglik.mjs'e eklenecek — su-birimleri.json + hangi-kapi.json + su-islemleri.json
+geçerli JSON mu, kayıt sayısı azalmadı mı (azalma 🟡), şema sürümü tanınıyor mu.
+Uygulaması ayrı küçük iş.
 
 KUYU ÇIKAR MI — keşif tamam (bf8e5fd); KULLANICI DEĞERLENDİRME OTURUMU
 bekleniyor, otomatik kur briefi YASAK. Sıra: keşif raporu → değerlendirme

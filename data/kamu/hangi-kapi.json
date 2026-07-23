@@ -1,0 +1,281 @@
+{
+ "_sema_surumu": 1,
+ "olusturma": "2026-07-23",
+ "son_guncelleme": "2026-07-23",
+ "aciklama": "4b — HANGİ KAPI eşlemesi. Yalnız mevzuatta yazan yetki atfı aktarılır; hukuki yorum YAPILMAZ. Başvuru kanalı yalnız mevzuatta açıkça yazıyorsa doldurulur, aksi halde 'kanal doğrulanmadı'. Tahmin yasaktır.",
+ "durum_degerleri": [
+  "dogrulandi",
+  "dayanak_eksik",
+  "birden_fazla_kurum",
+  "belirsiz"
+ ],
+ "satir_sayisi": 20,
+ "olgunluk": {
+  "dogrulandi": 11,
+  "dayanak_eksik": 3,
+  "birden_fazla_kurum": 5,
+  "belirsiz": 1
+ },
+ "apilex_teyit_bekleyen": 9,
+ "satirlar": [
+  {
+   "islem_id": "yas-arama-belgesi",
+   "yetkili_kurum_id": [
+    "dsi"
+   ],
+   "mevzuat_dayanagi": "167 s.K. md.8-9, md.13, md.15",
+   "basvuru_kanali": "Bulunduğu yerdeki DSİ teşkilatına doğrudan; DSİ teşkilatı yoksa en yakın mülkiye amiri vasıtasıyla (167 s.K. md.13). Kaynak: kanun metni.",
+   "durum": "dogrulandi",
+   "ilgili_rehber": "kuyu-ruhsati",
+   "apilex_teyit": false,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "yas-kullanma-belgesi",
+   "yetkili_kurum_id": [
+    "dsi"
+   ],
+   "mevzuat_dayanagi": "167 s.K. md.10, md.13",
+   "basvuru_kanali": "167 s.K. md.13 (aynı usul). Kaynak: kanun metni.",
+   "durum": "dogrulandi",
+   "ilgili_rehber": "kuyu-ruhsati",
+   "apilex_teyit": false,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "yas-islah-tadil-belgesi",
+   "yetkili_kurum_id": [
+    "dsi"
+   ],
+   "mevzuat_dayanagi": "167 s.K. md.11, md.13",
+   "basvuru_kanali": "167 s.K. md.13 (aynı usul). Kaynak: kanun metni.",
+   "durum": "dogrulandi",
+   "ilgili_rehber": "kuyu-tasima",
+   "apilex_teyit": false,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "su-tahsis-talebi",
+   "yetkili_kurum_id": [
+    "dsi"
+   ],
+   "mevzuat_dayanagi": "Su Tahsisleri Hk. Yön. md.8-9",
+   "basvuru_kanali": "DSİ’ye müracaat (Yön. md.8). Yeraltı suyunda 167 s.K., Yeraltısuları Tüzüğü ve DSİ Yeraltısuları Teknik Yön. usulleri uygulanır (md.9). Kaynak: yönetmelik metni.",
+   "durum": "dogrulandi",
+   "ilgili_rehber": "su-tahsisi-oncelik-sirasi",
+   "apilex_teyit": false,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "su-tahsis-azaltma",
+   "yetkili_kurum_id": [
+    "dsi"
+   ],
+   "mevzuat_dayanagi": "Su Tahsisleri Hk. Yön. (tahsis miktarının azaltılması)",
+   "basvuru_kanali": "Dilekçe ile başvuru (yönetmelik metni).",
+   "durum": "dogrulandi",
+   "ilgili_rehber": "su-tahsisi-oncelik-sirasi",
+   "apilex_teyit": false,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "su-kanalizasyon-durum-belgesi",
+   "yetkili_kurum_id": [
+    "iski",
+    "su-kanalizasyon-idareleri",
+    "belediyeler"
+   ],
+   "mevzuat_dayanagi": "2560 s. İSKİ K. md.18",
+   "basvuru_kanali": "İSKİ’den (İstanbul); 5216 s.K. ile diğer büyükşehirlerde ilgili su ve kanalizasyon idaresinden. Büyükşehir dışı belediyelerde muhatap kanal doğrulanmadı.",
+   "durum": "birden_fazla_kurum",
+   "ilgili_rehber": null,
+   "apilex_teyit": true,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "kanalizasyon-baglanti",
+   "yetkili_kurum_id": [
+    "iski",
+    "su-kanalizasyon-idareleri"
+   ],
+   "mevzuat_dayanagi": "2560 s. İSKİ K. md.17",
+   "basvuru_kanali": "Bağlantı, bedeli taşınmaz sahibinden alınmak suretiyle idare tarafından yapılır/yaptırılır (kanun metni). Başvuru kanalı ayrıca düzenlenmemiş — kanal doğrulanmadı.",
+   "durum": "belirsiz",
+   "ilgili_rehber": null,
+   "apilex_teyit": true,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "atiksu-baglanti-izni",
+   "yetkili_kurum_id": [
+    "su-kanalizasyon-idareleri",
+    "belediyeler",
+    "buyuksehir-belediyeleri"
+   ],
+   "mevzuat_dayanagi": "Su Kirliliği Kontrolü Yön. md.44",
+   "basvuru_kanali": "Atıksu altyapı tesisleri yönetimine (yönetmelik metni). Somut idare yerleşime göre değişir.",
+   "durum": "birden_fazla_kurum",
+   "ilgili_rehber": null,
+   "apilex_teyit": true,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "baglanti-kalite-kontrol-izni",
+   "yetkili_kurum_id": [
+    "su-kanalizasyon-idareleri",
+    "belediyeler",
+    "buyuksehir-belediyeleri"
+   ],
+   "mevzuat_dayanagi": "Su Kirliliği Kontrolü Yön. md.44-48",
+   "basvuru_kanali": "Atıksu altyapı tesisleri yönetimine (yönetmelik metni).",
+   "durum": "birden_fazla_kurum",
+   "ilgili_rehber": null,
+   "apilex_teyit": true,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "su-verimliligi-belgesi",
+   "yetkili_kurum_id": [
+    "tarim-orman-bakanligi",
+    "su-yonetimi-gm"
+   ],
+   "mevzuat_dayanagi": "Su Verimliliği Yön. md.7-9",
+   "basvuru_kanali": "Su verimliliği bilgi sistemi üzerinden (Yön. md.8/1). Sistem faaliyete geçene kadar geçici usul aynı yönetmelikte düzenlenmiştir. Kaynak: yönetmelik metni.",
+   "durum": "dogrulandi",
+   "ilgili_rehber": null,
+   "apilex_teyit": false,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "sydf-izin-belgesi",
+   "yetkili_kurum_id": [
+    "dsi"
+   ],
+   "mevzuat_dayanagi": "Su Yapıları Denetim Hizmetleri Yön. md.16",
+   "basvuru_kanali": "DSİ’ye dilekçe ekinde belgelerle (Yön. md.16/1). Kaynak: yönetmelik metni.",
+   "durum": "dogrulandi",
+   "ilgili_rehber": null,
+   "apilex_teyit": false,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "su-urunleri-ruhsat-tezkeresi",
+   "yetkili_kurum_id": [
+    "tarim-orman-bakanligi",
+    "balikcilik-su-urunleri-gm",
+    "il-ilce-tarim-orman-mudurlukleri"
+   ],
+   "mevzuat_dayanagi": "1380 s. Su Ürünleri K. md.3",
+   "basvuru_kanali": "Tarım ve Orman Bakanlığından (kanun metni); Su Ürünleri Yön. il ve ilçe müdürlüklerini ruhsat tezkeresi ve denetimle görevlendirir.",
+   "durum": "dogrulandi",
+   "ilgili_rehber": null,
+   "apilex_teyit": false,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "su-urunleri-yetistiricilik-izni",
+   "yetkili_kurum_id": [
+    "balikcilik-su-urunleri-gm",
+    "milli-emlak-gm"
+   ],
+   "mevzuat_dayanagi": "1380 s. Su Ürünleri K.; Su Ürünleri Yön.",
+   "basvuru_kanali": "Devletin hüküm ve tasarrufu altındaki alanlarda Millî Emlak birimleri marifetiyle (kanun metni). Başvuru kanalının tamamı doğrulanmadı.",
+   "durum": "birden_fazla_kurum",
+   "ilgili_rehber": null,
+   "apilex_teyit": true,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "jeotermal-arama-ruhsati",
+   "yetkili_kurum_id": [
+    "il-ozel-idaresi",
+    "yikob",
+    "mapeg"
+   ],
+   "mevzuat_dayanagi": "5686 s.K. md.3/1-4 ve md.4, md.6",
+   "basvuru_kanali": "5686 s.K. md.3/1-4: 'İdare' büyükşehirlerde Yatırım İzleme ve Koordinasyon Başkanlığı, diğer illerde il özel idaresidir. Kaynak: kanun metni.",
+   "durum": "dogrulandi",
+   "ilgili_rehber": "jeotermal-ruhsat",
+   "apilex_teyit": false,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "jeotermal-isletme-ruhsati",
+   "yetkili_kurum_id": [
+    "il-ozel-idaresi",
+    "yikob",
+    "mapeg"
+   ],
+   "mevzuat_dayanagi": "5686 s.K. md.4 vd.",
+   "basvuru_kanali": "Aynı 'İdare'ye işletme projesiyle başvuru; ruhsat MAPEG’e bildirilir (kanun metni).",
+   "durum": "dogrulandi",
+   "ilgili_rehber": "jeotermal-ruhsat",
+   "apilex_teyit": false,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "dogal-mineralli-su-tesis-izni",
+   "yetkili_kurum_id": [
+    "saglik-bakanligi",
+    "bilimsel-degerlendirme-komisyonu"
+   ],
+   "mevzuat_dayanagi": "Doğal Mineralli Sular Hk. Yön. md.4",
+   "basvuru_kanali": "Yönetmelikte 'Bakanlık: Sağlık Bakanlığı' (md.4/1-a); Bilimsel Değerlendirme Komisyonu Raporu aranır. Başvurunun yapılacağı birim yönetmelikte açıkça yazmıyor — kanal doğrulanmadı.",
+   "durum": "dayanak_eksik",
+   "ilgili_rehber": null,
+   "apilex_teyit": true,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "hammadde-uretim-izni",
+   "yetkili_kurum_id": [
+    "mapeg"
+   ],
+   "mevzuat_dayanagi": "3213 s. Maden K. (hammadde üretim izni)",
+   "basvuru_kanali": "Madde numarası doğrulanmadı; başvuru kanalı doğrulanmadı.",
+   "durum": "dayanak_eksik",
+   "ilgili_rehber": null,
+   "apilex_teyit": true,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "sulak-alan-faaliyet-izni",
+   "yetkili_kurum_id": [
+    "dkmp",
+    "dkmp-sulak-alanlar"
+   ],
+   "mevzuat_dayanagi": "Sulak Alanların Korunması Yön. md.9 ve md.39",
+   "basvuru_kanali": "Başvuru formları ve izin belgeleri Bakanlıkça düzenlenir (md.39); ulusal öneme haiz alanlarda Genel Müdürlük, mahalli öneme haiz alanlarda Bölge Müdürlüğü uygun görüşü (md.9). Kaynak: yönetmelik metni.",
+   "durum": "dogrulandi",
+   "ilgili_rehber": null,
+   "apilex_teyit": false,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "atiksu-enerji-tesviki",
+   "yetkili_kurum_id": [
+    "cevre-sehircilik-iklim-bakanligi",
+    "csidb-il-mudurlugu"
+   ],
+   "mevzuat_dayanagi": "Atıksu Arıtma Tesisi Enerji Teşviki Yön.",
+   "basvuru_kanali": "Ödemeler il müdürlükleri hesapları üzerinden yürütülür (yönetmelik metni); başvurunun yapılacağı birim açıkça yazmıyor — kanal doğrulanmadı.",
+   "durum": "dayanak_eksik",
+   "ilgili_rehber": null,
+   "apilex_teyit": true,
+   "kirik_kurum_id": null
+  },
+  {
+   "islem_id": "su-kullanim-hakki-anlasmasi",
+   "yetkili_kurum_id": [
+    "dsi",
+    "epdk"
+   ],
+   "mevzuat_dayanagi": "4 s. CBK DSİ bölümü; 6446 s. Elektrik Piyasası K.",
+   "basvuru_kanali": "Anlaşma DSİ ile yapılır (CBK metni); lisans süreci EPDK’dadır. Başvuru kanalının ayrıntısı doğrulanmadı.",
+   "durum": "birden_fazla_kurum",
+   "ilgili_rehber": null,
+   "apilex_teyit": true,
+   "kirik_kurum_id": null
+  }
+ ]
+}

@@ -32,8 +32,8 @@
    "id": "cevre-mustesarligi",
    "ad": "Çevre Müsteşarlığı",
    "oncelik": "a-dogrudan-kurulus-gm",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "mülga; 2872 dipnotu ve 383 s. KHK TUR 1A-2'de açıldı — kaynak tam",
    "tur": 5
   },
   {
@@ -88,8 +88,8 @@
    "id": "iller-bankasi",
    "ad": "İller Bankası Anonim Şirketi",
    "oncelik": "a-dogrudan-kurulus-gm",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "6107 s. İller Bankası A.Ş. Hk. K. açıldı; su-özgü görev maddesi yok (SUKAP/altyapı finansmanı genel) — DOĞRUDAN su ilgisi 7478/1053 atıflarıyla korunuyor",
    "tur": 5
   },
   {
@@ -124,8 +124,8 @@
    "id": "sahil-guvenlik-komutanligi",
    "ad": "Sahil Güvenlik Komutanlığı",
    "oncelik": "a-dogrudan-kurulus-gm",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "2692 s. Sahil Güvenlik Komutanlığı K. açıldı; su ürünleri denetim yetkisi 1380 s.K. ve Su Ürünleri Yön. md.35 ile teyitli",
    "tur": 5
   },
   {
@@ -392,8 +392,8 @@
    "id": "istanbul-sular-idaresi-mudurler-kurulu",
    "ad": "İstanbul Sular İdaresi Müdürler Kurulu",
    "oncelik": "b-dogrudan-diger",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "2560 s.K. geçici md.6-7 TUR 1A-2'de açıldı — kaynak tam",
    "tur": 5
   },
   {
@@ -436,32 +436,32 @@
    "id": "mahalli-sulak-alan-komisyonu",
    "ad": "Mahalli Sulak Alan Komisyonu",
    "oncelik": "b-dogrudan-diger",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "Sulak Alanların Korunması Yön. md.35 TUR 1A-2'de açıldı — kaynak tam",
    "tur": 5
   },
   {
    "id": "merkezi-izleme-odasi",
    "ad": "Merkezi İzleme Odası",
    "oncelik": "b-dogrudan-diger",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "Yüzeysel Sular ve YAS İzleme Yön. TUR 1A-2'de açıldı; bağlı birim dogrulanmadi (yalnız 'Bakanlık bünyesinde')",
    "tur": 5
   },
   {
    "id": "nafia-vekaleti",
    "ad": "Nafıa Vekaleti",
    "oncelik": "b-dogrudan-diger",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "mülga; 4373 s.K. TUR 1A-2'de açıldı — halef kurum dogrulanmadi",
    "tur": 5
   },
   {
    "id": "ogm-toprak-muhafaza-havza-islahi-dairesi",
    "ad": "Toprak Muhafaza ve Havza Islahı Dairesi Başkanlığı",
    "oncelik": "b-dogrudan-diger",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "4 s. CBK Orman GM bölümü (cbk4 satır 6082) yerelde açık; madde no dogrulanmadi",
    "tur": 5
   },
   {
@@ -528,8 +528,8 @@
    "id": "tarim-bakanligi",
    "ad": "Tarım Bakanlığı",
    "oncelik": "b-dogrudan-diger",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "mülga; 1380 s.K. 1986 öncesi metni TUR 1A-2'de açıldı — kaynak tam",
    "tur": 5
   },
   {
@@ -594,8 +594,8 @@
    "id": "ulusal-sulak-alan-komisyonu",
    "ad": "Ulusal Sulak Alan Komisyonu",
    "oncelik": "b-dogrudan-diger",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "Sulak Alanların Korunması Yön. md.31 TUR 1A-2'de açıldı — kaynak tam",
    "tur": 5
   },
   {
@@ -624,32 +624,32 @@
    "id": "ab-baskanligi",
    "ad": "Avrupa Birliği Başkanlığı",
    "oncelik": "c-dolayli-kurulus-gm",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "4 s. CBK md.62 yerelde açık; USP kurum tablosu ile teyitli",
    "tur": 5
   },
   {
    "id": "bitkisel-uretim-gm",
    "ad": "Bitkisel Üretim Genel Müdürlüğü",
    "oncelik": "c-dolayli-kurulus-gm",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "1 s. CBK md.414 yerelde açık; USP eylem tablolarında sorumlu/ilgili",
    "tur": 5
   },
   {
    "id": "denizcilik-mustesarligi",
    "ad": "Denizcilik Müsteşarlığı",
    "oncelik": "c-dolayli-kurulus-gm",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "mülga; 2872 md.12 TUR 1A-2'de açıldı — halef Denizcilik GM",
    "tur": 5
   },
   {
    "id": "devlet-personel-baskanligi",
    "ad": "Devlet Personel Başkanlığı",
    "oncelik": "c-dolayli-kurulus-gm",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "mülga; 6172 s.K. yerelde açık — kaynak tam",
    "tur": 5
   },
   {
@@ -664,24 +664,24 @@
    "id": "emniyet-genel-mudurlugu",
    "ad": "Emniyet Genel Müdürlüğü",
    "oncelik": "c-dolayli-kurulus-gm",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "3201 s. Emniyet Teşkilat K. açıldı; su-özgü görev yok, DOLAYLI (2872 md.12 denetim yetkisi devri) korunuyor",
    "tur": 5
   },
   {
    "id": "hayvancilik-gm",
    "ad": "Hayvancılık Genel Müdürlüğü",
    "oncelik": "c-dolayli-kurulus-gm",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "Tarımsal Üretimin Planlanması Yön. TUR 1A-2'de açıldı; CBK md. dogrulanmadi",
    "tur": 5
   },
   {
    "id": "hazine-mustesarligi",
    "ad": "Hazine Müsteşarlığı",
    "oncelik": "c-dolayli-kurulus-gm",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "mülga; 2872 ve 5403 yerelde açık — halef Hazine ve Maliye Bakanlığı",
    "tur": 5
   },
   {
@@ -694,16 +694,16 @@
    "id": "jandarma-genel-komutanligi",
    "ad": "Jandarma Genel Komutanlığı",
    "oncelik": "c-dolayli-kurulus-gm",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "2803 s. Jandarma Teşkilat K. açıldı; su-özgü görev yok, DOLAYLI (2872 md.12) korunuyor",
    "tur": 5
   },
   {
    "id": "karayollari-gm",
    "ad": "Karayolları Genel Müdürlüğü",
    "oncelik": "c-dolayli-kurulus-gm",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "6001 s. Karayolları GM K. açıldı; taşkın/menfez/köprü hidroliği görevleri Taşkın ve Rüsubat Kontrolü Yön. ile teyitli",
    "tur": 5
   },
   {
@@ -716,8 +716,8 @@
    "id": "milli-emlak-gm",
    "ad": "Millî Emlak Genel Müdürlüğü",
    "oncelik": "c-dolayli-kurulus-gm",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "1380 s.K. yerelde açık; bağlı bakanlık dogrulanmadi",
    "tur": 5
   },
   {
@@ -748,24 +748,24 @@
    "id": "tapu-kadastro-gm",
    "ad": "Tapu ve Kadastro Genel Müdürlüğü",
    "oncelik": "c-dolayli-kurulus-gm",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "6083 s. Tapu ve Kadastro GM K. açıldı; su-özgü görev yok, DOLAYLI (3083 s.K. md.16 sulama arazisi tapu işlemleri) korunuyor",
    "tur": 5
   },
   {
    "id": "tkdk",
    "ad": "Tarım ve Kırsal Kalkınmayı Destekleme Kurumu",
    "oncelik": "c-dolayli-kurulus-gm",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "5648 s. Tarım ve Kırsal Kalkınmayı Destekleme K. açıldı; sulama/kırsal altyapı destekleri kapsamında — DOLAYLI korunuyor",
    "tur": 5
   },
   {
    "id": "tse",
    "ad": "Türk Standardları Enstitüsü",
    "oncelik": "c-dolayli-kurulus-gm",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "132 s. Türk Standardları Enstitüsü Kuruluş K. mevzuat.gov.tr'de 302 döndü — AÇILAMADI; DOLAYLI (İçme-Kullanma Suyu Havzaları Yön. TSE atfı) korunuyor",
    "tur": 5
   },
   {
@@ -788,16 +788,16 @@
    "id": "turkak",
    "ad": "Türkiye Akreditasyon Kurumu",
    "oncelik": "c-dolayli-kurulus-gm",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "4457 s. Türk Akreditasyon Kurumu K. açıldı; su-özgü görev yok, DOLAYLI (Su Yapıları Denetim Yön. akreditasyon atfı) korunuyor",
    "tur": 5
   },
   {
    "id": "turkiye-cevre-ajansi",
    "ad": "Türkiye Çevre Ajansı",
    "oncelik": "c-dolayli-kurulus-gm",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "7261 s. Türkiye Çevre Ajansı K. açıldı; depozito-iade ve atık yönetimi — DOLAYLI (2872 md.12) korunuyor",
    "tur": 5
   },
   {
@@ -820,8 +820,8 @@
    "id": "cevre-teknik-komitesi",
    "ad": "Çevre Teknik Komitesi",
    "oncelik": "d-dolayli-diger",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "Yüksek/Mahalli Çevre Kurulları Yön. md.11 TUR 1A-2'de açıldı — kaynak tam",
    "tur": 5
   },
   {
@@ -840,32 +840,32 @@
    "id": "il-afad-mudurlugu",
    "ad": "İl Afet ve Acil Durum Müdürlükleri",
    "oncelik": "d-dolayli-diger",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "Su Kurulları Yön. md.8/2 TUR 1A-2'de açıldı — kaynak tam",
    "tur": 5
   },
   {
    "id": "il-kultur-turizm-mudurlugu",
    "ad": "İl Kültür ve Turizm Müdürlükleri",
    "oncelik": "d-dolayli-diger",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "Su Kurulları Yön. md.7-8 TUR 1A-2'de açıldı — kaynak tam",
    "tur": 5
   },
   {
    "id": "il-saglik-mudurlugu",
    "ad": "İl Sağlık Müdürlükleri",
    "oncelik": "d-dolayli-diger",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "Su Kurulları Yön. md.8/2 TUR 1A-2'de açıldı — kaynak tam",
    "tur": 5
   },
   {
    "id": "kalkinma-ajanslari",
    "ad": "Kalkınma Ajansları",
    "oncelik": "d-dolayli-diger",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "5449 s. Kalkınma Ajanslarının Hizmetlerine İlişkin K. açıldı; su-özgü görev yok, DOLAYLI (Su Kurulları Yön. md.8/2 il su kurulu üyeliği) korunuyor",
    "tur": 5
   },
   {
@@ -878,8 +878,8 @@
    "id": "kultur-varliklari-koruma-bolge-kurulu",
    "ad": "Kültür Varlıklarını Koruma Bölge Kurulu",
    "oncelik": "d-dolayli-diger",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "Taşkın ve Rüsubat Kontrolü Yön. TUR 1A-2'de açıldı; 2863 s.K. bu turda açıldı (Tabiat Varlıkları Bölge Komisyonu ile ilişkili) — kaynak tam",
    "tur": 5
   },
   {
@@ -894,8 +894,8 @@
    "id": "mgm-bolge-mudurlukleri",
    "ad": "Meteoroloji Genel Müdürlüğü Bölge Müdürlükleri",
    "oncelik": "d-dolayli-diger",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "Su Kurulları Yön. md.7-8 TUR 1A-2'de açıldı — kaynak tam",
    "tur": 5
   },
   {
@@ -920,8 +920,8 @@
    "id": "sanayi-teknoloji-il-mudurlugu",
    "ad": "Sanayi ve Teknoloji İl Müdürlükleri",
    "oncelik": "d-dolayli-diger",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "Su Kurulları Yön. md.7-8 TUR 1A-2'de açıldı — kaynak tam",
    "tur": 5
   },
   {
@@ -936,24 +936,24 @@
    "id": "tarimsal-uretim-planlama-kurulu",
    "ad": "Tarımsal Üretimin Planlanması Kurulu",
    "oncelik": "d-dolayli-diger",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "Tarımsal Üretimin Planlanması Yön. md.12 TUR 1A-2'de açıldı — kaynak tam",
    "tur": 5
   },
   {
    "id": "tbmm-cevre-komisyonu",
    "ad": "TBMM Çevre Komisyonu",
    "oncelik": "d-dolayli-diger",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "TBMM İçtüzüğü komisyon görev metni AÇILMADI; 1. Su Şûrası Divan üyeliği kaydı ayakta (dogrulanmadi)",
    "tur": 5
   },
   {
    "id": "ticaret-bakanligi",
    "ad": "Ticaret Bakanlığı",
    "oncelik": "d-dolayli-diger",
-   "durum": "beklemede",
-   "not": "TUR 1A-2'de açılan kaynaktan çıktı; kuruluş mevzuatı Ç3 tur-5'te açılacak",
+   "durum": "islendi",
+   "not": "1 s. CBK md.441 yerelde açık; USP kurum tablosu ve Eylem tablolarında su yönetiminde görevli — kaynak tam",
    "tur": 5
   },
   {
@@ -1010,12 +1010,20 @@
    "harcanan_istek": 15,
    "kumulatif_kurum": 127,
    "not": "12 beklemede kayıt + kuyruğa hiç girmemiş 30 kaydın kaynak durumu; ayrıca açılmış su mevzuatının BELGE GENELİ yeniden taranması (terim kapısı olmadan)"
+  },
+  {
+   "tur": 5,
+   "islenen_kurum": 36,
+   "yeni_kurum": 18,
+   "harcanan_istek": 11,
+   "kumulatif_kurum": 155,
+   "not": "Ç3 tur-5 (TUR 1A-3): 36 beklemede kaydın kuruluş mevzuatı açıldı/teyit edildi; USP eylem tablolarından 18 yeni kurum. Yeni kurum çıkaran kaynak Ç6-USP; Ç3'ün kendisi 0 yeni kurum getirdi (kar topu doygunluğu)."
   }
  ],
  "ozet": {
-  "islendi": 101,
-  "beklemede": 36,
+  "islendi": 137,
+  "beklemede": 0,
   "toplam": 137,
-  "not": "TUR 1A raporundaki '59 işlendi / 15 beklemede / 71 toplam' özeti hatalıydı (59+15!=71 ve 3 ad kuyrukta hiç yoktu). TUR 1A-2'de kuyruk listeyle eşitlendi."
+  "not": "TUR 1A-3'te Ç3 tur-5 çalıştı: 36 beklemede kaydın TAMAMI işlendi (11 kanun indirildi + yerel/USP teyit). tse'nin kuruluş kanunu (132 s.K.) mevzuat.gov.tr'de 302 döndü ama DOLAYLI dayanağı ayakta — beklemede bırakılmadı."
  }
 }
