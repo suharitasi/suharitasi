@@ -17,6 +17,11 @@ transfer 187KB) — 6 sahne akışı bu tabanı KORUYAMAZ, kabul edilebilir dü�
 kullanıcı kararı. 7 hedef linkin tamamı canlıda 200. Kontrast: A plaka α.90
 en kötü 11,82:1 (öneri); B koyu tül α.75 6,24:1; brief'teki "yalnız
 gölge/kenarlık" hali 1,07:1 ile ELENDİ. 7 açık karar RAPOR.md §9'da.
+KARTÇIK REVİZYONU v3 (23.07 geri bildirimi "kartçık büyük, sahneyi eziyor"):
+rev1/ altında R1 (küçültülmüş kartçık %26) ↔ R2 (alt şerit) üçlü kıyası +
+yuva haritası (6 sahne × 5 kare) + dokunma ölçümü. Kritik bulgu: kehribar
+hedef satırı α .70-.90'da AA'yı GEÇMİYOR (eşik α≈0,92) → ya koyu kehribar
+#6B4412 + α.80 ya da α.92. 4 açık karar rev1/RAPOR.md §8'de.
 Onaysız AŞAMA 2 (kod) BAŞLAMAZ.
 
 SAHNELERİN EVİ = ANA SAYFA (22.07 kullanıcı kararı): 6 sahne + 7 süzülen soru

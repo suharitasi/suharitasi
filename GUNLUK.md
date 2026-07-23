@@ -383,3 +383,13 @@
   177/21/88°, C ekseni 198°. Kartçık sahneye ait olmayan "enstrüman katmanı"
   olarak tasarlandı; köprü unsuru kehribar.
 - 7 hedef link canlıda 200 (3. sorunun hedefi ceza sayfası çıkınca güncellenir).
+- Kartçık revizyonu v3 (aynı gün, geri bildirim üzerine): R1 küçültülmüş kartçık
+  (%40→%26) ↔ R2 alt şerit üçlü kıyası; çıktı cikti/denetim/anasayfa-sahne/rev1/.
+  ÖLÇÜM 1: hedef satırı (kehribar #875518) plaka α .70/.75/.80/.90'da sırasıyla
+  2,70/3,06/3,48/4,41 — hiçbirinde AA yok; eşik α≈0,92. Koyu kehribar #6B4412
+  α.80'de 4,64 (yeni hex = onay ister). Soru metni her alfada geçiyor.
+  ÖLÇÜM 2: yuva haritası — 6 sahne × 5 kare × 20 aday yuva detay enerjisi;
+  sahne 2'de tek sakin yuva var → Y2 orada uygulanamaz.
+  ÖLÇÜM 3: dokunma — görünmez pad'in ilk hali (::before z-index:-1) hit-test'te
+  ÇALIŞMADI, saydam ::after ile düzeltildi; şerit 31px görsel → 44px etkin.
+  375'te R1 tüm sorular tek satır; R2'de 7'de 1 soru 4px kırpılıyor.
