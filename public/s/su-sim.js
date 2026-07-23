@@ -1,7 +1,7 @@
 /* Gerçek zamanlı su yüzeyi simülasyonu (menü zemini) — raw WebGL2, bağımlısız.
    Yöntem: klasik yükseklik alanı dalga denklemi, RG16F ping-pong dokular
    (r = yükseklik, g = hız). Render geçişi yükseklikten normal türetip
-   #0C332C DİP zemin üzerine su-ışıması (#7FB5AE) kırılma parıltısı bindirir (SU-DİLİ 3.0).
+   #0A2740 DİP zemin üzerine su-ışıması (#57BAE0) kırılma parıltısı bindirir (SU-DİLİ 3.0).
    WebGL2 veya EXT_color_buffer_float yoksa null döner; çağıran fallback
    zemini gösterir (three.js'e gerek kalmadı — gerekçe raporda). */
 
@@ -58,14 +58,14 @@ void main(){
   vec2 grad = vec2(l - r, b - t) + sw;
   vec3 n = normalize(vec3(grad, 0.12));
 
-  /* Derinlik zemini: DİP #0C332C, merkeze doğru DERİN #175E56 */
-  vec3 derin = vec3(0.0471, 0.2000, 0.1725);
-  vec3 orta  = vec3(0.0902, 0.3686, 0.3373);
+  /* Derinlik zemini: DİP #0A2740, merkeze doğru DERİN #0C5A7C */
+  vec3 derin = vec3(0.0392, 0.1529, 0.2510);
+  vec3 orta  = vec3(0.0471, 0.3529, 0.4863);
   float m = 1.0 - smoothstep(0.0, 0.85, distance(uv, vec2(0.5, 0.42)));
   vec3 col = mix(derin, orta, m * 0.6);
 
-  /* Dalga tepelerinde akuamarin kırılma parıltısı (#4FC3D0) — net seçilir */
-  vec3 aqua = vec3(0.498, 0.710, 0.682);
+  /* Dalga tepelerinde akuamarin kırılma parıltısı (#57BAE0) — net seçilir */
+  vec3 aqua = vec3(0.3412, 0.7294, 0.8784);
   float egim = length(grad);
   col += aqua * min(egim * 17.0, 0.85);
 

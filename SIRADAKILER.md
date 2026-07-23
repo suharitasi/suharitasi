@@ -13,13 +13,22 @@ A "yüzeye çıkış" (öneri, panel-reveal cross-blur) / B "kot cetveli eşiği
 KULLANICI KARARI: (1) geçiş A/B, (2) ağırlık tablosu kabul mü. Onaysız
 AŞAMA 2 (taşıma + /deneyim/ 301 + menü + link + sitemap + kanıt) BAŞLAMAZ.
 
-KUYRUK BAŞI (sıradaki iş): Ödül-üstü FAZ 8 — PALET YENİLEME. Kıyas turu
-TAMAM (2026-07-21): 3 aday (A turkuaz+okyanus / B petrol+cyan / C mavi
-zemin+lacivert), AA kontrast + 4'lü kıyas kareleri
-cikti/denetim/faz8-palet/ (RAPOR.md). KARAR BEKLİYOR: kullanıcı A/B/C/melez
-seçer → seçim sonrası ayrı işte kaynak uygulaması + DESIGN.md §2 güncellemesi.
-Landing İstisnası korunur. Sonra FAZ 2 nabız şeridi.
-Uygulama sırası 1→7→8→2→3→4→5; FAZ 1 ve FAZ 7 TAMAM.
+FAZ 8 — PALET YENİLEME: UYGULANDI, KULLANICI ONAYI BEKLİYOR (2026-07-22).
+Kullanıcı aday C'yi seçti (mavi zemin + lacivert metin + kehribar kritik
+#875518). Uygulandı: DESIGN.md §2 C setiyle yeniden yazıldı (eski palet
+arşiv-notu olarak duruyor = geri-dönüş yolu), 191 değişiklik/29 dosya,
+LinkedIn kart aracı C'ye alındı. Landing İstisnası + /deneyim/ + harita
+adası + harita-2d/3d coğrafi renkler kapsam dışı (gerekçeli).
+Kanıt: cikti/denetim/faz8-uygulama/ (RAPOR.md + 12 ekran + kontrast JSON +
+LH a11y + değişim listesi). Ölçüm: 30 kontrast çifti AA, kıyas tablosundan
+sapma 0; 375 taşma 0, konsol 0, kırık link 0; LH a11y 3-tur medyan 100×3.
+Yan bulgu: 3 ÖNCEDEN VAR OLAN AA açığı (menü künyesi 3.04, vitrin özeti
+3.77, liste sıra no 2.04) tespit edilip kapatıldı — görsel olarak fark
+edilir, canlı testte bakılmalı.
+AÇIK KULLANICI GÖREVİ: (1) canlı test = nihai onay, (2) Cloudflare
+"Purge Everything" (palet tüm HTML/CSS'e dokundu), (3) eski 3 LinkedIn
+kartının C ile yeniden üretilmesi kararı (silinmedi, üzerine yazılmadı).
+Sonra FAZ 2 nabız şeridi. Uygulama sırası 1→7→8→2→3→4→5; FAZ 1, 7, 8 TAMAM.
 
 FAZ 7 (Sonuç Zinciri) TAMAM (2026-07-21; AŞAMA 0 162d182 · AŞAMA 1 88c7a72 ·
 AŞAMA 2 27dd472, push+canlı): /durumum/ sektör kapısı + 11 persona sonuç

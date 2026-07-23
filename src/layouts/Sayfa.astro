@@ -114,20 +114,21 @@ const jsonLd = JSON.stringify({
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap&subset=latin-ext" rel="stylesheet" />
 <style is:global>
   :root {
-    /* — Primitifler: SU-DİLİ derinlik skalası (DESIGN.md 3.0 §2;
-         tüm tonlar HEDEF görselinden px-örneklemeli) — */
-    --krem: #E9EBE7;            /* YÜZEY */
-    --adacayi-krem: #E0E5DF;    /* YÜZEY-kart */
-    --murekkep-900: #1C2B24;
-    --murekkep-500: #54655C;
-    --su-700: #175E56;          /* DERİN — vurgu sesi */
-    --su-400: #4F7B78;          /* SIĞ — dekoratif hairline */
-    --kehribar: #B8863B;        /* plato — yalnız hairline */
-    --kehribar-metin: #7D5B24;  /* plato — metin türevi */
-    --yesil-kara: #3E5C44;      /* süreç ailesi */
-    --deniz: #0C332C;           /* DİP */
-    --akuamarin: #7FB5AE;       /* koyu dünyada ışıma (SIĞ'ın parlak türevi) */
-    --kopuk: #DFE3E2;
+    /* — Primitifler: SU-DİLİ derinlik skalası (DESIGN.md §2 — aday C,
+         22.07 kullanıcı kararı). Değişken ADLARI Faz 1'den korunur (tek
+         kaynak sözleşmesi); taşıdıkları TON su-mavisi ailesine geçti. — */
+    --krem: #E9F0F4;            /* YÜZEY — açık su-mavisi zemin */
+    --adacayi-krem: #DFE9F0;    /* YÜZEY-kart */
+    --murekkep-900: #132A3F;    /* metin — koyu lacivert */
+    --murekkep-500: #48627A;    /* ikincil metin */
+    --su-700: #0C5A7C;          /* DERİN — vurgu sesi (okyanus mavisi) */
+    --su-400: #2E7EA0;          /* SIĞ — dekoratif hairline */
+    --kehribar: #C0883A;        /* plato — yalnız hairline */
+    --kehribar-metin: #875518;  /* plato — metin türevi (mavi zeminde koyulaştırıldı) */
+    --yesil-kara: #2C5570;      /* süreç ailesi (artık lacivert-çelik) */
+    --deniz: #0A2740;           /* DİP */
+    --akuamarin: #57BAE0;       /* koyu dünyada ışıma (SIĞ'ın parlak türevi) */
+    --kopuk: #DBEAF4;
 
     /* — Anlamsal tokenlar — */
     --zemin: var(--krem);
@@ -136,7 +137,7 @@ const jsonLd = JSON.stringify({
     --metin-soluk: var(--murekkep-500);
     --baglanti: var(--su-700);
     --vurgu: var(--su-700);
-    --cizgi: rgba(28, 43, 36, 0.14);
+    --cizgi: rgba(19, 42, 63, 0.14);
 
     --serif: "Cormorant", Georgia, serif;
     --sans: "Manrope", system-ui, sans-serif;
@@ -179,16 +180,16 @@ const jsonLd = JSON.stringify({
        kontur halkaları (SIĞ tonundan). İlk bakışta fark edilir, bağırmaz. */
     background:
       repeating-radial-gradient(circle at 82% 130%,
-        rgba(23, 94, 86, 0.12) 0 1.5px, transparent 1.5px 46px),
+        rgba(12, 90, 124, 0.12) 0 1.5px, transparent 1.5px 46px),
       repeating-radial-gradient(circle at 6% -40%,
-        rgba(79, 123, 120, 0.12) 0 1.5px, transparent 1.5px 64px),
+        rgba(46, 126, 160, 0.12) 0 1.5px, transparent 1.5px 64px),
       radial-gradient(60vw 130% at 78% 108%,
-        rgba(79, 123, 120, 0.30) 0%, rgba(79, 123, 120, 0) 62%),
+        rgba(46, 126, 160, 0.30) 0%, rgba(46, 126, 160, 0) 62%),
       linear-gradient(168deg,
-        #DCE3DE 0%,
-        rgba(79, 123, 120, 0.20) 48%,
+        #D3E2ED 0%,
+        rgba(46, 126, 160, 0.20) 48%,
         var(--krem) 100%);
-    box-shadow: inset 0 -1px 0 rgba(79, 123, 120, 0.45);
+    box-shadow: inset 0 -1px 0 rgba(46, 126, 160, 0.45);
   }
 
   main.govde {
@@ -214,7 +215,7 @@ const jsonLd = JSON.stringify({
     inset: 0;
     pointer-events: none;
     background: linear-gradient(180deg,
-      rgba(233, 235, 231, 0) 45%, rgba(233, 235, 231, 0.9) 100%);
+      rgba(233, 240, 244, 0) 45%, rgba(233, 240, 244, 0.9) 100%);
   }
 
   @media print {
@@ -268,7 +269,7 @@ const jsonLd = JSON.stringify({
   .sayfa-basi h1 em,
   .icerik h1 em, h2 em {
     font-style: italic;
-    background: linear-gradient(105deg, #175E56 0%, #4F7B78 45%, #2E6B62 60%, #175E56 100%);
+    background: linear-gradient(105deg, #0C5A7C 0%, #2E7EA0 45%, #186789 60%, #0C5A7C 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -281,10 +282,10 @@ const jsonLd = JSON.stringify({
     margin: 1.15rem 0 0;
     border: 0;
     background: linear-gradient(90deg,
-      rgba(94, 138, 135, 0) 0%,
+      rgba(78, 134, 168, 0) 0%,
       var(--su-400) 14%,
       var(--su-400) 62%,
-      rgba(94, 138, 135, 0) 100%);
+      rgba(78, 134, 168, 0) 100%);
   }
 
   .sayfa-ozet {
@@ -356,7 +357,7 @@ const jsonLd = JSON.stringify({
     margin: 1.4rem 0;
     padding: 0.85rem 1.1rem;
     border-left: 3px solid var(--su-400);
-    background: rgba(28, 43, 36, 0.035);
+    background: rgba(19, 42, 63, 0.035);
     color: var(--metin-soluk);
     font-family: var(--serif);
     font-size: 1.1rem;
@@ -390,7 +391,7 @@ const jsonLd = JSON.stringify({
 
   .icerik tbody tr { transition: background-color 120ms var(--e-akinti); }
 
-  .icerik tbody tr:hover { background: rgba(23, 94, 86, 0.05); }
+  .icerik tbody tr:hover { background: rgba(12, 90, 124, 0.05); }
 
   .veri-yok { color: var(--metin-soluk); font-style: italic; }
 

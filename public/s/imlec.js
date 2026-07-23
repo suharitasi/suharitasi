@@ -66,16 +66,16 @@ function baslat() {
       <svg viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="sv-dg-krem" x1="0.3" y1="0" x2="0.62" y2="1">
-            <stop offset="0" stop-color="#2E93A1"/>
-            <stop offset="1" stop-color="#17646F"/>
+            <stop offset="0" stop-color="#2E8FB8"/>
+            <stop offset="1" stop-color="#0C5A7C"/>
           </linearGradient>
           <linearGradient id="sv-dg-koyu" x1="0.3" y1="0" x2="0.62" y2="1">
-            <stop offset="0" stop-color="#8FDEE8"/>
-            <stop offset="1" stop-color="#4FC3D0"/>
+            <stop offset="0" stop-color="#93D8F5"/>
+            <stop offset="1" stop-color="#57BAE0"/>
           </linearGradient>
         </defs>
         <g class="sv-v-krem">
-          <path d="${YOL}" fill="url(#sv-dg-krem)" stroke="rgba(10,56,63,0.9)" stroke-width="1"/>
+          <path d="${YOL}" fill="url(#sv-dg-krem)" stroke="rgba(10,39,64,0.9)" stroke-width="1"/>
           <ellipse cx="5.9" cy="12.6" rx="1.5" ry="2.3"
             fill="rgba(255,255,255,0.6)" transform="rotate(-16 5.9 12.6)"/>
         </g>

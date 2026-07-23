@@ -7,7 +7,7 @@
 // üstün kural; ayrıntı GRACE katmanında metin olarak mevcut.
 //
 // dataviz uyum notu: tek seri → lejant yok (başlık adlandırır); sıfır
-// ekseni hairline; son değer doğrudan etiket; çizgi DERİN #175E56
+// ekseni hairline; son değer doğrudan etiket; çizgi DERİN #0C5A7C
 // (zemin kontrastı ≥3:1 validator PASS); künyesiz sayı yayınlanmaz (§5).
 import yasVeri from '../../data/canli/havza-yas.json';
 import grace from '../../data/canli/grace-havza.json';
@@ -172,8 +172,8 @@ const [ky, ka, kg] = k.havzaPotansiyelRezerv.indirmeTarihi.split('-');
     width: 6px;
     background:
       repeating-linear-gradient(180deg,
-        rgba(79, 123, 120, 0.4) 0 1px, transparent 1px 7px),
-      linear-gradient(90deg, rgba(79, 123, 120, 0.4) 0 1px, transparent 1px);
+        rgba(46, 126, 160, 0.4) 0 1px, transparent 1px 7px),
+      linear-gradient(90deg, rgba(46, 126, 160, 0.4) 0 1px, transparent 1px);
   }
 
   .kahraman-izgara {
@@ -260,7 +260,7 @@ const [ky, ka, kg] = k.havzaPotansiyelRezerv.indirmeTarihi.split('-');
   }
 
   .spark-sifir {
-    stroke: rgba(79, 123, 120, 0.4);
+    stroke: rgba(46, 126, 160, 0.4);
     stroke-width: 1;
     vector-effect: non-scaling-stroke;
     stroke-dasharray: 3 3;

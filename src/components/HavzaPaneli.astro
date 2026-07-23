@@ -112,21 +112,21 @@ const [ky, ka, kg] = yasVeri.kaynak.havzaPotansiyelRezerv.indirmeTarihi.split('-
      hareket sözlüğü (--e-suzul/--e-akinti) hareket.css'ten (harita.astro
      import eder) gelir — panel renk değerleri burada yerel. */
   .panel {
-    --pk-zemin: #E9EBE7;
-    --pk-kart: #E0E5DF;
-    --pk-metin: #1C2B24;
-    --pk-soluk: #54655C;
-    --pk-derin: #175E56;
-    --pk-sig: #4F7B78;
-    --pk-kehribar: #B8863B;
-    --pk-kehribar-m: #7D5B24;
-    --pk-cizgi: rgba(28, 43, 36, 0.14);
+    --pk-zemin: #E9F0F4;
+    --pk-kart: #DFE9F0;
+    --pk-metin: #132A3F;
+    --pk-soluk: #48627A;
+    --pk-derin: #0C5A7C;
+    --pk-sig: #2E7EA0;
+    --pk-kehribar: #C0883A;
+    --pk-kehribar-m: #875518;
+    --pk-cizgi: rgba(19, 42, 63, 0.14);
     --pk-mono: "IBM Plex Mono", ui-monospace, monospace;
 
     background: var(--pk-zemin);
     color: var(--pk-metin);
     font-family: var(--sans, "Manrope", system-ui, sans-serif);
-    border-top: 1px solid rgba(28, 43, 36, 0.2);
+    border-top: 1px solid rgba(19, 42, 63, 0.2);
   }
 
   .panel-ic {
@@ -188,7 +188,7 @@ const [ky, ka, kg] = yasVeri.kaynak.havzaPotansiyelRezerv.indirmeTarihi.split('-
     transition: transform 240ms var(--e-suzul), background-color 240ms var(--e-akinti);
   }
 
-  .kart:hover { transform: translateY(-2px); background: #DFE3E2; }
+  .kart:hover { transform: translateY(-2px); background: #DBEAF4; }
 
   .kart:focus-visible {
     outline: 2px solid var(--pk-derin);
@@ -245,7 +245,7 @@ const [ky, ka, kg] = yasVeri.kaynak.havzaPotansiyelRezerv.indirmeTarihi.split('-
   }
 
   .spark-sifir {
-    stroke: rgba(79, 123, 120, 0.4);
+    stroke: rgba(46, 126, 160, 0.4);
     stroke-width: 1;
     stroke-dasharray: 3 3;
     vector-effect: non-scaling-stroke;

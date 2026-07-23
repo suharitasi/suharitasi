@@ -68,7 +68,7 @@ const sayi = (n: number) => n.toLocaleString('tr-TR');
     will-change: transform;
   }
 
-  .sv-liste a:hover { transform: translateY(-2px); background: rgba(79, 123, 120, 0.06); }
+  .sv-liste a:hover { transform: translateY(-2px); background: rgba(46, 126, 160, 0.06); }
 
   .sv-liste a:active { transform: translateY(0) scale(0.995); transition-duration: 120ms; }
 
@@ -77,10 +77,14 @@ const sayi = (n: number) => n.toLocaleString('tr-TR');
   .sv-no {
     font-family: var(--mono);
     font-variant-numeric: tabular-nums;
-    font-size: 1.45rem;
+    /* FAZ 8: 1.45rem'de eski rgba(84,101,92,.5) 2.04:1 idi (küçük metin,
+       AA 4.5). DESIGN §2'nin ilan ettiği ">=1.5rem = büyük metin, esik 3.0"
+       bandina cekildi; renk C murekkep-500 turevi (3.28:1), hover
+       --su-400 (3.96:1) — ikisi de 3.0 esigini gecer. */
+    font-size: 1.5rem;
     font-weight: 400;
     line-height: 1;
-    color: rgba(84, 101, 92, 0.5);
+    color: rgba(72, 98, 122, 0.75);
     transition: color 120ms var(--e-akinti);
   }
 
@@ -117,7 +121,7 @@ const sayi = (n: number) => n.toLocaleString('tr-TR');
     display: inline-block;
     padding: 0.2rem 0.66rem;
     background: var(--adacayi-krem);
-    border: 1px solid rgba(28, 43, 36, 0.08);
+    border: 1px solid rgba(19, 42, 63, 0.08);
     border-left: 2px solid var(--su-400);
     font-family: var(--mono);
     font-size: 0.66rem;

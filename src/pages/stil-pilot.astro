@@ -37,19 +37,19 @@ const tarihYaz = giris.data.tarih.toLocaleDateString('tr-TR', {
   /* ═══ DESIGN 2.0 token seti (anayasa §4-8) — pilot kapsamı ═══ */
   :root {
     /* SU-DİLİ derinlik skalası (DESIGN 3.0 — tonlar HEDEF görselinden) */
-    --krem: #E9EBE7;             /* YÜZEY */
-    --kart: #E0E5DF;             /* YÜZEY-kart */
-    --murekkep: #1C2B24;
-    --soluk: #5A6B62;
-    --baglanti: #175E56;
-    --su-cizgi: #4F7B78;         /* SIĞ — dekoratif */
-    --vurgu: #175E56;            /* DERİN petrol — vurgu sesi (6.3:1) */
-    --vurgu-hairline: #4F7B78;
-    --dip: #0C332C;
-    --kehribar-hair: #B8863B;
-    --kehribar-metin: #7D5B24;
-    --suyesili: #3E5C44;
-    --cizgi: rgba(28, 43, 36, 0.14);
+    --krem: #E9F0F4;             /* YÜZEY */
+    --kart: #DFE9F0;             /* YÜZEY-kart */
+    --murekkep: #132A3F;
+    --soluk: #4E6478;
+    --baglanti: #0C5A7C;
+    --su-cizgi: #2E7EA0;         /* SIĞ — dekoratif */
+    --vurgu: #0C5A7C;            /* DERİN petrol — vurgu sesi (6.3:1) */
+    --vurgu-hairline: #2E7EA0;
+    --dip: #0A2740;
+    --kehribar-hair: #C0883A;
+    --kehribar-metin: #875518;
+    --suyesili: #2C5570;
+    --cizgi: rgba(19, 42, 63, 0.14);
 
     --serif: "Cormorant", Georgia, serif;
     --sans: "Manrope", system-ui, sans-serif;
@@ -86,14 +86,14 @@ const tarihYaz = giris.data.tarih.toLocaleDateString('tr-TR', {
     letter-spacing: 0.14em;
     text-transform: uppercase;
     background: var(--dip);
-    color: #DFE3E2;
+    color: #DBEAF4;
     padding: 0.5rem clamp(1.25rem, 4vw, 2rem);
     display: flex;
     justify-content: space-between;
     gap: 1rem;
     flex-wrap: wrap;
   }
-  .pilot-serit a { color: #7FB5AE; text-decoration: none; }
+  .pilot-serit a { color: #57BAE0; text-decoration: none; }
   .pilot-serit a:hover { color: #FFFFFF; }
 
   header.ust {
@@ -131,7 +131,7 @@ const tarihYaz = giris.data.tarih.toLocaleDateString('tr-TR', {
   }
   h1 em {
     font-style: italic;
-    background: linear-gradient(105deg, #175E56 0%, #4F7B78 45%, #2E6B62 60%, #175E56 100%);
+    background: linear-gradient(105deg, #0C5A7C 0%, #2E7EA0 45%, #186789 60%, #0C5A7C 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -143,8 +143,8 @@ const tarihYaz = giris.data.tarih.toLocaleDateString('tr-TR', {
   .sayfa-kunye a { color: var(--baglanti); }
 
   .su-hatti { width: 100%; height: 1px; border: 0; margin: 1.3rem 0 0;
-    background: linear-gradient(90deg, rgba(94,138,135,0) 0%,
-      var(--su-cizgi) 14%, var(--su-cizgi) 62%, rgba(94,138,135,0) 100%); }
+    background: linear-gradient(90deg, rgba(78,134,168,0) 0%,
+      var(--su-cizgi) 14%, var(--su-cizgi) 62%, rgba(78,134,168,0) 100%); }
 
   /* ═══ §9 VERİ BANDI ═══ */
   .veri-bandi {
@@ -158,8 +158,8 @@ const tarihYaz = giris.data.tarih.toLocaleDateString('tr-TR', {
     content: ""; position: absolute; left: 0.55rem; top: 0.9rem; bottom: 0.9rem;
     width: 6px;
     background: repeating-linear-gradient(180deg,
-      rgba(79, 123, 120, 0.4) 0 1px, transparent 1px 7px),
-      linear-gradient(90deg, rgba(79, 123, 120, 0.4) 0 1px, transparent 1px);
+      rgba(46, 126, 160, 0.4) 0 1px, transparent 1px 7px),
+      linear-gradient(90deg, rgba(46, 126, 160, 0.4) 0 1px, transparent 1px);
   }
   .veri-bandi-ic {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
@@ -178,7 +178,7 @@ const tarihYaz = giris.data.tarih.toLocaleDateString('tr-TR', {
   .oz-cevap {
     margin: 1.8rem 0 0; padding: 1.1rem 1.3rem;
     border-left: 3px solid var(--vurgu-hairline);
-    background: rgba(23, 94, 86, 0.05);
+    background: rgba(12, 90, 124, 0.05);
     font-size: 1.06rem; line-height: 1.6; font-weight: 500; max-width: 66ch;
   }
   .oz-cevap .oz-etiket { display: block; font-family: var(--mono);
@@ -211,7 +211,7 @@ const tarihYaz = giris.data.tarih.toLocaleDateString('tr-TR', {
   .icerik blockquote {
     margin: 1.4rem 0; padding: 0.85rem 1.1rem;
     border-left: 3px solid var(--vurgu-hairline);
-    background: rgba(35, 46, 43, 0.035);
+    background: rgba(19, 42, 63, 0.035);
     color: var(--soluk); font-family: var(--serif); font-size: 1.1rem;
   }
 
@@ -226,7 +226,7 @@ const tarihYaz = giris.data.tarih.toLocaleDateString('tr-TR', {
   .icerik td { text-align: left; padding: 0.55rem 0.7rem;
     border-bottom: 1px solid var(--cizgi); vertical-align: top; }
   .icerik tbody tr { transition: background-color 120ms var(--e-akinti); }
-  .icerik tbody tr:hover { background: rgba(23, 94, 86, 0.05); }
+  .icerik tbody tr:hover { background: rgba(12, 90, 124, 0.05); }
 
   /* ═══ §7 KART KİMLİKLERİ — ilgili rehberler ═══ */
   .ilgili { margin-top: 3rem; }
@@ -239,8 +239,8 @@ const tarihYaz = giris.data.tarih.toLocaleDateString('tr-TR', {
   }
   .kart:hover { transform: translateY(-2px); background: var(--ton-zemin, var(--kart)); }
   .kart:active { transform: translateY(0) scale(0.985); transition-duration: 120ms; }
-  .kart.suyesili { --ton: var(--suyesili); --ton-metin: var(--suyesili); --ton-zemin: rgba(62, 92, 68, 0.07); }
-  .kart.kehribar { --ton: var(--kehribar-hair); --ton-metin: var(--kehribar-metin); --ton-zemin: rgba(184, 134, 59, 0.08); }
+  .kart.suyesili { --ton: var(--suyesili); --ton-metin: var(--suyesili); --ton-zemin: rgba(44, 85, 112, 0.07); }
+  .kart.kehribar { --ton: var(--kehribar-hair); --ton-metin: var(--kehribar-metin); --ton-zemin: rgba(192, 136, 58, 0.08); }
   .kart-kicker { font-family: var(--mono); font-size: 0.62rem; font-weight: 500;
     letter-spacing: 0.2em; text-transform: uppercase; color: var(--ton-metin, var(--ton)); }
   .kart-baslik { display: block; margin-top: 0.35rem; font-family: var(--serif);

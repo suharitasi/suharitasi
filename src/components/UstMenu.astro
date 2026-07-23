@@ -169,13 +169,13 @@ const simdiki = Astro.url.pathname.endsWith('/')
 
   /* 40px+ kaydırınca (sayfa.js sentineli): yarı saydam krem + blur */
   .ust:global(.sv-yuzer) {
-    background: rgba(243, 238, 226, 0.9);
-    box-shadow: 0 1px 14px rgba(35, 46, 43, 0.06);
+    background: rgba(237, 243, 247, 0.9);
+    box-shadow: 0 1px 14px rgba(19, 42, 63, 0.06);
   }
 
   @supports (backdrop-filter: blur(1px)) {
     .ust:global(.sv-yuzer) {
-      background: rgba(243, 238, 226, 0.74);
+      background: rgba(237, 243, 247, 0.74);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
     }

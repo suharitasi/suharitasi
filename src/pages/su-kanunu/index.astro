@@ -53,17 +53,21 @@ const noYaz = (i: number) => String(i + 1).padStart(2, '0');
     will-change: transform;
   }
 
-  .sv-liste a:hover { transform: translateY(-2px); background: rgba(23, 94, 86, 0.05); }
+  .sv-liste a:hover { transform: translateY(-2px); background: rgba(12, 90, 124, 0.05); }
 
   .sv-liste a:active { transform: translateY(0) scale(0.995); transition-duration: 120ms; }
 
   .sv-no {
     font-family: var(--mono);
     font-variant-numeric: tabular-nums;
-    font-size: 1.45rem;
+    /* FAZ 8: 1.45rem'de eski rgba(84,101,92,.5) 2.04:1 idi (küçük metin,
+       AA 4.5). DESIGN §2'nin ilan ettiği ">=1.5rem = büyük metin, esik 3.0"
+       bandina cekildi; renk C murekkep-500 turevi (3.28:1), hover
+       --su-400 (3.96:1) — ikisi de 3.0 esigini gecer. */
+    font-size: 1.5rem;
     font-weight: 400;
     line-height: 1;
-    color: rgba(84, 101, 92, 0.5);
+    color: rgba(72, 98, 122, 0.75);
     transition: color 120ms var(--e-akinti);
   }
 

@@ -14,8 +14,8 @@ mkdirSync(CIKTI, { recursive: true });
 
 // SU-DİLİ paleti (DESIGN.md 3.0 — skill varsayılan paletini geçersiz kılar)
 const P = {
-  zemin: '#E9EBE7', kart: '#E0E5DF', metin: '#1C2B24', soluk: '#54655C',
-  derin: '#175E56', sig: '#4F7B78', kehribar: '#B8863B', kehribarM: '#7D5B24',
+  zemin: '#E9F0F4', kart: '#DFE9F0', metin: '#132A3F', soluk: '#48627A',
+  derin: '#0C5A7C', sig: '#2E7EA0', kehribar: '#C0883A', kehribarM: '#875518',
 };
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -91,10 +91,17 @@ const KARTLAR = [
   },
 ];
 
-for (const k of KARTLAR) {
+// --ornek: yalnız TEK kart, ayrı dosya adıyla üretilir. Mevcut kartların
+// üzerine yazılmaz (FAZ 8: eski kartların yeniden üretimi kullanıcı kararı).
+const SADECE_ORNEK = process.argv.includes('--ornek');
+const URETILECEK = SADECE_ORNEK
+  ? [{ ...KARTLAR[1], dosya: 'linkedin-palet-c-ornek.png' }]
+  : KARTLAR;
+
+for (const k of URETILECEK) {
   const svg = svgKart(k);
   await sharp(Buffer.from(svg)).png().toFile(`${CIKTI}/${k.dosya}`);
   const meta = await sharp(`${CIKTI}/${k.dosya}`).metadata();
   console.log(`  ✓ ${k.dosya} (${meta.width}×${meta.height})`);
 }
-console.log(`\n  ${KARTLAR.length} kart → ${CIKTI}`);
+console.log(`\n  ${URETILECEK.length} kart → ${CIKTI}`);

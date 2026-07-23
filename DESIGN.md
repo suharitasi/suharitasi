@@ -22,38 +22,59 @@ olmaz.
 ## 2. DERİNLİK SKALASI — renk = anlam
 
 Su sütunu yukarıdan aşağı: içerik yüzeyde açık başlar, derinleştikçe
-koyulaşır. Tüm tonlar HEDEF görselinden örneklenmiştir (px koordinatlı
-denetim 2026-07-16).
+koyulaşır. **Yürürlükteki set: aday C — "açık su-mavisi zemin + koyu
+lacivert metin + kehribar kritik" (22.07 kullanıcı kararı; kıyas turu
+`cikti/denetim/faz8-palet/RAPOR.md`).** Derinlik=anlam eşlemesi aynen
+korunur; değişen yalnız ailenin ton ekseni — adaçayı-petrolden okyanus
+mavisine.
 
-| Katman | Hex | Görseldeki kaynağı | Kullanım |
+| Katman | Hex | Rol | Kullanım |
 |---|---|---|---|
-| **YÜZEY** | `#E9EBE7` | gümüş gök `#CDCED2` → kâğıda yükseltildi | İş sayfası zemini, özet/giriş katmanı |
-| **YÜZEY-kart** | `#E0E5DF` | gök + adaçayı karışımı | Kart/künye zeminleri |
-| **SIĞ** | `#4F7B78` | sığ deniz `#517270` | Dekoratif hairline, hover ışıması, su hattı. Metin olarak YALNIZ ≥1.5rem puntoda (3.94:1) |
-| **DERİN** | `#175E56` | derin deniz `#0C362D`/`#2D4E4B` rafinesi | **VURGU SESİ:** kicker, vurgu kelimesi, bağlantı hover (YÜZEY üstünde 6.31:1 AA) |
-| **DİP** | `#0C332C` | deniz dibi `#0C362D` | Koyu dünya zemini (menü katmanı, deneyim sahneleri, derin veri blokları) |
-| Mürekkep | `#1C2B24` | koyu kara `#16301F` | Metin (12.3:1) |
-| Soluk | `#54655C` | — türev | İkincil metin (kart zemininde 4.85:1 AA — Lighthouse denetimiyle koyulaştırıldı 2026-07-17) |
-| Köpük | `#DFE3E2` | su kavisleri/köpük | DİP üstünde metin (10.6:1) |
-| Plato kehribarı | `#B8863B` (hairline) / `#7D5B24` (metin) | plato altını `#F4D585`→`#AD945F` | Sıcak ikinci ses; metin daima koyu türev |
+| **YÜZEY** | `#E9F0F4` | açık su-mavisi zemin | İş sayfası zemini, özet/giriş katmanı |
+| **YÜZEY-kart** | `#DFE9F0` | bir kademe derin yüzey | Kart/künye zeminleri |
+| **SIĞ** | `#2E7EA0` | sığ su | Dekoratif hairline, hover ışıması, su hattı. Metin olarak YALNIZ ≥1.5rem puntoda (3.96:1) |
+| **DERİN** | `#0C5A7C` | okyanus mavisi | **VURGU SESİ:** kicker, vurgu kelimesi, bağlantı hover (YÜZEY üstünde 6.59:1 AA) |
+| **DİP** | `#0A2740` | gece laciverti | Koyu dünya zemini (menü katmanı, deneyim sahneleri, derin veri blokları) |
+| Mürekkep | `#132A3F` | koyu lacivert | Metin (12.75:1) |
+| Soluk | `#48627A` | — türev | İkincil metin (kart zemininde 5.16:1 AA) |
+| Köpük | `#DBEAF4` | su köpüğü | DİP üstünde metin (12.41:1) |
+| Süreç ailesi | `#2C5570` | lacivert-çelik | Kart kimliği "süreç" (§8) |
+| Işıma | `#57BAE0` | SIĞ'ın parlak türevi | Koyu dünyada ışıma/sparkline (DİP üstünde 6.90:1) |
+| Plato kehribarı | `#C0883A` (hairline) / `#875518` (metin) | sıcak ikinci ses | Kritik-vurgu; metin daima koyu türev. Mavi zeminde ayrışsın diye metin türevi C'de koyulaştırıldı (`#7D5B24`→`#875518`, YÜZEY üstünde 5.46:1) |
 
-**Kıyas kaydı (zorunluydu, yapıldı):**
-- *Skala A — "Gün ışığı su sütunu" (yukarıdaki):* HEDEF'in kendi suyu;
-  gök gümüşü → petrol dip. **SEÇİLDİ.** Gerekçe: (1) dilin kaynağı
-  sitenin yıldız karesinin kendisi olur, iki-dünya istisnası ("harita
-  adası") ortadan kalkar — tek aile; (2) derinlik=anlam eşlemesi görselde
-  fiziksel olarak var; (3) sıcak plato altını doğal ikinci ses verir.
-- *Skala B — "Gece denizi" (eski site: `#04121F`→`#4FC3D0`):* Güçlü
-  atmosfer ama HEDEF'in gün ışığıyla kavga eder (mevcut sitede /harita/
-  "istisna adası" ilan etmek zorunda kalmıştık — istisna, dil hatasının
-  itirafıdır). ELENDİ.
-- Akuamarin `#4FC3D0` hakkında: önceki brief'in "sitenin altını" ataması
-  bağlayıcı değildi; deneme sonucu KAYBETTİ — görselin suyu petroldür,
-  parlak akuamarin bu ailede elektrik kaçağı gibi durur. Koyu dünyada
-  ışıma tonu olarak SIĞ'ın parlak türevi `#7FB5AE` kullanılır.
-- Eski paletten korunanlar (gerekçeli): krem-kâğıt ailesi (görselin gök
-  ışığıyla aynı sıcaklık bandı — YÜZEY tonu zaten oraya evrildi) ve
-  kehribar (artık kaynağı görselin platosu; alışkanlık değil örnekleme).
+**Neden C (22.07 kararı):** site ilk bakışta "su/mavi" kimliği alsın
+istendi — Görünürlük kuralı gereği belirgin olan seçildi. C tüm metin/zemin
+çiftlerinde en yüksek kontrast bandını verir ve kritik-vurgu kehribarı
+soğuk mavi zeminde MEVCUT'takinden daha net ayrışır (sıcak-soğuk zıtlığı
+artar). Bedeli kabul edildi: krem-kâğıt sıcaklığı ve "tonlar HEDEF
+görselinden px-örneklemeli" gerekçesi terk edildi — palet artık görselden
+değil su-kimliğinden türer; HEDEF rasterı (harita hero'su) palet-bağımsız
+olduğu için değişmez. "Jenerik kurumsal mavi" riski bilinçli karşılandı:
+zemin tonu (`#E9F0F4`) yaygın soğuk-slate `#F8FAFC` yerine ılık tutuldu ve
+serif başlık + kehribar ikinci ses korundu (frontend-design uyarısı).
+
+### Önceki palet — arşiv notu (geri-dönüş yolu)
+
+22.07'ye kadar yürürlükte olan "Gün ışığı su sütunu" seti, tonları HEDEF
+görselinden px-örneklemeliydi:
+`krem #E9EBE7` · `adacayi-krem #E0E5DF` · `murekkep-900 #1C2B24` ·
+`murekkep-500 #54655C` · `su-700 #175E56` · `su-400 #4F7B78` ·
+`kehribar #B8863B` · `kehribar-metin #7D5B24` · `yesil-kara #3E5C44` ·
+`deniz #0C332C` · `akuamarin #7FB5AE` · `kopuk #DFE3E2`.
+Gerekçesi: dilin kaynağı sitenin yıldız karesinin kendisi olsun, krem-kâğıt
+görselin gök ışığıyla aynı sıcaklık bandında kalsın. Bu set terk edildi
+ama SİLİNMEDİ — geri dönülmek istenirse tek commit'lik yol açıktır
+(bkz. FAZ 8 uygulama raporu, "geri dönüş" bölümü).
+
+**Daha eski kıyas kaydı (korunur):**
+- *Skala "Gece denizi" (eski site: `#04121F`→`#4FC3D0`):* Güçlü atmosfer
+  ama gün ışığı yönüyle kavga ediyordu; ana palet olarak ELENDİ. Landing
+  ve /harita/ adasında bilinçli istisna olarak yaşar (aşağıdaki bölüm).
+- Akuamarin `#4FC3D0` hakkında: "sitenin altını" ataması bağlayıcı
+  değildi, deneme sonucu kaybetti; koyu dünyada ışıma tonu SIĞ'ın parlak
+  türevidir (C'de `#57BAE0`).
+- Kehribar her iki sette de korundu — alışkanlık değil, sıcak ikinci sesin
+  kritik-vurgu işlevi.
 
 ### Landing İstisnası (bilinçli — palet denetiminden muaf)
 
@@ -97,7 +118,7 @@ deneyim sınıfı.
 
 Başlık vurgu kelimesi düz boya DEĞİL, su yüzeyinden kırılan ışık:
 italik + tanımlı kırılma gradyanı —
-`linear-gradient(105deg, #175E56 0%, #4F7B78 45%, #2E6B62 60%, #175E56 100%)`
+`linear-gradient(105deg, #0C5A7C 0%, #2E7EA0 45%, #186789 60%, #0C5A7C 100%)`
 `background-clip: text` ile; iş sayfalarında STATİK, deneyim sayfalarında
 hafif kayma (8s `--e-akinti` döngü) serbest. Her ana başlıkta EN FAZLA
 bir vurgu kelimesi; kelime anlam taşır, rastgele seçilmez.
@@ -155,11 +176,11 @@ gradyan yalnız koyu dünya zeminlerinde.
 
 | Aile | Hairline / metin | İçerik türü |
 |---|---|---|
-| Derin petrol | `#175E56` / aynı | Canlı veri, araç, mevzuat |
-| Sığ turkuaz | `#4F7B78` / `#175E56` | Havzalar |
-| Yeşil kara | `#3E5C44` / aynı | Süreç rehberleri |
-| Plato kehribarı | `#B8863B` / `#7D5B24` | Uyuşmazlık rehberleri |
-| Mürekkep | `#1C2B24` / aynı | Kurumsal (hakkında, yazar, künye) |
+| Derin okyanus | `#0C5A7C` / aynı | Canlı veri, araç, mevzuat |
+| Sığ su | `#2E7EA0` / `#0C5A7C` | Havzalar |
+| Lacivert-çelik | `#2C5570` / aynı | Süreç rehberleri |
+| Plato kehribarı | `#C0883A` / `#875518` | Uyuşmazlık rehberleri |
+| Mürekkep | `#132A3F` / aynı | Kurumsal (hakkında, yazar, künye) |
 
 ## 9. KARARLAŞTIRILMIŞLIK — durum sözlüğü
 
