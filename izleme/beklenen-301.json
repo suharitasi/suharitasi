@@ -1,0 +1,7 @@
+{
+  "_not": "Canlıda çalışması BEKLENEN yönlendirmeler. Kaybolursa md.3 kırmızı verir ve G1(b) onarımı _redirects'e yeniden ekler.",
+  "kurallar": [
+    { "kaynak": "/deneyim/", "hedef": "/", "kod": 301, "gerekce": "6 sahne akışı ana sayfaya taşındı (23.07)" },
+    { "kaynak": "/deneyim", "hedef": "/", "kod": 301, "gerekce": "eğik çizgisiz hâli" }
+  ]
+}

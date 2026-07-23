@@ -14,6 +14,10 @@ set -euo pipefail
 KOK=/home/suha/projeler/suharitasi
 cd "$KOK" || exit 1
 
+# ORTAK GIT KİLİDİ (2026-07-23): 4 otomatik commit'çi aynı depoya yazıyor;
+# eşzamanlı commit/push çakışmasın diye tek flock kullanılır (arac/git-kilit.sh).
+. "$KOK/arac/git-kilit.sh"
+
 IZ="$KOK/izleme"
 LOGP="$KOK/log/pipeline.log"
 mkdir -p "$KOK/log" "$IZ/arsiv" "$IZ/state" "$IZ/log"
@@ -299,6 +303,13 @@ logla "SU-İZLEME bitti: olay=$OLAY_SAYAC hata=$HATA_SAYAC"
 [ -d "$IZ" ] && git add "$IZ" || true
 
 if ! git diff --cached --quiet; then
+  # ORTAK GIT KİLİDİ (2026-07-23): kilit alınamazsa İŞ ERTELENİR — arşiv ve
+  # DURUM.md diskte yazılı kalır, sonraki koşuda commit edilir.
+  if ! git_kilit_al "su-izleme"; then
+    logla "git kilidi 10 dk'da alınamadı — commit ERTELENDİ"
+    exit 4
+  fi
+  git_pull_rebase || logla "pull --rebase başarısız (abort edildi); commit yine denenir"
   ONCE=$(git rev-parse HEAD)
   git commit -q -m "Su izleme: $RUN_UTC (olay=$OLAY_SAYAC hata=$HATA_SAYAC) (otomatik)
 
@@ -311,8 +322,10 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>" \
   if ! git push -q; then
     logla "git push BAŞARISIZ (commit yerelde; sonraki koşuda denenir)"
     # push koptu → sessiz hata yasağı: exit 0 dönme
+    git_kilit_birak
     [ "$HATA_SAYAC" -gt 0 ] && exit 1 || exit 3
   fi
+  git_kilit_birak
 fi
 
 # hedef hatası varsa exit≠0 (bekçi/log görsün) ama arşiv/DURUM yazıldı.

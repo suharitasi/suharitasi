@@ -1,0 +1,13 @@
+{
+  "_not": "G1(a) otomatik CSP onarımının SINIRI. Onarım YALNIZ buradaki değerleri ekleyebilir. Gereken kaynak burada yoksa onarım YAPILMAZ, kullanıcıya devredilir.",
+  "izinli": {
+    "media-src": ["'self'", "blob:", "data:"],
+    "img-src": ["'self'", "blob:", "data:"],
+    "font-src": ["'self'", "https://fonts.gstatic.com"],
+    "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+    "script-src": ["'self'", "'unsafe-inline'"],
+    "connect-src": ["'self'"],
+    "worker-src": ["'self'", "blob:"]
+  },
+  "onayli_alan_adlari": ["suharitasi.com", "fonts.googleapis.com", "fonts.gstatic.com"]
+}

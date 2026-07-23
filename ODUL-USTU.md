@@ -13,6 +13,20 @@ disiplinidir. Çelişki halinde: DESIGN.md (nasıl) > ODUL-USTU.md (hangi sıray
 VIZYON.md (ne). BRIEF.md çatı kuralları her zaman üstündür.
 
 ## Korunacaklar (hiçbir faz bunları feda edemez)
+- **CANLI KOŞUL İLKESİ (2026-07-23):** yerelde canlı koşulları (yanıt
+  başlıkları/CSP, yönlendirmeler) taklit edilmeden alınan kanıt "canlı
+  çalışıyor" SAYILMAZ. Yerel ölçüm `arac/dist-sun.mjs` ile (dist'i _headers +
+  _redirects uygulayarak servis eder), nihai kanıt canlı URL ile alınır.
+  Bedeli ödendi: `python3 -m http.server` üzerinde alınan "yeşil" kanıtlarla
+  ana sayfa yayına verildi; CSP'de `media-src` olmadığı için 6 sahnenin hiçbiri
+  canlıda oynamıyordu ve arızayı kullanıcı buldu.
+- **GÖRÜNTÜ KANIT DEĞİLDİR (2026-07-23):** medya/animasyon iddiası ÖLÇÜMLE
+  kanıtlanır (istek durumu, `readyState`, `currentTime`); ekran karesi yalnız
+  destekleyicidir. Poster gösteren bir kare "video oynuyor" demek değildir.
+- **SÜREKLİLİK İLKESİ (2026-07-23):** her yapısal iş kalıcı bir kontrol maddesi
+  bırakır; ilgili kontrol `arac/site-saglik.mjs`'e eklenir ve çekirdek
+  sayfa/medya yapılandırması güncellenir. Tek seferlik kanıt yeterli değildir.
+
 - İçerik sayfalarında JS~0; craft yükü yalnız sahne rotalarına (landing,
   /harita/, /deneyim/, Senin Suyun).
 - GEO: öz-cevap + JSON-LD JS'siz DOM'da, curl-kanıtlı.

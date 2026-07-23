@@ -10,6 +10,10 @@
 # teyidinden SONRA; başarı git log ile ölçülür.
 set -euo pipefail
 KOK=/home/suha/projeler/suharitasi
+
+# ORTAK GIT KİLİDİ (2026-07-23): 4 otomatik commit'çi aynı depoya yazıyor;
+# eşzamanlı commit/push çakışmasın diye tek flock kullanılır (arac/git-kilit.sh).
+. "$KOK/arac/git-kilit.sh"
 URL="https://earth.gsfc.nasa.gov/sites/default/files/geo/gsfc.glb_.200204_202603_rl06v2.0_obp-ice6gd_halfdegree.nc"
 HAM_DIZIN="$KOK/data/arsiv/grace/ham"
 DURUM="$KOK/data/arsiv/grace/durum.json"
@@ -83,6 +87,13 @@ for f in data/canli/grace-turkiye.json data/canli/grace-havza.json; do
 done
 
 if ! git diff --cached --quiet; then
+  # ORTAK GIT KİLİDİ (2026-07-23): kilit alınamazsa İŞ ERTELENİR — dosyalar
+  # diskte durur, sonraki koşuda commit edilir (sessiz kayıp yasak).
+  if ! git_kilit_al "grace"; then
+    logla "git kilidi 10 dk'da alınamadı — commit ERTELENDİ"
+    exit 4
+  fi
+  git_pull_rebase || logla "pull --rebase başarısız (abort edildi); commit yine denenir"
   ONCE=$(git rev-parse HEAD)
   git commit -q -m "GRACE arşivi: $(date -u +%Y-%m-%d) güncelleme (otomatik)
 
@@ -91,6 +102,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>" \
   SONRA=$(git rev-parse HEAD)
   [ "$ONCE" = "$SONRA" ] && hata_say "commit atlandı: HEAD değişmedi"
   git push -q || logla "git push BAŞARISIZ (commit yerelde, sonraki koşuda denenir)"
+  git_kilit_birak
 fi
 
 # 5) Sayaç sıfırlama — commit teyidinden SONRA (Faz 0 bulgusu): commit

@@ -21,6 +21,27 @@ Diğer her şey serbest. Not: "İş kapanış kuralı"ndaki KULLANICI ONAYI
 BEKLİYOR etiketi ön onay değil, canlı test kaydıdır — iş yapılıp
 push'lanır, etiket yalnız kuyrukta açık kalır.
 
+## Sürekli site sağlık sistemi (2026-07-23)
+Site sürekli denetlenir: `arac/site-saglik.mjs` (tek script, üç mod —
+`--tam` cron, `--hizli` deploy sonrası, `--test` sanal doğrulama).
+- **OTURUM AÇILIŞ KURALI:** her oturumun başında `izleme/SITE-DURUM.md`
+  OKUNUR; 🔴 varsa SIRADAKILER'den ÖNCE kullanıcıya bildirilir.
+- Cron: 07:30 ve 19:30 UTC (`--tam`). Bekçinin bekçisi: `saglik-bekcisi.sh`
+  son başarılı koşu ≥14 saat eskiyse 🔴 verir.
+- Otomatik onarım SINIRLIDIR (beyaz liste: CSP direktifi, kaybolan
+  yönlendirme, sitemap'te 404, pipeline tekrarı). Performans, tasarım,
+  içerik/hukuk, JSON-LD şeması, veri kaynağı değişimi, mimari = KARA LİSTE,
+  asla otomatik onarılmaz — DUR + bildir.
+- **CANLI KOŞUL İLKESİ:** yerel ölçüm `arac/dist-sun.mjs` ile yapılır
+  (CSP + _redirects uygulanır); `python3 -m http.server` üzerinde alınan
+  kanıt "canlı çalışıyor" SAYILMAZ. Ayrıntı: ODUL-USTU.md "Korunacaklar".
+- **GÖRÜNTÜ KANIT DEĞİLDİR:** medya iddiası ölçümle (istek/readyState/
+  currentTime) kanıtlanır; ekran karesi destekleyicidir.
+- **SÜREKLİLİK İLKESİ:** her yapısal iş kalıcı bir kontrol maddesi bırakır
+  (site-saglik.mjs + `izleme/*.json` yapılandırması güncellenir).
+- Depoya otomatik commit atan tüm scriptler TEK kilit kullanır:
+  `flock /tmp/suharitasi-git.lock` (`arac/git-kilit.sh`).
+
 ## Tarayıcı öz-denetim protokolü
 Görsel/UI içeren HER işin bitti-tanımına şunlar dahildir (araç: Playwright
 MCP — .mcp.json'da kayıtlı; MCP oturumda yoksa arac/oz-denetim.mjs):

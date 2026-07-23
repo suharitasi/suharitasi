@@ -26,3 +26,12 @@ kaynak-video/
 .agents/
 .claude/skills/
 skills-lock.json
+
+# Sürekli site sağlık sistemi — ÜRETİLEN yerel izleme çıktıları (2026-07-23).
+# Depoya girmez: her koşuda değişir, günde 2 koşu = gereksiz commit gürültüsü.
+# Oturum açılış kuralı YEREL dosyayı okur (Claude Code bu sunucuda çalışır).
+# Yapılandırma dosyaları (izleme/*.json) depodadır — asıl kaynak onlar.
+izleme/SITE-DURUM.md
+izleme/site-saglik-log.jsonl
+izleme/onarim-log.jsonl
+izleme/state/site-saglik-durum.json

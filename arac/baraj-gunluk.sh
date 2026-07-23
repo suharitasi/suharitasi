@@ -27,7 +27,18 @@ if node arac/baraj-cek.mjs; then CEKIM=0; else CEKIM=$?; fi
 [ -f data/canli/baraj.json ] && git add data/canli/baraj.json
 [ -f UYARI-BARAJ.md ]        && git add UYARI-BARAJ.md
 
+# ORTAK GIT KİLİDİ (2026-07-23): 4 otomatik commit'çi aynı depoya yazıyor;
+# eşzamanlı commit/push çakışmasın diye tek flock kullanılır (arac/git-kilit.sh).
+. "$KOK/arac/git-kilit.sh"
+
 if ! git diff --cached --quiet; then
+  # Kilit alınamazsa İŞ ERTELENİR (sessiz kayıp yasak): dosyalar diskte
+  # durur, staged kalır, sonraki koşuda commit edilir.
+  if ! git_kilit_al "baraj"; then
+    echo "[$(date -u +%FT%TZ)] git kilidi 10 dk'da alınamadı — commit ERTELENDİ" >> "$HATALOG"
+    exit 4
+  fi
+  git_pull_rebase || true   # rebase koparsa abort edilir; commit yine denenir
   ONCE=$(git rev-parse HEAD)
   # commit teyidi: commit atılmazsa veri arşivlenmemiştir → gerçek hata (exit 1).
   git commit -q -m "Baraj arşivi: $(date -u +%Y-%m-%d) günlük çekim (otomatik)
@@ -44,6 +55,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>" \
     echo "[$(date -u +%FT%TZ)] git push BAŞARISIZ (commit yerelde, sonraki koşuda denenir)" >> "$HATALOG"
     PUSH_HATA=1
   fi
+  git_kilit_birak
 fi
 
 # Cloudflare deploy hook — SON adım. YALNIZ başarılı çekimde (CEKIM=0):

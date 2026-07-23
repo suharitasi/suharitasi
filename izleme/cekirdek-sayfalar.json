@@ -1,0 +1,12 @@
+{
+  "_not": "Sağlık sisteminin ÇEKİRDEK SETİ (site-saglik.mjs). --hizli modda yalnız bunlar, --tam modda sitemap'in tamamı taranır. Sayfa eklerken buraya da ekle (SÜREKLİLİK İLKESİ).",
+  "sayfalar": [
+    { "yol": "/", "not": "ana sayfa — 6 sahne akışı + soru şeridi" },
+    { "yol": "/harita/", "not": "harita + 25 havza paneli" },
+    { "yol": "/havzalar/sakarya/", "not": "havza sayfası örneği (baraj doluluk + GRACE)" },
+    { "yol": "/rehberler/kuyu-ruhsati/", "not": "SEO omurgası — en çok bağlanan rehber" },
+    { "yol": "/rehberler/kuyu-tasima/", "not": "elle yazılmış rehber sayfası" },
+    { "yol": "/durumum/", "not": "sektör kapısı — istemci arama JS'i" },
+    { "yol": "/vaka/meysu/", "not": "vaka sayfası örneği" }
+  ]
+}

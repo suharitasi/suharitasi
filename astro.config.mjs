@@ -43,8 +43,41 @@ function sitemapOlustur() {
   };
 }
 
+// SÜRÜM DAMGASI (2026-07-23) — sağlık sistemi "hangi sürüm yayında" sorusunu
+// tahminle değil ölçümle cevaplasın diye her build'e commit sha'sı gömülür.
+// Cloudflare Pages CF_PAGES_COMMIT_SHA verir; yerelde git'ten okunur.
+// Bu olmadan deploy sonrası ölçüm ESKİ sürümü ölçüp "düzeldi" diyebilirdi.
+function surumDamgasi() {
+  return {
+    name: 'surum-damgasi',
+    hooks: {
+      'astro:build:done': async ({ dir, logger }) => {
+        let commit = process.env.CF_PAGES_COMMIT_SHA || '';
+        if (!commit) {
+          try {
+            const { execSync } = await import('node:child_process');
+            commit = execSync('git rev-parse HEAD', { encoding: 'utf8' }).trim();
+          } catch (e) {
+            commit = 'bilinmiyor';
+            logger.warn(`sürüm damgası: git okunamadı (${e.message})`);
+          }
+        }
+        const govde = {
+          commit,
+          kisa: commit.slice(0, 7),
+          zaman: new Date().toISOString(),
+          dal: process.env.CF_PAGES_BRANCH || 'yerel',
+        };
+        await writeFile(join(fileURLToPath(dir), 'surum.json'),
+          JSON.stringify(govde, null, 2) + '\n', 'utf8');
+        logger.info(`surum.json: ${govde.kisa}`);
+      },
+    },
+  };
+}
+
 export default defineConfig({
   site: SITE,
   trailingSlash: 'ignore',
-  integrations: [sitemapOlustur()],
+  integrations: [sitemapOlustur(), surumDamgasi()],
 });

@@ -77,6 +77,34 @@ if [ -f "$BLOG" ]; then
   fi
 fi
 
+# (f) BEKÇİNİN BEKÇİSİ (2026-07-23): site sağlık sistemi kendisi koşuyor mu?
+# site-saglik.mjs siteyi denetler ama KENDİ durmasını denetleyemez — bu satır
+# onun gözcüsüdür. Eşik 14 saat: cron 07:30 + 19:30 UTC (12 saat arayla), tek
+# koşu kaçırılınca değil, İKİ koşu arası pencere aşılınca alarm verir.
+SAGLIK_DURUM="$KOK/izleme/state/site-saglik-durum.json"
+if [ -f "$SAGLIK_DURUM" ]; then
+  # Bozuk JSON sessizce "boş" sayılmasın: python hatası LOGP'ye düşer, SON_KOSU
+  # boş kalır ve aşağıdaki dal 🔴 verir.
+  SON_KOSU=$(python3 -c "
+import json
+d=json.load(open('$SAGLIK_DURUM'))
+print(d.get('sonBasariliKosu') or '')
+" 2>>"$LOGP") || SON_KOSU=""
+  if [ -z "$SON_KOSU" ]; then
+    ekle "🔴 sağlık sistemi hiç BAŞARILI koşmamış (site-saglik-durum.json'da sonBasariliKosu yok)"
+  else
+    KOSU_TS=$(date -u -d "$SON_KOSU" +%s) || KOSU_TS=0
+    if [ "$KOSU_TS" -eq 0 ]; then
+      ekle "🔴 sağlık sisteminin son koşu damgası okunamadı ($SON_KOSU)"
+    else
+      KS=$(( (NOW - KOSU_TS) / 3600 ))
+      [ "$KS" -gt 14 ] && ekle "🔴 sağlık sistemi koşmuyor — son başarılı koşu ${KS} saat önce (>14s)"
+    fi
+  fi
+else
+  ekle "🔴 sağlık sistemi koşmuyor — $SAGLIK_DURUM YOK (hiç koşmamış)"
+fi
+
 if [ -n "$SORUN" ]; then
   printf '# SAĞLIK BEKÇİSİ UYARISI\n\n%s\n\n%s' "$(date -u)" "$SORUN" > "$UYARI"
   printf '%s' "$SORUN" | while IFS= read -r s; do

@@ -36,7 +36,7 @@
         "Su Verimliliği Yönetmeliği md.(3) — OSB/serbest/endüstri bölgesi açıkça sayılı"
       ],
       "ilgiliIcerik": [
-        "/rehberler/su-tahsisinde-oncelik-sirasi/"
+        "/rehberler/su-tahsisi-oncelik-sirasi/"
       ],
       "oneri": false
     },
@@ -63,11 +63,11 @@
       "sonTarih": null,
       "sonTarihDurum": "dogrulanamadi — projeye bağlı",
       "dayanak": [
-        "/rehberler/kaynak-hakki-mecra-irtifaki/",
+        "/rehberler/kaynak-hakki-komsu-su/",
         "/rehberler/kuyu-ruhsati/"
       ],
       "ilgiliIcerik": [
-        "/rehberler/kaynak-hakki-mecra-irtifaki/",
+        "/rehberler/kaynak-hakki-komsu-su/",
         "/rehberler/kuyu-ruhsati/"
       ],
       "oneri": false
@@ -79,11 +79,11 @@
       "sonTarih": null,
       "sonTarihDurum": "dogrulanamadi — tahsis işlemine bağlı",
       "dayanak": [
-        "/rehberler/su-tahsisinde-oncelik-sirasi/",
+        "/rehberler/su-tahsisi-oncelik-sirasi/",
         "/rehberler/yeralti-suyu-isletme-sahasi/"
       ],
       "ilgiliIcerik": [
-        "/rehberler/su-tahsisinde-oncelik-sirasi/",
+        "/rehberler/su-tahsisi-oncelik-sirasi/",
         "/rehberler/yeralti-suyu-isletme-sahasi/"
       ],
       "oneri": false
@@ -110,11 +110,11 @@
       "sonTarihDurum": "dogrulanamadi — ruhsat/proje sürecine bağlı",
       "dayanak": [
         "/rehberler/jeotermal-ruhsat/",
-        "/rehberler/baraj-kamulastirma/"
+        "/rehberler/baraj-kamulastirmasi/"
       ],
       "ilgiliIcerik": [
         "/rehberler/jeotermal-ruhsat/",
-        "/rehberler/baraj-kamulastirma/"
+        "/rehberler/baraj-kamulastirmasi/"
       ],
       "oneri": false
     },
@@ -125,11 +125,11 @@
       "sonTarih": null,
       "sonTarihDurum": "dogrulanamadi — Ek-2 NACE listesi doğrulanınca netleşir",
       "dayanak": [
-        "/rehberler/su-tahsisinde-oncelik-sirasi/",
+        "/rehberler/su-tahsisi-oncelik-sirasi/",
         "Su Verimliliği Yönetmeliği md.(3)-(4) Ek-2"
       ],
       "ilgiliIcerik": [
-        "/rehberler/su-tahsisinde-oncelik-sirasi/"
+        "/rehberler/su-tahsisi-oncelik-sirasi/"
       ],
       "oneri": false
     },

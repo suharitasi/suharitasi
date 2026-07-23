@@ -1,0 +1,12 @@
+{
+  "_not": "Sayfa başına BEKLENEN medya. Sahne sayısı BURADAN okunur — script'e sabit sayı gömülmez (sahne eklenirse tek yerden güncellenir).",
+  "sayfalar": [
+    {
+      "yol": "/",
+      "secici": "#world .sw-scene",
+      "sahne_sayisi": 6,
+      "video_gerekli": true,
+      "not": "scrub motoru: her sahne için istek 200 + readyState>=2 + currentTime>0"
+    }
+  ]
+}

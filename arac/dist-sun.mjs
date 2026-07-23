@@ -3,18 +3,23 @@
    temsil etmez — nitekim 23.07 arızası (media-src eksikliği) yalnız canlıda
    görünüyordu. Bu sunucu dist/_headers'taki `/*` bloğunu ve dist/_redirects'teki
    tam-yol kurallarını uygular.
-   Kullanım: node arac/dist-sun.mjs [port]                                     */
+   Kullanım: node arac/dist-sun.mjs [port] [kokDizini]
+   kokDizini verilmezse <proje>/dist. --test senaryoları sanal bir dizini
+   servis edebilsin diye parametrelidir.
+   NOT: _headers ve _redirects HER İSTEKTE yeniden okunur — senaryo dosyayı
+   değiştirince sunucuyu yeniden başlatmak gerekmesin (dosyalar birkaç satır). */
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { readFileSync, existsSync } from 'node:fs';
 import { join, extname, normalize } from 'node:path';
 
-const KOK = '/home/suha/projeler/suharitasi/dist';
 const PORT = Number(process.argv[2] || 5197);
+const KOK = process.argv[3] || '/home/suha/projeler/suharitasi/dist';
 
 // — _headers: yalnız `/*` bloğu (site geneli) —
-const genelBaslik = {};
-if (existsSync(join(KOK, '_headers'))) {
+function baslikOku() {
+  const genelBaslik = {};
+  if (!existsSync(join(KOK, '_headers'))) return genelBaslik;
   let icerde = false;
   for (const satir of readFileSync(join(KOK, '_headers'), 'utf8').split('\n')) {
     if (satir.startsWith('#') || satir.trim() === '') continue;
@@ -23,16 +28,19 @@ if (existsSync(join(KOK, '_headers'))) {
     const i = satir.indexOf(':');
     if (i > 0) genelBaslik[satir.slice(0, i).trim()] = satir.slice(i + 1).trim();
   }
+  return genelBaslik;
 }
 
 // — _redirects: tam-yol kuralları —
-const yonlendirme = new Map();
-if (existsSync(join(KOK, '_redirects'))) {
+function yonlendirmeOku() {
+  const yonlendirme = new Map();
+  if (!existsSync(join(KOK, '_redirects'))) return yonlendirme;
   for (const satir of readFileSync(join(KOK, '_redirects'), 'utf8').split('\n')) {
     if (satir.startsWith('#') || satir.trim() === '') continue;
     const [kaynak, hedef, kod] = satir.trim().split(/\s+/);
     if (kaynak && hedef) yonlendirme.set(kaynak, { hedef, kod: Number(kod || 302) });
   }
+  return yonlendirme;
 }
 
 const TUR = {
@@ -45,9 +53,9 @@ const TUR = {
 
 createServer(async (istek, cevap) => {
   const yol = decodeURIComponent(new URL(istek.url, 'http://x').pathname);
-  for (const [ad, deger] of Object.entries(genelBaslik)) cevap.setHeader(ad, deger);
+  for (const [ad, deger] of Object.entries(baslikOku())) cevap.setHeader(ad, deger);
 
-  const y = yonlendirme.get(yol);
+  const y = yonlendirmeOku().get(yol);
   if (y) { cevap.writeHead(y.kod, { Location: y.hedef }); cevap.end(); return; }
 
   let dosya = join(KOK, normalize(yol).replace(/^(\.\.[/\\])+/, ''));
@@ -66,4 +74,4 @@ createServer(async (istek, cevap) => {
     cevap.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
     cevap.end('404');
   }
-}).listen(PORT, '127.0.0.1', () => console.log(`dist -> http://127.0.0.1:${PORT}/ (CSP + _redirects uygulanıyor)`));
+}).listen(PORT, "127.0.0.1", () => console.log(`${KOK} -> http://127.0.0.1:${PORT}/ (CSP + _redirects uygulanıyor)`));
