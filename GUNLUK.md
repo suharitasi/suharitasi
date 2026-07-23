@@ -479,3 +479,19 @@ depoda 3 vardı (baraj, GRACE, su-izleme), site-saglik 4. oldu.
 
 Açık kalan: /harita/ öz-cevap + JSON-LD yok (kara liste, kullanıcı kararı);
 SMTP bilgileri beklemede.
+
+## 23 Temmuz 2026 (4) — /hangi-kurum/ yetkili kurum rehberi + brief-denetci ön kapı
+- Brief denetçisi (arac/brief-denetci.mjs, T1-T8) KURULDU; her brief artık dosyaya
+  yazılıp denetçiden geçer + düşman geçişi (D1-D4) + amaç özeti (3b). Öz-denetimde
+  use/mention meta-artefaktı belgelendi (rapor/brief-denetci.md).
+- /hangi-kurum/ sayfası: build-time hangi-kapi.json (20 işlem) + su-birimleri.json
+  (155 kurum) + su-islemleri.json'dan üretildi; üstte tek-tık filtre (details,
+  progressive), altta JS'siz tam tablo (GEO). İçerik uydurulmadı; kurum id çözümü
+  0 kırık, durum 11/5/3/1 JSON'la birebir. FAQPage yalnız doğrulanmış 11 satır.
+- Kanıt: masaüstü LH 98 / mobil 85 (eşik ≥90/≥70 geçti), kontrast tümü AA, konsol 0,
+  375 yatay taşma 0, iç link 0 kırık. cikti/denetim/hangi-kurum/RAPOR.md.
+- SÜREKLİLİK: site-saglik.mjs'e md11-veri-butunlugu (JSON geçerli mi + kayıt azaldı
+  mı🟡 + şema tanınıyor mu); /hangi-kurum/ çekirdek sayfa listesine eklendi.
+- KARAR/UYDURMA: brief "tel" istedi ama doğrulanmış numara yok — icat edilmedi,
+  onaylı e-posta+künye kalıbı kullanıldı (numara verilirse eklenir).
+- DURUM: KULLANICI ONAYI BEKLİYOR (canlı test). Menü iki kaynağa da eklendi.

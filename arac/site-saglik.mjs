@@ -417,6 +417,42 @@ async function md10_veriTazeligi() {
     { olcum, bayat }, ['tam']);
 }
 
+// md11 — VERİ BÜTÜNLÜĞÜ: /hangi-kurum/ artık bu üç JSON'a build-time bağlı.
+// Veri bozulursa sayfa bozulur (SÜREKLİLİK İLKESİ). Geçerli JSON değil → 🔴;
+// kayıt sayısı azaldı → 🟡; şema sürümü tanınmıyor → 🟡. Baseline durum'da tutulur.
+async function md11_veriButunlugu() {
+  const kurallar = [
+    { dosya: 'data/kamu/hangi-kapi.json', ad: 'hangi-kapi', say: (d) => d.satirlar?.length, semaAnahtar: '_sema_surumu', bilinen: [1] },
+    { dosya: 'data/kamu/su-birimleri.json', ad: 'su-birimleri', say: (d) => d.kayitlar?.length, semaAnahtar: '_sema_surumu', bilinen: [2] },
+    { dosya: 'data/kamu/su-islemleri.json', ad: 'su-islemleri', say: (d) => d.islemler?.length, semaAnahtar: '_sema_surumu', bilinen: [1] },
+  ];
+  const taban = durum.veriKayit || {};
+  const yeni = {}, olcum = [], kirmizi = [], sari = [];
+  for (const k of kurallar) {
+    const tam = join(KOK, k.dosya);
+    if (!existsSync(tam)) { kirmizi.push(`${k.ad}: dosya YOK`); continue; }
+    let veri;
+    try { veri = JSON.parse(readFileSync(tam, 'utf8')); }
+    catch (e) { kirmizi.push(`${k.ad}: geçersiz JSON (${e.message.slice(0, 40)})`); continue; }
+    const say = k.say(veri);
+    if (typeof say !== 'number') { kirmizi.push(`${k.ad}: kayıt dizisi bulunamadı`); continue; }
+    yeni[k.ad] = say;
+    const sema = veri[k.semaAnahtar];
+    if (sema === undefined || !k.bilinen.includes(sema)) sari.push(`${k.ad}: şema sürümü tanınmıyor (${sema})`);
+    const onceki = taban[k.ad];
+    if (typeof onceki === 'number' && say < onceki) sari.push(`${k.ad}: kayıt AZALDI ${onceki}→${say}`);
+    olcum.push({ ad: k.ad, say, onceki: onceki ?? null, sema });
+  }
+  // baseline güncelle (koşu sonunda DURUM_YOL'a yazılır)
+  durum.veriKayit = { ...taban, ...yeni };
+  const dr = kirmizi.length ? 'kirmizi' : sari.length ? 'sari' : 'gecti';
+  kaydet('11-veri-butunlugu', dr,
+    kirmizi.length ? kirmizi.join(' · ')
+      : sari.length ? sari.join(' · ')
+      : olcum.map((o) => `${o.ad} ${o.say}`).join(' · '),
+    { olcum, kirmizi, sari }, ['tam']);
+}
+
 // ============================================================================
 // G — OTOMATİK ONARIM (beyaz liste; hedef yollar PARAMETRE — --test sanalda çalışır)
 // ============================================================================
@@ -539,6 +575,7 @@ async function kosu() {
   await korumali('tarayici', ['hizli', 'tam'], tarayiciKontrolleri);
   await korumali('9-lighthouse', ['tam'], md9_lighthouse);
   await korumali('10-veri-tazeligi', ['tam'], md10_veriTazeligi);
+  await korumali('11-veri-butunlugu', ['tam'], md11_veriButunlugu);
 
   if (ONARIM_ACIK && onarimlar.length) await onarimlariUygula();
   return bitir();

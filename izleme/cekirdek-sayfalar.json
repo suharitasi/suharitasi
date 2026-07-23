@@ -7,6 +7,7 @@
     { "yol": "/rehberler/kuyu-ruhsati/", "not": "SEO omurgası — en çok bağlanan rehber" },
     { "yol": "/rehberler/kuyu-tasima/", "not": "elle yazılmış rehber sayfası" },
     { "yol": "/durumum/", "not": "sektör kapısı — istemci arama JS'i" },
+    { "yol": "/hangi-kurum/", "not": "yetkili kurum rehberi — build-time hangi-kapi.json + su-birimleri.json + su-islemleri.json'a bağlı; veri bozulursa sayfa bozulur" },
     { "yol": "/vaka/meysu/", "not": "vaka sayfası örneği" }
   ]
 }

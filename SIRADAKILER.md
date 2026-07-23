@@ -2,6 +2,15 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
+/HANGİ-KURUM/ SAYFASI — KULLANICI ONAYI BEKLİYOR (2026-07-23). Su işlemlerinde
+yetkili kurum rehberi: build-time hangi-kapi.json (20 işlem) + su-birimleri.json
+(155 kurum) + su-islemleri.json'dan üretildi; üstte tek-tık filtre (details),
+altta JS'siz tam tablo. FAQPage yalnız 11 doğrulanmış satır. Kanıt: LH masaüstü
+98/mobil 85, kontrast AA, konsol 0, 375 taşma 0, link 0 kırık
+(cikti/denetim/hangi-kurum/RAPOR.md). Menü iki kaynağa eklendi. AÇIK: brief "tel"
+istedi, doğrulanmış numara yok → e-posta+künye kullanıldı; kullanıcı numara
+verirse eklenecek. Kullanıcının canlı testi bekleniyor.
+
 BRIEF DENETÇİSİ — KURULDU (2026-07-23). Her brief uygulanmadan önce
 `node arac/brief-denetci.mjs <cikti/brief/dosya>` + düşman geçişi (D1-D4) +
 amaç özeti (3b) yapılır; ENGEL uygulamayı durdurur. Kural kaynağı:
@@ -21,9 +30,8 @@ Kapanış: 4 şarttan 3'ü (1,2,3) sağlandı; şart (4) yapısal olarak sağlan
 boşluklar raporun "BİLİNEN EKSİKLER" başlığında (SYGM daireleri, 132 s.K.,
 Havza Yönetim Heyeti bileşimi, Ç5 sayımları, 9 APILEX satırı).
 TUR 1B'ye hazır girdi: kurum×faaliyet matrisi (USP eylem bağı) + hangi-kapı iskeleti.
-site-saglik.mjs'e eklenecek — su-birimleri.json + hangi-kapi.json + su-islemleri.json
-geçerli JSON mu, kayıt sayısı azalmadı mı (azalma 🟡), şema sürümü tanınıyor mu.
-Uygulaması ayrı küçük iş.
+site-saglik.mjs veri-bütünlüğü kontrolü: KAPANDI (2026-07-23) — /hangi-kurum/ işiyle
+md11-veri-butunlugu eklendi (JSON geçerli mi🔴 + kayıt azaldı mı🟡 + şema tanınıyor mu🟡).
 
 KUYU ÇIKAR MI — keşif tamam (bf8e5fd); KULLANICI DEĞERLENDİRME OTURUMU
 bekleniyor, otomatik kur briefi YASAK. Sıra: keşif raporu → değerlendirme

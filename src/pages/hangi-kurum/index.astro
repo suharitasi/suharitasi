@@ -1,0 +1,329 @@
+---
+// /hangi-kurum/ — su işlemlerinde yetkili kurum rehberi (a+b birleşik v1).
+// BUILD-TIME tek gerçek kaynaktan üretilir: data/kamu/hangi-kapi.json (20 işlem)
+// + su-birimleri.json (kurum id→ad) + su-islemleri.json (işlem id→ad).
+// İçerik UYDURULMAZ: kurum/dayanak/kanal bu dosyalarda ne yazıyorsa odur;
+// çözülemeyen id gizlenmez, işaretlenir. Hukuki yorum YOK — yalnız mevzuattaki
+// yetki atfının aktarımı. Üstte tek-tık filtre (details, progressive), altta
+// JS'siz DOM'da tam tablo (GEO). Filtre araması /s/hangi-kurum.js (≤2KB).
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import { EPOSTA, YAZAR } from '../../data/site';
+import kapiVeri from '../../../data/kamu/hangi-kapi.json';
+import birimVeri from '../../../data/kamu/su-birimleri.json';
+import islemVeri from '../../../data/kamu/su-islemleri.json';
+
+const birimHarita = new Map(birimVeri.kayitlar.map((k) => [k.id, k]));
+const islemHarita = new Map(islemVeri.islemler.map((i) => [i.id, i]));
+
+// id→gösterim; çözülemezse UYDURMA YOK — id işaretlenerek gösterilir.
+function kurumGoster(id) {
+  const k = birimHarita.get(id);
+  if (!k) return { ad: id, cozuldu: false };
+  return { ad: k.kisaltma ? `${k.ad_resmi} (${k.kisaltma})` : k.ad_resmi, cozuldu: true };
+}
+
+// durum → sayfa etiketi (brief madde 4). dogrulandi rozet taşımaz.
+const DURUM = {
+  dogrulandi: { etiket: 'doğrulandı', sinif: 'ik-onay', rozet: false },
+  birden_fazla_kurum: { etiket: 'yetki paylaşımlı', sinif: 'ik-paylasim', rozet: true },
+  dayanak_eksik: { etiket: 'yetkili kurum teyit ediliyor', sinif: 'ik-teyit', rozet: true },
+  belirsiz: { etiket: 'yetkili kurum teyit ediliyor', sinif: 'ik-teyit', rozet: true },
+};
+
+const satirlar = kapiVeri.satirlar.map((s) => {
+  const islem = islemHarita.get(s.islem_id);
+  const kurumlar = s.yetkili_kurum_id.map(kurumGoster);
+  const kanal = s.basvuru_kanali && s.basvuru_kanali.trim() ? s.basvuru_kanali.trim() : 'kanal doğrulanmadı';
+  return {
+    id: s.islem_id,
+    ad: islem ? islem.islem_adi : s.islem_id,
+    kurumlar,
+    dayanak: s.mevzuat_dayanagi && s.mevzuat_dayanagi.trim() ? s.mevzuat_dayanagi.trim() : 'dayanak doğrulanmadı',
+    kanal,
+    durum: s.durum,
+    d: DURUM[s.durum] || { etiket: s.durum, sinif: 'ik-teyit', rozet: true },
+    rehber: s.ilgili_rehber || null,
+    ara: `${islem ? islem.islem_adi : s.islem_id} ${kurumlar.map((k) => k.ad).join(' ')} ${s.mevzuat_dayanagi || ''}`.toLocaleLowerCase('tr-TR'),
+  };
+});
+
+const dagilim = kapiVeri.olgunluk; // {dogrulandi, dayanak_eksik, birden_fazla_kurum, belirsiz}
+const veriTarihi = kapiVeri.son_guncelleme;
+// Sayfa derleme tarihi (brief madde 5: son güncelleme build tarihinden basılır).
+const derlemeTarihi = new Date().toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const ozCevap =
+  'Su işleminizde hangi kuruma başvuracağınızı mevzuata dayalı olarak gösterir: ' +
+  '20 su işlemi için yetkili kurum, dayanak madde ve başvuru kanalı tek tabloda. ' +
+  'Hukuki görüş değil, mevzuattaki yetki atfının aktarımıdır.';
+
+const canonical = new URL('/hangi-kurum/', Astro.site).href;
+
+// FAQPage: YALNIZ durum=dogrulandi satırlar (belirsiz satır FAQ'a KONULMAZ —
+// yanlış cevap yayılmasın). Cevaplar veriden birebir; iddia üretilmez.
+const sss = satirlar
+  .filter((r) => r.durum === 'dogrulandi')
+  .map((r) => ({
+    '@type': 'Question',
+    name: `${r.ad} hangi kurumdan yapılır?`,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: `${r.kurumlar.map((k) => k.ad).join(', ')}. Dayanak: ${r.dayanak}.`,
+    },
+  }));
+
+const sema = [
+  {
+    '@type': 'WebPage',
+    name: 'Su işlemlerinde yetkili kurum rehberi',
+    description: ozCevap,
+    url: canonical,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${new URL('/', Astro.site).href}#site` },
+    dateModified: veriTarihi,
+  },
+  { '@type': 'FAQPage', mainEntity: sss },
+];
+---
+<Sayfa baslik="Su işimde hangi kuruma gideceğim?" aciklama={ozCevap} sema={sema}>
+  <SayfaBasi etiket="Yetkili kurum rehberi" baslik="Su işimde hangi kuruma gideceğim?" />
+  <OzCevap metin={ozCevap} />
+  <p class="ik-serh-ust">Yalnızca mevzuattaki yetki atfı; hukuki görüş değildir.</p>
+
+  <!-- ÜST: tek-tık etkileşimli filtre. Kartlar native <details> — JS'siz de
+       açılır; arama /s/hangi-kurum.js ile daraltır (kapalıysa hepsi görünür). -->
+  <div class="ik-filtre">
+    <label class="ik-ara-etiket" for="hk-ara">İşlem ara</label>
+    <input id="hk-ara" type="search" autocomplete="off"
+      placeholder="İşlem / kurum / mevzuat ara (ör. kuyu, DSİ, jeotermal…)"
+      aria-controls="hk-kartlar" />
+    <p class="ik-ara-not">Arama build-time listeden istemci-tarafı; JavaScript
+      kapalıysa işlemlerin tamamı hem aşağıdaki kartlarda hem tam tabloda listelidir.</p>
+    <p id="hk-bos" class="ik-ara-bos" hidden>Eşleşen işlem yok — aşağıdaki tam
+      tabloda tümü listelidir ya da <a href={`mailto:${EPOSTA}?subject=${encodeURIComponent('Su işlemi — yetkili kurum')}`}>doğrudan iletin</a>.</p>
+  </div>
+
+  <div id="hk-kartlar" class="ik-kartlar">
+    {satirlar.map((r) => (
+      <details class="ik-kart" data-ara={r.ara}>
+        <summary>
+          <span class="ik-islem">{r.ad}</span>
+          {r.d.rozet && <span class={`ik-rozet ${r.d.sinif}`}>{r.d.etiket}</span>}
+        </summary>
+        <div class="ik-cevap">
+          <p><span class="ik-alan">Yetkili kurum</span>
+            <span>{r.kurumlar.map((k, i) => (
+              <span>{i > 0 && ', '}{k.ad}{!k.cozuldu && <span class="ik-teyit-not"> · kurum teyit ediliyor</span>}</span>
+            ))}</span></p>
+          <p><span class="ik-alan">Dayanak</span> <span>{r.dayanak}</span></p>
+          <p><span class="ik-alan">Başvuru kanalı</span> <span>{r.kanal}</span></p>
+          {r.rehber && <p class="ik-rehber"><a href={`/rehberler/${r.rehber}/`}>İlgili rehber →</a></p>}
+        </div>
+      </details>
+    ))}
+  </div>
+
+  <!-- ALT: tam tablo — HER ZAMAN görünür, JS'siz DOM'da (GEO kritik). -->
+  <h2 class="ik-tablo-baslik" id="tam-tablo">Tam liste — {satirlar.length} su işlemi</h2>
+  <p class="ik-tablo-alt">Durum dağılımı: {dagilim.dogrulandi} doğrulandı ·
+    {dagilim.birden_fazla_kurum} yetki paylaşımlı · {dagilim.dayanak_eksik} teyit ediliyor (dayanak eksik) ·
+    {dagilim.belirsiz} teyit ediliyor (belirsiz).</p>
+  <div class="ik-tablo-kap" role="region" aria-label="Yetkili kurum tam tablosu" tabindex="0">
+    <table class="ik-tablo">
+      <thead>
+        <tr>
+          <th scope="col">İşlem</th>
+          <th scope="col">Yetkili kurum</th>
+          <th scope="col">Dayanak</th>
+          <th scope="col">Başvuru kanalı</th>
+          <th scope="col">Durum</th>
+          <th scope="col">İlgili rehber</th>
+        </tr>
+      </thead>
+      <tbody>
+        {satirlar.map((r) => (
+          <tr id={r.id}>
+            <td>{r.ad}</td>
+            <td>{r.kurumlar.map((k, i) => (
+              <span>{i > 0 && '; '}{k.ad}{!k.cozuldu && <span class="ik-teyit-not"> · teyit ediliyor</span>}</span>
+            ))}</td>
+            <td>{r.dayanak}</td>
+            <td>{r.kanal}</td>
+            <td><span class={`ik-rozet ${r.d.sinif}`}>{r.d.etiket}</span></td>
+            <td>{r.rehber ? <a href={`/rehberler/${r.rehber}/`}>rehber →</a> : <span class="ik-yok">—</span>}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Çapraz bağlar -->
+  <nav class="ik-capraz" aria-label="İlgili içerik">
+    <a href="/durumum/">→ Sektörünüze göre yükümlülük</a>
+    <a href="/rehberler/kuyu-ruhsati/">→ Kuyu ruhsatı rehberi</a>
+    <a href="/rehberler/kuyu-tasima/">→ Kuyu taşıma / ıslah-tadil</a>
+    <a href="/harita/">→ Havza haritası</a>
+  </nav>
+
+  <!-- KAPSAM ŞERHİ -->
+  <p class="ik-kapsam">
+    Bu rehber mevzuattaki yetki atıflarına dayanır; hukuki görüş değildir.
+    Kurum yapıları ve yetki paylaşımı zamanla değişebilir. Kaynak veri:
+    hangi-kapi.json ({veriTarihi}). Sayfa derlemesi: {derlemeTarihi}.
+  </p>
+
+  <!-- İLETİŞİM (/durumum/ + rehber onaylı dili; FORM YOK) -->
+  <section class="iletisim ik-iletisim" aria-label="İletişim">
+    <p class="il-b">Yetkili kurum veya başvuru yolu belirsizse iletişim</p>
+    <p class="il-a">Su işleminizin doğru muhatabı ve başvuru dosyasının kurgusu
+      için durumunuza özel değerlendirme almak üzere ulaşın.</p>
+    <p class="il-l">
+      <a href={`mailto:${EPOSTA}?subject=${encodeURIComponent('Su işlemi — yetkili kurum')}`}>{EPOSTA}</a>
+      <span class="il-ayr">·</span>
+      <a href="/hakkinda/">Künye ve yöntem</a>
+    </p>
+    <p class="il-not">Hukuki içerik {YAZAR.buro} tarafından hazırlanır.</p>
+  </section>
+
+  <script type="module" src="/s/hangi-kurum.js" is:inline></script>
+</Sayfa>
+
+<style>
+  .ik-serh-ust {
+    margin: -1.2rem 0 1.6rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--metin-soluk);
+  }
+
+  /* — Filtre — */
+  .ik-filtre { margin: 0 0 1.4rem; max-width: 560px; }
+  .ik-ara-etiket {
+    display: block; font-family: var(--mono); font-size: 0.66rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--su-700);
+    margin-bottom: 0.4rem;
+  }
+  #hk-ara {
+    width: 100%; font: inherit;
+    padding: 0.75rem 0.95rem; min-height: 44px;
+    border: 1px solid var(--cizgi); border-top: 2px solid var(--su-700);
+    background: var(--zemin-kart); color: var(--metin);
+  }
+  #hk-ara:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+  .ik-ara-not, .ik-ara-bos {
+    font-family: var(--mono); font-size: 0.7rem; color: var(--metin-soluk);
+    margin-top: 0.45rem;
+  }
+  .ik-ara-bos a { color: var(--su-700); }
+
+  /* — Kart ızgarası (details) — */
+  .ik-kartlar {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem;
+    margin-bottom: 2.6rem;
+  }
+  .ik-kart {
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi); border-top: 2px solid var(--su-700);
+  }
+  .ik-kart > summary {
+    display: flex; align-items: center; justify-content: space-between; gap: 0.6rem;
+    padding: 0.85rem 1rem; min-height: 44px;
+    cursor: pointer; list-style: none;
+    font-family: var(--serif); font-size: 1.12rem; font-weight: 600; line-height: 1.18;
+    transition: background-color 0.2s var(--e-akinti);
+  }
+  .ik-kart > summary::-webkit-details-marker { display: none; }
+  .ik-kart > summary::after {
+    content: "+"; font-family: var(--mono); font-weight: 500; font-size: 1.1rem;
+    color: var(--su-700); flex: 0 0 auto;
+  }
+  .ik-kart[open] > summary::after { content: "−"; }
+  .ik-kart > summary:hover { background: #DBEAF4; }
+  .ik-kart > summary:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+  .ik-islem { flex: 1 1 auto; }
+
+  .ik-cevap {
+    padding: 0.2rem 1rem 1rem; font-size: 0.9rem; line-height: 1.55;
+    border-top: 1px solid var(--cizgi);
+  }
+  .ik-cevap p { margin: 0.55rem 0 0; }
+  .ik-alan {
+    display: block; font-family: var(--mono); font-size: 0.6rem;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--metin-soluk);
+    margin-bottom: 0.1rem;
+  }
+  .ik-rehber a { font-weight: 600; }
+
+  /* — Durum rozetleri — */
+  .ik-rozet {
+    flex: 0 0 auto; font-family: var(--mono); font-size: 0.58rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.2rem 0.45rem; border-radius: 2px; white-space: nowrap;
+  }
+  .ik-onay { color: var(--su-700); background: rgba(12, 90, 124, 0.10); }
+  .ik-paylasim { color: var(--kehribar-metin); background: rgba(192, 136, 58, 0.14); }
+  .ik-teyit { color: var(--murekkep-500); background: rgba(72, 98, 122, 0.12); }
+  .ik-teyit-not { font-family: var(--mono); font-size: 0.62rem; color: var(--murekkep-500); }
+
+  /* — Tam tablo — */
+  .ik-tablo-baslik {
+    font-family: var(--serif); font-size: 1.5rem; font-weight: 600;
+    margin: 0 0 0.3rem; scroll-margin-top: 5rem;
+  }
+  .ik-tablo-alt { font-size: 0.82rem; color: var(--metin-soluk); margin: 0 0 1rem; }
+  .ik-tablo-kap { overflow-x: auto; max-width: 100%; border: 1px solid var(--cizgi); }
+  .ik-tablo-kap:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+  .ik-tablo { border-collapse: collapse; width: 100%; min-width: 720px; font-size: 0.82rem; }
+  .ik-tablo th, .ik-tablo td {
+    text-align: left; vertical-align: top; padding: 0.6rem 0.7rem;
+    border-bottom: 1px solid var(--cizgi);
+  }
+  .ik-tablo thead th {
+    position: sticky; top: 0; background: var(--zemin-kart);
+    font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--su-700); font-weight: 500;
+    border-bottom: 2px solid var(--su-400);
+  }
+  .ik-tablo tbody tr:nth-child(even) { background: rgba(46, 126, 160, 0.035); }
+  .ik-tablo td a { font-weight: 600; white-space: nowrap; }
+  .ik-yok { color: var(--metin-soluk); }
+
+  /* — Çapraz bağlar — */
+  .ik-capraz {
+    display: flex; flex-wrap: wrap; gap: 0.5rem 1.4rem;
+    margin: 2.4rem 0 1.6rem; padding-top: 1.2rem; border-top: 1px solid var(--cizgi);
+  }
+  .ik-capraz a { font-size: 0.9rem; font-weight: 600; }
+
+  .ik-kapsam {
+    font-size: 0.8rem; color: var(--metin-soluk); line-height: 1.6;
+    padding: 1rem 1.1rem; background: rgba(72, 98, 122, 0.06);
+    border-left: 3px solid var(--su-400); margin: 0 0 2rem;
+  }
+
+  /* iletişim: /durumum/ ve rehber onaylı dili — birebir imza */
+  .ik-iletisim { margin-top: 1rem; }
+  .iletisim { padding: 1.3rem 1.5rem; background: var(--zemin-kart);
+    border: 1px solid var(--cizgi); border-top: 2px solid var(--su-700); }
+  .il-b { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; margin: 0 0 0.3rem; }
+  .il-a { font-size: 0.92rem; color: var(--metin-soluk); margin: 0 0 0.6rem; }
+  .il-l a { font-weight: 600; }
+  .il-ayr { color: var(--metin-soluk); margin: 0 0.5rem; }
+  .il-not { font-family: var(--mono); font-size: 0.68rem; color: var(--metin-soluk); margin: 0.6rem 0 0; }
+
+  @media (max-width: 560px) {
+    .ik-kartlar { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ik-kart > summary { transition: none; }
+  }
+  @media print {
+    /* Tam tablo zaten görünür; kartların cevabı da print'te açılsın. */
+    .ik-filtre, .ik-capraz, .ik-iletisim { display: none; }
+    .ik-kart > .ik-cevap { display: block !important; }
+    .ik-tablo-kap { overflow: visible; }
+    .ik-tablo { min-width: 0; font-size: 0.7rem; }
+  }
+</style>

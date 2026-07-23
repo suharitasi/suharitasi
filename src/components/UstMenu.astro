@@ -20,6 +20,7 @@ const ogeler = [
   { ad: 'Rehberler', yol: '/rehberler/' },
   { ad: 'Su Kanunu', yol: '/su-kanunu/' },
   { ad: 'Durumum', yol: '/durumum/' },
+  { ad: 'Hangi Kurum', yol: '/hangi-kurum/' },
   { ad: 'Vakalar', yol: '/vaka/' },
   { ad: 'Hakkında', yol: '/hakkinda/' },
 ];
@@ -28,7 +29,7 @@ const ogeler = [
 // Landing (koyu dal) Vakalar ve Durumum linklerini taşımıyor; koyu dal listesi
 // tek kaynaktan süzülür. Mobil panel (TamEkranMenu) tam listeyi zaten verir.
 const koyuOgeler = ogeler.filter(
-  (o) => o.yol !== '/vaka/' && o.yol !== '/durumum/',
+  (o) => o.yol !== '/vaka/' && o.yol !== '/durumum/' && o.yol !== '/hangi-kurum/',
 );
 const simdiki = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname
