@@ -8,10 +8,9 @@
 // koşulu sağlar (kanıt: arac/serit-sira-dogrula.mjs — komşu çift sayısı 7,
 // aynı hedefli komşu 0).
 //
-// ETİKET DÜRÜSTLÜĞÜ: hedef etiketleri mevcut doğrulanmış menü künyelerinden
-// türetilir (TamEkranMenu notları) — yeni iddia üretilmez. Örn. baraj doluluk
-// verisi havza sayfalarındadır; /harita/ etiketi "SU ATLASI" der, "baraj
-// doluluğu" DEMEZ.
+// ETİKET DÜRÜSTLÜĞÜ: hedef etiketleri mevcut doğrulanmış içerikten türetilir
+// (TamEkranMenu künyeleri + sayfaların gerçekten taşıdığı bölümler) — yeni
+// iddia üretilmez.
 // Mobil (≤860px) etiketi kısadır (brief: "REHBER ·" düşer).
 
 export const SORULAR = [
@@ -31,7 +30,9 @@ export const SORULAR = [
     soru: 'Kuyum kurudu — aynı ruhsatla taşıyabilir miyim?',
     hedef: '/rehberler/kuyu-tasima/',
     etiket: 'REHBER · KUYU TAŞIMA',
-    etiketMobil: 'KUYU TAŞIMA',
+    // 375'te ölçüldü: "KUYU TAŞIMA" ile soru metni 254px istiyor, 235px yer
+    // var → 19px kırpılıyordu (7 soruda tek kırpılan). Etiket kısaltıldı.
+    etiketMobil: 'TAŞIMA',
   },
   {
     soru: 'Ruhsatsız kuyu cezası aldım, ne yapmalıyım?',
@@ -40,10 +41,14 @@ export const SORULAR = [
     etiketMobil: 'KUYU RUHSATI',
   },
   {
+    // 23.07 kullanıcı kararı: hedef /harita/ değil /havzalar/. Gerekçe: baraj
+    // doluluk verisi havza sayfalarındadır (BarajDoluluk bileşeni,
+    // /havzalar/<slug>/ — canlı kanıt: "Baraj doluluk — günlük kayıt"),
+    // /harita/ panelinde YOKTUR. Etiket artık gerçeği gösteriyor.
     soru: 'Barajlarımızda ne kadar su var?',
-    hedef: '/harita/',
-    etiket: 'HARİTA · SU ATLASI',
-    etiketMobil: 'HARİTA',
+    hedef: '/havzalar/',
+    etiket: 'HAVZALAR · BARAJ DOLULUĞU',
+    etiketMobil: 'BARAJ DOLULUĞU',
   },
   {
     soru: 'Su verimliliği belgesi almak zorunda mıyım?',
