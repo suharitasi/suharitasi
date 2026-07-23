@@ -61,8 +61,21 @@ YENİ KUYRUK MADDESİ — sağlık sistemi a11y açığı: md.9 Lighthouse yaln�
 BEKLEMEDE: SMTP bilgileri (.env'de SMTP_HOST/SMTP_USER/SMTP_PASS/ALARM_TO).
   Gelince e-posta alarmı açılır + sentetik 🔴 ile test maili atılır.
 
-ANA SAYFA — SORU HİYERARŞİSİ DÜZELTMESİ v3: AŞAMA 1 (MOCK) TAMAM,
-KULLANICI KARARI BEKLİYOR (2026-07-23). Canlı ölçüm (dist-sun) 3 şikâyeti de
+ANA SAYFA — SORU HİYERARŞİSİ v3: AŞAMA 2 (KOD) UYGULANDI, KULLANICI ONAYI
+BEKLİYOR (2026-07-23). Kararlar A/S2/iniş-kalksın/hedef-sabit uygulandı:
+soru güvertesi (sahne üst bant, opak DİP panel → garantili AA 13,91:1),
+öz-cevap ilk ekranda, "Su nerelerde çıkar?" S2 native <details> dürüst cevap
+(/harita/ + garanti-değil uyarısı), iniş sektör ızgarası kalktı, --kehribar-koyu
+DESIGN.md'de emekli. Motor/video/scrub DOKUNULMADI (6/6 sahne readyState 4).
+Kanıt cikti/denetim/anasayfa-asama2-v3/: konsol 0, link 0, 375 taşma 0, 7/7 soru
+ilk ekranda (öncesi 2/7), LH masaüstü 98/mobil 87 (mobil 85'ten iyileşti),
+kontrast hepsi AA. Denetimde .s-uyari özgüllük hatası yakalanıp düzeltildi.
+AÇIK KULLANICI GÖREVİ: (1) canlı test = nihai onay (scrub akıcılığı GPU'suz
+kanıt sayılmaz + S2 hissi), (2) Cloudflare Purge. Geri dönüş: tek commit revert.
+[AŞAMA 1 MOCK] Canlı ölçüm 3 şikâyeti doğruladı; A/B+S1/S2+sektör mock'landı
+(cikti/denetim/anasayfa-soru-hiyerarsi/, yerel).
+[ÖNCEKİ] ANA SAYFA — 6 SAHNE + 7 SÜZÜLEN SORU: AŞAMA 2 + CANLI TEST DÜZELTMELERİ
+UYGULANDI, KULLANICI ONAYI BEKLİYOR (2026-07-23). Canlı ölçüm (dist-sun) 3 şikâyeti de
 doğruladı: scroll 0'da yalnız 2/7 (1440) / 1/7 (375) soru görünür, öz-cevap+
 sektör kartları %93 aşağıda (iniş bölümü); şerit kontrastı iyi, sorun konum+
 belirginlik. İki alternatif: A "soru güvertesi" (sahne %52, opak DİP panel →

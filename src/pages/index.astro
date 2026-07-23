@@ -1,6 +1,11 @@
 ---
-// ANA SAYFA — 6 SAHNE + 7 SÜZÜLEN SORU (AŞAMA 2, brief 23.07).
+// ANA SAYFA — 6 SAHNE + SORU GÜVERTESİ (v3, brief 23.07 Aşama 2).
 // Koyu hero + kelime koreografisi KALKTI; sahne akışı açılıştır.
+// v3 DEĞİŞİMİ (soru hiyerarşisi): R2 alt şerit KALKTI. Sorular ilk ekranda,
+//   sahnenin altındaki opak DİP "güverte" panelinde (garantili AA, kareye
+//   bağlı değil). Öz-cevap güvertenin başında ilk ekranda. "Su nerelerde
+//   çıkar?" (S2) dürüst açılır cevaba bağlandı (native <details>, JS'siz).
+//   İniş bölümündeki sektör ızgarası KALKTI (kullanıcı kararı: kalksın).
 // Eski landing SİLİNMEDİ: arsiv/landing-koyu/index.astro (geri dönüş yolu).
 // Eski /deneyim/ rotası kapandı: arsiv/deneyim-rota/deneyim.astro + _redirects 301.
 //
@@ -10,27 +15,26 @@
 //   sahne1 posteri + sahne1 klibi iner (brief T-1).
 // Sahne METİNLERİ kaldırıldı (kullanıcı kararı) → .sw-copylayer hiç render
 //   edilmez (motorun vinyet degradesi de böylece kadrajdan çıkar).
-// Soru şeridi: R2 ALT ŞERİT. 7 <a> DOM'da GERÇEK linktir; JS'siz ve
-//   reduced-motion'da şerit statik listedir, 7'si de tıklanabilir (brief T-2/T-3).
+// Güverte: 7 <a>/<details> DOM'da GERÇEK linktir; JS'siz ve reduced-motion'da
+//   güverte statik listedir, 7'si de tıklanabilir/erişilebilir.
 import UstMenu from '../components/UstMenu.astro';
 import AltBilgi from '../components/AltBilgi.astro';
 import { SORULAR } from '../data/anasayfa-sorular.js';
-import { personalar } from '../data/persona.js';
 import '../styles/hareket.css';
 
-// Öz-cevap (CLAUDE.md "cevap önce, dayanak sonra"; ≤280 karakter).
-// Yalnız mevcut doğrulanmış içerikten damıtıldı — yeni hukuki iddia yok.
+// Öz-cevap (CLAUDE.md "cevap önce, dayanak sonra"; ≤280 karakter). KANONİK metin
+// — meta description ile aynı kaynak; yalnız mevcut doğrulanmış içerikten
+// damıtıldı, yeni hukuki iddia yok. v3: güverteye taşındı (ilk ekran).
 const ozCevap =
   "Türkiye'nin 25 su havzası tek portalda: havza künyeleri ve yeraltı suyu " +
   'eğilimi, kuyu ruhsatı ile su tahsisi rehberleri, Su Kanunu taslak takibi. ' +
-  'Şeritteki sorulardan birini seçin ya da sektörünüzü seçip yükümlülüğünüzü görün.';
+  'Kafanızdaki soruyu seçin — cevaba en kısa yoldan.';
 
-// İniş bölümü: persona ızgarasının İLK 6 KARTI (NACE Ek-2 grubu hariç —
-// /durumum/ sayfasındaki "Sektör kapıları" grubunun sırası birebir).
-// KOPYA-İÇERİK ÖNLEMİ: yükümlülük metinleri BURAYA GİRMEZ (o metin
-// /durumum/'da kanonik kalır); ana sayfada yalnız kart adı + son tarih.
-const ilkAltiPersona = personalar.filter((p) => p.kaynak !== 'nace-ek2').slice(0, 6);
-const kicker = (ad) => ad.split(/[\s/(]/)[0].toLocaleUpperCase('tr-TR');
+// S2 — "Su nerelerde çıkar?" boş kapı çözümü (kullanıcı kararı: S2).
+// Cevap sitede henüz YOK (Kuyu Çıkar Mı değerlendirmede). Dürüst kısa cevap +
+// /harita/ yönlendirme + garanti-değil uyarısı. Kopya-içerik önlemi: /harita/
+// öz-cevabı TEKRARLANMAZ — yalnız kısa yönlendirme. UYDURMA YOK.
+const BOS_KAPI_SORU = 'Su nerelerde çıkar?';
 
 // Sahne akışı — sıra AŞAMA 1'de sabitlendi (S1 sondaj → S6 göl kasabası).
 // Aksan renkleri FAZ 8 palet C ailesindendir (DESIGN.md §2).
@@ -85,7 +89,7 @@ const sahneVeri = SAHNELER.map((s) => ({
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap&subset=latin-ext" rel="stylesheet" />
 <style is:global>
-  /* — SU-DİLİ derinlik skalası (DESIGN.md §2 — aday C). İniş bölümü, şerit
+  /* — SU-DİLİ derinlik skalası (DESIGN.md §2 — aday C). İniş bölümü, güverte
        ve alt bilgi bu tokenlardan beslenir; koyu menü şeridi kendi kabında
        tokenları ezer (aşağıda .ust-sabit). — */
   :root {
@@ -97,9 +101,10 @@ const sahneVeri = SAHNELER.map((s) => ({
     --su-400: #2E7EA0;
     --kehribar: #C0883A;
     --kehribar-metin: #875518;
-    /* Yalnız ana sayfa soru şeridi hedef satırı (DESIGN.md §2, 23.07 kararı).
-       kritik-vurgu #875518 DEĞİŞMEZ. */
-    --kehribar-koyu: #6B4412;
+    /* v3: --kehribar-koyu KALDIRILDI. Gerekçesi "yalnız ana sayfa soru şeridi
+       hedef satırı"ydı; şerit güverteye dönüştü, hedef etiketi koyu DİP güverte
+       üstünde --isima (akuamarin) kullanır. Öksüz değişken bırakılmadı;
+       DESIGN.md §2 kaydı "emekli" olarak güncellendi (23.07). */
     --deniz: #0A2740;
     --akuamarin: #57BAE0;
     --kopuk: #DBEAF4;
@@ -115,37 +120,27 @@ const sahneVeri = SAHNELER.map((s) => ({
     --sans: "Manrope", system-ui, sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, monospace;
 
-    /* Şerit geometrisi — rev1 ölçümüyle aynı bant (31px), iki yuva arası
-       ≥8px (ui-ux-pro-max "Touch Spacing"); burada 20px. */
-    --serit-yuk: 31px;
-    --serit-ara: 20px;
-
-    /* — KADRAJ KUTUSU (23.07 canlı testi: "şerit en dipte, görülmüyor") —
-       Ölçüm: 1440'ta şerit kadrajı 11px ÖRTÜYORDU (R2 ihlali), 375'te
-       kadrajdan 181px KOPUKTU. Sebep: sahne kabı tam ekrandı, contain ile
-       çizilen görüntü kabın ortasında kalıyordu; alt kenarı kırılıma göre
-       şeridin bazen altında bazen çok üstünde bitiyordu.
-       Çözüm: sahne kabı KADRAJIN KENDİSİ kadar; şerit onun 12px altına
-       kilitlenir. Şerit kadraja GİRMEZ, kadrajdan KOPMAZ — iki kırılımda da
-       aynı 12px. Kırpma yok (contain korunur).
-       Kap yüksekliği = min(en × 464/832, ekran − boşluk):
-         · genişlik sınırlı hâlde görüntü kabı TAM doldurur (letterbox 0),
-         · yükseklik sınırlı hâlde yanlarda bant kalır, alt kenar yine kabın
-           alt kenarıdır. Her iki hâlde kadraj alt kenarı = kap alt kenarı. */
+    /* — GÜVERTE + SAHNE GEOMETRİSİ (v3, soru güvertesi) —
+       Sorular ilk ekranda alt "güverte"de; sahne üst banda çekilir.
+       Sahne kabı (motorun tam-ekran `inset:0` kabı) güvertenin ÜSTÜNDEKİ
+       bölgeye ortalanır; scrollY↔ilerleme eşlemesi motordan BAĞIMSIZDIR
+       (motor yalnız scrollY ve .sw-track yüksekliğini okur) — ritim/crossfade/
+       preload eşikleri DEĞİŞMEZ. Kırpma yok (contain korunur, letterbox DİP). */
     --kaydirma-cubugu: 0px;   /* JS ölçer: 100vw kaydırma çubuğunu sayar */
+    --guverte-boy: 42dvh;     /* alt güverte paneli */
+    --menu-boy: 4.4rem;
     --kadraj-en: calc(100vw - var(--kaydirma-cubugu));
-    --kadraj-bosluk: 10.5rem; /* menü + şerit + nefes payı */
+    /* sahne üst bölgeye (güverte üstü) sığar: bant boyu − menü − nefes */
     --kadraj-boy: min(calc(var(--kadraj-en) * 464 / 832),
-                      calc(100dvh - var(--kadraj-bosluk)));
-    /* kadraj + şerit BİRLİKTE dikey ortalansın diye şeridin yarısı kadar yukarı */
-    --kadraj-ust: calc((100dvh - var(--kadraj-boy)) / 2 - 1.4rem);
-    --serit-ust-bosluk: 12px;
+                      calc(100dvh - var(--guverte-boy) - var(--menu-boy) - 1.5rem));
+    /* sahne güverte-üstü bölgede dikey ortalansın (menü kadar aşağı nudge) */
+    --kadraj-ust: calc(var(--menu-boy)
+                      + (100dvh - var(--guverte-boy) - var(--menu-boy) - var(--kadraj-boy)) / 2);
   }
 
   /* Motor teması: @layer sw varsayılanlarını ezer (unlayered kazanır).
      .sw-root AYRICA hedeflenir — motor kendi kabına layered `.sw-root{--sw-bg}`
-     yazar; yalnız :root yazmak yetmez, kabın kendi bildirimi kalıtımı keser
-     (denetimde krem letterbox olarak yakalandı). */
+     yazar; yalnız :root yazmak yetmez, kabın kendi bildirimi kalıtımı keser. */
   :root, .sw-root {
     --sw-bg: #0A2740;          /* DİP — sahne zemini + letterbox */
     --sw-ink: #DBEAF4;         /* Köpük */
@@ -165,7 +160,7 @@ const sahneVeri = SAHNELER.map((s) => ({
     line-height: 1.75;
   }
 
-  a:focus-visible, button:focus-visible {
+  a:focus-visible, button:focus-visible, summary:focus-visible {
     outline: 2px solid var(--akuamarin);
     outline-offset: 3px;
   }
@@ -177,26 +172,19 @@ const sahneVeri = SAHNELER.map((s) => ({
     background: var(--sw-bg);
   }
 
-  /* Sahne kabı = kadraj kutusu (yukarıdaki değişkenler). Motorun tam-ekran
-     `inset:0` kabı burada daraltılır; kaydırma↔ilerleme eşlemesi bu kutudan
-     BAĞIMSIZDIR (motor yalnız scrollY ve .sw-track yüksekliğini okur), bu
-     yüzden ritim/crossfade/preload eşikleri değişmez — ölçümle kanıtlandı. */
+  /* Sahne kabı = güverte-üstü kadraj (yukarıdaki değişkenler). */
   .sw-stage {
     top: var(--kadraj-ust);
     bottom: auto;
     height: var(--kadraj-boy);
   }
 
-  /* Poster'in Ken-Burns ölçeği/parallaks kaydırması kapatılır: kap artık tam
-     kadraj olduğundan `scale(1.03…1.17)` posteri KIRPIYOR ve klip belirdiğinde
-     görüntü zıplıyordu (klip ölçeklenmez). Kapatınca poster ile klip birebir
-     çakışıyor. Motor dosyasına dokunulmadı. */
+  /* Poster'in Ken-Burns ölçeği/parallaks kaydırması kapatılır (kap tam kadraj,
+     scale posteri kırpıyordu). Motor dosyasına dokunulmadı. */
   .sw-scene__still { transform: none !important; }
 
-  /* Kaydırma ipucu kaldırıldı: kadraj + şerit geometrisi 1440'ta şeridin
-     altında 60px'lik bir bant bırakıyor, ipucu oraya sığmıyor ve şeridin
-     üstüne biniyordu. Kaydırma daveti artık şeridin kendisi ve rota
-     noktalarıdır. */
+  /* Kaydırma ipucu kaldırıldı: kadraj + güverte geometrisi ipucuna yer bırakmaz;
+     kaydırma daveti sahne ritmi + rota noktalarıdır. */
   .sw-hint { display: none !important; }
 
   /* Sahne metni yok → motorun kopya katmanı ve vinyet degradesi kadrajdan
@@ -204,29 +192,18 @@ const sahneVeri = SAHNELER.map((s) => ({
   .sw-copylayer, .sw-topbar { display: none !important; }
 
   /* Akış bitince sahne katmanı iniş bölümünün altında kalır: yüzen motor
-     öğeleri, soru şeridi ve KOYU menü şeridi kapanır.
-     Menü şeridi "akış boyunca SABİT"tir (brief) — akış bitince kapanmalıdır:
-     sabit şerit aydınlık iniş bölümünün üst 85px'ini örtüyordu (denetimde
-     footer başlıkları şeridin altında kalırken yakalandı). İniş bölümünde
-     gezinme yüzeyi alt bilgidir (Bölümler kolonu = aynı 5 rota). */
+     öğeleri, güverte ve KOYU menü şeridi kapanır. */
   html.akis-bitti .sw-route,
   html.akis-bitti .sw-hint,
   html.akis-bitti .sw-scrollbar,
-  html.akis-bitti .soru-serit,
+  html.akis-bitti .guverte,
   html.akis-bitti .ust-sabit { opacity: 0; pointer-events: none; }
 
-  .sw-route, .sw-hint, .sw-scrollbar, .soru-serit, .ust-sabit {
+  .sw-route, .sw-hint, .sw-scrollbar, .guverte, .ust-sabit {
     transition: opacity 240ms var(--e-akinti);
   }
 
-
-  /* SAHNE ADI HAPI GÖRÜNMEZ (23.07 canlı testi: "sağda göl kasabası gibi
-     sahne adları görünüyor"). Motor aktif noktanın etiketini kalıcı olarak
-     açıyor (`.sw-route__dot.is-active .sw-route__label{opacity:1}`) — sahne
-     kahramanken kadranın yanında ad etiketi gürültüdür.
-     SİLİNMEZ, GÖRSEL KATMANDAN ÇEKİLİR: etiket <button>'ın erişilebilir adıdır;
-     display:none yapılırsa rota noktaları adsız kalır (ekran okuyucu "buton"
-     der). Bu yüzden clip tekniğiyle gizlenir — a11y korunur, göz görmez. */
+  /* SAHNE ADI HAPI GÖRÜNMEZ — clip tekniğiyle (a11y adı korunur, göz görmez). */
   .sw-route__label {
     position: absolute;
     width: 1px;
@@ -243,7 +220,7 @@ const sahneVeri = SAHNELER.map((s) => ({
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .sw-route, .sw-hint, .sw-scrollbar, .soru-serit, .ust-sabit { transition: none; }
+    .sw-route, .sw-hint, .sw-scrollbar, .guverte, .ust-sabit { transition: none; }
   }
 
   @media print {
@@ -262,40 +239,51 @@ const sahneVeri = SAHNELER.map((s) => ({
 
   <div id="world"></div>
 
-  <!-- 7 SÜZÜLEN SORU — DOM'da gerçek <a>. JS yoksa / reduced-motion'da
-       şerit statik listedir; 7'si de görünür ve tıklanabilir. -->
-  <nav class="soru-serit" aria-label="Sık sorulan sorular">
-    {SORULAR.map((s) => (
-      <a class="soru" href={s.hedef}>
-        <span class="soru-metin">{s.soru}</span>
-        <span class="soru-hedef" aria-hidden="true">
-          <span class="hedef-genis">{s.etiket}</span>
-          <span class="hedef-dar">{s.etiketMobil}</span>
-          <span class="ok"> →</span>
-        </span>
-      </a>
-    ))}
-  </nav>
+  <!-- SORU GÜVERTESİ — ilk ekranda, sahnenin altında opak DİP panel.
+       Öz-cevap + 7 soru DOM'da GERÇEK linktir. JS'siz/reduced-motion'da
+       güverte statik listedir; 7'si de görünür ve erişilebilir.
+       S2 ("Su nerelerde çıkar?") native <details> ile dürüst açılır cevaba
+       bağlanır — JS'siz de açılır/kapanır. -->
+  <section class="guverte" aria-label="Sık sorulan sorular">
+    <p class="g-kicker gk">Su Haritası</p>
+    <p class="oz-cevap gk" role="doc-abstract">{ozCevap}</p>
+    <nav class="sorular" aria-label="Sorular">
+      {SORULAR.map((s) => (
+        s.soru === BOS_KAPI_SORU ? (
+          <details class="s s-detay gk">
+            <summary>
+              <span class="soru-metin">{s.soru}</span>
+              <span class="soru-hedef" aria-hidden="true"><span class="ok">açılır ▾</span></span>
+            </summary>
+            <div class="s-cevap">
+              <p>Türkiye'de yeraltı suyunun bölgesel durumunu <strong>havza haritasından</strong>
+                görebilirsiniz. Nokta düzeyinde "burada kuyu çıkar" tahmini saha etüdü gerektirir.</p>
+              <p class="s-uyari">Bu bir kuyu açma garantisi değildir; nokta tahmini saha etüdü ister.</p>
+              <a class="s-git" href={s.hedef}>Havza haritasına git →</a>
+            </div>
+          </details>
+        ) : (
+          <a class="s gk" href={s.hedef}>
+            <span class="soru-metin">{s.soru}</span>
+            <span class="soru-hedef" aria-hidden="true">
+              <span class="hedef-genis">{s.etiket}</span>
+              <span class="hedef-dar">{s.etiketMobil}</span>
+              <span class="ok"> →</span>
+            </span>
+          </a>
+        )
+      ))}
+    </nav>
+  </section>
 
-  <!-- AKIŞ SONU İNİŞ BÖLÜMÜ -->
+  <!-- AKIŞ SONU İNİŞ BÖLÜMÜ — v3: sektör ızgarası KALKTI (kullanıcı kararı).
+       Öz-cevap güverteye taşındı; burada kapanış başlığı + tek /durumum/ satırı. -->
   <section class="inis">
     <p class="inis-kicker">Su Haritası</p>
     <h1>Su, yerin altında <em>konuşur.</em></h1>
-    <p class="oz-cevap" role="doc-abstract">{ozCevap}</p>
-    <p class="davet">Otelden madene, sanayiden sulama kooperatifine — hangi kapıdan
-      girdiğiniz suyla ilişkinizi belirler.</p>
-
-    <div class="izgara">
-      {ilkAltiPersona.map((p) => (
-        <a class="pk" href={`/durumum/${p.slug}/`}>
-          <span class="pk-k">{kicker(p.ad)}</span>
-          <span class="pk-ad">{p.ad}</span>
-          {p.sonTarihMetni && <span class="pk-t">Son başvuru {p.sonTarihMetni}</span>}
-        </a>
-      ))}
-    </div>
-
-    <p class="tumu"><a href="/durumum/">Tüm sektörleri gör →</a></p>
+    <p class="inis-alt">Otelden madene, sanayiden sulama kooperatifine — hangi kapıdan
+      girdiğiniz suyla ilişkinizi belirler. Sektörünüzü seçin, yükümlülüğünüzü görün.</p>
+    <p class="tumu"><a href="/durumum/">Sektörünüzü seçin → /durumum/</a></p>
   </section>
 
   <div class="alt-kap"><AltBilgi /></div>
@@ -312,21 +300,17 @@ const sahneVeri = SAHNELER.map((s) => ({
     hint: 'kaydırarak in',
     atmosphere: true,
     // 1.6 (deneyim'deki 1.4 değil): motorun klip ön-yükleme penceresi
-    // `y > start - 1.6vh`. 1.4'te sahne 2'nin klibi daha y=0'da iniyordu
-    // (ölçüm: ilk yükte 2 mp4). 1.6'da sahne 2 ancak KAYDIRINCA iner —
-    // brief T-1'in "kalanlar kaydırdıkça" şartı. Sahne başına oyalanma
-    // farkı %14; vendor'a dokunulmadı.
+    // `y > start - 1.6vh`. 1.6'da sahne 2 ancak KAYDIRINCA iner (brief T-1).
     diveScroll: 1.6,
     crossfade: 0.14,
     sections: sahneler,
     connectors: [],     // connector video YOK — sahneler doğrudan crossfade
   });
 
-  /* POSTER ERTELEME (brief T-1) — motorun tüm sahne <img>'leri sabit ve
-     kadraj içindedir, bu yüzden loading="lazy" iş görmez: 6 poster de ilk
-     yükte iniyordu (ölçüm). Sahne 1 dışındakilerin src'si alınır ve klip
-     penceresiyle AYNI eşikte (start - 1.6vh) geri verilir.
-     VENDOR'A DOKUNULMADI — bu sayfa katmanında çalışır. */
+  /* POSTER ERTELEME (brief T-1) — motorun sahne <img>'leri sabit ve kadraj
+     içindedir, loading="lazy" iş görmez: 6 poster de ilk yükte iniyordu.
+     Sahne 1 dışındakilerin src'si alınır ve klip penceresiyle AYNI eşikte
+     (start - 1.6vh) geri verilir. VENDOR'A DOKUNULMADI. */
   const sahneKaplari = [...document.querySelectorAll('#world .sw-scene')];
   const bekleyenPoster = sahneKaplari.map((el, i) => {
     const img = el.querySelector('.sw-scene__still');
@@ -346,58 +330,33 @@ const sahneVeri = SAHNELER.map((s) => ({
     }
   }
 
-  /* — SORU ŞERİDİ SÜRÜCÜSÜ —
-     Ritim: akış (0-100%) 7 eşit dilime bölünür; dilim i'de yuvalar
-     (i, i+1 mod 7) sorularını taşır. Zamanlayıcı/karusel YOK — konum
-     yalnız kaydırma yüzdesinden türer.
-     reduced-motion: sürücü HİÇ kurulmaz → şerit statik liste kalır. */
+  /* — GÜVERTE SÜRÜCÜSÜ (v3) —
+     Güverte STATİK liste; süzülen şerit sürücüsü KALKTI. Kalan iş:
+     (1) poster erteleme, (2) akış bitince güverte/menü kapanışı (akis-bitti),
+     (3) kaydırma çubuğu ölçümü (kadraj geometrisi 100vw'den türer). */
   const kok = document.documentElement;
 
-  /* Kadraj kutusu 100vw'den türer; 100vw kaydırma çubuğunu SAYAR, gerçek
-     içerik genişliği saymaz. Fark ölçülüp değişkene yazılmazsa kadraj birkaç
-     px uzun hesaplanır ve şerit kadrajın içine kayar. */
   function cubugoOlc() {
     kok.style.setProperty('--kaydirma-cubugu',
       (window.innerWidth - kok.clientWidth) + 'px');
   }
   cubugoOlc();
 
-  const serit = document.querySelector('.soru-serit');
-  const ogeler = [...serit.querySelectorAll('.soru')];
-  const azHareket = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const dar = matchMedia('(max-width: 860px)');
-  const N = ogeler.length;
-
-  if (!azHareket) kok.classList.add('js-serit');
-
   let iz = null;
   function akisUzunlugu() {
-    // Motorun kaydırma iskeleti: track yüksekliği = akış + 1vh (son uçuş).
     if (!iz) iz = document.querySelector('#world .sw-track');
     return iz ? Math.max(1, iz.offsetHeight - innerHeight) : 1;
   }
 
-  let sonDilim = -1;
   function guncelle() {
     if (bekleyenPoster.length) posterleriAc();
     const uz = akisUzunlugu();
-    const p = Math.min(1, Math.max(0, scrollY / uz));
     kok.classList.toggle('akis-bitti', scrollY > uz - 8);
-    if (azHareket) return;
-    const dilim = Math.min(N - 1, Math.floor(p * N));
-    if (dilim === sonDilim) return;
-    sonDilim = dilim;
-    const sag = (dilim + 1) % N;
-    ogeler.forEach((a, i) => {
-      const sagda = i === sag && !dar.matches;
-      a.classList.toggle('sag', sagda);
-      a.classList.toggle('gorunur', i === dilim || sagda);
-    });
   }
 
   addEventListener('scroll', () => requestAnimationFrame(guncelle), { passive: true });
-  addEventListener('resize', () => { cubugoOlc(); sonDilim = -1; guncelle(); });
-  addEventListener('load', () => { cubugoOlc(); sonDilim = -1; guncelle(); });
+  addEventListener('resize', () => { cubugoOlc(); guncelle(); });
+  addEventListener('load', () => { cubugoOlc(); guncelle(); });
   guncelle();
 </script>
 
@@ -409,7 +368,6 @@ const sahneVeri = SAHNELER.map((s) => ({
     top: 0; left: 0; right: 0;
     z-index: 50;
     padding: 0 clamp(1.5rem, 4vw, 3rem);
-    /* Koyu dünya tokenları — UstMenu tema="koyu" bunları okur */
     --metin: #DCE9ED;
     --metin-soluk: #DBEAF4;
     --kopuk: #FFFFFF;
@@ -420,168 +378,163 @@ const sahneVeri = SAHNELER.map((s) => ({
       rgba(10, 39, 64, 0) 100%);
   }
 
-  /* ——— SORU ŞERİDİ — R2 ALT ŞERİT ———
-     Varsayılan (JS YOK / reduced-motion): statik liste, 7 soru da görünür.
-     .js-serit: iki yuvalı tek satır bandı + çapraz geçiş. */
-  .soru-serit {
+  /* ——— SORU GÜVERTESİ (v3) ———
+     Alt sabit panel; OPAK DİP zemin → metin garantili AA (en-parlak sahne
+     karesine bağlı DEĞİL). İçerik güvertenin boyunu aşarsa panel kendi içinde
+     kayar (overflow-y). */
+  .guverte {
     position: fixed;
-    left: 4%; right: 4%;
-    bottom: 3.2vh;
+    left: 0; right: 0; bottom: 0;
     z-index: 45;
+    height: var(--guverte-boy);
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    max-height: 44vh;
+    padding: 1.15rem clamp(1.5rem, 4vw, 3rem) 1.1rem;
     overflow-y: auto;
-    padding: 6px 14px;
-    border-radius: 2px;
-    /* Şerit zemini α.80 (kullanıcı kararı 23.07) */
-    background: rgba(233, 240, 244, 0.80);
-    border-left: 2px solid var(--kehribar);
-    box-shadow: 0 8px 22px rgba(10, 39, 64, 0.26);
+    /* Üst kenarda sahneden güverteye yumuşak geçiş, sonra tam opak DİP. */
+    background: linear-gradient(180deg,
+      rgba(9, 32, 52, 0.72) 0%,
+      rgba(8, 29, 48, 0.96) 22%,
+      #081D30 46%);
+    border-top: 1px solid rgba(87, 186, 224, 0.28);
   }
 
   @supports (backdrop-filter: blur(1px)) {
-    .soru-serit { backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+    .guverte { backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
   }
 
-  /* Etiket soruya BİTİŞİK durur (space-between DEĞİL): iki yuva yan yanayken
-     "soru … etiket | soru … etiket" okunuşu belirsizleşiyordu — denetim
-     ekranında yakalandı. Şimdi her yuva tek okuma birimi, yuvalar arası
-     boşluk + hairline ayraç ayırır. */
-  .soru {
+  .g-kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--akuamarin);
+  }
+  .g-kicker::before {
+    content: "";
+    width: 1.5rem;
+    height: 1px;
+    background: var(--akuamarin);
+  }
+
+  /* Öz-cevap: DİP üstünde köpük (12.41:1). Kanonik ≤280 metin. */
+  .guverte .oz-cevap {
+    margin: 0.55rem 0 0.9rem;
+    font-family: var(--serif);
+    font-size: 1.24rem;
+    line-height: 1.36;
+    font-weight: 500;
+    color: var(--kopuk);
+    max-width: 74ch;
+  }
+
+  .sorular {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px 2.4rem;
+    align-content: start;
+  }
+
+  /* S2 detayı iki kolonu kaplar ve ilk sırada durur → açılınca temiz tam-en. */
+  .s-detay { grid-column: 1 / -1; }
+
+  .s, .s-detay > summary {
     display: flex;
     align-items: baseline;
-    justify-content: flex-start;
-    gap: 12px;
-    min-height: 30px;
+    justify-content: space-between;
+    gap: 0.9rem;
+    min-height: 46px;                 /* dokunma hedefi ≥44px */
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(219, 234, 244, 0.14);
     text-decoration: none;
-    color: var(--murekkep-900);
+    color: var(--kopuk);
   }
+  .s-detay > summary { cursor: pointer; list-style: none; }
+  .s-detay > summary::-webkit-details-marker { display: none; }
 
   .soru-metin {
-    flex: 0 1 auto;
-    min-width: 0;
     font-family: var(--serif);
-    font-size: 0.95rem;
-    line-height: 1.15;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 1.16rem;
+    line-height: 1.16;
+    font-weight: 500;
+    min-width: 0;
   }
 
   .soru-hedef {
     font-family: var(--mono);
-    font-size: 0.52rem;
+    font-size: 0.56rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     white-space: nowrap;
-    /* Koyu kehribar: α.80 plakada AA üstü (rev1 ölçümü 4,64:1) */
-    color: var(--kehribar-koyu);
+    flex: 0 0 auto;
+    color: var(--akuamarin);        /* DİP üstünde 6.90:1 */
   }
 
   .hedef-dar { display: none; }
 
-  .soru:hover .soru-metin { color: var(--su-700); }
-  .soru:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+  .s:hover .soru-metin,
+  .s-detay > summary:hover .soru-metin { color: var(--akuamarin); }
+  .s:focus-visible { outline: 2px solid var(--akuamarin); outline-offset: 2px; }
 
-  /* — JS'li kip: tek satır bandı, iki yuva — */
-  /* JS'li kip: şerit KADRAJIN ALT KENARINA kilitlenir (bottom değil top ile).
-     Böylece 1440'ta kadrajı örtmez, 375'te kadrajdan kopmaz — iki kırılımda
-     da aynı 12px. Statik (JS'siz / reduced-motion) kip alt kenara demirli
-     kalır; orada 7 satırlık liste vardır, kadrajın altına sığmaz. */
-  :global(html.js-serit) .soru-serit {
-    display: block;
-    position: fixed;
-    top: calc(var(--kadraj-ust) + var(--kadraj-boy) + var(--serit-ust-bosluk));
-    bottom: auto;
-    height: var(--serit-yuk);
-    max-height: none;
-    overflow: visible;
-    padding: 0 14px;
+  /* S2 dürüst cevap bloğu */
+  .s-cevap {
+    padding: 0.5rem 0 0.7rem;
+    max-width: 70ch;
+    animation: g-suzul 240ms var(--e-suzul) both;
   }
+  @media (prefers-reduced-motion: reduce) { .s-cevap { animation: none; } }
+  .s-cevap p {
+    font-family: var(--sans);
+    font-size: 0.94rem;
+    line-height: 1.55;
+    color: var(--kopuk);
+  }
+  .s-cevap strong { color: var(--akuamarin); font-weight: 600; }
+  /* Özgüllük: `.s-cevap p` (0,1,1) `.s-uyari`yi (0,1,0) ezdiği için uyarı köpük
+     render oluyordu (denetim bulgusu 23.07). `.s-cevap p.s-uyari` (0,2,1) ile
+     kehribar niyeti uygulanır — DİP üstünde 5.55:1 (AA), görünürlük kuralı. */
+  .s-cevap p.s-uyari {
+    margin-top: 0.4rem;
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    line-height: 1.4;
+    color: var(--kehribar);         /* uyarı = sıcak ikinci ses (DİP üstünde ayrışır) */
+    letter-spacing: 0.01em;
+  }
+  .s-git {
+    display: inline-block;
+    margin-top: 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--akuamarin);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(87, 186, 224, 0.5);
+    padding-bottom: 2px;
+  }
+  .s-git:hover { color: var(--kopuk); }
 
-  /* Yuva ayracı: yalnız iki yuvalı kipte, salt yapısal hairline (imza değil —
-     imza şeridin sol kehribar kenarıdır). */
-  :global(html.js-serit) .soru-serit::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 20%;
-    bottom: 20%;
-    width: 1px;
-    background: var(--cizgi);
+  @keyframes g-suzul {
+    from { opacity: 0; transform: translateY(6px); filter: blur(2px); }
+    to   { opacity: 1; transform: translateY(0);   filter: blur(0); }
   }
 
   @media (max-width: 860px) {
-    :global(html.js-serit) .soru-serit::before { display: none; }
-  }
-
-  /* transitions-dev "text states swap" grameri (süzülme + bulanıklık),
-     easing DESIGN.md §3 sözlüğüne uyarlandı: konum --e-suzul, yüzey
-     --e-akinti; süre 240ms (standart). Skill'in kendi cubic-bezier'i
-     KULLANILMADI — proje sözlüğü üstündür. */
-  :global(html.js-serit) .soru {
-    position: absolute;
-    top: 0;
-    left: 14px;
-    width: calc(50% - 14px - var(--serit-ara) / 2);
-    height: var(--serit-yuk);
-    align-items: center;
-    opacity: 0;
-    filter: blur(2px);
-    transform: translateX(0) translateY(6px);
-    pointer-events: none;
-    transition:
-      transform 240ms var(--e-suzul),
-      opacity 240ms var(--e-akinti),
-      filter 240ms var(--e-akinti);
-  }
-
-  :global(html.js-serit) .soru.sag {
-    transform: translateX(calc(100% + var(--serit-ara))) translateY(6px);
-  }
-
-  :global(html.js-serit) .soru.gorunur {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateX(0) translateY(0);
-    pointer-events: auto;
-  }
-
-  :global(html.js-serit) .soru.gorunur.sag {
-    transform: translateX(calc(100% + var(--serit-ara))) translateY(0);
-  }
-
-  /* Dokunma hedefi ≥44px: görünür bant 31px kalır, saydam ::after tıklamayı
-     taşır. (rev1 ölçümü: ::before{z-index:-1} hit-test'te ÇALIŞMIYOR.) */
-  .soru::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    height: max(44px, 100%);
-  }
-
-  :global(html:not(.js-serit)) .soru { position: relative; }
-
-  @media (max-width: 860px) {
-    .soru-serit { left: 3%; right: 3%; bottom: 2.6vh; }
-    .soru-metin { font-size: 0.82rem; }
+    .guverte { padding: 1rem 1.15rem 1rem; }
+    .guverte .oz-cevap { font-size: 1.06rem; margin-bottom: 0.7rem; }
+    .sorular { grid-template-columns: 1fr; gap: 0; }
+    .soru-metin { font-size: 1.02rem; }
     .hedef-genis { display: none; }
     .hedef-dar { display: inline; }
-    /* 375: TEK yuva — sağ yuva yoktur (sürücü de atamaz) */
-    :global(html.js-serit) .soru { width: calc(100% - 28px); }
-    :global(html.js-serit) .soru.sag { transform: translateX(0) translateY(6px); }
-    :global(html.js-serit) .soru.gorunur.sag { transform: translateX(0) translateY(0); }
+    .s, .s-detay > summary { min-height: 48px; }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .soru { transition: none; }
-  }
-
-  /* ——— İNİŞ BÖLÜMÜ ———
+  /* ——— İNİŞ BÖLÜMÜ (v3: sadeleşti) ———
      Akıştan sonra gelir; sabit sahne katmanının ÜSTÜNE biner (z-index 30). */
   .inis {
     position: relative;
@@ -631,83 +584,13 @@ const sahneVeri = SAHNELER.map((s) => ({
     color: transparent;
   }
 
-  .oz-cevap {
+  .inis-alt {
     margin-top: 1.4rem;
-    padding: 1rem 1.2rem;
-    border-left: 3px solid var(--su-400);
-    background: rgba(46, 126, 160, 0.06);
-    font-size: 1.06rem;
-    line-height: 1.6;
-    font-weight: 500;
-    max-width: 66ch;
-  }
-
-  .davet {
-    margin-top: 1.6rem;
     color: var(--metin-soluk);
     max-width: 58ch;
   }
 
-  .izgara {
-    margin-top: 1.6rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.8rem;
-  }
-
-  .pk {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    padding: 1rem 1.1rem;
-    background: var(--zemin-kart);
-    border: 1px solid var(--cizgi);
-    border-top: 2px solid var(--su-700);
-    text-decoration: none;
-    color: var(--metin);
-    transition: transform 240ms var(--e-suzul), background-color 240ms var(--e-akinti);
-  }
-
-  .pk:hover { transform: translateY(-2px); background: #DBEAF4; }
-  .pk:focus-visible { outline: 2px solid var(--su-700); outline-offset: 3px; }
-
-  .pk-k {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.14em;
-    color: var(--metin-soluk);
-  }
-
-  .pk-ad {
-    font-family: var(--serif);
-    font-size: 1.22rem;
-    font-weight: 600;
-    line-height: 1.12;
-  }
-
-  .pk-t {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    color: var(--kehribar-metin);
-    margin-top: 0.15rem;
-  }
-
-  /* Alt bilgi de sabit sahne katmanının ÜSTÜNE biner. AltBilgi'nin kendi
-     margin-top'u SIFIRLANIR (boşluk padding'e taşınır): margin boşluğu opak
-     değildir, arkasındaki sabit sahne katmanı oradan sızıyordu — denetim
-     ekranında koyu bant olarak yakalandı. */
-  .alt-kap {
-    position: relative;
-    z-index: 30;
-    background: var(--zemin);
-  }
-
-  .alt-kap :global(footer.alt) {
-    margin-top: 0;
-    padding-top: clamp(3rem, 8vh, 5rem);
-  }
-
-  .tumu { margin-top: 1.4rem; }
+  .tumu { margin-top: 1.6rem; }
 
   .tumu a {
     font-family: var(--mono);
@@ -722,18 +605,35 @@ const sahneVeri = SAHNELER.map((s) => ({
 
   .tumu a:hover { color: var(--murekkep-900); }
 
-  @media (max-width: 640px) {
-    .izgara { grid-template-columns: repeat(2, 1fr); }
+  /* Alt bilgi de sabit sahne katmanının ÜSTÜNE biner. */
+  .alt-kap {
+    position: relative;
+    z-index: 30;
+    background: var(--zemin);
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .pk { transition: none; }
-    .pk:hover { transform: none; }
+  .alt-kap :global(footer.alt) {
+    margin-top: 0;
+    padding-top: clamp(3rem, 8vh, 5rem);
   }
 
-  /* Yazdırma: şerit ve akış katmanı gizlenir, iniş içeriği bozulmadan basılır. */
+  /* Yazdırma: v3 — sorular BİRİNCİL, print'te GÖRÜNÜR (statik akışta). Sahne
+     katmanı ve menü gizlenir; güverte akışa oturur, içerik bozulmaz. */
   @media print {
-    .soru-serit, .ust-sabit { display: none; }
+    .ust-sabit { display: none; }
+    .guverte {
+      position: static;
+      height: auto;
+      overflow: visible;
+      background: none;
+      backdrop-filter: none;
+      border-top: none;
+      padding: 0 0 1.5rem;
+      color: #000;
+    }
+    .guverte .g-kicker, .guverte .oz-cevap, .soru-metin, .soru-hedef,
+    .s, .s-detay > summary, .s-cevap p, .s-git { color: #000 !important; }
+    .s-detay[open] .s-cevap, .s-detay .s-cevap { display: block; }
     .inis { padding-top: 1rem; }
   }
 </style>

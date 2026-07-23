@@ -41,7 +41,7 @@ mavisine.
 | Süreç ailesi | `#2C5570` | lacivert-çelik | Kart kimliği "süreç" (§8) |
 | Işıma | `#57BAE0` | SIĞ'ın parlak türevi | Koyu dünyada ışıma/sparkline (DİP üstünde 6.90:1) |
 | Plato kehribarı | `#C0883A` (hairline) / `#875518` (metin) | sıcak ikinci ses | Kritik-vurgu; metin daima koyu türev. Mavi zeminde ayrışsın diye metin türevi C'de koyulaştırıldı (`#7D5B24`→`#875518`, YÜZEY üstünde 5.46:1) |
-| Kehribar-koyu | `#6B4412` | kehribarın bir tık koyu türevi | **YALNIZ ana sayfa soru şeridi hedef satırı.** Saydam (α .80) plaka üstünde küçük punto için tek AA-geçen kehribar (en kötü kare üstünde 4.64:1; `#875518` aynı koşulda 3.42:1 ile kalır — ölçüm `cikti/denetim/anasayfa-sahne/rev1/`). Kritik-vurgu `#875518` DEĞİŞMEZ; bu değişken onun yerini almaz. (23.07 kullanıcı kararı.) |
+| ~~Kehribar-koyu~~ `#6B4412` | EMEKLİ (23.07 v3) | kehribarın bir tık koyu türevi | **EMEKLİ — kullanımdan kalktı.** Gerekçesi "yalnız ana sayfa soru şeridi α.80 açık plaka hedef satırı"ydı; v3'te (soru hiyerarşisi) şerit opak DİP "soru güvertesi"ne dönüştü, hedef etiketi koyu zemin üstünde `--isima #57BAE0` (6.90:1) kullanır. Açık-plaka koyu-kehribar ihtiyacı kalmadı; öksüz değişken bırakılmadı (`index.astro`'dan silindi). Kritik-vurgu `#875518` DEĞİŞMEZ. Yeniden bir açık plaka doğarsa `#6B4412` geri gelebilir. |
 
 **Neden C (22.07 kararı):** site ilk bakışta "su/mavi" kimliği alsın
 istendi — Görünürlük kuralı gereği belirgin olan seçildi. C tüm metin/zemin

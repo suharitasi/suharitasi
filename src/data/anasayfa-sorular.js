@@ -64,16 +64,19 @@ export const SORULAR = [
   },
 ];
 
-// Build-time assert: sessiz hata yasağı — sıra bozulursa build DÜŞER,
-// "aynı hedef yan yana" hatası canlıya sessizce sızmaz.
-for (let i = 0; i < SORULAR.length; i++) {
-  const a = SORULAR[i];
-  const b = SORULAR[(i + 1) % SORULAR.length];
-  if (a.hedef === b.hedef) {
-    throw new Error(
-      `anasayfa-sorular: "${a.soru}" ile "${b.soru}" döngüde komşu ve hedefleri aynı ` +
-        `(${a.hedef}). 1440'ta iki yuvada aynı hedef gösterilemez — sırayı değiştirin.`,
-    );
+// Build-time assert: sessiz hata yasağı.
+// v3 (soru güvertesi, 2026-07-23): eski "döngüde komşu aynı hedef olamaz"
+// kuralı R2 iki-yuvalı süzülen şerit içindi; şerit KALKTI. Güvertede 7 soru
+// TAM LİSTE olarak aynı anda görünür ve iki soru aynı sayfaya (ör. iki
+// /rehberler/kuyu-ruhsati/) gitmesi MEŞRUdur (farklı soru, tek doğru hedef).
+// Bu yüzden komşuluk assert'i geçersizleşti. Yerine: her soru gerçek bir yerel
+// yola ("/..." ile başlayan) çözülüyor mu + zorunlu alanlar tam mı.
+for (const s of SORULAR) {
+  for (const alan of ['soru', 'hedef', 'etiket', 'etiketMobil']) {
+    if (!s[alan]) throw new Error(`anasayfa-sorular: "${s.soru ?? '?'}" — zorunlu alan "${alan}" boş.`);
+  }
+  if (!s.hedef.startsWith('/')) {
+    throw new Error(`anasayfa-sorular: "${s.soru}" hedefi yerel yol değil (${s.hedef}).`);
   }
 }
 if (SORULAR.length !== 7) {
