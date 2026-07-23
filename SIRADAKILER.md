@@ -61,7 +61,19 @@ YENİ KUYRUK MADDESİ — sağlık sistemi a11y açığı: md.9 Lighthouse yaln�
 BEKLEMEDE: SMTP bilgileri (.env'de SMTP_HOST/SMTP_USER/SMTP_PASS/ALARM_TO).
   Gelince e-posta alarmı açılır + sentetik 🔴 ile test maili atılır.
 
-ANA SAYFA — 6 SAHNE + 7 SÜZÜLEN SORU: AŞAMA 2 + CANLI TEST DÜZELTMELERİ
+ANA SAYFA — SORU HİYERARŞİSİ DÜZELTMESİ v3: AŞAMA 1 (MOCK) TAMAM,
+KULLANICI KARARI BEKLİYOR (2026-07-23). Canlı ölçüm (dist-sun) 3 şikâyeti de
+doğruladı: scroll 0'da yalnız 2/7 (1440) / 1/7 (375) soru görünür, öz-cevap+
+sektör kartları %93 aşağıda (iniş bölümü); şerit kontrastı iyi, sorun konum+
+belirginlik. İki alternatif: A "soru güvertesi" (sahne %52, opak DİP panel →
+garantili AA, öneri) / B "süzülen büyük soru" (sinematik, AA riski Aşama 2'de
+ölçülür). Boş kapı S1(6 soru)/S2(kalır+dürüst cevap). Sektör kartları cevap
+içine (türetme: ilgiliIcerik∋/su-kanunu/=35 persona; D4: son-tarih berabere,
+ikincil sıra gerekli). /hangi-kurum/ çakışması yok (farklı eksen). LH tabanı
+masaüstü 99/mobil 85. Kanıt: cikti/denetim/anasayfa-soru-hiyerarsi/ (RAPOR.md
++ 6 kare + faz0 ölçüm). DUR — 4 karar: (i) A/B, (ii) S1/S2, (iii) iniş sektör
+kaderi, (iv) /hangi-kurum. Onaysız Aşama 2 (kod) YOK.
+[ÖNCEKİ] ANA SAYFA — 6 SAHNE + 7 SÜZÜLEN SORU: AŞAMA 2 + CANLI TEST DÜZELTMELERİ
 UYGULANDI, KULLANICI ONAYI BEKLİYOR (2026-07-23). Koyu hero kalktı, sahne
 akışı açılış oldu; R2 alt şerit; akış sonu iniş bölümü; /deneyim/ 301 → /.
 Canlı testte çıkan üç arıza kapatıldı (üç ayrı commit, ayrı ayrı revert
