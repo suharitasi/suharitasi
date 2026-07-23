@@ -1,5 +1,7 @@
 # TÜRKİYE SU İDARESİ — TUR 1A: KURUM KEŞFİ VE LİSTE KAPANIŞI
 
+> Bu rapor TUR 1A'ya aittir; güncel nihai durum için `rapor/su-idaresi-tur1a2.md`'ye bakınız.
+
 **Tarih:** 2026-07-23 · **Kapsam:** keşif + veri üretimi; site/kod değişikliği YOK.
 **Çıktı:** `data/kamu/su-birimleri.json` (99 kayıt + 2 doğrulanmamış aday),
 `data/kamu/su-terim-havuzu.json` (107 terim), `data/kamu/ct3-kuyruk.json`.

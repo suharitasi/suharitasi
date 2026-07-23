@@ -1,8 +1,8 @@
 {
  "uretim_tarihi": "2026-07-23",
  "tohum": "su",
- "tur_sayisi": 2,
- "terim_sayisi": 107,
+ "tur_sayisi": 3,
+ "terim_sayisi": 119,
  "terimler": [
   {
    "terim": "su",
@@ -581,10 +581,11 @@
    "kume": "kaynak"
   },
   {
-   "terim": "sucul ekosistem",
-   "kaynak": "1 s. CBK md.421/1-b",
+   "terim": "sucul çevre",
+   "kaynak": "1 s. CBK md.421/1-b (LAFZİ metin: 'sucul çevrenin ekolojik ve kimyasal kalitesi')",
    "eklenme_turu": 2,
-   "kume": "koruma-risk"
+   "kume": "koruma-risk",
+   "duzeltme": "TUR 1A'da 'sucul ekosistem' olarak yazılmıştı; 1 s. CBK md.421/1-b tam metninde bu ifade GEÇMİYOR (parafraz). TUR 1A-2'de lafzi ifadeyle düzeltildi."
   },
   {
    "terim": "nitrata duyarlı hassas alan",
@@ -645,6 +646,78 @@
    "kaynak": "1 s. CBK md.435/A-f",
    "eklenme_turu": 2,
    "kume": "islem"
+  },
+  {
+   "terim": "sanal su",
+   "kaynak": "Ulusal Su Planı 2026-2035 (arşiv, birincil kaynak)",
+   "eklenme_turu": 3,
+   "kume": "islem"
+  },
+  {
+   "terim": "su ayak izi",
+   "kaynak": "Ulusal Su Planı 2026-2035 (arşiv, birincil kaynak)",
+   "eklenme_turu": 3,
+   "kume": "islem"
+  },
+  {
+   "terim": "su güvenliği",
+   "kaynak": "Ulusal Su Planı 2026-2035 (arşiv, birincil kaynak)",
+   "eklenme_turu": 3,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "su stresi",
+   "kaynak": "Ulusal Su Planı 2026-2035 (arşiv, birincil kaynak)",
+   "eklenme_turu": 3,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "su bütçesi",
+   "kaynak": "Ulusal Su Planı 2026-2035 (arşiv, birincil kaynak)",
+   "eklenme_turu": 3,
+   "kume": "islem"
+  },
+  {
+   "terim": "kullanılabilir su potansiyeli",
+   "kaynak": "Ulusal Su Planı 2026-2035 (arşiv, birincil kaynak)",
+   "eklenme_turu": 3,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "tarımdan dönen su",
+   "kaynak": "Ulusal Su Planı 2026-2035 (arşiv, birincil kaynak)",
+   "eklenme_turu": 3,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "arıtılmış atıksu",
+   "kaynak": "Ulusal Su Planı 2026-2035 (arşiv, birincil kaynak)",
+   "eklenme_turu": 3,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "sektörel su tahsisi",
+   "kaynak": "Ulusal Su Planı 2026-2035 (arşiv, birincil kaynak)",
+   "eklenme_turu": 3,
+   "kume": "islem"
+  },
+  {
+   "terim": "su kalitesi izleme",
+   "kaynak": "Ulusal Su Planı 2026-2035 (arşiv, birincil kaynak)",
+   "eklenme_turu": 3,
+   "kume": "islem"
+  },
+  {
+   "terim": "su tasarrufu",
+   "kaynak": "Ulusal Su Planı 2026-2035 (arşiv, birincil kaynak)",
+   "eklenme_turu": 3,
+   "kume": "islem"
+  },
+  {
+   "terim": "akım gözlem",
+   "kaynak": "Ulusal Su Planı 2026-2035 (arşiv, birincil kaynak)",
+   "eklenme_turu": 3,
+   "kume": "islem"
   }
  ],
  "tur_gecmisi": [
@@ -657,6 +730,12 @@
    "tur": 2,
    "yeni": 39,
    "kumulatif": 107
+  },
+  {
+   "tur": 3,
+   "yeni": 12,
+   "kumulatif": 119,
+   "kaynak": "TUR 1A-2'de açılan 3 yönetmelik + Ulusal Su Planı 2026-2035 (arşiv)"
   }
  ]
 }

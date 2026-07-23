@@ -2,12 +2,18 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
-SU İDARESİ KURUM LİSTESİ — TUR 1A TAMAMLANDI, **LİSTE KAPANMADI** (2026-07-23).
-Çıktı: data/kamu/su-birimleri.json (99 kayıt + 2 doğrulanmamış aday),
-su-terim-havuzu.json (107 terim), ct3-kuyruk.json; rapor/su-idaresi-tur1a.md.
-Düşen kapanış şartı: terim havuzu kapanmadı (tur 2'de +39 terim) — Ç1'in bakanlık
-görev metinleri bu 39 terimle YENİDEN TARANMADI. TUR 1A-2 gerekli (yapılacaklar
-listesi raporun sonunda). Ç3 kuyruğunda 15 kurum "beklemede".
+SU İDARESİ KURUM LİSTESİ — TUR 1A-2 TAMAMLANDI, **LİSTE KAPANMADI** (2026-07-23).
+Güncel nihai durum: rapor/su-idaresi-tur1a2.md (TUR 1A raporu artık geçmiş kayıt).
+Çıktı: data/kamu/su-birimleri.json (**137 kayıt**, doğrulanmamış aday 0),
+su-terim-havuzu.json (**119 terim**), ct3-kuyruk.json (101 işlendi / 36 beklemede).
+Düşen üç şart: (1) Ç3 tur-4 tamamlanmadı + 23 yeni kurum, (2) Ç4 bağımsız denetim
+9 kurum kaçırıldı, (4) ayırt edici terimler Ç2b-EK'te 8 yeni kurum getirdi.
+Şart (3) sağlandı: Ç1-TEKRAR kapsamı %100.
+Turun asıl bulgusu: TUR 1A'nın "havuz terimi geçen cümle" kapısı, su
+mevzuatının kendi görev maddelerindeki kurumları kaçırıyordu (2872 md.12).
+TUR 1A-3 gerekli — 7 maddelik yapılacaklar listesi raporun sonunda; en yüksek
+getirili ve 0 istekli madde: Ulusal Su Planı 2026-2035 eylem tablolarının
+kurum kurum taranması.
 site-saglik.mjs'e eklenecek — su-birimleri.json geçerli JSON mu + kayıt sayısı son
 koşuya göre azalmadı mı (azalma = 🟡). Uygulaması ayrı küçük iş.
 

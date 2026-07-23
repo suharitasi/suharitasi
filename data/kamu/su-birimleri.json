@@ -694,13 +694,13 @@
    "alias": [],
    "ust_kurum_id": "tarim-orman-bakanligi",
    "tur": "kurul",
-   "dayanak": "1 s. CBK md.435/A (su tahsisinde arz-talep dengesi, ulusal su planı ve havza planlarını karara bağlamak)",
+   "dayanak": "Su Kurullarının Görevleri ile Çalışma Usul ve Esasları Hakkında Yönetmelik (1 s. CBK md.435/A dayanaklı; mevzuat.gov.tr mevzuatNo 40929) md.4 — Tarım ve Orman Bakanı başkanlığında 11 bakan yardımcısı, Strateji ve Bütçe Başkanı, TÜBİTAK Başkanı, TÜİK Başkanı, TOBB Başkanı ve Türkiye Belediyeler Birliği Başkanından oluşur; md.5 görev ve yetkiler. Kuruluş: 1 s. CBK md.435/A (Ek: 157 s. CBK).",
    "su_ilgisi": "DOĞRUDAN",
    "bulundugu_kanal": [
     "C1"
    ],
    "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
-   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "erisim_notu": "Bileşim TUR 1A-2'de DOĞRULANDI (Su Kurulları Yön. tam metni açıldı).",
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
@@ -713,13 +713,13 @@
    "alias": [],
    "ust_kurum_id": "tarim-orman-bakanligi",
    "tur": "kurul",
-   "dayanak": "1 s. CBK md.435/A başlığı (Ulusal Su Kurulu ile havza ve il su kurulları)",
+   "dayanak": "Su Kurullarının Görevleri ile Çalışma Usul ve Esasları Hakkında Yönetmelik (1 s. CBK md.435/A dayanaklı; mevzuat.gov.tr mevzuatNo 40929) md.7 — her havza için ayrı kurul; koordinatör vali başkanlığında valiler, büyükşehir belediye başkanları ve SKİ genel müdürleri, il belediye başkanları, il özel idaresi genel sekreterleri, SYGM temsilcisi, sınır aşan havzalarda Dışişleri temsilcisi, SUEN temsilcisi, DSİ Bölge Müdürleri, Bakanlık/ÇŞİDB/Sanayi/Kültür il müdürleri, MGM Bölge Müdürlüğü ve İLBANK temsilcileri ile OSB, üniversite, STK, sulama birliği ve sulama kooperatifi temsilcilerinden oluşur.",
    "su_ilgisi": "DOĞRUDAN",
    "bulundugu_kanal": [
     "C1"
    ],
    "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
-   "erisim_notu": "kuruluş/işleyiş ayrıntısı yönetmeliğe bırakılmış — Ç2b'de aranacak",
+   "erisim_notu": "Bileşim TUR 1A-2'de DOĞRULANDI (Su Kurulları Yön. tam metni açıldı).",
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
@@ -732,13 +732,13 @@
    "alias": [],
    "ust_kurum_id": "tarim-orman-bakanligi",
    "tur": "kurul",
-   "dayanak": "1 s. CBK md.435/A başlığı (Ulusal Su Kurulu ile havza ve il su kurulları)",
+   "dayanak": "Su Kurullarının Görevleri ile Çalışma Usul ve Esasları Hakkında Yönetmelik (1 s. CBK md.435/A dayanaklı; mevzuat.gov.tr mevzuatNo 40929) md.8 — her il için ayrı kurul; vali başkanlığında büyükşehir belediye başkanı ve SKİ genel müdürü (veya il belediye başkanı ve il özel idaresi genel sekreteri), DSİ Bölge Müdürü, MGM, Karayolları GM, Kalkınma Ajansı ve İLBANK il temsilcileri, Bakanlık/ÇŞİDB/Sanayi/Kültür-Turizm/Sağlık il müdürleri ve İl AFAD Müdürü ile OSB, üniversite, STK, sulama birliği ve sulama kooperatifi temsilcilerinden oluşur.",
    "su_ilgisi": "DOĞRUDAN",
    "bulundugu_kanal": [
     "C1"
    ],
    "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
-   "erisim_notu": "kuruluş/işleyiş ayrıntısı yönetmeliğe bırakılmış — Ç2b'de aranacak",
+   "erisim_notu": "Bileşim TUR 1A-2'de DOĞRULANDI (Su Kurulları Yön. tam metni açıldı).",
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
@@ -1077,13 +1077,13 @@
    "alias": [],
    "ust_kurum_id": "saglik-bakanligi",
    "tur": "kurul",
-   "dayanak": "Su Tahsisleri Hk. Yön. md.4/1-b (Doğal Mineralli Sular Hk. Yön.'de tanımlanan komisyon)",
+   "dayanak": "Doğal Mineralli Sular Hakkında Yönetmelik (RG 1/12/2004-25657) md.4/1-d — doğal mineralli suların kimyasal, mikrobiyolojik, farmakolojik ve klinik değerlendirmesi; aynı Yön. md.4/1-a uyarınca 'Bakanlık: Sağlık Bakanlığı'. Su Tahsisleri Hk. Yön. md.4/1-b bu komisyonun raporuna atıf yapar.",
    "su_ilgisi": "DOĞRUDAN",
    "bulundugu_kanal": [
     "C2b"
    ],
    "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=34021&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
-   "erisim_notu": "bağlı olduğu bakanlık Doğal Mineralli Sular Yön.'den teyit edilmedi — ust_kurum_dogrulanmadi",
+   "erisim_notu": "Bağlı olduğu bakanlık TUR 1A-2'de DOĞRULANDI (yönetmeliğin tanımlar maddesi).",
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
@@ -1867,13 +1867,13 @@
    "alias": [],
    "ust_kurum_id": null,
    "tur": "merkez",
-   "dayanak": "2547 s. YÖK Kanunu md.7/1-d-2 uyarınca üniversite yönetmelikleriyle kurulur (mevzuat.gov.tr Üniversite Yönetmelikleri kümesi)",
+   "dayanak": "2547 s. Yükseköğretim K. md.7/d — yükseköğretim kurumları içinde uygulama ve araştırma merkezi açılmasına Yükseköğretim Kurulu karar verir; merkezler üniversite yönetmelikleriyle kurulur",
    "su_ilgisi": "DOĞRUDAN",
    "bulundugu_kanal": [
     "C5"
    ],
    "kaynak_url": "https://www.mevzuat.gov.tr/",
-   "erisim_notu": "SAYIM: mevzuat.gov.tr Üniversite Yönetmelikleri başlık taramasında 28 su-ilgili merkez (24 'su' + 4 'havza'); yalnız yönetmeliği mevzuat.gov.tr'de yayımlı olanlar — TABAN sayı, tam sayım değil. 2547 md. numarası dogrulanmadi.",
+   "erisim_notu": "Madde dayanağı TUR 1A-2'de DOĞRULANDI (2547 tam metin). Sayı (28) hâlâ TABAN — mevzuat.gov.tr başlık taramasına dayanıyor, fiilî sayım yapılmadı.",
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
@@ -1897,24 +1897,539 @@
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
    "son_guncelleme": "2026-07-23"
-  }
- ],
- "kayit_sayisi": 99,
- "dogrulanmamis_adaylar": [
+  },
   {
-   "id": "meteoroloji-gm",
-   "ad_resmi": "Meteoroloji Genel Müdürlüğü",
-   "kisaltma": "MGM",
+   "id": "iller-bankasi",
+   "ad_resmi": "İller Bankası Anonim Şirketi",
+   "kisaltma": "İLBANK",
+   "alias": [
+    "İller Bankası"
+   ],
+   "ust_kurum_id": null,
+   "tur": "kuruluş",
+   "dayanak": "7478 s. Köy İçme Suları Hk. K. md.6 ve md.8 (DSİ ile ortak içme suyu tesisleri, mücavir belediyelerin su tedarik ve isale işleri); 1053 s.K. md.4 son fıkra (DSİ alacaklarının belediye paylarından kesintisi); kuruluş kanunu 6107 s.K.",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3",
+    "C4"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.7478.pdf",
+   "erisim_notu": "7478 ve 1053 tam metin yerelde (TUR 1A); Ulusal Su Planı 2026-2035 kurum tablosunda da sayılı",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "turkiye-cevre-ajansi",
+   "ad_resmi": "Türkiye Çevre Ajansı",
+   "kisaltma": "TÜÇA",
    "alias": [],
    "ust_kurum_id": "cevre-sehircilik-iklim-bakanligi",
    "tur": "kuruluş",
-   "dayanak": "dogrulanmadi",
-   "su_ilgisi": "dogrulanmadi",
+   "dayanak": "2872 s. Çevre K. md.12 (Bakanlıkça denetim yetkisinin devredilebileceği merciler arasında sayılı — su kirliliği hükümleri dahil); 7261 s.K.",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C3",
+    "C4"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2872.pdf",
+   "erisim_notu": "2872 tam metin yerelde; Ulusal Su Planı 2026-2035 kurum tablosunda sayılı",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "sahil-guvenlik-komutanligi",
+   "ad_resmi": "Sahil Güvenlik Komutanlığı",
+   "kisaltma": "SGK",
+   "alias": [
+    "Sahil Güvenlik Bot Komutanlıkları"
+   ],
+   "ust_kurum_id": "icisleri-bakanligi",
+   "tur": "kuruluş",
+   "dayanak": "2872 s. Çevre K. md.12 (denetim yetkisi devri); 1380 s. Su Ürünleri K. ve Su Ürünleri Yön. md.35 (bot komutanlarının su ürünleri denetimi ve idari para cezası yetkisi)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.1380.pdf",
+   "erisim_notu": "2872, 1380 ve Su Ürünleri Yön. tam metin yerelde",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "jandarma-genel-komutanligi",
+   "ad_resmi": "Jandarma Genel Komutanlığı",
+   "kisaltma": "JGK",
+   "alias": [],
+   "ust_kurum_id": "icisleri-bakanligi",
+   "tur": "kuruluş",
+   "dayanak": "2872 s. Çevre K. md.12 (Bakanlıkça denetim yetkisinin devredilebileceği merciler arasında sayılı)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2872.pdf",
+   "erisim_notu": "2872 tam metin yerelde",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "emniyet-genel-mudurlugu",
+   "ad_resmi": "Emniyet Genel Müdürlüğü",
+   "kisaltma": "EGM",
+   "alias": [],
+   "ust_kurum_id": "icisleri-bakanligi",
+   "tur": "GM",
+   "dayanak": "2872 s. Çevre K. md.12 (Bakanlıkça denetim yetkisinin devredilebileceği merciler arasında sayılı)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2872.pdf",
+   "erisim_notu": "2872 tam metin yerelde",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "ulusal-sulak-alan-komisyonu",
+   "ad_resmi": "Ulusal Sulak Alan Komisyonu",
+   "kisaltma": null,
+   "alias": [
+    "Ulusal Komisyon"
+   ],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "kurul",
+   "dayanak": "Sulak Alanların Korunması Yön. md.4/1-ff ve md.31 (teşekkül); ulusal öneme haiz sulak alan ve Ramsar listesi kararlarında onay mercii",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/",
+   "erisim_notu": "Yönetmelik tam metin yerelde (mv/19546)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "mahalli-sulak-alan-komisyonu",
+   "ad_resmi": "Mahalli Sulak Alan Komisyonu",
+   "kisaltma": null,
+   "alias": [
+    "Mahalli Komisyon"
+   ],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "kurul",
+   "dayanak": "Sulak Alanların Korunması Yön. md.4/1-ö ve md.35 (teşkil); mahalli öneme haiz sulak alan yönetim planlarının onayı",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/",
+   "erisim_notu": "Yönetmelik tam metin yerelde (mv/19546)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "cevre-teknik-komitesi",
+   "ad_resmi": "Çevre Teknik Komitesi",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "yuksek-cevre-kurulu",
+   "tur": "kurul",
+   "dayanak": "Yüksek Çevre Kurulu ve Mahalli Çevre Kurullarının Çalışma Usul ve Esaslarına İlişkin Yön. md.11 (oluşum) ve md.12 (görevler) — Yüksek Çevre Kuruluna hazırlık organı",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/",
+   "erisim_notu": "Yönetmelik (RG mevzuatNo 18680) tam metin bu turda açıldı",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "turkak",
+   "ad_resmi": "Türkiye Akreditasyon Kurumu",
+   "kisaltma": "TÜRKAK",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kuruluş",
+   "dayanak": "Su Yapıları Denetim Hizmetleri Yön. md.4 (TÜRKAK tanımı — su yapısı denetim kuruluşlarının akreditasyonu)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/",
+   "erisim_notu": "Yönetmelik tam metin yerelde (mv/20748)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tse",
+   "ad_resmi": "Türk Standardları Enstitüsü",
+   "kisaltma": "TSE",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kuruluş",
+   "dayanak": "İçme-Kullanma Suyu Havzalarının Korunmasına Dair Yön. md.4 (TSE tanımı — standart atfı)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/",
+   "erisim_notu": "Yönetmelik tam metin yerelde (mv/24036)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "karayollari-gm",
+   "ad_resmi": "Karayolları Genel Müdürlüğü",
+   "kisaltma": "KGM",
+   "alias": [],
+   "ust_kurum_id": "ulastirma-altyapi-bakanligi",
+   "tur": "GM",
+   "dayanak": "Taşkın ve Rüsubat Kontrolü Yön. (tarihi köprü koruma alanındaki taşkın kontrol faaliyetlerinde KGM görüşü; menfez ve hidrolik hesap hükümleri)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/",
+   "erisim_notu": "Yönetmelik tam metin yerelde (mv/31468)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "kultur-varliklari-koruma-bolge-kurulu",
+   "ad_resmi": "Kültür Varlıklarını Koruma Bölge Kurulu",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "kultur-turizm-bakanligi",
+   "tur": "kurul",
+   "dayanak": "Taşkın ve Rüsubat Kontrolü Yön. (tarihi köprülere ait koruma alanında planlanan taşkın kontrol faaliyetlerinde onay mercii)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/",
+   "erisim_notu": "Yönetmelik tam metin yerelde (mv/31468)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "merkezi-izleme-odasi",
+   "ad_resmi": "Merkezi İzleme Odası",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "su-yonetimi-gm",
+   "tur": "daire",
+   "dayanak": "Yüzeysel Sular ve Yeraltı Sularının İzlenmesine Dair Yön. (gerçek zamanlı izleme verilerinin Bakanlık bünyesindeki Merkezi İzleme Odasından takibi)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/",
+   "erisim_notu": "Yönetmelik tam metin yerelde (mv/19392); bağlı olduğu birim dogrulanmadi (yalnız 'Bakanlık bünyesinde' deniyor)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "milli-emlak-gm",
+   "ad_resmi": "Millî Emlak Genel Müdürlüğü",
+   "kisaltma": null,
+   "alias": [
+    "Milli Emlak Genel Müdürlüğü"
+   ],
+   "ust_kurum_id": "cevre-sehircilik-iklim-bakanligi",
+   "tur": "GM",
+   "dayanak": "1380 s. Su Ürünleri K. (Devletin hüküm ve tasarrufu altındaki su alanlarında yetiştiricilik izinlerinin Millî Emlak birimleri marifetiyle yapılması)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.1380.pdf",
+   "erisim_notu": "1380 tam metin yerelde; bağlı bakanlık dogrulanmadi (CBK bölümünden teyit edilmedi)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tapu-kadastro-gm",
+   "ad_resmi": "Tapu ve Kadastro Genel Müdürlüğü",
+   "kisaltma": "TKGM",
+   "alias": [],
+   "ust_kurum_id": "cevre-sehircilik-iklim-bakanligi",
+   "tur": "GM",
+   "dayanak": "3083 s. Sulama Alanlarında Arazi Düzenlenmesine Dair Tarım Reformu K. md.16 (uygulama alanlarında tapu-kadastro işlemlerinin öncelikle tamamlanması)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.3083.pdf",
+   "erisim_notu": "3083 tam metin yerelde; bağlı bakanlık dogrulanmadi",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "ogm-toprak-muhafaza-havza-islahi-dairesi",
+   "ad_resmi": "Toprak Muhafaza ve Havza Islahı Dairesi Başkanlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "orman-gm",
+   "tur": "daire",
+   "dayanak": "4 s. CBK Orman Genel Müdürlüğü bölümü — Toprak Muhafaza ve Havza Islahı Dairesi Başkanlığının görevleri",
+   "su_ilgisi": "DOĞRUDAN",
    "bulundugu_kanal": [
     "C1"
    ],
    "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
-   "erisim_notu": "4 s. CBK md.262 görev metninde havuz terimi GEÇMİYOR; su mevzuatında görevli anıldığı atıf Ç2b/Ç3'te aranacak",
+   "erisim_notu": "4 s. CBK tam metin yerelde (cbk4 satır 6082); madde numarası dogrulanmadi",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "ab-baskanligi",
+   "ad_resmi": "Avrupa Birliği Başkanlığı",
+   "kisaltma": "ABB",
+   "alias": [
+    "Avrupa Birliği ile İlişkiler Genel Müdürlüğü"
+   ],
+   "ust_kurum_id": "disisleri-bakanligi",
+   "tur": "kuruluş",
+   "dayanak": "4 s. CBK md.62 (AB ile İlişkiler GM — katılım müzakerelerinin koordinasyonu); Ulusal Su Planı 2026-2035 'Su Yönetiminde Yer Alan Kurum ve Kuruluşlar' tablosunda su faslı muhatabı olarak sayılı",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C4"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "CBK görev metninde havuz terimi GEÇMİYOR; kayıt dayanağı Ulusal Su Planı kurum tablosu",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "bitkisel-uretim-gm",
+   "ad_resmi": "Bitkisel Üretim Genel Müdürlüğü",
+   "kisaltma": "BÜGEM",
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "GM",
+   "dayanak": "1 s. CBK md.414; Ulusal Su Planı 2026-2035 kurum tablosunda su yönetiminde görevli olarak sayılı",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C4"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "CBK md.414 görev metninde havuz terimi GEÇMİYOR; kayıt dayanağı Ulusal Su Planı kurum tablosu",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "ticaret-bakanligi",
+   "ad_resmi": "Ticaret Bakanlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "1 s. CBK md.441; Ulusal Su Planı 2026-2035 kurum tablosunda su yönetiminde görevli olarak sayılı. Tarihsel: 1380 s. Su Ürünleri K.'nun 1986 öncesi metninde su ürünleri görevleri Ticaret Bakanlığındaydı (3288 s.K. md.8 ile Tarım Orman ve Köyişleri Bakanlığına devredildi).",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C4"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "TUR 1A'da 'kayıt açılmayan 5 bakanlık'tan biriydi; Ulusal Su Planı kurum tablosu bu kararı düşürdü",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "denizcilik-mustesarligi",
+   "ad_resmi": "Denizcilik Müsteşarlığı",
+   "kisaltma": null,
+   "alias": [
+    "Başbakanlık Denizcilik Müsteşarlığı"
+   ],
+   "ust_kurum_id": null,
+   "tur": "kuruluş",
+   "dayanak": "2872 s. Çevre K. md.12 (denetim yetkisinin devredilebileceği merciler arasında — mülga metin)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2872.pdf",
+   "erisim_notu": "2872 tam metin yerelde",
+   "durum": "mülga",
+   "halef_id": "denizcilik-gm",
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "cevre-mustesarligi",
+   "ad_resmi": "Çevre Müsteşarlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kuruluş",
+   "dayanak": "383 s. KHK md.25 — 2872 s. Çevre K. ile Çevre Müsteşarlığına verilen yetkilerin Özel Çevre Koruma Kurumu Başkanlığına geçmesi",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2872.pdf",
+   "erisim_notu": "2872 dipnotu; 383 s. KHK tam metni bu turda açıldı",
+   "durum": "mülga",
+   "halef_id": "cevre-sehircilik-iklim-bakanligi",
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "hazine-mustesarligi",
+   "ad_resmi": "Hazine Müsteşarlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kuruluş",
+   "dayanak": "2872 s. Çevre K. (çevre kirliliğine yol açabilecek faaliyetlerde zorunlu malî sorumluluk sigortası şirketlerinin belirlenmesi); 5403 s.K.",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2872.pdf",
+   "erisim_notu": "2872 ve 5403 tam metin yerelde",
+   "durum": "mülga",
+   "halef_id": "hazine-maliye-bakanligi",
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "nafia-vekaleti",
+   "ad_resmi": "Nafıa Vekaleti",
+   "kisaltma": null,
+   "alias": [
+    "Nafıa Vekâleti",
+    "Bayındırlık Bakanlığı"
+   ],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "4373 s. Taşkın Sulara ve Su Baskınlarına Karşı Korunma K. (taşkın koruma tedbirlerinin Nafıa Vekaletinin teklifi üzerine kararlaştırılması; 698 s. KHK md.18 ile yetki Cumhurbaşkanına geçti)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.4373.pdf",
+   "erisim_notu": "4373 tam metin yerelde; halef kurum dogrulanmadi (su işleri görevleri DSİ'ye, bayındırlık görevleri ÇŞİDB'ye dağıldı)",
+   "durum": "mülga",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "devlet-personel-baskanligi",
+   "ad_resmi": "Devlet Personel Başkanlığı",
+   "kisaltma": "DPB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kuruluş",
+   "dayanak": "6172 s. Sulama Birlikleri K. (birlik personel rejimine ilişkin görüş/işlem mercii — mülga metin)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6172.pdf",
+   "erisim_notu": "6172 tam metin yerelde",
+   "durum": "mülga",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "istanbul-sular-idaresi-mudurler-kurulu",
+   "ad_resmi": "İstanbul Sular İdaresi Müdürler Kurulu",
+   "kisaltma": null,
+   "alias": [
+    "Sular İdaresi Müdürler Kurulu"
+   ],
+   "ust_kurum_id": "istanbul-sular-idaresi",
+   "tur": "kurul",
+   "dayanak": "2560 s. İSKİ K. geçici md.6-7 (yeni Yönetim Kurulu teşekkül edinceye kadar geçici Yönetim Kurulu olarak görev; kararları uygulanmaya devam)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2560.pdf",
+   "erisim_notu": "2560 tam metin yerelde; madde numarası dogrulanmadi",
+   "durum": "mülga",
+   "halef_id": "iski-yonetim-kurulu",
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tarim-bakanligi",
+   "ad_resmi": "Tarım Bakanlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "1380 s. Su Ürünleri K.'nun 1986 öncesi metni (3288 s.K. md.8 ile 'Tarım Bakanlığı' ibaresi 'Tarım Orman ve Köyişleri Bakanlığı' olarak değiştirildi)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.1380.pdf",
+   "erisim_notu": "1380 tam metin yerelde",
+   "durum": "mülga",
+   "halef_id": "tarim-orman-koyisleri-bakanligi",
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "meteoroloji-gm",
+   "ad_resmi": "Meteoroloji Genel Müdürlüğü",
+   "kisaltma": "MGM",
+   "alias": [
+    "Devlet Meteoroloji İşleri Genel Müdürlüğü"
+   ],
+   "ust_kurum_id": "cevre-sehircilik-iklim-bakanligi",
+   "tur": "kuruluş",
+   "dayanak": "4 s. CBK md.262 (meteorolojik hizmetler; görev metninde havuz terimi geçmez) + Ulusal Su Planı 2026-2035 'Su Yönetiminde Yer Alan Kurum ve Kuruluşlar' tablosunda su yönetiminde görevli olarak sayılı; aynı planda Eylem 4.2.1 (kuraklık) ilgili kuruluşu ve Ulusal Taşkın Tahmini ve Erken Uyarı Sistemi'nde sayısal hava tahmin modeli sağlayıcısı",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C1",
+    "C4"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "TUR 1A'da doğrulanmamış adaydı; TUR 1A-2'de Ulusal Su Planı 2026-2035 (arşiv birincil kaynak) ile doğrulandı ve ana listeye alındı",
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
@@ -1927,18 +2442,216 @@
    "alias": [],
    "ust_kurum_id": "cevre-sehircilik-iklim-bakanligi",
    "tur": "kuruluş",
-   "dayanak": "dogrulanmadi",
-   "su_ilgisi": "dogrulanmadi",
+   "dayanak": "2872 s. Çevre K. md.12 (Bakanlıkça denetim yetkisinin devredilebileceği merciler arasında sayılı) + Ulusal Su Planı 2026-2035 kurum tablosu ve Eylem 4.2.1 (kuraklık riski yüksek havzalarda kuraklık yönetim planları) ilgili kuruluşu",
+   "su_ilgisi": "DOĞRUDAN",
    "bulundugu_kanal": [
-    "C1"
+    "C1",
+    "C3",
+    "C4"
    ],
-   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
-   "erisim_notu": "4 s. CBK md.792/A-C görev metninde havuz terimi doğrudan geçmiyor; su-iklim atfı Ç2b/Ç3'te aranacak",
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2872.pdf",
+   "erisim_notu": "TUR 1A'da doğrulanmamış adaydı; TUR 1A-2'de 2872 md.12 ve Ulusal Su Planı 2026-2035 ile doğrulandı ve ana listeye alındı",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "kalkinma-ajanslari",
+   "ad_resmi": "Kalkınma Ajansları",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "yerel",
+   "dayanak": "Su Kurullarının Görevleri ile Çalışma Usul ve Esasları Hakkında Yönetmelik (1 s. CBK md.435/A dayanaklı) md.8/2 — il su kurulu üyesi (ildeki en üst düzey temsilci)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/",
+   "erisim_notu": "Yönetmelik tam metin TUR 1A-2'de açıldı (mevzuatNo 40929); ajans sayısı dogrulanmadi",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "il-saglik-mudurlugu",
+   "ad_resmi": "İl Sağlık Müdürlükleri",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "saglik-bakanligi",
+   "tur": "yerel",
+   "dayanak": "Su Kurullarının Görevleri ile Çalışma Usul ve Esasları Hakkında Yönetmelik (1 s. CBK md.435/A dayanaklı) md.8/2 — il su kurulu üyesi",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/",
+   "erisim_notu": "Yönetmelik tam metin TUR 1A-2'de açıldı",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "il-afad-mudurlugu",
+   "ad_resmi": "İl Afet ve Acil Durum Müdürlükleri",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "afad",
+   "tur": "yerel",
+   "dayanak": "Su Kurullarının Görevleri ile Çalışma Usul ve Esasları Hakkında Yönetmelik (1 s. CBK md.435/A dayanaklı) md.8/2 — il su kurulu üyesi",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/",
+   "erisim_notu": "Yönetmelik tam metin TUR 1A-2'de açıldı",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "sanayi-teknoloji-il-mudurlugu",
+   "ad_resmi": "Sanayi ve Teknoloji İl Müdürlükleri",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "sanayi-teknoloji-bakanligi",
+   "tur": "yerel",
+   "dayanak": "Su Kurullarının Görevleri ile Çalışma Usul ve Esasları Hakkında Yönetmelik (1 s. CBK md.435/A dayanaklı) md.7/2 ve md.8/2 — havza ve il su kurulu üyesi",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/",
+   "erisim_notu": "Yönetmelik tam metin TUR 1A-2'de açıldı",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "il-kultur-turizm-mudurlugu",
+   "ad_resmi": "İl Kültür ve Turizm Müdürlükleri",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "kultur-turizm-bakanligi",
+   "tur": "yerel",
+   "dayanak": "Su Kurullarının Görevleri ile Çalışma Usul ve Esasları Hakkında Yönetmelik (1 s. CBK md.435/A dayanaklı) md.7/2 ve md.8/2 — havza ve il su kurulu üyesi",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/",
+   "erisim_notu": "Yönetmelik tam metin TUR 1A-2'de açıldı",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "mgm-bolge-mudurlukleri",
+   "ad_resmi": "Meteoroloji Genel Müdürlüğü Bölge Müdürlükleri",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "meteoroloji-gm",
+   "tur": "yerel",
+   "dayanak": "Su Kurullarının Görevleri ile Çalışma Usul ve Esasları Hakkında Yönetmelik (1 s. CBK md.435/A dayanaklı) md.7/2 (havza su kurulu) ve md.8/2 (il su kurulu) üyesi",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/",
+   "erisim_notu": "Yönetmelik tam metin TUR 1A-2'de açıldı; bölge sayısı dogrulanmadi",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tarimsal-uretim-planlama-kurulu",
+   "ad_resmi": "Tarımsal Üretimin Planlanması Kurulu",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "kurul",
+   "dayanak": "Tarımsal Üretimin Planlanması Hakkında Yönetmelik md.12 — bitkisel üretim planlamasında kuraklık yönetim planları, sulama durumu, su potansiyeli ve yeraltı su kısıtı olan alan bilgilerinin esas alınması",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/",
+   "erisim_notu": "Yönetmelik tam metin TUR 1A-2'de açıldı (mevzuatNo 40323)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "hayvancilik-gm",
+   "ad_resmi": "Hayvancılık Genel Müdürlüğü",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "GM",
+   "dayanak": "Tarımsal Üretimin Planlanması Hakkında Yönetmelik — üretim planlamasında su/sulama ölçütlerinin uygulandığı birim",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/",
+   "erisim_notu": "Yönetmelik tam metin TUR 1A-2'de açıldı; CBK madde numarası dogrulanmadi",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tkdk",
+   "ad_resmi": "Tarım ve Kırsal Kalkınmayı Destekleme Kurumu",
+   "kisaltma": "TKDK",
+   "alias": [
+    "Kırsal Kalkınmayı Destekleme Kurumu"
+   ],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "kuruluş",
+   "dayanak": "1. Su Şûrası (T.C. Tarım ve Orman Bakanlığı, Ekim 2021) çalışma grubu katılımcı kurumu — kendi kuruluş mevzuatındaki su görevi dogrulanmadi",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C4"
+   ],
+   "kaynak_url": "https://cdniys.tarimorman.gov.tr/api/File/GetFile/467/Sayfa/1497/1861/DosyaGaleri/i._su_surasi_kitabini_indirmek_icin_tiklayiniz.pdf",
+   "erisim_notu": "Kaynak PDF tam metin indirildi (TUR 1A-2, Ç4 kaynak 3). Kuruluş mevzuatı (5648 s.K.) AÇILMADI — Ç3 tur-5'te kuyrukta.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tbmm-cevre-komisyonu",
+   "ad_resmi": "TBMM Çevre Komisyonu",
+   "kisaltma": null,
+   "alias": [
+    "Türkiye Büyük Millet Meclisi Çevre Komisyonu"
+   ],
+   "ust_kurum_id": null,
+   "tur": "kurul",
+   "dayanak": "1. Su Şûrası (Ekim 2021) Başkanlık Divanında TBMM Çevre Komisyonu Başkanı yer aldı — komisyonun su gündemine ilişkin daimî görev tanımı dogrulanmadi",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C4"
+   ],
+   "kaynak_url": "https://cdniys.tarimorman.gov.tr/api/File/GetFile/467/Sayfa/1497/1861/DosyaGaleri/i._su_surasi_kitabini_indirmek_icin_tiklayiniz.pdf",
+   "erisim_notu": "Kaynak PDF tam metin indirildi (TUR 1A-2, Ç4 kaynak 3). TBMM İçtüzüğü/komisyon görev metni AÇILMADI — Ç3 tur-5'te kuyrukta.",
    "durum": "aktif",
    "halef_id": null,
    "ilk_kayit_tarihi": "2026-07-23",
    "son_guncelleme": "2026-07-23"
   }
  ],
- "dogrulanmamis_aday_sayisi": 2
+ "kayit_sayisi": 137,
+ "dogrulanmamis_adaylar": [],
+ "dogrulanmamis_aday_sayisi": 0
 }
