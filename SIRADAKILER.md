@@ -17,10 +17,16 @@ Kanıt: cikti/denetim/site-saglik/ (RAPOR.md + 7/7 test senaryosu + ilk tam
 koşu + SHA-bekleme + bellek kuralı + kilit deneyi + crontab kaydı).
 Sistem ilk koşuda 3 kırık iç link buldu (persona.json yanlış slug) — elle
 düzeltildi, şimdi 167 linkte kırık 0.
-AÇIK KULLANICI KARARI (sistem kara liste gereği dokunmadı):
-  /harita/ sayfasında ÖZ-CEVAP ve JSON-LD yok. Ya (a) eklensin ya da
-  (b) çekirdek setin GEO kontrolünden gerekçeli muaf tutulsun. Karar
-  verilene kadar SITE-DURUM.md 🔴 kalır.
+KAPANDI (2026-07-23, b709c46): /harita/ öz-cevap + JSON-LD eklendi
+  (WebPage + Dataset; şema gerekçesi RAPOR.md §6). SITE-DURUM.md artık
+  🟢 YEŞİL — 10/10 kontrol geçti. Öz-cevap "canlı baraj doluluğu" DEMEZ:
+  o veri bu sayfada yok, havza sayfalarında (uydurma yasağı).
+YENİ KUYRUK MADDESİ — sağlık sistemi a11y açığı: md.9 Lighthouse yalnız
+  `performance` ölçüyor. Somut bulgu: /harita/ MENÜ düğmesi (position:fixed,
+  --kopuk) aydınlık panel üstünde düşük kontrast — FAZ 3'ten beri var, a11y
+  kategorisi ölçülseydi yakalanırdı. Yapılacak: onlyCategories'e
+  'accessibility' eklenip eşik tanımlanması + düğmenin panel bölgesinde DİP
+  tonuna dönmesi (DESIGN.md kararı).
 BEKLEMEDE: SMTP bilgileri (.env'de SMTP_HOST/SMTP_USER/SMTP_PASS/ALARM_TO).
   Gelince e-posta alarmı açılır + sentetik 🔴 ile test maili atılır.
 
