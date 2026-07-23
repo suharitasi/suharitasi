@@ -1,0 +1,662 @@
+{
+ "uretim_tarihi": "2026-07-23",
+ "tohum": "su",
+ "tur_sayisi": 2,
+ "terim_sayisi": 107,
+ "terimler": [
+  {
+   "terim": "su",
+   "kaynak": "tohum (brief)",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "geleneksel olmayan su kaynakları",
+   "kaynak": "Su Verimliliği Yönetmeliği md.3 (arşiv)",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "yerüstü suyu",
+   "kaynak": "Su Verimliliği Yönetmeliği md.3 (arşiv)",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "yeraltı suyu",
+   "kaynak": "Su Verimliliği Yönetmeliği md.3 (arşiv)",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "atık su",
+   "kaynak": "Su Verimliliği Yönetmeliği md.3 (arşiv)",
+   "eklenme_turu": 1,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "yağmur suyu",
+   "kaynak": "Su Verimliliği Yönetmeliği md.3 (arşiv)",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "gri su",
+   "kaynak": "Su Verimliliği Yönetmeliği md.3 (arşiv)",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "acı su",
+   "kaynak": "Su Verimliliği Yönetmeliği md.3 (arşiv)",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "deniz suyu",
+   "kaynak": "Su Verimliliği Yönetmeliği md.3 (arşiv)",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "su verimliliği",
+   "kaynak": "Su Verimliliği Yönetmeliği md.3 (arşiv)",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "su verimliliği belgesi",
+   "kaynak": "Su Verimliliği Yönetmeliği md.3 (arşiv)",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "su verimliliği planı",
+   "kaynak": "Su Verimliliği Yönetmeliği md.3 (arşiv)",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "havza ölçekli plan",
+   "kaynak": "Su Verimliliği Yönetmeliği md.3 (arşiv)",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "sürdürülebilir su yönetimi",
+   "kaynak": "Su Verimliliği Yönetmeliği md.3 (arşiv)",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "su kaynaklarının korunması",
+   "kaynak": "Su Verimliliği Yönetmeliği md.3 (arşiv)",
+   "eklenme_turu": 1,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "su kullanımı ölçüm ve izleme",
+   "kaynak": "Su Verimliliği Yönetmeliği md.3 (arşiv)",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "umumi sular",
+   "kaynak": "167 s.K. md.1-3, 8",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "yeraltı suyu deposu",
+   "kaynak": "167 s.K. md.1-3, 8",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "arama belgesi",
+   "kaynak": "167 s.K. md.1-3, 8",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "kullanma belgesi",
+   "kaynak": "167 s.K. md.1-3, 8",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "ıslah ve tadil belgesi",
+   "kaynak": "167 s.K. md.1-3, 8",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "faydalı kullanış",
+   "kaynak": "167 s.K. md.1-3, 8",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "emniyetli verim haddi",
+   "kaynak": "167 s.K. md.1-3, 8",
+   "eklenme_turu": 1,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "araştırma kuyusu",
+   "kaynak": "167 s.K. md.1-3, 8",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "işletme kuyusu",
+   "kaynak": "167 s.K. md.1-3, 8",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "yeraltısuyu işletme sahası",
+   "kaynak": "167 s.K. md.1-3, 8",
+   "eklenme_turu": 1,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "yeraltı suyu koruma alanı",
+   "kaynak": "167 s.K. md.1-3, 8",
+   "eklenme_turu": 1,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "jeotermal kaynak",
+   "kaynak": "5686 s.K. md.3",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "doğal mineralli su",
+   "kaynak": "5686 s.K. md.3",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "jeotermal akışkan",
+   "kaynak": "5686 s.K. md.3",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "jeotermal alan",
+   "kaynak": "5686 s.K. md.3",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "jeotermal rezervuar",
+   "kaynak": "5686 s.K. md.3",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "sondaj",
+   "kaynak": "5686 s.K. md.3",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "kaptaj",
+   "kaynak": "5686 s.K. md.3",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "koruma alanı",
+   "kaynak": "5686 s.K. md.3",
+   "eklenme_turu": 1,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "içmece suyu",
+   "kaynak": "5686 s.K. md.3",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "reenjeksiyon",
+   "kaynak": "5686 s.K. md.3",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "kaynak suyu",
+   "kaynak": "831 s.K. (Sular Hakkında Kanun)",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "içme suyu",
+   "kaynak": "831 s.K. (Sular Hakkında Kanun)",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "içme ve kullanma suyu",
+   "kaynak": "831 s.K. (Sular Hakkında Kanun)",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "su yapısı",
+   "kaynak": "6200 s.K. md.2 (DSİ görevleri)",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "taşkın",
+   "kaynak": "6200 s.K. md.2 (DSİ görevleri)",
+   "eklenme_turu": 1,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "sulama",
+   "kaynak": "6200 s.K. md.2 (DSİ görevleri)",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "baraj",
+   "kaynak": "6200 s.K. md.2 (DSİ görevleri)",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "su tahsisi",
+   "kaynak": "6200 s.K. md.2 (DSİ görevleri)",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "içme suyu temini",
+   "kaynak": "6200 s.K. md.2 (DSİ görevleri)",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "hidroelektrik",
+   "kaynak": "6200 s.K. md.2 (DSİ görevleri)",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "bataklık kurutma",
+   "kaynak": "6200 s.K. md.2 (DSİ görevleri)",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "akarsu",
+   "kaynak": "6200 s.K. md.2 (DSİ görevleri)",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "göl",
+   "kaynak": "6200 s.K. md.2 (DSİ görevleri)",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "kuyu ruhsatı",
+   "kaynak": "suharitasi.com rehber içerikleri",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "arama ruhsatı",
+   "kaynak": "suharitasi.com rehber içerikleri",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "işletme ruhsatı",
+   "kaynak": "suharitasi.com rehber içerikleri",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "su tahsis belgesi",
+   "kaynak": "suharitasi.com rehber içerikleri",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "komşu su hakkı",
+   "kaynak": "suharitasi.com rehber içerikleri",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "ruhsatsız kuyu",
+   "kaynak": "suharitasi.com rehber içerikleri",
+   "eklenme_turu": 1,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "kamulaştırma",
+   "kaynak": "suharitasi.com rehber içerikleri",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "yüzey suyu",
+   "kaynak": "suharitasi.com rehber içerikleri",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "sanayi suyu",
+   "kaynak": "suharitasi.com rehber içerikleri",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "endüstri suyu",
+   "kaynak": "suharitasi.com rehber içerikleri",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "içme-kullanma suyu havzası",
+   "kaynak": "suharitasi.com mevzuat kütüphanesi",
+   "eklenme_turu": 1,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "yeraltı sularının kirlenmesi",
+   "kaynak": "suharitasi.com mevzuat kütüphanesi",
+   "eklenme_turu": 1,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "insani tüketim amaçlı su",
+   "kaynak": "suharitasi.com mevzuat kütüphanesi",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "havza koruma planı",
+   "kaynak": "suharitasi.com mevzuat kütüphanesi",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "ambalajlı su",
+   "kaynak": "suharitasi.com mevzuat kütüphanesi",
+   "eklenme_turu": 1,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "su kalitesi",
+   "kaynak": "suharitasi.com mevzuat kütüphanesi",
+   "eklenme_turu": 1,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "arıtma",
+   "kaynak": "suharitasi.com mevzuat kütüphanesi",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "kanalizasyon",
+   "kaynak": "suharitasi.com mevzuat kütüphanesi",
+   "eklenme_turu": 1,
+   "kume": "islem"
+  },
+  {
+   "terim": "genel sular",
+   "kaynak": "Su Tahsisleri Hk. Yön. md.4/1-ı",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  },
+  {
+   "terim": "çevresel su ihtiyacı",
+   "kaynak": "Su Tahsisleri Hk. Yön. md.4/1-d",
+   "eklenme_turu": 2,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "kadim hak",
+   "kaynak": "Su Tahsisleri Hk. Yön. md.4/1-j",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  },
+  {
+   "terim": "emniyetli su",
+   "kaynak": "Su Tahsisleri Hk. Yön. md.4/1-ğ",
+   "eklenme_turu": 2,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "alıcı ortam",
+   "kaynak": "Su Tahsisleri Hk. Yön. md.4/1-a",
+   "eklenme_turu": 2,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "çatı suları",
+   "kaynak": "Su Tahsisleri Hk. Yön. md.4/1-c",
+   "eklenme_turu": 2,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "havza planı",
+   "kaynak": "Su Tahsisleri Hk. Yön. md.4/1-i",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  },
+  {
+   "terim": "hidromorfoloji",
+   "kaynak": "Havza Yönetim Planları Yön. md. tanımlar",
+   "eklenme_turu": 2,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "su kütlesi",
+   "kaynak": "Taşkın Yönetim Planları Yön. md.4/1-ı",
+   "eklenme_turu": 2,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "kıyı suları",
+   "kaynak": "Taşkın Yönetim Planları Yön. md.4/1-ğ",
+   "eklenme_turu": 2,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "geçiş suları",
+   "kaynak": "Yüzeysel Sular ve Yeraltı Sularının İzlenmesine Dair Yön. md.2",
+   "eklenme_turu": 2,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "yüzeysel su",
+   "kaynak": "Yüzeysel Sular ve Yeraltı Sularının İzlenmesine Dair Yön.",
+   "eklenme_turu": 2,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "akım gözlem istasyonu",
+   "kaynak": "Yüzeysel Sular ve YAS İzleme Yön. md.4/1-a",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  },
+  {
+   "terim": "su kaynakları izleme",
+   "kaynak": "Yüzeysel Sular ve YAS İzleme Yön. md.1",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  },
+  {
+   "terim": "içme suyu havza koruma planı",
+   "kaynak": "Havza Yönetim Planları Yön. md. tanımlar-t",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  },
+  {
+   "terim": "havza yönetim planı",
+   "kaynak": "Havza Yönetim Planları Yön. md. tanımlar-s",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  },
+  {
+   "terim": "taşkın risk haritası",
+   "kaynak": "Taşkın Yönetim Planları Yön. md.4/1-k",
+   "eklenme_turu": 2,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "taşkın yönetim planı",
+   "kaynak": "Taşkın Yönetim Planları Yön.",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  },
+  {
+   "terim": "kuraklık yönetim planı",
+   "kaynak": "Taşkın Yön. Pl. Yön. md.4/1-g atfı",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  },
+  {
+   "terim": "tarımsal kuraklık",
+   "kaynak": "Tarımsal Kuraklık Yönetimi Yön. md.3",
+   "eklenme_turu": 2,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "su kayıpları",
+   "kaynak": "İçme Suyu Temin ve Dağıtım Sistemlerindeki Su Kayıpları Yön.",
+   "eklenme_turu": 2,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "kentsel atıksu",
+   "kaynak": "Kentsel Atıksu Arıtımı Yön.",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  },
+  {
+   "terim": "rüsubat",
+   "kaynak": "Taşkın ve Rüsubat Kontrolü Yön. (başlık)",
+   "eklenme_turu": 2,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "su ürünleri yetiştiriciliği",
+   "kaynak": "Su Ürünleri Yetiştiriciliği Yön.",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  },
+  {
+   "terim": "istihsal sahası",
+   "kaynak": "1 s. CBK md.416/1-f",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  },
+  {
+   "terim": "su yapıları denetimi",
+   "kaynak": "Su Yapıları Denetim Hizmetleri Yön.",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  },
+  {
+   "terim": "nehir havza yönetim planı",
+   "kaynak": "1 s. CBK md.421/1-ı",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  },
+  {
+   "terim": "sınır aşan sular",
+   "kaynak": "1 s. CBK md.421/1-c; md.143/D",
+   "eklenme_turu": 2,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "sucul ekosistem",
+   "kaynak": "1 s. CBK md.421/1-b",
+   "eklenme_turu": 2,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "nitrata duyarlı hassas alan",
+   "kaynak": "1 s. CBK md.421/1-d",
+   "eklenme_turu": 2,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "su ile ilgili hassas alan",
+   "kaynak": "1 s. CBK md.421/1-d",
+   "eklenme_turu": 2,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "gölet",
+   "kaynak": "4 s. CBK md.121/1-o; md.792/Z-d",
+   "eklenme_turu": 2,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "su kullanım hakkı anlaşması",
+   "kaynak": "4 s. CBK md.121/1-o",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  },
+  {
+   "terim": "orman içi su kaynağı",
+   "kaynak": "4 s. CBK md.792/Z-d",
+   "eklenme_turu": 2,
+   "kume": "kaynak"
+  },
+  {
+   "terim": "erozyon ve rüsubat kontrolü",
+   "kaynak": "4 s. CBK md.121/1-c",
+   "eklenme_turu": 2,
+   "kume": "koruma-risk"
+  },
+  {
+   "terim": "amenajman planı",
+   "kaynak": "4 s. CBK md.121/1-ğ",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  },
+  {
+   "terim": "ulusal su planı",
+   "kaynak": "1 s. CBK md.435/A-f",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  },
+  {
+   "terim": "içme ve kullanma suyu güvenliği planı",
+   "kaynak": "1 s. CBK md.435/A-f",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  },
+  {
+   "terim": "su verimliliği il planı",
+   "kaynak": "1 s. CBK md.435/A-f",
+   "eklenme_turu": 2,
+   "kume": "islem"
+  }
+ ],
+ "tur_gecmisi": [
+  {
+   "tur": 1,
+   "yeni": 68,
+   "kumulatif": 68
+  },
+  {
+   "tur": 2,
+   "yeni": 39,
+   "kumulatif": 107
+  }
+ ]
+}

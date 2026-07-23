@@ -1,0 +1,1944 @@
+{
+ "surum": 1,
+ "olusturma": "2026-07-23",
+ "son_guncelleme": "2026-07-23",
+ "kayitlar": [
+  {
+   "id": "tarim-orman-bakanligi",
+   "ad_resmi": "Tarım ve Orman Bakanlığı",
+   "kisaltma": "TOB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "1 s. CBK md.410/1-e (su kaynaklarının korunması, ulusal su yönetimini koordine etmek)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "cevre-sehircilik-iklim-bakanligi",
+   "ad_resmi": "Çevre, Şehircilik ve İklim Değişikliği Bakanlığı",
+   "kisaltma": "ÇŞİDB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "1 s. CBK md.97/1-r (çölleşme-erozyonla mücadele amacıyla su havzalarının geliştirilmesi)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "disisleri-bakanligi",
+   "ad_resmi": "Dışişleri Bakanlığı",
+   "kisaltma": "MFA",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "1 s. CBK md.143/D — Enerji, Çevre ve Sınıraşan Sular Genel Müdürlüğü",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "ulastirma-altyapi-bakanligi",
+   "ad_resmi": "Ulaştırma ve Altyapı Bakanlığı",
+   "kisaltma": "UAB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "1 s. CBK md.474 (su yolu projeleri; içsular ve su yollarında liman/seyir düzeni)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "saglik-bakanligi",
+   "ad_resmi": "Sağlık Bakanlığı",
+   "kisaltma": "SB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "1 s. CBK md.361 — Halk Sağlığı GM: içme suları ve biyosidal ürün kontrolü",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "enerji-tabii-kaynaklar-bakanligi",
+   "ad_resmi": "Enerji ve Tabii Kaynaklar Bakanlığı",
+   "kisaltma": "ETKB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "5686 s.K. md.3/1-1 (Bakanlık: ETKB — jeotermal kaynak ve doğal mineralli sular)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5686.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "icisleri-bakanligi",
+   "ad_resmi": "İçişleri Bakanlığı",
+   "kisaltma": "İB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "1 s. CBK md.435/A (Ulusal Su Kurulu üyesi — İçişleri Bakan Yardımcısı)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "hazine-maliye-bakanligi",
+   "ad_resmi": "Hazine ve Maliye Bakanlığı",
+   "kisaltma": "HMB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "1 s. CBK md.435/A (Ulusal Su Kurulu üyesi)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "kultur-turizm-bakanligi",
+   "ad_resmi": "Kültür ve Turizm Bakanlığı",
+   "kisaltma": "KTB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "1 s. CBK md.435/A (Ulusal Su Kurulu üyesi)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "milli-egitim-bakanligi",
+   "ad_resmi": "Millî Eğitim Bakanlığı",
+   "kisaltma": "MEB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "1 s. CBK md.435/A (Ulusal Su Kurulu üyesi)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "sanayi-teknoloji-bakanligi",
+   "ad_resmi": "Sanayi ve Teknoloji Bakanlığı",
+   "kisaltma": "STB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "1 s. CBK md.435/A (Ulusal Su Kurulu üyesi)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "milli-savunma-bakanligi",
+   "ad_resmi": "Millî Savunma Bakanlığı",
+   "kisaltma": "MSB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "4 s. CBK md.392 (bağlı kuruluş Seyir, Hidrografi ve Oşinografi Dairesi Başkanlığı — nehir/göl/su yolları)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "su-yonetimi-gm",
+   "ad_resmi": "Su Yönetimi Genel Müdürlüğü",
+   "kisaltma": "SYGM",
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "GM",
+   "dayanak": "1 s. CBK md.421 (su kaynaklarının korunması, nehir havza yönetim planları, ulusal su veri tabanı, Ulusal Su Kurulu sekretaryası)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "balikcilik-su-urunleri-gm",
+   "ad_resmi": "Balıkçılık ve Su Ürünleri Genel Müdürlüğü",
+   "kisaltma": "BSGM",
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "GM",
+   "dayanak": "1 s. CBK md.416 (denizlerde ve iç sularda su ürünleri; istihsal sahaları)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tarim-reformu-gm",
+   "ad_resmi": "Tarım Reformu Genel Müdürlüğü",
+   "kisaltma": "TRGM",
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "GM",
+   "dayanak": "1 s. CBK md.417/1-ç,h (toprak ve sulama suyu analiz laboratuvarları; tarımsal sulamada verimlilik)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tagem",
+   "ad_resmi": "Tarımsal Araştırmalar ve Politikalar Genel Müdürlüğü",
+   "kisaltma": "TAGEM",
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "GM",
+   "dayanak": "1 s. CBK md.418/1-d,g (toprak ve su kaynaklarının geliştirilmesi; iç sularda su ürünleri araştırmaları)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "cevre-yonetimi-gm",
+   "ad_resmi": "Çevre Yönetimi Genel Müdürlüğü",
+   "kisaltma": "ÇYGM",
+   "alias": [],
+   "ust_kurum_id": "cevre-sehircilik-iklim-bakanligi",
+   "tur": "GM",
+   "dayanak": "1 s. CBK md.103/1-ğ,ı (yeraltı ve yerüstü sularının korunması, kirliliğin önlenmesi; atıksu arıtma tesisi tasarım esasları)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "ced-izin-denetim-gm",
+   "ad_resmi": "Çevresel Etki Değerlendirmesi, İzin ve Denetim Genel Müdürlüğü",
+   "kisaltma": "ÇEDGM",
+   "alias": [],
+   "ust_kurum_id": "cevre-sehircilik-iklim-bakanligi",
+   "tur": "GM",
+   "dayanak": "1 s. CBK md.104/1-c,ç (deşarj ve arıtma sistemlerinin izlenmesi; yeraltı ve yerüstü sularına olumsuz etkili faaliyetler)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "colllesme-erozyon-gm",
+   "ad_resmi": "Çölleşme ve Erozyonla Mücadele Genel Müdürlüğü",
+   "kisaltma": "ÇEMGM",
+   "alias": [],
+   "ust_kurum_id": "cevre-sehircilik-iklim-bakanligi",
+   "tur": "GM",
+   "dayanak": "1 s. CBK md.108/A (su havzalarının geliştirilmesine yönelik ulusal ve uluslararası çalışmalar)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tabiat-varliklari-koruma-gm",
+   "ad_resmi": "Tabiat Varlıklarını Koruma Genel Müdürlüğü",
+   "kisaltma": "TVKGM",
+   "alias": [],
+   "ust_kurum_id": "cevre-sehircilik-iklim-bakanligi",
+   "tur": "GM",
+   "dayanak": "1 s. CBK md.109 (sulak alanlar dahil korunan alanların tespiti ve yönetimi)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "enerji-cevre-sinirasan-sular-gm",
+   "ad_resmi": "Enerji, Çevre ve Sınıraşan Sular Genel Müdürlüğü",
+   "kisaltma": "ECSSGM",
+   "alias": [],
+   "ust_kurum_id": "disisleri-bakanligi",
+   "tur": "GM",
+   "dayanak": "1 s. CBK md.143/D (sınıraşan sular konusunda dış ilişkilerin yürütülmesi)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "halk-sagligi-gm",
+   "ad_resmi": "Halk Sağlığı Genel Müdürlüğü",
+   "kisaltma": "HSGM",
+   "alias": [],
+   "ust_kurum_id": "saglik-bakanligi",
+   "tur": "GM",
+   "dayanak": "1 s. CBK md.361 (içme suları ve biyosidal ürünler için ulusal referans laboratuvarı)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "altyapi-yatirimlari-gm",
+   "ad_resmi": "Altyapı Yatırımları Genel Müdürlüğü",
+   "kisaltma": "AYGM",
+   "alias": [],
+   "ust_kurum_id": "ulastirma-altyapi-bakanligi",
+   "tur": "GM",
+   "dayanak": "1 s. CBK md.485/1-ı (denizleri, gölleri, nehirleri bağlayarak suyolu işlevi görecek kanal projeleri)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "denizcilik-gm",
+   "ad_resmi": "Denizcilik Genel Müdürlüğü",
+   "kisaltma": "DGM",
+   "alias": [],
+   "ust_kurum_id": "ulastirma-altyapi-bakanligi",
+   "tur": "GM",
+   "dayanak": "1 s. CBK md.480 dolayları (su yollarında ve içsularda liman ve seyir düzeni) — madde no dogrulanmadi",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "madde numarası tam doğrulanmadı; görev metni CBK1 satır 11529-11539'da",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "dsi",
+   "ad_resmi": "Devlet Su İşleri Genel Müdürlüğü",
+   "kisaltma": "DSİ",
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "kuruluş",
+   "dayanak": "4 s. CBK md.120-121 (taşkın, sulama, içme suyu, su tahsisleri, YAS, hidroelektrik su kullanım hakkı)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "orman-gm",
+   "ad_resmi": "Orman Genel Müdürlüğü",
+   "kisaltma": "OGM",
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "kuruluş",
+   "dayanak": "4 s. CBK md.334 (taşkınları kontrol altına almak; toprak, su ve bitki dengesini korumak)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "suen",
+   "ad_resmi": "Türkiye Su Enstitüsü",
+   "kisaltma": "SUEN",
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "kuruluş",
+   "dayanak": "4 s. CBK md.470 (ulusal su yönetimi stratejisi, uluslararası su hukuku, su politikaları araştırması)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "dkmp",
+   "ad_resmi": "Doğa Koruma ve Milli Parklar Genel Müdürlüğü",
+   "kisaltma": "DKMP",
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "kuruluş",
+   "dayanak": "4 s. CBK md.792/Z-ç,d (sulak alanların korunması ve yönetimi; orman içi su kaynakları, dere, göl, gölet)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "mapeg",
+   "ad_resmi": "Maden ve Petrol İşleri Genel Müdürlüğü",
+   "kisaltma": "MAPEG",
+   "alias": [],
+   "ust_kurum_id": "enerji-tabii-kaynaklar-bakanligi",
+   "tur": "kuruluş",
+   "dayanak": "4 s. CBK md.765 vd. + 5686 s.K. (jeotermal kaynak ve doğal mineralli sular ruhsatları)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "shod",
+   "ad_resmi": "Seyir, Hidrografi ve Oşinografi Dairesi Başkanlığı",
+   "kisaltma": "SHOD",
+   "alias": [],
+   "ust_kurum_id": "milli-savunma-bakanligi",
+   "tur": "daire",
+   "dayanak": "4 s. CBK md.393-394 (hidrografi: denizler, nehirler ve diğer sular; göller ile su yollarında seyir)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "afad",
+   "ad_resmi": "Afet ve Acil Durum Yönetimi Başkanlığı",
+   "kisaltma": "AFAD",
+   "alias": [],
+   "ust_kurum_id": "icisleri-bakanligi",
+   "tur": "kuruluş",
+   "dayanak": "4 s. CBK Ellidördüncü-öncesi İkinci Bölüm (afet sonrası hasar gören içme suyu ve kanalizasyon altyapısı)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tuik",
+   "ad_resmi": "Türkiye İstatistik Kurumu",
+   "kisaltma": "TÜİK",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kuruluş",
+   "dayanak": "1 s. CBK md.435/A (Ulusal Su Kurulu üyesi — TÜİK Başkanı)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tubitak",
+   "ad_resmi": "Türkiye Bilimsel ve Teknolojik Araştırma Kurumu",
+   "kisaltma": "TÜBİTAK",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kuruluş",
+   "dayanak": "1 s. CBK md.435/A (Ulusal Su Kurulu üyesi — TÜBİTAK Başkanı)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "strateji-butce-baskanligi",
+   "ad_resmi": "Strateji ve Bütçe Başkanlığı",
+   "kisaltma": "SBB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kuruluş",
+   "dayanak": "1 s. CBK md.435/A (Ulusal Su Kurulu üyesi — Strateji ve Bütçe Başkanı)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tobb",
+   "ad_resmi": "Türkiye Odalar ve Borsalar Birliği",
+   "kisaltma": "TOBB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "birlik",
+   "dayanak": "1 s. CBK md.435/A (Ulusal Su Kurulu üyesi — TOBB Başkanı)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "turkiye-belediyeler-birligi",
+   "ad_resmi": "Türkiye Belediyeler Birliği",
+   "kisaltma": "TBB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "birlik",
+   "dayanak": "1 s. CBK md.435/A (Ulusal Su Kurulu üyesi — Türkiye Belediyeler Birliği Başkanı)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "ulusal-su-kurulu",
+   "ad_resmi": "Ulusal Su Kurulu",
+   "kisaltma": "USK",
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "kurul",
+   "dayanak": "1 s. CBK md.435/A (su tahsisinde arz-talep dengesi, ulusal su planı ve havza planlarını karara bağlamak)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "havza-su-kurulu",
+   "ad_resmi": "Havza Su Kurulları",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "kurul",
+   "dayanak": "1 s. CBK md.435/A başlığı (Ulusal Su Kurulu ile havza ve il su kurulları)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "kuruluş/işleyiş ayrıntısı yönetmeliğe bırakılmış — Ç2b'de aranacak",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "il-su-kurulu",
+   "ad_resmi": "İl Su Kurulları",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "kurul",
+   "dayanak": "1 s. CBK md.435/A başlığı (Ulusal Su Kurulu ile havza ve il su kurulları)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.1.pdf",
+   "erisim_notu": "kuruluş/işleyiş ayrıntısı yönetmeliğe bırakılmış — Ç2b'de aranacak",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "dsi-etut-planlama-tahsisler",
+   "ad_resmi": "Etüt, Planlama ve Tahsisler Dairesi Başkanlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "dsi",
+   "tur": "daire",
+   "dayanak": "4 s. CBK md.123/1-a",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "dsi-sulama",
+   "ad_resmi": "Sulama Dairesi Başkanlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "dsi",
+   "tur": "daire",
+   "dayanak": "4 s. CBK md.123/1-b",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "dsi-barajlar-hes",
+   "ad_resmi": "Barajlar ve Hidroelektrik Santrallar Dairesi Başkanlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "dsi",
+   "tur": "daire",
+   "dayanak": "4 s. CBK md.123/1-c",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "dsi-icmesuyu-atiksu",
+   "ad_resmi": "İçmesuyu ve Atıksu Dairesi Başkanlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "dsi",
+   "tur": "daire",
+   "dayanak": "4 s. CBK md.123/1-ç",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "dsi-taskin-kontrol",
+   "ad_resmi": "Taşkın Kontrol Dairesi Başkanlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "dsi",
+   "tur": "daire",
+   "dayanak": "4 s. CBK md.123/1-d",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "dsi-yeraltisulari",
+   "ad_resmi": "Yeraltısuları Dairesi Başkanlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "dsi",
+   "tur": "daire",
+   "dayanak": "4 s. CBK md.123/1-g",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "dsi-emlak-kamulastirma",
+   "ad_resmi": "Emlak ve Kamulaştırma Dairesi Başkanlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "dsi",
+   "tur": "daire",
+   "dayanak": "4 s. CBK md.123/1-e",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "dsi-teknik-arastirma-kalite",
+   "ad_resmi": "Teknik Araştırma ve Kalite Kontrol Dairesi Başkanlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "dsi",
+   "tur": "daire",
+   "dayanak": "4 s. CBK md.123/1-h",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "dkmp-sulak-alanlar",
+   "ad_resmi": "Sulak Alanlar Dairesi Başkanlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "dkmp",
+   "tur": "daire",
+   "dayanak": "4 s. CBK md.792/CC-ç",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "PDF tam metin, pdftotext ile okundu (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "su-yonetimi-koordinasyon-kurulu",
+   "ad_resmi": "Su Yönetimi Koordinasyon Kurulu",
+   "kisaltma": "SYKK",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kurul",
+   "dayanak": "Taşkın Yönetim Planları Yön. md.4/1-i (2012/7 s. Başbakanlık Genelgesi ile kurulan Kurul)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=21532&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "mevzuat.gov.tr GeneratePdf tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "havza-yonetimi-merkez-kurulu",
+   "ad_resmi": "Havza Yönetimi Merkez Kurulu",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "su-yonetimi-koordinasyon-kurulu",
+   "tur": "kurul",
+   "dayanak": "Havza Yönetim Planlarının Hazırlanması, Uygulanması ve Takibi Yön. md.4/1-r",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=16695&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "mevzuat.gov.tr GeneratePdf tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "havza-yonetim-heyeti",
+   "ad_resmi": "Havza Yönetim Heyeti",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "havza-yonetimi-merkez-kurulu",
+   "tur": "kurul",
+   "dayanak": "Havza Yönetim Planları Yön. md.4/1-p (her bir havza için ayrı ayrı oluşturulur)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b",
+    "C5"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=16695&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "üye bileşimi yönetmelik metninde yok — alt düzenlemeye bırakılmış (dogrulanmadi) | SAYIM: Yönetmelik 'her bir havza için ayrı ayrı' diyor; Türkiye 25 nehir havzasına bölünmüş → beklenen 25 heyet. Fiilî kurulu heyet sayısı DOĞRULANMADI.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "il-su-yonetimi-koordinasyon-kurulu",
+   "ad_resmi": "İl Su Yönetimi Koordinasyon Kurulu",
+   "kisaltma": null,
+   "alias": [
+    "İl Su Yönetimi Koordinasyon Kurulları"
+   ],
+   "ust_kurum_id": "su-yonetimi-koordinasyon-kurulu",
+   "tur": "kurul",
+   "dayanak": "Havza Yönetim Planları Yön. md.4/1-u; Taşkın Yönetim Planları Yön. md.4/1-g",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=16695&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "mevzuat.gov.tr GeneratePdf tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tarimsal-kuraklik-koordinasyon-kurulu",
+   "ad_resmi": "Tarımsal Kuraklık Yönetimi Koordinasyon Kurulu",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "kurul",
+   "dayanak": "Tarımsal Kuraklık Yönetiminin Görevleri, Çalışma Usul ve Esasları Hk. Yön. md.5",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=39634&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "mevzuat.gov.tr GeneratePdf tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "kuraklik-izleme-erken-uyari-komitesi",
+   "ad_resmi": "İzleme, Erken Uyarı ve Tahmin Komitesi",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "tarimsal-kuraklik-koordinasyon-kurulu",
+   "tur": "kurul",
+   "dayanak": "Tarımsal Kuraklık Yönetimi Yön. md.3/1-d",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=39634&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "mevzuat.gov.tr GeneratePdf tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "kuraklik-risk-degerlendirme-komitesi",
+   "ad_resmi": "Risk Değerlendirme Komitesi",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "tarimsal-kuraklik-koordinasyon-kurulu",
+   "tur": "kurul",
+   "dayanak": "Tarımsal Kuraklık Yönetimi Yön. md.3/1-d",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=39634&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "mevzuat.gov.tr GeneratePdf tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tarimsal-kuraklik-il-kriz-merkezi",
+   "ad_resmi": "Tarımsal Kuraklık İl Kriz Merkezi",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "tarimsal-kuraklik-koordinasyon-kurulu",
+   "tur": "kurul",
+   "dayanak": "Tarımsal Kuraklık Yönetimi Yön. md.3/1-d",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=39634&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "mevzuat.gov.tr GeneratePdf tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "bilimsel-degerlendirme-komisyonu",
+   "ad_resmi": "Bilimsel Değerlendirme Komisyonu",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "saglik-bakanligi",
+   "tur": "kurul",
+   "dayanak": "Su Tahsisleri Hk. Yön. md.4/1-b (Doğal Mineralli Sular Hk. Yön.'de tanımlanan komisyon)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=34021&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "bağlı olduğu bakanlık Doğal Mineralli Sular Yön.'den teyit edilmedi — ust_kurum_dogrulanmadi",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "mahalli-cevre-kurulu",
+   "ad_resmi": "Mahalli Çevre Kurulu",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kurul",
+   "dayanak": "Su Kirliliği Kontrolü Yön. (mahalli çevre kurulu kararları) + 1 s. CBK md.103/1-n",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=7221&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "mevzuat.gov.tr GeneratePdf tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "enerji-isleri-gm",
+   "ad_resmi": "Enerji İşleri Genel Müdürlüğü",
+   "kisaltma": "EİGM",
+   "alias": [],
+   "ust_kurum_id": "enerji-tabii-kaynaklar-bakanligi",
+   "tur": "GM",
+   "dayanak": "Su Yapıları Denetim Hizmetleri Yön. (EİGM: ETKB Enerji İşleri Genel Müdürlüğü — su yapıları denetimi)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=20748&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "mevzuat.gov.tr GeneratePdf tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "iski",
+   "ad_resmi": "İstanbul Su ve Kanalizasyon İdaresi Genel Müdürlüğü",
+   "kisaltma": "İSKİ",
+   "alias": [],
+   "ust_kurum_id": "istanbul-buyuksehir-belediyesi",
+   "tur": "yerel",
+   "dayanak": "İçme-Kullanma Suyu Havzalarının Korunmasına Dair Yön.; İçme Suyu Temin Edilen Suların Kalitesi Yön.; Kentsel Atıksu Arıtımı Yön.",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=24036&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "2560 s. İSKİ Kanunu dayanağı Ç3'te doğrulanacak",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "dsi-bolge-mudurlukleri",
+   "ad_resmi": "DSİ Bölge Müdürlükleri",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "dsi",
+   "tur": "yerel",
+   "dayanak": "4 s. CBK md.123/2 taşra teşkilatı; Su Yapıları Denetim Hizmetleri Yön.",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=20748&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "mevzuat.gov.tr GeneratePdf tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tarim-orman-il-mudurlugu",
+   "ad_resmi": "Tarım ve Orman İl Müdürlükleri",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-bakanligi",
+   "tur": "yerel",
+   "dayanak": "Su Kirliliği Kontrolü Yön. (numune alma/denetim); Su Ürünleri Yön.",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=7221&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "mevzuat.gov.tr GeneratePdf tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "csidb-il-mudurlugu",
+   "ad_resmi": "Çevre, Şehircilik ve İklim Değişikliği İl Müdürlükleri",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "cevre-sehircilik-iklim-bakanligi",
+   "tur": "yerel",
+   "dayanak": "Su Kirliliği Kontrolü Yön. (deşarj izni ve denetim)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=7221&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "mevzuat.gov.tr GeneratePdf tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "il-ozel-idaresi",
+   "ad_resmi": "İl Özel İdareleri",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "yerel",
+   "dayanak": "İçme Suyu Temin Edilen Suların Kalitesi Yön.; 5686 s.K. md.3/1-4 (İdare: büyükşehir olmayan illerde il özel idareleri)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=32653&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "mevzuat.gov.tr GeneratePdf tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "yikob",
+   "ad_resmi": "Yatırım İzleme ve Koordinasyon Başkanlıkları",
+   "kisaltma": "YİKOB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "yerel",
+   "dayanak": "5686 s.K. md.3/1-4 (İdare: büyükşehirlerde YİKOB — jeotermal ve doğal mineralli su ruhsatları)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5686.pdf",
+   "erisim_notu": "mevzuat.gov.tr GeneratePdf tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "orman-su-isleri-bakanligi",
+   "ad_resmi": "Orman ve Su İşleri Bakanlığı",
+   "kisaltma": "OSİB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "645 s. KHK (Yüzeysel Sular ve YAS İzleme Yön. md.3 dayanağında anılıyor)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=19392&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "2018'de Gıda, Tarım ve Hayvancılık Bakanlığı ile birleşerek Tarım ve Orman Bakanlığı oldu",
+   "durum": "mülga",
+   "halef_id": "tarim-orman-bakanligi",
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "cevre-sehircilik-bakanligi",
+   "ad_resmi": "Çevre ve Şehircilik Bakanlığı",
+   "kisaltma": "ÇŞB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "644 s. KHK (Yüzeysel Sular ve YAS İzleme Yön. md.3 dayanağı)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=19392&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "2021'de Çevre, Şehircilik ve İklim Değişikliği Bakanlığı adını aldı (85 s. CBK)",
+   "durum": "ad değişikliği",
+   "halef_id": "cevre-sehircilik-iklim-bakanligi",
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "cevre-orman-bakanligi",
+   "ad_resmi": "Çevre ve Orman Bakanlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "Kentsel Atıksu Arıtımı Yön. (2006) yayımlayan bakanlık",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=9844&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "2011'de Orman ve Su İşleri Bakanlığı ile Çevre ve Şehircilik Bakanlığına ayrıldı",
+   "durum": "mülga",
+   "halef_id": "orman-su-isleri-bakanligi",
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tarim-koyisleri-bakanligi",
+   "ad_resmi": "Tarım ve Köyişleri Bakanlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "Su Ürünleri Yön. ve Su Kirliliği Kontrolü Yön.'de anılan bakanlık",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=4988&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "sonradan Gıda, Tarım ve Hayvancılık → Tarım ve Orman Bakanlığı",
+   "durum": "mülga",
+   "halef_id": "tarim-orman-bakanligi",
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "epdk",
+   "ad_resmi": "Enerji Piyasası Düzenleme Kurumu",
+   "kisaltma": "EPDK",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kurul",
+   "dayanak": "6446 s. Elektrik Piyasası Kanunu (üretim lisansı — su kullanım hakkı anlaşmalarına ilişkin düzenlemeler)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6446.pdf",
+   "erisim_notu": "mevzuat.gov.tr PDF tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "mta",
+   "ad_resmi": "Maden Tetkik ve Arama Genel Müdürlüğü",
+   "kisaltma": "MTA",
+   "alias": [
+    "M.T.A. Enstitüsü",
+    "Maden Tetkik ve Arama Enstitüsü"
+   ],
+   "ust_kurum_id": "enerji-tabii-kaynaklar-bakanligi",
+   "tur": "kuruluş",
+   "dayanak": "2804 s. Maden Tetkik ve Arama Genel Müdürlüğü Kanunu + 5686 s.K. (jeotermal kaynak değerlendirme ve denetim görevi)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C1",
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.2804.pdf",
+   "erisim_notu": "2804 s.K. görev metninde havuz terimi geçmiyor; su ilgisi 5686 s.K. atfıyla (MTA değerlendirme/denetim) kurulur",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "sulama-birlikleri",
+   "ad_resmi": "Sulama Birlikleri",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "dsi",
+   "tur": "birlik",
+   "dayanak": "6172 s. Sulama Birlikleri Kanunu md.1 (DSİ sulama tesislerinin işletme-bakım sorumluluğu; kamu tüzel kişiliği)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3",
+    "C5"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6172.pdf",
+   "erisim_notu": "mevzuat.gov.tr PDF tam metin (2026-07-23) | SAYIM: DSİ 2025 başı itibarıyla 3.165 sulama tesisi işletmede; devir alan yapılar birlik ve kooperatif olarak ikiye ayrılıyor. Sulama BİRLİĞİ adedi bu turda DOĞRULANMADI (DSİ faaliyet raporu açılmadı).",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "yuksek-cevre-kurulu",
+   "ad_resmi": "Yüksek Çevre Kurulu",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kurul",
+   "dayanak": "2872 s. Çevre Kanunu (çevre politikaları — su kirliliği dahil)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.2872.pdf",
+   "erisim_notu": "mevzuat.gov.tr PDF tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "ozel-cevre-koruma-kurumu",
+   "ad_resmi": "Özel Çevre Koruma Kurumu Başkanlığı",
+   "kisaltma": "ÖÇKKB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kuruluş",
+   "dayanak": "383 s. KHK; görevleri 1 s. CBK md.103/1-p ile Çevre Yönetimi GM'ye devredildi",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.2872.pdf",
+   "erisim_notu": "özel çevre koruma bölgelerinde su kalitesi görevleri",
+   "durum": "mülga",
+   "halef_id": "cevre-yonetimi-gm",
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "su-kanalizasyon-idareleri",
+   "ad_resmi": "Su ve Kanalizasyon İdareleri (büyükşehir)",
+   "kisaltma": null,
+   "alias": [
+    "SKİ",
+    "Su ve Kanalizasyon İdaresi Genel Müdürlükleri"
+   ],
+   "ust_kurum_id": null,
+   "tur": "yerel",
+   "dayanak": "2560 s. İSKİ Kanunu md.1 + 5216 s. Büyükşehir Belediyesi Kanunu (diğer büyükşehirlere teşmil)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3",
+    "C5"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.2560.pdf",
+   "erisim_notu": "İSKİ, ASKİ, İZSU, BUSKİ vb. — tür düzeyinde kayıt; sayım Ç5'te | SAYIM: 5216 s.K. kapsamındaki büyükşehir sayısı kadar (azami 30). Tam liste ve fiilî adet bu turda DOĞRULANMADI.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "belediyeler",
+   "ad_resmi": "Belediyeler",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "yerel",
+   "dayanak": "5393 s. Belediye Kanunu md.15/1-e (içme, kullanma ve endüstri suyu sağlamak)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5393.pdf",
+   "erisim_notu": "mevzuat.gov.tr PDF tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "buyuksehir-belediyeleri",
+   "ad_resmi": "Büyükşehir Belediyeleri",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "yerel",
+   "dayanak": "5216 s. Büyükşehir Belediyesi Kanunu (su ve kanalizasyon hizmetleri)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3",
+    "C5"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5216.pdf",
+   "erisim_notu": "mevzuat.gov.tr PDF tam metin (2026-07-23) | SAYIM: 30 büyükşehir belediyesi (5216 s.K.) — bu turda birincil kaynaktan sayılmadı.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "istanbul-buyuksehir-belediyesi",
+   "ad_resmi": "İstanbul Büyükşehir Belediyesi",
+   "kisaltma": "İBB",
+   "alias": [],
+   "ust_kurum_id": "buyuksehir-belediyeleri",
+   "tur": "yerel",
+   "dayanak": "2560 s.K. md.1 (İSKİ, İBB'ye bağlı müstakil bütçeli kamu tüzel kişisi)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.2560.pdf",
+   "erisim_notu": "mevzuat.gov.tr PDF tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "koy-muhtarliklari",
+   "ad_resmi": "Köy Muhtarlıkları / Köy Tüzel Kişilikleri",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "yerel",
+   "dayanak": "7478 s. Köy İçme Suları Hakkında Kanun (köy içme suyu tesislerinin işletilmesi)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.7478.pdf",
+   "erisim_notu": "mevzuat.gov.tr PDF tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "su-urunleri-kooperatifleri",
+   "ad_resmi": "Su Ürünleri Kooperatifleri ve Birlikleri",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "birlik",
+   "dayanak": "1380 s. Su Ürünleri Kanunu (istihsal/satış kooperatifleri ve birlikleri)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.1380.pdf",
+   "erisim_notu": "mevzuat.gov.tr PDF tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "mahalli-idare-birlikleri",
+   "ad_resmi": "Mahalli İdare Birlikleri",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "birlik",
+   "dayanak": "6172 s.K. atfı (sulama birlikleri öncesi mahalli idare birliği yapısı)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6172.pdf",
+   "erisim_notu": "5355 s. Mahalli İdare Birlikleri Kanunu metni bu turda AÇILMADI — dayanak maddesi dogrulanmadi",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "iski-genel-kurulu",
+   "ad_resmi": "İSKİ Genel Kurulu",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "iski",
+   "tur": "kurul",
+   "dayanak": "2560 s.K. md.5 (İstanbul Büyükşehir Belediye Meclisi İSKİ Genel Kurulu olarak görev yapar)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.2560.pdf",
+   "erisim_notu": "mevzuat.gov.tr PDF tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "iski-yonetim-kurulu",
+   "ad_resmi": "İSKİ Yönetim Kurulu",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "iski",
+   "tur": "kurul",
+   "dayanak": "2560 s.K. md.7",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.2560.pdf",
+   "erisim_notu": "mevzuat.gov.tr PDF tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "iski-teftis-kontrol-kurulu",
+   "ad_resmi": "İSKİ Teftiş ve Kontrol Kurulu",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "iski",
+   "tur": "kurul",
+   "dayanak": "2560 s.K. md.19",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.2560.pdf",
+   "erisim_notu": "madde numarası dogrulanmadi — metinde kurul adı geçiyor",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "istanbul-sular-idaresi",
+   "ad_resmi": "İstanbul Sular İdaresi",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "yerel",
+   "dayanak": "2560 s.K. geçici hükümleri (İstanbul Belediyesine bağlı İstanbul Sular İdaresi'nin İSKİ'ye devri)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.2560.pdf",
+   "erisim_notu": "mevzuat.gov.tr PDF tam metin (2026-07-23)",
+   "durum": "mülga",
+   "halef_id": "iski",
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "maden-isleri-gm",
+   "ad_resmi": "Maden İşleri Genel Müdürlüğü",
+   "kisaltma": "MİGM",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "GM",
+   "dayanak": "3213 s. Maden Kanunu (eski hâli); 5686 s.K. md.3/1-3 değişikliği ile MAPEG'e dönüştü",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.3213.pdf",
+   "erisim_notu": "mevzuat.gov.tr PDF tam metin (2026-07-23)",
+   "durum": "mülga",
+   "halef_id": "mapeg",
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "ziraat-bankasi",
+   "ad_resmi": "T.C. Ziraat Bankası",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kuruluş",
+   "dayanak": "1380 s. Su Ürünleri Kanunu (su ürünleri üreticilerine kredi)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.1380.pdf",
+   "erisim_notu": "mevzuat.gov.tr PDF tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tarim-kredi-kooperatifleri",
+   "ad_resmi": "Tarım Kredi Kooperatifleri",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "birlik",
+   "dayanak": "1380 s. Su Ürünleri Kanunu; 3083 s. Sulama Alanlarında Arazi Düzenlenmesi Kanunu",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.1380.pdf",
+   "erisim_notu": "mevzuat.gov.tr PDF tam metin (2026-07-23)",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "dpt",
+   "ad_resmi": "Devlet Planlama Teşkilatı Müsteşarlığı",
+   "kisaltma": "DPT",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kuruluş",
+   "dayanak": "6172 s.K. md.2/1-d (çerçeve ana statü görüşü)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6172.pdf",
+   "erisim_notu": "mevzuat.gov.tr PDF tam metin (2026-07-23)",
+   "durum": "mülga",
+   "halef_id": "strateji-butce-baskanligi",
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "koy-isleri-kooperatifler-bakanligi",
+   "ad_resmi": "Köy İşleri ve Kooperatifler Bakanlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "7478 s. Köy İçme Suları Hakkında Kanun'da anılan bakanlık",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.7478.pdf",
+   "erisim_notu": "mevzuat.gov.tr PDF tam metin (2026-07-23)",
+   "durum": "mülga",
+   "halef_id": "tarim-orman-bakanligi",
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tarim-orman-koyisleri-bakanligi",
+   "ad_resmi": "Tarım Orman ve Köyişleri Bakanlığı",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "1380 s. Su Ürünleri Kanunu'nda anılan bakanlık",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.1380.pdf",
+   "erisim_notu": "mevzuat.gov.tr PDF tam metin (2026-07-23)",
+   "durum": "mülga",
+   "halef_id": "tarim-orman-bakanligi",
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "sulama-kooperatifleri",
+   "ad_resmi": "Sulama Kooperatifleri",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "birlik",
+   "dayanak": "Sulama Sistemlerinde Su Kullanımının Kontrolü ve Su Kayıplarının Azaltılmasına İlişkin Yön. (sulama birlikleri ve kooperatifleri)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3",
+    "C5"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=23333&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "1163 s. Kooperatifler Kanunu dayanağı bu turda AÇILMADI | SAYIM: Tarım Reformu GM verisiyle 2025 başı 2.468 sulama kooperatifi (380 YÜS + 1.396 YAS devralmış). Kaynak: DSİ/TRGM üzerinden web araması — birincil PDF açılmadı.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "toprak-koruma-kurulu",
+   "ad_resmi": "Toprak Koruma Kurulu",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kurul",
+   "dayanak": "5403 s. Toprak Koruma ve Arazi Kullanımı Kanunu (sulama arazileri ve su kaynaklarının korunması)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5403.pdf",
+   "erisim_notu": "madde numarası dogrulanmadi",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "gida-tarim-hayvancilik-bakanligi",
+   "ad_resmi": "Gıda, Tarım ve Hayvancılık Bakanlığı",
+   "kisaltma": "GTHB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "bakanlık",
+   "dayanak": "Sulama Sistemlerinde Su Kullanımının Kontrolü Yön.'de anılan bakanlık",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C3"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=23333&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "2018'de Orman ve Su İşleri ile birleşerek Tarım ve Orman Bakanlığı oldu",
+   "durum": "mülga",
+   "halef_id": "tarim-orman-bakanligi",
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "osb",
+   "ad_resmi": "Organize Sanayi Bölgeleri",
+   "kisaltma": "OSB",
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kuruluş",
+   "dayanak": "Su Tahsisleri Hk. Yön. md.4/1-l (OSB: su tahsisi muhatabı)",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C2b"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=34021&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "4562 s. OSB Kanunu bu turda açılmadı",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "yerel-yonetimler-gm",
+   "ad_resmi": "Yerel Yönetimler Genel Müdürlüğü",
+   "kisaltma": "YYGM",
+   "alias": [],
+   "ust_kurum_id": "cevre-sehircilik-iklim-bakanligi",
+   "tur": "GM",
+   "dayanak": "TÜİK Su ve Atıksu İstatistikleri metodolojisi: 2012'den itibaren köy su şebekesi ve arıtma tesisi bilgileri Yerel Yönetimler Genel Müdürlüğünden alınıyor",
+   "su_ilgisi": "DOLAYLI",
+   "bulundugu_kanal": [
+    "C4"
+   ],
+   "kaynak_url": "https://data.tuik.gov.tr/Bulten/Index?p=Su-ve-Atiksu-Istatistikleri-2022-49607",
+   "erisim_notu": "1 s. CBK md.99/1-a'da ÇŞİDB hizmet birimi olarak sayılı; görev metninde havuz terimi geçmiyor — su ilgisi TÜİK atfıyla kuruldu",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "tbmm-su-arastirma-komisyonu",
+   "ad_resmi": "Küresel İklim Değişikliğinin Etkilerinin En Aza İndirilmesi, Kuraklıkla Mücadele ve Su Kaynaklarının Verimli Kullanılması İçin Alınması Gereken Tedbirlerin Belirlenmesi Amacıyla Kurulan Meclis Araştırması Komisyonu",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "kurul",
+   "dayanak": "TBMM 25/2/2021 tarih ve 1279 sayılı karar; rapor 1/2/2022'de Genel Kurula sunuldu",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C4"
+   ],
+   "kaynak_url": "https://acikerisim.tbmm.gov.tr/items/103ace3d-1225-40a1-b290-b9e4815b2067",
+   "erisim_notu": "geçici komisyon — görevi rapor sunumuyla sona erdi",
+   "durum": "mülga",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "universite-su-arastirma-merkezleri",
+   "ad_resmi": "Üniversite Su Uygulama ve Araştırma Merkezleri",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": null,
+   "tur": "merkez",
+   "dayanak": "2547 s. YÖK Kanunu md.7/1-d-2 uyarınca üniversite yönetmelikleriyle kurulur (mevzuat.gov.tr Üniversite Yönetmelikleri kümesi)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C5"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/",
+   "erisim_notu": "SAYIM: mevzuat.gov.tr Üniversite Yönetmelikleri başlık taramasında 28 su-ilgili merkez (24 'su' + 4 'havza'); yalnız yönetmeliği mevzuat.gov.tr'de yayımlı olanlar — TABAN sayı, tam sayım değil. 2547 md. numarası dogrulanmadi.",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "il-ilce-tarim-orman-mudurlukleri",
+   "ad_resmi": "İlçe Tarım ve Orman Müdürlükleri",
+   "kisaltma": null,
+   "alias": [],
+   "ust_kurum_id": "tarim-orman-il-mudurlugu",
+   "tur": "yerel",
+   "dayanak": "Su Ürünleri Yön. (il ve ilçe müdürlüğü: ruhsat tezkeresi ve denetim)",
+   "su_ilgisi": "DOĞRUDAN",
+   "bulundugu_kanal": [
+    "C5"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=4988&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "erisim_notu": "",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  }
+ ],
+ "kayit_sayisi": 99,
+ "dogrulanmamis_adaylar": [
+  {
+   "id": "meteoroloji-gm",
+   "ad_resmi": "Meteoroloji Genel Müdürlüğü",
+   "kisaltma": "MGM",
+   "alias": [],
+   "ust_kurum_id": "cevre-sehircilik-iklim-bakanligi",
+   "tur": "kuruluş",
+   "dayanak": "dogrulanmadi",
+   "su_ilgisi": "dogrulanmadi",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "4 s. CBK md.262 görev metninde havuz terimi GEÇMİYOR; su mevzuatında görevli anıldığı atıf Ç2b/Ç3'te aranacak",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  },
+  {
+   "id": "iklim-degisikligi-baskanligi",
+   "ad_resmi": "İklim Değişikliği Başkanlığı",
+   "kisaltma": "İDB",
+   "alias": [],
+   "ust_kurum_id": "cevre-sehircilik-iklim-bakanligi",
+   "tur": "kuruluş",
+   "dayanak": "dogrulanmadi",
+   "su_ilgisi": "dogrulanmadi",
+   "bulundugu_kanal": [
+    "C1"
+   ],
+   "kaynak_url": "https://www.mevzuat.gov.tr/MevzuatMetin/19.5.4.pdf",
+   "erisim_notu": "4 s. CBK md.792/A-C görev metninde havuz terimi doğrudan geçmiyor; su-iklim atfı Ç2b/Ç3'te aranacak",
+   "durum": "aktif",
+   "halef_id": null,
+   "ilk_kayit_tarihi": "2026-07-23",
+   "son_guncelleme": "2026-07-23"
+  }
+ ],
+ "dogrulanmamis_aday_sayisi": 2
+}

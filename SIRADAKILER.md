@@ -2,6 +2,15 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
+SU İDARESİ KURUM LİSTESİ — TUR 1A TAMAMLANDI, **LİSTE KAPANMADI** (2026-07-23).
+Çıktı: data/kamu/su-birimleri.json (99 kayıt + 2 doğrulanmamış aday),
+su-terim-havuzu.json (107 terim), ct3-kuyruk.json; rapor/su-idaresi-tur1a.md.
+Düşen kapanış şartı: terim havuzu kapanmadı (tur 2'de +39 terim) — Ç1'in bakanlık
+görev metinleri bu 39 terimle YENİDEN TARANMADI. TUR 1A-2 gerekli (yapılacaklar
+listesi raporun sonunda). Ç3 kuyruğunda 15 kurum "beklemede".
+site-saglik.mjs'e eklenecek — su-birimleri.json geçerli JSON mu + kayıt sayısı son
+koşuya göre azalmadı mı (azalma = 🟡). Uygulaması ayrı küçük iş.
+
 KUYU ÇIKAR MI — keşif tamam (bf8e5fd); KULLANICI DEĞERLENDİRME OTURUMU
 bekleniyor, otomatik kur briefi YASAK. Sıra: keşif raporu → değerlendirme
 oturumu (yayına değer mi / sorumluluk çerçevesi / saha doğrulaması) →

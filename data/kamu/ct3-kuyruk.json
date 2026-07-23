@@ -1,0 +1,472 @@
+{
+ "olusturma": "2026-07-23",
+ "kural": "Ç1+Ç2b çıktısı; öncelik (a) DOĞRUDAN, (b) tur=kuruluş/GM, (c) diğerleri",
+ "kuyruk": [
+  {
+   "id": "afad",
+   "ad": "Afet ve Acil Durum Yönetimi Başkanlığı",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "beklemede",
+   "not": "7269/AFAD mevzuatı ayrıca açılmadı (4 s. CBK bölümü okundu)"
+  },
+  {
+   "id": "altyapi-yatirimlari-gm",
+   "ad": "Altyapı Yatırımları Genel Müdürlüğü",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "balikcilik-su-urunleri-gm",
+   "ad": "Balıkçılık ve Su Ürünleri Genel Müdürlüğü",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "ced-izin-denetim-gm",
+   "ad": "Çevresel Etki Değerlendirmesi, İzin ve Denetim Genel Müdürlüğü",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "cevre-yonetimi-gm",
+   "ad": "Çevre Yönetimi Genel Müdürlüğü",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "colllesme-erozyon-gm",
+   "ad": "Çölleşme ve Erozyonla Mücadele Genel Müdürlüğü",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "denizcilik-gm",
+   "ad": "Denizcilik Genel Müdürlüğü",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "dkmp",
+   "ad": "Doğa Koruma ve Milli Parklar Genel Müdürlüğü",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "dsi",
+   "ad": "Devlet Su İşleri Genel Müdürlüğü",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "enerji-cevre-sinirasan-sular-gm",
+   "ad": "Enerji, Çevre ve Sınıraşan Sular Genel Müdürlüğü",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "enerji-isleri-gm",
+   "ad": "Enerji İşleri Genel Müdürlüğü",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "halk-sagligi-gm",
+   "ad": "Halk Sağlığı Genel Müdürlüğü",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "mapeg",
+   "ad": "Maden ve Petrol İşleri Genel Müdürlüğü",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "orman-gm",
+   "ad": "Orman Genel Müdürlüğü",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "su-yonetimi-gm",
+   "ad": "Su Yönetimi Genel Müdürlüğü",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "suen",
+   "ad": "Türkiye Su Enstitüsü",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "tabiat-varliklari-koruma-gm",
+   "ad": "Tabiat Varlıklarını Koruma Genel Müdürlüğü",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "tagem",
+   "ad": "Tarımsal Araştırmalar ve Politikalar Genel Müdürlüğü",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "tarim-reformu-gm",
+   "ad": "Tarım Reformu Genel Müdürlüğü",
+   "oncelik": "a-dogrudan-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "bilimsel-degerlendirme-komisyonu",
+   "ad": "Bilimsel Değerlendirme Komisyonu",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "beklemede",
+   "not": "Doğal Mineralli Sular Hk. Yön. açılmadı"
+  },
+  {
+   "id": "cevre-orman-bakanligi",
+   "ad": "Çevre ve Orman Bakanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "cevre-sehircilik-bakanligi",
+   "ad": "Çevre ve Şehircilik Bakanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "cevre-sehircilik-iklim-bakanligi",
+   "ad": "Çevre, Şehircilik ve İklim Değişikliği Bakanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "csidb-il-mudurlugu",
+   "ad": "Çevre, Şehircilik ve İklim Değişikliği İl Müdürlükleri",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "disisleri-bakanligi",
+   "ad": "Dışişleri Bakanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "dkmp-sulak-alanlar",
+   "ad": "Sulak Alanlar Dairesi Başkanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "dsi-barajlar-hes",
+   "ad": "Barajlar ve Hidroelektrik Santrallar Dairesi Başkanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "dsi-bolge-mudurlukleri",
+   "ad": "DSİ Bölge Müdürlükleri",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "dsi-emlak-kamulastirma",
+   "ad": "Emlak ve Kamulaştırma Dairesi Başkanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "dsi-etut-planlama-tahsisler",
+   "ad": "Etüt, Planlama ve Tahsisler Dairesi Başkanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "dsi-icmesuyu-atiksu",
+   "ad": "İçmesuyu ve Atıksu Dairesi Başkanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "dsi-sulama",
+   "ad": "Sulama Dairesi Başkanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "dsi-taskin-kontrol",
+   "ad": "Taşkın Kontrol Dairesi Başkanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "dsi-teknik-arastirma-kalite",
+   "ad": "Teknik Araştırma ve Kalite Kontrol Dairesi Başkanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "dsi-yeraltisulari",
+   "ad": "Yeraltısuları Dairesi Başkanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "enerji-tabii-kaynaklar-bakanligi",
+   "ad": "Enerji ve Tabii Kaynaklar Bakanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "havza-su-kurulu",
+   "ad": "Havza Su Kurulları",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "havza-yonetim-heyeti",
+   "ad": "Havza Yönetim Heyeti",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "beklemede",
+   "not": "heyet bileşimi düzenlemesi bulunamadı"
+  },
+  {
+   "id": "havza-yonetimi-merkez-kurulu",
+   "ad": "Havza Yönetimi Merkez Kurulu",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "il-ozel-idaresi",
+   "ad": "İl Özel İdareleri",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "il-su-kurulu",
+   "ad": "İl Su Kurulları",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "il-su-yonetimi-koordinasyon-kurulu",
+   "ad": "İl Su Yönetimi Koordinasyon Kurulu",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "beklemede",
+   "not": "kuruluş genelgesi/yönergesi açılmadı"
+  },
+  {
+   "id": "iski",
+   "ad": "İstanbul Su ve Kanalizasyon İdaresi Genel Müdürlüğü",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "kuraklik-izleme-erken-uyari-komitesi",
+   "ad": "İzleme, Erken Uyarı ve Tahmin Komitesi",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "kuraklik-risk-degerlendirme-komitesi",
+   "ad": "Risk Değerlendirme Komitesi",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "mahalli-cevre-kurulu",
+   "ad": "Mahalli Çevre Kurulu",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "beklemede",
+   "not": "Mahalli Çevre Kurulları Yön. açılmadı"
+  },
+  {
+   "id": "orman-su-isleri-bakanligi",
+   "ad": "Orman ve Su İşleri Bakanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "saglik-bakanligi",
+   "ad": "Sağlık Bakanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "shod",
+   "ad": "Seyir, Hidrografi ve Oşinografi Dairesi Başkanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "beklemede",
+   "not": "4 s. CBK bölümü okundu; 30 s.K. açılmadı"
+  },
+  {
+   "id": "su-yonetimi-koordinasyon-kurulu",
+   "ad": "Su Yönetimi Koordinasyon Kurulu",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "beklemede",
+   "not": "2012/7 s. Başbakanlık Genelgesi metni açılmadı"
+  },
+  {
+   "id": "tarim-koyisleri-bakanligi",
+   "ad": "Tarım ve Köyişleri Bakanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "tarim-orman-bakanligi",
+   "ad": "Tarım ve Orman Bakanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "tarim-orman-il-mudurlugu",
+   "ad": "Tarım ve Orman İl Müdürlükleri",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "tarimsal-kuraklik-il-kriz-merkezi",
+   "ad": "Tarımsal Kuraklık İl Kriz Merkezi",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "tarimsal-kuraklik-koordinasyon-kurulu",
+   "ad": "Tarımsal Kuraklık Yönetimi Koordinasyon Kurulu",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "ulastirma-altyapi-bakanligi",
+   "ad": "Ulaştırma ve Altyapı Bakanlığı",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "ulusal-su-kurulu",
+   "ad": "Ulusal Su Kurulu",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "yikob",
+   "ad": "Yatırım İzleme ve Koordinasyon Başkanlıkları",
+   "oncelik": "b-dogrudan-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "iklim-degisikligi-baskanligi",
+   "ad": "İklim Değişikliği Başkanlığı",
+   "oncelik": "c-dolayli-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "meteoroloji-gm",
+   "ad": "Meteoroloji Genel Müdürlüğü",
+   "oncelik": "c-dolayli-kurulus-gm",
+   "durum": "islendi"
+  },
+  {
+   "id": "strateji-butce-baskanligi",
+   "ad": "Strateji ve Bütçe Başkanlığı",
+   "oncelik": "c-dolayli-kurulus-gm",
+   "durum": "beklemede",
+   "not": "13 s. CBK açılmadı"
+  },
+  {
+   "id": "tubitak",
+   "ad": "Türkiye Bilimsel ve Teknolojik Araştırma Kurumu",
+   "oncelik": "c-dolayli-kurulus-gm",
+   "durum": "beklemede",
+   "not": "278 s.K. açılmadı"
+  },
+  {
+   "id": "tuik",
+   "ad": "Türkiye İstatistik Kurumu",
+   "oncelik": "c-dolayli-kurulus-gm",
+   "durum": "beklemede",
+   "not": "5429 s. Türkiye İstatistik Kanunu açılmadı"
+  },
+  {
+   "id": "hazine-maliye-bakanligi",
+   "ad": "Hazine ve Maliye Bakanlığı",
+   "oncelik": "d-dolayli-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "icisleri-bakanligi",
+   "ad": "İçişleri Bakanlığı",
+   "oncelik": "d-dolayli-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "kultur-turizm-bakanligi",
+   "ad": "Kültür ve Turizm Bakanlığı",
+   "oncelik": "d-dolayli-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "milli-egitim-bakanligi",
+   "ad": "Millî Eğitim Bakanlığı",
+   "oncelik": "d-dolayli-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "milli-savunma-bakanligi",
+   "ad": "Millî Savunma Bakanlığı",
+   "oncelik": "d-dolayli-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "sanayi-teknoloji-bakanligi",
+   "ad": "Sanayi ve Teknoloji Bakanlığı",
+   "oncelik": "d-dolayli-diger",
+   "durum": "islendi"
+  },
+  {
+   "id": "tobb",
+   "ad": "Türkiye Odalar ve Borsalar Birliği",
+   "oncelik": "d-dolayli-diger",
+   "durum": "beklemede",
+   "not": "5174 s.K. açılmadı"
+  },
+  {
+   "id": "turkiye-belediyeler-birligi",
+   "ad": "Türkiye Belediyeler Birliği",
+   "oncelik": "d-dolayli-diger",
+   "durum": "beklemede",
+   "not": "5355 s.K. birlik tüzüğü açılmadı"
+  }
+ ],
+ "tur_gecmisi": [
+  {
+   "tur": 1,
+   "islenen_kurum": 71,
+   "yeni_kurum": 22,
+   "harcanan_istek": 16,
+   "kumulatif_kurum": 93
+  },
+  {
+   "tur": 2,
+   "islenen_kurum": 22,
+   "yeni_kurum": 3,
+   "harcanan_istek": 7,
+   "kumulatif_kurum": 96
+  },
+  {
+   "tur": 3,
+   "islenen_kurum": 3,
+   "yeni_kurum": 0,
+   "harcanan_istek": 3,
+   "kumulatif_kurum": 96
+  }
+ ],
+ "ozet": {
+  "islendi": 59,
+  "beklemede": 15,
+  "toplam": 71
+ }
+}
