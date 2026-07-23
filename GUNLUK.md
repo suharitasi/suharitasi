@@ -369,3 +369,17 @@
   bulgu YOK; rapor CLAUDE-SECURITY-20260722-195547/, commit dışı.
 - Cache/purge işleri gündem dışı (site inşaat halinde, ziyaretçi yok) —
   canlı kontrolde hard refresh yeter.
+
+## 2026-07-23 (Ana sayfa AŞAMA 1 — 6 sahne + 7 süzülen soru mock'u)
+- Kod yok, DUR'lu. Çıktı: cikti/denetim/anasayfa-sahne/ (mock.html + RAPOR.md +
+  1440/375 ekran + kıyas kareleri + 3 JSON ham veri).
+- ÖLÇÜM: ana sayfa LH tabanı masaüstü 99 / mobil 89 (3 tur medyan, commit
+  3900461); LCP elemanı h1, transfer 187KB. Taban yüksek — sahne akışı bunu
+  koruyamaz, düşüş seviyesi kullanıcı kararına bırakıldı.
+- ÖLÇÜM: kartçık okunaklılığı 6 kare × 3 bölge. A (YÜZEY plakası α.90) en kötü
+  11,82:1; B (koyu tül α.75) 6,24:1; brief'te önerilen "yalnız gölge/kenarlık"
+  hali 1,07:1 → ELENDİ, B "koyu tüllü" olarak yeniden tanımlandı.
+- TESPİT: palet-video uyumsuzluğu gerçek — kare ortanca ton açıları 60/38/147/
+  177/21/88°, C ekseni 198°. Kartçık sahneye ait olmayan "enstrüman katmanı"
+  olarak tasarlandı; köprü unsuru kehribar.
+- 7 hedef link canlıda 200 (3. sorunun hedefi ceza sayfası çıkınca güncellenir).

@@ -8,6 +8,17 @@ oturumu (yayına değer mi / sorumluluk çerçevesi / saha doğrulaması) →
 [SERDAR-HUKUK] onayı → uygulama briefi. (İlke: ODUL-USTU.md "Korunacaklar"
 — altyapıda hızlı, iddiada yavaş.)
 
+AKTİF BRIEF — ANA SAYFA: 6 SAHNE + 7 SÜZÜLEN SORU. AŞAMA 1 (mock v5) TAMAM
+(2026-07-23, kod yok) — KULLANICI KARARI BEKLİYOR. Çıktı:
+cikti/denetim/anasayfa-sahne/ (mock.html + RAPOR.md + mock-1440/375.png +
+kiyas-A/B.png + kontrast.json + lighthouse-taban.json + oz-denetim.json).
+Ölçülen taban: ana sayfa LH masaüstü 99 / mobil 89 (LCP 3,02sn = h1 metin,
+transfer 187KB) — 6 sahne akışı bu tabanı KORUYAMAZ, kabul edilebilir düşüş
+kullanıcı kararı. 7 hedef linkin tamamı canlıda 200. Kontrast: A plaka α.90
+en kötü 11,82:1 (öneri); B koyu tül α.75 6,24:1; brief'teki "yalnız
+gölge/kenarlık" hali 1,07:1 ile ELENDİ. 7 açık karar RAPOR.md §9'da.
+Onaysız AŞAMA 2 (kod) BAŞLAMAZ.
+
 SAHNELERİN EVİ = ANA SAYFA (22.07 kullanıcı kararı): 6 sahne + 7 süzülen soru
 ana sayfaya girer. /harita/ dönüşüm mock'u (fd699ff çıktısı) GEÇERSİZ;
 /harita/ veri sayfası olarak kalır. /deneyim/ 301 planı ana sayfa Aşama 2'de
