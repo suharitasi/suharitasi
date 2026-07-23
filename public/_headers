@@ -1,7 +1,14 @@
+# CSP notu (2026-07-23): `media-src 'self' blob:` ZORUNLU — ana sayfanın sahne
+# motoru klipleri fetch edip `URL.createObjectURL(blob)` ile <video>'ya bağlar
+# (scrub için seekable olmak zorunda). media-src yokken `default-src 'self'`
+# devreye giriyor, blob: reddediliyordu: tarayıcı "MEDIA_ELEMENT_ERROR: Media
+# load rejected by URL safety check" veriyor, 6 sahnenin hiçbiri oynamıyordu
+# (readyState 0). Kanıt: cikti/denetim/anasayfa-duzeltme/faz0-teshis.json.
+# blob: burada kendi script'imizin ürettiği aynı-köken nesnedir; dış kaynak açmaz.
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'

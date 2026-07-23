@@ -190,10 +190,27 @@ const sahneVeri = SAHNELER.map((s) => ({
 
   .sw-hint i { border-color: rgba(219, 234, 244, 0.55); }
 
-  /* Rota etiketi AÇIK bir hap üstünde durur; motorun varsayılanı --sw-ink
-     (Köpük) olduğundan koyu temada metin görünmez oluyordu (denetimde boş hap
-     olarak yakalandı) — DİP'e alınır. */
-  .sw-route__label { color: var(--deniz); }
+  /* SAHNE ADI HAPI GÖRÜNMEZ (23.07 canlı testi: "sağda göl kasabası gibi
+     sahne adları görünüyor"). Motor aktif noktanın etiketini kalıcı olarak
+     açıyor (`.sw-route__dot.is-active .sw-route__label{opacity:1}`) — sahne
+     kahramanken kadranın yanında ad etiketi gürültüdür.
+     SİLİNMEZ, GÖRSEL KATMANDAN ÇEKİLİR: etiket <button>'ın erişilebilir adıdır;
+     display:none yapılırsa rota noktaları adsız kalır (ekran okuyucu "buton"
+     der). Bu yüzden clip tekniğiyle gizlenir — a11y korunur, göz görmez. */
+  .sw-route__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+    background: none;
+    backdrop-filter: none;
+  }
 
   @media (prefers-reduced-motion: reduce) {
     .sw-route, .sw-hint, .sw-scrollbar, .soru-serit, .ust-sabit { transition: none; }
