@@ -145,6 +145,22 @@ Bu liste geçilmeden brief teslim edilmez; geçemeyen brief düzeltilir.
 - Lighthouse tek ölçümle karar verilmez — 3 tur medyan; localhost
   gürültüsü eşik ihlali sanılmaz.
 
+## Brief denetçisi — ön kapı kuralı (2026-07-23)
+Her brief, UYGULANMADAN ÖNCE (i) `cikti/brief/<zaman>.md`'ye OLDUĞU GİBİ
+yazılır, (ii) `node arac/brief-denetci.mjs <dosya>` ile denetlenir, (iii)
+düşman geçişi (D1-D4) ve amaç özeti (3b: amaç/dokunulmazlar/bitti-tanımı/
+kanıtlar) yanıtlanır. ENGEL varsa uygulama BAŞLAMAZ — mekanik eksiği Claude
+Code tamamlar (yalnız ekleme+netleştirme; silme/daraltma/kanıt-hafifletme
+YASAK, madde 4e), karar gerektireni kullanıcıya sorar. UYARI'lar raporun
+başında listelenir, iş sürer. Denetim + düşman geçişi + amaç özeti her
+raporun ilk bölümüdür. Düzeltme en fazla 2 tur; hâlâ ENGEL varsa DUR +
+kullanıcıya devret. Orijinal brief değiştirilmeden saklanır; düzeltilmiş hal
+`<zaman>-duzeltilmis.md`'ye yazılır. Kural kaynağı: `arac/brief-kurallari.json`
+(kayıt-türetilmiş, tek gerçek kaynak) — yeni kural doğunca (GUNLUK'a hata
+kaydı) bu json güncellenir. İSTİSNA: denetçinin kendi briefi kendi
+tetik-kelimelerine takılır (use/mention); meta-briefler elle değerlendirilir
+(kurulum raporu: rapor/brief-denetci.md).
+
 ## Kurallar
 - Her işin sonunda commit + push OTOMATİK yapılır; push için ayrıca
   onay sorulmaz (kullanıcı kararı, 2026-07-14).

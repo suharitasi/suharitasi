@@ -2,6 +2,15 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
+BRIEF DENETÇİSİ — KURULDU (2026-07-23). Her brief uygulanmadan önce
+`node arac/brief-denetci.mjs <cikti/brief/dosya>` + düşman geçişi (D1-D4) +
+amaç özeti (3b) yapılır; ENGEL uygulamayı durdurur. Kural kaynağı:
+arac/brief-kurallari.json (kayıt-türetilmiş, T1-T8). Kurulum + 7 senaryo +
+öz-denetim: rapor/brief-denetci.md. Kural CLAUDE.md "Brief denetçisi — ön
+kapı kuralı"nda. Yeni kural doğunca (GUNLUK hata kaydı) json güncellenir.
+BİLİNEN EKSİK: site-saglik v5 briefi diske kaydedilmemişti (denetlenemedi);
+araç use/mention ayrımı yapamaz (meta-briefler elle değerlendirilir).
+
 SU İDARESİ KURUM LİSTESİ — TUR 1A SERİSİ KAPANDI (TUR 1A-3, 2026-07-23).
 Güncel nihai durum: rapor/su-idaresi-tur1a3.md. Çıktı: su-birimleri.json
 (**155 kayıt**, şema_sürümü 2, 64 kayıtta USP eylem bağı), su-terim-havuzu.json

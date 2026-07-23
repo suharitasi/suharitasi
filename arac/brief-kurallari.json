@@ -1,0 +1,136 @@
+{
+  "_aciklama": "Brief denetçisinin tek gerçek kaynağı. Kurallar KAYITLARDAN türetilir (CLAUDE.md, BRIEF.md, ODUL-USTU.md, GUNLUK.md, SIRADAKILER.md, DESIGN.md §17). Kayıtta karşılığı olmayan kural EKLENMEZ (uydurma yasağı). Elle düzenlenebilir; yeni kural doğduğunda (GUNLUK'a hata kaydı) buraya işlenir.",
+  "_surum": 1,
+  "_uretim": "2026-07-23 (BRIEF DENETÇİSİ v4)",
+  "_siddet_anlami": {
+    "ENGEL": "uygulama BAŞLAMAZ; mekanik eksik Claude Code tarafından tamamlanır, karar gerektiren kullanıcıya sorulur",
+    "UYARI": "raporun başında listelenir, iş sürer"
+  },
+  "kurallar": [
+    {
+      "id": "T1-referans",
+      "tip": "T1",
+      "ad": "REFERANS VARLIĞI",
+      "metin": "Brief'te var-olan girdi olarak anılan her dosya/yol/commit repoda GERÇEKTEN var mı; 'bulunur varsayımı' değil somut mu.",
+      "kaynak": ["CLAUDE.md:133-134", "GUNLUK.md:242-243", "GUNLUK.md:237-240"],
+      "siddet": "ENGEL",
+      "yontem": "referans_varligi",
+      "params": {
+        "uretim_fiilleri": ["oluştur", "çıktı:", "çıktı ", "üret", "kaydet", "yaz", "yazıl", "output", "dosyaya yaz", "yaratıl", "eklenir", "eklen", "→ cikti", "raporun ilk", "yeni dosya", "iskelet", "çıkar", "eşle", "güncelle", "güncellen"],
+        "referans_fiilleri": ["oku", "tara", "mevcut", "var olan", "var-olan", "incele", "bkz", "kaynak:", "'dan", "'den", "'ndaki", "'daki", "'nden", "üzerinde koş", "geçir"]
+      }
+    },
+    {
+      "id": "T2a-olculebilirlik",
+      "tip": "T2",
+      "ad": "ÖLÇÜLEBİLİRLİK — belirsiz ifade",
+      "metin": "Bitti-tanımı/şart ortamda GERÇEKTEN denetlenebilir mi; 'uygun şekilde/güzelce/birebir görünmeli' gibi ölçülemez ifade var mı.",
+      "kaynak": ["CLAUDE.md:135-136", "GUNLUK.md:237-240", "CLAUDE.md:143-144"],
+      "siddet": "ENGEL",
+      "yontem": "yasak_ifade",
+      "params": {
+        "ifadeler": ["uygun şekilde", "güzelce", "güzel görün", "güzel dursun", "düzgün görün", "düzgünce", "birebir görünmeli", "tıpatıp", "iyi görünsün", "hoş görün", "göze hoş", "göze hitap", "estetik olsun", "şık olsun", "yeterince iyi", "gerektiği gibi", "doğru şekilde görün", "olması gerektiği gibi", "makul", "profesyonel görünsün"]
+      }
+    },
+    {
+      "id": "T2b-goruntu-kanit",
+      "tip": "T2",
+      "ad": "GÖRÜNTÜ KANIT DEĞİLDİR",
+      "metin": "Medya/animasyon iddiasının kanıtı olarak yalnız ekran görüntüsü/karesi istenmesi; ölçüm (istek/readyState/currentTime) yerine kare kanıt sayılması.",
+      "kaynak": ["CLAUDE.md:38-39", "ODUL-USTU.md:23-25"],
+      "siddet": "ENGEL",
+      "yontem": "kanit_gorseli",
+      "params": {
+        "medya_iddiasi": ["video", "animasyon", "oyn", "medya", "sahne", "currenttime", "readystate", "canlan", "efekt", "geçiş", "hover", "imleç"],
+        "gorsel_kanit": ["ekran görüntüsü", "ekran karesi", "ekran görüntü", "screenshot", "kare kanıt", "görüntü kanıt", "kanıt görüntü", "kare ile kanıt"],
+        "olcum_ifadeleri": ["ölçüm", "readystate", "currenttime", "istek durumu", "network", "curl", "ölç"]
+      }
+    },
+    {
+      "id": "T3-celiski",
+      "tip": "T3",
+      "ad": "ÇELİŞKİ — birbirini iptal eden madde",
+      "metin": "Brief kendi içinde çelişiyor mu; 'kod/site değişikliği yok' derken kod/site değiştiren madde var mı.",
+      "kaynak": ["CLAUDE.md:139", "GUNLUK.md:236-249"],
+      "siddet": "ENGEL",
+      "yontem": "celiski_kod",
+      "params": {
+        "degismez_iddiasi": ["kod değişikliği yok", "kod değişikliği YOK", "koda dokunulmaz", "koda dokunma", "site değişikliği yok", "site değişmez", "hiçbir kod", "kod/site değiş", "site/kod değiş", "sayfaya dokunulmaz", "arayüz değişmez", "frontend değişmez"],
+        "kod_degistiren": [".mjs yaz", ".js yaz", ".css", "bileşen ekle", "component", "stil ekle", "css ekle", "sayfaya ekle", "arayüze ekle", "buton ekle", "menü ekle", "html ekle", "src/ altında", "render", "ui ekle", "görsel ekle"]
+      }
+    },
+    {
+      "id": "T4-butce",
+      "tip": "T4",
+      "ad": "BÜTÇE ARİTMETİĞİ",
+      "metin": "Brief bir bütçe/eşik (istek sayısı, tur, Lighthouse, JS boyutu) beyan ediyorsa iş miktarıyla tutarlı mı; tek-ölçümle-karar tuzağına düşmüyor mu.",
+      "kaynak": ["ODUL-USTU.md:33", "GUNLUK.md:333", "CLAUDE.md:145-146"],
+      "siddet": "UYARI",
+      "yontem": "butce_tutarlilik",
+      "params": {
+        "butce_desenleri": ["≤\\s*(\\d+)\\s*(istek|request|tur|adım)", "en fazla\\s*(\\d+)\\s*(istek|tur|adım)", "bütçe[:\\s]*≤?\\s*(\\d+)"]
+      },
+      "_temel_notu": "Altı kaynak dosyada 'istek bütçesi = iş miktarı' kuralı DOĞRUDAN yok; en zayıf temelli kural. Temel: kayıtlı performans/JS/Lighthouse bütçe disiplini (ODUL-USTU.md:33, GUNLUK.md:333) + tek-ölçüm-tuzağı kuralı (CLAUDE.md:145-146) + proje brief deseni 'istek bütçesi' (TUR 1A-2/1A-3). Bu yüzden ENGEL değil UYARI; brief madde 2 de T4'ü UYARI tanımlar."
+    },
+    {
+      "id": "T5-kapsam-muhru",
+      "tip": "T5",
+      "ad": "KAPSAM MÜHÜRÜ",
+      "metin": "Dokunulmazlar listesi, DUR (onay kapısı) ve commit+push kuralı brief'te anılmış mı.",
+      "kaynak": ["CLAUDE.md:13-19", "CLAUDE.md:139", "CLAUDE.md:149-150", "ODUL-USTU.md:15"],
+      "siddet": "ENGEL",
+      "yontem": "kapsam_muhru",
+      "params": {
+        "gerekli": [
+          {"ad": "DUR / onay kapısı", "ifadeler": ["DUR", "dur ve sor", "dur ve bildir", "durulur", "kullanıcıya sor", "onay kapısı", "karar bekliyor", "kullanıcıya devred"]},
+          {"ad": "kapsam mührü / dokunulmazlar", "ifadeler": ["dokunulmaz", "kapsam dışı", "kapsam:", "değiştirilmez", "ellenmez", "korunur", "dokunma", "değişmez", "kapsam"]},
+          {"ad": "commit+push kuralı", "ifadeler": ["commit", "push", "git kilid", "git-kilit"]}
+        ]
+      }
+    },
+    {
+      "id": "T6-sistem-temasi",
+      "tip": "T6",
+      "ad": "SİSTEM TEMASI",
+      "metin": "İlgiliyse git kilidi, canlı-koşul ilkesi, süreklilik ilkesi anılmış mı.",
+      "kaynak": ["CLAUDE.md:42-43", "CLAUDE.md:35-37", "CLAUDE.md:40-41", "ODUL-USTU.md:16-28"],
+      "siddet": "UYARI",
+      "yontem": "sistem_temasi",
+      "params": {
+        "kosullar": [
+          {"ad": "git kilidi", "tetik": ["commit", "push", "depoya"], "gerekli": ["git kilid", "git-kilit", "flock", "suharitasi-git.lock"]},
+          {"ad": "canlı-koşul ilkesi", "tetik": ["canlı", "deploy", "lighthouse", "csp", "yayın", "_headers", "_redirects"], "gerekli": ["dist-sun", "canlı url", "canlı koşul", "canlı-koşul", "_headers", "_redirects"]},
+          {"ad": "süreklilik ilkesi", "tetik": ["yapısal", "kalıcı", "site-saglik", "pipeline", "kontrol maddesi"], "gerekli": ["site-saglik", "izleme/", "kontrol maddesi", "süreklilik"]}
+        ]
+      }
+    },
+    {
+      "id": "T7-uydurma-kapisi",
+      "tip": "T7",
+      "ad": "UYDURMA KAPILARI",
+      "metin": "Keşif/veri işinde 'doğrulanmadı' yolu ve kapalı-liste yasağı; hukuki içerikte hüküm yazma yasağı ([APILEX]/Serdar kalemi) anılmış mı.",
+      "kaynak": ["ODUL-USTU.md:34", "ODUL-USTU.md:111-113", "CLAUDE.md:107"],
+      "siddet": "ENGEL",
+      "yontem": "uydurma_kapisi",
+      "params": {
+        "kosullar": [
+          {"ad": "veri/keşif — doğrulanmadı yolu", "tetik": ["keşif", "keşif raporu", "veri çek", "tarama", "kurum", "mevzuat", "envanter", "kayıt topla", "scrape", "veri seti"], "gerekli": ["doğrulanmadı", "dogrulanmadi", "uydurma yasağı", "uydurma yasak", "doğrulanmamış", "kapalı liste yok", "kanal doğrulanmadı", "doğrulanamayan"]},
+          {"ad": "hukuk — hüküm yazma yasağı", "tetik": ["hukuki hüküm", "ceza", "yaptırım", "hukuki metin", "madde metni yaz", "hukuki iddia", "risk bloğu"], "gerekli": ["apilex", "hüküm yazmaz", "hüküm yazma", "serdar", "hukuki metin serdar", "yeni hukuki iddia üretilmez", "serdar-hukuk"]}
+        ]
+      }
+    },
+    {
+      "id": "T8-geri-donus",
+      "tip": "T8",
+      "ad": "GERİ DÖNÜŞ",
+      "metin": "Mevcut dosya/kaynağı değiştiren ya da taşıyan işte geri alma yolu (revert/arşiv/stash) tanımlı mı.",
+      "kaynak": ["GUNLUK.md:253-254", "GUNLUK.md:406", "CLAUDE.md:17"],
+      "siddet": "UYARI",
+      "yontem": "geri_donus",
+      "params": {
+        "tetik": ["sil", "dosya taşı", "üzerine yaz", "kaldır", "yeniden yaz", "migrate", "taşın", "birleştir", "eski dosya", "yerini değiştir"],
+        "gerekli": ["revert", "arşiv", "arsiv", "arşive taşı", "stash", "geri dön", "geri al", "yedek", "silinmez"]
+      }
+    }
+  ]
+}
