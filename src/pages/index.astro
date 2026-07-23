@@ -119,6 +119,27 @@ const sahneVeri = SAHNELER.map((s) => ({
        ≥8px (ui-ux-pro-max "Touch Spacing"); burada 20px. */
     --serit-yuk: 31px;
     --serit-ara: 20px;
+
+    /* — KADRAJ KUTUSU (23.07 canlı testi: "şerit en dipte, görülmüyor") —
+       Ölçüm: 1440'ta şerit kadrajı 11px ÖRTÜYORDU (R2 ihlali), 375'te
+       kadrajdan 181px KOPUKTU. Sebep: sahne kabı tam ekrandı, contain ile
+       çizilen görüntü kabın ortasında kalıyordu; alt kenarı kırılıma göre
+       şeridin bazen altında bazen çok üstünde bitiyordu.
+       Çözüm: sahne kabı KADRAJIN KENDİSİ kadar; şerit onun 12px altına
+       kilitlenir. Şerit kadraja GİRMEZ, kadrajdan KOPMAZ — iki kırılımda da
+       aynı 12px. Kırpma yok (contain korunur).
+       Kap yüksekliği = min(en × 464/832, ekran − boşluk):
+         · genişlik sınırlı hâlde görüntü kabı TAM doldurur (letterbox 0),
+         · yükseklik sınırlı hâlde yanlarda bant kalır, alt kenar yine kabın
+           alt kenarıdır. Her iki hâlde kadraj alt kenarı = kap alt kenarı. */
+    --kaydirma-cubugu: 0px;   /* JS ölçer: 100vw kaydırma çubuğunu sayar */
+    --kadraj-en: calc(100vw - var(--kaydirma-cubugu));
+    --kadraj-bosluk: 10.5rem; /* menü + şerit + nefes payı */
+    --kadraj-boy: min(calc(var(--kadraj-en) * 464 / 832),
+                      calc(100dvh - var(--kadraj-bosluk)));
+    /* kadraj + şerit BİRLİKTE dikey ortalansın diye şeridin yarısı kadar yukarı */
+    --kadraj-ust: calc((100dvh - var(--kadraj-boy)) / 2 - 1.4rem);
+    --serit-ust-bosluk: 12px;
   }
 
   /* Motor teması: @layer sw varsayılanlarını ezer (unlayered kazanır).
@@ -156,6 +177,28 @@ const sahneVeri = SAHNELER.map((s) => ({
     background: var(--sw-bg);
   }
 
+  /* Sahne kabı = kadraj kutusu (yukarıdaki değişkenler). Motorun tam-ekran
+     `inset:0` kabı burada daraltılır; kaydırma↔ilerleme eşlemesi bu kutudan
+     BAĞIMSIZDIR (motor yalnız scrollY ve .sw-track yüksekliğini okur), bu
+     yüzden ritim/crossfade/preload eşikleri değişmez — ölçümle kanıtlandı. */
+  .sw-stage {
+    top: var(--kadraj-ust);
+    bottom: auto;
+    height: var(--kadraj-boy);
+  }
+
+  /* Poster'in Ken-Burns ölçeği/parallaks kaydırması kapatılır: kap artık tam
+     kadraj olduğundan `scale(1.03…1.17)` posteri KIRPIYOR ve klip belirdiğinde
+     görüntü zıplıyordu (klip ölçeklenmez). Kapatınca poster ile klip birebir
+     çakışıyor. Motor dosyasına dokunulmadı. */
+  .sw-scene__still { transform: none !important; }
+
+  /* Kaydırma ipucu kaldırıldı: kadraj + şerit geometrisi 1440'ta şeridin
+     altında 60px'lik bir bant bırakıyor, ipucu oraya sığmıyor ve şeridin
+     üstüne biniyordu. Kaydırma daveti artık şeridin kendisi ve rota
+     noktalarıdır. */
+  .sw-hint { display: none !important; }
+
   /* Sahne metni yok → motorun kopya katmanı ve vinyet degradesi kadrajdan
      çıkar. Motorun kendi üst şeridi de kullanılmaz (tek kaynak UstMenu). */
   .sw-copylayer, .sw-topbar { display: none !important; }
@@ -176,19 +219,6 @@ const sahneVeri = SAHNELER.map((s) => ({
     transition: opacity 240ms var(--e-akinti);
   }
 
-
-  /* Kaydırma ipucu şeridin ÜSTÜNDE durur (çakışma yok). Sahne parlaklığı
-     kareden kareye değiştiği için ipucu kendi DİP plakasını taşır — çıplak
-     hâlinde açık sahnede kontrast 4.5:1'in altına düşüyordu. */
-  .sw-hint {
-    bottom: calc(3.2vh + var(--serit-yuk) + 22px) !important;
-    padding: 5px 11px 8px;
-    border-radius: 2px;
-    background: rgba(10, 39, 64, 0.78);
-    color: var(--kopuk);
-  }
-
-  .sw-hint i { border-color: rgba(219, 234, 244, 0.55); }
 
   /* SAHNE ADI HAPI GÖRÜNMEZ (23.07 canlı testi: "sağda göl kasabası gibi
      sahne adları görünüyor"). Motor aktif noktanın etiketini kalıcı olarak
@@ -322,6 +352,16 @@ const sahneVeri = SAHNELER.map((s) => ({
      yalnız kaydırma yüzdesinden türer.
      reduced-motion: sürücü HİÇ kurulmaz → şerit statik liste kalır. */
   const kok = document.documentElement;
+
+  /* Kadraj kutusu 100vw'den türer; 100vw kaydırma çubuğunu SAYAR, gerçek
+     içerik genişliği saymaz. Fark ölçülüp değişkene yazılmazsa kadraj birkaç
+     px uzun hesaplanır ve şerit kadrajın içine kayar. */
+  function cubugoOlc() {
+    kok.style.setProperty('--kaydirma-cubugu',
+      (window.innerWidth - kok.clientWidth) + 'px');
+  }
+  cubugoOlc();
+
   const serit = document.querySelector('.soru-serit');
   const ogeler = [...serit.querySelectorAll('.soru')];
   const azHareket = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -356,8 +396,8 @@ const sahneVeri = SAHNELER.map((s) => ({
   }
 
   addEventListener('scroll', () => requestAnimationFrame(guncelle), { passive: true });
-  addEventListener('resize', () => { sonDilim = -1; guncelle(); });
-  addEventListener('load', () => { sonDilim = -1; guncelle(); });
+  addEventListener('resize', () => { cubugoOlc(); sonDilim = -1; guncelle(); });
+  addEventListener('load', () => { cubugoOlc(); sonDilim = -1; guncelle(); });
   guncelle();
 </script>
 
@@ -446,9 +486,15 @@ const sahneVeri = SAHNELER.map((s) => ({
   .soru:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
 
   /* — JS'li kip: tek satır bandı, iki yuva — */
+  /* JS'li kip: şerit KADRAJIN ALT KENARINA kilitlenir (bottom değil top ile).
+     Böylece 1440'ta kadrajı örtmez, 375'te kadrajdan kopmaz — iki kırılımda
+     da aynı 12px. Statik (JS'siz / reduced-motion) kip alt kenara demirli
+     kalır; orada 7 satırlık liste vardır, kadrajın altına sığmaz. */
   :global(html.js-serit) .soru-serit {
     display: block;
     position: fixed;
+    top: calc(var(--kadraj-ust) + var(--kadraj-boy) + var(--serit-ust-bosluk));
+    bottom: auto;
     height: var(--serit-yuk);
     max-height: none;
     overflow: visible;
