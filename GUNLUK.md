@@ -419,3 +419,35 @@ sahne `<img>`'leri sabit ve kadraj içinde olduğu için tarayıcı hepsini
 yakalandı (krem letterbox, boş rota etiketi, belirsiz şerit okunuşu, ipucu
 kontrastı, footer boşluğundan sızan sahne, sabit menünün footer'ı örtmesi).
 Sayısal öz-denetim hepsinde "0 hata" diyordu. Ölçüm bakmanın yerini tutmuyor.
+
+## 23 Temmuz 2026 (2) — Canlı test düzeltmeleri: CSP, kadraj, hedef
+
+Kullanıcı canlıda üç belirti bildirdi: sahneler açılmıyor, sağda sahne adları
+görünüyor, soru şeridi görülmüyor. Üçü de ayrı arıza çıktı, üç ayrı commit'le
+kapatıldı (385be5a, aff6fd2, a45e786).
+
+**Ders (asıl olan):** ana sayfayı "kanıtlanmış" ilan ettim, ama tüm ölçümü
+`python3 -m http.server` üzerinde yapmıştım — o sunucu `_headers`'ı
+UYGULAMIYOR. Sitenin CSP'sinde `media-src` yoktu; `default-src 'self'` motorun
+`blob:` video kaynağını reddediyordu ve 6 sahnenin hiçbiri canlıda oynamıyordu.
+Yerelde her ölçüm yeşildi. Üstelik `fetch` 200 dönüyordu (connect-src izinli),
+engellenen yalnız decode'du — yani "videolar iniyor" diyen ağ ölçümü de beni
+doğruluyordu. Artık `arac/dist-sun.mjs` var: dist'i CSP + _redirects ile
+servis eder. **Kural: üretim başlıklarını taşımayan ortamda alınan kanıt,
+kanıt değildir.**
+
+**Ders (teşhis):** brief "(a) ve (b) tek arıza olabilir, alt metin görünüyordur"
+diye bir hipotez veriyordu. Ölçtüm, çürüdü: tüm sahne `<img>`'lerinde `alt=""`.
+Görünen şey motorun rota etiketiydi. Hipotezi doğrulamadan uygulasaydım yanlış
+yeri düzeltirdim.
+
+**Ders (iki yönlü hata):** şerit görünürlüğü tek bir "aşağıda kalmış" sorunu
+değildi — 1440'ta kadrajı 11px ÖRTÜYOR, 375'te 181px KOPUYORDU. Tek kırılımda
+bakıp düzeltmek diğerini bozardı. Çözüm sahne kabını kadrajın kendisi kadar
+yapmak oldu; şerit artık her kırılımda kadrajın 12px altında.
+
+**Kaza (kayıt):** revert'lerin temiz uygulandığını sınarken `git reset --hard`
+kullandım ve commit'lenmemiş iki cron log dosyasındaki 23.07 satırları gitti
+(`data/arsiv/baraj/log/cron.log`, `data/arsiv/grace/log-2026-07.log`).
+Veri dosyaları etkilenmedi, loglar sonraki koşuda yeniden yazılacak. Sınama
+için ayrı bir worktree kullanmalıydım.

@@ -8,21 +8,35 @@ oturumu (yayına değer mi / sorumluluk çerçevesi / saha doğrulaması) →
 [SERDAR-HUKUK] onayı → uygulama briefi. (İlke: ODUL-USTU.md "Korunacaklar"
 — altyapıda hızlı, iddiada yavaş.)
 
-ANA SAYFA — 6 SAHNE + 7 SÜZÜLEN SORU: AŞAMA 2 (KOD) UYGULANDI,
-KULLANICI ONAYI BEKLİYOR (2026-07-23). Koyu hero kalktı, sahne akışı açılış
-oldu; R2 alt şerit (α.80 + koyu kehribar #6B4412, DESIGN.md §2'ye eklendi);
-akış sonu iniş bölümü (6 persona kartı + /durumum/ bağı); /deneyim/ 301 → /
-ve menüden kalktı. Kanıt: cikti/denetim/anasayfa-asama2/ (RAPOR.md + 14 ekran
-+ oz-denetim.json + lighthouse-3tur.json). Ölçüm: LH 3-tur medyan masaüstü 99
-(eşik 85) / mobil 85 (eşik 70); konsol 0, kırık link 0, 375 taşma 0; şerit
-kontrastı en kötü karede soru 8,17:1 · hedef 4,75:1 (AA üstü); dokunma 44px;
-reduced-motion ve JS'siz halde 7 sorunun tamamı erişilebilir; "aynı hedef aynı
-anda" ihlali 0/7 (build-time assert ile korunuyor). İlk yük 8 dosya → 2 dosya
-(3972KB → 1657KB). AÇIK KULLANICI GÖREVİ: (1) canlı test = nihai onay —
-özellikle video scrub akıcılığı (headless GPU'suz, kanıt sayılmaz),
-(2) Cloudflare "Purge Everything" (ana sayfa tamamen değişti), (3) RAPOR.md
-§9'daki tek açık karar: "Barajlarımızda ne kadar su var?" hedefi /harita/
-kalsın mı (baraj doluluk verisi havza sayfalarında).
+ANA SAYFA — 6 SAHNE + 7 SÜZÜLEN SORU: AŞAMA 2 + CANLI TEST DÜZELTMELERİ
+UYGULANDI, KULLANICI ONAYI BEKLİYOR (2026-07-23). Koyu hero kalktı, sahne
+akışı açılış oldu; R2 alt şerit; akış sonu iniş bölümü; /deneyim/ 301 → /.
+Canlı testte çıkan üç arıza kapatıldı (üç ayrı commit, ayrı ayrı revert
+edilebilir — RAPOR.md "GERİ DÖNÜŞ"):
+  FAZ 1 (385be5a) SAHNELER OYNAMIYORDU. Kök neden CSP: _headers'ta `media-src`
+    yoktu, `default-src 'self'` motorun blob: video kaynağını reddediyordu
+    ("Media load rejected by URL safety check"). Fetch 200 dönüyordu, engellenen
+    yalnız decode'du — bu yüzden ağ ölçümü arızayı göstermiyordu. Ayrıca sahne
+    adı hapı (.sw-route__label) görsel katmandan çekildi (a11y adı korunarak).
+  FAZ 2 (aff6fd2) ŞERİT GÖRÜNÜRLÜĞÜ. Ölçüm: 1440'ta şerit kadrajı 11px
+    ÖRTÜYORDU, 375'te kadrajdan 181px KOPUKTU. Sahne kabı kadrajın kendisi
+    kadar yapıldı, şerit onun 12px altına kilitlendi — iki kırılımda da 12px,
+    örtüşme 0/14. Kırpma yok. Zincir yeniden ölçüldü: scrub/ritim/crossfade/
+    preload DEĞİŞMEDİ.
+  FAZ 3 (a45e786) "Barajlarımızda ne kadar su var?" → /havzalar/ (baraj doluluk
+    verisi havza sayfalarında; /harita/ panelinde yok). Sıralama değişmedi,
+    gerekmedi: iki /havzalar/ sorusu 4. ve 6. sırada, komşu değil; assert
+    olduğu gibi geçti. Yan düzeltme: 375'te kırpılan tek soru için mobil etiket
+    kısaltıldı, 7/7 sığıyor.
+Kanıt: cikti/denetim/anasayfa-duzeltme/ (RAPOR.md + faz0-teshis.json +
+40 kare + zincir/LH JSON'ları) ve cikti/denetim/anasayfa-asama2/.
+Ölçüm: LH 3-tur medyan masaüstü 99 (eşik 85) / mobil 86 (eşik 70); 6/6 sahne
+canlıda readyState 4 + currentTime 2,60; konsol 0, kırık link 0, taşma 0.
+YENİ DENETİM ARACI: arac/dist-sun.mjs — dist'i Cloudflare gibi (CSP +
+_redirects) servis eder. `python3 -m http.server` _headers'ı uygulamadığı için
+CSP arızası yerelde HİÇ görünmüyordu; bundan sonra denetimler bu sunucuda.
+AÇIK KULLANICI GÖREVİ: (1) canlı test = nihai onay, özellikle scrub akıcılığı
+(headless GPU'suz, kanıt sayılmaz), (2) Cloudflare "Purge Everything".
 Eski landing ve /deneyim/ SİLİNMEDİ: arsiv/landing-koyu/, arsiv/deneyim-rota/.
 
 SAHNELERİN EVİ = ANA SAYFA (22.07 kullanıcı kararı): 6 sahne + 7 süzülen soru
