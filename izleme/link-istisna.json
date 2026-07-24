@@ -1,6 +1,4 @@
 {
   "_not": "Link taramasında YANLIŞ-POZİTİF üreten desenler. Her istisna gerekçelidir; sayısı raporda görünür (istisna sayısı sessizce büyümesin).",
-  "istisnalar": [
-    { "desen": "^/mock-kure/?(\\?.*)?$", "gerekce": "izole mock sayfası (noindex, sitemap dışı, menüde yok); sağlık sistemi çekirdek/canlı sayfa sanmasın — brief mock-kure-faz1 ADIM 1 (2026-07-24)." }
-  ]
+  "istisnalar": []
 }
