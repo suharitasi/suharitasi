@@ -1,16 +1,12 @@
 ---
-// SU KÜRESİ MOCK — İZOLE SAYFA (brief mock-kure-faz1, 2026-07-24).
-// Tek küre; içinde 6 sahne videosu sırayla oynar; etrafında 7 soru yörüngede.
-// İki varyant: ?v=1 tam daire (varsayılan), ?v=2 oval. Astro statik → varyant
-// client-side (location.search) seçilir; JS'siz de v=1 render olur.
-// DOKUNULMAZLAR: ana sayfa/menü/301 ELLENMEZ (bu yeni + izole rota). Video
-// KIRPILMAZ (biçim yalnız küre ZEMİNİNE; video contain, biçim içinde kalır).
-// Renk: yalnız DESIGN.md'de var olan token ADLARI (yeni renk değeri yok).
+// SU KÜRESİ — WebGL (FAZ 2). İzole /mock-kure/ sayfası.
+// 6 sahne videosu tek ATLAS dokusunda (3×2) DÖNEN KÜRENİN YÜZEYİNİ oluşturur.
+// 7 soru HER genişlikte yörüngede uçuşur. ?v=1 kuşak (varsayılan), ?v=2 sarmal.
+// DOKUNULMAZ: ana sayfa/menü/301. Video KESİLMEZ (her sahne 0-1 UV tam dilime).
+// three dinamik import; WebGL yoksa poster + saf-CSS yörünge fallback.
 import { SORULAR } from '../data/anasayfa-sorular.js';
 
-// SORU SIRASI (brief ADIM 4 — SABİT, değiştirilmez). Kaynak anasayfa-sorular.js
-// (DOKUNULMAZ — homepage ile paylaşımlı); burada YALNIZ mock için brief sırasına
-// dizilir (soru metni ile eşlenir; eşleşmezse build DÜŞER, sessiz hata yok).
+// Brief soru sırası (SABİT); kaynak anasayfa-sorular.js (DOKUNULMAZ), burada dizilir.
 const BRIEF_SIRA = [
   'Su nerelerde çıkar?',
   'Kuyu ruhsatı almak için ne yapmalıyım?',
@@ -22,25 +18,31 @@ const BRIEF_SIRA = [
 ];
 const SORU = BRIEF_SIRA.map((t) => {
   const s = SORULAR.find((x) => x.soru === t);
-  if (!s) throw new Error(`mock-kure: brief sırasındaki soru anasayfa-sorular.js'te yok: "${t}"`);
+  if (!s) throw new Error(`mock-kure: brief sırasındaki soru yok: "${t}"`);
   return s;
 });
 
-// ADIM 0 ölçümü (ffprobe): 6 video birebir 832×464, AR = 832/464 = 1.7931.
-const VW = 832, VH = 464;
-const AR = VW / VH;
+const AR = 832 / 464;           // 1.7931 (ffprobe ölçümü)
+const marka = 'Su, yerin altında konuşur.';   // mevcut mock/ana sayfa cümlesi.
 
-// ADIM 2 — video genişlik faktörü FORMÜLDEN türetilir (elle sabit değil):
-//   (W/L)² + (H/S)² ≤ 0.90, H = W/AR  ⇒  W = L·sqrt(0.90 / (1 + (1/AR²)(L/S)²))
-// V1 daire: L=S ⇒ L/S=1;  V2 oval: S=L·0.62 ⇒ L/S=1/0.62.
-// 0.999 güvenlik payı: "en büyük W" köşeyi tam 0.90'a oturtuyordu; FP taşması
-// (0.9000036) ≤0.90 testini kılpayı bozuyordu → ×0.999 ile köşe ≈0.898 ≤0.90 KESİN.
-const faktor = (LperS) => Math.sqrt(0.90 / (1 + (1 / (AR * AR)) * (LperS * LperS))) * 0.999;
-const F_DAIRE = faktor(1);          // ≈ 0.8286
-const F_OVAL = faktor(1 / 0.62);    // ≈ 0.7053
-const ARs = AR.toFixed(4);
-
-const marka = 'Su, yerin altında konuşur.';   // ADIM 5: ana sayfa h1'inden AYNEN.
+// Yörünge keyframe'leri (elips; container'a transform YOK → çip↔canvas z-interleave).
+// Konum var(--a)/var(--b) ile viewport'a bağlı; cos/sin burada sabit üretilir.
+// Ön yarı (y>0, alt): opacity 1 / scale 1 / z 3. Arka: opacity→0.85 / scale 0.90 / z 1.
+function keyframeUret(ad) {
+  const N = 24;
+  let g = `@keyframes ${ad} {\n`;
+  for (let s = 0; s <= N; s++) {
+    const p = s / N, th = 2 * Math.PI * p;
+    const cx = Math.cos(th).toFixed(4), sy = Math.sin(th).toFixed(4);
+    const t01 = (Math.sin(th) + 1) / 2;         // 0 üst(arka) → 1 alt(ön)
+    const op = (0.85 + 0.15 * t01).toFixed(3);
+    const sc = (0.90 + 0.10 * t01).toFixed(3);
+    const z = Math.sin(th) >= 0 ? 3 : 1;
+    g += `  ${(p * 100).toFixed(2)}% { transform: translate(calc(-50% + var(--a) * ${cx}), calc(-50% + var(--b) * ${sy})) scale(${sc}); opacity: ${op}; z-index: ${z}; }\n`;
+  }
+  return g + '}\n';
+}
+const orbitKeyframes = keyframeUret('kure-orbit');
 ---
 <!doctype html>
 <html lang="tr" data-v="1">
@@ -48,279 +50,100 @@ const marka = 'Su, yerin altında konuşur.';   // ADIM 5: ana sayfa h1'inden AY
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex,nofollow" />
-<title>Su küresi — mock</title>
+<title>Su küresi — WebGL mock</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;1,500&family=Manrope:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap&subset=latin-ext" rel="stylesheet" />
-<style define:vars={{ ARs, F_DAIRE, F_OVAL }}>
-  /* — Tokenlar: yalnız DESIGN.md'de VAR OLAN adlar + değerler (D4; yeni renk yok) — */
+<style set:html={orbitKeyframes}></style>
+<style>
   :root {
-    --krem: #E9F0F4;
-    --murekkep-900: #132A3F;
-    --su-700: #0C5A7C;
-    --su-400: #2E7EA0;
-    --deniz: #0A2740;
-    --akuamarin: #57BAE0;
-    --kopuk: #DBEAF4;
-    --cizgi: rgba(19, 42, 63, 0.14);
-    --serif: "Cormorant", Georgia, serif;
-    --sans: "Manrope", system-ui, sans-serif;
+    --krem: #E9F0F4; --murekkep-900: #132A3F; --su-700: #0C5A7C; --su-400: #2E7EA0;
+    --deniz: #0A2740; --akuamarin: #57BAE0; --kopuk: #DBEAF4; --cizgi: rgba(19,42,63,0.14);
+    --serif: "Cormorant", Georgia, serif; --sans: "Manrope", system-ui, sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, monospace;
-    /* easing: DESIGN.md §3 sözlüğü (hareket.css). Crossfade --e-akinti kullanır. */
-    --e-suzul: cubic-bezier(0.22, 1, 0.36, 1);
-    --e-akinti: cubic-bezier(0.45, 0.05, 0.55, 0.95);
-
-    /* Video AR ve W faktörü (frontmatter'dan formülle) */
-    --ar: var(--ARs);
+    --e-akinti: cubic-bezier(0.45,0.05,0.55,0.95);
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { height: 100%; }
   body {
-    background:
-      radial-gradient(120% 80% at 50% -10%, #0d3050 0%, var(--deniz) 60%, #06192b 100%);
-    color: var(--kopuk);
-    font-family: var(--sans);
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
+    background: radial-gradient(120% 80% at 50% -10%, #0d3050 0%, var(--deniz) 60%, #06192b 100%);
+    color: var(--kopuk); font-family: var(--sans);
+    min-height: 100dvh; display: flex; flex-direction: column; overflow-x: hidden;
   }
   a { color: inherit; }
   a:focus-visible { outline: 2px solid var(--akuamarin); outline-offset: 3px; }
 
-  /* ——— Marka (ADIM 5: minimal, tek cümle) ——— */
-  .marka {
-    text-align: center;
-    padding: clamp(1.5rem, 4vh, 2.6rem) 1rem 0;
-  }
-  .marka .kicker {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--akuamarin);
-  }
-  .marka h1 {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-style: italic;
-    font-size: clamp(1.7rem, 3.4vw, 2.5rem);
-    line-height: 1.15;
-    margin-top: 0.5rem;
-    color: var(--kopuk);
-  }
+  .marka { text-align: center; padding: clamp(1.2rem,3.5vh,2.4rem) 1rem 0; }
+  .marka .kicker { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--akuamarin); }
+  .marka h1 { font-family: var(--serif); font-weight: 500; font-style: italic; font-size: clamp(1.6rem,3.2vw,2.4rem); margin-top: 0.5rem; color: var(--kopuk); }
 
-  /* ——— Sahne: küre + yörünge ——— */
-  .sahne {
-    flex: 1;
-    display: grid;
-    place-items: center;
-    position: relative;
-    padding: clamp(1.5rem, 5vh, 3rem) 1rem;
-  }
+  .sahne { flex: 1; position: relative; display: grid; place-items: center; padding: clamp(1rem,4vh,2.4rem) 1rem; }
 
-  /* Küre biçimi (S=kısa, L=uzun). Varyant değişkenleri aşağıda data-v ile. */
-  .kure {
-    position: relative;
-    z-index: 2;                 /* arka çip (z1) küre ALTINDA, ön çip (z3) üstünde */
-    width: var(--kure-l);
-    height: var(--kure-s);
-    display: grid;
-    place-items: center;
+  /* Küre kabı: 2R×2R. canvas + poster fallback dolar. z:2 (arka çip z1 altında, ön z3 üstünde). */
+  .kure-kap {
+    position: relative; z-index: 2;
+    width: calc(var(--R) * 2); height: calc(var(--R) * 2);
   }
-  /* Biçim ZEMİNİ — maske/daire YALNIZ burada (D1c). Radial derinlik: üst açık
-     (--su-400) → dip koyu (--deniz). Cam: 1px iç kenar + tek yumuşak parlama. */
-  .kure-zemin {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background:
-      radial-gradient(120% 120% at 50% 8%,
-        var(--su-400) 0%, var(--su-700) 42%, var(--deniz) 100%);
-    box-shadow: inset 0 0 0 1px rgba(87, 186, 224, 0.30);
+  .kure-kap canvas { display: block; width: 100%; height: 100%; }
+  /* Fallback (WebGL yok): poster daire içinde + derinlik gradyanı. */
+  .kure-poster {
+    position: absolute; inset: 0; border-radius: 50%;
+    object-fit: cover; width: 100%; height: 100%;
+    background: radial-gradient(120% 120% at 50% 8%, var(--su-400), var(--su-700) 42%, var(--deniz));
+    box-shadow: inset 0 0 0 1px rgba(87,186,224,0.30);
+    display: none;
   }
-  /* Tek yumuşak parlama üst-solda (blur/filter YOK — sadece gradient) */
-  .kure-zemin::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background:
-      radial-gradient(38% 30% at 30% 22%,
-        rgba(219, 234, 244, 0.28) 0%, rgba(219, 234, 244, 0) 70%);
-  }
+  html.webgl-yok .kure-poster { display: block; }
+  html.webgl-yok .kure-kap canvas { display: none; }
 
-  /* Video kutusu — biçim İÇİNDE, ortalı; W×H formülle (AR korunur). Video
-     KIRPILMAZ: kutu AR'ye eşit, contain birebir doldurur, ata overflow yok. */
-  .kure-video {
-    position: relative;
-    width: var(--vid-w);
-    height: calc(var(--vid-w) / var(--ar));
-    z-index: 2;
-  }
-  .vid {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    opacity: 0;
-    transition: opacity 800ms var(--e-akinti);
-    background: transparent;
-  }
-  .vid.aktif { opacity: 1; }
-  /* <768: tek video (vid-b render'da ama gizli + kullanılmaz) */
-  .vid-b { display: none; }
-
-  /* ——— 7 SORU — tek DOM, responsive yerleşim ——— */
+  /* ——— YÖRÜNGE — her genişlikte (container'da TRANSFORM YOK) ——— */
   .yorunge {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    pointer-events: none;   /* yalnız çipler tıklanır */
+    position: absolute; left: 50%; top: 50%;
+    width: 0; height: 0;            /* .sahne merkezi = küre merkezi; çipler translate ile */
+    pointer-events: none;
   }
   .soru {
-    pointer-events: auto;
-    width: 260px;
-    max-width: 82vw;
-    text-decoration: none;
-    color: var(--murekkep-900);
-    background: rgba(233, 240, 244, 0.90);
-    border: 1px solid var(--cizgi);
-    border-left: 2px solid var(--su-400);
-    border-radius: 2px;
-    padding: 0.55rem 0.8rem;
-    font-family: var(--serif);
-    font-size: 1.02rem;
-    line-height: 1.18;
-    /* en fazla 2 satır */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    box-shadow: 0 6px 18px rgba(6, 25, 43, 0.28);
+    pointer-events: auto; position: absolute; left: 50%; top: 50%;
+    width: var(--kutuW);
+    text-decoration: none; color: var(--murekkep-900);
+    background: rgba(233,240,244,0.90); border: 1px solid var(--cizgi);
+    border-left: 2px solid var(--su-400); border-radius: 2px;
+    padding: 0.5rem 0.7rem;
+    font-family: var(--serif); font-size: 1rem; line-height: 1.16;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    box-shadow: 0 6px 18px rgba(6,25,43,0.28);
+    animation: kure-orbit var(--tur) linear infinite;
+    animation-delay: calc(var(--tur) / -7 * var(--i));
+    will-change: transform, opacity;
   }
   .soru:hover { background: var(--kopuk); }
+  .yorunge:hover .soru, .yorunge:focus-within .soru { animation-play-state: paused; }
 
-  /* ————— GENİŞLİK VARYANTLARI ————— */
-  /* V1 daire: L=S. ≥1200 → min(56vh,620px); <1200 → 78vw. */
-  html[data-v="1"] .kure { --kure-l: var(--L1); --kure-s: var(--L1); }
-  html[data-v="1"] .kure-video { --vid-w: calc(var(--L1) * var(--F_DAIRE)); }
-  :root { --L1: 78vw; }
-  /* V2 oval: L=min(72vw,900px), S=L×0.62 */
-  html[data-v="2"] .kure { --kure-l: var(--L2); --kure-s: calc(var(--L2) * 0.62); }
-  html[data-v="2"] .kure-video { --vid-w: calc(var(--L2) * var(--F_OVAL)); }
-  html[data-v="2"] .kure-zemin { border-radius: 50% / 50%; }
-  :root { --L2: min(72vw, 900px); }
-
-  /* ————— <768: tek kolon dikey liste, küre üstte ————— */
+  /* ——— YERLEŞİM (ADIM 3) — a=VW/2−kutuW/2−8 → yatay taşma imkânsız ——— */
   @media (max-width: 767px) {
-    .yorunge {
-      position: static;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 1.4rem;
-      pointer-events: auto;
-    }
-    .soru { width: min(320px, 88vw); }
-    /* küre + liste dikey akış */
-    .sahne { display: flex; flex-direction: column; align-items: center; }
-    /* Tek video girişi 200ms (brief ADIM 3 <768) */
-    .vid { transition: opacity 200ms var(--e-akinti); }
+    :root { --kutuW: 168px; --tur: 34s;
+      --a: calc(50vw - 84px - 8px);
+      --R: calc(0.37 * 100vw);
+      --b: calc((50vw - 84px - 8px) * 1.9); }
+    .soru { -webkit-line-clamp: 4; font-size: 0.94rem; }
   }
-
-  /* ————— 768–1199: iki kolon sabit dizilim, küre üstte ————— */
   @media (min-width: 768px) and (max-width: 1199px) {
-    .vid-b { display: block; }
-    html[data-v="1"] :root, html[data-v="1"] .kure { --kure-l: min(56vh, 520px); }
-    .sahne { display: flex; flex-direction: column; align-items: center; gap: 1.4rem; }
-    .yorunge {
-      position: static;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.7rem 1rem;
-      max-width: 720px;
-      pointer-events: auto;
-    }
+    :root { --kutuW: 220px; --tur: 42s;
+      --a: calc(50vw - 110px - 8px);
+      --b: calc((50vw - 110px - 8px) * 0.46);
+      --R: min(37vw, calc(50vw - 110px - 8px - 110px)); }
   }
-
-  /* ————— ≥1200: YÖRÜNGE ————— */
   @media (min-width: 1200px) {
-    .vid-b { display: block; }
-    :root {
-      --L1: min(56vh, 620px);
-      /* a = min(420px, 50vw−154px); ≥1200'de 50vw−154 ≥ 446 → hep 420 */
-      --a: min(420px, calc(50vw - 154px));
-      --b: calc(var(--a) * 0.46);
-    }
-    /* Yörünge kutusu 2a×2b, .sahne içinde TRANSFORM'SUZ ortalanır (transform
-       stacking context yaratır → çip↔küre interleave bozulur; margin:auto ile
-       ortalanır). */
-    .yorunge {
-      position: absolute;
-      inset: 0;
-      margin: auto;
-      width: calc(var(--a) * 2);
-      height: calc(var(--b) * 2);
-      display: block;
-      pointer-events: none;
-    }
-    .soru {
-      position: absolute;
-      left: 0; top: 0;
-      /* Yörünge: offset-path elips (a=420 SABİT ≥1200 — statik path geçerli).
-         Elips rx=420 ry=193, merkez (420,193), 840×386 kutu. offset-anchor
-         merkez; offset-rotate 0 (dik durur). CSS animation (rAF YOK). */
-      offset-path: path("M 0,193 A 420,193 0 1,1 840,193 A 420,193 0 1,1 0,193");
-      offset-rotate: 0deg;
-      offset-anchor: 50% 50%;
-      transform-origin: center;
-      animation: yorunge-orbit 42s linear infinite;
-      animation-delay: calc(-6s * var(--i));
-      will-change: offset-distance, opacity, transform;
-    }
-    /* Hover/focus → TÜM yörünge durur */
-    .yorunge:hover .soru,
-    .yorunge:focus-within .soru { animation-play-state: paused; }
-
-    /* Yörünge kapatıldıysa (a < L/2+140, JS kontrolü) → 768–1199 dizilimi */
-    html.yorunge-kapali .yorunge {
-      position: static; width: auto; height: auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem 1rem;
-      max-width: 720px; pointer-events: auto;
-      margin: 1.4rem auto 0;
-    }
-    html.yorunge-kapali .soru {
-      position: static; offset-path: none; animation: none;
-      transform: none; margin: 0;
-    }
-    html.yorunge-kapali .sahne { flex-direction: column; display: flex; align-items: center; gap: 1.4rem; }
+    :root { --kutuW: 260px; --tur: 42s;
+      --a: calc(50vw - 130px - 8px);
+      --b: calc((50vw - 130px - 8px) * 0.46);
+      --R: min(min(29vh, 320px), calc(50vw - 130px - 8px - 150px)); }
   }
 
-  @keyframes yorunge-orbit {
-    0%   { offset-distance: 0%;   opacity: 0.85; z-index: 1; transform: scale(0.90); }
-    25%  {                        opacity: 0.85; z-index: 1; transform: scale(0.90); }
-    50%  { offset-distance: 50%;  opacity: 1;    z-index: 3; transform: scale(1); }
-    75%  {                        opacity: 1;    z-index: 3; transform: scale(1); }
-    100% { offset-distance: 100%; opacity: 0.85; z-index: 1; transform: scale(0.90); }
-  }
-
-  /* ————— reduced-motion: video ilk karede durur, yörünge yok, tek kolon ————— */
   @media (prefers-reduced-motion: reduce) {
-    .vid { transition: none; }
-    .soru { animation: none !important; offset-path: none !important;
-      position: static !important; transform: none !important; }
-    .yorunge {
-      position: static !important; display: flex !important;
-      flex-direction: column; align-items: center; gap: 0.5rem;
-      width: auto !important; height: auto !important;
-      margin-top: 1.4rem; pointer-events: auto !important;
-    }
-    .sahne { display: flex !important; flex-direction: column; align-items: center; }
+    .yorunge { position: static; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; width: auto; height: auto; margin-top: 1.4rem; pointer-events: auto; }
+    .soru { position: static; animation: none !important; transform: none !important; opacity: 1 !important; width: min(320px, 88vw); }
+    .sahne { display: flex; flex-direction: column; align-items: center; }
   }
 </style>
 </head>
@@ -331,14 +154,9 @@ const marka = 'Su, yerin altında konuşur.';   // ADIM 5: ana sayfa h1'inden AY
   </header>
 
   <main class="sahne">
-    <div class="kure">
-      <div class="kure-zemin" aria-hidden="true"></div>
-      <div class="kure-video">
-        <video class="vid vid-a" muted playsinline preload="auto"
-          poster="/deneyim/video/sahne1.jpg" aria-hidden="true"></video>
-        <video class="vid vid-b" muted playsinline preload="metadata"
-          aria-hidden="true"></video>
-      </div>
+    <div class="kure-kap">
+      <canvas id="kure-canvas" aria-hidden="true"></canvas>
+      <img class="kure-poster" src="/deneyim/video/atlas-6-poster.jpg" alt="" aria-hidden="true" />
     </div>
 
     <nav class="yorunge" aria-label="Sık sorulan sorular">
@@ -349,98 +167,170 @@ const marka = 'Su, yerin altında konuşur.';   // ADIM 5: ana sayfa h1'inden AY
   </main>
 
 <script>
-  /* ——— VARYANT (client-side; JS'siz v=1) ——— */
-  const params = new URLSearchParams(location.search);
-  if (params.get('v') === '2') document.documentElement.setAttribute('data-v', '2');
-
-  /* ——— ZORUNLU KONTROL: a ≥ (L/2)+140 değilse yörünge kapatılır (ADIM 4) ——— */
   const kok = document.documentElement;
-  function yorungeKontrol() {
-    if (!matchMedia('(min-width: 1200px)').matches) { kok.classList.remove('yorunge-kapali'); return; }
-    const stil = getComputedStyle(kok);
-    const a = parseFloat(stil.getPropertyValue('--a')) || 420;
-    const kure = document.querySelector('.kure');
-    const L = kure ? kure.getBoundingClientRect().height : 0;   // daire: yükseklik = L
-    kok.classList.toggle('yorunge-kapali', !(a >= (L / 2) + 140));
-  }
-  yorungeKontrol();
-  addEventListener('resize', yorungeKontrol);
-
-  /* ——— VİDEO ZİNCİRİ (ADIM 3) ——— */
-  const SAHNE = [1, 2, 3, 4, 5, 6];
-  const kaynak = (n) => `/deneyim/video/sahne${n}.mp4`;
-  const vidA = document.querySelector('.vid-a');
-  const vidB = document.querySelector('.vid-b');
-  const iki = () => matchMedia('(min-width: 768px)').matches;
+  const params = new URLSearchParams(location.search);
+  const varyant = params.get('v') === '2' ? 2 : 1;
+  if (varyant === 2) kok.setAttribute('data-v', '2');
+  const AR = 832 / 464;
   const azHareket = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function oynatmaHatasi(v, hata) {
-    // Sessiz yutma YOK (brief): poster kalır + konsola yazılır.
-    console.error('[mock-kure] video oynatma reddedildi:', hata && hata.message ? hata.message : hata,
-      '— kaynak:', v && v.currentSrc);
+  /* <768: b/R runtime ayarı — (i) elips çevresi/7 ≥ kutuH+12 (b'yi 8px artır),
+     (ii) küre+yörünge 667'de kaydırmasız (b,R oranlı küçült). kutuW değişmez. */
+  function mobilAyar() {
+    if (!matchMedia('(max-width: 767px)').matches) {
+      kok.style.removeProperty('--a'); kok.style.removeProperty('--b'); kok.style.removeProperty('--R');
+      return;
+    }
+    const vw = innerWidth, vh = innerHeight;
+    const kutuW = 168;
+    let a = vw / 2 - kutuW / 2 - 8;
+    let R = 0.37 * vw;
+    let b = a * 1.9;
+    const soru = document.querySelector('.soru');
+    const kutuH = soru ? soru.getBoundingClientRect().height : 96;
+    // (i) elips çevresi (Ramanujan) / 7 ≥ kutuH+12
+    const cevre = (aa, bb) => Math.PI * (3 * (aa + bb) - Math.sqrt((3 * aa + bb) * (aa + 3 * bb)));
+    let guard = 0;
+    while (cevre(a, b) / 7 < (kutuH + 12) && guard++ < 200) b += 8;
+    // (ii) toplam dikey = 2b + kutuH + marka/padding; 667'ye sığmazsa b,R oranlı küçült
+    const ust = (document.querySelector('.marka')?.offsetHeight || 90) + 40;
+    let toplam = 2 * b + kutuH + ust;
+    if (toplam > vh) {
+      const k = (vh - kutuH - ust) / (2 * b);
+      b *= k; R *= k;
+    }
+    kok.style.setProperty('--a', a + 'px');
+    kok.style.setProperty('--b', b + 'px');
+    kok.style.setProperty('--R', R + 'px');
   }
-  function guvenliOynat(v) {
-    const p = v.play();
-    if (p && typeof p.catch === 'function') p.catch((e) => oynatmaHatasi(v, e));
+  mobilAyar();
+  addEventListener('resize', mobilAyar);
+
+  /* ——— WebGL küre (three dinamik import) ——— */
+  const canvas = document.getElementById('kure-canvas');
+  function fallback(neden) {
+    kok.classList.add('webgl-yok');
+    console.error('[mock-kure] WebGL küre çizilemedi, poster + CSS yörünge fallback:', neden);
   }
 
-  if (azHareket) {
-    // İlk karede durur (yörünge zaten CSS'te kapalı).
-    vidA.src = kaynak(1);
-    vidA.classList.add('aktif');
-    vidA.addEventListener('loadeddata', () => { try { vidA.currentTime = 0.05; } catch {} }, { once: true });
-  } else if (iki()) {
-    // ————— ≥768: İKİ VIDEO A/B CROSSFADE —————
-    let sira = 0;              // şu an oynayan sahne indexi (0..5)
-    let aktif = vidA, bekle = vidB, gecisYapiliyor = false;
-    aktif.src = kaynak(SAHNE[0]);
-    aktif.classList.add('aktif');
-    bekle.src = kaynak(SAHNE[1]);       // sıradakini önden yükle (metadata)
-    aktif.addEventListener('canplay', () => guvenliOynat(aktif), { once: true });
+  (async () => {
+    // WebGL var mı?
+    let gl = null;
+    try { gl = canvas.getContext('webgl2') || canvas.getContext('webgl'); } catch (e) {}
+    if (!gl) return fallback('getContext null');
 
-    function crossfade() {
-      gecisYapiliyor = true;
-      const sonraki = (sira + 1) % SAHNE.length;
-      // bekle öğesi zaten sonraki kaynağı taşıyor; oynat + fade
-      bekle.currentTime = 0;
-      guvenliOynat(bekle);
-      bekle.classList.add('aktif');
-      aktif.classList.remove('aktif');
-      const eskiAktif = aktif;
-      aktif = bekle; bekle = eskiAktif;
-      sira = sonraki;
-      // 2'den fazla eşzamanlı yükleme yok: eski aktif durur, YENİ sıradakini alır
-      setTimeout(() => {
-        eskiAktif.pause();
-        const dahaSonraki = (sira + 1) % SAHNE.length;
-        bekle.preload = 'metadata';
-        bekle.src = kaynak(SAHNE[dahaSonraki]);
-        gecisYapiliyor = false;
-      }, 850);
-    }
-    function tik() {
-      if (gecisYapiliyor || !isFinite(aktif.duration)) return;
-      if (aktif.duration - aktif.currentTime <= 0.8) crossfade();
-    }
-    vidA.addEventListener('timeupdate', tik);
-    vidB.addEventListener('timeupdate', tik);
-  } else {
-    // ————— <768: TEK VIDEO —————
-    let sira = 0;
-    vidA.classList.add('aktif');
-    vidA.src = kaynak(SAHNE[0]);
-    vidA.addEventListener('canplay', () => guvenliOynat(vidA), { once: true });
-    vidA.addEventListener('ended', () => {
-      sira = (sira + 1) % SAHNE.length;
-      vidA.classList.remove('aktif');            // önceki son kare kalır (poster benzeri)
-      vidA.src = kaynak(SAHNE[sira]);
-      vidA.addEventListener('canplaythrough', function ac() {
-        vidA.removeEventListener('canplaythrough', ac);
-        vidA.classList.add('aktif');             // 200ms opacity giriş (CSS transition)
-        guvenliOynat(vidA);
-      }, { once: true });
+    let THREE;
+    try { THREE = await import('three'); }
+    catch (e) { return fallback('three import: ' + e.message); }
+
+    // Atlas video
+    const video = document.createElement('video');
+    video.src = '/deneyim/video/atlas-6.mp4';
+    video.muted = true; video.loop = true; video.playsInline = true; video.crossOrigin = 'anonymous';
+    video.preload = 'auto';
+    const p = video.play();
+    if (p && p.catch) p.catch((e) => console.error('[mock-kure] atlas video play reddedildi:', e.message));
+
+    const tex = new THREE.VideoTexture(video);
+    tex.minFilter = THREE.LinearFilter; tex.magFilter = THREE.LinearFilter;
+    tex.generateMipmaps = false;
+    tex.wrapS = THREE.ClampToEdge ?? THREE.ClampToEdgeWrapping;
+    tex.wrapT = THREE.ClampToEdge ?? THREE.ClampToEdgeWrapping;
+    // three 0.185 renk uzayı: sRGB kaynak.
+    if ('SRGBColorSpace' in THREE) tex.colorSpace = THREE.SRGBColorSpace;
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: !matchMedia('(max-width:767px)').matches, alpha: true });
+    if ('SRGBColorSpace' in THREE) renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.setClearColor(0x000000, 0);
+    const dpr = matchMedia('(max-width:767px)').matches ? Math.min(1.5, devicePixelRatio) : Math.min(2, devicePixelRatio);
+    renderer.setPixelRatio(dpr);
+
+    const scene = new THREE.Scene();
+    // Ortografik: birim küre kabı tam doldurur.
+    const cam = new THREE.OrthographicCamera(-1.06, 1.06, 1.06, -1.06, 0.1, 10);
+    cam.position.set(0, 0, 3); cam.lookAt(0, 0, 0);
+
+    const phi = Math.PI / (6 * AR);          // v1 kuşak yarı-açısı
+    const rho = (2 * Math.PI / 3) / AR;       // v2 sarmal satır yarı-açısı
+    const c = (h) => new THREE.Color(h);
+    const mat = new THREE.ShaderMaterial({
+      uniforms: {
+        map: { value: tex }, variant: { value: varyant },
+        phi: { value: phi }, rho: { value: rho },
+        cMid: { value: c('#0C5A7C') }, cDeep: { value: c('#0A2740') },
+      },
+      vertexShader: `varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
+      fragmentShader: `
+        precision highp float;
+        uniform sampler2D map; uniform int variant; uniform float phi; uniform float rho;
+        uniform vec3 cMid; uniform vec3 cDeep; varying vec3 vP;
+        #define PI 3.141592653589793
+        void main(){
+          vec3 n = normalize(vP);
+          float lat = asin(clamp(n.y,-1.0,1.0));
+          float lon = atan(n.z, n.x); if(lon < 0.0) lon += 2.0*PI;
+          bool inB = false; vec2 uv = vec2(0.0);
+          if(variant == 1){
+            if(abs(lat) <= phi){
+              float sl = floor(lon/(PI/3.0));
+              float lu = (lon - sl*(PI/3.0))/(PI/3.0);
+              float lv = (lat+phi)/(2.0*phi);
+              float col = mod(sl,3.0);
+              float top = sl < 3.0 ? 1.0 : 0.0;
+              uv = vec2((col+lu)/3.0, top*0.5 + lv*0.5); inB = true;
+            }
+          } else {
+            if(abs(lat) <= rho){
+              float sl = floor(lon/(2.0*PI/3.0));
+              float lu = (lon - sl*(2.0*PI/3.0))/(2.0*PI/3.0);
+              bool north = lat >= 0.0;
+              float lv = north ? (lat/rho) : ((lat+rho)/rho);
+              uv = vec2((sl+lu)/3.0, north ? (0.5 + lv*0.5) : (lv*0.5)); inB = true;
+            }
+          }
+          vec3 col;
+          if(inB){ col = texture2D(map, uv).rgb; }
+          else {
+            float edge = variant == 1 ? phi : rho;
+            float f = clamp((abs(lat)-edge)/(PI/2.0-edge), 0.0, 1.0);
+            col = mix(cMid, cDeep, f);
+          }
+          vec3 L = normalize(vec3(0.4,0.7,0.6));
+          float lit = 0.72 + 0.28*max(dot(n,L),0.0);
+          gl_FragColor = vec4(col*lit, 1.0);
+        }`,
     });
-  }
+
+    const geo = new THREE.SphereGeometry(1, 160, 120);
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.rotation.z = 0.12;   // hafif eksen eğimi
+    scene.add(mesh);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+    const dir = new THREE.DirectionalLight(0xffffff, 0.8); dir.position.set(0.4,0.7,0.6); scene.add(dir);
+
+    function boyut() {
+      const r = canvas.getBoundingClientRect();
+      renderer.setSize(r.width, r.height, false);
+    }
+    boyut(); addEventListener('resize', boyut);
+
+    renderer.domElement.addEventListener('webglcontextlost', (e) => { e.preventDefault(); fallback('context lost'); });
+
+    const T = 60000;   // 1 tur 60sn
+    let t0 = null;
+    function ciz(ts) {
+      if (t0 === null) t0 = ts;
+      mesh.rotation.y = ((ts - t0) / T) * Math.PI * 2;   // reduced-motion'da da küre döner (brief)
+      renderer.render(scene, cam);
+      requestAnimationFrame(ciz);
+    }
+    requestAnimationFrame(ciz);
+
+    if (azHareket) {
+      // Küre döner ama video ilk karede DURUR (brief reduced-motion).
+      video.addEventListener('loadeddata', () => { try { video.pause(); video.currentTime = 0; } catch (e) {} }, { once: true });
+    }
+  })();
 </script>
 </body>
 </html>

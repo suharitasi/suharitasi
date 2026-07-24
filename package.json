@@ -13,7 +13,7 @@
   "dependencies": {
     "astro": "^5.18.2",
     "maplibre-gl": "^5.24.0",
-    "three": "^0.185.1"
+    "three": "0.185.1"
   },
   "private": true,
   "type": "module",
