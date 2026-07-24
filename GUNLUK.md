@@ -516,3 +516,54 @@ SMTP bilgileri beklemede.
   tıklama, config izleme/etkilesim-beklenen.json). Kural: "Her yeni etkileşimli
   öğe md12'ye bir kontrol satırı ekler." Falsifikasyonla kanıtlandı (bozuk
   menüde md12(i) KIRMIZI verir).
+
+## 25 Tem 2026 — Denetim seansı: brief yazarı hataları
+
+Bu seansta brief yazarı (sohbet tarafı) 4 hata yaptı, 3'ünü Claude Code
+yakaladı, 1'ini kullanıcı yakaladı.
+
+H1. md.1.3'e "git status --porcelain boş olmalı" şartı yazıldı. Bu projede
+    canlı cron'lar git'te izlenen log dosyalarına yazar; ağaç asla temiz
+    olmaz. Şart uygulanamazdı. Claude Code Faz 0'da durdu, doğaçlamadı,
+    seçenek sundu. → md.1.3 ve md.9.1 fark-karşılaştırmasıyla değiştirildi.
+    Neden: genel iyi-uygulama, projenin bilinen gerçeğiyle karşılaştırılmadan
+    yazıldı.
+
+H2. md.3.9'da `--test` bayrağı için kriter "yerel mi okuyor" diye kondu.
+    Doğru kriter "Faz 5'te değiştirdiğimiz şeyi mi doğruluyor" idi.
+    --test sağlık sisteminin kendi onarım beyaz listesini sınıyor; Faz 5'in
+    A düzeltmeleriyle alakasız. → karar geri alındı, Faz 5 doğrulaması
+    yalnız `npm run build` + taban kıyası.
+    Neden: ölçmesi kolay vekil kriter, doğru kriterin yerine kondu.
+
+H3. F0-1 bulgusu "üç cron.log tutarsız izleniyor" diye yazdırıldı.
+    .gitignore'daki /log/ deseninin yorumu ("arşiv altındakiler tracked
+    kalır") bunun bilinçli bir karar olduğunu gösteriyor. Gerçek tutarsızlık
+    yalnız data/arsiv/grace/cron.log (ne izlenen ne ignore'lu).
+    → bulgu 🟡'den ⚪'ya düşürüldü, kapsamı daraltıldı. Faz 4'ün bulduğu
+    farklı bulgu F4-7 olarak ayrı numarayla açıldı.
+    Neden: belirtiden nedene atlandı, kanıt (gitignore) kontrol edilmedi.
+
+H4. Faz 2 sonrası "Claude Code Faz 3'e kendiliğinden geçmiş" denildi.
+    Geçmemişti; "geçiyorum" yazıp turu kapatmıştı. Ekranda `Worked for
+    1m 49s` + boş prompt = durmuş. Kullanıcı 14 dk boşuna bekledi.
+    → S9 hatırlatması verildi: faz sonu satırı "FAZ N BİTTİ — DUR + ONAY
+    BEKLİYOR" olacak, niyet beyanı onay yerine geçmez.
+    Neden: beyan okundu, kanıt okunmadı.
+    Ek not: bu dersten çıkarılan faz-kapısı kuralı BRIEF DÜZEYİNDEDİR,
+    kalıcı değildir. Kalıcı yetki kuralı (tam otomatik mod) yürürlükte
+    kalır; faz kapısı yalnız denetim gibi çok fazlı işlerde, o briefte
+    açıkça yazılarak uygulanır.
+
+ORTAK KÖK: dördünde de kontrol edilebilir bir olgu kontrol edilmek yerine
+makul görünen yüzey sinyali kabul edildi. Claude Code'a yazılan kanıt
+disiplini (exit koduna güvenme · kanıtsız bulgu yok · çıktıyla doğrula)
+brief yazarının kendisine uygulanmadı.
+
+İKİNCİ ÖRÜNTÜ: 4 hatanın 3'ü (H1, H2, H4) fazlar arası hızlı yazılan ek
+madde / onay mesajlarında çıktı. Asıl brief (v3) ayakta kaldı. Hata
+briefte değil, briefin etrafındaki kısa turlarda.
+
+DOĞRU ÇALIŞAN: Claude Code doğaçlama yasağına 7 fazda da uydu; durdu,
+sordu, kendi başına düzeltmedi. Üç hatalı brief maddesini kanıtla çürüttü.
+Üç katmanlı yapı (icra / eleştiri / karar) işledi.

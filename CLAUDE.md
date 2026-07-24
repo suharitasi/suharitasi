@@ -161,6 +161,21 @@ kaydı) bu json güncellenir. İSTİSNA: denetçinin kendi briefi kendi
 tetik-kelimelerine takılır (use/mention); meta-briefler elle değerlendirilir
 (kurulum raporu: rapor/brief-denetci.md).
 
+### Brief yazarı öz-denetim kuralları (25 Tem 2026)
+
+1. Ek madde, onay mesajı ve tek satırlık düzeltme de tam brief sayılır;
+   aynı denetimden geçer. Hatalar burada çıkıyor.
+2. Durum şartı yazmadan önce (ağaç temiz olmalı / dosya var olmalı /
+   sayı N olmalı) projenin gerçek durumu kontrol edilir. Şart, bilinen
+   olgulara karşı yanlışlanabilir olmalı.
+3. Kriter seçerken sor: umursadığım şeyi mi ölçüyor, yoksa ölçmesi kolay
+   bir vekili mi? Vekil kriter yasak.
+4. Belirtiden nedene atlanmaz. Sıra: belirti → hipotez → kontrol → bulgu.
+   Kontrol edilmemiş hipotez bulgu diye yazılmaz.
+5. Beyan değil kanıt okunur. "Yapıyorum / geçiyorum" yapıldı demek
+   değildir; iş bittiğinin kanıtı çıktıdır.
+6. Claude Code için yazılan her kanıt kuralı, brief yazarını da bağlar.
+
 ## Kurallar
 - Her işin sonunda commit + push OTOMATİK yapılır; push için ayrıca
   onay sorulmaz (kullanıcı kararı, 2026-07-14).
