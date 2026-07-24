@@ -62,3 +62,14 @@
 [2026-07-23T15:00:04.596Z] daily-kot: 89 kayıt, 1 sayfa
 [2026-07-23T15:00:04.714Z] daily-volume: 89 kayıt, 1 sayfa
 [2026-07-23T15:00:04.722Z] normalize tamam: 89 baraj kaydı → data/canli/baraj.json
+error: cannot pull with rebase: Your index contains uncommitted changes.
+error: Please commit or stash them.
+fatal: No rebase in progress?
+[2026-07-23T15:00:09Z] deploy hook tetiklendi (HTTP 200)
+[2026-07-24T15:00:02.146Z] TGT alındı (HTTP 201)
+[2026-07-24T15:00:02.715Z] havza listesi: 17 havza
+[2026-07-24T15:00:04.684Z] eşleme: 116 baraj
+[2026-07-24T15:00:04.808Z] active-fullness: 89 kayıt, 1 sayfa
+[2026-07-24T15:00:04.929Z] daily-kot: 89 kayıt, 1 sayfa
+[2026-07-24T15:00:05.074Z] daily-volume: 89 kayıt, 1 sayfa
+[2026-07-24T15:00:05.081Z] normalize tamam: 89 baraj kaydı → data/canli/baraj.json
