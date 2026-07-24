@@ -205,6 +205,27 @@ kullanıcıda. (3) m.18 güncel ceza tutarı [APILEX teyit]. (4) NACE detay
 alt-kod listesi eksik (~58 satır ayrıştırılamadı; gerekirse yüksek-DPI
 segmentasyon).
 
+DÜZELTME TURU 1'DEN AÇIK KALANLAR (2026-07-25):
+
+- [ ] Astro 5.18.2 → 6.0.5 ve maplibre-gl 5.24.0 → 6.0.0 ana sürüm
+      yükseltmesi. ERTELENDİ (25 Tem 2026). Gerekçe: iki ana sürüm
+      atlaması, 175 sayfa + harita bileşenini etkiliyor; denetimde
+      güvenlik maruziyetinin düşük olduğu kanıtlandı (npm audit'teki
+      3 high'ın tetiklediği özelliklerin hiçbiri kullanılmıyor), acele
+      sebebi yok. Sakin bir seansta, tam görsel regresyon kontrolüyle
+      yapılmalı. Denetim maddeleri: F1-2 + F3-1 (K4 kümesi), F1-1
+      (astro check kurulumu), F1-3 (extraneous paket).
+
+- [ ] Ana sayfa soru doğrulaması: mock-kure.astro:21'de bir build-zamanı
+      bekçisi vardı (brief sırasındaki soru anasayfa-sorular.js'de yoksa
+      throw). Rota arşive alınınca bu bekçi öldü. Ana sayfada (index.astro)
+      eşdeğer bir doğrulama var mı kontrol edilmeli; yoksa eklenmesi
+      değerlendirilmeli. DOĞRULANMADI.
+
+- [ ] /harita-pilot/ ve /stil-pilot/ rotalarının akıbeti — karar bekliyor
+      (denetim maddeleri F2-2, F2-3). mock-kure ile birlikte
+      değerlendirilmedi, kapsam dışı bırakıldı.
+
 1. HEDEF.png hero — YAPILDI: görselin kendisi tam ekran hero oldu; 3D
    atmosfer sahnesi src/harita-3d/ altına arşivlendi (silinmedi)
 2. Kullanıcı onayı → canlıya deploy (Production kontrolü)

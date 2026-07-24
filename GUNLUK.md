@@ -567,3 +567,40 @@ briefte değil, briefin etrafındaki kısa turlarda.
 DOĞRU ÇALIŞAN: Claude Code doğaçlama yasağına 7 fazda da uydu; durdu,
 sordu, kendi başına düzeltmedi. Üç hatalı brief maddesini kanıtla çürüttü.
 Üç katmanlı yapı (icra / eleştiri / karar) işledi.
+
+## 25 Tem 2026 — Düzeltme turu 1: arşiv ve temizlik
+
+Denetim (main = ed889fb) sonrası ilk düzeltme turu. 21 B maddesinden
+üç konu ele alındı, 18'i beklemede.
+
+YAPILANLAR
+- /mock-kure/ rotası ve atlas seti arsiv/mock-kure/'ye alındı. Silme
+  yok. Gerekçe: WebGL yüzey-sarma yolu kapandı (sahneler tanınmıyor),
+  küre işi tek-parça Midjourney görseli yönüne döndü. Etki: dist 33 MB
+  → ~27 MB, 176 → 175 sayfa, three chunk artık üretilmiyor.
+- izleme/link-istisna.json'daki mock-kure istisnası kaldırıldı (rota
+  kalkınca ölü kayıt).
+- Kök dizindeki 4 menü denetim ekran karesi arsiv/menu-denetim/'e alındı.
+- icerik-taslak/kuyu-tasima-kaynak.md commit edildi (24 KB, izlenmiyordu,
+  kayıp riski vardı).
+- Astro/maplibre ana sürüm yükseltmesi ERTELENDİ, kuyruğa yazıldı.
+- Yan kazanç: three chunk'ı üretilmediği için taban build'deki tek
+  gerçek uyarı ([WARN] [vite] chunk-size) da ortadan kalktı. Build
+  artık uyarısız.
+
+BRIEF YAZARI HATASI (5.)
+Faz A'da "paylaşılan bileşen import ediyorsa taşıma" kuralı kondu.
+Claude Code kuralı literal uyguladı ve durdu — doğru davranış. Ama
+kural yanlış hedefi koruyordu: taşıma anasayfa-sorular.js'e dokunmuyor,
+ana sayfa etkilenmiyor; kırılan yalnız taşınan dosyanın kendi göreli
+yolu, ki mevcut arşiv teamülü (arsiv/harita-stil, arsiv/landing-koyu)
+bunu zaten kabul etmiş. Yani "paylaşılan import var mı" ölçmesi kolay
+bir vekildi; doğru soru "taşıma paylaşılan tarafı etkiler mi" idi.
+Bu, aynı seansta kayda geçen H2 hatasının (vekil kriter) tekrarıydı;
+CLAUDE.md'deki öz-denetim kuralı 3 yürürlükte olmasına rağmen ihlal
+edildi. Kural doğru, uygulaması eksik kaldı.
+
+KAYIP (kuyruğa yazıldı)
+mock-kure.astro:21'deki build-zamanı soru doğrulaması, sayfa
+derlenmediği için artık çalışmıyor. Ana sayfada eşdeğeri var mı
+DOĞRULANMADI.
