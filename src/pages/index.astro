@@ -191,16 +191,42 @@ const sahneVeri = SAHNELER.map((s) => ({
      çıkar. Motorun kendi üst şeridi de kullanılmaz (tek kaynak UstMenu). */
   .sw-copylayer, .sw-topbar { display: none !important; }
 
-  /* Akış bitince sahne katmanı iniş bölümünün altında kalır: yüzen motor
-     öğeleri, güverte ve KOYU menü şeridi kapanır. */
+  /* Akış bitince yüzen motor öğeleri + güverte kapanır (iniş bölümünün
+     altında kalır). MENÜ ŞERİDİ KAPANMAZ — kapanınca pointer-events:none
+     alıyordu ve dipte (scroll-restorasyonu) menü ÖLÜ açılıyordu (24.07 arıza,
+     regresyon DEĞİL — eski davranış). Bunun yerine menü aydınlık iniş üstünde
+     OKUNAKLI + AÇILIR kalır (aşağıda .ust-sabit aydınlık dönüşü). */
   html.akis-bitti .sw-route,
   html.akis-bitti .sw-hint,
   html.akis-bitti .sw-scrollbar,
-  html.akis-bitti .guverte,
-  html.akis-bitti .ust-sabit { opacity: 0; pointer-events: none; }
+  html.akis-bitti .guverte { opacity: 0; pointer-events: none; }
 
-  .sw-route, .sw-hint, .sw-scrollbar, .guverte, .ust-sabit {
+  .sw-route, .sw-hint, .sw-scrollbar, .guverte {
     transition: opacity 240ms var(--e-akinti);
+  }
+
+  /* Menü şeridi akış dibinde aydınlık iniş bölümü üstündedir → koyu scrim +
+     köpük linkler okunmaz ve ESKİDEN gizleniyordu. Çözüm: tokenları aydınlığa
+     çevir (içerik-sayfası `.ust.sv-yuzer` deseni) — şerit CANLI + tıklanır +
+     okunaklı kalır. Renkler C paleti (yeni hex yok). */
+  .ust-sabit {
+    transition: background-color 240ms var(--e-akinti),
+                box-shadow 240ms var(--e-akinti);
+  }
+  html.akis-bitti .ust-sabit {
+    background: rgba(233, 240, 244, 0.90);
+    box-shadow: 0 1px 14px rgba(19, 42, 63, 0.06);
+    --metin: #132A3F;        /* Mürekkep */
+    --metin-soluk: #48627A;  /* Soluk */
+    --kopuk: #0C5A7C;        /* DERİN (hover) */
+    --akuamarin: #0C5A7C;
+  }
+  @supports (backdrop-filter: blur(1px)) {
+    html.akis-bitti .ust-sabit {
+      background: rgba(233, 240, 244, 0.74);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
   }
 
   /* SAHNE ADI HAPI GÖRÜNMEZ — clip tekniğiyle (a11y adı korunur, göz görmez). */

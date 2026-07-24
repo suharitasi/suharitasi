@@ -1,0 +1,17 @@
+{
+  "aciklama": "md12 ETKİLEŞİM DENETİMİ — site-saglik'in diğer 10 kontrolü VARLIK denetler (200 mü, link kırık mı, konsol temiz mi, medya yüklendi mi); hiçbiri İŞLEV denemez. 24.07 menü arızası tam bu kör noktadan sistemden kaçtı, kullanıcı buldu. Her yeni etkileşimli öğe buraya bir kontrol satırı ekler (SÜREKLİLİK İLKESİ).",
+  "ders": "Sağlık sistemi varlık denetler; işlev denetlenmezse arıza kullanıcıya kalır.",
+  "kritik_anlami": "kritik=true → kırık ise md12 KIRMIZI (alarm). kritik=false → kırık ise SARI (bekleyen bulgu, ayrı iş; alarmı tetiklemez).",
+  "kontroller": [
+    { "id": "menu-anasayfa", "yol": "/", "tur": "menu", "kritik": true,
+      "aciklama": "Ana sayfa menüsü DİPTE (akis-bitti / scroll-restorasyonu senaryosu) açılıp kapanıyor mu — 24.07 arızasının tam senaryosu." },
+    { "id": "hangi-kurum-filtre", "yol": "/hangi-kurum/", "tur": "details", "kritik": false,
+      "secici": "details.ik-kart", "aciklama": "Filtre kartı (details) tıklanınca cevap açılıyor mu." },
+    { "id": "durumum-arama", "yol": "/durumum/", "tur": "arama", "kritik": false,
+      "girdi": "#durumum-ara", "sonuc": "#durumum-izgara", "sorgu": "otel",
+      "aciklama": "Sektör araması yazınca sonuç kartları görünür kalıyor mu." },
+    { "id": "anasayfa-soru-bagi", "yol": "/", "tur": "link200", "kritik": false,
+      "secici": ".guverte a[href^=\"/\"], .soru-serit a[href^=\"/\"]",
+      "aciklama": "Ana sayfadaki bir soru bağı hedefe 200 ile gidiyor mu." }
+  ]
+}

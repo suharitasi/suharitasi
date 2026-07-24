@@ -61,7 +61,21 @@ YENİ KUYRUK MADDESİ — sağlık sistemi a11y açığı: md.9 Lighthouse yaln�
 BEKLEMEDE: SMTP bilgileri (.env'de SMTP_HOST/SMTP_USER/SMTP_PASS/ALARM_TO).
   Gelince e-posta alarmı açılır + sentetik 🔴 ile test maili atılır.
 
-ANA SAYFA — SORU HİYERARŞİSİ v3: AŞAMA 2 (KOD) UYGULANDI, KULLANICI ONAYI
+ANA SAYFA — MENÜ/SÜZÜLME/ÖNCELİK v3: FAZ 1 (MENÜ ARIZASI) DÜZELTİLDİ,
+KULLANICI ONAYI BEKLİYOR (2026-07-24). Kök neden REGRESYON DEĞİL, eski arıza:
+akis-bitti (kaydırma dibi/scroll-restorasyonu) menü şeridini
+pointer-events:none yapıyordu → menü ölü açılıyordu. Düzeltme: dipte menü
+söndürülmez, aydınlık iniş üstünde okunaklı+açılır kalır (C paleti). EKLENDİ:
+site-saglik md12 ETKİLEŞİM DENETİMİ (varlık değil işlev; menü/filtre/arama/bağ)
+— falsifikasyonla kanıtlı (bozuk menü→md12 KIRMIZI). Kanıt:
+cikti/denetim/menu-arizasi/RAPOR.md; 375 konsol 0/taşma 0. DUR — kullanıcı
+canlıda menüyü doğrular (masaüstü+mobil, scroll-restorasyonu senaryosu).
+SIRADA: FAZ 2 SÜZÜLME (mock, HAREKETLİ kare dizisi; A güverte İPTAL, opak
+güverte kalkar) → FAZ 3 uygulama (süzülme + soru önceliği: su nerede çıkar→
+kuyu ruhsatı→ceza; Su Kanunu geri çekilir). FAZ 2/3 ayrı commit, DUR'lu.
+[TAMAMLANAN v3-öncesi] SORU HİYERARŞİSİ Aşama 2 (soru güvertesi) uygulanmıştı;
+FAZ 2/3 bu güverteyi süzülmeyle DEĞİŞTİRECEK.
+[ÖNCEKİ] ANA SAYFA — SORU HİYERARŞİSİ v3: AŞAMA 2 (KOD) UYGULANDI, KULLANICI ONAYI
 BEKLİYOR (2026-07-23). Kararlar A/S2/iniş-kalksın/hedef-sabit uygulandı:
 soru güvertesi (sahne üst bant, opak DİP panel → garantili AA 13,91:1),
 öz-cevap ilk ekranda, "Su nerelerde çıkar?" S2 native <details> dürüst cevap

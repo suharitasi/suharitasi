@@ -495,3 +495,24 @@ SMTP bilgileri beklemede.
 - KARAR/UYDURMA: brief "tel" istedi ama doğrulanmış numara yok — icat edilmedi,
   onaylı e-posta+künye kalıbı kullanıldı (numara verilirse eklenir).
 - DURUM: KULLANICI ONAYI BEKLİYOR (canlı test). Menü iki kaynağa da eklendi.
+
+## 2026-07-24 (ana sayfa: menü arızası FAZ 1 + iki ders)
+- MENÜ ARIZASI DÜZELTİLDİ (v3 FAZ 1, tek commit). Kök neden REGRESYON DEĞİL,
+  eski arıza: `html.akis-bitti .ust-sabit{opacity:0;pointer-events:none}` —
+  kaydırma dibe ulaşınca (akis-bitti) menü şeridi ölüyordu; tetik tarayıcı
+  scroll-restorasyonu (dipteyken ana sayfaya dönünce menü açılışta ölü).
+  Scroll 0'da çalıştığı için gözden kaçmıştı. Düzeltme: menü akış dibinde
+  söndürülmez, aydınlık iniş üstünde okunaklı+açılır kalır (token aydınlığa
+  çevrilir; C paleti). Kanıt: cikti/denetim/menu-arizasi/RAPOR.md.
+- DERS 1 (HATA KAYDI + KURAL): "Hareket kararı STATİK kareden onaylanamaz.
+  Süzülme/animasyon içeren her mock kare dizisi (0/0.5/1/1.5/2/3 sn) ile
+  sunulur; tek kare yeterli sayılmaz." Aşama 2 A-güverte kararı statik
+  karelerle alınmıştı → kullanıcının istediği hareket/albeni görünmedi.
+  FAZ 2 mock'u bu kurala uyar.
+- DERS 2 (HATA KAYDI + KURAL): "Sağlık sistemi VARLIK denetler; İŞLEV
+  denetlenmezse arıza kullanıcıya kalır." site-saglik'in 10 kontrolü de
+  varlık (200/link/konsol/medya) test ediyordu; hiçbiri etkileşim denemiyordu
+  → menü arızası sistemden kaçtı. EKLENDİ: md12 ETKİLEŞİM DENETİMİ (headless
+  tıklama, config izleme/etkilesim-beklenen.json). Kural: "Her yeni etkileşimli
+  öğe md12'ye bir kontrol satırı ekler." Falsifikasyonla kanıtlandı (bozuk
+  menüde md12(i) KIRMIZI verir).

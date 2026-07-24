@@ -126,6 +126,9 @@ const yap = {
   medya: json(join(IZLEME, 'medya-beklenen.json')).sayfalar,
   linkIstisna: json(join(IZLEME, 'link-istisna.json')).istisnalar,
   cspIzinli: json(join(IZLEME, 'csp-izinli-kaynaklar.json')),
+  // md12 ETKİLEŞİM DENETİMİ (24.07): varlık değil İŞLEV testi. Boş/eksik
+  // dosyada md12 sessizce atlanır (yeni kontrol eski kurulumu düşürmesin).
+  etkilesim: json(join(IZLEME, 'etkilesim-beklenen.json'), { kontroller: [] }).kontroller,
 };
 const durum = json(DURUM_YOL, {
   sonSitemapSayisi: null, lhArdisik: {}, sonBildirim: {}, sonBasariliKosu: null, onarimGecmisi: [],
@@ -341,9 +344,80 @@ async function tarayiciKontrolleri() {
         { benzersiz: bulunan.size, taranan: tarananSayfalar.length, kirik, istisnaSayisi: yap.linkIstisna.length },
         ['tam']);
     }
+
+    // md.12 ETKİLEŞİM — VARLIK değil İŞLEV (24.07 menü arızası dersi)
+    if (MOD !== 'hizli') await md12_etkilesim(tarayici);
   } finally {
     await tarayici.close();
   }
+}
+
+// md.12 ETKİLEŞİM DENETİMİ — headless tıklama; menü/filtre/arama/bağ İŞLER mi.
+// (i) menü kritik → kırık ise KIRMIZI; (ii)-(iv) kritik değil → SARI (bekleyen
+// bulgu, alarm değil). Config: izleme/etkilesim-beklenen.json.
+async function md12_etkilesim(tarayici) {
+  if (!yap.etkilesim.length) return;   // config yoksa sessizce atla
+  const sonuc = [];
+  for (const k of yap.etkilesim) {
+    let gecti = false, detay = '';
+    const ctx = await tarayici.newContext({ viewport: { width: 375, height: 812 } });
+    const sayfa = await ctx.newPage();
+    try {
+      await sayfa.goto(TABAN + k.yol, { waitUntil: 'load' });
+      await sayfa.waitForTimeout(1000);
+      if (k.tur === 'menu') {
+        // Dibe kaydır: akis-bitti / scroll-restorasyonu = arızanın tam senaryosu.
+        await sayfa.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
+        await sayfa.waitForTimeout(500);
+        await sayfa.evaluate(() => { const b = document.querySelector('.sv-menu-ac-koyu, .sv-menu-ac'); if (b) b.click(); });
+        await sayfa.waitForTimeout(700);
+        const acildi = await sayfa.evaluate(() => { const o = document.getElementById('sv-menu'); return !!o && o.classList.contains('sv-acik') && !o.hidden; });
+        await sayfa.keyboard.press('Escape');
+        await sayfa.waitForTimeout(600);
+        const kapandi = await sayfa.evaluate(() => { const o = document.getElementById('sv-menu'); return !!o && !o.classList.contains('sv-acik'); });
+        gecti = acildi && kapandi;
+        detay = `dip(akis-bitti): açıldı=${acildi} kapandı=${kapandi}`;
+      } else if (k.tur === 'details') {
+        const r = await sayfa.evaluate((sec) => {
+          const d = document.querySelector(sec); if (!d) return { yok: true };
+          const s = d.querySelector('summary'); if (s) s.click();
+          return { acik: d.open };
+        }, k.secici);
+        gecti = !r.yok && !!r.acik;
+        detay = r.yok ? `${k.secici} yok` : `open=${r.acik}`;
+      } else if (k.tur === 'arama') {
+        const inp = await sayfa.$(k.girdi);
+        if (!inp) { detay = `${k.girdi} yok`; }
+        else {
+          await inp.fill(k.sorgu || '');
+          await sayfa.waitForTimeout(500);
+          const gorunur = await sayfa.evaluate((s) => {
+            const kap = document.querySelector(s); if (!kap) return -1;
+            return [...kap.querySelectorAll('a, .pk, .k, .kart')].filter((e) => e.offsetParent !== null).length;
+          }, k.sonuc);
+          gecti = gorunur > 0;
+          detay = `"${k.sorgu}" → ${gorunur} görünür sonuç`;
+        }
+      } else if (k.tur === 'link200') {
+        const href = await sayfa.evaluate((sec) => {
+          const a = document.querySelector(sec); return a ? a.getAttribute('href') : null;
+        }, k.secici);
+        if (!href) { detay = 'soru bağı bulunamadı'; }
+        else { const c = await getir(TABAN + href); gecti = c.status === 200; detay = `${href} → ${c.status}`; }
+      }
+    } catch (e) { detay = 'HATA: ' + e.message; }
+    await ctx.close();
+    sonuc.push({ id: k.id, kritik: !!k.kritik, gecti, detay });
+  }
+  const kritikKotu = sonuc.filter((s) => s.kritik && !s.gecti);
+  const digerKotu = sonuc.filter((s) => !s.kritik && !s.gecti);
+  const durum = kritikKotu.length ? 'kirmizi' : digerKotu.length ? 'sari' : 'gecti';
+  const mesaj = kritikKotu.length
+    ? `KRİTİK etkileşim kırık: ${kritikKotu.map((s) => s.id).join(', ')}`
+    : digerKotu.length
+      ? `kritik geçti; bekleyen bulgu (ayrı iş): ${digerKotu.map((s) => s.id).join(', ')}`
+      : `${sonuc.length}/${sonuc.length} etkileşim çalışıyor`;
+  kaydet('12-etkilesim', durum, mesaj, { sonuc }, ['tam']);
 }
 
 // md.9 LIGHTHOUSE — yalnız --tam, SIRAYLA, her sayfadan sonra tarayıcı kapanır
