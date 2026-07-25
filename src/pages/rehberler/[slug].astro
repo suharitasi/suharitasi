@@ -8,6 +8,7 @@ import YazarKutusu from '../../components/YazarKutusu.astro';
 import IlgiliRehberler from '../../components/IlgiliRehberler.astro';
 import Katman from '../../components/Katman.astro';
 import { YAZAR, OG_GORSEL } from '../../data/site';
+import SonrakiAdim from '../../components/SonrakiAdim.astro';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('rehberler');
@@ -212,6 +213,7 @@ if (kalip2) {
     )}
 
     <YazarKutusu />
+    <SonrakiAdim konu={giris.data.baslik} />
     <IlgiliRehberler slugler={giris.data.ilgili} haric={giris.id} />
   </Fragment>
 ) : (
@@ -229,7 +231,8 @@ if (kalip2) {
   </div>
   {giris.data.ilKurumTablosu && <IlKurumTablosu />}
   <YazarKutusu />
-  <IlgiliRehberler slugler={giris.data.ilgili} haric={giris.id} />
+  <SonrakiAdim konu={giris.data.baslik} />
+    <IlgiliRehberler slugler={giris.data.ilgili} haric={giris.id} />
   </Fragment>
 )}
 </Sayfa>

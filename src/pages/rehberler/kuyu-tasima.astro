@@ -11,6 +11,7 @@ import OzCevap from '../../components/OzCevap.astro';
 import Katman from '../../components/Katman.astro';
 import YazarKutusu from '../../components/YazarKutusu.astro';
 import IlgiliRehberler from '../../components/IlgiliRehberler.astro';
+import SonrakiAdim from '../../components/SonrakiAdim.astro';
 import { getEntry } from 'astro:content';
 import { YAZAR, OG_GORSEL, EPOSTA } from '../../data/site';
 
@@ -496,6 +497,7 @@ const sema = [
   </nav>
 
   <YazarKutusu />
+  <SonrakiAdim konu="Kuyu taşıma" />
   <IlgiliRehberler slugler={d.ilgili} haric={giris.id} />
 </Sayfa>
 

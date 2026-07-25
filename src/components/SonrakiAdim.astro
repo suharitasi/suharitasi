@@ -1,0 +1,69 @@
+---
+// K3-2F (26 Tem 2026) — REHBER SONU GEÇİŞİ.
+// ÖLÇÜM: rehber sayfaları "İlgili rehberler" bloğuyla bitiyordu (boş değil,
+// iki ilgili rehber açıklamalı). Eksik olan rehber→ARAÇ ve rehber→BÜRO
+// geçişiydi: /durumum/ ve /hangi-kurum/ rehber gövdesinde HİÇ geçmiyordu
+// (yalnız tam-ekran menüde), mailto ise 171 sayfada vardı ama sadece
+// künyede, çağrı metni olmadan.
+//
+// YÖNTEM: `cro` skill'i adım 3 (CTA yerleşimi ve hiyerarşisi) + adım 6
+// (itiraz karşılama) · `content-strategy` alıcı aşaması: rehberi bitiren
+// ziyaretçi "farkındalık" değil "uygulama" aşamasındadır; ona bir sonraki
+// MAKALE değil bir sonraki ADIM gerekir (kurul oturumunda Handley'in
+// itirazı buydu). Üç adım tek hiyerarşide: kendi durumun → yetkili kurum →
+// insan muhatap.
+//
+// UYDURMA YASAĞI (M8): e-posta, büro adı ve büro adresi src/data/site.ts'ten
+// gelir — kod tabanında zaten doğrulanmış gerçek veriler. Telefon numarası
+// doğrulanmadığı için YAZILMADI.
+import { EPOSTA, YAZAR } from '../data/site';
+const { konu } = Astro.props;
+---
+<section class="sonraki" aria-label="Sonraki adım">
+  <p class="sonraki-b">Sonraki adım</p>
+  <ul class="sonraki-l">
+    <li>
+      <a href="/durumum/">Sektörünüze göre yükümlülüğünüz</a>
+      <span>Faaliyet kolunuza göre hangi yükümlülük ve hangi son tarih geçerli.</span>
+    </li>
+    <li>
+      <a href="/hangi-kurum/">Bu işlemde hangi kuruma gideceksiniz</a>
+      <span>20 su işlemi için yetkili kurum ve başvuru kanalı.</span>
+    </li>
+    <li>
+      <a href={`mailto:${EPOSTA}?subject=${encodeURIComponent((konu ?? 'Su hukuku') + ' — rehber üzerinden')}`}>Bu konuda görüş alın</a>
+      <span>Hukuki içerik {YAZAR.buro} tarafından hazırlanır — {EPOSTA}</span>
+    </li>
+  </ul>
+</section>
+
+<style>
+  .sonraki {
+    margin: 1.8rem 0 0;
+    padding: 1.2rem 1.4rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-left: 3px solid var(--su-700);
+  }
+  .sonraki-b {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    margin: 0 0 0.7rem;
+  }
+  .sonraki-l { list-style: none; display: grid; gap: 0.7rem; margin: 0; padding: 0; }
+  .sonraki-l li { display: grid; gap: 0.15rem; }
+  .sonraki-l a {
+    font-family: var(--serif);
+    font-size: 1.12rem;
+    font-weight: 500;
+    color: var(--baglanti);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    width: fit-content;
+  }
+  .sonraki-l a:hover { border-bottom-color: var(--baglanti); }
+  .sonraki-l span { color: var(--metin-soluk); font-size: 0.9rem; }
+</style>
