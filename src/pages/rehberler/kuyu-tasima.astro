@@ -276,6 +276,21 @@ const sema = [
       acceptedAnswer: { '@type': 'Answer', text: q.c },
     })),
   },
+  // Madde 13 (geo-schema): "yedi adım" gerçek bir prosedür — HowTo olarak da
+  // işaretlenir. Adım metinleri adimlar[] dizisinden birebir gelir; şemaya
+  // sayfada olmayan tek kelime girmez.
+  {
+    '@type': 'HowTo',
+    name: `${d.baslik} — yeni başvuru şeması`,
+    description: d.ozCevap,
+    inLanguage: 'tr-TR',
+    step: adimlar.map((a, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: a.asama,
+      text: `${adimEtiket.dayanak}: ${a.dayanak} · ${adimEtiket.belge}: ${a.belge} · ${adimEtiket.cikti}: ${a.cikti}`,
+    })),
+  },
 ];
 ---
 <Sayfa baslik={d.baslik} aciklama={d.ozCevap} sema={sema} heroSlot="rehber-hero">

@@ -32,7 +32,7 @@ const tarihISO = giris.data.tarih.toISOString();
 // FAQPage bilinçli olarak YOK: rehberlerde görünür soru-cevap bölümü
 // bulunmuyor; olmayan içeriği işaretlemek Google yapılandırılmış veri
 // kurallarına aykırıdır. Rehberlere gerçek SSS bölümü eklenirse eklenir.
-const sema = [
+const sema: any[] = [
   {
     '@type': 'Article',
     headline: giris.data.baslik,
@@ -113,6 +113,22 @@ if (kalip2) {
   // İçindekiler kartları: görünür bölümler BÖLÜM sayacıyla aynı sırada
   // numaralanır; katmana inen referans blokları "EK" etiketiyle listelenir.
   const gorunur = headings.filter((h) => h.depth === 2 && h.slug !== 'madde-metni');
+  // Madde 13 (geo-schema): "Başvuru akışı" tablosu gerçek bir prosedür —
+  // HowTo olarak da işaretlenir. Adım metinleri adimlar[] dizisinden birebir
+  // gelir; şemaya sayfada olmayan tek kelime girmez.
+  sema.push({
+    '@type': 'HowTo',
+    name: `${giris.data.baslik} — başvuru akışı`,
+    description: giris.data.ozCevap,
+    inLanguage: 'tr-TR',
+    step: adimlar.map((a, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: a.asama,
+      text: `${a.aciklama} · ${adimEtiket.unsur}: ${a.unsur} · ${adimEtiket.risk}: ${a.risk}`,
+    })),
+  });
+
   icindekiler = [
     ...gorunur.map((h, i) => ({
       no: String(i + 1).padStart(2, '0'),
