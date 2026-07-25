@@ -1,8 +1,8 @@
 # Su Kanunu İzleme — DURUM
 
-Son koşu (UTC): **2026-07-24T16-00-01Z**
+Son koşu (UTC): **2026-07-25T05-30-01Z**
 
-Özet: 11 hedef · ✳ olay: 4 · 🔴 hata: 0
+Özet: 11 hedef · ✳ olay: 0 · 🔴 hata: 0
 
 ## Hedef durumları
 
@@ -12,11 +12,11 @@ Son koşu (UTC): **2026-07-24T16-00-01Z**
 | tbmm-kanun-teklifleri | K1 | 🟢 tamam | değişiklik yok |
 | tbmm-cevre-komisyonu | K1 | 🟢 tamam | değişiklik yok |
 | tbmm-tarim-orman-komisyonu | K1 | 🟢 tamam | değişiklik yok |
-| tbmm-komisyon-gundemleri | K1 | ✳ OLAY | içerik değişti (~18 satır) |
-| tarimorman-sygm | K4 | ✳ OLAY | içerik değişti (~124 satır) |
-| tarimorman-anasayfa | K4 | ✳ OLAY | içerik değişti (~347 satır) |
+| tbmm-komisyon-gundemleri | K1 | 🟢 tamam | değişiklik yok |
+| tarimorman-sygm | K4 | 🟢 tamam | değişiklik yok |
+| tarimorman-anasayfa | K4 | 🟢 tamam | değişiklik yok |
 | dsi-duyuru-listesi | K4 | 🟢 tamam | değişiklik yok |
-| su-kanunu-taslak-pdf | K4 | ✳ OLAY | PDF Last-Modified değişti → yeni taslak? |
+| su-kanunu-taslak-pdf | K4 | 🟢 tamam | Last-Modified değişmedi (Thu, 31 Oct 2019 08:20:54 GMT) |
 | susurasi | K4 | 🟢 tamam | değişiklik yok |
 | suverimliligi | K4 | 🟢 tamam | değişiklik yok |
 
