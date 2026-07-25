@@ -29,6 +29,52 @@ const baglar = (p.ilgiliIcerik || [])
   .map((yol) => ({ yol, ad: rehberBaslik.get(yol) || sabitEtiket[yol] || yol }))
   .filter((b, i, a) => a.findIndex((x) => x.yol === b.yol) === i);
 
+// K3-2B (26 Tem 2026): persona sayfaları TEK iç link alıyordu (yalnız
+// /durumum/ dizininden; 42 sayfa × 1 link, grafiğin ortası boş). Yatay bağ
+// site-architecture skill'inin "yetim sayfa yasağı" + hub-and-spoke'ta
+// spoke↔spoke kuralı gereği açıldı.
+// SEMANTİK ÖLÇÜT — rastgele serpme DEĞİL: iki persona aynı rehberi
+// ilgiliIcerik'inde taşıyorsa aynı hukuki sorunu paylaşıyordur. Sıralama:
+// ortak rehber sayısı (çok→az), eşitlikte ad (tr-TR). Hiç ortak rehberi
+// olmayan persona için yedek ölçüt aynı `kaynak` grubudur — böylece hiçbir
+// sayfa bağsız kalmaz.
+// İki ölçüt, bu sırayla:
+//
+// (1) ORTAK REHBER — güçlü sinyal. Ölçüldü: 42 personanın 35'i ilgiliIcerik'inde
+//     /su-kanunu/ taşıyor. Bu bir GEZİNME hub'ı, konu değil; benzerlik sinyalinden
+//     çıkarılmazsa 35 kişilik tek klik oluşuyor ve alfabetik ilk 3 sayfaya yığılma
+//     yapıyordu (ölçüldü: 3 sayfa 35 link, kuyrukta 30 sayfa hâlâ 1 link).
+//     HUB_YOLLAR dışlanır; kalan ortak rehber gerçek konu ortaklığıdır.
+// (2) GRUP HALKASI — kapsama garantisi. Aynı `kaynak` grubunda (nace-ek2: 31,
+//     genel: 11) kendinden SONRAKİ komşular, döngüsel. Semantik dayanak: aynı
+//     kaynak grubu. Alfabetik ilk-3 yerine döngüsel pencere seçilmesinin sebebi
+//     dağıtımdır — her sayfa halkadan eşit sayıda bağ alır, yığılma olmaz.
+const HUB_YOLLAR = new Set(['/su-kanunu/', '/harita/', '/vaka/', '/rehberler/']);
+const kendiOzel = new Set((p.ilgiliIcerik || []).filter((y) => !HUB_YOLLAR.has(y)));
+const ozelOrtak = personalar
+  .filter((o) => o.slug !== p.slug)
+  .map((o) => ({ o, n: (o.ilgiliIcerik || []).filter((y) => kendiOzel.has(y)).length }))
+  .filter((x) => x.n > 0)
+  .sort((a, b) => b.n - a.n || a.o.ad.localeCompare(b.o.ad, 'tr'))
+  .map((x) => x.o);
+
+const grup = personalar
+  .filter((o) => o.kaynak === p.kaynak)
+  .sort((a, b) => a.ad.localeCompare(b.ad, 'tr'));
+const kendiSira = grup.findIndex((o) => o.slug === p.slug);
+const halka = grup.length > 1
+  ? [1, 2, 3].map((k) => grup[(kendiSira + k) % grup.length]).filter((o) => o.slug !== p.slug)
+  : [];
+
+const secilen = [];
+for (const o of [...ozelOrtak, ...halka]) {
+  if (secilen.length >= 4) break;
+  if (o && !secilen.some((x) => x.slug === o.slug)) secilen.push(o);
+}
+const benzerler = secilen
+  .sort((a, b) => a.ad.localeCompare(b.ad, 'tr'))
+  .map((o) => ({ yol: `/durumum/${o.slug}/`, ad: o.ad }));
+
 const tarihli = !!p.sonTarihMetni;
 
 // Öz-cevap (≤280): yükümlülük + (varsa) sabit tarih.
@@ -98,6 +144,16 @@ const sema = [
     <nav class="capraz" aria-label="İlgili içerik">
       {baglar.map((b) => <a href={b.yol}>→ {b.ad}</a>)}
     </nav>
+  )}
+
+  {/* K3-2B: yatay bağ — gerekçe frontmatter'da. */}
+  {benzerler.length > 0 && (
+    <>
+      <h2 class="blok-baslik">Benzer durumlar</h2>
+      <nav class="capraz" aria-label="Benzer sektör durumları">
+        {benzerler.map((b) => <a href={b.yol}>→ {b.ad}</a>)}
+      </nav>
+    </>
   )}
 
   {/* İletişim (form kapsam dışı — e-posta + künye) */}
