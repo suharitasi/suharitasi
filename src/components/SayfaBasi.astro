@@ -11,9 +11,14 @@ interface Props {
   tarih?: Date;
   // true ise "Hukuki içerik: Av. Serdar Arslan" satırı gösterilir.
   yazarli?: boolean;
+  // true ise ozet, sayfanın öz-cevabı olarak işaretlenir (CLAUDE.md "cevap
+  // önce, dayanak sonra"): class="oz-cevap" + role="doc-abstract". Yalnız
+  // kendi OzCevap bileşeni OLMAYAN hub sayfalarında açılır — iki öz-cevap
+  // çıkmasın. Görünüm değişmez; işaret makine okuyucular içindir.
+  ozCevap?: boolean;
 }
 
-const { etiket, baslik, ozet, tarih, yazarli } = Astro.props;
+const { etiket, baslik, ozet, tarih, yazarli, ozCevap } = Astro.props;
 
 const tarihYaz = (t: Date) =>
   t.toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -37,7 +42,11 @@ const tarihYaz = (t: Date) =>
     </p>
   )}
   <hr class="su-hatti" aria-hidden="true" />
-  {ozet && <p class="sayfa-ozet">{ozet}</p>}
+  {ozet && (
+    ozCevap
+      ? <p class="sayfa-ozet oz-cevap" role="doc-abstract">{ozet}</p>
+      : <p class="sayfa-ozet">{ozet}</p>
+  )}
 </div>
 
 <style>
