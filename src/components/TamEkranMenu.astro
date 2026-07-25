@@ -113,9 +113,16 @@ const kademe = () => ({ '--kademe': String(sira++) });
 
     <div class="sv-ayrac" aria-hidden="true"></div>
 
+    {/* K3-2A (26 Tem 2026): vitrin başlıkları <h2> DEĞİL <p>. Sebep: bu menü
+        işaretlemesi her sayfada belge akışının EN BAŞINDA basılıyordu ve
+        171/174 sayfada <h1>'den ÖNCE üç <h2> üretiyordu — metin ayrıştıran
+        her istemci (AI tarayıcı dahil) bozuk başlık hiyerarşisi görüyordu.
+        Bunlar belge başlığı değil, gezinme paneli etiketleri; erişilebilir
+        ad <section aria-label> ile korundu, görünüm .sv-vitrin-baslik
+        sınıfından geldiği için DEĞİŞMEDİ. */}
     <nav class="sv-vitrin" aria-label="Öne çıkan içerik">
-      <section class="sv-vitrin-rehberler">
-        <h2 class="sv-vitrin-baslik sv-kademe" style={kademe()}>Son rehberler</h2>
+      <section class="sv-vitrin-rehberler" aria-label="Son rehberler">
+        <p class="sv-vitrin-baslik sv-kademe" style={kademe()}>Son rehberler</p>
         <ul>
           {sonRehberler.map((r) => (
             <li class="sv-kademe" style={kademe()}>
@@ -128,8 +135,8 @@ const kademe = () => ({ '--kademe': String(sira++) });
         </ul>
       </section>
 
-      <section class="sv-vitrin-kanun">
-        <h2 class="sv-vitrin-baslik sv-kademe" style={kademe()}>Su Kanunu — son durum</h2>
+      <section class="sv-vitrin-kanun" aria-label="Su Kanunu — son durum">
+        <p class="sv-vitrin-baslik sv-kademe" style={kademe()}>Su Kanunu — son durum</p>
         <p class="sv-kademe" style={kademe()}>
           <a href="/su-kanunu/taslak-takibi/">
             <span class="sv-vitrin-tarih">{kanunSon.tarih}</span>
@@ -138,8 +145,8 @@ const kademe = () => ({ '--kademe': String(sira++) });
         </p>
       </section>
 
-      <section class="sv-vitrin-havza">
-        <h2 class="sv-vitrin-baslik sv-kademe" style={kademe()}>Öne çıkan havza</h2>
+      <section class="sv-vitrin-havza" aria-label="Öne çıkan havza">
+        <p class="sv-vitrin-baslik sv-kademe" style={kademe()}>Öne çıkan havza</p>
         <p class="sv-kademe" style={kademe()}>
           <a href={havza.yol}>
             <span class="sv-vitrin-ad">{havza.ad}</span>
@@ -326,7 +333,7 @@ const kademe = () => ({ '--kademe': String(sira++) });
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: #93AFC4;
-    margin-bottom: 0.55rem;
+    margin: 0 0 0.55rem;   /* K3-2A: h2→p geçişinde UA kenar boşluğu farkı oluşmasın */
   }
 
   .sv-vitrin ul { list-style: none; }
