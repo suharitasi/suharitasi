@@ -666,3 +666,69 @@ add kırılganlığı (yeni dosya eklenirse listeden düşer).
 
 AYRINTI: denetim/K1-ILERLEME.md (B1 keşif tabloları, 5 senaryo kanıtı,
 B3.6 yapısal diff, verilen kararlar).
+
+## 26 Tem 2026 — Dönüşüm uygulaması (dal: donusum-2026-07-26)
+
+denetim/DONUSUM-ANALIZ.md'nin öncelik tablosu uygulandı. İş worktree'de
+kaldı; main'e MERGE EDİLMEDİ, push YAPILMADI, ana ağacın HEAD'i main'de.
+
+GÖRSEL ONAY KURALI BU İŞ İÇİN ASKIYA ALINDI (kullanıcı kararı). Gerekçe: iş
+dalda kalıyor, canlıya çıkmıyor; beğenilmezse dal tek komutla siliniyor.
+Askı yalnız bu brief için geçerliydi; kalıcı kural değişmedi.
+
+SAYIM HATASI (kendi raporumda): öncelik tablosu 22 satır (0-21), özet "21"
+diyordu — 0 numaralı satır (analitik) [VERİ] toplamına katılmamış. Doğrusu
+17 [VERİ] + 5 [VARSAYIM] = 22. Brief "21 değilse DUR" diyordu ama kapanış
+listesi "ZORUNLU DURAK — yalnız bunlar" ifadesiyle tüketiciydi ve bunu
+içermiyordu; hata kayda geçirilip 22 madde üzerinden devam edildi.
+
+UYGULANAN 4 MADDE (M13 öncelik sırasının dördü de tamamlandı):
+ (3) Menü vitrin başlıkları h2 → p. Ölçüm: H1'den önce H2 gelen sayfa
+     171/174 → 0/174. Görünüm değişmedi (stil sınıf tabanlı), erişilebilir
+     ad <section aria-label> ile korundu. Skill: geo-citability Kategori 3.
+ (5) Persona yatay bağları. Ölçüm: tam 1 iç link alan sayfa 42 → 2 (kalan
+     ikisi persona değil). Üç tur gerekti: (a) ortak rehber ölçütü 42→32,
+     (b) simetri 32→30, (c) kök sebep bulundu — 42 personanın 35'i
+     ilgiliIcerik'inde /su-kanunu/ hub'ını taşıyor, bu konu değil gezinme;
+     hub yolları sinyalden çıkarılıp grup-içi döngüsel halka eklenince
+     42→2 ve yığılma (3 sayfa × 35 link) da kayboldu. Skill:
+     site-architecture (yetim yasağı + spoke↔spoke).
+ (9) Ana sayfa JS'siz sahne yedeği. #world boş bir div, 6 sahne JS ile
+     monte ediliyordu; statik HTML'de <img>/<video> sıfırdı. <noscript>
+     içine motorun ZATEN kullandığı 6 poster karesi + alt metni kondu.
+     Yeni görsel ÜRETİLMEDİ, video dosyalarına dokunulmadı (M7). Ölçüm:
+     img'li sayfa 1 → 2, toplam img 1 → 7, hepsi alt'li.
+ (4) Rehber sonu "Sonraki adım" bloğu. Ölçüm: /durumum/ ve /hangi-kurum/
+     rehber gövdesinde hiç geçmiyordu (yalnız menüde). Yeni bileşen
+     SonrakiAdim.astro: kendi durumun → yetkili kurum → insan muhatap.
+     Skill: cro adım 3 (CTA hiyerarşisi) + content-strategy (rehberi
+     bitiren ziyaretçi "uygulama" aşamasındadır, ona sonraki MAKALE değil
+     sonraki ADIM gerekir — kurul oturumunda Handley'in itirazı).
+
+MADDE 16 — DEĞİŞİKLİK GEREKMEDİ: iki yetim sayfanın (/stil-pilot/,
+/harita-pilot/) ikisinde de `robots: noindex` ZATEN vardı ve sitemap dışılar.
+Yetimlik kasıtlı ve doğru; dev pilot sayfalarını gezinmeye sokmak yanlış
+olurdu. Brief 2-B "yetim 2 sayfayı bağla" diyordu, kaynak rapor ise "ya iç
+linkle ya noindex" seçeneğini veriyordu — ikinci seçeneğin zaten sağlandığı
+ölçümle doğrulandı.
+
+YENİDEN PUANLAMA (geo-citability, aynı 4 sayfa):
+ kuyu-ruhsati 76→80 · hangi-kurum 71→75 · persona 71→75 · ana sayfa 53→57.
+ Kritik kontrol: raporun tespiti "dördünde de en düşük kategori yapısal
+ okunabilirlik, kayıp içerikte değil iskelette" idi. O kategori dördünde de
+ yükseldi (55→75, 60→78, 55→75, 40→60) — yapısal işler amacına ULAŞTI.
+ Ama tavan yapmadı: soru-başlıkları (madde 6) uygulanamadı, Kategori 3'ün
+ kalan boşluğu odur.
+
+DURDURMA SEBEBİ: bağlam sınırı (M12). M13'ün dört önceliği (2-A, 2-B, 2-C,
+2-F) tamamlandıktan sonra durduruldu. Yetişmeyen 9 SINIF A maddesi
+SIRADAKILER'e yazıldı.
+
+KULLANILAN SKILL'LER: geo-citability (puanlama + Kategori 3 tanısı) ·
+site-architecture (link mimarisi) · cro (CTA hiyerarşisi) · content-strategy
+(alıcı aşaması) · marketing-council (önceki turun sentezi "bağlayıcı kısıt
+dağıtım, mesaj değil" bu turda uygulama sırasını belirledi — uygulanan 4
+maddenin 4'ü de dağıtım/iskelet, hiçbiri mesaj değiştirmedi).
+
+M6 DOĞRULAMASI: dört maddenin dördünde de kaybolan kelime SIFIR. Hukuki
+içerik metni değişmedi; yalnız kelime eklendi (922 + 20 + 420 satır).

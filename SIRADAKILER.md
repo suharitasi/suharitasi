@@ -543,3 +543,60 @@ doğrulama açık:
 
 - [ ] K1 scratch dizinleri /tmp/k1-test ve /tmp/k1-test-onceki-tur silinmedi
       (rm izin kuralıyla engelli). Zararsız, /tmp yeniden başlatmada temizlenir.
+
+DÖNÜŞÜM SEANSI (26 Tem 2026) — dal `donusum-2026-07-26`, worktree
+`../suharitasi-donusum`. Kullanıcı incelemesi bekliyor, main'e MERGE EDİLMEDİ.
+
+- [ ] ANALİTİK KURULUMU — Cloudflare Web Analytics (ücretsiz, site Pages'te,
+      panelden tek tık). KULLANICI PANEL İŞİ. Bu yapılana kadar 5 [VARSAYIM]
+      önerisi ve tüm dönüşüm ölçümü askıda. Plausible/Umami barındırılan
+      sürümleri ücretli olduğu için elendi.
+- [ ] Cloudflare zone analitiği açık mı — panelden doğrulanmalı (istek/yol
+      verir, davranış ölçmez).
+- [ ] Dönüşüm SINIF C ([VARSAYIM], analitik verisi geldikten sonra):
+      · #17 ana sayfa H1 çerçeve tartışması (kategori mi, ses mi)
+      · #18 persona derinliği vs sayısı (471 kelime yeterli mi)
+      · #19 persona × il kesişim sayfaları
+      · #20 sektör ikonları (görsel onayı gerekli)
+      · #21 öz-cevap altı görüş satırı
+- [ ] Dönüşüm SINIF B (durak): #14 rehber süreç şeması ve #15 havza küçük
+      haritaları — YENİ GÖRSEL ÜRETİMİ gerektiriyor, referans görsel onayı
+      şart (askı yalnız 26 Tem brief'i için geçerliydi).
+- [ ] K2 düzeltmesi: GRACE eşiği 192 saat → aylık + 40-60 gün gecikmeye uygun
+      değer · sonBasariliKosu kısır döngüsü (site-saglik.mjs:769 — yalnız
+      kırmızısız koşumda güncelliyor, md10 kırmızı kaldıkça alan 24 Tem
+      07:33'te donmuş, bekçinin f kalemi 14 saat eşiğini her gün aşıyor,
+      UYARI-SAGLIK.md her 07:00'de yeniden yazılıyor, silme yalnız "hiç sorun
+      yok" dalında olduğu için asla temizlenmiyor) · md10'un baraj.json kalemi
+      bekçiyle tam mükerrer (48s vs 26s, bekçi her zaman önce ateşliyor).
+- [ ] K2 önerileri (uygulanmadı, aynen): (1) md10 GRACE kalemini kaynak
+      tazeliğine çevir, mtime'ı bırak · (2) md10 baraj kalemini kaldır ya da
+      bekçiyle eşitle · (3) sonBasariliKosu'nu "koştu" / "temiz koştu" diye
+      ikiye ayır · (4) GRACE URL'ini üç yerden tek yere indir · (5) SMTP
+      eksikliği ayrı kalem olarak izlensin.
+- [ ] SMTP dört değişkeni eksik → alarm e-postası kapalı
+      (sonBildirim.mail.gonderildi=false).
+- [ ] grace/cron.log tutarsızlığı DENETLENEMEDİ: 23 Tem 18:53'te yaratılmış,
+      tek satır içeriyor, ama o koşum olsaydı durum.json yeniden yazılırdı
+      (mtime hâlâ 20 Tem 06:00). "GRACE cron'u en son ne zaman koştu" tek
+      kaynaktan cevaplanamıyor.
+- [ ] F4-4 riski yapısal olarak duruyor: GRACE URL'i üç yerde sabit kodlu,
+      dönem alanı değişirse sessiz ölür. Tetiklenmemiş. Sınır: yalnız dönem
+      alanı yoklandı; sürüm etiketi (rl06v2.0, obp-ice6gd) değişmiş bir yayın
+      olasılığı DENETLENEMEDİ.
+- [ ] K1 sonrası script tutarsızlığı: baraj (PUSH_HATA=1) ve su-izleme
+      (PUSH_ERTELENDI=1) push ertelenince exit≠0 dönüyor, grace dönmüyor.
+      "Ertelendi" hata değil geçici durum.
+- [ ] /tmp/k1-test · /tmp/k1-test-onceki-tur · /tmp/skill-tarama temizliği.
+- [ ] Yabancı worktree: /tmp/claude-1000/.../scratchpad/wt-base (d2fea9d,
+      detached HEAD).
+- [ ] www.suharitasi.com 522 bulgusu — tek ölçüme dayanıyor, bağımsız
+      kontrolde üretilemedi, üç kez tekrar ölçülmeli.
+- [ ] robots.txt AI botları: Cloudflare "Managed Content" bloğu ClaudeBot/
+      GPTBot/PerplexityBot'u engelliyor olabilir — panelden doğrulanmalı.
+      GEO stratejisinin ön koşulu.
+- [ ] Dönüşüm seansında YETİŞMEYENLER (SINIF A, açık): #1 sameAs · #2 ana
+      sayfa Organization+Person şeması · #6 soru-başlıkları · #7 robots.txt
+      AI botları · #8 10 hub sayfasına öz-cevap · #10 llms.txt · #11 rehber →
+      il/persona bağlam linki · #12 ana sayfa öz-cevabına somut sayılar ·
+      #13 HowTo şeması. Bağlam sınırı nedeniyle durduruldu (M12).
