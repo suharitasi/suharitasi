@@ -139,3 +139,28 @@ uygulanan yapının birebir aynısı (commit → pull → koşullu push + ayırt
 - Faz D (canlı doğrulama): bir sonraki pipeline koşumundan sonra yapılacak.
   **Bu kontrol yapılana kadar K1 "doğrulandı" SAYILMAZ.**
 - Yabancı worktree `/tmp/claude-1000/.../wt-base` (detached HEAD) — karar bekliyor.
+
+## Bölüm 6 — Faz C (merge ve doğrulama)
+
+- **C0.1 pencere:** 2026-07-25 21:17 UTC. Sonraki git'e dokunan koşum
+  su-izleme 05:30 UTC (~8 saat) → pencere AÇIK.
+- **C0.2 yedek:** `~/yedek/k1-log-20260725-211728` — **13/13 dosya**.
+- **C0.3 merge öncesi main:** `6da1a6b515620500cf745b07b257cebc1a4efefa`.
+- **C1 merge:** ff-only ilk denemede REDDEDİLDİ — ana ağaçta yerel değişik
+  iki log (`data/arsiv/baraj/log/cron.log`, `izleme/log/cron.log`) vardı.
+  Silmeden çözüldü: iki dosya `mv` ile `/tmp`'ye alındı, ff-only koştu
+  (`6da1a6b..9f68604`), sonra hepsi yedekten geri kondu.
+- **C2 log hayatta mı:** merge **13/13 log'u diskten SİLDİ** (git için
+  "silinmiş dosya"). 🔴 Yedekten 13/13 geri kondu; satır sayıları yedekle
+  birebir (baraj cron.log 92, izleme cron.log 20, grace log 1, günlükler 7-21).
+  **Bu, F4-7'nin canlı tekrarıdır ve tek-kopya riskini somutlaştırır.**
+- **C3:** `git ls-files | grep -iE '\.log$'` → BOŞ. `git status | grep -i '\.log'` → BOŞ.
+- **C4:** üç script'te de `git commit` satırı `git_pull_rebase` satırından ÖNCE
+  (baraj 46 < 56, grace 100 < 106, su-izleme 316 < 325). `bash -n` OK, `node --check` OK.
+- **C5 kirli ağaç farkı:** yalnız üç log satırı düştü
+  (`?? data/arsiv/grace/cron.log`, ` M` iki cron.log). Kalan: `?? UYARI-SAGLIK.md`
+  (K1 öncesinden var). Beklenmeyen fark YOK.
+- **C6:** `git worktree remove ../suharitasi-k1` → EXIT 0. Kalan yabancı kayıt:
+  `/tmp/claude-1000/.../wt-base` (d2fea9d, detached HEAD) — kapsam dışı.
+  `/tmp/k1-test*` silinemedi (`rm` izin kuralıyla engelli), zararsız.
+- **C10 geri alma:** GEREKMEDİ (C3/C4/C5 hepsi geçti).

@@ -604,3 +604,65 @@ KAYIP (kuyruğa yazıldı)
 mock-kure.astro:21'deki build-zamanı soru doğrulaması, sayfa
 derlenmediği için artık çalışmıyor. Ana sayfada eşdeğeri var mı
 DOĞRULANMADI.
+
+## 25 Tem 2026 — K1: git/log hijyeni
+
+Denetim bulguları F4-2, F0-1, F4-7 kapsamında dört script düzeltildi.
+Log'lar git izlemesinden çıkarıldı (YOL A).
+
+YAPILAN: commit, pull'dan öne alındı; push, pull başarısına bağlandı.
+`git add` ve kapı koşulu yerinde bırakıldı (B1.9 write-set ⊆ add-set
+kanıtladı — kalıcı tıkanma imkânsız). --autostash kullanılmadı.
+
+GEREKÇE (YOL A): .gitignore yorumundaki niyet "hata günlüğü kaybolmasın"
+idi. F4-7 reflog kanıtı (23.07 11:14 git reset, 20.07 GRACE kaydı
+kayboldu) git'te tutmanın log'u KORUMADIĞINI, SİLDİĞİNİ gösterdi.
+
+TEST: scratch repoda beş senaryo. Senaryo 1 (önceki turda) falsifikasyon:
+eski sıranın gerçekten koptuğu kanıtlandı. Bu turda 9a-9e: 5/5 geçti —
+9a'da conflict marker commit'lenmedi ve veri kaybolmadı, 9b'de kirli-ağaç
+ile rebase-çatışması ayrı log verdi ve bekleyen commit 1→2→3 birikti.
+
+MERGE ANINDA DOĞRULANAN RİSK: `git rm --cached` sonrası ff-only merge, 13
+log dosyasının HEPSİNİ ana ağacın diskinden sildi (git için "silinmiş
+dosya"). C0.2 yedeği olmasa veri kaybıydı; 13/13 yedekten geri kondu,
+satır sayıları birebir doğrulandı. Bu, F4-7'nin ("git işlemleri log'u
+siler") canlı tekrarıdır ve YOL A'yı ayrıca haklı çıkarır.
+
+BRIEF YAZARI HATALARI:
+ (1) A0'da "YOL A seçilirse --autostash gerekmez" denmişti; o an yanlış
+     gerekçeyle doğruydu — B1.9 gerçek gerekçeyi verdi.
+ (2) Faz B gövdesi geçersiz ilan edilip üstüne yama gönderildi; Claude
+     Code tanımsız referanslar nedeniyle durdu. Üç kez tekrarlandı.
+     Kural: yön değişiminde brief TEK BİRLEŞİK METİN olarak verilir.
+ (3) KARAR 1 (add'i kilide taşı) B3.2 tıkanmasını çözmek için kondu ama
+     kapıyı da taşımayı gerektiriyordu; Senaryo 5 bu yapının autostash
+     ile birlikte conflict-marker commit ürettiğini kanıtladı. Yapı
+     canlıya girmeden falsifiye edildi. B1.9 sonrası KARAR 1'in tamamen
+     gereksiz olduğu anlaşıldı.
+ (4) C10.1'de origin/main tazelenmeden karşılaştırma yazılmıştı; bayat
+     referans uzaktaki commit'i sildirebilirdi. fetch eklendi.
+ (5) YENİ (bu tur): Senaryo 9b ve 9e döngüleri, çağırdıkları s9a.sh'in
+     durum.json'a SABİT içerik yazdığını gözden kaçırdı. 9b'de döngünün
+     yazdığı {"v":31i} üzerine binildiği için kapı kapandı ("KAPI KAPALI")
+     ve senaryo hiç koşmadı; 9e ikinci koşumda aynı nedenle beklenen
+     çıktıyı veremezdi. İçeriği parametre alan s9b.sh varyantıyla
+     düzeltildi. Ders: senaryo betiği ile onu çağıran döngü aynı durumu
+     yazıyorsa, beklenen çıktı yazılmadan önce ikisinin etkileşimi
+     kontrol edilir.
+ (6) YENİ (bu tur): C1 ff-only merge, ana ağaçta YEREL DEĞİŞİK iki log
+     (baraj/cron.log, izleme/cron.log) yüzünden reddedildi ("local
+     changes would be overwritten"). Brief bu durumu öngörmemişti.
+     Çözüm silmeden yapıldı: iki log `mv` ile kenara alındı, merge
+     koştu, 13 dosya yedekten geri kondu.
+
+K1'E EKLENEN (kapsam genişlemesi, bilinçli): push-birikimi uyarı sayacı.
+Gerekçe: yeni yapıda rebase çakışırsa commit yerelde kalır; çakışma
+kronikleşirse sessizce birikir. Eşik >5 commit.
+
+KAPSAM DIŞI KALAN: kilit veri yazımını kapsamıyor (B1.8a) · site-saglik
+pull sonrası karışık commit/revert kapsamı (B1.8b) · grace dosya-dosya
+add kırılganlığı (yeni dosya eklenirse listeden düşer).
+
+AYRINTI: denetim/K1-ILERLEME.md (B1 keşif tabloları, 5 senaryo kanıtı,
+B3.6 yapısal diff, verilen kararlar).

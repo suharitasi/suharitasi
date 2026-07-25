@@ -520,3 +520,26 @@ DÜZELTME TURU 1'DEN AÇIK KALANLAR (2026-07-25):
     benzersiz link 0 kırık; düz-çizgi kuralı sentetik+gerçek seriyle
     kanıtlı; konsol 0, taşma 0. Bilinçli sapmalar raporda (yön dili tek
     bakım noktası; tr-TR yuvarlama). Kanıt: cikti/denetim/faz3/RAPOR.md.
+
+K1 — GIT/LOG HİJYENİ (2026-07-25). Uygulandı, main'de (9f68604). Canlı
+doğrulama açık:
+
+- [ ] K1 canlı doğrulama (Faz D). Bir sonraki pipeline koşumundan sonra:
+      koşum başarılı mı, log'da pull hatası var mı, commit atıldı mı,
+      push geçti mi, log'larda kayıp var mı. Bu kontrol yapılana kadar
+      K1 "doğrulandı" SAYILMAZ. Yedek: ~/yedek/k1-log-*
+
+- [ ] K1 kapsam dışı bulgular: kilit/yarım dosya riski (B1.8a),
+      site-saglik karışık commit/revert kapsamı (B1.8b), grace
+      dosya-dosya add kırılganlığı.
+
+- [ ] Arşiv log'larının git dışı yedeği. YOL A sonrası 13 log dosyası
+      yalnız sunucu diskinde. rsync/ayrı repo/nesne depolama değerlendir.
+      ACİLİYET ARTTI: merge sırasında git 13 log'u diskten sildi (yedekten
+      geri kondu) — tek kopya riski somut.
+
+- [ ] Yabancı worktree: /tmp/claude-1000/.../scratchpad/wt-base
+      (d2fea9d, detached HEAD). Kapsam dışı bırakıldı, karar bekliyor.
+
+- [ ] K1 scratch dizinleri /tmp/k1-test ve /tmp/k1-test-onceki-tur silinmedi
+      (rm izin kuralıyla engelli). Zararsız, /tmp yeniden başlatmada temizlenir.
