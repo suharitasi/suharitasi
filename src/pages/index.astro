@@ -252,6 +252,17 @@ const sahneVeri = SAHNELER.map((s) => ({
   @media print {
     #world, .sw-sky, .sw-stage, .sw-route, .sw-hint, .sw-scrollbar { display: none !important; }
   }
+
+  /* K3-2C: JS'siz sahne yedeği. JS açıkken <noscript> hiç render edilmez. */
+  .akis-yedek { max-width: 68rem; margin: 0 auto; padding: 2rem 1.2rem; }
+  .akis-yedek-not { font-family: var(--mono, ui-monospace, monospace); font-size: 0.8rem;
+    color: #93AFC4; margin-bottom: 1rem; }
+  .akis-yedek-liste { list-style: none; display: grid; gap: 1rem; padding: 0;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+  .akis-yedek-liste img { width: 100%; height: auto; display: block; }
+  .akis-yedek-liste span { display: block; margin-top: 0.4rem;
+    font-family: var(--mono, ui-monospace, monospace); font-size: 0.72rem;
+    letter-spacing: 0.16em; text-transform: uppercase; color: #93AFC4; }
 </style>
 <script type="module" src="/s/menu.js" is:inline></script>
 </head>
@@ -264,6 +275,29 @@ const sahneVeri = SAHNELER.map((s) => ({
   </div>
 
   <div id="world"></div>
+
+  {/* K3-2C (26 Tem 2026): #world BOŞ bir div; 6 sahne JS ile monte ediliyor.
+      Ölçüldü: statik HTML'de <video> 0, <img> 0 → JS çalıştırmayan istemci
+      (AI tarayıcıları dahil) için ana sayfanın görsel katmanı HİÇ YOKTU;
+      alt metni de yoktu. Burada YENİ GÖRSEL ÜRETİLMEZ — motorun zaten
+      kullandığı poster kareleri (public/deneyim/video/sahne*.jpg) statik
+      olarak da sunulur. Video dosyalarına DOKUNULMAZ (M7). <noscript>
+      olduğu için JS açıkken hiç render edilmez: görünümde değişiklik yok. */}
+  <noscript>
+    <section class="akis-yedek" aria-label="Açılış akışı — sahneler">
+      <p class="akis-yedek-not">Açılış akışı JavaScript ile oynatılır. Aşağıda
+        akışın altı sahnesinin durağan kareleri yer alıyor.</p>
+      <ul class="akis-yedek-liste">
+        {sahneVeri.map((s, i) => (
+          <li>
+            <img src={s.still} width="640" height="360" loading="lazy" decoding="async"
+                 alt={`${s.label} — açılış akışının ${i + 1}. sahnesi`} />
+            <span>{s.label}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </noscript>
 
   <!-- SORU GÜVERTESİ — ilk ekranda, sahnenin altında opak DİP panel.
        Öz-cevap + 7 soru DOM'da GERÇEK linktir. JS'siz/reduced-motion'da
