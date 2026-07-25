@@ -595,8 +595,25 @@ DÖNÜŞÜM SEANSI (26 Tem 2026) — dal `donusum-2026-07-26`, worktree
 - [ ] robots.txt AI botları: Cloudflare "Managed Content" bloğu ClaudeBot/
       GPTBot/PerplexityBot'u engelliyor olabilir — panelden doğrulanmalı.
       GEO stratejisinin ön koşulu.
-- [ ] Dönüşüm seansında YETİŞMEYENLER (SINIF A, açık): #1 sameAs · #2 ana
-      sayfa Organization+Person şeması · #6 soru-başlıkları · #7 robots.txt
-      AI botları · #8 10 hub sayfasına öz-cevap · #10 llms.txt · #11 rehber →
-      il/persona bağlam linki · #12 ana sayfa öz-cevabına somut sayılar ·
-      #13 HowTo şeması. Bağlam sınırı nedeniyle durduruldu (M12).
+- [x] Dönüşüm TUR 2 (26 Tem 2026, gece) — SINIF A'da kalan 9 maddenin 8'i
+      ele alındı, 6'sı UYGULANDI: #2 ana sayfa Organization+Person (`c91aa57`) ·
+      #6 soru-başlıkları, 85 tanım / 458 başlık / 161 sayfa (`e74f540`) ·
+      #7 robots.txt Tier-1 botları (`f71f490`) · #8 9 hub sayfasına öz-cevap
+      (`5a14a15`) · #10 llms.txt build üreticisi (`16fde8d`) · #12 ana sayfa
+      öz-cevabına somut sayılar (`0a84dd4`) · #13 HowTo şeması (`0f3e00e`).
+      KULLANICI ONAYI BEKLİYOR — canlı test yapılmadı, main'e merge yok.
+- [ ] #1 `sameAs` — SINIF B (B-2). **Kullanıcıdan gerçek profil adresi
+      gerekiyor:** LinkedIn (kişisel/büro), X, Google Business Profile, baro
+      levhası sayfası, Wikidata, YouTube. M8 gereği hiçbiri uydurulmadı, alan
+      hiç yazılmadı. 2-3 gerçek URL yeterli. Organization `logo` alanı da aynı
+      sebeple boş (gerçek logo dosyası yok).
+- [ ] #6'nın `/rehberler/kuyu-ruhsati/` kısmı — SINIF B (B-7). Kalıp-2
+      "İçindekiler" menüsü başlık metnini `<h2>` dışında tekrar bastığı için
+      başlık değişince 9 gövde kelimesi kayboluyor; mekanik M6 kuralı gereği
+      geri alındı. **Kullanıcı kararı gerekli:** içindekiler başlıktan
+      türediği için bu "gövde değişikliği" sayılmalı mı? Sayılmazsa tek
+      komutla uygulanır.
+- [ ] #11 rehber → il/persona bağlam linki — bağlam eşiği (M14) nedeniyle
+      TUR 2'de sıraya gelmedi. Tespit: `/rehberler/kuyu-ruhsati/` zaten 81 il
+      sayfasına link veriyor (B3 karşılanmış); eksik olan diğer 9 rehberden
+      il linki ve rehber → persona linki (şu an 0).

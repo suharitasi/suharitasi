@@ -260,3 +260,187 @@ görsel olarak kanıtlamıyor.** Kareler "görünüm bozulmadı" kanıtıdır, "
 yapıldı" kanıtı değildir. Değişiklik kanıtı ölçüm tablolarındadır.
 
 Bağlam: Faz 3 sonunda ~%80 → M12 gereği durduruldu.
+
+---
+
+# TUR 2 — SINIF A'da kalan 9 madde (26 Tem 2026, gece)
+
+Dal `donusum-2026-07-26`. Ana ağaç `main` = `6d0e209` (DEĞİŞMEDİ).
+
+## FAZ 0 — taban
+
+### 0.3 Sayfa/sitemap tutarsızlığının çözümü
+
+| Sayı | Anlamı |
+|---|---|
+| **175** | `find dist -name "*.html"` — dosya sayısı |
+| **174** | Astro'nun ürettiği rota sayısı (build log) |
+| **172** | `sitemap.xml` `<loc>` sayısı |
+
+Fark tam olarak açıklandı: `175 = 174 Astro rotası + public/404.html`
+(Astro'nun saymadığı, `public/`'ten kopyalanan dosya).
+`172 = 174 − 2 noindex pilot` (`/harita-pilot/`, `/stil-pilot/`).
+**Eski rapordaki iki sayı da doğruydu, farklı şeyleri sayıyorlardı.**
+Bu turun tabanı: **175 dosya / 174 rota / 172 indekslenebilir sayfa.**
+
+### 0.5 → 2.1 ÖNCE/SONRA ölçüm
+
+| # | Metrik | ÖNCE | SONRA | Hedef | Ulaşıldı |
+|---|---|---|---|---|---|
+| a | `sameAs` olan sayfa | 0 | **0** | >0 | ❌ SINIF B (B-2) |
+| b | `Organization` şeması olan sayfa | 171 | **172** | ana sayfa dahil | ✅ |
+| b | `Person` şeması olan sayfa | 171 | **172** | ana sayfa dahil | ✅ |
+| c | `Organization` düğüm sayısı | 264 | **436** | artmalı | ✅ (`worksFor` düğümü) |
+| c | `HowTo` / `HowToStep` | 0 / 0 | **2 / 11** | >0 | ✅ |
+| d | `llms.txt` | YOK | **VAR (61.337 bayt, 172 sayfa)** | var | ✅ |
+| e | Soru biçimli h2/h3 | 3 | **458** | artmalı | ✅ |
+| e | Soru başlığı olan sayfa | 3 | **161** | artmalı | ✅ |
+| f | robots.txt `User-agent` bloğu | 1 | **14** | Tier-1 isimle | ✅ |
+| g | Sayfa / sitemap | 175 / 172 | **175 / 172** | değişmemeli | ✅ |
+| — | Öz-cevabı olmayan indekslenebilir sayfa | 9 | **0** | 0 | ✅ (kalan 1: `/harita-pilot/`, noindex) |
+
+## FAZ 2.2 — geo-citability üç sütunlu puanlama
+
+| Sayfa | Bu tur ÖNCE | Madde 6 sonrası | SON | Kategori 3 ÖNCE→SON |
+|---|---|---|---|---|
+| `/rehberler/kuyu-ruhsati/` | 80 | 80 | **80** | 75 → **78** |
+| `/hangi-kurum/` | 75 | 75 | **75** | 78 → **78** |
+| `/durumum/ana-metal-sanayii-nace-24/` | 75 | 76 | **76** | 75 → **85** |
+| `/` (ana sayfa) | 57 | 57 | **62** | 60 → **60** |
+
+**ÖNCE değerleri önceki turun SONRA değerleriyle uyumlu (fark ≤2, eşik 5) — ölçüm güvenilir.**
+Puanlanan persona sayfası (sonraki turlar aynısını kullansın):
+`/durumum/ana-metal-sanayii-nace-24/`.
+
+**Madde 6 dürüstlük kaydı:** örneklenen 4 sayfanın yalnız 1'inde (persona)
+Kategori 3 belirgin yükseldi. Sebep: `/rehberler/kuyu-ruhsati/` başlıkları
+M6 ihlali nedeniyle GERİ ALINDI, `/hangi-kurum/` ve ana sayfanın h2'leri
+kapsam dışıydı. Site geneli etki örneklemde görünmüyor: soru başlığı
+3 → 458, kapsayan sayfa 3 → 161.
+
+## FAZ 2.3 — değişen başlıklar (tam liste, 85 tanım)
+
+| `src/content/rehberler/kaynak-suyu-kiralama.md` | İhale zorunluluğu | Kaynak suyu kiralamasında ihale zorunlu mu? |
+| `src/content/rehberler/kaynak-suyu-kiralama.md` | Süre, devir ve fesih | Kira süresi, devir ve fesih nasıl düzenlenir? |
+| `src/content/rehberler/kaynak-suyu-kiralama.md` | Kiralama çerçevesi | Kaynak suyu kiralama çerçevesi nedir? |
+| `src/content/rehberler/ruhsatsiz-kuyu-cezalari.md` | Yaptırımın işleyişi | Ruhsatsız kuyuda yaptırım nasıl işler? |
+| `src/content/rehberler/ruhsatsiz-kuyu-cezalari.md` | Ceza tablosu | Ruhsatsız kuyuya hangi cezalar uygulanır? |
+| `src/content/rehberler/yeralti-suyu-isletme-sahasi.md` | Mevcut kuyular ve kazanılmış hak | Mevcut kuyuların kazanılmış hakkı ne olur? |
+| `src/content/rehberler/yeralti-suyu-isletme-sahasi.md` | İşletme sahası sonuçları | İşletme sahası ilanı hangi sonuçları doğurur? |
+| `src/content/rehberler/kaynak-hakki-komsu-su.md` | Kaynak ve yeraltı suyu ayrımı | Kaynak suyu ile yeraltı suyu nasıl ayrılır? |
+| `src/content/rehberler/kaynak-hakki-komsu-su.md` | Mecra irtifakı | Mecra irtifakı nedir? |
+| `src/content/rehberler/kaynak-hakki-komsu-su.md` | Komşu arazideki yeraltı suyundan yararlanma | Komşu arazideki yeraltı suyundan nasıl yararlanılır? |
+| `src/content/rehberler/kaynak-hakki-komsu-su.md` | Kaynak hakkı rejimi | Kaynak hakkı rejimi nedir? |
+| `src/content/rehberler/su-tahsisi-oncelik-sirasi.md` | Başvuru ve değerlendirme | Su tahsisi başvurusu nasıl değerlendirilir? |
+| `src/content/rehberler/su-tahsisi-oncelik-sirasi.md` | Öncelik sistemi | Su tahsisinde öncelik sırası nedir? |
+| `src/content/rehberler/kuyu-belgesi-iptal-davalari.md` | Davanın eksenleri | Kuyu belgesi iptal davası hangi eksenlerde yürür? |
+| `src/content/rehberler/kuyu-belgesi-iptal-davalari.md` | İptal davası ekseni | Hangi işlem türünde hangi hukuki sorun çıkar? |
+| `src/content/rehberler/baraj-kamulastirmasi.md` | Üç ihtimal | Baraj kamulaştırmasında hangi üç ihtimal var? |
+| `src/content/rehberler/baraj-kamulastirmasi.md` | İmar kısıtlılığı ve geçiş hükümleri | İmar kısıtlılığı ve geçiş hükümleri nasıl uygulanır? |
+| `src/content/rehberler/baraj-kamulastirmasi.md` | Baraj kamulaştırması çerçevesi | Baraj kamulaştırması çerçevesi nedir? |
+| `src/content/rehberler/jeotermal-ruhsat.md` | Arama ruhsatı: öncelik hakkı esası | Jeotermal arama ruhsatında öncelik hakkı nasıl kazanılır? |
+| `src/content/rehberler/jeotermal-ruhsat.md` | İşletme ruhsatı: süre sonu tuzağı | Jeotermal işletme ruhsatının süresi dolunca ne olur? |
+| `src/content/su-kanunu/taslak-takibi.md` | Gelişmeler | Su Kanunu taslağında son gelişmeler neler? |
+| `src/content/su-kanunu/taslak-takibi.md` | Taslak kavramlar: "su tahsis belgesi" ve "su verimliliği belgesi" | "Su tahsis belgesi" ve "su verimliliği belgesi" nedir? |
+| `src/content/havzalar/akarcay.md` | Su varlığı | Akarçay Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/akarcay.md` | Planlama ve koruma | Akarçay Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/antalya.md` | Su varlığı | Antalya Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/antalya.md` | Planlama ve koruma | Antalya Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/aras.md` | Su varlığı | Aras Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/asi.md` | Su varlığı | Asi Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/bati-akdeniz.md` | Su varlığı | Batı Akdeniz Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/bati-akdeniz.md` | Planlama ve koruma | Batı Akdeniz Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/bati-karadeniz.md` | Su varlığı | Batı Karadeniz Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/bati-karadeniz.md` | Planlama ve koruma | Batı Karadeniz Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/burdur.md` | Su varlığı | Burdur Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/burdur.md` | Planlama ve koruma | Burdur Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/buyuk-menderes.md` | Su varlığı | Büyük Menderes Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/buyuk-menderes.md` | Planlama ve koruma | Büyük Menderes Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/ceyhan.md` | Su varlığı | Ceyhan Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/ceyhan.md` | Planlama ve koruma | Ceyhan Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/coruh.md` | Su varlığı | Çoruh Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/dogu-akdeniz.md` | Su varlığı | Doğu Akdeniz Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/dogu-akdeniz.md` | Planlama ve koruma | Doğu Akdeniz Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/dogu-karadeniz.md` | Su varlığı | Doğu Karadeniz Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/dogu-karadeniz.md` | Planlama ve koruma | Doğu Karadeniz Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/firat-dicle.md` | Su varlığı | Fırat-Dicle Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/gediz.md` | Su varlığı | Gediz Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/gediz.md` | Planlama ve koruma | Gediz Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/kizilirmak.md` | Su varlığı | Kızılırmak Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/kizilirmak.md` | Planlama ve koruma | Kızılırmak Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/konya-kapali.md` | Su varlığı | Konya Kapalı Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/konya-kapali.md` | Planlama ve koruma | Konya Kapalı Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/kucuk-menderes.md` | Su varlığı | Küçük Menderes Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/kucuk-menderes.md` | Planlama ve koruma | Küçük Menderes Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/kuzey-ege.md` | Su varlığı | Kuzey Ege Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/kuzey-ege.md` | Planlama ve koruma | Kuzey Ege Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/marmara.md` | Su varlığı | Marmara Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/marmara.md` | Planlama ve koruma | Marmara Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/meric-ergene.md` | Su varlığı | Meriç-Ergene Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/meric-ergene.md` | Planlama ve koruma | Meriç-Ergene Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/sakarya.md` | Su varlığı | Sakarya Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/sakarya.md` | Planlama ve koruma | Sakarya Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/seyhan.md` | Su varlığı | Seyhan Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/seyhan.md` | Planlama ve koruma | Seyhan Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/susurluk.md` | Su varlığı | Susurluk Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/susurluk.md` | Planlama ve koruma | Susurluk Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/van-golu.md` | Su varlığı | Van Gölü Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/van-golu.md` | Planlama ve koruma | Van Gölü Havzası nasıl planlanıyor ve korunuyor? |
+| `src/content/havzalar/yesilirmak.md` | Su varlığı | Yeşilırmak Havzası'nın su varlığı ne kadar? |
+| `src/content/havzalar/yesilirmak.md` | Planlama ve koruma | Yeşilırmak Havzası nasıl planlanıyor ve korunuyor? |
+| `src/pages/durumum/[persona].astro` | <h2 class="blok-baslik">İlk adımlar</h2> | <h2 class="blok-baslik">İlk adımda ne yapmalısınız?</h2> |
+| `src/pages/durumum/[persona].astro` | <h2 class="blok-baslik">Benzer durumlar</h2> | <h2 class="blok-baslik">Benzer durumdaki sektörler hangileri?</h2> |
+| `src/pages/kuyu-ruhsati/[il].astro` | <h2>Yetkili merci ve havza</h2> | <h2>Bu ilde yetkili merci hangisi?</h2> |
+| `src/pages/kuyu-ruhsati/[il].astro` | <h2>Havzada güncel su durumu</h2> | <h2>Havzada su durumu nedir?</h2> |
+| `src/pages/kuyu-ruhsati/[il].astro` | <h2>Belge süreci</h2> | <h2>Belge süreci nasıl işler?</h2> |
+| `src/pages/hakkinda.astro` | <h2>İçeriği kim hazırlıyor</h2> | <h2>İçeriği kim hazırlıyor?</h2> |
+| `src/pages/hakkinda.astro` | <h2>Hukuki içerik nasıl hazırlanıyor</h2> | <h2>Hukuki içerik nasıl hazırlanıyor?</h2> |
+| `src/pages/hakkinda.astro` | <h2>Veri kaynağı politikası</h2> | <h2>Veri kaynağı politikası nedir?</h2> |
+| `src/components/IlKurumTablosu.astro` | <h2>81 il için yetkili kurumlar</h2> | <h2>81 ilde yetkili kurum hangisi?</h2> |
+| `src/components/HavzaPaneli.astro` | <h2>Suyun durumu: 25 havza</h2> | <h2>25 havzada suyun durumu nedir?</h2> |
+| `src/components/HavzaYasBandi.astro` | <h2 id="yas-baslik">Resmî yeraltısuyu verisi</h2> | <h2 id="yas-baslik">Resmî yeraltısuyu verisi ne diyor?</h2> |
+| `src/pages/rehberler/kuyu-tasima.astro` | <h2 id="kavramsal-ayrim">Kavramsal ayrım: kuruma, çökme, kirlilik, taşınma</h2> | <h2 id="kavramsal-ayrim">Kuruma, çökme, kirlilik ve taşınma nasıl ayrılır?</h2> |
+| `src/pages/rehberler/kuyu-tasima.astro` | <h2 id="karar">Hangi hâlde hangi hukuki yol</h2> | <h2 id="karar">Hangi hâlde hangi hukuki yol izlenir?</h2> |
+| `src/pages/rehberler/kuyu-tasima.astro` | <h2 id="adimlar">Yeni başvuru şeması: yedi adım</h2> | <h2 id="adimlar">Yeni başvuru yedi adımda nasıl yapılır?</h2> |
+| `src/pages/rehberler/kuyu-tasima.astro` | <h2 id="dikkat">DSİ başvurusunda dikkat edilecek hususlar</h2> | <h2 id="dikkat">DSİ başvurusunda nelere dikkat edilmeli?</h2> |
+| `src/pages/havzalar/[slug].astro` | <h2>Bu havzada hukuki durum</h2> | <h2>Bu havzada hukuki durum nedir?</h2> |
+| `src/pages/havzalar/[slug].astro` | <h2>İller ve yetkili kurumlar</h2> | <h2>Havzada hangi iller ve yetkili kurumlar var?</h2> |
+
+**Değiştirilmeyen başlıklar ve sebebi:** `Madde metni`, `Dayanak`,
+`Emsal kararlar`, `Dikkat`, `İlgili hükümler`, `Veri notu`, `Kanunlar`,
+`Tüzük`, `Yönetmelikler`, `Tebliğ`, `Doğrulanamayanlar`, `Kaynaklar`,
+`Olay akışı`, `İletişim` — referans/gezinme etiketi, soru karşılığı yok.
+`5686 rejimi`, `İdari para cezası (167 m.18)` — **kanun numarası taşıyor,
+hukuki iddia riski**, brief gereği çevrilmedi.
+
+## FAZ 2.4 — üç yeni skill
+
+| Skill | Madde | Somut değişiklik | Ölçülen etki |
+|---|---|---|---|
+| `featured-snippet-optimizer` | 6 | Adım 1 (SERP/Search Console kontrolü) ATLANDI — veri yok (B-4). Adım 2 sorgu-biçimi eşleme + Adım 5-6 (H2 sorguyu yeniden ifade eder, cevap H2'nin hemen altında) uygulandı. Tablo bölümleri "hangi X hangi Y" biçimine, süreç bölümleri "nasıl yapılır" biçimine çevrildi. | Soru başlığı 3 → 458 · 3 → 161 sayfa |
+| `geo-schema` | 2, 13 | Adım 3 Organization (KRİTİK) + standalone Person; `@graph` kalıbı, `@id` çapraz referansı; `knowsAbout` (GEO sinyali); `HowTo` (Adım 4: rich result kalkmış ama AI ayrıştırması için değerli) | Organization 264→436 düğüm · Person ana sayfaya geldi · HowTo 0→2, HowToStep 0→11 |
+| `eeat-audit` | 2 (madde 1 ile örtüşük) | Trustworthiness: kurum e-postası şemaya girdi. Expertise: `Person.knowsAbout` + `worksFor` (Arslan Hukuk Bürosu) 172 sayfada makine-okunur oldu. **Experience boyutu bu turda kapatılamadı** — birinci-el deneyim anlatısı içerik kararı gerektirir, `sameAs` boşluğu (madde 1) SINIF B'de. | E-E-A-T'nin 2 boyutu güçlendi, 2'si (Experience, Trust/sameAs) açık |
+
+## SINIF B — kullanıcıdan ne gerekiyor
+
+| Madde | Kural | Kullanıcıdan gereken |
+|---|---|---|
+| **1** (`sameAs`) | **B-2** | Gerçek profil adresleri. Hangi platformlar: **LinkedIn** (kişisel ve/veya büro), **X/Twitter**, **Google Business Profile**, **baro levhası sayfası**, **Wikidata** (varsa), **YouTube**. M8 gereği tek bir tanesi bile uydurulmadı; alan hiç yazılmadı. En az 2-3 gerçek URL yeterli. |
+| **6 — yalnız `/rehberler/kuyu-ruhsati/`** | **B-7** | Kalıp-2 sayfasındaki "İçindekiler" menüsü başlık metnini `<h2>` DIŞINDA tekrar basıyor; başlık değişince 9 gövde kelimesi kayboluyor (`Rejimin`, `mantığı`, `Üç`, `belge`, `tek`, `zincir`, `Belge`, `yapısı`, `Başvuru`, `akışı`). Mekanik M6 kuralı gereği geri alındı. **Karar gerekli:** içindekiler başlıktan türediği için bu kayıp "gövde metni değişti" sayılmalı mı? Sayılmayacaksa aynı değişiklik tek komutla uygulanabilir. |
+| **11** | — | Uygulanmadı, bağlam eşiği (M14). Tespit: `/rehberler/kuyu-ruhsati/` zaten 81 il sayfasına link veriyor (B3 karşılanmış); eksik olan **diğer 9 rehberden il linki** ve **rehber → persona linki** (0). |
+| **8 — görünüm** | — | Hub öz-cevapları görünümü DEĞİŞTİRMEDİ (yalnız `class` + `role` eklendi). Görsel bir kutu isteniyorsa ayrı karar. |
+| Organization `logo` | **B-2** | Şemaya `logo` yazılmadı — sitede gerçek logo dosyası yok (`favicon.svg` ikon, OG görseli kapak). Gerçek logo verilirse eklenir. |
+
+## DENETLENEMEDİ
+
+Önceki turun 14 maddesi aynen devredilir. Bu turun yenileri:
+
+1. **Soru başlıklarının gerçekten snippet/AI alıntısı kazandırıp kazandırmadığı** — Search Console ve SERP verisi yok (B-4). Ölçülen tek şey biçim değişikliği.
+2. **`llms.txt`'in AI istemcileri tarafından okunduğu** — sunucu logu yok; dosyanın üretildiği ve içeriğinin doğru olduğu doğrulandı, tüketildiği doğrulanmadı.
+3. **robots.txt'teki 13 yeni `User-agent` bloğunun botlarca işlendiği** — canlıya çıkmadan doğrulanamaz. Bloklar erişimi genişletmiyor (genel kural zaten `Allow: /`), dolayısıyla risk yok.
+4. **`HowTo` şemasının geçerliliği** — Google Rich Results Test / Schema.org Validator çalıştırılmadı (harici servis). JSON sözdizimi ve alan adları elle denetlendi.
+5. **Değişen 85 başlığın Türkçe akıcılığı ve hukuki isabeti** — makine denetleyemez. **Kullanıcı incelemesi gerekli.**
+6. **Havza h2'lerine havza adının girmesinin (25 sayfa × 2 başlık) görsel etkisi** — başlıklar uzadı; headless kare alınmadı, taşma ölçülmedi.
+7. **Ana sayfa öz-cevabının 269 karaktere çıkmasının ilk-ekran düzenine etkisi** — ölçülmedi.
+8. **`geo-citability` puanları rubrik takdiridir**, otomatik ölçüm değildir; ±3 puan oynayabilir.
+9. **Canlı site** — hiçbir şey push edilmedi, canlı doğrulama yapılmadı.

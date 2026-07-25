@@ -732,3 +732,64 @@ maddenin 4'ü de dağıtım/iskelet, hiçbiri mesaj değiştirmedi).
 
 M6 DOĞRULAMASI: dört maddenin dördünde de kaybolan kelime SIFIR. Hukuki
 içerik metni değişmedi; yalnız kelime eklendi (922 + 20 + 420 satır).
+
+---
+
+## 26.07.2026 (gece) — DÖNÜŞÜM TUR 2: SINIF A'da kalan 9 madde
+
+Dal `donusum-2026-07-26`, worktree `../suharitasi-donusum`. Ana ağaç `main`
+= `6d0e209`, DEĞİŞMEDİ. Merge yok, push yok. 7 commit.
+
+**9 maddenin 8'i ele alındı: 6 uygulandı, 1 SINIF B (madde 1), 1 kısmen geri
+alındı (madde 6 / kuyu-ruhsati), 1 sıraya gelmedi (madde 11, M14 eşiği).**
+
+### KULLANICI KARARI — başlık metni yeniden yazılabilir
+
+Kullanıcı bu turda h1–h6 metninin değiştirilebileceğine karar verdi (gerekçe:
+başlık gezinme öğesidir, hukuki iddia değil); gövde metni dokunulmaz kaldı.
+**85 başlık tanımı değiştirildi**, hepsi ÖNCE→SONRA olarak
+`denetim/DONUSUM-ILERLEME.md` FAZ 2.3'te tek tek yazılı. Kanun numarası
+taşıyan iki başlık (`5686 rejimi`, `İdari para cezası (167 m.18)`) hukuki
+iddia riski nedeniyle bilerek çevrilmedi.
+
+### HATA KAYDI + KURAL — "başlık değişikliği gövdeyi de değiştirebilir"
+
+Madde 6'yı `/rehberler/kuyu-ruhsati/` sayfasına uygularken build geçti, ama
+gövde parmak izi 9 kelime kaybı gösterdi. Sebep: kalıp-2 sayfasının
+"İçindekiler" menüsü başlık metnini `<h2>` DIŞINDA tekrar basıyor. Başlık
+değişince menü metni de değişiyor — yani `<h1>–<h6>` sınırı, DOM'da başlığın
+yankılandığı yerleri kapsamıyor.
+
+**KURAL (yeni):** başlık metni değiştirilebilen bir işte, başlığın türetilmiş
+kopyaları (içindekiler, breadcrumb, `aria-label`, kart etiketi, menü vitrini)
+ÖNCEDEN aranır. Parmak izi doğrulaması bunu yakalar ama iş yapıldıktan sonra
+yakalar; önce aranırsa boşa iş olmaz.
+
+**İKİNCİ GİZLİ BAĞ:** `TamEkranMenu.astro` markdown gövdesini `## Gelişmeler`
+başlığına göre ayrıştırıyordu; başlık değişince build SESSİZCE DEĞİL, gürültülü
+düştü (sessiz hata yasağına uygun `throw`). Bağ güncellendi. Aynı türden ikinci
+bağ `rehberler/[slug].astro`'daki kalıp-2 bölüm listesiydi; o da güncellendi
+ama sayfa yine de geri alındı (gövde kaybı sebebiyle).
+
+### Uygulananlar
+
+| Madde | Commit | Ne oldu |
+|---|---|---|
+| 6 | `e74f540` | Soru başlıkları: 85 tanım. Soru biçimli h2/h3 **3 → 458**, kapsayan sayfa **3 → 161** |
+| 2 | `c91aa57` | Ana sayfaya Organization + Person; `kurum` şemasına `knowsAbout` + `email`; `Person` düğümü 172 sayfada `@id` ile paylaşılıyor |
+| 7 | `f71f490` | robots.txt'e 13 adlı bot bloğu (Googlebot, Bingbot, GPTBot, ClaudeBot, PerplexityBot, Google-Extended…). Erişim genişlemedi — niyet beyanı |
+| 10 | `16fde8d` | `llms.txt` build entegrasyonu; içerik dist'ten (title + meta description) üretiliyor, elle yazılmış metin yok → bayatlamaz. 172 sayfa, 61 KB |
+| 12 | `0a84dd4` | Ana sayfa öz-cevabına envanter sayıları (25 havza, 81 il, 42 sektör, 20 işlem, 10 rehber). 269 karakter, 280 sınırı altında. Sayıların hepsi build çıktısından sayıldı |
+| 8 | `5a14a15` | 9 hub sayfasının mevcut `ozet`'i `class="oz-cevap"` + `role="doc-abstract"` ile öz-cevap olarak işaretlendi. **Yeni metin üretilmedi, görünüm değişmedi.** Öz-cevapsız indekslenebilir sayfa 9 → 0 |
+| 13 | `0f3e00e` | `HowTo` şeması: kuyu-ruhsati 4 adım, kuyu-tasima 7 adım. Adım metinleri sayfadaki `adimlar[]` dizisinden birebir |
+
+### SÜREKLİLİK
+
+`llms.txt` bir build entegrasyonudur (`astro.config.mjs`), elle bakım
+istemez; `<title>` eksikse build düşer. Sayfa/sitemap tutarsızlığı çözüldü ve
+belgelendi: **175 dosya = 174 Astro rotası + public/404.html**, **172 sitemap
+= 174 − 2 noindex pilot**. Önceki raporlardaki 174 ve 175 sayılarının ikisi de
+doğruydu, farklı şeyleri sayıyorlardı.
+
+Bağlam: madde 13 sonunda M14 eşiği (%70) aşıldı → madde 11 bırakıldı, Faz 2
+puanlaması yapıldı, kayıt tamamlandı, duruldu.
