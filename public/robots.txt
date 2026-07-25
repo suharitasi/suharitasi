@@ -1,4 +1,51 @@
+# suharitasi.com — tarayıcı erişim politikası
+# CLAUDE.md "Kopyalanma direnci" m.3: arama motoru botları ve izin verilen
+# AI-arama botları ASLA engellenmez. Aşağıdaki bloklar bu ilkeyi açıkça yazar;
+# genel kural zaten Allow: / olduğu için erişimi genişletmezler, niyeti
+# makine-okunur biçimde beyan ederler (geo-crawlers Tier-1 matrisi).
+
 User-agent: *
+Allow: /
+
+# --- Arama motorları ---
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# --- AI arama / yanıt motorları (Tier-1) ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://suharitasi.com/sitemap.xml
