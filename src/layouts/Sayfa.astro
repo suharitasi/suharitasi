@@ -4,7 +4,7 @@
 import UstMenu from '../components/UstMenu.astro';
 import AltBilgi from '../components/AltBilgi.astro';
 import GorselSlot from '../components/GorselSlot.astro';
-import { SITE_ADI, YAZAR, OG_GORSEL } from '../data/site';
+import { SITE_ADI, YAZAR, EPOSTA, OG_GORSEL } from '../data/site';
 // Hareket sözlüğü + giriş koreografisi TEK KAYNAK (ödül-üstü Faz 1).
 import '../styles/hareket.css';
 
@@ -55,11 +55,25 @@ const kurum = {
   url: kok,
   description:
     "Türkiye'nin su verisi, havzaları ve su mevzuatını tek haritada birleştiren bağımsız bilgi portalı.",
-  founder: { '@type': 'Person', name: YAZAR.adSade, jobTitle: YAZAR.unvan },
+  email: EPOSTA,
+  founder: { '@id': `${kok}#yazar` },
+  knowsAbout: ['Su hukuku', 'Yeraltı suyu ruhsatı', 'Su tahsisi', 'Su havzaları', 'İdari yargı'],
+};
+
+const yazarSema = {
+  '@type': 'Person',
+  '@id': `${kok}#yazar`,
+  name: YAZAR.adSade,
+  jobTitle: YAZAR.unvan,
+  url: `${kok}hakkinda/`,
+  description: YAZAR.uzmanlik,
+  worksFor: { '@type': 'Organization', name: YAZAR.buro, url: YAZAR.buroUrl },
+  knowsAbout: ['Su hukuku', 'İdari yargı', 'Şirketler hukuku'],
 };
 
 const semalar = [
   kurum,
+  yazarSema,
   {
     '@type': 'WebSite',
     '@id': `${kok}#site`,
