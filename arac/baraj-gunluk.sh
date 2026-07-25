@@ -38,7 +38,9 @@ if ! git diff --cached --quiet; then
     echo "[$(date -u +%FT%TZ)] git kilidi 10 dk'da alınamadı — commit ERTELENDİ" >> "$HATALOG"
     exit 4
   fi
-  git_pull_rebase || true   # rebase koparsa abort edilir; commit yine denenir
+  # K1 (2026-07-25, bulgu F4-2): commit pull'DAN ÖNCE. Eski sıra (pull → commit)
+  # rebase koptuğunda veriyi commit'siz bırakıyordu; artık veri önce kayda geçer,
+  # pull ancak ondan sonra denenir, push yalnız pull başarılıysa yapılır.
   ONCE=$(git rev-parse HEAD)
   # commit teyidi: commit atılmazsa veri arşivlenmemiştir → gerçek hata (exit 1).
   git commit -q -m "Baraj arşivi: $(date -u +%Y-%m-%d) günlük çekim (otomatik)
@@ -51,9 +53,30 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>" \
     exit 1
   fi
   # push başarısızlığı sessizce yutulmaz: log'a düşer, exit 0 DÖNÜLMEZ.
-  if ! git push -q; then
-    echo "[$(date -u +%FT%TZ)] git push BAŞARISIZ (commit yerelde, sonraki koşuda denenir)" >> "$HATALOG"
+  if git_pull_rebase; then
+    if ! git push -q; then
+      echo "[$(date -u +%FT%TZ)] git push BAŞARISIZ (commit yerelde, sonraki koşuda denenir)" >> "$HATALOG"
+      PUSH_HATA=1
+    fi
+  else
+    # Ayırt edici log: "kirli ağaç" ile "rebase çatışması" farklı arızalardır.
+    if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
+      echo "[$(date -u +%FT%TZ)] pull ertelendi: çalışma ağacı kirli - commit yerelde, sonraki koşuda denenir" >> "$HATALOG"
+      echo "[$(date -u +%FT%TZ)] kirli dosyalar: $(git status --porcelain --untracked-files=no | head -5 | tr '\n' ' ')" >> "$HATALOG"
+    else
+      echo "[$(date -u +%FT%TZ)] pull --rebase çatışması - commit yerelde, sonraki koşuda denenir" >> "$HATALOG"
+    fi
+    # push YAPILMADI → sessiz hata yasağı gereği exit 0 dönülmez (push hatasıyla aynı sınıf).
     PUSH_HATA=1
+  fi
+  # Bekleyen-commit sayacı: çatışma kronikleşirse commit'ler sessizce birikmesin.
+  if git rev-parse --abbrev-ref --symbolic-full-name @{u} > /dev/null; then
+    BEKLEYEN=$(git rev-list --count @{u}..HEAD)
+    if [ "$BEKLEYEN" -gt 5 ]; then
+      echo "[$(date -u +%FT%TZ)] UYARI: $BEKLEYEN commit push edilmemiş - sürekli çatışma olabilir" >> "$HATALOG"
+    fi
+  else
+    echo "[$(date -u +%FT%TZ)] UYARI: upstream tanımlı değil, bekleyen commit sayılamadı" >> "$HATALOG"
   fi
   git_kilit_birak
 fi

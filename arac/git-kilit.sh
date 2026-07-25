@@ -3,14 +3,17 @@
 # NEDEN: depoda otomatik commit+push yapan 4 iş var (baraj, GRACE, su-izleme,
 # site-saglik). İkisi aynı anda çalışırsa `git commit`/`git push` çakışır;
 # push reddedilir ve veri sessizce yerelde kalır. Hepsi bu kilidi kullanır.
-# SIRA: kilit al → git pull --rebase → add/commit → push → kilidi bırak.
+# SIRA (K1, 2026-07-25 ile güncellendi): add → kilit al → commit → pull --rebase
+# → (pull geçtiyse) push → kilidi bırak. Eski sıra (pull → commit) rebase
+# koptuğunda veriyi commit'siz bırakıyordu; artık veri her hâlükârda kayda
+# geçer, push yalnız pull başarılıysa denenir.
 # Kilit 10 dk'da alınamazsa iş ERTELENİR ve loglanır (sessiz kayıp YASAK).
 #
 # Kullanım (source ederek):
 #   . "$(dirname "$0")/git-kilit.sh"          # yol scripte göre değişir
 #   if ! git_kilit_al "baraj"; then logla "kilit alınamadı, ertelendi"; exit 0; fi
-#   git_pull_rebase || logla "pull başarısız"
-#   ...git add/commit/push...
+#   git commit -m ...
+#   if git_pull_rebase; then git push; else logla "pull koptu, commit yerelde"; fi
 #   git_kilit_birak
 
 GIT_KILIT_YOL="${GIT_KILIT_YOL:-/tmp/suharitasi-git.lock}"

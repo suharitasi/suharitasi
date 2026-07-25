@@ -309,7 +309,9 @@ if ! git diff --cached --quiet; then
     logla "git kilidi 10 dk'da alınamadı — commit ERTELENDİ"
     exit 4
   fi
-  git_pull_rebase || logla "pull --rebase başarısız (abort edildi); commit yine denenir"
+  # K1 (2026-07-25, bulgu F4-2): commit pull'DAN ÖNCE. Eski sıra (pull → commit)
+  # rebase koptuğunda veriyi commit'siz bırakıyordu; artık veri önce kayda geçer,
+  # pull ancak ondan sonra denenir, push yalnız pull başarılıysa yapılır.
   ONCE=$(git rev-parse HEAD)
   git commit -q -m "Su izleme: $RUN_UTC (olay=$OLAY_SAYAC hata=$HATA_SAYAC) (otomatik)
 
@@ -319,13 +321,36 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>" \
   if [ "$ONCE" = "$SONRA" ]; then
     logla "commit atlandı: HEAD değişmedi"; exit 1
   fi
-  if ! git push -q; then
-    logla "git push BAŞARISIZ (commit yerelde; sonraki koşuda denenir)"
-    # push koptu → sessiz hata yasağı: exit 0 dönme
-    git_kilit_birak
-    [ "$HATA_SAYAC" -gt 0 ] && exit 1 || exit 3
+  PUSH_ERTELENDI=0
+  if git_pull_rebase; then
+    if ! git push -q; then
+      logla "git push BAŞARISIZ (commit yerelde; sonraki koşuda denenir)"
+      PUSH_ERTELENDI=1
+    fi
+  else
+    # Ayırt edici log: "kirli ağaç" ile "rebase çatışması" farklı arızalardır.
+    if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
+      logla "pull ertelendi: çalışma ağacı kirli - commit yerelde, sonraki koşuda denenir"
+      logla "kirli dosyalar: $(git status --porcelain --untracked-files=no | head -5 | tr '\n' ' ')"
+    else
+      logla "pull --rebase çatışması - commit yerelde, sonraki koşuda denenir"
+    fi
+    PUSH_ERTELENDI=1
+  fi
+  # Bekleyen-commit sayacı: çatışma kronikleşirse commit'ler sessizce birikmesin.
+  if git rev-parse --abbrev-ref --symbolic-full-name @{u} > /dev/null; then
+    BEKLEYEN=$(git rev-list --count @{u}..HEAD)
+    if [ "$BEKLEYEN" -gt 5 ]; then
+      logla "UYARI: $BEKLEYEN commit push edilmemiş - sürekli çatışma olabilir"
+    fi
+  else
+    logla "UYARI: upstream tanımlı değil, bekleyen commit sayılamadı"
   fi
   git_kilit_birak
+  # push yapılmadıysa (koptu veya pull nedeniyle ertelendi) → sessiz hata yasağı: exit 0 dönme
+  if [ "$PUSH_ERTELENDI" -eq 1 ]; then
+    [ "$HATA_SAYAC" -gt 0 ] && exit 1 || exit 3
+  fi
 fi
 
 # hedef hatası varsa exit≠0 (bekçi/log görsün) ama arşiv/DURUM yazıldı.

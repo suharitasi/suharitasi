@@ -1,7 +1,0 @@
-[2026-07-21T15:00:02.564Z] TGT alındı (HTTP 201)
-[2026-07-21T15:00:03.047Z] havza listesi: 17 havza
-[2026-07-21T15:00:05.035Z] eşleme: 116 baraj
-[2026-07-21T15:00:05.154Z] active-fullness: 89 kayıt, 1 sayfa
-[2026-07-21T15:00:05.267Z] daily-kot: 89 kayıt, 1 sayfa
-[2026-07-21T15:00:05.433Z] daily-volume: 89 kayıt, 1 sayfa
-[2026-07-21T15:00:05.436Z] normalize tamam: 89 baraj kaydı → data/canli/baraj.json

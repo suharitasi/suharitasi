@@ -10,6 +10,13 @@ cikti/
 .playwright-mcp/
 # Pipeline hata günlüğü (sessiz hata yasağı) — kök log/, arşiv altındakiler tracked kalır
 /log/
+# 25 Tem 2026: log'lar git izlemesinden ÇIKARILDI. Sebep: git işlemleri
+# log kayıtlarını geri yazıp siliyordu (denetim bulgusu F4-7, reflog ile
+# kanıtlı: 23.07 11:14 git reset, 20.07 GRACE kaydı kayboldu). Log'lar
+# diskte durur ve yazılmaya devam eder, yalnız sürüm kontrolünde tutulmaz.
+# Desen açık liste değil: data/arsiv/baraj/log/ altındaki dosyalar günlük
+# üretiliyor, açık liste ertesi gün bayatlardı.
+*.log
 # Geçici görsel paylaşımı — tek seferlik, git add -f ile zorlanır, iş bitince silinir
 public/gecici/
 

@@ -111,9 +111,11 @@ function kilitliGit(komutlar, ad) {
   // Tek kilit: baraj/GRACE/su-izleme scriptleriyle AYNI dosya.
   const betik = ['set -euo pipefail', 'cd ' + KOK, ...komutlar].join('\n');
   try {
-    execFileSync('flock', ['-w', '600', '/tmp/suharitasi-git.lock', 'bash', '-c', betik],
+    const cikti = execFileSync('flock', ['-w', '600', '/tmp/suharitasi-git.lock', 'bash', '-c', betik],
       { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
-    return { tamam: true };
+    // K1 (25 Tem 2026): stdout geri döndürülür — çağıran, kilit içindeki
+    // koşullu dalların hangisinin işlediğini (ör. pull koptu) ayırt edebilsin.
+    return { tamam: true, cikti: cikti || '' };
   } catch (e) {
     return { tamam: false, hata: `${e.message} ${e.stderr || ''}`.trim(), ad };
   }
@@ -701,13 +703,24 @@ async function onarimlariUygula() {
     const g = kilitliGit([
       'git add -A public/ izleme/',
       `git commit -q -m ${JSON.stringify(mesaj + '\n\nCo-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>')}`,
-      'git push -q',
+      // K1 (25 Tem 2026, bulgu F4-2): pull commit'ten SONRA, push'tan ÖNCE —
+      // uzaktaki commit'lerin üstüne yazmayı önler. Pull koparsa push ATLANIR
+      // (commit yerelde kalır, sonraki koşuda denenir) ve script hata FIRLATMAZ.
+      'if git pull --rebase -q; then git push -q; else git rebase --abort || true; echo "K1-PULL-BASARISIZ"; fi',
       'git rev-parse HEAD',
     ], 'site-saglik');
     if (!g.tamam) {
       devirler.push({ konu: o.tip, ayrinti: o.veri, sebep: `commit/push başarısız: ${g.hata}` });
       await appendFile(ONARIM_LOG, JSON.stringify({ zaman: simdi(), tip: o.tip, yapildi: false, sebep: g.hata }) + '\n');
       kaydet('G-onarim', 'kirmizi', `${o.tip}: onarım commit'lenemedi — ${g.hata}`, {}, ['tam']);
+      continue;
+    }
+    if ((g.cikti || '').includes('K1-PULL-BASARISIZ')) {
+      // Push edilmedi → deploy tetiklenmez → shaBekle boşuna beklerdi. Devret ve geç.
+      const sebep = 'pull basarisiz - push ertelendi (commit yerelde, sonraki koşuda denenir)';
+      devirler.push({ konu: o.tip, ayrinti: o.veri, sebep });
+      await appendFile(ONARIM_LOG, JSON.stringify({ zaman: simdi(), tip: o.tip, yapildi: false, sebep }) + '\n');
+      kaydet('G-onarim', 'sari', `${o.tip}: ${sebep}`, {}, ['tam']);
       continue;
     }
     const sha = execFileSync('git', ['-C', KOK, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
