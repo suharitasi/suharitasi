@@ -73,3 +73,15 @@ fatal: No rebase in progress?
 [2026-07-24T15:00:04.929Z] daily-kot: 89 kayıt, 1 sayfa
 [2026-07-24T15:00:05.074Z] daily-volume: 89 kayıt, 1 sayfa
 [2026-07-24T15:00:05.081Z] normalize tamam: 89 baraj kaydı → data/canli/baraj.json
+error: cannot pull with rebase: You have unstaged changes.
+error: additionally, your index contains uncommitted changes.
+error: Please commit or stash them.
+fatal: No rebase in progress?
+[2026-07-24T15:00:08Z] deploy hook tetiklendi (HTTP 200)
+[2026-07-25T15:00:02.346Z] TGT alındı (HTTP 201)
+[2026-07-25T15:00:02.828Z] havza listesi: 17 havza
+[2026-07-25T15:00:04.795Z] eşleme: 116 baraj
+[2026-07-25T15:00:04.907Z] active-fullness: 89 kayıt, 1 sayfa
+[2026-07-25T15:00:05.021Z] daily-kot: 89 kayıt, 1 sayfa
+[2026-07-25T15:00:05.129Z] daily-volume: 89 kayıt, 1 sayfa
+[2026-07-25T15:00:05.136Z] normalize tamam: 89 baraj kaydı → data/canli/baraj.json
