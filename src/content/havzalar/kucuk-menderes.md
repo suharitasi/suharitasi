@@ -12,12 +12,12 @@ kunye:
 
 Küçük Menderes Havzası, DSİ 2024 resmî istatistiklerine göre **6.963 km²** yağış alanına sahiptir.
 
-## Su varlığı
+## Küçük Menderes Havzası'nın su varlığı ne kadar?
 
 - Yıllık ortalama yüzey suyu potansiyeli **0,54 km³** (DSİ 2024, Tablo 1.2).
 - Yeraltı suyu beslenimi **179,2 hm³/yıl**, işletme rezervi **179,2 hm³/yıl** (DSİ 2024, Tablo 1.3).
 
-## Planlama ve koruma
+## Küçük Menderes Havzası nasıl planlanıyor ve korunuyor?
 
 Havzanın kirlilik ve koruma tedbirleri
 [Küçük Menderes Havzası Koruma Eylem Planı'nda](https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Kucuk_Menderes_Havzasi.pdf)

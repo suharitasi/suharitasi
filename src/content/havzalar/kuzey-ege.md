@@ -12,12 +12,12 @@ kunye:
 
 Kuzey Ege Havzası, DSİ 2024 resmî istatistiklerine göre **9.861 km²** yağış alanına sahiptir.
 
-## Su varlığı
+## Kuzey Ege Havzası'nın su varlığı ne kadar?
 
 - Yıllık ortalama yüzey suyu potansiyeli **1,78 km³** (DSİ 2024, Tablo 1.2).
 - Yeraltı suyu beslenimi **289,4 hm³/yıl**, işletme rezervi **212,9 hm³/yıl** (DSİ 2024, Tablo 1.3).
 
-## Planlama ve koruma
+## Kuzey Ege Havzası nasıl planlanıyor ve korunuyor?
 
 Havzanın kirlilik ve koruma tedbirleri
 [Kuzey Ege Havzası Koruma Eylem Planı'nda](https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Kuzey_Ege_Havzasi.pdf)

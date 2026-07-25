@@ -12,7 +12,7 @@ kunye:
 
 Çoruh Havzası, DSİ 2024 resmî istatistiklerine göre **20.248 km²** yağış alanına sahiptir.
 
-## Su varlığı
+## Çoruh Havzası'nın su varlığı ne kadar?
 
 - Yıllık ortalama yüzey suyu potansiyeli **7,14 km³** (DSİ 2024, Tablo 1.2).
 - Yeraltı suyu beslenimi **30,0 hm³/yıl**, işletme rezervi **20,0 hm³/yıl** (DSİ 2024, Tablo 1.3).

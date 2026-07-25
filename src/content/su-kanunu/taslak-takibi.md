@@ -8,7 +8,7 @@ Bu sayfa, Su Kanunu taslağına ilişkin yalnızca **doğrulanabilir**
 gelişmeleri izler: her kayıt tarih ve kaynak bağlantısı taşır. Kaynağı
 gösterilemeyen hiçbir bilgi bu sayfaya girmez.
 
-## Gelişmeler
+## Su Kanunu taslağında son gelişmeler neler?
 
 **15 Nisan 2026 — Taslak 268 kurum ve kuruluşun görüşüne açıldı.**
 Su Yönetimi Genel Müdürlüğü, son hâli verilen taslağı görüş için 268
@@ -28,7 +28,7 @@ Kaynak: [Tarım Dünyası, 08.05.2026 tarihli haberdeki aktarım](https://www.ta
 2026'da yeniden görüşe açılmış durumda.
 Kaynak: [Tarım Dünyası, 08.05.2026](https://www.tarimdunyasi.net/haber/su-kanunu-taslagi-13-yil-sonra-bir-kez-daha-goruse-acildi/)
 
-## Taslak kavramlar: "su tahsis belgesi" ve "su verimliliği belgesi"
+## "Su tahsis belgesi" ve "su verimliliği belgesi" nedir?
 
 Yürürlükteki mevzuat metinlerinde bu adlarla kurulmuş açık ve genel bir
 belge rejimi **bulunmamaktadır**. Mevcut düzenlemelerde "su tahsisi",

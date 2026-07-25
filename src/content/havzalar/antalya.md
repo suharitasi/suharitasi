@@ -12,12 +12,12 @@ kunye:
 
 Antalya Havzası, DSİ 2024 resmî istatistiklerine göre **20.249 km²** yağış alanına sahiptir.
 
-## Su varlığı
+## Antalya Havzası'nın su varlığı ne kadar?
 
 - Yıllık ortalama yüzey suyu potansiyeli **12,80 km³** (DSİ 2024, Tablo 1.2).
 - Yeraltı suyu beslenimi **1.164,7 hm³/yıl**, işletme rezervi **576,3 hm³/yıl** (DSİ 2024, Tablo 1.3).
 
-## Planlama ve koruma
+## Antalya Havzası nasıl planlanıyor ve korunuyor?
 
 Havzanın kirlilik ve koruma tedbirleri
 [Antalya Havzası Koruma Eylem Planı'nda](https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Antalya_web.pdf)

@@ -12,12 +12,12 @@ kunye:
 
 Kızılırmak Havzası, DSİ 2024 resmî istatistiklerine göre **82.181 km²** yağış alanına sahiptir.
 
-## Su varlığı
+## Kızılırmak Havzası'nın su varlığı ne kadar?
 
 - Yıllık ortalama yüzey suyu potansiyeli **6,46 km³** (DSİ 2024, Tablo 1.2).
 - Yeraltı suyu beslenimi **2.003,1 hm³/yıl**, işletme rezervi **1.762,9 hm³/yıl** (DSİ 2024, Tablo 1.3).
 
-## Planlama ve koruma
+## Kızılırmak Havzası nasıl planlanıyor ve korunuyor?
 
 Havzanın kirlilik ve koruma tedbirleri
 [Kızılırmak Havzası Koruma Eylem Planı'nda](https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/K%C4%B1z%C4%B1l%C4%B1rmak_Havzas%C4%B1.pdf)

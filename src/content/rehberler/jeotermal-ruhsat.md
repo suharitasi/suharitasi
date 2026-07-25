@@ -12,7 +12,7 @@ tasarrufundadır; araziye tabi değildir. Bu alanda faaliyet tamamen
 **ruhsata bağlıdır** ve rejim 5686 sayılı Kanun'da kurulur. Yeraltı
 suyundaki 167 rejiminden farklı, kendi kuralları olan bir sistemdir.
 
-## Arama ruhsatı: öncelik hakkı esası
+## Jeotermal arama ruhsatında öncelik hakkı nasıl kazanılır?
 
 Arama ruhsatı başvurusu, 1/25000 ölçekli pafta adı ve koordinatları
 belirtilerek, beş bin hektarı geçmeyecek şekilde arama projesiyle
@@ -22,7 +22,7 @@ incelenir ve en hızlı, en fazla yatırımı teklif eden proje sahibi
 tercih edilir. Arama ruhsat süresi üç yıldır; faaliyetler olumlu
 gelişirse bir yıl uzatılabilir.
 
-## İşletme ruhsatı: süre sonu tuzağı
+## Jeotermal işletme ruhsatının süresi dolunca ne olur?
 
 Arama ruhsatı sahibi, arama süresinin **son günü akşamına kadar**
 işletme projesiyle işletme ruhsatı başvurusunda bulunmalıdır; bu

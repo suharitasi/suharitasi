@@ -12,12 +12,12 @@ kunye:
 
 Meriç-Ergene Havzası, DSİ 2024 resmî istatistiklerine göre **14.486 km²** yağış alanına sahiptir.
 
-## Su varlığı
+## Meriç-Ergene Havzası'nın su varlığı ne kadar?
 
 - Yıllık ortalama yüzey suyu potansiyeli **1,62 km³** (DSİ 2024, Tablo 1.2).
 - Yeraltı suyu beslenimi **507,7 hm³/yıl**, işletme rezervi **498,2 hm³/yıl** (DSİ 2024, Tablo 1.3).
 
-## Planlama ve koruma
+## Meriç-Ergene Havzası nasıl planlanıyor ve korunuyor?
 
 Havza için [Nehir Havzası Yönetim Planı](https://www.tarimorman.gov.tr/SYGM/Belgeler/NHYP%20DEN%C4%B0Z/MER%C4%B0%C3%87-ERGENE%20NEH%C4%B0R%20HAVZASI%20Y%C3%96NET%C4%B0M%20PLANI.pdf) (SYGM)
 yayımlanmıştır; ayrı bir koruma eylem planı PDF'i bulunamadı (14.07.2026).

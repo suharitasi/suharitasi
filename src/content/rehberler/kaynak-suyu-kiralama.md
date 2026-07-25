@@ -34,21 +34,21 @@ kendi ihtiyacı için kullanılan kaynak sularının kiralanabileceğine dair
 açık düzenleme bulunmadığını belirtmiştir; kaynağın hukuki niteliği ve
 taşınmazın durumu her dosyada ayrıca değerlendirilir.
 
-## İhale zorunluluğu
+## Kaynak suyu kiralamasında ihale zorunlu mu?
 
 Kiralama 2886 sayılı Devlet İhale Kanunu kapsamındadır. Danıştay,
 2886'ya uygun ihale yapılmadan, yalnızca ölçüm ve kullanım bedeli
 tespitiyle yapılan kiralamayı hukuka aykırı bulmuştur. İdare, yasal
 dayanak olmaksızın kendi düzenlemesiyle bu rejimi ikame edemez.
 
-## Süre, devir ve fesih
+## Kira süresi, devir ve fesih nasıl düzenlenir?
 
 Kaynak metnin dayandığı veri tabanında kiralama süresi için açık bir
 üst sınır hükmü bulunmamaktadır; süre ihale şartnamesi, sözleşme ve
 özel normlarla belirlenir, kesin bir sayı verilemez. Devir ve fesihte
 somut sözleşme hükümleri ile 2886'nın genel hükümleri esas alınır.
 
-## Kiralama çerçevesi
+## Kaynak suyu kiralama çerçevesi nedir?
 
 | Konu | Dayanak | Hukukî sonuç | Yargısal yaklaşım |
 | --- | --- | --- | --- |

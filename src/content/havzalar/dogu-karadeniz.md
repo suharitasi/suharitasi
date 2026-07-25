@@ -12,12 +12,12 @@ kunye:
 
 Doğu Karadeniz Havzası, DSİ 2024 resmî istatistiklerine göre **22.846 km²** yağış alanına sahiptir.
 
-## Su varlığı
+## Doğu Karadeniz Havzası'nın su varlığı ne kadar?
 
 - Yıllık ortalama yüzey suyu potansiyeli **16,37 km³** (DSİ 2024, Tablo 1.2).
 - Yeraltı suyu beslenimi **490,9 hm³/yıl**, işletme rezervi **490,9 hm³/yıl** (DSİ 2024, Tablo 1.3).
 
-## Planlama ve koruma
+## Doğu Karadeniz Havzası nasıl planlanıyor ve korunuyor?
 
 Havzanın kirlilik ve koruma tedbirleri
 [Doğu Karadeniz Havzası Koruma Eylem Planı'nda](https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Dogu_Karadeniz_web.pdf)
