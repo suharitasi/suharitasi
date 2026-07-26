@@ -601,7 +601,8 @@ DÖNÜŞÜM SEANSI (26 Tem 2026) — dal `donusum-2026-07-26`, worktree
       #7 robots.txt Tier-1 botları (`f71f490`) · #8 9 hub sayfasına öz-cevap
       (`5a14a15`) · #10 llms.txt build üreticisi (`16fde8d`) · #12 ana sayfa
       öz-cevabına somut sayılar (`0a84dd4`) · #13 HowTo şeması (`0f3e00e`).
-      KULLANICI ONAYI BEKLİYOR — canlı test yapılmadı, main'e merge yok.
+      KULLANICI GÖRSEL/UI ONAYI ALINDI (26 Tem 2026). Dal push edildi;
+      main'e merge EDİLMEDİ → canlıda değil.
 - [ ] #1 `sameAs` — SINIF B (B-2). **Kullanıcıdan gerçek profil adresi
       gerekiyor:** LinkedIn (kişisel/büro), X, Google Business Profile, baro
       levhası sayfası, Wikidata, YouTube. M8 gereği hiçbiri uydurulmadı, alan
@@ -621,19 +622,31 @@ DÖNÜŞÜM SEANSI (26 Tem 2026) — dal `donusum-2026-07-26`, worktree
       (`0212d30`) · havza kardeş bağları (`423f4af`).
       `/kuyu-ruhsati/` iç link 1→82. Küme yatay bağı: havza 0/25→25/25,
       il 0/81→76/81. LH erişilebilirlik 100 (3 tur medyan).
-      KULLANICI ONAYI BEKLİYOR — canlı test yok, merge/push yok.
+      KULLANICI GÖRSEL/UI ONAYI ALINDI (26 Tem 2026). Dal push edildi;
+      main'e merge EDİLMEDİ → canlıda değil.
 - [ ] ÖDÜL-ÜSTÜ tripwire (Sharp uyarısı): analitik kurulduktan SONRA
       `/harita/` ve `/havzalar/` organik girişi düşerse menü sırası geri
       alınır. Şu an ölçülemez (madde 0 açık).
-- [ ] CCBot (Common Crawl) engellensin mi? KULLANICI KARARI. Engelleme =
-      uzun vadeli AI eğitim varlığı azalır; açık bırakma = toplu kopyalanma
-      kolaylaşır. Şu an genel kural altında AÇIK, robots.txt'te not düşüldü.
+- [x] CCBot ENGELLENDİ (26 Tem 2026 kullanıcı kararı, `7ced41d`). Tier-1
+      canlı AI arama botları (GPTBot, OAI-SearchBot, ClaudeBot,
+      PerplexityBot, Google-Extended) açık kaldı.
 - [ ] Lighthouse PERFORMANS yeniden ölçülmedi (bu turda yalnız erişilebilirlik).
       Ortalama sayfa ağırlığı 24,1 → 26,9 KB (+%11,6): breadcrumb + footer
       sütunu + kardeş bağları. Canlıya çıkınca LH perf tabanı doğrulanmalı.
-- [ ] Handley önerisi (uygulanmadı): menü etiketleri soru biçimine çevrilsin
-      ("Hangi Kurum" → "Hangi kuruma gideceğim?"). Onaylı `not` metinlerinin
-      değişmesini gerektiriyor — kullanıcı kararı.
+- [x] Handley önerisi UYGULANDI (26 Tem 2026, `8b90a36`): menü öğeleri
+      okuyucunun sorusunu söylüyor, bölüm adı mono etiket olarak bağlantı
+      içinde korundu (çapa metni + taranabilirlik + M6 üçü de bozulmadı).
+      Ölçüm gereği menü ölçeği ve öğe aralığı daraltıldı — masaüstü menüsü
+      1058 px'e çıkıp kaydırma gerektiriyordu, şimdi 900/900.
+- [x] #6'nın `/rehberler/kuyu-ruhsati/` kısmı UYGULANDI (`5bbc85e`) —
+      görsel/UI onayı bu engeli kaldırdı. İçindekiler menüsündeki 9 eski
+      başlık kelimesi bilerek düştü, gövde paragrafları değişmedi.
+- [ ] MERGE KARARI: `main`'e merge = Cloudflare Pages canlı yayını.
+      Kullanıcıya soruldu, bekliyor.
+- [ ] Madde 14 (rehber süreç şeması) · 15 (havza küçük haritaları) ·
+      20 (sektör ikonları): YENİ GÖRSEL ÜRETİMİ gerektiriyor. "Görsel/UI
+      işlerini onaylıyorum" bu kapıyı KAPATMAZ — ODUL-USTU referans görsel
+      onayı ayrı bir kapı.
 - [x] #11 rehber → il/persona bağlam linki — TAMAMLANDI (`fb27d9d`).
       B3 (rehber → il) zaten karşılanmıştı: `/rehberler/kuyu-ruhsati/` 81 il
       sayfasına link veriyor. C2 (rehber → persona) uygulandı: 0 → 13 link,

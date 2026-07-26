@@ -619,3 +619,87 @@ Ana sayfa kasıtlı olarak breadcrumb almadı (kök sayfa), puanı değişmedi.
 7. **85 başlık + yeni menü/footer etiketlerinin Türkçe isabeti** makine
    denetleyemez; kullanıcı incelemesi gerekli.
 8. Canlı site: **hiçbir şey push edilmedi.**
+
+---
+
+## EK — 26 Tem 2026, kullanıcı onayı sonrası
+
+Kullanıcı: "tüm görsel ve ui işlerini onaylıyorum" + "CCBot engellensin" +
+"Handley önerini uygula" + "push et".
+
+### 1. Handley uygulaması — menü öğeleri artık okuyucunun sorusu
+
+Handley'in "bir kişiye yaz / yüksek sesle söyler miydin" testi menüye
+uygulandı. **Bölüm adı SİLİNMEDİ:** sorunun üstünde mono etiket olarak,
+bağlantının İÇİNDE duruyor — çapa metni bölüm anahtar kelimesini koruyor
+(site-architecture), menü taranabilir kalıyor (ui-ux-pro-max), gövde
+parmak izinde kayıp olmuyor (M6).
+
+| Etiket (korundu) | ÖNCE (tek satır) | SONRA (soru satırı) |
+|---|---|---|
+| DURUMUM | Durumum | Sektörümde yükümlülüğüm ne? |
+| HANGİ KURUM | Hangi Kurum | Hangi kuruma gideceğim? |
+| REHBERLER | Rehberler | Adım adım nasıl yapılır? |
+| KUYU RUHSATI | Kuyu Ruhsatı | Kuyu ruhsatını nasıl alırım? |
+| HARİTA | Harita | Türkiye'de su nerede? |
+| HAVZALAR | Havzalar | Havzamda su ne durumda? |
+| SU KANUNU | Su Kanunu | Mevzuat ne diyor? |
+| VAKALAR | Vakalar | Başka şirketler ne yaptı? |
+| HAKKINDA | Hakkında | Bunu kim hazırlıyor? |
+
+**Ölçüm kaynaklı iki ayar:** soru cümlesi tek kelimeden uzun olduğu için
+(a) menü ölçeği `clamp(1.7,3.4vw,2.5rem)` → `clamp(1.28,2.3vw,1.68rem)`,
+(b) öğe aralığı `clamp(0.9,2.6vh,1.5rem)` → `clamp(0.5,1.1vh,0.72rem)`.
+Sebep ölçüldü, tahmin edilmedi: ilk halde masaüstü menüsü 900 px ekranda
+**1058 px**'e çıkıp kaydırma gerektiriyordu (öncesinde gerektirmiyordu).
+Ayar sonrası **900/900 — kaydırma yok**; mobil 447/844, yatay taşma 0.
+
+### 2. CCBot engellendi (kullanıcı kararı)
+
+`robots.txt`'e `User-agent: CCBot / Disallow: /`. Gerekçe ve bedeli dosyada
+yazılı. **Tier-1 canlı AI arama botları etkilenmedi** — GPTBot,
+OAI-SearchBot, ChatGPT-User, ClaudeBot, PerplexityBot, Google-Extended
+açıkça açık.
+
+### 3. Onayla açılan iş: `/rehberler/kuyu-ruhsati/` soru başlıkları
+
+TUR 2'de bu sayfa M6 gereği GERİ ALINMIŞTI: kalıp-2 "İçindekiler" menüsü
+başlık metnini `<h2>` dışında yansıttığı için 9 gövde kelimesi kayboluyordu.
+Kullanıcı onayıyla uygulandı.
+
+| ÖNCE | SONRA |
+|---|---|
+| Rejimin mantığı | Yeraltı suyu ruhsat rejimi nasıl işler? |
+| Üç belge tek zincir | Kuyu ruhsatı için hangi üç belge gerekir? |
+| Belge yapısı | Kuyu belgeleri hangi yapıda düzenlenir? |
+| Başvuru akışı | Kuyu ruhsatı başvurusu nasıl yapılır? |
+
+`[slug].astro`'daki kalıp-2 bölüm kimlikleri, ham gövde eşleşmesi ve
+`bolum.get/set` çağrıları yeni slug'lara güncellendi. İçindekiler menüsü
+otomatik güncellendi, çapa bağlantıları çalışıyor (0 kırık link).
+
+**Bilerek kabul edilen kayıp (kullanıcı onaylı):** `Rejimin`, `mantığı`,
+`Üç`, `belge`, `tek`, `zincir`, `Belge`, `yapısı`, `Başvuru`, `akışı` —
+hepsi içindekiler menüsündeki eski başlık yankısı. Gövde paragraf metni
+değişmedi.
+
+### Kanıt
+
+- Build hata 0 · 175/172 değişmedi
+- Soru biçimli h2/h3: **458 → 567**, kapsayan sayfa **161 → 162**
+- Öz-denetim: konsol **0**, iç link **102 tekil / 0 kırık**, etkileşim geçti
+- Lighthouse erişilebilirlik 3 sayfa × 3 tur medyan: **100 / 100 / 100**
+- Menü açık ölçümü: masaüstü **900/900 kaydırma yok**, mobil 447/844,
+  yatay taşma **0 px** (390 px ve 1440 px)
+- **Dal `origin/donusum-2026-07-26`'ya PUSH EDİLDİ.**
+
+### Hâlâ açık
+
+- **`main`'e merge EDİLMEDİ** → canlı siteye çıkmadı. Cloudflare Pages
+  yayını `main`'den beslendiği için merge = canlı yayın.
+- Madde 14 (rehber süreç şeması) · 15 (havza küçük haritaları) ·
+  20 (sektör ikonları): **YENİ GÖRSEL ÜRETİMİ** gerektiriyor. ODUL-USTU
+  bunları ayrı bir kapıya bağlıyor (referans görsel onayı) — "görsel/UI
+  işlerini onaylıyorum" bu kapıyı kapatmaz, referans görsel gerekir.
+- `sameAs` gerçek profil adresleri · Organization `logo` dosyası.
+- Lighthouse PERFORMANS yerelde ölçülmedi (canlı taban ile kıyas geçersiz).
