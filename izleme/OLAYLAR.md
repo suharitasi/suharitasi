@@ -1,5 +1,6 @@
 # Su Kanunu İzleme — OLAYLAR (en yeni üstte)
 
+- 2026-07-26T16-00-01Z | tarimorman-anasayfa | içerik değişti (~4 satır) → arsiv/tarimorman-anasayfa/2026-07-26T16-00-01Z/
 - 2026-07-24T16-00-01Z | tbmm-komisyon-gundemleri | içerik değişti (~18 satır) → arsiv/tbmm-komisyon-gundemleri/2026-07-24T16-00-01Z/
 - 2026-07-24T16-00-01Z | tarimorman-sygm | içerik değişti (~124 satır) → arsiv/tarimorman-sygm/2026-07-24T16-00-01Z/
 - 2026-07-24T16-00-01Z | tarimorman-anasayfa | içerik değişti (~347 satır) → arsiv/tarimorman-anasayfa/2026-07-24T16-00-01Z/
