@@ -613,6 +613,27 @@ DÖNÜŞÜM SEANSI (26 Tem 2026) — dal `donusum-2026-07-26`, worktree
       geri alındı. **Kullanıcı kararı gerekli:** içindekiler başlıktan
       türediği için bu "gövde değişikliği" sayılmalı mı? Sayılmazsa tek
       komutla uygulanır.
+- [x] ÖDÜL-ÜSTÜ TURU (26 Tem 2026, sabah) — 9 skill uygulandı, 7 commit.
+      Görünür breadcrumb 0→170 sayfa (`b42c46f`) · menü niyet-önce + Kuyu
+      Ruhsatı kapısı (`e8191dd`) · footer "Ne yapmam gerekiyor" sütunu
+      (`157af82`) · robots.txt Tier-2 tamam + Bytespider engeli (`0665aa4`) ·
+      persona operasyonel sonraki adım (`4e29078`) · il kardeş bağları
+      (`0212d30`) · havza kardeş bağları (`423f4af`).
+      `/kuyu-ruhsati/` iç link 1→82. Küme yatay bağı: havza 0/25→25/25,
+      il 0/81→76/81. LH erişilebilirlik 100 (3 tur medyan).
+      KULLANICI ONAYI BEKLİYOR — canlı test yok, merge/push yok.
+- [ ] ÖDÜL-ÜSTÜ tripwire (Sharp uyarısı): analitik kurulduktan SONRA
+      `/harita/` ve `/havzalar/` organik girişi düşerse menü sırası geri
+      alınır. Şu an ölçülemez (madde 0 açık).
+- [ ] CCBot (Common Crawl) engellensin mi? KULLANICI KARARI. Engelleme =
+      uzun vadeli AI eğitim varlığı azalır; açık bırakma = toplu kopyalanma
+      kolaylaşır. Şu an genel kural altında AÇIK, robots.txt'te not düşüldü.
+- [ ] Lighthouse PERFORMANS yeniden ölçülmedi (bu turda yalnız erişilebilirlik).
+      Ortalama sayfa ağırlığı 24,1 → 26,9 KB (+%11,6): breadcrumb + footer
+      sütunu + kardeş bağları. Canlıya çıkınca LH perf tabanı doğrulanmalı.
+- [ ] Handley önerisi (uygulanmadı): menü etiketleri soru biçimine çevrilsin
+      ("Hangi Kurum" → "Hangi kuruma gideceğim?"). Onaylı `not` metinlerinin
+      değişmesini gerektiriyor — kullanıcı kararı.
 - [x] #11 rehber → il/persona bağlam linki — TAMAMLANDI (`fb27d9d`).
       B3 (rehber → il) zaten karşılanmıştı: `/rehberler/kuyu-ruhsati/` 81 il
       sayfasına link veriyor. C2 (rehber → persona) uygulandı: 0 → 13 link,

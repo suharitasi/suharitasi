@@ -511,3 +511,111 @@ Persona satırı "Sonraki adım" kutusunun ALTINA, ince ayraç çizgisiyle,
 bozmaması için bilinçli olarak ikincildir. **DESIGN.md "görünürlük kuralı"
 açısından sınırda:** ilk bakışta fark edilir ama baskın değil. Daha belirgin
 istenirse tek satırlık değişiklik.
+
+---
+
+# ÖDÜL-ÜSTÜ TURU — 9 SKILL'İN UYGULAMASI (26 Tem 2026, sabah)
+
+Brief: `cikti/brief/20260726T074053Z-odul-ustu-skill.md` (orijinal, değiştirilmedi)
+→ 3 ENGEL (T5, mekanik) → `-duzeltilmis.md` → **denetçi TEMİZ**.
+
+## Skill kapsama tablosu
+
+| Skill | Ne önerdi | Ne uygulandı | Ölçülen etki |
+|---|---|---|---|
+| `marketing-council` | Schwartz: ziyaretçi problem-farkında, menü onu bulunduğu aşamada karşılamalı. Dunford: "Harita" ilk sıra siteyi veri-görselleştirme kategorisine çerçeveliyor. **Sharp (muhalif):** kategori giriş noktalarını daraltma, veri kapıları kalsın. Handley: etiketler soru biçiminde olsun. | Menü niyet-önce sıralandı; **hiçbir kapı kaldırılmadı** (Sharp kısıtı). Handley'in soru-etiket önerisi UYGULANMADI — onaylı gövde metnini silmek gerekirdi (M6). | Menü sırası değişti + 1 yeni kapı |
+| `site-architecture` | Görünür breadcrumb ("her sayfada bedava iç link"), yetim sayfa yasağı, footer sütunlama | Breadcrumb 170 sayfaya; footer'a 4. sütun; `/kuyu-ruhsati/` menüye | Görünür breadcrumb **0 → 170** · `/kuyu-ruhsati/` **1 → 82** iç link · `/arac/il-rejimi/` **2 → 174** · ≤3 link alan sayfa **6 → 4** |
+| `ui-ux-pro-max` | Navigation/Breadcrumbs (3+ seviye), dokunma hedefi, başlık hiyerarşisi bozulmasın, mobil taşma 0 | Breadcrumb mono/ikincil tonda, 0,45rem dikey iç boşluk (≈34 px satır), `aria-current="page"`, print'te gizli; footer 4→2 sütun kırılımı | 375/390 px taşma **0**, LH erişilebilirlik **100/100/100** (3 tur medyan) |
+| `geo-crawlers` | Tier-1 5/5 + Tier-2 5/5 açıkça yazılsın; Bytespider engellensin; X-Robots-Tag/noai kontrolü | GoogleOther, Amazonbot, FacebookBot eklendi; Bytespider engellendi; CCBot bilinçli AÇIK bırakıldı (kullanıcı kararı) | `User-agent` bloğu **14 → 18** · Tier-1 5/5, Tier-2 5/5 · `X-Robots-Tag` yok, `noai` yok, llms.txt 200 `text/plain` |
+| `cro` | CTA hiyerarşisi; ileri yol tek olmasın | **Düzeltme:** persona sayfasında iletişim CTA'sı ZATEN VARDI. Eksik olan operasyonel sonraki adım → yetkili kurum + il rejimi satırı eklendi | 42 persona sayfasında ileri yol **1 → 3** |
+| `content-strategy` | Hub-spoke bütünlüğü: her spoke hub'a, hub her spoke'a, spoke'lar birbirine | Küme bütünlüğü ölçüldü; iki boş küme dolduruldu — il kardeşleri (aynı DSİ bölgesi), havza kardeşleri (aynı illeri kapsayan) | havza spoke↔spoke **0/25 → 25/25** · il spoke↔spoke **0/81 → 76/81** |
+| `geo-citability` | Kategori 3 yapısal okunabilirlik | 4 sayfa yeniden puanlandı (aşağıda) | Kategori 3: 78→80 · 78→80 · 85→87 · 60→60 |
+| `geo-schema` | (TUR 2'de uygulandı) | Organization + Person + HowTo | Bu turda yeni değişiklik yok |
+| `featured-snippet-optimizer` · `eeat-audit` | (TUR 2'de uygulandı) | 85 soru başlığı · Person/knowsAbout/worksFor | Bu turda yeni değişiklik yok |
+
+## Menü ağacı — ÖNCE → SONRA
+
+```
+ÖNCE (tam ekran menü, 8)          SONRA (9, niyet-önce)
+1 Harita                          1 Durumum
+2 Havzalar                        2 Hangi Kurum
+3 Rehberler                       3 Rehberler
+4 Su Kanunu                       4 Kuyu Ruhsatı      <- YENİ (hiçbir menüde yoktu)
+5 Durumum                         5 Harita
+6 Hangi Kurum                     6 Havzalar
+7 Vakalar                         7 Su Kanunu
+8 Hakkında                        8 Vakalar
+                                  9 Hakkında
+```
+Hiçbir öğe kaldırılmadı, hiçbir açıklama metni (`not`) değiştirilmedi.
+
+```
+FOOTER ÖNCE (3 sütun)             FOOTER SONRA (4 sütun)
+Bölümler (5)                      Bölümler (5, AYNEN)
+Veri ve yöntem                    Ne yapmam gerekiyor (5) <- YENİ
+Künye                             Veri ve yöntem
+                                  Künye
+```
+Yeni sütun: Durumum · Hangi Kurum · Kuyu Ruhsatı — iller · İl rejimi aracı · Vakalar.
+
+## Küme (hub-spoke) bütünlüğü — ÖNCE → SONRA
+
+| Küme | spoke | hub→spoke | spoke→hub | spoke↔spoke ÖNCE | spoke↔spoke SONRA |
+|---|---|---|---|---|---|
+| `/rehberler/` | 10 | 10/10 | 10/10 | 10/10 | 10/10 |
+| `/havzalar/` | 25 | 25/25 | 25/25 | **0/25** | **25/25** |
+| `/kuyu-ruhsati/` | 81 | 81/81 | 81/81 | **0/81** | **76/81** |
+| `/durumum/` | 42 | 42/42 | 42/42 | 42/42 | 42/42 |
+| `/vaka/` | 1 | 1/1 | 1/1 | 0/1 | 0/1 (tek spoke) |
+| `/su-kanunu/` | 2 | 2/2 | 2/2 | 0/2 | 0/2 (iki spoke, konuları ayrık) |
+
+Kardeşi çıkmayan 5 il (`sivas`, `sanliurfa`, `antalya`, `istanbul`, `artvin`):
+DSİ bölgesinde yayınlanmış tek il oldukları için blok hiç basılmıyor — hata
+değil, koşullu davranış.
+
+## geo-citability — aynı 4 sayfa
+
+| Sayfa | TUR 2 sonu | ÖDÜL-ÜSTÜ sonu | Kategori 3 |
+|---|---|---|---|
+| `/rehberler/kuyu-ruhsati/` | 80 | **81** | 78 → **80** |
+| `/hangi-kurum/` | 75 | **76** | 78 → **80** |
+| `/durumum/ana-metal-sanayii-nace-24/` | 76 | **77** | 85 → **87** |
+| `/` (ana sayfa) | 62 | **62** | 60 → **60** |
+
+**Dürüstlük kaydı:** artışlar küçük ve rubrik takdiri payı (±3) içinde.
+`geo-citability` SAYFA düzeyinde puanlar; bu turun asıl kazancı SİTE düzeyinde
+(iç link grafiği, tarayıcı erişimi, küme bütünlüğü) ve bu rubrikte görünmez.
+Ana sayfa kasıtlı olarak breadcrumb almadı (kök sayfa), puanı değişmedi.
+
+## Kanıtlar
+
+- Build hata **0**, sayfa/sitemap **175/172** (değişmedi)
+- Gövde parmak izi: kaybolan kelime **1** — `/hangi-kurum/` build tarihinin
+  25 → 26 Temmuz dönmesi. İçerik kaybı **yok**.
+- Öz-denetim (`arac/dist-sun.mjs`, CSP + `_redirects` uygulanır), 8 sayfa:
+  konsol **0**, iç link **114 tekil / 0 kırık**, etkileşim **8/8**
+- Lighthouse erişilebilirlik, 3 tur medyan, 3 sayfa: **100 / 100 / 100**,
+  başarısız denetim yok
+- Mobil 375 px ve 390 px, 3 sayfa: yatay taşma **0 px**, breadcrumb taşmıyor
+
+## DENETLENEMEDİ
+
+1. **Lighthouse PERFORMANS** yeniden ölçülmedi. Yalnız erişilebilirlik koşuldu.
+   SITE-DURUM'daki taban (98/87 · 94/75 · 98/93 · 99/88) CANLI siteden, bu
+   ölçüm yerelden olurdu — kıyas geçerli olmaz.
+2. **Ortalama sayfa ağırlığı 24,1 KB → 26,9 KB (+%11,6).** Breadcrumb + footer
+   sütunu + kardeş bağları her sayfaya biniyor. Sıkıştırma sonrası etkisi
+   ölçülmedi; LCP/CLS etkisi ölçülmedi.
+3. **Menü sırası değişikliğinin davranışa etkisi ölçülemez** — analitik yok
+   (madde 0 hâlâ açık). Sharp'ın uyarısı TRİPWIRE olarak kayıtlı: analitik
+   kurulduktan sonra `/harita/` ve `/havzalar/` organik girişi düşerse sıra
+   geri alınır.
+4. **CCBot kararı** verilmedi (bilinçli). Engellemek uzun vadeli AI eğitim
+   varlığını azaltır, açık bırakmak toplu kopyalanmayı kolaylaştırır.
+5. **Ana sayfa** öz-denetime yine alınamadı (menü düğmesi kaydırma-sahnesi
+   arkasında — aracın bilinen sınırı).
+6. **Breadcrumb'ın son halkası h1 ile aynı metni tekrarlıyor** (standart
+   davranış, JSON-LD ile birebir) — kullanıcı bunu fazlalık bulabilir.
+7. **85 başlık + yeni menü/footer etiketlerinin Türkçe isabeti** makine
+   denetleyemez; kullanıcı incelemesi gerekli.
+8. Canlı site: **hiçbir şey push edilmedi.**

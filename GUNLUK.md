@@ -816,3 +816,47 @@ düğmesi kaydırma-sahnesi arkasında; aracın bilinen sınırı, kuyruğa yaz�
 
 **M6:** eklenen 26 kelime, kaybolan 1 — o da `/hangi-kurum/` sayfasındaki
 build tarihinin 25 → 26 Temmuz dönmesi. İçerik kaybı yok.
+
+### 26.07.2026 (sabah, 2. blok) — ÖDÜL-ÜSTÜ: 9 skill'in uygulaması
+
+Kullanıcı: "son 24 saatte yüklediğin skilleri kullan, menüler dahil yerlerini
+önceliklerini değiştir, ödül üzeri bir site olsun."
+
+**Brief ön kapısı işletildi:** brief `cikti/brief/` altına olduğu gibi yazıldı,
+denetçi 3 ENGEL verdi (T5: DUR kapısı, kapsam mührü, commit+push kuralı —
+üçü de mekanik eksik), madde 4e gereği yalnız EKLEME ile tamamlandı,
+`-duzeltilmis.md` TEMİZ geçti. Orijinal korundu.
+
+**En büyük bulgu — şema dürüstlüğü açığı:** `BreadcrumbList` JSON-LD 171
+sayfada yayınlanıyordu ama sitede GÖRÜNÜR breadcrumb YOKTU (0 sayfa). Yani
+site, arama motorlarına sayfada karşılığı olmayan bir gezinme yapısı beyan
+ediyordu. Görünür breadcrumb aynı `kirintilar` dizisinden üretildi — iki
+kaynak artık ayrışamaz.
+
+**İkinci bulgu — hub'ın kendisi yetimdi:** 81 il sayfasının giriş kapısı
+`/kuyu-ruhsati/` yalnız **1** iç link alıyordu ve hiçbir menüde yoktu.
+Breadcrumb + menü + footer ile **82**'ye çıktı.
+
+**Üçüncü bulgu — iki küme yatay bağsızdı:** havza 0/25, il 0/81. Kardeşlik
+ölçütü UYDURULMADI; sayfanın zaten yazdığı olgudan türetildi (aynı DSİ
+bölgesi / aynı illeri kapsamak). Coğrafi komşuluk iddiası YOK.
+
+**Kurul kararının izi:** menü niyet-önce sıralandı ama Sharp'ın (muhalif)
+kısıtı korundu — hiçbir veri kapısı kaldırılmadı, yalnız sıra değişti.
+Handley'in "etiketler soru olsun" önerisi UYGULANMADI: onaylı gövde metnini
+silmeyi gerektiriyordu (M6). Skill önerisi ile proje kuralı çatıştığında
+proje kuralı kazandı.
+
+**cro'da öz-düzeltme:** persona sayfasında "iletişim bloğu yok" diye başladım,
+ölçünce blok VARDI (sektöre özel mailto konusuyla). Eksik olan iletişim değil
+operasyonel sonraki adımdı. Bulgu düzeltildi, brief kuralı "belirtiden nedene
+atlanmaz" burada işledi.
+
+**Kanıt:** build hata 0 · 175/172 değişmedi · gövde parmak izinde kayıp yok
+(tek fark build tarihinin gün dönmesi) · öz-denetim 8 sayfa konsol 0, 114
+tekil link 0 kırık · LH erişilebilirlik 3 sayfa × 3 tur medyan **100** ·
+mobil 375/390 px taşma 0.
+
+**Açık bıraktığım:** ortalama sayfa ağırlığı 24,1 → 26,9 KB (+%11,6) —
+Lighthouse PERFORMANS yeniden ölçülmedi (yerel/canlı kıyası geçersiz olurdu),
+DENETLENEMEDİ'ye yazıldı. CCBot engellensin mi kararı kullanıcıya bırakıldı.
