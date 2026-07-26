@@ -48,4 +48,28 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# --- Saldırgan tarayıcı (geo-crawlers Tier-3: "BLOCK for most Western
+# businesses" — agresif tarama davranışı, arama görünürlüğüne katkısı yok).
+# CLAUDE.md "Kopyalanma direnci" m.3 ile uyumlu: bu bir ARAMA/AI-ARAMA botu
+# DEĞİL, toplu içerik toplayıcıdır. Tier-1 botların hiçbiri etkilenmez. ---
+User-agent: Bytespider
+Disallow: /
+
+# NOT: CCBot (Common Crawl) bilinçli olarak ENGELLENMEDİ — genel kural altında
+# erişimi sürüyor. Engellemek uzun vadeli AI eğitim varlığını azaltır, açık
+# bırakmak toplu kopyalanmayı kolaylaştırır. Bu bir DEĞİŞ-TOKUŞ, kullanıcı
+# kararına bırakıldı (SIRADAKILER'de açık madde).
+
+# AI istemcileri için makine-okunur içindekiler
+# https://suharitasi.com/llms.txt
+
 Sitemap: https://suharitasi.com/sitemap.xml
