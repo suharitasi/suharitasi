@@ -156,6 +156,20 @@ const sema = [
     </>
   )}
 
+  {/* K3-3 (26 Tem 2026) — cro adım 3: CTA hiyerarşisi.
+      ÖLÇÜM (düzeltme): persona sayfasında iletişim CTA'sı ZATEN VARDI
+      (aşağıdaki blok, sektöre özel mailto konusu ile). Eksik olan iletişim
+      değil, İKİ OPERASYONEL SONRAKİ ADIM: "hangi kuruma gideceğim" ve
+      "ilimde yetkili merci kim". Mevcut çıkışların hepsi YATAYDI (kardeş
+      persona + dayanak). ODUL-USTU Faz 7 üçüncü halkası ("yol gösterme")
+      bu iki hedefle tamamlanır. Mevcut metin DEĞİŞTİRİLMEDİ, satır EKLENDİ. */}
+  <p class="sonraki-op">
+    Sonraki adım:{' '}
+    <a href="/hangi-kurum/">bu işlemde yetkili kurum</a>
+    <span class="il-ayr">·</span>
+    <a href="/kuyu-ruhsati/">ilinizde merci ve belge süreci</a>
+  </p>
+
   {/* İletişim (form kapsam dışı — e-posta + künye) */}
   <section class="iletisim" aria-label="İletişim">
     <p class="il-b">Uyum planlaması için iletişim</p>
@@ -217,6 +231,21 @@ const sema = [
   .capraz { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
   .capraz a { font-family: var(--mono); font-size: 0.8rem; color: var(--su-700); border: 1px solid var(--cizgi); padding: 0.4rem 0.7rem; text-decoration: none; }
   .capraz a:hover { background: var(--zemin-kart); }
+
+  .sonraki-op {
+    margin: 1.6rem 0 0;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--cizgi);
+    font-size: 0.94rem;
+    color: var(--metin-soluk);
+  }
+  .sonraki-op a {
+    color: var(--baglanti);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .sonraki-op a:hover,
+  .sonraki-op a:focus-visible { border-bottom-color: var(--baglanti); }
 
   .iletisim { background: var(--su-700); color: #E9F0F4; padding: 1.2rem 1.4rem; margin-top: 1.4rem; }
   .il-b { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; }
