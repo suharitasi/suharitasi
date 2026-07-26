@@ -793,3 +793,26 @@ doğruydu, farklı şeyleri sayıyorlardı.
 
 Bağlam: madde 13 sonunda M14 eşiği (%70) aşıldı → madde 11 bırakıldı, Faz 2
 puanlaması yapıldı, kayıt tamamlandı, duruldu.
+
+### 26.07.2026 (sabah) — TUR 2 kapanışı: madde 11
+
+Bağlam eşiği sonrası kalan tek SINIF A maddesi tamamlandı (`fb27d9d`).
+**Böylece 9 maddenin 9'u ele alındı: 7 uygulandı, 1 SINIF B (madde 1,
+`sameAs`), 1 kısmen geri alındı (madde 6 / kuyu-ruhsati).**
+
+Madde 11 iki parçaydı ve ikisi ayrı sonuçlandı: **B3 (rehber → il) zaten
+karşılanmıştı** — `/rehberler/kuyu-ruhsati/` 81 il sayfasına link veriyor,
+diğer rehberlerde il tablosu olmadığı için hüküm doğmuyor; yeni kod yazılmadı.
+**C2 (rehber → persona) uygulandı:** 0 → 13 link, 8 rehberde.
+
+**Yöntem notu (uydurma yasağı):** hangi personanın hangi rehberi
+ilgilendirdiği ELLE EŞLEŞTİRİLMEDİ. `data/lead/persona.json`'daki mevcut
+`ilgiliIcerik` alanı tersine çevrildi. Eşleşmesi olmayan rehberde satır hiç
+basılmıyor. `data/` yalnız okundu (M10).
+
+**Öz-denetim:** `arac/dist-sun.mjs` üzerinden 7 sayfa — konsol 0, 113 tekil
+iç link 0 kırık, 7/7 etkileşim, 7 tam sayfa kare. Ana sayfa alınamadı (menü
+düğmesi kaydırma-sahnesi arkasında; aracın bilinen sınırı, kuyruğa yazıldı).
+
+**M6:** eklenen 26 kelime, kaybolan 1 — o da `/hangi-kurum/` sayfasındaki
+build tarihinin 25 → 26 Temmuz dönmesi. İçerik kaybı yok.

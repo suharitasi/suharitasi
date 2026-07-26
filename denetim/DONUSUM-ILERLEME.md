@@ -444,3 +444,70 @@ hukuki iddia riski**, brief gereği çevrilmedi.
 7. **Ana sayfa öz-cevabının 269 karaktere çıkmasının ilk-ekran düzenine etkisi** — ölçülmedi.
 8. **`geo-citability` puanları rubrik takdiridir**, otomatik ölçüm değildir; ±3 puan oynayabilir.
 9. **Canlı site** — hiçbir şey push edilmedi, canlı doğrulama yapılmadı.
+
+---
+
+## TUR 2 — EK: madde 11 (26 Tem 2026, sabah)
+
+Bağlam eşiği sonrası tek kalan SINIF A maddesi tamamlandı.
+
+| Madde | Skill | Dosyalar | Commit | Sonuç |
+|---|---|---|---|---|
+| 11 | `site-architecture` (spoke↔spoke, "grafiğin ortası") | `src/components/SonrakiAdim.astro`, `src/pages/rehberler/[slug].astro`, `src/pages/rehberler/kuyu-tasima.astro` | `fb27d9d` | **Uygulandı** |
+
+### B3 ve C2 ayrı ayrı
+
+- **B3 (rehber → il):** ZATEN KARŞILANMIŞ. `/rehberler/kuyu-ruhsati/`
+  sayfasındaki 81 il tablosu 81 ayrı `/kuyu-ruhsati/<il>/` sayfasına link
+  veriyor (ölçüldü: 81 tekil link). Diğer 9 rehberde il tablosu yok, dolayısıyla
+  "tablodan bağlam linki" hükmü onlar için doğmuyor. Yeni kod yazılmadı.
+- **C2 (rehber → persona):** UYGULANDI. Rehber gövdesinden persona
+  sayfalarına link **0 → 13** (8 rehberde satır çıkıyor).
+
+### Uydurma yasağına uygunluk
+
+Hangi personanın hangi rehberi ilgilendirdiği ELLE YAZILMADI. Eşleşme
+`data/lead/persona.json`'daki mevcut `ilgiliIcerik` alanının TERSİNE
+ÇEVRİLMESİYLE türetiliyor. `data/` dizini yalnız OKUNDU, değiştirilmedi (M10).
+Eşleşmesi olmayan rehberde (`/rehberler/kuyu-belgesi-iptal-davalari/`,
+`/rehberler/index/`) satır hiç basılmıyor.
+
+| Rehber | Persona linki |
+|---|---|
+| `/rehberler/su-tahsisi-oncelik-sirasi/` | 3 |
+| `/rehberler/kuyu-ruhsati/` | 2 |
+| `/rehberler/baraj-kamulastirmasi/` · `jeotermal-ruhsat` · `kaynak-hakki-komsu-su` · `kaynak-suyu-kiralama` · `ruhsatsiz-kuyu-cezalari` · `yeralti-suyu-isletme-sahasi` | 1'er |
+| `/rehberler/kuyu-belgesi-iptal-davalari/` | 0 (veride eşleşme yok) |
+
+### M6 doğrulaması
+
+Gövde parmak izi: **eklenen 26 kelime, kaybolan 1**. Kaybolan "kelime"
+`/hangi-kurum/` sayfasındaki build tarihinin **25 → 26 Temmuz** dönmesidir
+(gün değişti), içerik kaybı değil. Başlık izi değişmedi.
+
+### Tarayıcı öz-denetimi (CLAUDE.md protokolü)
+
+`arac/dist-sun.mjs` (CSP + `_redirects` uygulanır) üzerinden
+`arac/oz-denetim.mjs`, 7 sayfa:
+`/rehberler/su-tahsisi-oncelik-sirasi/` · `/rehberler/kuyu-ruhsati/` ·
+`/rehberler/baraj-kamulastirmasi/` · `/rehberler/kuyu-tasima/` ·
+`/durumum/ana-metal-sanayii-nace-24/` · `/havzalar/sakarya/` · `/hakkinda/`
+
+- Konsol hata/uyarı: **0** (4 yazılımsal-GL sürücü mesajı ortam gürültüsü olarak ayrıldı)
+- İç link: **113 tekil, 0 kırık**
+- Etkileşim: 7/7 menü aç + ESC-kapat
+- Kareler: `cikti/denetim/` (7 tam sayfa PNG)
+- Yeni 7 persona link hedefi tek tek dosya sisteminde doğrulandı: 7/7 var
+
+**Ana sayfa (`/`) öz-denetime alınamadı:** menü düğmesi kaydırma-sahnesi
+nedeniyle ilk ekranda görünmüyor, `page.click` 30 sn'de zaman aşımına uğradı.
+Bu madde 11'den ÖNCE de böyleydi (aracın varsayılan yolları arasında `/` yok),
+bu turda değişmedi — ama **DENETLENEMEDİ** olarak kayda geçer.
+
+### Görünüm notu — kullanıcı kararı gerekebilir
+
+Persona satırı "Sonraki adım" kutusunun ALTINA, ince ayraç çizgisiyle,
+0,9rem ikincil metinle yerleşti. Üstteki üç ana çağrının hiyerarşisini
+bozmaması için bilinçli olarak ikincildir. **DESIGN.md "görünürlük kuralı"
+açısından sınırda:** ilk bakışta fark edilir ama baskın değil. Daha belirgin
+istenirse tek satırlık değişiklik.

@@ -613,7 +613,16 @@ DÖNÜŞÜM SEANSI (26 Tem 2026) — dal `donusum-2026-07-26`, worktree
       geri alındı. **Kullanıcı kararı gerekli:** içindekiler başlıktan
       türediği için bu "gövde değişikliği" sayılmalı mı? Sayılmazsa tek
       komutla uygulanır.
-- [ ] #11 rehber → il/persona bağlam linki — bağlam eşiği (M14) nedeniyle
-      TUR 2'de sıraya gelmedi. Tespit: `/rehberler/kuyu-ruhsati/` zaten 81 il
-      sayfasına link veriyor (B3 karşılanmış); eksik olan diğer 9 rehberden
-      il linki ve rehber → persona linki (şu an 0).
+- [x] #11 rehber → il/persona bağlam linki — TAMAMLANDI (`fb27d9d`).
+      B3 (rehber → il) zaten karşılanmıştı: `/rehberler/kuyu-ruhsati/` 81 il
+      sayfasına link veriyor. C2 (rehber → persona) uygulandı: 0 → 13 link,
+      8 rehberde. Eşleşme elle yazılmadı, `persona.json`'daki `ilgiliIcerik`
+      alanı tersine çevrilerek türetildi. Öz-denetim: 7 sayfa, konsol 0,
+      113 tekil link 0 kırık. KULLANICI ONAYI BEKLİYOR.
+- [ ] #11 görünüm kararı: persona satırı "Sonraki adım" kutusunun altında
+      ince ayraçla, 0,9rem ikincil metin. Ana çağrı hiyerarşisini bozmasın
+      diye bilinçli ikincil. Daha belirgin istenirse tek satır değişiklik.
+- [ ] Ana sayfa (`/`) tarayıcı öz-denetimine alınamıyor: menü düğmesi
+      kaydırma-sahnesi yüzünden ilk ekranda görünmez, `arac/oz-denetim.mjs`
+      etkileşim adımı 30 sn'de zaman aşımına uğruyor. Araç ana sayfa için
+      kaydırma-önce-tıkla adımı istiyor. Madde 11'den önce de böyleydi.
