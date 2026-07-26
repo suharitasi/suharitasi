@@ -703,3 +703,110 @@ değişmedi.
   işlerini onaylıyorum" bu kapıyı kapatmaz, referans görsel gerekir.
 - `sameAs` gerçek profil adresleri · Organization `logo` dosyası.
 - Lighthouse PERFORMANS yerelde ölçülmedi (canlı taban ile kıyas geçersiz).
+
+---
+
+# CANLIYA ÇIKIŞ + REFERANS GÖRSEL TURU (26 Tem 2026, öğle)
+
+## 1. Birleştirme ve canlı yayın — TAMAM
+
+`donusum-2026-07-26` → `main` birleştirildi (`9851b2a`, `--no-ff`, 27 commit),
+`flock /tmp/suharitasi-git.lock` altında (cron ile yarış yok), push edildi.
+
+**Canlı doğrulama:**
+- `suharitasi.com/surum.json` → `9851b2a` ✅
+- `robots.txt` 200 · `sitemap.xml` 200 · `llms.txt` 200 (`text/plain`)
+- `node arac/site-saglik.mjs --hizli` → **GENEL: YESIL** — kırmızı 0, sarı 0,
+  geçti 6: sitemap 172 URL · 8/8 sayfa 200 · 2/2 yönlendirme ·
+  **6/6 sahne oynuyor** (readyState≥2 + currentTime>0) · 8 sayfada JS hatası 0 ·
+  8 sayfada mobil taşma 0 px
+
+**Dürüstlük kaydı:** ilk `llms.txt` isteği 404 döndü; bu dağıtım henüz
+tamamlanmadığı içindi, 40 saniye sonra 200. Hata değildi, yanlış zamanlanmış
+ölçümdü.
+
+## 2. Referans görsel turu — ONAY BEKLİYOR
+
+Çıktı: `cikti/denetim/referans-gorsel/index.html` (+ `d3-{a,b,c}.svg`,
+`kare-tam.png`, `kare-d3/d2/d4.png`).
+Üretici: `arac/referans-havza-harita.mjs` — **build'e bağlı DEĞİL.**
+
+### Higgsfield bulgusu — kullanılmadı, sebebi
+
+`higgsfield.ai` incelendi (arama + sayfa çekimi). Ev estetiği: **siyaha yakın
+zemin, lime-yeşil aksan, sinematik AI görsel, hareket yoğun, Gen-Z tonu.**
+Higgsfield bir *üretim aracı* (Soul modeli, moodboard'lar), stil kütüphanesi
+değil. Bu estetik suharitasi'nin üç bilgi grafiği için **ters yönde**: site
+light-only krem/lacivert, TBB uyumlu ağırbaşlı, içerik sayfalarında JS~0.
+**Referans olarak alınmadı** — zorlamak marka kimliğini bozardı (global
+CLAUDE.md m.1: marka kimliği her skill kuralından üstün).
+Higgsfield'in yeri varsa ana sayfa **sahne görselleri** üretiminde olabilir;
+o ayrı bir karar, bu turun kapsamı değil.
+
+### Apple mantığı — nasıl uygulandı
+
+Clarity / deference / depth: grafik içeriğe hizmet eder, onunla yarışmaz;
+süsleme değil bilgi ekler; "kırılana kadar çıkar, sonra bir tane geri koy".
+Bu mantık üç maddede de **daha az çizim, daha çok bilgi** yönünde karar verdirdi.
+
+### D3 · Havza küçük haritası
+
+**Sert veri bulgusu: depoda havza sınır geometrisi YOK.** Var olanlar:
+ülke sınırı (`tr-sinir.json`), 81 il çokgeni (`tr-iller.json`), akarsu, göl.
+Bu yüzden hiçbir yön "havza sınırı" çizmiyor — hepsi **havzanın kapsadığı
+illeri** boyuyor ve etiket bunu söylüyor. Aksi veri dürüstlüğü ihlali olurdu
+(sitenin kendi künyesi "iller havzalara kısmen girebilir" diyor).
+
+| Yön | Ne | Ağırlık | Değerlendirme |
+|---|---|---|---|
+| **D3-A Konumlandırıcı** | Ülke silueti + havza illeri tek hue dolu | **7,3 KB ham / 3,0 KB gzip** | **ÖNERİLEN** — tek iş, tek katman |
+| D3-B Su ağı | Havza içi akarsular görünür | 21,7 KB / 7,7 KB | Küçük ölçekte karmaşa, 3× ağırlık |
+| D3-C Katmanlı | Ülke geneli akarsu soluk + havza vurgulu | 33,2 KB / 7,8 KB | En zengin, en pahalı; sayfayı ikiye katlar |
+
+Ham geometri seyreltildi (ardışık nokta < 1,6 px atıldı, koordinat tam sayı).
+Seyreltme olmadan tek harita 135 KB idi — ortalama sayfası 26,9 KB olan bir
+sitede Lighthouse tabanını (Korunacaklar) bozardı.
+
+### D2 · Rehber süreç şeması
+
+| Yön | Ne | Değerlendirme |
+|---|---|---|
+| **D2-A Sütunlu ray** | Mevcut numaralı ray + her adıma hizalı "istenen unsur" / "hukuki risk" sütunu | **ÖNERİLEN** — yeni çizim yok, yeni **bilgi** var; metin seçilebilir/aranabilir/okunabilir, 0 KB görsel |
+| D2-B Klasik akış şeması | 4 kutu + 3 ok | Tabloda zaten yazan sırayı tekrar ediyor: sıfır yeni bilgi. Metin SVG içinde → seçilemez, çeviri motoru okumaz |
+
+### D4 · Sektör ikonu
+
+| Yön | Ne | Değerlendirme |
+|---|---|---|
+| **D4-A NACE sigili** | Kod, hairline kare içinde mono | **ÖNERİLEN** — işaret bilgi taşıyor, 42 persona için üretim maliyeti sıfır |
+| D4-B Çizgi ikon | Tek ağırlıklı özgün ikon | 42 özgün çizim; "ana metal" ↔ "fabrikasyon metal" ayırt edilemez |
+| D4-C Hiç yapma | — | ODUL-USTU'nun kendi [VARSAYIM] notuyla tutarlı |
+
+### Palet — ölçülmüş kısıt (eyeball değil, hesap)
+
+`dataviz` doğrulayıcısı çalıştırıldı:
+
+```
+#0C5A7C, #2E7EA0, #C0883A  (light, kategorik)
+[FAIL] Normal-vision floor  #2E7EA0↔#0C5A7C ΔE 11,8 — eşik 15
+[FAIL] Chroma floor         #0C5A7C 0.088 · #2E7EA0 0.092 (griye kaçıyor)
+[WARN] Contrast vs surface  #C0883A 3:1 — görünür etiket zorunlu
+[PASS] Lightness band · CVD separation (ΔE 11,8 deutan)
+```
+
+**Sonuç:** iki mavi ton **yan yana iki veri kategorisi olarak kullanılamaz.**
+Üç yönün hiçbiri bunu yapmıyor; kategori ayrımı **konum ve etiketle** taşınıyor.
+Kehribar yalnız hairline kalır, asla veri yüzeyi olmaz.
+
+## DENETLENEMEDİ
+
+1. Canlı Lighthouse **performans** ölçülmedi (yalnız `--hizli` sağlık koşusu).
+   Tam koşu cron'da 19:30 UTC'de.
+2. Referans görselleri **gerçek sayfa bağlamında** görülmedi — kıyas sayfasında
+   izole duruyorlar. Onaydan sonra tek havza sayfasında pilot şart.
+3. **Higgsfield çıktısı denenmedi** — hesap/anahtar yok, üretim yapılmadı.
+   Estetik değerlendirme sitesinin kendi sayfasından okundu.
+4. D3-A'nın **25 havzanın hepsinde** nasıl durduğu bakılmadı; yalnız Sakarya
+   (10 il) üretildi. Tek il kapsayan havzada nokta gibi kalabilir.
+5. Havza **gerçek sınır geometrisi** temin edilmedi (DSİ/SYGM kaynağı +
+   lisans sorusu açık).

@@ -641,12 +641,27 @@ DÖNÜŞÜM SEANSI (26 Tem 2026) — dal `donusum-2026-07-26`, worktree
 - [x] #6'nın `/rehberler/kuyu-ruhsati/` kısmı UYGULANDI (`5bbc85e`) —
       görsel/UI onayı bu engeli kaldırdı. İçindekiler menüsündeki 9 eski
       başlık kelimesi bilerek düştü, gövde paragrafları değişmedi.
-- [ ] MERGE KARARI: `main`'e merge = Cloudflare Pages canlı yayını.
-      Kullanıcıya soruldu, bekliyor.
-- [ ] Madde 14 (rehber süreç şeması) · 15 (havza küçük haritaları) ·
-      20 (sektör ikonları): YENİ GÖRSEL ÜRETİMİ gerektiriyor. "Görsel/UI
-      işlerini onaylıyorum" bu kapıyı KAPATMAZ — ODUL-USTU referans görsel
-      onayı ayrı bir kapı.
+- [x] MERGE + CANLI YAYIN TAMAM (26 Tem 2026, `9851b2a`). 27 commit main'e
+      birleşti, push edildi, Cloudflare Pages dağıttı. Canlı doğrulama:
+      surum.json 9851b2a · robots/sitemap/llms.txt 200 ·
+      `site-saglik --hizli` GENEL YESIL (6/6, 6 sahne oynuyor, konsol 0).
+- [ ] REFERANS GÖRSEL TURU YAPILDI — **KULLANICI SEÇİMİ BEKLİYOR**
+      (26 Tem 2026). Kıyas sayfası: `cikti/denetim/referans-gorsel/index.html`
+      (kareler: kare-d3.png · kare-d2.png · kare-d4.png).
+      Önerilenler: **D3-A konumlandırıcı** · **D2-A sütunlu ray** ·
+      **D4-A NACE sigili**. Her madde için 2-3 yön çizildi, hiçbiri siteye
+      bağlanmadı. Seçim gelince uygulama briefi yazılır.
+      · Üretici: `arac/referans-havza-harita.mjs` (build'e bağlı DEĞİL).
+      · Ölçülmüş kısıt: #0C5A7C ile #2E7EA0 yan yana iki veri kategorisi
+        OLAMAZ (dataviz doğrulayıcı, normal görüş ΔE 11,8 / eşik 15).
+      · Higgsfield referans alınmadı: ev estetiği siyah zemin + lime aksan +
+        sinematik AI görsel; site light-only krem/lacivert ve JS~0. Gerekçe
+        ilerleme dosyasında.
+- [ ] D3 VERİ AÇIĞI: depoda **havza sınır geometrisi yok**. Referans yönler
+      havzanın kapsadığı İLLERİ boyuyor ve etiketi bunu söylüyor. Gerçek
+      sınır isteniyorsa DSİ/SYGM geometrisi + lisans sorusu ayrı iş.
+- [ ] D3-A yalnız Sakarya (10 il) için üretildi; 25 havzanın hepsinde nasıl
+      durduğu bakılmadı — tek il kapsayan havzada nokta gibi kalabilir.
 - [x] #11 rehber → il/persona bağlam linki — TAMAMLANDI (`fb27d9d`).
       B3 (rehber → il) zaten karşılanmıştı: `/rehberler/kuyu-ruhsati/` 81 il
       sayfasına link veriyor. C2 (rehber → persona) uygulandı: 0 → 13 link,
