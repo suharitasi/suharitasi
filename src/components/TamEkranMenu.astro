@@ -18,17 +18,23 @@ import { ONE_CIKAN_HAVZA_NO } from '../data/menu';
 // Sharp'ın (muhalif) kısıtı KORUNDU: hiçbir veri kapısı KALDIRILMADI veya
 // gizlenmedi, yalnız sıra değişti — kategori giriş noktaları duruyor.
 // Açıklama metinleri (`not`) DEĞİŞTİRİLMEDİ: onaylı gövde metni.
+// HANDLEY UYGULAMASI (26 Tem 2026, kullanıcı kararı): menü öğesi artık
+// okuyucunun SORUSUNU söylüyor. "Bunu müşteriye yüksek sesle söyler miydin?"
+// testi. Bölüm adı (etiket) SİLİNMEDİ — sorunun üstünde mono etiket olarak
+// duruyor ve BAĞLANTININ İÇİNDE: hem çapa metni bölüm anahtar kelimesini
+// korur (site-architecture "descriptive anchor text"), hem menü taranabilir
+// kalır (ui-ux-pro-max nav-hierarchy), hem hiçbir kelime kaybolmaz.
 const ogeler = [
-  { ad: 'Durumum', yol: '/durumum/', not: 'sektörünüze göre yükümlülük ve son tarih' },
-  { ad: 'Hangi Kurum', yol: '/hangi-kurum/', not: 'su işleminizde yetkili kurum ve başvuru kanalı' },
-  { ad: 'Rehberler', yol: '/rehberler/', not: 'kuyu ruhsatından ceza iptaline pratik hukuk' },
+  { etiket: 'Durumum', ad: 'Sektörümde yükümlülüğüm ne?', yol: '/durumum/', not: 'sektörünüze göre yükümlülük ve son tarih' },
+  { etiket: 'Hangi Kurum', ad: 'Hangi kuruma gideceğim?', yol: '/hangi-kurum/', not: 'su işleminizde yetkili kurum ve başvuru kanalı' },
+  { etiket: 'Rehberler', ad: 'Adım adım nasıl yapılır?', yol: '/rehberler/', not: 'kuyu ruhsatından ceza iptaline pratik hukuk' },
   // YENİ: 81 il hub'ı hiçbir menüde yoktu, tek iç link alıyordu.
-  { ad: 'Kuyu Ruhsatı', yol: '/kuyu-ruhsati/', not: '81 ilde yetkili merci, havza ve belge süreci' },
-  { ad: 'Harita', yol: '/harita/', not: 'Türkiye’nin su atlası' },
-  { ad: 'Havzalar', yol: '/havzalar/', not: '25 havzanın veri künyeleri' },
-  { ad: 'Su Kanunu', yol: '/su-kanunu/', not: 'mevzuat kütüphanesi ve taslak takibi' },
-  { ad: 'Vakalar', yol: '/vaka/', not: 'şirketlerin su güvencesi — KAP vakaları' },
-  { ad: 'Hakkında', yol: '/hakkinda/', not: 'portalın yöntemi ve künyesi' },
+  { etiket: 'Kuyu Ruhsatı', ad: 'Kuyu ruhsatını nasıl alırım?', yol: '/kuyu-ruhsati/', not: '81 ilde yetkili merci, havza ve belge süreci' },
+  { etiket: 'Harita', ad: 'Türkiye’de su nerede?', yol: '/harita/', not: 'Türkiye’nin su atlası' },
+  { etiket: 'Havzalar', ad: 'Havzamda su ne durumda?', yol: '/havzalar/', not: '25 havzanın veri künyeleri' },
+  { etiket: 'Su Kanunu', ad: 'Mevzuat ne diyor?', yol: '/su-kanunu/', not: 'mevzuat kütüphanesi ve taslak takibi' },
+  { etiket: 'Vakalar', ad: 'Başka şirketler ne yaptı?', yol: '/vaka/', not: 'şirketlerin su güvencesi — KAP vakaları' },
+  { etiket: 'Hakkında', ad: 'Bunu kim hazırlıyor?', yol: '/hakkinda/', not: 'portalın yöntemi ve künyesi' },
 ];
 // "Deneyim" 23.07'de kaldırıldı: /deneyim/ rotası kapandı (301 → /), sahne
 // akışı ana sayfanın açılışı oldu.
@@ -116,7 +122,7 @@ const kademe = () => ({ '--kademe': String(sira++) });
             <a
               href={o.yol}
               aria-current={simdiki.startsWith(o.yol) ? 'page' : undefined}
-            >{o.ad}</a>
+            ><span class="sv-alt-etiket">{o.etiket}</span><span class="sv-alt-soru">{o.ad}</span></a>
             <span class="sv-alt-not" aria-hidden="true">{o.not}</span>
           </li>
         ))}
@@ -277,13 +283,18 @@ const kademe = () => ({ '--kademe': String(sira++) });
 
   .sv-menu-icerik ul { list-style: none; }
 
-  .sv-menu-icerik li + li { margin-top: clamp(0.9rem, 2.6vh, 1.5rem); }
+  /* 8 öğe -> 9 öğe + etiket satırı: eski clamp(0.9,2.6vh,1.5rem) ile masaüstü
+     menüsü 900 px ekranda 957 px'e çıkıp kaydırma gerektiriyordu. Aralık
+     sıkıldı; ölçüm sonrası 900 px'e sığıyor. */
+  .sv-menu-icerik li + li { margin-top: clamp(0.5rem, 1.1vh, 0.72rem); }
 
   .sv-menu-icerik a {
-    display: inline-block;
+    display: block;
     font-family: var(--serif, Georgia, serif);
     font-weight: 500;
-    font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+    /* Soru cümlesi tek kelimeden uzun: taban ölçek küçültüldü, yoksa 9 öğe
+       mobilde üç satıra taşıp menüyü kaydırma tüneline çeviriyordu. */
+    font-size: clamp(1.28rem, 2.3vw, 1.68rem);
     line-height: 1.2;
     color: #DBEAF4;
     text-decoration: none;
@@ -304,6 +315,19 @@ const kademe = () => ({ '--kademe': String(sira++) });
     outline: 2px solid var(--akuamarin, #57BAE0);
     outline-offset: 4px;
   }
+
+  .sv-alt-etiket {
+    display: block;
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    /* AA: DİP zemin üstünde küçük metin — .sv-alt-not ile aynı ton. */
+    color: rgba(143, 170, 194, 0.82);
+    margin-bottom: 0.1rem;
+  }
+
+  .sv-alt-soru { display: block; }
 
   .sv-alt-not {
     display: block;
