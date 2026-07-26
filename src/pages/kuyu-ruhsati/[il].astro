@@ -21,6 +21,18 @@ export async function getStaticPaths() {
 
 const { profil: p } = Astro.props;
 
+// K3-3 (26 Tem 2026) — content-strategy küme bütünlüğü: ÖLÇÜM, 81 il
+// sayfasının HİÇBİRİNİN kardeş il sayfasına link vermediğini gösterdi
+// (spoke<->spoke 0/81). Komşuluk UYDURULMAZ: kardeşlik ölçütü sayfanın
+// zaten yazdığı olgudur — AYNI DSİ BÖLGE MÜDÜRLÜĞÜ. Coğrafi komşuluk
+// iddiası YOK. Kaynak: il-profil.js (il-kurum.json türevi).
+const buBolgeNo = new Set(p.dsiBolgeleri.map((b) => b.no));
+const kardesIller = buBolgeNo.size
+  ? yayinlananIller()
+      .filter((x) => x.slug !== p.slug && x.dsiBolgeleri.some((b) => buBolgeNo.has(b.no)))
+      .slice(0, 6)
+  : [];
+
 const tumHavzalar = await getCollection('havzalar');
 const havzaSlug = (ad) => tumHavzalar.find((h) => h.data.baslik === ad)?.id;
 
@@ -153,6 +165,15 @@ const sema = [
     slugler={['kuyu-ruhsati', 'ruhsatsiz-kuyu-cezalari', 'su-tahsisi-oncelik-sirasi']}
   />
 
+  {kardesIller.length > 0 && (
+    <>
+      <h2>Aynı DSİ bölgesindeki diğer iller hangileri?</h2>
+      <nav class="capraz" aria-label="Aynı DSİ bölgesindeki iller">
+        {kardesIller.map((x) => <a href={`/kuyu-ruhsati/${x.slug}/`}>&rarr; {x.ad}</a>)}
+      </nav>
+    </>
+  )}
+
   <p class="veri-kunyesi">
     Veri künyesi: il–bölge/havza eşlemesi resmî kaynaklardan derlendi
     ({trTarih(p.veriKunyesi.ilKurumDerleme)}); havza sayıları
@@ -228,6 +249,10 @@ const sema = [
   }
 
   .durum-listesi li { margin: 0.4rem 0; font-size: 0.94rem; }
+
+  .capraz { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0 1.6rem; }
+  .capraz a { font-family: var(--mono); font-size: 0.8rem; color: var(--su-700); border: 1px solid var(--cizgi); padding: 0.4rem 0.7rem; text-decoration: none; }
+  .capraz a:hover { background: var(--zemin-kart); }
 
   .veri-kunyesi {
     margin-top: clamp(2rem, 5vh, 3rem);
