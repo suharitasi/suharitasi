@@ -1,6 +1,6 @@
 # Su Kanunu İzleme — DURUM
 
-Son koşu (UTC): **2026-07-25T16-00-01Z**
+Son koşu (UTC): **2026-07-26T05-30-01Z**
 
 Özet: 11 hedef · ✳ olay: 0 · 🔴 hata: 0
 
