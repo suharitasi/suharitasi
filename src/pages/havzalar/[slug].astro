@@ -9,6 +9,7 @@ import HavzaYasBandi from '../../components/HavzaYasBandi.astro';
 import HavzaKahraman from '../../components/HavzaKahraman.astro';
 import Katman from '../../components/Katman.astro';
 import ilKurum from '../../../data/il-kurum.json';
+import { havzaKonum, ULKE_YOLU, EN as HARITA_EN, BOY as HARITA_BOY } from '../../data/havza-harita.js';
 import havzaVeri from '../../../data/havza-veri.json';
 import graceHavza from '../../../data/canli/grace-havza.json';
 import { graceEgilim } from '../../data/grace-hesap.js';
@@ -51,6 +52,10 @@ const alanlar = [
 
 // İller ve yetkili kurumlar: havza no → il listesi → DSİ bölgesi + su idaresi
 const havzaIl = giris.data.no ? ilKurum.havzaIlleri[giris.data.no] : undefined;
+
+// D3-A konumlandırıcı (26 Tem 2026, referans görsel turu onayı).
+// Havza SINIRI değil, havzanın KAPSADIĞI İLLER — etiket bunu söyler.
+const konum = giris.data.no ? havzaKonum(giris.data.no) : null;
 
 // K3-3 (26 Tem 2026) — content-strategy küme bütünlüğü: 25 havza sayfasının
 // HİÇBİRİ kardeş havzaya link vermiyordu (spoke<->spoke 0/25). Ölçüt
@@ -202,6 +207,20 @@ const semalar = yasGeo
       <Katman baslik="İller ve yetkili kurumlar" ipucu={`${ilSatirlari.length} il · DSİ bölgeleri · su idareleri`} ton="murekkep">
         <section class="il-kurum">
           <h2>Havzada hangi iller ve yetkili kurumlar var?</h2>
+      {konum && (
+        <figure class="konum">
+          <svg viewBox={`0 0 ${HARITA_EN} ${HARITA_BOY}`} width={HARITA_EN} height={HARITA_BOY}
+               role="img" aria-labelledby={`konum-baslik-${giris.id}`} xmlns="http://www.w3.org/2000/svg">
+            <title id={`konum-baslik-${giris.id}`}>{giris.data.baslik} — kapsadığı {konum.iller.length} il Türkiye haritasında işaretli</title>
+            <path d={ULKE_YOLU} fill="#DFE9F0" stroke="#B9CEDC" stroke-width="0.5" />
+            <path d={konum.yol} fill="#0C5A7C" fill-opacity="0.88" stroke="#08405A" stroke-width="0.6" stroke-linejoin="round" />
+          </svg>
+          <figcaption>
+            Koyu alan bu havzanın kapsadığı {konum.iller.length} ildir; havza sınırı değildir.
+            İller havzalara kısmen girebilir.
+          </figcaption>
+        </figure>
+      )}
           <div class="tablo-kaydir">
             <table>
               <thead>
@@ -315,6 +334,20 @@ const semalar = yasGeo
   {ilSatirlari.length > 0 && (
     <section class="il-kurum">
       <h2>Havzada hangi iller ve yetkili kurumlar var?</h2>
+      {konum && (
+        <figure class="konum">
+          <svg viewBox={`0 0 ${HARITA_EN} ${HARITA_BOY}`} width={HARITA_EN} height={HARITA_BOY}
+               role="img" aria-labelledby={`konum-baslik-${giris.id}`} xmlns="http://www.w3.org/2000/svg">
+            <title id={`konum-baslik-${giris.id}`}>{giris.data.baslik} — kapsadığı {konum.iller.length} il Türkiye haritasında işaretli</title>
+            <path d={ULKE_YOLU} fill="#DFE9F0" stroke="#B9CEDC" stroke-width="0.5" />
+            <path d={konum.yol} fill="#0C5A7C" fill-opacity="0.88" stroke="#08405A" stroke-width="0.6" stroke-linejoin="round" />
+          </svg>
+          <figcaption>
+            Koyu alan bu havzanın kapsadığı {konum.iller.length} ildir; havza sınırı değildir.
+            İller havzalara kısmen girebilir.
+          </figcaption>
+        </figure>
+      )}
       <div class="tablo-kaydir">
         <table>
           <thead>
@@ -359,6 +392,24 @@ const semalar = yasGeo
 </Sayfa>
 
 <style>
+  .konum { margin: 0 0 1.4rem; }
+  .konum svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 30rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+  }
+  .konum figcaption {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    line-height: 1.6;
+    color: var(--metin-soluk);
+    max-width: 30rem;
+    margin-top: 0.4rem;
+  }
+
   .capraz { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0 1.6rem; }
   .capraz a { font-family: var(--mono); font-size: 0.8rem; color: var(--su-700); border: 1px solid var(--cizgi); padding: 0.4rem 0.7rem; text-decoration: none; }
   .capraz a:hover { background: var(--zemin-kart); }
