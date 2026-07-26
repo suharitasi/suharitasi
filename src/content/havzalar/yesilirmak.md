@@ -12,12 +12,12 @@ kunye:
 
 Yeşilırmak Havzası, DSİ 2024 resmî istatistiklerine göre **39.595 km²** yağış alanına sahiptir.
 
-## Su varlığı
+## Yeşilırmak Havzası'nın su varlığı ne kadar?
 
 - Yıllık ortalama yüzey suyu potansiyeli **6,89 km³** (DSİ 2024, Tablo 1.2).
 - Yeraltı suyu beslenimi **907,2 hm³/yıl**, işletme rezervi **872,8 hm³/yıl** (DSİ 2024, Tablo 1.3).
 
-## Planlama ve koruma
+## Yeşilırmak Havzası nasıl planlanıyor ve korunuyor?
 
 Havzanın kirlilik ve koruma tedbirleri
 [Yeşilırmak Havzası Koruma Eylem Planı'nda](https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Ye%C5%9Fil%C4%B1rmak%20Havzas%C4%B1.pdf)

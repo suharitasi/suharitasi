@@ -21,7 +21,7 @@ rejimine bağlıdır ve üç belge etrafında döner: **arama belgesi**,
 Su İşleri (DSİ) teşkilatıdır; başvuru uygulamada ilin bağlı olduğu DSİ
 bölge müdürlüğüne yapılır ve hukuken DSİ'ye yapılmış sayılır.
 
-## Rejimin mantığı
+## Yeraltı suyu ruhsat rejimi nasıl işler?
 
 167 sayılı Kanun'un 8. maddesi, su temini amacıyla DSİ'nin ilan ettiği
 derinliği aşan her türlü çukur, sondaj ve kuyu ile boyu-kesiti ne olursa
@@ -37,7 +37,7 @@ teşkilatı yoksa en yakın mülkiye amiri aracılığıyla yapılır ve
 başvurana **bir ay içinde** belge verilerek veya ret kararıyla cevap
 verilmesi gerekir.
 
-## Üç belge tek zincir
+## Kuyu ruhsatı için hangi üç belge gerekir?
 
 **Arama belgesi** ilk ve ön izin niteliğindeki adımdır. Arama belgesi
 verilmiş olması kullanma hakkı doğurmaz; su bulunursa kullanma için
@@ -61,7 +61,7 @@ belgeler hiçbir ücrete, damga resmine, harca ve sair rüsumata tabi
 değildir; belge esaslı harç veya damga vergisi talebi doğrudan kanuna
 aykırıdır.
 
-## Belge yapısı
+## Kuyu belgeleri hangi yapıda düzenlenir?
 
 | Belge | Ne zaman gerekir | Temel madde | Başvuru mercii | Kritik sonuç |
 | --- | --- | --- | --- | --- |
@@ -69,7 +69,7 @@ aykırıdır.
 | Kullanma belgesi | Arama belgesine dayanarak yeraltı suyu kullanılmadan önce | 167 m.10; Tüzük m.13 | DSİ / Bölge teşkilatı | Ölçüm sistemi şarttır |
 | Islah-tadil belgesi | Mevcut kuyu/menba üzerinde teknik müdahale yapılmadan önce | 167 m.11; Tüzük m.13 | DSİ / Bölge teşkilatı | Müdahale izne bağlıdır |
 
-## Başvuru akışı
+## Kuyu ruhsatı başvurusu nasıl yapılır?
 
 | Aşama | Açıklama | Uygulamada istenen unsur | Hukuki risk |
 | --- | --- | --- | --- |

@@ -8,6 +8,8 @@ import YazarKutusu from '../../components/YazarKutusu.astro';
 import IlgiliRehberler from '../../components/IlgiliRehberler.astro';
 import Katman from '../../components/Katman.astro';
 import { YAZAR, OG_GORSEL } from '../../data/site';
+import SonrakiAdim from '../../components/SonrakiAdim.astro';
+import { personalar as tumPersonalar } from '../../data/persona.js';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('rehberler');
@@ -25,13 +27,20 @@ const { Content, headings } = await render(giris);
 
 const kok = new URL('/', Astro.site).href;
 const canonical = new URL(`/rehberler/${giris.id}/`, Astro.site).href;
+
+// Madde 11 / C2: bu rehberi `ilgiliIcerik` alanında gösteren personalar.
+// Eşleşme veriden gelir, elle yazılmaz — persona.json değişince liste de değişir.
+const rehberYolu = `/rehberler/${giris.id}/`;
+const ilgiliPersonalar = tumPersonalar
+  .filter((x) => (x.ilgiliIcerik ?? []).includes(rehberYolu))
+  .map((x) => ({ ad: x.ad, slug: x.slug }));
 const tarihISO = giris.data.tarih.toISOString();
 
 // Article: YMYL (hukuk) içerikte yazar kimliği en güçlü E-E-A-T sinyali.
 // FAQPage bilinçli olarak YOK: rehberlerde görünür soru-cevap bölümü
 // bulunmuyor; olmayan içeriği işaretlemek Google yapılandırılmış veri
 // kurallarına aykırıdır. Rehberlere gerçek SSS bölümü eklenirse eklenir.
-const sema = [
+const sema: any[] = [
   {
     '@type': 'Article',
     headline: giris.data.baslik,
@@ -78,7 +87,8 @@ if (kalip2) {
     bolum.set(id, p);
   }
   const beklenen = [
-    'rejimin-mantığı', 'üç-belge-tek-zincir', 'belge-yapısı', 'başvuru-akışı',
+    'yeraltı-suyu-ruhsat-rejimi-nasıl-işler', 'kuyu-ruhsatı-için-hangi-üç-belge-gerekir',
+    'kuyu-belgeleri-hangi-yapıda-düzenlenir', 'kuyu-ruhsatı-başvurusu-nasıl-yapılır',
     'madde-metni', 'dikkat', 'dayanak', 'emsal-kararlar',
   ];
   for (const id of beklenen) {
@@ -88,7 +98,7 @@ if (kalip2) {
   // Başvuru akışı tablosu → numaralı adım kartları (§17d: gerçek prosedür
   // görsel sıra dilini hak eder). Hücre metinleri ham markdown tablosundan
   // birebir alınır; hiçbir metin atılmaz (etiketler dahil tablodan gelir).
-  const akisMd = (giris.body ?? '').split(/^## /m).find((b) => b.startsWith('Başvuru akışı'));
+  const akisMd = (giris.body ?? '').split(/^## /m).find((b) => b.startsWith('Kuyu ruhsatı başvurusu nasıl yapılır?'));
   if (!akisMd) throw new Error(`rehber "${giris.id}": ham gövdede "Başvuru akışı" bölümü yok.`);
   const tabloSatir = akisMd.split('\n').filter((s) => s.trim().startsWith('|'));
   if (tabloSatir.length < 3) throw new Error(`rehber "${giris.id}": başvuru akışı tablosu bulunamadı.`);
@@ -104,14 +114,30 @@ if (kalip2) {
   if (adimlar.length !== 4) throw new Error(`rehber "${giris.id}": başvuru akışında 4 adım bekleniyordu.`);
 
   // Derlenmiş bölümdeki ham tabloyu çıkar — metni artık adım kartları taşıyor.
-  const akisHtml = bolum.get('başvuru-akışı')!;
+  const akisHtml = bolum.get('kuyu-ruhsatı-başvurusu-nasıl-yapılır')!;
   if (!/<table>[\s\S]*?<\/table>/.test(akisHtml))
     throw new Error(`rehber "${giris.id}": başvuru akışı bölümünde tablo yok.`);
-  bolum.set('başvuru-akışı', akisHtml.replace(/<table>[\s\S]*?<\/table>/, ''));
+  bolum.set('kuyu-ruhsatı-başvurusu-nasıl-yapılır', akisHtml.replace(/<table>[\s\S]*?<\/table>/, ''));
 
   // İçindekiler kartları: görünür bölümler BÖLÜM sayacıyla aynı sırada
   // numaralanır; katmana inen referans blokları "EK" etiketiyle listelenir.
   const gorunur = headings.filter((h) => h.depth === 2 && h.slug !== 'madde-metni');
+  // Madde 13 (geo-schema): "Başvuru akışı" tablosu gerçek bir prosedür —
+  // HowTo olarak da işaretlenir. Adım metinleri adimlar[] dizisinden birebir
+  // gelir; şemaya sayfada olmayan tek kelime girmez.
+  sema.push({
+    '@type': 'HowTo',
+    name: `${giris.data.baslik} — başvuru akışı`,
+    description: giris.data.ozCevap,
+    inLanguage: 'tr-TR',
+    step: adimlar.map((a, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: a.asama,
+      text: `${a.aciklama} · ${adimEtiket.unsur}: ${a.unsur} · ${adimEtiket.risk}: ${a.risk}`,
+    })),
+  });
+
   icindekiler = [
     ...gorunur.map((h, i) => ({
       no: String(i + 1).padStart(2, '0'),
@@ -169,10 +195,10 @@ if (kalip2) {
 
     <div class="icerik kalip2-icerik">
       <Fragment set:html={girisHtml} />
-      <Fragment set:html={bolum.get('rejimin-mantığı')} />
-      <Fragment set:html={bolum.get('üç-belge-tek-zincir')} />
-      <Fragment set:html={bolum.get('belge-yapısı')} />
-      <Fragment set:html={bolum.get('başvuru-akışı')} />
+      <Fragment set:html={bolum.get('yeraltı-suyu-ruhsat-rejimi-nasıl-işler')} />
+      <Fragment set:html={bolum.get('kuyu-ruhsatı-için-hangi-üç-belge-gerekir')} />
+      <Fragment set:html={bolum.get('kuyu-belgeleri-hangi-yapıda-düzenlenir')} />
+      <Fragment set:html={bolum.get('kuyu-ruhsatı-başvurusu-nasıl-yapılır')} />
       <ol class="adimlar" aria-label="Başvuru akışı adımları">
         {adimlar.map((a, i) => (
           <li class="adim">
@@ -212,6 +238,7 @@ if (kalip2) {
     )}
 
     <YazarKutusu />
+    <SonrakiAdim konu={giris.data.baslik} personalar={ilgiliPersonalar} />
     <IlgiliRehberler slugler={giris.data.ilgili} haric={giris.id} />
   </Fragment>
 ) : (
@@ -229,7 +256,8 @@ if (kalip2) {
   </div>
   {giris.data.ilKurumTablosu && <IlKurumTablosu />}
   <YazarKutusu />
-  <IlgiliRehberler slugler={giris.data.ilgili} haric={giris.id} />
+  <SonrakiAdim konu={giris.data.baslik} personalar={ilgiliPersonalar} />
+    <IlgiliRehberler slugler={giris.data.ilgili} haric={giris.id} />
   </Fragment>
 )}
 </Sayfa>

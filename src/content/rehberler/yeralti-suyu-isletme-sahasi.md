@@ -25,7 +25,7 @@ Tüzüğün 11 ve 12. maddeleri DSİ'nin **sürekli kontrol yetkisini** ve
 emniyetli su miktarının yeniden ayarlanabilmesini düzenler;
 uygunsuzluk zabıtla tespit edilebilir.
 
-## Mevcut kuyular ve kazanılmış hak
+## Mevcut kuyuların kazanılmış hakkı ne olur?
 
 İlan öncesi açılmış kuyuların ve mevcut belge sahiplerinin kazanılmış
 hakları konusunda kaynak araştırmanın veri tabanında **doğrudan karar
@@ -41,7 +41,7 @@ gösterir.
 Bu nedenle kesin bir genel sonuç verilemez; somut dosyada belge tarihi
 ile saha ilan tarihi birlikte değerlendirilir.
 
-## İşletme sahası sonuçları
+## İşletme sahası ilanı hangi sonuçları doğurur?
 
 | Husus | Hukukî sonuç | Dayanak | Not |
 | --- | --- | --- | --- |

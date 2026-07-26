@@ -8,15 +8,33 @@ import havzaVeri from '../../data/havza-veri.json';
 import taslakHam from '../content/su-kanunu/taslak-takibi.md?raw';
 import { ONE_CIKAN_HAVZA_NO } from '../data/menu';
 
+// NİYET-ÖNCE SIRALAMA (26 Tem 2026, kullanıcı "menüler dahil yerlerini
+// önceliklerini değiştirsin" kararı). Gerekçe — marketing-council:
+// Schwartz'ın farkındalık aşaması: bu siteye gelen ziyaretçi "su atlası
+// gezmek" isteyen MERAKLI değil, "ruhsatım var mı / hangi kuruma gideceğim"
+// diyen PROBLEM-FARKINDA kişidir; menü onu bulunduğu aşamada karşılamalı.
+// Dunford: "Harita" ilk sırada siteyi VERİ GÖRSELLEŞTİRME kategorisine
+// çerçeveliyordu — güçlü olduğu kategori bu değil.
+// Sharp'ın (muhalif) kısıtı KORUNDU: hiçbir veri kapısı KALDIRILMADI veya
+// gizlenmedi, yalnız sıra değişti — kategori giriş noktaları duruyor.
+// Açıklama metinleri (`not`) DEĞİŞTİRİLMEDİ: onaylı gövde metni.
+// HANDLEY UYGULAMASI (26 Tem 2026, kullanıcı kararı): menü öğesi artık
+// okuyucunun SORUSUNU söylüyor. "Bunu müşteriye yüksek sesle söyler miydin?"
+// testi. Bölüm adı (etiket) SİLİNMEDİ — sorunun üstünde mono etiket olarak
+// duruyor ve BAĞLANTININ İÇİNDE: hem çapa metni bölüm anahtar kelimesini
+// korur (site-architecture "descriptive anchor text"), hem menü taranabilir
+// kalır (ui-ux-pro-max nav-hierarchy), hem hiçbir kelime kaybolmaz.
 const ogeler = [
-  { ad: 'Harita', yol: '/harita/', not: 'Türkiye’nin su atlası' },
-  { ad: 'Havzalar', yol: '/havzalar/', not: '25 havzanın veri künyeleri' },
-  { ad: 'Rehberler', yol: '/rehberler/', not: 'kuyu ruhsatından ceza iptaline pratik hukuk' },
-  { ad: 'Su Kanunu', yol: '/su-kanunu/', not: 'mevzuat kütüphanesi ve taslak takibi' },
-  { ad: 'Durumum', yol: '/durumum/', not: 'sektörünüze göre yükümlülük ve son tarih' },
-  { ad: 'Hangi Kurum', yol: '/hangi-kurum/', not: 'su işleminizde yetkili kurum ve başvuru kanalı' },
-  { ad: 'Vakalar', yol: '/vaka/', not: 'şirketlerin su güvencesi — KAP vakaları' },
-  { ad: 'Hakkında', yol: '/hakkinda/', not: 'portalın yöntemi ve künyesi' },
+  { etiket: 'Durumum', ad: 'Sektörümde yükümlülüğüm ne?', yol: '/durumum/', not: 'sektörünüze göre yükümlülük ve son tarih' },
+  { etiket: 'Hangi Kurum', ad: 'Hangi kuruma gideceğim?', yol: '/hangi-kurum/', not: 'su işleminizde yetkili kurum ve başvuru kanalı' },
+  { etiket: 'Rehberler', ad: 'Adım adım nasıl yapılır?', yol: '/rehberler/', not: 'kuyu ruhsatından ceza iptaline pratik hukuk' },
+  // YENİ: 81 il hub'ı hiçbir menüde yoktu, tek iç link alıyordu.
+  { etiket: 'Kuyu Ruhsatı', ad: 'Kuyu ruhsatını nasıl alırım?', yol: '/kuyu-ruhsati/', not: '81 ilde yetkili merci, havza ve belge süreci' },
+  { etiket: 'Harita', ad: 'Türkiye’de su nerede?', yol: '/harita/', not: 'Türkiye’nin su atlası' },
+  { etiket: 'Havzalar', ad: 'Havzamda su ne durumda?', yol: '/havzalar/', not: '25 havzanın veri künyeleri' },
+  { etiket: 'Su Kanunu', ad: 'Mevzuat ne diyor?', yol: '/su-kanunu/', not: 'mevzuat kütüphanesi ve taslak takibi' },
+  { etiket: 'Vakalar', ad: 'Başka şirketler ne yaptı?', yol: '/vaka/', not: 'şirketlerin su güvencesi — KAP vakaları' },
+  { etiket: 'Hakkında', ad: 'Bunu kim hazırlıyor?', yol: '/hakkinda/', not: 'portalın yöntemi ve künyesi' },
 ];
 // "Deneyim" 23.07'de kaldırıldı: /deneyim/ rotası kapandı (301 → /), sahne
 // akışı ana sayfanın açılışı oldu.
@@ -43,7 +61,7 @@ const AYLAR: Record<string, number> = {
   ocak: 1, şubat: 2, mart: 3, nisan: 4, mayıs: 5, haziran: 6,
   temmuz: 7, ağustos: 8, eylül: 9, ekim: 10, kasım: 11, aralık: 12,
 };
-const gelismelerBolumu = taslakHam.split(/^## Gelişmeler\s*$/m)[1]?.split(/^## /m)[0] ?? '';
+const gelismelerBolumu = taslakHam.split(/^## Su Kanunu taslağında son gelişmeler neler\?\s*$/m)[1]?.split(/^## /m)[0] ?? '';
 const kayitlar = [...gelismelerBolumu.matchAll(/\*\*([^*]*?\d{4}) — ([^*]+?)\*\*/g)]
   .map((m) => {
     const tarihMetni = m[1].trim();
@@ -104,7 +122,7 @@ const kademe = () => ({ '--kademe': String(sira++) });
             <a
               href={o.yol}
               aria-current={simdiki.startsWith(o.yol) ? 'page' : undefined}
-            >{o.ad}</a>
+            ><span class="sv-alt-etiket">{o.etiket}</span><span class="sv-alt-soru">{o.ad}</span></a>
             <span class="sv-alt-not" aria-hidden="true">{o.not}</span>
           </li>
         ))}
@@ -113,9 +131,16 @@ const kademe = () => ({ '--kademe': String(sira++) });
 
     <div class="sv-ayrac" aria-hidden="true"></div>
 
+    {/* K3-2A (26 Tem 2026): vitrin başlıkları <h2> DEĞİL <p>. Sebep: bu menü
+        işaretlemesi her sayfada belge akışının EN BAŞINDA basılıyordu ve
+        171/174 sayfada <h1>'den ÖNCE üç <h2> üretiyordu — metin ayrıştıran
+        her istemci (AI tarayıcı dahil) bozuk başlık hiyerarşisi görüyordu.
+        Bunlar belge başlığı değil, gezinme paneli etiketleri; erişilebilir
+        ad <section aria-label> ile korundu, görünüm .sv-vitrin-baslik
+        sınıfından geldiği için DEĞİŞMEDİ. */}
     <nav class="sv-vitrin" aria-label="Öne çıkan içerik">
-      <section class="sv-vitrin-rehberler">
-        <h2 class="sv-vitrin-baslik sv-kademe" style={kademe()}>Son rehberler</h2>
+      <section class="sv-vitrin-rehberler" aria-label="Son rehberler">
+        <p class="sv-vitrin-baslik sv-kademe" style={kademe()}>Son rehberler</p>
         <ul>
           {sonRehberler.map((r) => (
             <li class="sv-kademe" style={kademe()}>
@@ -128,8 +153,8 @@ const kademe = () => ({ '--kademe': String(sira++) });
         </ul>
       </section>
 
-      <section class="sv-vitrin-kanun">
-        <h2 class="sv-vitrin-baslik sv-kademe" style={kademe()}>Su Kanunu — son durum</h2>
+      <section class="sv-vitrin-kanun" aria-label="Su Kanunu — son durum">
+        <p class="sv-vitrin-baslik sv-kademe" style={kademe()}>Su Kanunu — son durum</p>
         <p class="sv-kademe" style={kademe()}>
           <a href="/su-kanunu/taslak-takibi/">
             <span class="sv-vitrin-tarih">{kanunSon.tarih}</span>
@@ -138,8 +163,8 @@ const kademe = () => ({ '--kademe': String(sira++) });
         </p>
       </section>
 
-      <section class="sv-vitrin-havza">
-        <h2 class="sv-vitrin-baslik sv-kademe" style={kademe()}>Öne çıkan havza</h2>
+      <section class="sv-vitrin-havza" aria-label="Öne çıkan havza">
+        <p class="sv-vitrin-baslik sv-kademe" style={kademe()}>Öne çıkan havza</p>
         <p class="sv-kademe" style={kademe()}>
           <a href={havza.yol}>
             <span class="sv-vitrin-ad">{havza.ad}</span>
@@ -258,13 +283,18 @@ const kademe = () => ({ '--kademe': String(sira++) });
 
   .sv-menu-icerik ul { list-style: none; }
 
-  .sv-menu-icerik li + li { margin-top: clamp(0.9rem, 2.6vh, 1.5rem); }
+  /* 8 öğe -> 9 öğe + etiket satırı: eski clamp(0.9,2.6vh,1.5rem) ile masaüstü
+     menüsü 900 px ekranda 957 px'e çıkıp kaydırma gerektiriyordu. Aralık
+     sıkıldı; ölçüm sonrası 900 px'e sığıyor. */
+  .sv-menu-icerik li + li { margin-top: clamp(0.5rem, 1.1vh, 0.72rem); }
 
   .sv-menu-icerik a {
-    display: inline-block;
+    display: block;
     font-family: var(--serif, Georgia, serif);
     font-weight: 500;
-    font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+    /* Soru cümlesi tek kelimeden uzun: taban ölçek küçültüldü, yoksa 9 öğe
+       mobilde üç satıra taşıp menüyü kaydırma tüneline çeviriyordu. */
+    font-size: clamp(1.28rem, 2.3vw, 1.68rem);
     line-height: 1.2;
     color: #DBEAF4;
     text-decoration: none;
@@ -285,6 +315,19 @@ const kademe = () => ({ '--kademe': String(sira++) });
     outline: 2px solid var(--akuamarin, #57BAE0);
     outline-offset: 4px;
   }
+
+  .sv-alt-etiket {
+    display: block;
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    /* AA: DİP zemin üstünde küçük metin — .sv-alt-not ile aynı ton. */
+    color: rgba(143, 170, 194, 0.82);
+    margin-bottom: 0.1rem;
+  }
+
+  .sv-alt-soru { display: block; }
 
   .sv-alt-not {
     display: block;
@@ -326,7 +369,7 @@ const kademe = () => ({ '--kademe': String(sira++) });
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: #93AFC4;
-    margin-bottom: 0.55rem;
+    margin: 0 0 0.55rem;   /* K3-2A: h2→p geçişinde UA kenar boşluğu farkı oluşmasın */
   }
 
   .sv-vitrin ul { list-style: none; }

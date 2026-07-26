@@ -543,3 +543,120 @@ doğrulama açık:
 
 - [ ] K1 scratch dizinleri /tmp/k1-test ve /tmp/k1-test-onceki-tur silinmedi
       (rm izin kuralıyla engelli). Zararsız, /tmp yeniden başlatmada temizlenir.
+
+DÖNÜŞÜM SEANSI (26 Tem 2026) — dal `donusum-2026-07-26`, worktree
+`../suharitasi-donusum`. Kullanıcı incelemesi bekliyor, main'e MERGE EDİLMEDİ.
+
+- [ ] ANALİTİK KURULUMU — Cloudflare Web Analytics (ücretsiz, site Pages'te,
+      panelden tek tık). KULLANICI PANEL İŞİ. Bu yapılana kadar 5 [VARSAYIM]
+      önerisi ve tüm dönüşüm ölçümü askıda. Plausible/Umami barındırılan
+      sürümleri ücretli olduğu için elendi.
+- [ ] Cloudflare zone analitiği açık mı — panelden doğrulanmalı (istek/yol
+      verir, davranış ölçmez).
+- [ ] Dönüşüm SINIF C ([VARSAYIM], analitik verisi geldikten sonra):
+      · #17 ana sayfa H1 çerçeve tartışması (kategori mi, ses mi)
+      · #18 persona derinliği vs sayısı (471 kelime yeterli mi)
+      · #19 persona × il kesişim sayfaları
+      · #20 sektör ikonları (görsel onayı gerekli)
+      · #21 öz-cevap altı görüş satırı
+- [ ] Dönüşüm SINIF B (durak): #14 rehber süreç şeması ve #15 havza küçük
+      haritaları — YENİ GÖRSEL ÜRETİMİ gerektiriyor, referans görsel onayı
+      şart (askı yalnız 26 Tem brief'i için geçerliydi).
+- [ ] K2 düzeltmesi: GRACE eşiği 192 saat → aylık + 40-60 gün gecikmeye uygun
+      değer · sonBasariliKosu kısır döngüsü (site-saglik.mjs:769 — yalnız
+      kırmızısız koşumda güncelliyor, md10 kırmızı kaldıkça alan 24 Tem
+      07:33'te donmuş, bekçinin f kalemi 14 saat eşiğini her gün aşıyor,
+      UYARI-SAGLIK.md her 07:00'de yeniden yazılıyor, silme yalnız "hiç sorun
+      yok" dalında olduğu için asla temizlenmiyor) · md10'un baraj.json kalemi
+      bekçiyle tam mükerrer (48s vs 26s, bekçi her zaman önce ateşliyor).
+- [ ] K2 önerileri (uygulanmadı, aynen): (1) md10 GRACE kalemini kaynak
+      tazeliğine çevir, mtime'ı bırak · (2) md10 baraj kalemini kaldır ya da
+      bekçiyle eşitle · (3) sonBasariliKosu'nu "koştu" / "temiz koştu" diye
+      ikiye ayır · (4) GRACE URL'ini üç yerden tek yere indir · (5) SMTP
+      eksikliği ayrı kalem olarak izlensin.
+- [ ] SMTP dört değişkeni eksik → alarm e-postası kapalı
+      (sonBildirim.mail.gonderildi=false).
+- [ ] grace/cron.log tutarsızlığı DENETLENEMEDİ: 23 Tem 18:53'te yaratılmış,
+      tek satır içeriyor, ama o koşum olsaydı durum.json yeniden yazılırdı
+      (mtime hâlâ 20 Tem 06:00). "GRACE cron'u en son ne zaman koştu" tek
+      kaynaktan cevaplanamıyor.
+- [ ] F4-4 riski yapısal olarak duruyor: GRACE URL'i üç yerde sabit kodlu,
+      dönem alanı değişirse sessiz ölür. Tetiklenmemiş. Sınır: yalnız dönem
+      alanı yoklandı; sürüm etiketi (rl06v2.0, obp-ice6gd) değişmiş bir yayın
+      olasılığı DENETLENEMEDİ.
+- [ ] K1 sonrası script tutarsızlığı: baraj (PUSH_HATA=1) ve su-izleme
+      (PUSH_ERTELENDI=1) push ertelenince exit≠0 dönüyor, grace dönmüyor.
+      "Ertelendi" hata değil geçici durum.
+- [ ] /tmp/k1-test · /tmp/k1-test-onceki-tur · /tmp/skill-tarama temizliği.
+- [ ] Yabancı worktree: /tmp/claude-1000/.../scratchpad/wt-base (d2fea9d,
+      detached HEAD).
+- [ ] www.suharitasi.com 522 bulgusu — tek ölçüme dayanıyor, bağımsız
+      kontrolde üretilemedi, üç kez tekrar ölçülmeli.
+- [ ] robots.txt AI botları: Cloudflare "Managed Content" bloğu ClaudeBot/
+      GPTBot/PerplexityBot'u engelliyor olabilir — panelden doğrulanmalı.
+      GEO stratejisinin ön koşulu.
+- [x] Dönüşüm TUR 2 (26 Tem 2026, gece) — SINIF A'da kalan 9 maddenin 8'i
+      ele alındı, 6'sı UYGULANDI: #2 ana sayfa Organization+Person (`c91aa57`) ·
+      #6 soru-başlıkları, 85 tanım / 458 başlık / 161 sayfa (`e74f540`) ·
+      #7 robots.txt Tier-1 botları (`f71f490`) · #8 9 hub sayfasına öz-cevap
+      (`5a14a15`) · #10 llms.txt build üreticisi (`16fde8d`) · #12 ana sayfa
+      öz-cevabına somut sayılar (`0a84dd4`) · #13 HowTo şeması (`0f3e00e`).
+      KULLANICI GÖRSEL/UI ONAYI ALINDI (26 Tem 2026). Dal push edildi;
+      main'e merge EDİLMEDİ → canlıda değil.
+- [ ] #1 `sameAs` — SINIF B (B-2). **Kullanıcıdan gerçek profil adresi
+      gerekiyor:** LinkedIn (kişisel/büro), X, Google Business Profile, baro
+      levhası sayfası, Wikidata, YouTube. M8 gereği hiçbiri uydurulmadı, alan
+      hiç yazılmadı. 2-3 gerçek URL yeterli. Organization `logo` alanı da aynı
+      sebeple boş (gerçek logo dosyası yok).
+- [ ] #6'nın `/rehberler/kuyu-ruhsati/` kısmı — SINIF B (B-7). Kalıp-2
+      "İçindekiler" menüsü başlık metnini `<h2>` dışında tekrar bastığı için
+      başlık değişince 9 gövde kelimesi kayboluyor; mekanik M6 kuralı gereği
+      geri alındı. **Kullanıcı kararı gerekli:** içindekiler başlıktan
+      türediği için bu "gövde değişikliği" sayılmalı mı? Sayılmazsa tek
+      komutla uygulanır.
+- [x] ÖDÜL-ÜSTÜ TURU (26 Tem 2026, sabah) — 9 skill uygulandı, 7 commit.
+      Görünür breadcrumb 0→170 sayfa (`b42c46f`) · menü niyet-önce + Kuyu
+      Ruhsatı kapısı (`e8191dd`) · footer "Ne yapmam gerekiyor" sütunu
+      (`157af82`) · robots.txt Tier-2 tamam + Bytespider engeli (`0665aa4`) ·
+      persona operasyonel sonraki adım (`4e29078`) · il kardeş bağları
+      (`0212d30`) · havza kardeş bağları (`423f4af`).
+      `/kuyu-ruhsati/` iç link 1→82. Küme yatay bağı: havza 0/25→25/25,
+      il 0/81→76/81. LH erişilebilirlik 100 (3 tur medyan).
+      KULLANICI GÖRSEL/UI ONAYI ALINDI (26 Tem 2026). Dal push edildi;
+      main'e merge EDİLMEDİ → canlıda değil.
+- [ ] ÖDÜL-ÜSTÜ tripwire (Sharp uyarısı): analitik kurulduktan SONRA
+      `/harita/` ve `/havzalar/` organik girişi düşerse menü sırası geri
+      alınır. Şu an ölçülemez (madde 0 açık).
+- [x] CCBot ENGELLENDİ (26 Tem 2026 kullanıcı kararı, `7ced41d`). Tier-1
+      canlı AI arama botları (GPTBot, OAI-SearchBot, ClaudeBot,
+      PerplexityBot, Google-Extended) açık kaldı.
+- [ ] Lighthouse PERFORMANS yeniden ölçülmedi (bu turda yalnız erişilebilirlik).
+      Ortalama sayfa ağırlığı 24,1 → 26,9 KB (+%11,6): breadcrumb + footer
+      sütunu + kardeş bağları. Canlıya çıkınca LH perf tabanı doğrulanmalı.
+- [x] Handley önerisi UYGULANDI (26 Tem 2026, `8b90a36`): menü öğeleri
+      okuyucunun sorusunu söylüyor, bölüm adı mono etiket olarak bağlantı
+      içinde korundu (çapa metni + taranabilirlik + M6 üçü de bozulmadı).
+      Ölçüm gereği menü ölçeği ve öğe aralığı daraltıldı — masaüstü menüsü
+      1058 px'e çıkıp kaydırma gerektiriyordu, şimdi 900/900.
+- [x] #6'nın `/rehberler/kuyu-ruhsati/` kısmı UYGULANDI (`5bbc85e`) —
+      görsel/UI onayı bu engeli kaldırdı. İçindekiler menüsündeki 9 eski
+      başlık kelimesi bilerek düştü, gövde paragrafları değişmedi.
+- [ ] MERGE KARARI: `main`'e merge = Cloudflare Pages canlı yayını.
+      Kullanıcıya soruldu, bekliyor.
+- [ ] Madde 14 (rehber süreç şeması) · 15 (havza küçük haritaları) ·
+      20 (sektör ikonları): YENİ GÖRSEL ÜRETİMİ gerektiriyor. "Görsel/UI
+      işlerini onaylıyorum" bu kapıyı KAPATMAZ — ODUL-USTU referans görsel
+      onayı ayrı bir kapı.
+- [x] #11 rehber → il/persona bağlam linki — TAMAMLANDI (`fb27d9d`).
+      B3 (rehber → il) zaten karşılanmıştı: `/rehberler/kuyu-ruhsati/` 81 il
+      sayfasına link veriyor. C2 (rehber → persona) uygulandı: 0 → 13 link,
+      8 rehberde. Eşleşme elle yazılmadı, `persona.json`'daki `ilgiliIcerik`
+      alanı tersine çevrilerek türetildi. Öz-denetim: 7 sayfa, konsol 0,
+      113 tekil link 0 kırık. KULLANICI ONAYI BEKLİYOR.
+- [ ] #11 görünüm kararı: persona satırı "Sonraki adım" kutusunun altında
+      ince ayraçla, 0,9rem ikincil metin. Ana çağrı hiyerarşisini bozmasın
+      diye bilinçli ikincil. Daha belirgin istenirse tek satır değişiklik.
+- [ ] Ana sayfa (`/`) tarayıcı öz-denetimine alınamıyor: menü düğmesi
+      kaydırma-sahnesi yüzünden ilk ekranda görünmez, `arac/oz-denetim.mjs`
+      etkileşim adımı 30 sn'de zaman aşımına uğruyor. Araç ana sayfa için
+      kaydırma-önce-tıkla adımı istiyor. Madde 11'den önce de böyleydi.

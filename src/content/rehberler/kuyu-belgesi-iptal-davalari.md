@@ -12,7 +12,7 @@ birer idari işlemdir ve iptal davasına konu edilebilir. Danıştay'ın
 yaklaşımı nettir: işlemin sebebinin **teknik ve hukuki dayanağı somut
 olarak kurulmalıdır**; yalnızca soyut gerekçeyle işlem tesis edilemez.
 
-## Davanın eksenleri
+## Kuyu belgesi iptal davası hangi eksenlerde yürür?
 
 167 sayılı Kanun'un 13. maddesi başvuruya bir ay içinde cevap
 verilmesi zorunluluğunu getirir; 18. madde aykırılık halinde ceza ve
@@ -33,7 +33,7 @@ emniyetli verim ve başvuranın mevcut statüsü.
    sularına etkisi gibi konularda somut teknik inceleme yapılmadan
    işlem kurulamaz.
 
-## İptal davası ekseni
+## Hangi işlem türünde hangi hukuki sorun çıkar?
 
 | İşlem türü | Hukukî sorun | Kritik inceleme noktası | İlgili karar |
 | --- | --- | --- | --- |

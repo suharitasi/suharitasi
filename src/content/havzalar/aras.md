@@ -12,7 +12,7 @@ kunye:
 
 Aras Havzası, DSİ 2024 resmî istatistiklerine göre **27.775 km²** yağış alanına sahiptir.
 
-## Su varlığı
+## Aras Havzası'nın su varlığı ne kadar?
 
 - Yıllık ortalama yüzey suyu potansiyeli **4,57 km³** (DSİ 2024, Tablo 1.2).
 - Yeraltı suyu beslenimi **388,5 hm³/yıl**, işletme rezervi **294,4 hm³/yıl** (DSİ 2024, Tablo 1.3).

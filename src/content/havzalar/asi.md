@@ -12,7 +12,7 @@ kunye:
 
 Asi Havzası, DSİ 2024 resmî istatistiklerine göre **7.886 km²** yağış alanına sahiptir.
 
-## Su varlığı
+## Asi Havzası'nın su varlığı ne kadar?
 
 - Yıllık ortalama yüzey suyu potansiyeli **1,62 km³** (DSİ 2024, Tablo 1.2).
 - Yeraltı suyu beslenimi **393,2 hm³/yıl**, işletme rezervi **289,5 hm³/yıl** (DSİ 2024, Tablo 1.3).

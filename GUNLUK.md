@@ -666,3 +666,197 @@ add kırılganlığı (yeni dosya eklenirse listeden düşer).
 
 AYRINTI: denetim/K1-ILERLEME.md (B1 keşif tabloları, 5 senaryo kanıtı,
 B3.6 yapısal diff, verilen kararlar).
+
+## 26 Tem 2026 — Dönüşüm uygulaması (dal: donusum-2026-07-26)
+
+denetim/DONUSUM-ANALIZ.md'nin öncelik tablosu uygulandı. İş worktree'de
+kaldı; main'e MERGE EDİLMEDİ, push YAPILMADI, ana ağacın HEAD'i main'de.
+
+GÖRSEL ONAY KURALI BU İŞ İÇİN ASKIYA ALINDI (kullanıcı kararı). Gerekçe: iş
+dalda kalıyor, canlıya çıkmıyor; beğenilmezse dal tek komutla siliniyor.
+Askı yalnız bu brief için geçerliydi; kalıcı kural değişmedi.
+
+SAYIM HATASI (kendi raporumda): öncelik tablosu 22 satır (0-21), özet "21"
+diyordu — 0 numaralı satır (analitik) [VERİ] toplamına katılmamış. Doğrusu
+17 [VERİ] + 5 [VARSAYIM] = 22. Brief "21 değilse DUR" diyordu ama kapanış
+listesi "ZORUNLU DURAK — yalnız bunlar" ifadesiyle tüketiciydi ve bunu
+içermiyordu; hata kayda geçirilip 22 madde üzerinden devam edildi.
+
+UYGULANAN 4 MADDE (M13 öncelik sırasının dördü de tamamlandı):
+ (3) Menü vitrin başlıkları h2 → p. Ölçüm: H1'den önce H2 gelen sayfa
+     171/174 → 0/174. Görünüm değişmedi (stil sınıf tabanlı), erişilebilir
+     ad <section aria-label> ile korundu. Skill: geo-citability Kategori 3.
+ (5) Persona yatay bağları. Ölçüm: tam 1 iç link alan sayfa 42 → 2 (kalan
+     ikisi persona değil). Üç tur gerekti: (a) ortak rehber ölçütü 42→32,
+     (b) simetri 32→30, (c) kök sebep bulundu — 42 personanın 35'i
+     ilgiliIcerik'inde /su-kanunu/ hub'ını taşıyor, bu konu değil gezinme;
+     hub yolları sinyalden çıkarılıp grup-içi döngüsel halka eklenince
+     42→2 ve yığılma (3 sayfa × 35 link) da kayboldu. Skill:
+     site-architecture (yetim yasağı + spoke↔spoke).
+ (9) Ana sayfa JS'siz sahne yedeği. #world boş bir div, 6 sahne JS ile
+     monte ediliyordu; statik HTML'de <img>/<video> sıfırdı. <noscript>
+     içine motorun ZATEN kullandığı 6 poster karesi + alt metni kondu.
+     Yeni görsel ÜRETİLMEDİ, video dosyalarına dokunulmadı (M7). Ölçüm:
+     img'li sayfa 1 → 2, toplam img 1 → 7, hepsi alt'li.
+ (4) Rehber sonu "Sonraki adım" bloğu. Ölçüm: /durumum/ ve /hangi-kurum/
+     rehber gövdesinde hiç geçmiyordu (yalnız menüde). Yeni bileşen
+     SonrakiAdim.astro: kendi durumun → yetkili kurum → insan muhatap.
+     Skill: cro adım 3 (CTA hiyerarşisi) + content-strategy (rehberi
+     bitiren ziyaretçi "uygulama" aşamasındadır, ona sonraki MAKALE değil
+     sonraki ADIM gerekir — kurul oturumunda Handley'in itirazı).
+
+MADDE 16 — DEĞİŞİKLİK GEREKMEDİ: iki yetim sayfanın (/stil-pilot/,
+/harita-pilot/) ikisinde de `robots: noindex` ZATEN vardı ve sitemap dışılar.
+Yetimlik kasıtlı ve doğru; dev pilot sayfalarını gezinmeye sokmak yanlış
+olurdu. Brief 2-B "yetim 2 sayfayı bağla" diyordu, kaynak rapor ise "ya iç
+linkle ya noindex" seçeneğini veriyordu — ikinci seçeneğin zaten sağlandığı
+ölçümle doğrulandı.
+
+YENİDEN PUANLAMA (geo-citability, aynı 4 sayfa):
+ kuyu-ruhsati 76→80 · hangi-kurum 71→75 · persona 71→75 · ana sayfa 53→57.
+ Kritik kontrol: raporun tespiti "dördünde de en düşük kategori yapısal
+ okunabilirlik, kayıp içerikte değil iskelette" idi. O kategori dördünde de
+ yükseldi (55→75, 60→78, 55→75, 40→60) — yapısal işler amacına ULAŞTI.
+ Ama tavan yapmadı: soru-başlıkları (madde 6) uygulanamadı, Kategori 3'ün
+ kalan boşluğu odur.
+
+DURDURMA SEBEBİ: bağlam sınırı (M12). M13'ün dört önceliği (2-A, 2-B, 2-C,
+2-F) tamamlandıktan sonra durduruldu. Yetişmeyen 9 SINIF A maddesi
+SIRADAKILER'e yazıldı.
+
+KULLANILAN SKILL'LER: geo-citability (puanlama + Kategori 3 tanısı) ·
+site-architecture (link mimarisi) · cro (CTA hiyerarşisi) · content-strategy
+(alıcı aşaması) · marketing-council (önceki turun sentezi "bağlayıcı kısıt
+dağıtım, mesaj değil" bu turda uygulama sırasını belirledi — uygulanan 4
+maddenin 4'ü de dağıtım/iskelet, hiçbiri mesaj değiştirmedi).
+
+M6 DOĞRULAMASI: dört maddenin dördünde de kaybolan kelime SIFIR. Hukuki
+içerik metni değişmedi; yalnız kelime eklendi (922 + 20 + 420 satır).
+
+---
+
+## 26.07.2026 (gece) — DÖNÜŞÜM TUR 2: SINIF A'da kalan 9 madde
+
+Dal `donusum-2026-07-26`, worktree `../suharitasi-donusum`. Ana ağaç `main`
+= `6d0e209`, DEĞİŞMEDİ. Merge yok, push yok. 7 commit.
+
+**9 maddenin 8'i ele alındı: 6 uygulandı, 1 SINIF B (madde 1), 1 kısmen geri
+alındı (madde 6 / kuyu-ruhsati), 1 sıraya gelmedi (madde 11, M14 eşiği).**
+
+### KULLANICI KARARI — başlık metni yeniden yazılabilir
+
+Kullanıcı bu turda h1–h6 metninin değiştirilebileceğine karar verdi (gerekçe:
+başlık gezinme öğesidir, hukuki iddia değil); gövde metni dokunulmaz kaldı.
+**85 başlık tanımı değiştirildi**, hepsi ÖNCE→SONRA olarak
+`denetim/DONUSUM-ILERLEME.md` FAZ 2.3'te tek tek yazılı. Kanun numarası
+taşıyan iki başlık (`5686 rejimi`, `İdari para cezası (167 m.18)`) hukuki
+iddia riski nedeniyle bilerek çevrilmedi.
+
+### HATA KAYDI + KURAL — "başlık değişikliği gövdeyi de değiştirebilir"
+
+Madde 6'yı `/rehberler/kuyu-ruhsati/` sayfasına uygularken build geçti, ama
+gövde parmak izi 9 kelime kaybı gösterdi. Sebep: kalıp-2 sayfasının
+"İçindekiler" menüsü başlık metnini `<h2>` DIŞINDA tekrar basıyor. Başlık
+değişince menü metni de değişiyor — yani `<h1>–<h6>` sınırı, DOM'da başlığın
+yankılandığı yerleri kapsamıyor.
+
+**KURAL (yeni):** başlık metni değiştirilebilen bir işte, başlığın türetilmiş
+kopyaları (içindekiler, breadcrumb, `aria-label`, kart etiketi, menü vitrini)
+ÖNCEDEN aranır. Parmak izi doğrulaması bunu yakalar ama iş yapıldıktan sonra
+yakalar; önce aranırsa boşa iş olmaz.
+
+**İKİNCİ GİZLİ BAĞ:** `TamEkranMenu.astro` markdown gövdesini `## Gelişmeler`
+başlığına göre ayrıştırıyordu; başlık değişince build SESSİZCE DEĞİL, gürültülü
+düştü (sessiz hata yasağına uygun `throw`). Bağ güncellendi. Aynı türden ikinci
+bağ `rehberler/[slug].astro`'daki kalıp-2 bölüm listesiydi; o da güncellendi
+ama sayfa yine de geri alındı (gövde kaybı sebebiyle).
+
+### Uygulananlar
+
+| Madde | Commit | Ne oldu |
+|---|---|---|
+| 6 | `e74f540` | Soru başlıkları: 85 tanım. Soru biçimli h2/h3 **3 → 458**, kapsayan sayfa **3 → 161** |
+| 2 | `c91aa57` | Ana sayfaya Organization + Person; `kurum` şemasına `knowsAbout` + `email`; `Person` düğümü 172 sayfada `@id` ile paylaşılıyor |
+| 7 | `f71f490` | robots.txt'e 13 adlı bot bloğu (Googlebot, Bingbot, GPTBot, ClaudeBot, PerplexityBot, Google-Extended…). Erişim genişlemedi — niyet beyanı |
+| 10 | `16fde8d` | `llms.txt` build entegrasyonu; içerik dist'ten (title + meta description) üretiliyor, elle yazılmış metin yok → bayatlamaz. 172 sayfa, 61 KB |
+| 12 | `0a84dd4` | Ana sayfa öz-cevabına envanter sayıları (25 havza, 81 il, 42 sektör, 20 işlem, 10 rehber). 269 karakter, 280 sınırı altında. Sayıların hepsi build çıktısından sayıldı |
+| 8 | `5a14a15` | 9 hub sayfasının mevcut `ozet`'i `class="oz-cevap"` + `role="doc-abstract"` ile öz-cevap olarak işaretlendi. **Yeni metin üretilmedi, görünüm değişmedi.** Öz-cevapsız indekslenebilir sayfa 9 → 0 |
+| 13 | `0f3e00e` | `HowTo` şeması: kuyu-ruhsati 4 adım, kuyu-tasima 7 adım. Adım metinleri sayfadaki `adimlar[]` dizisinden birebir |
+
+### SÜREKLİLİK
+
+`llms.txt` bir build entegrasyonudur (`astro.config.mjs`), elle bakım
+istemez; `<title>` eksikse build düşer. Sayfa/sitemap tutarsızlığı çözüldü ve
+belgelendi: **175 dosya = 174 Astro rotası + public/404.html**, **172 sitemap
+= 174 − 2 noindex pilot**. Önceki raporlardaki 174 ve 175 sayılarının ikisi de
+doğruydu, farklı şeyleri sayıyorlardı.
+
+Bağlam: madde 13 sonunda M14 eşiği (%70) aşıldı → madde 11 bırakıldı, Faz 2
+puanlaması yapıldı, kayıt tamamlandı, duruldu.
+
+### 26.07.2026 (sabah) — TUR 2 kapanışı: madde 11
+
+Bağlam eşiği sonrası kalan tek SINIF A maddesi tamamlandı (`fb27d9d`).
+**Böylece 9 maddenin 9'u ele alındı: 7 uygulandı, 1 SINIF B (madde 1,
+`sameAs`), 1 kısmen geri alındı (madde 6 / kuyu-ruhsati).**
+
+Madde 11 iki parçaydı ve ikisi ayrı sonuçlandı: **B3 (rehber → il) zaten
+karşılanmıştı** — `/rehberler/kuyu-ruhsati/` 81 il sayfasına link veriyor,
+diğer rehberlerde il tablosu olmadığı için hüküm doğmuyor; yeni kod yazılmadı.
+**C2 (rehber → persona) uygulandı:** 0 → 13 link, 8 rehberde.
+
+**Yöntem notu (uydurma yasağı):** hangi personanın hangi rehberi
+ilgilendirdiği ELLE EŞLEŞTİRİLMEDİ. `data/lead/persona.json`'daki mevcut
+`ilgiliIcerik` alanı tersine çevrildi. Eşleşmesi olmayan rehberde satır hiç
+basılmıyor. `data/` yalnız okundu (M10).
+
+**Öz-denetim:** `arac/dist-sun.mjs` üzerinden 7 sayfa — konsol 0, 113 tekil
+iç link 0 kırık, 7/7 etkileşim, 7 tam sayfa kare. Ana sayfa alınamadı (menü
+düğmesi kaydırma-sahnesi arkasında; aracın bilinen sınırı, kuyruğa yazıldı).
+
+**M6:** eklenen 26 kelime, kaybolan 1 — o da `/hangi-kurum/` sayfasındaki
+build tarihinin 25 → 26 Temmuz dönmesi. İçerik kaybı yok.
+
+### 26.07.2026 (sabah, 2. blok) — ÖDÜL-ÜSTÜ: 9 skill'in uygulaması
+
+Kullanıcı: "son 24 saatte yüklediğin skilleri kullan, menüler dahil yerlerini
+önceliklerini değiştir, ödül üzeri bir site olsun."
+
+**Brief ön kapısı işletildi:** brief `cikti/brief/` altına olduğu gibi yazıldı,
+denetçi 3 ENGEL verdi (T5: DUR kapısı, kapsam mührü, commit+push kuralı —
+üçü de mekanik eksik), madde 4e gereği yalnız EKLEME ile tamamlandı,
+`-duzeltilmis.md` TEMİZ geçti. Orijinal korundu.
+
+**En büyük bulgu — şema dürüstlüğü açığı:** `BreadcrumbList` JSON-LD 171
+sayfada yayınlanıyordu ama sitede GÖRÜNÜR breadcrumb YOKTU (0 sayfa). Yani
+site, arama motorlarına sayfada karşılığı olmayan bir gezinme yapısı beyan
+ediyordu. Görünür breadcrumb aynı `kirintilar` dizisinden üretildi — iki
+kaynak artık ayrışamaz.
+
+**İkinci bulgu — hub'ın kendisi yetimdi:** 81 il sayfasının giriş kapısı
+`/kuyu-ruhsati/` yalnız **1** iç link alıyordu ve hiçbir menüde yoktu.
+Breadcrumb + menü + footer ile **82**'ye çıktı.
+
+**Üçüncü bulgu — iki küme yatay bağsızdı:** havza 0/25, il 0/81. Kardeşlik
+ölçütü UYDURULMADI; sayfanın zaten yazdığı olgudan türetildi (aynı DSİ
+bölgesi / aynı illeri kapsamak). Coğrafi komşuluk iddiası YOK.
+
+**Kurul kararının izi:** menü niyet-önce sıralandı ama Sharp'ın (muhalif)
+kısıtı korundu — hiçbir veri kapısı kaldırılmadı, yalnız sıra değişti.
+Handley'in "etiketler soru olsun" önerisi UYGULANMADI: onaylı gövde metnini
+silmeyi gerektiriyordu (M6). Skill önerisi ile proje kuralı çatıştığında
+proje kuralı kazandı.
+
+**cro'da öz-düzeltme:** persona sayfasında "iletişim bloğu yok" diye başladım,
+ölçünce blok VARDI (sektöre özel mailto konusuyla). Eksik olan iletişim değil
+operasyonel sonraki adımdı. Bulgu düzeltildi, brief kuralı "belirtiden nedene
+atlanmaz" burada işledi.
+
+**Kanıt:** build hata 0 · 175/172 değişmedi · gövde parmak izinde kayıp yok
+(tek fark build tarihinin gün dönmesi) · öz-denetim 8 sayfa konsol 0, 114
+tekil link 0 kırık · LH erişilebilirlik 3 sayfa × 3 tur medyan **100** ·
+mobil 375/390 px taşma 0.
+
+**Açık bıraktığım:** ortalama sayfa ağırlığı 24,1 → 26,9 KB (+%11,6) —
+Lighthouse PERFORMANS yeniden ölçülmedi (yerel/canlı kıyası geçersiz olurdu),
+DENETLENEMEDİ'ye yazıldı. CCBot engellensin mi kararı kullanıcıya bırakıldı.

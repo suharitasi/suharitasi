@@ -14,7 +14,7 @@ teknik şart ihlali). Her iki halde de idari para cezasının yanında
 **kuyunun kapatılması** sonucu doğabilir ve kapatma masrafı kuyuyu
 açtırandan alınır.
 
-## Yaptırımın işleyişi
+## Ruhsatsız kuyuda yaptırım nasıl işler?
 
 167 sayılı Kanun'un 18. maddesi yaptırım rejimini iki fıkrada kurar.
 Belge almadan 8. maddedeki işleri yapanlar ile kasten yanlış bilgi
@@ -31,7 +31,7 @@ Cezayı DSİ değil, **mahallî mülkî amir** (valilik/kaymakamlık) verir.
 Yaptırımın dayanağı ve yetkili idare doğru kurulmadığında işlem iptal
 edilebilir; içtihat bölümündeki kararlar bu ekseni gösterir.
 
-## Ceza tablosu
+## Ruhsatsız kuyuya hangi cezalar uygulanır?
 
 | Fiil | Kanuni dayanak | Para cezası | Ek sonuç | Yetkili |
 | --- | --- | --- | --- | --- |

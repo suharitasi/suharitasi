@@ -5,12 +5,25 @@
 // TBB uyumu: künye bilgilendirmedir; davet veya hizmet vaadi yoktur.
 import { YAZAR, EPOSTA } from '../data/site';
 
+// site-architecture "orphan page yasağı" + footer sütunlama kuralı.
+// ÖLÇÜM: footer 8 bölümün yalnız 5'ini taşıyordu; en yüksek niyetli üç
+// hedef (Durumum, Hangi Kurum, Vakalar) ve 81 il hub'ı footer'da HİÇ yoktu.
+// Mevcut "Bölümler" sütunu AYNEN korunur (onaylı metin, sıra dahil);
+// eksikler YENİ bir sütuna eklenir — hiçbir bağlantı kaldırılmadı.
 const bolumler = [
   { ad: 'Harita', yol: '/harita/' },
   { ad: 'Havzalar', yol: '/havzalar/' },
   { ad: 'Rehberler', yol: '/rehberler/' },
   { ad: 'Su Kanunu', yol: '/su-kanunu/' },
   { ad: 'Hakkında', yol: '/hakkinda/' },
+];
+
+const niyetKapilari = [
+  { ad: 'Durumum', yol: '/durumum/' },
+  { ad: 'Hangi Kurum', yol: '/hangi-kurum/' },
+  { ad: 'Kuyu Ruhsatı — iller', yol: '/kuyu-ruhsati/' },
+  { ad: 'İl rejimi aracı', yol: '/arac/il-rejimi/' },
+  { ad: 'Vakalar', yol: '/vaka/' },
 ];
 ---
 <footer class="alt">
@@ -19,6 +32,15 @@ const bolumler = [
       <p class="alt-baslik">Bölümler</p>
       <ul>
         {bolumler.map((b) => (
+          <li><a href={b.yol}>{b.ad}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <nav class="alt-kolon" aria-label="Ne yapmam gerekiyor">
+      <p class="alt-baslik">Ne yapmam gerekiyor</p>
+      <ul>
+        {niyetKapilari.map((b) => (
           <li><a href={b.yol}>{b.ad}</a></li>
         ))}
       </ul>
@@ -67,13 +89,13 @@ const bolumler = [
     max-width: 64rem;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
     align-items: start;
   }
 
   @media (max-width: 720px) {
-    .alt-kolonlar { grid-template-columns: 1fr; gap: 1.6rem; }
+    .alt-kolonlar { grid-template-columns: repeat(2, 1fr); gap: 1.6rem; }
   }
 
   .alt-baslik {

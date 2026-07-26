@@ -12,7 +12,7 @@ kunye:
 
 Fırat-Dicle Havzası, DSİ 2024 resmî istatistiklerine göre **176.143 km²** yağış alanına sahiptir.
 
-## Su varlığı
+## Fırat-Dicle Havzası'nın su varlığı ne kadar?
 
 - Yıllık ortalama yüzey suyu potansiyeli **54,50 km³** (DSİ 2024, Tablo 1.2).
 - Yeraltı suyu beslenimi **4.994,8 hm³/yıl**, işletme rezervi **3.763,7 hm³/yıl** (DSİ 2024, Tablo 1.3).

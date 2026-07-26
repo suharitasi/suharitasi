@@ -59,7 +59,7 @@ Sakarya Havzası, DSİ 2024 resmî istatistiklerine göre **63.303 km²**
 yağış alanıyla Türkiye'nin en büyük havzalarından biridir; Ankara ve
 Eskişehir gibi büyük nüfus merkezlerini besler, Karadeniz'e boşalır.
 
-## Su varlığı
+## Sakarya Havzası'nın su varlığı ne kadar?
 
 - Yıllık ortalama yüzey suyu potansiyeli **6,01 km³** olup Türkiye
   toplam yüzey suyu potansiyelinin yaklaşık %3'üne karşılık gelir
@@ -68,7 +68,7 @@ Eskişehir gibi büyük nüfus merkezlerini besler, Karadeniz'e boşalır.
   **1.545,2 hm³/yıl** ile Sakarya, Türkiye'nin en yüksek YAS
   potansiyelli havzaları arasındadır (DSİ 2024, Tablo 1.3).
 
-## Planlama ve koruma
+## Sakarya Havzası nasıl planlanıyor ve korunuyor?
 
 Havzanın kirlilik ve koruma tedbirleri
 [Sakarya Havzası Koruma Eylem Planı'nda](https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Sakarya_web.pdf)

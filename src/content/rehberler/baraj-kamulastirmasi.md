@@ -13,7 +13,7 @@ temeli 2942 sayılı Kamulaştırma Kanunu'dur: kamu yararının gerektirdiği
 hallerde özel mülkiyetteki taşınmazlar, bedeli ödenerek idare adına
 alınır.
 
-## Üç ihtimal
+## Baraj kamulaştırmasında hangi üç ihtimal var?
 
 **Kamulaştırma:** İdare usulüne uygun kamulaştırma kararı almış ve
 bedel süreci işletilmişse uyuşmazlık esasen bedelin miktarı üzerinde
@@ -33,7 +33,7 @@ Somut uyuşmazlığın niteliği; idari kamulaştırma kararının varlığına,
 fiili el atma tarihine, su altında kalma düzeyine ve dava türüne göre
 belirlenir.
 
-## İmar kısıtlılığı ve geçiş hükümleri
+## İmar kısıtlılığı ve geçiş hükümleri nasıl uygulanır?
 
 2942 Ek Madde 1, uygulama imar planlarında umumi hizmetlere ayrılarak
 mülkiyet hakkının özüne dokunacak şekilde kısıtlanan taşınmazlar için
@@ -47,7 +47,7 @@ Madde 12 tahakkuk etmiş ama tahsil edilememiş sulama yatırım
 bedellerinin takibinden vazgeçildiğini, Geçici Madde 13 ise eski su
 tahsislerinin mevcut hukuki durumlarını koruduğunu hükme bağlar.
 
-## Baraj kamulaştırması çerçevesi
+## Baraj kamulaştırması çerçevesi nedir?
 
 | Konu | Temel dayanak | Hukukî sonuç | Veri durumu |
 | --- | --- | --- | --- |

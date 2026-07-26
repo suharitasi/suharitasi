@@ -12,12 +12,12 @@ kunye:
 
 Burdur Havzası, DSİ 2024 resmî istatistiklerine göre **6.294 km²** yağış alanına sahiptir.
 
-## Su varlığı
+## Burdur Havzası'nın su varlığı ne kadar?
 
 - Yıllık ortalama yüzey suyu potansiyeli **0,22 km³** (DSİ 2024, Tablo 1.2).
 - Yeraltı suyu beslenimi **106,4 hm³/yıl**, işletme rezervi **89,5 hm³/yıl** (DSİ 2024, Tablo 1.3).
 
-## Planlama ve koruma
+## Burdur Havzası nasıl planlanıyor ve korunuyor?
 
 Havzanın kirlilik ve koruma tedbirleri
 [Burdur Havzası Koruma Eylem Planı'nda](https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Burdur_Havzas%C4%B1.pdf)

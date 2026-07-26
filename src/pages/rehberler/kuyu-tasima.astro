@@ -11,6 +11,12 @@ import OzCevap from '../../components/OzCevap.astro';
 import Katman from '../../components/Katman.astro';
 import YazarKutusu from '../../components/YazarKutusu.astro';
 import IlgiliRehberler from '../../components/IlgiliRehberler.astro';
+import SonrakiAdim from '../../components/SonrakiAdim.astro';
+import { personalar as tumPersonalar } from '../../data/persona.js';
+// Madde 11 / C2 — eşleşme veriden gelir (bkz. rehberler/[slug].astro).
+const ilgiliPersonalar = tumPersonalar
+  .filter((x) => (x.ilgiliIcerik ?? []).includes('/rehberler/kuyu-tasima/'))
+  .map((x) => ({ ad: x.ad, slug: x.slug }));
 import { getEntry } from 'astro:content';
 import { YAZAR, OG_GORSEL, EPOSTA } from '../../data/site';
 
@@ -275,6 +281,21 @@ const sema = [
       acceptedAnswer: { '@type': 'Answer', text: q.c },
     })),
   },
+  // Madde 13 (geo-schema): "yedi adım" gerçek bir prosedür — HowTo olarak da
+  // işaretlenir. Adım metinleri adimlar[] dizisinden birebir gelir; şemaya
+  // sayfada olmayan tek kelime girmez.
+  {
+    '@type': 'HowTo',
+    name: `${d.baslik} — yeni başvuru şeması`,
+    description: d.ozCevap,
+    inLanguage: 'tr-TR',
+    step: adimlar.map((a, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: a.asama,
+      text: `${adimEtiket.dayanak}: ${a.dayanak} · ${adimEtiket.belge}: ${a.belge} · ${adimEtiket.cikti}: ${a.cikti}`,
+    })),
+  },
 ];
 ---
 <Sayfa baslik={d.baslik} aciklama={d.ozCevap} sema={sema} heroSlot="rehber-hero">
@@ -318,7 +339,7 @@ const sema = [
       Suları Tüzüğü (m.2, 4, 11, 13, 15, 16) çerçevesinde kurulur.
     </p>
 
-    <h2 id="kavramsal-ayrim">Kavramsal ayrım: kuruma, çökme, kirlilik, taşınma</h2>
+    <h2 id="kavramsal-ayrim">Kuruma, çökme, kirlilik ve taşınma nasıl ayrılır?</h2>
     <p>
       Kuyu kullanılamaz hale geldiğinde tercih edilecek hukuki yol, sorunun
       niteliğine göre değişir. Dört hâl ayrı ayrı değerlendirilmelidir.
@@ -337,7 +358,7 @@ const sema = [
       ))}
     </div>
 
-    <h2 id="karar">Hangi hâlde hangi hukuki yol</h2>
+    <h2 id="karar">Hangi hâlde hangi hukuki yol izlenir?</h2>
     <p>
       Aşağıdaki beş durum, kuyu kullanılamaz hale geldiğinde hangi yolun
       tercih edileceğini gösterir. En kritik ayrım taşınmadadır: aynı ruhsat
@@ -357,7 +378,7 @@ const sema = [
       ))}
     </div>
 
-    <h2 id="adimlar">Yeni başvuru şeması: yedi adım</h2>
+    <h2 id="adimlar">Yeni başvuru yedi adımda nasıl yapılır?</h2>
     <p>
       Mevcut kuyunun aynı yerde onarımla sürdürülemediği ve yeni noktada yeni
       sondaj gerektiği hallerde başvuru süreci aşağıdaki sırayla yürür.
@@ -397,7 +418,7 @@ const sema = [
       </p>
     </div>
 
-    <h2 id="dikkat">DSİ başvurusunda dikkat edilecek hususlar</h2>
+    <h2 id="dikkat">DSİ başvurusunda nelere dikkat edilmeli?</h2>
     <ol class="numara-liste">
       {dikkat.map((x) => <li>{x}</li>)}
     </ol>
@@ -496,6 +517,7 @@ const sema = [
   </nav>
 
   <YazarKutusu />
+  <SonrakiAdim konu="Kuyu taşıma" personalar={ilgiliPersonalar} />
   <IlgiliRehberler slugler={d.ilgili} haric={giris.id} />
 </Sayfa>
 

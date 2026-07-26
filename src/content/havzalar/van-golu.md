@@ -12,12 +12,12 @@ kunye:
 
 Van Gölü Havzası, DSİ 2024 resmî istatistiklerine göre **17.861 km²** yağış alanına sahiptir.
 
-## Su varlığı
+## Van Gölü Havzası'nın su varlığı ne kadar?
 
 - Yıllık ortalama yüzey suyu potansiyeli **2,53 km³** (DSİ 2024, Tablo 1.2).
 - Yeraltı suyu beslenimi **179,2 hm³/yıl**, işletme rezervi **148,2 hm³/yıl** (DSİ 2024, Tablo 1.3).
 
-## Planlama ve koruma
+## Van Gölü Havzası nasıl planlanıyor ve korunuyor?
 
 Havzanın kirlilik ve koruma tedbirleri
 [Van Gölü Havzası Koruma Eylem Planı'nda](https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Van_Golu_web.pdf)

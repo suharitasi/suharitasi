@@ -13,7 +13,7 @@ müracaat ederek su tahsis talebinde bulunabilir. Talep otomatik olarak
 karşılanmaz; suyun miktarı ve kalitesi esas alınarak **kullanım
 önceliklerine göre** değerlendirilir.
 
-## Başvuru ve değerlendirme
+## Su tahsisi başvurusu nasıl değerlendirilir?
 
 Su Tahsisleri Hakkında Yönetmelik'in 8. maddesi tahsis talebinin
 DSİ'ye yapılacağını düzenler. Yeraltı suyuna yönelik başvurular 167
@@ -41,7 +41,7 @@ Eski tahsisler yönünden hukuki güvenlik 6200 sayılı Kanun'un Geçici
 13. maddesiyle sağlanır: maddenin yürürlüğünden önce yapılmış su
 tahsisleri mevcut hukuki durumlarını korur.
 
-## Öncelik sistemi
+## Su tahsisinde öncelik sırası nedir?
 
 | Öncelik sırası | Kaynak | Uygulama alanı | Hukukî temel |
 | --- | --- | --- | --- |

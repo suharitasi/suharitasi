@@ -51,6 +51,23 @@ const alanlar = [
 
 // İller ve yetkili kurumlar: havza no → il listesi → DSİ bölgesi + su idaresi
 const havzaIl = giris.data.no ? ilKurum.havzaIlleri[giris.data.no] : undefined;
+
+// K3-3 (26 Tem 2026) — content-strategy küme bütünlüğü: 25 havza sayfasının
+// HİÇBİRİ kardeş havzaya link vermiyordu (spoke<->spoke 0/25). Ölçüt
+// COĞRAFİ KOMŞULUK DEĞİL (o bir iddia olurdu) — sayfanın zaten yazdığı
+// olgu: AYNI İLLERİ KAPSAMAK. Kaynak: il-kurum.json havzaIlleri.
+const buIller = new Set(havzaIl?.iller ?? []);
+const kesisenHavzalar = buIller.size
+  ? (await getCollection('havzalar'))
+      .filter((g) => g.id !== giris.id && g.data.no)
+      .map((g) => {
+        const il = ilKurum.havzaIlleri[g.data.no]?.iller ?? [];
+        return { id: g.id, ad: g.data.baslik, ortak: il.filter((x) => buIller.has(x)).length };
+      })
+      .filter((x) => x.ortak > 0)
+      .sort((a, b) => b.ortak - a.ortak)
+      .slice(0, 5)
+  : [];
 const ilBolge = {};
 for (const [no, b] of Object.entries(ilKurum.dsiBolgeleri)) {
   for (const il of b.iller) ilBolge[il] = { no, merkez: b.merkez };
@@ -148,7 +165,7 @@ const semalar = yasGeo
     {hukuk && (
       <Katman baslik="Bu havzada hukuki durum" ipucu="izin rejimi · kısıtlar · rehberler" ton="kehribar">
         <section class="hukuk">
-          <h2>Bu havzada hukuki durum</h2>
+          <h2>Bu havzada hukuki durum nedir?</h2>
 
           <div class="hukuk-govde" set:html={hukuk.cerceve} />
 
@@ -184,7 +201,7 @@ const semalar = yasGeo
     {ilSatirlari.length > 0 && (
       <Katman baslik="İller ve yetkili kurumlar" ipucu={`${ilSatirlari.length} il · DSİ bölgeleri · su idareleri`} ton="murekkep">
         <section class="il-kurum">
-          <h2>İller ve yetkili kurumlar</h2>
+          <h2>Havzada hangi iller ve yetkili kurumlar var?</h2>
           <div class="tablo-kaydir">
             <table>
               <thead>
@@ -263,7 +280,7 @@ const semalar = yasGeo
 
   {hukuk && (
     <section class="hukuk">
-      <h2>Bu havzada hukuki durum</h2>
+      <h2>Bu havzada hukuki durum nedir?</h2>
 
       <div class="hukuk-govde" set:html={hukuk.cerceve} />
 
@@ -297,7 +314,7 @@ const semalar = yasGeo
 
   {ilSatirlari.length > 0 && (
     <section class="il-kurum">
-      <h2>İller ve yetkili kurumlar</h2>
+      <h2>Havzada hangi iller ve yetkili kurumlar var?</h2>
       <div class="tablo-kaydir">
         <table>
           <thead>
@@ -330,9 +347,21 @@ const semalar = yasGeo
   )}
   </Fragment>
 )}
+
+{kesisenHavzalar.length > 0 && (
+  <section aria-label="Aynı illeri kapsayan havzalar">
+    <h2>Aynı illeri kapsayan diğer havzalar hangileri?</h2>
+    <nav class="capraz">
+      {kesisenHavzalar.map((x) => <a href={`/havzalar/${x.id}/`}>&rarr; {x.ad}</a>)}
+    </nav>
+  </section>
+)}
 </Sayfa>
 
 <style>
+  .capraz { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0 1.6rem; }
+  .capraz a { font-family: var(--mono); font-size: 0.8rem; color: var(--su-700); border: 1px solid var(--cizgi); padding: 0.4rem 0.7rem; text-decoration: none; }
+  .capraz a:hover { background: var(--zemin-kart); }
   /* Havza künyesi = veri bandı (DESIGN.md §5): kot cetveli + DERİN hairline */
   .kunye {
     margin: 0 0 2rem;

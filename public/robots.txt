@@ -1,4 +1,79 @@
+# suharitasi.com — tarayıcı erişim politikası
+# CLAUDE.md "Kopyalanma direnci" m.3: arama motoru botları ve izin verilen
+# AI-arama botları ASLA engellenmez. Aşağıdaki bloklar bu ilkeyi açıkça yazar;
+# genel kural zaten Allow: / olduğu için erişimi genişletmezler, niyeti
+# makine-okunur biçimde beyan ederler (geo-crawlers Tier-1 matrisi).
+
 User-agent: *
 Allow: /
+
+# --- Arama motorları ---
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# --- AI arama / yanıt motorları (Tier-1) ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# --- Saldırgan tarayıcı (geo-crawlers Tier-3: "BLOCK for most Western
+# businesses" — agresif tarama davranışı, arama görünürlüğüne katkısı yok).
+# CLAUDE.md "Kopyalanma direnci" m.3 ile uyumlu: bu bir ARAMA/AI-ARAMA botu
+# DEĞİL, toplu içerik toplayıcıdır. Tier-1 botların hiçbiri etkilenmez. ---
+User-agent: Bytespider
+Disallow: /
+
+# CCBot (Common Crawl): KULLANICI KARARIYLA ENGELLENDİ (26 Tem 2026).
+# Common Crawl bir arama/AI-arama motoru değil, toplu içerik veri kümesidir;
+# CLAUDE.md "Kopyalanma direnci" ilkesiyle uyumlu. Bilinen bedeli: gelecek
+# model eğitim kümelerinde site yer almaz. CANLI AI ARAMASI ETKİLENMEZ —
+# GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot ve Google-Extended
+# yukarıda AÇIKÇA açık bırakıldı.
+User-agent: CCBot
+Disallow: /
+
+# AI istemcileri için makine-okunur içindekiler
+# https://suharitasi.com/llms.txt
 
 Sitemap: https://suharitasi.com/sitemap.xml

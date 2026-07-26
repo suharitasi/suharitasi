@@ -29,6 +29,52 @@ const baglar = (p.ilgiliIcerik || [])
   .map((yol) => ({ yol, ad: rehberBaslik.get(yol) || sabitEtiket[yol] || yol }))
   .filter((b, i, a) => a.findIndex((x) => x.yol === b.yol) === i);
 
+// K3-2B (26 Tem 2026): persona sayfaları TEK iç link alıyordu (yalnız
+// /durumum/ dizininden; 42 sayfa × 1 link, grafiğin ortası boş). Yatay bağ
+// site-architecture skill'inin "yetim sayfa yasağı" + hub-and-spoke'ta
+// spoke↔spoke kuralı gereği açıldı.
+// SEMANTİK ÖLÇÜT — rastgele serpme DEĞİL: iki persona aynı rehberi
+// ilgiliIcerik'inde taşıyorsa aynı hukuki sorunu paylaşıyordur. Sıralama:
+// ortak rehber sayısı (çok→az), eşitlikte ad (tr-TR). Hiç ortak rehberi
+// olmayan persona için yedek ölçüt aynı `kaynak` grubudur — böylece hiçbir
+// sayfa bağsız kalmaz.
+// İki ölçüt, bu sırayla:
+//
+// (1) ORTAK REHBER — güçlü sinyal. Ölçüldü: 42 personanın 35'i ilgiliIcerik'inde
+//     /su-kanunu/ taşıyor. Bu bir GEZİNME hub'ı, konu değil; benzerlik sinyalinden
+//     çıkarılmazsa 35 kişilik tek klik oluşuyor ve alfabetik ilk 3 sayfaya yığılma
+//     yapıyordu (ölçüldü: 3 sayfa 35 link, kuyrukta 30 sayfa hâlâ 1 link).
+//     HUB_YOLLAR dışlanır; kalan ortak rehber gerçek konu ortaklığıdır.
+// (2) GRUP HALKASI — kapsama garantisi. Aynı `kaynak` grubunda (nace-ek2: 31,
+//     genel: 11) kendinden SONRAKİ komşular, döngüsel. Semantik dayanak: aynı
+//     kaynak grubu. Alfabetik ilk-3 yerine döngüsel pencere seçilmesinin sebebi
+//     dağıtımdır — her sayfa halkadan eşit sayıda bağ alır, yığılma olmaz.
+const HUB_YOLLAR = new Set(['/su-kanunu/', '/harita/', '/vaka/', '/rehberler/']);
+const kendiOzel = new Set((p.ilgiliIcerik || []).filter((y) => !HUB_YOLLAR.has(y)));
+const ozelOrtak = personalar
+  .filter((o) => o.slug !== p.slug)
+  .map((o) => ({ o, n: (o.ilgiliIcerik || []).filter((y) => kendiOzel.has(y)).length }))
+  .filter((x) => x.n > 0)
+  .sort((a, b) => b.n - a.n || a.o.ad.localeCompare(b.o.ad, 'tr'))
+  .map((x) => x.o);
+
+const grup = personalar
+  .filter((o) => o.kaynak === p.kaynak)
+  .sort((a, b) => a.ad.localeCompare(b.ad, 'tr'));
+const kendiSira = grup.findIndex((o) => o.slug === p.slug);
+const halka = grup.length > 1
+  ? [1, 2, 3].map((k) => grup[(kendiSira + k) % grup.length]).filter((o) => o.slug !== p.slug)
+  : [];
+
+const secilen = [];
+for (const o of [...ozelOrtak, ...halka]) {
+  if (secilen.length >= 4) break;
+  if (o && !secilen.some((x) => x.slug === o.slug)) secilen.push(o);
+}
+const benzerler = secilen
+  .sort((a, b) => a.ad.localeCompare(b.ad, 'tr'))
+  .map((o) => ({ yol: `/durumum/${o.slug}/`, ad: o.ad }));
+
 const tarihli = !!p.sonTarihMetni;
 
 // Öz-cevap (≤280): yükümlülük + (varsa) sabit tarih.
@@ -84,7 +130,7 @@ const sema = [
   </aside>
 
   {/* İlk adımlar (genel süreç) */}
-  <h2 class="blok-baslik">İlk adımlar</h2>
+  <h2 class="blok-baslik">İlk adımda ne yapmalısınız?</h2>
   <ol class="adimlar">
     <li class="adim"><span class="adim-no">1</span><p>Durumunuzu belirleyin:
       faaliyet, kapasite ve (varsa) NACE kodunuz kapsamı ve yükümlülüğü tayin eder.</p></li>
@@ -99,6 +145,30 @@ const sema = [
       {baglar.map((b) => <a href={b.yol}>→ {b.ad}</a>)}
     </nav>
   )}
+
+  {/* K3-2B: yatay bağ — gerekçe frontmatter'da. */}
+  {benzerler.length > 0 && (
+    <>
+      <h2 class="blok-baslik">Benzer durumdaki sektörler hangileri?</h2>
+      <nav class="capraz" aria-label="Benzer sektör durumları">
+        {benzerler.map((b) => <a href={b.yol}>→ {b.ad}</a>)}
+      </nav>
+    </>
+  )}
+
+  {/* K3-3 (26 Tem 2026) — cro adım 3: CTA hiyerarşisi.
+      ÖLÇÜM (düzeltme): persona sayfasında iletişim CTA'sı ZATEN VARDI
+      (aşağıdaki blok, sektöre özel mailto konusu ile). Eksik olan iletişim
+      değil, İKİ OPERASYONEL SONRAKİ ADIM: "hangi kuruma gideceğim" ve
+      "ilimde yetkili merci kim". Mevcut çıkışların hepsi YATAYDI (kardeş
+      persona + dayanak). ODUL-USTU Faz 7 üçüncü halkası ("yol gösterme")
+      bu iki hedefle tamamlanır. Mevcut metin DEĞİŞTİRİLMEDİ, satır EKLENDİ. */}
+  <p class="sonraki-op">
+    Sonraki adım:{' '}
+    <a href="/hangi-kurum/">bu işlemde yetkili kurum</a>
+    <span class="il-ayr">·</span>
+    <a href="/kuyu-ruhsati/">ilinizde merci ve belge süreci</a>
+  </p>
 
   {/* İletişim (form kapsam dışı — e-posta + künye) */}
   <section class="iletisim" aria-label="İletişim">
@@ -161,6 +231,21 @@ const sema = [
   .capraz { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
   .capraz a { font-family: var(--mono); font-size: 0.8rem; color: var(--su-700); border: 1px solid var(--cizgi); padding: 0.4rem 0.7rem; text-decoration: none; }
   .capraz a:hover { background: var(--zemin-kart); }
+
+  .sonraki-op {
+    margin: 1.6rem 0 0;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--cizgi);
+    font-size: 0.94rem;
+    color: var(--metin-soluk);
+  }
+  .sonraki-op a {
+    color: var(--baglanti);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .sonraki-op a:hover,
+  .sonraki-op a:focus-visible { border-bottom-color: var(--baglanti); }
 
   .iletisim { background: var(--su-700); color: #E9F0F4; padding: 1.2rem 1.4rem; margin-top: 1.4rem; }
   .il-b { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; }

@@ -14,7 +14,7 @@ arza malik olmak, altındaki yeraltı sularına da malik olmak sonucunu
 doğurmaz. Bu ayrım, komşular arası su uyuşmazlıklarının çoğunun
 düğüm noktasıdır.
 
-## Kaynak ve yeraltı suyu ayrımı
+## Kaynak suyu ile yeraltı suyu nasıl ayrılır?
 
 Türk Medenî Kanunu'nun 718. maddesi arazi mülkiyetinin, kullanılmasında
 yarar olduğu ölçüde üstündeki havayı ve altındaki katmanları
@@ -30,14 +30,14 @@ Kaynağa el atma halinde malik veya irtifak sahibi **el atmanın
 önlenmesi davası** açabilir; Yargıtay içtihadında TMK 718 ve 756
 birlikte uygulanır ve kaynak/yeraltı suyu ayrımı sonucu belirler.
 
-## Mecra irtifakı
+## Mecra irtifakı nedir?
 
 Mecra irtifakı ve komşu parselden su geçirmeye ilişkin TMK 757-761
 maddelerinin tam metni, kaynak araştırmanın veri tabanında
 bulunmamaktadır; bu maddelerin ayrıntılı aktarımı yapılamamaktadır.
 Somut olayda ayrıca değerlendirilmesi gerekir.
 
-## Komşu arazideki yeraltı suyundan yararlanma
+## Komşu arazideki yeraltı suyundan nasıl yararlanılır?
 
 Yeraltı Suları Tüzüğü'nün 16. maddesi pratik bir kapı açar: kendi
 arazisinde faydalı ihtiyaçlarına yetecek su bulunmayan kişi, komşu
@@ -45,7 +45,7 @@ arazide işletilen yeraltı suyundan belirli koşullarla yararlanabilir.
 Suya muhtaç komşunun önce kullanma belgesi alması, doğan zararları
 tazmin etmesi ve tesis masraflarına katılması gerekir.
 
-## Kaynak hakkı rejimi
+## Kaynak hakkı rejimi nedir?
 
 | Kurum | Hukukî niteliği | Temel madde | Yargısal sonuç |
 | --- | --- | --- | --- |
