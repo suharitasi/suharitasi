@@ -64,10 +64,14 @@ Allow: /
 User-agent: Bytespider
 Disallow: /
 
-# NOT: CCBot (Common Crawl) bilinçli olarak ENGELLENMEDİ — genel kural altında
-# erişimi sürüyor. Engellemek uzun vadeli AI eğitim varlığını azaltır, açık
-# bırakmak toplu kopyalanmayı kolaylaştırır. Bu bir DEĞİŞ-TOKUŞ, kullanıcı
-# kararına bırakıldı (SIRADAKILER'de açık madde).
+# CCBot (Common Crawl): KULLANICI KARARIYLA ENGELLENDİ (26 Tem 2026).
+# Common Crawl bir arama/AI-arama motoru değil, toplu içerik veri kümesidir;
+# CLAUDE.md "Kopyalanma direnci" ilkesiyle uyumlu. Bilinen bedeli: gelecek
+# model eğitim kümelerinde site yer almaz. CANLI AI ARAMASI ETKİLENMEZ —
+# GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot ve Google-Extended
+# yukarıda AÇIKÇA açık bırakıldı.
+User-agent: CCBot
+Disallow: /
 
 # AI istemcileri için makine-okunur içindekiler
 # https://suharitasi.com/llms.txt
