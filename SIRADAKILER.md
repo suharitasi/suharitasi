@@ -648,9 +648,10 @@ DÖNÜŞÜM SEANSI (26 Tem 2026) — dal `donusum-2026-07-26`, worktree
 - [ ] REFERANS GÖRSEL TURU YAPILDI — **KULLANICI SEÇİMİ BEKLİYOR**
       (26 Tem 2026). Kıyas sayfası: `cikti/denetim/referans-gorsel/index.html`
       (kareler: kare-d3.png · kare-d2.png · kare-d4.png).
-      Önerilenler: **D3-A konumlandırıcı** · **D2-A sütunlu ray** ·
-      **D4-A NACE sigili**. Her madde için 2-3 yön çizildi, hiçbiri siteye
-      bağlanmadı. Seçim gelince uygulama briefi yazılır.
+      **D3-A SEÇİLDİ VE UYGULANDI** (26 Tem 2026) — 25/25 havzada
+      konumlandırıcı basıyor, altyazı "havza sınırı değildir" diyor,
+      LH erişilebilirlik 100, SVG 5,4 KB.
+      **D2-A (sütunlu ray) ve D4-A (NACE sigili) hâlâ SEÇİM BEKLİYOR.**
       · Üretici: `arac/referans-havza-harita.mjs` (build'e bağlı DEĞİL).
       · Ölçülmüş kısıt: #0C5A7C ile #2E7EA0 yan yana iki veri kategorisi
         OLAMAZ (dataviz doğrulayıcı, normal görüş ΔE 11,8 / eşik 15).
@@ -660,8 +661,11 @@ DÖNÜŞÜM SEANSI (26 Tem 2026) — dal `donusum-2026-07-26`, worktree
 - [ ] D3 VERİ AÇIĞI: depoda **havza sınır geometrisi yok**. Referans yönler
       havzanın kapsadığı İLLERİ boyuyor ve etiketi bunu söylüyor. Gerçek
       sınır isteniyorsa DSİ/SYGM geometrisi + lisans sorusu ayrı iş.
-- [ ] D3-A yalnız Sakarya (10 il) için üretildi; 25 havzanın hepsinde nasıl
-      durduğu bakılmadı — tek il kapsayan havzada nokta gibi kalabilir.
+- [x] D3-A 25 havzanın hepsinde doğrulandı. En küçük kapsam Akarçay (2 il)
+      ve okunur çıkıyor — "nokta gibi kalır" endişesi gerçekleşmedi.
+- [ ] Sakarya (tek kalıp-2 havzası) sayfasında harita `<details>` katmanı
+      içinde kapalı geliyor; diğer 24'te doğrudan görünür. Künye bloğuna
+      (ilk ekran) taşınsın mı — karar.
 - [x] #11 rehber → il/persona bağlam linki — TAMAMLANDI (`fb27d9d`).
       B3 (rehber → il) zaten karşılanmıştı: `/rehberler/kuyu-ruhsati/` 81 il
       sayfasına link veriyor. C2 (rehber → persona) uygulandı: 0 → 13 link,

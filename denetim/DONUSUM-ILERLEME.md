@@ -810,3 +810,53 @@ Kehribar yalnız hairline kalır, asla veri yüzeyi olmaz.
    (10 il) üretildi. Tek il kapsayan havzada nokta gibi kalabilir.
 5. Havza **gerçek sınır geometrisi** temin edilmedi (DSİ/SYGM kaynağı +
    lisans sorusu açık).
+
+---
+
+## D3-A UYGULANDI — havza konumlandırıcı (26 Tem 2026)
+
+Kullanıcı referans turundan **D3-A**'yı seçti. Uygulandı.
+
+- Yeni modül `src/data/havza-harita.js` — build-time SVG yolu üretir.
+  `arac/referans-havza-harita.mjs` (tur dosyası) yerinde kalır ama artık
+  siteyi beslemez; site bu modülden beslenir.
+- `src/pages/havzalar/[slug].astro` — her iki kalıpta da
+  "Havzada hangi iller ve yetkili kurumlar var?" başlığının hemen altına
+  `<figure class="konum">` girdi. **25/25 havzada basıyor.**
+
+### Veri dürüstlüğü — sayfada yazılı
+
+Altyazı birebir: *"Koyu alan bu havzanın kapsadığı N ildir; havza sınırı
+değildir. İller havzalara kısmen girebilir."* Depoda havza sınır geometrisi
+olmadığı için harita sınır ÇİZMİYOR, il boyuyor — ve bunu söylüyor.
+Modülde eşleşmeyen il çıkarsa build DÜŞER (sessiz hata yasağı); harita
+eksik ilaçla çizilmez.
+
+### Ağırlık — ölçüldü ve düşürüldü
+
+| Aşama | Ülke silueti | Havza illeri | SVG toplam |
+|---|---|---|---|
+| Ham geometri | — | — | 135 KB |
+| İlk seyreltme (1,6 px) | 4,1 KB | 2,7 KB | 7,4 KB |
+| **Ülke silueti kabalaştırıldı (3,2 px + küçük ada elemesi)** | **2,2 KB** | 2,7 KB | **5,4 KB** |
+
+Ülke silueti 25 sayfada birebir tekrarlandığı için en büyük tasarruf orada.
+Siluet BAĞLAM, havza illeri İÇERİK — eşikler buna göre ayrı.
+Havza sayfası 50,2 KB · site ortalaması 26,9 → **28,9 KB**.
+
+### Kanıt
+
+- 25/25 havzada figür basıyor · en az il: Akarçay (2), en çok: Fırat-Dicle (27)
+- Küçük havza endişesi ÇÖZÜLDÜ: 2 illik Akarçay bile okunur (kare alındı)
+- Lighthouse erişilebilirlik 3 havza × 3 tur medyan: **100 / 100 / 100**
+- Öz-denetim: konsol **0**, iç link **83 tekil / 0 kırık**
+- 375 px ve 900 px: yatay taşma **0**; SVG `width:100%`, `max-width:30rem`
+- Gövde parmak izinde **yeni kayıp yok**
+- `role="img"` + `<title>` + açıklayıcı `figcaption`
+
+### Bilinmesi gereken
+
+Sakarya (tek kalıp-2 havzası) sayfasında "İller ve yetkili kurumlar" bir
+`<details>` katmanı içinde; harita orada **kapalı gelir**, açınca görünür.
+Diğer 24 havzada doğrudan görünür. İstenirse harita künye bloğuna
+(ilk ekran) taşınabilir — ayrı karar.
