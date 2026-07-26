@@ -8,13 +8,25 @@ import havzaVeri from '../../data/havza-veri.json';
 import taslakHam from '../content/su-kanunu/taslak-takibi.md?raw';
 import { ONE_CIKAN_HAVZA_NO } from '../data/menu';
 
+// NİYET-ÖNCE SIRALAMA (26 Tem 2026, kullanıcı "menüler dahil yerlerini
+// önceliklerini değiştirsin" kararı). Gerekçe — marketing-council:
+// Schwartz'ın farkındalık aşaması: bu siteye gelen ziyaretçi "su atlası
+// gezmek" isteyen MERAKLI değil, "ruhsatım var mı / hangi kuruma gideceğim"
+// diyen PROBLEM-FARKINDA kişidir; menü onu bulunduğu aşamada karşılamalı.
+// Dunford: "Harita" ilk sırada siteyi VERİ GÖRSELLEŞTİRME kategorisine
+// çerçeveliyordu — güçlü olduğu kategori bu değil.
+// Sharp'ın (muhalif) kısıtı KORUNDU: hiçbir veri kapısı KALDIRILMADI veya
+// gizlenmedi, yalnız sıra değişti — kategori giriş noktaları duruyor.
+// Açıklama metinleri (`not`) DEĞİŞTİRİLMEDİ: onaylı gövde metni.
 const ogeler = [
-  { ad: 'Harita', yol: '/harita/', not: 'Türkiye’nin su atlası' },
-  { ad: 'Havzalar', yol: '/havzalar/', not: '25 havzanın veri künyeleri' },
-  { ad: 'Rehberler', yol: '/rehberler/', not: 'kuyu ruhsatından ceza iptaline pratik hukuk' },
-  { ad: 'Su Kanunu', yol: '/su-kanunu/', not: 'mevzuat kütüphanesi ve taslak takibi' },
   { ad: 'Durumum', yol: '/durumum/', not: 'sektörünüze göre yükümlülük ve son tarih' },
   { ad: 'Hangi Kurum', yol: '/hangi-kurum/', not: 'su işleminizde yetkili kurum ve başvuru kanalı' },
+  { ad: 'Rehberler', yol: '/rehberler/', not: 'kuyu ruhsatından ceza iptaline pratik hukuk' },
+  // YENİ: 81 il hub'ı hiçbir menüde yoktu, tek iç link alıyordu.
+  { ad: 'Kuyu Ruhsatı', yol: '/kuyu-ruhsati/', not: '81 ilde yetkili merci, havza ve belge süreci' },
+  { ad: 'Harita', yol: '/harita/', not: 'Türkiye’nin su atlası' },
+  { ad: 'Havzalar', yol: '/havzalar/', not: '25 havzanın veri künyeleri' },
+  { ad: 'Su Kanunu', yol: '/su-kanunu/', not: 'mevzuat kütüphanesi ve taslak takibi' },
   { ad: 'Vakalar', yol: '/vaka/', not: 'şirketlerin su güvencesi — KAP vakaları' },
   { ad: 'Hakkında', yol: '/hakkinda/', not: 'portalın yöntemi ve künyesi' },
 ];
