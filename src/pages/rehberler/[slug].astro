@@ -9,6 +9,7 @@ import IlgiliRehberler from '../../components/IlgiliRehberler.astro';
 import Katman from '../../components/Katman.astro';
 import { YAZAR, OG_GORSEL } from '../../data/site';
 import SonrakiAdim from '../../components/SonrakiAdim.astro';
+import { personalar as tumPersonalar } from '../../data/persona.js';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('rehberler');
@@ -26,6 +27,13 @@ const { Content, headings } = await render(giris);
 
 const kok = new URL('/', Astro.site).href;
 const canonical = new URL(`/rehberler/${giris.id}/`, Astro.site).href;
+
+// Madde 11 / C2: bu rehberi `ilgiliIcerik` alanında gösteren personalar.
+// Eşleşme veriden gelir, elle yazılmaz — persona.json değişince liste de değişir.
+const rehberYolu = `/rehberler/${giris.id}/`;
+const ilgiliPersonalar = tumPersonalar
+  .filter((x) => (x.ilgiliIcerik ?? []).includes(rehberYolu))
+  .map((x) => ({ ad: x.ad, slug: x.slug }));
 const tarihISO = giris.data.tarih.toISOString();
 
 // Article: YMYL (hukuk) içerikte yazar kimliği en güçlü E-E-A-T sinyali.
@@ -229,7 +237,7 @@ if (kalip2) {
     )}
 
     <YazarKutusu />
-    <SonrakiAdim konu={giris.data.baslik} />
+    <SonrakiAdim konu={giris.data.baslik} personalar={ilgiliPersonalar} />
     <IlgiliRehberler slugler={giris.data.ilgili} haric={giris.id} />
   </Fragment>
 ) : (
@@ -247,7 +255,7 @@ if (kalip2) {
   </div>
   {giris.data.ilKurumTablosu && <IlKurumTablosu />}
   <YazarKutusu />
-  <SonrakiAdim konu={giris.data.baslik} />
+  <SonrakiAdim konu={giris.data.baslik} personalar={ilgiliPersonalar} />
     <IlgiliRehberler slugler={giris.data.ilgili} haric={giris.id} />
   </Fragment>
 )}

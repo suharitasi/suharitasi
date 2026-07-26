@@ -12,6 +12,11 @@ import Katman from '../../components/Katman.astro';
 import YazarKutusu from '../../components/YazarKutusu.astro';
 import IlgiliRehberler from '../../components/IlgiliRehberler.astro';
 import SonrakiAdim from '../../components/SonrakiAdim.astro';
+import { personalar as tumPersonalar } from '../../data/persona.js';
+// Madde 11 / C2 — eşleşme veriden gelir (bkz. rehberler/[slug].astro).
+const ilgiliPersonalar = tumPersonalar
+  .filter((x) => (x.ilgiliIcerik ?? []).includes('/rehberler/kuyu-tasima/'))
+  .map((x) => ({ ad: x.ad, slug: x.slug }));
 import { getEntry } from 'astro:content';
 import { YAZAR, OG_GORSEL, EPOSTA } from '../../data/site';
 
@@ -512,7 +517,7 @@ const sema = [
   </nav>
 
   <YazarKutusu />
-  <SonrakiAdim konu="Kuyu taşıma" />
+  <SonrakiAdim konu="Kuyu taşıma" personalar={ilgiliPersonalar} />
   <IlgiliRehberler slugler={d.ilgili} haric={giris.id} />
 </Sayfa>
 
