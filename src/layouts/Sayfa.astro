@@ -206,6 +206,53 @@ const jsonLd = JSON.stringify({
     box-shadow: inset 0 -1px 0 rgba(46, 126, 160, 0.45);
   }
 
+  /* Sayfa yolu (breadcrumb) — site-architecture: "breadcrumbs = her sayfada
+     bedava iç link" + 3-tık kuralı. ui-ux-pro-max Navigation/Breadcrumbs:
+     3+ seviyeli sitelerde kullan. BURADAKİ ASIL GEREKÇE ŞEMA DÜRÜSTLÜĞÜ:
+     BreadcrumbList JSON-LD 171 sayfada zaten yayınlanıyordu ama sayfada
+     görünür karşılığı YOKTU. Metin ve sıra JSON-LD ile AYNI `kirintilar`
+     dizisinden gelir — iki kaynak ayrışamaz. Ana sayfada çıkmaz. */
+  .kirinti {
+    margin: 0 0 1.4rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--metin-soluk);
+  }
+  .kirinti ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 0.5rem;
+    margin: 0;
+    padding: 0;
+  }
+  .kirinti li { display: flex; align-items: center; gap: 0.5rem; }
+  .kirinti li + li::before {
+    content: "\203A";
+    color: var(--su-400);
+    font-size: 0.85rem;
+  }
+  .kirinti a {
+    color: var(--metin-soluk);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    /* dokunma hedefi: 0.72rem metin + dikey iç boşluk ≈ 34 px satır */
+    padding: 0.45rem 0;
+  }
+  .kirinti a:hover,
+  .kirinti a:focus-visible { color: var(--baglanti); border-bottom-color: var(--baglanti); }
+  .kirinti [aria-current="page"] {
+    color: var(--metin);
+    padding: 0.45rem 0;
+    max-width: 46ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  @media print { .kirinti { display: none; } }
+
   main.govde {
     flex: 1;
     width: 100%;
@@ -429,6 +476,19 @@ const jsonLd = JSON.stringify({
     ? <div class="sv-hero sv-hero-slot" aria-hidden="true"><GorselSlot ad={heroSlot} yukseklik="100%" /></div>
     : <div class="sv-hero" aria-hidden="true"></div>}
   <main class="govde">
+    {kirintilar.length > 1 && (
+      <nav class="kirinti" aria-label="Sayfa yolu">
+        <ol>
+          {kirintilar.map((k, i) => (
+            <li>
+              {i === kirintilar.length - 1
+                ? <span aria-current="page">{k.ad}</span>
+                : <a href={new URL(k.url).pathname}>{k.ad}</a>}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
     <slot />
   </main>
   <AltBilgi />
