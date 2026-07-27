@@ -33,10 +33,16 @@ function baslat() {
     }
     #sv-imlec .sv-damla svg { display: block; width: 100%; height: 100%; }
     /* Ton: krem sayfada koyu-akuamarin, koyu sayfada açık-akuamarin.
-       Menü katmanı (koyu) açıkken krem sayfada da açık varyanta geçilir. */
+       ÖLÜ DAL KALKTI (2026-07-27): "html.sv-menu-goruntude" kuralları
+       tam-ekran menü katmanı (sv-menu / menu.js) içindi; o sistem 27.07'de
+       kaldırıldı, sınıfı ekleyen tek kod menu.js'ti. Üç kanal kanıtı:
+       (1) sınıfı ekleyen 0 — kaynakta, dist'te ve canlı 4 sayfada
+           classList.add/toggle/className/setAttribute eşleşmesi yok;
+       (2) dinleyici 0 — imlec.js'in 5 dinleyicisinin hiçbiri bu sınıfa
+           bağlı değil, hepsi baslat() içinde ve baslat() koşullu çağrılıyor;
+       (3) koşulsuz yan etki 0 — baslat() dışında yalnız iki matchMedia
+           okuması var; kurallar hiç eşleşmeyen bir seçiciyi hedefliyordu. */
     #sv-imlec .sv-v-${krem ? 'koyu' : 'krem'} { display: none; }
-    html.sv-menu-goruntude #sv-imlec .sv-v-koyu { display: initial; }
-    html.sv-menu-goruntude #sv-imlec .sv-v-krem { display: none; }
     #sv-imlec.sv-buyuk .sv-damla {
       transform: scale(1.65);
       animation: sv-yuzey 0.2s cubic-bezier(0.34, 1.8, 0.64, 1);
