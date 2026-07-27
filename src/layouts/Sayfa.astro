@@ -1,7 +1,8 @@
 ---
 // İçerik sayfası çatısı: DESIGN.md "İçerik sayfaları" bölümüne bağlıdır.
 // Aydınlık atlas dünyası: krem-adaçayı zemin, koyu mürekkep, Cormorant + Manrope.
-import UstMenu from '../components/UstMenu.astro';
+// MENÜ BİRLEŞTİRME (27.07 ADIM 3): UstMenu import'u kaldırıldı — dosya
+// duruyor (M10, silme kararı kullanıcıda). Tek menü: PaylasilanMenu.
 import PaylasilanMenu from '../components/PaylasilanMenu.astro';
 import AltBilgi from '../components/AltBilgi.astro';
 import GorselSlot from '../components/GorselSlot.astro';
@@ -19,12 +20,9 @@ interface Props {
   // YERİNE o slot render edilir (görsel yokken degrade placeholder —
   // görünüm su bandıyla aynı aileden; iki bant üst üste asla binmez).
   heroSlot?: 'rehber-hero' | 'bolum-vinyeti';
-  // MENÜ BİRLEŞTİRME (27.07, ADIM 2 geçici kapısı): true → yeni
-  // PaylasilanMenu; ADIM 3'te varsayılan yapılıp kapı kalkacak.
-  yeniMenu?: boolean;
 }
 
-const { baslik, aciklama, sema = [], heroSlot, yeniMenu = false } = Astro.props;
+const { baslik, aciklama, sema = [], heroSlot } = Astro.props;
 const yol = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname
   : Astro.url.pathname + '/';
@@ -495,7 +493,7 @@ const jsonLd = JSON.stringify({
 </style>
 </head>
 <body>
-  {yeniMenu ? <PaylasilanMenu /> : <UstMenu />}
+  <PaylasilanMenu />
   {heroSlot
     ? <div class="sv-hero sv-hero-slot" aria-hidden="true"><GorselSlot ad={heroSlot} yukseklik="100%" /></div>
     : <div class="sv-hero" aria-hidden="true"></div>}

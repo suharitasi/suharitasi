@@ -6,7 +6,8 @@
 // (HavzaPaneli). Hero markup/CSS'ine dokunulmadı; eski "kaydırmasız sahne"
 // düzeni body'den .hero-sahne kabına taşındı ki ilk ekran birebir kalsın
 // (pixel kanıtı cikti/denetim/faz3/) ve sayfa panel için kaydırılabilsin.
-import TamEkranMenu from '../components/TamEkranMenu.astro';
+// MENÜ BİRLEŞTİRME (27.07): TamEkranMenu import'u kalktı, dosya durur (M10).
+import PaylasilanMenu from '../components/PaylasilanMenu.astro';
 import HavzaPaneli from '../components/HavzaPaneli.astro';
 // Hareket sözlüğü tek kaynak: /harita/ sahne rotası da --e-* eğrilerini
 // buradan alır (HavzaPaneli yerel --pk-e-suzul kopyası kaldırıldı).
@@ -287,20 +288,16 @@ const jsonLd = JSON.stringify({
 </head>
 <body>
 
+  <PaylasilanMenu yuzer />
+
   <div class="hero-sahne">
     <figure class="cerceve" data-menu-dis>
       <img class="hero" src="/hedef-hero.v2.webp" alt="Türkiye'nin kabartma su haritası — sıcak gün ışığında, denizden yükselen su kavisleri ve süzülen damlalarla" fetchpriority="high" decoding="async" />
     </figure>
   </div>
 
-  <button
-    class="sv-menu-ac"
-    type="button"
-    aria-haspopup="dialog"
-    aria-expanded="false"
-    aria-controls="sv-menu"
-  >menü</button>
-
+  {/* Eski tek "menü" tetikleyicisi KALKTI: hedefi (sv-menu) artık render
+      edilmiyor; gezinme PaylasilanMenu barında (27.07 birleştirme). */}
   <main data-menu-dis>
     {/* ÖZ-CEVAP: hero'dan hemen sonra, panelden önce. Panelle aynı açık
         slab üstünde durur ki iki ayrı zemin görünmesin. JS'siz DOM'da. */}
@@ -311,8 +308,6 @@ const jsonLd = JSON.stringify({
     </section>
     <HavzaPaneli />
   </main>
-
-  <TamEkranMenu />
 
   <script is:inline>
     const cerceve = document.querySelector('.cerceve');

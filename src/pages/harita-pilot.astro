@@ -10,7 +10,8 @@
 // ffmpeg olmadığından ken-burns MP4 üretilemedi; görevin fallback kuralı gereği
 // CSS-only parallax yolu seçildi (ek olarak ~90MB video yükü yerine near-sıfır
 // ağırlık — görsel zaten public'te, yeniden kullanılıyor).
-import TamEkranMenu from '../components/TamEkranMenu.astro';
+// MENÜ BİRLEŞTİRME (27.07): TamEkranMenu import'u kalktı, dosya durur (M10).
+import PaylasilanMenu from '../components/PaylasilanMenu.astro';
 ---
 <!DOCTYPE html>
 <html lang="tr">
@@ -220,7 +221,7 @@ import TamEkranMenu from '../components/TamEkranMenu.astro';
 
   <button class="sv-menu-ac" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sv-menu">menü</button>
   <span class="rozet">pilot</span>
-  <TamEkranMenu />
+  <PaylasilanMenu />
 
   <script is:inline>
     /* Scroll-scrub grameri: oso95/scroll-world scrub-engine.js (MIT) mantığı.

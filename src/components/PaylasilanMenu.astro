@@ -18,6 +18,11 @@ import taslakHam from '../content/su-kanunu/taslak-takibi.md?raw';
 import { ONE_CIKAN_HAVZA_NO } from '../data/menu';
 import { VERI_ROTALARI } from '../data/anasayfa-v2.js';
 
+interface Props {
+  // Tam-ekran görsel sayfalar (/harita/ vb.): bar akışa girmez, üstte yüzer.
+  yuzer?: boolean;
+}
+const { yuzer = false } = Astro.props;
 const anaSayfa = Astro.url.pathname === '/' || Astro.url.pathname === '';
 const kok = (capa: string) => (anaSayfa ? `#${capa}` : `/#${capa}`);
 
@@ -55,7 +60,7 @@ if (!havzaKaydi || !havzaGirisi) {
 }
 const oneCikanHavza = { ad: havzaKaydi.ad, yol: `/havzalar/${havzaGirisi.id}/` };
 ---
-<header class:list={['pm-bar', anaSayfa ? 'pm-ana' : 'pm-icerik']} id="pm-bar">
+<header class:list={['pm-bar', anaSayfa ? 'pm-ana' : (yuzer ? 'pm-yuzer' : 'pm-icerik')]} id="pm-bar">
 <div class="pm-ic">
   <a class="pm-marka" href="/">Su Hukuku</a>
 
@@ -159,15 +164,22 @@ const oneCikanHavza = { ad: havzaKaydi.ad, yol: `/havzalar/${havzaGirisi.id}/` }
     background: rgba(8, 32, 47, 0.96);
     border-bottom-color: rgba(255, 255, 255, 0.1);
   }
+  /* Tam-ekran görsel sayfa: fixed + koyu (akışı itmez, görsel tam kalır). */
+  .pm-yuzer {
+    position: fixed;
+    background: rgba(8, 32, 47, 0.82);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
   .pm-bar.kaydi {
     background: rgba(8, 32, 47, 0.85);
     border-bottom-color: rgba(255, 255, 255, 0.1);
   }
   @supports (backdrop-filter: blur(1px)) {
-    .pm-bar.kaydi, .pm-icerik {
+    .pm-bar.kaydi, .pm-icerik, .pm-yuzer {
       backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     }
     .pm-icerik { background: rgba(8, 32, 47, 0.88); }
+    .pm-yuzer { background: rgba(8, 32, 47, 0.72); }
   }
   .pm-ic {
     max-width: 72rem; margin: 0 auto;
