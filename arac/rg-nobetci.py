@@ -1,0 +1,190 @@
+#!/usr/bin/env python3
+"""RG İŞLETME SAHASI NÖBETÇİSİ — kalıcı periyodik izleme (2026-07-27, Faz E).
+
+NEDEN: `arac/rg-tara.py` tek seferlik keşif aracıydı (Faz 3). Yeni bir
+"yeraltısuyu işletme sahası" ilanı Resmî Gazete'de yayımlandığında bunu
+kimse yakalamıyor — veri donuyor. Bu nöbetçi haftalık koşup YALNIZ YENİ
+kayıtları bulur, mevcut arşive ekler ve olay üretir (SÜREKLİLİK İLKESİ).
+
+MODLAR
+  --test    tarama + ayrıştırma kanıtı üretir; HİÇBİR dosyaya yazmaz,
+            hiçbir yere gönderim yapmaz, git'e dokunmaz. Varsayılan.
+  --kosum   gerçek koşum: yeni kayıtlar isletme-sahalari-yeni.json'a
+            eklenir, durum damgası güncellenir.
+
+CRONTAB'A EKLENMEZ — kurulum satırı raporda, kullanıcı onayıyla.
+
+Kanıt kuralı (Faz 3 ile aynı): her kayıt RG tarih + sayı + kaynak URL
+taşır; taşımayan kayıt YAZILMAZ, "kaynaksiz" sayacına düşer.
+Sessiz hata yasağı: ağ/ayrıştırma hatası yutulmaz — stderr + çıkış kodu.
+"""
+import argparse, json, re, sys, time, urllib.error, urllib.request
+from pathlib import Path
+
+KOK = Path(__file__).resolve().parent.parent
+ARSIV = [KOK / "veri/potansiyel/isletme-sahalari.json",
+         KOK / "veri/potansiyel/isletme-sahalari-ek.json"]
+CIKTI = KOK / "veri/potansiyel/isletme-sahalari-yeni.json"
+DURUM = KOK / "izleme/state/rg-nobetci-durum.json"
+UA = "suharitasi.com veri derleme (mailto:avserdararslan@hotmail.com)"
+UC = "https://www.resmigazete.gov.tr/Home/Filter"
+VARYANTLAR = ["yeraltısuyu işletme sahası",
+              "yeraltı suyu işletme sahası",
+              "YAS işletme sahası"]
+BEKLE = 1.5          # istekler arası (G5 nezaket kuralı)
+
+
+def sorgu(kelime, start, length=25, searchtype="1"):
+    govde = json.dumps({"draw": 1, "start": start, "length": length,
+                        "parameters": {"searchtype": searchtype,
+                                       "genelaranacakkelime": kelime,
+                                       "genelbaslangictarihi": "",
+                                       "genelbitistarihi": "", "genelsayi": ""}})
+    istek = urllib.request.Request(
+        UC, data=govde.encode(),
+        headers={"User-Agent": UA,
+                 "Content-Type": "application/json; charset=utf-8"})
+    with urllib.request.urlopen(istek, timeout=60) as c:
+        return json.load(c)
+
+
+def satirlari_coz(cevap):
+    """RG /Home/Filter cevabından kayıt sözlükleri.
+
+    Uç DataTables sözleşmesini kullanır ama satırları DİZİ değil SÖZLÜK
+    döndürür (27.07 ölçümü — ilk sürüm diziyi varsaydığı için 0 satır
+    ayrıştırıyordu; --test kanıt kuralı bunu yakaladı). Alanlar:
+    konu · mevzuatAdi · resmiGazeteSayisi · resmiGazeteTarihiFormatted ·
+    mukerrer · url · kanunKararNo.
+    """
+    cikan = []
+    for satir in cevap.get("data", []):
+        if not isinstance(satir, dict):
+            print(f"UYARI: beklenmeyen satır tipi {type(satir)} — atlandı",
+                  file=sys.stderr)
+            continue
+        baslik = re.sub(r"\s+", " ", str(satir.get("konu") or "")).strip()
+        cikan.append({
+            "rg_tarih": satir.get("resmiGazeteTarihiFormatted"),
+            "rg_sayi": satir.get("resmiGazeteSayisi"),
+            "baslik": baslik,
+            "kaynak_url": satir.get("url"),
+            "mevzuat_turu": satir.get("mevzuatAdi"),
+            "mukerrer": satir.get("mukerrer"),
+        })
+    return cikan
+
+
+def arsiv_anahtarlari():
+    """Mevcut arşivdeki kayıtların kimlikleri — 'yeni' tanımı bunlara göre."""
+    anahtar = set()
+    for yol in ARSIV:
+        if not yol.exists():
+            print(f"UYARI: arşiv dosyası yok: {yol}", file=sys.stderr)
+            continue
+        d = json.loads(yol.read_text())
+        for k in d.get("kayitlar", []):
+            u = k.get("kaynak_url")
+            t = k.get("rg_tarih")
+            b = (k.get("saha_adi") or k.get("baslik") or "")[:80]
+            if u:
+                anahtar.add(("url", u))
+            if t:
+                anahtar.add(("tarih+baslik", t, re.sub(r"\s+", " ", b).strip()))
+    return anahtar
+
+
+def tara(azami_sayfa):
+    bulunan, hatalar = [], []
+    for kelime in VARYANTLAR:
+        start = 0
+        for _ in range(azami_sayfa):
+            try:
+                cevap = sorgu(kelime, start)
+            except (urllib.error.URLError, urllib.error.HTTPError, ValueError) as e:
+                hatalar.append({"kelime": kelime, "start": start, "hata": str(e)})
+                print(f"HATA sorgu '{kelime}' start={start}: {e}", file=sys.stderr)
+                break
+            satirlar = satirlari_coz(cevap)
+            if not satirlar:
+                break
+            for s in satirlar:
+                s["bulan_varyant"] = kelime
+            bulunan.extend(satirlar)
+            toplam = cevap.get("recordsFiltered") or cevap.get("recordsTotal") or 0
+            start += 25
+            if start >= int(toplam):
+                break
+            time.sleep(BEKLE)
+        time.sleep(BEKLE)
+    return bulunan, hatalar
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    g = ap.add_mutually_exclusive_group()
+    g.add_argument("--test", action="store_true", help="yalnız kanıt üret; YAZMA YOK (varsayılan)")
+    g.add_argument("--kosum", action="store_true", help="gerçek koşum: yeni kayıtları yaz")
+    ap.add_argument("--azami-sayfa", type=int, default=8)
+    a = ap.parse_args()
+    kosum = a.kosum          # --test verilmese de varsayılan test'tir
+    kip = "KOŞUM" if kosum else "TEST"
+    print(f"RG NÖBETÇİSİ — kip: {kip}"
+          + ("" if kosum else "  (hiçbir dosyaya YAZILMAZ)"))
+
+    mevcut = arsiv_anahtarlari()
+    print(f"arşivdeki kimlik sayısı : {len(mevcut)}")
+
+    bulunan, hatalar = tara(a.azami_sayfa)
+    print(f"taramada dönen satır    : {len(bulunan)}  (varyant {len(VARYANTLAR)})")
+
+    kaynaksiz = [b for b in bulunan if not b["kaynak_url"] or not b["rg_tarih"]]
+    saglam = [b for b in bulunan if b["kaynak_url"] and b["rg_tarih"]]
+    yeni, tekrar = [], 0
+    gorulen = set()
+    for b in saglam:
+        kimlik = ("url", b["kaynak_url"])
+        kimlik2 = ("tarih+baslik", b["rg_tarih"], b["baslik"][:80])
+        if kimlik in mevcut or kimlik2 in mevcut:
+            tekrar += 1
+            continue
+        if b["kaynak_url"] in gorulen:
+            continue
+        gorulen.add(b["kaynak_url"])
+        yeni.append(b)
+
+    print(f"kaynaksız (yazılmaz)    : {len(kaynaksiz)}")
+    print(f"arşivde zaten var       : {tekrar}")
+    print(f"YENİ KAYIT              : {len(yeni)}")
+    for b in yeni[:10]:
+        print(f"   + {b['rg_tarih']} | {b['baslik'][:70]} | {b['kaynak_url']}")
+    if hatalar:
+        print(f"SORGU HATASI            : {len(hatalar)} (yukarıda stderr'de)")
+
+    if not kosum:
+        print("\nTEST kipi — hiçbir dosya yazılmadı, gönderim yapılmadı.")
+        return 0 if not hatalar else 3
+
+    CIKTI.parent.mkdir(parents=True, exist_ok=True)
+    onceki = json.loads(CIKTI.read_text()) if CIKTI.exists() else {"kayitlar": []}
+    onceki_url = {k.get("kaynak_url") for k in onceki.get("kayitlar", [])}
+    eklenecek = [b for b in yeni if b["kaynak_url"] not in onceki_url]
+    onceki["kayitlar"] = onceki.get("kayitlar", []) + eklenecek
+    onceki["kaynak"] = "resmigazete.gov.tr /Home/Filter (searchtype=1 başlık)"
+    onceki["son_kosum"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    onceki["kayit_sayisi"] = len(onceki["kayitlar"])
+    onceki["kaynaksiz_kayit"] = 0
+    CIKTI.write_text(json.dumps(onceki, ensure_ascii=False, indent=1) + "\n")
+    DURUM.parent.mkdir(parents=True, exist_ok=True)
+    DURUM.write_text(json.dumps({
+        "son_kosum": onceki["son_kosum"],
+        "taranan_satir": len(bulunan),
+        "yeni_kayit": len(eklenecek),
+        "sorgu_hatasi": len(hatalar),
+    }, ensure_ascii=False, indent=1) + "\n")
+    print(f"\nyazıldı: {CIKTI} (+{len(eklenecek)}) · {DURUM}")
+    return 0 if not hatalar else 3
+
+
+if __name__ == "__main__":
+    sys.exit(main())
