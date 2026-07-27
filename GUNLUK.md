@@ -905,3 +905,31 @@ oynuyor; konsol 0 (masaüstü+mobil), 390 taşma 0, hamburger+Esc çalışıyor.
 Ağırlık: index.html 24K→36K (sınır 3×), dist 28M sabit. Kareler:
 denetim/kare/anasayfa-once/ + anasayfa-sonra/. GPU kuralı: scrub/oynatma
 akıcılığı headless'ta kanıt sayılmaz — nihai onay kullanıcının canlı testi.
+
+## 2026-07-27 (2. seans) — v0 ince ayar + CANLIYA ÇIKIŞ
+
+**Yayınlanan:** main c7fbe40 → de01fbd (ff-only, 15 commit / 80 dosya /
++2545/−8072): ana sayfa v2 (v0 tasarımı + A=28 ince ayar farkı) + önceki
+turların 13 GEO commit'i (soru başlıkları, şemalar, llms.txt, robots,
+yatay bağlar, h1/h2). Rebase'de SIRADAKILER.md çakışması kullanıcı onayıyla
+"iki blok da korunur" kuralıyla çözüldü — grep doğrulaması: SAGLIK SISTEMI
+(s.5) + ANA SAYFA v2 (s.21) ikisi de duruyor, işaret 0.
+
+**v0 ince ayar (AŞAMA A):** kıyas A=28 uygulandı / B=12 brief kazandı /
+C=9 taşınamaz (cikti/denetim/v0-kiyas.md, commit'li). Tailwind kurulu
+değil — utility'ler vanilla CSS'e çevrildi. oklch tema sayfa kapsamında
+(--v2-*, global ezilmedi). unzip yoktu → python3 zipfile. v0'ın "yalnızca
+su hukuku" ve "güçlü sicil" beyanları künyeyle çeliştiğinden alınmadı;
+uydurma değerler (tel/adres/istatistik) geri getirilmedi.
+
+**Canlı doğrulama (önbellek kırarak, M11):** surum.json ilk denemede
+de01fbd; 7/7 rota + 5 soru hedefi + llms.txt 200; cf-cache-status DYNAMIC
+(HIT yok — doğrulama geçerli); canlıda video readyState 4 / currentTime
+3,3 sn / oynuyor; konsol 0 (1440+390), taşma 0, Veriler menüsü + Esc +
+hamburger çalışıyor; uydurma taraması TEMİZ. Ağırlık: index.html 36.470 →
+39.682 bayt (sınır 2×=72.940). Kareler: denetim/kare/anasayfa-v0kiyas/ +
+canli-sonrasi/. ÖNBELLEK: ziyaretçi YENİ sayfayı görüyor — purge gerekmedi.
+
+**Geri alma yapılmadı** (B5 gerekmedi). Geri dönüş noktası:
+/tmp/canli-oncesi-main.txt = c7fbe40; gerekirse git revert c7fbe40..HEAD
+(13 GEO commit'i de geri alır). Worktree + dal duruyor (B6.4).
