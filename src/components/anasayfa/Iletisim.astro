@@ -9,14 +9,20 @@ import { EPOSTA, YAZAR } from '../../data/site';
 ---
 <section class="v2-bolum v2-iletisim" id="iletisim" aria-label="İletişim">
   <div class="v2-ic">
-    <p class="v2-bolum-kicker">İletişim</p>
-    <h2>Durumunuzu anlatın, birlikte bakalım</h2>
     <div class="v2-iletisim-izgara">
+      <div>
+        {/* v0 yapısı: kicker+h2+intro solda (kıyas A2-3; metin v0'dan,
+            "İlk görüşme ücretsizdir" hero CTA'sıyla tutarlı) */}
+        <p class="v2-bolum-kicker">İletişim</p>
+        <h2>Su ile ilgili sorunuzu bize bırakın</h2>
+        <p class="v2-intro">Kuyu, sondaj, ruhsat ya da tahsis; durumunuzu
+          kısaca yazın, en kısa sürede size dönelim. İlk görüşme ücretsizdir.</p>
       <div class="v2-iletisim-bilgi">
         <p>E-posta: <a href={`mailto:${EPOSTA}`}>{EPOSTA}</a></p>
         <p>{YAZAR.buro} — <a href={YAZAR.buroUrl} rel="noopener">arslanhukuk.tr</a></p>
         <p>Mesajınız doğrudan e-posta olarak iletilir; form bir sunucuya
           veri göndermez.</p>
+      </div>
       </div>
       <form class="v2-form" id="v2-form">
         <label>Adınız

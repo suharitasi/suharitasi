@@ -5,8 +5,13 @@ import { SUREC } from '../../data/anasayfa-v2.js';
 ---
 <section class="v2-bolum v2-surec" id="surec" aria-label="Çalışma süreci">
   <div class="v2-ic">
-    <p class="v2-bolum-kicker">Süreç</p>
-    <h2>Nasıl çalışıyoruz?</h2>
+    {/* v0: ortalı başlık bloğu + intro (kıyas A2-3; metinler v0'dan) */}
+    <div class="v2-bolum-bas">
+      <p class="v2-bolum-kicker">Süreç</p>
+      <h2>Net, şeffaf ve takip edebileceğiniz bir yol</h2>
+      <p class="v2-intro">Her aşamada nerede olduğunuzu bilirsiniz.
+        Belirsizlik değil, güven.</p>
+    </div>
     <div class="v2-surec-izgara">
       {SUREC.map((a) => (
         <div class="v2-adim">
