@@ -2,6 +2,13 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
+KALICI RG İŞLETME-SAHASI İZLEME CRON'U (27 Tem 2026, kullanıcı kararı —
+FAZ 6 SONRASI KURULUR, ŞİMDİ KURULMAZ): RG /Home/Filter JSON ucuyla
+"yeraltısuyu işletme sahası" (+ayrı yazım) başlık/ilan araması periyodik
+koşup yeni kayıtları isletme-sahalari*.json'a ekleyecek; site-saglik
+veri-bütünlüğü kontrolüne bağlanacak (SÜREKLİLİK İLKESİ). Altyapı hazır:
+arac/rg-tara.py + arac/rg-icerik-tara.py.
+
 OPENALEX EKSİK 32 İL (27 Tem 2026, su potansiyeli Faz 4.B): OpenAlex
 kalıcı 429 kotası nedeniyle 32 ilin akademik künyeleri eksik
 (veri/potansiyel/akademik-kunye.json hatalar listesi). `python3
