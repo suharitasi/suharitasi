@@ -53,7 +53,7 @@ const sahneVeri = SAHNELER.map((s) => ({
   accent: s.accent,
 }));
 ---
-<html lang="tr">
+<html lang="tr" class="v2-sayfa">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -113,23 +113,27 @@ const sahneVeri = SAHNELER.map((s) => ({
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap&subset=latin-ext" rel="stylesheet" />
 <style is:global>
-  /* Sayfa temel tokenları (site fontları; v2 CSS bu değişkenleri kullanır). */
-  :root {
+  /* KONTRAST ARIZASI DÜZELTMESİ (27.07): bu blok Vite ortak chunk'ına
+     girip PaylasilanMenu'lu TÜM sayfalara sızıyordu — body koyu zemini
+     173 içerik sayfasını kararttı. Her kural html.v2-sayfa (yalnız bu
+     sayfanın kök etiketi) kapsamına alındı; sızsa da etkisiz. */
+  .v2-sayfa {
     --serif: "Cormorant", Georgia, serif;
     --sans: "Manrope", system-ui, sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, monospace;
+    scroll-behavior: smooth;
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  body {
+  @media (prefers-reduced-motion: reduce) { .v2-sayfa { scroll-behavior: auto; } }
+  .v2-sayfa *, .v2-sayfa body { margin: 0; padding: 0; box-sizing: border-box; }
+  .v2-sayfa body {
     background: #061824;
     color: #12293a;
     font-family: var(--sans);
     font-size: 1.02rem;
     line-height: 1.75;
   }
-  a:focus-visible, button:focus-visible, summary:focus-visible {
+  .v2-sayfa a:focus-visible, .v2-sayfa button:focus-visible,
+  .v2-sayfa summary:focus-visible {
     outline: 2px solid #7fd0ef;
     outline-offset: 3px;
   }
