@@ -428,14 +428,23 @@
 }
 .v2-cizgi.aktif { width: 28px; background: rgba(255, 255, 255, 0.95); }
 .v2-asagi {
+  display: inline-flex;
   color: rgba(255, 255, 255, 0.7);
-  text-decoration: none;
-  font-size: 1.1rem;
-  line-height: 1;
-  transition: color 150ms ease, transform 200ms var(--sh-eo);
+  transition: color 150ms ease;
 }
+.v2-chevron {
+  width: 1.5rem; height: 1.5rem; /* v0 h-6 w-6 */
+  animation: v2-zipla 1s infinite; /* v0 animate-bounce — dekoratif işaret */
+}
+@keyframes v2-zipla {
+  0%, 100% { transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+  50% { transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+}
+@media (prefers-reduced-motion: reduce) { .v2-chevron { animation: none; } }
 @media (hover: hover) and (pointer: fine) {
-  .v2-asagi:hover { color: var(--v0-beyaz); transform: translateY(2px); }
+  .v2-asagi:hover { color: var(--v0-beyaz); }
 }
 
 /* ——— MOBİL SORU LİSTESİ (hero altı, Hizmetler'den önce; <lg) ——— */
@@ -534,7 +543,22 @@
   }
 }
 a.v2-kart:active { transform: translateY(0) scale(0.99); }
-.v2-kart svg { width: 1.5rem; height: 1.5rem; color: var(--v2-primary); }
+/* v0: ikon kutusu h-12 w-12 rounded-xl bg-primary/10; kart hover'da dolu */
+.v2-kart-ikon {
+  display: flex; align-items: center; justify-content: center;
+  width: 3rem; height: 3rem;
+  border-radius: 0.75rem; /* v0 rounded-xl */
+  background: color-mix(in oklab, var(--v2-primary) 10%, transparent);
+  color: var(--v2-primary);
+  transition: background-color 200ms var(--sh-eo), color 200ms var(--sh-eo);
+}
+.v2-kart-ikon svg { width: 1.5rem; height: 1.5rem; }
+@media (hover: hover) and (pointer: fine) {
+  a.v2-kart:hover .v2-kart-ikon {
+    background: var(--v2-primary);
+    color: var(--v2-primary-fg);
+  }
+}
 .v2-kart h3 {
   margin: 1.25rem 0 0; /* v0 mt-5 */
   font-family: var(--serif, Georgia, serif);
@@ -595,17 +619,16 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
 .v2-hakkinda ul { margin: 1.75rem 0 0; padding: 0; list-style: none;
   display: grid; gap: 0.75rem; } /* v0 mt-7 space-y-3 */
 .v2-hakkinda li {
-  position: relative;
-  padding: 0 0 0 2rem;
+  display: flex; align-items: flex-start; gap: 0.75rem; /* v0 gap-3 */
   color: var(--v2-metin);
   font-size: 0.875rem;
   line-height: 1.6;
 }
-.v2-hakkinda li::before {
-  content: "";
-  position: absolute; left: 0; top: 0.95em;
-  width: 0.85rem; height: 1px;
-  background: #0c5a7c;
+.v2-check {
+  width: 1.25rem; height: 1.25rem; /* v0 h-5 w-5 */
+  flex: 0 0 auto;
+  margin-top: 0.125rem; /* v0 mt-0.5 */
+  color: var(--v2-primary);
 }
 .v2-sayilar {
   display: grid;

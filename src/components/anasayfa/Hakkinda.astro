@@ -28,10 +28,20 @@ if (!havzaSayisi || !rehberSayisi || !ilSayisi) {
           gerektirir. {YAZAR.ad} — {YAZAR.buro}: {YAZAR.uzmanlik} Bu
           portaldaki hukuki içerik ve mevzuat analizleri kendisi tarafından
           hazırlanmaktadır.</p>
+        {/* v0: CheckCircle2 ikonlu maddeler (A2-6, inline SVG) */}
         <ul>
-          <li>Su hukuku ve yeraltı suyu mevzuatında uzmanlık</li>
-          <li>DSİ ve idari kurum süreçlerinde deneyim</li>
-          <li>Bireysel çiftçiden kurumsal işletmeye kadar temsil</li>
+          {['Su hukuku ve yeraltı suyu mevzuatında uzmanlık',
+            'DSİ ve idari kurum süreçlerinde deneyim',
+            'Bireysel çiftçiden kurumsal işletmeye kadar temsil'].map((m) => (
+            <li>
+              <svg class="v2-check" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                   stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>
+              </svg>
+              {m}
+            </li>
+          ))}
         </ul>
       </div>
       <div class="v2-sayilar">
