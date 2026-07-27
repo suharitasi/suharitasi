@@ -3,7 +3,7 @@
  "kaynak": "OpenStreetMap (Overpass API) — node natural=spring / man_made=water_well",
  "lisans": "ODbL 1.0 — © OpenStreetMap katkıcıları",
  "etiket": "topluluk verisi, resmî doğrulanmadı",
- "yontem": "TR-geneli iki sorgu; noktalar src/data/tr-iller.json il poligonlarına ışın-testiyle atandı (sınır poligonu OSM kökenli, yaklaşıktır)",
+ "yontem": "TR-geneli iki sorgu; noktalar src/data/tr-iller.json il poligonlarına ışın-testiyle atandı (sınır poligonu alpers/Turkey-Maps-GeoJSON, Apache-2.0; yaklaşıktır — atıf düzeltmesi 2026-07-27)",
  "toplamlar": {
   "spring": 3296,
   "spring_poligon_disi": 2057,

@@ -14,8 +14,8 @@ import isletmeEk from '../../veri/potansiyel/isletme-sahalari-ek.json';
 import zengin from '../../veri/potansiyel/zenginlestirme.json';
 import morfoloji from '../../veri/potansiyel/morfoloji.json';
 
-// PİLOT KAPISI (brief 6.2-6.3): kullanıcı onayı gelmeden 81'e yayılmaz.
-export const PILOT_ILLER = ['Manisa', 'Çanakkale'];
+// PİLOT KAPISI KALDIRILDI (6.4, kullanıcı pilot onayı 2026-07-27):
+// blok 81 ilde basılır. (Pilot listesi tarihçe için: Manisa, Çanakkale.)
 
 // Durum yazımları kaynak belgelere göre değişir ("İYİ" / "İyi Durum" /
 // "İyi durum") — görüntü katmanında normalize edilir, veri dosyası değişmez.

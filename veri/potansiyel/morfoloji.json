@@ -3,7 +3,7 @@
  "etiket": "Sayısal yükseklik modelinden türetilmiş morfolojik göstergedir; akifer varlığının kanıtı değildir.",
  "kaynaklar": {
   "dem": "Copernicus GLO-90 (ESA/Airbus; AWS açık dağıtımı) — atıfla serbest",
-  "il_sinirlari": "OpenStreetMap türevi (src/data/tr-iller.json) — ODbL"
+  "il_sinirlari": "alpers/Turkey-Maps-GeoJSON (Apache-2.0) — src/data/tr-iller.json; ATIF DÜZELTMESİ 2026-07-27: önceki 'OSM/ODbL' kaydı yanlış varsayımdı (KAYNAKLAR.md esas)"
  },
  "yontem": {
   "dusuk_egim": "eğim < %2 alan oranı (3-arcsec merkezî fark)",

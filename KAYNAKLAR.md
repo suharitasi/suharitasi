@@ -287,3 +287,35 @@
 - Erişim tarihi: 2026-07-21 (curl, HTTP 200, imza doğrulandı; sha256 → `data/arsiv/mevzuat/sha256.txt`).
 - Lisans: resmî kaynak, açık lisans beyanı yok — arşiv + atıf amaçlı; yayın/türetme
   kararı kullanıcıda (Av. Serdar Arslan). Manifest: `data/arsiv/mevzuat/manifest.md`.
+
+## Su potansiyeli katmanı (Faz 1-6, erişim: 2026-07-27)
+
+- **SYGM Nehir Havza Yönetim Planları (NHYP)** — 12 yayımlı havza planı +
+  YAS ekleri (38 PDF). Kaynak: tarimorman.gov.tr/SYGM (Sayfalar/Detay.aspx?
+  SayfaId=49). Kamu belgesi; künyeli alıntı. Türetilmiş:
+  veri/potansiyel/yas-kutleleri.json (472 kütle), kutle-il.json.
+- **T.C. Resmî Gazete** — başlık araması 109 kayıt + içerik/ilan taraması
+  310 pasaj kaydı (isletme-sahalari*.json). Her kayıt RG tarih+sayı+URL
+  künyeli. Kamu.
+- **DSİ duyuru/haber arşivi** — dsi.gov.tr; 328 giriş tarandı, 2 kayıt
+  (dsi-duyurular.json). Kamu.
+- **MTA e-ticaret katalog metaverisi** — eticaret.mta.gov.tr; 356 rapor
+  künyesi (mta-katalog.json). Yalnız katalog adı+URL; rapor içeriği
+  alınmadı.
+- **OpenAlex API** — akademik künyeler (akademik-kunye.json; 1.226 künye,
+  49 il — kalan iller kota kuyruğunda). Metadata lisansı CC0. DergiPark
+  arama arayüzü Turnstile korumalı olduğundan ikame (kullanıcı onayı
+  2026-07-27; basılan her künye DOI/açık-erişim URL'li).
+- **OpenStreetMap / Overpass API** — (1) ilçe→il dizini
+  (ilce-il-dizini.json; resmî listeyle çapraz doğrulama SIRADAKILER'de),
+  (2) natural=spring / man_made=water_well sayıları (osm-su-noktalari.json,
+  sitede "topluluk verisi, resmî doğrulanmadı" etiketiyle).
+  Lisans: **ODbL 1.0 — © OpenStreetMap katkıcıları**.
+- **Copernicus GLO-90 DEM** — ESA/Airbus; AWS açık dağıtımı
+  (copernicus-dem-90m). 122 karo; morfoloji.json türetildi. Lisans:
+  atıfla ücretsiz kullanım (Copernicus DEM lisans koşulları).
+- **TÜİK belediye su istatistikleri** — il düzeyinde kaynak-türü kırılımı
+  YAYIMLANMIYOR (MEDAS gösterge listesi incelemesi, 2026-07-27) → sitede
+  "veri yok".
+- İl sınırı poligonu (morfoloji + OSM nokta ataması): yukarıdaki
+  tr-iller.json girişi (alpers/Turkey-Maps-GeoJSON, Apache-2.0).

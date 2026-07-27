@@ -14,7 +14,7 @@ import OzCevap from '../../components/OzCevap.astro';
 import IlgiliRehberler from '../../components/IlgiliRehberler.astro';
 import { yayinlananIller } from '../../data/il-profil.js';
 import IlPotansiyel from '../../components/IlPotansiyel.astro';
-import { ilPotansiyel, PILOT_ILLER } from '../../data/potansiyel.js';
+import { ilPotansiyel } from '../../data/potansiyel.js';
 import { YAZAR, OG_GORSEL } from '../../data/site';
 
 export async function getStaticPaths() {
@@ -23,9 +23,8 @@ export async function getStaticPaths() {
 
 const { profil: p } = Astro.props;
 
-// SU POTANSİYELİ bloğu — PİLOT KAPISI (Faz 6.2-6.3, 2026-07-27): kullanıcı
-// pilot onayı vermeden yalnız PILOT_ILLER'de basılır; onayla kapı kalkar.
-const potansiyel = PILOT_ILLER.includes(p.il) ? ilPotansiyel(p.il) : null;
+// SU POTANSİYELİ bloğu — 81 ilde (pilot onayı 2026-07-27, kapı kalktı).
+const potansiyel = ilPotansiyel(p.il);
 
 // K3-3 (26 Tem 2026) — content-strategy küme bütünlüğü: ÖLÇÜM, 81 il
 // sayfasının HİÇBİRİNİN kardeş il sayfasına link vermediğini gösterdi

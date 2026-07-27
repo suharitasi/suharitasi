@@ -47,3 +47,11 @@ varlığının kanıtı değildir."
 
 ## BİTTİ-TANIMI
 81 il için değer VEYA "hesaplanamadı" kaydı: **81 değer / 0 hesaplanamadı** ✓
+
+## DÜZELTME (2026-07-27, 6.4 denetiminde yakalandı)
+"İl sınırları OSM türevi (ODbL)" ifadesi YANLIŞTI: src/data/tr-iller.json
+kaynağı KAYNAKLAR.md'ye göre alpers/Turkey-Maps-GeoJSON (Apache-2.0).
+GADM değildir (brief yasağı ihlal edilmedi) ve lisans ticari kullanıma
+uygundur; morfoloji.json + osm-su-noktalari.json içindeki atıflar
+düzeltildi. Brief 5.2 "OSM'den" demişti — repodaki mevcut sınır verisi
+kullanıldı; OSM'den yeniden üretim istenirse ayrı iş (kullanıcı kararı).

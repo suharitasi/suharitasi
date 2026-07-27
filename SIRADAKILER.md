@@ -2,6 +2,15 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
+SU POTANSİYELİ KATMANI — 81 İLDE, KULLANICI ONAYI BEKLİYOR (MERGE=YAYIN;
+27 Tem 2026): "Bu ilde su nerelerde çıkabilir?" bloğu 81 il sayfasında
+(worktree suharitasi-potansiyel, dal potansiyel-2026-07-27). Pilot onaylı;
+81-il denetimi: blok 81/81, öz-cevap ≤280 (maks 237), kütle satırı 354/354,
+kırık link 0/9665, gerileme 0 (kanıt: cikti/denetim/potansiyel-pilot/ +
+rapor/potansiyel-faz*.md). MERGE YALNIZ KULLANICI ONAYIYLA. Açık kalemler:
+OpenAlex 32 il kotası, ilçe dizini resmî çapraz doğrulama, RG izleme cron
+(Faz 6 sonrası), TWI (8GB), 3 belirsiz kütle.
+
 TWI YENİDEN DEĞERLENDİRME (27 Tem 2026, kullanıcı kararı): Faz 5 TWI'yi
 "4GB yetmez" bayat varsayımıyla atlamıştı; sunucu gerçekte 8GB (ölçüldü).
 Akış birikimi + TWI hesabı 8GB bütçesiyle yeniden değerlendirilecek
