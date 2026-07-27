@@ -1,0 +1,38 @@
+---
+// HAKKINDA (v0 yapısı, M7 süzgeciyle) — v0'daki "15+ yıl / 500+ dosya /
+// %98 memnuniyet" UYDURMA → YAZILMADI. Yerine build'de SAYILAN gerçek
+// envanter: havza (content koleksiyonu), il (il-profil üreticisi),
+// rehber (content koleksiyonu). Elle sayı girilmez.
+// Maddeler v0'dan; YAZAR bilgisi künye kaynağından (site.ts, tek kaynak).
+import { YAZAR } from '../../data/site';
+import { tumIlProfilleri } from '../../data/il-profil.js';
+
+const havzaSayisi = Object.keys(import.meta.glob('../../content/havzalar/*.md')).length;
+const rehberSayisi = Object.keys(import.meta.glob('../../content/rehberler/*.md')).length;
+const ilSayisi = tumIlProfilleri().length;
+if (!havzaSayisi || !rehberSayisi || !ilSayisi) {
+  throw new Error('anasayfa Hakkında: envanter sayımı boş döndü — veri kaynağı kontrol edilmeli.');
+}
+---
+<section class="v2-bolum v2-hakkinda" id="hakkinda" aria-label="Hakkında">
+  <div class="v2-ic">
+    <div class="v2-hakkinda-izgara">
+      <div>
+        <p class="v2-bolum-kicker">Hakkında</p>
+        <h2>Suyun hukukunu bilen bir avukatla çalışın</h2>
+        <p>{YAZAR.ad} — {YAZAR.buro}. {YAZAR.uzmanlik} Bu portaldaki hukuki
+          içerik ve mevzuat analizleri kendisi tarafından hazırlanmaktadır.</p>
+        <ul>
+          <li>Su hukuku ve yeraltı suyu mevzuatında uzmanlık</li>
+          <li>DSİ ve idari kurum süreçlerinde deneyim</li>
+          <li>Bireysel çiftçiden kurumsal işletmeye kadar temsil</li>
+        </ul>
+      </div>
+      <div class="v2-sayilar">
+        <div class="v2-sayi"><strong>{havzaSayisi}</strong><span>havza künyesi</span></div>
+        <div class="v2-sayi"><strong>{ilSayisi}</strong><span>il profili</span></div>
+        <div class="v2-sayi"><strong>{rehberSayisi}</strong><span>rehber</span></div>
+      </div>
+    </div>
+  </div>
+</section>

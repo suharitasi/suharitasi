@@ -1,0 +1,13 @@
+---
+// Mobil (<1024px) soru listesi — v0: uçuşma yok, sorular KAYBOLMAZ;
+// hero'nun hemen altında, Hizmetler'den ÖNCE ilk blok. Aynı linkler.
+import { SORULAR_V2 } from '../../data/anasayfa-v2.js';
+---
+<section class="v2-mobil-sorular" aria-label="Sık sorulan sorular">
+  <h2>Sık sorulan sorular</h2>
+  <ul>
+    {SORULAR_V2.map((s) => (
+      <li><a href={s.hedef}>{s.soru}</a></li>
+    ))}
+  </ul>
+</section>

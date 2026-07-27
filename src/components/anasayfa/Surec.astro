@@ -1,0 +1,20 @@
+---
+// SÜREÇ (v0) — dört adım, koyu zemin. Metinler v0'dan aynen (hizmet
+// tanımı; hukuki hüküm yok, M7b).
+import { SUREC } from '../../data/anasayfa-v2.js';
+---
+<section class="v2-bolum v2-surec" id="surec" aria-label="Çalışma süreci">
+  <div class="v2-ic">
+    <p class="v2-bolum-kicker">Süreç</p>
+    <h2>Nasıl çalışıyoruz?</h2>
+    <div class="v2-surec-izgara">
+      {SUREC.map((a) => (
+        <div class="v2-adim">
+          <span class="no">{a.no}</span>
+          <h3>{a.ad}</h3>
+          <p>{a.metin}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

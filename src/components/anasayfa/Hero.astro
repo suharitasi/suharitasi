@@ -1,0 +1,160 @@
+---
+// HERO (v0 spesifikasyonu) — tam ekran; iki fazlı görsel katman:
+//   FAZ A (0–3800ms): 6 poster harmanı (opacity .6, screen, scale 1.04)
+//   FAZ B: 6 video sırayla 5000ms, geçiş 1400ms ease-in-out (ATMOSFER, K-1)
+// Su fışkırması DETERMİNİSTİK (v0 rand formülü) — build'de üretilir,
+// her build aynı çıktıyı verir (kopyalanma direnci + diff sadeliği).
+// Uçuşan sorular GERÇEK <a> linktir (aria-hidden YOK); süzülme sh-drift 9s.
+// prefers-reduced-motion + JS kapalı durumları CSS'te (anasayfa-v2.css).
+import { SORULAR_V2 } from '../../data/anasayfa-v2.js';
+
+const { sahneVeri, ozCevap } = Astro.props;
+
+// v0 deterministik rasgele: rand(seed) = frac(sin(seed*999.13)*43758.5453)
+function rand(seed) {
+  const x = Math.sin(seed * 999.13) * 43758.5453;
+  return x - Math.floor(x);
+}
+// 90 damla (masaüstü); ilk 30'u mobilde de görünür, kalan 60 `cok` sınıfıyla
+// mobilde gizlenir. Formüller v0'dan: yayılma 12°, tepe -300px.
+const DAMLALAR = Array.from({ length: 90 }, (_, i) => {
+  const r1 = rand(i * 3 + 1);
+  const r2 = rand(i * 3 + 2);
+  const r3 = rand(i * 3 + 3);
+  const aci = ((r1 - 0.5) * 24 * Math.PI) / 180; // ±12°
+  const dx = Math.sin(aci) * (70 + r2 * 90);
+  const peak = -300 * (0.7 + r3 * 0.5);
+  const size = 3 + r2 * 4;
+  return {
+    dx: dx.toFixed(1),
+    peak: peak.toFixed(0),
+    w: size.toFixed(1),
+    h: (size * 1.6).toFixed(1),
+    dur: (1.1 + r1 * 0.9).toFixed(2),
+    delay: (r3 * 1.6).toFixed(2),
+    o: (0.6 + r2 * 0.4).toFixed(2),
+    cok: i >= 30,
+  };
+});
+---
+<section class="v2-hero" aria-label="Açılış">
+  <!-- Görsel katman -->
+  <div class="v2-katman" aria-hidden="true">
+    <div class="v2-posterler" id="v2-posterler">
+      {sahneVeri.map((s, i) => (
+        <img src={s.still} alt="" width="832" height="464"
+             loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+      ))}
+    </div>
+    <div class="v2-videolar" id="v2-videolar">
+      {sahneVeri.map((s, i) => (
+        i === 0 ? (
+          <video muted playsinline loop preload="metadata" src={s.clip}
+                 data-sahne={s.id}></video>
+        ) : (
+          <video muted playsinline loop preload="none" data-src={s.clip}
+                 data-sahne={s.id}></video>
+        )
+      ))}
+    </div>
+  </div>
+
+  <div class="v2-overlay"></div>
+
+  <!-- Su fışkırması + köpük (ATMOSFER — K-1; pointer-events yok) -->
+  <div class="v2-su" aria-hidden="true">
+    {DAMLALAR.map((d) => (
+      <i class:list={['v2-damla', 'sh-spray', { cok: d.cok }]}
+         style={`--dx:${d.dx}px; --peak:${d.peak}px; --dur:${d.dur}s; --delay:${d.delay}s; --w:${d.w}px; --h:${d.h}px; --o:${d.o}`}></i>
+    ))}
+    <i class="v2-kopuk sh-mist"></i>
+  </div>
+
+  <!-- Uçuşan sorular: GERÇEK linkler (yalnız ≥1024px; mobil listesi ayrı) -->
+  <nav class="v2-sorular" aria-label="Sık sorulan sorular">
+    {SORULAR_V2.map((s) => (
+      <a class="v2-soru sh-drift" href={s.hedef}
+         style={`--ust:${s.ust}; --sol:${s.sol}; animation-delay:${s.gecikme}`}>
+        {s.soru}
+      </a>
+    ))}
+  </nav>
+
+  <!-- Başlık bloğu -->
+  <div class="v2-baslik">
+    <p class="v2-rozet">Su Hukuku · Danışmanlık · Su Hakları</p>
+    <h1>Suyla İlgili Her Hukuki Mesele Tek Bir Uzmanda</h1>
+    <p class="v2-alt-metin">{ozCevap}</p>
+    <div class="v2-butonlar">
+      <a class="v2-btn v2-btn-birincil" href="#iletisim">Ücretsiz Ön Görüşme Alın</a>
+      <a class="v2-btn v2-btn-ikincil" href="#hizmetler">Hizmetleri İnceleyin</a>
+    </div>
+  </div>
+
+  <!-- Sahne göstergesi + aşağı oku -->
+  <div class="v2-gosterge">
+    <div class="v2-cizgiler" id="v2-cizgiler" aria-hidden="true">
+      {sahneVeri.map((s, i) => (
+        <span class:list={['v2-cizgi', { aktif: i === 0 }]}></span>
+      ))}
+    </div>
+    <a class="v2-asagi" href="#hizmetler" aria-label="Aşağı in">↓</a>
+  </div>
+</section>
+
+<script>
+  /* SAHNE MOTORU (v0): FAZ A 3800ms poster harmanı → FAZ B videolar sırayla
+     5000ms, geçiş 1400ms (CSS transition). Sıradaki video, sırası gelmeden
+     ~1sn önce yüklenir. reduced-motion: hiçbir faz çalışmaz, video yüklenmez
+     (CSS ilk posteri sabitler). */
+  const AZALT = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const posterler = document.getElementById('v2-posterler');
+  const videolar = [...document.querySelectorAll('#v2-videolar video')];
+  const cizgiler = [...document.querySelectorAll('#v2-cizgiler .v2-cizgi')];
+
+  const SAHNE_SURE = 5000;   // ATMOSFER (K-1)
+  const GECIS = 1400;        // ATMOSFER (K-1)
+  const FAZ_A = 3800;        // ATMOSFER (K-1)
+  const ON_YUKLE = 1000;
+
+  function yukle(v) {
+    if (!v.getAttribute('src') && v.dataset.src) {
+      v.setAttribute('src', v.dataset.src);
+      v.load();
+    }
+  }
+
+  function etkinlestir(i) {
+    videolar.forEach((v, j) => {
+      if (j === i) {
+        yukle(v);
+        v.currentTime = 0;
+        v.play().catch(() => {});
+        v.classList.add('aktif');
+      } else {
+        v.classList.remove('aktif');
+        // Geçiş bitince durdur (kaynak tasarrufu); süre = GECIS.
+        setTimeout(() => { if (!v.classList.contains('aktif')) v.pause(); }, GECIS);
+      }
+    });
+    cizgiler.forEach((c, j) => c.classList.toggle('aktif', j === i));
+  }
+
+  if (!AZALT && videolar.length) {
+    let sira = 0;
+    setTimeout(() => {
+      posterler.classList.add('gizli');
+      etkinlestir(0);
+      setInterval(() => {
+        // Sıradakini ~1sn önce yükle
+        setTimeout(() => yukle(videolar[(sira + 1) % videolar.length]),
+                   SAHNE_SURE - GECIS - ON_YUKLE);
+        sira = (sira + 1) % videolar.length;
+        etkinlestir(sira);
+      }, SAHNE_SURE);
+      // İlk turda 2. videoyu da vaktinde hazırla
+      setTimeout(() => yukle(videolar[1 % videolar.length]),
+                 SAHNE_SURE - ON_YUKLE);
+    }, FAZ_A);
+  }
+</script>
