@@ -212,6 +212,21 @@ izle_pdfhead(){  # $1 id $2 kat $3 url
   if [ "$code" != "200" ]; then
     durum_satir "$id" "$kat" "🔴 hata" "HTTP $code"; HATA_SAYAC=$((HATA_SAYAC+1)); return 0
   fi
+  # F4-3 (2026-07-27): HTTP 200 ama Last-Modified başlığı YOK.
+  # Eski davranış iki yönlü bozuktu:
+  #  (a) taban varken lm="" → "$lm" != "$old" → BÜYÜK OLAY yanlış alarmı
+  #      ("Su Kanunu Taslağı güncellendi") üstelik taban "" ile EZİLİYORDU;
+  #      sonraki koşuda başlık geri gelince İKİNCİ yanlış alarm, ve arada
+  #      gerçek bir değişiklik olsa taban kaybolduğu için GÖRÜLMEZ olurdu.
+  #  (b) taban yokken "" tabanı yazılıyor, aynı zincir baştan kuruluyordu.
+  # Başlığın yokluğu sunucu/CDN yapılandırmasıdır, belgenin değişmesi DEĞİL.
+  # Doğru davranış: tabana DOKUNMA, olay üretme, hata sayma — yalnız logla.
+  if [ -z "$lm" ]; then
+    durum_satir "$id" "$kat" "🟡 başlık yok" "HTTP 200 ama Last-Modified başlığı okunamadı — taban korundu"
+    echo "[$RUN_UTC] $id LASTMOD-BOS 200 (taban korundu) $url" >> "$HLOG"
+    logla "$id: HTTP 200 ama Last-Modified başlığı yok — taban korundu, olay üretilmedi"
+    return 0
+  fi
   if [ ! -f "$shaf" ]; then
     printf '%s\n' "$lm" > "$shaf"
     durum_satir "$id" "$kat" "🟢 taban" "taban Last-Modified: ${lm:-yok}"
