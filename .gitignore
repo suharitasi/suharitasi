@@ -42,3 +42,7 @@ izleme/SITE-DURUM.md
 izleme/site-saglik-log.jsonl
 izleme/onarim-log.jsonl
 izleme/state/site-saglik-durum.json
+
+# su-potansiyeli ham verisi (Faz 1+) — commit edilmez
+veri/ham/
+.venv-morfoloji/

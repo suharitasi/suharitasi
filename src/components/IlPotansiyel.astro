@@ -1,0 +1,318 @@
+---
+// SU POTANSİYELİ il bloğu (Faz 6, brief 6.1a-f). Veri: src/data/potansiyel.js
+// (tek üretici). Görsel dil: mevcut il sayfası bileşenleri (il-kunye veri
+// bandı, soru-H2, mono künye) — yeni renk/font İCAT EDİLMEZ (DESIGN.md).
+// JS yok; katmanlar native <details> (proje kalıbı).
+const { p } = Astro.props;
+const sayi = (n, o = 0) =>
+  n.toLocaleString('tr-TR', { minimumFractionDigits: o, maximumFractionDigits: o });
+const alanVar = p.kutleler.some((k) => k.alan_km2 != null);
+const cokIlliler = p.kutleler.filter((k) => k.cokIlli);
+---
+<section class="il-blok pot">
+  <h2 id="su-potansiyeli">Bu ilde su nerelerde çıkabilir?</h2>
+
+  <p class="pot-oz">{p.ozCevap}</p>
+
+  {p.kutleler.length > 0 ? (
+    <>
+      <h3>Resmî planlardaki yeraltı suyu kütleleri</h3>
+      <div class="pot-tablo-kap" tabindex="0" role="region"
+           aria-label={`${p.il} yeraltı suyu kütleleri tablosu`}>
+        <table class="pot-tablo">
+          <thead>
+            <tr>
+              <th scope="col">Kütle</th>
+              <th scope="col">Havza</th>
+              <th scope="col">Miktar durumu</th>
+              <th scope="col">Kimyasal durum</th>
+              {alanVar && <th scope="col">Alan (km²)</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {p.kutleler.map((k) => (
+              <tr>
+                <th scope="row">{k.ad}{k.cokIlli && <span aria-hidden="true">&nbsp;†</span>}
+                  <span class="pot-kod">{k.kod}</span></th>
+                <td>{k.havza.replace(' Havzası', '')}</td>
+                <td class={k.miktar === 'veri yok' ? 'veri-yok' : undefined}>{k.miktar}</td>
+                <td class={k.kimyasal === 'veri yok' ? 'veri-yok' : undefined}>{k.kimyasal}</td>
+                {alanVar && <td>{k.alan_km2 != null ? sayi(k.alan_km2) : '—'}</td>}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {cokIlliler.length > 0 && (
+        <p class="pot-dipnot">
+          † Bu kütleler birden çok ilin sınırına yayılır:
+          {' '}{cokIlliler.map((k) => `${k.ad} (${k.cokIlli.join(', ')})`).join('; ')}.
+          Kırılım olduğu gibi verilmiştir; il ortalaması alınmaz.
+        </p>
+      )}
+      {p.dagilim.durumsuz > 0 && (
+        <p class="pot-dipnot">
+          "veri yok" satırları: ilgili havza planında İyi/Zayıf durum
+          sınıflaması yayımlanmamıştır; kütle kaydı yine de resmîdir.
+        </p>
+      )}
+    </>
+  ) : (
+    <p>
+      Yayımlı nehir havza yönetim planlarında {p.il} iline eşlenmiş yeraltı
+      suyu kütlesi kaydı <span class="veri-yok">bulunamadı</span>. Bu, suyun
+      olmadığı anlamına gelmez; ilin havzası için plan yayımlanmamış veya
+      kütle-il eşlemesi doğrulanamamış olabilir.
+    </p>
+  )}
+
+  <h3>Resmî Gazete'de işletme sahası kayıtları</h3>
+  {p.rgKayitlari.length + p.rgEkKayitlari.length > 0 ? (
+    <>
+      {p.rgKayitlari.length > 0 && (
+        <ul class="pot-rg">
+          {p.rgKayitlari.map((k) => (
+            <li>
+              {k.metin}
+              <span class="pot-kunye">
+                RG {k.tarih} · Sayı {k.sayi} · {k.durum} ·{' '}
+                <a href={k.url} rel="nofollow">fihrist kaydı</a>
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+      {p.rgEkKayitlari.length > 0 && (
+        <details class="pot-katman">
+          <summary>RG ilan pasajları ({p.rgEkKayitlari.length}) — taranmış
+            arşivden, dizgi hatası içerebilir</summary>
+          <ul class="pot-rg">
+            {p.rgEkKayitlari.map((k) => (
+              <li>
+                <span class="pot-pasaj">“{k.metin.slice(0, 260)}…”</span>
+                <span class="pot-kunye">
+                  RG {k.tarih} · {k.durum} ·{' '}
+                  <a href={k.url} rel="nofollow">kaynak</a>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
+    </>
+  ) : (
+    <p>Taranan Resmî Gazete kayıtlarında {p.il} için işletme sahası kaydı
+      <span class="veri-yok"> bulunamadı</span>.</p>
+  )}
+  <p>
+    İşletme sahası ilanının kuyu ruhsatına etkisi ve yaptırımlar için:
+    <a href="/rehberler/kuyu-ruhsati/">kuyu ruhsatı rehberi</a> ·
+    <a href="/rehberler/ruhsatsiz-kuyu-cezalari/">ruhsatsız kuyu cezaları</a>.
+  </p>
+
+  {p.morf && p.morf.dusuk_egim_orani_yuzde != null && (
+    <>
+      <h3>Arazi biçimi ne söylüyor?</h3>
+      <dl class="pot-morf">
+        <div>
+          <dt>Düşük eğimli (&lt;%2) alan oranı</dt>
+          <dd>%{sayi(p.morf.dusuk_egim_orani_yuzde, 1)}</dd>
+        </div>
+        <div>
+          <dt>Vadi tabanı göstergesi</dt>
+          <dd>%{sayi(p.morf.vadi_tabani_orani_yuzde, 1)} — düşük eğim + 1 km
+            pencerede yerel çukurluk</dd>
+        </div>
+      </dl>
+      <p class="pot-dipnot">Sayısal yükseklik modelinden türetilmiş morfolojik
+        göstergedir; akifer varlığının kanıtı değildir.</p>
+    </>
+  )}
+
+  <h3>Kaynak künyeleri</h3>
+  <ul class="pot-kaynaklar">
+    {p.mta && (
+      <li>
+        <details class="pot-katman">
+          <summary>MTA rapor kataloğu künyeleri ({p.mta.length})</summary>
+          <ul>
+            {p.mta.map((k) => (
+              <li>{k.rapor_adi} — <a href={k.url} rel="nofollow">katalog kaydı</a></li>
+            ))}
+          </ul>
+        </details>
+      </li>
+    )}
+    {p.akademik && p.akademik.length > 0 && (
+      <li>
+        <details class="pot-katman">
+          <summary>Açık erişim akademik yayınlar ({p.akademik.length})</summary>
+          <ul>
+            {p.akademik.map((k) => (
+              <li>
+                {k.yazarlar.filter(Boolean).slice(0, 3).join(', ')}
+                {k.yazarlar.length > 3 && ' vd.'} ({k.yil}). {k.baslik}.
+                {k.dergi && ` ${k.dergi}.`}{' '}
+                <a href={k.doi || k.url} rel="nofollow">yayın</a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      </li>
+    )}
+    {p.akademikEksikNedeni && (
+      <li>Akademik yayın künyeleri: <span class="veri-yok">{p.akademikEksikNedeni}</span></li>
+    )}
+    {p.osm && (
+      <li>
+        Topluluk haritasında (OpenStreetMap) işaretli {p.osm.kaynak_spring} su
+        kaynağı, {p.osm.kuyu_water_well} kuyu — {p.osm.etiket}.
+      </li>
+    )}
+    <li>Belediye suyunda yeraltı suyu payı (TÜİK):
+      <span class="veri-yok"> veri yok</span> (il kırılımı yayımlanmıyor).</li>
+  </ul>
+
+  <p class="pot-durustluk">{p.durustlukEtiketi}</p>
+</section>
+
+<style>
+  .pot h2 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .pot h3 {
+    font-family: var(--serif);
+    font-size: 1.12rem;
+    font-weight: 500;
+    margin: 1.6rem 0 0.55rem;
+  }
+
+  /* öz-cevap: veri bandı ailesi (il-kunye ile aynı çerçeve dili) */
+  .pot-oz {
+    padding: 0.9rem 1.1rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-left: 3px solid var(--su-700);
+    font-size: 0.97rem;
+  }
+
+  .pot-tablo-kap { overflow-x: auto; }
+
+  .pot-tablo {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+    font-size: 0.9rem;
+  }
+
+  .pot-tablo th, .pot-tablo td {
+    text-align: left;
+    padding: 0.45rem 0.7rem;
+    border-bottom: 1px solid var(--cizgi);
+    vertical-align: top;
+  }
+
+  .pot-tablo thead th {
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+
+  .pot-tablo tbody th { font-weight: 500; }
+
+  .pot-kod {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--metin-soluk);
+  }
+
+  .pot-dipnot {
+    margin-top: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--metin-soluk);
+  }
+
+  .pot-rg { list-style: none; padding: 0; }
+  .pot-rg li { margin: 0.55rem 0; font-size: 0.93rem; }
+
+  .pot-kunye {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    color: var(--metin-soluk);
+    margin-top: 0.15rem;
+  }
+
+  .pot-pasaj { font-style: italic; }
+
+  .pot-katman summary {
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+    color: var(--su-700);
+  }
+
+  .pot-katman summary:hover { text-decoration: underline; }
+
+  .pot-katman ul { padding-left: 1.1rem; }
+  .pot-katman li { margin: 0.4rem 0; font-size: 0.88rem; }
+
+  .pot-kaynaklar { list-style: none; padding: 0; }
+  .pot-kaynaklar > li { margin: 0.45rem 0; font-size: 0.92rem; }
+
+  /* morfoloji bandı — il-kunye veri bandı ailesiyle aynı dil (scoped
+     olduğu için burada yinelenir) */
+  .pot-morf {
+    margin-top: 0.2rem;
+    padding: 1rem 1.2rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+  }
+
+  .pot-morf div {
+    display: grid;
+    grid-template-columns: minmax(11rem, 16rem) 1fr;
+    gap: 0.3rem 1.2rem;
+    padding: 0.4rem 0;
+  }
+
+  .pot-morf div + div { border-top: 1px solid var(--cizgi); }
+
+  .pot-morf dt {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    align-self: center;
+  }
+
+  .pot-morf dd { font-size: 0.95rem; }
+
+  @media (max-width: 560px) {
+    .pot-morf div { grid-template-columns: 1fr; gap: 0.1rem; }
+  }
+
+  .pot-durustluk {
+    margin-top: 1.4rem;
+    padding: 0.8rem 1.1rem;
+    border: 1px solid var(--cizgi);
+    font-size: 0.88rem;
+    color: var(--metin-soluk);
+  }
+</style>

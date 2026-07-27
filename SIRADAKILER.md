@@ -2,6 +2,44 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
+SU POTANSİYELİ KATMANI — 81 İLDE, KULLANICI ONAYI BEKLİYOR (MERGE=YAYIN;
+27 Tem 2026): "Bu ilde su nerelerde çıkabilir?" bloğu 81 il sayfasında
+(worktree suharitasi-potansiyel, dal potansiyel-2026-07-27). Pilot onaylı;
+81-il denetimi: blok 81/81, öz-cevap ≤280 (maks 237), kütle satırı 354/354,
+kırık link 0/9665, gerileme 0 (kanıt: cikti/denetim/potansiyel-pilot/ +
+rapor/potansiyel-faz*.md). MERGE YALNIZ KULLANICI ONAYIYLA. Açık kalemler:
+OpenAlex 32 il kotası, ilçe dizini resmî çapraz doğrulama, RG izleme cron
+(Faz 6 sonrası), TWI (8GB), 3 belirsiz kütle.
+
+TWI YENİDEN DEĞERLENDİRME (27 Tem 2026, kullanıcı kararı): Faz 5 TWI'yi
+"4GB yetmez" bayat varsayımıyla atlamıştı; sunucu gerçekte 8GB (ölçüldü).
+Akış birikimi + TWI hesabı 8GB bütçesiyle yeniden değerlendirilecek
+(karo-birleştirmeli D8; morfoloji.json'a twi alanı eklenir). ŞİMDİ
+HESAPLANMAZ — ayrı iş.
+
+KALICI RG İŞLETME-SAHASI İZLEME CRON'U (27 Tem 2026, kullanıcı kararı —
+FAZ 6 SONRASI KURULUR, ŞİMDİ KURULMAZ): RG /Home/Filter JSON ucuyla
+"yeraltısuyu işletme sahası" (+ayrı yazım) başlık/ilan araması periyodik
+koşup yeni kayıtları isletme-sahalari*.json'a ekleyecek; site-saglik
+veri-bütünlüğü kontrolüne bağlanacak (SÜREKLİLİK İLKESİ). Altyapı hazır:
+arac/rg-tara.py + arac/rg-icerik-tara.py.
+
+OPENALEX EKSİK 32 İL (27 Tem 2026, su potansiyeli Faz 4.B): OpenAlex
+kalıcı 429 kotası nedeniyle 32 ilin akademik künyeleri eksik
+(veri/potansiyel/akademik-kunye.json hatalar listesi). `python3
+arac/akademik-kunye.py` artımlıdır — birkaç saat sonra tek koşu tamamlar;
+sonra `arac/zenginlestirme-birlestir.py` yeniden koşulur. 4.B DergiPark→OpenAlex ikamesi ONAYLANDI (27 Tem 2026) — şart: basılacak
+her künye DOI/açık-erişim URL'si taşır, taşımayan basılmaz (baski_uygun
+etiketi veride).
+
+İLÇE DİZİNİ ÇAPRAZ DOĞRULAMA (27 Tem 2026, kullanıcı kararı A — su
+potansiyeli Faz 2): kütle→il eşlemesinde kullanılan ilçe→il dizini OSM
+Overpass'tan (ODbL) üretildi (veri/potansiyel/ilce-il-dizini.json).
+Kullanıcı TR-IP'den resmî listeyi (e-İçişleri MulkiIdariBolumleri / TÜİK
+idari bölünüş) indirdiğinde OSM diziniyle ÇAPRAZ DOĞRULANACAK; fark çıkan
+ilçeler kutle-il.json'da yeniden değerlendirilecek. Sunucudan resmî
+kaynaklara erişim yok (6 kaynak denemesi: rapor/potansiyel-faz2.md).
+
 KONTRAST ARIZASI — KAPANDI (27.07, kontrast-2026-07-27 canlıda,
 512ada3): index.astro'nun is:global body{#061824} stili Vite ortak
 chunk'ıyla 173 içerik sayfasına sızmıştı (menü birleştirme yan etkisi;

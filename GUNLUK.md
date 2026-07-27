@@ -995,3 +995,13 @@ public/s/menu.js (silme, ayrı commit hedeflenmişti, b41d4aa'da birleşti).
 /harita/ ayrı doğrulama: pm-yuzer bar + Veriler açılıyor, eski tetik yok,
 konsol/ağ hatası 0. Gerileme 0 (taban=sonra). Canlı: aff52eb, menu.js 404,
 sayfalarda referans 0, DYNAMIC. Kalıntı: imlec.js'te ölü sınıf okuması.
+
+## 2026-07-27 — Su potansiyeli katmanı (worktree: suharitasi-potansiyel)
+Faz 0-6 tek seansta: NHYP 472 kütle (kalite kapısı 12/12), kütle→il
+314 eşli (OSM ilçe dizini + havza filtreleri; 6 tuzak sınıfı kanıtla
+düzeltildi), RG 109+310 kayıt (kaynaksız 0), zenginleştirme (MTA 356,
+OpenAlex 1.226 — DergiPark Turnstile ikamesi onaylı, TÜİK dürüst
+veri-yok), GLO-90 morfoloji 81/81. Blok 81 il sayfasında; pilot
+(Manisa+Çanakkale) kanıt paketiyle onaylandı; gerileme 0. Dersler:
+sunucu 8GB (CLAUDE.md'ye işlendi), tr-iller atfı Apache-2.0 (düzeltildi),
+resmî TR kaynaklarına yurtdışı IP engelleri (raporlarda). MERGE BEKLİYOR.

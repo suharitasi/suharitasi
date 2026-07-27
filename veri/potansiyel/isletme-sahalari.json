@@ -1,0 +1,2108 @@
+{
+ "uretim_tarihi": "2026-07-27",
+ "kaynak": "T.C. Resmî Gazete arama (resmigazete.gov.tr /Home/Filter, başlık araması)",
+ "varyantlar": {
+  "yeraltısuyu işletme sahası": {
+   "beyan_toplam": 93,
+   "alinan": 93
+  },
+  "yeraltı suyu işletme sahası": {
+   "beyan_toplam": 16,
+   "alinan": 16
+  },
+  "YAS işletme sahası": {
+   "beyan_toplam": 0,
+   "alinan": 0
+  }
+ },
+ "ek_tarama_isabetleri": {
+  "searchtype4": 83,
+  "searchtype5": 121,
+  "not": "içerik(4)/ilan(5) aramaları gazete-günü işaretçisidir; saha adı/il içermediğinden kayda dönüştürülmedi. Başlık araması 1963-1980 kararnamelerini kapsıyor; sonraki ilanlar için kapsam boşluğu raporda."
+ },
+ "not": "Kayıtlar RG başlık aramasından; saha_adi = resmî başlık (ayrıştırılmadı). il/ilçe başlıktan TAM KELİME çıkarımı; çıkarılamayan 'belirsiz'. Faz 0.6: resmî konsolide kapalı-saha listesi açık bulunamadığından 3.2 çapraz doğrulaması yapılamadı (bilgi edinme adayı).",
+ "kayit_sayisi": 109,
+ "kaynaksiz_kayit": 0,
+ "kayitlar": [
+  {
+   "saha_adi": "İlişik Metin Ve Haritalarda Sınırları Ve Özellikleri Gösterilen (Konya\r\n- Çumra) Ve (Eskişehir - Alpu) Ovaları Yeraltı Suyu Sahalarının,\r\nYeraltı Suyu İşletme Sahaları Olarak Kabulü Hakkında Kararname",
+   "il": [
+    "Eskişehir",
+    "Konya"
+   ],
+   "ilceler": {
+    "Çumra": [
+     "Konya"
+    ],
+    "Alpu": [
+     "Eskişehir"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "14.12.1963",
+   "rg_sayi": 11581,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/11581.pdf",
+   "bulan_varyantlar": [
+    "yeraltı suyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltı Suyu İşletme Sahaları Hakkında Karar",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "16.04.1964",
+   "rg_sayi": 11684,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/11684.pdf",
+   "bulan_varyantlar": [
+    "yeraltı suyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltı Suyu İşletme Sahaları Hakkında Karar",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "10.03.1966",
+   "rg_sayi": 12247,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12247.pdf",
+   "bulan_varyantlar": [
+    "yeraltı suyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltısuyu İşletme Sahası Hakkında Karar",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "22.03.1966",
+   "rg_sayi": 12257,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12257.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltısuyu İşletme Sahası Hakkında Karar",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "24.03.1966",
+   "rg_sayi": 12259,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12259.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltısuyu İşletme Sahaları Hakkında Karar",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "20.04.1966",
+   "rg_sayi": 12279,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12279.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Devlet Su İşleri Adana VI nci Bölge Müdürlüğü Sınırları İçinde Bulunan (Amik Ovası) Yeraltısuyu Sahasının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlânına Dair Karar",
+   "il": [
+    "Adana"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "06.06.1966",
+   "rg_sayi": 12315,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12315.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Antalya Devlet Su İşleri XIII. Bölge Müdürlüğü Sınırlan İçinde Bulunan Manavgat-Alanya Ovaları Yeraltısuyu Sahasının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlânına Dair Kararname",
+   "il": [
+    "Antalya"
+   ],
+   "ilceler": {
+    "Manavgat": [
+     "Antalya"
+    ],
+    "Alanya": [
+     "Antalya"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "10.06.1966",
+   "rg_sayi": 12319,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12319.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Berdan Ovası ve Mersin Limonlu-Lâmıs-Arası Sahil Ovaları,Dazkırı- Başmakçı-Hambat Ovaları, Boğaçay Ovası ve Çilvil-Baklan Ovaları Yeraltısuyu Sahalarının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlânına Dair Karar",
+   "il": [
+    "Afyonkarahisar",
+    "Denizli",
+    "Mersin"
+   ],
+   "ilceler": {
+    "Dazkırı": [
+     "Afyonkarahisar"
+    ],
+    "Başmakçı": [
+     "Afyonkarahisar"
+    ],
+    "Baklan": [
+     "Denizli"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "28.06.1966",
+   "rg_sayi": 12334,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12334.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltı Suyu İşletme Sahası Olarak Kabul Edilen Sahalar Hakkında Karar",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "09.08.1966",
+   "rg_sayi": 12370,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12370.pdf",
+   "bulan_varyantlar": [
+    "yeraltı suyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Ankara – Çubuk Ovası, Ankara Mürted Ovası, Çaldıran Ovası, Bayburt, Hart ve Sünür Ovalarının Yeraltı Suyu İşletme Sahası Olarak Kabulüne Dair Karar",
+   "il": [
+    "Ankara",
+    "Bayburt",
+    "Van"
+   ],
+   "ilceler": {
+    "Çubuk": [
+     "Ankara"
+    ],
+    "Çaldıran": [
+     "Van"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "11.08.1966",
+   "rg_sayi": 12372,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12372.pdf",
+   "bulan_varyantlar": [
+    "yeraltı suyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Dörtyol - Yeşilkent (Erzin) Ovaları Yeraltısuyu Sahasının «Yeraltısuyu İşletme Sahası»\r\nOlarak Kabul ve İlânına Dair Kararname",
+   "il": [
+    "Hatay"
+   ],
+   "ilceler": {
+    "Dörtyol": [
+     "Hatay"
+    ],
+    "Erzin": [
+     "Hatay"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "28.01.1967",
+   "rg_sayi": 12513,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12513.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "İstanbul - Küçükköy - Paşaçayırı Deresi Vadisi Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "İstanbul"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "13.03.1967",
+   "rg_sayi": 12550,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12550.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "İzmir, Balçova - Narlıdere Sahil Ovası Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "İzmir"
+   ],
+   "ilceler": {
+    "Balçova": [
+     "İzmir"
+    ],
+    "Narlıdere": [
+     "İzmir"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "13.03.1967",
+   "rg_sayi": 12550,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12550.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Osmaniye ve Haruniye Ovaları Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Osmaniye"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "08.04.1967",
+   "rg_sayi": 12568,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12568.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltı Suyu İşletme Sahasına Dair Karar",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "23.05.1967",
+   "rg_sayi": 12603,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12603.pdf",
+   "bulan_varyantlar": [
+    "yeraltı suyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltısuyu İşletme Sahaları Hakkında Karar",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "20.07.1967",
+   "rg_sayi": 12652,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12652.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltısuyu İşletme Sahası Olarak Kabul ve İlânı Hakkında Kararname",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "17.11.1967",
+   "rg_sayi": 12753,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12753.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Denizli ve Sarayköy Ovalan Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Denizli"
+   ],
+   "ilceler": {
+    "Sarayköy": [
+     "Denizli"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "17.11.1967",
+   "rg_sayi": 12753,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12753.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Mardin - Kızıltepe Ovası Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Mardin"
+   ],
+   "ilceler": {
+    "Kızıltepe": [
+     "Mardin"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "18.11.1967",
+   "rg_sayi": 12754,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12754.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Selimiye - Milas - Ekinanbarı (Tekfuranban) Ovaları Yeraltısuyu İşletme Sahası Kararı",
+   "il": [
+    "Muğla"
+   ],
+   "ilceler": {
+    "Milas": [
+     "Muğla"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "20.11.1967",
+   "rg_sayi": 12755,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12755.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "İznik - Orhangazi - Gemlik Ovaları Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Bursa"
+   ],
+   "ilceler": {
+    "İznik": [
+     "Bursa"
+    ],
+    "Orhangazi": [
+     "Bursa"
+    ],
+    "Gemlik": [
+     "Bursa"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "20.11.1967",
+   "rg_sayi": 12755,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12755.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Antalya - Demre (Alakent) Ovası Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Antalya"
+   ],
+   "ilceler": {
+    "Demre": [
+     "Antalya"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "23.11.1967",
+   "rg_sayi": 12758,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12758.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Ordu - Ünye ve Fatsa Sahil Ovaları Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Ordu"
+   ],
+   "ilceler": {
+    "Ünye": [
+     "Ordu"
+    ],
+    "Fatsa": [
+     "Ordu"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "04.12.1967",
+   "rg_sayi": 12767,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12767.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Trabzon - Akçaabat ile Of Arası Sahil Ovalan Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Trabzon"
+   ],
+   "ilceler": {
+    "Akçaabat": [
+     "Trabzon"
+    ],
+    "Of": [
+     "Trabzon"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "04.12.1967",
+   "rg_sayi": 12767,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12767.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Aşağı Sakarya - Karasu Ovalan Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Sakarya"
+   ],
+   "ilceler": {
+    "Karasu": [
+     "Sakarya"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "07.12.1967",
+   "rg_sayi": 12770,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12770.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Ordu ve Bulancak Sahil Ovaları Yeraltısuyu Sahalarının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlanı Hakkında Kararname",
+   "il": [
+    "Giresun",
+    "Ordu"
+   ],
+   "ilceler": {
+    "Bulancak": [
+     "Giresun"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "30.01.1968",
+   "rg_sayi": 12813,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12813.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "İstanbul - Kağıthane Vadisinin Yeraltısuyu İşletme Sahası Olarak Kabulü Hakkında Kararname",
+   "il": [
+    "İstanbul"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "06.02.1968",
+   "rg_sayi": 12819,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12819.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Ayvacık, Gülpınar ve Geyikli Sahil Ovaları \"Yeraltısuyu Sahalarının Yeraltısuyu İşletme Sahası\" Olarak Kabulü Hakkında Kararname",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {
+    "Ayvacık": [
+     "Samsun",
+     "Çanakkale"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "13.02.1968",
+   "rg_sayi": 12825,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12825.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Aşağı Susurluk ve Karacabey Ovalarının Yeraltısuyu İşletme Sahası Olarak Kabul Edilmesi Hakkında Kararname",
+   "il": [
+    "Balıkesir",
+    "Bursa"
+   ],
+   "ilceler": {
+    "Susurluk": [
+     "Balıkesir"
+    ],
+    "Karacabey": [
+     "Bursa"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "15.03.1968",
+   "rg_sayi": 12849,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12849.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Finike-Kumluca Sahil Ovalarının Yeraltısuyu İşletme Sahası Olarak Kabulü Hakkında Karar",
+   "il": [
+    "Antalya"
+   ],
+   "ilceler": {
+    "Finike": [
+     "Antalya"
+    ],
+    "Kumluca": [
+     "Antalya"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "09.09.1968",
+   "rg_sayi": 12996,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/12996.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Bursa ve İzmirde Bazı Yerlerin Yeraltısuyu İşletme Sahası Olarak Kabul Edilmesi Hakkında Karar",
+   "il": [
+    "Bursa"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "13.09.1968",
+   "rg_sayi": 13000,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13000.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Niğde ve Afyonda Bazı Yerlerin Yeraltısuyu İşletme Sahası Olarak Kabulü Hakkında Karar",
+   "il": [
+    "Niğde"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "26.09.1968",
+   "rg_sayi": 13011,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13011.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Balıkesir - Gönen - Sarıköy Ovalarının Yeraltısuyu İşletme Sahası Olarak Kabulü Hakkında Kararname",
+   "il": [
+    "Balıkesir"
+   ],
+   "ilceler": {
+    "Gönen": [
+     "Balıkesir",
+     "Isparta"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "09.11.1968",
+   "rg_sayi": 13047,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13047.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "İçel - Gülnar - Ovacık' (Hacıishaklı) ve Eğribük Sahil Ovalarının Yeraltısuyu İşletme Sahası Olarak Kabulü Hakkında Kararname",
+   "il": [
+    "Mersin"
+   ],
+   "ilceler": {
+    "Gülnar": [
+     "Mersin"
+    ],
+    "Ovacık": [
+     "Karabük",
+     "Tunceli"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "09.11.1968",
+   "rg_sayi": 13047,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13047.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Orta Gediz Havzasının (Manisa, Kemalpaşa, Saruhanlı, Turgutlu, Ahmetli, Salihli, Alaşehir ve Sarıgöl Ovaları) Yeraltısuyu İşletme Sahası Olarak Kabulü Hakkında Kararname",
+   "il": [
+    "Kütahya",
+    "Manisa",
+    "Çankırı"
+   ],
+   "ilceler": {
+    "Orta": [
+     "Çankırı"
+    ],
+    "Gediz": [
+     "Kütahya"
+    ],
+    "Kemalpaşa": [
+     "Artvin",
+     "İzmir"
+    ],
+    "Saruhanlı": [
+     "Manisa"
+    ],
+    "Turgutlu": [
+     "Manisa"
+    ],
+    "Ahmetli": [
+     "Manisa"
+    ],
+    "Salihli": [
+     "Manisa"
+    ],
+    "Alaşehir": [
+     "Manisa"
+    ],
+    "Sarıgöl": [
+     "Manisa"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "11.11.1968",
+   "rg_sayi": 13048,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13048.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Çorum - Alaca Ovasının Yeraltısuyu İşletme Sahası Olarak Kabulü Hakkında Kararname",
+   "il": [
+    "Çorum"
+   ],
+   "ilceler": {
+    "Alaca": [
+     "Çorum"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "13.11.1968",
+   "rg_sayi": 13050,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13050.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Erzurum Ovasının Yeraltısuyu İşletme Sahası Olarak Kabulü Hakkında Kararname",
+   "il": [
+    "Erzurum"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "20.11.1968",
+   "rg_sayi": 13056,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13056.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Bolu - Düzce - Efteni Ovasının Yeraltısuyu İşletme Sahası Olarak Kabulü Hakkında Kararname",
+   "il": [
+    "Bolu",
+    "Düzce"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "21.11.1968",
+   "rg_sayi": 13057,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13057.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Erbaa Ovasının Yeraltısuyu İşletme Sahası Olarak Kabulü Hakkında Kararname",
+   "il": [
+    "Tokat"
+   ],
+   "ilceler": {
+    "Erbaa": [
+     "Tokat"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "30.12.1968",
+   "rg_sayi": 13088,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13088.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Ankara-Kurakçöl Ovasının Yeraltısuyu İşletme Sahası Olarak Kabulü Hakkında Kararname",
+   "il": [
+    "Ankara"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "30.12.1968",
+   "rg_sayi": 13088,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13088.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Hatip Ve Ankara Çayı Ovaları Elâzığ Ovası ve Uluova, Ceylânpınar ve Iğdır Ovaları Yeraltısuyu Sahalarının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlânı Hakkında Kararname",
+   "il": [
+    "Ankara",
+    "Iğdır"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "23.01.1969",
+   "rg_sayi": 13108,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13108.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Develi ve Yeşilhisar Ovalarının Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Kayseri"
+   ],
+   "ilceler": {
+    "Develi": [
+     "Kayseri"
+    ],
+    "Yeşilhisar": [
+     "Kayseri"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "14.04.1969",
+   "rg_sayi": 13174,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13174.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltısuyu İşletme Sahası Hakkında Karar",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "13.05.1969",
+   "rg_sayi": 13197,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13197.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Kayseri - Sarımsaklı Ovası Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Kayseri"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "27.08.1969",
+   "rg_sayi": 13286,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13286.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Isparta-Atabey Ovası Yeraltısuyu İşletme Sahasının Yer Altı Suyu İşletme Sahası Olarak Kabul ve İlânı Hakkında Kararname",
+   "il": [
+    "Isparta"
+   ],
+   "ilceler": {
+    "Atabey": [
+     "Isparta"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "05.09.1969",
+   "rg_sayi": 13293,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13293.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Uluborlu – Senirkent Ovası Yeraltısuyu Sahasının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlanı Hakkında Kararname",
+   "il": [
+    "Isparta"
+   ],
+   "ilceler": {
+    "Uluborlu": [
+     "Isparta"
+    ],
+    "Senirkent": [
+     "Isparta"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "14.11.1969",
+   "rg_sayi": 13351,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13351.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "İnegöl Ovası Yeraltısuyu Sahasının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlanı Hakkında Kararname",
+   "il": [
+    "Bursa"
+   ],
+   "ilceler": {
+    "İnegöl": [
+     "Bursa"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "20.11.1969",
+   "rg_sayi": 13356,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13356.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Harran Ovası Yeraltısuyu Sahasının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlanı Hakkında Kararname",
+   "il": [
+    "Şanlıurfa"
+   ],
+   "ilceler": {
+    "Harran": [
+     "Şanlıurfa"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "21.11.1969",
+   "rg_sayi": 13357,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13357.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Tokat, Kazova ve Gözova Ovalan Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Tokat"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "12.02.1970",
+   "rg_sayi": 13424,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13424.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Tefenni Ovası Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Burdur"
+   ],
+   "ilceler": {
+    "Tefenni": [
+     "Burdur"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "26.03.1970",
+   "rg_sayi": 13455,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13455.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Samsun ve Civar Ovalan Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Samsun"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "27.03.1970",
+   "rg_sayi": 13456,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13456.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Kadirli - Kozan ve Ceyhan Ovaları Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Adana",
+    "Osmaniye"
+   ],
+   "ilceler": {
+    "Kadirli": [
+     "Osmaniye"
+    ],
+    "Kozan": [
+     "Adana"
+    ],
+    "Ceyhan": [
+     "Adana"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "09.04.1970",
+   "rg_sayi": 13467,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13467.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltı Suyu İşletme Sahası Olarak Kabulü Hakkında Kararname",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "26.06.1970",
+   "rg_sayi": 13530,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13530.pdf",
+   "bulan_varyantlar": [
+    "yeraltı suyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Antalya -Kemer ve Tekir Ovaları Yeraltısuyu Alanlarının «Yeraltısuyu İşletme Sahası» Olarak Tespitine Dair Kararname",
+   "il": [
+    "Antalya"
+   ],
+   "ilceler": {
+    "Kemer": [
+     "Antalya",
+     "Burdur"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "19.07.1970",
+   "rg_sayi": 13553,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13553.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "04.09.1970",
+   "rg_sayi": 13599,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13599.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Çatalca-Yalıkavak ve Karacaköy - Terkos Ovaları Yeraltısuları Alanlarının Yeraltısuyu İşletme Sahası Olarak Tespiti Hakkında Kararname",
+   "il": [
+    "İstanbul"
+   ],
+   "ilceler": {
+    "Çatalca": [
+     "İstanbul"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "04.09.1970",
+   "rg_sayi": 13599,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13599.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Köyceğiz ve Dalaman Ovaları Yeraltısuları Alanlarının Yeraltısuyu İşletme  Sahası Olarak Tespiti Hakkında Kararı",
+   "il": [
+    "Muğla"
+   ],
+   "ilceler": {
+    "Köyceğiz": [
+     "Muğla"
+    ],
+    "Dalaman": [
+     "Muğla"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "05.09.1970",
+   "rg_sayi": 13600,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13600.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "18.10.1970",
+   "rg_sayi": 13643,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13643.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltısuyu İşletme Sahası Olarak Kabul ve İlânı Hakkında Kararname",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "20.10.1970",
+   "rg_sayi": 13645,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13645.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Zonguldak - Bartın Ovası Yeraltısuyu İşletme Sahasına Dair Kararname",
+   "il": [
+    "Bartın",
+    "Zonguldak"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "16.11.1970",
+   "rg_sayi": 13669,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13669.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Anamur - Bozyazı Ovası Yeraltısuyu İşletme Sahasına Dair Kararname",
+   "il": [
+    "Mersin"
+   ],
+   "ilceler": {
+    "Anamur": [
+     "Mersin"
+    ],
+    "Bozyazı": [
+     "Mersin"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "16.11.1970",
+   "rg_sayi": 13669,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13669.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Sinop - Ayancık Ovası Yeraltısuyu İşletme Sahasına Dair Kararname",
+   "il": [
+    "Sinop"
+   ],
+   "ilceler": {
+    "Ayancık": [
+     "Sinop"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "28.11.1970",
+   "rg_sayi": 13681,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13681.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Aydıncık (Gilindire) Sahil Ovaları Yeraltısuyu İşletme Sahasına Dair Kararname",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {
+    "Aydıncık": [
+     "Mersin",
+     "Yozgat"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "22.12.1970",
+   "rg_sayi": 13702,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13702.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Aşağı Göksu (Silifke ) Ovası Yeraltı Suyu İşletme Sahasına Dair Kararname",
+   "il": [
+    "Mersin"
+   ],
+   "ilceler": {
+    "Silifke": [
+     "Mersin"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "22.12.1970",
+   "rg_sayi": 13702,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13702.pdf",
+   "bulan_varyantlar": [
+    "yeraltı suyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "İzmir - Bornova Ovası Yeraltı Suyu İşletme Sahasının 19/7/1968 Tarih ve 6/10414 Sayılı Kararname ile İlân Edilen Yeraltısuyu Emniyetli Rezervinin Artırılması Hakkında Kararname",
+   "il": [
+    "İzmir"
+   ],
+   "ilceler": {
+    "Bornova": [
+     "İzmir"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "23.12.1970",
+   "rg_sayi": 13703,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13703.pdf",
+   "bulan_varyantlar": [
+    "yeraltı suyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "İzmir - Çeşme - Alaçatı Yeraltısuyu Sahalarının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlânı Hakkında Kararname",
+   "il": [
+    "İzmir"
+   ],
+   "ilceler": {
+    "Çeşme": [
+     "İzmir"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "15.02.1971",
+   "rg_sayi": 13751,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13751.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Giresun - Tirebolu ve Görele Sahil Ovaları Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Giresun"
+   ],
+   "ilceler": {
+    "Tirebolu": [
+     "Giresun"
+    ],
+    "Görele": [
+     "Giresun"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "19.02.1971",
+   "rg_sayi": 13755,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13755.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Burhaniye - Armutova Gümeç ve Fethiye Ovası Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Balıkesir",
+    "Muğla"
+   ],
+   "ilceler": {
+    "Burhaniye": [
+     "Balıkesir"
+    ],
+    "Fethiye": [
+     "Muğla"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "12.04.1971",
+   "rg_sayi": 13807,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13807.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "13.06.1971",
+   "rg_sayi": 13864,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13864.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltı Sahasının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlânı Hakkında Kararname",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "28.07.1971",
+   "rg_sayi": 13909,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/13909.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Muş Ovası Yeraltısuyu İşletme Sahası Hakkında Karar",
+   "il": [
+    "Muş"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "28.02.1972",
+   "rg_sayi": 14113,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14113.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Tuzla Ovasının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlan Edilmesine İlişkin Karar",
+   "il": [
+    "İstanbul"
+   ],
+   "ilceler": {
+    "Tuzla": [
+     "İstanbul"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "01.04.1972",
+   "rg_sayi": 14146,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14146.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Kartal - Pendik - Büyükdere Arası Sahil Ovası Yeraltısuyu İşletme Sahasına İlişkin Karar",
+   "il": [
+    "İstanbul"
+   ],
+   "ilceler": {
+    "Kartal": [
+     "İstanbul"
+    ],
+    "Pendik": [
+     "İstanbul"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "01.04.1972",
+   "rg_sayi": 14146,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14146.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Gebze - Çayırova Yeraltısuyu İşletme Sahası",
+   "il": [
+    "Kocaeli"
+   ],
+   "ilceler": {
+    "Gebze": [
+     "Kocaeli"
+    ],
+    "Çayırova": [
+     "Kocaeli"
+    ]
+   },
+   "durum": "belirsiz (başlıktan sınıflanamadı)",
+   "rg_tarih": "01.04.1972",
+   "rg_sayi": 14146,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14146.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Afyon - Şuhut Ovası Yeraltısuyu İşletme Sahası Hakkında Karar",
+   "il": [
+    "Afyonkarahisar"
+   ],
+   "ilceler": {
+    "Şuhut": [
+     "Afyonkarahisar"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "06.04.1972",
+   "rg_sayi": 14151,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14151.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Kartal Batısı Sahil Ovası Yeraltısuyu İşletme Sahasına İlişkin Karar",
+   "il": [
+    "İstanbul"
+   ],
+   "ilceler": {
+    "Kartal": [
+     "İstanbul"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "17.04.1972",
+   "rg_sayi": 14162,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14162.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Konya-Cîhanbeyli Altınekin (Zıvank) Ovası Yeraltısuyu İşletme Sahası Hakkında Karar",
+   "il": [
+    "Konya"
+   ],
+   "ilceler": {
+    "Altınekin": [
+     "Konya"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "02.06.1972",
+   "rg_sayi": 14203,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14203.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Bilecik-Gölpazarı Ovası Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Bilecik"
+   ],
+   "ilceler": {
+    "Gölpazarı": [
+     "Bilecik"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "02.06.1972",
+   "rg_sayi": 14203,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14203.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Ankara - Bursa ve İmrahor Vadileri Yeraltısuyu İşletme Sahası Hakkında Karar",
+   "il": [
+    "Ankara",
+    "Bursa"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "16.06.1972",
+   "rg_sayi": 14217,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14217.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Burdur - Yeşilova - Irla Ovasının «Yeraltısuyu İşletme Sahası» Olarak Kabul ve İlânına Dair Kararname",
+   "il": [
+    "Burdur"
+   ],
+   "ilceler": {
+    "Yeşilova": [
+     "Burdur"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "16.09.1972",
+   "rg_sayi": 14308,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14308.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Haritada Belirtilen (Burdur, Yeşilova-Erli Ovasının) Yeraltısuyu İşletme Sahası Olarak ve İlanına Dair Karar",
+   "il": [
+    "Burdur"
+   ],
+   "ilceler": {
+    "Yeşilova": [
+     "Burdur"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "21.09.1972",
+   "rg_sayi": 14313,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14313.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "09.10.1972",
+   "rg_sayi": 14331,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14331.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Bursa ve Çayırköy Ovalarının, Yeraltısuyu İşletme Sahası Olarak Kabul ve İlânına Dair Kararname",
+   "il": [
+    "Bursa"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "09.10.1972",
+   "rg_sayi": 14331,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14331.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Kartal - Pendik - Büyükdere Arası Sahil Ovası Yeraltısuyu İşletme Sahası Rezervine Dair Kararname",
+   "il": [
+    "İstanbul"
+   ],
+   "ilceler": {
+    "Kartal": [
+     "İstanbul"
+    ],
+    "Pendik": [
+     "İstanbul"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "15.10.1972",
+   "rg_sayi": 14337,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14337.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Uşak-Sivaslı Yeraltısuyu İşletme Sahası Hakkında Karar",
+   "il": [
+    "Uşak"
+   ],
+   "ilceler": {
+    "Sivaslı": [
+     "Uşak"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "30.11.1972",
+   "rg_sayi": 14377,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14377.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Devlet Su İşleri Genel Müdürlüğü II. Bölge Müdürlüğü Hudutları İçinde Bulunan Yeraltısuyu Sahasının «Yeraltısuyu İşletme Sahası» Olarak Kabul ve İlânı Hakkında Kararname",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "11.01.1973",
+   "rg_sayi": 14418,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14418.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "İstanbul - Kâğıthane Vadisi Yeraltısuyu İşletme Sahasının Karakteristiklerini Tespit Eden Metnin 4 üncü Maddesi Değiştirilmesi Hakkında Kararname",
+   "il": [
+    "İstanbul"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "19.01.1973",
+   "rg_sayi": 14422,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14422.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Konya - Ereğli - Yeniköy'ün Yeraltı Suyu Sahasının «Yeraltı Suyu İşletme Sahası» Olarak Kabul ve İlânı Hakkında Kararname",
+   "il": [
+    "Konya"
+   ],
+   "ilceler": {
+    "Ereğli": [
+     "Konya",
+     "Zonguldak"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "13.02.1973",
+   "rg_sayi": 14447,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14447.pdf",
+   "bulan_varyantlar": [
+    "yeraltı suyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Niğde - Bor - Altınhisar Ovası Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Niğde"
+   ],
+   "ilceler": {
+    "Bor": [
+     "Niğde"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "14.02.1973",
+   "rg_sayi": 14448,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14448.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Konya - Ereğli - Kamışlıkuyu Yeraltısuyu İşletme Sahası Hakkında Kararname",
+   "il": [
+    "Konya"
+   ],
+   "ilceler": {
+    "Ereğli": [
+     "Konya",
+     "Zonguldak"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "14.02.1973",
+   "rg_sayi": 14448,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14448.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Konya - Ereğli - Numune Göçmen Köyü Yeraltısuyu İşletme Sahası Hakkında Karar",
+   "il": [
+    "Konya"
+   ],
+   "ilceler": {
+    "Ereğli": [
+     "Konya",
+     "Zonguldak"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "14.02.1973",
+   "rg_sayi": 14448,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14448.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Karaman - Akçaşehir ve Ereğli - Karaağaç Yeraltı Suyu Sahasının «Yeraltı Suyu İşletme Sahası» Olarak Kabul ve İlânı Hakkında Kararname",
+   "il": [
+    "Karaman"
+   ],
+   "ilceler": {
+    "Ereğli": [
+     "Konya",
+     "Zonguldak"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "19.02.1973",
+   "rg_sayi": 14453,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14453.pdf",
+   "bulan_varyantlar": [
+    "yeraltı suyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Konya, Ereğli - Çiller - Tatlıkuyu Yeraltısuyu Sahasının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlanı Hakkında Kararname",
+   "il": [
+    "Konya"
+   ],
+   "ilceler": {
+    "Ereğli": [
+     "Konya",
+     "Zonguldak"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "20.04.1973",
+   "rg_sayi": 14513,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14513.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Niğde - Bor Yeraltısuyu İşletme Sahası'nın Yeraltısuyu İşletme Sahası Olarak Kabul ve İlanı Hakkında Kararname",
+   "il": [
+    "Niğde"
+   ],
+   "ilceler": {
+    "Bor": [
+     "Niğde"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "22.04.1973",
+   "rg_sayi": 14515,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14515.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Malatya – Derme Vadisinin, Yeraltısuyu İşletme Sahası Olarak Kabul ve İlanı Hakkında Kararname",
+   "il": [
+    "Malatya"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "13.08.1973",
+   "rg_sayi": 14624,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14624.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "İzmir - Menemen Ovası Yeraltısuyu Sahasının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlânı Hakkında Kararın Yürürlükten Kaldırılması Hakkında Kararname",
+   "il": [
+    "İzmir"
+   ],
+   "ilceler": {
+    "Menemen": [
+     "İzmir"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "02.03.1974",
+   "rg_sayi": 14815,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14815.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Ergene Havzası Batı Kesiminin Yeraltı Suyu İşletme Sahası Olarak Kabulü Hakkında Kararname",
+   "il": [
+    "Tekirdağ"
+   ],
+   "ilceler": {
+    "Ergene": [
+     "Tekirdağ"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "08.05.1974",
+   "rg_sayi": 14880,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14880.pdf",
+   "bulan_varyantlar": [
+    "yeraltı suyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Uluova ve Elazığ Ovaları Yer Altı Suyu İşletme Sahasının «Yeraltısuyu İşletme Sahası» Olarak Kabulü Hakkında Kararname",
+   "il": [
+    "Elazığ"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "13.07.1974",
+   "rg_sayi": 14944,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/14944.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Ankara Güneyi, Lodumu-İncek-Taşpınar ve Yalıncak Köyleri Çevresi Yeraltı Suyu Sahasının «Yeraltısuyu İşletme Sahası» Olarak Kabul ve İlânı Hakkında Kararname",
+   "il": [
+    "Ankara"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "14.09.1974",
+   "rg_sayi": 15006,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/15006.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "İçel Erdemli Kaynaklarının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlân Hakkında Kararname",
+   "il": [
+    "Mersin"
+   ],
+   "ilceler": {
+    "Erdemli": [
+     "Mersin"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "02.02.1976",
+   "rg_sayi": 15487,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/15487.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Asi Havzası Yeraltı Suyu İşletme Sahasına Dair Karar",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "19.02.1977",
+   "rg_sayi": 15855,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "KARARNAMELER",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/15855.pdf",
+   "bulan_varyantlar": [
+    "yeraltı suyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Samsun ve Çevresi Yeraltısuyu Sahalarının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlanı Hakkında Karar",
+   "il": [
+    "Samsun"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "26.07.1977",
+   "rg_sayi": 16008,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "BAKANLAR KURULU KARARLARI",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/16008.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Mersin Efrenk Sahil Ovasının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlanı Hakkında Karar",
+   "il": [
+    "Mersin"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "27.01.1978",
+   "rg_sayi": 16182,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "BAKANLAR KURULU KARARLARI",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/16182.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Nevşehir – Güvercinlik ve Çardak Köyleri Çevresinin Yeraltı Suyu İşletme Sahası Olarak Kabul ve İlân Edilmesi Hakkında Bakanlar Kurulu Kararı",
+   "il": [
+    "Denizli",
+    "Nevşehir"
+   ],
+   "ilceler": {
+    "Çardak": [
+     "Denizli"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "18.03.1978",
+   "rg_sayi": 16232,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "BAKANLAR KURULU KARARLARI",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/16232.pdf",
+   "bulan_varyantlar": [
+    "yeraltı suyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Erzurum Ovasının Yeraltı Suyu İşletme Sahası Olarak Kabul ve İlân Edilmesi Hakkında Bakanlar Kurulu Kararı",
+   "il": [
+    "Erzurum"
+   ],
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "18.03.1978",
+   "rg_sayi": 16232,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "BAKANLAR KURULU KARARLARI",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/16232.pdf",
+   "bulan_varyantlar": [
+    "yeraltı suyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Ergene Havzası Yeraltı Suyu İşletme Sahası ile Yer Altı Suyu Emniyetli İşletme Değiştirilmesi Hakkında Karar",
+   "il": [
+    "Tekirdağ"
+   ],
+   "ilceler": {
+    "Ergene": [
+     "Tekirdağ"
+    ]
+   },
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "24.11.1979",
+   "rg_sayi": 16819,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "BAKANLAR KURULU KARARLARI",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/16819.pdf",
+   "bulan_varyantlar": [
+    "yeraltı suyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltısuyu İşletme Sahası Hakkında Karar",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "27.10.1980",
+   "rg_sayi": 17144,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "BAKANLAR KURULU KARARLARI",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/17144.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  },
+  {
+   "saha_adi": "Yeraltısuyu İşletme Sahası Hakkında Karar",
+   "il": "belirsiz (başlıktan çıkarılamadı)",
+   "ilceler": {},
+   "durum": "işletme sahası ilanı/değişikliği",
+   "rg_tarih": "02.11.1980",
+   "rg_sayi": 17148,
+   "mukerrer": "HAYIR",
+   "mevzuat_turu": "BAKANLAR KURULU KARARLARI",
+   "kaynak_url": "https://www.resmigazete.gov.tr/arsiv/17148.pdf",
+   "bulan_varyantlar": [
+    "yeraltısuyu işletme sahası"
+   ]
+  }
+ ]
+}

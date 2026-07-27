@@ -1,0 +1,422 @@
+{
+ "uretim_tarihi": "2026-07-27",
+ "etiket": "Sayısal yükseklik modelinden türetilmiş morfolojik göstergedir; akifer varlığının kanıtı değildir.",
+ "kaynaklar": {
+  "dem": "Copernicus GLO-90 (ESA/Airbus; AWS açık dağıtımı) — atıfla serbest",
+  "il_sinirlari": "alpers/Turkey-Maps-GeoJSON (Apache-2.0) — src/data/tr-iller.json; ATIF DÜZELTMESİ 2026-07-27: önceki 'OSM/ODbL' kaydı yanlış varsayımdı (KAYNAKLAR.md esas)"
+ },
+ "yontem": {
+  "dusuk_egim": "eğim < %2 alan oranı (3-arcsec merkezî fark)",
+  "vadi_tabani": "eğim < %2 VE 1 km pencerede yerel çukurluk < 10 m — akış birikimi değildir, yaklaşık göstergedir",
+  "twi": "hesaplanmadı (akış birikimi 2C/4GB sunucu bütçesini aşıyor)"
+ },
+ "karo_sayisi": 122,
+ "bulunamayan_karo": 1,
+ "iller": {
+  "Adana": {
+   "hesaplanan_alan_km2": 15841.1,
+   "dusuk_egim_orani_yuzde": 23.0,
+   "vadi_tabani_orani_yuzde": 22.0
+  },
+  "Adıyaman": {
+   "hesaplanan_alan_km2": 7419.6,
+   "dusuk_egim_orani_yuzde": 11.4,
+   "vadi_tabani_orani_yuzde": 9.3
+  },
+  "Afyonkarahisar": {
+   "hesaplanan_alan_km2": 14734.5,
+   "dusuk_egim_orani_yuzde": 22.9,
+   "vadi_tabani_orani_yuzde": 21.1
+  },
+  "Aksaray": {
+   "hesaplanan_alan_km2": 7610.3,
+   "dusuk_egim_orani_yuzde": 50.9,
+   "vadi_tabani_orani_yuzde": 46.6
+  },
+  "Amasya": {
+   "hesaplanan_alan_km2": 6245.8,
+   "dusuk_egim_orani_yuzde": 6.6,
+   "vadi_tabani_orani_yuzde": 5.6
+  },
+  "Ankara": {
+   "hesaplanan_alan_km2": 25761.5,
+   "dusuk_egim_orani_yuzde": 10.7,
+   "vadi_tabani_orani_yuzde": 9.1
+  },
+  "Antalya": {
+   "hesaplanan_alan_km2": 21173.3,
+   "dusuk_egim_orani_yuzde": 10.0,
+   "vadi_tabani_orani_yuzde": 9.1
+  },
+  "Ardahan": {
+   "hesaplanan_alan_km2": 4768.2,
+   "dusuk_egim_orani_yuzde": 10.9,
+   "vadi_tabani_orani_yuzde": 9.7
+  },
+  "Artvin": {
+   "hesaplanan_alan_km2": 7738.4,
+   "dusuk_egim_orani_yuzde": 0.3,
+   "vadi_tabani_orani_yuzde": 0.2
+  },
+  "Aydın": {
+   "hesaplanan_alan_km2": 8029.6,
+   "dusuk_egim_orani_yuzde": 20.0,
+   "vadi_tabani_orani_yuzde": 19.2
+  },
+  "Ağrı": {
+   "hesaplanan_alan_km2": 10319.5,
+   "dusuk_egim_orani_yuzde": 15.1,
+   "vadi_tabani_orani_yuzde": 12.7
+  },
+  "Balıkesir": {
+   "hesaplanan_alan_km2": 14749.7,
+   "dusuk_egim_orani_yuzde": 9.4,
+   "vadi_tabani_orani_yuzde": 8.5
+  },
+  "Bartın": {
+   "hesaplanan_alan_km2": 2585.5,
+   "dusuk_egim_orani_yuzde": 3.8,
+   "vadi_tabani_orani_yuzde": 3.5
+  },
+  "Batman": {
+   "hesaplanan_alan_km2": 4351.5,
+   "dusuk_egim_orani_yuzde": 4.0,
+   "vadi_tabani_orani_yuzde": 2.9
+  },
+  "Bayburt": {
+   "hesaplanan_alan_km2": 3359.2,
+   "dusuk_egim_orani_yuzde": 7.0,
+   "vadi_tabani_orani_yuzde": 6.4
+  },
+  "Bilecik": {
+   "hesaplanan_alan_km2": 4645.6,
+   "dusuk_egim_orani_yuzde": 2.7,
+   "vadi_tabani_orani_yuzde": 2.1
+  },
+  "Bingöl": {
+   "hesaplanan_alan_km2": 8138.2,
+   "dusuk_egim_orani_yuzde": 3.2,
+   "vadi_tabani_orani_yuzde": 2.2
+  },
+  "Bitlis": {
+   "hesaplanan_alan_km2": 8689.0,
+   "dusuk_egim_orani_yuzde": 25.7,
+   "vadi_tabani_orani_yuzde": 24.7
+  },
+  "Bolu": {
+   "hesaplanan_alan_km2": 8256.9,
+   "dusuk_egim_orani_yuzde": 3.4,
+   "vadi_tabani_orani_yuzde": 2.5
+  },
+  "Burdur": {
+   "hesaplanan_alan_km2": 7250.8,
+   "dusuk_egim_orani_yuzde": 14.9,
+   "vadi_tabani_orani_yuzde": 13.8
+  },
+  "Bursa": {
+   "hesaplanan_alan_km2": 10841.7,
+   "dusuk_egim_orani_yuzde": 16.7,
+   "vadi_tabani_orani_yuzde": 16.0
+  },
+  "Denizli": {
+   "hesaplanan_alan_km2": 10868.4,
+   "dusuk_egim_orani_yuzde": 17.3,
+   "vadi_tabani_orani_yuzde": 15.8
+  },
+  "Diyarbakır": {
+   "hesaplanan_alan_km2": 14810.1,
+   "dusuk_egim_orani_yuzde": 16.6,
+   "vadi_tabani_orani_yuzde": 12.5
+  },
+  "Düzce": {
+   "hesaplanan_alan_km2": 2403.9,
+   "dusuk_egim_orani_yuzde": 9.5,
+   "vadi_tabani_orani_yuzde": 8.9
+  },
+  "Edirne": {
+   "hesaplanan_alan_km2": 6154.7,
+   "dusuk_egim_orani_yuzde": 24.6,
+   "vadi_tabani_orani_yuzde": 19.7
+  },
+  "Elazığ": {
+   "hesaplanan_alan_km2": 9281.4,
+   "dusuk_egim_orani_yuzde": 9.3,
+   "vadi_tabani_orani_yuzde": 8.3
+  },
+  "Erzincan": {
+   "hesaplanan_alan_km2": 11575.7,
+   "dusuk_egim_orani_yuzde": 4.0,
+   "vadi_tabani_orani_yuzde": 3.2
+  },
+  "Erzurum": {
+   "hesaplanan_alan_km2": 24362.5,
+   "dusuk_egim_orani_yuzde": 5.4,
+   "vadi_tabani_orani_yuzde": 4.0
+  },
+  "Eskişehir": {
+   "hesaplanan_alan_km2": 14025.3,
+   "dusuk_egim_orani_yuzde": 17.5,
+   "vadi_tabani_orani_yuzde": 14.3
+  },
+  "Gaziantep": {
+   "hesaplanan_alan_km2": 7178.9,
+   "dusuk_egim_orani_yuzde": 19.2,
+   "vadi_tabani_orani_yuzde": 15.5
+  },
+  "Giresun": {
+   "hesaplanan_alan_km2": 6819.6,
+   "dusuk_egim_orani_yuzde": 0.9,
+   "vadi_tabani_orani_yuzde": 0.8
+  },
+  "Gümüşhane": {
+   "hesaplanan_alan_km2": 6593.6,
+   "dusuk_egim_orani_yuzde": 1.2,
+   "vadi_tabani_orani_yuzde": 0.9
+  },
+  "Hakkari": {
+   "hesaplanan_alan_km2": 6179.2,
+   "dusuk_egim_orani_yuzde": 3.0,
+   "vadi_tabani_orani_yuzde": 2.9
+  },
+  "Hatay": {
+   "hesaplanan_alan_km2": 5784.8,
+   "dusuk_egim_orani_yuzde": 24.8,
+   "vadi_tabani_orani_yuzde": 23.1
+  },
+  "Isparta": {
+   "hesaplanan_alan_km2": 8884.0,
+   "dusuk_egim_orani_yuzde": 15.6,
+   "vadi_tabani_orani_yuzde": 14.8
+  },
+  "Iğdır": {
+   "hesaplanan_alan_km2": 3947.5,
+   "dusuk_egim_orani_yuzde": 23.4,
+   "vadi_tabani_orani_yuzde": 22.2
+  },
+  "Kahramanmaraş": {
+   "hesaplanan_alan_km2": 14529.0,
+   "dusuk_egim_orani_yuzde": 8.7,
+   "vadi_tabani_orani_yuzde": 7.5
+  },
+  "Karabük": {
+   "hesaplanan_alan_km2": 3283.2,
+   "dusuk_egim_orani_yuzde": 1.1,
+   "vadi_tabani_orani_yuzde": 0.7
+  },
+  "Karaman": {
+   "hesaplanan_alan_km2": 8307.0,
+   "dusuk_egim_orani_yuzde": 18.5,
+   "vadi_tabani_orani_yuzde": 16.8
+  },
+  "Kars": {
+   "hesaplanan_alan_km2": 10331.6,
+   "dusuk_egim_orani_yuzde": 10.3,
+   "vadi_tabani_orani_yuzde": 6.6
+  },
+  "Kastamonu": {
+   "hesaplanan_alan_km2": 13436.4,
+   "dusuk_egim_orani_yuzde": 2.0,
+   "vadi_tabani_orani_yuzde": 1.6
+  },
+  "Kayseri": {
+   "hesaplanan_alan_km2": 15915.4,
+   "dusuk_egim_orani_yuzde": 15.4,
+   "vadi_tabani_orani_yuzde": 12.1
+  },
+  "Kilis": {
+   "hesaplanan_alan_km2": 1417.7,
+   "dusuk_egim_orani_yuzde": 15.3,
+   "vadi_tabani_orani_yuzde": 11.8
+  },
+  "Kocaeli": {
+   "hesaplanan_alan_km2": 4074.7,
+   "dusuk_egim_orani_yuzde": 7.5,
+   "vadi_tabani_orani_yuzde": 6.4
+  },
+  "Konya": {
+   "hesaplanan_alan_km2": 40934.5,
+   "dusuk_egim_orani_yuzde": 43.4,
+   "vadi_tabani_orani_yuzde": 40.1
+  },
+  "Kütahya": {
+   "hesaplanan_alan_km2": 12202.2,
+   "dusuk_egim_orani_yuzde": 7.1,
+   "vadi_tabani_orani_yuzde": 5.8
+  },
+  "Kırklareli": {
+   "hesaplanan_alan_km2": 6351.9,
+   "dusuk_egim_orani_yuzde": 18.3,
+   "vadi_tabani_orani_yuzde": 11.6
+  },
+  "Kırıkkale": {
+   "hesaplanan_alan_km2": 4671.5,
+   "dusuk_egim_orani_yuzde": 7.0,
+   "vadi_tabani_orani_yuzde": 5.4
+  },
+  "Kırşehir": {
+   "hesaplanan_alan_km2": 6763.1,
+   "dusuk_egim_orani_yuzde": 17.7,
+   "vadi_tabani_orani_yuzde": 15.7
+  },
+  "Malatya": {
+   "hesaplanan_alan_km2": 11504.1,
+   "dusuk_egim_orani_yuzde": 4.5,
+   "vadi_tabani_orani_yuzde": 3.0
+  },
+  "Manisa": {
+   "hesaplanan_alan_km2": 13213.4,
+   "dusuk_egim_orani_yuzde": 16.0,
+   "vadi_tabani_orani_yuzde": 14.9
+  },
+  "Mardin": {
+   "hesaplanan_alan_km2": 10504.6,
+   "dusuk_egim_orani_yuzde": 19.9,
+   "vadi_tabani_orani_yuzde": 16.6
+  },
+  "Mersin": {
+   "hesaplanan_alan_km2": 15221.3,
+   "dusuk_egim_orani_yuzde": 7.6,
+   "vadi_tabani_orani_yuzde": 6.1
+  },
+  "Muğla": {
+   "hesaplanan_alan_km2": 12843.2,
+   "dusuk_egim_orani_yuzde": 7.7,
+   "vadi_tabani_orani_yuzde": 7.1
+  },
+  "Muş": {
+   "hesaplanan_alan_km2": 8128.5,
+   "dusuk_egim_orani_yuzde": 19.4,
+   "vadi_tabani_orani_yuzde": 17.0
+  },
+  "Nevşehir": {
+   "hesaplanan_alan_km2": 5153.2,
+   "dusuk_egim_orani_yuzde": 18.6,
+   "vadi_tabani_orani_yuzde": 14.5
+  },
+  "Niğde": {
+   "hesaplanan_alan_km2": 7193.9,
+   "dusuk_egim_orani_yuzde": 19.9,
+   "vadi_tabani_orani_yuzde": 18.1
+  },
+  "Ordu": {
+   "hesaplanan_alan_km2": 5894.9,
+   "dusuk_egim_orani_yuzde": 1.0,
+   "vadi_tabani_orani_yuzde": 0.7
+  },
+  "Osmaniye": {
+   "hesaplanan_alan_km2": 3046.9,
+   "dusuk_egim_orani_yuzde": 26.8,
+   "vadi_tabani_orani_yuzde": 25.7
+  },
+  "Rize": {
+   "hesaplanan_alan_km2": 3634.2,
+   "dusuk_egim_orani_yuzde": 0.4,
+   "vadi_tabani_orani_yuzde": 0.4
+  },
+  "Sakarya": {
+   "hesaplanan_alan_km2": 4699.0,
+   "dusuk_egim_orani_yuzde": 17.4,
+   "vadi_tabani_orani_yuzde": 16.4
+  },
+  "Samsun": {
+   "hesaplanan_alan_km2": 9506.1,
+   "dusuk_egim_orani_yuzde": 16.9,
+   "vadi_tabani_orani_yuzde": 16.1
+  },
+  "Siirt": {
+   "hesaplanan_alan_km2": 5006.3,
+   "dusuk_egim_orani_yuzde": 1.4,
+   "vadi_tabani_orani_yuzde": 0.9
+  },
+  "Sinop": {
+   "hesaplanan_alan_km2": 6051.8,
+   "dusuk_egim_orani_yuzde": 2.5,
+   "vadi_tabani_orani_yuzde": 2.2
+  },
+  "Sivas": {
+   "hesaplanan_alan_km2": 28278.7,
+   "dusuk_egim_orani_yuzde": 5.2,
+   "vadi_tabani_orani_yuzde": 3.9
+  },
+  "Tekirdağ": {
+   "hesaplanan_alan_km2": 6608.8,
+   "dusuk_egim_orani_yuzde": 20.5,
+   "vadi_tabani_orani_yuzde": 14.4
+  },
+  "Tokat": {
+   "hesaplanan_alan_km2": 9816.7,
+   "dusuk_egim_orani_yuzde": 5.8,
+   "vadi_tabani_orani_yuzde": 5.2
+  },
+  "Trabzon": {
+   "hesaplanan_alan_km2": 5039.6,
+   "dusuk_egim_orani_yuzde": 0.8,
+   "vadi_tabani_orani_yuzde": 0.7
+  },
+  "Tunceli": {
+   "hesaplanan_alan_km2": 8037.6,
+   "dusuk_egim_orani_yuzde": 3.6,
+   "vadi_tabani_orani_yuzde": 3.3
+  },
+  "Uşak": {
+   "hesaplanan_alan_km2": 4922.3,
+   "dusuk_egim_orani_yuzde": 8.2,
+   "vadi_tabani_orani_yuzde": 4.8
+  },
+  "Van": {
+   "hesaplanan_alan_km2": 21053.1,
+   "dusuk_egim_orani_yuzde": 15.1,
+   "vadi_tabani_orani_yuzde": 14.0
+  },
+  "Yalova": {
+   "hesaplanan_alan_km2": 657.3,
+   "dusuk_egim_orani_yuzde": 6.5,
+   "vadi_tabani_orani_yuzde": 6.0
+  },
+  "Yozgat": {
+   "hesaplanan_alan_km2": 13171.0,
+   "dusuk_egim_orani_yuzde": 7.4,
+   "vadi_tabani_orani_yuzde": 5.1
+  },
+  "Zonguldak": {
+   "hesaplanan_alan_km2": 3035.2,
+   "dusuk_egim_orani_yuzde": 2.2,
+   "vadi_tabani_orani_yuzde": 1.9
+  },
+  "Çanakkale": {
+   "hesaplanan_alan_km2": 9792.3,
+   "dusuk_egim_orani_yuzde": 10.4,
+   "vadi_tabani_orani_yuzde": 9.0
+  },
+  "Çankırı": {
+   "hesaplanan_alan_km2": 7951.8,
+   "dusuk_egim_orani_yuzde": 5.4,
+   "vadi_tabani_orani_yuzde": 4.2
+  },
+  "Çorum": {
+   "hesaplanan_alan_km2": 12280.6,
+   "dusuk_egim_orani_yuzde": 6.5,
+   "vadi_tabani_orani_yuzde": 5.5
+  },
+  "İstanbul": {
+   "hesaplanan_alan_km2": 4735.8,
+   "dusuk_egim_orani_yuzde": 9.2,
+   "vadi_tabani_orani_yuzde": 6.7
+  },
+  "İzmir": {
+   "hesaplanan_alan_km2": 12334.8,
+   "dusuk_egim_orani_yuzde": 18.5,
+   "vadi_tabani_orani_yuzde": 17.6
+  },
+  "Şanlıurfa": {
+   "hesaplanan_alan_km2": 19602.3,
+   "dusuk_egim_orani_yuzde": 36.8,
+   "vadi_tabani_orani_yuzde": 29.8
+  },
+  "Şırnak": {
+   "hesaplanan_alan_km2": 7844.4,
+   "dusuk_egim_orani_yuzde": 6.1,
+   "vadi_tabani_orani_yuzde": 4.3
+  }
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "uretim_tarihi": "2026-07-27",
+ "kaynak": "DSİ Genel Müdürlüğü duyuru + haber arşivi (dsi.gov.tr)",
+ "not": "Kullanıcı onaylı ek tarama. Her kayıt: resmî başlık + detay URL (+ tarih/pasaj çıkarılabildiyse). Bunlar RG künyesi DEĞİLDİR; 'resmî belge URL' sınıfı kanıttır (brief 3.1).",
+ "listelenen": 328,
+ "kayit_sayisi": 2,
+ "kayitlar": [
+  {
+   "baslik": "Kahramanmaraş'taki Su İhtiyacını Karşılamak İçin Yeni Kuyular Açılıyor",
+   "url": "https://www.dsi.gov.tr/Haber/Detay/8687",
+   "tur": "haber",
+   "tarih": "9.03.2023",
+   "pasaj": "AVİRLİĞİ ETÜT, PLANLAMA VE TAHSİSLER DAİRESİ BAŞKANLIĞI SULAMA DAİRESİ BAŞKANLIĞI BARAJLAR VE HİDROELEKTRİK SANTRALLAR DAİRESİ BAŞKANLIĞI İÇMESUYU VE ATIKSU DAİRESİ BAŞKANLIĞI TAŞKIN KONTROL DAİRESİ BAŞKANLIĞI EMLAK VE KAMULAŞTIRMA DAİRESİ BAŞKANLIĞI JEOTEKNİK HİZMETLER DAİRESİ BAŞKANLIĞI YERALTISULARI DAİRESİ BAŞKANLIĞI MAKİNA, İMALAT VE DONATIM DAİRESİ BAŞKANLIĞI TEKNİK ARAŞTIRMA VE KALİTE KONTROL DAİRESİ BAŞKANLIĞI İŞLETME VE BAKIM DAİRESİ BAŞKANLIĞI YENİLENEBİLİR ENERJİ DAİRESİ BAŞKANLIĞI ARAZİ TOPLULAŞTIRMA VE TARLA İÇİ GELİŞTİRME HİZMETLERİ DAİRESİ BAŞKANLIĞI ARAZİ TOPLULAŞTIRMASI ETÜT VE PROJELENDİRME DAİRESİ BAŞKANLIĞI DEĞERLENDİRME VE DESTEKLEME DAİRESİ BAŞKANLIĞI DIŞ İLİ",
+   "il": [
+    "Kahramanmaraş"
+   ]
+  },
+  {
+   "baslik": "Isparta Keçiborlu Kılıç 1. ve 2. Kısım Yas Sulama Şebekesi ile Keçiborlu Senir 3. Ve 4. Kısım Yas Sulamasında Çalışmalar Devam Ediyor.",
+   "url": "https://www.dsi.gov.tr/Haber/Detay/9564",
+   "tur": "haber",
+   "tarih": "8.06.2023",
+   "pasaj": "AVİRLİĞİ ETÜT, PLANLAMA VE TAHSİSLER DAİRESİ BAŞKANLIĞI SULAMA DAİRESİ BAŞKANLIĞI BARAJLAR VE HİDROELEKTRİK SANTRALLAR DAİRESİ BAŞKANLIĞI İÇMESUYU VE ATIKSU DAİRESİ BAŞKANLIĞI TAŞKIN KONTROL DAİRESİ BAŞKANLIĞI EMLAK VE KAMULAŞTIRMA DAİRESİ BAŞKANLIĞI JEOTEKNİK HİZMETLER DAİRESİ BAŞKANLIĞI YERALTISULARI DAİRESİ BAŞKANLIĞI MAKİNA, İMALAT VE DONATIM DAİRESİ BAŞKANLIĞI TEKNİK ARAŞTIRMA VE KALİTE KONTROL DAİRESİ BAŞKANLIĞI İŞLETME VE BAKIM DAİRESİ BAŞKANLIĞI YENİLENEBİLİR ENERJİ DAİRESİ BAŞKANLIĞI ARAZİ TOPLULAŞTIRMA VE TARLA İÇİ GELİŞTİRME HİZMETLERİ DAİRESİ BAŞKANLIĞI ARAZİ TOPLULAŞTIRMASI ETÜT VE PROJELENDİRME DAİRESİ BAŞKANLIĞI DEĞERLENDİRME VE DESTEKLEME DAİRESİ BAŞKANLIĞI DIŞ İLİ",
+   "il": [
+    "Isparta"
+   ]
+  }
+ ]
+}
