@@ -55,10 +55,12 @@
 }
 
 .v2-nav { display: flex; align-items: center; }
-.v2-nav ul {
+.v2-nav > ul {
+  /* yalnız DOĞRUDAN çocuk — iç içe .v2-veri-liste bu flex'i almasın */
   display: flex; align-items: center; gap: clamp(0.9rem, 2vw, 1.8rem);
   list-style: none; margin: 0; padding: 0;
 }
+.v2-veri-liste li { list-style: none; }
 .v2-nav a, .v2-veri-dugme {
   font-family: var(--sans, system-ui, sans-serif);
   font-size: 0.88rem;
@@ -102,8 +104,10 @@
   transition: opacity 150ms var(--sh-eo), transform 150ms var(--sh-eo),
               visibility 0s linear 150ms;
 }
-.v2-veri:hover > .v2-veri-liste,
-.v2-veri:focus-within > .v2-veri-liste,
+/* .kapali: Esc sonrası hover/focus açılışı bastırılır (mouseleave sıfırlar) —
+   Esc "imleç hâlâ üstünde" durumunda da kapatabilsin. */
+.v2-veri:not(.kapali):hover > .v2-veri-liste,
+.v2-veri:not(.kapali):focus-within > .v2-veri-liste,
 .v2-veri.acik > .v2-veri-liste {
   opacity: 1;
   visibility: visible;
@@ -111,8 +115,8 @@
   transition: opacity 200ms var(--sh-eo), transform 200ms var(--sh-eo),
               visibility 0s;
 }
-.v2-veri:hover .ok-asagi,
-.v2-veri:focus-within .ok-asagi,
+.v2-veri:not(.kapali):hover .ok-asagi,
+.v2-veri:not(.kapali):focus-within .ok-asagi,
 .v2-veri.acik .ok-asagi { transform: rotate(180deg); }
 .v2-veri-liste a {
   display: block;

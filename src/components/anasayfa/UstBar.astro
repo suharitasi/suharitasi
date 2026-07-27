@@ -92,8 +92,11 @@ import { VERI_ROTALARI } from '../../data/anasayfa-v2.js';
     veriDugme.setAttribute('aria-expanded', String(acik));
   }
   veriDugme.addEventListener('click', () => veriDurum(!veri.classList.contains('acik')));
-  veri.addEventListener('mouseenter', () => veriDugme.setAttribute('aria-expanded', 'true'));
-  veri.addEventListener('mouseleave', () => veriDurum(false));
+  veri.addEventListener('mouseenter', () => {
+    veri.classList.remove('kapali'); // Esc bastırması imleç yeniden gelince biter
+    veriDugme.setAttribute('aria-expanded', 'true');
+  });
+  veri.addEventListener('mouseleave', () => { veri.classList.remove('kapali'); veriDurum(false); });
   veri.addEventListener('focusin', () => veriDugme.setAttribute('aria-expanded', 'true'));
   veri.addEventListener('focusout', (e) => {
     if (!veri.contains(e.relatedTarget)) veriDurum(false);
@@ -115,7 +118,8 @@ import { VERI_ROTALARI } from '../../data/anasayfa-v2.js';
   // Esc: açık ne varsa kapat (emil: klavye eylemi — animasyonsuz, anında).
   addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
-    if (veri.classList.contains('acik') || veri.matches(':focus-within')) {
+    if (veri.classList.contains('acik') || veri.matches(':focus-within') || veri.matches(':hover')) {
+      veri.classList.add('kapali'); // :hover açılışını bastır (CSS :not(.kapali))
       veriDurum(false);
       veriDugme.blur();
     }
