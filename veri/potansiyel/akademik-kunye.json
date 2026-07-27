@@ -1,7 +1,7 @@
 {
  "uretim_tarihi": "2026-07-27",
  "kaynak": "OpenAlex API (api.openalex.org) — metadata CC0",
- "ikame_notu": "DergiPark arama arayüzü Cloudflare Turnstile korumalı (2026-07-27 ölçümü) — brief 4.B'nin DergiPark araması OpenAlex ile ikame edildi; kullanıcı onayına sunuldu. Yalnız künye; özet metni kopyalanmadı.",
+ "ikame_notu": "DergiPark arama arayüzü Cloudflare Turnstile korumalı (2026-07-27 ölçümü) — brief 4.B'nin DergiPark araması OpenAlex ile ikame edildi; KULLANICI ONAYLADI (2026-07-27). Yalnız künye; özet metni kopyalanmadı. ŞART: Faz 6'da basılacak her künye DOI veya açık erişim URL'si taşır; taşımayan basılmaz (baski_uygun:false etiketiyle veride kalır).",
  "filtre": "is_oa:true (açık erişim), sorgu başına ilk 25 (alaka sıralı)",
  "il_kapsami": 49,
  "toplam_kunye": 1226,
