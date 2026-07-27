@@ -18,6 +18,36 @@ AĞIRLIK KAYDI (27 Tem): IA turu + D3-A sonrası ortalama HTML sayfa
 24,3 → 28,9 KB (+%19), havza sayfası 40,8 → 50,2 KB, /durumum/ aktarılan
 bayt +%11,6 · DOM +%11,8. Lighthouse'a yansıması ayırt edilemedi.
 
+ANA SAYFA v2 (emilkowalski + v0 spesifikasyonu) — UYGULANDI, KULLANICI ONAYI
+BEKLİYOR (2026-07-27, worktree donusum-2026-07-26; MERGE/PUSH YOK). Açık
+maddeler (brief FAZ 4.1):
+- [ ] "Su nerelerde çıkabilir" cevabı nerede — HENDEK FAZ 2.5 (yeraltı suyu
+      potansiyeli katmanı) yapıldı mı, YAS verisi 25 havza sayfasında
+      basılıyor mu, sıralama sayfası var mı. Ana sayfadaki soru şu an
+      geçici hedefe bağlı (/harita/).
+- [ ] MENÜ TUTARSIZLIĞI: ana sayfa yeni üst barla (UstBar), diğer 173 sayfa
+      eski menüyle (UstMenu). Birleştirme ayrı iş.
+- [ ] Öksüz kalan bileşenler (silme kararı kullanıcıda, M10):
+      src/data/anasayfa-sorular.js (7-soru güverte seti; artık hiçbir sayfa
+      import etmiyor) · src/scripts/scrub-engine.js index kullanımı düştü
+      (yalnız /harita-pilot/ noindex arşivi kullanıyor) · eski sayfa
+      arsiv/anasayfa-guverte-v3/index.astro.
+- [ ] Logo dosyası kullanıcıdan (logo-su-hukuku.png yok — metin marka
+      kullanıldı).
+- [ ] Gerçek deneyim yılı / dosya sayısı (v0'ın "15+ yıl / 500+ dosya /
+      %98" uydurmaları M7 gereği YAZILMADI; yerine build'de sayılan
+      25 havza · 81 il · 10 rehber).
+- [ ] Telefon numarası: künyede doğrulanamadı → blok konmadı. "İstanbul"
+      konumu da sitede doğrulanamadı → konum bloğu konmadı.
+- [ ] Form altyapısı: şu an mailto (JS ile gövde; JS'siz doğrudan link).
+- [ ] review-animations bulguları raporlandı, UYGULANMADI (brief 3.1;
+      liste: cikti/denetim/anasayfa-v2/RAPOR.md).
+- [ ] Hero alt metni: GEO için yazılmış 280'lik öz-cevap kullanıldı (K-3);
+      pazarlama metni olarak gözden geçirilmeli.
+- [ ] TBB gözden geçirme (rapor notu): "Ücretsiz Ön Görüşme Alın" /
+      "Randevu Al" çağrıları v0'dan; sitenin mevcut "davetsiz/nesnel" TBB
+      duruşundan ayrışıyor — hukuki değerlendirme kullanıcıda.
+
 /HANGİ-KURUM/ SAYFASI — KULLANICI ONAYI BEKLİYOR (2026-07-23). Su işlemlerinde
 yetkili kurum rehberi: build-time hangi-kapi.json (20 işlem) + su-birimleri.json
 (155 kurum) + su-islemleri.json'dan üretildi; üstte tek-tık filtre (details),

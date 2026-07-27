@@ -860,3 +860,48 @@ mobil 375/390 px taşma 0.
 **Açık bıraktığım:** ortalama sayfa ağırlığı 24,1 → 26,9 KB (+%11,6) —
 Lighthouse PERFORMANS yeniden ölçülmedi (yerel/canlı kıyası geçersiz olurdu),
 DENETLENEMEDİ'ye yazıldı. CCBot engellensin mi kararı kullanıcıya bırakıldı.
+
+## 2026-07-27 — Ana sayfa v2: emilkowalski/skills + v0 spesifikasyonu (worktree)
+
+**Ne yapıldı:** suharitasi-donusum worktree'sinde ana sayfa v0 spesifikasyonuna
+göre yeniden kuruldu: sayfaya özel UstBar (Veriler açılır listesi, 9 rota) +
+iki fazlı hero (6 poster harmanı 3800ms → 6 video sırayla 5000ms, geçiş
+1400ms) + deterministik su fışkırması (90/30 damla, v0 rand formülü) + 6
+uçuşan soru (gerçek <a>; mobilde hero altı dikey liste) + Hizmetler(6) +
+Süreç(4) + Hakkında + İletişim(mailto form) + paylaşılan AltBilgi (token
+kabıyla, bilesene dokunulmadan). Eski sayfa arsiv/anasayfa-guverte-v3/.
+emilkowalski/skills kuruldu (7 skill; .agents/skills gerçek + .claude/skills
+symlink düzenine taşındı, gitignore'lu — repo temiz).
+
+**Kararlar ve gerekçeleri:**
+- K-1 (animasyon ikiye ayrılır): etkileşim (menü/dropdown/hover/basış)
+  emil-design-eng kurallarıyla — <300ms, güçlü ease-out cubic-bezier(0.23,1,
+  0.32,1), çıkış girişten hızlı (200/150ms), :active scale(0.97),
+  transform-origin tetikte, hover (hover:hover) kapılı. Atmosfer (süzülme 9s,
+  fışkırma, harman 3.8s, sahne geçişi 1.4s) v0 süreleriyle KORUNDU; skill'in
+  300ms kuralı uygulanmadı — skill'in kendi tablosu "Marketing/explanatory:
+  can be longer" diyor, itiraz yalnız raporlandı.
+- K-2 (kütüphane yok): spring/Motion önerileri uygulanmadı; saf CSS karşılığı
+  (güçlü cubic-bezier + @starting-style + CSS transition) kullanıldı. npm
+  install çalıştırılmadı (M5).
+- K-3 (öz-cevap hero'da): GEO için yazılmış 280'lik kanonik metin hero alt
+  metni oldu; pazarlama gözden geçirmesi kuyrukta.
+- M7 süzgeci: v0'ın "15+ yıl/500+ dosya/%98 memnuniyet" uydurmaları atıldı;
+  yerine build'de sayılan 25 havza · 81 il · 10 rehber. Telefon + İstanbul
+  doğrulanamadı → bloklar konmadı.
+
+**Denetimin yakaladığı 3 arıza (kod düzeltildi):** (1) Esc, imleç düğme
+üstündeyken menüyü kapatamıyordu — CSS :hover JS'i eziyordu → .kapali sınıfı;
+(2) .v2-nav ul kuralı iç içe açılır listeye sızıp yatay şerit yapıyordu →
+doğrudan-çocuk seçici; (3) AltBilgi tokenları tanımsız kalıp koyu-üstü-koyu
+çıkıyordu → .v2-altkap aydınlık token kabı.
+
+**Kanıt:** build hata 0, yeni uyarı tipi 0; dist/index.html üzerinde: 6 soru
+<a> + hedefleri dist'te VAR, Veriler 9/9 VAR, poster 6+6 (hero alt boş-
+dekoratif, noscript alt dolu), ilk yüklemede src dolu video 1, noscript +
+JSON-LD (Org+Person+WebSite) AYNEN, h1 h2'den önce, uydurma taraması TEMİZ.
+CSP'li sunucuda (dist-sun) video ölçümü: readyState 4, currentTime 1.9s,
+oynuyor; konsol 0 (masaüstü+mobil), 390 taşma 0, hamburger+Esc çalışıyor.
+Ağırlık: index.html 24K→36K (sınır 3×), dist 28M sabit. Kareler:
+denetim/kare/anasayfa-once/ + anasayfa-sonra/. GPU kuralı: scrub/oynatma
+akıcılığı headless'ta kanıt sayılmaz — nihai onay kullanıcının canlı testi.
