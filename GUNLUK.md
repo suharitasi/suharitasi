@@ -966,3 +966,18 @@ Silme scripti ilk koşuda grep-exit tuzağıyla üçünü yanlış geri aldı �
 düzeltilip tekrarlandı (build'ler temizdi). Canlı: ee0d81e ilk denemede,
 9 rota 200, Veriler+h1<h2 ✓, DYNAMIC, ziyaretçi yeni sürümde. Kareler:
 temizlik-sonrasi/ + temizlik-canli/.
+
+## 2026-07-27 (5. seans) — Kontrast arızası: teşhis T1, chunk sızıntısı
+
+Kullanıcı bildirimi doğrulandı: rehber gövdesi koyu zeminde okunmuyordu.
+TEŞHİS (ölçümle): index.astro is:global bloğu (body{background:#061824} +
+* reset + html scroll) PaylasilanMenu yayılımıyla Vite ortak CSS chunk'ına
+(index.B9Q6o20O.css) girdi ve 173 sayfaya sızdı — menü turunun yan etkisi
+(2.5=A). DESIGN.md niyeti açık zemin (#E9F0F4). ÖNCE oranlar: il/persona/
+durumum/hangi-kurum 1.16 · rehber/su-kanunu/vaka/hakkinda 2.84 · havza 5.16
+(kendi zemin bildirimi kurtarmış) · ana 12.33. DÜZELTME: kurallar
+html.v2-sayfa kapsamına; SONRA canlıda: 5.16–12.33, 10/10 AA. Menü barı
+8.30 AA. Gerileme 0 (h2ters/soru/şema/llms taban=sonra). İtiraflar:
+(1) koyu gövde menü karelerinde de vardı, konsol/taşma ölçüp zemine gözle
+bakmadım; (2) ölçüm scripti ilk sürümde menünün gizli <p>'sini yakaladı,
+görünürlük süzgeciyle düzeltildi. Kareler: kontrast-sonrasi/ + kontrast-canli/.
