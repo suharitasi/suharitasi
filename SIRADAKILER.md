@@ -18,9 +18,12 @@ AĞIRLIK KAYDI (27 Tem): IA turu + D3-A sonrası ortalama HTML sayfa
 24,3 → 28,9 KB (+%19), havza sayfası 40,8 → 50,2 KB, /durumum/ aktarılan
 bayt +%11,6 · DOM +%11,8. Lighthouse'a yansıması ayırt edilemedi.
 
-ANA SAYFA v2 (emilkowalski + v0 spesifikasyonu) — UYGULANDI, KULLANICI ONAYI
-BEKLİYOR (2026-07-27, worktree donusum-2026-07-26; MERGE/PUSH YOK). Açık
-maddeler (brief FAZ 4.1):
+ANA SAYFA v2 (emilkowalski + v0 spesifikasyonu) — CANLIDA (2026-07-27,
+merge c7fbe40→de01fbd + push + canlı doğrulama; ayrıntı GUNLUK). v0 ince
+ayar turu (A=28 fark) dahil; 13 GEO commit'i de aynı merge ile yayınlandı.
+Kullanıcının canlı görsel onayı nihai kapanış. Açık maddeler:
+- [ ] Sondaj İşlemleri kartı linksiz — karşılığı sayfa yok
+- [ ] SITE-DURUM 🔴 (GRACE tazeliği 262,6 gün) — bu iş kapsamı dışında
 - [ ] "Su nerelerde çıkabilir" cevabı nerede — HENDEK FAZ 2.5 (yeraltı suyu
       potansiyeli katmanı) yapıldı mı, YAS verisi 25 havza sayfasında
       basılıyor mu, sıralama sayfası var mı. Ana sayfadaki soru şu an
