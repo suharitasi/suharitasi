@@ -2,6 +2,18 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
+SAĞLIK md4 YANLIŞ ALARM — YAPILANDIRMA BAYAT (27 Tem 2026 akşam,
+KULLANICI KARARI BEKLİYOR): Su-potansiyeli merge'ü (5e08611) sabahtan beri
+deploy olmamış TÜM günü canlıya taşıdı; ana sayfa v2 DOM'unda #world/.sw-*
+yok (yeni: section.v2-hero > .v2-katman > #v2-videolar, 6 video, lazy).
+izleme/medya-beklenen.json hâlâ '#world .sw-scene' bektiği için md4 6/6
+"sahne DOM'da yok" veriyor. CANLI MEDYA SAĞLIKLI — ölçüldü: sahne1
+readyState=4, currentTime=2.85, paused=false; mp4'ler 200; konsol 0.
+Gerekli iş: md4 ölçümünün v2 DOM'una (ve lazy-yükleme akışına) revizyonu —
+site-saglik.mjs kod değişikliği gerektirir (scroll/uz hesabı .sw-track'e
+bağlı), otomatik onarım beyaz listesinde DEĞİL → onay bekliyor. O zamana
+kadar SITE-DURUM md4 kırmızısı bilinen-yanlış-alarm.
+
 SU POTANSİYELİ KATMANI — 81 İLDE, KULLANICI ONAYI BEKLİYOR (MERGE=YAYIN;
 27 Tem 2026): "Bu ilde su nerelerde çıkabilir?" bloğu 81 il sayfasında
 (worktree suharitasi-potansiyel, dal potansiyel-2026-07-27). Pilot onaylı;
