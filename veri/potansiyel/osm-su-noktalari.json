@@ -1,0 +1,339 @@
+{
+ "uretim_tarihi": "2026-07-27",
+ "kaynak": "OpenStreetMap (Overpass API) — node natural=spring / man_made=water_well",
+ "lisans": "ODbL 1.0 — © OpenStreetMap katkıcıları",
+ "etiket": "topluluk verisi, resmî doğrulanmadı",
+ "yontem": "TR-geneli iki sorgu; noktalar src/data/tr-iller.json il poligonlarına ışın-testiyle atandı (sınır poligonu OSM kökenli, yaklaşıktır)",
+ "toplamlar": {
+  "spring": 3296,
+  "spring_poligon_disi": 2057,
+  "water_well": 1013,
+  "water_well_poligon_disi": 526
+ },
+ "iller": {
+  "Adana": {
+   "kaynak_spring": 22,
+   "kuyu_water_well": 0
+  },
+  "Adıyaman": {
+   "kaynak_spring": 1,
+   "kuyu_water_well": 0
+  },
+  "Afyonkarahisar": {
+   "kaynak_spring": 15,
+   "kuyu_water_well": 2
+  },
+  "Aksaray": {
+   "kaynak_spring": 8,
+   "kuyu_water_well": 0
+  },
+  "Amasya": {
+   "kaynak_spring": 1,
+   "kuyu_water_well": 0
+  },
+  "Ankara": {
+   "kaynak_spring": 47,
+   "kuyu_water_well": 9
+  },
+  "Antalya": {
+   "kaynak_spring": 292,
+   "kuyu_water_well": 95
+  },
+  "Ardahan": {
+   "kaynak_spring": 33,
+   "kuyu_water_well": 0
+  },
+  "Artvin": {
+   "kaynak_spring": 37,
+   "kuyu_water_well": 1
+  },
+  "Aydın": {
+   "kaynak_spring": 12,
+   "kuyu_water_well": 14
+  },
+  "Ağrı": {
+   "kaynak_spring": 1,
+   "kuyu_water_well": 0
+  },
+  "Balıkesir": {
+   "kaynak_spring": 16,
+   "kuyu_water_well": 6
+  },
+  "Bartın": {
+   "kaynak_spring": 3,
+   "kuyu_water_well": 0
+  },
+  "Batman": {
+   "kaynak_spring": 8,
+   "kuyu_water_well": 0
+  },
+  "Bayburt": {
+   "kaynak_spring": 0,
+   "kuyu_water_well": 0
+  },
+  "Bilecik": {
+   "kaynak_spring": 1,
+   "kuyu_water_well": 2
+  },
+  "Bingöl": {
+   "kaynak_spring": 0,
+   "kuyu_water_well": 0
+  },
+  "Bitlis": {
+   "kaynak_spring": 8,
+   "kuyu_water_well": 0
+  },
+  "Bolu": {
+   "kaynak_spring": 1,
+   "kuyu_water_well": 0
+  },
+  "Burdur": {
+   "kaynak_spring": 3,
+   "kuyu_water_well": 0
+  },
+  "Bursa": {
+   "kaynak_spring": 8,
+   "kuyu_water_well": 6
+  },
+  "Denizli": {
+   "kaynak_spring": 7,
+   "kuyu_water_well": 5
+  },
+  "Diyarbakır": {
+   "kaynak_spring": 8,
+   "kuyu_water_well": 6
+  },
+  "Düzce": {
+   "kaynak_spring": 0,
+   "kuyu_water_well": 2
+  },
+  "Edirne": {
+   "kaynak_spring": 4,
+   "kuyu_water_well": 8
+  },
+  "Elazığ": {
+   "kaynak_spring": 1,
+   "kuyu_water_well": 0
+  },
+  "Erzincan": {
+   "kaynak_spring": 16,
+   "kuyu_water_well": 0
+  },
+  "Erzurum": {
+   "kaynak_spring": 4,
+   "kuyu_water_well": 0
+  },
+  "Eskişehir": {
+   "kaynak_spring": 0,
+   "kuyu_water_well": 1
+  },
+  "Gaziantep": {
+   "kaynak_spring": 1,
+   "kuyu_water_well": 0
+  },
+  "Giresun": {
+   "kaynak_spring": 2,
+   "kuyu_water_well": 0
+  },
+  "Gümüşhane": {
+   "kaynak_spring": 10,
+   "kuyu_water_well": 0
+  },
+  "Hakkari": {
+   "kaynak_spring": 4,
+   "kuyu_water_well": 0
+  },
+  "Hatay": {
+   "kaynak_spring": 0,
+   "kuyu_water_well": 0
+  },
+  "Isparta": {
+   "kaynak_spring": 48,
+   "kuyu_water_well": 2
+  },
+  "Iğdır": {
+   "kaynak_spring": 3,
+   "kuyu_water_well": 0
+  },
+  "Kahramanmaraş": {
+   "kaynak_spring": 4,
+   "kuyu_water_well": 0
+  },
+  "Karabük": {
+   "kaynak_spring": 1,
+   "kuyu_water_well": 0
+  },
+  "Karaman": {
+   "kaynak_spring": 2,
+   "kuyu_water_well": 0
+  },
+  "Kars": {
+   "kaynak_spring": 9,
+   "kuyu_water_well": 0
+  },
+  "Kastamonu": {
+   "kaynak_spring": 7,
+   "kuyu_water_well": 0
+  },
+  "Kayseri": {
+   "kaynak_spring": 37,
+   "kuyu_water_well": 0
+  },
+  "Kilis": {
+   "kaynak_spring": 1,
+   "kuyu_water_well": 0
+  },
+  "Kocaeli": {
+   "kaynak_spring": 2,
+   "kuyu_water_well": 2
+  },
+  "Konya": {
+   "kaynak_spring": 27,
+   "kuyu_water_well": 16
+  },
+  "Kütahya": {
+   "kaynak_spring": 0,
+   "kuyu_water_well": 0
+  },
+  "Kırklareli": {
+   "kaynak_spring": 58,
+   "kuyu_water_well": 47
+  },
+  "Kırıkkale": {
+   "kaynak_spring": 0,
+   "kuyu_water_well": 0
+  },
+  "Kırşehir": {
+   "kaynak_spring": 7,
+   "kuyu_water_well": 0
+  },
+  "Malatya": {
+   "kaynak_spring": 1,
+   "kuyu_water_well": 0
+  },
+  "Manisa": {
+   "kaynak_spring": 4,
+   "kuyu_water_well": 5
+  },
+  "Mardin": {
+   "kaynak_spring": 13,
+   "kuyu_water_well": 8
+  },
+  "Mersin": {
+   "kaynak_spring": 14,
+   "kuyu_water_well": 1
+  },
+  "Muğla": {
+   "kaynak_spring": 155,
+   "kuyu_water_well": 110
+  },
+  "Muş": {
+   "kaynak_spring": 1,
+   "kuyu_water_well": 0
+  },
+  "Nevşehir": {
+   "kaynak_spring": 15,
+   "kuyu_water_well": 0
+  },
+  "Niğde": {
+   "kaynak_spring": 12,
+   "kuyu_water_well": 1
+  },
+  "Ordu": {
+   "kaynak_spring": 2,
+   "kuyu_water_well": 0
+  },
+  "Osmaniye": {
+   "kaynak_spring": 0,
+   "kuyu_water_well": 0
+  },
+  "Rize": {
+   "kaynak_spring": 3,
+   "kuyu_water_well": 0
+  },
+  "Sakarya": {
+   "kaynak_spring": 0,
+   "kuyu_water_well": 0
+  },
+  "Samsun": {
+   "kaynak_spring": 25,
+   "kuyu_water_well": 0
+  },
+  "Siirt": {
+   "kaynak_spring": 2,
+   "kuyu_water_well": 0
+  },
+  "Sinop": {
+   "kaynak_spring": 3,
+   "kuyu_water_well": 1
+  },
+  "Sivas": {
+   "kaynak_spring": 11,
+   "kuyu_water_well": 1
+  },
+  "Tekirdağ": {
+   "kaynak_spring": 64,
+   "kuyu_water_well": 74
+  },
+  "Tokat": {
+   "kaynak_spring": 34,
+   "kuyu_water_well": 25
+  },
+  "Trabzon": {
+   "kaynak_spring": 2,
+   "kuyu_water_well": 2
+  },
+  "Tunceli": {
+   "kaynak_spring": 6,
+   "kuyu_water_well": 0
+  },
+  "Uşak": {
+   "kaynak_spring": 1,
+   "kuyu_water_well": 1
+  },
+  "Van": {
+   "kaynak_spring": 8,
+   "kuyu_water_well": 0
+  },
+  "Yalova": {
+   "kaynak_spring": 4,
+   "kuyu_water_well": 1
+  },
+  "Yozgat": {
+   "kaynak_spring": 1,
+   "kuyu_water_well": 1
+  },
+  "Zonguldak": {
+   "kaynak_spring": 1,
+   "kuyu_water_well": 1
+  },
+  "Çanakkale": {
+   "kaynak_spring": 24,
+   "kuyu_water_well": 3
+  },
+  "Çankırı": {
+   "kaynak_spring": 7,
+   "kuyu_water_well": 0
+  },
+  "Çorum": {
+   "kaynak_spring": 1,
+   "kuyu_water_well": 1
+  },
+  "İstanbul": {
+   "kaynak_spring": 16,
+   "kuyu_water_well": 15
+  },
+  "İzmir": {
+   "kaynak_spring": 29,
+   "kuyu_water_well": 8
+  },
+  "Şanlıurfa": {
+   "kaynak_spring": 0,
+   "kuyu_water_well": 4
+  },
+  "Şırnak": {
+   "kaynak_spring": 0,
+   "kuyu_water_well": 0
+  }
+ }
+}

@@ -2,6 +2,14 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
+OPENALEX EKSİK 32 İL (27 Tem 2026, su potansiyeli Faz 4.B): OpenAlex
+kalıcı 429 kotası nedeniyle 32 ilin akademik künyeleri eksik
+(veri/potansiyel/akademik-kunye.json hatalar listesi). `python3
+arac/akademik-kunye.py` artımlıdır — birkaç saat sonra tek koşu tamamlar;
+sonra `arac/zenginlestirme-birlestir.py` yeniden koşulur. Ayrıca 4.B
+DergiPark→OpenAlex ikamesi kullanıcı onayı bekliyor (Turnstile engeli:
+rapor/potansiyel-faz4.md).
+
 İLÇE DİZİNİ ÇAPRAZ DOĞRULAMA (27 Tem 2026, kullanıcı kararı A — su
 potansiyeli Faz 2): kütle→il eşlemesinde kullanılan ilçe→il dizini OSM
 Overpass'tan (ODbL) üretildi (veri/potansiyel/ilce-il-dizini.json).

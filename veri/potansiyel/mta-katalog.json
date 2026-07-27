@@ -1,0 +1,4795 @@
+{
+ "uretim_tarihi": "2026-07-27",
+ "kaynak": "MTA Genel Müdürlüğü e-ticaret kataloğu (eticaret.mta.gov.tr) — yalnız katalog metaverisi",
+ "not": "Rapor satın alınmadı, içerik kopyalanmadı. İl ataması rapor ADINDAN tam-kelime çıkarımıdır; çok-illi ilçe adları atlanır; il çıkarılamayanlar ayrı listede.",
+ "kelime_sayilari": {
+  "hidrojeoloji": 339,
+  "hidrojeolojik": 78,
+  "yeraltısuyu": 11,
+  "yeraltı suyu": 28
+ },
+ "toplam_kunye": 356,
+ "il_atanamayan_sayisi": 32,
+ "iller": {
+  "Adana": [
+   {
+    "rapor_adi": "ADANA-HARUNİYE KAPLICASI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5368",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5368",
+    "il_adaylari": [
+     "Adana"
+    ]
+   },
+   {
+    "rapor_adi": "CEYHAN MINTIKASININ (ADANA VİLAYETİ) HİDROJEOLOJİK ETÜDÜ HAKKINDA NOT",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1720",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "1720",
+    "il_adaylari": [
+     "Adana"
+    ]
+   },
+   {
+    "rapor_adi": "MERSİN, ADANA, HATAY İLLERİ HİDROJEOLOJİ ETÜTLERİ (AKİFER KAYA VE MADEN SULARI ARAMALARI) VE SONDAJ ÇALIŞMALARI",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=11251",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "11251",
+    "il_adaylari": [
+     "Adana",
+     "Elazığ",
+     "Hatay",
+     "Mersin"
+    ]
+   },
+   {
+    "rapor_adi": "SEYHAN VİLAYETİ HİDROJEOLOJİK ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=12176",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "12176",
+    "il_adaylari": [
+     "Adana"
+    ]
+   }
+  ],
+  "Adıyaman": [
+   {
+    "rapor_adi": "ADIYAMAN TEKSTİL FABRİKASINA SU TEMİNİ MAKSADIYLA YAPILAN JEOLOJİK VE HİDROJEOLOJİ ETÜT RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2651",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2651",
+    "il_adaylari": [
+     "Adıyaman"
+    ]
+   }
+  ],
+  "Afyonkarahisar": [
+   {
+    "rapor_adi": "AFYON GAZLIGÖL JEOTERMAL SAHASININ KORUMA ALANLARI RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10084",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10084",
+    "il_adaylari": [
+     "Afyonkarahisar"
+    ]
+   },
+   {
+    "rapor_adi": "AFYON KUZEY BATISINDA HİDROJEOLOJİK TETKİKLER",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2262",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2262",
+    "il_adaylari": [
+     "Afyonkarahisar"
+    ]
+   },
+   {
+    "rapor_adi": "AFYON VİLAYETİNDEKİ TERMAL KAYNAKLAR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2220",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2220",
+    "il_adaylari": [
+     "Afyonkarahisar",
+     "Yalova"
+    ]
+   },
+   {
+    "rapor_adi": "AFYON-GARNİZON KOMUTANLIĞINA BAĞLI ALAPLI BÖLGESİNDEKİ ASKERİ SAHADA SONDAJ LOKASYONUNU BELİRLEMEYE YÖNELİK HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9800",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9800",
+    "il_adaylari": [
+     "Afyonkarahisar",
+     "Zonguldak"
+    ]
+   },
+   {
+    "rapor_adi": "AFYON-HEYBELİ (KIZILKİLİSE) JEOTERMAL SAHASININ (KAYNAK VE SONDAJ KUYULARI) KORUMA ALANI RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10433",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10433",
+    "il_adaylari": [
+     "Afyonkarahisar"
+    ]
+   },
+   {
+    "rapor_adi": "AFYON-SANDIKLI,HÜDAİ KAPLICASI HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5696",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5696",
+    "il_adaylari": [
+     "Afyonkarahisar"
+    ]
+   },
+   {
+    "rapor_adi": "AFYONKARAHİSAR-DİNAR-DOMBAYOVA  KÖMÜR SAHASI  HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=37468",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "37468",
+    "il_adaylari": [
+     "Afyonkarahisar"
+    ]
+   },
+   {
+    "rapor_adi": "HEYBELİ (KIZILKİLİSE) KAPLICASININ HİDROJEOLOJİSİ (AFYON)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2320",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "yeraltı suyu"
+    ],
+    "product_id": "2320",
+    "il_adaylari": [
+     "Afyonkarahisar"
+    ]
+   },
+   {
+    "rapor_adi": "HÜDAİ HAMAMI (SANDIKLI) HAKKINDA JEOLOJİK VE HİDROJEOLOJİK RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=3598",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "3598",
+    "il_adaylari": [
+     "Afyonkarahisar"
+    ]
+   },
+   {
+    "rapor_adi": "ÇÖL OVASININ HİDROJEOLOJİK TETKİKİ (AFYONKARAHİSAR)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2717",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2717",
+    "il_adaylari": [
+     "Afyonkarahisar"
+    ]
+   }
+  ],
+  "Aksaray": [
+   {
+    "rapor_adi": "NİĞDE, AKSARAY-ZIĞA KAPLICASININ HİDROJEOLOJİ İNCELEMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7505",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7505",
+    "il_adaylari": [
+     "Aksaray",
+     "Niğde"
+    ]
+   },
+   {
+    "rapor_adi": "NİĞDE,AKSARAY HELVA DERE KASABASI İÇİNDE MADEN SUYU VE MEMBA SUYU KAYNAKLARININ HİDROJEOLOJİ ÖN ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7629",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7629",
+    "il_adaylari": [
+     "Aksaray",
+     "Elazığ",
+     "Niğde"
+    ]
+   }
+  ],
+  "Amasya": [
+   {
+    "rapor_adi": "AMASYA-TERZİKÖY KAPLICASI HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5819",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5819",
+    "il_adaylari": [
+     "Amasya"
+    ]
+   },
+   {
+    "rapor_adi": "AMASYA-TERZİKÖY KAPLICASI JEOLOJİ-HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10251",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10251",
+    "il_adaylari": [
+     "Amasya"
+    ]
+   },
+   {
+    "rapor_adi": "HAMAMÖZÜ (AMASYA) ARTUKBEY KAPLICASI HİDROJEOLOJİ ETÜTÜ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7081",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7081",
+    "il_adaylari": [
+     "Amasya"
+    ]
+   },
+   {
+    "rapor_adi": "TÜRKİYE TERMAL VE MİNERALLİ SULAR ENVANTERİ AMASYA (05)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9589",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9589",
+    "il_adaylari": [
+     "Amasya",
+     "Yalova"
+    ]
+   }
+  ],
+  "Ankara": [
+   {
+    "rapor_adi": "ANKARA CİVARI HİDROLOJİK ETÜTLERİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2314",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2314",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "ANKARA GARBINDA MUHAFIZ BÖLÜĞÜ KUMANDANLIĞI ARAZİSİNDEKİ SU TEDARİKİ İÇİN YAPILAN JEOLOJİK VE HİDROJEOLOJİK ETÜTLER",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1028",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "1028",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "ANKARA GÜNEY BÖLGESİNİN HİDROJEOLOJİK HARİTASI (1/25.000)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2186",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2186",
+    "il_adaylari": [
+     "Ankara",
+     "Denizli"
+    ]
+   },
+   {
+    "rapor_adi": "ANKARA ÇİMENTO FABRİKASININ KUYULARI CİVARINDAKİ YERALTI SULARININ DURUMLARI HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2489",
+    "bulan_kelimeler": [
+     "yeraltısuyu",
+     "yeraltı suyu"
+    ],
+    "product_id": "2489",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "ANKARA İLİNİN ÇEVRE JEOLOJİSİ VE DOĞAL KAYNAKLARI",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10069",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10069",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "ANKARA'DA DÖRT ŞİFALI MENBA HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1697",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "1697",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "ANKARA'NIN GÜNEY HAVALİSİNDE SU BULMA İMKANLARI HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2523",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2523",
+    "il_adaylari": [
+     "Ankara",
+     "Denizli"
+    ]
+   },
+   {
+    "rapor_adi": "ANKARA'YA SU TEMİNİ KONUSUNDA ŞEHRİN KUZEY HAVALİSİNDE YAPILAN 1/25.000 ÖLÇEKLİ JEOLOJİK LÖVE İLE HİDROJEOLOJİK ETÜTLER HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2522",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2522",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "ANKARA-BEYPAZARI DUTLU KAPLICASI YÖRESİ HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7776",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7776",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "ANKARA-BEYPAZARI KUYUCAK KÖYÜ MTA 336 NUMARALI SU KUYUSU HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6391",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6391",
+    "il_adaylari": [
+     "Ankara",
+     "Aydın"
+    ]
+   },
+   {
+    "rapor_adi": "ANKARA-BEYPAZARI SODA (TRONA) SAHASI HİDROJEOLOJİ İNCELEMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8101",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8101",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "ANKARA-BEYPAZARI TRONA SAHASI HİDROJEOLOJİ ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10524",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10524",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "AYAŞ İÇMECE VE KAPLICALARININ JEOLOJİ VE HİDROJEOLOJİ ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4380",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4380",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "BALA-BEYNAM KÖYÜ (ANKARA) KURT DERSİ MEVKİİNDE BULUNAN SONDAJ KUYULARINA AİT KORUMA ALANI RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10411",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10411",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "BEYPAZARI BÖLGESİNDE JEOLOJİK VE HİDROJEOLOJİK SAHA ÇALIŞMALARI HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2554",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2554",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "BEYPAZARI KÖMÜR HAVZASI ALT DAMAR REZERV BELİRLEME HİDROJEOLOJİ VE JEOTEKNİK RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=37008",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "37008",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "BEYPAZARI KÖMÜR HAVZASI II. SAHA JEOLOJİ REZERV VE HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=37377",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "37377",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "EYMİR VE MOGAN GÖLLERİ'NİN (ANKARA-GÖLBAŞI) KORUNMASINA YÖNELİK JEOLOJİ-HİDROJEOLOJİ İNCELEMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9477",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9477",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "GÜNEY AYAŞ SİLSİLELERİ İLE HAVALİSİNİN JEOLOJİSİ VE HİDROEOLOJİSİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2687",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2687",
+    "il_adaylari": [
+     "Ankara",
+     "Denizli"
+    ]
+   },
+   {
+    "rapor_adi": "GÜNEY AYAŞ SİLSİLESİNİN VE CİVARININ JEOLOJİ VE HİDROLOJİ BAKIMINDAN HARİTALANMASI",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2691",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2691",
+    "il_adaylari": [
+     "Ankara",
+     "Denizli"
+    ]
+   },
+   {
+    "rapor_adi": "HAYMANA (ANKARA) KAPLICASI HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4844",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4844",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "KARAKAYA AYAŞ KAPLICASI VE ILICA KÖY SICAK SULARININ HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4369",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4369",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "KIZILCAHAMAM KAPLICASI HİDROJEOLOJİ ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8565",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "8565",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "KIZILCAHAMAM SICAKSU KAYNAKLARI",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=3299",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "3299",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "POLATLI,MALIKÖY,ILICAPINAR CİVARININ JEOLOJİ VE HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5191",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5191",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "SİNCANKÖY ANKARA CİVARINDA HİDROJEOLOJİK TETKİKLER",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2287",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2287",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "TUZ GÖLÜ KENARINDA ŞEREFLİKOÇHİSAR HAVALİSİNDE YAPILAN HİDROJEOLOJİK ETÜT",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2472",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2472",
+    "il_adaylari": [
+     "Ankara"
+    ]
+   },
+   {
+    "rapor_adi": "TÜRKİYEDE KURAK BÖLGE ÇALIŞMALARI VE 1950-1954 SENELERİ ARASINDA KONYA-POLATLI YARI KURAK SAHASINDA YAPILAN HİDROJEOLOJİK ARAŞTIRMALAR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2206",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2206",
+    "il_adaylari": [
+     "Ankara",
+     "Konya"
+    ]
+   },
+   {
+    "rapor_adi": "YENİ BÜYÜK MİLLET MECLİSİNE SU TEMİNİ MAKSADIYLA ANKARA GÜNEY BÖLGESİNİN HİDROJEOLOJİK ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2187",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2187",
+    "il_adaylari": [
+     "Ankara",
+     "Denizli"
+    ]
+   }
+  ],
+  "Artvin": [
+   {
+    "rapor_adi": "TÜRKİYE TERMAL VE MİNERALLİ SULAR ENVANTERİ ARTVİN (08)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10261",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10261",
+    "il_adaylari": [
+     "Artvin",
+     "Yalova"
+    ]
+   }
+  ],
+  "Aydın": [
+   {
+    "rapor_adi": "ANKARA-BEYPAZARI KUYUCAK KÖYÜ MTA 336 NUMARALI SU KUYUSU HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6391",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6391",
+    "il_adaylari": [
+     "Ankara",
+     "Aydın"
+    ]
+   },
+   {
+    "rapor_adi": "AYDIN İLİ NAZİLLİ KAZASI KUYUCAK KASABASINA AİT HİDRO-JEOLOJİK RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1795",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "1795",
+    "il_adaylari": [
+     "Aydın"
+    ]
+   },
+   {
+    "rapor_adi": "AYDIN-GERMENCİK-ALANGÜLLÜ (BOZKÖY) KAPLICASI KORUNMA ALANLARI RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9026",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9026",
+    "il_adaylari": [
+     "Aydın"
+    ]
+   },
+   {
+    "rapor_adi": "GERMENCİK (AYDIN) ÇAMURLU ILICA VE BOZKÖY KAPLICASI HİDROJEOLOJİ ETÜDÜ RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4353",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4353",
+    "il_adaylari": [
+     "Aydın"
+    ]
+   },
+   {
+    "rapor_adi": "GERMENCİK-AYDIN-ÇAMURLUILICA VE BOZKÖY KAPLICASI HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5829",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5829",
+    "il_adaylari": [
+     "Aydın"
+    ]
+   },
+   {
+    "rapor_adi": "GÜMÜŞ (ORTAKLAR-AYDIN) ILICA BÖLGESİNİN HİDROJEOLOJİK ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7200",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "7200",
+    "il_adaylari": [
+     "Aydın"
+    ]
+   }
+  ],
+  "Balıkesir": [
+   {
+    "rapor_adi": "BALIKESİR OVASI HİDROJEOLOJİK RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2719",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2719",
+    "il_adaylari": [
+     "Balıkesir"
+    ]
+   },
+   {
+    "rapor_adi": "BALIKESİR VİLAYETİ SUSURLUK KAZASINDA KAİN OLAN KEPEKLİ ILICASINDA YAPILAN TETKİKATA AİT RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=873",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "873",
+    "il_adaylari": [
+     "Balıkesir"
+    ]
+   },
+   {
+    "rapor_adi": "BALIKESİR-BURHANİYE, PELİT KÖY İÇMESİ HİDROJEOLOJİ ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9953",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9953",
+    "il_adaylari": [
+     "Balıkesir"
+    ]
+   },
+   {
+    "rapor_adi": "BALIKESİR-BİGADİÇ ETİBANK KOLEMANİT AÇIK İŞLETME ALANININ HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7142",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7142",
+    "il_adaylari": [
+     "Balıkesir"
+    ]
+   },
+   {
+    "rapor_adi": "BALIKESİR-BİGADİÇ-HİSARKÖY JEOTERMAL ALANI JEOLOJİ-HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10478",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10478",
+    "il_adaylari": [
+     "Balıkesir"
+    ]
+   },
+   {
+    "rapor_adi": "BALIKESİR-HAVRAN DERMAN KAPLICASI HAKKINDA HİDROJEOLOJİK NOT",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5840",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "5840",
+    "il_adaylari": [
+     "Balıkesir"
+    ]
+   },
+   {
+    "rapor_adi": "BALIKESİR-MANYAS (KIZIKKÖY) KAPLICASI JEOLOJİ HİDROJEOLOJİ ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9805",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9805",
+    "il_adaylari": [
+     "Balıkesir"
+    ]
+   },
+   {
+    "rapor_adi": "BALIKESİR-MANYAS (KIZIKKÖY) KAPLICASI JEOLOJİ HİDROJEOLOJİ ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9806",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9806",
+    "il_adaylari": [
+     "Balıkesir"
+    ]
+   },
+   {
+    "rapor_adi": "BURHANİYE KASABASINDA YERALTI SULARINDA İSTİFADE İMKANLARI HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1507",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "1507",
+    "il_adaylari": [
+     "Balıkesir"
+    ]
+   },
+   {
+    "rapor_adi": "GÖNEN KAPLICALARI (BALIKESİR) HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5079",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5079",
+    "il_adaylari": [
+     "Balıkesir"
+    ]
+   },
+   {
+    "rapor_adi": "SİLİVRİ CİVARINDA, MARMARA SAHİLİNDE BİR TATİL KAMPI TESİSİ (PAFTA 19/4 VE 20/3) BAKIMINDAN YAPILAN HİDROJEOLOJİK ETÜTLERE MÜTEALLİK RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2914",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2914",
+    "il_adaylari": [
+     "Balıkesir",
+     "İstanbul"
+    ]
+   }
+  ],
+  "Batman": [
+   {
+    "rapor_adi": "BATMAN RAFİNERİ CİVARININ YERALTI SUYU DURUMU HAKKINDA İLK RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1957",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "yeraltı suyu"
+    ],
+    "product_id": "1957",
+    "il_adaylari": [
+     "Batman"
+    ]
+   },
+   {
+    "rapor_adi": "BATMAN RAFİNERİSİ CİVARININ YERALTI SUYU DURUMU HAKKINDA NİHAİ RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1978",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "yeraltı suyu"
+    ],
+    "product_id": "1978",
+    "il_adaylari": [
+     "Batman"
+    ]
+   }
+  ],
+  "Bilecik": [
+   {
+    "rapor_adi": "BİLECİK-SÖĞÜT-ÇALTI KAPLICASI KORUNMA ALANLARI ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9128",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9128",
+    "il_adaylari": [
+     "Bilecik"
+    ]
+   }
+  ],
+  "Bingöl": [
+   {
+    "rapor_adi": "BİNGÖL KÖS KAPLICASI HİDROJEOLOJİ ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8939",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8939",
+    "il_adaylari": [
+     "Bingöl"
+    ]
+   }
+  ],
+  "Bolu": [
+   {
+    "rapor_adi": "BOLU HAVZASI BATI BÖLÜMÜNDE SICAK VE MADEN SULARI HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4368",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4368",
+    "il_adaylari": [
+     "Bolu",
+     "Elazığ"
+    ]
+   },
+   {
+    "rapor_adi": "BOLU KAPLICALARININ JEOLOJİ VE HİDROJEOLOJİ ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5028",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5028",
+    "il_adaylari": [
+     "Bolu"
+    ]
+   },
+   {
+    "rapor_adi": "BOLU-GEREDE AKTAŞ ILICA KAYNAĞININ JEOLOJİSİ-HİDROJEOLOJİ İNCELENMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6761",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6761",
+    "il_adaylari": [
+     "Bolu"
+    ]
+   },
+   {
+    "rapor_adi": "BOLU-MUDURNU BABAS KAPLICASI HİDROJEOLOJİ İNCELEMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7882",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7882",
+    "il_adaylari": [
+     "Bolu"
+    ]
+   },
+   {
+    "rapor_adi": "BOLU-SEBEN KESEÖZÜ KAPLICASI JEOTERMAL ENERJİ ARAMALARI SİSMİK ETÜDÜ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8856",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8856",
+    "il_adaylari": [
+     "Bolu"
+    ]
+   },
+   {
+    "rapor_adi": "MUDURNU KAPLICASI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4367",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4367",
+    "il_adaylari": [
+     "Bolu"
+    ]
+   }
+  ],
+  "Burdur": [
+   {
+    "rapor_adi": "BURDUR KEÇİBORLU DOMBAY OVASI HİDROJEOLOJİK ETÜDÜ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2720",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2720",
+    "il_adaylari": [
+     "Burdur",
+     "Isparta"
+    ]
+   },
+   {
+    "rapor_adi": "BURDUR VİLAYET MERKEZİNE SU TEMİNİ HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=789",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "789",
+    "il_adaylari": [
+     "Burdur"
+    ]
+   },
+   {
+    "rapor_adi": "TEFENNİ OVASININ HİDROJEOLOJİK RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2721",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2721",
+    "il_adaylari": [
+     "Burdur"
+    ]
+   }
+  ],
+  "Bursa": [
+   {
+    "rapor_adi": "ARMUTLU (GEMLİK) KAPLICASI BÖLGESİNDE JEOLOJİK VE HİDROLOJİK ETÜTLER HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=3886",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "3886",
+    "il_adaylari": [
+     "Bursa",
+     "Yalova"
+    ]
+   },
+   {
+    "rapor_adi": "BURSA KENTİ SICAKSU KAYNAKLARI HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5659",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5659",
+    "il_adaylari": [
+     "Bursa"
+    ]
+   },
+   {
+    "rapor_adi": "BURSA KÜKÜRTLÜ 136 PAFTA,986 ADA, 58 NO'LU PARSELE İLİŞKİN SICAKSU GÖZLEM KUYULARI HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9083",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9083",
+    "il_adaylari": [
+     "Bursa"
+    ]
+   },
+   {
+    "rapor_adi": "BURSA MENBALARI HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=974",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "974",
+    "il_adaylari": [
+     "Bursa"
+    ]
+   },
+   {
+    "rapor_adi": "BURSA MERINOS FABRİKASINA İLAVE SU TEMİNİ KONUSUNDAKİ İMKANLARLA İLGİLİ HI.",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2642",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2642",
+    "il_adaylari": [
+     "Bursa"
+    ]
+   },
+   {
+    "rapor_adi": "BURSA MUDANYA'DA KURULMASI MUTASAVVER JÜT FABRİKASINA SU TEMİNİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2641",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2641",
+    "il_adaylari": [
+     "Bursa"
+    ]
+   },
+   {
+    "rapor_adi": "BURSA OSMANGAZİ GAZİAKDEMİR MAH. KÜKÜRTLÜ MEVKİİ 28 N.I.C PAFTA, 8333 ADA, 3 PARSELDE AÇILAN ALTI ADET SICAK SU GÖZLEM KUYULARINA AİT HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10416",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10416",
+    "il_adaylari": [
+     "Bursa"
+    ]
+   },
+   {
+    "rapor_adi": "BURSA OVASININ HİDROJEOLOJİSİ HAKKINDA NOT",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1799",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "1799",
+    "il_adaylari": [
+     "Bursa"
+    ]
+   },
+   {
+    "rapor_adi": "BURSA İLİ, OSMANGAZİ İLÇESİ, ÇEKİRGE MAHALLESİ 324 PAFTA, 1720 ADA, 3 NO'LU PARSELE AİT HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9970",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9970",
+    "il_adaylari": [
+     "Bursa"
+    ]
+   },
+   {
+    "rapor_adi": "BURSA İLİ, OSMANGAZİ İLÇESİ,TABAKHANE MEVKİSİ VE CİVARINDA AÇILAN BEŞ ADET SICAKSU GÖZLEM KUYULARINA Aİ HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10276",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10276",
+    "il_adaylari": [
+     "Bursa"
+    ]
+   },
+   {
+    "rapor_adi": "BURSA İLİ,OSMANGAZİ İLÇESİ, ÇEKİRGE MAHALLESİ, 15/4 PAFTA,985 ADA, 24 NO'LU PARSELDE AÇILAN ALTI ADET SICAKSU GÖZLEM KUYULARINA AİT HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9506",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9506",
+    "il_adaylari": [
+     "Bursa"
+    ]
+   },
+   {
+    "rapor_adi": "BURSA İLİ-OSMANGAZİ İLÇESİ ÇEKİRGE MAHALLESİ 15/4 985 ADA 34 NO'LU PARSELDE AÇILAN SICAKSU GÖZLEM KUYULARINA AİT HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9939",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9939",
+    "il_adaylari": [
+     "Bursa"
+    ]
+   },
+   {
+    "rapor_adi": "BURSA-ORHANELİ LİNYİT SAHASI BURMU SEKTÖRÜ HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6041",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6041",
+    "il_adaylari": [
+     "Bursa"
+    ]
+   },
+   {
+    "rapor_adi": "OYLAT KAPLICASI (İNEGÖL) HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5539",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5539",
+    "il_adaylari": [
+     "Bursa"
+    ]
+   },
+   {
+    "rapor_adi": "SOSYAL SİGORTALAR KURUMU'NA AİT BURSA, ÇEKİRGE'DEKİ SICAKSU KAYNAĞININ HİDROJELOJİK ÖN ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4682",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4682",
+    "il_adaylari": [
+     "Bursa"
+    ]
+   },
+   {
+    "rapor_adi": "İNEGÖL CİVARINDA MADENİ SULAR ÇİTLİ MADEN SUYU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1656",
+    "bulan_kelimeler": [
+     "yeraltı suyu"
+    ],
+    "product_id": "1656",
+    "il_adaylari": [
+     "Bursa",
+     "Elazığ"
+    ]
+   }
+  ],
+  "Denizli": [
+   {
+    "rapor_adi": "ANKARA GÜNEY BÖLGESİNİN HİDROJEOLOJİK HARİTASI (1/25.000)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2186",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2186",
+    "il_adaylari": [
+     "Ankara",
+     "Denizli"
+    ]
+   },
+   {
+    "rapor_adi": "ANKARA'NIN GÜNEY HAVALİSİNDE SU BULMA İMKANLARI HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2523",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2523",
+    "il_adaylari": [
+     "Ankara",
+     "Denizli"
+    ]
+   },
+   {
+    "rapor_adi": "DENİZLİ SARAYKÖY BELEDİYESİ YERALTI SUYU ARAMALARI JEOFİZİK ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10467",
+    "bulan_kelimeler": [
+     "yeraltı suyu"
+    ],
+    "product_id": "10467",
+    "il_adaylari": [
+     "Denizli"
+    ]
+   },
+   {
+    "rapor_adi": "DENİZLİ ÇİVRİL BAKLAN HİDROJEOLOJİ ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2723",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2723",
+    "il_adaylari": [
+     "Denizli"
+    ]
+   },
+   {
+    "rapor_adi": "DENİZLİ-KARAHAYIT-PAMUKKALE VE ÇEVRESİ SICAKSU KAYNAKLARININ KORUNMASI VE GELİŞTİRİLMESİNE AİT HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9942",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9942",
+    "il_adaylari": [
+     "Denizli"
+    ]
+   },
+   {
+    "rapor_adi": "DENİZLİ-PAMUKKALE VE KARAHAYIT KAPLICALARININ HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5670",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5670",
+    "il_adaylari": [
+     "Denizli"
+    ]
+   },
+   {
+    "rapor_adi": "DENİZLİ-ÇARDAK-BEYLERLİ ILICA PINAR KAPLICASI JEOTERMAL ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10138",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10138",
+    "il_adaylari": [
+     "Denizli"
+    ]
+   },
+   {
+    "rapor_adi": "DENİZLİ-ÇARDAK-BEYLERLİ KAPLICASI'NIN (ILICA PINARI) HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8141",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8141",
+    "il_adaylari": [
+     "Denizli"
+    ]
+   },
+   {
+    "rapor_adi": "GÜNEY AYAŞ SİLSİLELERİ İLE HAVALİSİNİN JEOLOJİSİ VE HİDROEOLOJİSİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2687",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2687",
+    "il_adaylari": [
+     "Ankara",
+     "Denizli"
+    ]
+   },
+   {
+    "rapor_adi": "GÜNEY AYAŞ SİLSİLESİNİN VE CİVARININ JEOLOJİ VE HİDROLOJİ BAKIMINDAN HARİTALANMASI",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2691",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2691",
+    "il_adaylari": [
+     "Ankara",
+     "Denizli"
+    ]
+   },
+   {
+    "rapor_adi": "ORMAN ANA TAMIR MÜDÜRLÜĞÜ (DENİZLİ) İÇİN AÇILAN ÇAMLIK SU KUYUSU BİTİRME RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9055",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9055",
+    "il_adaylari": [
+     "Denizli"
+    ]
+   },
+   {
+    "rapor_adi": "PAMUKKALE (DENİZLİ) BÖLGESİNİN JEOLOJİ VE HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4561",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4561",
+    "il_adaylari": [
+     "Denizli"
+    ]
+   },
+   {
+    "rapor_adi": "TAVAS OVASI HİDROLOJİK ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2722",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2722",
+    "il_adaylari": [
+     "Denizli"
+    ]
+   },
+   {
+    "rapor_adi": "YENİ BÜYÜK MİLLET MECLİSİNE SU TEMİNİ MAKSADIYLA ANKARA GÜNEY BÖLGESİNİN HİDROJEOLOJİK ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2187",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2187",
+    "il_adaylari": [
+     "Ankara",
+     "Denizli"
+    ]
+   }
+  ],
+  "Diyarbakır": [
+   {
+    "rapor_adi": "DİYARBAKIR 98/1 PAFTASI İZAHNAMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2176",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2176",
+    "il_adaylari": [
+     "Diyarbakır"
+    ]
+   },
+   {
+    "rapor_adi": "DİYARBAKIR SAYAK FABRİKASINA SU TEMİNİ İÇİN YAPILAN JEOLOJİK VE HİDROLOJEOLOJİK ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2631",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2631",
+    "il_adaylari": [
+     "Diyarbakır"
+    ]
+   },
+   {
+    "rapor_adi": "DİYARBAKIR-ÇERMİK SICAKSU SAHASI DOĞAL-POTANSİYEL ETÜTÜ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9073",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9073",
+    "il_adaylari": [
+     "Diyarbakır"
+    ]
+   },
+   {
+    "rapor_adi": "SICAK ÇERMİK KAPLICASI (SİVAS) HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5814",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5814",
+    "il_adaylari": [
+     "Diyarbakır",
+     "Sivas"
+    ]
+   },
+   {
+    "rapor_adi": "SİVAS-KANGAL BALIKLI KAPLICASI (YILANLI ÇERMİK) HİDROJEOLOJİ ÖN ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7246",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "7246",
+    "il_adaylari": [
+     "Diyarbakır",
+     "Sivas"
+    ]
+   },
+   {
+    "rapor_adi": "ÇERMİK KAPLICASI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4372",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4372",
+    "il_adaylari": [
+     "Diyarbakır"
+    ]
+   }
+  ],
+  "Düzce": [
+   {
+    "rapor_adi": "DÜZCE,DERDİN HAMAMI CİVARININ JEOLOJİ VE HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6359",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6359",
+    "il_adaylari": [
+     "Düzce"
+    ]
+   }
+  ],
+  "Edirne": [
+   {
+    "rapor_adi": "MERİÇ HAVZASI TOPRAKLARI HAKKINDA",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4198",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4198",
+    "il_adaylari": [
+     "Edirne"
+    ]
+   }
+  ],
+  "Elazığ": [
+   {
+    "rapor_adi": "BOLU HAVZASI BATI BÖLÜMÜNDE SICAK VE MADEN SULARI HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4368",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4368",
+    "il_adaylari": [
+     "Bolu",
+     "Elazığ"
+    ]
+   },
+   {
+    "rapor_adi": "ELAZIĞ VİLAYETİNDE YERALTI SULARININ ŞARTLARINI BİLDİRİR RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2724",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "yeraltı suyu"
+    ],
+    "product_id": "2724",
+    "il_adaylari": [
+     "Elazığ"
+    ]
+   },
+   {
+    "rapor_adi": "ERZİNCAN BÖGERT (EKŞİ SU) MADEN SUYU VE SICAK SUYU HİDROJEOLOJİ ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9954",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9954",
+    "il_adaylari": [
+     "Elazığ",
+     "Erzincan"
+    ]
+   },
+   {
+    "rapor_adi": "ERZİNCAN MINTIKASI MADEN SUYU MENBALARI HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=987",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "987",
+    "il_adaylari": [
+     "Elazığ",
+     "Erzincan"
+    ]
+   },
+   {
+    "rapor_adi": "ESKİŞEHİR SAKARİILICA ILICAKÖY MADEN SUYU JEOLOJİ-HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6605",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6605",
+    "il_adaylari": [
+     "Elazığ",
+     "Eskişehir"
+    ]
+   },
+   {
+    "rapor_adi": "GİRESUN-DERELİ-KÜRTÜN PINARLAR KÖYÜ MADEN SUYU KAYNAĞININ JEOLOJİ-HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8957",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8957",
+    "il_adaylari": [
+     "Elazığ",
+     "Giresun",
+     "Gümüşhane"
+    ]
+   },
+   {
+    "rapor_adi": "HASANÇELEBİ HEKİMHAN-MALATYA DEMİR MADENİ MADEN İŞLETME-ZENGİNLEŞTİRME VE PELETLEME TESİSLERİ ÖN FİZİBİLİTE ETÜDÜ-JEOLOJİK- JEOFİZİK VE HİDROJEOLOJİK ETÜTLER",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=37418",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "37418",
+    "il_adaylari": [
+     "Elazığ",
+     "Malatya"
+    ]
+   },
+   {
+    "rapor_adi": "ILICA (ERZİNCAN) SICAKSU SAHASI BÖGERT MADEN SUYU HİDROJEOLOJİ İNCELEMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9833",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9833",
+    "il_adaylari": [
+     "Elazığ",
+     "Erzincan"
+    ]
+   },
+   {
+    "rapor_adi": "KOCAELİ VİLAYETİNDEKİ SICAKSU VE MADEN SUYU KAYNAKLARI HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2619",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2619",
+    "il_adaylari": [
+     "Elazığ",
+     "Kocaeli"
+    ]
+   },
+   {
+    "rapor_adi": "MERSİN, ADANA, HATAY İLLERİ HİDROJEOLOJİ ETÜTLERİ (AKİFER KAYA VE MADEN SULARI ARAMALARI) VE SONDAJ ÇALIŞMALARI",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=11251",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "11251",
+    "il_adaylari": [
+     "Adana",
+     "Elazığ",
+     "Hatay",
+     "Mersin"
+    ]
+   },
+   {
+    "rapor_adi": "NİĞDE,AKSARAY HELVA DERE KASABASI İÇİNDE MADEN SUYU VE MEMBA SUYU KAYNAKLARININ HİDROJEOLOJİ ÖN ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7629",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7629",
+    "il_adaylari": [
+     "Aksaray",
+     "Elazığ",
+     "Niğde"
+    ]
+   },
+   {
+    "rapor_adi": "ULUOVA VE ELAZIĞ OVALARI HİDROJEOLOJİK ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4442",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "4442",
+    "il_adaylari": [
+     "Elazığ"
+    ]
+   },
+   {
+    "rapor_adi": "ÇANAKKALE VİLAYETİNDEKİ SICAK SU VE MADEN SUYU KAYNAKLARI HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2618",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2618",
+    "il_adaylari": [
+     "Elazığ",
+     "Çanakkale"
+    ]
+   },
+   {
+    "rapor_adi": "ÇİTLİ MADEN SUYU HAKKINDA İLK ETÜT",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1334",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "1334",
+    "il_adaylari": [
+     "Elazığ"
+    ]
+   },
+   {
+    "rapor_adi": "İNEGÖL CİVARINDA MADENİ SULAR ÇİTLİ MADEN SUYU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1656",
+    "bulan_kelimeler": [
+     "yeraltı suyu"
+    ],
+    "product_id": "1656",
+    "il_adaylari": [
+     "Bursa",
+     "Elazığ"
+    ]
+   }
+  ],
+  "Erzincan": [
+   {
+    "rapor_adi": "ERZİNCAN BÖGERT (EKŞİ SU) MADEN SUYU VE SICAK SUYU HİDROJEOLOJİ ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9954",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9954",
+    "il_adaylari": [
+     "Elazığ",
+     "Erzincan"
+    ]
+   },
+   {
+    "rapor_adi": "ERZİNCAN MINTIKASI MADEN SUYU MENBALARI HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=987",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "987",
+    "il_adaylari": [
+     "Elazığ",
+     "Erzincan"
+    ]
+   },
+   {
+    "rapor_adi": "ILICA (ERZİNCAN) SICAKSU SAHASI BÖGERT MADEN SUYU HİDROJEOLOJİ İNCELEMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9833",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9833",
+    "il_adaylari": [
+     "Elazığ",
+     "Erzincan"
+    ]
+   },
+   {
+    "rapor_adi": "KEMAH ERZİNCAN TUZLASININ SUYU HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5054",
+    "bulan_kelimeler": [
+     "yeraltı suyu"
+    ],
+    "product_id": "5054",
+    "il_adaylari": [
+     "Erzincan"
+    ]
+   }
+  ],
+  "Erzurum": [
+   {
+    "rapor_adi": "ERZURUM-PASİNLER KAPLICASI HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8379",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8379",
+    "il_adaylari": [
+     "Erzurum"
+    ]
+   },
+   {
+    "rapor_adi": "KUZULUK-AZİZİYE MEVKİİNIN CEMALBEY MAHALLESİNDE BULUNAN KAPLICALARIN JEOLOJİK ETÜDÜ (SAKARYA)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2329",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2329",
+    "il_adaylari": [
+     "Erzurum",
+     "Sakarya"
+    ]
+   },
+   {
+    "rapor_adi": "PASİNLER (ERZURUM) KAPLICASI PS-2 NO'LU SICAKSU SONDAJI KUYU BİTİRME VE KORUMA ALANLARI RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9442",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9442",
+    "il_adaylari": [
+     "Erzurum"
+    ]
+   },
+   {
+    "rapor_adi": "PASİNLER OVASI HİDROJEOLOJİK ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5029",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "5029",
+    "il_adaylari": [
+     "Erzurum"
+    ]
+   }
+  ],
+  "Eskişehir": [
+   {
+    "rapor_adi": "ESKİŞEHİR SAKARİILICA ILICAKÖY MADEN SUYU JEOLOJİ-HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6605",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6605",
+    "il_adaylari": [
+     "Elazığ",
+     "Eskişehir"
+    ]
+   },
+   {
+    "rapor_adi": "ESKİŞEHİR SU BASKINI ÜZERİNDE TETKİKLER",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1841",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "1841",
+    "il_adaylari": [
+     "Eskişehir"
+    ]
+   },
+   {
+    "rapor_adi": "ESKİŞEHİR YÖRESİ JEOLOJİ-HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6374",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6374",
+    "il_adaylari": [
+     "Eskişehir"
+    ]
+   },
+   {
+    "rapor_adi": "ESKİŞEHİR YÖRESİNDEKİ SICAKSU KUYULARI VE SICAKSU KAYNAKLARININ KORUMA ALANLARI ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9231",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9231",
+    "il_adaylari": [
+     "Eskişehir"
+    ]
+   },
+   {
+    "rapor_adi": "ESKİŞEHİR-AŞAĞI ILICA KÖYÜ SICAKSU KAYNAĞI JEOLOJİ-HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9829",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9829",
+    "il_adaylari": [
+     "Eskişehir"
+    ]
+   },
+   {
+    "rapor_adi": "HAMAMKARAHİSAR (SİVRİHİSAR) KAPLICASINA İLİŞKİN HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7088",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7088",
+    "il_adaylari": [
+     "Eskişehir"
+    ]
+   },
+   {
+    "rapor_adi": "SİVRİHİSAR-GÜMÜŞKONAK (YÖRME) KAPLICASI HİDROJEOLOJİ VE KORUMA ALANLARI ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9507",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9507",
+    "il_adaylari": [
+     "Eskişehir"
+    ]
+   }
+  ],
+  "Gaziantep": [
+   {
+    "rapor_adi": "NİZİP İLÇESİNİN ARAZİ KULLANIM POTANSİYELİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9547",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9547",
+    "il_adaylari": [
+     "Gaziantep"
+    ]
+   }
+  ],
+  "Giresun": [
+   {
+    "rapor_adi": "GİRESUN HİDROJEOLOJİK ÖN ETÜTLERİ HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4060",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "4060",
+    "il_adaylari": [
+     "Giresun"
+    ]
+   },
+   {
+    "rapor_adi": "GİRESUN-DERELİ-KÜRTÜN PINARLAR KÖYÜ MADEN SUYU KAYNAĞININ JEOLOJİ-HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8957",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8957",
+    "il_adaylari": [
+     "Elazığ",
+     "Giresun",
+     "Gümüşhane"
+    ]
+   }
+  ],
+  "Gümüşhane": [
+   {
+    "rapor_adi": "GİRESUN-DERELİ-KÜRTÜN PINARLAR KÖYÜ MADEN SUYU KAYNAĞININ JEOLOJİ-HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8957",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8957",
+    "il_adaylari": [
+     "Elazığ",
+     "Giresun",
+     "Gümüşhane"
+    ]
+   }
+  ],
+  "Hatay": [
+   {
+    "rapor_adi": "ANTAKYA CİVARINDARINDAKİ AMİK OVASI HİDROLOJİK ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2727",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2727",
+    "il_adaylari": [
+     "Hatay"
+    ]
+   },
+   {
+    "rapor_adi": "DÖRTYOL DEVLET TURUNÇGİLLER BAHÇESİ YER ALTI SULARI HAKKINDA",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2009",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2009",
+    "il_adaylari": [
+     "Hatay"
+    ]
+   },
+   {
+    "rapor_adi": "DÖRTYOL ERZİN OVASININ HİDROJEOLOJİK ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2728",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2728",
+    "il_adaylari": [
+     "Hatay"
+    ]
+   },
+   {
+    "rapor_adi": "HAMMAMKÖYÜ (HATAY-KUMLU) KAPLICA SAHASININ HİDROJEOLOJİ İNCELEMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9842",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9842",
+    "il_adaylari": [
+     "Hatay"
+    ]
+   },
+   {
+    "rapor_adi": "HATAY SONDAJ FAALİYET RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10363",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10363",
+    "il_adaylari": [
+     "Hatay"
+    ]
+   },
+   {
+    "rapor_adi": "MERSİN, ADANA, HATAY İLLERİ HİDROJEOLOJİ ETÜTLERİ (AKİFER KAYA VE MADEN SULARI ARAMALARI) VE SONDAJ ÇALIŞMALARI",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=11251",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "11251",
+    "il_adaylari": [
+     "Adana",
+     "Elazığ",
+     "Hatay",
+     "Mersin"
+    ]
+   },
+   {
+    "rapor_adi": "REYHANLI KAPLICASI HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5124",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5124",
+    "il_adaylari": [
+     "Hatay"
+    ]
+   }
+  ],
+  "Isparta": [
+   {
+    "rapor_adi": "BURDUR KEÇİBORLU DOMBAY OVASI HİDROJEOLOJİK ETÜDÜ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2720",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2720",
+    "il_adaylari": [
+     "Burdur",
+     "Isparta"
+    ]
+   },
+   {
+    "rapor_adi": "ISPARTA-ATABEY OVASI HİDROLOJİK ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2729",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2729",
+    "il_adaylari": [
+     "Isparta"
+    ]
+   },
+   {
+    "rapor_adi": "ISPARTA-ŞARKİKARAAĞAÇ KÖMÜR SAHASI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=21071",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "21071",
+    "il_adaylari": [
+     "Isparta"
+    ]
+   }
+  ],
+  "Kahramanmaraş": [
+   {
+    "rapor_adi": "ELBİSTAN-CELA İÇMECELERİ JEOLOJİ-HİDROJEOLOJİ ETÜTÜ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5827",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5827",
+    "il_adaylari": [
+     "Kahramanmaraş"
+    ]
+   },
+   {
+    "rapor_adi": "ELBİSTAN-CELA İÇMECELERİ JEOLOJİ-HİDROJEOLOJİ REVİZYON RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6398",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6398",
+    "il_adaylari": [
+     "Kahramanmaraş"
+    ]
+   },
+   {
+    "rapor_adi": "K.MARAŞ-ELBİSTAN-KIŞLAKÖY SEKTÖRÜ YERALTISUYU ARAMALARI REZİSTİVİTE VE İNDÜKLEM POLARİZASYON (IP) ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7306",
+    "bulan_kelimeler": [
+     "yeraltısuyu",
+     "yeraltı suyu"
+    ],
+    "product_id": "7306",
+    "il_adaylari": [
+     "Kahramanmaraş"
+    ]
+   },
+   {
+    "rapor_adi": "KAHRAMANMARAŞ AFŞİN-ELBİSTAN KÖMÜR HAVZASI E SEKTÖRÜ HİDROJEOLOJİ ETÜT VE IŞLAKÖY SEKTÖRÜ SONDAJLARI RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=36975",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "36975",
+    "il_adaylari": [
+     "Kahramanmaraş"
+    ]
+   },
+   {
+    "rapor_adi": "KAHRAMANMARAŞ İLİ AFŞİN-ELBİSTAN KÖMÜR HAVZASI ÇÖLLOLAR SAHASI YERALTISUYU AKIM MODELİ VE DRENAJ PLANI RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=36991",
+    "bulan_kelimeler": [
+     "yeraltısuyu",
+     "yeraltı suyu"
+    ],
+    "product_id": "36991",
+    "il_adaylari": [
+     "Kahramanmaraş"
+    ]
+   },
+   {
+    "rapor_adi": "KAHRAMANMARAŞ-DÖNGELE SAHASI SICAKSU JEOLOJİ-HİDROJEOLOJİ ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10300",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10300",
+    "il_adaylari": [
+     "Kahramanmaraş"
+    ]
+   },
+   {
+    "rapor_adi": "KAHRAMANMARAŞ-EKİNÖZÜ (CELA) İÇMECELERİNDE YAPILAN YARMA ÇALIŞMALARI VE HİDROJEOLOJİK DEĞERLENDİRME RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9258",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "9258",
+    "il_adaylari": [
+     "Kahramanmaraş"
+    ]
+   },
+   {
+    "rapor_adi": "KAHRAMANMARAŞ-SÜLEYMANLI ILICASI HİDROJEOLOJİ ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7407",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7407",
+    "il_adaylari": [
+     "Kahramanmaraş"
+    ]
+   },
+   {
+    "rapor_adi": "MARAŞ TEKSTİL FABRİKASINA SU TEMİNİ İÇİN YAPILAN JEOLOJİK VE HİDROLOJİ ETÜTLER",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2633",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2633",
+    "il_adaylari": [
+     "Kahramanmaraş"
+    ]
+   }
+  ],
+  "Karaman": [
+   {
+    "rapor_adi": "KARAMAN (AKÇAŞEHİR) (KARAPINAR,EREĞLİ) KONYA KÖMÜR RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=11764",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "11764",
+    "il_adaylari": [
+     "Karaman",
+     "Konya"
+    ]
+   },
+   {
+    "rapor_adi": "KONYA KARAMAN TEKSTİL FABRİKASINA SU TEMİNİI MAKSADIYLA YAPILAN JEOLOJİK VE HİDROJEOLOJİK ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2632",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2632",
+    "il_adaylari": [
+     "Karaman",
+     "Konya"
+    ]
+   },
+   {
+    "rapor_adi": "KONYA/KARAPINAR-KARAMAN/AYRANCI KÖMÜR SAHASI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=37461",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "37461",
+    "il_adaylari": [
+     "Karaman",
+     "Konya"
+    ]
+   },
+   {
+    "rapor_adi": "KONYA/KARAPINAR-KARAMAN/AYRANCI KÖMÜR SAHASI İLAVE HİDROJEOLOJİ  SONDAJ ÇALIŞMASI RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=37469",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "37469",
+    "il_adaylari": [
+     "Karaman",
+     "Konya"
+    ]
+   }
+  ],
+  "Kastamonu": [
+   {
+    "rapor_adi": "KASTAMONU MAHALLİ İDARELER EĞİTİM-ARAŞTIRMA VE KONGRE MERKEZİNİN JEOLOJİK ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10406",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10406",
+    "il_adaylari": [
+     "Kastamonu"
+    ]
+   },
+   {
+    "rapor_adi": "PINARBAŞI (KASTAMONU) İLÇESİ ILICA MAHALLESİNDE YAPILAN SICAKSU ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9713",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9713",
+    "il_adaylari": [
+     "Kastamonu"
+    ]
+   }
+  ],
+  "Kayseri": [
+   {
+    "rapor_adi": "KAYSERİ OVASI HİDROJEOLOJİK RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2732",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2732",
+    "il_adaylari": [
+     "Kayseri"
+    ]
+   },
+   {
+    "rapor_adi": "KAYSERİ-HİMMETDEDE ÇİFTGÖZ KAPLICASI JEOLOJİ-HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8981",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8981",
+    "il_adaylari": [
+     "Kayseri"
+    ]
+   }
+  ],
+  "Kilis": [
+   {
+    "rapor_adi": "ZEYTİNYAĞ FABRİKASINA SU TEMİNİ MAKSDIYLA KİLİS BÖLGESİ HAKKINDA HİDROJEOLOJİK RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2712",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2712",
+    "il_adaylari": [
+     "Kilis"
+    ]
+   }
+  ],
+  "Kocaeli": [
+   {
+    "rapor_adi": "GÖLCÜK (KOCAELİ) YAZLIKKÖY KAPLICASININ JEOLOJİ VE HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8212",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8212",
+    "il_adaylari": [
+     "Kocaeli"
+    ]
+   },
+   {
+    "rapor_adi": "KOCAELİ VİLAYETİNDEKİ SICAKSU VE MADEN SUYU KAYNAKLARI HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2619",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2619",
+    "il_adaylari": [
+     "Elazığ",
+     "Kocaeli"
+    ]
+   },
+   {
+    "rapor_adi": "SÜMERBANKIN YARIMCA-İZMİT'TE Kİ YENİ SERAMİK FABRİKASI İÇİN ZEMİN SUYU ÇIKARMA İMKANLARI HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=3398",
+    "bulan_kelimeler": [
+     "yeraltı suyu"
+    ],
+    "product_id": "3398",
+    "il_adaylari": [
+     "Kocaeli"
+    ]
+   },
+   {
+    "rapor_adi": "İZMİT-GÖLCÜK TERSANESİ İÇİN SU ARAŞTIRMALARI",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1952",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "1952",
+    "il_adaylari": [
+     "Kocaeli"
+    ]
+   }
+  ],
+  "Konya": [
+   {
+    "rapor_adi": "DSİ DEN ALINAN KONYA HAVALİSİ SU SONDAJ PROFİLLERİ HAKKINDA NOT",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=18666",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "18666",
+    "il_adaylari": [
+     "Konya"
+    ]
+   },
+   {
+    "rapor_adi": "GÖZLÜ DEVLET ÜRETME ÇİFTLİĞİ CIVARINDA HİDROJEOLOJİK ARAŞTIRMALAR (KONYA-SARAYÖNÜ)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1981",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "1981",
+    "il_adaylari": [
+     "Konya"
+    ]
+   },
+   {
+    "rapor_adi": "KARAMAN (AKÇAŞEHİR) (KARAPINAR,EREĞLİ) KONYA KÖMÜR RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=11764",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "11764",
+    "il_adaylari": [
+     "Karaman",
+     "Konya"
+    ]
+   },
+   {
+    "rapor_adi": "KONYA BÖLGESİ'NİN HİDROJEOLOJİK KEŞİF RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2736",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2736",
+    "il_adaylari": [
+     "Konya"
+    ]
+   },
+   {
+    "rapor_adi": "KONYA KARAMAN TEKSTİL FABRİKASINA SU TEMİNİI MAKSADIYLA YAPILAN JEOLOJİK VE HİDROJEOLOJİK ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2632",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2632",
+    "il_adaylari": [
+     "Karaman",
+     "Konya"
+    ]
+   },
+   {
+    "rapor_adi": "KONYA-BEYŞEHİR-SEYDİŞEHİR LİNYİT HAVZASI DEĞERLENDİRME RAPORU CİLT 7 HİDROJEOLOJİ KARADİKEN SEKTÖRÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7366",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7366",
+    "il_adaylari": [
+     "Konya"
+    ]
+   },
+   {
+    "rapor_adi": "KONYA-DEMİRKENT (İSMİL) SICAKSU KUYULARININ KORUNMASI VE GELİŞTİRİLMESİNE AİT HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9952",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9952",
+    "il_adaylari": [
+     "Konya"
+    ]
+   },
+   {
+    "rapor_adi": "KONYA-ILGIN KAPLICALARI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5841",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5841",
+    "il_adaylari": [
+     "Konya"
+    ]
+   },
+   {
+    "rapor_adi": "KONYA-KÖŞKKÖY KAPLICASI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6428",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6428",
+    "il_adaylari": [
+     "Konya"
+    ]
+   },
+   {
+    "rapor_adi": "KONYA/KARAPINAR-KARAMAN/AYRANCI KÖMÜR SAHASI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=37461",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "37461",
+    "il_adaylari": [
+     "Karaman",
+     "Konya"
+    ]
+   },
+   {
+    "rapor_adi": "KONYA/KARAPINAR-KARAMAN/AYRANCI KÖMÜR SAHASI İLAVE HİDROJEOLOJİ  SONDAJ ÇALIŞMASI RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=37469",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "37469",
+    "il_adaylari": [
+     "Karaman",
+     "Konya"
+    ]
+   },
+   {
+    "rapor_adi": "TÜRKİYEDE KURAK BÖLGE ÇALIŞMALARI VE 1950-1954 SENELERİ ARASINDA KONYA-POLATLI YARI KURAK SAHASINDA YAPILAN HİDROJEOLOJİK ARAŞTIRMALAR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2206",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2206",
+    "il_adaylari": [
+     "Ankara",
+     "Konya"
+    ]
+   }
+  ],
+  "Kütahya": [
+   {
+    "rapor_adi": "AZOT SANAYİİ T.A.ŞİRKETİ TARAFINDAN KÜTAHYA'DA AÇILAN ARTEZYEN KUYUSUNUN HİDROJEOLOJİK BASENİNE AİT ETÜT",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2403",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2403",
+    "il_adaylari": [
+     "Kütahya"
+    ]
+   },
+   {
+    "rapor_adi": "ETİBANK'IN KÜTAHYA'DA KURACAĞI TERMİK SANTRALINA SU TEMİNİ İÇİN YAPILAN SONDAJLAR HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2700",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2700",
+    "il_adaylari": [
+     "Kütahya"
+    ]
+   },
+   {
+    "rapor_adi": "EYNAL VE ÇİTGÖL-NAŞA (SİMAV) KAPLICALARININ HİDROJEOLOJİ İNCELEMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7737",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7737",
+    "il_adaylari": [
+     "Kütahya"
+    ]
+   },
+   {
+    "rapor_adi": "GEDİZ-ABİDE ILICALARI BÖLGESİ HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4635",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4635",
+    "il_adaylari": [
+     "Kütahya"
+    ]
+   },
+   {
+    "rapor_adi": "KÜTAHYA HAVAALANI SU İHTİYACININ TEMİNİNE AİT TEKLİFLER",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2404",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2404",
+    "il_adaylari": [
+     "Kütahya"
+    ]
+   },
+   {
+    "rapor_adi": "KÜTAHYA YONCALI KAPLICALARI HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5892",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5892",
+    "il_adaylari": [
+     "Kütahya"
+    ]
+   },
+   {
+    "rapor_adi": "KÜTAHYA YONCALI YÖRESİNİN JEOLOJİ-HİDROJEOLOJİ İNCELEMESİ VE TOPRAK GAZLARI ÖLÇÜMLERİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9910",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9910",
+    "il_adaylari": [
+     "Kütahya"
+    ]
+   },
+   {
+    "rapor_adi": "KÜTAHYA-HARLEK (ILICA) KAPLICASI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8113",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "8113",
+    "il_adaylari": [
+     "Kütahya"
+    ]
+   },
+   {
+    "rapor_adi": "KÜTAHYA-TAVŞANLI-TUNÇBİLEK KÖMÜR SAHASI HİDROJEOLOJİ ETÜDÜ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=11589",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "11589",
+    "il_adaylari": [
+     "Kütahya"
+    ]
+   },
+   {
+    "rapor_adi": "KÜTAHYA-TAVŞANLI-TUNÇBİLEK KÖMÜR SAHASI HİDROJEOLOJİ ÖN ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=11534",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "11534",
+    "il_adaylari": [
+     "Kütahya"
+    ]
+   },
+   {
+    "rapor_adi": "KÜTAHYA-YENİCEKÖY SICAKSU KAYNAKLARI JEOLOJİ-HİDROJEOLOJİ ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6869",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6869",
+    "il_adaylari": [
+     "Kütahya"
+    ]
+   },
+   {
+    "rapor_adi": "KÜTAHYA-YONCALI KAPLICASI SICAKSU SONDAJI (YON-3) KUYU BİTİRME VE KORUMA ALANLARI RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9546",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9546",
+    "il_adaylari": [
+     "Kütahya"
+    ]
+   },
+   {
+    "rapor_adi": "MURATDAĞI (GEDİZ) KAPLICASININ HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5869",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5869",
+    "il_adaylari": [
+     "Kütahya"
+    ]
+   },
+   {
+    "rapor_adi": "TURGUTLU-SALİHLİ (MANİSA İLİ) ARASI GEDİZ NEHRİ GÜNEYİNİN JEOLOJİ,HİDROJEOLOJİ VE JEOTERMİK ETÜTÜNE AİT RAPOR (1/25.000 İZMİR L19-B1-B2 PAFTALARI)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4684",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4684",
+    "il_adaylari": [
+     "Kütahya",
+     "Manisa",
+     "İzmir"
+    ]
+   },
+   {
+    "rapor_adi": "YEŞİL KAPLICALAR (EMET-KÜTAHYA) BÖLGESİNDEKİ TERMAL KAYNAKLARIN KORUMA ALANLARI RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9620",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9620",
+    "il_adaylari": [
+     "Kütahya",
+     "Yalova"
+    ]
+   },
+   {
+    "rapor_adi": "YEŞİL KAPLICALAR (KÜTAHYA-EMET) YÖRESİNİN JEOLOJİ-HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9918",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9918",
+    "il_adaylari": [
+     "Kütahya"
+    ]
+   }
+  ],
+  "Kırıkkale": [
+   {
+    "rapor_adi": "KESKİN İLÇESİNE SU TEMİNİ HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1970",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "1970",
+    "il_adaylari": [
+     "Kırıkkale"
+    ]
+   },
+   {
+    "rapor_adi": "ÇORUM DELİCE ARAF OVALARININ HİDROJEOLOJİK ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=18366",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "18366",
+    "il_adaylari": [
+     "Kırıkkale",
+     "Çorum"
+    ]
+   }
+  ],
+  "Kırşehir": [
+   {
+    "rapor_adi": "KIRŞEHİR AHİ EVRAN ÜNİVERSİTESİ AĞBAŞI YERLEŞKESİ SOĞUK SU ARAMALARI HİDROJEOLOJİK VE JEOELEKTRİK ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=36963",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "36963",
+    "il_adaylari": [
+     "Kırşehir"
+    ]
+   },
+   {
+    "rapor_adi": "KIRŞEHİR DOĞUSUNUN JEOLOJİK ETÜDÜ HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2373",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2373",
+    "il_adaylari": [
+     "Kırşehir"
+    ]
+   },
+   {
+    "rapor_adi": "KIRŞEHİR İLİ KARACAÖREN KÖYÜ İÇME SUYU ETÜDÜNE AİT RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1989",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "1989",
+    "il_adaylari": [
+     "Kırşehir"
+    ]
+   },
+   {
+    "rapor_adi": "KIRŞEHİR,ÇİÇEKDAĞI-BULAMAÇLI KAPLICASININ HİDROJEOLOJİ İNCELEMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7090",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7090",
+    "il_adaylari": [
+     "Kırşehir"
+    ]
+   },
+   {
+    "rapor_adi": "KIRŞEHİR-KAMAN-SAVCILI BÜYÜKOBA ILICASININ HİDROJEOLOJİK ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6629",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "6629",
+    "il_adaylari": [
+     "Kırşehir"
+    ]
+   },
+   {
+    "rapor_adi": "KIRŞEHİR-KARAKURT KAPLICASININ JEOLOJİ-JEOFİZİK-TORAK GAZI ÖLÇÜMLERİ VE HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9794",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9794",
+    "il_adaylari": [
+     "Kırşehir"
+    ]
+   },
+   {
+    "rapor_adi": "TERME (KIRŞEHİR) KAPLICASINA İLİŞKİN HİDROJEOLOJİK RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4846",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "4846",
+    "il_adaylari": [
+     "Kırşehir",
+     "Samsun"
+    ]
+   },
+   {
+    "rapor_adi": "ÇİÇEKDAĞI-MAHMUTLU SICAK SU KAYNAKLARININ HİDROJEOLOJİ İNCELEMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7087",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7087",
+    "il_adaylari": [
+     "Kırşehir"
+    ]
+   }
+  ],
+  "Malatya": [
+   {
+    "rapor_adi": "BALABAN (DARENDE) İÇMECESİ HİDROJEOLOJİK RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=3687",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik",
+     "yeraltısuyu",
+     "yeraltı suyu"
+    ],
+    "product_id": "3687",
+    "il_adaylari": [
+     "Malatya"
+    ]
+   },
+   {
+    "rapor_adi": "HASANÇELEBİ (MALATYA) DEMİR YATAĞININ HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5445",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5445",
+    "il_adaylari": [
+     "Malatya"
+    ]
+   },
+   {
+    "rapor_adi": "HASANÇELEBİ HEKİMHAN JEOLOJİK-JEOFİZİK  ETÜTLER",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=18205",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "18205",
+    "il_adaylari": [
+     "Malatya"
+    ]
+   },
+   {
+    "rapor_adi": "HASANÇELEBİ HEKİMHAN-MALATYA DEMİR MADENİ MADEN İŞLETME-ZENGİNLEŞTİRME VE PELETLEME TESİSLERİ ÖN FİZİBİLİTE ETÜDÜ-JEOLOJİK- JEOFİZİK VE HİDROJEOLOJİK ETÜTLER",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=37418",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "37418",
+    "il_adaylari": [
+     "Elazığ",
+     "Malatya"
+    ]
+   },
+   {
+    "rapor_adi": "MALATYA-DARENDE-BALABAN İÇMECESİNİN HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8313",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8313",
+    "il_adaylari": [
+     "Malatya"
+    ]
+   }
+  ],
+  "Manisa": [
+   {
+    "rapor_adi": "KULA (MANİSA) DERİ ORGANİZE SANAYİ BÖLGESİ JEOLOJİ HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10100",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10100",
+    "il_adaylari": [
+     "Manisa"
+    ]
+   },
+   {
+    "rapor_adi": "KURŞUNLU SALİHLİ KAPLICASI KORUNMA ALANLARI RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5400",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5400",
+    "il_adaylari": [
+     "Manisa",
+     "Çankırı"
+    ]
+   },
+   {
+    "rapor_adi": "MANİSA TEKSTİL FABRİKASINA SU TEMİNİ MAKSADIYLA YAPILAN JEOLOJİK VE HİDROJEOLOJİK ETÜD",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2546",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2546",
+    "il_adaylari": [
+     "Manisa"
+    ]
+   },
+   {
+    "rapor_adi": "MANİSA-DEMİRCİ KAPLICASI HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10325",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10325",
+    "il_adaylari": [
+     "Manisa"
+    ]
+   },
+   {
+    "rapor_adi": "SALİHLİ BÖLG. KAPLIC.HİDROJEOLOJİK- JEOTERMİK ÇALIŞMALARI",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=12142",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "12142",
+    "il_adaylari": [
+     "Manisa"
+    ]
+   },
+   {
+    "rapor_adi": "SALİHLİ KAZASI DURASALLI KÖYÜ İÇİN İÇME SUYU ARAŞTIRMALARI",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1650",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "1650",
+    "il_adaylari": [
+     "Manisa"
+    ]
+   },
+   {
+    "rapor_adi": "SALİHLİ MANİSA VALEKS FABRİKASINA SU TEMİNİ MAKSADIYLA YAPILAN JEOLOJİK VE HİDROJEOLOJİK ETÜT",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2550",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2550",
+    "il_adaylari": [
+     "Manisa"
+    ]
+   },
+   {
+    "rapor_adi": "SOMA (MANİSA)-IŞIKLAR LİNYİT SAHASI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7689",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7689",
+    "il_adaylari": [
+     "Manisa"
+    ]
+   },
+   {
+    "rapor_adi": "SOMA MADENİ MINTIKASININ HİDROJEOLOJİK TETKİKİK HAKKINDA NOT",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1706",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "1706",
+    "il_adaylari": [
+     "Manisa"
+    ]
+   },
+   {
+    "rapor_adi": "TURGUTLU-SALİHLİ (MANİSA İLİ) ARASI GEDİZ NEHRİ GÜNEYİNİN JEOLOJİ,HİDROJEOLOJİ VE JEOTERMİK ETÜTÜNE AİT RAPOR (1/25.000 İZMİR L19-B1-B2 PAFTALARI)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4684",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4684",
+    "il_adaylari": [
+     "Kütahya",
+     "Manisa",
+     "İzmir"
+    ]
+   },
+   {
+    "rapor_adi": "URGANLI KAPLICALARI MANİSA TURGUTLU CIVARININ DETAY JEOLOJİSİ VE TERMOMİNERAL SULARININ HİDROJEOLOJİSİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4679",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4679",
+    "il_adaylari": [
+     "Manisa"
+    ]
+   }
+  ],
+  "Mardin": [
+   {
+    "rapor_adi": "MARDİN-DERİK MAZIDAĞ CİVARININ HİDROJEOLOJİK ETÜD RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=19450",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "19450",
+    "il_adaylari": [
+     "Mardin"
+    ]
+   }
+  ],
+  "Mersin": [
+   {
+    "rapor_adi": "MERSİN GÜNEYYOLU KAPLICA VE İÇMECESİ HİDROJEOLOJİ ETÜDÜ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4370",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4370",
+    "il_adaylari": [
+     "Mersin"
+    ]
+   },
+   {
+    "rapor_adi": "MERSİN, ADANA, HATAY İLLERİ HİDROJEOLOJİ ETÜTLERİ (AKİFER KAYA VE MADEN SULARI ARAMALARI) VE SONDAJ ÇALIŞMALARI",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=11251",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "11251",
+    "il_adaylari": [
+     "Adana",
+     "Elazığ",
+     "Hatay",
+     "Mersin"
+    ]
+   },
+   {
+    "rapor_adi": "TARSUS BELEDİYESİ İÇİN YER ALTI SUYU ARAŞTIRMALARI",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1882",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "1882",
+    "il_adaylari": [
+     "Mersin"
+    ]
+   },
+   {
+    "rapor_adi": "TARSUS İLÇESİNİN BAZI KÖYLERİNDE YER ALTI SUYU ARAŞTIRMALARI",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1966",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "1966",
+    "il_adaylari": [
+     "Mersin"
+    ]
+   },
+   {
+    "rapor_adi": "YEŞİLOVACIK (İÇEL-SİLİFKE) DOLAYININ HİDROJEOLOJİ ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10150",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10150",
+    "il_adaylari": [
+     "Mersin"
+    ]
+   },
+   {
+    "rapor_adi": "İÇEL-GÜLNAR-ERDEMLİ SU ARAMALARI REZİSTİVİTE ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10293",
+    "bulan_kelimeler": [
+     "yeraltısuyu",
+     "yeraltı suyu"
+    ],
+    "product_id": "10293",
+    "il_adaylari": [
+     "Mersin"
+    ]
+   }
+  ],
+  "Muğla": [
+   {
+    "rapor_adi": "DALAMAN-SANDALCIK BARAJ YERİ VE REZERVUAR JEOLOJİSİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4295",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4295",
+    "il_adaylari": [
+     "Muğla"
+    ]
+   },
+   {
+    "rapor_adi": "KAPNİÇ-SULTANİYE KAPLICASI (KÖYCEĞİZ-MUĞLA) HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5043",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5043",
+    "il_adaylari": [
+     "Muğla"
+    ]
+   },
+   {
+    "rapor_adi": "KÖYCEĞİZ (MUĞLA)-SULTANİYE KAPLICASI CİVARININ HİDROJEOLOJİ İNCELEMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9312",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9312",
+    "il_adaylari": [
+     "Muğla"
+    ]
+   },
+   {
+    "rapor_adi": "KÖYCEĞİZ-KAPNİÇ KAPLICASI HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5423",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5423",
+    "il_adaylari": [
+     "Muğla"
+    ]
+   },
+   {
+    "rapor_adi": "MUĞLA MİLAS ÇAKIRALAN HÜSAMLAR LİNYİT SAHALARI HİDROJEOLOJİ ÖN ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8718",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8718",
+    "il_adaylari": [
+     "Muğla"
+    ]
+   },
+   {
+    "rapor_adi": "MUĞLA-MİLAS-KARACAHİSAR LİNYİT SAHASI HİDROJEOLOJİ ÖN ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8467",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8467",
+    "il_adaylari": [
+     "Muğla"
+    ]
+   },
+   {
+    "rapor_adi": "MUĞLA-YATAĞAN-BOZHÜYÜK (BAĞYAKA) KAPLICASI BY-1 SICAKSU SONDAJI KUYU BİTİRME RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9093",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9093",
+    "il_adaylari": [
+     "Muğla"
+    ]
+   },
+   {
+    "rapor_adi": "MUĞLA-YATAĞAN-BOZHÜYÜK (BAĞYAKA) KAPLICASI HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8869",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8869",
+    "il_adaylari": [
+     "Muğla"
+    ]
+   },
+   {
+    "rapor_adi": "TINAZ LİNYİT SAHASININ (MUĞLA-YATAĞAN) HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8729",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8729",
+    "il_adaylari": [
+     "Muğla"
+    ]
+   },
+   {
+    "rapor_adi": "YATAĞAN (MUĞLA) LİNYİT SAHASININ HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5449",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5449",
+    "il_adaylari": [
+     "Muğla"
+    ]
+   },
+   {
+    "rapor_adi": "YATAĞAN OVASI HİDROJEOLOJİK RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2738",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2738",
+    "il_adaylari": [
+     "Muğla"
+    ]
+   }
+  ],
+  "Nevşehir": [
+   {
+    "rapor_adi": "NEVŞEHİR KOZAKLI CİVARININ HİDROJEOLOJİK ETÜDÜ VE JEOTERMİK ENERJİ İMKANLARI",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=3510",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "3510",
+    "il_adaylari": [
+     "Nevşehir"
+    ]
+   },
+   {
+    "rapor_adi": "NEVŞEHİR-KOZAKLI KAPLICASI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5451",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5451",
+    "il_adaylari": [
+     "Nevşehir"
+    ]
+   }
+  ],
+  "Niğde": [
+   {
+    "rapor_adi": "EREĞLİ BOR OVASI HİDROJEOLOJİK ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5032",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "5032",
+    "il_adaylari": [
+     "Niğde"
+    ]
+   },
+   {
+    "rapor_adi": "NİĞDE VİLAYETİNİN BAZI KÖYLERİ İLE BOR VE MİSLİ OVALARININ HİDROJEOLOJİK ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2740",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2740",
+    "il_adaylari": [
+     "Niğde"
+    ]
+   },
+   {
+    "rapor_adi": "NİĞDE, AKSARAY-ZIĞA KAPLICASININ HİDROJEOLOJİ İNCELEMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7505",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7505",
+    "il_adaylari": [
+     "Aksaray",
+     "Niğde"
+    ]
+   },
+   {
+    "rapor_adi": "NİĞDE,AKSARAY HELVA DERE KASABASI İÇİNDE MADEN SUYU VE MEMBA SUYU KAYNAKLARININ HİDROJEOLOJİ ÖN ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7629",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7629",
+    "il_adaylari": [
+     "Aksaray",
+     "Elazığ",
+     "Niğde"
+    ]
+   },
+   {
+    "rapor_adi": "NİĞDE-BOR-HAVUZLU KÖYÜ YERALTI SUYU ARAMALARI JEOFİZİK REZİSTİVİTE ETÜD RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10172",
+    "bulan_kelimeler": [
+     "yeraltı suyu"
+    ],
+    "product_id": "10172",
+    "il_adaylari": [
+     "Niğde"
+    ]
+   },
+   {
+    "rapor_adi": "VORLAEUFİGES CUTACHTEN ÜBER DAS BEİ NİĞDE GEPLANTE STAUBECKEN",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=792",
+    "bulan_kelimeler": [
+     "yeraltısuyu",
+     "yeraltı suyu"
+    ],
+    "product_id": "792",
+    "il_adaylari": [
+     "Niğde"
+    ]
+   },
+   {
+    "rapor_adi": "ÇİFTEHAN (NİĞDE) KAPLICASI HİDROJEOLOJİK ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4559",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "4559",
+    "il_adaylari": [
+     "Niğde"
+    ]
+   }
+  ],
+  "Ordu": [
+   {
+    "rapor_adi": "FATSA (SARMAŞIK) KAPLICASI HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6082",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6082",
+    "il_adaylari": [
+     "Ordu"
+    ]
+   },
+   {
+    "rapor_adi": "TÜRKİYE TERMAL VE MİNERALLİ SULAR ENVANTERİ ORDU (52)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10095",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10095",
+    "il_adaylari": [
+     "Ordu",
+     "Yalova"
+    ]
+   }
+  ],
+  "Rize": [
+   {
+    "rapor_adi": "RİZE-ANDON İÇMECESİ JEOLOJİ HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6602",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6602",
+    "il_adaylari": [
+     "Rize"
+    ]
+   },
+   {
+    "rapor_adi": "RİZE-ANDON İÇMECESİ VE İKİZDER-ILICAKÖY SICAKSU SAHALARININ HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9946",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9946",
+    "il_adaylari": [
+     "Rize"
+    ]
+   },
+   {
+    "rapor_adi": "RİZE-AYDER KAPLICASINA İLİŞKİN HİDROJEOLOJİK RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5689",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "5689",
+    "il_adaylari": [
+     "Rize"
+    ]
+   },
+   {
+    "rapor_adi": "RİZE-ÇAYELİ-MADENKÖY SAHASINDA 1976 YILI ÖNCESİ VE 1976 YILINDA YAPILAN ÇALIŞMALARA AİT RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5918",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "5918",
+    "il_adaylari": [
+     "Rize"
+    ]
+   },
+   {
+    "rapor_adi": "İYİDERE BASIN DEVELOPMENT PLAN",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4563",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4563",
+    "il_adaylari": [
+     "Rize"
+    ]
+   }
+  ],
+  "Sakarya": [
+   {
+    "rapor_adi": "AKYAZI (SAKARYA), KUZULUK KAPLICASI HİDROJEOLOJİ İNCELEMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=21239",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "21239",
+    "il_adaylari": [
+     "Sakarya"
+    ]
+   },
+   {
+    "rapor_adi": "KUZULUK-AZİZİYE MEVKİİNIN CEMALBEY MAHALLESİNDE BULUNAN KAPLICALARIN JEOLOJİK ETÜDÜ (SAKARYA)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2329",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2329",
+    "il_adaylari": [
+     "Erzurum",
+     "Sakarya"
+    ]
+   },
+   {
+    "rapor_adi": "SAKARYA-AKYAZI-KUZULUK KAPLICASININ ÖN HİDROJEOLOJİ İNCELEMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7730",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7730",
+    "il_adaylari": [
+     "Sakarya"
+    ]
+   }
+  ],
+  "Samsun": [
+   {
+    "rapor_adi": "HAMAMYAĞI (SAMSUN LADİK) KAPLICASI HİDROJEOLOJİ ETÜDÜ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4240",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4240",
+    "il_adaylari": [
+     "Samsun"
+    ]
+   },
+   {
+    "rapor_adi": "HAVZA SAMSUN KAPLICASI HİDROJEOLOJİ ETÜDÜ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4373",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4373",
+    "il_adaylari": [
+     "Samsun"
+    ]
+   },
+   {
+    "rapor_adi": "LADİK (SAMSUN) YÖRESİNİN HİDROJEOLOJİ ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9847",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9847",
+    "il_adaylari": [
+     "Samsun"
+    ]
+   },
+   {
+    "rapor_adi": "LADİK KAZASINDA (HİLYAS KAPLICASI) YAPILAN HİDROJEOLOJİK MÜŞAHADELER HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2506",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2506",
+    "il_adaylari": [
+     "Samsun"
+    ]
+   },
+   {
+    "rapor_adi": "SAMSUN-HAVZA SH-I/C HİDROJEOLOJİ SONDAJI BİTİRME RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8213",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8213",
+    "il_adaylari": [
+     "Samsun"
+    ]
+   },
+   {
+    "rapor_adi": "SAMSUN-KOCAPINAR (HİLYAS) HİDROJEOLOJİ SONDAJI BİTİRME RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8211",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8211",
+    "il_adaylari": [
+     "Samsun"
+    ]
+   },
+   {
+    "rapor_adi": "TERME (KIRŞEHİR) KAPLICASINA İLİŞKİN HİDROJEOLOJİK RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4846",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "4846",
+    "il_adaylari": [
+     "Kırşehir",
+     "Samsun"
+    ]
+   }
+  ],
+  "Siirt": [
+   {
+    "rapor_adi": "SİİRT-BİLLURİS KAPLICASI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5398",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5398",
+    "il_adaylari": [
+     "Siirt"
+    ]
+   },
+   {
+    "rapor_adi": "SİİRT-MADENKÖY VE ÇEVRESİNİN HİDOROJEOLOJİSİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7095",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7095",
+    "il_adaylari": [
+     "Siirt"
+    ]
+   }
+  ],
+  "Sinop": [
+   {
+    "rapor_adi": "ETİ YAPI LİMİTED ŞİRKETİNİN SİNOP'TAKİ İNŞAAT SAHASINA SU TEMİNİ MESELESİ HAKKINDA",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2673",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2673",
+    "il_adaylari": [
+     "Sinop"
+    ]
+   }
+  ],
+  "Sivas": [
+   {
+    "rapor_adi": "AKÇAAĞIL (SİVAS-SUŞEHRİ) KAPLICASI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9934",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9934",
+    "il_adaylari": [
+     "Sivas"
+    ]
+   },
+   {
+    "rapor_adi": "SICAK ÇERMİK KAPLICASI (SİVAS) HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5814",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5814",
+    "il_adaylari": [
+     "Diyarbakır",
+     "Sivas"
+    ]
+   },
+   {
+    "rapor_adi": "SİVAS-KANGAL BALIKLI KAPLICASI (YILANLI ÇERMİK) HİDROJEOLOJİ ÖN ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7246",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "7246",
+    "il_adaylari": [
+     "Diyarbakır",
+     "Sivas"
+    ]
+   },
+   {
+    "rapor_adi": "SİVAS-KANGAL KALBURÇAYIRI LİNYİT SEKTÖRÜ HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6358",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6358",
+    "il_adaylari": [
+     "Sivas"
+    ]
+   }
+  ],
+  "Tekirdağ": [
+   {
+    "rapor_adi": "TEKİRDAĞ (ÇERKEZKÖY)– İSTANBUL (SİLİVRİ-ÇATALCA) KÖMÜR SAHASI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=37470",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "37470",
+    "il_adaylari": [
+     "Tekirdağ",
+     "İstanbul"
+    ]
+   },
+   {
+    "rapor_adi": "TEKİRDAĞ MERKEZ  VE MALKARA  KÖMÜR SAHALARI HİDROJEOLOJİ ETÜT RAPORU (PROJE NO: 2018-33-37)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=37614",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "37614",
+    "il_adaylari": [
+     "Tekirdağ"
+    ]
+   }
+  ],
+  "Tokat": [
+   {
+    "rapor_adi": "REŞADİYE (TOKAT) KAPLICASI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8294",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8294",
+    "il_adaylari": [
+     "Tokat"
+    ]
+   },
+   {
+    "rapor_adi": "TOKAT ARTOVA SULUSARAY KAPLICASI HİDROJEOLOJİ İNCELEMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8226",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8226",
+    "il_adaylari": [
+     "Tokat"
+    ]
+   },
+   {
+    "rapor_adi": "TOKAT-NİKSAR-AYVAZ ILICASI JEOLOJİ-HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6397",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6397",
+    "il_adaylari": [
+     "Tokat"
+    ]
+   },
+   {
+    "rapor_adi": "TÜRKİYE TERMAL VE MİNERALLİ SULAR ENVANTERİ TOKAT",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9388",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9388",
+    "il_adaylari": [
+     "Tokat",
+     "Yalova"
+    ]
+   },
+   {
+    "rapor_adi": "ZİLE OVASININ SULANMASI İÇİN SU ARAŞTIRMALARI",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2774",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2774",
+    "il_adaylari": [
+     "Tokat"
+    ]
+   }
+  ],
+  "Uşak": [
+   {
+    "rapor_adi": "EŞME-ÖRENCİK KAPLICASI JEOLOJİ-HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6034",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6034",
+    "il_adaylari": [
+     "Uşak"
+    ]
+   },
+   {
+    "rapor_adi": "UŞAK İLÇESİ KARAHALLI BUCAĞINA BAĞLI KÖYLERİN SU DURUMUNA AİT RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2024",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2024",
+    "il_adaylari": [
+     "Uşak"
+    ]
+   },
+   {
+    "rapor_adi": "UŞAK İLÇESİNE BAĞLI ULUBEY BUCAĞI VE BAZI KÖYLERİNİN İÇME SUYU DURUMU HAKKINDA NOTLAR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2034",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2034",
+    "il_adaylari": [
+     "Uşak"
+    ]
+   },
+   {
+    "rapor_adi": "UŞAK İLİ KAPLICALARININ HİDROJEOLOJİ PROSPEKSİYON RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6038",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6038",
+    "il_adaylari": [
+     "Uşak"
+    ]
+   },
+   {
+    "rapor_adi": "UŞAK-BANAZ HAMAMBOĞAZI JEOTERMAL SAHASI JEOLOJİ-HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10412",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10412",
+    "il_adaylari": [
+     "Uşak"
+    ]
+   },
+   {
+    "rapor_adi": "UŞAK-EŞME-ÖRENCİK KAPLICASI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9943",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9943",
+    "il_adaylari": [
+     "Uşak"
+    ]
+   }
+  ],
+  "Yalova": [
+   {
+    "rapor_adi": "AFYON VİLAYETİNDEKİ TERMAL KAYNAKLAR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2220",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2220",
+    "il_adaylari": [
+     "Afyonkarahisar",
+     "Yalova"
+    ]
+   },
+   {
+    "rapor_adi": "ARMUTLU (GEMLİK) KAPLICASI BÖLGESİNDE JEOLOJİK VE HİDROLOJİK ETÜTLER HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=3886",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "3886",
+    "il_adaylari": [
+     "Bursa",
+     "Yalova"
+    ]
+   },
+   {
+    "rapor_adi": "TÜRKİYE TERMAL VE MİNERALLİ SULAR ENVANTERİ AMASYA (05)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9589",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9589",
+    "il_adaylari": [
+     "Amasya",
+     "Yalova"
+    ]
+   },
+   {
+    "rapor_adi": "TÜRKİYE TERMAL VE MİNERALLİ SULAR ENVANTERİ ARTVİN (08)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10261",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10261",
+    "il_adaylari": [
+     "Artvin",
+     "Yalova"
+    ]
+   },
+   {
+    "rapor_adi": "TÜRKİYE TERMAL VE MİNERALLİ SULAR ENVANTERİ ORDU (52)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10095",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10095",
+    "il_adaylari": [
+     "Ordu",
+     "Yalova"
+    ]
+   },
+   {
+    "rapor_adi": "TÜRKİYE TERMAL VE MİNERALLİ SULAR ENVANTERİ TOKAT",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9388",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9388",
+    "il_adaylari": [
+     "Tokat",
+     "Yalova"
+    ]
+   },
+   {
+    "rapor_adi": "TÜRKİYE TERMAL VE MİNERALLİ SULAR ENVANTERİ ŞANLIURFA (63)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10205",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10205",
+    "il_adaylari": [
+     "Yalova",
+     "Şanlıurfa"
+    ]
+   },
+   {
+    "rapor_adi": "YALOVA-TERMAL KAPLICA SAHASI JEOLOJİ-HİDROJEOLOJİ VE JEOFİZİK ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10167",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10167",
+    "il_adaylari": [
+     "Yalova"
+    ]
+   },
+   {
+    "rapor_adi": "YEŞİL KAPLICALAR (EMET-KÜTAHYA) BÖLGESİNDEKİ TERMAL KAYNAKLARIN KORUMA ALANLARI RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9620",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9620",
+    "il_adaylari": [
+     "Kütahya",
+     "Yalova"
+    ]
+   },
+   {
+    "rapor_adi": "ÇANAKKALE VİLAYETİNDEKİ TERMAL KAYNAKLAR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2221",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2221",
+    "il_adaylari": [
+     "Yalova",
+     "Çanakkale"
+    ]
+   },
+   {
+    "rapor_adi": "İSTANBUL-BÜYÜKÇEKMECE-KIRAÇ BELDESİNDEKİ YERDE İSTANBUL TERMAL DÜNYASI AŞ.'NE AİT ÖKKEŞ BEY SICAK SU KUYUSU ÇEVRESİNE AİT KORUMA ALANLARI ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10326",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10326",
+    "il_adaylari": [
+     "Yalova",
+     "İstanbul"
+    ]
+   },
+   {
+    "rapor_adi": "İSTANBUL-YALOVA KAPLICASI HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5894",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5894",
+    "il_adaylari": [
+     "Yalova",
+     "İstanbul"
+    ]
+   }
+  ],
+  "Yozgat": [
+   {
+    "rapor_adi": "YOZGAT BELEDİYESİ ET VE SÜT ÜRÜNLERİ ENTEGRE TESİSİ YER ALTI SUYU ARAMALARI JEOFİZİK ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10133",
+    "bulan_kelimeler": [
+     "yeraltı suyu"
+    ],
+    "product_id": "10133",
+    "il_adaylari": [
+     "Yozgat"
+    ]
+   },
+   {
+    "rapor_adi": "YOZGAT BOĞAZLIYAN BAHARİYE (CAVLAK) KAPLICASININ HİDROJEOLOJİ İNCELEMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=21236",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "21236",
+    "il_adaylari": [
+     "Yozgat"
+    ]
+   },
+   {
+    "rapor_adi": "YOZGAT-AKDAĞ MADENİ KARADİKMEN KÖYÜ ILICASI JEOLOJİ-HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9311",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9311",
+    "il_adaylari": [
+     "Yozgat"
+    ]
+   },
+   {
+    "rapor_adi": "YOZGAT-BOĞAZLAYAN-UZUNLU KAPLICASININ HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9331",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9331",
+    "il_adaylari": [
+     "Yozgat"
+    ]
+   },
+   {
+    "rapor_adi": "YOZGAT-SARIKAYA KAPLICASI HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8728",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8728",
+    "il_adaylari": [
+     "Yozgat"
+    ]
+   },
+   {
+    "rapor_adi": "YOZGAT-SORGUN KAPLICALARI HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8487",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8487",
+    "il_adaylari": [
+     "Yozgat"
+    ]
+   },
+   {
+    "rapor_adi": "YOZGAT-YERKÖY GÜVEN KAPLICASI HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9595",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9595",
+    "il_adaylari": [
+     "Yozgat"
+    ]
+   },
+   {
+    "rapor_adi": "YOZGAT-YERKÖY-GÜVEN KAPLICASI SICAKSU SONDAJI YK 1 KUYU BİTİRME VE KORUMA ALANLARI RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9796",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9796",
+    "il_adaylari": [
+     "Yozgat"
+    ]
+   }
+  ],
+  "Zonguldak": [
+   {
+    "rapor_adi": "AFYON-GARNİZON KOMUTANLIĞINA BAĞLI ALAPLI BÖLGESİNDEKİ ASKERİ SAHADA SONDAJ LOKASYONUNU BELİRLEMEYE YÖNELİK HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9800",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9800",
+    "il_adaylari": [
+     "Afyonkarahisar",
+     "Zonguldak"
+    ]
+   },
+   {
+    "rapor_adi": "KOKAK SUYUN CENUBUNDA TESİS EDİLMESİ İSTENİLEN İKAMETGAH MAHALLESİ İLE BU TESİSTEN ZONGULDAK İÇME SUYUNUN KİRLENİP KİRLENMİYECEĞİ HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2214",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "yeraltı suyu"
+    ],
+    "product_id": "2214",
+    "il_adaylari": [
+     "Zonguldak"
+    ]
+   },
+   {
+    "rapor_adi": "ZONGULDAK İLİNDE YER ALAN GELİK-İNAĞZI-BAĞLIK-KOZLU KÖMÜR SAHALARININ HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9933",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9933",
+    "il_adaylari": [
+     "Zonguldak"
+    ]
+   },
+   {
+    "rapor_adi": "ÇATALAĞZI HAVALİSİNİN HİDROJEOLOJİK ETÜTÜ (ZONGULDAK)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1692",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "1692",
+    "il_adaylari": [
+     "Zonguldak"
+    ]
+   }
+  ],
+  "Çanakkale": [
+   {
+    "rapor_adi": "LAPSEKİ (ÇANAKKALE) CİVARININ JEOTERMAL ENERJİ VE HİDROJEOLOJİK AÇIDAN İNCELENMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9916",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "9916",
+    "il_adaylari": [
+     "Çanakkale"
+    ]
+   },
+   {
+    "rapor_adi": "ÇANAKKALE VALEKS FABRİKASINA SU TEMİNİ MAKSADIYLA YAPILAN JEOLOJİK VE HİDROLOJİK ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2573",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2573",
+    "il_adaylari": [
+     "Çanakkale"
+    ]
+   },
+   {
+    "rapor_adi": "ÇANAKKALE VİLAYETİNDEKİ SICAK SU VE MADEN SUYU KAYNAKLARI HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2618",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2618",
+    "il_adaylari": [
+     "Elazığ",
+     "Çanakkale"
+    ]
+   },
+   {
+    "rapor_adi": "ÇANAKKALE VİLAYETİNDEKİ TERMAL KAYNAKLAR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2221",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2221",
+    "il_adaylari": [
+     "Yalova",
+     "Çanakkale"
+    ]
+   },
+   {
+    "rapor_adi": "ÇANAKKALE YENİCE HIDIRLAR KAPLICASI H 1 SICAKSU SONDAJI KUYU BİTİRME RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8979",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8979",
+    "il_adaylari": [
+     "Çanakkale"
+    ]
+   },
+   {
+    "rapor_adi": "ÇANAKKALE İLİNİN YER ALTI SERVETLERİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1986",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "1986",
+    "il_adaylari": [
+     "Çanakkale"
+    ]
+   },
+   {
+    "rapor_adi": "ÇANAKKALE-KESTANBOL KAPLICASI HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5815",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5815",
+    "il_adaylari": [
+     "Çanakkale"
+    ]
+   },
+   {
+    "rapor_adi": "ÇANAKKALE-TUZLA T-1 KUYUSUNUN KORUNMA ALANLARI ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9290",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9290",
+    "il_adaylari": [
+     "Çanakkale",
+     "İstanbul"
+    ]
+   },
+   {
+    "rapor_adi": "ÇANAKKALE-ÇAN KAPLICASI HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6649",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6649",
+    "il_adaylari": [
+     "Çanakkale"
+    ]
+   },
+   {
+    "rapor_adi": "ÇANAKKALE-ÇAN LİNYİT SAHASI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6131",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6131",
+    "il_adaylari": [
+     "Çanakkale"
+    ]
+   }
+  ],
+  "Çankırı": [
+   {
+    "rapor_adi": "ATKARACALAR VE ÇARDAKLI (ÇANKIRI) YÖRESİNİN JEOLOJİ-HİDROJEOLOJİ VE TOPRAK GAZLARI ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9684",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9684",
+    "il_adaylari": [
+     "Çankırı"
+    ]
+   },
+   {
+    "rapor_adi": "KURŞUNLU SALİHLİ KAPLICASI KORUNMA ALANLARI RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5400",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5400",
+    "il_adaylari": [
+     "Manisa",
+     "Çankırı"
+    ]
+   },
+   {
+    "rapor_adi": "KÖSEHAMAM (ÇERKEŞ-ÇANKIRI) ÇERMİĞİ BÖLGESİNİN HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6387",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6387",
+    "il_adaylari": [
+     "Çankırı"
+    ]
+   },
+   {
+    "rapor_adi": "ORTA DOĞU TEKNİK ÜNİVERSİTEYE TAHSİS EDİLEN SAHANIN HİDROJEOLOJİSİ HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2760",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2760",
+    "il_adaylari": [
+     "Çankırı"
+    ]
+   },
+   {
+    "rapor_adi": "ÇAVUNDUR (KURŞUNLU-ÇANKIRI) KAPLICA BÖLGESİNİN HİDROJEOLOJİ ETÜTÜ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6373",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "6373",
+    "il_adaylari": [
+     "Çankırı"
+    ]
+   },
+   {
+    "rapor_adi": "ÇAVUNDUR (ÇANKIRI - KURŞUNLU) KAPLICASININ KORUMA ALANLARI ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10642",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10642",
+    "il_adaylari": [
+     "Çankırı"
+    ]
+   }
+  ],
+  "Çorum": [
+   {
+    "rapor_adi": "ÇORUM DELİCE ARAF OVALARININ HİDROJEOLOJİK ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=18366",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "18366",
+    "il_adaylari": [
+     "Kırıkkale",
+     "Çorum"
+    ]
+   },
+   {
+    "rapor_adi": "ÇORUM VİLAYETİNDE HİDROLOJİK MÜŞAHEDELER",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2327",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2327",
+    "il_adaylari": [
+     "Çorum"
+    ]
+   },
+   {
+    "rapor_adi": "ÇORUM,MECİTÖZÜ,FİGANİ (BEKE) KAPLICASI HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7390",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "7390",
+    "il_adaylari": [
+     "Çorum"
+    ]
+   },
+   {
+    "rapor_adi": "ÇORUM-HAMAMLIÇAY KAPLICASI HİDROJEOLOJİ İNCELEMESİ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8486",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8486",
+    "il_adaylari": [
+     "Çorum"
+    ]
+   },
+   {
+    "rapor_adi": "ÇORUM-KIZILPINAR BÖLGESİNİN HİDROJEOLOJİK İNCELEMESİ (MEMBA SUYU)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5470",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "5470",
+    "il_adaylari": [
+     "Çorum"
+    ]
+   }
+  ],
+  "İstanbul": [
+   {
+    "rapor_adi": "SÜMERBANK BEYKOZ DERİ FABRİKASINA SU TEMİNİ HAKKINDA HİDROJEOLOJİK RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2607",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2607",
+    "il_adaylari": [
+     "İstanbul"
+    ]
+   },
+   {
+    "rapor_adi": "SİLİVRİ CİVARINDA, MARMARA SAHİLİNDE BİR TATİL KAMPI TESİSİ (PAFTA 19/4 VE 20/3) BAKIMINDAN YAPILAN HİDROJEOLOJİK ETÜTLERE MÜTEALLİK RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2914",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2914",
+    "il_adaylari": [
+     "Balıkesir",
+     "İstanbul"
+    ]
+   },
+   {
+    "rapor_adi": "TEKİRDAĞ (ÇERKEZKÖY)– İSTANBUL (SİLİVRİ-ÇATALCA) KÖMÜR SAHASI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=37470",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "37470",
+    "il_adaylari": [
+     "Tekirdağ",
+     "İstanbul"
+    ]
+   },
+   {
+    "rapor_adi": "ÇANAKKALE-TUZLA T-1 KUYUSUNUN KORUNMA ALANLARI ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9290",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9290",
+    "il_adaylari": [
+     "Çanakkale",
+     "İstanbul"
+    ]
+   },
+   {
+    "rapor_adi": "ÇANAKKALENIN TUZLA VE KESTANBOL SICAKSU HAVZALARINDA JEOTERMİK ENERJİ ARAŞTIRMASI YÖNÜNDEN HİDROJEOLOJİK ETÜT",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4274",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "4274",
+    "il_adaylari": [
+     "İstanbul"
+    ]
+   },
+   {
+    "rapor_adi": "İSTANBUL BAKIRKÖY MAHMUTBEY NAHİYESİNİN SAMLAR KÖYÜNÜN İÇME SULARI HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2771",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2771",
+    "il_adaylari": [
+     "İstanbul"
+    ]
+   },
+   {
+    "rapor_adi": "İSTANBUL KARAKULAK MENBA SUYUNUN HİDROJEOLOJİK ETÜDÜ İLE TAĞDİYE HAVZASININ TAYİNİ VE KAPTAJ YERİ HİMAYE BÖLGESİNİN TESBİTİNE DAİR RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1840",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "1840",
+    "il_adaylari": [
+     "İstanbul"
+    ]
+   },
+   {
+    "rapor_adi": "İSTANBUL-BÜYÜKÇEKMECE-KIRAÇ BELDESİNDEKİ YERDE İSTANBUL TERMAL DÜNYASI AŞ.'NE AİT ÖKKEŞ BEY SICAK SU KUYUSU ÇEVRESİNE AİT KORUMA ALANLARI ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10326",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10326",
+    "il_adaylari": [
+     "Yalova",
+     "İstanbul"
+    ]
+   },
+   {
+    "rapor_adi": "İSTANBUL-KARTAL, YUNUS ÇİMENTO FABRİKASININ SU İHTİYACININ TEMİNİ MAKSADIYLA YAPILAN HİDROJEOLOJİK TETKİKAT",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2410",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2410",
+    "il_adaylari": [
+     "İstanbul"
+    ]
+   },
+   {
+    "rapor_adi": "İSTANBUL-YALOVA KAPLICASI HİDROJEOLOJİ RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5894",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5894",
+    "il_adaylari": [
+     "Yalova",
+     "İstanbul"
+    ]
+   }
+  ],
+  "İzmir": [
+   {
+    "rapor_adi": "AGAMEMNUN-SEFERİHİSAR-URLA-ÇEŞME (İZMİR) SAHALARININ HİDROJEOKİMYASAL ARAŞTIRILMASI",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4725",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4725",
+    "il_adaylari": [
+     "İzmir"
+    ]
+   },
+   {
+    "rapor_adi": "BALÇOVA BD-4 KUYUSUNUN KUYU BİTİRME RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10385",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10385",
+    "il_adaylari": [
+     "İzmir"
+    ]
+   },
+   {
+    "rapor_adi": "BALÇOVA KAPLICALARININ HİDROJEOLOJİSİ VE KORUNMA ALANLARI RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8695",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8695",
+    "il_adaylari": [
+     "İzmir"
+    ]
+   },
+   {
+    "rapor_adi": "BERGAMA (İZMİR) TEKSTİL FABRİKASINA SU TEMİNİ İÇİN YAPILAN JEOLOJİK VE HİDROJEOLOJİK ÇALIŞMALAR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2559",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2559",
+    "il_adaylari": [
+     "İzmir"
+    ]
+   },
+   {
+    "rapor_adi": "TURGUTLU-SALİHLİ (MANİSA İLİ) ARASI GEDİZ NEHRİ GÜNEYİNİN JEOLOJİ,HİDROJEOLOJİ VE JEOTERMİK ETÜTÜNE AİT RAPOR (1/25.000 İZMİR L19-B1-B2 PAFTALARI)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4684",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "4684",
+    "il_adaylari": [
+     "Kütahya",
+     "Manisa",
+     "İzmir"
+    ]
+   },
+   {
+    "rapor_adi": "ÇEŞME ILICASI HİDROJEOLOJİ ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5321",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "5321",
+    "il_adaylari": [
+     "İzmir"
+    ]
+   },
+   {
+    "rapor_adi": "İZMİR AGAMEMNUN KAPLICASI BÖLGESİNDE SICAKSU SONDAJLARI VE HİDROJEOLOJİK NETİCELER HAKKINDA RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=3324",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "3324",
+    "il_adaylari": [
+     "İzmir"
+    ]
+   },
+   {
+    "rapor_adi": "İZMİR BALÇOVA KAPLICALARINDA AÇILAN BS-1 BS-10 BS-11 NOLU KUYULARIN BİTİRME RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8782",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "8782",
+    "il_adaylari": [
+     "İzmir"
+    ]
+   },
+   {
+    "rapor_adi": "İZMİR BÖLGESİ YERALTI SUYU DURUMU HAKKINDA JEOLOJİK VE HİDROJEOLOJİK RAPOR",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2672",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik",
+     "yeraltı suyu"
+    ],
+    "product_id": "2672",
+    "il_adaylari": [
+     "İzmir"
+    ]
+   },
+   {
+    "rapor_adi": "İZMİR VİLAYETİ SEFERİHİSAR KAZASI CİVARININ HİDROJEOLOJİK VE JEOTERMİK ETÜDÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4344",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "4344",
+    "il_adaylari": [
+     "İzmir"
+    ]
+   },
+   {
+    "rapor_adi": "İZMİR İLİ KEMALPAŞA İLÇESİ YEŞİLKÖY-CUMALI KÖYÜ SOĞUKSU ARAMALARI HİDROJEOLOJİK VE JEOFİZİK ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10530",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "10530",
+    "il_adaylari": [
+     "İzmir"
+    ]
+   },
+   {
+    "rapor_adi": "İZMİR-GÜMÜLDÜR MERKEZ BANKASI DİNLENME KAMPI YERALTISUYU ARAŞTIRMASI REZİSTİVİTE RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6261",
+    "bulan_kelimeler": [
+     "yeraltısuyu",
+     "yeraltı suyu"
+    ],
+    "product_id": "6261",
+    "il_adaylari": [
+     "İzmir"
+    ]
+   },
+   {
+    "rapor_adi": "İZMİR-KARŞIYAKA İLE MENEMEN ARASINDA HİDROJEOLOJİK MÜŞAHEDELER",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2254",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "2254",
+    "il_adaylari": [
+     "İzmir"
+    ]
+   }
+  ],
+  "Şanlıurfa": [
+   {
+    "rapor_adi": "CEYLANPINAR OVASI HİDROJEOLOJİK ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5030",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "5030",
+    "il_adaylari": [
+     "Şanlıurfa"
+    ]
+   },
+   {
+    "rapor_adi": "HARRAN OVASI HİDROJEOLOJİK ETÜT RAPORU",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5033",
+    "bulan_kelimeler": [
+     "hidrojeoloji",
+     "hidrojeolojik"
+    ],
+    "product_id": "5033",
+    "il_adaylari": [
+     "Şanlıurfa"
+    ]
+   },
+   {
+    "rapor_adi": "SİVEREK 97/3 PAFTASI (NE RUB",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2259",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "2259",
+    "il_adaylari": [
+     "Şanlıurfa"
+    ]
+   },
+   {
+    "rapor_adi": "TÜRKİYE TERMAL VE MİNERALLİ SULAR ENVANTERİ ŞANLIURFA (63)",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=10205",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "10205",
+    "il_adaylari": [
+     "Yalova",
+     "Şanlıurfa"
+    ]
+   },
+   {
+    "rapor_adi": "ŞANLIURFA-YARDIMCI-KARAALİ KAPLICASI HİDROJEOLOJİ ETÜTÜ",
+    "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=9419",
+    "bulan_kelimeler": [
+     "hidrojeoloji"
+    ],
+    "product_id": "9419",
+    "il_adaylari": [
+     "Şanlıurfa"
+    ]
+   }
+  ]
+ },
+ "il_atanamayan": [
+  {
+   "rapor_adi": "AGAMEMNON ILICALARI HAKKINDA ETÜT TASARISI",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2800",
+   "bulan_kelimeler": [
+    "hidrojeoloji"
+   ],
+   "product_id": "2800",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "ASLAN-ESKİHİSAR ÇİMENTO FARBRİKASINA SU TEMİNİ İÇİN HİDROJEOLOJİK ETÜT",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2043",
+   "bulan_kelimeler": [
+    "hidrojeoloji",
+    "hidrojeolojik"
+   ],
+   "product_id": "2043",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "BAD BENNDORF KASABASININ SU TESİSATI HAKKINDA JEOLOJİ DAİRESİ RAPORU",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2591",
+   "bulan_kelimeler": [
+    "hidrojeoloji"
+   ],
+   "product_id": "2591",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "DOĞU ANADOLU BÖLGE MÜDÜRLÜĞÜ ARSASI YERALTI SUYU ARAMALARI JEOFİZİK (REZİSTİVİTE) ETÜDÜ",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7094",
+   "bulan_kelimeler": [
+    "yeraltı suyu"
+   ],
+   "product_id": "7094",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "ETÜTE PHYSIQUE ET CHIMIOUE DES EAUX MİNERALES DE BROUSSE",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=997",
+   "bulan_kelimeler": [
+    "hidrojeoloji"
+   ],
+   "product_id": "997",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "GEYRE OVASI HİDROJEOLOJİK RAPORU",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2718",
+   "bulan_kelimeler": [
+    "hidrojeoloji",
+    "hidrojeolojik"
+   ],
+   "product_id": "2718",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "GÖKHÜYÜK DEVLET ÜRETME ÇİFTLİĞİNDE YERALTI SUYU İHTİMALLERİ HAKKINDA",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2041",
+   "bulan_kelimeler": [
+    "hidrojeoloji",
+    "yeraltı suyu"
+   ],
+   "product_id": "2041",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "HACT ÜNİV. BEYTEPE KAMP. CIVARININ JEOLOJİ VE HİDROJEOLOJİ",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=12115",
+   "bulan_kelimeler": [
+    "hidrojeoloji"
+   ],
+   "product_id": "12115",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "HAYDARPAŞA LİMAN TESİSLERİNİN SU İHTİYACININ YERALTISUYUNDAN KARŞILANMASI HAKKINDA",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2730",
+   "bulan_kelimeler": [
+    "yeraltısuyu",
+    "yeraltı suyu"
+   ],
+   "product_id": "2730",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "KARAHİSAR OVASININ HİDROLOJİK RAPORU",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2733",
+   "bulan_kelimeler": [
+    "hidrojeoloji"
+   ],
+   "product_id": "2733",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "KATALOG DER HEİLQUELLEN DER TÜRKEİ",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=742",
+   "bulan_kelimeler": [
+    "yeraltısuyu",
+    "yeraltı suyu"
+   ],
+   "product_id": "742",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "KAYADİBİ KÖYÜ JEOLOJİK VE HİDROJEOLOJİK ETÜT RAPORU",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2742",
+   "bulan_kelimeler": [
+    "hidrojeoloji",
+    "hidrojeolojik"
+   ],
+   "product_id": "2742",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "KIZILAY KOCATEPE SAHASINDA JEOLOJİK HİDROJEOLOJİK VE İNŞAAT JEOLOJİSİ BAKIMINDAN İNCELENMESİ",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2325",
+   "bulan_kelimeler": [
+    "hidrojeoloji",
+    "hidrojeolojik"
+   ],
+   "product_id": "2325",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "KÜKÜRTLÜ 136 PAFTA,984 ADA 4-5-6 VE 29 SAYILI PARSELLERE İLİŞKİN SICAKSU GÖZLEM KUYULARI HİDROJEOLOJİ RAPORU",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8828",
+   "bulan_kelimeler": [
+    "hidrojeoloji"
+   ],
+   "product_id": "8828",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "MELİKŞAH KAPLICASINA AİT HİDROJEOLOJİK RAPOR",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6763",
+   "bulan_kelimeler": [
+    "hidrojeoloji",
+    "hidrojeolojik"
+   ],
+   "product_id": "6763",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "MTA ENSTİSÜSÜ JEOFİZİK VE PROSPEKSİYON ŞUBESİ TECRÜBE SONDAJI HAKKINDA HİDROJEOLOJİK KISA RAPOR",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4047",
+   "bulan_kelimeler": [
+    "hidrojeoloji",
+    "hidrojeolojik"
+   ],
+   "product_id": "4047",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "MTA ENSTİTÜSÜ BALGAT ARAZİSİNDE YER ALTI SUYU ETÜT RAPORU",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=4779",
+   "bulan_kelimeler": [
+    "hidrojeoloji",
+    "hidrojeolojik",
+    "yeraltı suyu"
+   ],
+   "product_id": "4779",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "MİHALLIÇCIK-YARIKÇI KAPLICASININ HİDROJEOLOJİ ETÜTÜ",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5818",
+   "bulan_kelimeler": [
+    "hidrojeoloji"
+   ],
+   "product_id": "5818",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "SEYHAMAMI KAPLICASI HİDROJEOLOJİ ETÜDÜ",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6445",
+   "bulan_kelimeler": [
+    "hidrojeoloji"
+   ],
+   "product_id": "6445",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "SUĞLA OVASININ KARSTHİDROJEOLOJİSİ VE SUĞLA GÖLÜ SORUNU",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6835",
+   "bulan_kelimeler": [
+    "hidrojeoloji"
+   ],
+   "product_id": "6835",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "SİNEKLİ SAHASININ (HİDROJEOLOJİK PAFTA) KISACA ÖZETLENMİŞ JEOLOJİSİ VE 1978 YILI İÇERİSİNDE YAPILAN SONDAJ SONUÇLARI İLE BİR SONRAKİ AŞAMA İÇİN ÖNERİLEN SONDAJ LOKASYONLARINI KAPSAYAN JEOLOJİK RAPOR",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=7052",
+   "bulan_kelimeler": [
+    "hidrojeoloji",
+    "hidrojeolojik"
+   ],
+   "product_id": "7052",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "TINAZTEPE  YERALTI SUYU ARAMALARI JEOFİZİK ETÜT RAPORU",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=11537",
+   "bulan_kelimeler": [
+    "yeraltı suyu"
+   ],
+   "product_id": "11537",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "TRT HABER 1 KOPERATIFI YERALTISUYU ARAMALARI REZİSTİVİTE ETÜDÜ",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=8268",
+   "bulan_kelimeler": [
+    "yeraltısuyu",
+    "yeraltı suyu"
+   ],
+   "product_id": "8268",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "TUZ GÖLÜ GÖLÜ PROJESİ HİDROJEOLOJİSİ ETÜTLERİ",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6470",
+   "bulan_kelimeler": [
+    "hidrojeoloji"
+   ],
+   "product_id": "6470",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "TUZ GÖLÜ HAVAZASI ETÜT VE ARAMALARI FİZİBİLİTE ARAŞTIRMASI 1977 YILI ÇALIŞMALARI ARA RAPORU",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6083",
+   "bulan_kelimeler": [
+    "hidrojeoloji"
+   ],
+   "product_id": "6083",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "TUZ GÖLÜ HİDROJEOLOJİSİ VE KİRLİLİĞE KARŞI ALINABİLECEK ÖNLEMLER PROJESİ ETÜT RAPORU",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=11693",
+   "bulan_kelimeler": [
+    "hidrojeoloji"
+   ],
+   "product_id": "11693",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "TUZ GÖLÜ PROJESİ HİDROJEOLOJİ ETÜTÜ ARA RAPORU",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=6625",
+   "bulan_kelimeler": [
+    "hidrojeoloji"
+   ],
+   "product_id": "6625",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "TÜRKİYE",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=1880",
+   "bulan_kelimeler": [
+    "hidrojeoloji",
+    "yeraltısuyu",
+    "yeraltı suyu"
+   ],
+   "product_id": "1880",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "ÇAMKORU SONDAJLARININ NETİCESİ (KIZILAY KAMPI)",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2927",
+   "bulan_kelimeler": [
+    "hidrojeoloji",
+    "yeraltı suyu"
+   ],
+   "product_id": "2927",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "ÇAYIRHAN KAPALI B-PANOLARI  ÖN HİDROJEOLOJİ ETÜDÜ",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=11733",
+   "bulan_kelimeler": [
+    "hidrojeoloji"
+   ],
+   "product_id": "11733",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "ÇUKURHİSAR CİVARI HİDROJEOLOJİK ETÜDÜ",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=2261",
+   "bulan_kelimeler": [
+    "hidrojeoloji",
+    "hidrojeolojik"
+   ],
+   "product_id": "2261",
+   "il_adaylari": []
+  },
+  {
+   "rapor_adi": "ÇÖL OVASI HİDROJEOLOJİK ETÜT RAPORU",
+   "url": "https://eticaret.mta.gov.tr/index.php?route=product/product&product_id=5031",
+   "bulan_kelimeler": [
+    "hidrojeoloji",
+    "hidrojeolojik"
+   ],
+   "product_id": "5031",
+   "il_adaylari": []
+  }
+ ]
+}
