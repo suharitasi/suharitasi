@@ -32,7 +32,7 @@
   z-index: 60;
   background: transparent;
   /* emil: transition'da özellik tek tek — `all` yasak. */
-  transition: background-color 200ms var(--sh-eo), box-shadow 200ms var(--sh-eo);
+  transition: background-color 200ms var(--sh-eo), border-color 200ms var(--sh-eo);
 }
 .v2-ustbar.kaydi {
   background: rgba(8, 32, 47, 0.85);
