@@ -50,10 +50,14 @@ Kullanıcının canlı görsel onayı nihai kapanış. Açık maddeler:
       tek referansı öksüz UstMenu'dendi). KORUNAN: data/menu.ts
       (PaylasilanMenu kullanıyor) · public/s/menu.js (174 sayfada
       <script src> hâlâ çağırıyor — 2.4 kuralı).
-- [ ] YENİ: /s/menu.js script etiketi 174 sayfada duruyor ama hedef
-      panel (sv-menu) artık render edilmiyor — etiketin Sayfa.astro +
-      harita(+pilot)'tan kaldırılması ayrı iş (dosya + ~1 istek/sayfa
-      kazanır). harita sayfa stillerinde öksüz .sv-menu-ac CSS'i de var.
+- [x] /s/menu.js — KAPANDI (27.07 menujs turu, aff52eb canlıda):
+      NO-OP kanıtlandı (üç kanal: sv-menu id'si 0 sayfada, guard çift
+      koşullu; kökte document/window dinleyicisi yok; koşulsuz yan etki
+      yok). Üç script etiketi + harita-pilot'taki öksüz tetik düğmesi +
+      .sv-menu-ac CSS'leri kaldırıldı, dosya silindi; canlıda 404,
+      referans 0, ~1 istek/sayfa kazanıldı. Kalıntı not: /s/imlec.js
+      'sv-menu-goruntude' sınıfını okuyor — sınıf artık hiç oluşmuyor,
+      zararsız ölü dal (imleç sistemi ayrı iş).
 - [ ] Öksüz kalan bileşenler (silme kararı kullanıcıda, M10):
       src/data/anasayfa-sorular.js (7-soru güverte seti; artık hiçbir sayfa
       import etmiyor) · src/scripts/scrub-engine.js index kullanımı düştü
