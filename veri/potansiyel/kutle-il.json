@@ -2,9 +2,9 @@
  "uretim_tarihi": "2026-07-27",
  "yontem_notu": "İlçe dizini olmadan üretilmiş KISMİ eşleme. Etiketler: eslesti (kanıtlı), belirsiz (aday listeli), dogrulanamadi (il sayfasına BASILMAZ). oneri_havza_illeri yalnız analiz içindir, eşleme değildir.",
  "ozet": {
-  "eslesti": 314,
+  "eslesti": 347,
   "belirsiz": 5,
-  "dogrulanamadi": 153
+  "dogrulanamadi": 120
  },
  "kutleler": [
   {
@@ -47,27 +47,23 @@
    "kutle_kodu": "TR11050074",
    "kutle_adi": "Afyon Alüvyonu",
    "havza": "akarcay",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Afyonkarahisar",
-    "Konya"
-   ]
+   "iller": [
+    "Afyonkarahisar"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: akarcay__EK 1-8.txt s.3005; kütle kodu satırda, '305578         4287564' (ED50 UTM zone 36) → 38.71536,30.76379. Kuyu sayısı: Afyonkarahisar=33. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR11050075",
    "kutle_adi": "Çavdarlı-Susuz Kayalıkları",
    "havza": "akarcay",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Afyonkarahisar",
-    "Konya"
-   ]
+   "iller": [
+    "Afyonkarahisar"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: akarcay__EK 1-8.txt s.3381; kütle kodu satırda, '293444         4294438' (ED50 UTM zone 36) → 38.7745,30.62228. Kuyu sayısı: Afyonkarahisar=1. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR11050076",
@@ -119,27 +115,23 @@
    "kutle_kodu": "TR11050078",
    "kutle_adi": "Karamık Vadisi",
    "havza": "akarcay",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Afyonkarahisar",
-    "Konya"
-   ]
+   "iller": [
+    "Afyonkarahisar"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: akarcay__EK 1-8.txt s.3504; kütle kodu satırda, '293691         4244419' (ED50 UTM zone 36) → 38.32417,30.6399. Kuyu sayısı: Afyonkarahisar=9. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR11050079",
    "kutle_adi": "Kurucaova-Özburun Kayalıkları",
    "havza": "akarcay",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Afyonkarahisar",
-    "Konya"
-   ]
+   "iller": [
+    "Afyonkarahisar"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: akarcay__EK 1-8.txt s.3668; kütle kodu satırda, '336553         4294931' (ED50 UTM zone 36) → 38.78798,31.11812. Kuyu sayısı: Afyonkarahisar=1. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR11050080",
@@ -4628,16 +4620,13 @@
    "kutle_kodu": "TR04050204",
    "kutle_adi": "Ahmetler",
    "havza": "kuzey-ege",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Balıkesir",
+   "iller": [
     "Çanakkale",
-    "Manisa",
-    "İzmir"
-   ]
+    "Balıkesir"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: kuzey-ege__6) Tedbirler Programı Raporu.txt s.7174; örnek kuyu TR040502040147 '429833           4384752' (ED50 UTM zone 35) → 39.60964,26.18263. Kuyu sayısı: Çanakkale=17, Balıkesir=4. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR04050205",
@@ -4714,31 +4703,23 @@
    "kutle_kodu": "TR04050208",
    "kutle_adi": "Dalyan-Tuzla",
    "havza": "kuzey-ege",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Balıkesir",
-    "Çanakkale",
-    "Manisa",
-    "İzmir"
-   ]
+   "iller": [
+    "Çanakkale"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: kuzey-ege__6) Tedbirler Programı Raporu.txt s.7178; örnek kuyu TR040502080199 '427229           4380538' (ED50 UTM zone 35) → 39.57146,26.15276. Kuyu sayısı: Çanakkale=17. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR04050209",
    "kutle_adi": "Uluköy",
    "havza": "kuzey-ege",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Balıkesir",
-    "Çanakkale",
-    "Manisa",
-    "İzmir"
-   ]
+   "iller": [
+    "Çanakkale"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: kuzey-ege__6) Tedbirler Programı Raporu.txt s.7237; örnek kuyu TR040502090227 '435517          4396153' (ED50 UTM zone 35) → 39.71281,26.24772. Kuyu sayısı: Çanakkale=10. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR04050210",
@@ -4769,31 +4750,23 @@
    "kutle_kodu": "TR04050211",
    "kutle_adi": "Karalar",
    "havza": "kuzey-ege",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Balıkesir",
-    "Çanakkale",
-    "Manisa",
-    "İzmir"
-   ]
+   "iller": [
+    "Balıkesir"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: kuzey-ege__6) Tedbirler Programı Raporu.txt s.7221; örnek kuyu TR040502110972 '492623          4359007' (ED50 UTM zone 35) → 39.38051,26.91435. Kuyu sayısı: Balıkesir=14. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR04050212",
    "kutle_adi": "Sarnıç",
    "havza": "kuzey-ege",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Balıkesir",
-    "Çanakkale",
-    "Manisa",
-    "İzmir"
-   ]
+   "iller": [
+    "Balıkesir"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: kuzey-ege__6) Tedbirler Programı Raporu.txt s.7225; örnek kuyu TR040502120188 '517202          4385093' (ED50 UTM zone 35) → 39.61542,27.2004. Kuyu sayısı: Balıkesir=8. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR04050213",
@@ -5097,16 +5070,13 @@
    "kutle_kodu": "TR04050226",
    "kutle_adi": "Yuntdağ",
    "havza": "kuzey-ege",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Balıkesir",
-    "Çanakkale",
+   "iller": [
     "Manisa",
     "İzmir"
-   ]
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: kuzey-ege__6) Tedbirler Programı Raporu.txt s.7186; örnek kuyu TR040502260134 '516763           4299559' (ED50 UTM zone 35) → 38.84468,27.19316. Kuyu sayısı: Manisa=16, İzmir=8. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR04050227",
@@ -5133,106 +5103,78 @@
    "kutle_kodu": "TR04050228",
    "kutle_adi": "Kaşıkçı",
    "havza": "kuzey-ege",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Balıkesir",
-    "Çanakkale",
-    "Manisa",
+   "iller": [
     "İzmir"
-   ]
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: kuzey-ege__Kuzey Ege Havzası Yönetim Planı.txt s.5963; örnek kuyu TR040502280187 '516212    4324063' (ED50 UTM zone 35) → 39.06551,27.1874. Kuyu sayısı: İzmir=4. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR04050229",
    "kutle_adi": "Çukuralan",
    "havza": "kuzey-ege",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Balıkesir",
-    "Çanakkale",
-    "Manisa",
+   "iller": [
     "İzmir"
-   ]
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: kuzey-ege__6) Tedbirler Programı Raporu.txt s.7198; örnek kuyu TR040502290205 '495398           4337539' (ED50 UTM zone 35) → 39.18708,26.94671. Kuyu sayısı: İzmir=20. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR04050230",
    "kutle_adi": "Gedik",
    "havza": "kuzey-ege",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Balıkesir",
-    "Çanakkale",
-    "Manisa",
-    "İzmir"
-   ]
+   "iller": [
+    "Çanakkale"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: kuzey-ege__6) Tedbirler Programı Raporu.txt s.7239; örnek kuyu TR040502300224 '488350          4406967' (ED50 UTM zone 35) → 39.8126,26.86389. Kuyu sayısı: Çanakkale=14. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR04050231",
    "kutle_adi": "Fazlıca",
    "havza": "kuzey-ege",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Balıkesir",
-    "Çanakkale",
-    "Manisa",
-    "İzmir"
-   ]
+   "iller": [
+    "Balıkesir"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: kuzey-ege__6) Tedbirler Programı Raporu.txt s.7235; örnek kuyu TR040502310969 '513381          4385553' (ED50 UTM zone 35) → 39.61963,27.1559. Kuyu sayısı: Balıkesir=10. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR04050232",
    "kutle_adi": "Bekirler",
    "havza": "kuzey-ege",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Balıkesir",
-    "Çanakkale",
-    "Manisa",
-    "İzmir"
-   ]
+   "iller": [
+    "Çanakkale"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: kuzey-ege__Kuzey Ege Havzası Yönetim Planı.txt s.5906; örnek kuyu TR040502320132 '478234    4420458' (ED50 UTM zone 35) → 39.93396,26.74525. Kuyu sayısı: Çanakkale=4. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR04050233",
    "kutle_adi": "Davutlar",
    "havza": "kuzey-ege",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Balıkesir",
-    "Çanakkale",
-    "Manisa",
-    "İzmir"
-   ]
+   "iller": [
+    "Manisa"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: kuzey-ege__Kuzey Ege Havzası Yönetim Planı.txt s.5915; örnek kuyu TR040502330230 '576621    4333370' (ED50 UTM zone 35) → 39.14615,27.88667. Kuyu sayısı: Manisa=2. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR04050234",
    "kutle_adi": "Yayakent",
    "havza": "kuzey-ege",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Balıkesir",
-    "Çanakkale",
-    "Manisa",
+   "iller": [
     "İzmir"
-   ]
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: kuzey-ege__6) Tedbirler Programı Raporu.txt s.7241; örnek kuyu TR040502340196 '527562          4326092' (ED50 UTM zone 35) → 39.08351,27.31867. Kuyu sayısı: İzmir=12. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR06050162",
@@ -6775,43 +6717,23 @@
    "kutle_kodu": "TR07YAS02003",
    "kutle_adi": "Çöl Ovası",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Aydın",
-    "Denizli",
-    "Muğla",
-    "Uşak",
-    "Afyonkarahisar",
-    "Burdur",
-    "Isparta",
-    "İzmir",
-    "Kütahya",
-    "Manisa"
-   ]
+   "iller": [
+    "Afyonkarahisar"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: buyuk-menderes__OUT_27_2.2.9_RBMP_FINAL_BM_TR_V00_R06.txt s.784; kütle kodu satırda, '799825         4237754' (ED50 UTM zone 35) → 38.23783,30.42558. Kuyu sayısı: Afyonkarahisar=3. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR07YAS02004",
    "kutle_adi": "Sincanlı",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Aydın",
-    "Denizli",
-    "Muğla",
-    "Uşak",
-    "Afyonkarahisar",
-    "Burdur",
-    "Isparta",
-    "İzmir",
-    "Kütahya",
-    "Manisa"
-   ]
+   "iller": [
+    "Afyonkarahisar"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: buyuk-menderes__OUT_27_2.2.9_RBMP_FINAL_BM_TR_V00_R06.txt s.785; kütle kodu satırda, '786628         4280187' (ED50 UTM zone 35) → 38.62392,30.29234. Kuyu sayısı: Afyonkarahisar=4. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR07YAS02005",
@@ -6848,22 +6770,12 @@
    "kutle_kodu": "TR07YAS03001",
    "kutle_adi": "Adıgüzel",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Aydın",
-    "Denizli",
-    "Muğla",
-    "Uşak",
-    "Afyonkarahisar",
-    "Burdur",
-    "Isparta",
-    "İzmir",
-    "Kütahya",
-    "Manisa"
-   ]
+   "iller": [
+    "Denizli"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: buyuk-menderes__OUT_27_2.2.9_RBMP_FINAL_BM_TR_V00_R06.txt s.787; kütle kodu satırda, '699157         4225876' (ED50 UTM zone 35) → 38.1588,29.27314. Kuyu sayısı: Denizli=3. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR07YAS04001",
@@ -6962,43 +6874,23 @@
    "kutle_kodu": "TR07YAS04004",
    "kutle_adi": "Eymir",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Aydın",
-    "Denizli",
-    "Muğla",
-    "Uşak",
-    "Afyonkarahisar",
-    "Burdur",
-    "Isparta",
-    "İzmir",
-    "Kütahya",
-    "Manisa"
-   ]
+   "iller": [
+    "Denizli"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: buyuk-menderes__OUT_27_2.2.9_RBMP_FINAL_BM_TR_V00_R06.txt s.792; kütle kodu satırda, '689751         4216553' (ED50 UTM zone 35) → 38.07686,29.16337. Kuyu sayısı: Denizli=3. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR07YAS04005",
    "kutle_adi": "Hamidiye",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Aydın",
-    "Denizli",
-    "Muğla",
-    "Uşak",
-    "Afyonkarahisar",
-    "Burdur",
-    "Isparta",
-    "İzmir",
-    "Kütahya",
-    "Manisa"
-   ]
+   "iller": [
+    "Denizli"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: buyuk-menderes__OUT_27_2.2.9_RBMP_FINAL_BM_TR_V00_R06.txt s.793; kütle kodu satırda, '672659         4220687' (ED50 UTM zone 35) → 38.11752,28.96962. Kuyu sayısı: Denizli=3. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR07YAS04006",
@@ -8059,37 +7951,23 @@
    "kutle_kodu": "TR16YAS07001",
    "kutle_adi": "Yeniceoba",
    "havza": "konya",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Konya",
-    "Karaman",
-    "Aksaray",
-    "Niğde",
-    "Isparta",
-    "Ankara",
-    "Nevşehir"
-   ]
+   "iller": [
+    "Konya"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: konya__OUT_27_2.2.9_RBMP_FINAL_KO_TR_V00_R06.txt s.833; kütle kodu satırda, '481334         4309606' (ED50 UTM zone 36) → 38.93518,32.78463. Kuyu sayısı: Konya=21. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR16YAS07002",
    "kutle_adi": "Kadıoğlu",
    "havza": "konya",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Konya",
-    "Karaman",
-    "Aksaray",
-    "Niğde",
-    "Isparta",
-    "Ankara",
-    "Nevşehir"
-   ]
+   "iller": [
+    "Konya"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: konya__OUT_27_2.2.9_RBMP_FINAL_KO_TR_V00_R06.txt s.834; kütle kodu satırda, '470591         4285273' (ED50 UTM zone 36) → 38.71561,32.66172. Kuyu sayısı: Konya=17. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR16YAS07003",
@@ -8126,19 +8004,13 @@
    "kutle_kodu": "TR16YAS07004",
    "kutle_adi": "Kırkpınar",
    "havza": "konya",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Konya",
-    "Karaman",
-    "Aksaray",
-    "Niğde",
-    "Isparta",
+   "iller": [
     "Ankara",
-    "Nevşehir"
-   ]
+    "Konya"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: konya__OUT_27_2.2.9_RBMP_FINAL_KO_TR_V00_R06.txt s.837; kütle kodu satırda, '483830         4347020' (ED50 UTM zone 36) → 39.27238,32.81254. Kuyu sayısı: Ankara=101, Konya=2. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR16YAS08001",
@@ -8172,37 +8044,24 @@
    "kutle_kodu": "TR16YAS08002",
    "kutle_adi": "Devekovan",
    "havza": "konya",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Konya",
-    "Karaman",
-    "Aksaray",
-    "Niğde",
-    "Isparta",
+   "iller": [
     "Ankara",
-    "Nevşehir"
-   ]
+    "Aksaray"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: konya__OUT_27_2.2.9_RBMP_FINAL_KO_TR_V00_R06.txt s.840; kütle kodu satırda, '567774         4295118' (ED50 UTM zone 36) → 38.80222,33.78051. Kuyu sayısı: Ankara=6, Aksaray=5. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR16YAS09001",
    "kutle_adi": "Misli-Merkez",
    "havza": "konya",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Konya",
-    "Karaman",
-    "Aksaray",
-    "Niğde",
-    "Isparta",
-    "Ankara",
-    "Nevşehir"
-   ]
+   "iller": [
+    "Niğde"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: konya__OUT_27_2.2.9_RBMP_FINAL_KO_TR_V00_R06.txt s.841; kütle kodu satırda, '651189         4236561' (ED50 UTM zone 36) → 38.26438,34.72818. Kuyu sayısı: Niğde=40. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR01YAS01001",
@@ -8621,19 +8480,12 @@
    "kutle_kodu": "TR03YAS01005",
    "kutle_adi": "Başköy",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Bursa",
-    "Balıkesir",
-    "Kütahya",
-    "Bilecik",
-    "Çanakkale",
-    "Manisa",
-    "İzmir"
-   ]
+   "iller": [
+    "Bursa"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: susurluk__OUT_27_2.2.9_RBMP_FINAL_SU_TR_V00_R06.txt s.818; kütle kodu satırda, '660314     4436857' (ED50 UTM zone 35) → 40.06673,28.87987. Kuyu sayısı: Bursa=2. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR03YAS02001",
@@ -8695,37 +8547,23 @@
    "kutle_kodu": "TR03YAS04001",
    "kutle_adi": "Nilufer",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Bursa",
-    "Balıkesir",
-    "Kütahya",
-    "Bilecik",
-    "Çanakkale",
-    "Manisa",
-    "İzmir"
-   ]
+   "iller": [
+    "Bursa"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: susurluk__OUT_27_2.2.9_RBMP_FINAL_SU_TR_V00_R06.txt s.822; kütle kodu satırda, '664520     4458063' (ED50 UTM zone 35) → 40.25687,28.93458. Kuyu sayısı: Bursa=12. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR03YAS04002",
    "kutle_adi": "Uludağ",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Bursa",
-    "Balıkesir",
-    "Kütahya",
-    "Bilecik",
-    "Çanakkale",
-    "Manisa",
-    "İzmir"
-   ]
+   "iller": [
+    "Bursa"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: susurluk__OUT_27_2.2.9_RBMP_FINAL_SU_TR_V00_R06.txt s.823; kütle kodu satırda, '683560     4440806' (ED50 UTM zone 35) → 40.09754,29.15341. Kuyu sayısı: Bursa=2. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR03YAS04003",
@@ -8759,19 +8597,12 @@
    "kutle_kodu": "TR03YAS04004",
    "kutle_adi": "Maksempınarı kireçtaşı",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Bursa",
-    "Balıkesir",
-    "Kütahya",
-    "Bilecik",
-    "Çanakkale",
-    "Manisa",
-    "İzmir"
-   ]
+   "iller": [
+    "Bursa"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: susurluk__OUT_27_2.2.9_RBMP_FINAL_SU_TR_V00_R06.txt s.826; kütle kodu satırda, '654027     4444403' (ED50 UTM zone 35) → 40.13586,28.80798. Kuyu sayısı: Bursa=2. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR03YAS05001",
@@ -8976,19 +8807,12 @@
    "kutle_kodu": "TR03YAS06004",
    "kutle_adi": "Ivrindi",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Bursa",
-    "Balıkesir",
-    "Kütahya",
-    "Bilecik",
-    "Çanakkale",
-    "Manisa",
-    "İzmir"
-   ]
+   "iller": [
+    "Balıkesir"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: susurluk__OUT_27_2.2.9_RBMP_FINAL_SU_TR_V00_R06.txt s.857; kütle kodu satırda, '537132     4374918' (ED50 UTM zone 35) → 39.52311,27.43202. Kuyu sayısı: Balıkesir=3. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR03YAS08001",
@@ -9050,19 +8874,12 @@
    "kutle_kodu": "TR03YAS08003",
    "kutle_adi": "Kocaçay",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
-   "oneri_havza_illeri": [
-    "Bursa",
-    "Balıkesir",
-    "Kütahya",
-    "Bilecik",
-    "Çanakkale",
-    "Manisa",
-    "İzmir"
-   ]
+   "iller": [
+    "Bursa"
+   ],
+   "durum": "eslesti",
+   "yontem": "koordinat-utm",
+   "kanit": "NHYP izleme tablosunda kütle kodunu İÇEREN kuyu kodlarının UTM koordinatları (aynı satır) → il poligonu ışın testi. Kaynak: susurluk__OUT_27_2.2.9_RBMP_FINAL_SU_TR_V00_R06.txt s.860; kütle kodu satırda, '624590     4470410' (ED50 UTM zone 35) → 40.37497,28.46762. Kuyu sayısı: Bursa=2. Dönüşüm doğrulaması: PDF'in kendi ondalık derecesini de taşıyan 224 satırda sapma ortanca 192 m (ED50↔WGS84 datum farkı)."
   },
   {
    "kutle_kodu": "TR12050001",
@@ -11029,5 +10846,16 @@
     "Kocaeli"
    ]
   }
- ]
+ ],
+ "ikinci_gecis_koordinat": {
+  "tarih": "2026-07-27",
+  "hedef": 153,
+  "kod_gecti": 153,
+  "ayni_satirda_koordinat_bulunan": 33,
+  "il_eslenen": 33,
+  "tek_il": 29,
+  "cok_il": 4,
+  "yontem": "NHYP izleme tablolarında kuyu kodu kütle kodunu içerir; kuyunun UTM koordinatı (AYNI SATIR) → il poligonu ışın testi. ±satır penceresi denendi ve çürütüldü (komşu kuyunun koordinatını kapıyordu). UTM dilimi havzanın doğrulanmış il kümesiyle sınandı.",
+  "kanit": "cikti/denetim/faz-i/koordinat-ikinci-gecis.json"
+ }
 }
