@@ -35,10 +35,16 @@ Kullanıcının canlı görsel onayı nihai kapanış. Açık maddeler:
       174 sayfada tek PaylasilanMenu; koşullu çapa (/#), Veriler 10 rota
       (+/hakkinda/), vitrin (son 3 rehber + kanun son durum + havza)
       menü paneline taşındı — kaybolan bağlantı 0.
-- [ ] YENİ: eski menü bileşenleri kullanımdan kalktı, DOSYALAR DURUYOR —
-      silme kararı kullanıcıda (M10): UstMenu.astro · TamEkranMenu.astro ·
-      anasayfa/UstBar.astro · /s/menu.js (artık yüklenmiyor olabilir,
-      kontrol edilmedi).
+- [x] Eski menü dosyaları — SİLİNDİ (27.07 temizlik, kullanıcı onayıyla
+      M10 kaldırıldı): UstMenu.astro · TamEkranMenu.astro · UstBar.astro
+      (iteratif eleme: UstBar+UstMenu tur 1, TamEkranMenu tur 2 —
+      tek referansı öksüz UstMenu'dendi). KORUNAN: data/menu.ts
+      (PaylasilanMenu kullanıyor) · public/s/menu.js (174 sayfada
+      <script src> hâlâ çağırıyor — 2.4 kuralı).
+- [ ] YENİ: /s/menu.js script etiketi 174 sayfada duruyor ama hedef
+      panel (sv-menu) artık render edilmiyor — etiketin Sayfa.astro +
+      harita(+pilot)'tan kaldırılması ayrı iş (dosya + ~1 istek/sayfa
+      kazanır). harita sayfa stillerinde öksüz .sv-menu-ac CSS'i de var.
 - [ ] Öksüz kalan bileşenler (silme kararı kullanıcıda, M10):
       src/data/anasayfa-sorular.js (7-soru güverte seti; artık hiçbir sayfa
       import etmiyor) · src/scripts/scrub-engine.js index kullanımı düştü
