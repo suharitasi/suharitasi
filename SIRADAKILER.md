@@ -22,14 +22,23 @@ ANA SAYFA v2 (emilkowalski + v0 spesifikasyonu) — CANLIDA (2026-07-27,
 merge c7fbe40→de01fbd + push + canlı doğrulama; ayrıntı GUNLUK). v0 ince
 ayar turu (A=28 fark) dahil; 13 GEO commit'i de aynı merge ile yayınlandı.
 Kullanıcının canlı görsel onayı nihai kapanış. Açık maddeler:
-- [ ] Sondaj İşlemleri kartı linksiz — karşılığı sayfa yok
+- [x] Sondaj kartı — KAPANDI (27.07): /havzalar/ hedefine bağlandı;
+      "su nerelerde çıkabilir" sorusu da /havzalar/'a eşitlendi (0.8:
+      YAS potansiyeli 25 havza sayfasında basılıyor; /harita/ değil).
+      Aynı sayfada iki giriş aynı hedefe — kasıtlı.
 - [ ] SITE-DURUM 🔴 (GRACE tazeliği 262,6 gün) — bu iş kapsamı dışında
 - [ ] "Su nerelerde çıkabilir" cevabı nerede — HENDEK FAZ 2.5 (yeraltı suyu
       potansiyeli katmanı) yapıldı mı, YAS verisi 25 havza sayfasında
       basılıyor mu, sıralama sayfası var mı. Ana sayfadaki soru şu an
       geçici hedefe bağlı (/harita/).
-- [ ] MENÜ TUTARSIZLIĞI: ana sayfa yeni üst barla (UstBar), diğer 173 sayfa
-      eski menüyle (UstMenu). Birleştirme ayrı iş.
+- [x] MENÜ TUTARSIZLIĞI — KAPANDI (27.07, menu-2026-07-27 canlıda):
+      174 sayfada tek PaylasilanMenu; koşullu çapa (/#), Veriler 10 rota
+      (+/hakkinda/), vitrin (son 3 rehber + kanun son durum + havza)
+      menü paneline taşındı — kaybolan bağlantı 0.
+- [ ] YENİ: eski menü bileşenleri kullanımdan kalktı, DOSYALAR DURUYOR —
+      silme kararı kullanıcıda (M10): UstMenu.astro · TamEkranMenu.astro ·
+      anasayfa/UstBar.astro · /s/menu.js (artık yüklenmiyor olabilir,
+      kontrol edilmedi).
 - [ ] Öksüz kalan bileşenler (silme kararı kullanıcıda, M10):
       src/data/anasayfa-sorular.js (7-soru güverte seti; artık hiçbir sayfa
       import etmiyor) · src/scripts/scrub-engine.js index kullanımı düştü
