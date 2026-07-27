@@ -2,6 +2,15 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
+KONTRAST ARIZASI — KAPANDI (27.07, kontrast-2026-07-27 canlıda,
+512ada3): index.astro'nun is:global body{#061824} stili Vite ortak
+chunk'ıyla 173 içerik sayfasına sızmıştı (menü birleştirme yan etkisi;
+il/persona 1.16:1, rehber 2.84:1). T1: kurallar html.v2-sayfa kapsamına
+alındı; 10 tip canlıda 5.16–12.33 AA. Ders: paylaşılan bileşen + sayfa
+is:global birleşimi chunk sızıntısı yaratır — sayfa-küresel stiller kök
+sınıfla kapsanır. site-saglik'e kontrast kontrolü eklenmesi DEĞERLENDİRİLMELİ
+(md.9 a11y açığı maddesiyle birleşir).
+
 SAGLIK SISTEMI — LIGHTHOUSE TEK ATIŞ (27 Tem 2026, KULLANICI KARARI BEKLİYOR)
 `arac/site-saglik.mjs:447` Lighthouse'u sayfa başına BİR KEZ çağırıyor.
 CLAUDE.md kuralı "3 tur medyan" diyor. Ölçüldü: aynı build'de mobil puan
