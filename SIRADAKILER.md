@@ -2,6 +2,22 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
+SAGLIK SISTEMI — LIGHTHOUSE TEK ATIŞ (27 Tem 2026, KULLANICI KARARI BEKLİYOR)
+`arac/site-saglik.mjs:447` Lighthouse'u sayfa başına BİR KEZ çağırıyor.
+CLAUDE.md kuralı "3 tur medyan" diyor. Ölçüldü: aynı build'de mobil puan
+82-99 arasında oynuyor — sistem düzenli olarak yanlış regresyon alarmı
+üretecek. Performans eşiği otomatik onarım KARA LİSTESİNDE olduğu için
+DEĞİŞTİRİLMEDİ. Karar: 3 tur medyana çevrilsin mi (koşu süresi ~3 katına
+çıkar), yoksa eşik gevşetilsin mi?
+
+BENİM REGRESYONUM KAPANDI (27 Tem, `d64d5de`): breadcrumb sayfası olmayan
+ara halkayı link yapıyordu → /arac/ 404. 175 sayfa tarandı, kırık link 0.
+Ders kuyruğa: örnek sayfa öz-denetimi TAM SİTE taramasının yerine geçmez.
+
+AĞIRLIK KAYDI (27 Tem): IA turu + D3-A sonrası ortalama HTML sayfa
+24,3 → 28,9 KB (+%19), havza sayfası 40,8 → 50,2 KB, /durumum/ aktarılan
+bayt +%11,6 · DOM +%11,8. Lighthouse'a yansıması ayırt edilemedi.
+
 /HANGİ-KURUM/ SAYFASI — KULLANICI ONAYI BEKLİYOR (2026-07-23). Su işlemlerinde
 yetkili kurum rehberi: build-time hangi-kapi.json (20 işlem) + su-birimleri.json
 (155 kurum) + su-islemleri.json'dan üretildi; üstte tek-tık filtre (details),

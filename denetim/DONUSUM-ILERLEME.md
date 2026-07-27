@@ -860,3 +860,68 @@ Sakarya (tek kalıp-2 havzası) sayfasında "İller ve yetkili kurumlar" bir
 `<details>` katmanı içinde; harita orada **kapalı gelir**, açınca görünür.
 Diğer 24 havzada doğrudan görünür. İstenirse harita künye bloğuna
 (ilk ekran) taşınabilir — ayrı karar.
+
+---
+
+## 27 Tem 2026 — canlı regresyon avı ve ölçüm dürüstlüğü
+
+### 🔴 Kırık iç link — BENİM REGRESYONUM, giderildi (`d64d5de`)
+
+26 Tem 19:33 tam koşusu 1 kırık iç link verdi. Kaynak: **breadcrumb**.
+Ara halkaların hepsini link yapıyordu; `arac` bölümünün index sayfası
+olmadığı için `/arac/il-rejimi/` sayfası canlıda **/arac/ → 404**'e link
+verdi. JSON-LD `BreadcrumbList` de aynı 404'ü işaret ediyordu.
+
+**Neden kaçtı:** kendi öz-denetimim "0 kırık link" dedi ama yalnız
+seçtiğim 6-8 sayfayı geziyordu; `/arac/il-rejimi/` o listede hiç olmadı.
+Ders: örnek sayfa denetimi tam site taramasının yerine geçmez.
+
+**Düzeltme elle istisna listesi DEĞİL:** `import.meta.glob` ile gerçek
+sayfa dosyalarından türetiliyor — yarın `/arac/index.astro` eklenirse link
+kendiliğinden çalışır, liste bakımı gerekmez. Sayfası olmayan halka
+`<span>` olur ve JSON-LD'de `item` alanı hiç yazılmaz (schema.org yalnız
+`name` taşıyan ListItem'a izin verir).
+
+**Doğrulama:** 175 sayfanın TAMAMI tarandı (script içi şablon dizeleri
+hariç tutuldu) → **kırık iç link 0**.
+
+### Lighthouse mobil düşüşü — KANITLANMADI, gürültü
+
+SITE-DURUM 26 Tem koşusunda mobil puanlar düşük göründü
+(`/durumum/` 94→86, `/rehberler/kuyu-tasima/` 93→85, `/havzalar/sakarya/` 93→85).
+Regresyon sanıp A/B ölçtüm: değişiklik öncesi commit (`a34d70d`) ayrı
+worktree'de derlendi, iki sürüm aynı makinede aynı anda servis edildi,
+mobil profil + throttling ile ölçüldü.
+
+| Sayfa | Taban medyan | Yeni medyan | Not |
+|---|---|---|---|
+| `/durumum/` (7 tur) | **82** (aralık 82–99) | **88** (aralık 81–93) | yeni sürüm DAHA YÜKSEK |
+| `/havzalar/sakarya/` (3 tur) | 83 | 82 | −1 |
+| `/rehberler/kuyu-tasima/` (3 tur) | 93 | 83 | tur aralığı 80–93 |
+
+**Aynı build'de turlar 82 ile 99 arasında oynuyor.** İddia edilen fark
+gürültüyle aynı büyüklükte → **regresyon kanıtlanamaz.**
+
+Belirlenimci metrikler (gürültüsüz), `/durumum/`:
+
+| Metrik | Taban | Yeni | Fark |
+|---|---|---|---|
+| Aktarılan bayt | 279.867 | 312.453 | **+%11,6** |
+| DOM düğümü | 339 | 379 | **+%11,8** |
+| Ortalama HTML sayfa | 24,3 KB | 28,9 KB | +%19 |
+| Havza sayfası | 40,8 KB | 50,2 KB | +%23 |
+
+Yani **maliyet gerçek ve ölçülü: ~%12 bayt, ~%12 DOM.** Puana yansıyıp
+yansımadığı bu ortamda ayırt edilemiyor.
+
+### 🔎 SİSTEM BULGUSU — sağlık sistemi Lighthouse'u TEK ATIŞ ölçüyor
+
+`arac/site-saglik.mjs:447` her sayfa/form için `lighthouse()`'u **bir kez**
+çağırıyor. CLAUDE.md'nin kendi kuralı ise: *"Lighthouse tek ölçümle karar
+verilmez — 3 tur medyan; localhost gürültüsü eşik ihlali sanılmaz."*
+Sistem kendi kuralını çiğniyor ve bu, yukarıdaki gibi **yanlış regresyon
+alarmları** üretmeye devam eder.
+
+**DEĞİŞTİRİLMEDİ.** Performans eşiği CLAUDE.md'de otomatik onarım KARA
+LİSTESİNDE ("performans ... asla otomatik onarılmaz — DUR + bildir").
+Kullanıcı kararına bırakıldı, kuyruğa yazıldı.
