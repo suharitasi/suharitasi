@@ -511,17 +511,42 @@ async function md12_etkilesim(tarayici) {
       await sayfa.goto(TABAN + k.yol, { waitUntil: 'load' });
       await sayfa.waitForTimeout(1000);
       if (k.tur === 'menu') {
+        // REVİZYON (27 Tem 2026, gece paketi): eski tam-ekran menü (#sv-menu
+        // + .sv-menu-ac + menu.js) 27.07'de KALDIRILDI; yerine PaylasilanMenu
+        // bileşeni geldi (#pm-menu-dugme → #pm-mobil-panel.acik). Kontrol hâlâ
+        // silinmiş DOM'u arıyordu ve HER koşuda 🔴 veriyordu — md4'ün ikizi
+        // bayat-yapılandırma yanlış alarmı. Üstelik menü o süre boyunca
+        // GERÇEKTE HİÇ TEST EDİLMİYORDU (24.07 arızasının senaryosu açıkta).
+        // Tetik düğmesi yalnız ≤1023px'te görünür → ölçüm mobil genişlikte.
+        await sayfa.setViewportSize({ width: 375, height: 667 });
         // Dibe kaydır: akis-bitti / scroll-restorasyonu = arızanın tam senaryosu.
         await sayfa.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
         await sayfa.waitForTimeout(500);
-        await sayfa.evaluate(() => { const b = document.querySelector('.sv-menu-ac-koyu, .sv-menu-ac'); if (b) b.click(); });
+        const dugmeVar = await sayfa.evaluate(() => {
+          const b = document.getElementById('pm-menu-dugme');
+          if (!b) return false;
+          b.click();
+          return true;
+        });
         await sayfa.waitForTimeout(700);
-        const acildi = await sayfa.evaluate(() => { const o = document.getElementById('sv-menu'); return !!o && o.classList.contains('sv-acik') && !o.hidden; });
+        const acildi = await sayfa.evaluate(() => {
+          const p = document.getElementById('pm-mobil-panel');
+          const b = document.getElementById('pm-menu-dugme');
+          return !!p && p.classList.contains('acik')
+                 && b?.getAttribute('aria-expanded') === 'true';
+        });
         await sayfa.keyboard.press('Escape');
         await sayfa.waitForTimeout(600);
-        const kapandi = await sayfa.evaluate(() => { const o = document.getElementById('sv-menu'); return !!o && !o.classList.contains('sv-acik'); });
-        gecti = acildi && kapandi;
-        detay = `dip(akis-bitti): açıldı=${acildi} kapandı=${kapandi}`;
+        const kapandi = await sayfa.evaluate(() => {
+          const p = document.getElementById('pm-mobil-panel');
+          const b = document.getElementById('pm-menu-dugme');
+          return !!p && !p.classList.contains('acik')
+                 && b?.getAttribute('aria-expanded') === 'false';
+        });
+        gecti = dugmeVar && acildi && kapandi;
+        detay = dugmeVar
+          ? `dip(akis-bitti)@375px: açıldı=${acildi} kapandı=${kapandi}`
+          : '#pm-menu-dugme DOM\'da YOK (menü bileşeni değişmiş olabilir)';
       } else if (k.tur === 'details') {
         const r = await sayfa.evaluate((sec) => {
           const d = document.querySelector(sec); if (!d) return { yok: true };
