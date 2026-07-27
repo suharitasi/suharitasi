@@ -20,8 +20,14 @@ if (!havzaSayisi || !rehberSayisi || !ilSayisi) {
       <div>
         <p class="v2-bolum-kicker">Hakkında</p>
         <h2>Suyun hukukunu bilen bir avukatla çalışın</h2>
-        <p>{YAZAR.ad} — {YAZAR.buro}. {YAZAR.uzmanlik} Bu portaldaki hukuki
-          içerik ve mevzuat analizleri kendisi tarafından hazırlanmaktadır.</p>
+        {/* v0 paragrafının ilk iki cümlesi aynen; v0'ın "yıllardır YALNIZCA
+            su hukuku" beyanı künyeyle çelişir (su hukuku + idari yargı +
+            şirketler) — son cümle künye gerçeğiyle (A2-5, rapora yazıldı). */}
+        <p>Su; bir hak, bir kaynak ve çoğu zaman bir anlaşmazlık konusudur.
+          Bu alandaki mevzuat karmaşık, süreçler ise çoğunlukla teknik bilgi
+          gerektirir. {YAZAR.ad} — {YAZAR.buro}: {YAZAR.uzmanlik} Bu
+          portaldaki hukuki içerik ve mevzuat analizleri kendisi tarafından
+          hazırlanmaktadır.</p>
         <ul>
           <li>Su hukuku ve yeraltı suyu mevzuatında uzmanlık</li>
           <li>DSİ ve idari kurum süreçlerinde deneyim</li>

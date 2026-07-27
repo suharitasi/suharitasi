@@ -17,24 +17,56 @@ import { EPOSTA, YAZAR } from '../../data/site';
         <h2>Su ile ilgili sorunuzu bize bırakın</h2>
         <p class="v2-intro">Kuyu, sondaj, ruhsat ya da tahsis; durumunuzu
           kısaca yazın, en kısa sürede size dönelim. İlk görüşme ücretsizdir.</p>
+      {/* v0 yapısı: ikon kutulu iletişim satırları (A2-5). Telefon ve konum
+          M7 gereği YOK (doğrulanamadı) — yalnız gerçek kanallar. */}
       <div class="v2-iletisim-bilgi">
-        <p>E-posta: <a href={`mailto:${EPOSTA}`}>{EPOSTA}</a></p>
-        <p>{YAZAR.buro} — <a href={YAZAR.buroUrl} rel="noopener">arslanhukuk.tr</a></p>
-        <p>Mesajınız doğrudan e-posta olarak iletilir; form bir sunucuya
-          veri göndermez.</p>
+        <a class="v2-kanal" href={`mailto:${EPOSTA}`}>
+          <span class="v2-kanal-ikon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="14" rx="2"/>
+              <path d="m3 7 9 6 9-6"/>
+            </svg>
+          </span>
+          {EPOSTA}
+        </a>
+        <a class="v2-kanal" href={YAZAR.buroUrl} rel="noopener">
+          <span class="v2-kanal-ikon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3 4 7v2h16V7l-8-4Z"/><path d="M6 11v6"/>
+              <path d="M12 11v6"/><path d="M18 11v6"/><path d="M4 21h16"/>
+            </svg>
+          </span>
+          {YAZAR.buro}
+        </a>
+        <p class="v2-kanal-not">Mesajınız doğrudan e-posta olarak iletilir;
+          form bir sunucuya veri göndermez.</p>
       </div>
       </div>
+      {/* v0 alan adları/etiketleri/placeholder'ları; gönderim MAILTO kalır
+          (A2 ÖZEL). Telefon = ziyaretçinin kendi numarası (form alanı,
+          uydurma değil). */}
       <form class="v2-form" id="v2-form">
-        <label>Adınız
-          <input type="text" name="ad" autocomplete="name" required />
+        <label>Ad Soyad
+          <input type="text" name="ad" autocomplete="name" required
+                 placeholder="Adınız ve soyadınız" />
         </label>
-        <label>E-posta adresiniz
-          <input type="email" name="eposta" autocomplete="email" required />
+        <div class="v2-form-iki">
+          <label>Telefon
+            <input type="tel" name="tel" autocomplete="tel"
+                   placeholder="05xx xxx xx xx" />
+          </label>
+          <label>E-posta
+            <input type="email" name="eposta" autocomplete="email" required
+                   placeholder="ornek@eposta.com" />
+          </label>
+        </div>
+        <label>Durumunuz
+          <textarea name="mesaj" rows="4" required
+                    placeholder="Örn. Kuyu ruhsatı başvurumu nasıl yapabilirim?"></textarea>
         </label>
-        <label>Mesajınız
-          <textarea name="mesaj" rows="5" required></textarea>
-        </label>
-        <button type="submit">E-posta ile gönder</button>
+        <button type="submit">Mesajı Gönder</button>
       </form>
     </div>
   </div>
@@ -54,8 +86,9 @@ import { EPOSTA, YAZAR } from '../../data/site';
     e.preventDefault();
     const v = new FormData(form);
     const konu = encodeURIComponent(`Ön görüşme talebi — ${v.get('ad')}`);
+    const tel = v.get('tel') ? `\nTelefon: ${v.get('tel')}` : '';
     const govde = encodeURIComponent(
-      `Ad: ${v.get('ad')}\nE-posta: ${v.get('eposta')}\n\n${v.get('mesaj')}`
+      `Ad: ${v.get('ad')}\nE-posta: ${v.get('eposta')}${tel}\n\n${v.get('mesaj')}`
     );
     location.href = `mailto:bilgi@suharitasi.com?subject=${konu}&body=${govde}`;
   });
