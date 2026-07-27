@@ -981,3 +981,17 @@ html.v2-sayfa kapsamına; SONRA canlıda: 5.16–12.33, 10/10 AA. Menü barı
 (1) koyu gövde menü karelerinde de vardı, konsol/taşma ölçüp zemine gözle
 bakmadım; (2) ölçüm scripti ilk sürümde menünün gizli <p>'sini yakaladı,
 görünürlük süzgeciyle düzeltildi. Kareler: kontrast-sonrasi/ + kontrast-canli/.
+
+## 2026-07-27 (6. seans) — menu.js etiket temizliği
+
+main 5fa6c25 → aff52eb. NO-OP analizi (üç kanal, brief düzeltmesi gereği):
+(a) sv-menu id'si dist'te 0 (guard `overlay && aclar.length` çift koşul —
+harita-pilot'ta gizli kalan 1 tetik düğmesi tek başına yetmiyordu);
+(b) modül kökünde document/window dinleyicisi yok (hepsi kur() içinde);
+(c) koşulsuz yan etki yok (import/timer/atama hepsi guard arkasında).
+Kaldırılan: 3 script etiketi + harita-pilot öksüz tetik (menü turu regex'i
+tek-satır formatı kaçırmıştı — itiraf) + .sv-menu-ac CSS blokları +
+public/s/menu.js (silme, ayrı commit hedeflenmişti, b41d4aa'da birleşti).
+/harita/ ayrı doğrulama: pm-yuzer bar + Veriler açılıyor, eski tetik yok,
+konsol/ağ hatası 0. Gerileme 0 (taban=sonra). Canlı: aff52eb, menu.js 404,
+sayfalarda referans 0, DYNAMIC. Kalıntı: imlec.js'te ölü sınıf okuması.
