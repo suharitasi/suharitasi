@@ -52,9 +52,9 @@
   color: var(--v0-beyaz);
   text-decoration: none;
   font-family: var(--serif, Georgia, serif);
-  font-size: 1.15rem;
+  font-size: 1.125rem;
   font-weight: 600;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.02em; /* v0 tracking-tight */
   white-space: nowrap;
 }
 .v2-marka small {
@@ -74,9 +74,9 @@
 .v2-veri-liste li { list-style: none; }
 .v2-nav a, .v2-veri-dugme {
   font-family: var(--sans, system-ui, sans-serif);
-  font-size: 0.88rem;
+  font-size: 0.875rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   background: none; border: 0; cursor: pointer;
   padding: 0.35rem 0.1rem;
@@ -296,8 +296,10 @@
   box-shadow: 0 10px 28px rgba(4, 16, 26, 0.35);
   font-family: var(--serif, Georgia, serif);
   font-style: italic;
-  font-size: 1.02rem;
-  line-height: 1.3;
+  font-size: 0.875rem; /* v0 text-sm */
+  line-height: 1.45;
+  text-align: center;  /* v0 text-center */
+  text-wrap: balance;
   color: var(--v0-beyaz);
   text-decoration: none;
   pointer-events: auto;
@@ -329,31 +331,40 @@
   color: var(--v0-beyaz);
 }
 .v2-rozet {
-  display: inline-block;
-  padding: 0.4rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 1rem;
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 999px;
-  font-family: var(--mono, ui-monospace, monospace);
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
+  font-family: var(--sans, system-ui, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
-  background: rgba(8, 32, 47, 0.45);
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
+}
+@supports (backdrop-filter: blur(1px)) {
+  .v2-rozet { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 }
 .v2-baslik h1 {
-  margin: 1.1rem 0 0;
+  margin: 1.25rem 0 0; /* v0 mb-5 rozetten */
+  max-width: 56rem;    /* v0 max-w-4xl */
   font-family: var(--serif, Georgia, serif);
-  font-weight: 500;
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  line-height: 1.12;
+  font-weight: 600;
+  font-size: clamp(2.25rem, 5.5vw, 4.5rem); /* v0 4xl->7xl */
+  line-height: 1.1;
   text-wrap: balance;
+  filter: drop-shadow(0 2px 20px rgba(0, 0, 0, 0.5));
 }
 .v2-alt-metin {
-  margin: 1.1rem auto 0;
-  max-width: 46rem;
-  font-size: 0.98rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.82);
+  margin: 1.5rem auto 0; /* v0 mt-6 */
+  max-width: 42rem;      /* v0 max-w-2xl */
+  font-size: clamp(1rem, 1.4vw, 1.125rem); /* v0 base->lg */
+  line-height: 1.625;
+  color: rgba(255, 255, 255, 0.85);
+  filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.35));
 }
 .v2-butonlar {
   display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem;
@@ -446,21 +457,19 @@
 .v2-bolum h2 {
   margin: 0;
   font-family: var(--serif, Georgia, serif);
-  font-weight: 500;
-  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
-  line-height: 1.15;
+  font-weight: 600;
+  font-size: clamp(1.875rem, 3.4vw, 2.25rem); /* v0 3xl->4xl */
+  line-height: 1.2;
+  text-wrap: balance;
 }
 .v2-bolum-kicker {
-  display: flex; align-items: center; gap: 0.6rem;
-  margin: 0 0 0.7rem;
-  font-family: var(--mono, ui-monospace, monospace);
-  font-size: 0.68rem;
-  font-weight: 500;
+  margin: 0 0 0.75rem; /* v0 mt-3 h2 oncesi */
+  font-family: var(--sans, system-ui, sans-serif);
+  font-size: 0.875rem;
+  font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
-.v2-bolum-kicker::before { content: ""; width: 1.5rem; height: 1px;
-  background: currentColor; }
 
 /* ——— HİZMETLER (aydınlık zemin — okunurluk) ——— */
 .v2-hizmetler { background: var(--v2-bg); color: var(--v2-metin); }
@@ -496,7 +505,7 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
 .v2-kart h3 {
   margin: 0;
   font-family: var(--serif, Georgia, serif);
-  font-size: 1.18rem;
+  font-size: 1.25rem; /* v0 text-xl */
   font-weight: 600;
 }
 .v2-kart p { margin: 0; font-size: 0.875rem; line-height: 1.6; color: var(--v2-muted-fg); }
@@ -525,18 +534,20 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 .v2-adim .no {
-  font-family: var(--mono, ui-monospace, monospace);
-  font-size: 0.8rem;
-  color: #7fd0ef;
+  font-family: var(--serif, Georgia, serif);
+  font-size: 3rem; /* v0 text-5xl filigran */
+  font-weight: 600;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.15);
 }
 .v2-adim h3 {
-  margin: 0.4rem 0 0.5rem;
+  margin: 0.75rem 0 0.5rem; /* v0 mt-3 */
   font-family: var(--serif, Georgia, serif);
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 600;
 }
-.v2-adim p { margin: 0; font-size: 0.9rem; line-height: 1.6;
-  color: rgba(255, 255, 255, 0.75); }
+.v2-adim p { margin: 0; font-size: 0.875rem; line-height: 1.625;
+  color: rgba(255, 255, 255, 0.7); }
 
 /* ——— HAKKINDA ——— */
 .v2-hakkinda { background: var(--v2-bg); color: var(--v2-metin); }
