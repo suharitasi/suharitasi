@@ -25,12 +25,7 @@ import { join } from 'node:path';
 import { execFileSync, spawn } from 'node:child_process';
 import os from 'node:os';
 
-const KOK = '/home/suha/projeler/suharitasi';
-const IZLEME = join(KOK, 'izleme');
-const DURUM_YOL = join(IZLEME, 'state', 'site-saglik-durum.json');
-const LOG_YOL = join(IZLEME, 'site-saglik-log.jsonl');
-const ONARIM_LOG = join(IZLEME, 'onarim-log.jsonl');
-const DURUM_MD = join(IZLEME, 'SITE-DURUM.md');
+const VARSAYILAN_KOK = '/home/suha/projeler/suharitasi';
 const EXE = '/home/suha/.cache/ms-playwright/chromium-1228/chrome-linux64/chrome';
 
 // ————————————————————————————— argümanlar —————————————————————————————
@@ -39,13 +34,26 @@ const bayrak = (a) => argv.includes(a);
 const deger = (a, v) => { const i = argv.indexOf(a); return i >= 0 && argv[i + 1] ? argv[i + 1] : v; };
 const MOD = bayrak('--test') ? 'test' : bayrak('--hizli') ? 'hizli' : bayrak('--tam') ? 'tam' : null;
 if (!MOD) {
-  console.error('kullanım: node arac/site-saglik.mjs --tam|--hizli|--test [--bekle-sha <sha>] [--taban <url>]');
+  console.error('kullanım: node arac/site-saglik.mjs --tam|--hizli|--test [--bekle-sha <sha>] [--taban <url>] [--kok <dizin>]');
   process.exit(2);
 }
+// --kok: worktree izolasyonu (2026-07-27, gece paketi B4). Depo kökü artık
+// parametre — bir worktree'de düzeltilmiş script, ANA AĞACIN izleme/state,
+// log ve SITE-DURUM dosyalarına dokunmadan canlıya karşı OKUMA koşusu
+// yapabilsin. Varsayılan değişmediği için cron davranışı AYNI kalır.
+const KOK = (deger('--kok', VARSAYILAN_KOK)).replace(/\/$/, '');
+const IZOLE = KOK !== VARSAYILAN_KOK;
+const IZLEME = join(KOK, 'izleme');
+const DURUM_YOL = join(IZLEME, 'state', 'site-saglik-durum.json');
+const LOG_YOL = join(IZLEME, 'site-saglik-log.jsonl');
+const ONARIM_LOG = join(IZLEME, 'onarim-log.jsonl');
+const DURUM_MD = join(IZLEME, 'SITE-DURUM.md');
 const BEKLE_SHA = deger('--bekle-sha', null);
 const TABAN = (deger('--taban', 'https://suharitasi.com')).replace(/\/$/, '');
 const CIKTI = deger('--cikti', join(KOK, 'cikti/denetim/site-saglik'));
-const ONARIM_ACIK = MOD === 'tam';   // --hizli ve --test'te ASLA gerçek onarım
+// Onarım git commit+push yapar; izole kökte bu YANLIŞ dala yazardı → kapalı.
+const ONARIM_ACIK = MOD === 'tam' && !IZOLE;   // --hizli/--test/izole kök: ASLA gerçek onarım
+if (IZOLE) console.log(`[İZOLE] kök=${KOK} — otomatik onarım KAPALI, yazımlar bu kökte kalır`);
 
 // ————————————————————————————— yardımcılar —————————————————————————————
 const simdi = () => new Date().toISOString();
@@ -501,25 +509,25 @@ async function md9_lighthouse() {
     sonuc.map((k) => `${k.yol} ${k.masaustu}/${k.mobil}`).join(' · '), { sonuc }, ['tam']);
 }
 
-async function md10_veriTazeligi() {
-  const kurallar = [
-    { dosya: 'data/canli/baraj.json', saat: 48, ad: 'baraj' },
-    { dosya: 'data/canli/grace-turkiye.json', saat: 8 * 24, ad: 'GRACE' },
-  ];
-  const bayat = [], olcum = [];
-  for (const k of kurallar) {
-    const tam = join(KOK, k.dosya);
-    if (!existsSync(tam)) { bayat.push({ ...k, yas: 'dosya YOK' }); continue; }
-    const { mtime } = statSync(tam);
-    const yasSaat = (Date.now() - new Date(mtime).getTime()) / 3600000;
-    olcum.push({ ad: k.ad, yasSaat: +yasSaat.toFixed(1), esikSaat: k.saat });
-    if (yasSaat > k.saat) bayat.push({ ...k, yasSaat: +yasSaat.toFixed(1) });
-  }
-  kaydet('10-veri-tazeligi', bayat.length ? 'kirmizi' : 'gecti',
-    bayat.length ? `${bayat.map((b) => `${b.ad} ${b.yasSaat ?? b.yas}`).join(', ')} — eşik aşıldı`
-                 : olcum.map((o) => `${o.ad} ${o.yasSaat}s/${o.esikSaat}s`).join(' · '),
-    { olcum, bayat }, ['tam']);
-}
+/* md10 — VERİ TAZELİĞİ: KALDIRILDI (2026-07-27, gece paketi B1+B3).
+   Kaldırma gerekçesi — iki kalemi de yanlış ya da mükerrerdi:
+
+   (B3) baraj: md10 `data/canli/baraj.json` mtime > 48s → 🔴 diyordu.
+        saglik-bekcisi.sh (b) AYNI dosyayı 26s eşiğiyle zaten denetliyor ve
+        eşiği gerçek cron takvimine (çekim 15:00 UTC, bekçi 07:00 UTC)
+        kalibre edilmiş. İki bekçi = iki alarm, biri gevşek: mükerrer.
+
+   (B1) GRACE: md10 `data/canli/grace-turkiye.json` mtime > 192s (8 gün) →
+        🔴 diyordu. Bu kalem YANLIŞ: dosya cron koştuğunda değil, GSFC yeni
+        MASCON sürümü yayınladığında (~aylık, kimi dönem daha seyrek) değişir.
+        Sağlıklı bir sistemde bile 8 günden eski olması NORMALDİR → yapısal
+        yanlış alarm. Doğru tazelik sinyali "cron gerçekten koştu mu"dur ve
+        saglik-bekcisi.sh (c) bunu `data/arsiv/grace/durum.json` mtime ile
+        ölçer (durum.json HER koşuda — başarı/değişiklik-yok/hata — yeniden
+        yazılır). Kaynak dönem takvimi bekçinin bu doğru mantığındadır.
+
+   İLKE: veri tazeliği pipeline'ın DIŞINDAN denetlenir (bekçi), site-saglik
+   canlı siteyi denetler. Pipeline kendini denetleyemez. */
 
 // md11 — VERİ BÜTÜNLÜĞÜ: /hangi-kurum/ artık bu üç JSON'a build-time bağlı.
 // Veri bozulursa sayfa bozulur (SÜREKLİLİK İLKESİ). Geçerli JSON değil → 🔴;
@@ -678,7 +686,7 @@ async function kosu() {
   await korumali('3-yonlendirme', ['hizli', 'tam'], md3_yonlendirme);
   await korumali('tarayici', ['hizli', 'tam'], tarayiciKontrolleri);
   await korumali('9-lighthouse', ['tam'], md9_lighthouse);
-  await korumali('10-veri-tazeligi', ['tam'], md10_veriTazeligi);
+  // 10-veri-tazeligi KALDIRILDI (B1+B3) — gerekçe md10 bloğundaki notta.
   await korumali('11-veri-butunlugu', ['tam'], md11_veriButunlugu);
 
   if (ONARIM_ACIK && onarimlar.length) await onarimlariUygula();
@@ -794,7 +802,16 @@ async function bitir() {
 
   if (MOD !== 'test') {
     await appendFile(LOG_YOL, JSON.stringify(kayit) + '\n');
-    if (!kirmizi.length) durum.sonBasariliKosu = simdi();
+    // B2 (2026-07-27): sonBasariliKosu artık "KOŞUM TAMAMLANDI" damgasıdır,
+    // "kırmızısız koşum" değil. Neden: saglik-bekcisi.sh (f) bu alanı
+    // CANLILIK sinyali olarak okur ("sağlık sistemi koşuyor mu"). Eski
+    // anlamıyla, sistem her 12 saatte bir sorunsuz koşarken tek bir gerçek
+    // (ya da yanlış) 🔴 alarmı damgayı donduruyor ve bekçi "sağlık sistemi
+    // koşmuyor" diye İKİNCİ, yanlış bir alarm üretiyordu — 27.07 sabahı
+    // aynen böyle oldu (md4 yanlış alarmı → UYARI-SAGLIK.md "22 saat önce").
+    // Arıza zaten kırmızı kontrolle raporlanıyor; canlılık ayrı sinyaldir.
+    durum.sonBasariliKosu = simdi();
+    if (!kirmizi.length) durum.sonKirmizisizKosu = simdi();  // bilgi kaybı olmasın
     if (sitemapUrlleri.length) durum.sonSitemapSayisi = sitemapUrlleri.length;
 
     // E3 tekrar koruması: aynı arıza her koşuda mail atmaz — durum DEĞİŞİMİNDE.

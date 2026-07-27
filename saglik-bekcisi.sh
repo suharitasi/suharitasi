@@ -15,8 +15,12 @@ set -euo pipefail
 KOK=/home/suha/projeler/suharitasi
 cd "$KOK" || exit 1
 mkdir -p "$KOK/log"
-LOGP="$KOK/log/pipeline.log"
-UYARI="$KOK/UYARI-SAGLIK.md"
+# Test/izolasyon kancaları (BELLEK_LOG deseniyle aynı, 2026-07-27): bekçi
+# ANA AĞACI okurken çıktısı başka bir köke yönlendirilebilsin — worktree'de
+# gerçek veriye karşı ölçüm alınırken canlı UYARI/log dosyaları KİRLENMESİN.
+# Varsayılanlar değişmediği için cron davranışı AYNI.
+LOGP="${SAGLIK_LOG:-$KOK/log/pipeline.log}"
+UYARI="${SAGLIK_UYARI:-$KOK/UYARI-SAGLIK.md}"
 NOW=$(date -u +%s)
 SORUN=""
 ekle(){ SORUN="${SORUN}- $1"$'\n'; }
@@ -81,6 +85,11 @@ fi
 # site-saglik.mjs siteyi denetler ama KENDİ durmasını denetleyemez — bu satır
 # onun gözcüsüdür. Eşik 14 saat: cron 07:30 + 19:30 UTC (12 saat arayla), tek
 # koşu kaçırılınca değil, İKİ koşu arası pencere aşılınca alarm verir.
+# 2026-07-27 (B2): bu kalem CANLILIK ölçer, sağlık DEĞİL. sonBasariliKosu artık
+# "koşum tamamlandı" damgasıdır; kırmızı bir kontrol damgayı DONDURMAZ. Eski
+# anlamıyla tek bir 🔴 (27.07'de md4 yanlış alarmı) burada ikinci bir yanlış
+# alarm doğuruyordu: "sağlık sistemi koşmuyor" — oysa 12 saatte bir koşuyordu.
+# Arızayı site-saglik'in kendi kırmızısı + e-postası bildirir.
 SAGLIK_DURUM="$KOK/izleme/state/site-saglik-durum.json"
 if [ -f "$SAGLIK_DURUM" ]; then
   # Bozuk JSON sessizce "boş" sayılmasın: python hatası LOGP'ye düşer, SON_KOSU
@@ -91,14 +100,14 @@ d=json.load(open('$SAGLIK_DURUM'))
 print(d.get('sonBasariliKosu') or '')
 " 2>>"$LOGP") || SON_KOSU=""
   if [ -z "$SON_KOSU" ]; then
-    ekle "🔴 sağlık sistemi hiç BAŞARILI koşmamış (site-saglik-durum.json'da sonBasariliKosu yok)"
+    ekle "🔴 sağlık sistemi hiç koşmamış (site-saglik-durum.json'da sonBasariliKosu yok)"
   else
     KOSU_TS=$(date -u -d "$SON_KOSU" +%s) || KOSU_TS=0
     if [ "$KOSU_TS" -eq 0 ]; then
       ekle "🔴 sağlık sisteminin son koşu damgası okunamadı ($SON_KOSU)"
     else
       KS=$(( (NOW - KOSU_TS) / 3600 ))
-      [ "$KS" -gt 14 ] && ekle "🔴 sağlık sistemi koşmuyor — son başarılı koşu ${KS} saat önce (>14s)"
+      [ "$KS" -gt 14 ] && ekle "🔴 sağlık sistemi koşmuyor — son koşu ${KS} saat önce (>14s)"
     fi
   fi
 else
