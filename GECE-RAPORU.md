@@ -7,6 +7,21 @@ yazımlar worktree içinde.
 
 **DUR — merge ve cron kararları sizin.**
 
+### İzolasyon kanıtı (gece bitiminde ölçüldü)
+
+| Kontrol | Beklenen | Ölçülen |
+|---|---|---|
+| Ana ağaç `git status` | oturum başındakiyle aynı 3 untracked | ✓ aynı |
+| Ana ağaç HEAD | `7ad9323` (değişmemiş) | ✓ `7ad9323` |
+| `izleme/state/site-saglik-durum.json` mtime | 19:33 (gece işinden önce) | ✓ 19:33:52 |
+| `izleme/SITE-DURUM.md` mtime | 19:33 | ✓ 19:33:52 |
+| `izleme/site-saglik-log.jsonl` mtime | 19:33 | ✓ 19:33:52 |
+| Son 3 saatte değişen ana ağaç dosyası | 0 | ✓ 0 |
+| Crontab | değişmemiş | ✓ dokunulmadı |
+
+Sağlık koşumları `--kok` ile, bekçi `SAGLIK_UYARI`/`SAGLIK_LOG` kancalarıyla
+izole edildi. Ham veri (`suharitasi-potansiyel/veri/ham/`) yalnız okundu.
+
 ---
 
 ## 0. Brief ön kapısı (CLAUDE.md zorunlu)
