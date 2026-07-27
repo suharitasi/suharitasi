@@ -7,7 +7,7 @@
   "buyuk_kalin_px": 14,
   "_not": "WCAG 2.1 AA. Büyük metin = ≥18.66px VEYA (≥14px ve font-weight≥700)."
  },
- "azami_ornek_dugum": 400,
+ "azami_ornek_dugum": 1500,
  "istisnalar": [],
  "_istisna_notu": "Bilinçli tasarım kararıyla AA altında bırakılan öğeler buraya {\"yol\": \"/\", \"secici\": \"span.no\", \"gerekce\": \"...\"} biçiminde YAZILIR ve ölçümden düşer. BOŞ BIRAKILDI (2026-07-27): 27.07 koşumunda iki bulgu çıktı — (a) / sayfasında span.no dekoratif adım numaraları rgba(255,255,255,0.15) 1.58:1, (b) /hangi-kurum/ span.ik-rozet.ik-teyit 9.28px metin 4.42:1. İkisi de tasarım kararıdır, tasarım KARA LİSTEDEDİR; istisna yazma yetkisi KULLANICIDA. Karar verilene kadar md13 kırmızı kalır — bu bilinçlidir.",
  "sayfalar": [

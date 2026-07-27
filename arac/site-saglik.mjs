@@ -400,7 +400,11 @@ async function tarayiciKontrolleri() {
               });
             }
           }
-          return { incelenen: dugumler.length, ihlal: sonuc };
+          // SESSİZ KAPSAM YASAĞI: sınıra dayanıldıysa bunu SÖYLE — yoksa
+          // "0 ihlal" sonucu kapsamı tam sanılır (aday sayısı > azami).
+          const aday = [...document.querySelectorAll('body *')].filter((el) =>
+            [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim().length > 1)).length;
+          return { incelenen: dugumler.length, aday, kirpildi: aday > azami, ihlal: sonuc };
         }, { esik, azami: yap.kontrast.azami_ornek_dugum ?? 400 });
         // İSTİSNA: bilinçli tasarım kararıyla AA altında bırakılan öğeler
         // (izleme/kontrast-ornek.json → istisnalar). Yetki KULLANICIDA;
@@ -423,14 +427,18 @@ async function tarayiciKontrolleri() {
                  + ' — tasarım KARA LİSTEDE, otomatik onarılmaz',
         });
       }
-      kaydet('13-kontrast', kontrastKotu.length ? 'kirmizi' : 'gecti',
-        kontrastKotu.length
+      const kirpilan = kontrastOlcum.filter((o) => o.kirpildi);
+      const kirpNot = kirpilan.length
+        ? ` · ⚠ kapsam kırpıldı: ${kirpilan.map((o) => `${o.tip} ${o.incelenen}/${o.aday}`).join(', ')}`
+        : '';
+      kaydet('13-kontrast', kontrastKotu.length ? 'kirmizi' : kirpilan.length ? 'sari' : 'gecti',
+        (kontrastKotu.length
           ? `${kontrastKotu.length}/${kontrastOlcum.length} sayfada AA altı: `
             + kontrastKotu.map((k) => `${k.tip} ${k.ilk.oran}:1`).join(', ')
           : `${kontrastOlcum.length} sayfa tipi AA geçti (en düşük `
             + `${Math.min(...kontrastOlcum.map((o) => o.enKotu ?? 99)) === 99 ? '—'
-               : Math.min(...kontrastOlcum.map((o) => o.enKotu ?? 99))}:1)`,
-        { olcum: kontrastOlcum }, ['tam']);
+               : Math.min(...kontrastOlcum.map((o) => o.enKotu ?? 99))}:1)`) + kirpNot,
+        { olcum: kontrastOlcum, kirpilan: kirpilan.map((o) => o.yol) }, ['tam']);
     }
 
     // md.7 GEO/SEO — JS'siz DOM
