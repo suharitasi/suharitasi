@@ -10,10 +10,12 @@
 // Konum/gecikme değerleri v0 spesifikasyonundan (atmosfer, K-1).
 export const SORULAR_V2 = [
   {
-    // Birebir "nerede çıkar" sayfası YOK (Kuyu Çıkar Mı değerlendirmede,
-    // SIRADAKILER kaydı). En yakın gerçek sayfa: havza haritası.
+    // 27.07 karar (menü briefi 0.8): hedef /havzalar/ — YAS potansiyeli
+    // 25 havza sayfasında BASILIYOR (HavzaYasBandi); /harita/ nokta/
+    // potansiyel verisi taşımıyor. Nokta tahmini hâlâ sitede yok
+    // (Kuyu Çıkar Mı değerlendirmede).
     soru: "Türkiye'de su nerelerde çıkabilir?",
-    hedef: '/harita/',
+    hedef: '/havzalar/',
     ust: '14%', sol: '2%', gecikme: '0s',
   },
   {
@@ -58,11 +60,12 @@ export const HIZMETLER = [
     ikon: 'kuyu',
   },
   {
-    // Birebir "sondaj işlemleri" sayfası dist'te YOK; kart 1 zaten
-    // kuyu-ruhsati'ye gidiyor → mükerrer link yerine LİNKSİZ (brief kuralı).
+    // 27.07 (menü briefi İŞ 1): kart "su nerelerde çıkabilir" hedefine
+    // bağlandı (/havzalar/, 0.8 kararı). Aynı sayfada soru + kart aynı
+    // hedefe çıkar — kasıtlı, iki farklı giriş noktası.
     ad: 'Sondaj İşlemleri',
     metin: 'Sondaj öncesi hukuki uygunluk, izin süreçleri ve yükleniciyle sözleşme danışmanlığı.',
-    hedef: null,
+    hedef: '/havzalar/',
     ikon: 'sondaj',
   },
   {
