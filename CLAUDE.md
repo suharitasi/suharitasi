@@ -66,6 +66,11 @@ altyapısı user-scope plugin + proje .agents/skills/ ile kurulu
 (envanter/onarım kaydı 2026-07-20). Not: .agents/ ve .claude/skills/
 symlink repoya COMMIT EDİLMEZ (yerel araç); gerekirse .gitignore'a alınır.
 
+## Sunucu kaynakları (ölçüldü 2026-07-27, kullanıcı düzeltmesi)
+Hetzner VPS: **4 çekirdek / 8 GB RAM** (free -h: 7,6Gi; nproc: 4).
+BRIEF.md'deki "2 vCPU/4GB" kaydı ESKİDİR — kaynak bütçesi kararlarında
+bu ölçüm esas alınır.
+
 ## GPU kuralı
 Bu sunucunun headless tarayıcısında GPU YOKTUR (yazılımsal GL).
 WebGL/canvas/animasyon içeren her işte:

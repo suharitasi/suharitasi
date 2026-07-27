@@ -2,6 +2,12 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
+TWI YENİDEN DEĞERLENDİRME (27 Tem 2026, kullanıcı kararı): Faz 5 TWI'yi
+"4GB yetmez" bayat varsayımıyla atlamıştı; sunucu gerçekte 8GB (ölçüldü).
+Akış birikimi + TWI hesabı 8GB bütçesiyle yeniden değerlendirilecek
+(karo-birleştirmeli D8; morfoloji.json'a twi alanı eklenir). ŞİMDİ
+HESAPLANMAZ — ayrı iş.
+
 KALICI RG İŞLETME-SAHASI İZLEME CRON'U (27 Tem 2026, kullanıcı kararı —
 FAZ 6 SONRASI KURULUR, ŞİMDİ KURULMAZ): RG /Home/Filter JSON ucuyla
 "yeraltısuyu işletme sahası" (+ayrı yazım) başlık/ilan araması periyodik
