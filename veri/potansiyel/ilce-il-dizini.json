@@ -2,7 +2,7 @@
  "kaynak": "OpenStreetMap (Overpass API) — admin_level=4 subarea üyeliği → admin_level=6 ilçe",
  "lisans": "ODbL 1.0 — © OpenStreetMap katkıcıları",
  "erisim_tarihi": "2026-07-27",
- "not": "Topluluk verisi; resmî idari bölünüş listesiyle çapraz doğrulama SIRADAKILER'de açık maddedir (kullanıcı kararı A, 2026-07-27). Elâzığ/Hakkâri OSM şapkalı yazımı normalize edilerek eklendi (2026-07-27).",
+ "not": "Topluluk verisi; resmî idari bölünüş listesiyle ÇAPRAZ DOĞRULANDI (2026-07-27) — aşağıdaki capraz_dogrulama alanına bakınız.",
  "il_sayisi": 81,
  "subarea_uyesiz_iller": [],
  "toplam_ilce_relation": 975,
@@ -2876,5 +2876,19 @@
   "Şırnak Merkez": [
    "Şırnak"
   ]
+ },
+ "capraz_dogrulama": {
+  "tarih": "2026-07-27",
+  "resmi_kaynak": "TÜİK — https://www.tuik.gov.tr/indir/duyuru/favori_raporlar.xlsx, 'İLÇE NÜFUSU' sayfası (31 Aralık 2021 tarihli ADNKS sonuçları)",
+  "yontem": "İlçe adları Türkçe-duyarlı normalize edildi (İ/I, Ş, Ğ, Ü, Ö, Ç, aksan, tire→boşluk); ilçe→il eşlemesi küme olarak karşılaştırıldı.",
+  "adli_ilce_ortak": 897,
+  "adli_ilce_il_eslemesi_ayni": 897,
+  "adli_ilce_catisan": 0,
+  "merkez_ilcesi_olan_il_tuik": 51,
+  "merkez_ilcesi_olan_il_osm": 51,
+  "merkez_farki": 0,
+  "sonuc": "FARK YOK — OSM türevi dizinin ilçe→il eşlemesi resmî TÜİK listesiyle %100 örtüşüyor; kutle-il.json'da yeniden değerlendirme gerektiren ilçe ÇIKMADI.",
+  "sinir": "TÜİK dosyası 2021 ADNKS tarihlidir; 2021 sonrası idari bölünüş değişikliği olsaydı bu karşılaştırma göremezdi. 2021→2026 arasında yeni ilçe kurulmadığı ayrıca doğrulanmadı.",
+  "kanit": "cikti/denetim/faz-k/ilce-capraz-dogrulama.json"
  }
 }
