@@ -1,0 +1,21 @@
+{
+ "_not": "md13 KONTRAST kontrolünün örneklem seti (site-saglik.mjs, 2026-07-27). Her sayfa TİPİNDEN bir temsilci: kontrast arızaları tip bazında yayılıyor (27.07 kontrast arızası: index.astro'nun is:global body stili paylaşılan Vite chunk'ıyla 173 içerik sayfasına sızdı — tek sayfa ölçmek yakalamazdı). Yeni sayfa TİPİ eklendiğinde buraya da eklenir (SÜREKLİLİK İLKESİ).",
+ "esik": {
+  "normal": 4.5,
+  "buyuk": 3.0,
+  "buyuk_px": 18.66,
+  "buyuk_kalin_px": 14,
+  "_not": "WCAG 2.1 AA. Büyük metin = ≥18.66px VEYA (≥14px ve font-weight≥700)."
+ },
+ "azami_ornek_dugum": 400,
+ "istisnalar": [],
+ "_istisna_notu": "Bilinçli tasarım kararıyla AA altında bırakılan öğeler buraya {\"yol\": \"/\", \"secici\": \"span.no\", \"gerekce\": \"...\"} biçiminde YAZILIR ve ölçümden düşer. BOŞ BIRAKILDI (2026-07-27): 27.07 koşumunda iki bulgu çıktı — (a) / sayfasında span.no dekoratif adım numaraları rgba(255,255,255,0.15) 1.58:1, (b) /hangi-kurum/ span.ik-rozet.ik-teyit 9.28px metin 4.42:1. İkisi de tasarım kararıdır, tasarım KARA LİSTEDEDİR; istisna yazma yetkisi KULLANICIDA. Karar verilene kadar md13 kırmızı kalır — bu bilinçlidir.",
+ "sayfalar": [
+  { "yol": "/", "tip": "ana", "not": "v2 hero — koyu zemin + krem metin" },
+  { "yol": "/kuyu-ruhsati/manisa/", "tip": "il", "not": "81 il sayfasının temsilcisi" },
+  { "yol": "/rehberler/kuyu-ruhsati/", "tip": "rehber", "not": "SEO omurgası rehber" },
+  { "yol": "/durumum/ana-metal-sanayii-nace-24/", "tip": "persona", "not": "sektör/persona sayfası" },
+  { "yol": "/havzalar/sakarya/", "tip": "havza", "not": "havza sayfası — veri kutuları" },
+  { "yol": "/hangi-kurum/", "tip": "arac", "not": "tablo ağırlıklı araç sayfası" }
+ ]
+}

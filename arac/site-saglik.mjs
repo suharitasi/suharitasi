@@ -139,6 +139,8 @@ const yap = {
   // md12 ETKİLEŞİM DENETİMİ (24.07): varlık değil İŞLEV testi. Boş/eksik
   // dosyada md12 sessizce atlanır (yeni kontrol eski kurulumu düşürmesin).
   etkilesim: json(join(IZLEME, 'etkilesim-beklenen.json'), { kontroller: [] }).kontroller,
+  // md13 KONTRAST (27 Tem 2026): boş/eksik dosyada kontrol sessizce atlanır.
+  kontrast: json(join(IZLEME, 'kontrast-ornek.json'), { sayfalar: [] }),
 };
 const durum = json(DURUM_YOL, {
   sonSitemapSayisi: null, lhArdisik: {}, sonBildirim: {}, sonBasariliKosu: null, onarimGecmisi: [],
@@ -325,6 +327,111 @@ async function tarayiciKontrolleri() {
     kaydet('8-mobil', tasmaKotu.length ? 'kirmizi' : 'gecti',
       tasmaKotu.length ? `${tasmaKotu.length} sayfada 375px yatay taşma` : `${yap.cekirdek.length} sayfada taşma 0 px`,
       { tasma: tasmaKotu }, ['hizli', 'tam']);
+
+    // md.13 KONTRAST — WCAG 2.1 AA (2026-07-27, gece paketi Faz G)
+    // NEDEN KALICI KONTROL: 27.07'de index.astro'nun is:global body{#061824}
+    // stili paylaşılan Vite chunk'ıyla 173 içerik sayfasına sızdı; il/persona
+    // 1.16:1, rehber 2.84:1 okunamaz hâle geldi ve bunu KULLANICI buldu.
+    // Tasarım kara listede (otomatik onarılmaz) → bu kontrol 🔴 verir ve
+    // kullanıcıya DEVREDER. Örneklem TİP başına bir sayfadır: sızıntı tip
+    // bazında yayılıyor, tek sayfa ölçmek yakalamazdı.
+    if (MOD !== 'hizli' && yap.kontrast.sayfalar.length) {
+      const esik = yap.kontrast.esik;
+      const kontrastKotu = [], kontrastOlcum = [];
+      for (const ornek of yap.kontrast.sayfalar) {
+        const ctx = await tarayici.newContext({ viewport: { width: 1440, height: 900 } });
+        const sayfa = await ctx.newPage();
+        await sayfa.goto(TABAN + ornek.yol, { waitUntil: 'load' });
+        await sayfa.waitForTimeout(900);
+        const olcum = await sayfa.evaluate(({ esik, azami }) => {
+          const ayrist = (r) => {
+            const m = /rgba?\(([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)(?:[,\s/]+([\d.]+))?/.exec(r);
+            return m ? [+m[1], +m[2], +m[3], m[4] === undefined ? 1 : +m[4]] : null;
+          };
+          const ic = (c) => { const s = c / 255; return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4; };
+          const parlaklik = ([r, g, b]) => 0.2126 * ic(r) + 0.7152 * ic(g) + 0.0722 * ic(b);
+          const harmanla = (on, arka) => {          // alfa harmanı
+            const a = on[3];
+            return [0, 1, 2].map((i) => on[i] * a + arka[i] * (1 - a));
+          };
+          // Gerçek arka plan: saydam olmayan ilk ataya kadar yukarı çık,
+          // katmanları sırayla harmanla (tek katman bakmak yanıltıyordu).
+          const arkaBul = (el) => {
+            const katman = [];
+            for (let n = el; n && n.nodeType === 1; n = n.parentElement) {
+              const c = ayrist(getComputedStyle(n).backgroundColor);
+              if (c && c[3] > 0) { katman.push(c); if (c[3] === 1) break; }
+            }
+            let sonuc = [255, 255, 255];
+            for (let i = katman.length - 1; i >= 0; i--) sonuc = harmanla(katman[i], sonuc);
+            return sonuc;
+          };
+          const sonuc = [];
+          const dugumler = [...document.querySelectorAll('body *')].filter((el) => {
+            if (['SCRIPT', 'STYLE', 'NOSCRIPT', 'SVG', 'PATH'].includes(el.tagName)) return false;
+            const st = getComputedStyle(el);
+            if (st.visibility === 'hidden' || st.display === 'none' || +st.opacity === 0) return false;
+            const r = el.getBoundingClientRect();
+            if (r.width < 2 || r.height < 2) return false;
+            // yalnız KENDİ metnini taşıyan düğüm (ata sayımı tekrarlamasın)
+            return [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim().length > 1);
+          }).slice(0, azami);
+          for (const el of dugumler) {
+            const st = getComputedStyle(el);
+            const on = ayrist(st.color);
+            if (!on) continue;
+            const arka = arkaBul(el);
+            const onH = on[3] < 1 ? harmanla(on, arka) : on.slice(0, 3);
+            const L1 = parlaklik(onH), L2 = parlaklik(arka);
+            const oran = (Math.max(L1, L2) + 0.05) / (Math.min(L1, L2) + 0.05);
+            const px = parseFloat(st.fontSize);
+            const kalin = parseInt(st.fontWeight, 10) >= 700;
+            const buyuk = px >= esik.buyuk_px || (kalin && px >= esik.buyuk_kalin_px);
+            const gereken = buyuk ? esik.buyuk : esik.normal;
+            if (oran + 0.005 < gereken) {
+              sonuc.push({
+                oran: +oran.toFixed(2), gereken, px, kalin,
+                secici: el.tagName.toLowerCase()
+                  + (el.id ? `#${el.id}` : '')
+                  + (el.className && typeof el.className === 'string'
+                     ? `.${el.className.trim().split(/\s+/).slice(0, 2).join('.')}` : ''),
+                metin: el.textContent.trim().slice(0, 40),
+                renk: st.color, zemin: `rgb(${arka.map((v) => Math.round(v)).join(',')})`,
+              });
+            }
+          }
+          return { incelenen: dugumler.length, ihlal: sonuc };
+        }, { esik, azami: yap.kontrast.azami_ornek_dugum ?? 400 });
+        // İSTİSNA: bilinçli tasarım kararıyla AA altında bırakılan öğeler
+        // (izleme/kontrast-ornek.json → istisnalar). Yetki KULLANICIDA;
+        // liste boş doğar, buradan sessizce doldurulmaz.
+        const istisna = (yap.kontrast.istisnalar || []).filter((i) => i.yol === ornek.yol);
+        olcum.ihlal = olcum.ihlal.filter(
+          (i) => !istisna.some((x) => i.secici.includes(x.secici)));
+        // En kötüsü rapora çıksın (hepsi ölçümde durur)
+        olcum.ihlal.sort((a, b) => a.oran - b.oran);
+        kontrastOlcum.push({ yol: ornek.yol, tip: ornek.tip, ...olcum,
+                             enKotu: olcum.ihlal[0]?.oran ?? null });
+        if (olcum.ihlal.length) kontrastKotu.push({ yol: ornek.yol, tip: ornek.tip,
+                                                    sayi: olcum.ihlal.length, ilk: olcum.ihlal[0] });
+        await ctx.close();
+      }
+      if (kontrastKotu.length) {
+        devirler.push({
+          konu: 'kontrast (WCAG AA)',
+          sebep: kontrastKotu.map((k) => `${k.yol} ${k.sayi} ihlal (en kötü ${k.ilk.oran}:1 — "${k.ilk.metin}")`).join(' · ')
+                 + ' — tasarım KARA LİSTEDE, otomatik onarılmaz',
+        });
+      }
+      kaydet('13-kontrast', kontrastKotu.length ? 'kirmizi' : 'gecti',
+        kontrastKotu.length
+          ? `${kontrastKotu.length}/${kontrastOlcum.length} sayfada AA altı: `
+            + kontrastKotu.map((k) => `${k.tip} ${k.ilk.oran}:1`).join(', ')
+          : `${kontrastOlcum.length} sayfa tipi AA geçti (en düşük `
+            + `${Math.min(...kontrastOlcum.map((o) => o.enKotu ?? 99)) === 99 ? '—'
+               : Math.min(...kontrastOlcum.map((o) => o.enKotu ?? 99))}:1)`,
+        { olcum: kontrastOlcum }, ['tam']);
+    }
 
     // md.7 GEO/SEO — JS'siz DOM
     if (MOD !== 'hizli') {
