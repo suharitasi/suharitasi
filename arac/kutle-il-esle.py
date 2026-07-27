@@ -88,13 +88,32 @@ def sakarya_kunye_il():
                             {"dosya": yol.name, "satir": i + 1, "deger": deger})
     return sonuc
 
-# ---------- Katman 2: il adı TAM KELİME --------------------------------
+# ---------- Katman 2: il/ilçe adı TAM KELİME ----------------------------
+# İlçe dizini: OSM Overpass (ODbL) — kullanıcı kararı A (2026-07-27);
+# resmî listeyle çapraz doğrulama SIRADAKILER'de açık madde.
+ILCE_YOL = KOK / "veri/potansiyel/ilce-il-dizini.json"
+ILCE_NORM = {}
+if ILCE_YOL.exists():
+    _d = json.loads(ILCE_YOL.read_text())
+    for _ilce, _iller in _d["ilceler"].items():
+        ILCE_NORM.setdefault(norm(_ilce), (_ilce, _iller))
+
 def il_adi_esle(kutle_adi):
     bulunan = {}
     for aday in yer_adaylari(kutle_adi):
         if norm(aday) in IL_NORM:
             bulunan[IL_NORM[norm(aday)]] = aday
     return bulunan  # il → eşleşen parça
+
+def ilce_adi_esle(kutle_adi):
+    """Yer adayları ilçe diziniyle TAM KELİME; ilçe→il listesi (çok-illi
+    ilçe adı = belirsizlik kaynağı, brief 2.2)."""
+    bulunan = {}
+    for aday in yer_adaylari(kutle_adi):
+        if norm(aday) in ILCE_NORM:
+            ilce, iller = ILCE_NORM[norm(aday)]
+            bulunan[ilce] = iller
+    return bulunan  # ilçe → il listesi
 
 # ---------- Katman 3 (tur 2): NHYP metninde bağlam ----------------------
 # SIKI KURAL (ilk sürüm ±2 satır bağlamıyla yanlış pozitif üretti — Yatağan→
@@ -142,6 +161,10 @@ def sakarya_kapsadigi_iller():
     satirlar = yol.read_text(encoding="utf-8", errors="replace").split("\n")
     # Tablo bölgesi: ilk "Kapsadığı İl" başlığından sonrası
     bas = next(i for i, s in enumerate(satirlar) if "Kapsadığı İl" in s)
+    # Kütlenin KENDİ ADI il tokenı sanılmasın diye satırdan çıkarılır
+    # (ölçülen: "Osmaniye Alüvyonu" → sahte 'Osmaniye' ili)
+    kutle_ad = {k["kutle_kodu"]: k["kutle_adi"]
+                for k in KUTLELER["havzalar"]["sakarya"]["kutleler"]}
     sonuc = {}
     r = re.compile(r"^\s*(TR\d{8})\s+(\S.*)$")
     for i in range(bas, len(satirlar)):
@@ -152,7 +175,10 @@ def sakarya_kapsadigi_iller():
         # sarma her iki yöne olabiliyor (ölçülen: TR12050003 'Eskişehir' alt
         # satırda; üst/alt komşu satırlar bu bloğa aittir — blok düzeni
         # üst-desc / kod / alt-desc)
-        iller = (il_tokenlari(satirlar[i]) | il_tokenlari(satirlar[i - 1])
+        kod_satiri = satirlar[i]
+        if kod in kutle_ad:
+            kod_satiri = kod_satiri.replace(kutle_ad[kod], " ")
+        iller = (il_tokenlari(kod_satiri) | il_tokenlari(satirlar[i - 1])
                  | (il_tokenlari(satirlar[i + 1]) if i + 1 < len(satirlar) else set()))
         if iller and kod not in sonuc:
             sonuc[kod] = {"iller": sorted(iller),
@@ -187,18 +213,38 @@ def main():
                 kayit.update(iller=sorted(sk["iller"]), durum="eslesti",
                              yontem="kunye-il", kanit=sk["kanit"][:3])
             else:
-                # Katman 2 — il adı tam kelime
-                esler = il_adi_esle(k["kutle_adi"])
-                if len(esler) == 1:
-                    il, parca = next(iter(esler.items()))
-                    kayit.update(iller=[il], durum="eslesti", yontem="il-adi-tam",
-                                 kanit={"eslesen_parca": parca})
-                elif len(esler) > 1:
-                    kayit.update(durum="belirsiz", yontem="il-adi-tam",
-                                 kanit={"adaylar": sorted(esler)})
+                # Katman 2 — il/ilçe adı tam kelime (tur 1).
+                # HAVZA-TUTARLILIK FİLTRESİ: adaylardan havza illeri dışında
+                # kalanlar ad-çakışması sayılır ve elenir (ölçülen 17 vaka:
+                # Çavdarlı köyü→Kars ilçesi, KAYAPINAR→Diyarbakır, Hatay
+                # köyü→Hatay ili...). Tüm adaylar havza-dışıysa bu katman
+                # kanıt ÜRETMEZ, metin katmanına düşülür.
+                il_esler = il_adi_esle(k["kutle_adi"])
+                ilce_esler = ilce_adi_esle(k["kutle_adi"])
+                adaylar = set(il_esler)
+                for iller in ilce_esler.values():
+                    adaylar |= set(iller)
+                hav = set(kayit["oneri_havza_illeri"])
+                adaylar_f = (adaylar & hav) if hav else adaylar
+                elenen = sorted(adaylar - adaylar_f)
+                if len(adaylar_f) == 1:
+                    kayit.update(iller=sorted(adaylar_f), durum="eslesti",
+                                 yontem="ad-dizin",
+                                 kanit={"il_parca": il_esler or None,
+                                        "ilce_parca": ilce_esler or None,
+                                        "havza_disi_elenen": elenen or None})
+                elif len(adaylar_f) > 1:
+                    kayit.update(durum="belirsiz", yontem="ad-dizin",
+                                 kanit={"adaylar": sorted(adaylar_f),
+                                        "ilce_parca": ilce_esler or None,
+                                        "havza_disi_elenen": elenen or None})
                 else:
-                    # Katman 3 — tur 2 metin bağlamı
+                    # Katman 3 — tur 2 metin bağlamı (havza-tutarlılık
+                    # filtresi burada da geçerli — ölçülen: KM "Hatay"
+                    # kütlesi [İzmir'deki semt] il adı sanılıyordu)
                     iller = metin_baglami(havza, k)
+                    if hav:
+                        iller = {il: v for il, v in iller.items() if il in hav}
                     if len(iller) == 1:
                         il, kanit = next(iter(iller.items()))
                         kayit.update(iller=[il], durum="eslesti",
@@ -209,8 +255,26 @@ def main():
                     else:
                         kayit.update(durum="dogrulanamadi",
                                      yontem="hicbiri",
-                                     kanit="il adı eşleşmedi; metinde bağlam bulunamadı; "
-                                           "ilçe dizini yok (rapor: G4)")
+                                     kanit="il/ilçe adı eşleşmedi; metinde "
+                                           "kod+ad satırında il bulunamadı")
+            # Karar 2 (2026-07-27): belirsiz adaylar havza-il kesişimiyle
+            # çözülür; tek il kalırsa eşleşir, kalanı belirsiz kalır.
+            if kayit["durum"] == "belirsiz":
+                hav = set(kayit["oneri_havza_illeri"])
+                aday_seti = (set(kayit["kanit"].get("adaylar", []))
+                             if isinstance(kayit["kanit"], dict) and "adaylar" in kayit["kanit"]
+                             else set(kayit["kanit"].keys()))
+                kesisim = sorted(aday_seti & hav)
+                if len(kesisim) == 1:
+                    kayit.update(iller=kesisim, durum="eslesti",
+                                 yontem=kayit["yontem"] + "+havza-kesisim",
+                                 kanit={"adaylar": sorted(aday_seti),
+                                        "havza_kesisimi": kesisim,
+                                        "karar": "kullanıcı kararı 2, 2026-07-27"})
+                else:
+                    kayit["kanit"] = {"adaylar": sorted(aday_seti),
+                                      "havza_kesisimi": kesisim,
+                                      "not": "kesişim tekilleştirmedi — belirsiz kaldı"}
             say[kayit["durum"]] += 1
             kayitlar.append(kayit)
     sonuc = {"uretim_tarihi": "2026-07-27",

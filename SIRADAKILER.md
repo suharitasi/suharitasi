@@ -2,6 +2,14 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
+İLÇE DİZİNİ ÇAPRAZ DOĞRULAMA (27 Tem 2026, kullanıcı kararı A — su
+potansiyeli Faz 2): kütle→il eşlemesinde kullanılan ilçe→il dizini OSM
+Overpass'tan (ODbL) üretildi (veri/potansiyel/ilce-il-dizini.json).
+Kullanıcı TR-IP'den resmî listeyi (e-İçişleri MulkiIdariBolumleri / TÜİK
+idari bölünüş) indirdiğinde OSM diziniyle ÇAPRAZ DOĞRULANACAK; fark çıkan
+ilçeler kutle-il.json'da yeniden değerlendirilecek. Sunucudan resmî
+kaynaklara erişim yok (6 kaynak denemesi: rapor/potansiyel-faz2.md).
+
 KONTRAST ARIZASI — KAPANDI (27.07, kontrast-2026-07-27 canlıda,
 512ada3): index.astro'nun is:global body{#061824} stili Vite ortak
 chunk'ıyla 173 içerik sayfasına sızmıştı (menü birleştirme yan etkisi;

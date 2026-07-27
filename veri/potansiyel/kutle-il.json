@@ -2,19 +2,29 @@
  "uretim_tarihi": "2026-07-27",
  "yontem_notu": "İlçe dizini olmadan üretilmiş KISMİ eşleme. Etiketler: eslesti (kanıtlı), belirsiz (aday listeli), dogrulanamadi (il sayfasına BASILMAZ). oneri_havza_illeri yalnız analiz içindir, eşleme değildir.",
  "ozet": {
-  "eslesti": 183,
-  "belirsiz": 3,
-  "dogrulanamadi": 286
+  "eslesti": 314,
+  "belirsiz": 5,
+  "dogrulanamadi": 153
  },
  "kutleler": [
   {
    "kutle_kodu": "TR11050072",
    "kutle_adi": "Sinanpaşa Alüvyonu",
    "havza": "akarcay",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Afyonkarahisar"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Sinanpaşa": [
+      "Afyonkarahisar"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Afyonkarahisar",
     "Konya"
@@ -27,7 +37,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Afyonkarahisar",
     "Konya"
@@ -40,7 +50,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Afyonkarahisar",
     "Konya"
@@ -53,7 +63,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Afyonkarahisar",
     "Konya"
@@ -63,10 +73,20 @@
    "kutle_kodu": "TR11050076",
    "kutle_adi": "İscehisar Alüvyonu",
    "havza": "akarcay",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Afyonkarahisar"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "İscehisar": [
+      "Afyonkarahisar"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Afyonkarahisar",
     "Konya"
@@ -76,10 +96,20 @@
    "kutle_kodu": "TR11050077",
    "kutle_adi": "Şuhut Alüvyonu",
    "havza": "akarcay",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Afyonkarahisar"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Şuhut": [
+      "Afyonkarahisar"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Afyonkarahisar",
     "Konya"
@@ -92,7 +122,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Afyonkarahisar",
     "Konya"
@@ -105,7 +135,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Afyonkarahisar",
     "Konya"
@@ -118,7 +148,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Afyonkarahisar",
     "Konya"
@@ -128,10 +158,20 @@
    "kutle_kodu": "TR11050081",
    "kutle_adi": "Sultandağı Alüvyonu",
    "havza": "akarcay",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Afyonkarahisar"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Sultandağı": [
+      "Afyonkarahisar"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Afyonkarahisar",
     "Konya"
@@ -141,10 +181,20 @@
    "kutle_kodu": "TR11050082",
    "kutle_adi": "Akşehir Kayalıkları",
    "havza": "akarcay",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Konya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Akşehir": [
+      "Konya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Afyonkarahisar",
     "Konya"
@@ -157,7 +207,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Afyonkarahisar",
     "Konya"
@@ -167,10 +217,20 @@
    "kutle_kodu": "TR11050084",
    "kutle_adi": "Akşehir-Eber Alüvyonu",
    "havza": "akarcay",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Konya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Akşehir": [
+      "Konya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Afyonkarahisar",
     "Konya"
@@ -183,7 +243,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Afyonkarahisar",
     "Konya"
@@ -193,15 +253,19 @@
    "kutle_kodu": "TR08050235",
    "kutle_adi": "Kemer",
    "havza": "bati-akdeniz",
-   "iller": [
-    "Antalya"
-   ],
-   "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "iller": [],
+   "durum": "belirsiz",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 8283,
-    "alinti": "TR08050235 Antalya,Kemer TR080502350231 30,5496 36,57811 Kuvaterner alüvyon Evet Evet Gözetimsel"
+    "adaylar": [
+     "Antalya",
+     "Burdur"
+    ],
+    "havza_kesisimi": [
+     "Antalya",
+     "Burdur"
+    ],
+    "not": "kesişim tekilleştirmedi — belirsiz kaldı"
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -307,11 +371,15 @@
     "Antalya"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 8379,
-    "alinti": "TR08050240 Antalya,Kumluca TR080502400241 30,348452 36,303958 Evet Evet Evet Evet"
+    "il_parca": null,
+    "ilce_parca": {
+     "Kumluca": [
+      "Antalya"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -329,11 +397,15 @@
     "Antalya"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 8468,
-    "alinti": "TR08050241 Antalya,Finike Kaynak Suyu Kalite TR080502410240 30,132244 36,326936 Evet Evet pestisitlerle"
+    "il_parca": null,
+    "ilce_parca": {
+     "Finike": [
+      "Antalya"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -373,11 +445,15 @@
     "Antalya"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 8590,
-    "alinti": "TR08050243 Antalya, Korkuteli Kaynak Suyu Kalite TR080502430253 29,9955 36,902 Evet Evet Evet pestisitlerle"
+    "il_parca": null,
+    "ilce_parca": {
+     "Korkuteli": [
+      "Antalya"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -395,11 +471,15 @@
     "Antalya"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 8683,
-    "alinti": "TR08050244 Antalya,Demre Kalite TR080502440259 29,9794 36,23772 Kuvaterner Alüvyon, Kireçtaşı Evet Evet Evet pestisitler"
+    "il_parca": null,
+    "ilce_parca": {
+     "Demre": [
+      "Antalya"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -417,11 +497,15 @@
     "Antalya"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 8763,
-    "alinti": "TR08050245 Antalya,Elmalı TR080502450263 29,86773 36,67359 Kuvaterner alüvyon Evet Evet Evet"
+    "il_parca": null,
+    "ilce_parca": {
+     "Elmalı": [
+      "Antalya"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -483,11 +567,15 @@
     "Antalya"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 8890,
-    "alinti": "TR08050248 Antalya, Kaş TR080502480274 29,70655 36,28563 Evet Evet Evet Evet pestisitlerle"
+    "il_parca": null,
+    "ilce_parca": {
+     "Kaş": [
+      "Antalya"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -505,11 +593,15 @@
     "Burdur"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 8976,
-    "alinti": "TR08050249 Burdur, Gölhisar TR080502490275 29,50738 36,97672 Evet Evet Evet"
+    "il_parca": null,
+    "ilce_parca": {
+     "Gölhisar": [
+      "Burdur"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -549,11 +641,15 @@
     "Burdur"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 9070,
-    "alinti": "TR08050251 Burdur, Çavdır 54780 TR080502510283 29,774874 37,104289 Mezozoik peridodit-dünit Evet Evet Evet"
+    "il_parca": null,
+    "ilce_parca": {
+     "Çavdır": [
+      "Burdur"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -659,11 +755,18 @@
     "Burdur"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 9272,
-    "alinti": "TR08050256 Burdur,Altınyayla TR080502560295 29,586773 36,87108 Doger-kretase yaşlı kireçtaşı Evet Evet Evet operasyonel"
+    "il_parca": null,
+    "ilce_parca": {
+     "Altınyayla": [
+      "Burdur",
+      "Sivas"
+     ]
+    },
+    "havza_disi_elenen": [
+     "Sivas"
+    ]
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -703,11 +806,15 @@
     "Denizli"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 9367,
-    "alinti": "TR08050258 Denizli,Acıpayam 34030 TR080502580303 29,523494 37,371275 Evet Evet Evet operasyonel"
+    "il_parca": null,
+    "ilce_parca": {
+     "Acıpayam": [
+      "Denizli"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -724,7 +831,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Antalya",
     "Muğla",
@@ -759,10 +866,20 @@
    "kutle_kodu": "TR08050261",
    "kutle_adi": "Çameli",
    "havza": "bati-akdeniz",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Denizli"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Çameli": [
+      "Denizli"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Antalya",
     "Muğla",
@@ -823,11 +940,15 @@
     "Muğla"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 9851,
-    "alinti": "TR08050264 Muğla,Fethiye TR080502640334 29,315865 36,334517 Evet Evet Evet operasyonel"
+    "il_parca": null,
+    "ilce_parca": {
+     "Fethiye": [
+      "Muğla"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -889,11 +1010,15 @@
     "Denizli"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 10040,
-    "alinti": "TR08050267 Denizli, Serinhisar Kalite TR080502670342 29,275858 37,605544 Doger-kretase yaşlı kireçtaşı Evet Gözetimsel"
+    "il_parca": null,
+    "ilce_parca": {
+     "Serinhisar": [
+      "Denizli"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -1021,11 +1146,15 @@
     "Muğla"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 10303,
-    "alinti": "TR08050273 Muğla, Dalaman Kalite TR080502730355 28,751313 36,762167 Evet Evet Evet pestisitlerle"
+    "il_parca": null,
+    "ilce_parca": {
+     "Dalaman": [
+      "Muğla"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -1087,11 +1216,15 @@
     "Muğla"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 10485,
-    "alinti": "TR08050276 Muğla, Ortaca Kaynak Suyu Kalite TR080502760368 28,658382 36,808543 Evet Evet Gözetimsel"
+    "il_parca": null,
+    "ilce_parca": {
+     "Ortaca": [
+      "Muğla"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -1175,11 +1308,15 @@
     "Muğla"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 10735,
-    "alinti": "TR08050280 Muğla, Köyceğiz Kaynak Suyu Kalite TR080502800381 28,432442 36,942027 Evet Evet operasyonel"
+    "il_parca": null,
+    "ilce_parca": {
+     "Köyceğiz": [
+      "Muğla"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -1219,9 +1356,13 @@
     "Muğla"
    ],
    "durum": "eslesti",
-   "yontem": "il-adi-tam",
+   "yontem": "ad-dizin",
    "kanit": {
-    "eslesen_parca": "Muğla"
+    "il_parca": {
+     "Muğla": "Muğla"
+    },
+    "ilce_parca": null,
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -1282,7 +1423,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Antalya",
     "Muğla",
@@ -1343,11 +1484,15 @@
     "Muğla"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 11191,
-    "alinti": "TR08050288 Muğla,Milas Kalite TR080502880400 27,439419 37,39812 paleosen/eosen metaklastik- Evet Evet"
+    "il_parca": null,
+    "ilce_parca": {
+     "Milas": [
+      "Muğla"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -1365,11 +1510,15 @@
     "Muğla"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 11312,
-    "alinti": "TR08050289 Muğla,Marmaris TR080502890401 28,0929 36,65069 maestrihtiyen kum taşı-çamurtaşı- Evet Evet Evet pestisitlerle"
+    "il_parca": null,
+    "ilce_parca": {
+     "Marmaris": [
+      "Muğla"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -1497,11 +1646,15 @@
     "Muğla"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 11705,
-    "alinti": "TR08050295 Muğla,Datça Kalite TR080502950420 27,563596 36,690031 çamurtaşı-kireçtaşı, pliyosen konglomera- Evet Evet Göz"
+    "il_parca": null,
+    "ilce_parca": {
+     "Datça": [
+      "Muğla"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -1629,11 +1782,15 @@
     "Muğla"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "EK 1-8.txt",
-    "satir": 12162,
-    "alinti": "TR08050301 Muğla,Bodrum TR080503010441 27,38477 37,03832 Evet Evet Evet"
+    "il_parca": null,
+    "ilce_parca": {
+     "Bodrum": [
+      "Muğla"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Antalya",
@@ -1650,7 +1807,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -1672,7 +1829,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -1691,10 +1848,20 @@
    "kutle_kodu": "TR14050331",
    "kutle_adi": "Köse",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Gümüşhane"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Köse": [
+      "Gümüşhane"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -1716,7 +1883,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -1735,10 +1902,20 @@
    "kutle_kodu": "TR14050333",
    "kutle_adi": "Kelkit",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Gümüşhane"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Kelkit": [
+      "Gümüşhane"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -1760,7 +1937,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -1779,10 +1956,20 @@
    "kutle_kodu": "TR14050335",
    "kutle_adi": "Refahiye",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Erzincan"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Refahiye": [
+      "Erzincan"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -1801,10 +1988,20 @@
    "kutle_kodu": "TR14050336",
    "kutle_adi": "Alucra",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Giresun"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Alucra": [
+      "Giresun"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -1823,10 +2020,20 @@
    "kutle_kodu": "TR14050337",
    "kutle_adi": "Gölova",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Sivas"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Gölova": [
+      "Sivas"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -1845,10 +2052,20 @@
    "kutle_kodu": "TR14050338",
    "kutle_adi": "İmranlı",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Sivas"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "İmranlı": [
+      "Sivas"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -1867,10 +2084,20 @@
    "kutle_kodu": "TR14050339",
    "kutle_adi": "Şebinkarahisar",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Giresun"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Şebinkarahisar": [
+      "Giresun"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -1892,7 +2119,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -1914,7 +2141,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -1936,7 +2163,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -1955,10 +2182,20 @@
    "kutle_kodu": "TR14050343",
    "kutle_adi": "Akıncılar",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Sivas"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Akıncılar": [
+      "Sivas"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -1980,7 +2217,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2002,7 +2239,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2021,10 +2258,20 @@
    "kutle_kodu": "TR14050346",
    "kutle_adi": "Reşadiye",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Tokat"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Reşadiye": [
+      "Tokat"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2043,10 +2290,20 @@
    "kutle_kodu": "TR14050347",
    "kutle_adi": "Almus",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Tokat"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Almus": [
+      "Tokat"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2068,7 +2325,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2087,10 +2344,20 @@
    "kutle_kodu": "TR14050349",
    "kutle_adi": "Niksar",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Tokat"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Niksar": [
+      "Tokat"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2109,10 +2376,20 @@
    "kutle_kodu": "TR14050350",
    "kutle_adi": "Başçiftlik",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Tokat"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Başçiftlik": [
+      "Tokat"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2131,10 +2408,20 @@
    "kutle_kodu": "TR14050351",
    "kutle_adi": "Akkuş",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Ordu"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Akkuş": [
+      "Ordu"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2153,10 +2440,20 @@
    "kutle_kodu": "TR14050352",
    "kutle_adi": "Çarşamba",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Samsun"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Çarşamba": [
+      "Samsun"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2179,9 +2476,17 @@
     "Tokat"
    ],
    "durum": "eslesti",
-   "yontem": "il-adi-tam",
+   "yontem": "ad-dizin",
    "kanit": {
-    "eslesen_parca": "Tokat"
+    "il_parca": {
+     "Tokat": "Tokat"
+    },
+    "ilce_parca": {
+     "Tokat Merkez": [
+      "Tokat"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Tokat",
@@ -2201,10 +2506,20 @@
    "kutle_kodu": "TR14050354",
    "kutle_adi": "Erbaa",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Tokat"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Erbaa": [
+      "Tokat"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2226,7 +2541,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2245,10 +2560,20 @@
    "kutle_kodu": "TR14050356",
    "kutle_adi": "Turhal",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Tokat"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Turhal": [
+      "Tokat"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2267,10 +2592,20 @@
    "kutle_kodu": "TR14050357",
    "kutle_adi": "Atakum",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Samsun"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Atakum": [
+      "Samsun"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2289,10 +2624,20 @@
    "kutle_kodu": "TR14050358",
    "kutle_adi": "Asarcık",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Samsun"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Asarcık": [
+      "Samsun"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2311,10 +2656,20 @@
    "kutle_kodu": "TR14050359",
    "kutle_adi": "Sulusaray",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Tokat"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Sulusaray": [
+      "Tokat"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2333,10 +2688,20 @@
    "kutle_kodu": "TR14050360",
    "kutle_adi": "Taşova",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Amasya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Taşova": [
+      "Amasya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2355,10 +2720,20 @@
    "kutle_kodu": "TR14050361",
    "kutle_adi": "Akdağmadeni",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Yozgat"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Akdağmadeni": [
+      "Yozgat"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2377,10 +2752,20 @@
    "kutle_kodu": "TR14050362",
    "kutle_adi": "Ladik",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Samsun"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Ladik": [
+      "Samsun"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2399,10 +2784,20 @@
    "kutle_kodu": "TR14050363",
    "kutle_adi": "Havza",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Samsun"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Havza": [
+      "Samsun"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2425,9 +2820,17 @@
     "Amasya"
    ],
    "durum": "eslesti",
-   "yontem": "il-adi-tam",
+   "yontem": "ad-dizin",
    "kanit": {
-    "eslesen_parca": "Amasya"
+    "il_parca": {
+     "Amasya": "Amasya"
+    },
+    "ilce_parca": {
+     "Amasya Merkez": [
+      "Amasya"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Tokat",
@@ -2447,10 +2850,20 @@
    "kutle_kodu": "TR14050365",
    "kutle_adi": "Çekerek",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Yozgat"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Çekerek": [
+      "Yozgat"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2469,10 +2882,20 @@
    "kutle_kodu": "TR14050366",
    "kutle_adi": "Suluova",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Amasya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Suluova": [
+      "Amasya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2491,10 +2914,20 @@
    "kutle_kodu": "TR14050367",
    "kutle_adi": "Göynücek",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Amasya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Göynücek": [
+      "Amasya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2516,7 +2949,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2535,10 +2968,20 @@
    "kutle_kodu": "TR14050369",
    "kutle_adi": "Merzifon Merkez",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Amasya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Merzifon": [
+      "Amasya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2557,10 +3000,20 @@
    "kutle_kodu": "TR14050370",
    "kutle_adi": "Merzifon",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Amasya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Merzifon": [
+      "Amasya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2582,7 +3035,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2601,10 +3054,20 @@
    "kutle_kodu": "TR14050372",
    "kutle_adi": "Mecitözü",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Çorum"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Mecitözü": [
+      "Çorum"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2623,10 +3086,20 @@
    "kutle_kodu": "TR14050373",
    "kutle_adi": "Gümüşhacıköy",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Amasya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Gümüşhacıköy": [
+      "Amasya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2645,10 +3118,23 @@
    "kutle_kodu": "TR14050374",
    "kutle_adi": "Ortaköy",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Çorum"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Ortaköy": [
+      "Aksaray",
+      "Çorum"
+     ]
+    },
+    "havza_disi_elenen": [
+     "Aksaray"
+    ]
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2670,7 +3156,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2692,7 +3178,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2711,10 +3197,20 @@
    "kutle_kodu": "TR14050377",
    "kutle_adi": "Alaca",
    "havza": "yesilirmak",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Çorum"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Alaca": [
+      "Çorum"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2737,9 +3233,13 @@
     "Çorum"
    ],
    "durum": "eslesti",
-   "yontem": "il-adi-tam",
+   "yontem": "ad-dizin",
    "kanit": {
-    "eslesen_parca": "Çorum"
+    "il_parca": {
+     "Çorum": "Çorum"
+    },
+    "ilce_parca": null,
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Tokat",
@@ -2762,7 +3262,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2784,7 +3284,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2806,7 +3306,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2828,7 +3328,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Tokat",
     "Samsun",
@@ -2850,7 +3350,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -2865,7 +3365,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -2880,7 +3380,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -2892,10 +3392,20 @@
    "kutle_kodu": "TR05YAS01004",
    "kutle_adi": "GEDİZ",
    "havza": "gediz",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Kütahya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Gediz": [
+      "Kütahya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -2910,7 +3420,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -2925,7 +3435,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -2940,7 +3450,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -2952,10 +3462,20 @@
    "kutle_kodu": "TR05YAS01008",
    "kutle_adi": "ŞAPHANE",
    "havza": "gediz",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Kütahya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Şaphane": [
+      "Kütahya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -2970,7 +3490,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -2985,7 +3505,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -2997,10 +3517,20 @@
    "kutle_kodu": "TR05YAS01011",
    "kutle_adi": "SELENDİ",
    "havza": "gediz",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Manisa"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Selendi": [
+      "Manisa"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3015,7 +3545,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3030,7 +3560,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3045,7 +3575,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3060,7 +3590,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3075,7 +3605,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3090,7 +3620,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3105,7 +3635,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3117,10 +3647,20 @@
    "kutle_kodu": "TR05YAS01019",
    "kutle_adi": "KULA",
    "havza": "gediz",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Manisa"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Kula": [
+      "Manisa"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3135,7 +3675,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3150,7 +3690,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3165,7 +3705,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3177,10 +3717,20 @@
    "kutle_kodu": "TR05YAS01023",
    "kutle_adi": "DEMİRCİ",
    "havza": "gediz",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Manisa"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Demirci": [
+      "Manisa"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3195,7 +3745,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3210,7 +3760,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3225,7 +3775,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3240,7 +3790,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3255,7 +3805,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3270,7 +3820,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3285,7 +3835,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3300,7 +3850,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3315,7 +3865,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3330,7 +3880,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3342,10 +3892,20 @@
    "kutle_kodu": "TR05YAS02034",
    "kutle_adi": "SALİHLİ",
    "havza": "gediz",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Manisa"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Salihli": [
+      "Manisa"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3360,7 +3920,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3375,7 +3935,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3390,7 +3950,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3405,7 +3965,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3420,7 +3980,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3435,7 +3995,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3450,7 +4010,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3462,10 +4022,20 @@
    "kutle_kodu": "TR05YAS03042",
    "kutle_adi": "AHMETLİ",
    "havza": "gediz",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Manisa"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Ahmetli": [
+      "Manisa"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3480,7 +4050,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3495,7 +4065,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3510,7 +4080,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3525,7 +4095,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3540,7 +4110,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3555,7 +4125,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3567,10 +4137,20 @@
    "kutle_kodu": "TR05YAS04049",
    "kutle_adi": "GÖRDES",
    "havza": "gediz",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Manisa"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Gördes": [
+      "Manisa"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3585,7 +4165,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3597,10 +4177,20 @@
    "kutle_kodu": "TR05YAS04051",
    "kutle_adi": "GÖLMARMARA",
    "havza": "gediz",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Manisa"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Gölmarmara": [
+      "Manisa"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3615,7 +4205,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3630,7 +4220,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3645,7 +4235,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3660,7 +4250,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3675,7 +4265,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3687,10 +4277,20 @@
    "kutle_kodu": "TR05YAS05057",
    "kutle_adi": "AKHİSAR",
    "havza": "gediz",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Manisa"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Akhisar": [
+      "Manisa"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3705,7 +4305,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3720,7 +4320,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3735,7 +4335,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3750,7 +4350,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3765,7 +4365,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3781,9 +4381,13 @@
     "Manisa"
    ],
    "durum": "eslesti",
-   "yontem": "il-adi-tam",
+   "yontem": "ad-dizin",
    "kanit": {
-    "eslesen_parca": "MANİSA"
+    "il_parca": {
+     "Manisa": "MANİSA"
+    },
+    "ilce_parca": null,
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "İzmir",
@@ -3799,7 +4403,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3814,7 +4418,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3829,7 +4433,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3844,7 +4448,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3856,10 +4460,23 @@
    "kutle_kodu": "TR05YAS06068",
    "kutle_adi": "KEMALPAŞA",
    "havza": "gediz",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Kemalpaşa": [
+      "Artvin",
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": [
+     "Artvin"
+    ]
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3874,7 +4491,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3889,7 +4506,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3904,7 +4521,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3919,7 +4536,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3934,7 +4551,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3946,10 +4563,20 @@
    "kutle_kodu": "TR05YAS07074",
    "kutle_adi": "MENEMEN",
    "havza": "gediz",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Menemen": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3961,10 +4588,20 @@
    "kutle_kodu": "TR05YAS07075",
    "kutle_adi": "ÇİĞLİ",
    "havza": "gediz",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Çiğli": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3979,7 +4616,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Kütahya",
@@ -3994,7 +4631,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Balıkesir",
     "Çanakkale",
@@ -4010,11 +4647,15 @@
     "Balıkesir"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "6) Tedbirler Programı Raporu.txt",
-    "satir": 6338,
-    "alinti": "Ayvalık TR04050205 Petrotürk-Sarpet Petrol Ayvalık/Balıkesir"
+    "il_parca": null,
+    "ilce_parca": {
+     "Ayvalık": [
+      "Balıkesir"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Balıkesir",
@@ -4031,11 +4672,15 @@
     "Balıkesir"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "6) Tedbirler Programı Raporu.txt",
-    "satir": 6516,
-    "alinti": "Gömeç TR04050206 Petrol Ofisi Akaryakıt İstasyonu Ayvalık/Balıkesir"
+    "il_parca": null,
+    "ilce_parca": {
+     "Gömeç": [
+      "Balıkesir"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Balıkesir",
@@ -4072,7 +4717,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Balıkesir",
     "Çanakkale",
@@ -4087,7 +4732,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Balıkesir",
     "Çanakkale",
@@ -4103,11 +4748,15 @@
     "Çanakkale"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "6) Tedbirler Programı Raporu.txt",
-    "satir": 6500,
-    "alinti": "Ezine TR04050210 Total/Çetinkaya Petrol Ayvacık/Çanakkale"
+    "il_parca": null,
+    "ilce_parca": {
+     "Ezine": [
+      "Çanakkale"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Balıkesir",
@@ -4123,7 +4772,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Balıkesir",
     "Çanakkale",
@@ -4138,7 +4787,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Balıkesir",
     "Çanakkale",
@@ -4154,11 +4803,18 @@
     "Balıkesir"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "6) Tedbirler Programı Raporu.txt",
-    "satir": 6435,
-    "alinti": "Edremit TR04050213 Opet/Karabulut Petrol Edremit/Balıkesir"
+    "il_parca": null,
+    "ilce_parca": {
+     "Edremit": [
+      "Balıkesir",
+      "Van"
+     ]
+    },
+    "havza_disi_elenen": [
+     "Van"
+    ]
    },
    "oneri_havza_illeri": [
     "Balıkesir",
@@ -4195,7 +4851,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Balıkesir",
     "Çanakkale",
@@ -4211,16 +4867,15 @@
    "durum": "belirsiz",
    "yontem": "metin-baglami",
    "kanit": {
-    "İzmir": {
-     "dosya": "6) Tedbirler Programı Raporu.txt",
-     "satir": 6306,
-     "alinti": "Altınova TR04050216 Petrol Ofisi Akaryakıt İstasyonu Dikili/İzmir"
-    },
-    "Balıkesir": {
-     "dosya": "6) Tedbirler Programı Raporu.txt",
-     "satir": 6330,
-     "alinti": "Altınova TR04050216 Alpet Akaryakıt İstasyonu Ayvalık/Balıkesir"
-    }
+    "adaylar": [
+     "Balıkesir",
+     "İzmir"
+    ],
+    "havza_kesisimi": [
+     "Balıkesir",
+     "İzmir"
+    ],
+    "not": "kesişim tekilleştirmedi — belirsiz kaldı"
    },
    "oneri_havza_illeri": [
     "Balıkesir",
@@ -4233,10 +4888,20 @@
    "kutle_kodu": "TR04050217",
    "kutle_adi": "Savaştepe",
    "havza": "kuzey-ege",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Balıkesir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Savaştepe": [
+      "Balıkesir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Balıkesir",
     "Çanakkale",
@@ -4248,20 +4913,19 @@
    "kutle_kodu": "TR04050218",
    "kutle_adi": "Aliağa",
    "havza": "kuzey-ege",
-   "iller": [],
-   "durum": "belirsiz",
-   "yontem": "metin-baglami",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
    "kanit": {
-    "İzmir": {
-     "dosya": "6) Tedbirler Programı Raporu.txt",
-     "satir": 6270,
-     "alinti": "Aliağa TR04050218 Teknopet Opet Aliağa/İzmir"
+    "il_parca": null,
+    "ilce_parca": {
+     "Aliağa": [
+      "İzmir"
+     ]
     },
-    "Aydın": {
-     "dosya": "6) Tedbirler Programı Raporu.txt",
-     "satir": 6298,
-     "alinti": "Aliağa TR04050218 Shell-Aydın Petrol Aliağa/İzmir"
-    }
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Balıkesir",
@@ -4337,10 +5001,20 @@
    "kutle_kodu": "TR04050222",
    "kutle_adi": "Soma-Yağcılar",
    "havza": "kuzey-ege",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Manisa"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Soma": [
+      "Manisa"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Balıkesir",
     "Çanakkale",
@@ -4352,10 +5026,20 @@
    "kutle_kodu": "TR04050223",
    "kutle_adi": "Kınık",
    "havza": "kuzey-ege",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Kınık": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Balıkesir",
     "Çanakkale",
@@ -4371,11 +5055,15 @@
     "Manisa"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "6) Tedbirler Programı Raporu.txt",
-    "satir": 6565,
-    "alinti": "Kırkağaç TR04050224 Opet Akaryakıt İstasyonu Soma/Manisa"
+    "il_parca": null,
+    "ilce_parca": {
+     "Kırkağaç": [
+      "Manisa"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Balıkesir",
@@ -4412,7 +5100,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Balıkesir",
     "Çanakkale",
@@ -4448,7 +5136,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Balıkesir",
     "Çanakkale",
@@ -4463,7 +5151,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Balıkesir",
     "Çanakkale",
@@ -4478,7 +5166,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Balıkesir",
     "Çanakkale",
@@ -4493,7 +5181,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Balıkesir",
     "Çanakkale",
@@ -4508,7 +5196,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Balıkesir",
     "Çanakkale",
@@ -4523,7 +5211,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Balıkesir",
     "Çanakkale",
@@ -4538,7 +5226,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Balıkesir",
     "Çanakkale",
@@ -4550,10 +5238,20 @@
    "kutle_kodu": "TR06050162",
    "kutle_adi": "Ahmetli",
    "havza": "kucuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Manisa"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Ahmetli": [
+      "Manisa"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4567,7 +5265,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4581,7 +5279,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4592,10 +5290,20 @@
    "kutle_kodu": "TR06050165",
    "kutle_adi": "Bornova-1",
    "havza": "kucuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Bornova": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4609,7 +5317,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4620,10 +5328,25 @@
    "kutle_kodu": "TR06050167",
    "kutle_adi": "Buca-Gediz",
    "havza": "kucuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Gediz": [
+      "Kütahya"
+     ],
+     "Buca": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": [
+     "Kütahya"
+    ]
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4634,10 +5357,20 @@
    "kutle_kodu": "TR06050168",
    "kutle_adi": "Çeşme-Dalyanköy",
    "havza": "kucuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Çeşme": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4648,10 +5381,20 @@
    "kutle_kodu": "TR06050169",
    "kutle_adi": "Çeşme-Ildırı",
    "havza": "kucuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Çeşme": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4662,10 +5405,27 @@
    "kutle_kodu": "TR06050170",
    "kutle_adi": "Çeşme-Ovacık",
    "havza": "kucuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Ovacık": [
+      "Karabük",
+      "Tunceli"
+     ],
+     "Çeşme": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": [
+     "Karabük",
+     "Tunceli"
+    ]
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4679,7 +5439,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4693,7 +5453,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4707,7 +5467,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4721,7 +5481,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4735,7 +5495,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4746,10 +5506,20 @@
    "kutle_kodu": "TR06050176",
    "kutle_adi": "Gaziemir",
    "havza": "kucuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Gaziemir": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4763,7 +5533,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4774,14 +5544,10 @@
    "kutle_kodu": "TR06050178",
    "kutle_adi": "Hatay",
    "havza": "kucuk-menderes",
-   "iller": [
-    "Hatay"
-   ],
-   "durum": "eslesti",
-   "yontem": "il-adi-tam",
-   "kanit": {
-    "eslesen_parca": "Hatay"
-   },
+   "iller": [],
+   "durum": "dogrulanamadi",
+   "yontem": "hicbiri",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4796,11 +5562,15 @@
     "İzmir"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "Nehir Havza Yönetim Planı Raporu.txt",
-    "satir": 30281,
-    "alinti": "TR06050179 Karaburun İzmir Karaburun 35% 30%"
+    "il_parca": null,
+    "ilce_parca": {
+     "Karaburun": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "İzmir",
@@ -4812,10 +5582,20 @@
    "kutle_kodu": "TR06050180",
    "kutle_adi": "Karaburun-Bozköy",
    "havza": "kucuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Karaburun": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4829,7 +5609,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4840,10 +5620,20 @@
    "kutle_kodu": "TR06050182",
    "kutle_adi": "Karşıyaka",
    "havza": "kucuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Karşıyaka": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4857,7 +5647,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4872,11 +5662,15 @@
     "İzmir"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "Nehir Havza Yönetim Planı Raporu.txt",
-    "satir": 30275,
-    "alinti": "TR06050184 Kiraz İzmir Kiraz 67% 30%"
+    "il_parca": null,
+    "ilce_parca": {
+     "Kiraz": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "İzmir",
@@ -4891,7 +5685,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4906,11 +5700,15 @@
     "Aydın"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "Nehir Havza Yönetim Planı Raporu.txt",
-    "satir": 30285,
-    "alinti": "TR06050186 Kuşadası-1 Aydın Kuşadası 38% 30%"
+    "il_parca": null,
+    "ilce_parca": {
+     "Kuşadası": [
+      "Aydın"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "İzmir",
@@ -4922,10 +5720,20 @@
    "kutle_kodu": "TR06050187",
    "kutle_adi": "Kuşadası-2",
    "havza": "kucuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Aydın"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Kuşadası": [
+      "Aydın"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4939,7 +5747,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4950,10 +5758,20 @@
    "kutle_kodu": "TR06050189",
    "kutle_adi": "Narlıdere",
    "havza": "kucuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Narlıdere": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4967,7 +5785,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -4982,11 +5800,18 @@
     "İzmir"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "Nehir Havza Yönetim Planı Raporu.txt",
-    "satir": 30279,
-    "alinti": "TR06050191 Ödemiş İzmir Beydağ 52% 30%"
+    "il_parca": null,
+    "ilce_parca": {
+     "Tire": [
+      "İzmir"
+     ],
+     "Ödemiş": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "İzmir",
@@ -5001,7 +5826,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -5015,7 +5840,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -5029,7 +5854,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -5040,10 +5865,20 @@
    "kutle_kodu": "TR06050195",
    "kutle_adi": "Seferihisar",
    "havza": "kucuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Seferihisar": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -5054,10 +5889,20 @@
    "kutle_kodu": "TR06050196",
    "kutle_adi": "Seferihisar-Bademler",
    "havza": "kucuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Seferihisar": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -5068,10 +5913,20 @@
    "kutle_kodu": "TR06050197",
    "kutle_adi": "Selçuk-1",
    "havza": "kucuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Selçuk": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -5082,10 +5937,20 @@
    "kutle_kodu": "TR06050198",
    "kutle_adi": "Selçuk-2",
    "havza": "kucuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Selçuk": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -5099,7 +5964,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -5114,11 +5979,18 @@
     "İzmir"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "Nehir Havza Yönetim Planı Raporu.txt",
-    "satir": 30277,
-    "alinti": "TR06050200 Torbalı-Bayındır İzmir Tire 37% 30%"
+    "il_parca": null,
+    "ilce_parca": {
+     "Bayındır": [
+      "İzmir"
+     ],
+     "Torbalı": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "İzmir",
@@ -5130,10 +6002,20 @@
    "kutle_kodu": "TR06050201",
    "kutle_adi": "Urla",
    "havza": "kucuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "İzmir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Urla": [
+      "İzmir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -5147,7 +6029,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -5161,7 +6043,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "İzmir",
     "Aydın",
@@ -5175,7 +6057,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Burdur",
     "Isparta",
@@ -5191,7 +6073,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Burdur",
     "Isparta",
@@ -5208,11 +6090,15 @@
     "Isparta"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "BUN_NHYP Nihai Raporu.txt",
-    "satir": 20006,
-    "alinti": "Atabey YSK TR10050304 Isparta Gönen Merkez 246"
+    "il_parca": null,
+    "ilce_parca": {
+     "Atabey": [
+      "Isparta"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Burdur",
@@ -5230,9 +6116,13 @@
     "Burdur"
    ],
    "durum": "eslesti",
-   "yontem": "il-adi-tam",
+   "yontem": "ad-dizin",
    "kanit": {
-    "eslesen_parca": "Burdur"
+    "il_parca": {
+     "Burdur": "Burdur"
+    },
+    "ilce_parca": null,
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Burdur",
@@ -5271,7 +6161,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Burdur",
     "Isparta",
@@ -5287,7 +6177,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Burdur",
     "Isparta",
@@ -5325,7 +6215,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Burdur",
     "Isparta",
@@ -5342,11 +6232,15 @@
     "Burdur"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "BUN_NHYP Nihai Raporu.txt",
-    "satir": 19966,
-    "alinti": "Tefenni YSK TR10050311 Burdur Tefenni Hasanpaşa-1 70"
+    "il_parca": null,
+    "ilce_parca": {
+     "Tefenni": [
+      "Burdur"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Burdur",
@@ -5360,15 +6254,19 @@
    "kutle_kodu": "TR10050312",
    "kutle_adi": "Kemer YSK",
    "havza": "burdur",
-   "iller": [
-    "Burdur"
-   ],
-   "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "iller": [],
+   "durum": "belirsiz",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "BUN_NHYP Nihai Raporu.txt",
-    "satir": 19967,
-    "alinti": "Kemer YSK TR10050312 Burdur Tefenni Hasanpaşa-2 120"
+    "adaylar": [
+     "Antalya",
+     "Burdur"
+    ],
+    "havza_kesisimi": [
+     "Antalya",
+     "Burdur"
+    ],
+    "not": "kesişim tekilleştirmedi — belirsiz kaldı"
    },
    "oneri_havza_illeri": [
     "Burdur",
@@ -5385,7 +6283,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Burdur",
     "Isparta",
@@ -5402,11 +6300,15 @@
     "Burdur"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "BUN_NHYP Nihai Raporu.txt",
-    "satir": 20377,
-    "alinti": "TR10050314 Burdur Karamanlı Karamanlı 7505"
+    "il_parca": null,
+    "ilce_parca": {
+     "Karamanlı": [
+      "Burdur"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Burdur",
@@ -5445,7 +6347,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Burdur",
     "Isparta",
@@ -5461,7 +6363,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Burdur",
     "Isparta",
@@ -5477,7 +6379,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Burdur",
     "Isparta",
@@ -5515,7 +6417,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Burdur",
     "Isparta",
@@ -5576,11 +6478,15 @@
     "Burdur"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "BUN_NHYP Nihai Raporu.txt",
-    "satir": 19960,
-    "alinti": "Yeşilova YSK TR10050323 Burdur Yeşilova Salda 66"
+    "il_parca": null,
+    "ilce_parca": {
+     "Yeşilova": [
+      "Burdur"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Burdur",
@@ -5641,7 +6547,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Burdur",
     "Isparta",
@@ -5654,20 +6560,19 @@
    "kutle_kodu": "TR10050327",
    "kutle_adi": "Başmakçı YSK",
    "havza": "burdur",
-   "iller": [],
-   "durum": "belirsiz",
-   "yontem": "metin-baglami",
+   "iller": [
+    "Afyonkarahisar"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
    "kanit": {
-    "Denizli": {
-     "dosya": "BUN_NHYP Nihai Raporu.txt",
-     "satir": 19950,
-     "alinti": "Başmakçı YSK TR10050327 Denizli Çardak Beylerli 120"
+    "il_parca": null,
+    "ilce_parca": {
+     "Başmakçı": [
+      "Afyonkarahisar"
+     ]
     },
-    "Afyonkarahisar": {
-     "dosya": "BUN_NHYP Nihai Raporu.txt",
-     "satir": 20371,
-     "alinti": "TR10050327 Afyonkarahisar Başmakçı Başmakçı 6615"
-    }
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Burdur",
@@ -5685,11 +6590,15 @@
     "Afyonkarahisar"
    ],
    "durum": "eslesti",
-   "yontem": "metin-baglami",
+   "yontem": "ad-dizin",
    "kanit": {
-    "dosya": "BUN_NHYP Nihai Raporu.txt",
-    "satir": 20167,
-    "alinti": "Afyonkarahisar Dazkırı 5092 40 Evciler YSK TR10050328"
+    "il_parca": null,
+    "ilce_parca": {
+     "Evciler": [
+      "Afyonkarahisar"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Burdur",
@@ -5703,10 +6612,20 @@
    "kutle_kodu": "TR07YAS01001",
    "kutle_adi": "Eşme",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Uşak"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Eşme": [
+      "Uşak"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -5728,9 +6647,20 @@
     "Uşak"
    ],
    "durum": "eslesti",
-   "yontem": "il-adi-tam",
+   "yontem": "ad-dizin",
    "kanit": {
-    "eslesen_parca": "Uşak"
+    "il_parca": {
+     "Uşak": "Uşak"
+    },
+    "ilce_parca": {
+     "Ulubey": [
+      "Ordu",
+      "Uşak"
+     ]
+    },
+    "havza_disi_elenen": [
+     "Ordu"
+    ]
    },
    "oneri_havza_illeri": [
     "Aydın",
@@ -5749,10 +6679,23 @@
    "kutle_kodu": "TR07YAS01003",
    "kutle_adi": "Banaz-Sivaslı",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Uşak"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Sivaslı": [
+      "Uşak"
+     ],
+     "Banaz": [
+      "Uşak"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -5771,9 +6714,19 @@
    "kutle_adi": "Çivril -Dinar",
    "havza": "buyuk-menderes",
    "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "durum": "belirsiz",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "adaylar": [
+     "Afyonkarahisar",
+     "Denizli"
+    ],
+    "havza_kesisimi": [
+     "Afyonkarahisar",
+     "Denizli"
+    ],
+    "not": "kesişim tekilleştirmedi — belirsiz kaldı"
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -5791,10 +6744,20 @@
    "kutle_kodu": "TR07YAS02002",
    "kutle_adi": "Sandıklı-Dombay",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Afyonkarahisar"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Sandıklı": [
+      "Afyonkarahisar"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -5815,7 +6778,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -5836,7 +6799,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -5854,10 +6817,20 @@
    "kutle_kodu": "TR07YAS02005",
    "kutle_adi": "Çal",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Denizli"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Çal": [
+      "Denizli"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -5878,7 +6851,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -5896,10 +6869,20 @@
    "kutle_kodu": "TR07YAS04001",
    "kutle_adi": "Buharkent Alüvyon",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Aydın"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Buharkent": [
+      "Aydın"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -5917,10 +6900,20 @@
    "kutle_kodu": "TR07YAS04002",
    "kutle_adi": "Sarayköy Alüvyon",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Denizli"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Sarayköy": [
+      "Denizli"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -5938,10 +6931,20 @@
    "kutle_kodu": "TR07YAS04003",
    "kutle_adi": "Ahmetli Alüvyon",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Manisa"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Ahmetli": [
+      "Manisa"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -5962,7 +6965,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -5983,7 +6986,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6001,10 +7004,20 @@
    "kutle_kodu": "TR07YAS04006",
    "kutle_adi": "Buldan Proterozoyik",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Denizli"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Buldan": [
+      "Denizli"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6026,9 +7039,13 @@
     "Denizli"
    ],
    "durum": "eslesti",
-   "yontem": "il-adi-tam",
+   "yontem": "ad-dizin",
    "kanit": {
-    "eslesen_parca": "Denizli"
+    "il_parca": {
+     "Denizli": "Denizli"
+    },
+    "ilce_parca": null,
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Aydın",
@@ -6047,10 +7064,20 @@
    "kutle_kodu": "TR07YAS05002",
    "kutle_adi": "Çardak",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Denizli"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Çardak": [
+      "Denizli"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6072,9 +7099,13 @@
     "Denizli"
    ],
    "durum": "eslesti",
-   "yontem": "il-adi-tam",
+   "yontem": "ad-dizin",
    "kanit": {
-    "eslesen_parca": "Denizli"
+    "il_parca": {
+     "Denizli": "Denizli"
+    },
+    "ilce_parca": null,
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Aydın",
@@ -6093,10 +7124,20 @@
    "kutle_kodu": "TR07YAS05004",
    "kutle_adi": "Honaz",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Denizli"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Honaz": [
+      "Denizli"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6114,10 +7155,20 @@
    "kutle_kodu": "TR07YAS06001",
    "kutle_adi": "Nazilli Alüvyon",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Aydın"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Nazilli": [
+      "Aydın"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6135,10 +7186,20 @@
    "kutle_kodu": "TR07YAS06002",
    "kutle_adi": "Nazilli Proterozoyik",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Aydın"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Nazilli": [
+      "Aydın"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6156,10 +7217,20 @@
    "kutle_kodu": "TR07YAS07001",
    "kutle_adi": "Karacasu Alüvyon Kuzey",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Aydın"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Karacasu": [
+      "Aydın"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6177,10 +7248,20 @@
    "kutle_kodu": "TR07YAS07002",
    "kutle_adi": "Karacasu Alüvyon Güney",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Aydın"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Karacasu": [
+      "Aydın"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6198,10 +7279,20 @@
    "kutle_kodu": "TR07YAS07003",
    "kutle_adi": "Karacasu Proterozoyik",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Aydın"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Karacasu": [
+      "Aydın"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6219,10 +7310,20 @@
    "kutle_kodu": "TR07YAS08001",
    "kutle_adi": "Bozdoğan",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Aydın"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Bozdoğan": [
+      "Aydın"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6240,10 +7341,20 @@
    "kutle_kodu": "TR07YAS08002",
    "kutle_adi": "Beyağaç",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Denizli"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Beyağaç": [
+      "Denizli"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6261,10 +7372,20 @@
    "kutle_kodu": "TR07YAS08003",
    "kutle_adi": "Tavas",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Denizli"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Tavas": [
+      "Denizli"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6282,10 +7403,23 @@
    "kutle_kodu": "TR07YAS08004",
    "kutle_adi": "Bozdoğan Karacasu Arası Proterozoyik",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Aydın"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Karacasu": [
+      "Aydın"
+     ],
+     "Bozdoğan": [
+      "Aydın"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6303,10 +7437,20 @@
    "kutle_kodu": "TR07YAS09001",
    "kutle_adi": "Çine Alüvyon",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Aydın"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Çine": [
+      "Aydın"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6324,10 +7468,20 @@
    "kutle_kodu": "TR07YAS09002",
    "kutle_adi": "Yatağan Alüvyon",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Muğla"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Yatağan": [
+      "Muğla"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6345,10 +7499,20 @@
    "kutle_kodu": "TR07YAS09003",
    "kutle_adi": "Çine Proterozoyik",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Aydın"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Çine": [
+      "Aydın"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6366,10 +7530,20 @@
    "kutle_kodu": "TR07YAS09004",
    "kutle_adi": "Yatağan Devoniyen",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Muğla"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Yatağan": [
+      "Muğla"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6391,9 +7565,13 @@
     "Aydın"
    ],
    "durum": "eslesti",
-   "yontem": "il-adi-tam",
+   "yontem": "ad-dizin",
    "kanit": {
-    "eslesen_parca": "Aydın"
+    "il_parca": {
+     "Aydın": "Aydın"
+    },
+    "ilce_parca": null,
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Aydın",
@@ -6412,10 +7590,20 @@
    "kutle_kodu": "TR07YAS10002",
    "kutle_adi": "Söke Alüvyon",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Aydın"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Söke": [
+      "Aydın"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6433,10 +7621,20 @@
    "kutle_kodu": "TR07YAS10003",
    "kutle_adi": "Söke Proterozoyik",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Aydın"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Söke": [
+      "Aydın"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6454,10 +7652,20 @@
    "kutle_kodu": "TR07YAS10004",
    "kutle_adi": "Didim",
    "havza": "buyuk-menderes",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Aydın"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Didim": [
+      "Aydın"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Aydın",
     "Denizli",
@@ -6479,9 +7687,13 @@
     "Aydın"
    ],
    "durum": "eslesti",
-   "yontem": "il-adi-tam",
+   "yontem": "ad-dizin",
    "kanit": {
-    "eslesen_parca": "Aydın"
+    "il_parca": {
+     "Aydın": "Aydın"
+    },
+    "ilce_parca": null,
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Aydın",
@@ -6504,9 +7716,17 @@
     "Aydın"
    ],
    "durum": "eslesti",
-   "yontem": "il-adi-tam",
+   "yontem": "ad-dizin",
    "kanit": {
-    "eslesen_parca": "Aydın"
+    "il_parca": {
+     "Aydın": "Aydın"
+    },
+    "ilce_parca": {
+     "Bozdoğan": [
+      "Aydın"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Aydın",
@@ -6525,10 +7745,20 @@
    "kutle_kodu": "TR16YAS01001",
    "kutle_adi": "Beyşehir-Kaşaklı",
    "havza": "konya",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Konya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Beyşehir": [
+      "Konya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Konya",
     "Karaman",
@@ -6543,10 +7773,20 @@
    "kutle_kodu": "TR16YAS01002",
    "kutle_adi": "Seydişehir",
    "havza": "konya",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Konya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Seydişehir": [
+      "Konya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Konya",
     "Karaman",
@@ -6561,10 +7801,23 @@
    "kutle_kodu": "TR16YAS02001",
    "kutle_adi": "Çumra - Karapınar",
    "havza": "konya",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Konya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Çumra": [
+      "Konya"
+     ],
+     "Karapınar": [
+      "Konya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Konya",
     "Karaman",
@@ -6579,10 +7832,20 @@
    "kutle_kodu": "TR16YAS02002",
    "kutle_adi": "Selçuklu",
    "havza": "konya",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Konya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Selçuklu": [
+      "Konya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Konya",
     "Karaman",
@@ -6597,10 +7860,20 @@
    "kutle_kodu": "TR16YAS02003",
    "kutle_adi": "Akören",
    "havza": "konya",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Konya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Akören": [
+      "Konya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Konya",
     "Karaman",
@@ -6619,9 +7892,13 @@
     "Karaman"
    ],
    "durum": "eslesti",
-   "yontem": "il-adi-tam",
+   "yontem": "ad-dizin",
    "kanit": {
-    "eslesen_parca": "Karaman"
+    "il_parca": {
+     "Karaman": "Karaman"
+    },
+    "ilce_parca": null,
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Konya",
@@ -6637,10 +7914,23 @@
    "kutle_kodu": "TR16YAS04001",
    "kutle_adi": "Ereğli",
    "havza": "konya",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Konya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Ereğli": [
+      "Konya",
+      "Zonguldak"
+     ]
+    },
+    "havza_disi_elenen": [
+     "Zonguldak"
+    ]
+   },
    "oneri_havza_illeri": [
     "Konya",
     "Karaman",
@@ -6655,10 +7945,20 @@
    "kutle_kodu": "TR16YAS04002",
    "kutle_adi": "Altunhisar",
    "havza": "konya",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Niğde"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Altunhisar": [
+      "Niğde"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Konya",
     "Karaman",
@@ -6677,9 +7977,17 @@
     "Aksaray"
    ],
    "durum": "eslesti",
-   "yontem": "il-adi-tam",
+   "yontem": "ad-dizin",
    "kanit": {
-    "eslesen_parca": "Aksaray"
+    "il_parca": {
+     "Aksaray": "Aksaray"
+    },
+    "ilce_parca": {
+     "Sultanhanı": [
+      "Aksaray"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Konya",
@@ -6695,10 +8003,20 @@
    "kutle_kodu": "TR16YAS05002",
    "kutle_adi": "Çiftlik",
    "havza": "konya",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Niğde"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Çiftlik": [
+      "Niğde"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Konya",
     "Karaman",
@@ -6713,10 +8031,20 @@
    "kutle_kodu": "TR16YAS06001",
    "kutle_adi": "Altınekin",
    "havza": "konya",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Konya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Altınekin": [
+      "Konya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Konya",
     "Karaman",
@@ -6734,7 +8062,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Konya",
     "Karaman",
@@ -6752,7 +8080,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Konya",
     "Karaman",
@@ -6767,10 +8095,23 @@
    "kutle_kodu": "TR16YAS07003",
    "kutle_adi": "Kulu - Cihanbeyli",
    "havza": "konya",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Konya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Cihanbeyli": [
+      "Konya"
+     ],
+     "Kulu": [
+      "Konya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Konya",
     "Karaman",
@@ -6788,7 +8129,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Konya",
     "Karaman",
@@ -6803,10 +8144,20 @@
    "kutle_kodu": "TR16YAS08001",
    "kutle_adi": "Şereflikoçhisar",
    "havza": "konya",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Ankara"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Şereflikoçhisar": [
+      "Ankara"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Konya",
     "Karaman",
@@ -6824,7 +8175,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Konya",
     "Karaman",
@@ -6842,7 +8193,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Konya",
     "Karaman",
@@ -6857,10 +8208,20 @@
    "kutle_kodu": "TR01YAS01001",
    "kutle_adi": "Çorlu Detritik",
    "havza": "meric-ergene",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Tekirdağ"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Çorlu": [
+      "Tekirdağ"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Edirne",
     "Kırklareli",
@@ -6872,10 +8233,20 @@
    "kutle_kodu": "TR01YAS02001",
    "kutle_adi": "Vize Detritik",
    "havza": "meric-ergene",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Kırklareli"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Vize": [
+      "Kırklareli"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Edirne",
     "Kırklareli",
@@ -6887,10 +8258,20 @@
    "kutle_kodu": "TR01YAS03001",
    "kutle_adi": "Lüleburgaz Detritik",
    "havza": "meric-ergene",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Kırklareli"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Lüleburgaz": [
+      "Kırklareli"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Edirne",
     "Kırklareli",
@@ -6902,10 +8283,20 @@
    "kutle_kodu": "TR01YAS04001",
    "kutle_adi": "Hayrabolu",
    "havza": "meric-ergene",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Tekirdağ"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Hayrabolu": [
+      "Tekirdağ"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Edirne",
     "Kırklareli",
@@ -6917,10 +8308,20 @@
    "kutle_kodu": "TR01YAS05001",
    "kutle_adi": "Babaeski Detritik",
    "havza": "meric-ergene",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Kırklareli"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Babaeski": [
+      "Kırklareli"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Edirne",
     "Kırklareli",
@@ -6932,10 +8333,20 @@
    "kutle_kodu": "TR01YAS06001",
    "kutle_adi": "Havsa Detritik",
    "havza": "meric-ergene",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Edirne"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Havsa": [
+      "Edirne"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Edirne",
     "Kırklareli",
@@ -6947,10 +8358,20 @@
    "kutle_kodu": "TR01YAS07001",
    "kutle_adi": "Uzunköprü",
    "havza": "meric-ergene",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Edirne"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Uzunköprü": [
+      "Edirne"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Edirne",
     "Kırklareli",
@@ -6962,10 +8383,23 @@
    "kutle_kodu": "TR01YAS08001",
    "kutle_adi": "İpsala-Keşan Detritik",
    "havza": "meric-ergene",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Edirne"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "İpsala": [
+      "Edirne"
+     ],
+     "Keşan": [
+      "Edirne"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Edirne",
     "Kırklareli",
@@ -6977,10 +8411,20 @@
    "kutle_kodu": "TR01YAS09001",
    "kutle_adi": "Meriç Alüvyon Akifer",
    "havza": "meric-ergene",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Edirne"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Meriç": [
+      "Edirne"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Edirne",
     "Kırklareli",
@@ -6992,10 +8436,20 @@
    "kutle_kodu": "TR01YAS09002",
    "kutle_adi": "Meriç Kuzey Detritik",
    "havza": "meric-ergene",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Edirne"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Meriç": [
+      "Edirne"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Edirne",
     "Kırklareli",
@@ -7007,10 +8461,20 @@
    "kutle_kodu": "TR01YAS09003",
    "kutle_adi": "Meriç Güneyli Detritik",
    "havza": "meric-ergene",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Edirne"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Meriç": [
+      "Edirne"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Edirne",
     "Kırklareli",
@@ -7026,9 +8490,13 @@
     "Kırklareli"
    ],
    "durum": "eslesti",
-   "yontem": "il-adi-tam",
+   "yontem": "ad-dizin",
    "kanit": {
-    "eslesen_parca": "Kırklareli"
+    "il_parca": {
+     "Kırklareli": "Kırklareli"
+    },
+    "ilce_parca": null,
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Edirne",
@@ -7042,9 +8510,19 @@
    "kutle_adi": "Orhaneli - Çavdarhisar",
    "havza": "susurluk",
    "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "durum": "belirsiz",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "adaylar": [
+     "Bursa",
+     "Kütahya"
+    ],
+    "havza_kesisimi": [
+     "Bursa",
+     "Kütahya"
+    ],
+    "not": "kesişim tekilleştirmedi — belirsiz kaldı"
+   },
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7059,10 +8537,20 @@
    "kutle_kodu": "TR03YAS01002",
    "kutle_adi": "Çavdarhisar kireçtaşı",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Kütahya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Çavdarhisar": [
+      "Kütahya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7077,10 +8565,20 @@
    "kutle_kodu": "TR03YAS01003",
    "kutle_adi": "Tavşanlı",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Kütahya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Tavşanlı": [
+      "Kütahya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7095,10 +8593,20 @@
    "kutle_kodu": "TR03YAS01004",
    "kutle_adi": "Domaniç",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Kütahya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Domaniç": [
+      "Kütahya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7116,7 +8624,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7131,10 +8639,20 @@
    "kutle_kodu": "TR03YAS02001",
    "kutle_adi": "Emet",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Kütahya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Emet": [
+      "Kütahya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7149,10 +8667,20 @@
    "kutle_kodu": "TR03YAS02002",
    "kutle_adi": "Dursunbey",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Balıkesir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Dursunbey": [
+      "Balıkesir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7170,7 +8698,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7188,7 +8716,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7203,10 +8731,20 @@
    "kutle_kodu": "TR03YAS04003",
    "kutle_adi": "Kestel Mermer",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Bursa"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Kestel": [
+      "Bursa"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7224,7 +8762,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7239,10 +8777,20 @@
    "kutle_kodu": "TR03YAS05001",
    "kutle_adi": "Simav",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Kütahya"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Simav": [
+      "Kütahya"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7261,9 +8809,20 @@
     "Balıkesir"
    ],
    "durum": "eslesti",
-   "yontem": "il-adi-tam",
+   "yontem": "ad-dizin",
    "kanit": {
-    "eslesen_parca": "Balıkesir"
+    "il_parca": {
+     "Balıkesir": "Balıkesir"
+    },
+    "ilce_parca": {
+     "Bigadiç": [
+      "Balıkesir"
+     ],
+     "Kepsut": [
+      "Balıkesir"
+     ]
+    },
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Bursa",
@@ -7283,9 +8842,13 @@
     "Balıkesir"
    ],
    "durum": "eslesti",
-   "yontem": "il-adi-tam",
+   "yontem": "ad-dizin",
    "kanit": {
-    "eslesen_parca": "Balıkesir"
+    "il_parca": {
+     "Balıkesir": "Balıkesir"
+    },
+    "ilce_parca": null,
+    "havza_disi_elenen": null
    },
    "oneri_havza_illeri": [
     "Bursa",
@@ -7301,10 +8864,20 @@
    "kutle_kodu": "TR03YAS05004",
    "kutle_adi": "Sındırgı Alüvyonu",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Balıkesir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Sındırgı": [
+      "Balıkesir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7319,10 +8892,20 @@
    "kutle_kodu": "TR03YAS06001",
    "kutle_adi": "Manyas-Uluabat",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Balıkesir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Manyas": [
+      "Balıkesir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7337,10 +8920,20 @@
    "kutle_kodu": "TR03YAS06002",
    "kutle_adi": "Manyas mermer",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Balıkesir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Manyas": [
+      "Balıkesir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7355,10 +8948,20 @@
    "kutle_kodu": "TR03YAS06003",
    "kutle_adi": "Balya mermer",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Balıkesir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Balya": [
+      "Balıkesir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7376,7 +8979,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7391,10 +8994,20 @@
    "kutle_kodu": "TR03YAS08001",
    "kutle_adi": "Erdek Alüvyon",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Balıkesir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Erdek": [
+      "Balıkesir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7409,10 +9022,20 @@
    "kutle_kodu": "TR03YAS08002",
    "kutle_adi": "Erdek",
    "havza": "susurluk",
-   "iller": [],
-   "durum": "dogrulanamadi",
-   "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "iller": [
+    "Balıkesir"
+   ],
+   "durum": "eslesti",
+   "yontem": "ad-dizin",
+   "kanit": {
+    "il_parca": null,
+    "ilce_parca": {
+     "Erdek": [
+      "Balıkesir"
+     ]
+    },
+    "havza_disi_elenen": null
+   },
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7430,7 +9053,7 @@
    "iller": [],
    "durum": "dogrulanamadi",
    "yontem": "hicbiri",
-   "kanit": "il adı eşleşmedi; metinde bağlam bulunamadı; ilçe dizini yok (rapor: G4)",
+   "kanit": "il/ilçe adı eşleşmedi; metinde kod+ad satırında il bulunamadı",
    "oneri_havza_illeri": [
     "Bursa",
     "Balıkesir",
@@ -7586,8 +9209,7 @@
    "kutle_adi": "Osmaniye Alüvyonu",
    "havza": "sakarya",
    "iller": [
-    "Eskişehir",
-    "Osmaniye"
+    "Eskişehir"
    ],
    "durum": "eslesti",
    "yontem": "kapsadigi-iller",

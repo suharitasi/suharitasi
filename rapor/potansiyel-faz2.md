@@ -90,3 +90,42 @@ bağlı, aşağıda.)
    - (C) Kısmi eşlemeyle devam: 286 kütle il sayfasına basılmaz.
 2. **3 belirsiz kütle**: aday illerden seçim ya da "belirsiz kalsın" kararı.
 3. TR12050009 çelişkisi: tablo esas (mevcut) / künye dahil (3 il) tercihi.
+
+---
+
+## GÜNCELLEME — kullanıcı kararları uygulandı (2026-07-27, ikinci koşu)
+
+Kararlar: (1) A — OSM ilçe→il dizini; resmî çapraz doğrulama SIRADAKILER'e
+yazıldı. (2) Belirsizler havza-il kesişimiyle çözülür; çözülmeyen kalır.
+(3) TR12050009 tablo esas; künye Ankara'sı dahil edilmedi, çelişki notu
+veride (`capraz_kontrol`).
+
+### İlçe dizini (OSM, ODbL)
+`arac/osm-ilce-indir.py` — il-başına 81 sorgu 429/504 yedi; İKİ toplu
+sorguya (admin_level=4 subarea üyeliği → admin_level=6) + ayna
+(kumi.systems) + geri çekilmeye geçildi. OSM'nin şapkalı yazımı (Elâzığ,
+Hakkâri) normalize edildi. Ölçülen: **81/81 il, 975 ilçe relation, 948
+benzersiz ilçe adı** → `veri/potansiyel/ilce-il-dizini.json`.
+
+### Nihai eşleme
+| Durum | Sayı | Yöntem kırılımı |
+|---|---|---|
+| eşleşti | **314** | kapsadigi-iller 71 · ad-dizin 185 · metin-bağlamı 58 (8'i +havza-kesişim kararıyla) |
+| belirsiz | **5** | Kemer (Antalya/Burdur ×2 kütle), Altınova (Balıkesir/İzmir), Çivril-Dinar (Afyonkarahisar/Denizli), Orhaneli-Çavdarhisar (Bursa/Kütahya) — kesişim tekilleştirmedi, kaldı |
+| doğrulanamadı | **153** | il sayfasına basılmaz |
+
+Çok-illi kütle: 25 (kırılım korunuyor, ortalama yok).
+
+### Bu koşuda yakalanan ve düzeltilen 2 yeni tuzak (kanıtlı)
+1. **Köy↔ilçe ad çakışması**: 17 vaka (Çavdarlı→"Kars", KAYAPINAR→
+   "Diyarbakır", Hatay semti→"Hatay" ili...) → HAVZA-TUTARLILIK FİLTRESİ:
+   havza illeri dışındaki adaylar elenir; filtre sonrası havza-dışı
+   eşleşme **0** (ölçüldü).
+2. **Kütle adı il sanılması**: "Osmaniye Alüvyonu" kapsam tablosunda
+   'Osmaniye' ili üretmişti → kütlenin kendi adı satırdan çıkarılıp
+   tokenlanıyor; TR12050006 → yalnız Eskişehir.
+
+### BİTTİ-TANIMI (nihai)
+Her kütle ≥1 ile eşli (314) ya da etiketli (belirsiz 5 + doğrulanamadı 153);
+tahmin ataması SIFIR; havza-kesişim çözümleri kullanıcı kararına dayalı ve
+`kanit.karar` alanıyla işaretli. ✓
