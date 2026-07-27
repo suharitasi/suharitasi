@@ -952,3 +952,17 @@ kuyruk açıldı ve ac63806 yayınlandı. Canlı doğrulama (M11): 10 rota 200,
 Veriler+/# 5 tipte, h1<h2 ana+rehber, cf-cache-status DYNAMIC, ziyaretçi
 YENİ menüyü görüyor (purge gerekmedi). Kareler: denetim/kare/menu-birlesik/
 + menu-canli/. Kanıt sayfası: cikti/denetim/menu-mimari.md.
+
+## 2026-07-27 (4. seans) — Eski menü dosyaları silindi
+
+main 7c7b62f → ee0d81e (+kayıt). Kullanıcı canlı menü onayı verdi, M10
+kaldırıldı. İteratif eleme: TUR 1 UstBar+UstMenu (ref 0), TUR 2
+TamEkranMenu (tek ref TUR-1 öksüzü UstMenu'den), TUR 3 boş — dairesel
+referans kuralı tam bu vakayı yakaladı. KORUNAN: menu.ts (PaylasilanMenu),
+/s/menu.js (dist'te script etiketi çağırıyor — 2.4). dist 30M→30M
+DEĞİŞMEDİ (beklenen: kullanılmayan bileşen dist'e girmiyordu; kazanç depo
+hijyeni). Gerileme 0: h2ters 0 · soru 567/162 · şema 172 · llms ✓.
+Silme scripti ilk koşuda grep-exit tuzağıyla üçünü yanlış geri aldı —
+düzeltilip tekrarlandı (build'ler temizdi). Canlı: ee0d81e ilk denemede,
+9 rota 200, Veriler+h1<h2 ✓, DYNAMIC, ziyaretçi yeni sürümde. Kareler:
+temizlik-sonrasi/ + temizlik-canli/.
