@@ -38,15 +38,33 @@ const bolumAdlari: Record<string, string> = {
   'kuyu-ruhsati': 'Kuyu ruhsatı — iller',
   arac: 'Araçlar',
 };
+// HANGİ ARA HALKA LİNK OLABİLİR — otomatik türetilir.
+// Hata kaydı (27 Tem 2026): breadcrumb her ara parçayı link yapıyordu; ama
+// `arac` bölümünün index sayfası YOK → /arac/il-rejimi/ sayfası canlıda
+// /arac/ diye 404'e link verdi ve sağlık sistemi 🔴 kırık link verdi.
+// Elle "istisna listesi" tutmak bu hatanın ikizini doğurur; bunun yerine
+// gerçek sayfa dosyalarından türetiyoruz — yarın /arac/index.astro eklenirse
+// link kendiliğinden çalışır, kimsenin listeyi güncellemesi gerekmez.
+const bolumDosyalari = import.meta.glob('../pages/**/index.astro');
+const varOlanBolum = new Set(
+  Object.keys(bolumDosyalari).map((f) =>
+    f.replace('../pages/', '').replace(/\/?index\.astro$/, '')
+  )
+);
 const parcalar = yol.split('/').filter(Boolean);
-const kirintilar = [
-  { ad: 'Ana sayfa', url: kok },
-  ...parcalar.map((p, i) => ({
+const kirintilar = parcalar.map((p, i) => {
+  const dizin = parcalar.slice(0, i + 1).join('/');
+  const sonuncu = i === parcalar.length - 1;
+  return {
     // Son parça sayfanın kendisi: başlığını kullan (slug'ı değil).
-    ad: i === parcalar.length - 1 ? baslik : (bolumAdlari[p] ?? p),
-    url: new URL(parcalar.slice(0, i + 1).join('/') + '/', Astro.site).href,
-  })),
-];
+    ad: sonuncu ? baslik : (bolumAdlari[p] ?? p),
+    // Son halka zaten link değil; ara halka yalnız sayfası VARSA link olur.
+    url: sonuncu || varOlanBolum.has(dizin)
+      ? new URL(dizin + '/', Astro.site).href
+      : null,
+  };
+});
+kirintilar.unshift({ ad: 'Ana sayfa', url: kok });
 
 const kurum = {
   '@type': 'Organization',
@@ -88,7 +106,9 @@ const semalar = [
       '@type': 'ListItem',
       position: i + 1,
       name: k.ad,
-      item: k.url,
+      // Sayfası olmayan ara halka `item` TAŞIMAZ — aksi halde şema 404'e
+      // işaret eder. schema.org yalnız `name` taşıyan ListItem'a izin verir.
+      ...(k.url ? { item: k.url } : {}),
     })),
   },
   ...sema,
@@ -483,7 +503,9 @@ const jsonLd = JSON.stringify({
             <li>
               {i === kirintilar.length - 1
                 ? <span aria-current="page">{k.ad}</span>
-                : <a href={new URL(k.url).pathname}>{k.ad}</a>}
+                : k.url
+                  ? <a href={new URL(k.url).pathname}>{k.ad}</a>
+                  : <span>{k.ad}</span>}
             </li>
           ))}
         </ol>
