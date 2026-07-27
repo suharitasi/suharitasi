@@ -3,10 +3,14 @@
   "sayfalar": [
     {
       "yol": "/",
-      "secici": "#world .sw-scene",
+      "secici": "#v2-videolar video",
       "sahne_sayisi": 6,
       "video_gerekli": true,
-      "not": "scrub motoru: her sahne için istek 200 + readyState>=2 + currentTime>0"
+      "tip": "zaman-dongusu",
+      "faz_a_ms": 3800,
+      "sahne_suresi_ms": 5000,
+      "gecis_ms": 1400,
+      "not": "v2 sahne motoru (27 Tem 2026 revizyonu): scroll DEĞİL zaman döngüsü — videolar sırayla 'aktif' olur (5000ms + 1400ms geçiş), sıradaki lazy yüklenir. Ölçüm: her adımda AKTİF videonun readyState>=2 + currentTime>0; 6 farklı data-sahne görülmeli. Eski '#world .sw-scene' scrub DOM'u kalktığı için seçici/akış değişti."
     }
   ]
 }

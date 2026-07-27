@@ -223,36 +223,64 @@ async function tarayiciKontrolleri() {
       const sayfa = await ctx.newPage();
       const agKotu = [];
       sayfa.on('response', (r) => {
-        if (/\.(mp4|webm)$/.test(new URL(r.url()).pathname) && r.status() !== 200) {
+        // 206 = Range/streaming cevabı, NORMALDİR (v2 lazy yükleme Range
+        // kullanır — 27 Tem 2026 ölçümü); yalnız gerçek hatalar sayılır.
+        if (/\.(mp4|webm)$/.test(new URL(r.url()).pathname) && ![200, 206].includes(r.status())) {
           agKotu.push({ url: new URL(r.url()).pathname, kod: r.status() });
         }
       });
       await sayfa.goto(TABAN + m.yol, { waitUntil: 'load' });
-      await sayfa.waitForTimeout(1500);
-      const uz = await sayfa.evaluate(() => {
-        const t = document.querySelector('#world .sw-track');
-        return t ? t.offsetHeight - innerHeight : 0;
-      });
+      // v2 REVİZYONU (27 Tem 2026, kullanıcı onaylı): sahne motoru scroll
+      // değil ZAMAN DÖNGÜSÜ — videolar sırayla .aktif olur (Hero.astro:
+      // FAZ A poster harmanı + sahne_suresi + geçiş), sıradaki lazy
+      // yüklenir. Ölçüm: her adımda AKTİF videonun readyState>=2 +
+      // currentTime>0; m.sahne_sayisi kadar FARKLI data-sahne görülmeli.
+      // Eski '#world .sw-track' scroll hesabı v2 DOM'unda kalktı.
+      const fazA = m.faz_a_ms ?? 3800;
+      const adim = (m.sahne_suresi_ms ?? 5000) + (m.gecis_ms ?? 1400);
+      await sayfa.waitForTimeout(fazA + 1200); // FAZ A + ilk video başlangıcı
       const sahneler = [];
+      const gorulen = new Set();
+      let oncekiSahne = null;
       for (let i = 0; i < m.sahne_sayisi; i++) {
-        await sayfa.evaluate((y) => scrollTo(0, y), Math.round(((i + 0.5) / m.sahne_sayisi) * uz));
-        await sayfa.waitForTimeout(1800);
-        sahneler.push(await sayfa.evaluate(({ sec, idx }) => {
-          const el = document.querySelectorAll(sec)[idx];
-          if (!el) return { sahne: idx + 1, hata: 'sahne DOM\'da yok' };
-          const v = el.querySelector('video');
+        // Sabit bekleme döngüyle senkron kayıyordu (ölçüldü: 6. adım tur
+        // başına döndü) — aktif sahne DEĞİŞENE kadar beklenir (poll).
+        if (i > 0) {
+          const sinir = Date.now() + adim + 4000;
+          while (Date.now() < sinir) {
+            const su = await sayfa.evaluate((sec) => {
+              const v = [...document.querySelectorAll(sec)].find((x) => x.classList.contains('aktif'));
+              return v ? (v.dataset.sahne ?? null) : null;
+            }, m.secici);
+            if (su != null && su !== oncekiSahne) break;
+            await sayfa.waitForTimeout(400);
+          }
+          await sayfa.waitForTimeout(600); // geçiş sonrası oynatma otursun
+        }
+        const olcum = await sayfa.evaluate((sec) => {
+          const videolar = [...document.querySelectorAll(sec)];
+          if (!videolar.length) return { hata: 'video DOM\'da yok' };
+          const v = videolar.find((x) => x.classList.contains('aktif'));
+          if (!v) return { video: false, videoSayisi: videolar.length, hata: 'aktif sahne yok' };
           return {
-            sahne: idx + 1,
-            video: !!v,
-            readyState: v ? v.readyState : null,
-            currentTime: v ? +v.currentTime.toFixed(3) : null,
-            hata: v && v.error ? `${v.error.code}: ${v.error.message}` : null,
+            video: true,
+            sahne: v.dataset.sahne ?? null,
+            readyState: v.readyState,
+            currentTime: +v.currentTime.toFixed(3),
+            hata: v.error ? `${v.error.code}: ${v.error.message}` : null,
           };
-        }, { sec: m.secici, idx: i }));
+        }, m.secici);
+        sahneler.push({ adimNo: i + 1, ...olcum });
+        if (olcum.sahne != null) gorulen.add(olcum.sahne);
+        oncekiSahne = olcum.sahne ?? oncekiSahne;
       }
       await ctx.close();
+      const donguEksigi = gorulen.size < m.sahne_sayisi
+        ? `döngüde ${gorulen.size}/${m.sahne_sayisi} farklı sahne görüldü`
+        : null;
       const kotu = sahneler.filter((s) => !s.video || s.readyState < 2 || !(s.currentTime > 0));
-      medyaSonuc.push({ yol: m.yol, beklenen: m.sahne_sayisi, sahneler, kotu, agKotu });
+      if (donguEksigi) kotu.push({ hata: donguEksigi });
+      medyaSonuc.push({ yol: m.yol, beklenen: m.sahne_sayisi, sahneler, kotu, agKotu, donguEksigi });
     }
     const medyaKotu = medyaSonuc.filter((s) => s.kotu.length || s.agKotu.length);
     if (medyaKotu.length) {

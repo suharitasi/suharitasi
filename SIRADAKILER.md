@@ -9,10 +9,13 @@ yok (yeni: section.v2-hero > .v2-katman > #v2-videolar, 6 video, lazy).
 izleme/medya-beklenen.json hâlâ '#world .sw-scene' bektiği için md4 6/6
 "sahne DOM'da yok" veriyor. CANLI MEDYA SAĞLIKLI — ölçüldü: sahne1
 readyState=4, currentTime=2.85, paused=false; mp4'ler 200; konsol 0.
-Gerekli iş: md4 ölçümünün v2 DOM'una (ve lazy-yükleme akışına) revizyonu —
-site-saglik.mjs kod değişikliği gerektirir (scroll/uz hesabı .sw-track'e
-bağlı), otomatik onarım beyaz listesinde DEĞİL → onay bekliyor. O zamana
-kadar SITE-DURUM md4 kırmızısı bilinen-yanlış-alarm.
+REVİZYON YAPILDI (27 Tem akşam, kullanıcı onaylı; dal md4-2026-07-27,
+MERGE ONAYI BEKLİYOR): md4 zaman-döngüsü ölçümüne çevrildi (aktif-sahne
+poll + 206 Range normal + döngü-eksiği kontrolü); K2 kalemlerine
+DOKUNULMADI. Kanıt: canlıya karşı koşu GENEL YESIL — 6/6 sahne (6 farklı
+sahne adı, hepsi readyState 4 + currentTime>0), diğer 5 kontrol değişmedi;
+falsifikasyon: yanlış seçici → kırmızı (ölçüldü). Merge sonrası ilk cron
+koşusu doğal doğrulama olacak.
 
 SU POTANSİYELİ KATMANI — 81 İLDE, KULLANICI ONAYI BEKLİYOR (MERGE=YAYIN;
 27 Tem 2026): "Bu ilde su nerelerde çıkabilir?" bloğu 81 il sayfasında
