@@ -11,7 +11,10 @@
 // Etkileşim animasyonları emil-design-eng kurallarına uyar; atmosfer
 // süreleri v0'dan korunur (K-1). Kütüphane eklenmedi (K-2, M5).
 import AltBilgi from '../components/AltBilgi.astro';
-import UstBar from '../components/anasayfa/UstBar.astro';
+// MENÜ BİRLEŞTİRME (27.07 ADIM 4): sayfa-özel UstBar yerini paylaşılan
+// menüye bıraktı (dosya durur, M10). Ana sayfada davranış birebir:
+// fixed + şeffaf başlar, scroll>40 koyu, çapalar # biçiminde.
+import PaylasilanMenu from '../components/PaylasilanMenu.astro';
 import Hero from '../components/anasayfa/Hero.astro';
 import MobilSorular from '../components/anasayfa/MobilSorular.astro';
 import Hizmetler from '../components/anasayfa/Hizmetler.astro';
@@ -142,7 +145,7 @@ const sahneVeri = SAHNELER.map((s) => ({
 </head>
 <body>
 
-  <UstBar />
+  <PaylasilanMenu />
 
   <Hero sahneVeri={sahneVeri} ozCevap={ozCevap} />
 
