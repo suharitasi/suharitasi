@@ -518,6 +518,7 @@ const jsonLd = JSON.stringify({
   <AltBilgi />
   <script type="module" src="/s/imlec.js" is:inline></script>
   <script type="module" src="/s/sayfa.js" is:inline></script>
-  <script type="module" src="/s/menu.js" is:inline></script>
+  {/* /s/menu.js etiketi kalkti (27.07): hedef panel sv-menu artik
+      render edilmiyordu; script NO-OP idi (guard: overlay && aclar). */}
 </body>
 </html>
