@@ -65,7 +65,7 @@ izole edildi. Ham veri (`suharitasi-potansiyel/veri/ham/`) yalnız okundu.
 | E — RG nöbetçisi | 🟢 `--test` kanıtı: 109 satır ayrıştırıldı | `1ef88e1` |
 | F — TWI | 🔴 **sığmıyor** — ölçüldü (12,6 GB / 5,9 GB) | `cbcd74d` |
 | G — Kontrast kalemi | 🟢 md13 eklendi; **2 gerçek bulgu** | `4547006` |
-| I — 153 kütle koordinat | 🟢 **doğrulanamadı 153 → 120** | `a0d086e` |
+| I — 153 kütle koordinat | 🟢 **doğrulanamadı 153 → 120** | `12a5a41` |
 | J — Su Kanunu taslağı | ⚠ **bulundu ama yayım kısıtlı** — hukuk kararı sizde | `198c331` |
 | K — Engelli kaynaklar | 🟢 **TÜİK açıldı** → ilçe doğrulaması 0 fark | `f5ac081` |
 | L — imlec.js kalıntısı | 🟢 üç kanal no-op kanıtı, ölü dal kaldırıldı | `67156f5` |
@@ -274,7 +274,7 @@ Kanıt koşumu — 6 tip, 1328 düğüm:
 İstisna mekanizması eklendi ama **liste boş bırakıldı** — istisna yazma
 yetkisi sizde. Karar çıkana kadar md13 kırmızı kalır; bu bilinçlidir.
 
-### Faz I — kütle koordinatları: 153 → 120 (commit `a0d086e`)
+### Faz I — kütle koordinatları: 153 → 120 (commit `12a5a41`)
 
 NHYP izleme tablolarında **kuyu kodu kütle kodunu içeriyor**
 (`TR04050204` + `0147` → `TR040502040147`) — kuyunun koordinatı kütlenin
@@ -336,7 +336,7 @@ edilebilir.
 | 5 | `e430d66` | md12 menü revizyonu | düşük — kırmızıyı yeşile çevirdi |
 | 6 | `4547006` | md13 kontrast kalemi | **orta** — merge sonrası md13 kırmızı verecek (2 açık karar) |
 | 7 | `f5ac081` | ilçe çapraz doğrulama kaydı | düşük — yalnız metadata |
-| 8 | `a0d086e` | kütle koordinat ikinci geçişi | **orta** — 33 kütle **il sayfalarında görünmeye başlar** (yayın) |
+| 8 | `12a5a41` | kütle koordinat ikinci geçişi | **orta** — 33 kütle **il sayfalarında görünmeye başlar** (yayın) |
 | 9 | `cbcd74d` | TWI ölçüm kapısı + gerekçe düzeltmesi | düşük |
 | 10 | `1ef88e1` `3342749` | iki nöbetçi scripti | düşük — cron'a bağlı değil |
 | 11 | `198c331` | Faz J raporu | düşük — yalnız rapor |
