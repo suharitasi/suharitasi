@@ -933,3 +933,22 @@ canli-sonrasi/. ÖNBELLEK: ziyaretçi YENİ sayfayı görüyor — purge gerekme
 **Geri alma yapılmadı** (B5 gerekmedi). Geri dönüş noktası:
 /tmp/canli-oncesi-main.txt = c7fbe40; gerekirse git revert c7fbe40..HEAD
 (13 GEO commit'i de geri alır). Worktree + dal duruyor (B6.4).
+
+## 2026-07-27 (3. seans) — Sondaj hedefi + menü birleştirme CANLIDA
+
+main d346607 → ac63806 (+52e59bd boş yeniden-tetik). İŞ 1: Sondaj kartı +
+"su nerelerde çıkabilir" → /havzalar/ (YAS potansiyeli havza sayfalarında
+basılı; 0.8 kararı). İŞ 2: PaylasilanMenu 174 sayfada — koşullu çapa
+(ana # / diğer /#), içerik sayfalarında sticky-koyu, /harita/'da yüzer
+varyant (öksüz "menü" tetikleyicisi kaldırıldı), Veriler 10 rota, vitrin
+menü paneline taşındı (kayıp-0). Eski UstMenu/TamEkranMenu/UstBar dosyaları
+DURUYOR (M10). GERİLEME 0: h2-ters 0 · soru başlığı 567/162 · şema 172 ·
+llms.txt ✓ (taban=sonuç); h1'siz tek sayfa /harita/ (önceden vardı).
+Ağırlık ort 44.483→44.560 B (+%0,2); ana sayfa 39.682→43.912 (vitrin
+bedeli). Rebase yok — ff-only ilk denemede. ARIZA: Cloudflare Pages
+"unable to submit build job" (platform) — build ~50 dk askıda kaldı,
+kullanıcı panelden teşhis etti, boş commit ile yeniden tetiklendi, eski
+kuyruk açıldı ve ac63806 yayınlandı. Canlı doğrulama (M11): 10 rota 200,
+Veriler+/# 5 tipte, h1<h2 ana+rehber, cf-cache-status DYNAMIC, ziyaretçi
+YENİ menüyü görüyor (purge gerekmedi). Kareler: denetim/kare/menu-birlesik/
++ menu-canli/. Kanıt sayfası: cikti/denetim/menu-mimari.md.
