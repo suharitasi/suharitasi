@@ -1,0 +1,366 @@
+---
+// PAYLAŞILAN MENÜ (menü birleştirme, 2026-07-27) — 174 sayfada TEK menü.
+// Temel: ana sayfa v2 üst barı. Stiller BİLEŞEN İÇİNDE (scoped) —
+// anasayfa-v2.css'e bağımlı değil; her sayfada kendi CSS'iyle gelir.
+// Koşullu href (mimari 2.2): ana sayfada '#bolum', diğerlerinde '/#bolum'.
+// Zemin: ana sayfa fixed+şeffaf (scroll>40 koyu); içerik sayfaları
+// sticky + HEP koyu (krem zemin üstünde şeffaf bar okunmaz).
+// VİTRİN KORUNDU (mimari 0.5): son 3 rehber + Su Kanunu son durum +
+// öne çıkan havza — TamEkranMenu ile AYNI kaynaklar/mantık; masaüstü
+// açılır listenin altında + mobil panelde "Öne çıkan" bölümü.
+// 🔴 Menüde h1–h6 YOK — <p> + aria-label (gerileme yasağı).
+// Etkileşim: emil-design-eng (<300ms, güçlü ease-out, çıkış hızlı) +
+// apple-design (pointer-down geri bildirim, giriş kilidi yok).
+// Eski UstMenu/TamEkranMenu dosyaları SİLİNMEDİ (M10).
+import { getCollection } from 'astro:content';
+import havzaVeri from '../../data/havza-veri.json';
+import taslakHam from '../content/su-kanunu/taslak-takibi.md?raw';
+import { ONE_CIKAN_HAVZA_NO } from '../data/menu';
+import { VERI_ROTALARI } from '../data/anasayfa-v2.js';
+
+const anaSayfa = Astro.url.pathname === '/' || Astro.url.pathname === '';
+const kok = (capa: string) => (anaSayfa ? `#${capa}` : `/#${capa}`);
+
+// "Veriler" listesi: 9 rota + /hakkinda/ (eski menüden gelen SAYFA linki —
+// kayıp-0 kuralı; yeni barın "Hakkında"sı ana sayfa bölümüne gider).
+const veriler = [...VERI_ROTALARI, { ad: 'Hakkında — künye', yol: '/hakkinda/' }];
+
+// — VİTRİN (TamEkranMenu mantığı birebir; sessiz hata yasağı korunur) —
+const sonRehberler = (await getCollection('rehberler'))
+  .sort((a, b) => b.data.tarih.valueOf() - a.data.tarih.valueOf() || a.id.localeCompare(b.id, 'tr'))
+  .slice(0, 3)
+  .map((g) => ({ baslik: g.data.baslik, yol: `/rehberler/${g.id}/` }));
+
+const AYLAR: Record<string, number> = {
+  ocak: 1, şubat: 2, mart: 3, nisan: 4, mayıs: 5, haziran: 6,
+  temmuz: 7, ağustos: 8, eylül: 9, ekim: 10, kasım: 11, aralık: 12,
+};
+const gelismeler = taslakHam.split(/^## Su Kanunu taslağında son gelişmeler neler\?\s*$/m)[1]?.split(/^## /m)[0] ?? '';
+const kayitlar = [...gelismeler.matchAll(/\*\*([^*]*?\d{4}) — ([^*]+?)\*\*/g)]
+  .map((m) => {
+    const p = m[1].trim().toLocaleLowerCase('tr-TR').match(/(?:(\d{1,2})\s+)?(\p{L}+)\s+(\d{4})/u);
+    const deger = p ? Number(p[3]) * 10000 + (AYLAR[p[2]] ?? 0) * 100 + Number(p[1] ?? 0) : 0;
+    return { tarih: m[1].trim(), baslik: m[2].trim().replace(/\.$/, ''), deger };
+  })
+  .filter((k) => k.deger > 0);
+if (kayitlar.length === 0) {
+  throw new Error('PaylasilanMenu: taslak-takibi kayıtları bulunamadı; vitrin boş bırakılamaz.');
+}
+const kanunSon = kayitlar.reduce((a, b) => (b.deger > a.deger ? b : a));
+
+const havzaKaydi = havzaVeri.havzalar.find((h) => h.no === ONE_CIKAN_HAVZA_NO);
+const havzaGirisi = (await getCollection('havzalar')).find((g) => g.data.no === ONE_CIKAN_HAVZA_NO);
+if (!havzaKaydi || !havzaGirisi) {
+  throw new Error(`PaylasilanMenu: havza no "${ONE_CIKAN_HAVZA_NO}" bulunamadı (menu.ts).`);
+}
+const oneCikanHavza = { ad: havzaKaydi.ad, yol: `/havzalar/${havzaGirisi.id}/` };
+---
+<header class:list={['pm-bar', anaSayfa ? 'pm-ana' : 'pm-icerik']} id="pm-bar">
+<div class="pm-ic">
+  <a class="pm-marka" href="/">Su Hukuku</a>
+
+  <nav class="pm-nav" aria-label="Site menüsü">
+    <ul>
+      <li><a href={kok('hizmetler')}>Hizmetler</a></li>
+      <li><a href={kok('surec')}>Süreç</a></li>
+      <li class="pm-veri" id="pm-veri">
+        <button type="button" class="pm-veri-dugme" aria-expanded="false"
+                aria-controls="pm-veri-liste">
+          Veriler <span class="pm-ok" aria-hidden="true">▾</span>
+        </button>
+        <div class="pm-veri-liste" id="pm-veri-liste">
+          <ul class="pm-rotalar">
+            {veriler.map((r) => (<li><a href={r.yol}>{r.ad}</a></li>))}
+          </ul>
+          {/* VİTRİN — başlıklar <p>, h yok (gerileme yasağı) */}
+          <section class="pm-vitrin" aria-label="Öne çıkan içerik">
+            <p class="pm-vitrin-baslik">Son rehberler</p>
+            <ul>
+              {sonRehberler.map((r) => (<li><a href={r.yol}>{r.baslik}</a></li>))}
+            </ul>
+            <p class="pm-vitrin-baslik">Su Kanunu — son durum</p>
+            <ul><li><a href="/su-kanunu/taslak-takibi/">
+              <span class="pm-tarih">{kanunSon.tarih}</span> {kanunSon.baslik}</a></li></ul>
+            <p class="pm-vitrin-baslik">Öne çıkan havza</p>
+            <ul><li><a href={oneCikanHavza.yol}>{oneCikanHavza.ad}</a></li></ul>
+          </section>
+        </div>
+      </li>
+      <li><a href={kok('hakkinda')}>Hakkında</a></li>
+      <li><a href={kok('iletisim')}>İletişim</a></li>
+    </ul>
+  </nav>
+
+  <a class="pm-randevu pm-randevu-ust" href={kok('iletisim')}>Randevu Al</a>
+
+  <button type="button" class="pm-menu-dugme" id="pm-menu-dugme"
+          aria-expanded="false" aria-controls="pm-mobil-panel"
+          aria-label="Menüyü aç">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </button>
+</div>
+</header>
+
+<nav class="pm-mobil-panel" id="pm-mobil-panel" aria-label="Menü">
+  <ul>
+    <li><a href={kok('hizmetler')}>Hizmetler</a></li>
+    <li><a href={kok('surec')}>Süreç</a></li>
+    <li>
+      <p class="pm-mobil-baslik">Veriler</p>
+      <ul class="pm-mobil-alt">
+        {veriler.map((r) => (<li><a href={r.yol}>{r.ad}</a></li>))}
+      </ul>
+    </li>
+    <li>
+      <p class="pm-mobil-baslik">Öne çıkan</p>
+      <ul class="pm-mobil-alt">
+        {sonRehberler.map((r) => (<li><a href={r.yol}>{r.baslik}</a></li>))}
+        <li><a href="/su-kanunu/taslak-takibi/">Su Kanunu: {kanunSon.baslik}</a></li>
+        <li><a href={oneCikanHavza.yol}>Havza: {oneCikanHavza.ad}</a></li>
+      </ul>
+    </li>
+    <li><a href={kok('hakkinda')}>Hakkında</a></li>
+    <li><a href={kok('iletisim')}>İletişim</a></li>
+    <li><a href={kok('iletisim')}>Randevu Al</a></li>
+  </ul>
+</nav>
+
+<noscript>
+  <style>
+    /* JS kapalı: mobil panel açık liste; bar koyu sabit. */
+    @media (max-width: 1023px) {
+      .pm-mobil-panel { display: block !important; position: static !important;
+        max-height: none !important; }
+      .pm-menu-dugme { display: none !important; }
+    }
+    .pm-bar { background: rgba(8, 32, 47, 0.92) !important; }
+  </style>
+</noscript>
+
+<style>
+  /* Etkileşim easing'leri (emil-design-eng): güçlü ease-out, <300ms. */
+  .pm-bar {
+    --pm-eo: cubic-bezier(0.23, 1, 0.32, 1);
+    left: 0; right: 0; top: 0;
+    z-index: 60;
+    border-bottom: 1px solid transparent;
+    transition: background-color 200ms var(--pm-eo), border-color 200ms var(--pm-eo);
+  }
+  /* Ana sayfa: fixed + şeffaf başlar (scroll>40 JS 'kaydi' verir). */
+  .pm-ana { position: fixed; background: transparent; }
+  /* İçerik sayfaları: sticky + HEP koyu (mimari kararı). */
+  .pm-icerik {
+    position: sticky;
+    background: rgba(8, 32, 47, 0.96);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+  .pm-bar.kaydi {
+    background: rgba(8, 32, 47, 0.85);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+  @supports (backdrop-filter: blur(1px)) {
+    .pm-bar.kaydi, .pm-icerik {
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    }
+    .pm-icerik { background: rgba(8, 32, 47, 0.88); }
+  }
+  .pm-ic {
+    max-width: 72rem; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1.5rem; padding: 1rem 1.5rem;
+  }
+  .pm-marka {
+    color: #fff; text-decoration: none;
+    font-family: var(--serif, "Cormorant", Georgia, serif);
+    font-size: 1.125rem; font-weight: 600; letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  .pm-nav > ul {
+    display: flex; align-items: center; gap: clamp(0.9rem, 2vw, 1.8rem);
+    list-style: none; margin: 0; padding: 0;
+  }
+  .pm-nav a, .pm-veri-dugme {
+    font-family: var(--sans, "Manrope", system-ui, sans-serif);
+    font-size: 0.875rem; font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none; background: none; border: 0; cursor: pointer;
+    padding: 0.35rem 0.1rem;
+    transition: color 150ms ease;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .pm-nav a:hover, .pm-veri-dugme:hover { color: #fff; }
+  }
+  .pm-nav a:focus-visible, .pm-veri-dugme:focus-visible,
+  .pm-marka:focus-visible, .pm-randevu:focus-visible,
+  .pm-menu-dugme:focus-visible {
+    outline: 2px solid #7fd0ef; outline-offset: 3px;
+  }
+
+  /* Veriler açılır: tetikten büyür, giriş 200ms / çıkış 150ms (emil). */
+  .pm-veri { position: relative; }
+  .pm-ok { display: inline-block; margin-left: 0.25rem; font-size: 0.7em;
+    transition: transform 200ms var(--pm-eo); }
+  .pm-veri-liste {
+    position: absolute; top: calc(100% + 0.55rem); left: 50%;
+    min-width: 17rem; max-height: min(70vh, 34rem); overflow-y: auto;
+    padding: 0.45rem;
+    background: rgba(6, 24, 36, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 0.75rem;
+    box-shadow: 0 18px 40px rgba(4, 16, 26, 0.55);
+    transform: translateX(-50%) scale(0.96);
+    transform-origin: top center;
+    opacity: 0; visibility: hidden;
+    transition: opacity 150ms var(--pm-eo), transform 150ms var(--pm-eo),
+                visibility 0s linear 150ms;
+  }
+  .pm-veri:not(.kapali):hover > .pm-veri-liste,
+  .pm-veri:not(.kapali):focus-within > .pm-veri-liste,
+  .pm-veri.acik > .pm-veri-liste {
+    opacity: 1; visibility: visible;
+    transform: translateX(-50%) scale(1);
+    transition: opacity 200ms var(--pm-eo), transform 200ms var(--pm-eo), visibility 0s;
+  }
+  .pm-veri:not(.kapali):hover .pm-ok,
+  .pm-veri:not(.kapali):focus-within .pm-ok,
+  .pm-veri.acik .pm-ok { transform: rotate(180deg); }
+  .pm-veri-liste ul { list-style: none; margin: 0; padding: 0; }
+  .pm-veri-liste a {
+    display: block; padding: 0.5rem 0.7rem; border-radius: 0.45rem;
+    font-size: 0.84rem; white-space: nowrap;
+    color: rgba(255, 255, 255, 0.85); text-decoration: none;
+    transition: background-color 150ms ease, color 150ms ease;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .pm-veri-liste a:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+  }
+  .pm-veri-liste a:focus-visible { background: rgba(255, 255, 255, 0.08); }
+  .pm-vitrin { border-top: 1px solid rgba(255, 255, 255, 0.12);
+    margin-top: 0.45rem; padding-top: 0.35rem; }
+  .pm-vitrin-baslik {
+    margin: 0.35rem 0 0.1rem; padding: 0 0.7rem;
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .pm-vitrin a { white-space: normal; font-size: 0.8rem; line-height: 1.35; }
+  .pm-tarih { font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.68rem; color: #7fd0ef; }
+
+  /* Randevu (apple: pointer-down anında tepki) */
+  .pm-randevu {
+    display: inline-block; padding: 0.5rem 1.25rem; border-radius: 999px;
+    background: #fff; color: #0a2438; font-size: 0.85rem; font-weight: 600;
+    text-decoration: none; white-space: nowrap;
+    transition: transform 120ms var(--pm-eo), background-color 150ms ease;
+  }
+  .pm-randevu:active { transform: scale(0.97); }
+  @media (hover: hover) and (pointer: fine) {
+    .pm-randevu:hover { background: rgba(255, 255, 255, 0.9); }
+  }
+
+  .pm-menu-dugme {
+    display: none; background: none; border: 0; cursor: pointer;
+    padding: 0.45rem; min-height: 44px; min-width: 44px;
+    align-items: center; justify-content: center;
+    color: #fff; transition: transform 120ms var(--pm-eo);
+  }
+  .pm-menu-dugme:active { transform: scale(0.94); }
+
+  .pm-mobil-panel {
+    display: none; position: fixed; top: 3.6rem; left: 0; right: 0;
+    z-index: 59; max-height: calc(100dvh - 3.6rem); overflow-y: auto;
+    padding: 0.8rem clamp(1.25rem, 4vw, 3rem) 1.4rem;
+    background: rgba(6, 24, 36, 0.97);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .pm-mobil-panel ul { list-style: none; margin: 0; padding: 0; }
+  .pm-mobil-panel > ul > li > a, .pm-mobil-baslik {
+    display: block; padding: 0.65rem 0; margin: 0;
+    color: #fff; font-family: var(--sans, system-ui, sans-serif);
+    font-size: 1rem; font-weight: 500; text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .pm-mobil-baslik { color: rgba(255, 255, 255, 0.6); font-size: 0.78rem;
+    letter-spacing: 0.14em; text-transform: uppercase; }
+  .pm-mobil-alt a {
+    display: block; padding: 0.5rem 0 0.5rem 0.9rem;
+    color: rgba(255, 255, 255, 0.85); font-size: 0.92rem;
+    text-decoration: none;
+  }
+
+  @media (max-width: 1023px) {
+    .pm-nav, .pm-randevu-ust { display: none; }
+    .pm-menu-dugme { display: inline-flex; }
+    .pm-mobil-panel.acik {
+      display: block;
+      opacity: 1; transform: translateY(0);
+      transition: opacity 200ms var(--pm-eo), transform 200ms var(--pm-eo);
+    }
+    @starting-style {
+      .pm-mobil-panel.acik { opacity: 0; transform: translateY(-8px); }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pm-bar, .pm-ok, .pm-veri-liste, .pm-randevu, .pm-menu-dugme,
+    .pm-mobil-panel.acik {
+      transition-property: color, background-color, border-color, opacity;
+    }
+  }
+
+  @media print { .pm-bar, .pm-mobil-panel { display: none !important; } }
+</style>
+
+<script>
+  // Kaydırma > 40px: yalnız ana sayfa şeffaf → koyu (içerik zaten koyu).
+  const bar = document.getElementById('pm-bar');
+  function barGuncelle() { bar.classList.toggle('kaydi', scrollY > 40); }
+  addEventListener('scroll', () => requestAnimationFrame(barGuncelle), { passive: true });
+  barGuncelle();
+
+  // Veriler: aria + Esc (açılış CSS; Esc hover'ı .kapali ile bastırır).
+  const veri = document.getElementById('pm-veri');
+  const veriDugme = veri.querySelector('.pm-veri-dugme');
+  function veriDurum(acik) {
+    veri.classList.toggle('acik', acik);
+    veriDugme.setAttribute('aria-expanded', String(acik));
+  }
+  veriDugme.addEventListener('click', () => veriDurum(!veri.classList.contains('acik')));
+  veri.addEventListener('mouseenter', () => {
+    veri.classList.remove('kapali');
+    veriDugme.setAttribute('aria-expanded', 'true');
+  });
+  veri.addEventListener('mouseleave', () => { veri.classList.remove('kapali'); veriDurum(false); });
+  veri.addEventListener('focusin', () => veriDugme.setAttribute('aria-expanded', 'true'));
+  veri.addEventListener('focusout', (e) => {
+    if (!veri.contains(e.relatedTarget)) veriDurum(false);
+  });
+
+  // Mobil panel
+  const menuDugme = document.getElementById('pm-menu-dugme');
+  const panel = document.getElementById('pm-mobil-panel');
+  function panelDurum(acik) {
+    panel.classList.toggle('acik', acik);
+    menuDugme.setAttribute('aria-expanded', String(acik));
+    menuDugme.setAttribute('aria-label', acik ? 'Menüyü kapat' : 'Menüyü aç');
+  }
+  menuDugme.addEventListener('click', () => panelDurum(!panel.classList.contains('acik')));
+  panel.addEventListener('click', (e) => { if (e.target.closest('a')) panelDurum(false); });
+
+  // Esc: klavye — animasyonsuz anında kapanış (emil).
+  addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (veri.classList.contains('acik') || veri.matches(':focus-within') || veri.matches(':hover')) {
+      veri.classList.add('kapali');
+      veriDurum(false);
+      veriDugme.blur();
+    }
+    if (panel.classList.contains('acik')) { panelDurum(false); menuDugme.focus(); }
+  });
+</script>
