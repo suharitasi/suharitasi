@@ -8,7 +8,7 @@
  "yontem": {
   "dusuk_egim": "eğim < %2 alan oranı (3-arcsec merkezî fark)",
   "vadi_tabani": "eğim < %2 VE 1 km pencerede yerel çukurluk < 10 m — akış birikimi değildir, yaklaşık göstergedir",
-  "twi": "hesaplanmadı (akış birikimi 2C/4GB sunucu bütçesini aşıyor)"
+  "twi": "hesaplanmadı — 2026-07-27 ÖLÇÜMÜ: sunucu 4C/8GB (eski '2C/4GB' gerekçesi bayattı). Tüm-Türkiye mozaiği (230 M piksel) D8 akış birikimi ölçülen bellek ölçeğiyle ~12,6 GB ister; kullanılabilir 5,9 GB. Ölçek testi: 1x1/2x2/3x3 karo → 144/380/771 MB, 54,3 MB/Mpx marjinal. Havza-bazlı D8 sığar (en büyük havza ~2,8 GB, toplam ~0,9 saat) ama ayrı iş olarak briflenmelidir. Kanıt: cikti/denetim/faz-f/twi-kapi-olcum.json"
  },
  "karo_sayisi": 122,
  "bulunamayan_karo": 1,
