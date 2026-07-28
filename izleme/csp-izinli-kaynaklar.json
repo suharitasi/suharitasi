@@ -1,13 +1,44 @@
 {
-  "_not": "G1(a) otomatik CSP onarımının SINIRI. Onarım YALNIZ buradaki değerleri ekleyebilir. Gereken kaynak burada yoksa onarım YAPILMAZ, kullanıcıya devredilir.",
+  "_not": "G1(a) otomatik CSP onarımının SINIRI. Onarım YALNIZ buradaki değerleri ekleyebilir. Gereken kaynak burada yoksa onarım YAPILMAZ, kullanıcıya devredilir. | 28.07 B4.2: Cloudflare Web Analytics konaklari eklendi (script-src static.cloudflareinsights.com, connect-src cloudflareinsights.com). Gerekce: beacon canlida YOK olarak olculdu (22 istek, 0 analitik); panel acilirsa CSP sessizce engellerdi. Izin ATIL — panel acilmadan istek yapilmaz.",
   "izinli": {
-    "media-src": ["'self'", "blob:", "data:"],
-    "img-src": ["'self'", "blob:", "data:"],
-    "font-src": ["'self'", "https://fonts.gstatic.com"],
-    "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-    "script-src": ["'self'", "'unsafe-inline'"],
-    "connect-src": ["'self'"],
-    "worker-src": ["'self'", "blob:"]
+    "media-src": [
+      "'self'",
+      "blob:",
+      "data:"
+    ],
+    "img-src": [
+      "'self'",
+      "blob:",
+      "data:"
+    ],
+    "font-src": [
+      "'self'",
+      "https://fonts.gstatic.com"
+    ],
+    "style-src": [
+      "'self'",
+      "'unsafe-inline'",
+      "https://fonts.googleapis.com"
+    ],
+    "script-src": [
+      "'self'",
+      "'unsafe-inline'",
+      "https://static.cloudflareinsights.com"
+    ],
+    "connect-src": [
+      "'self'",
+      "https://cloudflareinsights.com"
+    ],
+    "worker-src": [
+      "'self'",
+      "blob:"
+    ]
   },
-  "onayli_alan_adlari": ["suharitasi.com", "fonts.googleapis.com", "fonts.gstatic.com"]
+  "onayli_alan_adlari": [
+    "suharitasi.com",
+    "fonts.googleapis.com",
+    "fonts.gstatic.com",
+    "static.cloudflareinsights.com",
+    "cloudflareinsights.com"
+  ]
 }
