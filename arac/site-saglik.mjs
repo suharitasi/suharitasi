@@ -842,6 +842,11 @@ async function md20_altyapiDurumu() {
     const y = K.yedekDurumu(KOK, t.yedek.varliklar, t.yedek.adaylar);
     hepsi.push(...y.bulgular); olcum.yedek = y.olcum;
   }
+  // M11 — son yedek yaşı (B1.2, 28.07)
+  if (t?.yedek?.durumDosyasi) {
+    const yy = K.yedekYasi(t.yedek.durumDosyasi, t.yedek.sariSaat, t.yedek.kirmiziSaat);
+    hepsi.push(...yy.bulgular); olcum.yedekYasi = yy.olcum;
+  }
 
   const kirmizi = hepsi.filter((b) => b.tip === 'kirmizi');
   const sari = hepsi.filter((b) => b.tip === 'sari');

@@ -328,6 +328,47 @@ export async function dortYuzDort(taban, getirFn, dosyaVarMi = false) {
   return { bulgular, olcum };
 }
 
+// ——————————————— M11: SON YEDEK YAŞI (B1.2, 28.07.2026) ———————————————
+/* `arac/yedek-al.sh` gecelik koşar ve doğrulamadan SONRA durum dosyası
+   yazar. Bu kalem o dosyanın YAŞINI ölçer — yedek sessizce durursa
+   (cron düşer, disk dolar, tar patlar) kimse fark etmezdi.
+
+   EŞİK GERÇEK TAKVİMDEN: yedek 02:10 UTC koşar, sağlık koşuları 06:40 ve
+   19:30. En kötü durumda taze bir yedek 19:30 koşumunda 17,3 saatliktir.
+   Bu yüzden SARI eşiği 30 saat (bir koşum kaçmış = iki gece), KIRMIZI 54
+   saat (iki gece üst üste kaçmış). Takvim-günü değil saat penceresi —
+   yanlış alarm üretmemek için (CLAUDE.md sessiz hata yasağı).
+
+   sonuc != "basarili" ise doğrudan KIRMIZI: script yarım kalmışsa durum
+   dosyası hiç yazılmaz, ama elle bozulmuş bir dosya da yakalanmalı. */
+export function yedekYasi(durumDosyasi, sariSaat = 30, kirmiziSaat = 54) {
+  const bulgular = [], olcum = {};
+  if (!durumDosyasi) return { bulgular, olcum };
+  if (!existsSync(durumDosyasi)) {
+    bulgular.push({ tip: 'sari', mesaj: `yedek durum dosyası yok — henüz koşmadı (${durumDosyasi})` });
+    return { bulgular, olcum: { durumDosyasi, yasSaat: null } };
+  }
+  let d;
+  try { d = JSON.parse(readFileSync(durumDosyasi, 'utf8')); }
+  catch (e) {
+    bulgular.push({ tip: 'kirmizi', mesaj: `yedek durum dosyası OKUNAMADI (${e.message})` });
+    return { bulgular, olcum: { durumDosyasi, yasSaat: null } };
+  }
+  const yasSaat = +(((Date.now() - new Date(d.zaman).getTime()) / 3600000)).toFixed(1);
+  olcum.yasSaat = yasSaat; olcum.sonuc = d.sonuc; olcum.boyutMB = Math.round((d.boyutBayt || 0) / 1048576);
+  olcum.sinir = d.sinir;
+  if (d.sonuc !== 'basarili') {
+    bulgular.push({ tip: 'kirmizi', mesaj: `son yedek BAŞARISIZ (sonuc=${d.sonuc})` });
+  } else if (!Number.isFinite(yasSaat)) {
+    bulgular.push({ tip: 'kirmizi', mesaj: 'yedek zaman damgası geçersiz' });
+  } else if (yasSaat > kirmiziSaat) {
+    bulgular.push({ tip: 'kirmizi', mesaj: `son yedek ${yasSaat} saatlik (kırmızı eşik ${kirmiziSaat}h) — gecelik yedek durmuş` });
+  } else if (yasSaat > sariSaat) {
+    bulgular.push({ tip: 'sari', mesaj: `son yedek ${yasSaat} saatlik (eşik ${sariSaat}h)` });
+  }
+  return { bulgular, olcum };
+}
+
 // ——————————————————— M10: DEPO DIŞI YEDEK ———————————————————
 /* YALNIZ ÖLÇÜM (brief): strateji kullanıcı kararı.
    Geri getirilemez varlıklar: kaynak/dsi-arsiv (DSİ 2021-22 baskıları
