@@ -47,11 +47,23 @@ function kalem(pipeline, ad, gecti, ayrinti = '') {
 }
 
 /* Python tarafı: modülü import edip JSON basan tek satırlık koşucu.
-   Hata gizlenmez — stderr aynen yükselir (sessiz hata yasağı). */
+ *
+ * stderr YUTULMAZ ama YÖNLENDİRİLİR (sessiz hata yasağı, "2>/dev/null
+ * yalnız GERÇEK beklenen gürültü için" kuralı): RG testi ayrıştırıcıyı
+ * KASTEN bozuk girdiyle çağırıyor ve ayrıştırıcı doğru davranıp stderr'e
+ * "UYARI: beklenmeyen satır tipi" yazıyor. Bu BEKLENEN gürültüdür; sağlık
+ * koşusu log'unda gerçek uyarı gibi görünmemeli. Süreç ÇÖKERSE stderr
+ * olduğu gibi hata mesajına konur — hiçbir şey gizlenmez. */
 function python(kod) {
-  return JSON.parse(execFileSync('python3', ['-c', kod], {
-    cwd: KOK, encoding: 'utf8', maxBuffer: 32 * 1024 * 1024,
-  }));
+  try {
+    return JSON.parse(execFileSync('python3', ['-c', kod], {
+      cwd: KOK, encoding: 'utf8', maxBuffer: 32 * 1024 * 1024,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    }));
+  } catch (e) {
+    const hata = (e.stderr || '').toString().trim().split('\n').slice(-3).join(' | ');
+    throw new Error(`${e.message.split('\n')[0]}${hata ? ` — python stderr: ${hata}` : ''}`);
+  }
 }
 
 // ─────────────────────────── BARAJ ───────────────────────────
