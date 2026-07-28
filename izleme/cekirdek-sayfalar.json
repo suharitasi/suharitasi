@@ -10,6 +10,10 @@
    "muaf_gerekce": "KULLANICI KARARI 28.07.2026: ana sayfaya öz-cevap bloğu EKLENMEZ, v0 tasarımı korunur. Öz-cevap İÇERİK sayfalarının (rehber, havza, il, araç) desenidir — landing'in değil. Landing'in işi ziyaretçiyi doğru içerik sayfasına yöneltmek; cevabı orada verir. CLAUDE.md 'İçerik ilkesi' kapsamı da 'her içerik sayfası' der. Ana sayfanın meta-description'ı ve WebSite JSON-LD'si AI-alıntı yüzeyini ayrıca karşılıyor (ölçüldü: title/meta-desc/canonical/JSON-LD/OG 5/5 var)."
   },
   {
+   "yol": "/nerede-su-cikar/",
+   "not": "giriş kapısı — ana sayfa sorusunun tek kanonik hedefi. İçeriğinin TAMAMI build-time sayımdır (src/data/kapi.js): veri/potansiyel/*.json bozulur ya da küçülürse sayfadaki rakamlar sessizce yanlışlanır. 81 il linki de buradan üretilir; il sayfası düşerse kapı kırık link verir."
+  },
+  {
    "yol": "/harita/",
    "not": "harita + 25 havza paneli"
   },
