@@ -1,5 +1,5 @@
 // HENDEK FAZ 2 — il profili üreticisi: TEK kaynak, İKİ tüketici
-// (arac/il-rejimi aracı + kuyu-ruhsati/[il] statik sayfaları).
+// (ilimde-kim-yetkili aracı + kuyu-ruhsati/[il] statik sayfaları).
 // Çift bakım noktası YASAK: il verisiyle ilgili her kural BURADA yaşar.
 //
 // Veri kaynakları (yeni veri girişi YOK — mevcut doğrulanmış JSON'lardan

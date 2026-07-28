@@ -38,11 +38,13 @@ const bolumAdlari: Record<string, string> = {
   'su-kanunu': 'Su Kanunu',
   hakkinda: 'Hakkında',
   'kuyu-ruhsati': 'Kuyu ruhsatı — iller',
-  arac: 'Araçlar',
+  // 'arac' girişi 28.07 K2 taşımasıyla öldü (/arac/il-rejimi/ →
+  // /ilimde-kim-yetkili/, bölüm boşaldı) ve temizlendi; yeni /arac/ rotası
+  // doğarsa buraya yeniden eklenir.
 };
 // HANGİ ARA HALKA LİNK OLABİLİR — otomatik türetilir.
 // Hata kaydı (27 Tem 2026): breadcrumb her ara parçayı link yapıyordu; ama
-// `arac` bölümünün index sayfası YOK → /arac/il-rejimi/ sayfası canlıda
+// `arac` bölümünün index sayfası YOKTU → /arac/il-rejimi/ sayfası canlıda
 // /arac/ diye 404'e link verdi ve sağlık sistemi 🔴 kırık link verdi.
 // Elle "istisna listesi" tutmak bu hatanın ikizini doğurur; bunun yerine
 // gerçek sayfa dosyalarından türetiyoruz — yarın /arac/index.astro eklenirse

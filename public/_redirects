@@ -5,3 +5,7 @@
 # (sahne klipleri ve posterleri hâlâ oradan servis edilir).
 /deneyim   /   301
 /deneyim/  /   301
+# /arac/il-rejimi/ ROTA TAŞIMASI (28.07, K2/taslak-6 v2): "il rejimi"
+# jargonu arama diline çevrildi; /arac/ bölümü (tek üyeydi) kapandı.
+/arac/il-rejimi   /ilimde-kim-yetkili/   301
+/arac/il-rejimi/  /ilimde-kim-yetkili/   301

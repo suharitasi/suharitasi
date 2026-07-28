@@ -1,14 +1,17 @@
 ---
-// HENDEK FAZ 2 — "İlinin su rejimi" aracı: /arac/il-rejimi/
+// HENDEK FAZ 2 — il aracı: /ilimde-kim-yetkili/
+// [ESKİ ROTA] /arac/il-rejimi/ — 28.07.2026 K2 taşıması (taslak-6 v2,
+// rapor/pazarlama-brief-taslaklari.md): "il rejimi" jargonu arama diline
+// çevrildi, /arac/ bölümü (tek üyeydi) kapandı; eski yol _redirects'te 301.
 // Veri, il-profil.js'ten (statik il sayfalarıyla AYNI üretici) build-time
 // gömülür; çalışma anında hiçbir istek atılmaz.
 //
 // İlerlemeli geliştirme: JS'siz çekirdek = aşağıdaki il bağlantı listesi
 // (statik sayfalara götürür). JS varsa liste hızlı-seçime dönüşür ve profil
 // sayfaya gitmeden gösterilir; ?il= parametresiyle paylaşılabilir.
-import Sayfa from '../../layouts/Sayfa.astro';
-import SayfaBasi from '../../components/SayfaBasi.astro';
-import { tumIlProfilleri } from '../../data/il-profil.js';
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import { tumIlProfilleri } from '../data/il-profil.js';
 
 const profiller = tumIlProfilleri();
 
@@ -34,10 +37,10 @@ const aciklama =
   'İlinizi seçin: kuyu belgelerinde muhatap DSİ bölge müdürlüğü, bağlı havza ' +
   've künyesi, uydu ölçümlü su depolaması eğilimi ve baraj doluluk durumu tek ekranda.';
 ---
-<Sayfa baslik="İlinin su rejimi" aciklama={aciklama}>
+<Sayfa baslik="İlimde su işinden kim yetkili?" aciklama={aciklama}>
   <SayfaBasi
     etiket="Araç"
-    baslik="İlinin su rejimi"
+    baslik="İlimde su işinden kim yetkili?"
     ozet="Kuyu belgelerinde hangi DSİ bölgesine başvurulur, iliniz hangi havzada, havzada su ne durumda — ilinizi seçin, özet tek ekranda. Genel süreç kuyu ruhsatı rehberindedir."
     ozCevap
   />

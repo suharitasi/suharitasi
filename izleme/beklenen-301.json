@@ -2,6 +2,8 @@
   "_not": "Canlıda çalışması BEKLENEN yönlendirmeler. Kaybolursa md.3 kırmızı verir ve G1(b) onarımı _redirects'e yeniden ekler.",
   "kurallar": [
     { "kaynak": "/deneyim/", "hedef": "/", "kod": 301, "gerekce": "6 sahne akışı ana sayfaya taşındı (23.07)" },
-    { "kaynak": "/deneyim", "hedef": "/", "kod": 301, "gerekce": "eğik çizgisiz hâli" }
+    { "kaynak": "/deneyim", "hedef": "/", "kod": 301, "gerekce": "eğik çizgisiz hâli" },
+    { "kaynak": "/arac/il-rejimi/", "hedef": "/ilimde-kim-yetkili/", "kod": 301, "gerekce": "K2 rota taşıması — jargon slug arama diline çevrildi (28.07)" },
+    { "kaynak": "/arac/il-rejimi", "hedef": "/ilimde-kim-yetkili/", "kod": 301, "gerekce": "eğik çizgisiz hâli" }
   ]
 }

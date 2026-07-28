@@ -119,7 +119,8 @@ export const VERI_ROTALARI = [
   { ad: 'Havzalar (25)', yol: '/havzalar/' },
   { ad: 'Rehberler', yol: '/rehberler/' },
   { ad: 'Kuyu Ruhsatı — 81 il', yol: '/kuyu-ruhsati/' },
-  { ad: 'İl rejimi aracı', yol: '/arac/il-rejimi/' },
+  // 28.07 K2 taşıması: /arac/il-rejimi/ → /ilimde-kim-yetkili/ (eski yol 301)
+  { ad: 'İlimde kim yetkili? — araç', yol: '/ilimde-kim-yetkili/' },
   { ad: 'Durumum — sektör kapısı', yol: '/durumum/' },
   { ad: 'Hangi kurum?', yol: '/hangi-kurum/' },
   { ad: 'Su Kanunu takibi', yol: '/su-kanunu/' },
