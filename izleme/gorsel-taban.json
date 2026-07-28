@@ -1,0 +1,503 @@
+{
+ "_not": "GÖRSEL/DÜZEN TABANI — sürümlü YAPILANDIRMA (log değil). Bilinçli tasarım değişikliğinde `node arac/site-saglik.mjs --gorsel-taban-yenile --gerekce \"...\"` ile yenilenir; yenilenmeden kalem KIRMIZI kalır. Ölçüm deterministiktir: sabit viewport + DPR + reduced-motion (sahne 0'da donar).",
+ "tabanTarihi": "2026-07-28T18:23:59.844Z",
+ "gerekce": "ilk kurulum — hero saha kadrajı + reset :where düzeltmesi sonrası taban (gorsel-bekci Faz 1)",
+ "esikler": {
+  "g1KesismePx2": 2000,
+  "g2OlcekOran": 1.05,
+  "g3TipografiPx": 2,
+  "g4RitimPx": 2,
+  "g5OrtalamaPx": 2,
+  "g6KadrajPx": 812
+ },
+ "olcumKosullari": {
+  "viewportlar": [
+   {
+    "ad": "md",
+    "w": 1440,
+    "h": 900,
+    "dpr": 1
+   },
+   {
+    "ad": "mobil",
+    "w": 375,
+    "h": 812,
+    "dpr": 2
+   }
+  ],
+  "reducedMotion": "reduce",
+  "animasyon": "kapalı"
+ },
+ "sayfalar": {
+  "/@md": {
+   "tipografi": {
+    "h1Px": 41.6,
+    "h1SatirYuk": 47.84,
+    "altPx": 18
+   },
+   "bolumler": [
+    {
+     "etiket": "v2-bolum.v2-kanit",
+     "padUst": 96,
+     "padAlt": 96
+    },
+    {
+     "etiket": "v2-bolum.v2-hizmetler",
+     "padUst": 96,
+     "padAlt": 96
+    },
+    {
+     "etiket": "v2-bolum.v2-surec",
+     "padUst": 96,
+     "padAlt": 96
+    },
+    {
+     "etiket": "v2-bolum.v2-hakkinda",
+     "padUst": 96,
+     "padAlt": 96
+    },
+    {
+     "etiket": "v2-bolum.v2-iletisim",
+     "padUst": 96,
+     "padAlt": 96
+    }
+   ],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": 1,
+   "mobilIlkSoru": null,
+   "aktifSahne": "Sondaj"
+  },
+  "/@mobil": {
+   "tipografi": {
+    "h1Px": 30.4,
+    "h1SatirYuk": 34.96,
+    "altPx": 16
+   },
+   "bolumler": [
+    {
+     "etiket": "v2-bolum.v2-kanit",
+     "padUst": 96,
+     "padAlt": 96
+    },
+    {
+     "etiket": "v2-bolum.v2-hizmetler",
+     "padUst": 96,
+     "padAlt": 96
+    },
+    {
+     "etiket": "v2-bolum.v2-surec",
+     "padUst": 96,
+     "padAlt": 96
+    },
+    {
+     "etiket": "v2-bolum.v2-hakkinda",
+     "padUst": 96,
+     "padAlt": 96
+    },
+    {
+     "etiket": "v2-bolum.v2-iletisim",
+     "padUst": 96,
+     "padAlt": 96
+    }
+   ],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": 0.41,
+   "mobilIlkSoru": {
+    "metin": "Ruhsatsız kuyu cezası aldım, ne yapmalıyım?",
+    "ust": 736,
+    "alt": 785
+   },
+   "aktifSahne": "Sondaj"
+  },
+  "/nerede-su-cikar/@md": {
+   "tipografi": {
+    "h1Px": 48,
+    "h1SatirYuk": 55.2,
+    "altPx": null
+   },
+   "bolumler": [],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": null,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/nerede-su-cikar/@mobil": {
+   "tipografi": {
+    "h1Px": 32,
+    "h1SatirYuk": 36.8,
+    "altPx": null
+   },
+   "bolumler": [],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": null,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/arsiv/@md": {
+   "tipografi": {
+    "h1Px": 48,
+    "h1SatirYuk": 55.2,
+    "altPx": null
+   },
+   "bolumler": [
+    {
+     "etiket": "ar-liste",
+     "padUst": 0,
+     "padAlt": 0
+    }
+   ],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": null,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/arsiv/@mobil": {
+   "tipografi": {
+    "h1Px": 32,
+    "h1SatirYuk": 36.8,
+    "altPx": null
+   },
+   "bolumler": [
+    {
+     "etiket": "ar-liste",
+     "padUst": 0,
+     "padAlt": 0
+    }
+   ],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": null,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/harita/@md": {
+   "tipografi": {
+    "h1Px": null,
+    "h1SatirYuk": null,
+    "altPx": null
+   },
+   "bolumler": [
+    {
+     "etiket": "oz-kap",
+     "padUst": 0,
+     "padAlt": 0
+    },
+    {
+     "etiket": "panel",
+     "padUst": 0,
+     "padAlt": 0
+    }
+   ],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 616,
+   "enYuksekOlcek": 0.49,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/harita/@mobil": {
+   "tipografi": {
+    "h1Px": null,
+    "h1SatirYuk": null,
+    "altPx": null
+   },
+   "bolumler": [
+    {
+     "etiket": "oz-kap",
+     "padUst": 0,
+     "padAlt": 0
+    },
+    {
+     "etiket": "panel",
+     "padUst": 0,
+     "padAlt": 0
+    }
+   ],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": 0.13,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/havzalar/sakarya/@md": {
+   "tipografi": {
+    "h1Px": 48,
+    "h1SatirYuk": 55.2,
+    "altPx": null
+   },
+   "bolumler": [
+    {
+     "etiket": "kahraman",
+     "padUst": 20.8,
+     "padAlt": 17.6
+    },
+    {
+     "etiket": "section",
+     "padUst": 0,
+     "padAlt": 0
+    }
+   ],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": null,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/havzalar/sakarya/@mobil": {
+   "tipografi": {
+    "h1Px": 32,
+    "h1SatirYuk": 36.8,
+    "altPx": null
+   },
+   "bolumler": [
+    {
+     "etiket": "kahraman",
+     "padUst": 17.6,
+     "padAlt": 16
+    },
+    {
+     "etiket": "section",
+     "padUst": 0,
+     "padAlt": 0
+    }
+   ],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": null,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/rehberler/kuyu-ruhsati/@md": {
+   "tipografi": {
+    "h1Px": 48,
+    "h1SatirYuk": 55.2,
+    "altPx": null
+   },
+   "bolumler": [
+    {
+     "etiket": "cozer.gk",
+     "padUst": 16.8,
+     "padAlt": 18.4
+    },
+    {
+     "etiket": "sonraki",
+     "padUst": 19.2,
+     "padAlt": 19.2
+    }
+   ],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": null,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/rehberler/kuyu-ruhsati/@mobil": {
+   "tipografi": {
+    "h1Px": 32,
+    "h1SatirYuk": 36.8,
+    "altPx": null
+   },
+   "bolumler": [
+    {
+     "etiket": "cozer.gk",
+     "padUst": 16.8,
+     "padAlt": 18.4
+    },
+    {
+     "etiket": "sonraki",
+     "padUst": 19.2,
+     "padAlt": 19.2
+    }
+   ],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": null,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/rehberler/kuyu-tasima/@md": {
+   "tipografi": {
+    "h1Px": 48,
+    "h1SatirYuk": 55.2,
+    "altPx": null
+   },
+   "bolumler": [
+    {
+     "etiket": "cozer.gk",
+     "padUst": 16.8,
+     "padAlt": 18.4
+    },
+    {
+     "etiket": "iletisim",
+     "padUst": 19.2,
+     "padAlt": 19.2
+    },
+    {
+     "etiket": "sonraki",
+     "padUst": 19.2,
+     "padAlt": 19.2
+    }
+   ],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": null,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/rehberler/kuyu-tasima/@mobil": {
+   "tipografi": {
+    "h1Px": 32,
+    "h1SatirYuk": 36.8,
+    "altPx": null
+   },
+   "bolumler": [
+    {
+     "etiket": "cozer.gk",
+     "padUst": 16.8,
+     "padAlt": 18.4
+    },
+    {
+     "etiket": "iletisim",
+     "padUst": 19.2,
+     "padAlt": 19.2
+    },
+    {
+     "etiket": "sonraki",
+     "padUst": 19.2,
+     "padAlt": 19.2
+    }
+   ],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": null,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/durumum/@md": {
+   "tipografi": {
+    "h1Px": 48,
+    "h1SatirYuk": 55.2,
+    "altPx": null
+   },
+   "bolumler": [],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": null,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/durumum/@mobil": {
+   "tipografi": {
+    "h1Px": 32,
+    "h1SatirYuk": 36.8,
+    "altPx": null
+   },
+   "bolumler": [],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": null,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/hangi-kurum/@md": {
+   "tipografi": {
+    "h1Px": 48,
+    "h1SatirYuk": 55.2,
+    "altPx": null
+   },
+   "bolumler": [
+    {
+     "etiket": "iletisim.ik-iletisim",
+     "padUst": 20.8,
+     "padAlt": 20.8
+    }
+   ],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": null,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/hangi-kurum/@mobil": {
+   "tipografi": {
+    "h1Px": 32,
+    "h1SatirYuk": 36.8,
+    "altPx": null
+   },
+   "bolumler": [
+    {
+     "etiket": "iletisim.ik-iletisim",
+     "padUst": 20.8,
+     "padAlt": 20.8
+    }
+   ],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": null,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/vaka/meysu/@md": {
+   "tipografi": {
+    "h1Px": 48,
+    "h1SatirYuk": 55.2,
+    "altPx": null
+   },
+   "bolumler": [
+    {
+     "etiket": "kahraman.gk",
+     "padUst": 20.8,
+     "padAlt": 17.6
+    },
+    {
+     "etiket": "zaman",
+     "padUst": 0,
+     "padAlt": 0
+    },
+    {
+     "etiket": "vaka-kaynak",
+     "padUst": 0,
+     "padAlt": 0
+    }
+   ],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": null,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/vaka/meysu/@mobil": {
+   "tipografi": {
+    "h1Px": 32,
+    "h1SatirYuk": 36.8,
+    "altPx": null
+   },
+   "bolumler": [
+    {
+     "etiket": "kahraman.gk",
+     "padUst": 17.6,
+     "padAlt": 16
+    },
+    {
+     "etiket": "zaman",
+     "padUst": 0,
+     "padAlt": 0
+    },
+    {
+     "etiket": "vaka-kaynak",
+     "padUst": 0,
+     "padAlt": 0
+    }
+   ],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": null,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  }
+ }
+}

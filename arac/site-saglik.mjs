@@ -32,9 +32,12 @@ const EXE = '/home/suha/.cache/ms-playwright/chromium-1228/chrome-linux64/chrome
 const argv = process.argv.slice(2);
 const bayrak = (a) => argv.includes(a);
 const deger = (a, v) => { const i = argv.indexOf(a); return i >= 0 && argv[i + 1] ? argv[i + 1] : v; };
-const MOD = bayrak('--test') ? 'test' : bayrak('--hizli') ? 'hizli' : bayrak('--tam') ? 'tam' : null;
+const TABAN_YENILE = bayrak('--gorsel-taban-yenile');
+const MOD = TABAN_YENILE ? 'taban-yenile'
+  : bayrak('--test') ? 'test' : bayrak('--hizli') ? 'hizli' : bayrak('--tam') ? 'tam' : null;
 if (!MOD) {
   console.error('kullanım: node arac/site-saglik.mjs --tam|--hizli|--test [--bekle-sha <sha>] [--taban <url>] [--kok <dizin>]');
+  console.error('          node arac/site-saglik.mjs --gorsel-taban-yenile --gerekce "..." [--taban <url>] [--kok <dizin>]');
   process.exit(2);
 }
 // --kok: worktree izolasyonu (2026-07-27, gece paketi B4). Depo kökü artık
@@ -145,6 +148,12 @@ const yap = {
   // md12 ETKİLEŞİM DENETİMİ (24.07): varlık değil İŞLEV testi. Boş/eksik
   // dosyada md12 sessizce atlanır (yeni kontrol eski kurulumu düşürmesin).
   etkilesim: json(join(IZLEME, 'etkilesim-beklenen.json'), { kontroller: [] }).kontroller,
+  // G1-G6 GÖRSEL/DÜZEN TABANI (28.07). Dosya yoksa kalemler sessizce
+  // atlanır (yeni kontrol eski kurulumu düşürmesin — md12 emsali).
+  // NOT: json() yardımcısında `null` = "varsayılan yok, fırlat" demektir;
+  // yokluğu ifade etmek için `false` sentineli kullanılır (yoksa kurulum
+  // öncesi TÜM sağlık koşusu çökerdi — ölçüldü 28.07).
+  gorselTaban: json(join(IZLEME, 'gorsel-taban.json'), false) || null,
   // md13 KONTRAST (27 Tem 2026): boş/eksik dosyada kontrol sessizce atlanır.
   kontrast: json(join(IZLEME, 'kontrast-ornek.json'), { sayfalar: [] }),
 };
@@ -530,8 +539,53 @@ async function tarayiciKontrolleri() {
 
     // md.12 ETKİLEŞİM — VARLIK değil İŞLEV (24.07 menü arızası dersi)
     if (MOD !== 'hizli') await md12_etkilesim(tarayici);
+
+    // md.14 GÖRSEL/DÜZEN (G1-G6) — 28.07. Kaynak kapısı ölçüldü: ölçüm
+    // 5-6 sn / ~154 MB, --hizli tabanının (49 sn) %10,2'si → %50 eşiğinin
+    // altında, bu yüzden HEM --hizli HEM --tam sınıfında.
+    await md14_gorsel(tarayici);
   } finally {
     await tarayici.close();
+  }
+}
+
+// md.14 GÖRSEL/DÜZEN (G1-G6) — 28 Tem 2026.
+// NEDEN: bugün üç arıza yalnız İNSAN GÖZÜYLE yakalandı (metin sahneyi
+// boğuyor · video ×1,77 şişirilmiş · CSS reseti bölüm ritmini eziyor).
+// Hiçbiri mevcut 13 kalemin ölçtüğü şeye dokunmuyordu: sayfa 200 dönüyor,
+// konsol temiz, link kırık değil — ama sayfa YANLIŞ GÖRÜNÜYOR.
+// SALT-OKUMA: otomatik onarım YOK (tasarım kara listede).
+// Taban: izleme/gorsel-taban.json (yoksa kalem ATLANIR).
+async function md14_gorsel(tarayici) {
+  if (!yap.gorselTaban) {
+    kaydet('14-gorsel', 'atlandi', 'görsel taban dosyası yok (izleme/gorsel-taban.json) — kalem atlandı',
+      {}, ['tam', 'hizli']);
+    return;
+  }
+  const G = await import(join(KOK, 'arac/gorsel-olc.mjs'));
+  const yollar = [...new Set(Object.keys(yap.gorselTaban.sayfalar).map((k) => k.split('@')[0]))];
+  const olcumler = await G.olcTumu(tarayici, TABAN, yollar);
+
+  const bulgular = [];
+  for (const o of olcumler) {
+    const t = yap.gorselTaban.sayfalar[`${o.yol}@${o.viewport}`] || null;
+    bulgular.push(...G.karsilastir(o, t, yap.gorselTaban.esikler || G.ESIKLER));
+  }
+
+  const tabanTarih = (yap.gorselTaban.tabanTarihi || '').slice(0, 10);
+  const kalemAdlari = { G1: 'metin-görsel', G2: 'ölçek', G3: 'tipografi', G4: 'ritim', G5: 'ortalama', G6: 'S1' };
+  if (bulgular.length) {
+    const ozet = [...new Set(bulgular.map((b) => `${b.kalem} ${kalemAdlari[b.kalem]}`))].join(', ');
+    kaydet('14-gorsel', 'kirmizi',
+      `${bulgular.length} görsel/düzen sapması (${ozet}) · taban ${tabanTarih} · ` +
+      'bilinçli tasarım değişikliğiyse: --gorsel-taban-yenile',
+      { tabanTarihi: tabanTarih, sapma: bulgular.length, bulgular: bulgular.slice(0, 12) },
+      ['tam', 'hizli']);
+  } else {
+    kaydet('14-gorsel', 'gecti',
+      `${olcumler.length} ölçümde G1-G6 sapması yok · taban ${tabanTarih} · sahne ${olcumler[0].aktifSahne}`,
+      { tabanTarihi: tabanTarih, olcum: olcumler.length, sahne: olcumler[0].aktifSahne },
+      ['tam', 'hizli']);
   }
 }
 
@@ -1031,6 +1085,13 @@ async function durumMdYaz(kayit) {
 |---|---|
 ${kayit.sonuclar.map(satir).join('\n')}
 
+${yap.gorselTaban ? `### Görsel/düzen tabanı (G1-G6)
+
+Taban tarihi: **${(yap.gorselTaban.tabanTarihi || '').slice(0, 10)}** · gerekçe: ${yap.gorselTaban.gerekce || '(yok)'}
+Ölçüm deterministik: sabit viewport + DPR + reduced-motion (hero sahnesi 0'da donar).
+Bilinçli tasarım değişikliğinde: \`node arac/site-saglik.mjs --gorsel-taban-yenile --gerekce "..."\`
+` : ''}
+
 ${kayit.devir.length ? `## Kullanıcıya devredilenler (otomatik onarılmaz)
 
 ${kayit.devir.map((d) => `- **${d.konu}** — ${d.sebep}`).join('\n')}
@@ -1242,5 +1303,39 @@ async function testModu() {
   process.exitCode = gecen === senaryolar.length ? 0 : 1;
 }
 
-if (MOD === 'test') await testModu();
+// ——— GÖRSEL TABAN YENİLEME (FAZ 2-b, K2 dersi) ———
+// Bilinçli tasarım değişikliğinde taban KOMUTLA yenilenir. Kalem kendi
+// kendine sessizleşmez (yenileme insan kararıdır ve GEREKÇE zorunludur),
+// ama kilitlenmez de (tek komut). Gerekçe ve tarih dosyaya yazılır ve
+// SITE-DURUM'da "taban" satırında görünür.
+async function gorselTabanYenile() {
+  const gerekce = deger('--gerekce', null);
+  if (!gerekce) {
+    console.error('--gorsel-taban-yenile için --gerekce "neden yenilendiği" ZORUNLU.');
+    process.exit(2);
+  }
+  const G = await import(join(KOK, 'arac/gorsel-olc.mjs'));
+  const eski = json(join(IZLEME, 'gorsel-taban.json'), false) || null;
+  const yollar = eski
+    ? [...new Set(Object.keys(eski.sayfalar).map((k) => k.split('@')[0]))]
+    : json(join(IZLEME, 'cekirdek-sayfalar.json')).sayfalar.map((x) => x.yol);
+  const pw = (await import(join(KOK, 'node_modules/playwright-core/index.js'))).default;
+  const tarayici = await pw.chromium.launch({
+    executablePath: EXE, args: ['--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'],
+  });
+  let olcumler;
+  try { olcumler = await G.olcTumu(tarayici, TABAN, yollar); }
+  finally { await tarayici.close(); }
+
+  const govde = G.tabanGovdesi(olcumler, gerekce);
+  if (eski) govde.oncekiTaban = { tarih: eski.tabanTarihi, gerekce: eski.gerekce };
+  writeFileSync(join(IZLEME, 'gorsel-taban.json'), JSON.stringify(govde, null, 1) + '\n', 'utf8');
+  console.log(`görsel taban yenilendi: ${olcumler.length} ölçüm, ${yollar.length} sayfa`);
+  console.log(`  taban ${TABAN} · tarih ${govde.tabanTarihi}`);
+  console.log(`  gerekçe: ${gerekce}`);
+  if (eski) console.log(`  önceki taban: ${eski.tabanTarihi}`);
+}
+
+if (MOD === 'taban-yenile') await gorselTabanYenile();
+else if (MOD === 'test') await testModu();
 else await kosu();

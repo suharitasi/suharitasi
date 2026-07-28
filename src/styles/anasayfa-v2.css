@@ -828,10 +828,15 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
 /* ——— ERİŞİLEBİLİRLİK: hareket azaltma (emil: azaltma ≠ sıfır; anlamayı
    bozan HAREKET durur, opaklık geçişleri kalır) ——— */
 @media (prefers-reduced-motion: reduce) {
-  .v2-videolar { display: none; }
-  .v2-posterler img:not(:first-child) { opacity: 0; } /* ilk poster durur */
-  .v2-posterler img:first-child { mix-blend-mode: normal; opacity: 0.85;
-    transform: none; }
+  /* ARIZA DÜZELTMESİ (28.07, görsel bekçi Faz 0 ölçümü): buradaki
+     `.v2-videolar { display: none }` ESKİ hero yapısından kalmıştı — o
+     yapıda tam-ekran `.v2-posterler` katmanı devralıyordu. Yeni yapıda
+     `.v2-posterler` sınıfı YOK (şerit id ile seçiliyor), dolayısıyla
+     kural kadrajı tamamen gizliyor ve hareket-azaltma kullanan ziyaretçi
+     sahneleri HİÇ görmüyordu. Doğru davranış: kadraj görünür kalır,
+     içindeki poster durur (video motoru zaten reduced-motion'da hiç
+     başlamıyor — Hero.astro `if (!AZALT)`). Ölü `.v2-posterler` kuralları
+     da kaldırıldı (eşleşen öğe yok). */
   .v2-soru { transition: none; }
   .v2-asagi, .v2-btn, .v2-randevu, .v2-menu-dugme { transition-property: color,
     background-color, border-color; }
