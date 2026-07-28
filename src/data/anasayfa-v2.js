@@ -10,12 +10,13 @@
 // Konum/gecikme değerleri v0 spesifikasyonundan (atmosfer, K-1).
 export const SORULAR_V2 = [
   {
-    // 27.07 karar (menü briefi 0.8): hedef /havzalar/ — YAS potansiyeli
-    // 25 havza sayfasında BASILIYOR (HavzaYasBandi); /harita/ nokta/
-    // potansiyel verisi taşımıyor. Nokta tahmini hâlâ sitede yok
-    // (Kuyu Çıkar Mı değerlendirmede).
+    // 28.07 karar (kapı briefi 2.1): hedef /nerede-su-cikar/ — bu sorunun
+    // TEK kanonik kapısı. Cevap havza değil İL ölçeğinde veriliyor (81 il
+    // su potansiyeli bloğu); kapı sayfası ziyaretçiyi kendi iline yollar.
+    // [ESKİ] 27.07: /havzalar/ — YAS potansiyeli 25 havza sayfasında da
+    // basılıyor, ama havza ızgarası "benim yerimde" sorusunu cevaplamıyordu.
     soru: "Türkiye'de su nerelerde çıkabilir?",
-    hedef: '/havzalar/',
+    hedef: '/nerede-su-cikar/',
     ust: '14%', sol: '2%', gecikme: '0s',
   },
   {
@@ -60,12 +61,12 @@ export const HIZMETLER = [
     ikon: 'kuyu',
   },
   {
-    // 27.07 (menü briefi İŞ 1): kart "su nerelerde çıkabilir" hedefine
-    // bağlandı (/havzalar/, 0.8 kararı). Aynı sayfada soru + kart aynı
-    // hedefe çıkar — kasıtlı, iki farklı giriş noktası.
+    // 28.07 (kapı briefi 2.2): kart soruyla birlikte /nerede-su-cikar/'a
+    // taşındı. Aynı sayfada soru + kart aynı hedefe çıkar — kasıtlı, iki
+    // farklı giriş noktası (27.07'de kurulan desen korunuyor, hedef değişti).
     ad: 'Sondaj İşlemleri',
     metin: 'Sondaj öncesi hukuki uygunluk, izin süreçleri ve yükleniciyle sözleşme danışmanlığı.',
-    hedef: '/havzalar/',
+    hedef: '/nerede-su-cikar/',
     ikon: 'sondaj',
   },
   {
@@ -109,6 +110,11 @@ export const SUREC = [
 // — "VERİLER" MENÜSÜ (FAZ 1.4: dist'te var olan gerçek rotalar;
 //   noindex pilotlar /harita-pilot/ ve /stil-pilot/ DIŞARIDA) —
 export const VERI_ROTALARI = [
+  // 28.07 (kapı briefi, kullanıcı kararı 1): giriş kapısı menüye TEK kayıt
+  // olarak girer. PaylasilanMenu bu listeyi tek kaynak olarak okur (masaüstü
+  // panel + mobil liste aynı diziden render edilir) — ikinci bir yere
+  // yazılmaz, dolayısıyla iki menü sapamaz.
+  { ad: 'Nerede su çıkar? — 81 il', yol: '/nerede-su-cikar/' },
   { ad: 'Harita — Su Atlası', yol: '/harita/' },
   { ad: 'Havzalar (25)', yol: '/havzalar/' },
   { ad: 'Rehberler', yol: '/rehberler/' },
