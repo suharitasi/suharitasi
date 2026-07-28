@@ -6,7 +6,7 @@
 import PaylasilanMenu from '../components/PaylasilanMenu.astro';
 import AltBilgi from '../components/AltBilgi.astro';
 import GorselSlot from '../components/GorselSlot.astro';
-import { SITE_ADI, YAZAR, EPOSTA, OG_GORSEL } from '../data/site';
+import { SITE_ADI, YAZAR, EPOSTA, OG_GORSEL, KURUM_SOSYAL, YAZAR_SOSYAL } from '../data/site';
 // Hareket sözlüğü + giriş koreografisi TEK KAYNAK (ödül-üstü Faz 1).
 import '../styles/hareket.css';
 
@@ -80,6 +80,9 @@ const kurum = {
   email: EPOSTA,
   founder: { '@id': `${kok}#yazar` },
   knowsAbout: ['Su hukuku', 'Yeraltı suyu ruhsatı', 'Su tahsisi', 'Su havzaları', 'İdari yargı'],
+  // sameAs YALNIZ dolu olduğunda yazılır (B4.3): boş dizi yayımlamak
+  // "hiçbir yerde yokum" sinyalidir, alanı hiç yazmamaktan kötüdür.
+  ...(KURUM_SOSYAL.length && { sameAs: KURUM_SOSYAL }),
 };
 
 const yazarSema = {
@@ -91,6 +94,7 @@ const yazarSema = {
   description: YAZAR.uzmanlik,
   worksFor: { '@type': 'Organization', name: YAZAR.buro, url: YAZAR.buroUrl },
   knowsAbout: ['Su hukuku', 'İdari yargı', 'Şirketler hukuku'],
+  ...(YAZAR_SOSYAL.length && { sameAs: YAZAR_SOSYAL }),
 };
 
 const semalar = [

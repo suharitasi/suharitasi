@@ -1,0 +1,249 @@
+---
+/* KAPATMA KAYDI SORGUSU — /kapatma-kaydi/ (B4.4, 28.07.2026)
+ *
+ * TEK SORU: "aradığım yer, tahsise kapatma/kısıt ilanı içeren Resmî Gazete
+ * kayıtlarında geçiyor mu?"
+ *
+ * NE İDDİA EDİLİR: yalnız "şu kayıt bu metni içeriyor". Kaydın künyesi,
+ * tarihi ve RG'nin KENDİ metninden alıntı gösterilir.
+ * NE İDDİA EDİLMEZ: hiçbir yerin "kapalı" ya da "açık" olduğu.
+ * İL EŞLEMESİ YOKTUR (KARARLAR.md §5) — arama METİN aramasıdır, il
+ * sorgusu değildir. Metinde geçen yer adları RG'nin yazdığı gibidir.
+ *
+ * BULUNAMAZSA: "kayıt bulunamadı" denir ve HEMEN ardından "bu, orada
+ * kapatma olmadığı anlamına GELMEZ" yazılır. Yokluk kanıt değildir:
+ * (a) tarama kapsamı sınırlıdır, (b) kayıtlar 1966-2014 arasıdır,
+ * (c) güncel durum yalnız DSİ'den teyit edilir.
+ *
+ * PAYLAŞILABİLİR URL: /kapatma-kaydi/?ara=<kelime> — sorgu adres
+ * çubuğuna yazılır, bağlantı paylaşılabilir. Site statik; eşleştirme
+ * tarayıcıda çalışır (sunucu bağımlılığı eklenmez, CLAUDE.md).
+ *
+ * JS YOKSA: 23 kaydın tamamı listelenir; sayfa arama kutusu olmadan da
+ * tam işlevlidir (ilerleyici geliştirme). Kutu JS ile görünür olur.
+ */
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import { KAPATMA_KAYITLARI, KAPATMA_OZET, KAPATMA_SERHI } from '../data/vitrin.js';
+
+const canonical = new URL('/kapatma-kaydi/', Astro.site).href;
+
+/* ÖZ CEVAP — içerik ilkesi: başlıktan hemen sonra ~280 karakterlik
+   damıtılmış cevap. Sayılar veriden gelir, elle yazılmaz. */
+const OZ_CEVAP =
+  `Resmî Gazete'de yeraltı suyu tahsisine kapatma veya kısıt hükmü içeren ` +
+  `${KAPATMA_OZET.sayi} ilan pasajı derlendi (${KAPATMA_OZET.ilkYil}-${KAPATMA_OZET.sonYil}). ` +
+  `Aşağıdan bir yer adı aratıp bu kayıtlarda geçip geçmediğini görebilirsiniz. ` +
+  `Kayıt çıkmaması orada kapatma olmadığını göstermez; güncel durum DSİ'den teyit edilir.`;
+
+// Öz-cevap 280 karakter kapısı: aşarsa build DÜŞER (sessiz bayatlama yok).
+if (OZ_CEVAP.length > 280) {
+  throw new Error(`kapatma-kaydi: öz-cevap ${OZ_CEVAP.length} karakter, sınır 280.`);
+}
+if (KAPATMA_KAYITLARI.length !== KAPATMA_OZET.sayi) {
+  throw new Error('kapatma-kaydi: kayıt sayısı ile özet sayısı çelişiyor.');
+}
+
+/* Arama alanı normalleştirmesi — istemcideki `kucult` ile BİREBİR aynı
+   olmak zorunda (tek kaynak yapılamıyor: biri build'de, biri tarayıcıda
+   çalışıyor). Değişirse ikisi birden değişir; testi
+   scratchpad/kapatma-test.mjs kapsar. */
+const KATLA_SRV = { 'ç': 'c', 'ğ': 'g', 'ı': 'i', 'ö': 'o', 'ş': 's', 'ü': 'u', 'â': 'a', 'î': 'i', 'û': 'u' };
+const aranabilir = (s) =>
+  s.toLocaleLowerCase('tr-TR').replace(/[çğıöşüâîû]/g, (c) => KATLA_SRV[c] || c);
+
+const sema = [
+  {
+    '@type': 'WebPage',
+    name: 'Tahsise kapatma kaydı sorgusu',
+    description: OZ_CEVAP,
+    url: canonical,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${new URL('/', Astro.site).href}#site` },
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Aradığım yer için kayıt çıkmadı, kuyu açabilir miyim?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text:
+            'Kayıt çıkmaması o yerde tahsise kapatma olmadığı anlamına gelmez. ' +
+            'Bu liste Resmî Gazete taramasından derlenmiş sınırlı bir kayıt ' +
+            'kümesidir ve il eşlemesi yapılmamıştır. Kuyu açmadan önce güncel ' +
+            'durum Devlet Su İşleri’nin ilgili bölge müdürlüğünden teyit edilmelidir.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Bu kayıtlar hangi ile ait?',
+        acceptedAnswer: { '@type': 'Answer', text: KAPATMA_SERHI },
+      },
+    ],
+  },
+];
+---
+<Sayfa baslik="Tahsise kapatma kaydı var mı?" aciklama={OZ_CEVAP} sema={sema}>
+  <SayfaBasi etiket="Veri sorgusu" baslik="Tahsise kapatma kaydı var mı?" />
+  <OzCevap metin={OZ_CEVAP} />
+
+  <div class="kk-arama" hidden id="kk-arama">
+    <label for="kk-giris">Bir yer adı yazın (ilçe, ova, mevkii)</label>
+    <input id="kk-giris" type="search" autocomplete="off" spellcheck="false"
+           placeholder="örn. Ereğli" aria-describedby="kk-durum" />
+    <p id="kk-durum" class="kk-durum" role="status" aria-live="polite"></p>
+  </div>
+
+  {/* Bulunamadı bloğu: JS tarafından gösterilir. Metin SUNUCUDA basılır ki
+      hem ekran okuyucuya hazır olsun hem de metin tek yerde dursun. */}
+  <div class="kk-yok" hidden id="kk-yok">
+    <p class="kk-yok-bas">Bu kayıtlarda eşleşme bulunamadı.</p>
+    <p><strong>Bu, orada tahsise kapatma olmadığı anlamına gelmez.</strong>
+      Liste Resmî Gazete taramasından derlenmiş sınırlı bir kümedir
+      ({KAPATMA_OZET.ilkYil}-{KAPATMA_OZET.sonYil}) ve il eşlemesi yapılmamıştır.
+      Güncel durum yalnız Devlet Su İşleri’nin ilgili bölge müdürlüğünden
+      teyit edilir.</p>
+    <p>Ne yapabilirsiniz: <a href="/hangi-kurum/">hangi kuruma başvurulur</a> ·
+      <a href="/rehberler/kuyu-ruhsati/">kuyu ruhsatı rehberi</a> ·
+      <a href="/nerede-su-cikar/">ilinizin veri sayfası</a>.</p>
+  </div>
+
+  <h2 id="kayitlar">Kayıtlar</h2>
+  <p class="kk-serh">{KAPATMA_SERHI}</p>
+
+  {/* data-metin: aramanın karşılaştırdığı ALAN. İstemcideki `kucult` ile
+      AYNI dönüşümden geçer (tr-küçültme + aksan katlama) — iki taraf
+      ayrışırsa arama sessizce boş sonuç döndürürdü. */}
+  <ol class="kk-liste" id="kk-liste">
+    {KAPATMA_KAYITLARI.map((k) => (
+      <li data-metin={aranabilir(`${k.pasaj} ${k.tarih} ${k.durum}`)}>
+        <p class="kk-kunye">
+          RG {k.tarih}
+          {k.sayi != null && <> · Sayı {k.sayi}{k.sayiKaynak === 'cikarim' && '*'}</>}
+          {' '}· {k.durum}
+        </p>
+        <p class="kk-pasaj">&#8220;{k.pasaj}&#8230;&#8221;</p>
+        <p class="kk-git"><a href={k.url} rel="nofollow">Resmî Gazete kaydı</a></p>
+      </li>
+    ))}
+  </ol>
+
+  <p class="kk-alt">
+    Kayıtların künyesi ve derleme yöntemi: <a href="/arsiv/">veri arşivi</a>.
+  </p>
+</Sayfa>
+
+<style>
+  .kk-arama { margin: 1.5rem 0 1rem; }
+  .kk-arama label { display: block; font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .kk-arama input {
+    width: 100%;
+    max-width: 32rem;
+    /* Dokunma hedefi: 44px eşiği (ui-ux-pro-max Touch kuralı) */
+    min-height: 44px;
+    padding: 0.6rem 0.8rem;
+    font: inherit;
+    color: inherit;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-radius: 0.5rem;
+  }
+  .kk-arama input:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+  .kk-durum { margin: 0.5rem 0 0; font-size: 0.95rem; color: var(--metin-soluk, inherit); }
+
+  .kk-yok {
+    margin: 1.2rem 0;
+    padding: 1rem 1.2rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-left: 3px solid var(--su-700);
+    border-radius: 0.5rem;
+  }
+  .kk-yok-bas { margin-top: 0; font-weight: 600; }
+  .kk-yok p:last-child { margin-bottom: 0; }
+
+  .kk-serh { font-size: 0.95rem; max-width: 70ch; }
+
+  .kk-liste { list-style: none; padding: 0; display: grid; gap: 1rem; }
+  .kk-liste > li {
+    padding: 1rem 1.2rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+    border-radius: 0.5rem;
+  }
+  .kk-kunye {
+    margin: 0 0 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .kk-pasaj { margin: 0 0 0.6rem; }
+  .kk-git { margin: 0; font-size: 0.95rem; }
+  .kk-liste mark { background: rgba(240, 198, 116, 0.45); color: inherit; }
+  .kk-alt { font-size: 0.95rem; }
+</style>
+
+<script>
+  /* Tarayıcı tarafı eşleştirme. Sunucu bağımlılığı YOK (site statik kalır).
+     Türkçe küçültme (`toLocaleLowerCase('tr-TR')`) ZORUNLU: "İ"→"i",
+     "I"→"ı". Varsayılan toLowerCase kullanılsa "İzmir" araması
+     "izmir" metnini bulamazdı (ölçüldü: "İŞLETME" → 18 kayıt).
+
+     AKSAN KATLAMA da zorunlu (ölçüldü 28.07): tr-küçültme tek başına
+     doğru ama YETMİYOR — Türkçe klavyesi olmayan ziyaretçi "Isletme"
+     ya da "Eregli" yazıyor. tr-küçültme "I"yı "ı"ya çevirdiği için
+     "ışletme" oluyor ve 18 kaydın hiçbiri eşleşmiyordu. Bu yüzden
+     hem sorgu hem kayıt metni ASCII'ye katlanarak karşılaştırılır:
+     çğıöşü/İ → cgiosu/i. Katlama yalnız ARAMADA; gösterilen metin
+     olduğu gibi kalır. */
+  const KATLA = { 'ç':'c','ğ':'g','ı':'i','ö':'o','ş':'s','ü':'u','â':'a','î':'i','û':'u' };
+  const giris = document.getElementById('kk-giris');
+  const kutu = document.getElementById('kk-arama');
+  const durum = document.getElementById('kk-durum');
+  const yok = document.getElementById('kk-yok');
+  const liste = document.getElementById('kk-liste');
+  if (giris && kutu && liste) {
+    kutu.hidden = false;                       // JS var: kutu görünür
+    const ogeler = [...liste.children];
+    const kucult = (s) => s.toLocaleLowerCase('tr-TR').replace(/[çğıöşüâîû]/g, (c) => KATLA[c] || c);
+
+    const uygula = (q, adresYaz) => {
+      const a = kucult(q.trim());
+      let eslesen = 0;
+      for (const li of ogeler) {
+        const var_ = !a || li.dataset.metin.includes(a);
+        li.hidden = !var_;
+        if (var_) eslesen++;
+      }
+      const bosMu = a && eslesen === 0;
+      yok.hidden = !bosMu;
+      durum.textContent = !a
+        ? `${ogeler.length} kayıt listeleniyor.`
+        : bosMu
+          ? `"${q.trim()}" için eşleşme yok.`
+          : `${eslesen} kayıt eşleşti — aşağıda künyesi, tarihi ve şerhiyle.`;
+
+      if (adresYaz) {
+        const u = new URL(location.href);
+        if (a) u.searchParams.set('ara', q.trim()); else u.searchParams.delete('ara');
+        history.replaceState(null, '', u);     // paylaşılabilir tek URL
+      }
+    };
+
+    // Adresten gelen sorgu: paylaşılan bağlantı doğrudan sonucu açar.
+    const bas = new URL(location.href).searchParams.get('ara') || '';
+    if (bas) giris.value = bas;
+    uygula(bas, false);
+
+    let z;
+    giris.addEventListener('input', () => {
+      clearTimeout(z);                          // her tuşta adres yazma
+      z = setTimeout(() => uygula(giris.value, true), 160);
+    });
+  }
+</script>
