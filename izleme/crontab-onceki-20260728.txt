@@ -1,0 +1,30 @@
+PATH=/usr/local/bin:/usr/bin:/bin
+# Baraj: her gün 18:00 TR (15:00 UTC) — EPİAŞ verisi 17:00 TR'de nihai
+0 15 * * * nice -n 10 /home/suha/projeler/suharitasi/arac/baraj-gunluk.sh >> /home/suha/projeler/suharitasi/data/arsiv/baraj/log/cron.log 2>&1
+# GRACE: haftalık Pzt 06:00 UTC
+0 6 * * 1 nice -n 10 /home/suha/projeler/suharitasi/arac/grace-guncelle.sh >> /home/suha/projeler/suharitasi/data/arsiv/grace/cron.log 2>&1
+# Sağlık bekçisi: her gün 07:00 UTC — pipeline'dan BAĞIMSIZ sessiz-ölüm gözcüsü
+0 7 * * * /home/suha/projeler/suharitasi/saglik-bekcisi.sh >> /home/suha/projeler/suharitasi/log/bekci-cron.log 2>&1
+# Su Kanunu izleme: günde 2x — 05:30 UTC (08:30 TR) + 16:00 UTC (19:00 TR)
+30 5 * * * nice -n 10 /home/suha/projeler/suharitasi/izleme/su-izleme.sh >> /home/suha/projeler/suharitasi/izleme/log/cron.log 2>&1
+0 16 * * * nice -n 10 /home/suha/projeler/suharitasi/izleme/su-izleme.sh >> /home/suha/projeler/suharitasi/izleme/log/cron.log 2>&1
+# Bellek logu: her 10 dk free -m ölçümü (saglik-bekcisi eşik girdisi)
+*/10 * * * * /home/suha/projeler/suharitasi/arac/bellek-log.sh >> /home/suha/projeler/suharitasi/log/bellek-log-cron.log 2>&1
+# Sürekli site sağlık sistemi: 06:40 + 19:30 UTC (--tam: tüm kontroller +
+# Lighthouse + sınırlı otomatik onarım). ÇAKIŞMA DÜZELTMESİ 2026-07-28
+# (sunucu donma teşhisi): sabah koşumu 07:30 UTC ideydi ve AYNI DAKİKADA
+# bist-flow + bist-katilim systemd timerlari atesliyordu (olculdu:
+# systemd-analyze next elapse 07:30:00 UTC). Ayrica 07:00-15:30 UTC,
+# BIST timerlarinin yogun penceresi. --tam maliyeti olculdu: 1,9 GB / 7,5 dk.
+# Yeni saat 06:40 UTC (09:40 TR) o pencerenin DISINDA; hicbir timer :40
+# dakikasinda ateslemiyor. 19:30 UTC olculerek TEMIZ bulundu, DEGISMEDI
+# (BIST timerlari 18:30 UTC de biter). Bekci 14 saat penceresi korunur:
+# kosumlar arasi 12s50d ve 11s10d.
+40 6 * * * nice -n 10 /usr/bin/node /home/suha/projeler/suharitasi/arac/site-saglik.mjs --tam >> /home/suha/projeler/suharitasi/log/site-saglik-cron.log 2>&1
+30 19 * * * nice -n 10 /usr/bin/node /home/suha/projeler/suharitasi/arac/site-saglik.mjs --tam >> /home/suha/projeler/suharitasi/log/site-saglik-cron.log 2>&1
+# RG isletme sahasi nobetcisi: haftalik Sal 04:20 UTC (kullanici onayi 28.07.2026;
+# kanit: --test kosumu 109 satir ayristirdi, 0 kaynaksiz, 0 yeni)
+20 4 * * 2 nice -n 10 /usr/bin/python3 /home/suha/projeler/suharitasi/arac/rg-nobetci.py --kosum >> /home/suha/projeler/suharitasi/log/rg-nobetci.log 2>&1
+# NHYP yayin nobetcisi: haftalik Car 04:40 UTC (kullanici onayi 28.07.2026;
+# kanit: --test iki kanal da saglik dogruladi, A 12/12, B 10 baglanti)
+40 4 * * 3 nice -n 10 /usr/bin/python3 /home/suha/projeler/suharitasi/arac/nhyp-yayin-nobetci.py --kosum >> /home/suha/projeler/suharitasi/log/nhyp-nobetci.log 2>&1
