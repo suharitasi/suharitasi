@@ -28,7 +28,7 @@ DERS: her DOM/yeniden-tasarım işi, ona bağlı izleme yapılandırmasını da
 günceller; yoksa kontrol sessizce körelir ve kırmızısı "bilinen arıza"
 sayılmaya başlar.
 
-SU POTANSİYELİ KATMANI — 81 İLDE, CANLIDA; KULLANICI CANLI ONAYI BEKLİYOR
+SU POTANSİYELİ KATMANI — 81 İLDE, KAPANDI (kullanıcı canlı onayı 28.07.2026)
 (merge edildi 27 Tem 2026 / 5e08611; iş kapanış kuralı gereği etiket
 kullanıcı canlıda onaylayana kadar açık kalır): "Bu ilde su nerelerde
 çıkabilir?" bloğu 81 il sayfasında. Pilot onaylı;
@@ -238,7 +238,7 @@ Kullanıcının canlı görsel onayı nihai kapanış. Açık maddeler:
       "Randevu Al" çağrıları v0'dan; sitenin mevcut "davetsiz/nesnel" TBB
       duruşundan ayrışıyor — hukuki değerlendirme kullanıcıda.
 
-/HANGİ-KURUM/ SAYFASI — KULLANICI ONAYI BEKLİYOR (2026-07-23). Su işlemlerinde
+/HANGİ-KURUM/ SAYFASI — KAPANDI (kullanıcı canlı onayı 28.07.2026; ilk kayıt 2026-07-23). Su işlemlerinde
 yetkili kurum rehberi: build-time hangi-kapi.json (20 işlem) + su-birimleri.json
 (155 kurum) + su-islemleri.json'dan üretildi; üstte tek-tık filtre (details),
 altta JS'siz tam tablo. FAQPage yalnız 11 doğrulanmış satır. Kanıt: LH masaüstü
@@ -298,7 +298,7 @@ BEKLEMEDE: SMTP bilgileri (.env'de SMTP_HOST/SMTP_USER/SMTP_PASS/ALARM_TO).
   Gelince e-posta alarmı açılır + sentetik 🔴 ile test maili atılır.
 
 ANA SAYFA — MENÜ/SÜZÜLME/ÖNCELİK v3: FAZ 1 (MENÜ ARIZASI) DÜZELTİLDİ,
-KULLANICI ONAYI BEKLİYOR (2026-07-24). Kök neden REGRESYON DEĞİL, eski arıza:
+KAPANDI (kullanıcı canlı onayı 28.07.2026). Kök neden REGRESYON DEĞİL, eski arıza:
 akis-bitti (kaydırma dibi/scroll-restorasyonu) menü şeridini
 pointer-events:none yapıyordu → menü ölü açılıyordu. Düzeltme: dipte menü
 söndürülmez, aydınlık iniş üstünde okunaklı+açılır kalır (C paleti). EKLENDİ:
@@ -325,7 +325,7 @@ kanıt sayılmaz + S2 hissi), (2) Cloudflare Purge. Geri dönüş: tek commit re
 [AŞAMA 1 MOCK] Canlı ölçüm 3 şikâyeti doğruladı; A/B+S1/S2+sektör mock'landı
 (cikti/denetim/anasayfa-soru-hiyerarsi/, yerel).
 [ÖNCEKİ] ANA SAYFA — 6 SAHNE + 7 SÜZÜLEN SORU: AŞAMA 2 + CANLI TEST DÜZELTMELERİ
-UYGULANDI, KULLANICI ONAYI BEKLİYOR (2026-07-23). Canlı ölçüm (dist-sun) 3 şikâyeti de
+UYGULANDI; KAPANDI (kullanıcı canlı onayı 28.07.2026). [ilk kayıt 2026-07-23] Canlı ölçüm (dist-sun) 3 şikâyeti de
 doğruladı: scroll 0'da yalnız 2/7 (1440) / 1/7 (375) soru görünür, öz-cevap+
 sektör kartları %93 aşağıda (iniş bölümü); şerit kontrastı iyi, sorun konum+
 belirginlik. İki alternatif: A "soru güvertesi" (sahne %52, opak DİP panel →
@@ -337,7 +337,7 @@ masaüstü 99/mobil 85. Kanıt: cikti/denetim/anasayfa-soru-hiyerarsi/ (RAPOR.md
 + 6 kare + faz0 ölçüm). DUR — 4 karar: (i) A/B, (ii) S1/S2, (iii) iniş sektör
 kaderi, (iv) /hangi-kurum. Onaysız Aşama 2 (kod) YOK.
 [ÖNCEKİ] ANA SAYFA — 6 SAHNE + 7 SÜZÜLEN SORU: AŞAMA 2 + CANLI TEST DÜZELTMELERİ
-UYGULANDI, KULLANICI ONAYI BEKLİYOR (2026-07-23). Koyu hero kalktı, sahne
+UYGULANDI; KAPANDI (kullanıcı canlı onayı 28.07.2026). [ilk kayıt 2026-07-23] Koyu hero kalktı, sahne
 akışı açılış oldu; R2 alt şerit; akış sonu iniş bölümü; /deneyim/ 301 → /.
 Canlı testte çıkan üç arıza kapatıldı (üç ayrı commit, ayrı ayrı revert
 edilebilir — RAPOR.md "GERİ DÖNÜŞ"):
@@ -375,7 +375,7 @@ olarak duruyor).
 
 AKTİF BRIEF (HÜKÜMSÜZ — 22.07 kararıyla iptal) — /HARİTA/ DÖNÜŞÜMÜ
 (DENEYİM GÖMME v2 NİHAİ): AŞAMA 1 TAMAM
-(2026-07-22, kod yok) — KULLANICI ONAYI BEKLİYOR. Hero kalkar, 6 sahne
+(2026-07-22, kod yok) — KAPANDI (kullanıcı canlı onayı 28.07.2026). Hero kalkar, 6 sahne
 scroll-scrub /harita/'ya girer, panel+GEO aynen altta, /deneyim/ kapanır.
 Çıktı: cikti/denetim/harita-donusum/ (yerlesim-semasi-1440.png + mock.html +
 kareler/ + RAPOR.md). Ölçülen taban: /harita/ LH masaüstü medyan 94, mobil 72
@@ -385,7 +385,7 @@ A "yüzeye çıkış" (öneri, panel-reveal cross-blur) / B "kot cetveli eşiği
 KULLANICI KARARI: (1) geçiş A/B, (2) ağırlık tablosu kabul mü. Onaysız
 AŞAMA 2 (taşıma + /deneyim/ 301 + menü + link + sitemap + kanıt) BAŞLAMAZ.
 
-FAZ 8 — PALET YENİLEME: UYGULANDI, KULLANICI ONAYI BEKLİYOR (2026-07-22).
+FAZ 8 — PALET YENİLEME: KAPANDI (kullanıcı canlı onayı 28.07.2026; uygulama 2026-07-22).
 Kullanıcı aday C'yi seçti (mavi zemin + lacivert metin + kehribar kritik
 #875518). Uygulandı: DESIGN.md §2 C setiyle yeniden yazıldı (eski palet
 arşiv-notu olarak duruyor = geri-dönüş yolu), 191 değişiklik/29 dosya,

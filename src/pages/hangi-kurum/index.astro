@@ -258,9 +258,22 @@ const sema = [
 
   /* — Durum rozetleri — */
   .ik-rozet {
-    flex: 0 0 auto; font-family: var(--mono); font-size: 0.58rem; font-weight: 500;
+    /* BOYUT (28.07 kullanıcı kararı): 0.58rem = 9,28px idi — sitedeki en
+       küçük metin ve gövde-metin anti-desen sınırının (12px) altındaydı.
+       0.75rem = 12px'e çıkarıldı; üç rozet tipi de bu tek kuraldan besleniyor
+       (.ik-onay / .ik-paylasim / .ik-teyit). Kontrast oranları boyuttan
+       bağımsız, 5,60–5,67 bandında korunuyor; 12px hâlâ "normal metin"
+       olduğu için AA eşiği 4,5 kalıyor. */
+    flex: 0 0 auto; font-family: var(--mono); font-size: 0.75rem; font-weight: 500;
     letter-spacing: 0.08em; text-transform: uppercase;
     padding: 0.2rem 0.45rem; border-radius: 2px; white-space: nowrap;
+  }
+  /* 12px'e çıkınca en uzun rozet ("YETKİLİ KURUM TEYİT EDİLİYOR") 243px
+     oldu ve 375px'te 51px yatay taşma yaptı (ölçüldü). Dar ekranda nowrap
+     bırakılamaz: rozet sarılabilir ve küçülebilir olur. Boyut 12px KALIR —
+     taşmayı boyutu geri alarak değil, sarmayı açarak çözüyoruz. */
+  @media (max-width: 559px) {
+    .ik-rozet { white-space: normal; flex: 0 1 auto; min-width: 0; }
   }
   /* ROZET KONTRASTI (28.07 ölçümü, md13 bulgusu).
      Rozet metni 0.58rem = 9,28px — sitedeki en küçük metin. Bu boyutta AA
