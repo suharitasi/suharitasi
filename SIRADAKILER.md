@@ -99,16 +99,22 @@ kaynaklara erişim yok (6 kaynak denemesi: rapor/potansiyel-faz2.md).
 
 YENİ AÇILAN KALEMLER (28 Tem 2026, gece paketi tam-sistem denetimi):
 
-1. ANA SAYFA ÖZ-CEVAP KARARI — AÇIK, 7-geo-seo KIRMIZI. Örneklenen 11 sayfa
-   tipinden 10'unda doc-abstract var, `/`'de yok (v2 hero bir landing).
-   CLAUDE.md "İçerik ilkesi" öz-cevabı "her içerik sayfası (rehber, havza,
-   araç)" için şart koşuyor. Karar: ya `/`'ye öz-cevap girer, ya
-   izleme/cekirdek-sayfalar.json'a "landing muaf" notu düşülür. Şu hâliyle
-   md7 SÜREKLİ kırmızı kalır ve alarm değeri aşınır.
+1. ANA SAYFA ÖZ-CEVAP — KAPANDI (28 Tem 2026, kullanıcı kararı):
+   ana sayfaya blok EKLENMEZ, v0 tasarımı korunur. Gerekçe: öz-cevap İÇERİK
+   sayfalarının (rehber, havza, il, araç) desenidir, landing'in değil;
+   landing'in işi ziyaretçiyi doğru içerik sayfasına yöneltmektir, cevabı
+   orada verir. CLAUDE.md "İçerik ilkesi" kapsamı da "her içerik sayfası"
+   der. Ana sayfanın meta-description'ı ve JSON-LD'si AI-alıntı yüzeyini
+   ayrıca karşılıyor (ölçüldü: title/meta-desc/canonical/JSON-LD/OG 5/5).
+   UYGULAMA: izleme/cekirdek-sayfalar.json'da `/` için `"muaf": ["ozCevap"]`
+   + gerekçe. Muafiyet md7 mesajında AÇIKÇA görünür ("muaf: /(ozCevap)"),
+   sessizce gizlenmez. Kanıt: canlı --tam koşumu → kırmızı 0.
 
-2. /harita/ SAYFASINDA h1 YOK — ölçüldü: <h1> sayısı 0, hiyerarşi <h2> ile
-   başlıyor. Örneklenen diğer 10 tipin hepsinde tam olarak 1 h1 var. Hem
-   erişilebilirlik hem SEO kaybı; sitenin ikinci en önemli sayfası.
+2. /harita/ h1 — KAPANDI (28 Tem 2026, kullanıcı kararı): DEĞİŞİKLİK
+   YAPILMAZ. Sayfanın kuralı SALT HERO, üstünde öğe yok; hiyerarşi <h2> ile
+   başlar, <h1> hiç yoktur. Bu bir tasarım kararıdır, arıza değil. Kural
+   src/pages/harita.astro başlığına yazıldı ki denetim tekrar bulgu olarak
+   açmasın.
 
 3. public/s/*.js BUILD HATTINI ATLIYOR — "Kopyalanma direnci" m.1-2 ihlali.
    Altı dosya (su-sim 9.309 B/12 yorum, imlec 5.571/6, sayfa 2.318/5,

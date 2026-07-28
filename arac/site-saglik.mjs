@@ -132,6 +132,12 @@ function kilitliGit(komutlar, ad) {
 // ————————————————————————— yapılandırma —————————————————————————
 const yap = {
   cekirdek: json(join(IZLEME, 'cekirdek-sayfalar.json')).sayfalar.map((s) => s.yol),
+  // md7 MUAFİYET (28 Tem 2026, kullanıcı kararı): bir sayfa bir GEO/SEO
+  // kaleminden bilinçli muaf tutulabilir. Ölçüm YİNE YAPILIR, yalnız
+  // kırmızıya saymaz ve koşu kaydında "muaf" olarak görünür — sessizce
+  // gizlenmez (kanıt-hafifletme yasağı).
+  cekirdekMuaf: Object.fromEntries(json(join(IZLEME, 'cekirdek-sayfalar.json')).sayfalar
+    .filter((s) => s.muaf?.length).map((s) => [s.yol, s.muaf])),
   yonlendirme: json(join(IZLEME, 'beklenen-301.json')).kurallar,
   medya: json(join(IZLEME, 'medya-beklenen.json')).sayfalar,
   linkIstisna: json(join(IZLEME, 'link-istisna.json')).istisnalar,
@@ -306,7 +312,7 @@ async function tarayiciKontrolleri() {
     }
 
     // md.5 KONSOL + md.8 MOBİL + md.7 GEO/SEO — çekirdek set, tek gezinti
-    const konsolKotu = [], tasmaKotu = [], geoKotu = [];
+    const konsolKotu = [], tasmaKotu = [], geoKotu = [], geoMuaf = [];
     for (const yol of yap.cekirdek) {
       const ctx = await tarayici.newContext({ viewport: { width: 375, height: 667 } });
       const sayfa = await ctx.newPage();
@@ -474,13 +480,22 @@ async function tarayiciKontrolleri() {
           };
         });
         await ctx.close();
-        const eksik = Object.entries(g).filter(([k, v]) => v === false).map(([k]) => k);
+        const tumEksik = Object.entries(g).filter(([k, v]) => v === false).map(([k]) => k);
+        const muaf = yap.cekirdekMuaf[yol] || [];
+        const eksik = tumEksik.filter((k) => !muaf.includes(k));
+        const muafEksik = tumEksik.filter((k) => muaf.includes(k));
+        if (muafEksik.length) geoMuaf.push({ yol, muaf: muafEksik });
         if (eksik.length) geoKotu.push({ yol, eksik, olcum: g });
       }
+      // Muafiyet MESAJDA görünür — "geçti" sonucunun neyi kapsamadığı okunsun.
+      const muafNot = geoMuaf.length
+        ? ` · muaf: ${geoMuaf.map((m) => `${m.yol}(${m.muaf})`).join(', ')}`
+        : '';
       kaydet('7-geo-seo', geoKotu.length ? 'kirmizi' : 'gecti',
-        geoKotu.length ? `${geoKotu.length} sayfada eksik: ${geoKotu.map((g) => g.yol + '(' + g.eksik + ')').join(', ')}`
-                       : `${yap.cekirdek.length} sayfada öz-cevap + JSON-LD + title + canonical tam`,
-        { eksikler: geoKotu }, ['tam']);
+        (geoKotu.length ? `${geoKotu.length} sayfada eksik: ${geoKotu.map((g) => g.yol + '(' + g.eksik + ')').join(', ')}`
+                        : `${yap.cekirdek.length - geoMuaf.length}/${yap.cekirdek.length} sayfada öz-cevap + JSON-LD + title + canonical tam`)
+        + muafNot,
+        { eksikler: geoKotu, muaflar: geoMuaf }, ['tam']);
     }
 
     // md.6 BAĞLANTILAR — tam modda iç link taraması
