@@ -2,7 +2,8 @@
 
 Brief: 2026-07-28 (`cikti/brief/2026-07-28-vitrin.md`, düzeltilmiş
 `-duzeltilmis.md`) · Dal `vitrin-2026-07-28` · Kanıt: `cikti/denetim/vitrin/`.
-**FAZ 1, 2, 4 uygulandı. FAZ 3 DURDURULDU — gerekçe ölçümle §FAZ 3'te.**
+**FAZ 1, 2, 4 uygulandı. FAZ 3 önce DURDURULDU, sonra kullanıcı kararıyla
+İL İDDİASI OLMADAN yayımlandı — bkz. §FAZ 3 ve §FAZ 3-EK.**
 
 ## 0. Brief ön kapısı
 
@@ -177,3 +178,52 @@ renk verilmemişti → tarayıcı varsayılanı `rgb(0,0,238)`, aydınlık zemin
 | `su-terim-havuzu.json` (126 terim) | İç sözlük; sözlük sayfası ayrı iş |
 | `arsiv/*` (7 dizin) | Eski sayfa sürümleri — tarihçe, kasıtlı |
 | Ham veri indirme (CSV/JSON) | PAZARLAMA-KAZI K3 kararı bekliyor (hendek gerilimi) |
+
+---
+
+## FAZ 3-EK — kapatma kayıtları il iddiası OLMADAN yayımlandı (kullanıcı kararı)
+
+Kullanıcı, §FAZ 3 kanıtını gördükten sonra kapsamı daralttı: kayıtlar
+**`/arsiv/` içinde tek liste** olarak, **il ataması yapılmadan**, "hangi ile
+ait olduğu doğrulanmadı" şerhiyle yayımlanır; **il sayfalarına basılmaz**.
+Böylece riskli olan alan (il iddiası) düşer, kaydın kendisi görünür olur.
+
+**Uygulanan:** 23 kayıt, tarih sırasıyla (17.04.2014 → 24.03.1966), her biri
+RG tarihi + durum + Resmî Gazete kaynak bağlantısı + pasaj alıntısı.
+Ölçüm: künye satırlarında il adı **0/23** (iddia yok).
+
+### "Saha adı" alanı KULLANILMADI — ölçüm gerekçesi
+
+Kullanıcı "saha adı (RG başlığındaki haliyle)" istedi. Ölçüldü:
+
+| Kontrol | Sonuç |
+|---|---|
+| `saha_adi` alanı taşıyan kayıt | **0 / 23** (hepsi pasaj kaynaklı) |
+| Düzenli ifadeyle pasajdan çıkarım | 11 / 23 |
+| Bunlardan **temiz** olan | **6 / 23 (%26)** |
+
+Kirlenme örnekleri: `"ÖZDEMIR Erzurum Ovası Yeraltısuyu İşletme Sahası"` ve
+`"UYSAL SAMSUN - ÇEVRESİ …"` (bakan soyadı öneki), `"Tarih I9-H-I968
+Izmir-Körfezi …"` (tarih parçası), `"ÇEVRESİ YERALTISUYU İŞLETME SAHASI"`
+(başı kopmuş — kaynakta "URFA İLİ —" ile başlıyor).
+
+%26 temizlikle bir alan yayımlamak, bugün GUNLUK'a yazılan kuralın
+(türetilmiş alan kaynağına karşı %100 doğrulanamıyorsa yayımlanmaz) doğrudan
+ihlali olurdu. Bunun yerine **RG'nin kendi metni alıntılandı** — istenen
+"RG'deki haliyle" ölçütünü kırpılmış bir ifadeden daha sadık karşılar ve
+sitede zaten kullanılan desendir (IlPotansiyel "RG ilan pasajları …
+dizgi hatası içerebilir").
+
+**Şerh (sayfada birebir):** "Bu kayıtların hangi ile ait olduğu doğrulanmadı;
+il eşlemesi yapılmamıştır. Kayıtlar Resmî Gazete arşivinin taranmasıyla
+derlenmiştir ve pasajlar dizgi hatası içerebilir. İlan tarihi itibarıyla
+verilen bilgidir; güncel durum Devlet Su İşleri'nden teyit edilmelidir."
+
+**Not:** alıntılanan pasajlar RG'nin kendi metni olduğu için yer adı
+içerebilir (ör. "MARDİN KIZILTEPE OVASI"). Bu bizim atamamız değil, kaynağın
+sözüdür; sayfa hiçbir kaydı bir ile ATFETMEZ.
+
+**Ölçüm (bu ek için):** build 0 · gerileme **0 / 174 ortak sayfa** · sitemap
+174 KAYIP 0 · kontrast /arsiv/ **152 düğüm ihlal 0** · konsol 0 · yatay
+kaydırma 0 · S1 korundu.
+

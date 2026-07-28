@@ -37,7 +37,34 @@ KULLANICI CANLI ONAYI BEKLİYOR (görsel iş — kanıt bandı).
 İL SAYFASINA BLOK EKLENMEDİ: ölçüm, il ölçekli varlıkların tamamının
 IlPotansiyel'de zaten basıldığını gösterdi (brief 1 blok izni kullanılmadı).
 
-🔴 AÇIK — FAZ 3 DURDURULDU (RG "tahsise kapatma/kısıt" 23 kaydı YAYIMLANMADI):
+KAPATMA KAYITLARI — İL İDDİASI OLMADAN YAYIMLANDI (28 Tem 2026, kullanıcı
+kararı): 23 kayıt /arsiv/ içinde tek liste — RG tarihi + durum + kaynak
+bağlantısı + pasaj alıntısı. İl ataması YAPILMADI, il sayfalarına BASILMADI,
+"hangi ile ait olduğu doğrulanmadı" şerhi kondu. Ölçüm: künyelerde il adı
+0/23. SAHA ADI ALANI KULLANILMADI — ölçüldü: saha_adi 0/23, pasajdan çıkarım
+11/23 ama temiz yalnız 6/23 (%26; bakan soyadı öneki "ÖZDEMIR/UYSAL", tarih
+parçası). Yerine RG'nin kendi metni alıntılandı (mevcut pot-pasaj deseni).
+Ayrıntı: VITRIN-RAPORU.md §FAZ 3-EK. KULLANICI CANLI ONAYI BEKLİYOR.
+
+🔵 YENİ İŞ — RG SAYI ALANININ KAYNAKTAN ÇIKARILMASI (28 Tem 2026, kullanıcı
+kararıyla ayrı iş olarak açıldı): 419 RG kaydının 310'u (ilan pasajı
+kaynaklı) `rg_sayi` alanı TAŞIMIYOR; 109 başlık kaydında var. Kapatma
+alt kümesinde 0/23. Etki: künyeler "RG tarih + URL" ile sınırlı kalıyor,
+"tarih + sayı" standardı uygulanamıyor.
+YAPILACAK: (a) pasaj metninde geçen "Sayı: NNNNN" / "Resmî Gazete ilan sayısı
+NNNNN" kalıplarının çıkarılması — ölçülen örnekler var (ör. 05.05.1980
+pasajında "Sayı: 16979", 03.06.2011 pasajında "ilan sayısı 13669");
+(b) çıkarılamayanlar için kaynak_url'deki arşiv dosya adından türetme
+denemesi (ör. /arsiv/11581.pdf → sayı 11581 — başlık kayıtlarında bu
+eşleşme DOĞRULANABİLİR, önce orada sınanmalı);
+(c) HER çıkarım kendi pasajına/URL'sine karşı doğrulanır ve doğrulama oranı
+raporlanır (GUNLUK 28.07 kuralı) — %100 değilse alan yayımlanmaz, yalnız
+veri dosyasında `rg_sayi_kaynak: "cikarim"` etiketiyle durur.
+BİTTİ TANIMI: kaç kayıtta sayı çıkarıldı + doğrulama oranı ölçülür; /arsiv/
+künyeleri ancak doğrulanan kayıtlarda "tarih + sayı" gösterir.
+
+[ESKİ KAYIT — durdurma gerekçesi, tarihçe için korunuyor]
+🔴 FAZ 3 DURDURULMUŞTU (RG "tahsise kapatma/kısıt" 23 kaydı):
 Brief bu kayıtların il sayfalarında gösterilmesini istiyordu; iki şart da
 veriyle karşılanmadı. (1) Künye: 23/23 kayıtta rg_sayi YOK (URL var).
 (2) İl ataması güvenilmez — 30 il-kayıt eşleşmesinin en az 7'si dayanaksız

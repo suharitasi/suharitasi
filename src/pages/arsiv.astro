@@ -8,7 +8,7 @@
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
-import { ARSIV_SETLERI, ARSIV_OZ_CEVAP } from '../data/vitrin.js';
+import { ARSIV_SETLERI, ARSIV_OZ_CEVAP, KAPATMA_KAYITLARI, KAPATMA_OZET, KAPATMA_SERHI } from '../data/vitrin.js';
 
 const canonical = new URL('/arsiv/', Astro.site).href;
 
@@ -50,6 +50,31 @@ const sema = [
           <div><dt>Erişim</dt><dd>{s.erisim}</dd></div>
         </dl>
         <p class="ar-git"><a href={s.yol}>Sitede nerede görünüyor →</a></p>
+      </li>
+    ))}
+  </ol>
+
+  <h2 id="kapatma">Tahsise kapatma ve kısıt kayıtları</h2>
+
+  <p class="ar-kapatma-giris">
+    Taranan Resmî Gazete kayıtları arasında yasak ya da kısıt hükmü içeren
+    {KAPATMA_OZET.sayi} ilan pasajı bulundu ({KAPATMA_OZET.ilkYil}-{KAPATMA_OZET.sonYil}).
+    Aşağıda tarih sırasıyla, Resmî Gazete'nin kendi metninden alıntıyla
+    listelenmiştir.
+  </p>
+
+  <p class="ar-kapatma-serh">{KAPATMA_SERHI}</p>
+
+  <ol class="ar-kapatma">
+    {KAPATMA_KAYITLARI.map((k) => (
+      <li>
+        <p class="ar-kapatma-kunye">
+          RG {k.tarih} · {k.durum}
+        </p>
+        <p class="ar-kapatma-pasaj">&#8220;{k.pasaj}&#8230;&#8221;</p>
+        <p class="ar-kapatma-git">
+          <a href={k.url} rel="nofollow">Resmî Gazete kaydı</a>
+        </p>
       </li>
     ))}
   </ol>
@@ -119,4 +144,44 @@ const sema = [
   @media (max-width: 560px) {
     .ar-kunye div { grid-template-columns: 1fr; gap: 0.1rem; }
   }
+
+  .ar-kapatma-giris { max-width: 66ch; }
+
+  /* Şerh kutusu: il bloklarındaki dürüstlük etiketiyle aynı görünüm */
+  .ar-kapatma-serh {
+    margin: 0 0 1.4rem;
+    padding: 0.8rem 1.1rem;
+    border: 1px solid var(--cizgi);
+    border-left: 3px solid var(--kehribar);
+    font-size: 0.88rem;
+    color: var(--metin-soluk);
+    max-width: 66ch;
+  }
+
+  .ar-kapatma { list-style: none; padding: 0; display: grid; gap: 0.9rem; }
+
+  .ar-kapatma > li {
+    padding: 0.9rem 1.1rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+  }
+
+  .ar-kapatma-kunye {
+    margin: 0 0 0.4rem;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+
+  /* Alıntı: IlPotansiyel'deki .pot-pasaj ile aynı dil */
+  .ar-kapatma-pasaj {
+    margin: 0;
+    font-style: italic;
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .ar-kapatma-git { margin: 0.5rem 0 0; font-size: 0.88rem; }
 </style>

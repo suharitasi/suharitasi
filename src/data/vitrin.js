@@ -212,3 +212,50 @@ export const ARSIV_OZ_CEVAP = [
 if (ARSIV_OZ_CEVAP.length > 280) {
   throw new Error(`vitrin: arşiv öz-cevabı ${ARSIV_OZ_CEVAP.length} karakter — 280 sınırı aşıldı.`);
 }
+
+/* ——— TAHSİSE KAPATMA / KISIT KAYITLARI (28.07 kullanıcı kararı) ———
+   Bu alt küme VITRIN-RAPORU.md §FAZ 3'te ölçülen nedenle il sayfalarına
+   BASILMAZ ve İL İDDİASI TAŞIMAZ: kayıtların il ataması pasajlardan türetilmiş
+   ve ~%23'ü dayanaksız/sahte çıkmıştır (Van←"A. ÖZALP" bakan imzası,
+   Samsun←"Gölü Havzaları" ortak ismi vb.). Kullanıcı kararı: kayıtlar
+   il iddiası OLMADAN, tek liste hâlinde /arsiv/ içinde yayımlanır.
+
+   SAHA ADI ALANI KULLANILMADI — ölçüm: kayıtların 0/23'ünde `saha_adi` alanı
+   var; pasajdan düzenli ifadeyle çıkarım 11/23 sonuç veriyor ama bunların
+   yalnız 6'sı temiz (kalanlar bakan soyadı öneki "ÖZDEMIR/UYSAL" ya da tarih
+   parçası taşıyor = %26 temizlik). Türetilmiş alan kendi kaynağına karşı
+   %100 doğrulanamıyorsa yayımlanmaz (GUNLUK 28.07 kuralı). Bunun yerine RG
+   pasajının KENDİSİ alıntılanır — sitede zaten kullanılan desen
+   (IlPotansiyel "RG ilan pasajları … dizgi hatası içerebilir"). */
+const kapatmaHam = isletmeEk.kayitlar.filter((k) => /tahsise kapatma/i.test(k.durum || ''));
+if (!kapatmaHam.length) throw new Error('vitrin: tahsise kapatma kaydı bulunamadı.');
+for (const k of kapatmaHam) {
+  if (!/^\d{2}\.\d{2}\.\d{4}$/.test(k.rg_tarih || '')) {
+    throw new Error(`vitrin: kapatma kaydında geçersiz RG tarihi (${k.rg_tarih}).`);
+  }
+  if (!k.kaynak_url) throw new Error(`vitrin: ${k.rg_tarih} kapatma kaydında kaynak URL yok.`);
+  if (!k.pasaj || k.pasaj.trim().length < 40) throw new Error(`vitrin: ${k.rg_tarih} kapatma kaydında pasaj yok.`);
+}
+const gunSirala = (t) => t.split('.').reverse().join('');
+export const KAPATMA_KAYITLARI = kapatmaHam
+  .map((k) => ({
+    tarih: k.rg_tarih,
+    durum: k.durum,
+    url: k.kaynak_url,
+    // Pasaj OLDUĞU GİBİ alınır (kırpma yalnız uzunluk için, sonuna …).
+    pasaj: k.pasaj.replace(/\s+/g, ' ').trim().slice(0, 300),
+  }))
+  .sort((a, b) => gunSirala(b.tarih).localeCompare(gunSirala(a.tarih)));
+
+export const KAPATMA_OZET = {
+  sayi: KAPATMA_KAYITLARI.length,
+  ilkYil: Number(KAPATMA_KAYITLARI[KAPATMA_KAYITLARI.length - 1].tarih.slice(6)),
+  sonYil: Number(KAPATMA_KAYITLARI[0].tarih.slice(6)),
+};
+
+// Şerh METNİ tek kaynak: sayfada da, şemada da bu kullanılır — sapmasın.
+export const KAPATMA_SERHI =
+  'Bu kayıtların hangi ile ait olduğu doğrulanmadı; il eşlemesi yapılmamıştır. ' +
+  'Kayıtlar Resmî Gazete arşivinin taranmasıyla derlenmiştir ve pasajlar dizgi ' +
+  'hatası içerebilir. İlan tarihi itibarıyla verilen bilgidir; güncel durum ' +
+  'Devlet Su İşleri\'nden teyit edilmelidir.';

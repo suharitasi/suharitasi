@@ -112,7 +112,7 @@ const tarayici = await chromium.launch({
   args: ['--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'],
 });
 
-const SECICI = '.v2-kanit *, .ar-liste *, .ar-serh, .ar-kunye *';
+const SECICI = '.v2-kanit *, .ar-liste *, .ar-serh, .ar-kunye *, .ar-kapatma *, .ar-kapatma-serh, .ar-kapatma-giris';
 const rapor = { taban: TABAN, zaman: new Date().toISOString(), sayfalar: {} };
 const hatalar = [];
 
