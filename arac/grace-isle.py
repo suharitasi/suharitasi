@@ -16,7 +16,7 @@ DÜRÜSTLÜK KURALLARI (mutlak):
 
 Bağımlılık: python3-gdal (sistemde mevcut) + numpy. pip kurulumu YOK.
 """
-import json, sys, math
+import json, sys, math, os
 from datetime import date, timedelta
 import numpy as np
 from osgeo import gdal
@@ -57,20 +57,11 @@ for i in range(ds.RasterCount):
 # ── Havza poligonları + ışın testi (saf python; ek bağımlılık yok) ──────
 geo = json.load(open(HAVZA_GEO))
 
-def halkalar(geom):
-    if geom['type'] == 'Polygon':
-        return [geom['coordinates'][0]]
-    return [p[0] for p in geom['coordinates']]  # MultiPolygon dış halkaları
-
-def icinde(x, y, halka):
-    ic = False
-    n = len(halka)
-    for i in range(n):
-        x1, y1 = halka[i][0], halka[i][1]
-        x2, y2 = halka[(i + 1) % n][0], halka[(i + 1) % n][1]
-        if (y1 > y) != (y2 > y) and x < (x2 - x1) * (y - y1) / (y2 - y1) + x1:
-            ic = not ic
-    return ic
+# halkalar/icinde arac/grace_geometri.py'ye taşındı (B1.3, 28.07.2026):
+# bu dosya import edilemiyor (üst-seviye 507 MB NetCDF açıyor), o yüzden
+# altın örnek testi saf işlevlere ulaşamıyordu. Davranış aynı.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from grace_geometri import halkalar, icinde  # noqa: E402
 
 def havza_agirliklari(geom):
     """Hücre ağırlığı: hücre içinde 4x4 alt-örnekle poligon kesri × cos(enlem).

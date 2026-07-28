@@ -1,0 +1,25 @@
+{
+  "_not": "ELLE YAZILDI (çıktıdan kopyalanmadı) — beklenti kodun davranışını değil, SÖZLEŞMEYİ ifade eder. 'Kuru Baraj' hiç kayıt almamalı; doluluk 0 gelen Seyhan kaydı YAZILMALI (0 != null); 2026-07-27 serisi bozulmamalı.",
+  "islenen": 3,
+  "canli": {
+    "kunye": { "kayitBaslangici": "2026-07-01", "sonGuncelleme": "2026-07-28", "sonDurum": "ok" },
+    "havzalar": {
+      "Sakarya": {
+        "barajlar": {
+          "Gökçe Barajı": { "seri": { "2026-07-27": { "doluluk": 63.1, "kot": 118.9 }, "2026-07-28": { "doluluk": 62.4, "kot": 118.72 } } },
+          "Yenice Barajı": { "seri": { "2026-07-28": { "doluluk": 41 } } },
+          "Kuru Baraj": { "seri": {} }
+        }
+      },
+      "Seyhan": {
+        "barajlar": {
+          "Seyhan Barajı": { "seri": { "2026-07-28": { "doluluk": 0, "kot": 65.1 } } }
+        }
+      }
+    },
+    "gunler": {
+      "2026-07-27": { "cekimUTC": "2026-07-27T15:00:00.000Z", "durum": "ok", "barajKaydi": 1 },
+      "2026-07-28": { "cekimUTC": "2026-07-28T15:00:00.000Z", "durum": "ok", "barajKaydi": 3 }
+    }
+  }
+}

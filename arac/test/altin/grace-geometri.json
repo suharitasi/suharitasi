@@ -1,0 +1,32 @@
+{
+  "_not": "ALTIN ÖRNEK — GRACE havza ağırlıklarının çekirdeği (arac/grace_geometri.py). Işın atma testinin bilinen doğruları: birim kare, ikizkenar üçgen, delikli görünümlü içbükey (L) şekil ve MultiPolygon halka çıkarımı. Kenar/köşe davranışı ALGORİTMANIN sözleşmesidir (yarı-açık: alt kenar içeride, üst kenar dışarıda) — değişirse havza hücre sayıları sessizce kayar.",
+  "halkalar": [
+    {
+      "ad": "Polygon tek halka",
+      "geom": { "type": "Polygon", "coordinates": [[[0, 0], [4, 0], [4, 4], [0, 4], [0, 0]]] },
+      "beklenenHalkaSayisi": 1
+    },
+    {
+      "ad": "MultiPolygon iki parça",
+      "geom": { "type": "MultiPolygon", "coordinates": [[[[0, 0], [1, 0], [1, 1], [0, 0]]], [[[5, 5], [6, 5], [6, 6], [5, 5]]]] },
+      "beklenenHalkaSayisi": 2
+    }
+  ],
+  "icinde": [
+    { "ad": "kare — merkez", "halka": [[0, 0], [4, 0], [4, 4], [0, 4]], "x": 2, "y": 2, "beklenen": true },
+    { "ad": "kare — dışarısı sağ", "halka": [[0, 0], [4, 0], [4, 4], [0, 4]], "x": 5, "y": 2, "beklenen": false },
+    { "ad": "kare — dışarısı sol", "halka": [[0, 0], [4, 0], [4, 4], [0, 4]], "x": -1, "y": 2, "beklenen": false },
+    { "ad": "kare — dışarısı üst", "halka": [[0, 0], [4, 0], [4, 4], [0, 4]], "x": 2, "y": 5, "beklenen": false },
+    { "ad": "kare — dışarısı alt", "halka": [[0, 0], [4, 0], [4, 4], [0, 4]], "x": 2, "y": -1, "beklenen": false },
+    { "ad": "kare — alt kenar (yarı-açık: içeride)", "halka": [[0, 0], [4, 0], [4, 4], [0, 4]], "x": 2, "y": 0, "beklenen": true },
+    { "ad": "kare — üst kenar (yarı-açık: dışarıda)", "halka": [[0, 0], [4, 0], [4, 4], [0, 4]], "x": 2, "y": 4, "beklenen": false },
+    { "ad": "üçgen — içeride", "halka": [[0, 0], [4, 0], [2, 4]], "x": 2, "y": 1, "beklenen": true },
+    { "ad": "üçgen — üst köşe dışı", "halka": [[0, 0], [4, 0], [2, 4]], "x": 0.5, "y": 3, "beklenen": false },
+    { "ad": "L şekli — çentiğin içi (dışarıda olmalı)", "halka": [[0, 0], [4, 0], [4, 2], [2, 2], [2, 4], [0, 4]], "x": 3, "y": 3, "beklenen": false },
+    { "ad": "L şekli — gövde (içeride)", "halka": [[0, 0], [4, 0], [4, 2], [2, 2], [2, 4], [0, 4]], "x": 1, "y": 3, "beklenen": true },
+    { "ad": "L şekli — alt kanat (içeride)", "halka": [[0, 0], [4, 0], [4, 2], [2, 2], [2, 4], [0, 4]], "x": 3, "y": 1, "beklenen": true },
+    { "ad": "negatif koordinat — içeride", "halka": [[-5, -5], [-1, -5], [-1, -1], [-5, -1]], "x": -3, "y": -3, "beklenen": true },
+    { "ad": "gerçek ölçek — Türkiye kutusu içi", "halka": [[26, 36], [45, 36], [45, 42], [26, 42]], "x": 32.85, "y": 39.93, "beklenen": true },
+    { "ad": "gerçek ölçek — Türkiye kutusu dışı", "halka": [[26, 36], [45, 36], [45, 42], [26, 42]], "x": 32.85, "y": 45.0, "beklenen": false }
+  ]
+}
