@@ -1,7 +1,7 @@
 {
  "_not": "GÖRSEL/DÜZEN TABANI — sürümlü YAPILANDIRMA (log değil). Bilinçli tasarım değişikliğinde `node arac/site-saglik.mjs --gorsel-taban-yenile --gerekce \"...\"` ile yenilenir; yenilenmeden kalem KIRMIZI kalır. Ölçüm deterministiktir: sabit viewport + DPR + reduced-motion (sahne 0'da donar).",
  "tabanTarihi": "2026-07-28T18:23:59.844Z",
- "gerekce": "ilk kurulum — hero saha kadrajı + reset :where düzeltmesi sonrası taban (gorsel-bekci Faz 1)",
+ "gerekce": "ilk kurulum — hero saha kadrajı + reset :where düzeltmesi sonrası taban (gorsel-bekci Faz 1) · M12 (28.07): rehber grubuna ikinci örnek eklendi — G4 ritmi bu grupta sayfadan sayfaya değişiyordu (28.07 varyans ölçümü), tek örnek yetersizdi.",
  "esikler": {
   "g1KesismePx2": 2000,
   "g2OlcekOran": 1.05,
@@ -491,6 +491,44 @@
      "etiket": "vaka-kaynak",
      "padUst": 0,
      "padAlt": 0
+    }
+   ],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": null,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/rehberler/su-tahsisi-oncelik-sirasi/@md": {
+   "tipografi": {
+    "h1Px": 48,
+    "h1SatirYuk": 55.2,
+    "altPx": null
+   },
+   "bolumler": [
+    {
+     "etiket": "sonraki",
+     "padUst": 19.2,
+     "padAlt": 19.2
+    }
+   ],
+   "hizalamaSapma": 0,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": null,
+   "mobilIlkSoru": null,
+   "aktifSahne": "(sahne yok)"
+  },
+  "/rehberler/su-tahsisi-oncelik-sirasi/@mobil": {
+   "tipografi": {
+    "h1Px": 32,
+    "h1SatirYuk": 36.8,
+    "altPx": null
+   },
+   "bolumler": [
+    {
+     "etiket": "sonraki",
+     "padUst": 19.2,
+     "padAlt": 19.2
     }
    ],
    "hizalamaSapma": 0,

@@ -1,0 +1,134 @@
+{
+ "_not": "KAPSAM KALEMLERI TABANI (M2-M10) — surumlu YAPILANDIRMA (log degil). Bilincli degisiklikte elle guncellenir; her alan kendi kaleminde gerekcelidir.",
+ "tabanTarihi": "2026-07-28T19:30:00.000Z",
+ "gerekce": "ilk kurulum — kapsam briefi (28.07.2026), rapor/denetim-kapsami.md bosluklari",
+ "seoGeo": {
+  "toplam": 199,
+  "sayfa": 174,
+  "noindexAtlanan": 3,
+  "_not": "noindex sayfalar dislanir (SEO yuzeyi yok). Taban 28.07: title-uzun 48, meta-desc-uzunluk 146, soru-baslik-yok 4, h1-yok 1. Kalem YENI kritikte veya toplam artisinda atesler.",
+  "kabulEdilen": [
+   {
+    "kural": "h1-yok",
+    "sayfa": "/harita/",
+    "gerekce": "28.07 kullanici karari: sayfa SALT HERO, hiyerarsi h2 ile baslar; kaynak dosyanin basliginda yazili"
+   }
+  ]
+ },
+ "veri": {
+  "_not": "veri/potansiyel — ana kayit alani + sayisi. Kayit DUSUSU kirmizi, sema degisimi sari, artis sessiz.",
+  "dosyalar": {
+   "akademik-kunye.json": {
+    "alan": "iller",
+    "say": 81,
+    "ustAnahtar": 11
+   },
+   "dsi-duyurular.json": {
+    "alan": "kayitlar",
+    "say": 2,
+    "ustAnahtar": 6
+   },
+   "ilce-il-dizini.json": {
+    "alan": "ilceler",
+    "say": 948,
+    "ustAnahtar": 9
+   },
+   "isletme-sahalari-ek.json": {
+    "alan": "kayitlar",
+    "say": 310,
+    "ustAnahtar": 8
+   },
+   "isletme-sahalari.json": {
+    "alan": "kayitlar",
+    "say": 109,
+    "ustAnahtar": 8
+   },
+   "kutle-il.json": {
+    "alan": "kutleler",
+    "say": 472,
+    "ustAnahtar": 5
+   },
+   "morfoloji.json": {
+    "alan": "iller",
+    "say": 81,
+    "ustAnahtar": 7
+   },
+   "mta-katalog.json": {
+    "alan": "iller",
+    "say": 64,
+    "ustAnahtar": 8
+   },
+   "osm-su-noktalari.json": {
+    "alan": "iller",
+    "say": 81,
+    "ustAnahtar": 7
+   },
+   "yas-kutleleri.json": {
+    "alan": "havzalar",
+    "say": 12,
+    "ustAnahtar": 4
+   },
+   "zenginlestirme.json": {
+    "alan": "iller",
+    "say": 81,
+    "ustAnahtar": 5
+   }
+  }
+ },
+ "npmAudit": {
+  "dusuk": 1,
+  "orta": 0,
+  "yuksek": 3,
+  "kritik": 0,
+  "_not": "28.07 olcumu: sharp/libvips CVE'leri. TABAN — kalem yalniz YENI acikta atesler; mevcutlarin giderilmesi ayri is (SIRADAKILER)."
+ },
+ "nobetciler": [
+  {
+   "ad": "su-izleme",
+   "dosya": "izleme/state/tarimorman-anasayfa.sha",
+   "toleransSaat": 72,
+   "_not": "cron gunde 2 (05:30/16:00 UTC); kaynak sayfa seyrek degisir -> 3 gun tolerans"
+  },
+  {
+   "ad": "baraj",
+   "dosya": "data/canli/baraj.json",
+   "toleransSaat": 48,
+   "_not": "cron gunluk 15:00 UTC; 2 gun tolerans"
+  },
+  {
+   "ad": "rg-nobetci",
+   "dosya": "izleme/state/rg-nobetci-durum.json",
+   "toleransSaat": 336,
+   "_not": "cron haftalik (Sal 04:20); RG ilani seyrek -> 2 hafta tolerans. Dosya ilk kosumdan sonra dogar."
+  },
+  {
+   "ad": "nhyp-nobetci",
+   "dosya": "izleme/state/nhyp-yayin-durum.json",
+   "toleransSaat": 840,
+   "_not": "cron haftalik (Car 04:40); NHYP yayini cok seyrek -> 5 hafta tolerans. Dosya ilk kosumdan sonra dogar."
+  }
+ ],
+ "yedek": {
+  "varliklar": [
+   "kaynak/dsi-arsiv",
+   "data/arsiv"
+  ],
+  "adaylar": [
+   "/home/suha/yedek",
+   "/home/suha/backup",
+   "/var/backups/suharitasi"
+  ],
+  "_not": "Geri getirilemez varliklar (DSI 2021-22 baskilari kaynakta ZATEN silinmis). 28.07 olcumu: /home/suha/yedek yalniz 92K log yedegi iceriyor -> kritik varliklarin yedegi YOK. Strateji KULLANICI KARARI (SIRADAKILER); kalem yalniz durumu bildirir (sari)."
+ },
+ "dokunma": {
+  "_not": "375px bagimsiz denetimler (satir-ici metin linkleri WCAG 2.5.8 geregi MUAF). Taban = mevcut ihlal sayisi; kalem ARTISTA sari verir (regresyon dedektoru).",
+  "sayfalar": {
+   "/": 7,
+   "/nerede-su-cikar/": 83,
+   "/hangi-kurum/": 13,
+   "/kuyu-ruhsati/manisa/": 7,
+   "/rehberler/kuyu-ruhsati/": 89,
+   "/arsiv/": 2
+  }
+ }
+}

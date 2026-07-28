@@ -154,6 +154,8 @@ const yap = {
   // yokluğu ifade etmek için `false` sentineli kullanılır (yoksa kurulum
   // öncesi TÜM sağlık koşusu çökerdi — ölçüldü 28.07).
   gorselTaban: json(join(IZLEME, 'gorsel-taban.json'), false) || null,
+  // M3-M10 kapsam kalemlerinin tabanı (28.07). Yoksa kalemler atlanır.
+  kapsamTaban: json(join(IZLEME, 'kapsam-taban.json'), false) || null,
   // md13 KONTRAST (27 Tem 2026): boş/eksik dosyada kontrol sessizce atlanır.
   kontrast: json(join(IZLEME, 'kontrast-ornek.json'), { sayfalar: [] }),
 };
@@ -544,6 +546,8 @@ async function tarayiciKontrolleri() {
     // 5-6 sn / ~154 MB, --hizli tabanının (49 sn) %10,2'si → %50 eşiğinin
     // altında, bu yüzden HEM --hizli HEM --tam sınıfında.
     await md14_gorsel(tarayici);
+    // md.21 DOKUNMA HEDEFİ (M8) — aynı tarayıcı oturumunda
+    await md21_dokunma(tarayici);
   } finally {
     await tarayici.close();
   }
@@ -586,6 +590,222 @@ async function md14_gorsel(tarayici) {
       `${olcumler.length} ölçümde G1-G6 sapması yok · taban ${tabanTarih} · sahne ${olcumler[0].aktifSahne}`,
       { tabanTarihi: tabanTarih, olcum: olcumler.length, sahne: olcumler[0].aktifSahne },
       ['tam', 'hizli']);
+  }
+}
+
+// ————————— M2-M10: KAPSAM KALEMLERİ (28 Tem 2026) —————————
+// Kaynak: rapor/denetim-kapsami.md boşluk listesi. Hepsi SALT-ÖLÇÜM.
+// Ölçerler arac/kapsam-kalemleri.mjs'te (tek kaynak).
+
+// md.21 DOKUNMA HEDEFİ (M8) — 375'te bağımsız denetimler.
+// KAYNAK KAPISI (ölçüldü 28.07): md19+md21 ile --hizli 49 → 69 sn (+%41),
+// %50 kapısının altında → ikisi de --hizli sınıfında kalır. md16/17/18/20
+// (geniş tarama, dış link, npm audit) yalnız --tam.
+async function md21_dokunma(tarayici) {
+  const t = yap.kapsamTaban?.dokunma;
+  if (!t) return kaydet('21-dokunma', 'atlandi', 'dokunma tabanı yok', {}, ['tam', 'hizli']);
+  const K = await import(join(KOK, 'arac/kapsam-kalemleri.mjs'));
+  const ctx = await tarayici.newContext({ viewport: { width: 375, height: 812 }, deviceScaleFactor: 2, reducedMotion: 'reduce' });
+  const sonuc = [];
+  try {
+    for (const yol of Object.keys(t.sayfalar)) {
+      const sayfa = await ctx.newPage();
+      await sayfa.goto(TABAN + yol, { waitUntil: 'load', timeout: 45000 });
+      await sayfa.waitForTimeout(250);
+      const o = await sayfa.evaluate(K.DOKUNMA_OLC);
+      sonuc.push({ yol, ...o, taban: t.sayfalar[yol] });
+      await sayfa.close();
+    }
+  } finally { await ctx.close(); }
+  const artan = sonuc.filter((k) => k.ihlal > k.taban);
+  if (artan.length) {
+    kaydet('21-dokunma', 'sari',
+      `${artan.length} sayfada 44px altı bağımsız denetim ARTTI: ` +
+      artan.map((k) => `${k.yol} ${k.taban}→${k.ihlal}`).join(', ') +
+      (artan[0].ornekler?.length ? ` · ör. ${artan[0].ornekler[0].w}x${artan[0].ornekler[0].h} "${artan[0].ornekler[0].metin}"` : ''),
+      { sonuc }, ['tam', 'hizli']);
+  } else {
+    kaydet('21-dokunma', 'gecti',
+      `${sonuc.length} sayfada dokunma hedefi tabanı korundu (ihlal ${sonuc.reduce((a, k) => a + k.ihlal, 0)}, taban ${sonuc.reduce((a, k) => a + k.taban, 0)})`,
+      { sonuc }, ['tam']);
+  }
+}
+
+// md.16 SEO/GEO GENİŞ TARAMA (M2) — mevcut seo-audit + geo-audit araçları
+// YAZILI ve çalışıyordu, yalnız cron'a bağlı değildi (ölçüldü 28.07).
+// md7 ile ÇAKIŞMA: md7 çekirdek 10 sayfada öz-cevap/JSON-LD/title/canonical
+// bakıyor. md16 TÜM dist'i tarar ama bu dört alt-kontrolü ATLAR — md7'ye
+// dokunulmadı, çıktısı bit-eşit kaldı (kanıt raporda).
+async function md16_seoGeo() {
+  const distKok = join(KOK, 'dist');
+  if (!existsSync(distKok)) {
+    return kaydet('16-seo-geo-genis', 'atlandi', 'dist/ yok (build edilmemiş)', {}, ['tam']);
+  }
+  // GERÇEK ARAYÜZ (ölçüldü 28.07): araçlar `denetle()` DEĞİL, sayfa başına
+  // seoSayfa/geoSayfa + site geneli seoSite sunuyor; bulgu şekli
+  // {kod: 'K'|'O'|'D', kural, sayfa, detay}. Varsayım yerine kaynak okundu.
+  const seo = await import(join(KOK, 'arac/seo-audit.mjs'));
+  const geo = await import(join(KOK, 'arac/geo-audit.mjs'));
+  const ortak = await import(join(KOK, 'arac/seo-geo-ortak.mjs'));
+  const dosyalar = ortak.tumHtmlDosyalari(distKok);
+  // md7 ÇAKIŞMA LİSTESİ: md7 çekirdek 10 sayfada öz-cevap/JSON-LD/title/
+  // canonical bakıyor. Aynı kurallar md16'da SAYILMAZ (çift alarm yasak);
+  // md7'ye DOKUNULMADI (çıktısı bit-eşit — kanıt raporda).
+  const CAKISAN = /canonical|oz-cevap|öz-cevap|json-?ld|title-yok/i;
+  // İmzalar kaynaktan okundu: sayfaYolu(distKok, p) · seoSayfa → {title,
+  // bulgular} · geoSayfa → {bulgular} · seoSite(sayfalar[{yol,title}], kok).
+  const tum = [];
+  const sayfaListesi = [];
+  let atlananNoindex = 0;
+  for (const d of dosyalar) {
+    const html = ortak.oku(d);
+    const yol = ortak.sayfaYolu(distKok, d);
+    // NOINDEX SAYFALARI DIŞLANIR (ilkeli): arama motoruna kapalı sayfanın
+    // SEO yüzeyi yoktur. Ölçüldü 28.07 — üç "kritik" bulgunun ikisi
+    // /404/'ten geliyordu (noindex; meta-desc ve uzun gövde beklenmez).
+    if (/name=["']robots["'][^>]*noindex/i.test(html)) { atlananNoindex++; continue; }
+    const sr = seo.seoSayfa(html, yol);
+    const gr = geo.geoSayfa(html, yol);
+    sayfaListesi.push({ yol, title: sr.title });
+    tum.push(...(sr.bulgular || []), ...(gr.bulgular || []));
+  }
+  tum.push(...seo.seoSite(sayfaListesi, distKok));
+  // KABUL EDİLMİŞ BULGULAR (taban): bilinçli kararlar kalemi kilitlemesin.
+  // Örn. /harita/ h1-yok — 28.07 kullanıcı kararı, kaynak dosyanın
+  // başlığında yazılı ("SALT HERO, hiyerarşi h2 ile başlar"). Taban
+  // dosyasında saklanır; YENİ bulgu doğarsa kalem yine ateşler.
+  const kabul = new Set((yap.kapsamTaban?.seoGeo?.kabulEdilen || []).map((x) => `${x.kural}|${x.sayfa}`));
+  const bulgular = tum.filter((b) => !CAKISAN.test(b.kural || '') && !kabul.has(`${b.kural}|${b.sayfa}`));
+  const kritik = bulgular.filter((b) => b.kod === 'K');
+  const sayim = {};
+  bulgular.forEach((b) => { sayim[b.kural] = (sayim[b.kural] || 0) + 1; });
+  const ozet = Object.entries(sayim).sort((a, b) => b[1] - a[1]).slice(0, 6)
+    .map(([k, n]) => `${k}×${n}`).join(', ');
+  const taban = yap.kapsamTaban?.seoGeo?.toplam ?? null;
+  const olcum = { sayfa: dosyalar.length - atlananNoindex, noindexAtlanan: atlananNoindex, toplam: bulgular.length, kritik: kritik.length, sayim, taban };
+  if (kritik.length) {
+    kaydet('16-seo-geo-genis', 'kirmizi',
+      `${kritik.length} YENİ kritik SEO/GEO bulgusu (toplam ${bulgular.length}): ` + kritik.slice(0, 3).map((b) => `${b.kural}@${b.sayfa}`).join(' · '),
+      olcum, ['tam']);
+  } else if (taban !== null && bulgular.length > taban) {
+    kaydet('16-seo-geo-genis', 'sari',
+      `SEO/GEO bulgusu tabandan arttı: ${taban} → ${bulgular.length} · ${ozet}`, olcum, ['tam']);
+  } else {
+    kaydet('16-seo-geo-genis', 'gecti',
+      `${dosyalar.length - atlananNoindex} sayfa geniş tarama (noindex ${atlananNoindex} atlandı) · bulgu ${bulgular.length}` +
+      (taban !== null ? ` (taban ${taban})` : '') + (ozet ? ` · ${ozet}` : ''), olcum, ['tam']);
+  }
+}
+
+// md.17 DIŞ BAĞLANTI NÖBETİ (M3)
+async function md17_disBaglanti() {
+  const K = await import(join(KOK, 'arac/kapsam-kalemleri.mjs'));
+  const distKok = join(KOK, 'dist');
+  if (!existsSync(distKok)) return kaydet('17-dis-baglanti', 'atlandi', 'dist/ yok', {}, ['tam']);
+  const linkler = K.disLinkleriTopla(distKok);
+  const tamTarama = bayrak('--dis-link-tam');
+  // Örneklem boyutu ÖLÇÜLEN TOPLAMDAN türetildi: %5 (1043 → 52).
+  const boyut = tamTarama ? linkler.size : Math.max(20, Math.round(linkler.size * 0.05));
+  // Haftalık tohum: yıl-hafta → aynı hafta aynı küme, sonraki hafta başkası.
+  const simdiT = new Date();
+  const hafta = Math.floor((simdiT - new Date(simdiT.getFullYear(), 0, 1)) / 604800000);
+  const secilen = K.orneklemSec(linkler, boyut, hafta);
+  const r = await K.disLinkDenetle(secilen, linkler, { bekleMs: tamTarama ? 500 : 1000 });
+  const olcum = { toplam: linkler.size, taranan: r.taranan, olu: r.olu, suphe: r.suphe.length, tamTarama };
+  if (r.olu.length) {
+    kaydet('17-dis-baglanti', 'kirmizi',
+      `${r.olu.length} ÖLÜ dış bağlantı (404/410) — ${r.taranan}/${linkler.size} tarandı: ` +
+      r.olu.slice(0, 3).map((x) => `${x.kod} ${x.url.slice(0, 60)}`).join(' · '),
+      olcum, ['tam']);
+  } else if (r.suphe.length) {
+    kaydet('17-dis-baglanti', 'sari',
+      `${r.suphe.length} bağlantı yanıt vermedi (zaman aşımı/5xx — dış sunucu geçici olabilir) · ` +
+      `${r.taranan}/${linkler.size} tarandı, ölü 0`, olcum, ['tam']);
+  } else {
+    kaydet('17-dis-baglanti', 'gecti',
+      `${r.taranan}/${linkler.size} dış bağlantı örneklemi sağlam (ölü 0)`, olcum, ['tam']);
+  }
+}
+
+// md.18 VERİ BÜTÜNLÜĞÜ GENİŞ (M4) — md11'i DEĞİŞTİRMEZ, tamamlar
+async function md18_veriGenis() {
+  const K = await import(join(KOK, 'arac/kapsam-kalemleri.mjs'));
+  const taban = yap.kapsamTaban?.veri ?? null;
+  const { bulgular, guncel } = K.veriBütünlük(KOK, taban);
+  const kirmizi = bulgular.filter((b) => b.tip === 'kirmizi');
+  const sari = bulgular.filter((b) => b.tip === 'sari');
+  const olcum = { dosya: Object.keys(guncel).length, kirmizi: kirmizi.length, sari: sari.length, bulgular };
+  if (kirmizi.length) {
+    kaydet('18-veri-genis', 'kirmizi',
+      `${kirmizi.length} veri kaybı/bozulma: ` + kirmizi.map((b) => `${b.dosya} — ${b.mesaj}`).join(' · '),
+      olcum, ['tam']);
+  } else if (sari.length) {
+    kaydet('18-veri-genis', 'sari',
+      `${sari.length} şema/yapı değişimi: ` + sari.map((b) => `${b.dosya} — ${b.mesaj}`).join(' · '),
+      olcum, ['tam']);
+  } else {
+    kaydet('18-veri-genis', 'gecti',
+      `veri/potansiyel ${Object.keys(guncel).length} dosya: kayıt sayısı düşmedi, şema aynı`,
+      olcum, ['tam']);
+  }
+}
+
+// md.19 BAŞLIK + OG + CTA (M5)
+async function md19_baslikOgCta() {
+  const K = await import(join(KOK, 'arac/kapsam-kalemleri.mjs'));
+  const { bulgular, olcum } = await K.baslikOgCta(TABAN, yap.cekirdek, (u) => getir(u, { redirect: 'follow' }));
+  const kirmizi = bulgular.filter((b) => b.tip === 'kirmizi');
+  const sari = bulgular.filter((b) => b.tip === 'sari');
+  if (kirmizi.length) {
+    kaydet('19-baslik-og-cta', 'kirmizi', kirmizi.map((b) => b.mesaj).join(' · '),
+      { ...olcum, bulgular }, ['tam', 'hizli']);
+  } else if (sari.length) {
+    kaydet('19-baslik-og-cta', 'sari', sari.map((b) => b.mesaj).join(' · '), { ...olcum, bulgular }, ['tam', 'hizli']);
+  } else {
+    kaydet('19-baslik-og-cta', 'gecti',
+      `6 güvenlik başlığı + CSP direktifleri yerinde · ${olcum.ogGorsel} og:image 200 · ${olcum.mailto} mailto CTA geçerli`,
+      olcum, ['tam', 'hizli']);
+  }
+}
+
+// md.20 NÖBETÇİ CANLILIĞI + AUDIT + 404 + YEDEK (M6, M7, M9, M10)
+// Dördü de "durum beyanı" tipinde ve ucuz; tek kalemde toplandı ki pano
+// şişmesin. Her alt bulgu kendi şiddetini taşır.
+async function md20_altyapiDurumu() {
+  const K = await import(join(KOK, 'arac/kapsam-kalemleri.mjs'));
+  const t = yap.kapsamTaban;
+  const hepsi = [];
+  const olcum = {};
+
+  // M6 — nöbetçi canlılığı
+  if (t?.nobetciler) {
+    const n = K.nobetciCanliligi(KOK, t.nobetciler);
+    hepsi.push(...n.bulgular); olcum.nobetci = n.olcum;
+  }
+  // M7 — npm audit (yalnız --tam; ağ + süre)
+  if (MOD === 'tam' && t?.npmAudit) {
+    const a = K.npmAudit(KOK, t.npmAudit);
+    hepsi.push(...a.bulgular); olcum.audit = a.olcum;
+  }
+  // M9 — 404
+  const d = await K.dortYuzDort(TABAN, (u) => getir(u, { redirect: 'follow' }), existsSync(join(KOK, 'public/404.html')));
+  hepsi.push(...d.bulgular); olcum.dortYuzDort = d.olcum;
+  // M10 — depo dışı yedek
+  if (t?.yedek) {
+    const y = K.yedekDurumu(KOK, t.yedek.varliklar, t.yedek.adaylar);
+    hepsi.push(...y.bulgular); olcum.yedek = y.olcum;
+  }
+
+  const kirmizi = hepsi.filter((b) => b.tip === 'kirmizi');
+  const sari = hepsi.filter((b) => b.tip === 'sari');
+  if (kirmizi.length) {
+    kaydet('20-altyapi', 'kirmizi', kirmizi.map((b) => b.mesaj).join(' · '), { ...olcum, bulgular: hepsi }, ['tam']);
+  } else if (sari.length) {
+    kaydet('20-altyapi', 'sari', sari.map((b) => b.mesaj).join(' · '), { ...olcum, bulgular: hepsi }, ['tam']);
+  } else {
+    kaydet('20-altyapi', 'gecti',
+      `nöbetçiler canlı · yeni npm açığı yok · 404 markalı · yedek durumu kayıtlı`,
+      { ...olcum }, ['tam']);
   }
 }
 
@@ -696,21 +916,79 @@ async function md9_lighthouse() {
     screenEmulation: { mobile: false, width: 1350, height: 940, deviceScaleFactor: 1, disabled: false },
     throttling: { rttMs: 40, throughputKbps: 10240, cpuSlowdownMultiplier: 1, requestLatencyMs: 0, downloadThroughputKbps: 0, uploadThroughputKbps: 0 },
   };
+  // M11: gözlenen en büyük LH performans yayılımı (28.07 ölçümü, 3 tur ×
+  // 3 sayfa × 2 kırılım): 11 puan. Emniyet payıyla 12.
+  const LH_YAYILIM = 12;
+  // M1: a11y TABANI 100/100 — 10 sayfa × 2 kırılım × 1 tur, ihlal 0,
+  // varyans 0 (28.07 ölçümü). Bu yüzden a11y için medyan GEREKMEZ.
+  // Eşik: <100 SARI (yeni ihlal doğdu), <90 KIRMIZI.
+  const A11Y_SARI = 100, A11Y_KIRMIZI = 90;
   const sonuc = [], altinda = [];
   for (const yol of yap.cekirdek) {
     const esik = yol === '/' ? { mobil: 70, masaustu: 85 } : { mobil: 70, masaustu: 90 };
-    const kayit = { yol, esik };
+    const kayit = { yol, esik, a11y: {} };
     for (const [ad, ayar] of [['masaustu', MASAUSTU], ['mobil', {}]]) {
       // PARALEL YASAK: her ölçüm kendi tarayıcısını açar ve kapatır.
-      const chrome = await launch({ chromePath: EXE, chromeFlags: ['--headless=new', '--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'] });
-      try {
-        const r = await lighthouse(TABAN + yol, { port: chrome.port, onlyCategories: ['performance'], output: 'json', logLevel: 'error', ...ayar });
-        kayit[ad] = Math.round(r.lhr.categories.performance.score * 100);
-      } finally { await chrome.kill(); }
+      // M1 (28.07): accessibility AYNI çağrıya eklendi — ayrı koşum 145 sn
+      // sürerdi, birleşik çağrıda ek maliyet ölçülemeyecek kadar küçük.
+      // M11 (28.07): UYARLAMALI MEDYAN. Ölçülen LH performans yayılımı
+      // /hangi-kurum/ mobilde 11 PUAN (88-99), /harita/ mobilde 5 — tek
+      // atış yanlış alarm üretir. Kör 3-tur koşum md9'u üçe katlardı;
+      // bunun yerine: ilk atış eşiği GÖZLENEN EN BÜYÜK YAYILIM kadar
+      // (12 puan) aşıyorsa tek atış yeterli, aksi halde 2 atış daha ve
+      // MEDYAN alınır. Doğruluk aynı, maliyet çok daha düşük.
+      const olc = async () => {
+        const chrome = await launch({ chromePath: EXE, chromeFlags: ['--headless=new', '--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'] });
+        try {
+          const r = await lighthouse(TABAN + yol, { port: chrome.port, onlyCategories: ['performance', 'accessibility'], output: 'json', logLevel: 'error', ...ayar });
+          return {
+            perf: Math.round(r.lhr.categories.performance.score * 100),
+            a11y: Math.round(r.lhr.categories.accessibility.score * 100),
+            ihlaller: Object.values(r.lhr.audits)
+              .filter((a) => a.score !== null && a.score < 1 && a.scoreDisplayMode !== 'notApplicable'
+                && (r.lhr.categories.accessibility.auditRefs || []).some((x) => x.id === a.id))
+              .map((a) => a.id),
+          };
+        } finally { await chrome.kill(); }
+      };
+      const ilk = await olc();
+      let perf = ilk.perf;
+      kayit.a11y[ad] = ilk.a11y;
+      if (ilk.ihlaller.length) kayit.a11yIhlal = [...new Set([...(kayit.a11yIhlal || []), ...ilk.ihlaller])];
+      if (ilk.perf < esik[ad] + LH_YAYILIM) {
+        const b = await olc(), c2 = await olc();
+        perf = [ilk.perf, b.perf, c2.perf].sort((x, y) => x - y)[1];
+        kayit[`${ad}Turlar`] = [ilk.perf, b.perf, c2.perf];
+      }
+      kayit[ad] = perf;
     }
-    kayit.gecti = kayit.masaustu >= esik.masaustu && kayit.mobil >= esik.mobil;
+      kayit.gecti = kayit.masaustu >= esik.masaustu && kayit.mobil >= esik.mobil;
     if (!kayit.gecti) altinda.push(kayit);
     sonuc.push(kayit);
+  }
+
+  // M1: ERİŞİLEBİLİRLİK ayrı kalem (md15) — md9 ile aynı LH koşumundan
+  // beslenir, ek maliyet yok. Performanstan AYRI raporlanır çünkü ayrı
+  // sorumluluk: performans dalgalanır (medyan ister), a11y deterministiktir.
+  const a11yDusuk = sonuc.filter((k) => Math.min(k.a11y.masaustu, k.a11y.mobil) < A11Y_SARI);
+  const a11yKritik = sonuc.filter((k) => Math.min(k.a11y.masaustu, k.a11y.mobil) < A11Y_KIRMIZI);
+  const ihlalKumesi = [...new Set(sonuc.flatMap((k) => k.a11yIhlal || []))];
+  if (a11yKritik.length) {
+    kaydet('15-erisilebilirlik', 'kirmizi',
+      `${a11yKritik.length} sayfa a11y ${A11Y_KIRMIZI} altında: ` +
+      a11yKritik.map((k) => `${k.yol} ${k.a11y.masaustu}/${k.a11y.mobil}`).join(', ') +
+      (ihlalKumesi.length ? ` · ihlal: ${ihlalKumesi.join(', ')}` : ''),
+      { sayfalar: sonuc.map((k) => ({ yol: k.yol, ...k.a11y })), ihlaller: ihlalKumesi }, ['tam']);
+  } else if (a11yDusuk.length) {
+    kaydet('15-erisilebilirlik', 'sari',
+      `${a11yDusuk.length} sayfada yeni a11y ihlali (taban 100/100): ` +
+      a11yDusuk.map((k) => `${k.yol} ${k.a11y.masaustu}/${k.a11y.mobil}`).join(', ') +
+      (ihlalKumesi.length ? ` · ${ihlalKumesi.join(', ')}` : ''),
+      { sayfalar: sonuc.map((k) => ({ yol: k.yol, ...k.a11y })), ihlaller: ihlalKumesi }, ['tam']);
+  } else {
+    kaydet('15-erisilebilirlik', 'gecti',
+      `${sonuc.length} sayfa a11y 100/100 (taban 28.07: 100/100, ihlal 0)`,
+      { sayfalar: sonuc.map((k) => ({ yol: k.yol, ...k.a11y })) }, ['tam']);
   }
   // İki ARDIŞIK koşuda eşik altı = 🔴, tek koşu = 🟡
   const yeniArdisik = {};
@@ -912,6 +1190,13 @@ async function kosu() {
   await korumali('9-lighthouse', ['tam'], md9_lighthouse);
   // 10-veri-tazeligi KALDIRILDI (B1+B3) — gerekçe md10 bloğundaki notta.
   await korumali('11-veri-butunlugu', ['tam'], md11_veriButunlugu);
+  // M2-M10 kapsam kalemleri (28.07) — her biri korumalı: biri patlarsa
+  // diğerleri koşmaya devam eder.
+  await korumali('16-seo-geo-genis', ['tam'], md16_seoGeo);
+  await korumali('17-dis-baglanti', ['tam'], md17_disBaglanti);
+  await korumali('18-veri-genis', ['tam'], md18_veriGenis);
+  await korumali('19-baslik-og-cta', ['tam', 'hizli'], md19_baslikOgCta);
+  await korumali('20-altyapi', ['tam'], md20_altyapiDurumu);
 
   if (ONARIM_ACIK && onarimlar.length) await onarimlariUygula();
   return bitir();
@@ -1085,6 +1370,12 @@ async function durumMdYaz(kayit) {
 |---|---|
 ${kayit.sonuclar.map(satir).join('\n')}
 
+${yap.kapsamTaban ? `### Kapsam kalemleri tabanı (M2-M10)
+
+Taban tarihi: **${(yap.kapsamTaban.tabanTarihi || '').slice(0, 10)}** · ${yap.kapsamTaban.gerekce || ''}
+SEO/GEO ${yap.kapsamTaban.seoGeo?.toplam ?? '?'} bulgu · npm açık taban ${JSON.stringify(yap.kapsamTaban.npmAudit || {})} · ${(yap.kapsamTaban.nobetciler || []).length} nöbetçi izleniyor
+Dış bağlantı: haftalık %5 örneklem (\`--dis-link-tam\` ile tam tarama).
+` : ''}
 ${yap.gorselTaban ? `### Görsel/düzen tabanı (G1-G6)
 
 Taban tarihi: **${(yap.gorselTaban.tabanTarihi || '').slice(0, 10)}** · gerekçe: ${yap.gorselTaban.gerekce || '(yok)'}
