@@ -1,5 +1,48 @@
 # GUNLUK.md — seans notları
 
+## 2026-07-28 (öğleden sonra) — görünmeyen varlık teşhiri + FAZ 3 durdurma
+
+**Merge:** `29dbc9c` — /arsiv/ künye sayfası (8 set) + ana sayfa kanıt bandı
+(472 kütle · 419 RG kaydı · 155 kurum). Gerileme 0/173, S1 korundu.
+Tam döküm: `VITRIN-RAPORU.md`.
+
+### Günün asıl bulgusu: keyword eşleşmesi il ataması üretemez
+Brief 23 "tahsise kapatma/kısıt" RG kaydının il sayfalarında gösterilmesini
+istedi. Kayıtların sınıflandırması doğruydu (23/23'ünde gerçek yasak dili
+var) ama **hangi ile ait olduğu** güvenilmezdi. Bağımsız kontrol (pasaj
+metnine karşı doğrulama + ilçe dizini + bağlam okuması) 30 il-kayıt
+eşleşmesinin en az 7'sini dayanaksız ya da sahte gösterdi (~%23):
+
+| Atama | Eşleşen dizge | Gerçek |
+|---|---|---|
+| Van | "A. ÖZALP" | bakan imzası; ilan Antalya sahası |
+| Samsun | "Gölü Havzaları" | ortak isim "havza"; ilan Ankara sahası |
+| Denizli | "Çardak Köyleri" | Nevşehir'e bağlı köy |
+| Gümüşhane | "Kürtün Irmağı" | Samsun ilanındaki akarsu |
+| Burdur | krom madeni kararnamesi | RG fihrist sayfası, su ilanı değil |
+
+Kök neden: pasajlar iki sütunlu RG sayfalarının OCR'ı; satırlar komşu
+sütundan sızıyor ve bir "kayıt" birden çok ilanın parçasını taşıyabiliyor.
+
+**KURAL (yeni):** bir veri alanı türetilmişse (keyword/dizin eşleşmesi),
+YAYINDAN ÖNCE kendi kaynak metnine karşı doğrulanır. Doğrulama oranı
+raporlanır; %100 değilse ya alan düzeltilir ya yayımlanmaz. Özellikle
+il/ilçe adları ortak isim ("havza", "güney", "çardak") ve kişi soyadı
+("Özalp") olabilir — eşleşme tek başına dayanak değildir.
+
+### Ölçüm aracının kendi körlüğü
+Kontrast ölçeri yalnız `rgb()` ayrıştırıyordu; v2 paleti `oklch()` olduğu
+için ana sayfada 14 metin düğümünün 13'ü **sessizce** atlandı ve "kontrast
+temiz" görüntüsü doğdu. Düzeltme: CSS Color 4 dönüşümü + **çözülemeyen renk
+sayacı** (atlanan düğüm artık build'i düşürüyor). Aynı turda "sağ taşan öğe"
+sayacının da yanlış alarm ürettiği ölçüldü (main tabanında da 12 öğe — hero
+poster/video scale, overflow:hidden ile kırpılıyor); eşik yatay kaydırmaya
+çevrildi.
+
+**KURAL (pekiştirme):** bir ölçüm "temiz" diyorsa, ölçemediği düğüm sayısını
+da söylemeli. Sessiz atlama, geçen testten daha tehlikelidir.
+
+
 ## 2026-07-28 — gece paketi + kullanıcı kararları (K1-K9)
 
 **Merge:** 19 commit, canlıda doğrulandı. Tam döküm: `GECE-RAPORU.md`.

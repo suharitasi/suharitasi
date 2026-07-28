@@ -26,6 +26,34 @@ indeksi ölçüm olarak birebir aynı (1440: 3 kolon/672×1352; 375: 1 kolon/
 335×4069). 2 kolona düşürülürse iki sayfa DESEN OLARAK AYRIŞIR; kararın
 kapsamı "yalnız kapı" mı "her iki sayfa" mı önce netleşmeli.
 
+GÖRÜNMEYEN VARLIK TEŞHİRİ — MERGE EDİLDİ (28 Tem 2026, ön-onaylı; merge
+29dbc9c). /arsiv/ künye sayfası (8 veri seti) + ana sayfa KANIT BANDI
+(472 kütle · 419 RG kaydı · 155 kurum). Seçim kriteri ölçülebilir, elenenlerin
+gerekçesi src/data/vitrin.js'te kalıcı. Sayıların TAMAMI build'de sayılır.
+Ölçüldü: gerileme 0/173 · sitemap 173→174 KAYIP 0 · llms 174→175 · kontrast
+95 düğüm ihlal 0 · konsol 0 · yatay kaydırma 0 · S1 KORUNDU (716-765).
+Süreklilik: /arsiv/ çekirdek sete (9→10); yeni araç arac/vitrin-denetim.mjs.
+KULLANICI CANLI ONAYI BEKLİYOR (görsel iş — kanıt bandı).
+İL SAYFASINA BLOK EKLENMEDİ: ölçüm, il ölçekli varlıkların tamamının
+IlPotansiyel'de zaten basıldığını gösterdi (brief 1 blok izni kullanılmadı).
+
+🔴 AÇIK — FAZ 3 DURDURULDU (RG "tahsise kapatma/kısıt" 23 kaydı YAYIMLANMADI):
+Brief bu kayıtların il sayfalarında gösterilmesini istiyordu; iki şart da
+veriyle karşılanmadı. (1) Künye: 23/23 kayıtta rg_sayi YOK (URL var).
+(2) İl ataması güvenilmez — 30 il-kayıt eşleşmesinin en az 7'si dayanaksız
+ya da SAHTE (~%23). Kanıtlanan tuzaklar: Van←"A. ÖZALP" (bakan imzası,
+ilan Antalya) · Samsun←"Gölü Havzaları" (ortak isim, ilan Ankara) ·
+Denizli←"Çardak Köyleri" (Nevşehir köyü) · Gümüşhane←"Kürtün Irmağı"
+(Samsun ilanı) · Burdur←krom madeni kararnamesi (RG fihrist sayfası).
+Kök neden: pasajlar iki sütunlu RG sayfalarının OCR'ı; satırlar komşu
+sütundan sızıyor, bazı kayıtlar birden çok ilanın parçasını taşıyor.
+NOT: 23/23'te gerçek yasak/kısıt dili VAR — sınıflandırma savunulabilir,
+sorun kaydın hangi İLE ait olduğu.
+YAPILACAK SIRA (iddiada yavaş / Kuyu Çıkar Mı emsali): veri düzeltme
+(rg_sayi çıkarımı + il atamasının pasaj-içi doğrulanması, sütun ayrıştırma)
+→ keşif raporu → [SERDAR-HUKUK] onayı → uygulama briefi. Ayrıntı ve tam
+kanıt tablosu: VITRIN-RAPORU.md §FAZ 3.
+
 S1+K2 UYGULAMASI — MERGE EDİLDİ (28 Tem 2026, ön-onaylı; mock kapısı
 kullanıcı kararıyla kaldırıldı; merge 896d8b1). İki iş:
 · S1 MOBİL İLK EKRAN: "Ruhsatsız kuyu cezası aldım" sorusu 375 kadrajı
