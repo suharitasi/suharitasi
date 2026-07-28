@@ -1,0 +1,130 @@
+---
+// KANIT BANDI (vitrin briefi FAZ 2) — sitenin arkasındaki veri hacmini ana
+// sayfada ÖLÇÜLEBİLİR üç rakamla gösterir.
+//
+// SEÇİM KRİTERİ ÖLÇÜLEBİLİRDİR (brief): (a) başka kaynakta toplu bulunmayan,
+// (b) kayıt sayısı en yüksek, (c) ticari omurgaya doğrudan bağlı — üçünü
+// birden sağlayan ilk 3 varlık. Seçim ve ELENENLERİN gerekçesi tek yerde:
+// src/data/vitrin.js "ANA SAYFA KANIT BANDI" yorumu. Rakamlar build'de sayılır.
+//
+// KONUM KURALI: bant MobilSorular'dan SONRA, Hizmetler'den ÖNCE girer.
+// Nedeni ölçüm: hero ile mobil soru listesi arasına girseydi S1 kazanımı
+// (375'te dert-adlandıran sorunun kadraj içinde kalması) bozulurdu.
+//
+// TASARIM: mevcut v2 bölüm iskeleti (v2-bolum / v2-ic / v2-bolum-kicker) ve
+// hizmet kartı ailesiyle aynı; yeni renk/font/desen İCAT EDİLMEZ.
+import { KANIT_BANDI } from '../../data/vitrin.js';
+
+const bicim = (n) => n.toLocaleString('tr-TR');
+---
+{/* Aydınlık bölüm: Hizmetler ile aynı zemin — ritim dark(hero+sorular) →
+    light(kanıt+hizmetler) → dark(süreç) olarak korunur. */}
+<section class="v2-bolum v2-kanit" id="veri" aria-label="Veri dayanağı">
+  <div class="v2-ic">
+    <div class="v2-bolum-bas">
+      <p class="v2-bolum-kicker">Veri dayanağı</p>
+      <h2>Cevaplar neye dayanıyor?</h2>
+      <p class="v2-intro">Sitedeki her sayı resmî kaynaklardan derlendi ve her
+        yayında veriden yeniden hesaplanıyor.</p>
+    </div>
+
+    <ul class="v2-kanit-izgara">
+      {KANIT_BANDI.map((k) => (
+        <li>
+          <a href={k.yol}>
+            <span class="v2-kanit-sayi">{bicim(k.sayi)}</span>
+            <span class="v2-kanit-birim">{k.birim}</span>
+            <span class="v2-kanit-metin">{k.metin}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <p class="v2-kanit-alt">
+      Kaynak künyeleri, kapsam ve erişim biçimi:
+      <a href="/arsiv/">veri arşivi</a>.
+    </p>
+  </div>
+</section>
+
+<style>
+  .v2-kanit-izgara {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 1023px) { .v2-kanit-izgara { grid-template-columns: 1fr; } }
+
+  /* Kart: hizmet kartıyla (.v2-kart) AYNI aile — aynı tokenlar, aynı
+     yarıçap/geçiş. Ayrım yalnız üstteki 2px vurgu çizgisi (veri bandı
+     idiomu; il/havza sayfalarındaki veri bantlarıyla tutarlı). */
+  .v2-kanit-izgara a {
+    display: block;
+    height: 100%;
+    padding: 1.75rem;
+    text-decoration: none;
+    color: inherit;
+    background: var(--v2-kart);
+    border: 1px solid var(--v2-border);
+    border-top: 2px solid var(--v2-primary);
+    border-radius: 1rem;
+    transition: border-color 200ms var(--sh-eo), transform 200ms var(--sh-eo);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .v2-kanit-izgara a:hover {
+      border-color: var(--v2-primary);
+      transform: translateY(-2px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .v2-kanit-izgara a { transition: none; }
+    .v2-kanit-izgara a:hover { transform: none; }
+  }
+
+  .v2-kanit-sayi {
+    display: block;
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.05;
+    font-variant-numeric: tabular-nums;
+    color: var(--v2-primary);
+  }
+
+  .v2-kanit-birim {
+    display: block;
+    margin-top: 0.3rem;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--v2-muted-fg);
+  }
+
+  .v2-kanit-metin {
+    display: block;
+    margin-top: 0.7rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .v2-kanit-alt { margin: 1.4rem 0 0; font-size: 0.95rem; }
+
+  /* Satır-içi link: aydınlık bölümlerin mevcut idiomu (.v2-kart-git ile aynı
+     token). Ölçüm hatası kaydı (28.07): renk verilmeyince tarayıcı varsayılanı
+     rgb(0,0,238) kalıyordu ve --v2-bg üstünde 1,92:1 ile AA'yı düşürüyordu. */
+  .v2-kanit-alt a {
+    color: var(--v2-primary);
+    text-underline-offset: 0.2em;
+  }
+
+  /* Bölüm zemini: Hizmetler ile aynı (var olan token, yeni renk yok) */
+  .v2-kanit { background: var(--v2-bg); color: var(--v2-metin); }
+  .v2-kanit .v2-bolum-kicker { color: var(--v2-primary); }
+  .v2-kanit-izgara { margin-top: 3rem; }
+</style>

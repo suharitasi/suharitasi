@@ -1,0 +1,122 @@
+---
+// VERİ ARŞİVİ — /arsiv/ (vitrin briefi FAZ 2).
+// Sitedeki sayıların dayandığı veri setlerinin KÜNYE listesi. Editoryal metin
+// YAZILMAZ (brief): her set kaynak + kapsam + sayım + erişim biçimiyle durur.
+// Sayıların TAMAMI build anında gerçek dosyalardan sayılır (src/data/vitrin.js).
+// Tasarım: mevcut içerik sayfası dili (Sayfa + SayfaBasi + OzCevap + mono künye
+// bandı); yeni renk/font/desen İCAT EDİLMEZ.
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import { ARSIV_SETLERI, ARSIV_OZ_CEVAP } from '../data/vitrin.js';
+
+const canonical = new URL('/arsiv/', Astro.site).href;
+
+const sema = [
+  {
+    '@type': 'WebPage',
+    name: 'Veri arşivi',
+    description: ARSIV_OZ_CEVAP,
+    url: canonical,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${new URL('/', Astro.site).href}#site` },
+  },
+  {
+    '@type': 'ItemList',
+    name: 'Su Haritası veri setleri',
+    numberOfItems: ARSIV_SETLERI.length,
+    itemListElement: ARSIV_SETLERI.map((s, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: s.ad,
+    })),
+  },
+];
+---
+<Sayfa baslik="Veri arşivi" aciklama={ARSIV_OZ_CEVAP} sema={sema}>
+  <SayfaBasi etiket="Veri ve yöntem" baslik="Veri arşivi" />
+  <OzCevap metin={ARSIV_OZ_CEVAP} />
+
+  <h2 id="setler">Hangi veri setleri kullanılıyor?</h2>
+
+  <ol class="ar-liste">
+    {ARSIV_SETLERI.map((s) => (
+      <li>
+        <h3>{s.ad}</h3>
+        <dl class="ar-kunye">
+          <div><dt>Kaynak</dt><dd>{s.kaynak}</dd></div>
+          <div><dt>Kapsam</dt><dd>{s.kapsam}</dd></div>
+          <div><dt>Sayım</dt><dd>{s.sayim}</dd></div>
+          <div><dt>Erişim</dt><dd>{s.erisim}</dd></div>
+        </dl>
+        <p class="ar-git"><a href={s.yol}>Sitede nerede görünüyor →</a></p>
+      </li>
+    ))}
+  </ol>
+
+  <p class="ar-serh">
+    Sayımlar her yayında veri dosyalarından yeniden hesaplanır; elle yazılmaz.
+    Kaynak lisansları ve erişim tarihleri için
+    <a href="/hakkinda/">hakkında sayfasındaki</a> kaynak kaydına bakınız.
+  </p>
+</Sayfa>
+
+<style>
+  .ar-liste {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .ar-liste > li {
+    padding: 1rem 1.2rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+  }
+
+  .ar-liste h3 {
+    font-family: var(--serif);
+    font-size: 1.12rem;
+    font-weight: 500;
+    margin: 0 0 0.6rem;
+  }
+
+  /* Künye ızgarası: il sayfasındaki .pot-morf veri bandıyla aynı dil */
+  .ar-kunye { margin: 0; }
+
+  .ar-kunye div {
+    display: grid;
+    grid-template-columns: minmax(6rem, 8rem) 1fr;
+    gap: 0.3rem 1.2rem;
+    padding: 0.4rem 0;
+  }
+
+  .ar-kunye div + div { border-top: 1px solid var(--cizgi); }
+
+  .ar-kunye dt {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+
+  .ar-kunye dd { margin: 0; font-size: 0.93rem; }
+
+  .ar-git { margin: 0.7rem 0 0; font-size: 0.9rem; }
+
+  .ar-serh {
+    margin-top: 1.6rem;
+    padding: 0.8rem 1.1rem;
+    border: 1px solid var(--cizgi);
+    font-size: 0.88rem;
+    color: var(--metin-soluk);
+  }
+
+  @media (max-width: 560px) {
+    .ar-kunye div { grid-template-columns: 1fr; gap: 0.1rem; }
+  }
+</style>

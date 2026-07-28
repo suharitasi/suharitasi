@@ -17,6 +17,7 @@ import AltBilgi from '../components/AltBilgi.astro';
 import PaylasilanMenu from '../components/PaylasilanMenu.astro';
 import Hero from '../components/anasayfa/Hero.astro';
 import MobilSorular from '../components/anasayfa/MobilSorular.astro';
+import KanitBandi from '../components/anasayfa/KanitBandi.astro';
 import Hizmetler from '../components/anasayfa/Hizmetler.astro';
 import Surec from '../components/anasayfa/Surec.astro';
 import Hakkinda from '../components/anasayfa/Hakkinda.astro';
@@ -172,6 +173,11 @@ const sahneVeri = SAHNELER.map((s) => ({
   </noscript>
 
   <MobilSorular />
+
+  {/* Kanıt bandı MobilSorular'dan SONRA: hero ile soru listesi arasına
+      girseydi 375'te S1 kazanımı (dert-adlandıran sorunun kadraj içinde
+      kalması) bozulurdu — konum ölçümle seçildi. */}
+  <KanitBandi />
 
   <Hizmetler />
 

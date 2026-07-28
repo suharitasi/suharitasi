@@ -14,6 +14,10 @@
    "not": "giriş kapısı — ana sayfa sorusunun tek kanonik hedefi. İçeriğinin TAMAMI build-time sayımdır (src/data/kapi.js): veri/potansiyel/*.json bozulur ya da küçülürse sayfadaki rakamlar sessizce yanlışlanır. 81 il linki de buradan üretilir; il sayfası düşerse kapı kırık link verir."
   },
   {
+   "yol": "/arsiv/",
+   "not": "veri arşivi — künye listesinin TAMAMI build-time sayımdır (src/data/vitrin.js); veri/ ya da kaynak/ altında bir set küçülür/kaybolursa sayfa sessizce yanlış sayı basar. Ana sayfa kanıt bandı da aynı üreticiden beslenir."
+  },
+  {
    "yol": "/harita/",
    "not": "harita + 25 havza paneli"
   },

@@ -319,3 +319,40 @@
   "veri yok".
 - İl sınırı poligonu (morfoloji + OSM nokta ataması): yukarıdaki
   tr-iller.json girişi (alpers/Turkey-Maps-GeoJSON, Apache-2.0).
+
+## Veri arşivi sayfası (/arsiv/) — teşhir edilen setler (28.07.2026)
+
+Aşağıdaki setler bu tarihe kadar YALNIZ türev sayı olarak görünüyordu; künye
+listesi olarak da yayımlandı (`/arsiv/`, üretici `src/data/vitrin.js`).
+Setlerin kendi künyeleri bu belgede kendi başlıkları altında durur; burada
+yalnız TEŞHİR KAYDI tutulur — yeni kaynak eklenmedi.
+
+- **Resmî Gazete işletme sahası ilanları** — bkz. "Su potansiyeli katmanı".
+  Teşhir: /arsiv/ künye kartı + il sayfaları (kayıt bazında).
+- **NHYP yeraltı suyu kütleleri** — bkz. "Su potansiyeli katmanı".
+  Teşhir: /arsiv/ + il sayfaları + /nerede-su-cikar/.
+- **GRACE/GRACE-FO** — bkz. "GRACE su depolaması anomalisi". ÜLKE GENELİ seri
+  (aylık) bu tarihe kadar sitede HİÇ görünmüyordu; artık /arsiv/'de kapsam ve
+  kayıt sayısıyla künyeli. Havza kırılımı havza sayfalarında zaten görünürdü.
+- **EPİAŞ günlük baraj arşivi** — bkz. "EPİAŞ günlük baraj verisi". Günlük
+  anlık görüntü arşivi görünmüyordu; artık /arsiv/'de künyeli (yalnız
+  görüntüleme; indirme sunulmuyor).
+- **DSİ istatistik arşivi** — bkz. "DSİ istatistik arşivi yerel kopyası".
+  Arşivin varlığı sitede yazılı değildi; artık /arsiv/'de dosya sayısıyla
+  künyeli (yalnız kaynak olarak tutulur).
+- **Havza YAS tahsis/rezerv serisi** — bkz. DSİ istatistikleri; havza
+  sayfalarında görünüyordu, artık /arsiv/'de de künyeli.
+- **Kurum × işlem yetki matrisi** — bkz. "Apilex hukuki araştırma çıktısı";
+  /hangi-kurum/ sayfasında görünür, /arsiv/'de künyeli.
+- **MTA / OpenAlex / OpenStreetMap künyeleri** — bkz. "Su potansiyeli
+  katmanı"; il sayfalarında görünür, /arsiv/'de toplu künyeli.
+
+SAYIM KURALI: /arsiv/ ve ana sayfa kanıt bandındaki her rakam build anında
+veri dosyalarından sayılır (`src/data/vitrin.js`); bu belgeye sabit sayı
+yazılmaz — bayatlamasın (28.07 OpenAlex satırı dersi).
+
+GÖRÜNMEZ KALANLAR (gerekçeli, bilinçli): ilçe→il dizini ve CT3 kuyruğu
+(iç türetme araçları, yayın değeri yok) · su terim havuzu (iç sözlük) ·
+DSİ duyuru taraması (2 kayıt, OCR gürültüsü — yayına değmez) ·
+RG "tahsise kapatma/kısıt" alt kümesi (il ataması doğrulanamadı; ayrıntı
+VITRIN-RAPORU.md FAZ 3).
