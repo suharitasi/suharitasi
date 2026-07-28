@@ -87,6 +87,53 @@ function bellekMB() {
   return m ? Math.round(Number(m[1]) / 1024) : Math.round(os.freemem() / 1024 / 1024);
 }
 
+// ————————————————— KOŞUM KİLİDİ + KAYNAK TAVANI (2026-07-28) —————————————————
+// NEDEN (ölçüldü, rapor/sunucu-donma.md): 23 Tem'de sunucu iki kez RAM+swap
+// tükenmesiyle cevapsız kaldı (avail 90 MB, swap 6047 MB, %system 42,
+// %iowait 24). Sebep sağlık koşumu DEĞİLDİ — koşum maliyeti ölçüldü:
+// --tam 1917 MB / 452 sn, --hizli 1074 MB / 68 sn. Ama koşumun bir donma
+// anında ÜSTÜNE binmesi arızayı büyütür ve ölçümü de bozar. İki koruma:
+//   (1) tek koşum kilidi — ikinci koşum başlamaz, SESSİZCE ÇIKMAZ, raporlar;
+//   (2) kaynak tavanı — boş bellek koşumun ölçülen tepesinin altındaysa
+//       koşum yapılmaz, "kaynak yetersiz" olarak raporlanır.
+// Tavan ölçümden türetildi: tepe RSS + %30 pay (tam 1917→2500, hizli 1074→1400).
+const KILIT_YOL = '/tmp/suharitasi-saglik.lock';
+const KAYNAK_TAVAN_MB = { tam: 2500, hizli: 1400 };
+let kilitAlindi = false;
+let kaynakDurdu = false;   // true ise sonBasariliKosu damgalanmaz (bekçi görsün)
+
+// Kilit sahibi gerçekten yaşıyor mu? PID tekrar kullanımına karşı cmdline'a bakar.
+function kilitSahibiCanli(pid) {
+  try {
+    const cmd = readFileSync(`/proc/${pid}/cmdline`, 'utf8');
+    return cmd.includes('site-saglik.mjs');
+  } catch { return false; }   // /proc kaydı yok = süreç ölmüş
+}
+
+// Başarılı: null. Başarısız: sahibi anlatan nesne (çağıran RAPORLAR).
+function kilitAl() {
+  if (existsSync(KILIT_YOL)) {
+    const eski = json(KILIT_YOL, {});
+    if (eski.pid && kilitSahibiCanli(eski.pid)) return { ...eski, bayat: false };
+    // Bayat kilit (koşum çökmüş): devral, ama sessizce yutma — logla.
+    console.log(`[KİLİT] bayat kilit devralındı (PID ${eski.pid ?? '?'}, mod ${eski.mod ?? '?'}, ${eski.zaman ?? '?'})`);
+  }
+  writeFileSync(KILIT_YOL, JSON.stringify({ pid: process.pid, mod: MOD, zaman: simdi() }) + '\n');
+  kilitAlindi = true;
+  return null;
+}
+
+function kilitBirak() {
+  if (!kilitAlindi) return;
+  try {
+    // Yalnız KENDİ kilidimizi sil — devralınmış/başkasının kilidini değil.
+    const k = json(KILIT_YOL, {});
+    if (k.pid === process.pid) execFileSync('rm', ['-f', KILIT_YOL]);
+  } catch (e) { console.error(`[KİLİT] bırakılamadı: ${e.message}`); }
+  kilitAlindi = false;
+}
+process.on('exit', kilitBirak);
+
 async function getir(url, opts = {}) {
   const kontrol = new AbortController();
   const zaman = setTimeout(() => kontrol.abort(), opts.zamanAsimi || 20000);
@@ -1172,6 +1219,29 @@ async function kosu() {
   await mkdir(CIKTI, { recursive: true });
   await mkdir(join(IZLEME, 'state'), { recursive: true });
 
+  // (1) TEK KOŞUM KİLİDİ — ikinci koşum ölçüm yapmaz, DURUMU EZMEZ, raporlar.
+  const sahip = kilitAl();
+  if (sahip) {
+    kaynakDurdu = true;
+    kaydet('22-kaynak', 'sari',
+      `koşum atlandı — başka koşum sürüyor (PID ${sahip.pid}, mod --${sahip.mod}, başlangıç ${sahip.zaman})`,
+      { kilit: sahip }, ['hizli', 'tam']);
+    return bitir();
+  }
+
+  // (2) KAYNAK TAVANI — ölçülen tepe RSS + %30 pay. Altındaysa koşum yapılmaz.
+  const bosBellek = bellekMB();
+  const tavan = KAYNAK_TAVAN_MB[MOD] ?? 1400;
+  if (bosBellek < tavan) {
+    kaynakDurdu = true;
+    kaydet('22-kaynak', 'sari',
+      `koşum atlandı — kaynak yetersiz: boş bellek ${bosBellek} MB < ${tavan} MB (--${MOD} ölçülen tepesi + %30 pay)`,
+      { bosBellekMB: bosBellek, tavanMB: tavan }, ['hizli', 'tam']);
+    return bitir();
+  }
+  kaydet('22-kaynak', 'gecti', `boş bellek ${bosBellek} MB ≥ tavan ${tavan} MB · koşum kilidi alındı`,
+    { bosBellekMB: bosBellek, tavanMB: tavan }, ['hizli', 'tam']);
+
   if (BEKLE_SHA) {
     const b = await shaBekle(BEKLE_SHA);
     if (!b.yayinda) {
@@ -1307,6 +1377,9 @@ async function bitir() {
     zaman: simdi(), mod: MOD, taban: TABAN, genel,
     kirmizi: kirmizi.length, sari: sari.length, gecti: sonuclar.filter((s) => s.durum === 'gecti').length,
     sonuclar, onarim: onarimlar.length, devir: devirler,
+    // Faz 2/3 (28.07): kaynak yetersizliği ya da kilit yüzünden ÖLÇÜM YAPILMAMIŞ
+    // koşum, "son ölçüm" sayılmaz — mod özetinde ve kırmızı korumasında atlanır.
+    kaynakDurdu,
   };
 
   if (MOD !== 'test') {
@@ -1319,8 +1392,12 @@ async function bitir() {
     // koşmuyor" diye İKİNCİ, yanlış bir alarm üretiyordu — 27.07 sabahı
     // aynen böyle oldu (md4 yanlış alarmı → UYARI-SAGLIK.md "22 saat önce").
     // Arıza zaten kırmızı kontrolle raporlanıyor; canlılık ayrı sinyaldir.
-    durum.sonBasariliKosu = simdi();
-    if (!kirmizi.length) durum.sonKirmizisizKosu = simdi();  // bilgi kaybı olmasın
+    // KAYNAK DURDURMASI İSTİSNASI (28.07): koşum ölçüm YAPMADAN döndüyse
+    // canlılık damgası VURULMAZ. Yoksa sistem "kaynak yetersiz" diye üst üste
+    // stand-down yaparken bekçiye sağlıklı görünür ve sessiz ölüm doğardı;
+    // damga vurulmayınca saglik-bekcisi.sh 14 saat kuralıyla 🔴 verir.
+    if (!kaynakDurdu) durum.sonBasariliKosu = simdi();
+    if (!kirmizi.length && !kaynakDurdu) durum.sonKirmizisizKosu = simdi();  // bilgi kaybı olmasın
     if (sitemapUrlleri.length) durum.sonSitemapSayisi = sitemapUrlleri.length;
 
     // E3 tekrar koruması: aynı arıza her koşuda mail atmaz — durum DEĞİŞİMİNDE.
@@ -1349,22 +1426,80 @@ async function bitir() {
   return kayit;
 }
 
+// ————————————————— FAZ 3: KIRMIZI KORUMASI (2026-07-28) —————————————————
+// ARIZA: --tam kırmızı bulduktan sonra koşan --hizli, SITE-DURUM'un "Son koşu"
+// tablosunu üzerine yazıyordu. --hizli, --tam'ın kalemlerini (md16/md17/md9…)
+// ÖLÇMEDİĞİ için kırmızı sessizce kayboluyordu — md17 kırmızısı böyle gitti.
+// ÇÖZÜM: kırmızı, "sonraki koşu yeşil geldi" diye değil, O KALEMİN kendisi
+// yeniden ölçülüp GEÇTİĞİNDE kapanır. Kalem bazlı, mod bilgisiyle korunur.
+function kirmiziKoruma(gecmisTumu) {
+  // Ölçüm yapmamış (kilit/kaynak) koşumlar ne kırmızı açar ne kırmızı kapatır.
+  const olcumler = gecmisTumu.filter((g) => !g.kaynakDurdu);
+  const sonKirmizi = [...olcumler].reverse().find((g) => g.genel === 'KIRMIZI');
+  if (!sonKirmizi) return null;
+  const sonrakiler = olcumler.filter((g) => g.zaman > sonKirmizi.zaman);
+  const kalemler = (sonKirmizi.sonuclar || []).filter((s) => s.durum === 'kirmizi').map((s) => ({
+    ad: s.ad,
+    mesaj: s.mesaj,
+    // Kalem YENİDEN ÖLÇÜLÜP geçtiyse kapanır; hiç ölçülmediyse AÇIK kalır.
+    kapandi: sonrakiler.some((g) => (g.sonuclar || [])
+      .some((s2) => s2.ad === s.ad && (s2.durum === 'gecti' || s2.durum === 'sari'))),
+  }));
+  const acik = kalemler.filter((k) => !k.kapandi);
+  return { zaman: sonKirmizi.zaman, mod: sonKirmizi.mod, kalemler, acik };
+}
+
 async function durumMdYaz(kayit) {
-  let gecmis = [];
+  let gecmisTumu = [];
   if (existsSync(LOG_YOL)) {
-    gecmis = readFileSync(LOG_YOL, 'utf8').trim().split('\n').slice(-10)
-      .map((s) => { try { return JSON.parse(s); } catch { return null; } }).filter(Boolean).reverse();
+    gecmisTumu = readFileSync(LOG_YOL, 'utf8').trim().split('\n')
+      .map((s) => { try { return JSON.parse(s); } catch { return null; } }).filter(Boolean);
   }
+  const gecmis = gecmisTumu.slice(-10).reverse();
   const im = { YESIL: '🟢', SARI: '🟡', KIRMIZI: '🔴' };
+  const koruma = kirmiziKoruma(gecmisTumu);
+  // Mod başına SON GERÇEK ÖLÇÜM (stand-down koşumlar hariç) — bir modun
+  // sonucu başka modun koşumuyla ezilmesin.
+  const modOzet = [];
+  for (const m of ['tam', 'hizli']) {
+    const son = [...gecmisTumu].reverse().find((g) => g.mod === m && !g.kaynakDurdu);
+    if (son) modOzet.push({ mod: m, ...son });
+  }
   const satir = (s) => `| ${{ gecti: '🟢', sari: '🟡', kirmizi: '🔴', atlandi: '⚪' }[s.durum]} ${s.ad} | ${s.mesaj} |`;
+  // Başlık satırı: ÇÖZÜLMEMİŞ kırmızı varsa, bu koşum yeşil olsa bile 🔴.
+  // Oturum açılış kuralı bu işarete bakar — kırmızı mod değiştirerek kaçamaz.
+  const acikKirmizi = koruma?.acik.length ? koruma : null;
+  const baslik = acikKirmizi
+    ? `**🔴 KIRMIZI (çözülmemiş)** · bu koşu ${im[kayit.genel]} ${kayit.genel} · son koşu ${kayit.zaman} · mod \`--${kayit.mod}\` · hedef ${kayit.taban}`
+    : `**${im[kayit.genel]} ${kayit.genel}** · son koşu ${kayit.zaman} · mod \`--${kayit.mod}\` · hedef ${kayit.taban}`;
+
   const metin = `# SITE-DURUM.md — sürekli site sağlık sistemi
 
-**${im[kayit.genel]} ${kayit.genel}** · son koşu ${kayit.zaman} · mod \`--${kayit.mod}\` · hedef ${kayit.taban}
+${baslik}
 
 > Claude Code kuralı: her oturum açılışında bu dosya okunur; 🔴 varsa
 > SIRADAKILER'den ÖNCE bildirilir (CLAUDE.md).
+${acikKirmizi ? `
+## 🔴 Çözülmemiş kırmızı (mod bilgisiyle korunuyor)
 
-## Son koşu
+**${acikKirmizi.zaman}** · mod \`--${acikKirmizi.mod}\` — aşağıdaki kalemler o koşumdan
+beri YENİDEN ÖLÇÜLÜP geçmedi. Başka modda yeşil koşu bu kırmızıyı KAPATMAZ;
+kalem kendi ölçümünde geçmeden kapanmaz.
+
+| Kalem | Kırmızı mesajı |
+|---|---|
+${acikKirmizi.acik.map((k) => `| 🔴 ${k.ad} | ${k.mesaj} |`).join('\n')}
+${acikKirmizi.kalemler.filter((k) => k.kapandi).length
+    ? `\nAynı koşumdan kapanan: ${acikKirmizi.kalemler.filter((k) => k.kapandi).map((k) => k.ad).join(', ')}\n`
+    : ''}` : ''}
+${modOzet.length ? `
+## Mod başına son ölçüm
+
+| Mod | Zaman | Genel | 🔴 | 🟡 | 🟢 |
+|---|---|---|---|---|---|
+${modOzet.map((g) => `| \`--${g.mod}\` | ${g.zaman} | ${im[g.genel] || ''} ${g.genel} | ${g.kirmizi} | ${g.sari} | ${g.gecti} |`).join('\n')}
+` : ''}
+## Son koşu${kayit.kaynakDurdu ? ' (ÖLÇÜM YAPILMADI — kaynak/kilit)' : ''}
 
 | Kontrol | Sonuç |
 |---|---|
