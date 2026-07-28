@@ -41,6 +41,16 @@ Aynı tuzak "saha adı"nda da çıktı: `saha_adi` alanı 0/23, pasajdan çıkar
 Erzurum Ovası…", "UYSAL SAMSUN…") ya da tarih parçası taşıyordu. Alan
 üretilmedi; RG'nin kendi metni alıntılandı.
 
+### Hero işinde kanıt kaybı (benim hatam) + kurtarma
+Merge sonrası hero worktree'sini KAREKANIT klasörünü arşivlemeden sildim;
+deploy yeni hero'yu bastığı için ÖNCE kare dizisi kalıcı kayboldu (yeniden
+üretilemez). Kurtarılan: SONRA dizisi main dist'inden deterministik olarak
+yeniden üretildi (cikti/denetim/hero/sonra/, 7 kare); ÖNCE'nin ölçüm
+SAYILARI raporda yazılı; en yakın vekil kareler cikti/denetim/pazarlama/
+(bugünkü eski-hero kareleri). KURAL (pekiştirme): worktree silinmeden önce
+cikti/ altındaki kanıt klasörleri ana depoya kopyalanır — "silme öncesi
+bakma" kuralı kanıt klasörlerini de kapsar.
+
 ### Hero "saha kadrajı": şikâyetin kökü tasarımda değil reset'teydi
 Kullanıcının üç şikâyeti ölçümle üç köke indi: (1) H1 72px + başlık bloğu
 sahnenin %19'unu örtüyor; (2) 832×464 kaynak ×1,77 upscale; (3) `.v2-sayfa
