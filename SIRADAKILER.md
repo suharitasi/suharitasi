@@ -1135,3 +1135,11 @@ DÖNÜŞÜM SEANSI (26 Tem 2026) — dal `donusum-2026-07-26`, worktree
       Künyeye dayalı otorite iddiasının altındaki boşluk — düzeltilmeli.
 - [ ] **rg-nobetci ve nhyp-nobetci hiç koşmamış** (state dosyası yok).
       Cron kaydı var mı, doğrulanmalı.
+- [ ] **Yapısal risk (ölçüldü 28.07, kapsam dışı bırakıldı):** `--tam` bir
+      KIRMIZI bulduktan sonra çalışan `--hizli`, SITE-DURUM'un "Son koşu"
+      tablosunu kendi alt kümesiyle üzerine yazıyor ve kırmızı görünmez
+      oluyor (md17 kırmızısı bugün böyle kayboldu; kayıt yalnız "Son 10
+      koşu"da kaldı). Düzeltme = mevcut kalem çıktısını değiştirir, bu
+      briefin bit-eşit kuralı dışındaydı. Öneri: `--hizli` yalnız kendi
+      kalemlerini güncellesin, `--tam`'dan gelen açık kırmızılar tabloda
+      "son --tam'dan" etiketiyle kalsın.
