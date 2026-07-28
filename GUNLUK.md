@@ -30,6 +30,17 @@ raporlanır; %100 değilse ya alan düzeltilir ya yayımlanmaz. Özellikle
 il/ilçe adları ortak isim ("havza", "güney", "çardak") ve kişi soyadı
 ("Özalp") olabilir — eşleşme tek başına dayanak değildir.
 
+### Aynı gün, kapsam daraltmasıyla yayımlandı
+Kullanıcı FAZ 3 kanıtını görüp kapsamı daralttı: kayıtlar **il iddiası
+olmadan** /arsiv/'de tek liste + "hangi ile ait olduğu doğrulanmadı" şerhi.
+Riskli alan (il ataması) düştü, kaydın kendisi görünür oldu — durdurmanın
+doğru cevabı "hiç yayımlama" değil, **iddiayı taşıyan alanı çıkarmak**mış.
+
+Aynı tuzak "saha adı"nda da çıktı: `saha_adi` alanı 0/23, pasajdan çıkarım
+11/23 ama temiz yalnız 6/23 (%26) — kalanlar bakan soyadı öneki ("ÖZDEMİR
+Erzurum Ovası…", "UYSAL SAMSUN…") ya da tarih parçası taşıyordu. Alan
+üretilmedi; RG'nin kendi metni alıntılandı.
+
 ### Ölçüm aracının kendi körlüğü
 Kontrast ölçeri yalnız `rgb()` ayrıştırıyordu; v2 paleti `oklch()` olduğu
 için ana sayfada 14 metin düğümünün 13'ü **sessizce** atlandı ve "kontrast
