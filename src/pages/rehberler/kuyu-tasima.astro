@@ -12,6 +12,7 @@ import Katman from '../../components/Katman.astro';
 import YazarKutusu from '../../components/YazarKutusu.astro';
 import IlgiliRehberler from '../../components/IlgiliRehberler.astro';
 import SonrakiAdim from '../../components/SonrakiAdim.astro';
+import RehberKapanis from '../../components/RehberKapanis.astro';
 import { personalar as tumPersonalar } from '../../data/persona.js';
 // Madde 11 / C2 — eşleşme veriden gelir (bkz. rehberler/[slug].astro).
 const ilgiliPersonalar = tumPersonalar
@@ -516,6 +517,7 @@ const sema = [
     {personaBaglar.map((b) => <a href={b.yol}>→ {b.ad}</a>)}
   </nav>
 
+  <RehberKapanis />
   <YazarKutusu />
   <SonrakiAdim konu="Kuyu taşıma" personalar={ilgiliPersonalar} />
   <IlgiliRehberler slugler={d.ilgili} haric={giris.id} />

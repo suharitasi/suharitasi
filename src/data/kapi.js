@@ -77,15 +77,32 @@ const iller = yayinlananIller()
   .sort((a, b) => a.il.localeCompare(b.il, 'tr'));
 const ilSayisi = say(iller.length, 'il sayfası');
 
-// — Öz-cevap: ŞABLON + veri alanları (serbest metin yok, ≤280 bağlayıcı) —
-const ozCevapCumleler = [
-  `Türkiye'de yeraltı suyunun nerede çıkabileceği resmî verilerle il il gösterilir:`,
-  `${havzaPlan} yayımlı havza planında tanımlı ${kutleToplam} yeraltı suyu kütlesinin`,
-  `${kutleEslesti}'si il sınırlarına eşlendi;`,
-  `Resmî Gazete'de ${rgYilIlk}-${rgYilSon} arası ${rgToplam} işletme sahası kaydı var.`,
-  `${ilSayisi} il sayfası açık.`,
-];
-export const OZ_CEVAP = ozCevapCumleler.join(' ');
+// — Öz-cevap: U3 (satis-uygula 28.07) — R2-Sayfa2 metni HARFIYEN
+// (rapor/satis/02-copy-that-sells.md). Cümledeki sayılar bugünkü ölçülü
+// değerlerdir; aşağıdaki bekçiler her build'de veriden sayıp karşılaştırır.
+// Veri değişirse build DÜŞER → onaylı cümle ancak bilinçli güncellenir.
+// (R3-Line5 komut-kipi kapanışı son cümlede zaten var; ek yapılmadı.)
+export const OZ_CEVAP =
+  'Nerede su çıkar? Cevap il il, resmî veriyle: 12 havza planından 472 ' +
+  "yeraltı suyu kütlesi, 347'si il sınırına eşlendi. 1963'ten bu yana 419 " +
+  'Resmî Gazete kaydı tarandı. İlinizi seçin.';
+{
+  const beklenen = [
+    ['havza planı', 12, havzaPlan],
+    ['kütle', 472, kutleToplam],
+    ['eşleşme', 347, kutleEslesti],
+    ['ilk RG yılı', 1963, rgYilIlk],
+    ['RG kaydı', 419, rgToplam],
+  ];
+  for (const [ad, cumledeki, sayilan] of beklenen) {
+    if (cumledeki !== sayilan) {
+      throw new Error(
+        `kapi: onaylı öz-cevaptaki ${ad} (${cumledeki}) veriden sayılan değerle ` +
+        `(${sayilan}) çelişiyor — cümle bilinçli kararla güncellenmeli (kaynak: rapor/satis/ R2-Sayfa2).`
+      );
+    }
+  }
+}
 if (OZ_CEVAP.length > 280) {
   throw new Error(`kapi: öz-cevap ${OZ_CEVAP.length} karakter — 280 sınırı aşıldı.`);
 }

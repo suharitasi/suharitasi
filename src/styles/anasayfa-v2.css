@@ -824,3 +824,18 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
 @media (prefers-reduced-motion: reduce) {
   .sh-drift, .sh-spray, .sh-mist { animation: none; }
 }
+
+/* U2 (satis-uygula 28.07) — kanıt bandı konumu, mobil istisnası ÖLÇÜMLE:
+   masaüstünde DOM sırası geçerli (Hero → noscript → KanitBandi →
+   MobilSorular = kanıt bandı hero-sonrası ilk blok, R1 High-Impact-1).
+   Düz taşıma 375'te ilk soruyu 716→1502'ye itip S1 kazanımını bozduğu
+   ÖLÇÜLDÜĞÜ için (brief'in öngördüğü senaryo) mobilde sıra CSS order ile
+   eski hâline döner: sorular kanıt bandından önce. Flex sütun blok akışını
+   değiştirmez (tam genişlik, stretch). */
+.v2-ust-akis { display: flex; flex-direction: column; }
+@media (max-width: 1023px) {
+  .v2-ust-akis > .v2-hero { order: 1; }
+  .v2-ust-akis > noscript { order: 2; }
+  .v2-ust-akis > .v2-mobil-sorular { order: 3; }
+  .v2-ust-akis > .v2-kanit { order: 4; }
+}

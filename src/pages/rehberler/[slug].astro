@@ -9,6 +9,7 @@ import IlgiliRehberler from '../../components/IlgiliRehberler.astro';
 import Katman from '../../components/Katman.astro';
 import { YAZAR, OG_GORSEL } from '../../data/site';
 import SonrakiAdim from '../../components/SonrakiAdim.astro';
+import RehberKapanis from '../../components/RehberKapanis.astro';
 import { personalar as tumPersonalar } from '../../data/persona.js';
 
 export async function getStaticPaths() {
@@ -237,6 +238,7 @@ if (kalip2) {
       </div>
     )}
 
+    <RehberKapanis />
     <YazarKutusu />
     <SonrakiAdim konu={giris.data.baslik} personalar={ilgiliPersonalar} />
     <IlgiliRehberler slugler={giris.data.ilgili} haric={giris.id} />
@@ -255,6 +257,7 @@ if (kalip2) {
     <Content />
   </div>
   {giris.data.ilKurumTablosu && <IlKurumTablosu />}
+  <RehberKapanis />
   <YazarKutusu />
   <SonrakiAdim konu={giris.data.baslik} personalar={ilgiliPersonalar} />
     <IlgiliRehberler slugler={giris.data.ilgili} haric={giris.id} />

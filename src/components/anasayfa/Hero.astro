@@ -7,8 +7,9 @@
 // Uçuşan sorular GERÇEK <a> linktir (aria-hidden YOK); süzülme sh-drift 9s.
 // prefers-reduced-motion + JS kapalı durumları CSS'te (anasayfa-v2.css).
 import { SORULAR_V2 } from '../../data/anasayfa-v2.js';
+import { HERO_H1, HERO_ALT } from '../../data/anasayfa-satis.js';
 
-const { sahneVeri, ozCevap } = Astro.props;
+const { sahneVeri } = Astro.props;
 
 // v0 deterministik rasgele: rand(seed) = frac(sin(seed*999.13)*43758.5453)
 function rand(seed) {
@@ -80,11 +81,14 @@ const DAMLALAR = Array.from({ length: 90 }, (_, i) => {
     ))}
   </nav>
 
-  <!-- Başlık bloğu -->
+  <!-- Başlık bloğu — U1 (satis-uygula 28.07): H1 ve alt satır üç satış
+       raporundan HARFIYEN (kaynak + sayı bekçisi: src/data/anasayfa-satis.js).
+       Eski H1 ve beş-sayılı alt metin kaldırıldı; envanter sayıları artık
+       kanıt bandında (KanitBandi). Rozet ve uçuşan sorular DOKUNULMADI (U6). -->
   <div class="v2-baslik">
     <p class="v2-rozet">Su Hukuku · Danışmanlık · Su Hakları</p>
-    <h1>Suyla İlgili Her Hukuki Mesele Tek Bir Uzmanda</h1>
-    <p class="v2-alt-metin">{ozCevap}</p>
+    <h1>{HERO_H1}</h1>
+    <p class="v2-alt-metin">{HERO_ALT}</p>
     <div class="v2-butonlar">
       <a class="v2-btn v2-btn-birincil" href="#iletisim">Ücretsiz Ön Görüşme Alın</a>
       <a class="v2-btn v2-btn-ikincil" href="#hizmetler">Hizmetleri İnceleyin</a>

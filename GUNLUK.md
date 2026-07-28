@@ -41,6 +41,17 @@ Aynı tuzak "saha adı"nda da çıktı: `saha_adi` alanı 0/23, pasajdan çıkar
 Erzurum Ovası…", "UYSAL SAMSUN…") ya da tarih parçası taşıyordu. Alan
 üretilmedi; RG'nin kendi metni alıntılandı.
 
+### Satış raporlarının uygulanması: "harfiyen" ile "sabit sayı yazılmaz" barışı
+Üç satış raporunun metinleri (H1, alt satır, öz-cevap, rehber kapanışı)
+brief gereği HARFIYEN uygulandı. Çelişen kural: sabit sayı yazılmaz.
+Çözüm deseni: onaylı cümle sabit durur, içindeki her sayı build'de veriden
+sayılıp cümledekiyle KARŞILAŞTIRILIR; tutmazsa build düşer. Böylece ne
+sessiz bayatlama olur ne onaysız metin değişimi — veri değişince insan
+karar verir. (anasayfa-satis.js, kapi.js U3 bekçileri, RehberKapanis.)
+U2'de brief'in öngördüğü mobil kırılma ölçümle doğrulandı (ilk soru
+716→1502) ve istisna CSS order ile çözüldü; masaüstü DOM sırası değişti,
+mobil görsel sıra korundu.
+
 ### RG sayı çıkarımı: türetilmiş alan nasıl yayımlanır
 Aynı gün açılan iş kalemi kapatıldı — gazete sayısı künyeli kayıt 109 → 363/419.
 Yöntem basitti (arşiv URL dosya adı = gazete sayısı), asıl mesele **çıkarımı

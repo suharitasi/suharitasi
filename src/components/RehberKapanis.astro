@@ -1,0 +1,36 @@
+---
+// REHBER KAPANIŞI — U4 (satis-uygula briefi, 28.07.2026).
+// Metin rapor/satis/BIRLESIK-SATIS-RAPORU.md R2-Sayfa4'ten HARFIYEN
+// (Bly yedi-adımlı mektubun kapanış adımı; görüşme katmanına DOKUNMAZ —
+// o katman KAPSAM DIŞI-1, WhatsApp AI bağlanınca gelecek).
+// SAYI BEKÇİSİ: cümledeki 42, personalar dizisinden her build'de sayılır;
+// tutmazsa build düşer (onaysız/bayat sayı yayımlanamaz).
+// Not (rapora da yazıldı): SonrakiAdim bloğu da /durumum/ linki taşır —
+// bilinçli tekrar; bu cümle gövde kapanışı, o blok gezinme listesi.
+import { personalar } from '../data/persona.js';
+
+const SAYI = 42;
+if (personalar.length !== SAYI) {
+  throw new Error(
+    `RehberKapanis: onaylı cümledeki sektör sayısı (${SAYI}) persona verisiyle ` +
+    `(${personalar.length}) çelişiyor — cümle bilinçli kararla güncellenmeli (kaynak: rapor/satis/ R2-Sayfa4).`
+  );
+}
+---
+<p class="rehber-kapanis">
+  Durumunuz bu rehberdeki hangi adıma denk geliyor bilmiyorsanız,
+  sektörünüzü seçin: <a href="/durumum/">42 sektör profili</a> içinden
+  durumunuza en yakın sayfayı görün.
+</p>
+
+<style>
+  /* Görünüm: mevcut içerik-sonu dili (dürüstlük etiketi ailesi) */
+  .rehber-kapanis {
+    margin-top: 1.6rem;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--cizgi);
+    border-left: 3px solid var(--su-400);
+    font-size: 0.95rem;
+    max-width: 66ch;
+  }
+</style>

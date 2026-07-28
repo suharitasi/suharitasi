@@ -25,15 +25,12 @@ import Iletisim from '../components/anasayfa/Iletisim.astro';
 import { YAZAR, EPOSTA } from '../data/site';
 import '../styles/anasayfa-v2.css';
 
-// Öz-cevap (CLAUDE.md "cevap önce, dayanak sonra"; ≤280 karakter). KANONİK metin
-// — meta description ile aynı kaynak; yalnız mevcut doğrulanmış içerikten
-// damıtıldı, yeni hukuki iddia yok. K-3: hero alt metni olarak kullanılır
-// (GEO için yazılmıştı; pazarlama metni olarak kullanıcı gözden geçirmeli).
-const ozCevap =
-  "Türkiye'nin 25 su havzası tek portalda: havza künyeleri ve yeraltı suyu " +
-  'eğilimi, kuyu ruhsatı ile su tahsisi rehberleri, Su Kanunu taslak takibi. ' +
-  'Kafanızdaki soruyu seçin — cevaba en kısa yoldan. ' +
-  'Portalda 25 havza, 81 il, 42 sektör profili, 20 su işlemi, 10 rehber var.';
+// U1 (satis-uygula 28.07): eski öz-cevap alt metni ve beş-sayılı envanter
+// cümlesi KALDIRILDI — R3-Line2 alternatifi de düştü, yerini R3 master
+// cümlesi (HERO_ALT) aldı; head katmanı (title/description/OG/WebSite)
+// yeni H1+alt satırla uyumlandı. Envanter sayıları kanıt bandında yaşıyor.
+// Ana sayfanın öz-cevap MUAFİYETİ (28.07 kullanıcı kararı) değişmedi.
+import { HERO_ALT } from '../data/anasayfa-satis.js';
 
 // Sahne kaynakları (poster + klip) — eski sayfadan AYNEN (video/poster
 // dosyalarına DOKUNULMADI, M6).
@@ -58,11 +55,11 @@ const sahneVeri = SAHNELER.map((s) => ({
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Su Haritası — Su, yerin altında konuşur.</title>
-<meta name="description" content="Türkiye'nin 25 su havzası: DSİ verisi, kuyu ruhsatı ve su mevzuatı rehberleri, Su Kanunu taslak takibi — tek portalda." />
+<title>Kuyunuz için ruhsat mı lazım, ceza mı geldi? — Su Haritası</title>
+<meta name="description" content={HERO_ALT} />
 <link rel="canonical" href="https://suharitasi.com/" />
-<meta property="og:title" content="su haritası — Türkiye'nin su verisi ve mevzuatı" />
-<meta property="og:description" content="Türkiye'nin 25 su havzası: DSİ verisi, kuyu ruhsatı ve su mevzuatı rehberleri, Su Kanunu taslak takibi — tek portalda." />
+<meta property="og:title" content="Kuyunuz için ruhsat mı lazım, ceza mı geldi? — Su Haritası" />
+<meta property="og:description" content={HERO_ALT} />
 <meta property="og:url" content="https://suharitasi.com" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Su Haritası" />
@@ -103,7 +100,7 @@ const sahneVeri = SAHNELER.map((s) => ({
       "url": "https://suharitasi.com",
       "inLanguage": "tr",
       "publisher": { "@id": "https://suharitasi.com/#kurum" },
-      "description": "Türkiye'nin 25 su havzası: DSİ verisi, kuyu ruhsatı ve su mevzuatı rehberleri, Su Kanunu taslak takibi — tek portalda."
+      "description": HERO_ALT
     }
   ]
 })} />
@@ -152,7 +149,12 @@ const sahneVeri = SAHNELER.map((s) => ({
 
   <PaylasilanMenu />
 
-  <Hero sahneVeri={sahneVeri} ozCevap={ozCevap} />
+  {/* .v2-ust-akis: U2 mobil istisnasının taşıyıcısı — masaüstünde DOM
+      sırası (kanıt bandı hero'dan hemen sonra), mobilde CSS order ile
+      eski sıra (sorular önce). Kural: anasayfa-v2.css sonu. */}
+  <div class="v2-ust-akis">
+
+  <Hero sahneVeri={sahneVeri} />
 
   {/* K3-2C (eski sayfadan AYNEN): JS çalıştırmayan istemci için 6 sahnenin
       durağan kareleri. JS açıkken <noscript> hiç render edilmez. */}
@@ -172,12 +174,16 @@ const sahneVeri = SAHNELER.map((s) => ({
     </section>
   </noscript>
 
+  {/* U2 (satis-uygula 28.07): kanıt bandı hero-sonrası İLK blok (R1
+      High-Impact-1: kanıt iddianın yanında). MOBİL İSTİSNASI ölçümle:
+      düz taşımada 375'te ilk soru kadrajdan çıkıyor (ölçüm raporda) —
+      bu yüzden sarmalayıcı flex, mobilde sırayı eski hâline döndürür
+      (aşağıdaki .v2-ust-akis kuralları); S1 kazanımı korunur. */}
+  <KanitBandi />
+
   <MobilSorular />
 
-  {/* Kanıt bandı MobilSorular'dan SONRA: hero ile soru listesi arasına
-      girseydi 375'te S1 kazanımı (dert-adlandıran sorunun kadraj içinde
-      kalması) bozulurdu — konum ölçümle seçildi. */}
-  <KanitBandi />
+  </div>
 
   <Hizmetler />
 

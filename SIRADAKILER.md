@@ -26,6 +26,37 @@ indeksi ölçüm olarak birebir aynı (1440: 3 kolon/672×1352; 375: 1 kolon/
 335×4069). 2 kolona düşürülürse iki sayfa DESEN OLARAK AYRIŞIR; kararın
 kapsamı "yalnız kapı" mı "her iki sayfa" mı önce netleşmeli.
 
+SATIŞ RAPORLARI UYGULAMASI (U1-U4) — MERGE EDİLDİ (28 Tem 2026, ön-onaylı).
+Metinler rapor/satis/BIRLESIK-SATIS-RAPORU.md'den HARFIYEN (uygulamayla
+birlikte main'e girdi): yeni H1 "Kuyunuz için ruhsat mı lazım, ceza mı
+geldi?" + R3 master alt satırı (title/meta/OG/WebSite uyumlandı; eski H1 ve
+beş-sayılı envanter cümlesi kalktı — R3-Line2 alternatifi de düştü, yerini
+R3 master cümlesi aldı) · kanıt bandı masaüstünde hero-sonrası ilk blok
+(MOBİL İSTİSNASI ÖLÇÜMLE: düz taşıma ilk soruyu 716→1502'ye itti, kadraj
+dışı → mobilde CSS order ile eski sıra; S1 KORUNDU 716-765) · /nerede-su-
+cikar/ öz-cevabı R2-Sayfa2 metniyle bit-eşit (181 krk) · 10/10 rehberde
+R2-Sayfa4 kapanışı (RehberKapanis; SonrakiAdim'la bilinçli /durumum/
+tekrarı — biri gövde kapanışı, öbürü gezinme). SAYI DİSİPLİNİ: onaylı
+cümlelerdeki 472/12/347/419/1963/42 her build'de veriden sayılıp
+karşılaştırılır; veri değişirse build düşer (sessiz bayatlama imkânsız).
+Ölçüldü: gerileme 0/174 (tek fark artış: ana sayfa soru başlığı 1→2) ·
+kontrast ihlal 0 · konsol 0 · kareler ÖNCE/SONRA cikti/denetim/satis-uygula/.
+KULLANICI CANLI ONAYI BEKLİYOR (görsel iş — H1/hero değişimi).
+U5 KONTROL SONUCU (R1-6, yalnız ölçüm): /hangi-kurum/ işlem→rehber köprüsü
+MEVCUT — sayfada 22 /rehberler/ linki (tam tabloda 10, kart bölgesinde 15;
+5 benzersiz rehber). Ekleme kararı GEREKMEDİ; kapsamı genişletmek (20
+işlemin tamamına köprü) istenirse ayrı iş.
+
+BEKLETİLEN PAKET — WhatsApp AI kanalı bağlanınca uygulanacak SATIŞ KATMANI
+(28 Tem 2026 kullanıcı kararı; kaynak referanslarıyla, metinler
+rapor/satis/'ta hazır): CTA tekleştirme (R1-QW1) · il sayfası görüşme
+köprüsü (R1-QW2, R2-Sayfa3, R3-Line3) · rehber görüşme köprüsü (R1-QW3) ·
+friction-reducer satırı (R3-Line6, "2 dakikada" parçası [DOĞRULANMAMIŞ]
+hariç) · risk-reversal mikro metni (R2, "ödeme bilgisi istenmez"
+[DOĞRULANMAMIŞ] teyit ister) · teklif kapsamı tanımı (R3-Verdict2).
+Ayrıca kapsam-dışı kalıcı: ceza tutarı niceleme (R3-Line4) APILEX teyidi
+ister. CF Web Analytics KURULU; veri görünürlüğü ayrı iş.
+
 GÖRÜNMEYEN VARLIK TEŞHİRİ — MERGE EDİLDİ (28 Tem 2026, ön-onaylı; merge
 29dbc9c). /arsiv/ künye sayfası (8 veri seti) + ana sayfa KANIT BANDI
 (472 kütle · 419 RG kaydı · 155 kurum). Seçim kriteri ölçülebilir, elenenlerin
