@@ -41,6 +41,36 @@ Aynı tuzak "saha adı"nda da çıktı: `saha_adi` alanı 0/23, pasajdan çıkar
 Erzurum Ovası…", "UYSAL SAMSUN…") ya da tarih parçası taşıyordu. Alan
 üretilmedi; RG'nin kendi metni alıntılandı.
 
+### Görsel kalem kurmanın ön koşulu: ölçümü önce deterministik yap
+Hero'da 6 sahne döndüğü için "kalem kur" demeden önce ölçüm anını
+sabitlemek gerekti. Çözüm: `reducedMotion: 'reduce'` — Hero motoru zaten
+`if (!AZALT)` ile korumalı olduğundan sahne 0'da donuyor; üstüne animasyon/
+geçiş dondurma CSS'i ve sabit viewport+DPR. 8 ölçüm 3 turda bit-eşit çıktı.
+
+Bu sabitleme aynı turda **gerçek bir arıza** buldu: reduced-motion'da
+`.v2-videolar { display:none }` (bugünkü hero yazımından kalan ölü kural)
+kadrajı tamamen gizliyordu — hareket-azaltma kullanan ziyaretçi sahneleri
+hiç görmüyormuş. Determinizm için seçilen mod, kendi başına bir denetim
+yüzeyi oldu.
+
+**Vekil kriter yakalandı (G5):** ilk tasarım "tüm başlıkların sol kenarı
+aynı olsun" diyordu ve ana sayfada 240px "sapma" verdi — oysa bu v0'ın iki
+meşru hizalama ailesiydi (ortalı 384 / sola dayalı 144). Ölçü gerçek
+değişmeze çevrildi: "`margin:0 auto` ile ortalanan blok gerçekten ortada
+mı?" Bugünkü arıza da tam buydu.
+
+**Eşikler dayatılmadı, ölçüldü:** 13 sayfa × 2 kırılımda doğal varyans
+hesaplandı (G1/G5 doğal 0; G4 aynı şablonun farklı sayfalarında değişiyor →
+taban sayfa-başına). Her eşik doğal varyansın üstünde, gerçek arızanın çok
+altında.
+
+**KURAL (yeni):** görsel/düzen kalemi kurmadan önce (a) ölçüm 3 tekrarda
+bit-eşit olmalı, (b) eşik doğal varyanstan türetilmeli, (c) her kalem
+kasıtlı bozmayla KIRMIZI verdiği ölçülerek gösterilmeli. Falsifikasyonu
+geçmeyen kalem yayına girmez — G2'nin ilk sabotajı kalemi ateşleyemedi,
+sebep kalem değil sabotaj yoluydu (ızgara sütunu genişlemeyi engelliyordu);
+sabotaj düzeltilip kalem doğrulandı.
+
 ### Hero işinde kanıt kaybı (benim hatam) + kurtarma
 Merge sonrası hero worktree'sini KAREKANIT klasörünü arşivlemeden sildim;
 deploy yeni hero'yu bastığı için ÖNCE kare dizisi kalıcı kayboldu (yeniden

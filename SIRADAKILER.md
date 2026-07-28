@@ -26,6 +26,29 @@ indeksi ölçüm olarak birebir aynı (1440: 3 kolon/672×1352; 375: 1 kolon/
 335×4069). 2 kolona düşürülürse iki sayfa DESEN OLARAK AYRIŞIR; kararın
 kapsamı "yalnız kapı" mı "her iki sayfa" mı önce netleşmeli.
 
+SAĞLIK md14 — GÖRSEL/DÜZEN KALEMLERİ (G1-G6) KURULDU (28 Tem 2026, merge
+0bcbc18). Bugün insan gözüyle yakalanan üç arıza artık ölçülüyor: metnin
+görseli örtmesi (G1), kaynak üstü büyütme (G2), hero tipografi sapması (G3),
+bölüm ritmi (G4), ortalanmış başlığın kayması (G5), 375 ilk-ekran dert-sorusu
+(G6 = S1 nöbeti). SALT-OKUMA — otomatik onarım YOK.
+Determinizm: sabit viewport+DPR + reduced-motion (hero sahnesi 0'da donar) +
+animasyon dondurma; 8 ölçüm 3 turda BİT-EŞİT. Kaynak: 5-6 sn / 154 MB =
+--hizli'nın %10,2'si → hem --hizli hem --tam.
+Eşikler DOĞAL VARYANSTAN (13 sayfa × 2 kırılım): G1 0→2000px² · G2 1,00→1,05 ·
+G3 0→±2px · G4 sayfa-başına ±2px · G5 0→2px · G6 812px.
+Falsifikasyon 6/6 ölçülerek geçti; mevcut 13 kalemin çıktısı bit-eşit.
+TABAN YENİLEME (kalem kilitlenmesin): bilinçli tasarım değişikliğinde
+`node arac/site-saglik.mjs --gorsel-taban-yenile --gerekce "..."` (gerekçe
+ZORUNLU). Yenilenmeden kalem KIRMIZI kalır. SITE-DURUM'da taban tarihi görünür.
+AÇIK: taban 28.07'de YEREL dist'e karşı alındı; deploy sonrası canlıya karşı
+ilk --tam koşumunda doğrulanır (fark çıkarsa taban canlıdan yenilenir).
+
+REDUCED-MOTION KADRAJ ARIZASI — KAPANDI (28 Tem, md14 Faz 0 ölçümünün
+bulduğu): hero yazımından kalan `.v2-videolar { display:none }` kuralı
+hareket-azaltma kullanan ziyaretçiye kadrajı HİÇ göstermiyordu. Ölü kural
+kaldırıldı; iki modda da kadraj 832×464 (ölçüldü). Ders: erişilebilirlik
+kuralları yapı değişince gözden geçirilmezse sessizce zararlı hale gelir.
+
 HERO "SAHA KADRAJI" + Ş3 KÖK DÜZELTMESİ — MERGE EDİLDİ (28 Tem 2026,
 ön-onaylı; merge b3046af). Kullanıcı şikâyetleri ölçümle doğrulanıp çözüldü:
 Ş1 yazılar sahne üstünde/büyük → H1 72→41,6px, metin düz zemine indi
