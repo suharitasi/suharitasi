@@ -79,6 +79,36 @@ if [ -f "$BLOG" ]; then
     HEP=1; for v in "${AV[@]}"; do [ "$v" -lt 500 ] || HEP=0; done
     if [ "$HEP" -eq 1 ]; then ekle "🔴 bellek eşiği — sunucu yükseltme değerlendirilmeli (son 3 ölçümde available <500MB)"; fi
   fi
+
+  # (e2) ANİ TEPE — YAPISAL AÇIK (2026-07-28, sunucu donma teşhisi).
+  # Yukarıdaki iki kural ARDIŞIK pencere ister (6 / 3 ölçüm). 23 Tem'de sunucu
+  # iki kez RAM+swap tükenip cevapsız kaldı (14:20 avail=90MB swap=6047MB;
+  # 16:10 avail=173MB; 16:21 swap=5213MB) — her olay 1-2 ÖRNEK sürdü, çünkü
+  # olay süreçler ölünce kendi kendine "çözülüyor". Pencere kuralı bu biçimi
+  # YAPISAL OLARAK göremez: donma 5 gün fark edilmedi. Bu kalem TEK ölçümde
+  # ateşler ve son 24 saate (144 ölçüm) bakar.
+  # EŞİK KALİBRASYONU (uydurma değil): 1003 ölçümlük gerçek log taranarak
+  # avail<500 VEYA swap>2000 kuralı denendi → 3/1003 ateşledi, üçü de 23 Tem
+  # donma örnekleri. Yanlış pozitif 0.
+  # Pencere SATIR SAYISIYLA değil ZAMAN DAMGASIYLA kesilir: logger duraksarsa
+  # "son 144 satır" 24 saatten eski olur ve mesaj yalan söylerdi.
+  ESIK_ZAMAN=$(date -u -d '24 hours ago' +%FT%TZ)
+  TEPE_SAYI=0; TEPE_SATIR=""
+  while read -r satir; do
+    zaman=$(printf '%s\n' "$satir" | awk '{print $1}')
+    [[ "$zaman" > "$ESIK_ZAMAN" ]] || continue
+    sw=$(printf '%s\n' "$satir" | grep -o 'swap_used_mb=[0-9]*' | grep -o '[0-9]*$' || true)
+    av=$(printf '%s\n' "$satir" | grep -o 'mem_avail_mb=[0-9]*' | grep -o '[0-9]*$' || true)
+    # HATA satırları (free ayrıştırılamadı) sayısal alan taşımaz — atlanır.
+    [ -n "$sw" ] && [ -n "$av" ] || continue
+    if [ "$av" -lt 500 ] || [ "$sw" -gt 2000 ]; then
+      TEPE_SAYI=$((TEPE_SAYI + 1))
+      TEPE_SATIR="${zaman} (avail=${av}MB swap=${sw}MB)"
+    fi
+  done < <(tail -300 "$BLOG" || true)
+  if [ "$TEPE_SAYI" -gt 0 ]; then
+    ekle "🔴 bellek tükenmesi olayı — son 24 saatte ${TEPE_SAYI} ölçümde available<500MB veya swap>2000MB; en sonu ${TEPE_SATIR}. Sunucu bu anlarda cevapsız kalmış olabilir (takas yığılması)."
+  fi
 fi
 
 # (f) BEKÇİNİN BEKÇİSİ (2026-07-23): site sağlık sistemi kendisi koşuyor mu?

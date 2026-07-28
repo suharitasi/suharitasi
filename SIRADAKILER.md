@@ -1135,11 +1135,46 @@ DÖNÜŞÜM SEANSI (26 Tem 2026) — dal `donusum-2026-07-26`, worktree
       Künyeye dayalı otorite iddiasının altındaki boşluk — düzeltilmeli.
 - [ ] **rg-nobetci ve nhyp-nobetci hiç koşmamış** (state dosyası yok).
       Cron kaydı var mı, doğrulanmalı.
-- [ ] **Yapısal risk (ölçüldü 28.07, kapsam dışı bırakıldı):** `--tam` bir
+- [x] **Yapısal risk — KAPANDI (28.07, dal yuk-2026-07-28):** `--tam` bir
       KIRMIZI bulduktan sonra çalışan `--hizli`, SITE-DURUM'un "Son koşu"
       tablosunu kendi alt kümesiyle üzerine yazıyor ve kırmızı görünmez
-      oluyor (md17 kırmızısı bugün böyle kayboldu; kayıt yalnız "Son 10
-      koşu"da kaldı). Düzeltme = mevcut kalem çıktısını değiştirir, bu
-      briefin bit-eşit kuralı dışındaydı. Öneri: `--hizli` yalnız kendi
-      kalemlerini güncellesin, `--tam`'dan gelen açık kırmızılar tabloda
-      "son --tam'dan" etiketiyle kalsın.
+      oluyordu (md17 kırmızısı böyle kayboldu). ÇÖZÜM: kırmızı "sonraki koşu
+      yeşil geldi" diye değil, O KALEM yeniden ölçülüp geçtiğinde kapanır.
+      SITE-DURUM'a eklendi: başlıkta `🔴 KIRMIZI (çözülmemiş)` (bu koşu yeşil
+      olsa bile), "Çözülmemiş kırmızı" tablosu (kalem+mod+mesaj), "Mod başına
+      son ölçüm" tablosu. Ölçüm yapmamış (kilit/kaynak) koşum ne kırmızı açar
+      ne kapatır. İKİ YÖNLÜ FALSİFİKASYON: gerçek md17 kırmızısından sonra
+      koşan yeşil `--hizli` kırmızıyı EZMEDİ · kalem yeniden ölçülüp geçince
+      kırmızı KAPANDI (kilitlenme yok). Kanıt: cikti/denetim/yuk/falsifikasyon.md
+
+## Sunucu donma teşhisi (28 Tem 2026) — rapor/sunucu-donma.md
+- [x] **BULGU:** donma 23 Tem'de iki kez oldu (14:20 ve 16:21 UTC); RAM+swap
+      tükendi (avail 90 MB, swap %98,38), takas yığılması (%system 42,
+      %iowait 24, 1,2M blok/s okuma), sistem cevapsız kaldı — sysstat
+      toplayıcısı 81 sn geç örnekleyebildi. Sebep SAĞLIK KOŞUMU DEĞİL
+      (ölçüldü: `--tam` 1,9 GB / 9,4 dk; `--hizli` 1,07 GB / 68 sn; o gün
+      koşumlar olayların dışındaydı). İz, interaktif ajan oturumlarını
+      (Claude Code + Playwright MCP + chromium) gösteriyor: iki olay da MCP
+      sunucusunun sonlandığı saniyede bitiyor. SWAP ZATEN VAR (6 GB) —
+      donmayı önlemedi, uzattı.
+      DOĞRULANMADI: hangi sürecin öldürüldüğü (dmesg/kern.log/journalctl/sudo
+      hepsi root istiyor). Zincir korelasyondur, OOM kaydıyla teyitli değil.
+- [x] **Koruma uygulandı:** bekçiye ANİ TEPE kalemi (tek ölçümde ateşler;
+      eşik 1003 ölçümlük gerçek loga karşı kalibre — 3/1003, üçü de 23 Tem,
+      yanlış pozitif 0) · sağlık koşumuna tek koşum kilidi (raporlar, sessiz
+      çıkmaz) · kaynak tavanı (ölçülen tepe +%30: tam 2500 / hızlı 1400 MB;
+      duran koşum canlılık damgası VURMAZ, bekçi görsün) · sabah `--tam`
+      07:30 → 06:40 UTC (07:30'da bist-flow + bist-katilim aynı dakikada
+      ateşliyordu, doğrulandı; 19:30 ölçüldü, temiz, değişmedi).
+- [ ] **KULLANICI KARARI — sistem geneli bellek tavanı.** Asıl sebep sınırsız
+      ajan oturumları ve sunucuda hiçbir birimde `MemoryMax` yok (30+ root
+      BIST timer'ı dahil, hepsi `infinity`). Kalıcı sistem etkisi olduğu için
+      UYGULANMADI. Seçenekler: (a) ajan oturumlarını `systemd-run --scope -p
+      MemoryMax=…` ile sarmak, (b) `earlyoom` (yığılma yerine hızlı OOM),
+      (c) BIST birimlerine MemoryMax (ayrı depo kararı).
+- [ ] **KULLANICI KARARI — `vm.swappiness=60`.** 6 GB swap'ın tamamı
+      tükenebildiği için donma dakikalarca sürdü; düşürmek (ör. 10) süreyi
+      kısaltır. Sistem ayarı, uygulanmadı.
+- [ ] **KULLANICI KARARI — log erişimi.** `suha` `adm`/`systemd-journal`
+      grubunda olsaydı OOM kaydı okunur, teşhis korelasyonla değil kanıtla
+      kapanırdı. Bir sonraki donmada bu fark yine kritik olacak.
