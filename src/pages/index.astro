@@ -122,7 +122,14 @@ const sahneVeri = SAHNELER.map((s) => ({
     scroll-behavior: smooth;
   }
   @media (prefers-reduced-motion: reduce) { .v2-sayfa { scroll-behavior: auto; } }
-  .v2-sayfa *, .v2-sayfa body { margin: 0; padding: 0; box-sizing: border-box; }
+  /* Ş3 KÖK DÜZELTMESİ (hero-gorsel 28.07, ölçümle): bu reset 0-2-0
+     özgüllükle TÜM tekil-sınıf kurallarını eziyordu — v0'ın 6rem bölüm
+     padding'i, .v2-bolum-bas ortalaması, hero padding'i hiç uygulanmamıştı
+     ("sayfanın aşağısı dağılmış"ın kökü). :where() özgüllüğü sıfırlar:
+     reset yalnız kural OLMAYAN yerde çalışır, hiçbir kuralı ezemez. */
+  .v2-sayfa * { box-sizing: border-box; }
+  :where(.v2-sayfa) body { margin: 0; padding: 0; }
+  :where(.v2-sayfa *) { margin: 0; padding: 0; }
   .v2-sayfa body {
     background: #061824;
     color: #12293a;

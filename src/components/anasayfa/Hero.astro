@@ -1,28 +1,59 @@
 ---
-// HERO (v0 spesifikasyonu) — tam ekran; iki fazlı görsel katman:
-//   FAZ A (0–3800ms): 6 poster harmanı (opacity .6, screen, scale 1.04)
-//   FAZ B: 6 video sırayla 5000ms, geçiş 1400ms ease-in-out (ATMOSFER, K-1)
-// Su fışkırması DETERMİNİSTİK (v0 rand formülü) — build'de üretilir,
-// her build aynı çıktıyı verir (kopyalanma direnci + diff sadeliği).
-// Uçuşan sorular GERÇEK <a> linktir (aria-hidden YOK); süzülme sh-drift 9s.
-// prefers-reduced-motion + JS kapalı durumları CSS'te (anasayfa-v2.css).
+// HERO — "SAHA KADRAJI" (hero-gorsel briefi, 28.07.2026; frontend-design
+// skill'iyle karar verildi; ölçüm + gerekçe: cikti/denetim/hero/ raporu).
+//
+// TEŞHİS (ölçüldü, canlı 1440): H1 72px ve başlık bloğu sahnenin %19'unu
+// ORTASINDA örtüyordu (Ş1-Ş2); video 1469×918 render = 832×464 kaynağın
+// ×1,77 upscale'i (K2 ihlali — "işçiler net değil"in ikinci nedeni).
+//
+// KARAR: metin görüntünün üstünden İNER. Akış (brief'in istediği):
+//   1) üst bant: rozet + H1 + alt satır + CTA — düz koyu zemin üzerinde
+//   2) film şeridi: 6 poster küçük karede yan yana = sahnelerin BİRLEŞİK
+//      hali (K1: poster, video değil; K2: downscale keskindir, upscale yok)
+//   3) KADRAJ: aktif sahnenin videosu NATIVE 832×464 (asla büyütülmez)
+//   4) kadraj YANINDA 6 soru listesi — aktif sahnenin sorusu vurgulu;
+//      "metin sahneyle birlikte değişir, sahneyi kapatmaz"
+// MOTOR K-1 SÜRELERİYLE KORUNUR (FAZ A 3800ms → 5000ms sahne, 1400ms
+// geçiş); tek video oynar (K-3/K1). Damla atmosferi korunur (Görünürlük
+// kuralı) — hero zemininde, metnin/kadrajın üstünde değil.
+//
+// SORU↔SAHNE EŞLEMESİ (sunum sırası kararı; metin/hedef DEĞİŞMEZ, K3):
+// sahnenin konusu sorunun konusuyla örtüşür; eşleşme build'de doğrulanır.
 import { SORULAR_V2 } from '../../data/anasayfa-v2.js';
 import { HERO_H1, HERO_ALT } from '../../data/anasayfa-satis.js';
 
 const { sahneVeri } = Astro.props;
 
-// v0 deterministik rasgele: rand(seed) = frac(sin(seed*999.13)*43758.5453)
+// sahne id → sorunun AYIRT EDİCİ parçası (metinler anasayfa-v2.js'te tek
+// kaynak; eşleşmeyen sahne build'i düşürür — sessiz kopukluk yasak).
+const ESLEME = {
+  sondaj: 'Sondaj ile alakalı',
+  akifer: 'su nerelerde çıkabilir',
+  baraj: 'nerede su var',
+  sehir: 'ruhsatı başvurusu nasıl',
+  hukuk: 'cezası aldım',
+  'gol-kasabasi': 'kurudu',
+};
+const sahneler = sahneVeri.map((s) => {
+  const soru = SORULAR_V2.find((q) => q.soru.includes(ESLEME[s.id] ?? ' '));
+  if (!soru) throw new Error(`Hero: "${s.id}" sahnesine eşlenen soru bulunamadı.`);
+  return { ...s, soru };
+});
+if (new Set(sahneler.map((s) => s.soru.soru)).size !== sahneler.length) {
+  throw new Error('Hero: iki sahne aynı soruya eşlendi — eşleme birebir olmalı.');
+}
+
+// v0 deterministik damla formülü — DEĞİŞMEDİ (kopyalanma direnci + diff
+// sadeliği; atmosfer K-1).
 function rand(seed) {
   const x = Math.sin(seed * 999.13) * 43758.5453;
   return x - Math.floor(x);
 }
-// 90 damla (masaüstü); ilk 30'u mobilde de görünür, kalan 60 `cok` sınıfıyla
-// mobilde gizlenir. Formüller v0'dan: yayılma 12°, tepe -300px.
 const DAMLALAR = Array.from({ length: 90 }, (_, i) => {
   const r1 = rand(i * 3 + 1);
   const r2 = rand(i * 3 + 2);
   const r3 = rand(i * 3 + 3);
-  const aci = ((r1 - 0.5) * 24 * Math.PI) / 180; // ±12°
+  const aci = ((r1 - 0.5) * 24 * Math.PI) / 180;
   const dx = Math.sin(aci) * (70 + r2 * 90);
   const peak = -300 * (0.7 + r3 * 0.5);
   const size = 3 + r2 * 4;
@@ -39,52 +70,7 @@ const DAMLALAR = Array.from({ length: 90 }, (_, i) => {
 });
 ---
 <section class="v2-hero" aria-label="Açılış">
-  <!-- Görsel katman -->
-  <div class="v2-katman" aria-hidden="true">
-    <div class="v2-posterler" id="v2-posterler">
-      {sahneVeri.map((s, i) => (
-        <img src={s.still} alt="" width="832" height="464"
-             loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
-      ))}
-    </div>
-    <div class="v2-videolar" id="v2-videolar">
-      {sahneVeri.map((s, i) => (
-        i === 0 ? (
-          <video muted playsinline loop preload="metadata" src={s.clip}
-                 data-sahne={s.id}></video>
-        ) : (
-          <video muted playsinline loop preload="none" data-src={s.clip}
-                 data-sahne={s.id}></video>
-        )
-      ))}
-    </div>
-  </div>
-
-  <div class="v2-overlay"></div>
-
-  <!-- Su fışkırması + köpük (ATMOSFER — K-1; pointer-events yok) -->
-  <div class="v2-su" aria-hidden="true">
-    {DAMLALAR.map((d) => (
-      <i class:list={['v2-damla', 'sh-spray', { cok: d.cok }]}
-         style={`--dx:${d.dx}px; --peak:${d.peak}px; --dur:${d.dur}s; --delay:${d.delay}s; --w:${d.w}px; --h:${d.h}px; --o:${d.o}`}></i>
-    ))}
-    <i class="v2-kopuk sh-mist"></i>
-  </div>
-
-  <!-- Uçuşan sorular: GERÇEK linkler (yalnız ≥1024px; mobil listesi ayrı) -->
-  <nav class="v2-sorular" aria-label="Sık sorulan sorular">
-    {SORULAR_V2.map((s) => (
-      <a class="v2-soru sh-drift" href={s.hedef}
-         style={`--ust:${s.ust}; --sol:${s.sol}; animation-delay:${s.gecikme}`}>
-        {s.soru}
-      </a>
-    ))}
-  </nav>
-
-  <!-- Başlık bloğu — U1 (satis-uygula 28.07): H1 ve alt satır üç satış
-       raporundan HARFIYEN (kaynak + sayı bekçisi: src/data/anasayfa-satis.js).
-       Eski H1 ve beş-sayılı alt metin kaldırıldı; envanter sayıları artık
-       kanıt bandında (KanitBandi). Rozet ve uçuşan sorular DOKUNULMADI (U6). -->
+  <!-- 1) Üst bant: metin DÜZ zemin üzerinde (Ş1-Ş2 çözümü) -->
   <div class="v2-baslik">
     <p class="v2-rozet">Su Hukuku · Danışmanlık · Su Hakları</p>
     <h1>{HERO_H1}</h1>
@@ -95,31 +81,81 @@ const DAMLALAR = Array.from({ length: 90 }, (_, i) => {
     </div>
   </div>
 
-  <!-- Sahne göstergesi + aşağı oku -->
-  <div class="v2-gosterge">
-    <div class="v2-cizgiler" id="v2-cizgiler" aria-hidden="true">
-      {sahneVeri.map((s, i) => (
-        <span class:list={['v2-cizgi', { aktif: i === 0 }]}></span>
-      ))}
-    </div>
-    {/* v0: ChevronDown + bounce (A2-6; dekoratif işaret, reduced-motion durur) */}
-    <a class="v2-asagi" href="#hizmetler" aria-label="Aşağı in">
-      <svg class="v2-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-           stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-           aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-    </a>
+  <!-- 2) Film şeridi: 6 sahnenin BİRLEŞİK hali (poster, K1) -->
+  <div class="v2-serit" id="v2-posterler" role="tablist" aria-label="Sahneler">
+    {sahneler.map((s, i) => (
+      <button type="button" class:list={['v2-serit-kare', { aktif: i === 0 }]}
+              data-sira={i} role="tab" aria-selected={i === 0 ? 'true' : 'false'}
+              aria-label={`Sahne: ${s.label}`}>
+        <img src={s.still} alt="" width="832" height="464"
+             loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+      </button>
+    ))}
   </div>
+
+  <!-- 3) Kadraj (native 832×464, K2) + 4) yanında soru listesi -->
+  <div class="v2-sahne-alan">
+    <figure class="v2-kadraj">
+      <!-- Atmosfer (K-1): fıskiye kadraj DİBİNDEN — sondaj temasıyla
+           örtüşür; CTA/metin bölgesine taşmaz (mobil karede ölçüldü) -->
+      <div class="v2-su" aria-hidden="true">
+        {DAMLALAR.map((d) => (
+          <i class:list={['v2-damla', 'sh-spray', { cok: d.cok }]}
+             style={`--dx:${d.dx}px; --peak:${d.peak}px; --dur:${d.dur}s; --delay:${d.delay}s; --w:${d.w}px; --h:${d.h}px; --o:${d.o}`}></i>
+        ))}
+        <i class="v2-kopuk sh-mist"></i>
+      </div>
+      <div class="v2-videolar" id="v2-videolar">
+        <img class="v2-kadraj-poster" id="v2-kadraj-poster" src={sahneler[0].still}
+             alt="" width="832" height="464" decoding="async" />
+        {sahneler.map((s, i) => (
+          i === 0 ? (
+            <video muted playsinline loop preload="metadata" src={s.clip}
+                   data-sahne={s.id} width="832" height="464"></video>
+          ) : (
+            <video muted playsinline loop preload="none" data-src={s.clip}
+                   data-sahne={s.id} width="832" height="464"></video>
+          )
+        ))}
+      </div>
+      <figcaption class="v2-kadraj-etiket">
+        <span class="v2-cizgiler" id="v2-cizgiler" aria-hidden="true">
+          {sahneler.map((s, i) => (
+            <span class:list={['v2-cizgi', { aktif: i === 0 }]}></span>
+          ))}
+        </span>
+        <span class="v2-kadraj-ad" id="v2-kadraj-ad">{sahneler[0].label}</span>
+      </figcaption>
+    </figure>
+
+    <nav class="v2-sorular" id="v2-sorular" aria-label="Sık sorulan sorular">
+      {sahneler.map((s, i) => (
+        <a class:list={['v2-soru', { aktif: i === 0 }]} data-sira={i} href={s.soru.hedef}>
+          {s.soru.soru}
+        </a>
+      ))}
+    </nav>
+  </div>
+
+  <a class="v2-asagi" href="#hizmetler" aria-label="Aşağı in">
+    <svg class="v2-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+  </a>
 </section>
 
 <script>
-  /* SAHNE MOTORU (v0): FAZ A 3800ms poster harmanı → FAZ B videolar sırayla
-     5000ms, geçiş 1400ms (CSS transition). Sıradaki video, sırası gelmeden
-     ~1sn önce yüklenir. reduced-motion: hiçbir faz çalışmaz, video yüklenmez
-     (CSS ilk posteri sabitler). */
+  /* SAHNE MOTORU — K-1 süreleri AYNEN (5000/1400/3800), tek video (K1).
+     Yeni: şerit karesi + soru vurgusu + kadraj adı aktif sahneyle senkron;
+     şerit karesine tıklayınca o sahneye atlanır, döngü oradan sürer.
+     reduced-motion: video yüklenmez, kadrajda poster durur. */
   const AZALT = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const posterler = document.getElementById('v2-posterler');
   const videolar = [...document.querySelectorAll('#v2-videolar video')];
   const cizgiler = [...document.querySelectorAll('#v2-cizgiler .v2-cizgi')];
+  const kareler = [...document.querySelectorAll('.v2-serit-kare')];
+  const sorular = [...document.querySelectorAll('#v2-sorular .v2-soru')];
+  const kadrajAd = document.getElementById('v2-kadraj-ad');
+  const acilisPoster = document.getElementById('v2-kadraj-poster');
 
   const SAHNE_SURE = 5000;   // ATMOSFER (K-1)
   const GECIS = 1400;        // ATMOSFER (K-1)
@@ -147,23 +183,44 @@ const DAMLALAR = Array.from({ length: 90 }, (_, i) => {
       }
     });
     cizgiler.forEach((c, j) => c.classList.toggle('aktif', j === i));
+    kareler.forEach((k, j) => {
+      k.classList.toggle('aktif', j === i);
+      k.setAttribute('aria-selected', j === i ? 'true' : 'false');
+    });
+    sorular.forEach((q, j) => q.classList.toggle('aktif', j === i));
+    if (kadrajAd && kareler[i]) {
+      kadrajAd.textContent = (kareler[i].getAttribute('aria-label') || '').replace('Sahne: ', '');
+    }
   }
 
   if (!AZALT && videolar.length) {
     let sira = 0;
-    setTimeout(() => {
-      posterler.classList.add('gizli');
-      etkinlestir(0);
-      setInterval(() => {
+    let sayac = null;
+
+    function dongu() {
+      clearInterval(sayac);
+      sayac = setInterval(() => {
         // Sıradakini ~1sn önce yükle
         setTimeout(() => yukle(videolar[(sira + 1) % videolar.length]),
                    SAHNE_SURE - GECIS - ON_YUKLE);
         sira = (sira + 1) % videolar.length;
         etkinlestir(sira);
       }, SAHNE_SURE);
+    }
+
+    setTimeout(() => {
+      if (acilisPoster) acilisPoster.classList.add('gizli');
+      etkinlestir(0);
+      dongu();
       // İlk turda 2. videoyu da vaktinde hazırla
-      setTimeout(() => yukle(videolar[1 % videolar.length]),
-                 SAHNE_SURE - ON_YUKLE);
+      setTimeout(() => yukle(videolar[1 % videolar.length]), SAHNE_SURE - ON_YUKLE);
     }, FAZ_A);
+
+    kareler.forEach((k) => k.addEventListener('click', () => {
+      sira = Number(k.dataset.sira) || 0;
+      if (acilisPoster) acilisPoster.classList.add('gizli');
+      etkinlestir(sira);
+      dongu();
+    }));
   }
 </script>

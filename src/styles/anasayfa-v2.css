@@ -223,119 +223,49 @@
   }
 }
 
-/* ——— HERO ——— */
+/* ——— HERO — "SAHA KADRAJI" (hero-gorsel briefi 28.07) ———
+   Eski tasarım: tam-ekran video (832×464 kaynak ×1,77 upscale) + üstünde
+   72px H1 (sahnenin %19'unu örtüyordu — ölçüm). Yeni tasarım: metin düz
+   koyu zeminde; sahne NATIVE kadrajda; sorular kadrajın YANINDA. Tokenlar
+   mevcut (v0-koyu/dip, akuamarin, serif/mono) — yeni renk/font yok. */
 .v2-hero {
   position: relative;
-  min-height: max(100svh, 640px);
   background: var(--v0-koyu);
+  color: var(--v0-beyaz);
+  padding: 5.5rem 1.5rem 3.5rem; /* üst: sabit menü payı */
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-/* Görsel katman — FAZ A: 6 poster harman; FAZ B: videolar (JS sürer). */
-.v2-katman { position: absolute; inset: 0; }
-.v2-posterler { position: absolute; inset: 0; transition: opacity 1400ms var(--sh-eio); }
-.v2-posterler.gizli { opacity: 0; }
-.v2-posterler img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  opacity: 0.6;
-  mix-blend-mode: screen;
-  transform: scale(1.04);
-}
-.v2-videolar { position: absolute; inset: 0; }
-.v2-videolar video {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transform: scale(1.02);
-  transition: opacity 1400ms var(--sh-eio); /* ATMOSFER — v0 süresi (K-1) */
-}
-.v2-videolar video.aktif { opacity: 1; }
-
-/* Overlay (v0: #061824 gövdesi, alfa 0 → .10 → .70) */
-.v2-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to bottom,
-    rgba(6, 24, 36, 0), rgba(6, 24, 36, 0.102), rgba(6, 24, 36, 0.702));
-  pointer-events: none;
-}
-
-/* Su fışkırması + köpük — ATMOSFER (K-1), süreleri build'de --dur/--delay. */
-.v2-su { position: absolute; inset: 0; pointer-events: none; }
+/* Atmosfer (K-1) — fıskiye kadraj kapsayıcısında (Hero.astro) */
+.v2-su { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
 .v2-damla {
   position: absolute;
-  left: 50%; bottom: 0.5rem; /* v0 bottom-2 */
+  left: 50%; bottom: 0.5rem;
   width: var(--w, 4px); height: var(--h, 7px);
   border-radius: 999px;
   background: rgba(255, 255, 255, var(--o, 0.8));
-  box-shadow: 0 0 6px rgba(210, 240, 255, 0.7); /* v0 glow */
+  box-shadow: 0 0 6px rgba(210, 240, 255, 0.7);
 }
 .v2-kopuk {
   position: absolute;
   left: 50%; bottom: 0;
   transform: translateX(-50%);
-  width: 10rem; height: 4rem; /* v0 w-40 h-16 */
+  width: 10rem; height: 4rem;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.25);
-  filter: blur(40px); /* v0 blur-2xl */
+  filter: blur(40px);
 }
 @media (max-width: 1023px) {
-  .v2-damla.cok { display: none; } /* mobilde 30 damla */
+  .v2-damla.cok { display: none; }
 }
 
-/* Uçuşan sorular — TIKLANABİLİR; süzülme ATMOSFER (sh-drift 9s, K-1),
-   hover ETKİLEŞİM (<300ms ease, emil). Yalnız ≥lg'de uçuşur. */
-.v2-sorular { position: absolute; inset: 0; display: none; }
-@media (min-width: 1024px) { .v2-sorular { display: block; } }
-.v2-soru {
-  position: absolute;
-  top: var(--ust); left: var(--sol);
-  max-width: 15rem;
-  padding: 0.7rem 0.95rem;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 1rem;
-  background: rgba(8, 32, 47, 0.55);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45); /* v0 */
-  font-family: var(--serif, Georgia, serif);
-  font-style: italic;
-  font-size: 0.875rem; /* v0 text-sm */
-  line-height: 1.45;
-  text-align: center;  /* v0 text-center */
-  text-wrap: balance;
-  color: var(--v0-beyaz);
-  text-decoration: none;
-  pointer-events: auto;
-  transition: background-color 200ms var(--sh-eo), border-color 200ms var(--sh-eo);
-}
-@supports (backdrop-filter: blur(1px)) {
-  .v2-soru { backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
-}
-@media (hover: hover) and (pointer: fine) {
-  .v2-soru:hover {
-    background: rgba(14, 52, 74, 0.78);
-    border-color: rgba(255, 255, 255, 0.45);
-    cursor: pointer;
-  }
-}
-.v2-soru:focus-visible {
-  outline: 2px solid #7fd0ef;
-  outline-offset: 3px;
-  background: rgba(14, 52, 74, 0.78);
-}
-
-/* Başlık bloğu */
+/* 1) Üst bant — metin görüntü üstünde DEĞİL (Ş1/Ş2) */
 .v2-baslik {
   position: relative;
   z-index: 5;
-  max-width: 52rem;
-  padding: 0 1.25rem;
-  text-align: center;
-  color: var(--v0-beyaz);
+  max-width: 72rem;
+  margin: 0 auto;
+  text-align: left;
 }
 .v2-rozet {
   display: inline-flex;
@@ -355,96 +285,212 @@
 @supports (backdrop-filter: blur(1px)) {
   .v2-rozet { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 }
+/* H1: 72px → okunur ölçek (Ş1 "çok büyümüş" ölçümle 72px idi) */
 .v2-baslik h1 {
-  margin: 1.25rem 0 0; /* v0 mb-5 rozetten */
-  max-width: 56rem;    /* v0 max-w-4xl */
+  margin: 1.1rem 0 0;
+  max-width: 30ch;
   font-family: var(--serif, Georgia, serif);
   font-weight: 600;
-  font-size: clamp(2.25rem, 5.5vw, 4.5rem); /* v0 4xl->7xl */
-  line-height: 1.1;
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  line-height: 1.15;
   text-wrap: balance;
-  filter: drop-shadow(0 2px 20px rgba(0, 0, 0, 0.5));
+  letter-spacing: -0.01em;
 }
 .v2-alt-metin {
-  margin: 1.5rem auto 0; /* v0 mt-6 */
-  max-width: 42rem;      /* v0 max-w-2xl */
-  font-size: clamp(1rem, 1.4vw, 1.125rem); /* v0 base->lg */
-  line-height: 1.625;
+  margin: 0.9rem 0 0;
+  max-width: 58ch;
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  line-height: 1.6;
   color: rgba(255, 255, 255, 0.85);
-  filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.35));
 }
 .v2-butonlar {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem;
-  margin-top: clamp(3rem, 6vh, 5rem); /* v0 mt-16 sm:mt-20 */
+  margin-top: 1.4rem;
+  display: flex; flex-wrap: wrap; gap: 0.75rem;
 }
 .v2-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.75rem; /* v0 px-7 py-3 */
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0.7rem 1.4rem;
   border-radius: 999px;
-  font-size: 0.92rem;
-  font-weight: 600;
+  font-family: var(--sans, system-ui, sans-serif);
+  font-size: 0.95rem; font-weight: 600;
   text-decoration: none;
-  transition: transform 120ms var(--sh-eo), background-color 150ms ease,
-              border-color 150ms ease;
+  transition: transform 200ms var(--sh-eo), background-color 200ms var(--sh-eo),
+              color 200ms var(--sh-eo), border-color 200ms var(--sh-eo);
 }
-.v2-btn:active { transform: scale(0.97); } /* emil: basış geri bildirimi */
-.v2-btn-birincil {
-  background: var(--v0-beyaz);
-  color: var(--v2-randevu-metin);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.25),
-              0 4px 6px -4px rgba(0, 0, 0, 0.25); /* v0 shadow-lg */
-}
+.v2-btn:active { transform: scale(0.97); }
+.v2-btn-birincil { background: var(--v0-beyaz); color: var(--v2-randevu-metin); }
 .v2-btn-ikincil {
-  border: 1px solid rgba(255, 255, 255, 0.4); /* v0 border-white/40 */
+  border: 1px solid rgba(255, 255, 255, 0.4);
   color: var(--v0-beyaz);
-  background: rgba(255, 255, 255, 0.05);      /* v0 bg-white/5 */
-}
-@supports (backdrop-filter: blur(1px)) {
-  .v2-btn-ikincil { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  background: rgba(255, 255, 255, 0.08);
 }
 @media (hover: hover) and (pointer: fine) {
-  .v2-btn-birincil:hover { background: rgba(255, 255, 255, 0.9); } /* v0 */
-  .v2-btn-ikincil:hover { background: rgba(255, 255, 255, 0.15); } /* v0 */
+  .v2-btn-birincil:hover { background: rgba(255, 255, 255, 0.88); }
+  .v2-btn-ikincil:hover { border-color: rgba(255, 255, 255, 0.8); }
 }
+.v2-btn:focus-visible { outline: 2px solid var(--akuamarin, #57BAE0); outline-offset: 3px; }
 
-/* Sahne göstergesi + aşağı oku */
-.v2-gosterge {
-  position: absolute;
-  left: 50%; bottom: 1.5rem; /* ok v0 bottom-6 */
-  transform: translateX(-50%);
+/* 2) Film şeridi — 6 posterin birleşik hali (K1 poster; K2 downscale) */
+.v2-serit {
+  position: relative;
   z-index: 5;
-  display: flex; flex-direction: column; align-items: center; gap: 1.6rem;
-  /* çizgiler v0 bottom-20 hizasına gap ile oturur */
+  max-width: 72rem;
+  margin: 2.2rem auto 0;
+  display: flex;
+  gap: 0.6rem;
+}
+.v2-serit-kare {
+  flex: 1 1 0;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 0.4rem;
+  overflow: hidden;
+  background: var(--v0-dip);
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 240ms var(--sh-eio), border-color 240ms var(--sh-eio),
+              transform 200ms var(--sh-eo);
+}
+.v2-serit-kare img { display: block; width: 100%; height: auto; }
+.v2-serit-kare.aktif {
+  opacity: 1;
+  border-color: var(--akuamarin, #57BAE0);
+}
+@media (hover: hover) and (pointer: fine) {
+  .v2-serit-kare:hover { opacity: 0.85; transform: translateY(-2px); }
+}
+.v2-serit-kare:focus-visible { outline: 2px solid var(--akuamarin, #57BAE0); outline-offset: 2px; }
+
+/* 3) Kadraj + 4) soru listesi */
+.v2-sahne-alan {
+  position: relative;
+  z-index: 5;
+  max-width: 72rem;
+  margin: 1rem auto 0;
+  display: grid;
+  grid-template-columns: minmax(0, 832px) 1fr;
+  gap: 1.6rem;
+  align-items: stretch; /* soru sütunu kadraj boyunca yayılsın */
+}
+.v2-kadraj { margin: 0; }
+/* NATIVE ölçü: 832px tavan — asla upscale edilmez (K2) */
+.v2-videolar {
+  position: relative;
+  width: 100%;
+  max-width: 832px;
+  aspect-ratio: 832 / 464;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: var(--v0-dip);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.v2-videolar video,
+.v2-kadraj-poster {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1400ms var(--sh-eio); /* ATMOSFER — v0 süresi (K-1) */
+}
+.v2-kadraj-poster { opacity: 1; z-index: 2; }
+.v2-kadraj-poster.gizli { opacity: 0; }
+.v2-videolar video.aktif { opacity: 1; }
+/* reduced-motion: poster sabit kalır (motor hiç başlamaz) */
+@media (prefers-reduced-motion: reduce) {
+  .v2-kadraj-poster { transition: none; }
+}
+.v2-kadraj-etiket {
+  margin-top: 0.6rem;
+  display: flex; align-items: center; gap: 0.9rem;
 }
 .v2-cizgiler { display: flex; align-items: center; gap: 0.5rem; }
 .v2-cizgi {
-  width: 10px; height: 0.25rem; /* v0 h-1 */
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.4);
-  /* 500ms: sahne ritmine eşlik (ATMOSFER, K-1) */
-  transition: width 500ms var(--sh-eo), background-color 500ms ease;
+  width: 14px; height: 2px;
+  background: rgba(255, 255, 255, 0.35);
+  transition: width 240ms var(--sh-eio), background-color 240ms var(--sh-eio);
 }
 .v2-cizgi.aktif { width: 28px; background: rgba(255, 255, 255, 0.95); }
+.v2-kadraj-ad {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Soru listesi: sahnenin YANINDA, üstünde değil (Ş1). Aktif sahnenin
+   sorusu vurgulu — "metin sahneyle birlikte değişir". */
+.v2-sorular {
+  display: flex; flex-direction: column;
+  justify-content: space-between; /* 6 soru kadraj boyuna yayılır */
+  gap: 0.45rem;
+}
+.v2-soru {
+  display: block;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-left: 2px solid rgba(255, 255, 255, 0.16);
+  border-radius: 0.4rem;
+  font-family: var(--serif, Georgia, serif);
+  font-style: italic;
+  font-size: 0.98rem;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.82);
+  text-decoration: none;
+  transition: color 240ms var(--sh-eio), border-color 240ms var(--sh-eio),
+              background-color 240ms var(--sh-eio);
+}
+.v2-soru.aktif {
+  color: var(--v0-beyaz);
+  border-left-color: var(--akuamarin, #57BAE0);
+  background: rgba(87, 186, 224, 0.08);
+}
+@media (hover: hover) and (pointer: fine) {
+  .v2-soru:hover { color: var(--v0-beyaz); border-color: rgba(255, 255, 255, 0.45); }
+}
+.v2-soru:focus-visible { outline: 2px solid var(--akuamarin, #57BAE0); outline-offset: 2px; }
+
+/* Aşağı oku */
 .v2-asagi {
-  display: inline-flex;
-  color: rgba(255, 255, 255, 0.7);
-  transition: color 150ms ease;
+  position: relative;
+  z-index: 5;
+  display: flex; justify-content: center;
+  margin: 2rem auto 0;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 200ms var(--sh-eo);
 }
 .v2-chevron {
-  width: 1.5rem; height: 1.5rem; /* v0 h-6 w-6 */
-  animation: v2-zipla 1s infinite; /* v0 animate-bounce — dekoratif işaret */
+  width: 1.5rem; height: 1.5rem;
+  animation: v2-zipla 1s infinite;
 }
 @keyframes v2-zipla {
-  0%, 100% { transform: translateY(-25%);
-    animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
-  50% { transform: translateY(0);
-    animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
 }
 @media (prefers-reduced-motion: reduce) { .v2-chevron { animation: none; } }
 @media (hover: hover) and (pointer: fine) {
   .v2-asagi:hover { color: var(--v0-beyaz); }
+}
+
+/* MOBİL (<1024): sorular hero içinde GİZLİ (MobilSorular bölümü var — S1);
+   şerit kompakt; kadraj tam genişlik (downscale). */
+@media (max-width: 1023px) {
+  /* S1 AYARI (ölçümle, 28.07): reset düzeltmesi default boşlukları geri
+     getirince ilk mobil soru 830'a düştü (kadraj 812 dışı). Boşluklar
+     sıkıldı; hedef: dert-soru kadraj İÇİNDE (ölçüm raporda). */
+  .v2-hero { padding: 3.6rem 1rem 0.9rem; }
+  .v2-rozet { font-size: 0.66rem; letter-spacing: 0.16em; }
+  .v2-baslik h1 { margin-top: 0.8rem; }
+  .v2-alt-metin { margin-top: 0.7rem; }
+  .v2-butonlar { margin-top: 1rem; }
+  .v2-sahne-alan { grid-template-columns: 1fr; gap: 0; margin-top: 0.55rem; }
+  .v2-sorular { display: none; }
+  .v2-serit { gap: 0.35rem; margin-top: 0.6rem; }
+  .v2-serit-kare { border-radius: 0.25rem; }
+  .v2-kadraj-etiket { margin-top: 0.45rem; }
+  .v2-asagi { display: none; } /* mobilde sorular hemen altta — ok gereksiz */
+  .v2-mobil-sorular { padding: 1rem clamp(1.25rem, 4vw, 2rem) 1.8rem; }
+  .v2-mobil-sorular h2 { margin-bottom: 0.5rem; }
 }
 
 /* ——— MOBİL SORU LİSTESİ (hero altı, Hizmetler'den önce; <lg) ——— */
@@ -466,7 +512,8 @@
    DOM'a DOKUNULMAZ (masaüstü bit-eşitlik kanıtı bunun üstüne kurulu);
    bilinen ödün: mobilde görsel sıra ≠ DOM/odak sırası (tek öğe için). */
 @media (max-width: 1023px) {
-  .v2-hero { min-height: max(84svh, 600px); }
+  /* hero-gorsel 28.07: hero artık içerik-akışlı (min-height kuralı kalktı;
+     S1 ilk-ekran şartı yeni yerleşimde ölçümle doğrulanır — rapor). */
   .v2-mobil-sorular ul { display: flex; flex-direction: column; }
   .v2-mobil-sorular li:nth-child(3) { order: -1; }
 }
