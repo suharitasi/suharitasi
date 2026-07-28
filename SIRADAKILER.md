@@ -46,7 +46,29 @@ bağlantısı + pasaj alıntısı. İl ataması YAPILMADI, il sayfalarına BASIL
 parçası). Yerine RG'nin kendi metni alıntılandı (mevcut pot-pasaj deseni).
 Ayrıntı: VITRIN-RAPORU.md §FAZ 3-EK. KULLANICI CANLI ONAYI BEKLİYOR.
 
-🔵 YENİ İŞ — RG SAYI ALANININ KAYNAKTAN ÇIKARILMASI (28 Tem 2026, kullanıcı
+RG SAYI ÇIKARIMI — YAPILDI (28 Tem 2026). Gazete sayısı künyeli kayıt
+109 → 363/419. Yöntem: RG arşiv URL dosya adı = gazete sayısı
+(/arsiv/11581.pdf → 11581); src/data/rg-sayi.js.
+İKİ BAĞIMSIZ DOĞRULAMA: (K1) zemin doğruluğu — 109 başlık kaydında rg_sayi
+(API `resmiGazeteSayisi`) ile kaynak_url (API `url`) AYRI alanlardan gelir,
+yani kıyas döngüsel değil: 109/109 eşleşti, çelişen 0. (K2) tarih
+monotonluğu — 109 bilinen çiftte ihlal 0; türetilen 254 sayının 254'ü
+eğriye oturdu. K1 HER BUILD'DE koşar; falsifikasyon: türetime +1 sapma
+sokuldu → build exit 1 ("109 kayıt çelişti").
+PASAJ ÇIKARIMI REDDEDİLDİ: URL ile örtüşen 30 kayıtta 29 uyuştu, 1 çatıştı
+(26.07.1977 — URL 16008, pasaj 18001; tarih eğrisi 1977 için ~16000 diyor,
+18001 ≈ 1983 → iki sütunlu taramanın OCR'ı sayıyı bozmuş). Tek doğrulanamayan
+çatışma alanı güvenilmez kılar.
+GÖRÜNÜM: türetilen sayılar * ile işaretli ve yöntem şerhi sayfada
+(/arsiv/ + il sayfaları). Türetilemeyen 56 kayıtta (ilan sayfası URL'si
+sayı taşımaz) alan BOŞ — uydurulmadı; kapatma listesinde 16 sayılı / 7 boş.
+Ölçüldü: gerileme 0/174 · kontrast ihlal 0 · konsol 0 · S1 korundu ·
+81 il sayfasında 522 künyenin 445'i sayılı (343'ü çıkarım).
+AÇIK KALAN: 56 kayıtta sayı yok — RG ilan sayfası URL'si (/ilanlar/
+eskiilanlar/YYYY/MM/...) sayı taşımıyor. Gerekirse o sayfaların HTML
+başlığından çekmek ayrı iş; şimdilik alan boş bırakıldı.
+
+[ESKİ TANIM] 🔵 RG SAYI ALANININ KAYNAKTAN ÇIKARILMASI (28 Tem 2026, kullanıcı
 kararıyla ayrı iş olarak açıldı): 419 RG kaydının 310'u (ilan pasajı
 kaynaklı) `rg_sayi` alanı TAŞIMIYOR; 109 başlık kaydında var. Kapatma
 alt kümesinde 0/23. Etki: künyeler "RG tarih + URL" ile sınırlı kalıyor,

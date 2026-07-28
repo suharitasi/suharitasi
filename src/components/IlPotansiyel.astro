@@ -75,7 +75,9 @@ const cokIlliler = p.kutleler.filter((k) => k.cokIlli);
             <li>
               {k.metin}
               <span class="pot-kunye">
-                RG {k.tarih} · Sayı {k.sayi} · {k.durum} ·{' '}
+                RG {k.tarih}
+                {k.sayi != null && <> · Sayı {k.sayi}{k.sayiKaynak === 'cikarim' && '*'}</>}
+                {' '}· {k.durum} ·{' '}
                 <a href={k.url} rel="nofollow">fihrist kaydı</a>
               </span>
             </li>
@@ -86,12 +88,17 @@ const cokIlliler = p.kutleler.filter((k) => k.cokIlli);
         <details class="pot-katman">
           <summary>RG ilan pasajları ({p.rgEkKayitlari.length}) — taranmış
             arşivden, dizgi hatası içerebilir</summary>
+          <p class="pot-dipnot">* işaretli sayılar Resmî Gazete arşiv
+            bağlantısından türetilmiştir (ilan kaydı sayıyı ayrı alan olarak
+            vermez); yöntem 109 künyeli kayıtta doğrulanmıştır.</p>
           <ul class="pot-rg">
             {p.rgEkKayitlari.map((k) => (
               <li>
                 <span class="pot-pasaj">“{k.metin.slice(0, 260)}…”</span>
                 <span class="pot-kunye">
-                  RG {k.tarih} · {k.durum} ·{' '}
+                  RG {k.tarih}
+                  {k.sayi != null && <> · Sayı {k.sayi}{k.sayiKaynak === 'cikarim' && '*'}</>}
+                  {' '}· {k.durum} ·{' '}
                   <a href={k.url} rel="nofollow">kaynak</a>
                 </span>
               </li>

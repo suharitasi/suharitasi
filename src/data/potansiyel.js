@@ -13,6 +13,7 @@ import isletme from '../../veri/potansiyel/isletme-sahalari.json';
 import isletmeEk from '../../veri/potansiyel/isletme-sahalari-ek.json';
 import zengin from '../../veri/potansiyel/zenginlestirme.json';
 import morfoloji from '../../veri/potansiyel/morfoloji.json';
+import { sayiIle } from './rg-sayi.js';
 
 // PİLOT KAPISI KALDIRILDI (6.4, kullanıcı pilot onayı 2026-07-27):
 // blok 81 ilde basılır. (Pilot listesi tarihçe için: Manisa, Çanakkale.)
@@ -73,13 +74,17 @@ export function ilPotansiyel(ilAdi) {
     .filter((k) => Array.isArray(k.il) && k.il.includes(ilAdi))
     .map((k) => ({
       tur: 'baslik', metin: k.saha_adi, durum: k.durum,
-      tarih: k.rg_tarih, sayi: k.rg_sayi, url: k.kaynak_url,
+      tarih: k.rg_tarih, url: k.kaynak_url,
+      ...sayiIle(k),
     }));
   const rgEkKayitlari = isletmeEk.kayitlar
     .filter((k) => Array.isArray(k.il) && k.il.includes(ilAdi))
     .map((k) => ({
       tur: 'pasaj', metin: k.pasaj, durum: k.durum,
-      tarih: k.rg_tarih, sayi: null, url: k.kaynak_url,
+      tarih: k.rg_tarih, url: k.kaynak_url,
+      // Pasaj kayıtları API'den sayı taşımaz; arşiv URL'sinden türetilir
+      // (yöntem ve iki bağımsız doğrulaması: src/data/rg-sayi.js).
+      ...sayiIle(k),
     }));
 
   // (d) morfoloji

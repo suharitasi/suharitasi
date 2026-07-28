@@ -65,11 +65,20 @@ const sema = [
 
   <p class="ar-kapatma-serh">{KAPATMA_SERHI}</p>
 
+  <p class="ar-kapatma-sayi-serh">
+    * işaretli gazete sayıları Resmî Gazete arşiv bağlantısından türetilmiştir
+    (ilan kayıtları sayıyı ayrı alan olarak vermez). Yöntem, sayısı künyeli
+    109 kayıtta sınandı: 109/109 eşleşti, çelişen 0. Sayısı türetilemeyen
+    kayıtlarda alan boş bırakılmıştır.
+  </p>
+
   <ol class="ar-kapatma">
     {KAPATMA_KAYITLARI.map((k) => (
       <li>
         <p class="ar-kapatma-kunye">
-          RG {k.tarih} · {k.durum}
+          RG {k.tarih}
+          {k.sayi != null && <> · Sayı {k.sayi}{k.sayiKaynak === 'cikarim' && '*'}</>}
+          {' '}· {k.durum}
         </p>
         <p class="ar-kapatma-pasaj">&#8220;{k.pasaj}&#8230;&#8221;</p>
         <p class="ar-kapatma-git">
@@ -154,6 +163,13 @@ const sema = [
     border: 1px solid var(--cizgi);
     border-left: 3px solid var(--kehribar);
     font-size: 0.88rem;
+    color: var(--metin-soluk);
+    max-width: 66ch;
+  }
+
+  .ar-kapatma-sayi-serh {
+    margin: -0.8rem 0 1.4rem;
+    font-size: 0.82rem;
     color: var(--metin-soluk);
     max-width: 66ch;
   }

@@ -21,6 +21,7 @@ import havzaYas from '../../data/canli/havza-yas.json';
 import baraj from '../../data/canli/baraj.json';
 import suBirimleri from '../../data/kamu/su-birimleri.json';
 import suIslemleri from '../../data/kamu/su-islemleri.json';
+import { sayiIle } from './rg-sayi.js';
 
 const KOK = fileURLToPath(new URL('../../', import.meta.url));
 
@@ -59,6 +60,8 @@ if (rgYillar.length !== rgToplam) {
 const rgIlk = rgYillar[0];
 const rgSon = rgYillar[rgYillar.length - 1];
 const rgIl = pozitif(new Set(rgKayitlar.flatMap((k) => (Array.isArray(k.il) ? k.il : []))).size, 'RG ili');
+// Gazete sayısı künyeli kayıt (API alanı + doğrulanmış URL çıkarımı)
+const rgSayiliToplam = pozitif(rgKayitlar.filter((k) => sayiIle(k).sayi != null).length, 'sayısı bilinen RG kaydı');
 
 // — YAS kütleleri —
 const havzalar = Object.values(yasKutleleri.havzalar);
@@ -135,7 +138,7 @@ export const ARSIV_SETLERI = [
     ad: 'Resmî Gazete — yeraltı suyu işletme sahası ilanları',
     kaynak: 'T.C. Resmî Gazete (resmigazete.gov.tr) — başlık araması + ilan/arşiv içerik taraması',
     kapsam: `${rgIlk}-${rgSon}`,
-    sayim: `${rgToplam} kayıt (${isletme.kayitlar.length} başlık + ${isletmeEk.kayitlar.length} ilan pasajı) · ${rgIl} ile eşlendi`,
+    sayim: `${rgToplam} kayıt (${isletme.kayitlar.length} başlık + ${isletmeEk.kayitlar.length} ilan pasajı) · ${rgIl} ile eşlendi · ${rgSayiliToplam}'inde gazete sayısı künyeli`,
     erisim: 'Her kayıt il sayfalarında künyesiyle görüntülenir; kaynak bağlantısı Resmî Gazete arşivine gider.',
     yol: '/nerede-su-cikar/',
   },
@@ -242,6 +245,10 @@ export const KAPATMA_KAYITLARI = kapatmaHam
     tarih: k.rg_tarih,
     durum: k.durum,
     url: k.kaynak_url,
+    // Gazete sayısı: ilan kayıtları API'den sayı taşımaz, arşiv URL'sinden
+    // türetilir (yöntem + iki bağımsız doğrulama: src/data/rg-sayi.js).
+    // Türetilemeyende alan yok — uydurulmaz.
+    ...sayiIle(k),
     // Pasaj OLDUĞU GİBİ alınır (kırpma yalnız uzunluk için, sonuna …).
     pasaj: k.pasaj.replace(/\s+/g, ' ').trim().slice(0, 300),
   }))
