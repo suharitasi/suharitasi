@@ -88,20 +88,35 @@ e-posta kapılı (taslak-4 ile birleşir) veya B2B (taslak-3).
 KARAR KULLANICIDA. Karar çıkarsa uygulama briefi ayrıca yazılır.
 ═══
 
-## TASLAK-6 — /arac/il-rejimi/ → /ilimde-kim-yetkili/ (K2)
+## TASLAK-6 v2 — /arac/il-rejimi/ → /ilimde-kim-yetkili/ (K2) — BASIMA HAZIR
+
+(v1'in "envanter ölçülür" şartı kapandı; ölçüm 28.07, dist @ 9b826ad —
+ayrıntı: rapor/hazirlik-mobil-ve-slug.md §2.)
 
 ═══ BRIEF: URL TAŞIMA — TEK ROTA ═══
-FAZ 0: /arac/il-rejimi/'ye gelen iç link envanteri ölçülür (28.07 ön ölçüm:
-menü VERI_ROTALARI + kuyu-ruhsati indeksi; tam liste build'den çıkarılır).
-FAZ 1: rota dosyası taşınır; /arac/il-rejimi/ → /ilimde-kim-yetkili/ 301
-(_redirects, tam-yol kuralı); iç linkler güncellenir; sitemap/llms otomatik.
+Ölçülen envanter [VERİ]: link 174/175 sayfada, 522 geçiş; kaynak 4 dosya
+(anasayfa-v2.js:122 VERI_ROTALARI · AltBilgi.astro:25 · kuyu-ruhsati/
+index.astro:23 · IlKurumTablosu.astro:48) + 2 yorum (Sayfa.astro:45,
+il-profil.js:2) + rota dosyası src/pages/arac/il-rejimi.astro.
+FAZ 1 (worktree): (a) rota dosyası src/pages/ilimde-kim-yetkili.astro'ya
+taşınır — yeni slug KÖKTE, /arac/ bölümü (tek üyeydi) tümden boşalır;
+H1 soru biçimine döner ("İlimde su işinden kim yetkili?"), sayfa TEK soruya
+cevap verir; (b) 4 dosyadaki link + 2 yorum güncellenir; (c) public/
+_redirects'e İKİ satır (tam-yol deseni, /deneyim emsali):
+  /arac/il-rejimi   /ilimde-kim-yetkili/   301
+  /arac/il-rejimi/  /ilimde-kim-yetkili/   301
+(d) izleme/beklenen-301.json'a çift eklenir (md3 sürekli doğrular —
+SÜREKLİLİK); (e) Sayfa.astro bolumAdlari'ndaki ölü 'arac' girişi temizlenir.
 Kurallar: /nerede-su-cikar/ otoritesi bölünmez (kapıdan yeni link EKLENMEZ);
-sayfa TEK soruya cevap verir, başlığı soru biçimine döner ("İlimde su işinden
-kim yetkili?"). /arac/ bölümü boşalırsa breadcrumb davranışı ölçülür
-(Sayfa.astro otomatik türetiyor — kırılmaz, doğrulanır).
-BİTTİ: eski URL 301 → yeni 200 (canlıda ölçülür) · iç link kırık 0 ·
-taban-gerileme: sitemap KAYIP yalnız taşınan rota (yenisi eklenmiş) ·
-Search Console'da eski URL "yönlendirme" durumuna düşene dek izleme notu.
+sitemap/llms otomatik; çekirdek-set değişikliği GEREKMEZ (ölçüldü: rota
+sette yok).
+BİTTİ (hepsi ölçülebilir): build 0 · iç link kırık 0 (175 sayfa taraması) ·
+canlıda /arac/il-rejimi/ → 301 → /ilimde-kim-yetkili/ → 200 zinciri ·
+site-saglik md3 yeni çifti YEŞİL doğrular · taban-gerileme: sitemap'te
+kayıp yalnız eski rota, yeni rota eklenmiş · GSC: eski URL'nin "sayfa
+yönlendirme içeriyor" durumu HATA SAYILMAZ; 4-6 hafta sonra Performans
+raporu kontrol notu SIRADAKILER'e yazılır. Kullanıcı hızlandırıcısı
+(isteğe bağlı, panel): URL Denetimi → yeni URL için indeksleme iste.
 ═══
 
 ## TASLAK-7 — mobil ana sayfada derdi-adlandıran soru (E4; görsel iş)
