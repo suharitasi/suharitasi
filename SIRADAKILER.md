@@ -26,6 +26,22 @@ indeksi ölçüm olarak birebir aynı (1440: 3 kolon/672×1352; 375: 1 kolon/
 335×4069). 2 kolona düşürülürse iki sayfa DESEN OLARAK AYRIŞIR; kararın
 kapsamı "yalnız kapı" mı "her iki sayfa" mı önce netleşmeli.
 
+S1+K2 UYGULAMASI — MERGE EDİLDİ (28 Tem 2026, ön-onaylı; mock kapısı
+kullanıcı kararıyla kaldırıldı; merge 896d8b1). İki iş:
+· S1 MOBİL İLK EKRAN: "Ruhsatsız kuyu cezası aldım" sorusu 375 kadrajı
+  İÇİNDE (945-994 → 716-765). CSS-yalnız, 3 kural mobil kapsamda; masaüstü
+  BİT-EŞİT kanıtlı (index.html CSS-hash normalize = özdeş; 1440 altı soru
+  koordinatı önce=sonra birebir). Ödün (CSS yorumunda): mobil görsel sıra ≠
+  DOM/odak sırası (tek öğe). KULLANICI CANLI ONAYI BEKLİYOR (İş kapanış
+  kuralı — görsel iş; kanıt: cikti/denetim/s1k2/).
+· K2 URL TAŞIMASI: /arac/il-rejimi/ → /ilimde-kim-yetkili/ (taslak-6 v2
+  birebir: 4 dosya + 2 yorum + rota + _redirects 2 satır + beklenen-301.json;
+  /arac/ bölümü kapandı, bolumAdlari temizlendi). Gerileme 0/172; sitemap
+  kayıp yalnız taşınan rota. AÇIK İZLEME NOTU: 4-6 hafta sonra (≈ 25 Ağu -
+  8 Eyl 2026) GSC Performans'ta eski/yeni URL tıklama devri kontrol edilir;
+  eski URL'nin "sayfa yönlendirme içeriyor" durumu HATA DEĞİLDİR. İsteğe
+  bağlı hızlandırıcı (kullanıcı paneli): URL Denetimi → yeni URL indeksleme.
+
 YENİ AÇIK KALEM — site-saglik.mjs --test 6/7 (ölçüldü 28 Tem 2026, kapı işi
 sırasında): senaryo (i) "CSP media-src kaldırıldı → md4 🔴" KALIYOR. Kapı
 dalında da ana depoda da AYNI (6/7) — kapı işinin ürünü DEĞİL. Hipotez
