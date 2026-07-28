@@ -2,6 +2,39 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
+/NEREDE-SU-CIKAR/ GİRİŞ KAPISI — MERGE EDİLDİ, KULLANICI CANLI ONAYI BEKLİYOR
+(28 Tem 2026; dal kapi-2026-07-28 → main b5fc73c, push'landı). Ana sayfadaki
+"su nerelerde çıkabilir" sorusunun tek kanonik hedefi; cevap il ölçeğinde
+(81 il sayfası). Kullanıcı KARELERİ onayladı; İş kapanış kuralı gereği nihai
+onay canlı testtir — etiket o zamana dek açık kalır.
+Rapor: KAPI-RAPORU.md · kanıt: cikti/denetim/kapi/.
+Ölçüldü: taban gerilemesi 0 (172 ortak sayfa) · sitemap 172→173 KAYIP 0 ·
+llms 173→174 · kontrast 127 düğüm ihlal 0 (en dar 5,16:1) · 375 taşma 0 ·
+konsol 0 · site geneli 176 link kırık 0 · öz-cevap 255 krk.
+Sayfadaki HER rakam build anında veriden sayılır (src/data/kapi.js), SSS
+cevapları mevcut sayfalardan birebir + ham-metin doğrulamalı (kapi-sss.js);
+falsifikasyon: alıntı bozulunca / öz-cevap 280'i aşınca build exit 1.
+Süreklilik: /nerede-su-cikar/ izleme/cekirdek-sayfalar.json çekirdek setine
+eklendi (8→9); yeni araç arac/kapi-denetim.mjs.
+KARARLAR (kullanıcı, 28.07): menüye tek kayıt EKLENDİ · SORULAR_V2[5]
+"nerede su VAR" DOKUNULMADI (var/çıkabilir ayrımı kasıtlı) · KAYNAKLAR.md
+OpenAlex satırı ölçülen değerle düzeltildi (1.226/49 il → 1.979/81 il).
+AÇIK KALEM — İL SEÇİCİ MOBİL 2 KOLON (kullanıcı kararı 28.07: 1 kolon KALIR,
+ayrı iş olarak kuyruğa): 375px'te il ızgarası 1 kolon / 4069px, 81 il tek
+sütunda uzun kaydırma yapıyor. Bu TABANIN davranışıdır — /kuyu-ruhsati/
+indeksi ölçüm olarak birebir aynı (1440: 3 kolon/672×1352; 375: 1 kolon/
+335×4069). 2 kolona düşürülürse iki sayfa DESEN OLARAK AYRIŞIR; kararın
+kapsamı "yalnız kapı" mı "her iki sayfa" mı önce netleşmeli.
+
+YENİ AÇIK KALEM — site-saglik.mjs --test 6/7 (ölçüldü 28 Tem 2026, kapı işi
+sırasında): senaryo (i) "CSP media-src kaldırıldı → md4 🔴" KALIYOR. Kapı
+dalında da ana depoda da AYNI (6/7) — kapı işinin ürünü DEĞİL. Hipotez
+(kontrol edilmedi): 27.07'deki md4 revizyonu kontrolü zaman-döngüsü ölçümüne
+çevirince senaryo bayatladı, artık CSP'ye duyarlı değil. Bu, sağlık
+sisteminin kendi öz-testinde sürekli bir kırmızı bırakıyor — "bilinen arıza"
+sayılmaya başlarsa md4 revizyonu dersinin ikizi doğar. Yapılacak: senaryo (i)
+md4'ün YENİ ölçüm biçimine göre yeniden yazılsın ya da gerekçeli kaldırılsın.
+
 SAĞLIK md4/md12/md10 YANLIŞ ALARMLARI — KAPANDI (28 Tem 2026, canlıda
 doğrulandı: 11 kontrol geçti): Su-potansiyeli merge'ü (5e08611) sabahtan beri
 deploy olmamış TÜM günü canlıya taşıdı; ana sayfa v2 DOM'unda #world/.sw-*
