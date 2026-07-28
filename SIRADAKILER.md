@@ -26,6 +26,22 @@ indeksi ölçüm olarak birebir aynı (1440: 3 kolon/672×1352; 375: 1 kolon/
 335×4069). 2 kolona düşürülürse iki sayfa DESEN OLARAK AYRIŞIR; kararın
 kapsamı "yalnız kapı" mı "her iki sayfa" mı önce netleşmeli.
 
+HERO "SAHA KADRAJI" + Ş3 KÖK DÜZELTMESİ — MERGE EDİLDİ (28 Tem 2026,
+ön-onaylı; merge b3046af). Kullanıcı şikâyetleri ölçümle doğrulanıp çözüldü:
+Ş1 yazılar sahne üstünde/büyük → H1 72→41,6px, metin düz zemine indi
+(kesişme 0px) · Ş2 işçiler görünsün → kadraj NATIVE 832×464 (upscale
+×1,77→×1,00; kare kanıtı dizi-t4-sahne1) · Ş3 "aşağısı dağılmış" → KÖK:
+`.v2-sayfa *` reseti tüm kuralları eziyordu, v0'ın 6rem padding'i ve başlık
+ortalaması HİÇ uygulanmamıştı; reset :where()'e alındı, v0 ritmi ilk kez
+devrede. Akış: 6 poster şerit (birleşik) → kadrajda adım adım sahneler →
+sorular kadrajın YANINDA, aktif sahneyle senkron (t4/t9/t14 ölçümü).
+Motor K-1 süreleri aynen; ağırlık: varlık kümesi birebir aynı.
+Ölçüldü: gerileme 0/174 · S1 736-785 kadrajda (üç sıkma turu; pay 27px —
+canlıda yeniden ölçülecek) · kontrast ihlal 0 · konsol 0 · taşma 0.
+Rapor: rapor/hero-gorsel.md · kareler: cikti/denetim/hero/.
+KULLANICI CANLI ONAYI BEKLİYOR (görsel iş — nihai yargı canlı test;
+GPU'suz kare görsel kalite kanıtı değildir).
+
 SATIŞ RAPORLARI UYGULAMASI (U1-U4) — MERGE EDİLDİ (28 Tem 2026, ön-onaylı).
 Metinler rapor/satis/BIRLESIK-SATIS-RAPORU.md'den HARFIYEN (uygulamayla
 birlikte main'e girdi): yeni H1 "Kuyunuz için ruhsat mı lazım, ceza mı

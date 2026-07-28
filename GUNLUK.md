@@ -41,6 +41,21 @@ Aynı tuzak "saha adı"nda da çıktı: `saha_adi` alanı 0/23, pasajdan çıkar
 Erzurum Ovası…", "UYSAL SAMSUN…") ya da tarih parçası taşıyordu. Alan
 üretilmedi; RG'nin kendi metni alıntılandı.
 
+### Hero "saha kadrajı": şikâyetin kökü tasarımda değil reset'teydi
+Kullanıcının üç şikâyeti ölçümle üç köke indi: (1) H1 72px + başlık bloğu
+sahnenin %19'unu örtüyor; (2) 832×464 kaynak ×1,77 upscale; (3) `.v2-sayfa
+* {margin:0;padding:0}` reseti 0-2-0 özgüllükle TÜM tekil-sınıf kurallarını
+eziyor — v0'ın bölüm padding'i ve ortalaması aylardır hiç uygulanmamış,
+"dağılmış" görünümün nedeni buymuş. Reset `:where()`e alınınca v0 ritmi ilk
+kez devreye girdi ve mobil boşluklar büyüyünce S1 bozuldu (830) — üç sıkma
+turuyla 736'ya çekildi.
+
+**KURAL (yeni):** sayfa-kapsamlı `* { margin:0 }` reseti yazılacaksa
+`:where()` içinde yazılır (özgüllük 0) — aksi hâlde sonra yazılan her
+tekil-sınıf boşluk kuralı sessizce ölür ve "uygulandı sanılan" tasarım
+hiç render olmaz. Belirtisi: computed padding/margin'lerin kural varken 0
+ölçülmesi.
+
 ### Satış raporlarının uygulanması: "harfiyen" ile "sabit sayı yazılmaz" barışı
 Üç satış raporunun metinleri (H1, alt satır, öz-cevap, rehber kapanışı)
 brief gereği HARFIYEN uygulandı. Çelişen kural: sabit sayı yazılmaz.
