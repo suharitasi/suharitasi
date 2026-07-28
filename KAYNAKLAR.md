@@ -302,10 +302,10 @@
 - **MTA e-ticaret katalog metaverisi** — eticaret.mta.gov.tr; 356 rapor
   künyesi (mta-katalog.json). Yalnız katalog adı+URL; rapor içeriği
   alınmadı.
-- **OpenAlex API** — akademik künyeler (akademik-kunye.json; 1.226 künye,
-  49 il — kalan iller kota kuyruğunda). Metadata lisansı CC0. DergiPark
-  arama arayüzü Turnstile korumalı olduğundan ikame (kullanıcı onayı
-  2026-07-27; basılan her künye DOI/açık-erişim URL'li).
+- **OpenAlex API** — akademik künyeler (akademik-kunye.json; 1.979 künye,
+  81/81 il — kota kalemi 2026-07-28'de kapandı, hata 0). Metadata lisansı
+  CC0. DergiPark arama arayüzü Turnstile korumalı olduğundan ikame
+  (kullanıcı onayı 2026-07-27; basılan her künye DOI/açık-erişim URL'li).
 - **OpenStreetMap / Overpass API** — (1) ilçe→il dizini
   (ilce-il-dizini.json; resmî listeyle çapraz doğrulama SIRADAKILER'de),
   (2) natural=spring / man_made=water_well sayıları (osm-su-noktalari.json,

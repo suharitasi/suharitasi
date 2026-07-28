@@ -1,0 +1,216 @@
+---
+// GİRİŞ KAPISI — "Nerede su çıkar?" (brief 2026-07-28, FAZ 1).
+// Bu sayfa CEVAP VERMEZ, cevabın bulunduğu yere GÖTÜRÜR: ana sayfadaki
+// "su nerelerde çıkabilir" sorusunun tek kanonik hedefi. Cevabın kendisi
+// il sayfalarındaki su potansiyeli bloğundadır (81 il).
+//
+// TASARIM: mevcut içerik sayfası dili — Sayfa.astro çatısı, SayfaBasi + H1,
+// OzCevap kutusu, /kuyu-ruhsati/ indeksinin il ızgarası. Yeni renk/font/desen
+// İCAT EDİLMEDİ (DESIGN.md; global CLAUDE.md marka kuralı).
+//
+// UYDURMA YASAĞI: sayfadaki her olgu cümlesi ya bir veri alanından
+// (src/data/kapi.js — build anında sayılır) ya da KAYNAKLAR.md künyesinden
+// gelir. SSS cevapları mevcut sayfalardan birebir (src/data/kapi-sss.js,
+// ham-metin doğrulamalı). Model bilgisinden jeoloji/hukuk cümlesi yazılmadı.
+import { getCollection } from 'astro:content';
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import { OZ_CEVAP, DURUSTLUK_ETIKETI, KATMANLAR, VERI_YOK_NOTU, SAYILAR, iller } from '../data/kapi.js';
+import { sssListesi } from '../data/kapi-sss.js';
+
+const canonical = new URL('/nerede-su-cikar/', Astro.site).href;
+
+// SSS'nin son maddesi rehberin KENDİ frontmatter öz-cevabıdır — kopyası
+// tutulmaz, koleksiyondan okunur (kaynak değişirse sayfa da değişir).
+const rehberler = await getCollection('rehberler');
+const kuyuRehberi = rehberler.find((r) => r.id === 'kuyu-ruhsati');
+if (!kuyuRehberi) {
+  throw new Error('nerede-su-cikar: kuyu-ruhsati rehberi koleksiyonda bulunamadı.');
+}
+const sss = sssListesi(kuyuRehberi.data.ozCevap);
+
+// İl seçici linklerinin HEPSİ gerçek rotaya çıkmalı (uydurma URL yasağı).
+// getStaticPaths ile aynı kaynaktan geldiği için eşleşme garantidir; yine de
+// sayı burada doğrulanır — sessizce 80 il basılmasın.
+if (iller.length !== SAYILAR.ilSayisi) {
+  throw new Error(`nerede-su-cikar: il seçici ${iller.length} kayıt, beklenen ${SAYILAR.ilSayisi}.`);
+}
+
+const sema = [
+  {
+    '@type': 'WebPage',
+    name: 'Nerede su çıkar?',
+    description: OZ_CEVAP,
+    url: canonical,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${new URL('/', Astro.site).href}#site` },
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: sss.map((s) => ({
+      '@type': 'Question',
+      name: s.soru,
+      acceptedAnswer: { '@type': 'Answer', text: s.cevap },
+    })),
+  },
+  {
+    '@type': 'ItemList',
+    name: 'İl bazında yeraltı suyu potansiyeli sayfaları',
+    numberOfItems: iller.length,
+    itemListElement: iller.map((x, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: x.il,
+      url: new URL(x.yol, Astro.site).href,
+    })),
+  },
+];
+---
+<Sayfa baslik="Nerede su çıkar?" aciklama={OZ_CEVAP} sema={sema}>
+  <SayfaBasi etiket="Giriş kapısı" baslik="Nerede su çıkar?" />
+  <OzCevap metin={OZ_CEVAP} />
+
+  <h2 id="iliniz">İliniz hangisi?</h2>
+  <p class="kapi-yonerge">
+    Cevap il ölçeğinde verilir: her il sayfasında o ile eşlenmiş yeraltı suyu
+    kütleleri, Resmî Gazete'de ilan edilmiş işletme sahaları ve arazi biçimi
+    göstergeleri birlikte durur. Havza ölçeğindeki tablo için
+    <a href="/havzalar/">havza sayfalarına</a> bakabilirsiniz.
+  </p>
+
+  <ul class="il-listesi">
+    {iller.map((x) => (
+      <li><a href={x.yol}>{x.il}</a></li>
+    ))}
+  </ul>
+
+  <h2 id="nasil">Cevap nasıl üretiliyor?</h2>
+  <p class="kapi-yonerge">
+    Dört veri katmanı üst üste konur. Her katmanın kaynağı künyelidir; künye
+    listesinin tamamı <a href="/hakkinda/">hakkında sayfasındaki</a> kaynak
+    kaydında durur.
+  </p>
+
+  <ol class="kapi-katmanlar">
+    {KATMANLAR.map((k, i) => (
+      <li>
+        <h3>{k.ad}</h3>
+        <p class="kapi-olcum">{k.olcum}</p>
+        <p>{k.aciklama}</p>
+        <p class="kapi-kunye">Kaynak: {k.kunye} — {k.kaynakNot}</p>
+      </li>
+    ))}
+  </ol>
+
+  <p class="kapi-dipnot">{VERI_YOK_NOTU}</p>
+
+  <h2 id="sorular">Sık sorulanlar</h2>
+  {sss.map((s) => (
+    <div class="kapi-sss">
+      <h3>{s.soru}</h3>
+      <p>{s.cevap}</p>
+      <p class="kapi-kunye">
+        Kaynak: {s.kaynakYol
+          ? <a href={s.kaynakYol}>{s.kaynakAd}</a>
+          : s.kaynakAd}
+      </p>
+    </div>
+  ))}
+
+  <p class="kapi-durustluk">{DURUSTLUK_ETIKETI}</p>
+</Sayfa>
+
+<style>
+  /* İl ızgarası: /kuyu-ruhsati/ indeksiyle AYNI desen (kopya disiplini). */
+  .il-listesi {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    gap: 0.4rem 1rem;
+  }
+
+  .il-listesi a {
+    display: block;
+    padding: 0.45rem 0;
+    text-decoration: none;
+    border-bottom: 1px solid var(--cizgi);
+    transition: color 120ms var(--e-akinti), border-color 240ms var(--e-akinti);
+  }
+
+  .il-listesi a:hover {
+    color: var(--su-700);
+    border-bottom-color: var(--su-400);
+  }
+
+  .kapi-yonerge { max-width: 66ch; margin-bottom: 1.4rem; }
+
+  /* Katman kartları: il bloğunun veri bandı diliyle aynı aile
+     (zemin-kart + hairline + su-700 üst çizgi). */
+  .kapi-katmanlar {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .kapi-katmanlar > li {
+    padding: 1rem 1.2rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+  }
+
+  .kapi-katmanlar h3 {
+    font-family: var(--serif);
+    font-size: 1.12rem;
+    font-weight: 500;
+    margin: 0 0 0.4rem;
+  }
+
+  .kapi-katmanlar p { margin: 0 0 0.5rem; max-width: 66ch; }
+  .kapi-katmanlar p:last-child { margin-bottom: 0; }
+
+  /* Ölçüm satırı mono katmanda (DESIGN.md §6): sayı = ölçüm estetiği */
+  .kapi-olcum {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    color: var(--metin);
+  }
+
+  .kapi-kunye {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    color: var(--metin-soluk);
+  }
+
+  .kapi-dipnot {
+    margin-top: 0.7rem;
+    font-size: 0.82rem;
+    color: var(--metin-soluk);
+    max-width: 66ch;
+  }
+
+  .kapi-sss { margin-bottom: 1.3rem; }
+
+  .kapi-sss h3 {
+    font-family: var(--serif);
+    font-size: 1.12rem;
+    font-weight: 500;
+    margin: 0 0 0.35rem;
+  }
+
+  .kapi-sss p { max-width: 66ch; margin: 0 0 0.3rem; }
+
+  /* Dürüstlük etiketi: il bloklarındaki .pot-durustluk ile aynı görünüm. */
+  .kapi-durustluk {
+    margin-top: 1.6rem;
+    padding: 0.8rem 1.1rem;
+    border: 1px solid var(--cizgi);
+    font-size: 0.88rem;
+    color: var(--metin-soluk);
+  }
+</style>
