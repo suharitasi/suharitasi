@@ -1111,3 +1111,27 @@ DÖNÜŞÜM SEANSI (26 Tem 2026) — dal `donusum-2026-07-26`, worktree
       kaydırma-sahnesi yüzünden ilk ekranda görünmez, `arac/oz-denetim.mjs`
       etkileşim adımı 30 sn'de zaman aşımına uğruyor. Araç ana sayfa için
       kaydırma-önce-tıkla adımı istiyor. Madde 11'den önce de böyleydi.
+
+## Denetim kapsamı — kapsam dışı bırakılanlar (28.07.2026, brief kararı)
+- [ ] **KVKK / aydınlatma metni** — [SERDAR-HUKUK]. Metin senin kalemin,
+      biz basarız. Cloudflare Analytics çerezsizdir; yine de takdir senin.
+- [ ] **npm açıklarının giderilmesi** — ölçülen taban: 1 düşük + 3 yüksek
+      (sharp/libvips zinciri). md20 artık YALNIZ yeni açıkta ateşler;
+      mevcut 4'ün kapatılması ayrı iş (sharp sürüm yükseltmesi build'i
+      etkiler, ölçülmeden yapılmaz).
+- [ ] **404 sayfası** — `public/404.html` VAR ve markalı. Kapsam
+      haritasındaki "yok" varsayımı ölçümle yanlışlandı. İyileştirme
+      (arama kutusu, popüler sayfalar) isteğe bağlı ayrı iş.
+- [ ] **Depo dışı yedek** — md20 SARI veriyor: `kaynak/dsi-arsiv` 55 MB +
+      `data/arsiv` 529 MB geri getirilemez veri, depo dışında kopyası yok.
+      Karar gerekiyor: hedef (Hetzner ikinci disk / R2 / harici) + sıklık.
+- [ ] **Keşif botu izlemesi** — sunucu erişim kayıtları `/root` altında,
+      okunamadı. Cloudflare tarafından mı çekilecek, karar gerekiyor.
+
+## Denetim kapsamı — ilk gerçek koşumun bulguları
+- [ ] **3 ölü dış bağlantı (KIRMIZI, gerçek):**
+      `dergipark.gov.tr/pajes/...` (alan adı `dergipark.org.tr`'ye taşındı),
+      `trdizin.gov.tr/publication/...`, `doi.org/10.17341/gummfd.60377`.
+      Künyeye dayalı otorite iddiasının altındaki boşluk — düzeltilmeli.
+- [ ] **rg-nobetci ve nhyp-nobetci hiç koşmamış** (state dosyası yok).
+      Cron kaydı var mı, doğrulanmalı.

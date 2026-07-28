@@ -151,6 +151,18 @@ export const GUVENLIK_BASLIKLARI = [
   'referrer-policy', 'x-content-type-options', 'x-frame-options',
 ];
 
+/* Cloudflare e-posta gizlemesini çözer: ilk bayt anahtar, kalan her bayt
+   anahtarla XOR'lanır. Gizli adres okunabilir hale gelince biçim testi
+   canlıda da yereldeki kadar gerçek kalır. */
+export function cfEpostaCoz(hex) {
+  const anahtar = parseInt(hex.slice(0, 2), 16);
+  let s = '';
+  for (let i = 2; i < hex.length; i += 2) {
+    s += String.fromCharCode(parseInt(hex.slice(i, i + 2), 16) ^ anahtar);
+  }
+  return s.split('?')[0];
+}
+
 export async function baslikOgCta(taban, sayfalar, getirFn) {
   const bulgular = [];
   // (a) başlıklar
@@ -161,7 +173,7 @@ export async function baslikOgCta(taban, sayfalar, getirFn) {
   for (const direktif of ['default-src', 'media-src', 'script-src', 'frame-ancestors']) {
     if (!csp.includes(direktif)) bulgular.push({ tip: 'kirmizi', mesaj: `CSP direktifi eksik: ${direktif}` });
   }
-  // (b) og:image + (c) mailto
+  // (b) og:image + (c) mailto (düz + Cloudflare gizlemeli)
   const ogGorseller = new Set();
   let mailtoBulunan = 0;
   const mailtoBozuk = [];
@@ -175,6 +187,17 @@ export async function baslikOgCta(taban, sayfalar, getirFn) {
     for (const m of h.matchAll(/href="mailto:([^"]*)"/g)) {
       mailtoBulunan++;
       const adres = decodeURIComponent(m[1]).split('?')[0];
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(adres)) mailtoBozuk.push({ yol, adres });
+    }
+    // CANLIDA mailto: DİYE BİR ŞEY YOKTUR. Cloudflare e-posta gizlemesi her
+    // mailto'yu /cdn-cgi/l/email-protection#HEX'e çevirir (ölçüldü 28.07 —
+    // yerel dist'te 17 mailto, canlıda 0; kalem ilk gerçek koşumda yanlış
+    // KIRMIZI verdi). Gizli biçim ÇÖZÜLÜR, adres aynı testten geçer:
+    // vekil kriter değil, aynı olguyu ölçer. CTA gerçekten silinirse iki
+    // biçim de kaybolur ve kalem yine ateşler.
+    for (const m of h.matchAll(/href="\/cdn-cgi\/l\/email-protection#([0-9a-f]+)"/gi)) {
+      mailtoBulunan++;
+      const adres = cfEpostaCoz(m[1]);
       if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(adres)) mailtoBozuk.push({ yol, adres });
     }
   }

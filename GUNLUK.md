@@ -1225,3 +1225,20 @@ veri-yok), GLO-90 morfoloji 81/81. Blok 81 il sayfasında; pilot
 (Manisa+Çanakkale) kanıt paketiyle onaylandı; gerileme 0. Dersler:
 sunucu 8GB (CLAUDE.md'ye işlendi), tr-iller atfı Apache-2.0 (düzeltildi),
 resmî TR kaynaklarına yurtdışı IP engelleri (raporlarda). MERGE BEKLİYOR.
+
+## 28.07.2026 — HATA KAYDI + KURAL: yerelde doğrulanan kalem canlıda yalan söyleyebilir
+md19 (başlık+OG+CTA) yerel `dist` üzerinde kuruldu ve orada 17 `mailto:`
+sayıp geçti. İlk gerçek `--tam` koşumunda canlıda **KIRMIZI** verdi:
+"hiçbir sayfada mailto CTA bulunamadı". Site bozuk değildi — Cloudflare
+e-posta gizlemesi canlıda her `mailto:`yi `/cdn-cgi/l/email-protection#HEX`
+yapıyor. Kalem, olguyu değil yerel ortamın tesadüfünü ölçüyordu.
+
+**KURAL:** Yeni bir sağlık kalemi yerel `dist` üzerinde doğrulanmışsa,
+yayına girmeden ÖNCE canlı üzerinde de bir kez koşturulur. CDN yeniden
+yazması (e-posta gizleme, link rewrite, HTML minify, bot yönetimi) yerelde
+GÖRÜNMEZ. "dist-sun ile ölçtüm" yeterli değildir — CANLI KOŞUL İLKESİ'nin
+zorunlu uzantısı.
+
+Düzeltme vekil kritere kaçmadı: gizli biçim çözülüyor (`cfEpostaCoz`) ve
+adres aynı testten geçiyor; CTA gerçekten silinirse iki biçim de kaybolur
+ve kalem yine ateşler (falsifikasyonla doğrulandı).
