@@ -20,9 +20,17 @@ def getir(url):
     # mailto parametresi
     url += ("&" if "?" in url else "?") + "mailto=avserdararslan@hotmail.com"
     son = None
-    for deneme, bekle in enumerate((0, 30, 75, 150)):
-        if bekle:
-            time.sleep(bekle)
+    # 2026-07-27 (gece paketi D) — TEŞHİS DÜZELTMESİ.
+    # Eski sabit merdiven (30/75/150 sn, sonra 60/150/300) YAPISAL OLARAK
+    # yetersizdi. Ölçülen gerçek 429 cevabı:
+    #   x-ratelimit-limit: 1000 · x-ratelimit-remaining: 0 · retry-after: 4215
+    #   x-ratelimit-credits-required: 10  (istek başına 10 kredi)
+    # Yani OpenAlex artık KREDİ tabanlı kota uyguluyor ve pencere ~70 dakikada
+    # sıfırlanıyor. Saniyelik merdiven ne kadar uzatılsa da bu pencereyi
+    # aşamaz — sunucunun SÖYLEDİĞİ süre beklenmelidir.
+    # Doğru davranış: Retry-After başlığını OKU ve ona uy (üst sınırla).
+    RETRY_TAVAN = 5400          # 90 dk — sonsuz bekleme olmasın
+    for deneme in range(4):
         istek = urllib.request.Request(url, headers={"User-Agent": UA})
         try:
             with urllib.request.urlopen(istek, timeout=60) as c:
@@ -31,13 +39,28 @@ def getir(url):
             son = e
             if e.code != 429:
                 raise
-            print(f"429 — {bekle}s beklendi, deneme {deneme+1}", file=sys.stderr)
+            ra = e.headers.get("Retry-After")
+            kalan = e.headers.get("x-ratelimit-remaining")
+            try:
+                bekle = min(int(ra), RETRY_TAVAN) if ra else 300
+            except ValueError:
+                bekle = 300     # Retry-After tarih biçimindeyse: sabit geri çekilme
+            print(f"429 (kalan kredi={kalan}) — sunucu {ra}s istedi, "
+                  f"{bekle}s bekleniyor, deneme {deneme+1}/4", file=sys.stderr, flush=True)
+            if deneme < 3:
+                time.sleep(bekle + 5)
     raise son
 
 def kunye(w, sorgu):
     loc = (w.get("primary_location") or {})
     src = (loc.get("source") or {})
+    doi = w.get("doi")
+    url = loc.get("landing_page_url") or doi
     return {
+        # baski_uygun (kullanıcı şartı 4.B): DOI ya da açık URL taşımayan
+        # künye SİTEDE BASILMAZ. Basım katmanı (src/data/potansiyel.js)
+        # zaten süzüyor; etiket veride de açık dursun ki denetlenebilsin.
+        "baski_uygun": bool(doi or url),
         "baslik": w.get("display_name"),
         "yazarlar": [a.get("author", {}).get("display_name")
                      for a in (w.get("authorships") or [])[:6]],
