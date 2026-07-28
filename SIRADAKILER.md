@@ -10,7 +10,7 @@ izleme/medya-beklenen.json hâlâ '#world .sw-scene' bektiği için md4 6/6
 "sahne DOM'da yok" veriyor. CANLI MEDYA SAĞLIKLI — ölçüldü: sahne1
 readyState=4, currentTime=2.85, paused=false; mp4'ler 200; konsol 0.
 REVİZYON YAPILDI (27 Tem akşam, kullanıcı onaylı; dal md4-2026-07-27,
-MERGE ONAYI BEKLİYOR): md4 zaman-döngüsü ölçümüne çevrildi (aktif-sahne
+MERGE EDİLDİ 28.07): md4 zaman-döngüsü ölçümüne çevrildi (aktif-sahne
 poll + 206 Range normal + döngü-eksiği kontrolü); K2 kalemlerine
 DOKUNULMADI. Kanıt: canlıya karşı koşu GENEL YESIL — 6/6 sahne (6 farklı
 sahne adı, hepsi readyState 4 + currentTime>0), diğer 5 kontrol değişmedi;
@@ -28,14 +28,16 @@ DERS: her DOM/yeniden-tasarım işi, ona bağlı izleme yapılandırmasını da
 günceller; yoksa kontrol sessizce körelir ve kırmızısı "bilinen arıza"
 sayılmaya başlar.
 
-SU POTANSİYELİ KATMANI — 81 İLDE, KULLANICI ONAYI BEKLİYOR (MERGE=YAYIN;
-27 Tem 2026): "Bu ilde su nerelerde çıkabilir?" bloğu 81 il sayfasında
-(worktree suharitasi-potansiyel, dal potansiyel-2026-07-27). Pilot onaylı;
+SU POTANSİYELİ KATMANI — 81 İLDE, CANLIDA; KULLANICI CANLI ONAYI BEKLİYOR
+(merge edildi 27 Tem 2026 / 5e08611; iş kapanış kuralı gereği etiket
+kullanıcı canlıda onaylayana kadar açık kalır): "Bu ilde su nerelerde
+çıkabilir?" bloğu 81 il sayfasında. Pilot onaylı;
 81-il denetimi: blok 81/81, öz-cevap ≤280 (maks 237), kütle satırı 354/354,
 kırık link 0/9665, gerileme 0 (kanıt: cikti/denetim/potansiyel-pilot/ +
-rapor/potansiyel-faz*.md). MERGE YALNIZ KULLANICI ONAYIYLA. Açık kalemler:
-OpenAlex 32 il kotası, ilçe dizini resmî çapraz doğrulama, RG izleme cron
-(Faz 6 sonrası), TWI (8GB), 3 belirsiz kütle.
+rapor/potansiyel-faz*.md). Açık kalemlerin durumu (28.07): OpenAlex 32 il KAPANDI (81/81) · ilçe
+dizini çapraz doğrulama KAPANDI (0 fark) · RG izleme cron KURULDU · TWI
+ölçüldü, sığmıyor (havza-bazlı tasarım açık) · 3 belirsiz kütle DURUYOR ·
+koordinat ikinci geçişiyle doğrulanamayan kütle 153 → 120.
 
 TWI YENİDEN DEĞERLENDİRME (27 Tem 2026, kullanıcı kararı): Faz 5 TWI'yi
 "4GB yetmez" bayat varsayımıyla atlamıştı; sunucu gerçekte 8GB (ölçüldü).
@@ -128,7 +130,7 @@ YENİ AÇILAN KALEMLER (28 Tem 2026, gece paketi tam-sistem denetimi):
    (Ek gözlem: silinmiş menu.js hâlâ Cloudflare edge cache'inden 200
    dönüyor — s-maxage 604800; hiçbir sayfa link vermiyor, 7 güne kadar.)
 
-4. SIRADAKILER HİJYENİ — bu dosya 854 satır, 41 açık madde, 13 "ONAY
+4. SIRADAKILER HİJYENİ — bu dosya 900+ satır, 41 açık madde, 13 "ONAY
    BEKLİYOR" (5'i [ESKİ] tarihsel). Her oturum başında okunması gereken
    dosya artık taranamıyor. Öneri: kapanmış maddeler
    arsiv/SIRADAKILER-2026-07.md'ye taşınır, ana dosya açık maddelerle
