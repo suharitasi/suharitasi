@@ -41,6 +41,33 @@ Aynı tuzak "saha adı"nda da çıktı: `saha_adi` alanı 0/23, pasajdan çıkar
 Erzurum Ovası…", "UYSAL SAMSUN…") ya da tarih parçası taşıyordu. Alan
 üretilmedi; RG'nin kendi metni alıntılandı.
 
+### RG sayı çıkarımı: türetilmiş alan nasıl yayımlanır
+Aynı gün açılan iş kalemi kapatıldı — gazete sayısı künyeli kayıt 109 → 363/419.
+Yöntem basitti (arşiv URL dosya adı = gazete sayısı), asıl mesele **çıkarımı
+yayımlanabilir kılan disiplin**:
+
+1. **Hipotezi yanlışlanabilir yerde sına.** 109 başlık kaydında hem sayı hem
+   URL var → türetim orada test edilebilir. 109/109 eşleşti.
+2. **Döngüsellik kontrolü.** %100 eşleşme, pipeline sayıyı zaten URL'den
+   üretiyorsa anlamsız olurdu. Üretici okundu: `rg_sayi` API'nin
+   `resmiGazeteSayisi`, `kaynak_url` ayrı `url` alanından geliyor —
+   bağımsız, kıyas geçerli.
+3. **İkinci, farklı türden kontrol.** Gazete sayısı tarihle artar; 109
+   bilinen çiftte ihlal 0, türetilen 254 sayının 254'ü eğriye oturdu.
+4. **Rakip yöntemi ele.** Pasajdan "Sayı: NNNNN" çıkarımı 30 örtüşen kayıtta
+   29 uyuştu, 1 çatıştı (26.07.1977: URL 16008 / pasaj 18001 — eğri 1977 için
+   ~16000 der, 18001 ≈ 1983; iki sütunlu tarama OCR'ı bozmuş). Tek
+   doğrulanamayan çatışma alanı güvenilmez kılar → pasaj yöntemi reddedildi.
+5. **Kontrolü kalıcılaştır.** K1 her build'de koşuyor; RG arşiv şeması
+   değişirse build düşer. Falsifikasyon: türetime +1 sapma → exit 1.
+6. **Türetilmiş olduğunu göster.** Sayılar `*` ile işaretli ve yöntem şerhi
+   sayfada; türetilemeyen 56 kayıtta alan BOŞ bırakıldı, doldurulmadı.
+
+**KURAL:** türetilmiş alan yayımlanabilir — ama ancak (a) bağımsız zeminde
+doğrulanır, (b) doğrulama döngüsel değildir, (c) ikinci bir kontrol türü
+geçer, (d) kontrol build'e gömülür, (e) türetim olduğu okuyucuya görünür.
+Beşi eksikse alan boş kalır.
+
 ### Ölçüm aracının kendi körlüğü
 Kontrast ölçeri yalnız `rgb()` ayrıştırıyordu; v2 paleti `oklch()` olduğu
 için ana sayfada 14 metin düğümünün 13'ü **sessizce** atlandı ve "kontrast
