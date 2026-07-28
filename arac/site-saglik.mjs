@@ -367,6 +367,7 @@ async function tarayiciKontrolleri() {
             return sonuc;
           };
           const sonuc = [];
+          let enDusuk = null;
           const dugumler = [...document.querySelectorAll('body *')].filter((el) => {
             if (['SCRIPT', 'STYLE', 'NOSCRIPT', 'SVG', 'PATH'].includes(el.tagName)) return false;
             const st = getComputedStyle(el);
@@ -388,6 +389,17 @@ async function tarayiciKontrolleri() {
             const kalin = parseInt(st.fontWeight, 10) >= 700;
             const buyuk = px >= esik.buyuk_px || (kalin && px >= esik.buyuk_kalin_px);
             const gereken = buyuk ? esik.buyuk : esik.normal;
+            // En düşük oranı HER ZAMAN izle — ihlal yokken de "ne kadar
+            // paylı geçtik" görünsün (yalnız ihlal raporlamak, eşiğin
+            // 0.02 üstünde duran öğeyi gizler; 28.07'de ik-paylasim tam
+            // olarak öyleydi).
+            if (!enDusuk || oran < enDusuk.oran) {
+              enDusuk = { oran: +oran.toFixed(2), gereken, px,
+                          secici: el.tagName.toLowerCase()
+                            + (el.className && typeof el.className === 'string'
+                               ? `.${el.className.trim().split(/\s+/).slice(0, 2).join('.')}` : ''),
+                          pay: +(oran - gereken).toFixed(2) };
+            }
             if (oran + 0.005 < gereken) {
               sonuc.push({
                 oran: +oran.toFixed(2), gereken, px, kalin,
@@ -404,7 +416,7 @@ async function tarayiciKontrolleri() {
           // "0 ihlal" sonucu kapsamı tam sanılır (aday sayısı > azami).
           const aday = [...document.querySelectorAll('body *')].filter((el) =>
             [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim().length > 1)).length;
-          return { incelenen: dugumler.length, aday, kirpildi: aday > azami, ihlal: sonuc };
+          return { incelenen: dugumler.length, aday, kirpildi: aday > azami, ihlal: sonuc, enDusuk };
         }, { esik, azami: yap.kontrast.azami_ornek_dugum ?? 400 });
         // İSTİSNA: bilinçli tasarım kararıyla AA altında bırakılan öğeler
         // (izleme/kontrast-ornek.json → istisnalar). Yetki KULLANICIDA;
@@ -435,9 +447,12 @@ async function tarayiciKontrolleri() {
         (kontrastKotu.length
           ? `${kontrastKotu.length}/${kontrastOlcum.length} sayfada AA altı: `
             + kontrastKotu.map((k) => `${k.tip} ${k.ilk.oran}:1`).join(', ')
-          : `${kontrastOlcum.length} sayfa tipi AA geçti (en düşük `
-            + `${Math.min(...kontrastOlcum.map((o) => o.enKotu ?? 99)) === 99 ? '—'
-               : Math.min(...kontrastOlcum.map((o) => o.enKotu ?? 99))}:1)`) + kirpNot,
+          : (() => {
+              const d = kontrastOlcum.map((o) => o.enDusuk).filter(Boolean)
+                .sort((a, b) => a.pay - b.pay)[0];
+              return `${kontrastOlcum.length} sayfa tipi AA geçti`
+                + (d ? ` · en dar pay ${d.oran}:1 (eşik ${d.gereken}, +${d.pay}) ${d.secici}` : '');
+            })()) + kirpNot,
         { olcum: kontrastOlcum, kirpilan: kirpilan.map((o) => o.yol) }, ['tam']);
     }
 

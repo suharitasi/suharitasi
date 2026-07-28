@@ -262,9 +262,20 @@ const sema = [
     letter-spacing: 0.08em; text-transform: uppercase;
     padding: 0.2rem 0.45rem; border-radius: 2px; white-space: nowrap;
   }
+  /* ROZET KONTRASTI (28.07 ölçümü, md13 bulgusu).
+     Rozet metni 0.58rem = 9,28px — sitedeki en küçük metin. Bu boyutta AA
+     eşiği tam 4.5'tir ve genel metin tokenleri (--murekkep-500 ikincil
+     metin için, --kehribar-metin normal boyut için ayarlı) burada yetmiyor.
+     Tokenler DEĞİŞTİRİLMEDİ (başka 3 yerde kullanılıyorlar); yalnız bu
+     rozetlere yerel, bir tık koyu değer verildi. Ton (hue) korundu.
+       ik-onay     rgb(12,90,124) / rgb(211,225,232) → 5.67:1  ✓ dokunulmadı
+       ik-paylasim #875518 → #744915 · 4.52 → 5.62:1  (ihlal DEĞİLDİ ama
+                   payı 0.02'ydi; zeminde en ufak değişiklikte kırmızıya
+                   düşecekti — pay verildi)
+       ik-teyit    #48627A → #3C5266 · 4.42 → 5.61:1  (ihlaldi) */
   .ik-onay { color: var(--su-700); background: rgba(12, 90, 124, 0.10); }
-  .ik-paylasim { color: var(--kehribar-metin); background: rgba(192, 136, 58, 0.14); }
-  .ik-teyit { color: var(--murekkep-500); background: rgba(72, 98, 122, 0.12); }
+  .ik-paylasim { color: #744915; background: rgba(192, 136, 58, 0.14); }
+  .ik-teyit { color: #3C5266; background: rgba(72, 98, 122, 0.12); }
   .ik-teyit-not { font-family: var(--mono); font-size: 0.62rem; color: var(--murekkep-500); }
 
   /* — Tam tablo — */

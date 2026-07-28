@@ -593,7 +593,12 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
   font-size: 3rem; /* v0 text-5xl filigran */
   font-weight: 600;
   line-height: 1;
-  color: rgba(255, 255, 255, 0.15);
+  /* KONTRAST (28.07): 0.15 alfa → 1.58:1 idi; 48px/600 "büyük metin"
+     sayıldığı için AA eşiği 3.0 ve altında kalıyordu (md13 bulgusu).
+     0.38 → 3.50:1 (pay 0.5). Filigran karakteri KORUNUR: gövde metni
+     0.70 alfada, h3 tam beyaz — numara hâlâ en soluk katman.
+     Ölçüm zemini: rgb(8,32,47) (v2 koyu bölüm). */
+  color: rgba(255, 255, 255, 0.38);
 }
 .v2-adim h3 {
   margin: 0.75rem 0 0.5rem; /* v0 mt-3 */
