@@ -21,6 +21,37 @@ export const YAZAR = {
     'hazırlanmaktadır.',
 };
 
+/* SOSYAL / ATIF ADRESLERİ — JSON-LD `sameAs` tek kaynağı (B4.3, 28.07.2026).
+ *
+ * NE İŞE YARAR: `sameAs`, arama motorlarına ve AI yanıt motorlarına
+ * "bu kurum/kişi başka nerelerde var" der. Aynı varlığın dağınık
+ * profillerini tek kimliğe bağlar; atıf ve bilgi paneli için gereken
+ * temel sinyaldir.
+ *
+ * BUGÜN BOŞ — hiçbir profil AÇILMADI (brief kapsamı: altyapı hazırlanır,
+ * hesap açılmaz). Boş kaldığı sürece `sameAs` alanı şemaya HİÇ
+ * yazılmaz; boş dizi yayımlamak "profilim yok" demektir ve zarar verir.
+ *
+ * PROFİL AÇILINCA: yalnız bu diziye satır eklenir — Organization ve
+ * Person şemaları, künye ve altbilgi buradan beslenir, başka hiçbir
+ * dosyaya dokunulmaz.
+ *
+ * KURAL: buraya YALNIZ sahibi doğrulanmış, canlı ve sitenin konusuyla
+ * ilgili adresler yazılır. Var olmayan/terk edilmiş profil `sameAs`'e
+ * konursa sinyal güvenilirliğini düşürür (uydurma yasağı).
+ *
+ * Aday sıralaması (rapor/dagitim-durumu.md §4):
+ *   1. LinkedIn şirket sayfası  2. Google Business Profile
+ *   3. X (Twitter)  4. YouTube  5. Wikidata kaydı
+ */
+export const KURUM_SOSYAL: string[] = [
+  // ör: 'https://www.linkedin.com/company/suharitasi',
+];
+
+export const YAZAR_SOSYAL: string[] = [
+  // ör: 'https://www.linkedin.com/in/serdararslan',
+];
+
 // Kurumsal e-posta: kullanıcı kutuyu kurana dek yalnız künyede görünür.
 export const EPOSTA = 'bilgi@suharitasi.com';
 

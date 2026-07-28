@@ -2,6 +2,62 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
+═══ AY İLKESİ YÜRÜRLÜKTE (28 Tem 2026, CLAUDE.md) ═══
+Bu dönemde YENİ ÖZELLİK AÇILMAZ. Öncelik iki bacak: DAĞITIM (indeks, atıf,
+temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
+Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
+BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
+
+★ KULLANICI KARARI BEKLEYEN — SIRALI (yapısal revizyon, 28 Tem 2026)
+Hepsi ücretsiz ve kısa; sıra etki büyüklüğüne göre.
+ 1. **GSC kurulumu** (~15 dk) — indeks körlüğü kapanır. Ölçüldü: sitenin
+    kendi alan adıyla tam eşleşme aramasında bile sonuç YOK. rapor/dagitim-durumu.md
+ 2. **Cloudflare Web Analytics paneli** (~5 dk) — ziyaretçi verisi YOK
+    (22 istekte 0 analitik, ölçüldü). CSP izni hazırlandı; panel açılınca
+    ÖLÇÜMLE doğrulanacak. rapor/dagitim-durumu.md §4
+ 3. **.env kopyası şifre yöneticisine** (~5 dk) — kurtarma süresinin tek
+    darboğazı; "günler → 15 dakika". rapor/kurtarma-plani.md K1
+ 4. **Makine dışı yedek konumu** — Cloudflare R2 ücretsiz katmanı önerildi
+    (446 MB, 10 GB sınır, egress $0). rapor/yedek-envanteri.md §4
+ 5. **Telegram uyarı kanalı** (~5 dk) — köprü kurulu ama kanal yok;
+    kurulmadan hiçbir uyarı sunucudan ÇIKMIYOR. rapor/dis-izleme.md §4.A
+ 6. **www 522 düzeltmesi** — 9/9 ölçüm 522; A seçeneği (301 yönlendirme)
+    önerildi. rapor/www-522.md §4
+ 7. **Marka sıfatı: "emin"** — öneri + tipografi/renk/hareket sonuçları
+    yazıldı, HİÇBİRİ uygulanmadı. rapor/tasarim-kimligi.md B3.2
+ 8. **GitHub Actions dış nabzı** — sunucudan bağımsız tek izleme seçeneği,
+    yeni sağlayıcı gerektirmiyor. rapor/dis-izleme.md §3
+ 9. **Sayım animasyonu kalsın mı** — +322/+522 B gzip ölçüldü; değmezse
+    motor tek satırla kaldırılır (lining düzeltmesi ağırlıksız kalır).
+10. **NHYP 38 PDF yeniden indirilsin mi** (892 MB, ~yarım gün) — kaynağa
+    geri dönme imkânı; site etkilenmiyor. rapor/yedek-envanteri.md §2.1
+
+AÇIK BULGULAR (yapısal revizyon, karar/iş bekliyor)
+- D1 BAŞLIK HİZASI TUTARSIZ: v2-bolum ailesinde kanıt/hizmetler/süreç
+  ORTALI, hakkında/iletişim SOLA. Gerekçe kayıtta BULUNAMADI. Bilinçliyse
+  KARARLAR.md'ye yazılmalı, değilse tek kural. DEĞİŞTİRİLMEDİ.
+- D2 AYDINLIK BÖLÜM KONTRASTI 5,52 · koyu bölümler 8,67-18,04. İkisi de AA
+  geçiyor ama aydınlık taraf soluk. "Emin" sıfatı onaylanırsa hedef ≥7:1.
+- K3 ÇAKIŞMA: rehberde üçüncü CTA (görüşme köprüsü) eklenirse aynı sayfada
+  3 CTA olur. Analitik kurulmadan karar verilmemeli.
+- TMMOB iletişim yolu doğrulanmadı (/icerik/iletisim 404);
+  verigazeteciligi.com erişilemedi (000). rapor/temas-listesi.md
+- kaynak/tr-atlas-master.png üretim kaydı bulunamadı — kullanıcı
+  hatırlıyorsa KAYNAKLAR.md'ye yazılmalı.
+
+YAPISAL REVİZYON — MERGE EDİLDİ (28 Tem 2026 gece, ön-onaylı).
+20 madde. Yeni kalıcı belgeler: KARARLAR.md · DEVIR.md ·
+izleme/kaynak-takvimi.md. Yeni araçlar: arac/yedek-al.sh ·
+arac/altin-ornek.mjs (md23) · arac/uyari-gonder.sh · arac/dikis-teshis.mjs ·
+arac/baraj-birlestir.mjs · arac/grace_geometri.py. Yeni sayfa:
+/kapatma-kaydi/ (çekirdek sete eklendi 10→11). Yeni bileşen: CanliSayi +
+CanliSayiMotor. Raporlar: rapor/{yedek-envanteri,kurtarma-plani,dis-izleme,
+www-522,tasarim-kimligi,dagitim-durumu,temas-listesi}.md +
+rapor/satis/TEKLIF-KATMANI-HAZIRLIK.md + icerik-taslak/su-kanunu-gunu-paketi.md
+Ölçüldü: gerileme 0/174 · sitemap 174→175 KAYIP 0 · md14 G1-G6 sapma YOK ·
+altın örnek 22/22 · konsol 0 · 375 taşma 0 · kontrast en dar 5,45 ihlal 0.
+KULLANICI CANLI ONAYI BEKLİYOR (görsel iş: CanliSayi bileşeni + /kapatma-kaydi/).
+
 /NEREDE-SU-CIKAR/ GİRİŞ KAPISI — MERGE EDİLDİ, KULLANICI CANLI ONAYI BEKLİYOR
 (28 Tem 2026; dal kapi-2026-07-28 → main b5fc73c, push'landı). Ana sayfadaki
 "su nerelerde çıkabilir" sorusunun tek kanonik hedefi; cevap il ölçeğinde
@@ -94,7 +150,10 @@ friction-reducer satırı (R3-Line6, "2 dakikada" parçası [DOĞRULANMAMIŞ]
 hariç) · risk-reversal mikro metni (R2, "ödeme bilgisi istenmez"
 [DOĞRULANMAMIŞ] teyit ister) · teklif kapsamı tanımı (R3-Verdict2).
 Ayrıca kapsam-dışı kalıcı: ceza tutarı niceleme (R3-Line4) APILEX teyidi
-ister. CF Web Analytics KURULU; veri görünürlüğü ayrı iş.
+ister. [DÜZELTME 28.07 gece] "CF Web Analytics KURULU" kaydı ÖLÇÜMLE
+YANLIŞLANDI: canlı ana sayfada 22 ağ isteğinin 0'ı analitik, DOM'da beacon
+yok. KURULU DEĞİL, ziyaretçi verisi toplanmıyor. CSP izni hazırlandı;
+panel adımı kullanıcıda (rapor/dagitim-durumu.md §4).
 
 GÖRÜNMEYEN VARLIK TEŞHİRİ — MERGE EDİLDİ (28 Tem 2026, ön-onaylı; merge
 29dbc9c). /arsiv/ künye sayfası (8 veri seti) + ana sayfa KANIT BANDI

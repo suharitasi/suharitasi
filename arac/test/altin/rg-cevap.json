@@ -1,0 +1,78 @@
+{
+ "draw": 1,
+ "recordsTotal": 93,
+ "recordsFiltered": 93,
+ "data": [
+  {
+   "konu": "Yeraltısuyu İşletme Sahası Hakkında Karar",
+   "mevzuatAdi": "BAKANLAR KURULU KARARLARI",
+   "resmiGazeteSayisi": 17148,
+   "kanunKararNo": "8/1708",
+   "resmiGazeteTarihi": "1980-11-02T00:00:00",
+   "mukerrer": "HAYIR",
+   "url": "https://www.resmigazete.gov.tr/arsiv/17148.pdf",
+   "isNewFormat": false,
+   "translateUrl": null,
+   "resmiGazeteTarihiFormatted": "02.11.1980",
+   "mukerrerSayisi": null,
+   "fileType": 2
+  },
+  {
+   "konu": "Yeraltısuyu İşletme Sahası Hakkında Karar",
+   "mevzuatAdi": "BAKANLAR KURULU KARARLARI",
+   "resmiGazeteSayisi": 17144,
+   "kanunKararNo": "8/1707 ",
+   "resmiGazeteTarihi": "1980-10-27T00:00:00",
+   "mukerrer": "HAYIR",
+   "url": "https://www.resmigazete.gov.tr/arsiv/17144.pdf",
+   "isNewFormat": false,
+   "translateUrl": null,
+   "resmiGazeteTarihiFormatted": "27.10.1980",
+   "mukerrerSayisi": null,
+   "fileType": 2
+  },
+  {
+   "konu": "Mersin Efrenk Sahil Ovasının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlanı Hakkında Karar",
+   "mevzuatAdi": "BAKANLAR KURULU KARARLARI",
+   "resmiGazeteSayisi": 16182,
+   "kanunKararNo": "7/14514",
+   "resmiGazeteTarihi": "1978-01-27T00:00:00",
+   "mukerrer": "HAYIR",
+   "url": "https://www.resmigazete.gov.tr/arsiv/16182.pdf",
+   "isNewFormat": false,
+   "translateUrl": null,
+   "resmiGazeteTarihiFormatted": "27.01.1978",
+   "mukerrerSayisi": null,
+   "fileType": 2
+  },
+  {
+   "konu": "Samsun ve Çevresi Yeraltısuyu Sahalarının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlanı Hakkında Karar",
+   "mevzuatAdi": "BAKANLAR KURULU KARARLARI",
+   "resmiGazeteSayisi": 16008,
+   "kanunKararNo": "7/13543 ",
+   "resmiGazeteTarihi": "1977-07-26T00:00:00",
+   "mukerrer": "HAYIR",
+   "url": "https://www.resmigazete.gov.tr/arsiv/16008.pdf",
+   "isNewFormat": false,
+   "translateUrl": null,
+   "resmiGazeteTarihiFormatted": "26.07.1977",
+   "mukerrerSayisi": null,
+   "fileType": 2
+  },
+  {
+   "konu": "İçel Erdemli Kaynaklarının Yeraltısuyu İşletme Sahası Olarak Kabul ve İlân Hakkında Kararname",
+   "mevzuatAdi": "KARARNAMELER",
+   "resmiGazeteSayisi": 15487,
+   "kanunKararNo": "7/11186",
+   "resmiGazeteTarihi": "1976-02-02T00:00:00",
+   "mukerrer": "HAYIR",
+   "url": "https://www.resmigazete.gov.tr/arsiv/15487.pdf",
+   "isNewFormat": false,
+   "translateUrl": null,
+   "resmiGazeteTarihiFormatted": "02.02.1976",
+   "mukerrerSayisi": null,
+   "fileType": 2
+  }
+ ],
+ "searchType": 1
+}

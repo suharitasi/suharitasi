@@ -150,6 +150,11 @@ if [ -n "$SORUN" ]; then
     [ -n "$s" ] && echo "[$(date -u +%FT%TZ)] UYARI(saglik): ${s#- }" >> "$LOGP"
   done
   echo "SAĞLIK UYARISI oluştu → $UYARI"
+  # DIŞ KÖPRÜ (B2.2, 28.07.2026): uyarıyı sunucudan ÇIKAR. Depoya düşen
+  # UYARI dosyası ve log satırı sunucu içinde kalır — sunucu susarsa onlar
+  # da susar. Gönderim başarısız olursa bekçi YİNE DE exit 1 döner: köprü
+  # bekçinin yerine geçmez, yanına eklenir.
+  "$KOK/arac/uyari-gonder.sh" "sağlık bekçisi uyarısı" "$SORUN" || true
   exit 1
 fi
 

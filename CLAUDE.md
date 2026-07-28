@@ -132,6 +132,42 @@ sessizce başarısız olup veri kaybetmemeli. Bağlayıcı kurallar:
   Pipeline kendini denetleyemez. Eşikler gerçek cron takvimine göre kalibre
   edilir (takvim-günü değil saat/gün penceresi — yanlış alarm üretme).
 
+## İki kademeli brief rejimi (2026-07-28)
+Brief rejimi işin ağırlığına göre iki kademelidir. **Sınıf, işe başlamadan
+ÖNCE açıkça beyan edilir** ("Bu KÜÇÜK İŞ" / "Bu BÜYÜK İŞ"); beyan
+edilmemişse BÜYÜK sayılır.
+
+**KÜÇÜK İŞ** — üç şartın ÜÇÜ de sağlanmalı:
+1. tek dosyaya dokunur,
+2. geri alınabilir (tek `git revert` yeter, veri/dış durum bırakmaz),
+3. şunların HİÇBİRİNE dokunmaz: veri (data/, veri/, kaynak/), yayın
+   zinciri (sitemap, robots, llms, yönlendirme, canonical), mimari
+   (build hattı, bağımlılık, cron/timer, script sözleşmesi), görsel
+   kimlik (renk, tipografi, ritim, hero, md14 G1-G6 kapsamı).
+Rejim: tek paragraf brief (ne · neden · bitti-tanımı), `brief-denetci`
+turu YOK, düşman geçişi YOK. Kanıt yükümlülüğü DÜŞMEZ — ölçüm yine
+yapılır ve rapora yazılır.
+
+**BÜYÜK İŞ** — aşağıdakilerden HERHANGİ BİRİ varsa: veri · yayın ·
+mimari · görsel kimlik · para · hukuki metin · geri alınamaz işlem.
+Rejim: tam rejim (yukarıdaki "Brief denetçisi — ön kapı kuralı"nın
+tamamı: cikti/brief'e yazım + `arac/brief-denetci.mjs` + düşman geçişi
+D1-D4 + amaç özeti; ENGEL varsa uygulama başlamaz).
+
+Şüphede kalınırsa BÜYÜK seçilir. Gerekçe: yanlış BÜYÜK seçmenin
+maliyeti bir denetim turu; yanlış KÜÇÜK seçmenin maliyeti denetimsiz
+giren yayın/veri değişikliğidir.
+
+## AY İLKESİ — dağıtım ve dayanıklılık dönemi (2026-07-28)
+Önümüzdeki dönemde **yeni ÖZELLİK açılmaz.** Öncelik iki bacaktır:
+(1) DAĞITIM — sitenin dış dünyaya ulaşması (indeks, atıf, temas,
+analitik), (2) DAYANIKLILIK — verinin ve üretimin kaybolmaması
+(yedek, altın örnek, kurtarma planı, dış izleme).
+Yeni özellik talebi gelirse REDDEDİLMEZ, SIRADAKILER.md'ye yazılır ve
+bu iki bacak hizaya gelmeden BAŞLATILMAZ. Mevcut özelliklerin
+bakımı/onarımı bu kuralın dışındadır (özellik değil, bakımdır).
+İlke kalkınca bu bölüm KARARLAR.md'ye kapanış tarihiyle taşınır.
+
 ## Brief ön-denetim kontrol listesi (2026-07-21)
 Her brief tesliminden ÖNCE zorunlu ön-denetim listesi (kaynak: GUNLUK.md
 21.07 "HATA KAYDI + KURAL" kaydı):

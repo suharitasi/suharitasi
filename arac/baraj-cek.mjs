@@ -12,6 +12,7 @@
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, appendFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
+import { birlestir } from './baraj-birlestir.mjs';
 
 const KOK = process.env.BARAJ_TEST_KOK || '/home/suha/projeler/suharitasi';
 const GIRIS = process.env.BARAJ_TEST_GIRIS || 'https://giris.epias.com.tr/cas/v1/tickets';
@@ -167,37 +168,15 @@ async function calis() {
   }
 
   // 4) Normalize seriye işle (birikir; eski günlere dokunulmaz)
-  const canli = canliOku();
-  const c = canli.kunye;
-  if (!c.kayitBaslangici) c.kayitBaslangici = BUGUN;
-  c.sonGuncelleme = BUGUN;
-  c.sonDurum = 'ok';
-
-  const dolulukla = new Map(setler['active-fullness'].map((k) => [`${k.basin}|${k.dam}`, k]));
-  const kotla = new Map(setler['daily-kot'].map((k) => [`${k.basin}|${k.dam}`, k]));
-
-  let islenen = 0;
-  for (const [havza, barajlar] of Object.entries(eslesme)) {
-    const H = (canli.havzalar[havza] ??= { barajlar: {} });
-    for (const baraj of barajlar) {
-      const B = (H.barajlar[baraj] ??= { seri: {} });
-      const d = dolulukla.get(`${havza}|${baraj}`);
-      const k = kotla.get(`${havza}|${baraj}`);
-      if (d || k) {
-        B.seri[BUGUN] = {
-          ...(d?.activeFullnessAmount != null && { doluluk: d.activeFullnessAmount }),
-          ...(k?.dailyKot != null && { kot: k.dailyKot }),
-        };
-        islenen++;
-      }
-      // veri gelmeyen baraja o gün için kayıt YAZILMAZ (boş obje bile değil)
-    }
-  }
-  canli.gunler[BUGUN] = {
+  // Normalize çekirdeği ayrı dosyada ve SAF (arac/baraj-birlestir.mjs) —
+  // altın örnek testi (arac/altin-ornek.mjs) onu sabit veriyle koşabilsin
+  // diye. Davranış değişmedi, yalnız yeri değişti (B1.3, 28.07.2026).
+  const { canli, islenen } = birlestir({
+    eslesme, setler,
+    canli: canliOku(),
+    bugun: BUGUN,
     cekimUTC: new Date().toISOString(),
-    durum: 'ok',
-    barajKaydi: islenen,
-  };
+  });
   writeFileSync(CANLI, JSON.stringify(canli, null, 1));
   writeFileSync(DURUM, JSON.stringify({ ardisikHata: 0, sonBasari: BUGUN }, null, 2));
   log(`normalize tamam: ${islenen} baraj kaydı → data/canli/baraj.json`);

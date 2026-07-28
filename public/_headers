@@ -5,10 +5,21 @@
 # load rejected by URL safety check" veriyor, 6 sahnenin hiçbiri oynamıyordu
 # (readyState 0). Kanıt: cikti/denetim/anasayfa-duzeltme/faz0-teshis.json.
 # blob: burada kendi script'imizin ürettiği aynı-köken nesnedir; dış kaynak açmaz.
+# ANALİTİK İZNİ (B4.2, 2026-07-28) — `static.cloudflareinsights.com`
+# (script-src) ve `cloudflareinsights.com` (connect-src) EKLENDİ.
+# NEDEN: SIRADAKILER "CF Web Analytics KURULU" diyordu; ölçüm bunu
+# YANLIŞLADI — canlı sayfada 22 ağ isteğinin HİÇBİRİ analitik değil,
+# DOM'da beacon yok, dış konak yalnız suharitasi.com + Google Fonts
+# (ölçüm: gerçek tarayıcı, 28.07.2026). Panel açılsa bile bu iki
+# direktif olmadan beacon SESSİZCE engellenirdi: tarayıcı script'i
+# reddeder, ölçüm hiç başlamaz, kimse fark etmez.
+# Genişleme sınırı DAR: yalnız iki Cloudflare konağı, yalnız iki
+# direktif. Panel açılmadığı sürece bu izin ATIL durur — hiçbir istek
+# yapılmaz. Panel adımları: rapor/dagitim-durumu.md §5.
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://cloudflareinsights.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'

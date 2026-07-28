@@ -46,3 +46,4 @@ izleme/state/site-saglik-durum.json
 # su-potansiyeli ham verisi (Faz 1+) — commit edilmez
 veri/ham/
 .venv-morfoloji/
+__pycache__/

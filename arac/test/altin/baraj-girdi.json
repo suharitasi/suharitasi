@@ -1,0 +1,28 @@
+{
+  "_not": "ALTIN ÖRNEK — baraj normalize çekirdeği (arac/baraj-birlestir.mjs). SENTETİK ama EPİAŞ alan adları gerçek (basin/dam/activeFullnessAmount/dailyKot; kaynak: arac/baraj-cek.mjs). Beş durum kasten kapsanıyor: (1) hem doluluk hem kot gelen baraj, (2) yalnız doluluk, (3) yalnız kot, (4) HİÇ veri gelmeyen baraj -> kayıt YAZILMAMALI, (5) mevcut seriye yeni gün EKLENMELİ (eski gün bozulmamalı).",
+  "bugun": "2026-07-28",
+  "cekimUTC": "2026-07-28T15:00:00.000Z",
+  "eslesme": {
+    "Sakarya": ["Gökçe Barajı", "Yenice Barajı", "Kuru Baraj"],
+    "Seyhan": ["Seyhan Barajı"]
+  },
+  "setler": {
+    "active-fullness": [
+      { "basin": "Sakarya", "dam": "Gökçe Barajı", "activeFullnessAmount": 62.4 },
+      { "basin": "Sakarya", "dam": "Yenice Barajı", "activeFullnessAmount": 41.0 },
+      { "basin": "Seyhan", "dam": "Seyhan Barajı", "activeFullnessAmount": 0 }
+    ],
+    "daily-kot": [
+      { "basin": "Sakarya", "dam": "Gökçe Barajı", "dailyKot": 118.72 },
+      { "basin": "Seyhan", "dam": "Seyhan Barajı", "dailyKot": 65.1 }
+    ],
+    "daily-volume": []
+  },
+  "canli": {
+    "kunye": { "kayitBaslangici": "2026-07-01", "sonGuncelleme": "2026-07-27", "sonDurum": "ok" },
+    "havzalar": {
+      "Sakarya": { "barajlar": { "Gökçe Barajı": { "seri": { "2026-07-27": { "doluluk": 63.1, "kot": 118.9 } } } } }
+    },
+    "gunler": { "2026-07-27": { "cekimUTC": "2026-07-27T15:00:00.000Z", "durum": "ok", "barajKaydi": 1 } }
+  }
+}

@@ -842,6 +842,11 @@ async function md20_altyapiDurumu() {
     const y = K.yedekDurumu(KOK, t.yedek.varliklar, t.yedek.adaylar);
     hepsi.push(...y.bulgular); olcum.yedek = y.olcum;
   }
+  // M11 — son yedek yaşı (B1.2, 28.07)
+  if (t?.yedek?.durumDosyasi) {
+    const yy = K.yedekYasi(t.yedek.durumDosyasi, t.yedek.sariSaat, t.yedek.kirmiziSaat);
+    hepsi.push(...yy.bulgular); olcum.yedekYasi = yy.olcum;
+  }
 
   const kirmizi = hepsi.filter((b) => b.tip === 'kirmizi');
   const sari = hepsi.filter((b) => b.tip === 'sari');
@@ -853,6 +858,39 @@ async function md20_altyapiDurumu() {
     kaydet('20-altyapi', 'gecti',
       `nöbetçiler canlı · yeni npm açığı yok · 404 markalı · yedek durumu kayıtlı`,
       { ...olcum }, ['tam']);
+  }
+}
+
+// md.23 ALTIN ÖRNEK — pipeline ayrıştırıcılarının sessiz bozulma bekçisi
+// (B1.3, 28.07.2026). Bilinen girdi → bilinen çıktı; sapma KIRMIZI.
+// NEDEN AYRI KALEM: md10/md18 veri TAZELİĞİNİ ve HACMİNİ ölçüyor, DOĞRULUĞU
+// değil. Kaynak biçimi değiştiğinde ayrıştırıcı çökmez, sessizce yanlış
+// üretir; taze ve dolu ama yanlış bir dosya bu kalemler için yeşildir.
+// Maliyet ölçüldü: 0,31 sn / 43 MB → hem --hizli hem --tam (ağ kullanmaz,
+// deterministik, saat bağımlılığı yok).
+// SALT-OKUMA: onarım tetiklemez (kara liste — veri doğruluğu).
+async function md23_altinOrnek() {
+  let cikti;
+  try {
+    cikti = execFileSync('node', [join(KOK, 'arac/altin-ornek.mjs'), '--json'],
+      { cwd: KOK, encoding: 'utf8', timeout: 120000, maxBuffer: 16 * 1024 * 1024 });
+  } catch (e) {
+    // exit 1 = sapma var; stdout yine JSON. Başka hata = gerçek çökme.
+    cikti = e.stdout;
+    if (!cikti) {
+      kaydet('23-altin-ornek', 'kirmizi', `altın örnek koşumu ÇÖKTÜ: ${e.message.split('\n')[0]}`, {}, ['tam', 'hizli']);
+      return;
+    }
+  }
+  const r = JSON.parse(cikti);
+  const dusen = r.kalemler.filter((k) => !k.gecti);
+  if (dusen.length) {
+    kaydet('23-altin-ornek', 'kirmizi',
+      `${dusen.length}/${r.toplam} ayrıştırıcı SAPMASI — ${dusen.map((d) => `${d.pipeline}/${d.ad}${d.ayrinti ? ` (${d.ayrinti})` : ''}`).join(' · ')}`,
+      r, ['tam', 'hizli']);
+  } else {
+    kaydet('23-altin-ornek', 'gecti',
+      `${r.gecen}/${r.toplam} altın örnek geçti (baraj · RG · GRACE · NHYP)`, r, ['tam', 'hizli']);
   }
 }
 
@@ -1267,6 +1305,7 @@ async function kosu() {
   await korumali('18-veri-genis', ['tam'], md18_veriGenis);
   await korumali('19-baslik-og-cta', ['tam', 'hizli'], md19_baslikOgCta);
   await korumali('20-altyapi', ['tam'], md20_altyapiDurumu);
+  await korumali('23-altin-ornek', ['tam', 'hizli'], md23_altinOrnek);
 
   if (ONARIM_ACIK && onarimlar.length) await onarimlariUygula();
   return bitir();

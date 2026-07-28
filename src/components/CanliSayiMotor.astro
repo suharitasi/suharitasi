@@ -1,0 +1,59 @@
+---
+/* CANLI SAYI MOTORU — sayım animasyonunun TEK kopyası (B3.3, 28.07.2026).
+ *
+ * NEDEN AYRI BİLEŞEN (ölçüldü): script CanliSayi.astro'nun içindeyken
+ * Astro onu HER ÖRNEK için ayrı ayrı satır-içine gömdü — üç kartlı kanıt
+ * bandında aynı 600 baytlık kod 3 kez çıktı ve index.html +930 bayt
+ * (%1,96) büyüdü. Motor ayrılınca kod sayfada BİR KEZ bulunur.
+ *
+ * KULLANIM: CanliSayi kullanan her sayfada/bölümde BİR KEZ çağrılır.
+ * Motor tüm belgeyi tarar (`[data-canli-sayi]`), kaç bileşen olduğunu
+ * bilmesi gerekmez.
+ *
+ * MOTOR YOKSA NE OLUR: hiçbir şey — rakam sunucuda son değeriyle
+ * basılıdır, yalnız sayım animasyonu olmaz. Bozulma değil, sadelik.
+ */
+---
+<script>
+  /* Kurallar:
+     - `prefers-reduced-motion: reduce` → animasyon HİÇ başlamaz; metin
+       zaten son değerdir, hiçbir şey yapılmaz (erişilebilirlik: hareket
+       zorunlu değildir).
+     - Görünürlükte BİR KEZ (IntersectionObserver → unobserve).
+     - IntersectionObserver yoksa da bir şey yapılmaz: metin son değerdir.
+     - Süre 900 ms, ease-out kübik: hareket ANLAM taşır (rakamın
+       sayıldığını anlatır); okunacak kadar uzun, bekletmeyecek kadar kısa.
+     - `aria-live` KULLANILMAZ: canlı bölge her ara değeri sesli okurdu.
+       Ekran okuyucu DOM'daki son değeri okur. */
+  const AZALT = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ogeler = document.querySelectorAll('[data-canli-sayi]');
+
+  if (!AZALT && ogeler.length && 'IntersectionObserver' in window) {
+    const bicim = new Intl.NumberFormat('tr-TR');
+    const SURE = 900;
+
+    const say = (el) => {
+      const hedef = Number(el.dataset.hedef);
+      if (!Number.isFinite(hedef)) return;          // veri bozuksa dokunma
+      const bas = performance.now();
+      const adim = (t) => {
+        const o = Math.min(1, (t - bas) / SURE);
+        const e = 1 - Math.pow(1 - o, 3);           // ease-out kübik
+        el.textContent = bicim.format(Math.round(hedef * e));
+        if (o < 1) requestAnimationFrame(adim);
+        else el.textContent = bicim.format(hedef);  // varış değeri KESİN
+      };
+      requestAnimationFrame(adim);
+    };
+
+    const g = new IntersectionObserver((girisler) => {
+      for (const gr of girisler) {
+        if (!gr.isIntersecting) continue;
+        g.unobserve(gr.target);                     // BİR KEZ
+        say(gr.target);
+      }
+    }, { threshold: 0.5 });
+
+    for (const el of ogeler) g.observe(el);
+  }
+</script>
