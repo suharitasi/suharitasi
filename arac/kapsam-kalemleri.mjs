@@ -397,9 +397,31 @@ export function yedekDurumu(kok, varliklar, adaylar) {
       const b = boyut(aday);
       if (b && b >= kaynakBoyut * 0.5) { yedek = { yol: aday, boyut: b, tarih: new Date(statSync(aday).mtimeMs).toISOString().slice(0, 10) }; break; }
     }
-    olcum.push({ varlik: v, boyutMB: kaynakBoyut ? Math.round(kaynakBoyut / 1048576) : null, yedek });
+    /* GİT KAPSAMI (düzeltme 28.07 gece): kalem şimdiye kadar yalnız YEREL
+       ikinci kopya arıyordu ve git'te izlenen varlıklar için "yedek
+       bulunamadı" diyordu. Bu YANILTICI: depo GitHub'a push'lanıyorsa
+       varlığın zaten MAKİNE DIŞI bir kopyası var. Ölçüm eklendi —
+       izlenen dosya sayısı + bekleyen (push'lanmamış) commit sayısı.
+       Bekleyen commit varsa uzak kopya BAYAT demektir, sarı korunur. */
+    let git = null;
+    try {
+      const izlenen = execFileSync('git', ['ls-files', '--', v], { cwd: kok, encoding: 'utf8' })
+        .split('\n').filter(Boolean).length;
+      const bekleyen = Number(execFileSync('git', ['rev-list', '--count', '@{u}..HEAD'],
+        { cwd: kok, encoding: 'utf8' }).trim()) || 0;
+      git = { izlenen, bekleyen };
+    } catch { git = null; }   // upstream yoksa/git hatasında ölçüm yapılmaz
+
+    olcum.push({ varlik: v, boyutMB: kaynakBoyut ? Math.round(kaynakBoyut / 1048576) : null, yedek, git });
+    const mb = Math.round(kaynakBoyut / 1048576);
     if (kaynakBoyut && !yedek) {
-      bulgular.push({ tip: 'sari', mesaj: `${v} (${Math.round(kaynakBoyut / 1048576)} MB) — depo dışı yedek bulunamadı` });
+      if (git?.izlenen > 0 && git.bekleyen === 0) {
+        // Uzak kopya VAR ve güncel — bulgu değil, ölçüm kaydı.
+      } else if (git?.izlenen > 0) {
+        bulgular.push({ tip: 'sari', mesaj: `${v} (${mb} MB) — uzak kopya BAYAT: ${git.bekleyen} commit push'lanmamış` });
+      } else {
+        bulgular.push({ tip: 'sari', mesaj: `${v} (${mb} MB) — ne yerel yedek ne git izlemesi var (rapor/yedek-envanteri.md)` });
+      }
     }
   }
   return { bulgular, olcum };
