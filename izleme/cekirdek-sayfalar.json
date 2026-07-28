@@ -1,50 +1,54 @@
 {
- "_not": "Sağlık sisteminin ÇEKİRDEK SETİ (site-saglik.mjs). --hizli modda yalnız bunlar, --tam modda sitemap'in tamamı taranır. Sayfa eklerken buraya da ekle (SÜREKLİLİK İLKESİ).",
- "sayfalar": [
-  {
-   "yol": "/",
-   "not": "ana sayfa — 6 sahne akışı + soru şeridi",
-   "muaf": [
-    "ozCevap"
-   ],
-   "muaf_gerekce": "KULLANICI KARARI 28.07.2026: ana sayfaya öz-cevap bloğu EKLENMEZ, v0 tasarımı korunur. Öz-cevap İÇERİK sayfalarının (rehber, havza, il, araç) desenidir — landing'in değil. Landing'in işi ziyaretçiyi doğru içerik sayfasına yöneltmek; cevabı orada verir. CLAUDE.md 'İçerik ilkesi' kapsamı da 'her içerik sayfası' der. Ana sayfanın meta-description'ı ve WebSite JSON-LD'si AI-alıntı yüzeyini ayrıca karşılıyor (ölçüldü: title/meta-desc/canonical/JSON-LD/OG 5/5 var)."
-  },
-  {
-   "yol": "/nerede-su-cikar/",
-   "not": "giriş kapısı — ana sayfa sorusunun tek kanonik hedefi. İçeriğinin TAMAMI build-time sayımdır (src/data/kapi.js): veri/potansiyel/*.json bozulur ya da küçülürse sayfadaki rakamlar sessizce yanlışlanır. 81 il linki de buradan üretilir; il sayfası düşerse kapı kırık link verir."
-  },
-  {
-   "yol": "/arsiv/",
-   "not": "veri arşivi — künye listesinin TAMAMI build-time sayımdır (src/data/vitrin.js); veri/ ya da kaynak/ altında bir set küçülür/kaybolursa sayfa sessizce yanlış sayı basar. Ana sayfa kanıt bandı da aynı üreticiden beslenir."
-  },
-  {
-   "yol": "/harita/",
-   "not": "harita + 25 havza paneli"
-  },
-  {
-   "yol": "/havzalar/sakarya/",
-   "not": "havza sayfası örneği (baraj doluluk + GRACE)"
-  },
-  {
-   "yol": "/rehberler/kuyu-ruhsati/",
-   "not": "SEO omurgası — en çok bağlanan rehber"
-  },
-  {
-   "yol": "/rehberler/kuyu-tasima/",
-   "not": "elle yazılmış rehber sayfası"
-  },
-  {
-   "yol": "/durumum/",
-   "not": "sektör kapısı — istemci arama JS'i"
-  },
-  {
-   "yol": "/hangi-kurum/",
-   "not": "yetkili kurum rehberi — build-time hangi-kapi.json + su-birimleri.json + su-islemleri.json'a bağlı; veri bozulursa sayfa bozulur"
-  },
-  {
-   "yol": "/vaka/meysu/",
-   "not": "vaka sayfası örneği"
-  }
- ],
- "_muaf_notu": "Bir sayfa bir GEO/SEO kaleminden BİLİNÇLİ olarak muaf tutulabilir: sayfa girdisine \"muaf\": [\"ozCevap\"] yazılır ve GEREKÇE zorunludur. Muafiyet md7 ölçümünden düşer; ölçüm yine yapılır ve koşu kaydında 'muaf' olarak görünür — sessizce gizlenmez."
+  "_not": "Sağlık sisteminin ÇEKİRDEK SETİ (site-saglik.mjs). --hizli modda yalnız bunlar, --tam modda sitemap'in tamamı taranır. Sayfa eklerken buraya da ekle (SÜREKLİLİK İLKESİ).",
+  "sayfalar": [
+    {
+      "yol": "/",
+      "not": "ana sayfa — 6 sahne akışı + soru şeridi",
+      "muaf": [
+        "ozCevap"
+      ],
+      "muaf_gerekce": "KULLANICI KARARI 28.07.2026: ana sayfaya öz-cevap bloğu EKLENMEZ, v0 tasarımı korunur. Öz-cevap İÇERİK sayfalarının (rehber, havza, il, araç) desenidir — landing'in değil. Landing'in işi ziyaretçiyi doğru içerik sayfasına yöneltmek; cevabı orada verir. CLAUDE.md 'İçerik ilkesi' kapsamı da 'her içerik sayfası' der. Ana sayfanın meta-description'ı ve WebSite JSON-LD'si AI-alıntı yüzeyini ayrıca karşılıyor (ölçüldü: title/meta-desc/canonical/JSON-LD/OG 5/5 var)."
+    },
+    {
+      "yol": "/nerede-su-cikar/",
+      "not": "giriş kapısı — ana sayfa sorusunun tek kanonik hedefi. İçeriğinin TAMAMI build-time sayımdır (src/data/kapi.js): veri/potansiyel/*.json bozulur ya da küçülürse sayfadaki rakamlar sessizce yanlışlanır. 81 il linki de buradan üretilir; il sayfası düşerse kapı kırık link verir."
+    },
+    {
+      "yol": "/arsiv/",
+      "not": "veri arşivi — künye listesinin TAMAMI build-time sayımdır (src/data/vitrin.js); veri/ ya da kaynak/ altında bir set küçülür/kaybolursa sayfa sessizce yanlış sayı basar. Ana sayfa kanıt bandı da aynı üreticiden beslenir."
+    },
+    {
+      "yol": "/harita/",
+      "not": "harita + 25 havza paneli"
+    },
+    {
+      "yol": "/havzalar/sakarya/",
+      "not": "havza sayfası örneği (baraj doluluk + GRACE)"
+    },
+    {
+      "yol": "/rehberler/kuyu-ruhsati/",
+      "not": "SEO omurgası — en çok bağlanan rehber"
+    },
+    {
+      "yol": "/rehberler/kuyu-tasima/",
+      "not": "elle yazılmış rehber sayfası"
+    },
+    {
+      "yol": "/durumum/",
+      "not": "sektör kapısı — istemci arama JS'i"
+    },
+    {
+      "yol": "/hangi-kurum/",
+      "not": "yetkili kurum rehberi — build-time hangi-kapi.json + su-birimleri.json + su-islemleri.json'a bağlı; veri bozulursa sayfa bozulur"
+    },
+    {
+      "yol": "/vaka/meysu/",
+      "not": "vaka sayfası örneği"
+    },
+    {
+      "yol": "/kapatma-kaydi/",
+      "not": "tek soruluk kapatma kaydı sorgusu (B4.4, 28.07.2026). Tarayıcı tarafı metin araması; İL İDDİASI YOK. İzlenmesi kritik: (a) 23 kaydın hepsi JS'siz de görünmeli, (b) 'bulunamadı' bloğu 'kapalı olmadığı anlamına gelmez' cümlesini TAŞIMALI — bu cümle kalkarsa sayfa hukuki iddia üretir hâle gelir, (c) paylaşılabilir ?ara= parametresi çalışmalı."
+    }
+  ],
+  "_muaf_notu": "Bir sayfa bir GEO/SEO kaleminden BİLİNÇLİ olarak muaf tutulabilir: sayfa girdisine \"muaf\": [\"ozCevap\"] yazılır ve GEREKÇE zorunludur. Muafiyet md7 ölçümünden düşer; ölçüm yine yapılır ve koşu kaydında 'muaf' olarak görünür — sessizce gizlenmez."
 }

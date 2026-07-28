@@ -1,5 +1,72 @@
 # GUNLUK.md — seans notları
 
+## 2026-07-28 (gece) — YAPISAL REVİZYON (B0-B4, worktree suharitasi-yapisal)
+
+**Ne yapıldı:** beş uzman eleştirisinin uygulanması. 20 madde; hepsi ayrı
+ayrı raporlandı (`rapor/` altında 8 yeni belge).
+
+**Yeni kalıcı belge:** `KARARLAR.md` (17 kalıcı karar, gerekçe + reddedilen
+alternatifle; bulunamayan gerekçe "kayıtta yok" işaretli) · `DEVIR.md`
+(bus factor: erişim, dizin haritası, cron envanteri, acil durum adımları;
+sır YAZILMADI) · `izleme/kaynak-takvimi.md` (tüm cron/timer UTC).
+
+**CLAUDE.md'ye iki kural:** iki kademeli brief rejimi (KÜÇÜK/BÜYÜK, sınıf
+baştan beyan edilir; şüphede BÜYÜK) · AY İLKESİ (bu dönem yeni ÖZELLİK
+açılmaz; öncelik dağıtım + dayanıklılık).
+
+**Dayanıklılık:** `arac/yedek-al.sh` gecelik yedek (02:10 UTC) — GitHub'a
+gitmeyen varlıklar + tam depo `git bundle`; ölçüldü 27 sn / 446 MB, geri
+alma KANITLANDI (bundle'dan clone → 341 commit). Sağlık kalemi M11 "son
+yedek yaşı" (falsifikasyon 6/6). **SINIR açıkça yazıldı: ikinci konum aynı
+makinede, makine ölümüne karşı korumaz.**
+
+**KAYIP TESPİTİ:** `veri/ham/nhyp/` (38 PDF, 892 MB) DİSKTE YOK. Sebep:
+gitignore'lu dizin worktree silinirken gitti — GUNLUK 25.07'de kaydedilmiş
+hatanın ikizi. Site etkilenmedi (türetilmiş JSON git'te, 12/12 kalite kapısı
+yeşil); kaybolan kaynağa geri dönme imkânı. Yedek scripti artık envanterdeki
+eksik varlığı log'a UYARI yazıyor.
+
+**ALTIN ÖRNEK TESTLERİ** (`arac/altin-ornek.mjs`, md23): baraj · RG · GRACE ·
+NHYP için bilinen girdi → bilinen çıktı, 22 kalem. Falsifikasyon 4/4: her
+ayrıştırıcı tek satırla bozuldu → kırmızı → geri alındı → yeşil. İki
+ayrıştırma dikişi saf işleve çıkarıldı (`arac/baraj-birlestir.mjs`,
+`arac/grace_geometri.py`) — davranış değişmedi, test edilebilir oldu.
+
+**KAYNAK TAKVİMİ:** 4 çakışma ölçülüp dağıtıldı (GRACE 06:00→02:40 Pzt —
+40 dk sonra --tam 1.917 MB ile üst üste binebiliyordu · su-izleme 05:30→05:45
+ve 16:00→16:15 · baraj 15:00→15:05). Bellek log'u (1.012 ölçüm, 7 gün):
+24.07'den beri kullanılabilir RAM hiç 5 GB altına inmedi; swap 6 GB var,
+132 MB kullanılıyor → **swap önerisi YOK**, sistem ayarı değiştirilmedi.
+
+**HATA KAYDI — KAYIT YANLIŞLANDI:** SIRADAKILER "CF Web Analytics KURULU"
+diyordu. Gerçek tarayıcıyla ölçüldü: canlı ana sayfada 22 ağ isteğinin
+**0'ı analitik**, DOM'da beacon yok, dış konak yalnız suharitasi.com +
+Google Fonts. **Ziyaretçi verisi toplanmıyor.** Ayrıca gizli ikinci engel:
+CSP `script-src`/`connect-src` beacon'ı panel açılsa bile sessizce
+engelleyecekti — iki konak eklendi (izin ATIL, panel açılmadan istek yok).
+DERS: **panelin "aktif" demesi kanıt değildir; kanıt canlı ağ ölçümüdür.**
+
+**GÖRSEL BULGU:** Cormorant'ın varsayılan rakamları eski-stil (oldstyle).
+Canvas mürekkep taraması (200px): 3/5/7/9 taban çizgisinin 54px ALTINA
+sarkıyor, 6 ise 132px yükseliyor (0/1: 79px). Ana sayfadaki **"472" ekranda
+"47²" gibi okunuyordu.** `lining-nums tabular-nums` ile düzeltildi; yeni
+`CanliSayi` bileşeninde. Yedek font Georgia zaten lining kullanıyordu →
+font yüklenene kadar rakam BİÇİMİ değişiyordu, o da kapandı.
+
+**Ölçüm aracının kendi hatası (kayda geçti):** dikiş teşhisi ilk koşumda
+tüm aydınlık bölümleri KOYU raporladı — palet `oklch()` kullanıyor,
+regex ilk üç sayıyı RGB sandı. Renk çözümü canvas'a taşındı.
+
+**Kapılar:** gerileme 0 (174 ortak URL) · sitemap 174→175 KAYIP 0 ·
+md14 G1-G6 sapma YOK (taban yenilemesi gerekmedi) · altın örnek 22/22 ·
+konsol 0 · 375 taşma 0 · kontrast en dar 5,45 ihlal 0.
+
+**Kısıt aşıldı, raporlandı:** brief "ağırlık artmaz" diyordu ama
+"animasyonlu sayım" da istiyordu — ikisi aynı anda sağlanamaz. Ölçülen:
+index.html +322 B gzip (%2,98), kapı sayfası +522 B (%4,54; büyük kısmı
+yeni içerik). Motor ayrı bileşene alınarak 3 kopya → 1 kopyaya indirildi.
+
+
 ## 2026-07-28 (öğleden sonra) — görünmeyen varlık teşhiri + FAZ 3 durdurma
 
 **Merge:** `29dbc9c` — /arsiv/ künye sayfası (8 set) + ana sayfa kanıt bandı
