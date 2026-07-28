@@ -1,5 +1,78 @@
 # GUNLUK.md — seans notları
 
+## 2026-07-28 — gece paketi + kullanıcı kararları (K1-K9)
+
+**Merge:** 19 commit, canlıda doğrulandı. Tam döküm: `GECE-RAPORU.md`.
+
+### Gecenin asıl bulgusu: izleme yapılandırması siteden geri kalıyor
+Üç bağımsız kontrol aynı sebeple yanlış alarm veriyordu — DOM/tasarım
+değişti, ona bağlı yapılandırma güncellenmedi:
+- **md4** (dün teşhis edildi) `#world .sw-scene` arıyordu, v2 hero
+  `#v2-videolar` kullanıyor.
+- **md12** silinmiş `#sv-menu`/`.sv-menu-ac` arıyordu → **menü aylardır hiç
+  test edilmemiş**; 24.07 menü arızasının senaryosu açıkta kalmış. Kontrol
+  her koşuda kırmızı verdiği için "bilinen arıza" sayılmaya başlamıştı.
+  PaylasilanMenu DOM'una revizyondan sonra 4/4 geçiyor.
+- **md10** GRACE tazeliği yapısal olarak imkânsız bir şart koşuyordu:
+  `grace-turkiye.json` cron koştuğunda değil GSFC yeni MASCON sürümü
+  yayımladığında (~aylık) değişir; 8 günden eski olması sağlıklı sistemde de
+  normaldir. md10 tümden kaldırıldı — veri tazeliği bekçinin işi.
+- İkinci sıra etki: tek bir kırmızı `sonBasariliKosu` damgasını donduruyor,
+  bekçi de "sağlık sistemi koşmuyor" diye **ikinci** bir yanlış alarm
+  üretiyordu (27.07 sabahki UYARI-SAGLIK.md tam olarak buydu).
+
+**KURAL (yeni):** her DOM/yeniden-tasarım işi, ona bağlı izleme
+yapılandırmasını da günceller. Bir kontrol üst üste kırmızı veriyorsa önce
+"kontrol mü bayat" sorulur; "bilinen arıza" etiketi kontrolü köreltir.
+
+### Ölçümün varsayımı çürüttüğü üç yer
+1. **TWI** — dizi sayımıyla 5,76 GB / 5,9 GB "kıl payı sığıyor" çıkmıştı.
+   Kabul edilmedi, gerçek ölçek testi koşuldu (1x1/2x2/3x3 karo): maliyet
+   süperlineer, bellek marjinali 54,3 MB/Mpx → mozaik **~12,6 GB**. Kapı
+   geçmedi. Bayat "2C/4GB" gerekçesi de ölçülen değerle değiştirildi.
+2. **OpenAlex** — "birkaç saat sonra tek koşu tamamlar" varsayımı yanlıştı.
+   Gerçek: kredi tabanlı kota (1000 kredi, 10/istek, `retry-after: 4174`).
+   Saniyelik merdiven bu pencereyi asla aşamazdı. `Retry-After` başlığı
+   okunur oldu → 32 il tek koşuda indi, 81/81.
+3. **Faz I koordinat eşlemesi** — ±2 satır penceresi komşu kuyunun
+   koordinatını kapıyordu (TR04050208'e tablo 2. satırının koordinatı
+   atanmıştı). Aynı-satır kuralına geçildi. UTM dilimi de PDF'lerin çoğunda
+   beyan edilmiyor; havzanın doğrulanmış il kümesine düşme şartıyla seçildi.
+   Dönüşüm, PDF'in kendi ondalık derecesini taşıyan 224 satıra karşı
+   doğrulandı: sapma ortanca 191,9 m (ED50↔WGS84 datum farkı).
+
+### Vekil kriter yasağı üç kez devreye girdi
+- Gerileme denetiminde "iç link" ham `href` sayıyordu → 10 rehber sayfasında
+  **yanlış gerileme**; kaybolan "link" Cloudflare'in enjekte ettiği
+  `/cdn-cgi/l/email-protection` idi. Süzüldü → gerileme 0.
+- llms.txt URL sayacı satır başı arıyordu → iki tarafta da 0 sayıyordu
+  (sahte eşitlik). Metnin tamamı: 173 = 173.
+- md13 sayfa başına 400 düğüm sınırına dayanınca **susuyordu** (sessiz kap
+  yasağı ihlali, kendi denetimimizde yakalandı). Kırpma gerçekti: rehber
+  sayfasında 143 düğüm ölçülmüyordu. Sınır 1500'e çıkarıldı.
+
+### Hukuki kalem
+Nisan 2026 Su Kanunu Taslağı bulundu (TOBB üst yazısı 24.04.2026, 17 sayfa
+taslak metni). **Üst yazı kamuya açık yayımı men ediyor.** Kullanıcı kararı:
+yalnız izleme — belge depoya girmez (veri/ham/, gitignore), siteye içerik
+basılmaz, istek görgüsü değişmez. İlk taban elle alındı ki ilk canlı koşum
+sahte "yeni belge" alarmı üretmesin (kanıt: gerçek `izle_pdfhead` metni
+canlıya karşı koşuldu → 🟢 tamam, olay 0).
+Yan bulgu: izlenen eski hedef 2019 sürümünü gösteriyor (Last-Modified
+31 Eki 2019) — yeni taslağı asla göremezdi. F4-8 kapandı.
+
+### Kapanan kuyruk maddeleri
+md4/md12/md10 yanlış alarmları · K2 sağlık paketi · F4-3 (Last-Modified) ·
+F4-8 (taslak izleme) · OpenAlex 32 il · ilçe dizini çapraz doğrulama (0 fark,
+TÜİK engeli kalkmış) · imlec.js kalıntısı · RG izleme cron'u (kuruldu) ·
+NHYP yayın nöbetçisi (kuruldu) · md13 kontrast bulguları.
+
+### Açılan kalemler
+Ana sayfa öz-cevap kararı · /harita/ h1 yok · public/s/*.js build hattı
+dışında (kopyalanma direnci m.1-2) · SIRADAKILER hijyeni (910 satır) ·
+BRIEF.md yol haritası bayat · nöbetçilerin bekçiye bağlanması · havza-bazlı
+TWI briefi.
+
 ## 2026-07-14
 - İş 1 (önceki oturum): 25 havza sayfasının tamamı havza-veri.json
   künyelerinden üretildi (commit 6aa5117).

@@ -2,8 +2,8 @@
 
 Öncelik sırasıyla; biten iş kuyruktan düşer, yeni istekler kuyruğa eklenir.
 
-SAĞLIK md4 YANLIŞ ALARM — YAPILANDIRMA BAYAT (27 Tem 2026 akşam,
-KULLANICI KARARI BEKLİYOR): Su-potansiyeli merge'ü (5e08611) sabahtan beri
+SAĞLIK md4/md12/md10 YANLIŞ ALARMLARI — KAPANDI (28 Tem 2026, canlıda
+doğrulandı: 11 kontrol geçti): Su-potansiyeli merge'ü (5e08611) sabahtan beri
 deploy olmamış TÜM günü canlıya taşıdı; ana sayfa v2 DOM'unda #world/.sw-*
 yok (yeni: section.v2-hero > .v2-katman > #v2-videolar, 6 video, lazy).
 izleme/medya-beklenen.json hâlâ '#world .sw-scene' bektiği için md4 6/6
@@ -14,8 +14,19 @@ MERGE ONAYI BEKLİYOR): md4 zaman-döngüsü ölçümüne çevrildi (aktif-sahne
 poll + 206 Range normal + döngü-eksiği kontrolü); K2 kalemlerine
 DOKUNULMADI. Kanıt: canlıya karşı koşu GENEL YESIL — 6/6 sahne (6 farklı
 sahne adı, hepsi readyState 4 + currentTime>0), diğer 5 kontrol değişmedi;
-falsifikasyon: yanlış seçici → kırmızı (ölçüldü). Merge sonrası ilk cron
-koşusu doğal doğrulama olacak.
+falsifikasyon: yanlış seçici → kırmızı (ölçüldü). MERGE EDİLDİ ve CANLIDA DOĞRULANDI (28.07): md4 6/6 geçti.
+AYNI DESEN İKİ YERDE DAHA ÇIKTI (gece paketi):
+  · md12 etkileşim, silinmiş #sv-menu DOM'unu arıyordu → menü AYLARDIR
+    hiç test edilmiyordu (24.07 arızasının senaryosu açıktaydı). Revizyon
+    sonrası 4/4 geçiyor — menü canlıda çalışıyor.
+  · md10 GRACE tazeliği yapısal olarak imkânsız bir şart koşuyordu
+    (grace-turkiye.json ~aylık değişir, eşik 8 gün) → md10 tümden kaldırıldı;
+    veri tazeliği bekçinin işi (pipeline kendini denetleyemez).
+  · sonBasariliKosu artık "koşum tamamlandı" damgası — tek kırmızı bekçide
+    ikinci yanlış alarm ("sağlık sistemi koşmuyor") doğurmuyor.
+DERS: her DOM/yeniden-tasarım işi, ona bağlı izleme yapılandırmasını da
+günceller; yoksa kontrol sessizce körelir ve kırmızısı "bilinen arıza"
+sayılmaya başlar.
 
 SU POTANSİYELİ KATMANI — 81 İLDE, KULLANICI ONAYI BEKLİYOR (MERGE=YAYIN;
 27 Tem 2026): "Bu ilde su nerelerde çıkabilir?" bloğu 81 il sayfasında
@@ -28,32 +39,119 @@ OpenAlex 32 il kotası, ilçe dizini resmî çapraz doğrulama, RG izleme cron
 
 TWI YENİDEN DEĞERLENDİRME (27 Tem 2026, kullanıcı kararı): Faz 5 TWI'yi
 "4GB yetmez" bayat varsayımıyla atlamıştı; sunucu gerçekte 8GB (ölçüldü).
-Akış birikimi + TWI hesabı 8GB bütçesiyle yeniden değerlendirilecek
-(karo-birleştirmeli D8; morfoloji.json'a twi alanı eklenir). ŞİMDİ
-HESAPLANMAZ — ayrı iş.
+ÖLÇÜLDÜ (28 Tem 2026, arac/twi-kapi.py) — TÜM-TÜRKİYE MOZAİĞİ SIĞMIYOR:
+ölçek testi 1x1/2x2/3x3 karo → s/Mpx 7,73→9,30→10,44 (süperlineer,
+priority-flood O(n log n)), tepe RSS 144→380→771 MB (marjinal 54,3 MB/Mpx).
+230 Mpx mozaiğe ekstrapolasyon: ~12,6 GB RAM gerekir, 5,9 GB var → KAPI
+GEÇMEZ. (İlk dizi-sayımı tahmini 5,76 GB idi ve YANLIŞTI.) morfoloji.json
+gerekçesi bayat "2C/4GB" metninden ölçülen değere güncellendi.
+AÇIK KALAN — HAVZA-BAZLI D8 BRIEFİ: 25 havza ayrı işlenirse hidrolojik
+olarak DOĞRU (akış havza sınırını geçmez, yaklaşıklık değil) ve sığar
+(en büyük havza ~2,8 GB, toplam ~0,9 saat). UYGULANMADI: doğrulanmamış
+hidroloji modeli kamuya açık, maddi karara yönlendiren veri katmanına
+"iddiada yavaş" ilkesi gereği sokulmaz. Ayrı brief ister.
+Kanıt: cikti/denetim/faz-f/twi-kapi-olcum.json
 
-KALICI RG İŞLETME-SAHASI İZLEME CRON'U (27 Tem 2026, kullanıcı kararı —
-FAZ 6 SONRASI KURULUR, ŞİMDİ KURULMAZ): RG /Home/Filter JSON ucuyla
+KALICI RG İŞLETME-SAHASI İZLEME CRON'U — KURULDU (28 Tem 2026,
+kullanıcı onayı; crontab: Sal 04:20 UTC, arac/rg-nobetci.py --kosum).
+Kanıt: --test koşumu 109 satır ayrıştırdı, kaynaksız 0, arşivde zaten
+var 109 → yeni 0. Varsayılan kip TEST (yazım/gönderim yok).
+AÇIK KALAN (SÜREKLİLİK): nöbetçinin kendi sessiz ölümünü kimse görmüyor —
+izleme/state/rg-nobetci-durum.json tazeliği saglik-bekcisi.sh'e canlılık
+kalemi olarak eklenmeli (dosya ilk koşumdan sonra doğacak).
+[ESKİ TANIM] RG /Home/Filter JSON ucuyla
 "yeraltısuyu işletme sahası" (+ayrı yazım) başlık/ilan araması periyodik
 koşup yeni kayıtları isletme-sahalari*.json'a ekleyecek; site-saglik
 veri-bütünlüğü kontrolüne bağlanacak (SÜREKLİLİK İLKESİ). Altyapı hazır:
 arac/rg-tara.py + arac/rg-icerik-tara.py.
 
-OPENALEX EKSİK 32 İL (27 Tem 2026, su potansiyeli Faz 4.B): OpenAlex
-kalıcı 429 kotası nedeniyle 32 ilin akademik künyeleri eksik
+OPENALEX EKSİK 32 İL — KAPANDI (28 Tem 2026): il kapsamı 49/81 → 81/81,
+künye 1226 → 1979, hata 0, DOI/açık-URL'siz kayıt 0 (baski_uygun tüm
+1979 kayıtta işaretli). zenginlestirme-birlestir.py yeniden koşuldu.
+KÖK NEDEN: OpenAlex kredi tabanlı kotaya geçmiş (x-ratelimit-limit 1000,
+10 kredi/istek, retry-after 4174 sn). Sabit saniye merdiveni bu ~70 dk'lik
+pencereyi ASLA aşamazdı; script artık Retry-After başlığını OKUYUP
+sunucunun söylediği süreyi bekliyor (90 dk tavan). Pencere açılınca 32 il
+tek koşuda indi.
+[ESKİ TANIM] OpenAlex kalıcı 429 kotası nedeniyle 32 ilin künyeleri eksikti
 (veri/potansiyel/akademik-kunye.json hatalar listesi). `python3
 arac/akademik-kunye.py` artımlıdır — birkaç saat sonra tek koşu tamamlar;
 sonra `arac/zenginlestirme-birlestir.py` yeniden koşulur. 4.B DergiPark→OpenAlex ikamesi ONAYLANDI (27 Tem 2026) — şart: basılacak
 her künye DOI/açık-erişim URL'si taşır, taşımayan basılmaz (baski_uygun
 etiketi veride).
 
-İLÇE DİZİNİ ÇAPRAZ DOĞRULAMA (27 Tem 2026, kullanıcı kararı A — su
-potansiyeli Faz 2): kütle→il eşlemesinde kullanılan ilçe→il dizini OSM
+İLÇE DİZİNİ ÇAPRAZ DOĞRULAMA — KAPANDI, 0 FARK (28 Tem 2026):
+TÜİK engeli KALKMIŞ (biruni.tuik.gov.tr 200, favori_raporlar.xlsx 3,7 MB
+indi; YÖK Tez de 200). Resmî "İLÇE NÜFUSU" listesi (31 Ara 2021 ADNKS)
+OSM diziniyle karşılaştırıldı: adlı ilçe ortak 897 → il eşlemesi AYNI 897,
+çatışan 0; merkez ilçesi olan il TÜİK 51 = OSM 51, fark 0.
+kutle-il.json'da yeniden değerlendirilecek ilçe ÇIKMADI.
+SINIR: TÜİK dosyası 2021 tarihli; 2021 sonrası yeni ilçe kurulmadığı ayrıca
+doğrulanmadı. Hâlâ erişilemeyen: e-İçişleri (zaman aşımı). illeridaresi.gov.tr
+ise ENGEL DEĞİL — sertifikası yahyali.gov.tr adına, barındırma arızası.
+Kanıt: cikti/denetim/faz-k/ilce-capraz-dogrulama.json
+[ESKİ TANIM] kütle→il eşlemesinde kullanılan ilçe→il dizini OSM
 Overpass'tan (ODbL) üretildi (veri/potansiyel/ilce-il-dizini.json).
 Kullanıcı TR-IP'den resmî listeyi (e-İçişleri MulkiIdariBolumleri / TÜİK
 idari bölünüş) indirdiğinde OSM diziniyle ÇAPRAZ DOĞRULANACAK; fark çıkan
 ilçeler kutle-il.json'da yeniden değerlendirilecek. Sunucudan resmî
 kaynaklara erişim yok (6 kaynak denemesi: rapor/potansiyel-faz2.md).
+
+YENİ AÇILAN KALEMLER (28 Tem 2026, gece paketi tam-sistem denetimi):
+
+1. ANA SAYFA ÖZ-CEVAP KARARI — AÇIK, 7-geo-seo KIRMIZI. Örneklenen 11 sayfa
+   tipinden 10'unda doc-abstract var, `/`'de yok (v2 hero bir landing).
+   CLAUDE.md "İçerik ilkesi" öz-cevabı "her içerik sayfası (rehber, havza,
+   araç)" için şart koşuyor. Karar: ya `/`'ye öz-cevap girer, ya
+   izleme/cekirdek-sayfalar.json'a "landing muaf" notu düşülür. Şu hâliyle
+   md7 SÜREKLİ kırmızı kalır ve alarm değeri aşınır.
+
+2. /harita/ SAYFASINDA h1 YOK — ölçüldü: <h1> sayısı 0, hiyerarşi <h2> ile
+   başlıyor. Örneklenen diğer 10 tipin hepsinde tam olarak 1 h1 var. Hem
+   erişilebilirlik hem SEO kaybı; sitenin ikinci en önemli sayfası.
+
+3. public/s/*.js BUILD HATTINI ATLIYOR — "Kopyalanma direnci" m.1-2 ihlali.
+   Altı dosya (su-sim 9.309 B/12 yorum, imlec 5.571/6, sayfa 2.318/5,
+   canlan, durumum, hangi-kurum) Türkçe yorumlarıyla AYNEN yayımlanıyor;
+   `public/` Astro/Vite tarafından işlenmez. _astro/ varlıkları kurala uyuyor
+   (sourceMappingURL 0). Düzeltme: src/scripts/ altına taşıyıp hatta sokmak
+   ya da astro:build:done kancasında esbuild (minify, sourcemap:false).
+   Bitti tanımı: canlı /s/*.js 404 VEYA minify; yorum satırı 0; Lighthouse
+   ≥90 korunur; md4/md5/md12 yeşil kalır. NOT: imlec.js ve sayfa.js
+   Sayfa.astro:519-520'den yükleniyor, taşımada is:inline kalkmalı.
+   (Ek gözlem: silinmiş menu.js hâlâ Cloudflare edge cache'inden 200
+   dönüyor — s-maxage 604800; hiçbir sayfa link vermiyor, 7 güne kadar.)
+
+4. SIRADAKILER HİJYENİ — bu dosya 854 satır, 41 açık madde, 13 "ONAY
+   BEKLİYOR" (5'i [ESKİ] tarihsel). Her oturum başında okunması gereken
+   dosya artık taranamıyor. Öneri: kapanmış maddeler
+   arsiv/SIRADAKILER-2026-07.md'ye taşınır, ana dosya açık maddelerle
+   sınırlanır.
+
+5. BRIEF.md YOL HARİTASI GERÇEĞİN GERİSİNDE — Aşama 1/2/4 hâlâ [ ] işaretli;
+   oysa KAYNAKLAR.md var, 172 sayfalık içerik katmanı canlı (11 rehber +
+   82 il + 26 havza). BRIEF'teki "2 vCPU/4GB" kaydı da bayat (gerçek 4C/8GB,
+   CLAUDE.md'de düzeltilmiş). Çatı belge gerçeği yansıtmalı.
+
+6. NÖBETÇİLERİN CANLILIK KALEMİ (SÜREKLİLİK) — rg-nobetci ve
+   nhyp-yayin-nobetci crona kuruldu (Sal 04:20 / Çar 04:40 UTC) ama kendi
+   sessiz ölümlerini kimse görmüyor. İlk koşumdan sonra
+   izleme/state/{rg-nobetci-durum,nhyp-yayin-durum}.json doğacak; tazelikleri
+   saglik-bekcisi.sh'e canlılık kalemi olarak eklenmeli (grace/su-izleme
+   deseniyle aynı).
+
+7. md13 KONTRAST — KAPANDI ama izlenmeli: /'de span.no 1,58→3,50:1,
+   /hangi-kurum/ .ik-teyit 4,42→5,63:1, .ik-paylasim 4,52→5,60:1 (sonuncusu
+   ihlal değildi, payı 0,02'ydi). Canlıda md13 GEÇTİ, en dar pay 3,5:1.
+   izleme/kontrast-ornek.json istisna listesi BOŞ — istisna yazma yetkisi
+   kullanıcıda.
+
+8. SU KANUNU NİSAN 2026 TASLAĞI — izlemeye alındı (28.07 kullanıcı kararı),
+   YALNIZ İZLEME. Belge depoya girmez (veri/ham/, gitignore), siteye içerik
+   basılmaz, istek görgüsü değişmedi. Üst yazı (TOBB 24.04.2026) kamuya açık
+   yayımı men ediyor. AÇIK: taslak yasalaşırsa/resmî yayımlanırsa içerik
+   üretimi yeniden değerlendirilecek. Eski hedef (2019 sürümü) korunuyor.
+
 
 KONTRAST ARIZASI — KAPANDI (27.07, kontrast-2026-07-27 canlıda,
 512ada3): index.astro'nun is:global body{#061824} stili Vite ortak
