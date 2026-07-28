@@ -13,9 +13,14 @@
 //
 // TASARIM: mevcut v2 bölüm iskeleti (v2-bolum / v2-ic / v2-bolum-kicker) ve
 // hizmet kartı ailesiyle aynı; yeni renk/font/desen İCAT EDİLMEZ.
+// SAYI SUNUMU TEK BİLEŞENDE (B3.3, 28.07.2026): rakam + birim + bağlam
+// artık CanliSayi.astro'da. Buradan taşınan üç şey: lining figür kararı
+// (Cormorant'ın eski-stil rakamları "472"yi "47²" gibi gösteriyordu —
+// ölçüm: src/components/CanliSayi.astro başlığı), sayım animasyonu ve
+// kart iskeleti. Rakamın KENDİSİ hâlâ burada, veriden sayılı.
 import { KANIT_BANDI } from '../../data/vitrin.js';
-
-const bicim = (n) => n.toLocaleString('tr-TR');
+import CanliSayi from '../CanliSayi.astro';
+import CanliSayiMotor from '../CanliSayiMotor.astro';
 ---
 {/* Aydınlık bölüm: Hizmetler ile aynı zemin — ritim dark(hero+sorular) →
     light(kanıt+hizmetler) → dark(süreç) olarak korunur. */}
@@ -30,15 +35,10 @@ const bicim = (n) => n.toLocaleString('tr-TR');
 
     <ul class="v2-kanit-izgara">
       {KANIT_BANDI.map((k) => (
-        <li>
-          <a href={k.yol}>
-            <span class="v2-kanit-sayi">{bicim(k.sayi)}</span>
-            <span class="v2-kanit-birim">{k.birim}</span>
-            <span class="v2-kanit-metin">{k.metin}</span>
-          </a>
-        </li>
+        <li><CanliSayi sayi={k.sayi} birim={k.birim} metin={k.metin} yol={k.yol} /></li>
       ))}
     </ul>
+    <CanliSayiMotor />
 
     <p class="v2-kanit-alt">
       Kaynak künyeleri, kapsam ve erişim biçimi:
@@ -59,59 +59,9 @@ const bicim = (n) => n.toLocaleString('tr-TR');
 
   @media (max-width: 1023px) { .v2-kanit-izgara { grid-template-columns: 1fr; } }
 
-  /* Kart: hizmet kartıyla (.v2-kart) AYNI aile — aynı tokenlar, aynı
-     yarıçap/geçiş. Ayrım yalnız üstteki 2px vurgu çizgisi (veri bandı
-     idiomu; il/havza sayfalarındaki veri bantlarıyla tutarlı). */
-  .v2-kanit-izgara a {
-    display: block;
-    height: 100%;
-    padding: 1.75rem;
-    text-decoration: none;
-    color: inherit;
-    background: var(--v2-kart);
-    border: 1px solid var(--v2-border);
-    border-top: 2px solid var(--v2-primary);
-    border-radius: 1rem;
-    transition: border-color 200ms var(--sh-eo), transform 200ms var(--sh-eo);
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .v2-kanit-izgara a:hover {
-      border-color: var(--v2-primary);
-      transform: translateY(-2px);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .v2-kanit-izgara a { transition: none; }
-    .v2-kanit-izgara a:hover { transform: none; }
-  }
-
-  .v2-kanit-sayi {
-    display: block;
-    font-family: var(--serif);
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    line-height: 1.05;
-    font-variant-numeric: tabular-nums;
-    color: var(--v2-primary);
-  }
-
-  .v2-kanit-birim {
-    display: block;
-    margin-top: 0.3rem;
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--v2-muted-fg);
-  }
-
-  .v2-kanit-metin {
-    display: block;
-    margin-top: 0.7rem;
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
+  /* Kart iskeleti + rakam/birim/bağlam tipografisi CanliSayi.astro'ya
+     TAŞINDI (B3.3). Burada yalnız ızgara ve bölüm zemini kalır — kopya
+     kural iki yerde sapma demektir (28.07 md4 dersi). */
 
   .v2-kanit-alt { margin: 1.4rem 0 0; font-size: 0.95rem; }
 

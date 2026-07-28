@@ -16,6 +16,8 @@ import { getCollection } from 'astro:content';
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
+import CanliSayi from '../components/CanliSayi.astro';
+import CanliSayiMotor from '../components/CanliSayiMotor.astro';
 import { OZ_CEVAP, DURUSTLUK_ETIKETI, KATMANLAR, VERI_YOK_NOTU, SAYILAR, iller } from '../data/kapi.js';
 import { sssListesi } from '../data/kapi-sss.js';
 
@@ -92,6 +94,21 @@ const sema = [
     kaydında durur.
   </p>
 
+  {/* KANIT BANDI (B3.3, 28.07.2026): sayfanın başlık rakamları CanliSayi
+      bileşeniyle. Bant BAŞLIK, altındaki katman listesi KIRILIM verir —
+      bant şerhsiz bir sayı iddia etmez, şerhler listede durur (içerik
+      ilkesi: cevap önce, dayanak sonra). Rakamlar burada da veriden
+      sayılıdır (src/data/kapi.js bekçisi); elle yazılmış sayı yoktur. */}
+  <ul class="kapi-kanit">
+    <li><CanliSayi sayi={SAYILAR.kutleToplam} birim="Yeraltı suyu kütlesi"
+        metin={`${SAYILAR.havzaPlan} yayımlı havza planından derlendi.`} /></li>
+    <li><CanliSayi sayi={SAYILAR.rgToplam} birim="Resmî Gazete kaydı"
+        metin={`${SAYILAR.rgYilIlk}-${SAYILAR.rgYilSon} arası işletme sahası ilanı.`} /></li>
+    <li><CanliSayi sayi={SAYILAR.ilSayisi} birim="İl sayfası"
+        metin="Cevap il ölçeğinde verilir; her il kendi sayfasında." /></li>
+  </ul>
+  <CanliSayiMotor />
+
   <ol class="kapi-katmanlar">
     {KATMANLAR.map((k, i) => (
       <li>
@@ -145,6 +162,20 @@ const sema = [
   }
 
   .kapi-yonerge { max-width: 66ch; margin-bottom: 1.4rem; }
+
+  /* Kanıt bandı ızgarası (B3.3). Kart görünümü CanliSayi bileşenindedir;
+     burada YALNIZ yerleşim var — kopya stil iki yerde sapma demektir.
+     Kırılım noktası katman kartlarıyla aynı (720px) ki iki blok aynı
+     anda tek kolona düşsün, ritim kırılmasın. */
+  .kapi-kanit {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.6rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.9rem;
+  }
+  @media (max-width: 720px) { .kapi-kanit { grid-template-columns: 1fr; } }
 
   /* Katman kartları: il bloğunun veri bandı diliyle aynı aile
      (zemin-kart + hairline + su-700 üst çizgi). */

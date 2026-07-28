@@ -1,0 +1,106 @@
+---
+/* CANLI SAYI (B3.3, 28.07.2026) — sitenin kanıt rakamlarının tek bileşeni.
+ *
+ * NEDEN: kanıt rakamları sitenin otorite iddiasının görünen yüzü. Bugüne
+ * kadar her yerde ayrı yazılıyordu; tek bileşene taşınınca hem tipografi
+ * hem davranış tek yerden yönetiliyor.
+ *
+ * ÜÇ KARAR (ölçümle):
+ * 1) LINING FIGÜRLER ZORUNLU. Cormorant'ın VARSAYILAN rakamları eski-stil
+ *    (oldstyle): 200px'te 3/5/7/9 taban çizgisinin 54px ALTINA sarkıyor,
+ *    6 ise 132px yükseliyor — 0/1'in 79px'ine karşı. Ölçüldü (canvas
+ *    mürekkep taraması, 28.07). Sonuç: "472" ekranda "47²" gibi okunuyordu.
+ *    `lining-nums` uygulandığında rakamlar eşit yükseklik alıyor (kare
+ *    kanıtı: cikti/denetim/sayi/rakam-oncesi.png / -sonrasi.png).
+ *    Ayrıca yedek font Georgia LINING figür kullanıyor; lining olmadan
+ *    font yüklenene kadar rakamların BİÇİMİ değişiyordu.
+ * 2) `tabular-nums` korunur: sayım animasyonunda rakam genişliği
+ *    değişirse sayı zıplar.
+ * 3) Sayım animasyonu AYRI bileşendedir: CanliSayiMotor.astro. Script
+ *    burada dururken Astro onu her örnek için ayrı gömüyordu (3 kart =
+ *    3 kopya, +930 bayt ölçüldü). Motor sayfada bir kez çağrılır.
+ *
+ * SAYI DİSİPLİNİ: bileşen sayıyı KENDİ üretmez; çağıran veriden sayılmış
+ * değeri verir (src/data/vitrin.js, src/data/kapi.js — ikisi de bekçili).
+ *
+ * Props:
+ *   sayi   (number, zorunlu) — gösterilecek değer
+ *   birim  (string)          — küçük mono etiket (ör. "YERALTI SUYU KÜTLESİ")
+ *   metin  (string)          — altındaki tek satır bağlam
+ *   yol    (string)          — verilirse kutu tıklanabilir olur
+ *   olcek  ('bant'|'genis')  — bant: ızgara içi · geniş: tek başına
+ */
+const { sayi, birim, metin, yol, olcek = 'bant' } = Astro.props;
+
+// Biçim tek yerde: TR ayracı (1.234). UX kuralı: büyük sayılar binlik
+// ayraçla okunur (ui-ux-pro-max "Number Formatting").
+const bicimli = Number(sayi).toLocaleString('tr-TR');
+
+if (!Number.isFinite(Number(sayi))) {
+  throw new Error(`CanliSayi: sayı geçersiz (${sayi}) — veri kaynağı bozuk.`);
+}
+const Etiket = yol ? 'a' : 'div';
+---
+{/* Sarmalayıcı div YOK: sınıflar doğrudan kutuya. Ölçüldü (28.07):
+    ayrı sarmalayıcı üç kartta ~120 bayt fazladan HTML üretiyordu ve
+    hiçbir düzen işlevi yoktu (ızgara hücresi zaten <li>). */}
+<Etiket href={yol} class:list={['cs-kutu', `cs-${olcek}`]}>
+    {/* data-hedef: JS sayımın varış değeri. JS yoksa/kapalıysa metin
+        ZATEN son değerdir — ilerleyici geliştirme, boş kutu görünmez. */}
+    <span class="cs-sayi" data-canli-sayi data-hedef={sayi}>{bicimli}</span>
+    {birim && <span class="cs-birim">{birim}</span>}
+    {metin && <span class="cs-metin">{metin}</span>}
+</Etiket>
+
+<style>
+  .cs-kutu {
+    display: block;
+    height: 100%;
+    padding: 1.75rem;
+    text-decoration: none;
+    color: inherit;
+    background: var(--v2-kart, #fff);
+    border: 1px solid var(--v2-border, #dfe7ec);
+    border-top: 2px solid var(--v2-primary, #2b6a86);
+    border-radius: 1rem;
+    transition: border-color 200ms var(--sh-eo, ease), transform 200ms var(--sh-eo, ease);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    a.cs-kutu:hover { border-color: var(--v2-primary); transform: translateY(-2px); }
+  }
+
+  .cs-sayi {
+    display: block;
+    font-family: var(--serif, Georgia, serif);
+    /* LINING + TABULAR: gerekçe dosya başındaki 1) ve 2) maddelerinde. */
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: 'lnum' 1, 'tnum' 1;   /* eski tarayıcı yedeği */
+    line-height: 1.05;
+    color: var(--v2-primary, #2b6a86);
+  }
+  .cs-kutu.cs-bant .cs-sayi { font-size: clamp(2rem, 4vw, 2.8rem); }
+  .cs-kutu.cs-genis .cs-sayi { font-size: clamp(2.6rem, 6vw, 4rem); }
+
+  .cs-birim {
+    display: block;
+    margin-top: 0.3rem;
+    font-family: var(--mono, monospace);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--v2-muted-fg, #566);
+  }
+
+  .cs-metin {
+    display: block;
+    margin-top: 0.7rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cs-kutu { transition: none; }
+    a.cs-kutu:hover { transform: none; }
+  }
+</style>
