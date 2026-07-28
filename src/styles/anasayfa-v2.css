@@ -454,6 +454,22 @@
   padding: 2rem clamp(1.25rem, 4vw, 2rem);
 }
 @media (max-width: 1023px) { .v2-mobil-sorular { display: block; } }
+
+/* S1 — mobil ilk ekran (2026-07-28, PAZARLAMA-KAZI FAZ B Persona-1 bulgusu):
+   375×812'de ilk soru kadrajın 34px, dert-adlandıran soru 133px altındaydı
+   (ölçüm: rapor/hazirlik-mobil-ve-slug.md §1). Üç kural, ÜÇÜ DE yalnız
+   mobil kapsamda — masaüstü (≥1024px) hesaplanmış stiller DEĞİŞMEZ:
+   1) hero mobilde 84svh'ye iner (562-734 boş bandı sıkışır; sahne katmanı
+      inset:0 olduğundan videoyu kırpmaz, doldurur);
+   2) liste flex olur ki 3) sıra kuralı çalışsın: dert-adlandıran soru
+      ("Ruhsatsız kuyu cezası...", DOM'da 3.) görsel olarak başa alınır.
+   DOM'a DOKUNULMAZ (masaüstü bit-eşitlik kanıtı bunun üstüne kurulu);
+   bilinen ödün: mobilde görsel sıra ≠ DOM/odak sırası (tek öğe için). */
+@media (max-width: 1023px) {
+  .v2-hero { min-height: max(84svh, 600px); }
+  .v2-mobil-sorular ul { display: flex; flex-direction: column; }
+  .v2-mobil-sorular li:nth-child(3) { order: -1; }
+}
 .v2-mobil-sorular h2 {
   margin: 0 0 0.9rem;
   font-family: var(--mono, ui-monospace, monospace);
