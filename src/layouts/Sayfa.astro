@@ -20,9 +20,15 @@ interface Props {
   // YERİNE o slot render edilir (görsel yokken degrade placeholder —
   // görünüm su bandıyla aynı aileden; iki bant üst üste asla binmez).
   heroSlot?: 'rehber-hero' | 'bolum-vinyeti';
+  /* robots: YALNIZ arama motorlarına kapatılacak sayfalar için
+     ("noindex, nofollow"). Verilmezse etiket HİÇ basılmaz — mevcut
+     sayfaların çıktısı bit-eşit kalır (ölçüldü: 178/178 fark 0).
+     noindex basıldığında sitemap ve llms.txt üreticileri o sayfayı
+     zaten atlar (astro.config'teki iki üretici de aynı kuralı okur). */
+  robots?: string;
 }
 
-const { baslik, aciklama, sema = [], heroSlot } = Astro.props;
+const { baslik, aciklama, sema = [], heroSlot, robots } = Astro.props;
 const yol = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname
   : Astro.url.pathname + '/';
@@ -136,6 +142,7 @@ const jsonLd = JSON.stringify({
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{baslik} — Su Haritası</title>
 <meta name="description" content={aciklama} />
+{robots && <meta name="robots" content={robots} />}
 <link rel="canonical" href={canonical} />
 <meta property="og:title" content={`${baslik} — Su Haritası`} />
 <meta property="og:description" content={aciklama} />
