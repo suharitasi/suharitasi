@@ -16,7 +16,16 @@
   --v2-metin: oklch(0.24 0.04 235);
   --v2-primary: oklch(0.5 0.09 215);
   --v2-primary-fg: oklch(0.99 0.005 220);
-  --v2-muted-fg: oklch(0.52 0.03 225);
+  /* İkincil metin KOYULAŞTIRILDI (İş B, 29.07.2026): oklch(0.52 0.03 225)
+     = #576D76 idi; aydınlık zeminlerde ölçülen kontrast **5,22-5,45** —
+     DESIGN.md §18.2'nin "aydınlık bölümlerde gövde metni ≥7,0" hedefinin
+     ALTINDA. Ana sayfa kendi v2 token ailesini kullandığı için 28.07'deki
+     --murekkep-500 düzeltmesi buraya ULAŞMAMIŞTI (ölçümle bulundu).
+     YENİ RENK İCAT EDİLMEDİ: değer, paletteki --murekkep-500 (#3C5266) —
+     28.07'de /hangi-kurum/ kontrast düzeltmesinde ölçülüp seçilmiş,
+     29.07'de global tokene alınmıştı (KARARLAR §22).
+     YENİ ÖLÇÜM: #F6FBFD üstünde 5,22 → 7,77 · #FFFFFF üstünde 5,45 → 8,11. */
+  --v2-muted-fg: #3C5266;
   --v2-border: oklch(0.9 0.015 220);
   --v2-kicker-koyu: oklch(0.78 0.11 200);
   --v2-randevu-metin: #0a2438;

@@ -146,7 +146,11 @@ const sahneVeri = SAHNELER.map((s) => ({
      aydınlık kap burada tanımlanır, footer eski görünümüyle çıkar. */
   .v2-altkap {
     --metin: #132A3F;
-    --metin-soluk: #48627A;
+    /* #48627A → #3C5266 (İş B, 29.07): bu yerel kap SU-DİLİ tokenlarını
+       ELLE kopyalıyordu ve 29.07'deki --murekkep-500 koyulaştırması buraya
+       ULAŞMAMIŞTI (ölçüm: altbilgi gövdesi 5,52). Kopya token = sapma
+       kaynağı; değer paletteki --murekkep-500 ile eşitlendi. 5,52 → 7,04. */
+    --metin-soluk: #3C5266;
     --cizgi: rgba(19, 42, 63, 0.14);
     background: #E9F0F4;
   }

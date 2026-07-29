@@ -271,7 +271,9 @@ if (kalip2 && !d.kahraman)
     font-size: clamp(2.1rem, 4.5vw, 2.9rem);
     font-weight: 500;
     line-height: 0.95;
-    font-variant-numeric: tabular-nums;
+    /* lining-nums EKLENDİ (İş B, 29.07): Cormorant eski-stil rakam
+       basıyor; DESIGN.md §18.1 kanıt rakamı lining figür ister. */
+    font-variant-numeric: lining-nums tabular-nums;
     color: var(--metin);
   }
 

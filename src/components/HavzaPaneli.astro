@@ -115,7 +115,9 @@ const [ky, ka, kg] = yasVeri.kaynak.havzaPotansiyelRezerv.indirmeTarihi.split('-
     --pk-zemin: #E9F0F4;
     --pk-kart: #DFE9F0;
     --pk-metin: #132A3F;
-    --pk-soluk: #48627A;
+    /* #48627A → #3C5266 (İş B, 29.07): aynı kopya-token sapması;
+       paletteki --murekkep-500 ile eşitlendi. */
+    --pk-soluk: #3C5266;
     --pk-derin: #0C5A7C;
     --pk-sig: #2E7EA0;
     --pk-kehribar: #C0883A;
@@ -222,7 +224,11 @@ const [ky, ka, kg] = yasVeri.kaynak.havzaPotansiyelRezerv.indirmeTarihi.split('-
     font-size: 1.85rem;
     font-weight: 500;
     line-height: 1;
-    font-variant-numeric: tabular-nums;
+    /* lining-nums EKLENDİ (İş B, 29.07.2026): Cormorant'ın varsayılan
+         rakamları eski-stil — 3/5/7/9 taban çizgisinin altına sarkıyor,
+         6/8 yükseliyor (200px'te ölçüldü). DESIGN.md §18.1: kanıt
+         rakamları lining figür taşır. tabular zaten vardı. */
+    font-variant-numeric: lining-nums tabular-nums;
     margin-top: 0.15rem;
   }
 
