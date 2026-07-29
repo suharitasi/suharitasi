@@ -340,3 +340,57 @@ sertleştirir: "mobilde de iyi" değil, "mobilde DOĞAR"). İlk ekran bütçesi
 görünürse §1–16 kazanır ve çelişki rapor edilir. Görünürlük kuralı
 (CLAUDE.md) burada da bağlayıcı: katmanlama efektleri ilk bakışta fark
 edilir olmalı, görünmezleşene kadar kısılmaz.
+
+---
+
+## 18. MARKA SIFATI: **"EMİN"** (2026-07-29, kullanıcı kararı)
+
+Sitenin tek marka sıfatı **"emin"**dir. Bu bölüm §1-17'yi TAMAMLAR,
+çelişmez; çelişki görünürse §1-16 kazanır ve çelişki rapor edilir.
+
+**Karar gerekçesi (kullanıcı):** ziyaretçi ceza/ruhsat derdiyle geliyor;
+aradığı his **"doğru yere geldim"**. Reddedilenler: *"çarpıcı"* — malzeme
+yetersiz, dikkat dağıtır · *"resmî"* — soğuk, müvekkil çekmez.
+Kayıt: `KARARLAR.md` §18.
+
+Sıfat iki yönlüdür: **ziyaretçi emin olur** ve **site emin konuşur**
+(abartmaz, uydurmaz, bilmediğini söyler). İkincisi zaten uygulanıyor —
+sayı bekçisi, künye zorunluluğu, "doğrulanmadı" etiketi, il eşlemesinin
+durdurulması. Sıfat bunlara **görsel karşılık** verir.
+
+### 18.1 TİPOGRAFİ SONUÇLARI
+
+| Kural | Karar |
+|---|---|
+| Font ailesi | **DEĞİŞMEZ.** Cormorant + Manrope + IBM Plex Mono (§6) zaten kurumsal-emin dili taşıyor; kıyas kaydı §6'da duruyor. |
+| **Rakamlar LINING figür** | **ZORUNLU.** `font-variant-numeric: lining-nums tabular-nums`. Cormorant'ın varsayılan rakamları eski-stil: 200px'te 3/5/7/9 taban çizgisinin 54px ALTINA sarkıyor, 6 → 132px (0/1: 79px) — ölçüm 28.07, canvas mürekkep taraması. "472" ekranda "47²" gibi okunuyordu. **Sarkık rakam "emin" değil, "el yazması" hissi verir.** Ayrıca yedek font Georgia lining kullanır; lining olmadan font yüklenene kadar rakamın BİÇİMİ değişir. |
+| Sayı sunumu | Kanıt rakamları **tek bileşenden** çıkar: `src/components/CanliSayi.astro`. Yeni yerde elle rakam dizgisi kurulmaz. |
+| Binlik ayraç | `Intl.NumberFormat('tr-TR')` — biçim tek yerde. |
+| Başlık ağırlığı | w600'de kalır; daha kalın "bağırma", daha ince "kararsızlık" okunur. |
+| **Belirsizlik dili** | Emin olmak *her şeyi bilmek* değil, **neyi bilmediğini söylemek**tir. "doğrulanmadı", "veri yok", "ölçülemedi" ifadeleri **küçültülmez, soluklaştırılmaz, dipnota itilmez** — iddianın yanında, aynı okunaklılıkta durur. |
+
+### 18.2 RENK SONUÇLARI
+
+| Kural | Karar |
+|---|---|
+| Palet | **DEĞİŞMEZ.** §2 derinlik skalası ve §11 tek-mod kararı korunur. |
+| **Aydınlık bölüm kontrastı** | **HEDEF ≥ 7:1** (bugün 5,52 ölçüldü; koyu bölümler 8,67-18,04). AA'yı geçiyor ama **emin soluk konuşmaz.** Ayrıntı: `rapor/tasarim-kimligi.md` D2. Uygulama AYRI İŞ (SIRADAKILER). |
+| Vurgu rengi | Altın/vurgu **iddiaya** eşlik eder, süse değil: bir renk vurgusu varsa orada ölçülmüş bir sayı ya da kaynak künyesi olmalı. |
+| Uyarı/şerh renkleri | Şerh bloğu zeminden **ayrışır** ama alarm rengi taşımaz; emin bir kaynak şerhi utanç gibi saklamaz, telaş gibi de sunmaz. |
+
+### 18.3 HAREKET SONUÇLARI
+
+| Kural | Karar |
+|---|---|
+| **Hareket bir şeyi KANITLAMALI** | Dekoratif hareket eklenmez. Geçer örnek: sayım animasyonu (rakamın *sayıldığını* gösterir) · hero sahne akışı (sahanın kendisini gösterir). Geçmez örnek: giriş için parallax, dikkat çekmek için titreşim/parıltı. |
+| Süre | §10 rejimi geçerli. Mikro-etkileşim 150-300 ms. **İstisna: anlatı taşıyan hareket** (sayım) 900 ms'e kadar çıkabilir — gerekçesi bileşende yazılır. |
+| `prefers-reduced-motion` | §10 aynen: koreografi kapanır, **içerik asla gizli kalmaz**. Sayım animasyonunda son değer **anında** yazılıdır (sunucudan öyle gelir). |
+| Sıçrama yasağı | Sayı/etiket değişirken düzen zıplamaz: `tabular-nums` zorunlu. Emin bir arayüz gözün altında kaymaz. |
+
+### 18.4 BU BÖLÜMÜN DENETİMİ
+
+- Lining figür kuralı `CanliSayi` bileşeninde uygulanmıştır; başka yerde
+  büyük rakam dizgisi doğarsa **bileşene taşınır**, kural kopyalanmaz.
+- Kontrast hedefi (≥7:1) bugün **karşılanmıyor**; md13 kontrast kalemi
+  AA eşiğinde ölçmeye devam eder, 7:1 hedefi ayrı işin bitti-tanımıdır.
+- Yeni bir görsel iş bu bölümle çelişiyorsa iş DURUR ve çelişki raporlanır.

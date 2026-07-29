@@ -78,7 +78,15 @@ sıralama eklendi. Her ikisi de kodda yorum olarak kayıtlı.
 
 ---
 
-## B3.2 — MARKA SIFATI ÖNERİSİ · **KULLANICI KARARI, DUR**
+## B3.2 — MARKA SIFATI · **KARAR VERİLDİ 29.07.2026: "EMİN"** (KAPANDI)
+
+> **Kullanıcı kararı (29 Tem 2026):** sıfat **"emin"** kabul edildi.
+> Gerekçe (kullanıcının ifadesi): *ziyaretçi ceza/ruhsat derdiyle geliyor,
+> aranan his "doğru yere geldim"*. Reddedilenler: *"çarpıcı"* — malzeme
+> yetersiz, dikkat dağıtır · *"resmî"* — soğuk, müvekkil çekmez.
+> Karar `KARARLAR.md` §18'de, sonuçları **DESIGN.md §18**'e yazıldı;
+> uygulama (D2 kontrast) ayrı iş olarak kuyrukta. Bu bölüm aşağıda
+> öneri anındaki hâliyle KORUNUYOR — kararın nasıl oluştuğu kayıtta kalsın.
 
 ### Öneri: **"EMİN"**
 
@@ -105,9 +113,9 @@ konuşur* (abartmaz, uydurmaz, bilmediğini söyler).
 | **Renk** | Lacivert `#08202f` / aydınlık `#f6fbfd` / vurgu `--v2-primary` | **Palet değişmez.** Tek öneri: aydınlık bölümlerin kontrastını (D2, 5,52) koyu tarafa yaklaştırmak — "emin" soluk konuşmaz. Ölçülebilir hedef: gövde metni ≥ 7:1. |
 | **Hareket** | 200 ms geçişler, hero sahne döngüsü, yeni sayım animasyonu | **Kural: hareket bir şeyi KANITLAMALI.** Sayım animasyonu buna uyar (rakamın sayıldığını gösterir). Dekoratif hareket eklenmez. Mevcut hiçbir hareket bu kuralı ihlal etmiyor. |
 
-**DUR.** Sıfat seçimi marka kararıdır; hiçbir uygulama yapılmadı.
-Onaylarsanız KARARLAR.md'ye kayıt düşülür ve D2 (kontrast) ayrı bir iş
-olarak kuyruğa girer.
+**[GÜNCELLEME 29.07]** Onaylandı. KARARLAR.md §18 + DESIGN.md §18 yazıldı;
+D2 (kontrast ≥7:1) SIRADAKILER'e BÜYÜK İŞ olarak girdi. Lining figür
+kuralı zaten uygulanmıştı (B3.3).
 
 ---
 
@@ -199,6 +207,7 @@ işaretleme. İki gereksiz maliyet ölçülüp kaldırıldı:
 Kapı sayfasındaki artışın büyük kısmı (2.019 B ham) **yeni içeriktir**
 (üç kart, metinleriyle) — motor değil.
 
-**Karar sizin:** animasyon +322/+522 B gzip'e değmiyorsa motor tek satır
-silmeyle kaldırılır; lining figür düzeltmesi ve bileşen bütünleştirmesi
-ağırlıksız kalır (o kısım net kazanç).
+**[KARAR 29.07.2026 — ANİMASYON KALIR]** Kullanıcı ölçülen maliyeti
+(+322 B / +522 B gzip) kabul etti. Gerekçe DESIGN.md §18.3 ile uyumlu:
+sayım, rakamın *sayıldığını* gösterdiği için "hareket bir şeyi kanıtlamalı"
+kuralını geçen bir örnektir. Kayıt: KARARLAR.md §19.

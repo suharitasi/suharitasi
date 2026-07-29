@@ -23,21 +23,25 @@ Hepsi ücretsiz ve kısa; sıra etki büyüklüğüne göre.
     kurulmadan hiçbir uyarı sunucudan ÇIKMIYOR. rapor/dis-izleme.md §4.A
  6. **www 522 düzeltmesi** — 9/9 ölçüm 522; A seçeneği (301 yönlendirme)
     önerildi. rapor/www-522.md §4
- 7. **Marka sıfatı: "emin"** — öneri + tipografi/renk/hareket sonuçları
-    yazıldı, HİÇBİRİ uygulanmadı. rapor/tasarim-kimligi.md B3.2
- 8. **GitHub Actions dış nabzı** — sunucudan bağımsız tek izleme seçeneği,
+ 7. **GitHub Actions dış nabzı** — sunucudan bağımsız tek izleme seçeneği,
     yeni sağlayıcı gerektirmiyor. rapor/dis-izleme.md §3
- 9. **Sayım animasyonu kalsın mı** — +322/+522 B gzip ölçüldü; değmezse
-    motor tek satırla kaldırılır (lining düzeltmesi ağırlıksız kalır).
-10. **NHYP 38 PDF yeniden indirilsin mi** (892 MB, ~yarım gün) — kaynağa
-    geri dönme imkânı; site etkilenmiyor. rapor/yedek-envanteri.md §2.1
+
+MARKA SIFATI "EMİN" — KARAR VERİLDİ (29 Tem 2026), UYGULAMA AYRI İŞ.
+Karar KARARLAR.md §18'de, sonuçları DESIGN.md §18'de. Kapanan tartışma;
+yeniden açılmaz. UYGULANACAK TEK KALEM (kuyrukta, başlatılmadı):
+▸ **D2 KONTRAST YÜKSELTME** — aydınlık bölümlerde gövde metni bugün
+  5,52:1 (koyu bölümler 8,67-18,04). DESIGN.md §18.2 hedefi **≥7:1**.
+  Kapsam: --v2-metin / --v2-muted-fg tokenları + etkilenen her bölüm.
+  Bitti-tanımı: 6 sayfa tipinde ölçülen en dar oran ≥7,0 · md13 yeşil ·
+  md14 G1-G6 sapma 0 (renk değişimi tipografi/ritmi bozmamalı) ·
+  a11y 100/100 korunur · gerileme 0. BÜYÜK İŞ (görsel kimlik) — tam brief
+  rejimi. AY İLKESİ notu: bu bir ÖZELLİK değil, karar sonucu bakımdır.
+Zaten uygulanmış olan: rakamlarda lining figür (CanliSayi, 28.07).
 
 AÇIK BULGULAR (yapısal revizyon, karar/iş bekliyor)
 - D1 BAŞLIK HİZASI TUTARSIZ: v2-bolum ailesinde kanıt/hizmetler/süreç
   ORTALI, hakkında/iletişim SOLA. Gerekçe kayıtta BULUNAMADI. Bilinçliyse
   KARARLAR.md'ye yazılmalı, değilse tek kural. DEĞİŞTİRİLMEDİ.
-- D2 AYDINLIK BÖLÜM KONTRASTI 5,52 · koyu bölümler 8,67-18,04. İkisi de AA
-  geçiyor ama aydınlık taraf soluk. "Emin" sıfatı onaylanırsa hedef ≥7:1.
 - K3 ÇAKIŞMA: rehberde üçüncü CTA (görüşme köprüsü) eklenirse aynı sayfada
   3 CTA olur. Analitik kurulmadan karar verilmemeli.
 - TMMOB iletişim yolu doğrulanmadı (/icerik/iletisim 404);

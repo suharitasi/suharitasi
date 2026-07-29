@@ -230,6 +230,46 @@ dönük çıkarıldı; o yüzden bazı satırlarda bu işaret vardır.
 - **Reddedilen alternatif:** Paralel yürütmek (özellik + dağıtım) — dikkat
   bölünür, iki bacak da yarım kalır.
 
+### 18. MARKA SIFATI: "EMİN"
+- **Tarih:** 2026-07-29 (kullanıcı kararı; öneri `rapor/tasarim-kimligi.md` B3.2)
+- **Karar:** Sitenin tek marka sıfatı **"emin"**dir. Tipografi/renk/hareket
+  sonuçları **DESIGN.md §18**'e yazıldı; uygulama ayrı iş olarak kuyrukta.
+- **Gerekçe (kullanıcının kendi ifadesi):** ziyaretçi **ceza/ruhsat derdiyle**
+  geliyor; aradığı his **"doğru yere geldim"**. Sıfat var olan davranışın
+  adıdır, sonradan takılan etiket değil: sayı bekçisi, künye zorunluluğu,
+  "doğrulanmadı" etiketi, il eşlemesinin durdurulması — hepsi zaten bu.
+- **Reddedilen alternatifler:** **"çarpıcı"** — malzeme yetersiz, dikkat
+  dağıtır · **"resmî"** — soğuk, müvekkil çekmez. (Öneri turunda ayrıca
+  elenmişti: *güvenilir* herkes böyle der, ayırt etmez · *şeffaf* bir
+  yöntem, sıfat değil · *titiz* içe dönük, kullanıcının derdi değil.)
+- **İlk somut sonucu:** rakamlarda lining figür zorunluluğu (Cormorant'ın
+  eski-stil rakamları "472"yi "47²" gibi gösteriyordu — ölçüm 28.07).
+  Bu, karardan ÖNCE B3.3'te uygulanmıştı; karar onu kurala bağladı.
+
+### 19. SAYIM ANİMASYONU KALIR
+- **Tarih:** 2026-07-29 (kullanıcı kararı)
+- **Karar:** `CanliSayi` sayım animasyonu (görünürlükte bir kez, 900 ms,
+  ease-out) **kalır**. Motor `CanliSayiMotor.astro`'da, sayfada tek kopya.
+- **Gerekçe:** DESIGN.md §18.3 "hareket bir şeyi KANITLAMALI" kuralını
+  geçen örnek — sayım, rakamın *sayıldığını* gösterir. Ölçülen maliyet
+  kabul edildi: ana sayfa **+322 B gzip (%2,98)**, kapı sayfası **+522 B
+  (%4,54)**; hareket-azaltmada animasyon hiç başlamaz (ölçüldü: 0 ara değer).
+- **Reddedilen alternatif:** motoru kaldırıp yalnız lining düzeltmesini
+  bırakmak (ağırlık artmazdı) — hareketin taşıdığı anlam ağırlığa değer
+  bulundu.
+
+### 20. NHYP HAM PDF'LERİ YENİDEN İNDİRİLİR
+- **Tarih:** 2026-07-29 (kullanıcı kararı)
+- **Karar:** Worktree silinirken kaybolan NHYP kaynak PDF'leri yeniden
+  indirilir (`veri/ham/nhyp/`, gitignore'da kalır).
+- **Gerekçe:** Türetilmiş `yas-kutleleri.json` git'te ve site etkilenmiyor;
+  ama kaynağa geri dönme imkânı yoktu — bir kütle sayısı sorgulanırsa
+  JSON'daki sayfa numarası elde PDF olmadan doğrulanamıyordu. Ayrıca
+  kaynak elde olunca NHYP altın örneği "donmuş çıktı bekçisi" olmaktan
+  çıkıp **uçtan uca tekrar** olabilir.
+- **Reddedilen alternatif:** türetilmiş JSON'la yetinmek — kaynak
+  doğrulanabilirliği bir hukuk sitesinde vazgeçilmez sayıldı.
+
 ---
 
 ## Bu dosyaya kayıt ekleme kuralı
