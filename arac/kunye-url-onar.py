@@ -35,6 +35,12 @@ URL_ONARIM = [
     ("http://dergipark.gov.tr/pajes/issue/26682/286528",
      "https://dergipark.org.tr/tr/pub/pajes/issue/26682/286528",
      "HTTP 200 · sayfada 'Gölhisar' + 'Davraz' doğrulandı (tarayıcı, 29.07.2026)"),
+    # 2. tur (29.07, md17 örneklemi döndü ve AYNI SINIFTAN yeni bir ölü
+    # bağlantı buldu): dergipark.gov.tr → dergipark.org.tr alan adı
+    # taşınması. Depoda kalan tek gov.tr adresi buydu (ölçüldü: grep 1).
+    ("http://dergipark.gov.tr/makufebed/issue/19430/206626",
+     "https://dergipark.org.tr/tr/pub/makufebed/issue/19430/206626",
+     "HTTP 200 · sayfada 'Yarışlı' + 'Davraz' doğrulandı (tarayıcı, 29.07.2026)"),
     ("http://www.trdizin.gov.tr/publication/paper/detail/TXpFNE5ETXo=",
      "https://search.trdizin.gov.tr/tr/yayin/detay/31843/"
      "berke-baraji-osmaniye-rezervuar-alani-ve-cevresinde-gorulen-karstlasma-olaylari",
