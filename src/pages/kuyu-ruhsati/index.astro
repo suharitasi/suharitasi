@@ -44,6 +44,21 @@ const aciklama =
     gap: 0.4rem 1rem;
   }
 
+  /* MOBİLDE İKİ KOLON (M10, 29.07.2026). ÖLÇÜM: 375px'te ızgara tek
+     kolona düşüyor ve 81 il 4069px'lik tek sütun oluyordu. Sebep
+     `minmax(10rem,…)`: 335px kapta 2×160+16 = 336px, tam 1px taşıyor.
+     minmax'i küçültmek masaüstünü de bozardı (672px'te 3 → 4 kolon,
+     md14 tabanı 3 kolon). Bu yüzden yalnız dar ekranda açık kural.
+     Sığma ölçüldü: en uzun il adı 'Kahramanmaraş' 122px, kolon
+     159,5px → 37,5px pay; 81 adın tamamı sığıyor. Dokunma hedefi
+     yüksekliği (44px) DEĞİŞMEZ.
+     İKİ SAYFADA BİRLİKTE: /nerede-su-cikar/ ve /kuyu-ruhsati/ aynı
+     ızgarayı taşıyor (ölçüldü: 1440'ta da 375'te de bit-eşit). Yalnız
+     birini değiştirmek iki sayfayı DESEN OLARAK AYIRIRDI. */
+  @media (max-width: 420px) {
+    .il-listesi { grid-template-columns: repeat(2, 1fr); }
+  }
+
   .il-listesi a {
     display: block;
     padding: 0.45rem 0;

@@ -71,7 +71,19 @@ createServer(async (istek, cevap) => {
     cevap.writeHead(200, { 'Content-Type': TUR[extname(dosya)] || 'application/octet-stream' });
     cevap.end(govde);
   } catch {
-    cevap.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
-    cevap.end('404');
+    /* 404'te Cloudflare Pages gibi davran (M11, 29.07.2026): Pages,
+       bulunamayan yolda dist/404.html'i 404 durumuyla SUNAR. Bu sunucu
+       düz metin "404" döndürüyordu — yani 404 sayfasının markalı olup
+       olmadığı YERELDE ÖLÇÜLEMİYORDU ve ölçüm aracı canlıyı temsil
+       etmiyordu (CLAUDE.md "canlı koşul ilkesi"). Dosya yoksa eski
+       davranışa düşülür; sessizce yanlış 200 dönmez. */
+    try {
+      const ozel = await readFile(join(KOK, '404.html'));
+      cevap.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+      cevap.end(ozel);
+    } catch {
+      cevap.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+      cevap.end('404');
+    }
   }
 }).listen(PORT, "127.0.0.1", () => console.log(`${KOK} -> http://127.0.0.1:${PORT}/ (CSP + _redirects uygulanıyor)`));

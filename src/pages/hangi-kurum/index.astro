@@ -288,7 +288,9 @@ const sema = [
        ik-teyit    #48627A → #3C5266 · 4.42 → 5.61:1  (ihlaldi) */
   .ik-onay { color: var(--su-700); background: rgba(12, 90, 124, 0.10); }
   .ik-paylasim { color: #744915; background: rgba(192, 136, 58, 0.14); }
-  .ik-teyit { color: #3C5266; background: rgba(72, 98, 122, 0.12); }
+  /* Yerel çatal KAPANDI (M15, 29.07): #3C5266 artık --murekkep-500'ün
+     kendisi; iki yerde ayrı değer tutmak sapma kaynağıydı. */
+  .ik-teyit { color: var(--murekkep-500); background: rgba(72, 98, 122, 0.12); }
   .ik-teyit-not { font-family: var(--mono); font-size: 0.62rem; color: var(--murekkep-500); }
 
   /* — Tam tablo — */
