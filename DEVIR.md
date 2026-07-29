@@ -88,6 +88,12 @@ lisans künyeleri).
 | 16:00 | `izleme/su-izleme.sh` | Su Kanunu izleme (ikinci tur) | `izleme/log/cron.log` |
 | **19:30** | `arac/site-saglik.mjs --tam` | Tam site sağlık koşusu (ikinci tur) | `log/site-saglik-cron.log` |
 
+**`suha` kullanıcısının systemd timer'ı** (crontab'ta değil, ayrı):
+
+| Saat (UTC) | Birim | Ne yapar |
+|---|---|---|
+| 05:00 (08:00 TR) | `kesif-botu.timer` → `kesif-botu.service` | Günlük Keşif Ajanı (AI radarı). **29.07.2026'da `/root`'tan taşındı**; `User=suha`, `WorkingDirectory=/home/suha/araclar/kesif-botu`. Eski `bist-kesif.timer` **disabled** (birim dosyası silinmedi, geri dönüş için duruyor). Sırlar: `.kesif.env` (0600, suha). Log: `araclar/kesif-botu/log/kesif.log`. **BIST'le teknik bağı yoktur** — ayrıntı `rapor/kesif-botu-tasima.md`. |
+
 **Sunucu paylaşımlıdır.** Aynı makinede başka projelerin systemd timer'ları
 çalışır (BIST/ScalpHub, arslan-monitor, muvekkil-*). Saat seçerken bunlar
 hesaba katılmıştır — ayrıntı: `izleme/kaynak-takvimi.md`. 06:40 saati

@@ -38,6 +38,7 @@ kapsamı dışında. Yalnız ZAMANLARI çakışma analizi için listelenir.
 
 | Saat (UTC) | Timer | Kaynak tanımı |
 |---|---|---|
+| **05:00** | **`kesif-botu`** (suha) | 08:00 TR — 29.07.2026'da `/root/araclar/kesif-botu` → `/home/suha/araclar/kesif-botu` taşındı; eski `bist-kesif.timer` **disabled**. Komşuluk: 04:40 nhyp-nöbetçi (Çar) ve 05:00 `bist-kesif` **artık ateşlemiyor** → çakışma YOK. İlk koşum 30.07 05:00 UTC. |
 | her 5 dk | `arslan-monitor`, `muvekkil-saglik` | `OnUnitActiveSec=5min` |
 | her saat :00 | `arslan-analytics` | `OnCalendar=hourly` |
 | `*:00/10` | `sysstat-collect` | — |
@@ -48,7 +49,7 @@ kapsamı dışında. Yalnız ZAMANLARI çakışma analizi için listelenir.
 | 01:40 | `bist-temettu` | 04:40 TR |
 | 03:30 | `bist-scalp` (06:30 TR) · `muvekkil-yedek` (UTC) | — |
 | 04:30 | `bist-imar` | 07:30 TR |
-| 05:00 | `bist-kesif` | 08:00 TR |
+| ~~05:00~~ | ~~`bist-kesif`~~ | **DEVRE DIŞI 29.07.2026** — `kesif-botu` olarak `suha`ya taşındı (yukarıda) |
 | 05:20 → 17:20 (2 saatte bir, Pzt-Cum) | `bist-watch` | 08..20:20 TR |
 | 05:30 → 18:30 (her saat :30, Pzt-Cum) | `bist-alerts` | 08..21:30 TR |
 | 06,08,10,12,14,16:00 | `bist-health` | 09..19:00 TR |
@@ -101,6 +102,14 @@ mesafe kaldı.
 1,1 MB); baskın maliyet GDAL'ın dosya G/Ç'sidir.*
 
 ---
+
+### 3.2 KEŞİF BOTU TAŞINDI (29.07.2026) — çakışma etkisi
+Bot artık `suha` kullanıcısında ve **aynı saatte** (05:00 UTC) koşuyor;
+toplam yük değişmedi, yalnız sahibi değişti. Doğrulandı (root gerekmeden,
+`systemctl` ile): `kesif-botu.timer` **enabled**, sonraki koşum
+**30.07 05:00 UTC**; `bist-kesif.timer` **disabled** (`0 timers listed`).
+BIST bozulmadı: `bist-api` **active**, `127.0.0.1:8001/health` → **403**
+(28.07 tabanıyla aynı).
 
 ## 4. Swap ve gerçek bellek baskısı (ölçüldü)
 

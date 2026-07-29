@@ -1,6 +1,7 @@
 # KEŞİF BOTU — ROOT'TAN `suha`'YA TAŞIMA PLANI (M12)
 
-Tarih: 2026-07-29 · **DURUM: UYGULANMADI — root erişimi yok.**
+Tarih: 2026-07-29 · **DURUM: UYGULANDI (kullanıcı root olarak koştu) ve
+DOĞRULANDI.** Aşağıdaki plan olduğu gibi korunuyor; doğrulama §6'da.
 
 ## 0. Neden durdu (ölçüm)
 
@@ -148,3 +149,34 @@ systemctl list-timers 'bist-*' --all --no-pager         # kesif dışındakiler 
 2. Yeni birim adı `kesif-ajani` olsun mu (BIST adından ayrılma)?
 3. Eski `/root/araclar/kesif-botu` ne zaman silinsin? (Öneri: bir hafta
    sonra, ayrı karar — geri alınamaz işlem.)
+
+---
+
+## 6. UYGULAMA DOĞRULAMASI (29.07.2026, root gerekmeden ölçüldü)
+
+Kullanıcı taşımayı root olarak koştu. Doğrulanabilir her şey `systemctl`
+ve dosya sistemi üzerinden **bağımsız olarak** ölçüldü:
+
+| Kontrol | Beklenen | Ölçülen |
+|---|---|---|
+| Yeni birim var mı | `kesif-botu.service` | **VAR** |
+| Çalıştıran kullanıcı | `suha` | **`User=suha`** |
+| Çalışma dizini | `/home/suha/araclar/kesif-botu` | **aynı** |
+| Timer etkin mi | enabled | **enabled** |
+| Sonraki koşum | 30 Tem 05:00 UTC | **Thu 2026-07-30 05:00:00 UTC** |
+| Saat (TR) | 08:00 | `OnCalendar=*-*-* 08:00:00 Europe/Istanbul` |
+| Eski timer | devre dışı | **`bist-kesif.timer` disabled · `0 timers listed`** |
+| Dizin sahipliği | suha | `drwxr-xr-x suha suha` |
+| Sırlar | 0600 | **`-rw------- suha suha .kesif.env`** |
+| venv | suha altında, çalışır | `suha suha` · **Python 3.12.3** |
+| Log dizini | yazılabilir | `drwxr-xr-x suha suha log/` |
+| **BIST bozulmadı** | 28.07 tabanıyla aynı | **`bist-api` active** · `127.0.0.1:8001/health` → **403** (taban: 403) |
+
+**Doğrulanmadı (root gerektirir / dış sistem):**
+- `/root/araclar/kesif-botu` kopyasının durduğu — kullanıcı beyanı;
+  `/root` okunamıyor.
+- Telegram testi `message_id 4449` — kullanıcı beyanı; bot token'ı
+  `.kesif.env`'de (0600) ve gönderim kaydı Telegram tarafında.
+
+**Kalan tek karar:** eski `/root/araclar/kesif-botu` kopyası ne zaman
+silinsin (öneri: bir hafta gözlem sonrası; geri alınamaz işlem, ayrı karar).

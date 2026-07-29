@@ -1,5 +1,33 @@
 # GUNLUK.md — seans notları
 
+## 2026-07-29 (akşam) — panel sonrası doğrulama
+
+**www 522 KAPANDI.** Pages custom domain eklendi; 3/3 ölçüm **200**
+(dün 9/9 → 522). Mükerrer içerik riski ölçümle elendi: www ve apex aynı
+sürümü sunuyor (`081bdfa`), www'nin canonical'ı apex'i gösteriyor; iki
+HTML arasındaki tek fark CF e-posta gizlemesinin dönen XOR anahtarı.
+
+**ANALYTICS — panel açıldı denildi ama BEACON YOK (ölçüm).** 3 sayfa,
+gerçek tarayıcı: DOM'da beacon 0, cloudflareinsights isteği 0, CSP
+ihlali 0; ham HTML'de de 0 (apex + www). AYIRT EDİCİ KANIT: Cloudflare'in
+HTML yeniden yazıcısı bu yanıtlarda **çalışıyor** (`/cdn-cgi/l/email-protection`
+2 isabet — e-posta gizlemesi aktif), yani "bir şey beacon'ı engelliyor"
+değil, **beacon hiç enjekte edilmiyor**. Sonuç: zone tarafındaki Web
+Analytics "Automatic Setup" devrede değil; Pages → Metrics sekmesi
+sunucu-tarafı metriktir, beacon ENJEKTE ETMEZ. DERS (28.07'nin ikizi):
+**panelin/kullanıcının "açtım" demesi kanıt değildir; kanıt canlı ağ
+ölçümüdür.** İki kez aynı yerde takıldık; ölçüm iki kez de yakaladı.
+
+**M12 keşif botu taşındı (kullanıcı root olarak koştu) ve bağımsız
+doğrulandı.** Root gerekmeden `systemctl`/dosya sistemiyle ölçülen:
+kesif-botu.timer **enabled**, sonraki koşum **30.07 05:00 UTC**,
+`User=suha`, `.kesif.env` **0600**, venv suha altında (Python 3.12.3),
+eski `bist-kesif.timer` **disabled** (`0 timers listed`). BIST bozulmadı:
+`bist-api` **active**, `8001/health` → **403** (28.07 tabanıyla aynı).
+Doğrulanamayanlar açıkça işaretlendi: /root kopyasının durduğu ve
+Telegram `message_id 4449` — ikisi de kullanıcı beyanı, /root okunamıyor.
+
+
 ## 2026-07-29 (öğle) — BEKLEYEN İŞLER PAKETİ (M1-M16)
 
 16 kalem; 14'ü kapandı, 2'si gerekçeli açık kaldı. Ayrıntı: SIRADAKILER.

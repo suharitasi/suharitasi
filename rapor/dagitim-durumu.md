@@ -27,7 +27,7 @@ gerekçesi tam olarak budur.
 | Örnek sayfalar | HTTP | `/` 200 · `/nerede-su-cikar/` 200 · `/rehberler/kuyu-ruhsati/` 200 |
 | JSON-LD | ana sayfa `@graph` | **3 nesne** geçerli (Organization + Person + WebSite) |
 | Güvenlik başlıkları | md19 | 6 başlık + CSP yerinde |
-| **`www.` alt alan adı** | 9 ölçüm | **522 — KIRIK** (bkz. `rapor/www-522.md`) |
+| **`www.` alt alan adı** | 3 ölçüm (29.07 11:00) | **200 — DÜZELDİ** · Pages custom domain olarak eklendi · canonical apex'i gösteriyor |
 
 **Sonuç:** arama motorunun ve AI botunun siteyi okumasını engelleyen
 teknik bir şey **yok** (www dışında).
@@ -103,6 +103,54 @@ onarımının beyaz listesi bu iki konağı artık tanıyor).
 
 **İzin ATIL:** panel açılmadığı sürece hiçbir istek yapılmaz. Genişleme
 dar tutuldu — iki konak, iki direktif.
+
+### 4.1b DOĞRULAMA 29.07.2026 — panel açıldı, **BEACON HÂLÂ YOK**
+
+Kullanıcı Web Analytics'i açtığını bildirdi. Gerçek tarayıcıyla canlı
+sitede, **üç sayfada** ölçüldü:
+
+| Sayfa | DOM'da beacon | `data-cf-beacon` | cloudflareinsights isteği | CSP ihlali |
+|---|---|---|---|---|
+| `/` | **YOK** | **YOK** | **0** | 0 |
+| `/kuyu-ruhsati/manisa/` | **YOK** | **YOK** | **0** | 0 |
+| `/nerede-su-cikar/` | **YOK** | **YOK** | **0** | 0 |
+
+Ham HTML'de de (tarayıcısız, masaüstü UA ile) **0** isabet — apex ve
+`www` hostname'lerinin ikisinde de.
+
+**AYIRT EDİCİ BULGU — sorun CSP'de ya da bizim tarafta DEĞİL:**
+
+| Kanıt | Ölçüm | Anlamı |
+|---|---|---|
+| CSP `script-src` | `… https://static.cloudflareinsights.com` **canlıda** | beacon'a izin var |
+| CSP `connect-src` | `'self' https://cloudflareinsights.com` **canlıda** | POST'a izin var |
+| Konsol CSP ihlali | **0** | engellenen bir şey YOK — enjekte edilen de yok |
+| `static.cloudflareinsights.com/beacon.min.js` | **HTTP 200** | script erişilebilir, ağ sorunu yok |
+| **Cloudflare HTML yeniden yazıcısı** | `/cdn-cgi/l/email-protection` **2 isabet** | **Cloudflare bu yanıtlarda HTML'i GERÇEKTEN yeniden yazıyor** (e-posta gizlemesi çalışıyor) — ama RUM beacon'ını eklemiyor |
+| `/cdn-cgi/rum` | 404 | — |
+
+Son satır kritik: **rewriter çalışıyor ama beacon enjekte edilmiyor.**
+Yani "otomatik enjeksiyon açık ama bir şey engelliyor" değil; **bu hostname
+için RUM otomatik kurulumu devrede değil.**
+
+**En olası sebep (doğrulanmadı — panel görünümü gerekir):** Web Analytics
+iki ayrı yerde bulunur ve **yalnız biri beacon enjekte eder**:
+1. **Workers & Pages → suharitasi → Metrics** — Pages'in *sunucu tarafı*
+   istek metrikleri. Beacon YOKTUR, ziyaretçi davranışı ölçmez.
+2. **Alan adı (zone) → Analytics & Logs → Web Analytics** → site eklenir
+   ve **"Automatic Setup"** seçilir. Beacon'ı enjekte eden **budur.**
+
+Ölçüm, (1) açılmış ama (2) açılmamış olduğuna işaret ediyor.
+
+**Sıradaki adım (sizde):** zone tarafındaki **Web Analytics → Add a site →
+suharitasi.com → Automatic Setup**. Alternatif olarak aynı ekrandaki
+**manuel snippet** verilirse ben `Sayfa.astro`'ya ekleyebilirim (CSP zaten
+hazır) — o yol otomatik enjeksiyona bağımlı değildir.
+
+**Ölçüm tekrarı:** panel değişince tek komutla doğrularım —
+`scratchpad/beacon-olc.mjs` üç sayfayı gerçek tarayıcıyla tarar.
+**Panelin "aktif" demesi kanıt sayılmaz** (bu, 28.07'deki yanlış kaydın
+tam olarak sebebiydi).
 
 ### 4.2 Panel adımları (SİZİN YAPMANIZ)
 1. Cloudflare panel → **Workers & Pages → suharitasi → Metrics /

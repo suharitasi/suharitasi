@@ -43,21 +43,33 @@ KAPANMAYANLAR (gerekçeli):
 Hepsi ücretsiz ve kısa; sıra etki büyüklüğüne göre.
  1. **GSC kurulumu** (~15 dk) — indeks körlüğü kapanır. Ölçüldü: sitenin
     kendi alan adıyla tam eşleşme aramasında bile sonuç YOK. rapor/dagitim-durumu.md
- 2. **Cloudflare Web Analytics paneli** (~5 dk) — ziyaretçi verisi YOK
-    (22 istekte 0 analitik, ölçüldü). CSP izni hazırlandı; panel açılınca
-    ÖLÇÜMLE doğrulanacak. rapor/dagitim-durumu.md §4
+ 2. **Web Analytics — HÂLÂ BEACON YOK** (29.07 ölçümü, panel açıldı denmesine
+    rağmen). 3 sayfa × gerçek tarayıcı: DOM'da beacon 0, cloudflareinsights
+    isteği 0, CSP ihlali 0. Ayırt edici kanıt: Cloudflare HTML yeniden
+    yazıcısı ÇALIŞIYOR (e-posta gizlemesi aktif) ama RUM beacon'ı
+    eklemiyor → **zone tarafındaki Web Analytics "Automatic Setup" açık
+    değil** (Pages → Metrics beacon enjekte ETMEZ). Sonraki adım: zone →
+    Analytics & Logs → Web Analytics → Add a site → Automatic Setup.
+    ALTERNATİF: manuel snippet verilirse Sayfa.astro'ya eklerim, CSP hazır.
+    rapor/dagitim-durumu.md §4.1b
  3. **.env kopyası şifre yöneticisine** (~5 dk) — kurtarma süresinin tek
     darboğazı; "günler → 15 dakika". rapor/kurtarma-plani.md K1
  4. **Makine dışı yedek konumu** — Cloudflare R2 ücretsiz katmanı önerildi
     (446 MB, 10 GB sınır, egress $0). rapor/yedek-envanteri.md §4
  5. **Telegram uyarı kanalı** (~5 dk) — köprü kurulu ama kanal yok;
     kurulmadan hiçbir uyarı sunucudan ÇIKMIYOR. rapor/dis-izleme.md §4.A
- 6. **www 522 düzeltmesi** — 9/9 ölçüm 522; A seçeneği (301 yönlendirme)
-    önerildi. rapor/www-522.md §4
+ 6. ~~www 522~~ **KAPANDI 29.07** — Pages custom domain eklendi, 3/3 ölçüm
+    200; canonical apex'i gösteriyor, mükerrer içerik riski yok.
+    AÇIK KALEM: "www 200 dönüyor mu" sağlık kalemi eklenmeli (beklenen-301
+    DEĞİL — www artık yönlendirmiyor, doğrudan sunuyor). rapor/www-522.md
  7. **GitHub Actions dış nabzı** — sunucudan bağımsız tek izleme seçeneği,
     yeni sağlayıcı gerektirmiyor. rapor/dis-izleme.md §3
- 8. **Keşif botu taşınsın mı** (root gerekir; plan + BIST taban ölçümü
-    hazır) — rapor/kesif-botu-tasima.md §5
+ 8. ~~Keşif botu taşınsın mı~~ **UYGULANDI + DOĞRULANDI 29.07** —
+    kesif-botu.timer enabled (ilk koşum 30.07 05:00 UTC), User=suha,
+    .kesif.env 0600, bist-kesif.timer disabled, BIST bozulmadı
+    (bist-api active · 8001 → 403, taban ile aynı).
+    KALAN KARAR: /root'taki eski kopya ne zaman silinsin (geri alınamaz).
+    rapor/kesif-botu-tasima.md §6
  9. **astro 5→7 yükseltmesi** yapılsın mı (güvenlik aciliyeti YOK, bakım
     kararı; ayrı BÜYÜK İŞ) — rapor/npm-acik-degerlendirmesi.md §4.1
 
