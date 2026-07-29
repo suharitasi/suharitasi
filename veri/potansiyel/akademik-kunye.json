@@ -7606,7 +7606,7 @@
     ],
     "yil": 2016,
     "doi": null,
-    "url": "http://dergipark.gov.tr/pajes/issue/26682/286528",
+    "url": "https://dergipark.org.tr/tr/pub/pajes/issue/26682/286528",
     "dergi": "DergiPark (Istanbul University)",
     "openalex_id": "https://openalex.org/W2952719346",
     "bulan_sorgu": [
@@ -17678,14 +17678,19 @@
      "Şule Tüdeş"
     ],
     "yil": 2011,
-    "doi": "https://doi.org/10.17341/gummfd.60377",
+    "doi": null,
     "url": "https://dergipark.org.tr/en/pub/gazimmfd/article/88735",
     "dergi": "DergiPark (Istanbul University)",
     "openalex_id": "https://openalex.org/W1867680565",
     "bulan_sorgu": [
      "Kilis hidrojeoloji"
     ],
-    "baski_uygun": true
+    "baski_uygun": true,
+    "doi_olu": {
+     "deger": "https://doi.org/10.17341/gummfd.60377",
+     "not": "doi.org HTTP 404 (2026-07-29) — DOI çözülmüyor. Yayın sayfası çalışıyor: dergipark.org.tr/tr/pub/gazimmfd/article/88735 (200, 'JEOLOJİK EŞİK' + 'Tüdeş' doğrulandı).",
+     "olcum": "2026-07-29"
+    }
    },
    {
     "baslik": "İki ve Çok Değişkenli İstatistik ve Sezgisel Tabanlı Heyelan Duyarlılık Modellerinin Karşılaştırılması: Ayvalık (Balıkesir, Kuzeybatı Türkiye) Örneği",
@@ -22765,7 +22770,7 @@
     ],
     "yil": 2002,
     "doi": null,
-    "url": "http://www.trdizin.gov.tr/publication/paper/detail/TXpFNE5ETXo=",
+    "url": "https://search.trdizin.gov.tr/tr/yayin/detay/31843/berke-baraji-osmaniye-rezervuar-alani-ve-cevresinde-gorulen-karstlasma-olaylari",
     "dergi": "Çukurova University Institutional Repository",
     "openalex_id": "https://openalex.org/W7132317946",
     "bulan_sorgu": [
@@ -27015,13 +27020,18 @@
      "Şule Tüdeş"
     ],
     "yil": 2011,
-    "doi": "https://doi.org/10.17341/gummfd.60377",
+    "doi": null,
     "url": "https://dergipark.org.tr/en/pub/gazimmfd/article/88735",
     "dergi": "DergiPark (Istanbul University)",
     "openalex_id": "https://openalex.org/W1867680565",
     "bulan_sorgu": [
      "Trabzon hidrojeoloji"
-    ]
+    ],
+    "doi_olu": {
+     "deger": "https://doi.org/10.17341/gummfd.60377",
+     "not": "doi.org HTTP 404 (2026-07-29) — DOI çözülmüyor. Yayın sayfası çalışıyor: dergipark.org.tr/tr/pub/gazimmfd/article/88735 (200, 'JEOLOJİK EŞİK' + 'Tüdeş' doğrulandı).",
+     "olcum": "2026-07-29"
+    }
    },
    {
     "baski_uygun": true,

@@ -222,6 +222,19 @@ export function nobetciCanliligi(kok, nobetciler) {
   for (const n of nobetciler) {
     const y = join(kok, n.dosya);
     if (!existsSync(y)) {
+      /* VADESİ GELMEDİYSE ALARM YOK (29.07, M13). Yeni kurulan haftalık
+         nöbetçinin state dosyası ilk koşuma kadar doğmaz; kurulum o
+         haftanın koşum saatini kaçırdıysa dosya günlerce yok olur ve
+         kalem boşuna sarı yanar. `ilkKosumBeklenen` = cron takvimine göre
+         ilk gerçek koşum tarihi. Ölçülen vaka: rg-nobetci cron'u 28.07
+         Salı ~21:00'de kuruldu, koşum saati Salı 04:20 → ilk koşum
+         04.08. CLAUDE.md: "Eşikler gerçek cron takvimine göre kalibre
+         edilir — yanlış alarm üretme." */
+      const vade = n.ilkKosumBeklenen ? Date.parse(n.ilkKosumBeklenen) : null;
+      if (vade && Date.now() < vade) {
+        olcum.push({ ad: n.ad, saat: null, durum: 'vadesi-gelmedi', ilkKosumBeklenen: n.ilkKosumBeklenen });
+        continue;
+      }
       bulgular.push({ tip: 'sari', mesaj: `${n.ad}: state dosyası yok — henüz koşmadı (${n.dosya})` });
       olcum.push({ ad: n.ad, saat: null, durum: 'kosmadi' });
       continue;

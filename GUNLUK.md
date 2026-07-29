@@ -1,5 +1,62 @@
 # GUNLUK.md — seans notları
 
+## 2026-07-29 (öğle) — BEKLEYEN İŞLER PAKETİ (M1-M16)
+
+16 kalem; 14'ü kapandı, 2'si gerekçeli açık kaldı. Ayrıntı: SIRADAKILER.
+
+**UYDURMADAN KIL PAYI DÖNÜŞ (M1).** trdizin.gov.tr'nin ölü URL'indeki
+base64 kimlik (`TXpFNE5ETXo=`) "318433" diye çözülüyor ve
+`search.trdizin.gov.tr/tr/yayin/detay/318433` **HTTP 200 dönüyor**. Sadece
+kodu doğrulasaydım künyeye yanlış yayın yazacaktım — o sayfa "Use of
+geosynthetics…" (2018), bizimki "Berke Barajı karstlaşma" (2002). Doğru
+kayıt aramayla bulundu: **31843**. DERS: **200 yetmez; sayfanın AYNI
+yayın olduğu içerikten doğrulanır.** Üç bağlantının üçü de başlık+yazar
+metinde aranarak kapatıldı.
+
+**KAYIT YANLIŞLANDI (M3).** `--test` aylardır 6/7 veriyordu ve bu "bilinen
+bir eksik" sanılıyordu. Ölçüm: senaryo (i) `#world .sw-scene video`
+seçicisini kullanıyordu — o DOM 27.07 ana sayfa revizyonunda kalktı.
+Seçici hiçbir şey bulamıyor, readyState null dönüyor, senaryo BOZUK
+OLMADIĞI HALDE "KALDI" diyordu. İkinci katman: mutasyon `media-src`
+silmekti; yeni motor videoyu blob değil doğrudan src ile yüklüyor
+(ölçüldü: 6 videonun 0'ı blob), bu yüzden silmek artık hiçbir şeyi
+kırmıyordu. Seçici tek kaynağa (izleme/medya-beklenen.json) bağlandı,
+mutasyon `media-src 'none'` yapıldı → **7/7**.
+
+**VEKİL KRİTER REDDİ (M8, M14).** İkisinde de kolay ama yanlış bir ölçüt
+vardı: M8'de "kütle adının çevresinde hangi il çok geçiyor" (Kemer için
+Antalya 58 / Burdur 3 — bu kütlenin yerini değil, raporun genelini
+gösterir), M14'te "site genelinde hangi hiza yaygın" (sola 42 / orta 3 —
+içerik sayfalarını sayıp landing sorusuna cevap vermek). İkisi de
+kullanılmadı; M8 **sıfır atama** ile kapandı, M14 kod değişmeden
+KARARLAR §21'e kural olarak yazıldı.
+
+**M5 — birincil kaynak yöntemi.** Brief pasajdan "Sayı: NNNNN" çıkarımını
+öneriyordu; o yöntem projede zaten ölçülüp ELENMİŞTİ (1/30 çatışma,
+src/data/rg-sayi.js). Yerine RG'nin kendi tarih sayfası başlığı kullanıldı.
+Yol boyunca bir ayrıştırıcı hatası doğrulama tarafından yakalandı: sayfa
+ÖNCEKİ sayının başlığını da taşıyor, ilk eşleşme alınınca 22.08.2006 için
+26263 okunuyordu (doğrusu 26267). Tarih eşleştirmeli hale getirildi →
+K3a 34 eşleşme / **0 çatışma**, K3b monotonluk **0 ihlal**.
+rg_sayi kapsamı: **363/419 → 417/419 (%99,5)**.
+
+**M13 — bekçiye ikinci tanık.** rg/nhyp nöbetçileri md20'de izleniyordu
+ama md20 sağlık sisteminin İÇİNDE koşuyor; sağlık durursa nöbetçinin ölümü
+de görünmezdi. Bekçiye (pipeline'dan bağımsız) eklendi. Eklerken `set -e`
+tuzağı çıktı: `[ test ] && ekle` fonksiyonun son komutuysa yanlış test
+fonksiyonu 1 döndürüyor ve script SESSİZCE duruyor (ölçüldü — bekçi hiç
+çıktı vermeden exit 1). Açık `if`e çevrildi. Ayrıca yeni kurulan haftalık
+cron'un state dosyası doğmadan alarm üretmesin diye `ilkKosumBeklenen`
+eklendi (rg-nobetci cron'u 28.07 21:00'de kuruldu, koşum saati Salı 04:20
+→ ilk koşum 04.08).
+
+**M12 DUR.** Keşif botu taşıması root ister; `/root/…` okunamıyor, sudo
+parola istiyor. BIST bağı ölçüldü: **teknik bağ YOK** (kendi venv'i, BIST
+dizinine/portuna/birimine referans yok); tek bağ birim ADI. Plan + BIST
+taban ölçümü (bist-api active, 127.0.0.1:8001 → 403) hazır:
+rapor/kesif-botu-tasima.md.
+
+
 ## 2026-07-29 — marka sıfatı kararı + NHYP kaynak geri getirme
 
 **Kullanıcı kararları:** marka sıfatı **"emin"** (KARARLAR §18 + DESIGN §18;

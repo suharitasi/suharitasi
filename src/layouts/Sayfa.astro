@@ -162,7 +162,21 @@ const jsonLd = JSON.stringify({
     --krem: #E9F0F4;            /* YÜZEY — açık su-mavisi zemin */
     --adacayi-krem: #DFE9F0;    /* YÜZEY-kart */
     --murekkep-900: #132A3F;    /* metin — koyu lacivert */
-    --murekkep-500: #48627A;    /* ikincil metin */
+    /* İkincil metin KOYULAŞTIRILDI #48627A → #3C5266 (M15, 29.07.2026).
+       ÖLÇÜM: ikincil metnin kontrastı zeminlere göre 5,16-6,36 idi; gövde
+       metni (--murekkep-900) aynı zeminlerde 11,92-14,68. Aradaki uçurum
+       şerh/künye satırlarını "soluk" gösteriyordu. DESIGN.md §18 ("emin"):
+       belirsizlik dili — "doğrulanmadı", künye, şerh — SOLUKLAŞTIRILMAZ;
+       iddianın yanında aynı okunaklılıkta durur.
+       YENİ RENK İCAT EDİLMEDİ (DESIGN.md kuralı): #3C5266 zaten depoda,
+       /hangi-kurum/'da bir kontrast ihlali düzeltilirken ölçülüp seçilmişti
+       (4,42 → 5,61). Global tokene alınınca o yerel çatal da kapanıyor.
+       YENİ ÖLÇÜM: #E9F0F4 üstünde 5,52 → 7,04 · #DFE9F0 üstünde 5,16 → 6,58
+       · #FFFFFF üstünde 6,36 → 8,11.
+       DÜRÜST SINIR: --adacayi-krem (#DFE9F0) zemininde 6,58 — DESIGN.md
+       §18.2'nin ≥7 hedefinin ALTINDA. 7'yi orada da geçmek YENİ bir palet
+       değeri ister; o bir DESIGN.md değişikliğidir ve kullanıcı kararıdır. */
+    --murekkep-500: #3C5266;    /* ikincil metin */
     --su-700: #0C5A7C;          /* DERİN — vurgu sesi (okyanus mavisi) */
     --su-400: #2E7EA0;          /* SIĞ — dekoratif hairline */
     --kehribar: #C0883A;        /* plato — yalnız hairline */

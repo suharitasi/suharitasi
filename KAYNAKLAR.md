@@ -356,3 +356,24 @@ GÖRÜNMEZ KALANLAR (gerekçeli, bilinçli): ilçe→il dizini ve CT3 kuyruğu
 DSİ duyuru taraması (2 kayıt, OCR gürültüsü — yayına değmez) ·
 RG "tahsise kapatma/kısıt" alt kümesi (il ataması doğrulanamadı; ayrıntı
 VITRIN-RAPORU.md FAZ 3).
+
+## Künye bağlantı bakımı (29 Tem 2026)
+
+Üç akademik künye bağlantısı ölü bulunmuş (md17) ve **içerik doğrulamalı**
+olarak onarılmıştır. Ölçüt: HTTP 200 **yetmez** — açılan sayfada kaydın
+başlığı ve yazarı aranır.
+
+| Eski | Yeni | Doğrulama |
+|---|---|---|
+| `dergipark.gov.tr/pajes/issue/26682/286528` | `dergipark.org.tr/tr/pub/pajes/issue/26682/286528` | 200 · "Gölhisar" + "Davraz" sayfada |
+| `trdizin.gov.tr/publication/paper/detail/TXpFNE5ETXo=` | `search.trdizin.gov.tr/tr/yayin/detay/31843/...` | 200 · "Berke" + "Özcan" sayfada |
+| `doi.org/10.17341/gummfd.60377` | — (DOI çözülmüyor, 404) | `doi` alanı boşaltıldı, `doi_olu` alanında ölçüm tarihiyle KORUNDU; kaydın çalışan yayın sayfası kullanılıyor |
+
+**TUZAK KAYDI:** TR Dizin'in eski base64 kimliği (`TXpFNE5ETXo=`)
+"318433" olarak çözülür ve `.../yayin/detay/318433` **HTTP 200 döner** —
+ama o sayfa BAŞKA bir yayındır. Yalnız durum koduna bakan bir onarım
+künyeye yanlış kaynak yazardı. Doğru kayıt (31843) arama üzerinden
+bulunmuştur.
+
+Alan adı taşınması: `dergipark.gov.tr` → `dergipark.org.tr`,
+`www.trdizin.gov.tr` → `search.trdizin.gov.tr`.

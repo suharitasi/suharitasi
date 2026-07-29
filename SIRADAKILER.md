@@ -8,6 +8,37 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+BEKLEYEN İŞLER PAKETİ — MERGE EDİLDİ (29 Tem 2026, ön-onaylı). 16 kalem.
+KAPANANLAR: M1 üç ölü dış bağlantı (3/3 onarıldı, HTTP 200 + İÇERİK
+doğrulamalı — trdizin'in base64 kimliğinden türeyen /318433 de 200 dönüyordu
+ama BAŞKA yayındı; uydurmadan kıl payı dönüldü) · M2 mod-başına kırmızı
+koruması ölçümle KAPALI · M3 --test senaryo (i) 6/7 → 7/7 (bayat seçici
++ bayat mutasyon) · M4 public/s/*.js küçültme kancası (%41, yorum 0) ·
+M5 rg_sayi 363 → 417/419 (%99,5) · M6 OpenAlex zaten kapalı (81/81 il) ·
+M8 5 belirsiz kütle: 0 açık il ifadesi → ATAMA SIFIR, negatif sonuç kalıcı ·
+M9 npm postcss düzeltildi, kalanlar gerekçeli ertelendi · M10 il seçici
+mobilde 2 kolon (4069 → 2056 px) · M11 404 paleti hizalandı, 1 → 6 çıkış,
+dokunma 44px · M13 nöbetçiler bekçiye bağlandı (falsifikasyon 4/4) ·
+M14 hiza tutarsızlığı ARIZA DEĞİL, kural (KARARLAR §21) · M15 ikincil metin
+5,52 → 7,04 (KARARLAR §22).
+KAPANMAYANLAR (gerekçeli):
+▸ M7 İLÇE ÇAPRAZ DOĞRULAMA — ERTELENDİ. 27.07'de 0 farkla yapılmıştı; tek
+  açık kalan "2021→2026 yeni ilçe var mı" sorusu. TÜİK dosyası bugün
+  yeniden indirildi: AYNI 2021 tarihli dosya (3.736.479 bayt). Kaynak
+  değişmeden tekrar koşum aynı 0 farkı üretir, yeni bilgi vermez.
+  YENİDEN AÇILMA TETİĞİ: TÜİK 2021 sonrası idari bölünüş listesi yayımlarsa.
+▸ M12 KEŞİF BOTU TAŞIMA — DUR (root erişimi yok). /root/araclar/kesif-botu
+  okunamıyor, sudo parola istiyor. BIST bağı ÖLÇÜLDÜ: teknik bağ YOK
+  (kendi venv'i, BIST dizinine/portuna referans yok); tek bağ birim ADI
+  (`bist-kesif`). Taşıma planı + BIST taban ölçümü hazır:
+  rapor/kesif-botu-tasima.md. KULLANICI ROOT OLARAK KOŞAR.
+▸ M9 astro 5→7 ve lighthouse düşürmesi — rapor/npm-acik-degerlendirmesi.md
+  §4 (astro'nun düzelttiği açıkların hiçbiri bize dokunmuyor: define:vars,
+  server:defer, adlı slot, SSR hepsi 0 ölçüldü; lighthouse "fix"i DÜŞÜRME
+  ve md9 skor tabanını geçersiz kılar).
+▸ M15 kalan pay: #DFE9F0 zemininde 6,58 (<7). Yeni palet değeri ister =
+  DESIGN.md değişikliği = kullanıcı kararı.
+
 ★ KULLANICI KARARI BEKLEYEN — SIRALI (yapısal revizyon, 28 Tem 2026)
 Hepsi ücretsiz ve kısa; sıra etki büyüklüğüne göre.
  1. **GSC kurulumu** (~15 dk) — indeks körlüğü kapanır. Ölçüldü: sitenin
@@ -25,6 +56,10 @@ Hepsi ücretsiz ve kısa; sıra etki büyüklüğüne göre.
     önerildi. rapor/www-522.md §4
  7. **GitHub Actions dış nabzı** — sunucudan bağımsız tek izleme seçeneği,
     yeni sağlayıcı gerektirmiyor. rapor/dis-izleme.md §3
+ 8. **Keşif botu taşınsın mı** (root gerekir; plan + BIST taban ölçümü
+    hazır) — rapor/kesif-botu-tasima.md §5
+ 9. **astro 5→7 yükseltmesi** yapılsın mı (güvenlik aciliyeti YOK, bakım
+    kararı; ayrı BÜYÜK İŞ) — rapor/npm-acik-degerlendirmesi.md §4.1
 
 NHYP KAYNAK PDF'LERİ GERİ GETİRİLDİ (29 Tem 2026, kullanıcı kararı;
 KARARLAR.md §20). 41/41 dosya, 1,1 GB, 0 hata. Zincirin tamamı artık
@@ -52,9 +87,7 @@ yeniden açılmaz. UYGULANACAK TEK KALEM (kuyrukta, başlatılmadı):
 Zaten uygulanmış olan: rakamlarda lining figür (CanliSayi, 28.07).
 
 AÇIK BULGULAR (yapısal revizyon, karar/iş bekliyor)
-- D1 BAŞLIK HİZASI TUTARSIZ: v2-bolum ailesinde kanıt/hizmetler/süreç
-  ORTALI, hakkında/iletişim SOLA. Gerekçe kayıtta BULUNAMADI. Bilinçliyse
-  KARARLAR.md'ye yazılmalı, değilse tek kural. DEĞİŞTİRİLMEDİ.
+- [KAPANDI 29.07] D1 başlık hizası: ARIZA DEĞİL, kural — KARARLAR §21.
 - K3 ÇAKIŞMA: rehberde üçüncü CTA (görüşme köprüsü) eklenirse aynı sayfada
   3 CTA olur. Analitik kurulmadan karar verilmemeli.
 - TMMOB iletişim yolu doğrulanmadı (/icerik/iletisim 404);

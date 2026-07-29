@@ -270,6 +270,61 @@ dönük çıkarıldı; o yüzden bazı satırlarda bu işaret vardır.
 - **Reddedilen alternatif:** türetilmiş JSON'la yetinmek — kaynak
   doğrulanabilirliği bir hukuk sitesinde vazgeçilmez sayıldı.
 
+### 21. ANA SAYFADA İKİ BAŞLIK HİZASI — kural, tutarsızlık değil
+- **Tarih:** 2026-07-29 (D1 açık bulgusu ÖLÇÜMLE kapandı)
+- **Karar:** Ana sayfadaki `<h2>` hizası **bölüm tipine bağlıdır** ve
+  DEĞİŞTİRİLMEZ: tam genişlikli tek sütunlu bölümler (kanıt bandı,
+  hizmetler, süreç) `.v2-bolum-bas` ile **ORTALI**; iki sütunlu/ızgaralı
+  bölümler (hakkında, iletişim) **SOLA**.
+- **Gerekçe:** D1 "3 ortalı / 2 sola = tutarsızlık" diye açılmıştı. Ölçüm
+  bunu yanlışladı: (a) `Iletisim.astro:14` kaynak yorumu **"v0 yapısı:
+  kicker+h2+intro solda (kıyas A2-3)"** diyor — sola hiza kasıtlı;
+  (b) `.v2-bolum-bas` ortalaması 28.07'de v0 spesifikasyonuna göre bilinçle
+  geri getirildi; (c) iki grup **farklı düzen tipidir** — ortalı başlık tek
+  sütunlu bloğun, sola başlık ızgaranın dilidir.
+- **Site geneli sayımın neden ölçüt OLMADIĞI:** 14 sayfada h2 hizası
+  ölçüldü — sola 42, orta 3 (üçü de ana sayfada). Bu sayıyla karar vermek
+  **vekil kriterdir**: içerik sayfalarını sayıp landing sorusuna cevap
+  vermek olurdu. Ana sayfa zaten ayrı bir yüzeydir (KARARLAR §8, öz-cevap
+  muafiyeti aynı gerekçeyle verilmişti).
+- **Reddedilen alternatif:** hepsini sola çevirmek — 28.07'de bilinçle
+  geri getirilen v0 ritmini geri alır ve md14 G5 (ortalanmış başlığın
+  kayması) tabanını geçersiz kılardı.
+- **Sonuç:** kod DEĞİŞMEDİ. Kural burada yazılı ki bulgu tekrar açılmasın
+  (emsal: /harita/ h1 kararı, §9).
+
+### 22. İKİNCİL METİN KOYULAŞTIRILDI (--murekkep-500)
+- **Tarih:** 2026-07-29 (D2 açık bulgusu, DESIGN.md §18.2 hedefi)
+- **Karar:** `--murekkep-500` **#48627A → #3C5266**. `/hangi-kurum/`daki
+  yerel `#3C5266` çatalı da global tokene bağlandı.
+- **Gerekçe:** Ölçüldü — ikincil metin zeminlere göre 5,16-6,36; gövde
+  metni aynı zeminlerde 11,92-14,68. Şerh/künye/"doğrulanmadı" satırları
+  bu yüzden soluk kalıyordu. DESIGN.md §18 ("emin"): belirsizlik dili
+  soluklaştırılmaz. Yeni ölçüm: **5,52 → 7,04** (#E9F0F4) · **5,16 → 6,58**
+  (#DFE9F0) · 6,36 → 8,11 (#FFFFFF).
+- **Yeni renk İCAT EDİLMEDİ:** #3C5266 zaten depodaydı — 28.07'de
+  `/hangi-kurum/`da bir kontrast ihlali düzeltilirken ölçülüp seçilmişti.
+- **DÜRÜST SINIR:** #DFE9F0 zemininde 6,58 — §18.2'nin ≥7 hedefinin
+  ALTINDA. 7'yi orada da geçmek yeni bir palet değeri ister; o bir
+  DESIGN.md değişikliğidir ve **kullanıcı kararıdır**.
+- **Reddedilen alternatif:** #34495C (her iki zeminde ≥7) — palette yok,
+  icat olurdu.
+
+### 23. `public/s/*.js` BUILD HATTINA ALINDI — taşınarak değil, küçültülerek
+- **Tarih:** 2026-07-29
+- **Karar:** Altı dosya `public/`de KALIR; `astro:build:done` kancası
+  (`sKlasoruKucult`) dist'teki kopyaları esbuild ile küçültür.
+  Ölçüldü: 21.766 → 12.783 bayt (%41), sourcemap 0, Türkçe yorum 0.
+- **Gerekçe:** Dosyalar dist'e **bit-eşit** kopyalanıyordu (`cmp` ile
+  doğrulandı) ve 28 Türkçe yorum satırı yayımlanıyordu — "Kopyalanma
+  direnci" m.1-2 ihlali. Kaynağı `src/scripts/`e taşımak Sayfa.astro'daki
+  yükleme biçimini (`is:inline`) ve 175 sayfanın çıktısını değiştirirdi;
+  kanca yalnız dosya İÇERİĞİNİ değiştirir, HTML aynı kalır.
+- **Reddedilen alternatif:** `src/scripts/`e taşıma — 175 sayfada gerileme
+  riski, kazanç aynı.
+- **Yan bulgu:** `imlec.js`te bir Türkçe yorum CSS DİZESİNİN içindeydi;
+  esbuild dize içini küçültemez, yorum JS tarafına taşındı.
+
 ---
 
 ## Bu dosyaya kayıt ekleme kuralı
