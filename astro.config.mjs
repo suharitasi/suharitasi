@@ -138,8 +138,65 @@ function llmsOlustur() {
   };
 }
 
+/* public/s/*.js BUILD HATTINA ALINDI (M4, 29.07.2026).
+ *
+ * SORUN (ölçüldü): `public/` Astro/Vite tarafından İŞLENMEZ — altı dosya
+ * (canlan, durumum, hangi-kurum, imlec, sayfa, su-sim) dist'e BİT-EŞİT
+ * kopyalanıyordu (`cmp` ile doğrulandı) ve 28 Türkçe yorum satırı canlıya
+ * çıkıyordu. Bu, CLAUDE.md "Kopyalanma direnci" m.1-2 ihlaliydi:
+ * `_astro/` varlıkları kurala uyuyor (sourceMappingURL 0), `s/` uymuyordu.
+ *
+ * NEDEN BU YOL, TAŞIMA DEĞİL: dosyaları `src/scripts/` altına taşımak
+ * Sayfa.astro'daki yükleme biçimini (`is:inline`) ve HER sayfanın çıktısını
+ * değiştirirdi — 175 sayfada gerileme riski. Bu kanca YALNIZ dist'teki
+ * dosyanın İÇERİĞİNİ küçültür; yol, ad, yükleme biçimi ve HTML aynı kalır.
+ * Yani sayfa çıktıları bit-eşit korunur (G3).
+ *
+ * SINIR: sourcemap ÜRETİLMEZ (m.2). Küçültme "aşırıya kaçıp siteyi kırmak
+ * yasak" kuralına uyar: esbuild `format: 'iife'` DEĞİL, dosyalar zaten
+ * bağımsız script; yalnız boşluk/yorum/ad kısaltma yapılır.
+ */
+function sKlasoruKucult() {
+  return {
+    name: 's-klasoru-kucult',
+    hooks: {
+      'astro:build:done': async ({ dir, logger }) => {
+        const kok = fileURLToPath(dir);
+        const sDizin = join(kok, 's');
+        let girisler;
+        try {
+          girisler = await readdir(sDizin);
+        } catch (e) {
+          // Dizin yoksa bu bir arıza DEĞİL (public/s kaldırılmış olabilir),
+          // ama sessiz de kalmaz.
+          logger.warn(`s/ dizini okunamadı (${e.code}) — küçültme atlandı`);
+          return;
+        }
+        const esbuild = await import('esbuild');
+        let onceToplam = 0, sonraToplam = 0, sayi = 0;
+        for (const ad of girisler.filter((a) => a.endsWith('.js'))) {
+          const yol = join(sDizin, ad);
+          const kaynak = await readFile(yol, 'utf8');
+          const { code } = await esbuild.transform(kaynak, {
+            minify: true, sourcemap: false, target: 'es2020', legalComments: 'none',
+          });
+          // Başarı ölçütü: çıktı BOŞ DEĞİL ve kaynaktan küçük.
+          if (!code || code.length >= kaynak.length) {
+            throw new Error(`s/${ad}: küçültme çıktısı geçersiz (${code.length}/${kaynak.length} bayt)`);
+          }
+          await writeFile(yol, code);
+          onceToplam += kaynak.length; sonraToplam += code.length; sayi++;
+        }
+        if (!sayi) throw new Error('s/ altında .js bulunamadı — kanca boşa koştu');
+        logger.info(`s/*.js küçültüldü: ${sayi} dosya · ${onceToplam} → ${sonraToplam} bayt `
+          + `(%${Math.round((1 - sonraToplam / onceToplam) * 100)} azalma) · sourcemap yok`);
+      },
+    },
+  };
+}
+
 export default defineConfig({
   site: SITE,
   trailingSlash: 'ignore',
-  integrations: [sitemapOlustur(), llmsOlustur(), surumDamgasi()],
+  integrations: [sitemapOlustur(), llmsOlustur(), surumDamgasi(), sKlasoruKucult()],
 });
