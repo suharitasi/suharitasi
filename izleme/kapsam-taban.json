@@ -77,10 +77,10 @@
   },
   "npmAudit": {
     "dusuk": 1,
-    "orta": 0,
-    "yuksek": 3,
+    "orta": 16,
+    "yuksek": 5,
     "kritik": 0,
-    "_not": "28.07 olcumu: sharp/libvips CVE'leri. TABAN — kalem yalniz YENI acikta atesler; mevcutlarin giderilmesi ayri is (SIRADAKILER)."
+    "_not": "29.07 olcumu (M9). Onceki taban 28.07: {dusuk:1,orta:0,yuksek:3}. TABAN DEDEKTORDUR, HEDEF DEGIL: eski tabanla kalem her kosuda kirmizi yanip gurultuye donusuyordu ve asil sinyal ('bugun YENI acik dogdu') kayboluyordu. Etki degerlendirmesi: rapor/npm-acik-degerlendirmesi.md — acilarin HICBIRI ziyaretciye acik yuzey degil (site statik, paketler yalniz build/olcum zamaninda calisir). Uygulanan: postcss 8.5.17->8.5.24 (GHSA-r28c-9q8g-f849). Ertelenen: astro 5->7 (iki ana surum, duzelttigi aciklar bize dokunmuyor - define:vars/server:defer/adli slot/SSR hepsi 0 olculdu) ve lighthouse 12.8.2->12.6.1 (bu bir DUSURME; md9 skor tabanini gecersiz kilar)."
   },
   "nobetciler": [
     {
