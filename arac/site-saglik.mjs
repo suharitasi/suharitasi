@@ -1645,19 +1645,53 @@ async function testModu() {
        `/\s*media-src[^;]*;/` aranıyordu; _headers'ın yorum bloğunda da
        "media-src 'self' blob:" geçtiği için regex YORUMU bozup gerçek
        direktifi bırakıyordu — senaryo sahte "KALDI" veriyordu. */
+    /* MUTASYON DEĞİŞTİ (M3, 29.07.2026) — ÖLÇÜMLE gerekçelendirildi.
+       Eski mutasyon `media-src` direktifini SİLİYORDU. 23.07'de bu
+       medyayı kırıyordu çünkü o günkü sahne motoru klipleri fetch edip
+       `URL.createObjectURL(blob)` ile bağlıyordu ve `blob:` yalnız
+       media-src'de izinliydi. 27.07 ana sayfa revizyonundan sonra motor
+       videoyu DOĞRUDAN src ile yüklüyor (ölçüldü 29.07: 6 videonun 0'ı
+       blob, hepsi aynı-köken `/deneyim/video/*.mp4`). Artık media-src
+       silinse bile `default-src 'self'` medyayı kapsıyor ve readyState
+       4'te kalıyor — yani senaryo BOZUK OLMADIĞI HALDE "KALDI" veriyordu.
+       Yeni mutasyon `media-src 'none'`: aynı-köken videoyu da kesin
+       keser, dolayısıyla "CSP medyayı kırdı → G1(a) onardı" yeteneğini
+       motor mimarisinden BAĞIMSIZ sınar.
+       NOT: `media-src 'self' blob:` yine de gereklidir — blob'lu motor
+       (src/scripts/scrub-engine.js) halen depoda ve /harita-pilot/
+       sayfasında anılıyor; direktifi kaldırmak ayrı bir karardır. */
     writeFileSync(headersYol, orjHeaders.split('\n').map((s) =>
-      /^\s+Content-Security-Policy:/i.test(s) ? s.replace(/\s*media-src[^;]*;/, ';') : s
+      /^\s+Content-Security-Policy:/i.test(s)
+        ? s.replace(/\s*media-src[^;]*;/, " media-src 'none';")
+        : s
     ).join('\n'));
     const tarayici = await pw.chromium.launch({ executablePath: EXE, args: ['--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'] });
+    /* SEÇİCİ TEK KAYNAKTAN (M3, 29.07.2026). Buraya `#world .sw-scene
+       video` SABİT yazılmıştı; 27.07 ana sayfa revizyonunda o DOM kalktı
+       (yeni yapı: `#v2-videolar video`). Seçici hiçbir şey bulamıyordu →
+       readyState null → senaryo BOZUK OLMADIĞI HALDE "KALDI" veriyordu.
+       Yani --test'in 7/7'si aylardır 6/7 görünüyordu ve sebebi arıza
+       değil, bayat seçiciydi. Artık md4 ile AYNI yapılandırmadan okunur
+       (izleme/medya-beklenen.json) — biri değişince öbürü sapmaz.
+       AKTİF video: sahne motoru sıradakini lazy yükler, ilk video
+       kaynağı olan tek videodur; readyState'i o belirler. */
+    const anaMedya = yap.medya.find((m) => m.yol === '/');
+    const medyaSecici = anaMedya?.secici || '#v2-videolar video';
     const oku = async () => {
       const ctx = await tarayici.newContext({ viewport: { width: 1440, height: 900 } });
       const s = await ctx.newPage();
       await s.goto(`${taban}/`, { waitUntil: 'load' });
       await s.waitForTimeout(2500);
-      const r = await s.evaluate(() => {
-        const v = document.querySelector('#world .sw-scene video');
-        return { readyState: v ? v.readyState : null, hata: v && v.error ? v.error.message : null };
-      });
+      const r = await s.evaluate((sec) => {
+        const hepsi = [...document.querySelectorAll(sec)];
+        // Kaynağı YÜKLENMİŞ olan video ölçülür (lazy olanlar 0'da bekler).
+        const v = hepsi.find((x) => x.currentSrc) || hepsi[0] || null;
+        return {
+          readyState: v ? v.readyState : null,
+          hata: v && v.error ? v.error.message : null,
+          bulunanVideo: hepsi.length, secici: sec,
+        };
+      }, medyaSecici);
       await ctx.close();
       return r;
     };
@@ -1666,7 +1700,7 @@ async function testModu() {
     const sonra = await oku();
     await tarayici.close();
     senaryolar.push({
-      no: 'i', ad: 'CSP media-src kaldırıldı',
+      no: 'i', ad: "CSP media-src 'none' yapıldı",
       beklenen: 'md.4 🔴 + G1(a) onarımı sanalda çalışır → kontrol geçer',
       once, onarim: on, sonra,
       gecti: (once.readyState ?? 4) < 2 && on.yapildi && (sonra.readyState ?? 0) >= 2,
