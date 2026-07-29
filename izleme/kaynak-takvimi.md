@@ -26,6 +26,7 @@ BIST timer'ları `Europe/Istanbul` (UTC+3) tanımlıdır; aşağıdaki tabloda
 | **15:05** | `arac/baraj-gunluk.sh` *(15:00'dan taşındı)* | ölçülmedi | ölçülmedi | ağ-bağımlı (EPİAŞ) |
 | **16:15** | `izleme/su-izleme.sh` *(16:00'dan taşındı)* | ölçülmedi | ölçülmedi | ağ-bağımlı |
 | 19:30 | `arac/site-saglik.mjs --tam` | 452 sn | 1.917 MB | ölçüldü |
+| **20:10 (ayın 1'i)** | `site-saglik.mjs --tam --dis-link-tam` **(YENİ)** | **~27 dk** | ~1.917 MB | 29.07 ölçümü: 1.039 link × ≥0,7 sn + koşumun kalanı; 25 dk'lık denemede bitmedi |
 
 `--hizli` (deploy sonrası, zamanlanmamış): 68 sn / 1.074 MB.
 `arac/altin-ornek.mjs` (md23): 0,31 sn / 43 MB — sağlık koşumunun içinde.
@@ -78,6 +79,16 @@ pencerede aynı anda 5-6 timer ateşleyebilir.
 | bekçi 07:00 | `bist-midday` + `bist-screener` 07:00 | **DEĞİŞMEDİ** — iş 1,97 sn / 11 MB; taşımanın faydası ölçülemez, ayrıca bekçi 06:40 `--tam` koşumunu denetlemek için ondan SONRA çalışmalıdır. |
 | yedek 02:10 (yeni) | — | çakışma yok (en yakın: 01:40 ve 03:30) |
 | `--tam` 06:40 / 19:30 | — | çakışma yok (28.07'de zaten taşınmıştı) |
+
+### 3.0 AYLIK TAM DIŞ BAĞLANTI TARAMASI (29.07.2026 — eksik bulundu)
+`--tam` her koşuda dış bağlantıların **%5'ini** (52/1039) tarar; tam tarama
+`--dis-link-tam` bayrağıyla yapılır ve **cron'da KAYDI YOKTU** (ölçüldü:
+`crontab -l | grep dis-link-tam` → 0). Yani "aylık tam tarama" fiilen
+hiç koşmuyordu. Eklendi: **ayın 1'i 20:10 UTC**.
+Saat gerekçesi: 19:30 `--tam` ~19:38'de biter; sonraki komşu 23:30
+(`bist-tefas`) → 3 saatten fazla açıklık. 27 dakikalık koşum bu pencereye
+rahat sığar; 03:xx penceresi `bist-scalp`/`muvekkil-yedek` (03:30) ile
+çakışırdı.
 
 ### 3.1 En güçlü gerekçe: GRACE ile `--tam` üst üste binebiliyordu
 GRACE 06:00 Pzt'de başlıyordu; `--tam` 06:40'ta başlıyor ve **1.917 MB**
