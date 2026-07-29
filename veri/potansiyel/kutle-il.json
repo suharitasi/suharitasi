@@ -10857,5 +10857,86 @@
   "cok_il": 4,
   "yontem": "NHYP izleme tablolarında kuyu kodu kütle kodunu içerir; kuyunun UTM koordinatı (AYNI SATIR) → il poligonu ışın testi. ±satır penceresi denendi ve çürütüldü (komşu kuyunun koordinatını kapıyordu). UTM dilimi havzanın doğrulanmış il kümesiyle sınandı.",
   "kanit": "cikti/denetim/faz-i/koordinat-ikinci-gecis.json"
+ },
+ "belirsiz_arastirmasi": {
+  "tarih": "2026-07-29",
+  "soru": "5 belirsiz kütlenin ili, NHYP kaynak metninden doğrulanabilir mi?",
+  "yontem": "Kütle adı (ve tire ile ayrılan parçaları) havzanın NHYP metinlerinde arandı; her geçişin ±700 karakterlik penceresindeki il adları çıkarıldı. Ardından AÇIK il ifadesi kalıpları ('<İl> ili', '<İl> il sınırları', '(<İl>)') tarandı.",
+  "sonuc": "DOĞRULANAMADI — 5/5. Hiçbir kütle için açık il ifadesi bulunamadı (0 isabet).",
+  "atama": "SIFIR. Hiçbir kütlenin `iller` alanı değiştirilmedi, `durum` alanı 'belirsiz' kaldı.",
+  "neden_ortak_gecis_yetmez": "Ortak geçiş sayımı VEKİL KRİTERDİR ve kullanılmadı. Örnek: 'Kemer' için pencerede Antalya 58, Burdur 3 çıkıyor — bu kütlenin Antalya'da olduğunu değil, havza raporunun genelinde Antalya'nın çok geçtiğini gösterir. KARARLAR.md §5 (il eşlemesinin durdurulması) ve uydurma yasağı gereği böyle bir sayımla il atanmaz.",
+  "kapanis": "Bu soru KAYNAK METİNDEN cevaplanamaz. Yeniden açılması ancak yeni bir kaynak gelirse anlamlıdır (ör. DSİ'nin kütle-il tablosu, NHYP eklerindeki koordinatlı kütle sınırı dosyası). Metin taraması TEKRARLANMASIN.",
+  "kutleler": {
+   "TR08050235": {
+    "kutle_adi": "Kemer",
+    "havza": "bati-akdeniz",
+    "adaylar": [
+     "Antalya",
+     "Burdur"
+    ],
+    "metinde_gecis": 503,
+    "adaylardan_metinde_gecen": {
+     "Antalya": 58,
+     "Burdur": 3
+    },
+    "acik_il_ifadesi": 0
+   },
+   "TR04050216": {
+    "kutle_adi": "Altınova",
+    "havza": "kuzey-ege",
+    "adaylar": [
+     "Balıkesir",
+     "İzmir"
+    ],
+    "metinde_gecis": 29,
+    "adaylardan_metinde_gecen": {
+     "Balıkesir": 23,
+     "İzmir": 11
+    },
+    "acik_il_ifadesi": 0
+   },
+   "TR10050312": {
+    "kutle_adi": "Kemer YSK",
+    "havza": "burdur",
+    "adaylar": [
+     "Antalya",
+     "Burdur"
+    ],
+    "metinde_gecis": 24,
+    "adaylardan_metinde_gecen": {
+     "Burdur": 24
+    },
+    "acik_il_ifadesi": 0
+   },
+   "TR07YAS02001": {
+    "kutle_adi": "Çivril -Dinar",
+    "havza": "buyuk-menderes",
+    "adaylar": [
+     "Afyonkarahisar",
+     "Denizli"
+    ],
+    "metinde_gecis": 37,
+    "adaylardan_metinde_gecen": {
+     "Denizli": 20,
+     "Afyonkarahisar": 4
+    },
+    "acik_il_ifadesi": 0
+   },
+   "TR03YAS01001": {
+    "kutle_adi": "Orhaneli - Çavdarhisar",
+    "havza": "susurluk",
+    "adaylar": [
+     "Bursa",
+     "Kütahya"
+    ],
+    "metinde_gecis": 47,
+    "adaylardan_metinde_gecen": {
+     "Kütahya": 38,
+     "Bursa": 21
+    },
+    "acik_il_ifadesi": 0
+   }
+  },
+  "kanit_dosyasi": "cikti/denetim/kutle-il/M8-kanit.json"
  }
 }
