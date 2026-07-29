@@ -17,15 +17,20 @@
  *            (arac/test/altin/rg-cevap.json, 28.07.2026 canlı çekim).
  *   GRACE  — havza ağırlıklarının geometri çekirdeği
  *            (arac/grace_geometri.py). NetCDF okuma KAPSAM DIŞI (507 MB).
- *   NHYP   — saf ayrıştırma yardımcıları + ÇIKTI DEĞİŞMEZİ. Uçtan uca
- *            çıkarım koşulamıyor: kaynak PDF'ler diskte yok
- *            (rapor/yedek-envanteri.md §2.1).
+ *   NHYP   — saf ayrıştırma yardımcıları + ÇIKTI DEĞİŞMEZİ + kaynak
+ *            varlığı. 29.07.2026'da kaynak PDF'ler geri getirildi (41/41)
+ *            ve UÇTAN UCA TEKRAR koşuldu: 12/12 YEŞİL, 472 kütle, çıktı
+ *            depodakiyle BİT-EŞİT (rapor/nhyp-geri-getirme.md). Zincirin
+ *            tamamı yeniden üretilebilir: nhyp-manifest-uret.py →
+ *            nhyp-indir.sh → nhyp-metne-cevir.sh → nhyp-cikar.py.
+ *            Tekrarın KENDİSİ bu teste dahil DEĞİLDİR: 1,1 GB kaynak +
+ *            dakikalarca CPU, sağlık koşusunun bütçesine sığmaz.
  *
  * KULLANIM:  node arac/altin-ornek.mjs            (tümü)
  *            node arac/altin-ornek.mjs --json     (makine okunur)
  * ÇIKIŞ:     0 = tümü geçti · 1 = en az bir sapma
  */
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -181,6 +186,23 @@ print(json.dumps({
   kalem('nhyp', 'toplam kütle', toplam === f.ciktiDegismezi.toplam, `${toplam} (beklenen ${f.ciktiDegismezi.toplam})`);
   kalem('nhyp', 'kalite kapısı 12/12 YEŞİL', kapiDusen.length === 0, kapiDusen.join(' · '));
   kalem('nhyp', 'beyan = çıkarılan = kütle sayısı', beyanSapan.length === 0, beyanSapan.join(' · '));
+
+  /* KAYNAK VARLIĞI — BİLGİ kalemi, arıza kalemi DEĞİL.
+     veri/ham/ gitignore'da: temiz bir klonda bu dosyalar YOKTUR ve bu
+     normaldir. Ama 27.07'de dosyalar worktree silinirken sessizce
+     kayboldu ve haftalarca kimse görmedi. Kalem "hepsi var" ya da
+     "hiçbiri yok" durumunu geçer sayar; KISMEN eksik olması gerçek bir
+     bozulmadır (yarısı silinmiş bir kaynak kümesi) ve DÜŞER. */
+  const kv = f.kaynakVarligi;
+  if (kv) {
+    const varOlan = Object.entries(kv.dosyalar)
+      .filter(([h, d]) => existsSync(join(KOK, kv.dizin, h, d))).length;
+    const toplamK = Object.keys(kv.dosyalar).length;
+    const durum = varOlan === toplamK ? 'tam' : varOlan === 0 ? 'yok (temiz klon)' : 'KISMEN EKSİK';
+    kalem('nhyp', 'kaynak metinleri', varOlan === toplamK || varOlan === 0,
+      `${varOlan}/${toplamK} — ${durum}${varOlan > 0 && varOlan < toplamK
+        ? ' · geri getirme: node/bash zinciri rapor/nhyp-geri-getirme.md §4' : ''}`);
+  }
 }
 
 // ─────────────────────────── koşum ───────────────────────────

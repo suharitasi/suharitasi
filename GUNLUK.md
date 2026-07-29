@@ -1,5 +1,41 @@
 # GUNLUK.md — seans notları
 
+## 2026-07-29 — marka sıfatı kararı + NHYP kaynak geri getirme
+
+**Kullanıcı kararları:** marka sıfatı **"emin"** (KARARLAR §18 + DESIGN §18;
+gerekçe: ziyaretçi ceza/ruhsat derdiyle geliyor, aranan his "doğru yere
+geldim"; reddedilenler "çarpıcı" ve "resmî") · sayım animasyonu **kalır**
+(§19) · NHYP PDF'leri **yeniden indirilsin** (§20).
+Sıfatın uygulaması ayrı iş: **D2 kontrast ≥7:1** kuyruğa girdi (BÜYÜK İŞ).
+
+**NHYP geri getirme (BÜYÜK İŞ, kendi rejimimden geçirildi):** brief
+denetçisi 1 ENGEL + 3 UYARI → eklemeyle 0 ENGEL. 41/41 dosya indi, 1,1 GB,
+0 hata. **Asıl kazanç dosyalar değil, zincirin yeniden üretilebilir hâle
+gelmesi:** manifest oturum scratchpad'indeydi (kaybolmuştu) ve PDF→metin
+adımı hiç kayda geçmemişti; ikisi de artık depoda.
+
+**UÇTAN UCA TEKRAR — BİT-EŞİT.** 12/12 YEŞİL, 472 kütle; çıktı depodaki
+yas-kutleleri.json ile alan alan aynı. Yani 27.07'nin çıkarımı bugün
+kaynaktan birebir doğrulanabiliyor — tek sayı değil, 472 kütlenin her alanı.
+`NHYP_CIKTI` ortam değişkeni eklendi (yalnız test; üretim dosyası
+üzerine yazılmadı — `git diff` boş).
+
+**Süreklilik:** altın örnek NHYP kalemi "donmuş çıktı bekçisi"nden çıkıp
+kaynak varlığını da ölçüyor. Kural: 12/12 var → yeşil · 0/12 (temiz klon)
+→ yeşil · **kısmen eksik → KIRMIZI**. 27.07'deki sessiz kayıp bir daha
+sessiz kalamaz. Falsifikasyon: 1 dosya gizlendi → 🔴 11/12, geri kondu → 🟢.
+
+**ALTI YOL-HATASI kayda geçti** (hepsi loglanarak yakalandı, hiçbiri
+sessiz geçmedi): manifest TSV üretildi ama indirici JSON okuyor (0 satır) ·
+ham URL yazıldı, HEAD kendi kodladığı için 200 dönüyordu ama curl'e ham
+gidiyordu (41/41 HATA) · havza sabit dizinden çıkarıldı, yol derinlikleri
+farklı (25 dosya sahte havzaya) · slug yalnız "Havzası" siliyor, klasörler
+"HAVZASI" yazıyor · eleme kuralı "YÜS" kısaltmasını kaçırdı (87 MB boşuna) ·
+metne çevirme indirme sürerken koşuldu (yarım dosyada hata).
+**Ders:** "HEAD 200 döndü" ile "indirici bu dizeyi kullanabilir" AYNI ŞEY
+DEĞİLDİR — doğrulama, tüketicinin kullandığı biçim üzerinden yapılmalı.
+
+
 ## 2026-07-28 (gece) — YAPISAL REVİZYON (B0-B4, worktree suharitasi-yapisal)
 
 **Ne yapıldı:** beş uzman eleştirisinin uygulanması. 20 madde; hepsi ayrı

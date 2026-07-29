@@ -1,31 +1,106 @@
 {
-  "_not": "ALTIN ÖRNEK — NHYP çıkarımı (arac/nhyp-cikar.py). İKİ KATMAN: (1) saf ayrıştırma yardımcıları bilinen girdi→çıktı; (2) ÇIKTI DEĞİŞMEZİ — kalite kapısının 12/12 yeşil geçtiği andaki kütle sayıları (rapor/potansiyel-faz1.md). UYARI: uçtan uca yeniden çıkarım KOŞULAMIYOR — kaynak 38 PDF diskte YOK (rapor/yedek-envanteri.md §2.1). Bu yüzden bu kalem 'ayrıştırıcı + donmuş çıktı' bekçisidir, tam pipeline tekrarı değildir.",
-  "ke_duzelt": [
-    { "girdi": "Ġzmir", "beklenen": "İzmir" },
-    { "girdi": "ġehir", "beklenen": "Şehir" },
-    { "girdi": "GediĢ", "beklenen": "Gediş" },
-    { "girdi": "ĠĢletme ġubesi", "beklenen": "İşletme Şubesi" },
-    { "girdi": "dokunulmayan metin", "beklenen": "dokunulmayan metin" }
-  ],
-  "num_tr": [
-    { "girdi": "1.234,56", "beklenen": 1234.56 },
-    { "girdi": "0,75", "beklenen": 0.75 },
-    { "girdi": "12", "beklenen": 12 },
-    { "girdi": "1.000.000,5", "beklenen": 1000000.5 }
-  ],
-  "sayfa_indeksi": [
-    { "girdi": "a\nb\nc", "beklenen": [1, 1, 1] },
-    { "girdi": "a\nb\fc\nd", "beklenen": [1, 1, 2] },
-    { "girdi": "a\f\nb\f\nc", "beklenen": [1, 2, 3] }
-  ],
-  "ciktiDegismezi": {
-    "dosya": "veri/potansiyel/yas-kutleleri.json",
-    "havzaSayisi": 12,
-    "kutleSayisi": {
-      "akarcay": 14, "bati-akdeniz": 67, "yesilirmak": 54, "gediz": 76,
-      "kuzey-ege": 31, "kucuk-menderes": 42, "burdur": 27, "buyuk-menderes": 38,
-      "konya": 18, "meric-ergene": 12, "susurluk": 22, "sakarya": 71
-    },
-    "toplam": 472
+ "_not": "ALTIN ÖRNEK — NHYP çıkarımı (arac/nhyp-cikar.py). ÜÇ KATMAN: (1) saf ayrıştırma yardımcıları bilinen girdi→çıktı; (2) ÇIKTI DEĞİŞMEZİ — kütle sayıları + kalite kapısı; (3) KAYNAK VARLIĞI — çıkarımın okuduğu 12 metin diskte mi. [GÜNCELLEME 29.07.2026] Kaynak PDF'ler yeniden indirildi (41/41, 1,1 GB) ve UÇTAN UCA TEKRAR KOŞULDU: 12/12 YEŞİL, 472 kütle, çıktı depodaki yas-kutleleri.json ile BİT-EŞİT. Yani bu kalem artık yalnız 'donmuş çıktı bekçisi' değil; zincirin tamamı (manifest→indirme→pdftotext→çıkarım) yeniden üretilebilir durumda. Zincir: arac/nhyp-manifest-uret.py → arac/nhyp-indir.sh → arac/nhyp-metne-cevir.sh → arac/nhyp-cikar.py. KAYNAK VARLIĞI kalemi BİLGİ amaçlıdır: veri/ham/ gitignore'da olduğu için temiz bir klonda dosyalar YOKTUR; yokluk arıza sayılmaz, ama kaybolduğu SESSİZ kalmaz.",
+ "ke_duzelt": [
+  {
+   "girdi": "Ġzmir",
+   "beklenen": "İzmir"
+  },
+  {
+   "girdi": "ġehir",
+   "beklenen": "Şehir"
+  },
+  {
+   "girdi": "GediĢ",
+   "beklenen": "Gediş"
+  },
+  {
+   "girdi": "ĠĢletme ġubesi",
+   "beklenen": "İşletme Şubesi"
+  },
+  {
+   "girdi": "dokunulmayan metin",
+   "beklenen": "dokunulmayan metin"
   }
+ ],
+ "num_tr": [
+  {
+   "girdi": "1.234,56",
+   "beklenen": 1234.56
+  },
+  {
+   "girdi": "0,75",
+   "beklenen": 0.75
+  },
+  {
+   "girdi": "12",
+   "beklenen": 12
+  },
+  {
+   "girdi": "1.000.000,5",
+   "beklenen": 1000000.5
+  }
+ ],
+ "sayfa_indeksi": [
+  {
+   "girdi": "a\nb\nc",
+   "beklenen": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "girdi": "a\nb\fc\nd",
+   "beklenen": [
+    1,
+    1,
+    2
+   ]
+  },
+  {
+   "girdi": "a\f\nb\f\nc",
+   "beklenen": [
+    1,
+    2,
+    3
+   ]
+  }
+ ],
+ "ciktiDegismezi": {
+  "dosya": "veri/potansiyel/yas-kutleleri.json",
+  "havzaSayisi": 12,
+  "kutleSayisi": {
+   "akarcay": 14,
+   "bati-akdeniz": 67,
+   "yesilirmak": 54,
+   "gediz": 76,
+   "kuzey-ege": 31,
+   "kucuk-menderes": 42,
+   "burdur": 27,
+   "buyuk-menderes": 38,
+   "konya": 18,
+   "meric-ergene": 12,
+   "susurluk": 22,
+   "sakarya": 71
+  },
+  "toplam": 472
+ },
+ "kaynakVarligi": {
+  "dizin": "veri/ham/nhyp",
+  "_not": "Çıkarımın gerçekten okuduğu 12 metin dosyası (havza→dosya). Kayıt kaynağı: yas-kutleleri.json kaynak künyeleri. 27.07'de bu dosyalar worktree silinirken kaybolmuştu (rapor/yedek-envanteri.md §2.1); 29.07'de geri getirildi.",
+  "dosyalar": {
+   "akarcay": "Akarçay NHYP.txt",
+   "bati-akdeniz": "Batı Akdeniz NHYP.txt",
+   "burdur": "BUN_NHYP Nihai Raporu.txt",
+   "buyuk-menderes": "OUT_27_2.2.9_RBMP_FINAL_BM_TR_V00_R06.txt",
+   "gediz": "Gediz Havzası Nehir Havza Yönetim Planı.txt",
+   "konya": "OUT_27_2.2.9_RBMP_FINAL_KO_TR_V00_R06.txt",
+   "kucuk-menderes": "Nehir Havza Yönetim Planı Raporu.txt",
+   "kuzey-ege": "NHYP_Raporu.txt",
+   "meric-ergene": "OUT_27_2.2.9_RBMP_FINAL_ME_TR_V00_R06.txt",
+   "sakarya": "Sakarya Havzası Nehir Havza Yönetim Planı.txt",
+   "susurluk": "OUT_27_2.2.9_RBMP_FINAL_SU_TR_V00_R06.txt",
+   "yesilirmak": "Yeşilırmak NHYP.txt"
+  }
+ }
 }

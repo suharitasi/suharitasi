@@ -154,6 +154,10 @@ UYARI dosyası.
   üretilemez** (ücretli üretim).
 - `.env` — sırlar. Kasten yedeklenmez.
 - `log/` — pipeline günlükleri.
+- `veri/ham/nhyp/` — 1,1 GB NHYP kaynak PDF + metin. **Kasten yedeklenmez:
+  iki komutla yeniden indirilebilir** ve manifest git'te
+  (`arac/test/nhyp-manifest.json`). Zincir ve komutlar:
+  `rapor/nhyp-geri-getirme.md` §4.1.
 
 Bu boşluk için gecelik yerel yedek kurulmuştur (§4.8) — **ama ikinci konum
 aynı makinededir; makine ölümüne karşı korumaz.** Ayrıntı ve kullanıcı

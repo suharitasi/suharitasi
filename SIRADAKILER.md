@@ -26,6 +26,19 @@ Hepsi ücretsiz ve kısa; sıra etki büyüklüğüne göre.
  7. **GitHub Actions dış nabzı** — sunucudan bağımsız tek izleme seçeneği,
     yeni sağlayıcı gerektirmiyor. rapor/dis-izleme.md §3
 
+NHYP KAYNAK PDF'LERİ GERİ GETİRİLDİ (29 Tem 2026, kullanıcı kararı;
+KARARLAR.md §20). 41/41 dosya, 1,1 GB, 0 hata. Zincirin tamamı artık
+depoda ve yeniden üretilebilir: nhyp-manifest-uret.py (YENİ) → nhyp-indir.sh
+→ nhyp-metne-cevir.sh (YENİ) → nhyp-cikar.py. UÇTAN UCA TEKRAR koşuldu:
+12/12 YEŞİL, 472 kütle, çıktı depodaki yas-kutleleri.json ile BİT-EŞİT.
+veri/potansiyel/ DEĞİŞTİRİLMEDİ (git diff boş). Süreklilik: altın örnek
+kaynak varlığını da ölçüyor — kısmen silinirse KIRMIZI (falsifikasyon
+ölçüldü: 11/12 → 🔴, geri konunca 🟢 23/23).
+Rapor: rapor/nhyp-geri-getirme.md · 6 yol-hatası kayda geçti.
+AÇIK: 3 dosya kanonik havzaya eşlenemedi, "diger/" altında duruyor
+(uydurulmadı; çıkarımda kullanılmıyor). 41 ≠ 38 farkı doğrulanamadı —
+orijinal manifest kayıp.
+
 MARKA SIFATI "EMİN" — KARAR VERİLDİ (29 Tem 2026), UYGULAMA AYRI İŞ.
 Karar KARARLAR.md §18'de, sonuçları DESIGN.md §18'de. Kapanan tartışma;
 yeniden açılmaz. UYGULANACAK TEK KALEM (kuyrukta, başlatılmadı):

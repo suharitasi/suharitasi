@@ -6,11 +6,17 @@
 # Kalite kapısı (1.3): PDF'in beyan ettiği kütle sayısı == çıkarılan satır
 # sayısı değilse havza KIRMIZI.
 import json, re, sys, unicodedata
+import os
 from pathlib import Path
 
 KOK = Path(__file__).resolve().parent.parent
 HAM = KOK / "veri" / "ham" / "nhyp"
-CIKTI = KOK / "veri" / "potansiyel" / "yas-kutleleri.json"
+# NHYP_CIKTI: yalnız TEST/TEKRAR koşumu içindir (29.07.2026). Uçtan uca
+# tekrar denemesi yapılırken çıktının üzerine YAZILMAMASI gerekir —
+# yas-kutleleri.json bu revizyonun "dokunulmaz"ıdır. Üretimde ayarlanmaz.
+# (Aynı desen: baraj-cek.mjs BARAJ_TEST_KOK, yedek-al.sh YEDEK_KOK.)
+CIKTI = Path(os.environ.get("NHYP_CIKTI")) if os.environ.get("NHYP_CIKTI") \
+    else KOK / "veri" / "potansiyel" / "yas-kutleleri.json"
 
 # Kuzey Ege PDF'inin font kodlaması İ/ş/Ş'yi Ġ/Ģ/ġ basıyor (ölçüldü).
 def ke_duzelt(s):

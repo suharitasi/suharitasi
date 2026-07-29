@@ -67,10 +67,15 @@ ikizi ("worktree silinmeden önce kanıt arşivlenir").
 etkilenmemiştir.** Kaybolan, kaynağa geri dönme imkânıdır: bir kütle
 sayısı sorgulanırsa PDF sayfa numarası JSON'da var ama PDF elde yok.
 
-**Yeniden indirilebilir mi:** Evet — kaynak kamuya açık (SYGM,
-`rapor/kaynak-haritasi.md:90`: 12 havza, 56 PDF). Ama indirme manifesti
-(`scratchpad/nhyp-manifest.json`) da oturum scratchpad'iyle gitmiş; manifest
-yeniden derlenmeli. **Tahmini iş: yarım gün.** Kuyruğa yazıldı.
+**[KAPANDI 29.07.2026 — GERİ GETİRİLDİ]** Kullanıcı kararı (KARARLAR.md
+§20) üzerine yeniden indirildi: **41/41 dosya, 1,1 GB, 0 hata**. Manifest
+depo-içi kayıtlardan yeniden türetildi ve artık **git'te**
+(`arac/test/nhyp-manifest.json` + üreteci `arac/nhyp-manifest-uret.py`);
+kayıp PDF→metin adımı da scriptleşti (`arac/nhyp-metne-cevir.sh`).
+**Uçtan uca tekrar koşuldu: 12/12 YEŞİL, 472 kütle, çıktı depodakiyle
+BİT-EŞİT.** Ayrıntı: `rapor/nhyp-geri-getirme.md`.
+Süreklilik: altın örnek artık kaynak varlığını da ölçüyor — kısmen
+silinirse sonraki sağlık koşusunda kırmızı verir (falsifikasyon ölçüldü).
 
 **Kural sonucu:** `arac/yedek-al.sh` artık envanterdeki bir varlık diskte
 yoksa log'a **UYARI** yazıyor — aynı kayıp sessizce tekrarlanamaz.
@@ -164,7 +169,7 @@ revizyonda satın alınmamıştır.
 | Karar | Seçenekler | Maliyet |
 |---|---|---|
 | Makine dışı yedek konumu | S1 R2 · S5 B2 · S4 Storage Box · S3 Drive · yok | 0 ₺ · <$0,01 · ≈3,2-3,9 € · 0 ₺ · 0 ₺ |
-| NHYP 38 PDF yeniden indirilsin mi (892 MB, ~yarım gün) | evet / hayır (türetilmiş JSON yeterli) | 0 ₺ + disk |
+| ~~NHYP PDF yeniden indirilsin mi~~ | **KARAR VERİLDİ 29.07 — indirildi (41/41)** | 0 ₺ + 1,1 GB disk |
 | `kaynak/tr-atlas-master.png` üretim kaydı | kaynağı hatırlıyorsanız KAYNAKLAR.md'ye yazılır | — |
 
 **Sources:**
