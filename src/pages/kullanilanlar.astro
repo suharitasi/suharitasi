@@ -1,0 +1,252 @@
+---
+/* /kullanilanlar/ — PROJE TEKNOLOJİ DÖKÜMÜ (29 Tem 2026)
+ *
+ * AMAÇ: bu projede kullanılan teknoloji, altyapı, yöntem ve tasarım
+ * mantığının tek sayfada listelenmesi. Başka bir projede (ayrı bir site)
+ * değerlendirilmek üzere hazırlandı.
+ *
+ * SEO: `robots="noindex, nofollow"` — sitemap ve llms.txt üreticileri
+ * noindex sayfaları zaten atlar, dolayısıyla sayfa arama yüzeyine
+ * GİRMEZ. Menüye ve hiçbir iç linke KONMAZ; yalnız doğrudan adresle
+ * açılır. Bu bilinçlidir: sayfanın SEO hedefi yoktur.
+ *
+ * GÜVENLİK KAPISI (brief, mutlak): bu sayfada ŞUNLAR YAZILMAZ —
+ * sunucu kimliği/adresi/kullanıcı adı, dizin yolları, zamanlanmış görev
+ * saatleri, sır dosyalarının adı/konumu, bekçi eşik değerleri, ortam
+ * değişkeni adları, dağıtım kancası, dal/çalışma-kopyası adları, dahili
+ * script yolları, üçüncü taraf hesap adları. Yazılan: NE kullanıldığı ve
+ * NİÇİN seçildiği. Kararsız kalınan kalem YAZILMADI.
+ *
+ * SAYI DİSİPLİNİ: sayfadaki her rakam build'de veriden sayılır
+ * (src/data/kullanilanlar.js). Sayılamayan kalem rakamsız yazılır.
+ */
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import { OLCEK } from '../data/kullanilanlar.js';
+
+const OZ_CEVAP =
+  'Bu sayfa suharitasi.com’un hangi teknoloji, altyapı ve yöntemlerle ' +
+  'kurulduğunu listeler: statik üretim, dosya tabanlı veri hattı, ' +
+  'ölçüme dayalı denetim sistemi ve kanıt disiplini. Rakamlar her ' +
+  'yayında veriden yeniden sayılır.';
+
+if (OZ_CEVAP.length > 280) {
+  throw new Error(`kullanilanlar: öz-cevap ${OZ_CEVAP.length} karakter, sınır 280.`);
+}
+
+const say = (n) => n.toLocaleString('tr-TR');
+---
+<Sayfa
+  baslik="Kullanılan teknolojiler ve yöntemler"
+  aciklama={OZ_CEVAP}
+  robots="noindex, nofollow"
+>
+  <SayfaBasi etiket="Proje dökümü" baslik="Kullanılan teknolojiler ve yöntemler" />
+  <OzCevap metin={OZ_CEVAP} />
+
+  <p class="kl-serh">
+    Bu döküm, sitenin kendi kaynak ağacından ve yapılandırmasından
+    üretilmiştir. Sayılar her yayında yeniden hesaplanır. Altyapının
+    çalışma kimliğine ait ayrıntılar (adresler, takvimler, eşik değerleri,
+    kimlik bilgileri) güvenlik nedeniyle bu sayfada yer almaz.
+  </p>
+
+  <h2 id="cati">Çatı ve yayın</h2>
+  <dl class="kl-kunye">
+    <div><dt>Üretim</dt><dd>Astro 5 — statik site üretimi (SSG). Sunucu tarafı render ve adapter kullanılmaz.</dd></div>
+    <div><dt>Dil</dt><dd>Vanilla JavaScript + TypeScript tipleri. React/Next kullanılmaz — bilinçli karar.</dd></div>
+    <div><dt>Harita</dt><dd>MapLibre GL 5 (vektör harita), Three.js (arazi/sahne denemeleri).</dd></div>
+    <div><dt>Barındırma</dt><dd>Kenar ağı üzerinde statik dosya sunumu. Site, veri üreten makineden bağımsızdır: o makine tamamen kaybolsa site ayakta kalır, yalnız veri tazelenmesi durur.</dd></div>
+    <div><dt>Sürüm kontrolü</dt><dd>Git + uzak depo. Ana dala birleştirme YAYIN demektir; ayrı bir “yayınla” adımı yoktur.</dd></div>
+    <div><dt>Dağıtım</dt><dd>Ana dala gönderim otomatik derleme ve yayını tetikler. Başarı ölçütü, dağıtım servisinin döndürdüğü kod değil, <strong>canlı içerik imzasıdır</strong>: yayımlanan sayfada beklenen sürüm damgası ve içerik parçası ölçülerek doğrulanır.</dd></div>
+    <div><dt>Alan adı</dt><dd>Kök alan adı kanonik; <code>www</code> alt alan adı aynı içeriği sunar ve kanonik etiketi kök alan adını gösterir.</dd></div>
+    <div><dt>Derleme eklentileri</dt><dd>Dört tanesi bu proje için yazıldı: site haritası üretimi, yapay zeka istemcileri için makine-okunur içindekiler dosyası, sürüm damgası, istemci betiklerinin küçültülmesi.</dd></div>
+  </dl>
+
+  <h2 id="altyapi">Altyapı</h2>
+  <dl class="kl-kunye">
+    <div><dt>Veri üreten makine</dt><dd>Ubuntu 24.04 LTS · 4 çekirdek · 8 GB bellek · takas alanı ayrılmış. Bu makine <strong>siteyi sunmaz</strong>, yalnız veri üretir ve denetler.</dd></div>
+    <div><dt>Zamanlanmış görevler</dt><dd>{say(12)} ayrı zamanlanmış iş: veri çekimi, mevzuat izleme, yayın nöbetçiliği, sağlık koşusu, bağımsız gözcü, yedekleme, bellek ölçümü. Takvim bu sayfada yer almaz.</dd></div>
+    <div><dt>Veri hatları</dt><dd>Altı bağımsız hat: günlük enerji/baraj verisi, haftalık uydu tabanlı su depolaması, günde iki kez mevzuat izleme, haftalık resmî ilan nöbetçiliği, haftalık plan yayını nöbetçiliği, belge çıkarımı. Her hat kendi başına çöker, diğerlerini durdurmaz.</dd></div>
+    <div><dt>Sessiz hata yasağı</dt><dd>Veri yazan her betik katı kabuk kipiyle çalışır; başarı ölçütü <strong>kayıt teyididir</strong> (işlem öncesi/sonrası sürüm karşılaştırması), HTTP kodu değil. Hata sayacı ancak teyitten sonra sıfırlanır; art arda hata eşiği aşılırsa uyarı üretilir.</dd></div>
+    <div><dt>Eşzamanlılık</dt><dd>Depoya yazan tüm otomatik işler tek bir kilit kullanır — iki iş aynı anda yazıp birinin çıktısı sessizce kaybolamaz.</dd></div>
+    <div><dt>Yedekleme</dt><dd>Gecelik, sıkıştırılmış, ikinci konuma. Bütünlük sha256 özet listesiyle <strong>yazımdan sonra doğrulanır</strong>; doğrulama geçmeden “yedek alındı” kaydı yazılmaz. Depo geçmişinin tamamı tek dosyaya paketlenir ve geri alma <em>ölçülerek</em> sınanmıştır (paketten klonlama, tam geçmiş).</dd></div>
+    <div><dt>İzleme ve uyarı</dt><dd>Sağlık koşusundan bağımsız ikinci bir gözcü, hatların sessizce ölmesini yakalar. Kırmızı durumda uyarı, makinenin dışına çıkan ayrı bir bildirim kanalına gönderilir. Bu kanalın kimlik bilgileri depoda tutulmaz.</dd></div>
+    <div><dt>Kaynak yönetimi</dt><dd>Makine paylaşımlıdır. Her zamanlanmış işin süresi ve tepe bellek kullanımı ölçülüp tek tabloda tutulur; çakışan işler ayrı saatlere dağıtılır. Ağır koşumlar, boş bellek alt sınırın altındaysa <strong>başlamaz</strong>.</dd></div>
+  </dl>
+
+  <h2 id="veri">Veri katmanı</h2>
+  <p class="kl-p">
+    Veri yalnız resmî ve açık kaynaklardan derlenir; her kayıt künyelidir
+    (kaynak, kapsam, erişim tarihi). Türetilmiş her sayı kaynağına kadar
+    izlenebilir.
+  </p>
+  <ul class="kl-liste">
+    <li><strong>Nehir havzası yönetim planları</strong> — kamu belgeleri. Belge çıkarımı: PDF metne çevrilir, havzaya özel ayrıştırıcılarla tablolar okunur. <strong>Kalite kapısı:</strong> belgenin kendi beyan ettiği kayıt sayısı ile çıkarılan sayı eşleşmezse o havza kırmızı sayılır.</li>
+    <li><strong>Resmî Gazete arşivi</strong> — yeraltı suyu işletme sahası ilanları. Her kayıt tarih, sayı ve kaynak bağlantısı taşır; taşımayan kayıt yazılmaz.</li>
+    <li><strong>Enerji piyasası günlük baraj verisi</strong> — kimlik doğrulamalı API; ham yanıt olduğu gibi arşivlenir, ayrıca normalize seri tutulur.</li>
+    <li><strong>Uydu tabanlı su depolaması anomalisi</strong> — kamu malı bilimsel veri. Ülke ve havza serilerine alan ağırlıklı indirgeme; ölçüm boşlukları <strong>doldurulmaz</strong>, olduğu gibi bırakılır.</li>
+    <li><strong>Yükseklik modeli</strong> — açık lisanslı, atıfla kullanım. Eğim ve vadi tabanı göstergeleri türetilir.</li>
+    <li><strong>Açık coğrafi veri</strong> — ODbL 1.0, atıf zorunlu; il/ilçe dizini ve su noktaları. Kapalı lisanslı alternatifler bilinçle reddedildi.</li>
+    <li><strong>Akademik künye kaynağı</strong> — açık meta veri; yalnız künye alınır, özet metni kopyalanmaz.</li>
+    <li><strong>Kurum eşlemesi</strong> — resmî görev alanı yayınlarından derlenmiş il/bölge tablosu.</li>
+  </ul>
+  <p class="kl-p">
+    <strong>Ölçü:</strong> {say(OLCEK.havzaPlani)} yayımlı havza planından
+    {say(OLCEK.yasKutlesi)} yeraltı suyu kütlesi ·
+    {say(OLCEK.rgKaydi)} resmî ilan kaydı (
+    {say(OLCEK.rgSayiliKayit)}’si gazete sayısı künyeli) ·
+    {say(OLCEK.akademikKunye)} akademik künye,
+    {say(OLCEK.akademikIlKapsami)} il · {say(OLCEK.dsiBolgesi)} bölge idaresi ·
+    {say(OLCEK.veriSeti)} türetilmiş veri seti ·
+    {say(OLCEK.dsiArsiv)} arşivlenmiş istatistik dosyası ·
+    {say(OLCEK.mevzuatArsiv)} mevzuat belgesi.
+  </p>
+
+  <h2 id="denetim">Kalite ve denetim</h2>
+  <ul class="kl-liste">
+    <li><strong>Sürekli sağlık sistemi — {say(OLCEK.saglikKalemi)} kalem.</strong> Kategoriler: erişilebilirlik ve HTTP durumu, yönlendirmeler, medya oynatma, konsol hataları, iç ve dış bağlantılar, arama/AI-arama yüzeyi, mobil taşma, kontrast, performans, veri bütünlüğü ve tazeliği, etkileşim, görsel düzen, dokunma hedefi, güvenlik başlıkları, altyapı, kaynak tavanı. Otomatik onarım <strong>dar bir beyaz listeyle sınırlıdır</strong>; performans, tasarım, içerik, şema ve veri kaynağı değişimi asla otomatik onarılmaz — sistem durur ve bildirir.</li>
+    <li><strong>Görsel düzen bekçisi — {say(OLCEK.gorselKalemi)} kalem.</strong> Metnin görseli örtmesi, ölçek kayması, başlık tipografisi, bölüm ritmi, ortalama kayması ve mobil ilk ekran bütçesi ölçülür. Eşikler dayatılmaz, <strong>ölçülen doğal varyanstan türetilir</strong>. Salt-okuma: otomatik onarım yoktur; bilinçli tasarım değişikliğinde taban gerekçe zorunluluğuyla yenilenir.</li>
+    <li><strong>Altın örnek testleri.</strong> Her veri hattı için bilinen girdi → bilinen çıktı. Kaynak biçimi değişince ayrıştırıcı çoğu zaman çökmez, <em>sessizce yanlış</em> üretir; bu testler tam olarak onu yakalar. Ayrıştırıcı kasten bozulup kırmızı verdiği, geri alınınca yeşile döndüğü ölçülerek gösterilmiştir.</li>
+    <li><strong>Taban-gerileme denetimi.</strong> Yayından önce yeni derleme <em>canlı sürümle</em> karşılaştırılır: başlık hiyerarşisi, soru başlıkları, yapılandırılmış veri, öz-cevap ve paylaşım etiketleri, makine-okunur içindekiler, site haritası, iç bağlantı sayısı. Bir ölçü <strong>düşerse</strong> yayın yapılmaz; artış gerileme sayılmaz.</li>
+    <li><strong>Sayı bekçileri.</strong> Yayımlanan metinlerdeki rakamlar her derlemede kaynak veriden yeniden sayılıp karşılaştırılır. Sapma varsa <strong>derleme düşer</strong> — yanlış sayı yayına çıkamaz.</li>
+    <li><strong>Brief denetçisi — {say(OLCEK.briefKurali)} kural.</strong> Her büyük iş, uygulanmadan önce makine denetiminden geçer: var olmayan referans, ölçülemez bitti-tanımı, görüntüyü kanıt sayma, kendi içinde çelişki, eksik kanıt kapısı. Engel varsa uygulama başlamaz.</li>
+    <li><strong>Falsifikasyon disiplini.</strong> Yeni bir denetim kalemi, yalnız “yeşil yanıyor” diye kabul edilmez: kalem <em>kasten bozulur</em>, kırmızı verdiği görülür, düzeltilir ve yeşile döndüğü ölçülür. Kanıtlanamayan kalem kurulmaz.</li>
+  </ul>
+
+  <h2 id="guvenlik">Güvenlik ve uyum</h2>
+  <ul class="kl-liste">
+    <li><strong>İçerik güvenlik politikası</strong> ve altı güvenlik başlığı yayımlanan her yanıtta bulunur; varlıkları her sağlık koşusunda ölçülür. Politika içeriği bu sayfada yazılmaz.</li>
+    <li><strong>Yapay zeka bot politikası.</strong> Arama motorları ve yanıt üreten yapay zeka tarayıcıları <strong>açıkça serbest</strong>; toplu içerik toplayıcılar kapalı. Bu bir kopyalanma-önleme kararının önüne geçen bilinçli bir görünürlük kararıdır.</li>
+    <li><strong>Veri lisans disiplini.</strong> Atıf zorunlu lisanslarda atıf kullanıcıya görünür biçimde verilir; ticari kullanıma kapalı kaynaklar kullanılmaz.</li>
+    <li><strong>Sır yönetimi.</strong> Kimlik bilgileri sürüm kontrolüne asla girmez, dar izinli tek bir yerel dosyada durur, günlüklere ve çıktılara yazılmaz. Konum ve değişken adları bu sayfada yer almaz.</li>
+    <li><strong>Kopyalanma direnci.</strong> Yayımlanan istemci betikleri küçültülür, kaynak haritası üretilmez. Sınır bilinçli: okunabilirliği ve erişilebilirliği bozacak kadar ileri gidilmez.</li>
+  </ul>
+
+  <h2 id="performans">Performans ve erişilebilirlik</h2>
+  <ul class="kl-liste">
+    <li><strong>Statik üretim</strong> tercih edildi: çalışma anında sunucu mantığı yok, dolayısıyla saldırı yüzeyi ve arıza noktası az; sayfalar kenar ağından dosya olarak servis edilir. Bunun bedeli, verinin derleme anında gömülmesidir — bu yüzden veri hatları ve sayı bekçileri var.</li>
+    <li><strong>Performans ölçümü</strong> her tam koşuda otomatik; tek ölçümle karar verilmez.</li>
+    <li><strong>Core Web Vitals</strong> gerçek ziyaretçi ölçümüyle izlenir.</li>
+    <li><strong>Erişilebilirlik hedefi WCAG AA</strong>; kontrast her koşuda ölçülür, otomatik erişilebilirlik denetimi çekirdek sayfalarda koşar ve taban altına düşüş kırmızı verir.</li>
+    <li><strong>Mobil öncelik.</strong> Her kalıp önce dar ekranda tasarlanır ve orada ölçülür; yatay taşma sıfır olmalıdır, dokunma hedefleri alt sınırın altına inemez.</li>
+  </ul>
+
+  <h2 id="tasarim">Tasarım mantığı</h2>
+  <p class="kl-p">
+    Tasarımın tek bir sıfatı vardır: <strong>emin</strong>. Ziyaretçi bir
+    ceza ya da ruhsat derdiyle geldiği için aradığı his “doğru yere geldim”
+    duygusudur. Sıfat iki yönlüdür: ziyaretçi emin olur, site emin konuşur —
+    abartmaz, uydurmaz, bilmediğini söyler.
+  </p>
+  <dl class="kl-kunye">
+    <div><dt>Tipografi</dt><dd>Üç katman: başlık için Cormorant, gövde için Manrope, etiket ve künye için IBM Plex Mono. Kanıt rakamları tek bileşenden çıkar ve <strong>düz taban çizgili rakam</strong> kullanır; belirsizlik dili (“doğrulanmadı”, “veri yok”) küçültülmez, soluklaştırılmaz, dipnota itilmez.</dd></div>
+    <div><dt>Renk</dt><dd>Tek bir derinlik skalası: koyu ve açık <em>tema</em> değil, <em>anlam</em>dır — yüzey özet, dip derin veridir. İkinci bir renk modu bilinçle reddedildi. Vurgu rengi süse değil iddiaya eşlik eder.</dd></div>
+    <div><dt>Hareket</dt><dd>Kural tek cümle: <strong>hareket bir şeyi kanıtlamalı.</strong> Sayının sayıldığını gösteren sayaç ve sahayı gösteren sahne akışı geçer; dikkat çekmek için parıltı geçmez. Hareket azaltma tercihi tüm animasyonlarda karşılanır ve içerik asla gizli kalmaz.</dd></div>
+    <div><dt>Bağlayıcılık</dt><dd>Tasarım kararları tek bir anayasa belgesinde toplanır; yeni renk, font ya da desen icat edilmez. Uygun bir değer yoksa iş durur ve karar sorulur.</dd></div>
+  </dl>
+
+  <h2 id="yontem">Çalışma yöntemi</h2>
+  <ul class="kl-liste">
+    <li><strong>İki kademeli iş rejimi.</strong> Küçük iş (tek dosya, geri alınabilir, veri/yayın/mimari/görsel kimliğe dokunmayan) tek paragraf tanımla yürür. Büyük iş tam rejime tabidir: yazılı tanım, makine denetimi, düşman geçişi, ölçülebilir bitti-tanımı. Şüphede kalınırsa büyük seçilir.</li>
+    <li><strong>Kanıt disiplini.</strong> “Yapıyorum” ya da “çalışıyor” beyanı kanıt değildir; kanıt <em>ölçülen çıktıdır</em>. Panelin “aktif” demesi de, tek bir bakış açısından alınan olumsuz ölçüm de tek başına yeterli sayılmaz.</li>
+    <li><strong>Uydurma yasağı.</strong> Doğrulanamayan hiçbir şey olgu gibi yazılmaz; “doğrulanmadı” ya da “üretilemedi” açıkça işaretlenir. Ölçmesi kolay bir vekil kriter, umursanan şeyin yerine geçemez.</li>
+    <li><strong>DUR kapıları.</strong> Geri alınamaz işlem, ücretli adım, alan adı değişikliği ve panel gerektiren adımlar önce sorulur. Gerçek bir çelişki ya da taban gerilemesi çıkarsa iş durur.</li>
+    <li><strong>Karar kaydı.</strong> Kalıcı kararlar tek dosyada tutulur: tarih, karar, gerekçe ve <strong>reddedilen alternatif</strong>. Gerekçesi kayıtlarda bulunamayan karar “gerekçe kayıtta yok” diye işaretlenir, sonradan akla yatkın bir gerekçe uydurulmaz. Bugün {say(OLCEK.kararSayisi)} kayıtlı karar var.</li>
+    <li><strong>Devir belgesi.</strong> Projeyi devralacak birinin ihtiyacı ayrı bir belgede tutulur: dizin haritası, otomatik işlerin ne yaptığı, yayın zinciri, acil durum adımları. Sırlar yazılmaz, yalnız nerede durduğu belirtilir.</li>
+    <li><strong>Süreklilik ilkesi.</strong> Her yapısal iş, arkasında kalıcı bir kontrol kalemi bırakır — aynı arıza ikinci kez sessizce oluşamaz.</li>
+    <li><strong>Araç tabanı.</strong> Ölçüm, denetim ve veri hattı için {say(OLCEK.aracDosyasi)} betik; hepsi depoda sürümlü.</li>
+  </ul>
+
+  <h2 id="yapay-zeka">Yapay zeka kullanımı</h2>
+  <ul class="kl-liste">
+    <li><strong>Ajan tabanlı geliştirme.</strong> İşler yazılı brief’lerle tanımlanır, ayrı çalışma kopyalarında yürütülür ve ölçülebilir kapılardan geçtikten sonra birleştirilir.</li>
+    <li><strong>Rol ayrımı.</strong> İş tanımını yazan ile uygulayan ayrı tutulur; böylece ön denetim gerçekten bağımsız olur. Belirli sayıda tamamlanan işten sonra periyodik denetim turu tetiklenir.</li>
+    <li><strong>İnsan onay kapıları.</strong> Görsel işler “yapıldı” sayılmaz; headless tarayıcı kanıtı yalnız ön elemedir, nihai yargı canlı testtir. Hukuki metin, marka kararı, ücretli adım ve geri alınamaz işlem insana bırakılır.</li>
+    <li><strong>Yardımcı beceri paketleri</strong> tasarım, arama görünürlüğü, içerik ve denetim alanlarında kullanılır; hangi işte hangisinin devreye girdiği ve neyin uygulandığı rapora yazılır.</li>
+  </ul>
+
+  <h2 id="olcek">Ölçek</h2>
+  <p class="kl-p">
+    Aşağıdaki rakamların tamamı bu sayfa yayımlanırken kaynak veriden
+    sayılmıştır.
+  </p>
+  <ul class="kl-olcek">
+    <li><span class="kl-sayi">{say(OLCEK.yasKutlesi)}</span> yeraltı suyu kütlesi</li>
+    <li><span class="kl-sayi">{say(OLCEK.rgKaydi)}</span> resmî ilan kaydı</li>
+    <li><span class="kl-sayi">{say(OLCEK.akademikKunye)}</span> akademik künye</li>
+    <li><span class="kl-sayi">{say(OLCEK.dsiArsiv)}</span> arşiv dosyası</li>
+    <li><span class="kl-sayi">{say(OLCEK.saglikKalemi)}</span> sağlık denetim kalemi</li>
+    <li><span class="kl-sayi">{say(OLCEK.aracDosyasi)}</span> ölçüm ve veri betiği</li>
+    <li><span class="kl-sayi">{say(OLCEK.kararSayisi)}</span> kayıtlı kalıcı karar</li>
+  </ul>
+  <p class="kl-serh">
+    Kurulu yardımcı beceri paketlerinin sayısı depodan güvenilir biçimde
+    sayılamadığı için bu listede yer almıyor — sayılamayan rakam yazılmaz.
+  </p>
+</Sayfa>
+
+<style>
+  .kl-p { max-width: 70ch; }
+
+  .kl-serh {
+    max-width: 70ch;
+    font-size: 0.95rem;
+    color: var(--metin-soluk);
+  }
+
+  /* Künye listesi: /arsiv/ sayfasındaki ar-kunye ailesiyle aynı dil —
+     yeni desen icat edilmedi (DESIGN.md). */
+  .kl-kunye { margin: 1rem 0 1.6rem; display: grid; gap: 0.7rem; }
+  .kl-kunye > div {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: 0.2rem 1rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--cizgi);
+  }
+  @media (max-width: 640px) {
+    .kl-kunye > div { grid-template-columns: 1fr; }
+  }
+  .kl-kunye dt {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    padding-top: 0.2rem;
+  }
+  .kl-kunye dd { margin: 0; max-width: 68ch; }
+
+  .kl-liste { max-width: 74ch; }
+  .kl-liste li { margin: 0.7rem 0; }
+
+  /* Ölçek listesi: rakam öne çıkar. Rakam tipografisi kanıt bileşeniyle
+     aynı kuralı taşır — düz taban çizgili ve sabit genişlikli figür. */
+  .kl-olcek {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+    gap: 1rem;
+    margin: 1.2rem 0 1.4rem;
+  }
+  .kl-olcek li {
+    padding: 0.9rem 1rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+  }
+  .kl-sayi {
+    display: block;
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    line-height: 1.1;
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: 'lnum' 1, 'tnum' 1;
+    color: var(--su-700);
+  }
+</style>
