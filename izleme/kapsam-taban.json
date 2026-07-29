@@ -99,13 +99,15 @@
       "ad": "rg-nobetci",
       "dosya": "izleme/state/rg-nobetci-durum.json",
       "toleransSaat": 336,
-      "_not": "cron haftalik (Sal 04:20); RG ilani seyrek -> 2 hafta tolerans. Dosya ilk kosumdan sonra dogar."
+      "_not": "cron haftalik (Sal 04:20); RG ilani seyrek -> 2 hafta tolerans. Dosya ilk kosumdan sonra dogar. | 29.07 (M13): cron 28.07 Sali ~21:00'de kuruldu, kosum saati Sali 04:20 -> ILK KOSUM 04.08. O tarihe kadar state dosyasinin yoklugu ALARM DEGIL (ilkKosumBeklenen).",
+      "ilkKosumBeklenen": "2026-08-04T04:20:00Z"
     },
     {
       "ad": "nhyp-nobetci",
       "dosya": "izleme/state/nhyp-yayin-durum.json",
       "toleransSaat": 840,
-      "_not": "cron haftalik (Car 04:40); NHYP yayini cok seyrek -> 5 hafta tolerans. Dosya ilk kosumdan sonra dogar."
+      "_not": "cron haftalik (Car 04:40); NHYP yayini cok seyrek -> 5 hafta tolerans. Dosya ilk kosumdan sonra dogar. | 29.07 (M13): ilk kosum 29.07 04:40'ta GERCEKLESTI (kanal A/B saglikli, yeni yayin 0).",
+      "ilkKosumBeklenen": "2026-07-29T04:40:00Z"
     }
   ],
   "yedek": {

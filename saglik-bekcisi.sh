@@ -12,7 +12,8 @@
 #    alarm. durum.json HER haftalık koşuda (başarı/değişiklik-yok/hata) yeniden
 #    yazılır → "cron gerçekten koştu mu" doğru sinyali.
 set -euo pipefail
-KOK=/home/suha/projeler/suharitasi
+# KOK: üretimde sabit. SAGLIK_KOK yalnız TEST içindir (worktree'den koşum).
+KOK="${SAGLIK_KOK:-/home/suha/projeler/suharitasi}"
 cd "$KOK" || exit 1
 mkdir -p "$KOK/log"
 # Test/izolasyon kancaları (BELLEK_LOG deseniyle aynı, 2026-07-27): bekçi
@@ -61,6 +62,50 @@ if [ -f izleme/DURUM.md ]; then
 else
   ekle "izleme/DURUM.md YOK — su-izleme hiç koşmamış olabilir"
 fi
+
+# (d2) HAFTALIK NÖBETÇİLER — rg-nobetci + nhyp-nobetci (M13, 29.07.2026).
+#      NEDEN BEKÇİDE: bu ikisi md20 (kapsam kalemleri) içinde de ölçülüyor,
+#      ama md20 SAĞLIK SİSTEMİNİN İÇİNDE koşar. Sağlık koşusu durursa md20
+#      da susar — nöbetçinin ölümünü kimse görmez. Bekçi pipeline'dan
+#      BAĞIMSIZ olduğu için ikinci ve gerçek tanıktır.
+#      EŞİK GERÇEK TAKVİMDEN: rg haftalık (Sal 04:20) → 2 hafta = 336s;
+#      nhyp haftalık (Çar 04:40) ama NHYP yayını çok seyrek → 5 hafta = 840s.
+#      İKİ KATI aşılırsa zaten md20 kırmızı verir; bekçi tek eşikle yetinir.
+#      VADESİ GELMEYEN NÖBETÇİ ALARM ÜRETMEZ: yeni kurulan haftalık cron'un
+#      state dosyası ilk koşuma kadar doğmaz (ölçülen vaka: rg-nobetci
+#      28.07 Salı 21:00'de kuruldu, ilk koşum 04.08). Tarih karşılaştırması
+#      izleme/kapsam-taban.json'daki ilkKosumBeklenen ile yapılır — eşik
+#      script'e SABİT YAZILMAZ, tek kaynaktan okunur.
+nobetci_bak() {
+  ad="$1"; dosya="$2"; esik="$3"
+  vade=$(python3 -c "
+import json,sys,datetime
+d=json.load(open('$KOK/izleme/kapsam-taban.json'))
+n=[x for x in d.get('nobetciler',[]) if x['ad']=='$ad']
+print(n[0].get('ilkKosumBeklenen') or '' if n else '')
+" 2>>"$LOGP") || vade=""
+  if [ -f "$dosya" ]; then
+    YAS=$(( (NOW - $(date -u -r "$dosya" +%s)) / 3600 ))
+    # `[ ... ] && ekle` DEĞİL, açık `if`: `set -e` altında yanlış çıkan test
+    # fonksiyonun SON komutuysa fonksiyon 1 döner ve script sessizce durur
+    # (ölçüldü 29.07 — bekçi nhyp kontrolünden sonra hiç çıktı vermeden
+    # exit 1 verdi). CLAUDE.md: kör set -e yeni sessiz-durma yaratır.
+    if [ "$YAS" -gt "$esik" ]; then
+      ekle "$ad ${YAS} saattir güncellenmedi (tolerans ${esik}s) — haftalık cron durmuş olabilir"
+    fi
+  elif [ -n "$vade" ]; then
+    VADE_TS=$(date -u -d "$vade" +%s 2>>"$LOGP") || VADE_TS=0
+    if [ "$VADE_TS" -gt 0 ] && [ "$NOW" -lt "$VADE_TS" ]; then
+      : # vadesi gelmedi — alarm YOK
+    else
+      ekle "$ad state dosyası YOK ve ilk koşum vadesi ($vade) geçti — cron hiç koşmamış"
+    fi
+  else
+    ekle "$ad state dosyası YOK ve ilkKosumBeklenen tanımsız — yapılandırma eksik"
+  fi
+}
+nobetci_bak "rg-nobetci"   "izleme/state/rg-nobetci-durum.json"  336
+nobetci_bak "nhyp-nobetci" "izleme/state/nhyp-yayin-durum.json"  840
 
 # (e) bellek eşiği (bellek-log.txt; her 10 dk). PENCERE-tabanlı: tek ölçüm ASLA
 #     alarm üretmez. Eşik: SON 6 ÖLÇÜMÜN TAMAMINDA swap used > 2048MB VEYA
