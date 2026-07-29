@@ -7,6 +7,23 @@
 sürümü sunuyor (`081bdfa`), www'nin canonical'ı apex'i gösteriyor; iki
 HTML arasındaki tek fark CF e-posta gizlemesinin dönen XOR anahtarı.
 
+**ANALYTICS — [DÜZELTME, aynı gün] ÇALIŞIYOR.** Aşağıdaki ilk sonuç
+YANLIŞTI; panelde gerçek RUM verisi var (7 ziyaret, Core Web Vitals LCP
+%100 Good, yükleme 1.314 ms, apex+www). CWV **yalnız tarayıcıdaki
+beacon'dan** üretilebilir — sunucu tarafı metrik bunu veremez, dolayısıyla
+beacon gerçek ziyaretçilerde çalışıyor.
+Ölçümüm tekrarlandı ve hâlâ 0 gösteriyor: 0/20 istek, tam tarayıcı başlık
+seti, otomasyon bayrakları gizli, headless kapalı (Xvfb), 4 ek yol,
+apex+www. Bu sunucu Cloudflare'in **ARN** PoP'una düşüyor (3/3 `cf-ray`);
+enjeksiyonun bakış açısına göre değişmesi muhtemel ama **doğrulanmadı**.
+**YENİ KURAL (28.07 kuralının karşılığı):** "panelin aktif demesi kanıt
+değildir" doğruydu; bugün öğrenilen — **tek vantaj noktasından NEGATİF
+ölçüm de kanıt değildir**, ölçülen şey CDN'in istek başına değişen
+davranışıysa. RUM için belirleyici kanıt TOPLANAN VERİDİR.
+İkisi birlikte: beyan tek başına yetmez, tek noktadan negatif de yetmez;
+**veri akıyorsa çalışıyordur.**
+
+*(aşağısı ilk, yanlış çıkan sonucun kaydı — silinmedi)*
 **ANALYTICS — panel açıldı denildi ama BEACON YOK (ölçüm).** 3 sayfa,
 gerçek tarayıcı: DOM'da beacon 0, cloudflareinsights isteği 0, CSP
 ihlali 0; ham HTML'de de 0 (apex + www). AYIRT EDİCİ KANIT: Cloudflare'in

@@ -7,10 +7,11 @@ Tarih: 2026-07-28 · Ölçümler canlı siteye ve gerçek tarayıcıya karşı.
 
 ## 1. ÖZET — tek cümle
 
-Site teknik olarak dağıtıma **tam hazır** (sitemap, robots, llms, şema,
-canonical hepsi yerinde ve ölçüldü) ama **dışarıya hiç ulaşmamış**:
-aradığımız hiçbir sorguda görünmüyor, ziyaretçi verisi toplanmıyor,
-dış bağlantı sayılamıyor.
+Site teknik olarak dağıtıma **tam hazır** ve artık **ölçülüyor** (Web
+Analytics 29.07'de veri toplamaya başladı: 7 ziyaret, CWV LCP %100 Good;
+`www` de 200 dönüyor) — ama **görünürlük hâlâ düşük**: aradığımız
+sorgularda çıkmıyor, dış bağlantı sayılamıyor. Yani ölçüm boşluğu
+kapandı, **dağıtım boşluğu duruyor**.
 
 Yani sorun **üretimde değil, dağıtımda.** AY İLKESİ'nin (CLAUDE.md)
 gerekçesi tam olarak budur.
@@ -104,53 +105,75 @@ onarımının beyaz listesi bu iki konağı artık tanıyor).
 **İzin ATIL:** panel açılmadığı sürece hiçbir istek yapılmaz. Genişleme
 dar tutuldu — iki konak, iki direktif.
 
-### 4.1b DOĞRULAMA 29.07.2026 — panel açıldı, **BEACON HÂLÂ YOK**
+### 4.1b ANALYTICS **ÇALIŞIYOR** — 29.07.2026 (önceki sonuç DÜZELTİLDİ)
 
-Kullanıcı Web Analytics'i açtığını bildirdi. Gerçek tarayıcıyla canlı
-sitede, **üç sayfada** ölçüldü:
+**SONUÇ: Cloudflare Web Analytics veri topluyor.** Zone panelinde
+**7 ziyaret · 7 sayfa görüntüleme**, Core Web Vitals ölçülüyor
+(**LCP %100 "Good"**, sayfa yükleme **1.314 ms**), listede hem apex hem
+`www` URL'leri var.
 
-| Sayfa | DOM'da beacon | `data-cf-beacon` | cloudflareinsights isteği | CSP ihlali |
-|---|---|---|---|---|
-| `/` | **YOK** | **YOK** | **0** | 0 |
-| `/kuyu-ruhsati/manisa/` | **YOK** | **YOK** | **0** | 0 |
-| `/nerede-su-cikar/` | **YOK** | **YOK** | **0** | 0 |
+**Bu kanıt neden belirleyici:** Core Web Vitals (LCP, yükleme süresi)
+**yalnız ziyaretçinin tarayıcısında çalışan bir beacon'dan** üretilebilir.
+Sunucu tarafı istek metrikleri bu değerleri üretemez. Panelde CWV varsa
+beacon gerçek ziyaretçilerde çalışıyordur.
 
-Ham HTML'de de (tarayıcısız, masaüstü UA ile) **0** isabet — apex ve
-`www` hostname'lerinin ikisinde de.
+#### ÖNCEKİ SONUÇ YANLIŞTI — ve nedeni kayda geçiyor
 
-**AYIRT EDİCİ BULGU — sorun CSP'de ya da bizim tarafta DEĞİL:**
+Bu rapor daha önce "beacon yok → zone Automatic Setup kapalı" demişti.
+**Bu sonuç yanlıştı.** Ölçümün kendisi doğruydu, **çıkarım** yanlıştı.
 
-| Kanıt | Ölçüm | Anlamı |
-|---|---|---|
-| CSP `script-src` | `… https://static.cloudflareinsights.com` **canlıda** | beacon'a izin var |
-| CSP `connect-src` | `'self' https://cloudflareinsights.com` **canlıda** | POST'a izin var |
-| Konsol CSP ihlali | **0** | engellenen bir şey YOK — enjekte edilen de yok |
-| `static.cloudflareinsights.com/beacon.min.js` | **HTTP 200** | script erişilebilir, ağ sorunu yok |
-| **Cloudflare HTML yeniden yazıcısı** | `/cdn-cgi/l/email-protection` **2 isabet** | **Cloudflare bu yanıtlarda HTML'i GERÇEKTEN yeniden yazıyor** (e-posta gizlemesi çalışıyor) — ama RUM beacon'ını eklemiyor |
-| `/cdn-cgi/rum` | 404 | — |
+Bugün bu sunucudan yapılan ölçüm (tekrarlandı, hepsi **0 beacon**):
 
-Son satır kritik: **rewriter çalışıyor ama beacon enjekte edilmiyor.**
-Yani "otomatik enjeksiyon açık ama bir şey engelliyor" değil; **bu hostname
-için RUM otomatik kurulumu devrede değil.**
+| Deneme | Sonuç |
+|---|---|
+| 3 sayfa × gerçek tarayıcı (headless) | beacon 0 · istek 0 · CSP ihlali 0 |
+| Ham HTML, tam tarayıcı başlık seti (`sec-ch-ua`, `sec-fetch-*`, `accept-language`) | 0 |
+| Otomasyon bayrakları gizli (`navigator.webdriver=undefined`) | 0 |
+| **Headless KAPALI** (gerçek pencere, Xvfb) | 0 |
+| **20 ardışık istek** (önbellek kırıcı sorguyla) | **0/20** |
+| 4 ek yol (`/hakkinda/`, `/rehberler/`, `/arsiv/`, `/harita/`) | 0 |
+| `www` hostname | 0 |
 
-**En olası sebep (doğrulanmadı — panel görünümü gerekir):** Web Analytics
-iki ayrı yerde bulunur ve **yalnız biri beacon enjekte eder**:
-1. **Workers & Pages → suharitasi → Metrics** — Pages'in *sunucu tarafı*
-   istek metrikleri. Beacon YOKTUR, ziyaretçi davranışı ölçmez.
-2. **Alan adı (zone) → Analytics & Logs → Web Analytics** → site eklenir
-   ve **"Automatic Setup"** seçilir. Beacon'ı enjekte eden **budur.**
+Yani beacon **bu bakış açısına** hiç gelmiyor — ama gerçek ziyaretçilere
+geliyor (panel verisi).
 
-Ölçüm, (1) açılmış ama (2) açılmamış olduğuna işaret ediyor.
+**Neden fark ettiği doğrulanmadı.** Gözlenen: bu sunucunun istekleri
+Cloudflare'in **ARN (Stockholm)** PoP'una düşüyor (`cf-ray: …-ARN`, 3/3
+ölçüm). Gerçek ziyaretçiler büyük olasılıkla İstanbul PoP'una düşüyor.
+Enjeksiyonun PoP/bölge ya da istemci sınıflandırmasına göre değiştiği
+**muhtemeldir ama kanıtlanmadı** — panel görünümü olmadan ayırt edilemez.
 
-**Sıradaki adım (sizde):** zone tarafındaki **Web Analytics → Add a site →
-suharitasi.com → Automatic Setup**. Alternatif olarak aynı ekrandaki
-**manuel snippet** verilirse ben `Sayfa.astro`'ya ekleyebilirim (CSP zaten
-hazır) — o yol otomatik enjeksiyona bağımlı değildir.
+**Cloudflare bu yanıtlarda HTML'i yeniden yazıyor** (ölçüldü): canlı HTML
+`</body>` öncesinde `/cdn-cgi/scripts/.../email-decode.min.js` taşıyor ve
+yerel `dist`'ten **+490 bayt** büyük. Yani rewriter çalışıyor; RUM beacon'ı
+bu bakış açısına eklenmiyor.
 
-**Ölçüm tekrarı:** panel değişince tek komutla doğrularım —
-`scratchpad/beacon-olc.mjs` üç sayfayı gerçek tarayıcıyla tarar.
-**Panelin "aktif" demesi kanıt sayılmaz** (bu, 28.07'deki yanlış kaydın
-tam olarak sebebiydi).
+#### ÖLÇÜM DERSİ (kural haline geldi)
+
+28.07'de kural şuydu: *"panelin 'aktif' demesi kanıt sayılmaz."* Bugün
+bunun **karşılığı** öğrenildi:
+
+> **Negatif ölçüm de tek başına kanıt değildir** — ölçülen şey bir CDN'in
+> istek başına/bakış açısına göre değişen davranışıysa. "Benim gördüğüm
+> HTML'de yok" ile "çalışmıyor" AYNI ŞEY DEĞİLDİR.
+>
+> RUM için belirleyici kanıt **toplanan veridir** (özellikle Core Web
+> Vitals — sunucu tarafında üretilemez), tek bir vantaj noktasının HTML
+> çıktısı değil.
+
+Bu iki kural birlikte kullanılır: panel beyanı tek başına yetmez, tek
+noktadan negatif ölçüm de yetmez; **veri akıyorsa çalışıyordur.**
+
+#### Kalan iş (küçük)
+
+- CSP izni (`static.cloudflareinsights.com` + `cloudflareinsights.com`)
+  canlıda ve **doğru** — beacon engellenmiyor (CSP ihlali 0). Değişiklik
+  gerekmiyor.
+- **Süreklilik kalemi ERTELENDİ:** "beacon canlıda var mı" sağlık kalemi
+  eklenemez — bu sunucudan yapılan ölçüm sistematik olarak 0 döndürüyor ve
+  kalem sürekli yanlış alarm verirdi. Doğru kalem panel/API tarafında
+  ("son 24 saatte olay sayısı > 0") olurdu; Web Analytics API erişimi
+  gerektirir. Kullanıcı kararı.
 
 ### 4.2 Panel adımları (SİZİN YAPMANIZ)
 1. Cloudflare panel → **Workers & Pages → suharitasi → Metrics /

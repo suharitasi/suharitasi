@@ -43,15 +43,18 @@ KAPANMAYANLAR (gerekçeli):
 Hepsi ücretsiz ve kısa; sıra etki büyüklüğüne göre.
  1. **GSC kurulumu** (~15 dk) — indeks körlüğü kapanır. Ölçüldü: sitenin
     kendi alan adıyla tam eşleşme aramasında bile sonuç YOK. rapor/dagitim-durumu.md
- 2. **Web Analytics — HÂLÂ BEACON YOK** (29.07 ölçümü, panel açıldı denmesine
-    rağmen). 3 sayfa × gerçek tarayıcı: DOM'da beacon 0, cloudflareinsights
-    isteği 0, CSP ihlali 0. Ayırt edici kanıt: Cloudflare HTML yeniden
-    yazıcısı ÇALIŞIYOR (e-posta gizlemesi aktif) ama RUM beacon'ı
-    eklemiyor → **zone tarafındaki Web Analytics "Automatic Setup" açık
-    değil** (Pages → Metrics beacon enjekte ETMEZ). Sonraki adım: zone →
-    Analytics & Logs → Web Analytics → Add a site → Automatic Setup.
-    ALTERNATİF: manuel snippet verilirse Sayfa.astro'ya eklerim, CSP hazır.
-    rapor/dagitim-durumu.md §4.1b
+ 2. ~~Web Analytics~~ **ÇALIŞIYOR — KAPANDI 29.07.** Panelde 7 ziyaret,
+    7 sayfa görüntüleme, Core Web Vitals ölçülüyor (LCP %100 Good, yükleme
+    1.314 ms), apex + www. CWV yalnız tarayıcıdaki beacon'dan üretilebilir
+    → beacon gerçek ziyaretçilerde çalışıyor. CSP izni doğru, engel yok.
+    NOT: bu sunucudan yapılan HTML ölçümü beacon'ı GÖRMÜYOR (0/20 istek,
+    3 tarayıcı kimliği, apex+www) — sebebi doğrulanmadı, muhtemelen PoP
+    farkı (buradan ARN'ye düşüyoruz). ÖLÇÜM DERSİ: tek vantaj noktasından
+    negatif ölçüm, CDN'in istek başına değişen davranışında kanıt
+    DEĞİLDİR. rapor/dagitim-durumu.md §4.1b
+    AÇIK KALEM: "beacon var mı" sağlık kalemi EKLENEMEZ (buradan sürekli
+    yanlış alarm verir); doğru kalem Web Analytics API'sinden "son 24
+    saatte olay > 0" olurdu — API erişimi kullanıcı kararı.
  3. **.env kopyası şifre yöneticisine** (~5 dk) — kurtarma süresinin tek
     darboğazı; "günler → 15 dakika". rapor/kurtarma-plani.md K1
  4. **Makine dışı yedek konumu** — Cloudflare R2 ücretsiz katmanı önerildi
