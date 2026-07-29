@@ -203,7 +203,11 @@ function degisimEtiket(s: ReturnType<typeof seriHazirla>) {
     font-size: 1.85rem;
     font-weight: 500;
     line-height: 1.05;
-    font-variant-numeric: tabular-nums;
+    /* lining-nums EKLENDİ (İş B, 29.07.2026): Cormorant'ın varsayılan
+         rakamları eski-stil — 3/5/7/9 taban çizgisinin altına sarkıyor,
+         6/8 yükseliyor (200px'te ölçüldü). DESIGN.md §18.1: kanıt
+         rakamları lining figür taşır. tabular zaten vardı. */
+    font-variant-numeric: lining-nums tabular-nums;
     display: flex;
     align-items: baseline;
     gap: 0.35rem;

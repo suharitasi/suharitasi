@@ -247,7 +247,12 @@ const cokIlliler = p.kutleler.filter((k) => k.cokIlli);
 
   .pot-dipnot {
     margin-top: 0.5rem;
-    font-size: 0.82rem;
+    /* 0.82rem → 0.93rem (İş B, 29.07): bu blok "veri yok" satırlarının
+       NEDENİNİ açıklıyor — yani belirsizlik dili. DESIGN.md §18.1:
+       belirsizlik dili küçültülmez, soluklaştırılmaz, dipnota itilmez;
+       iddianın yanında aynı okunaklılıkta durur. Komşu gövde .pot-rg li
+       0.93rem — onunla eşitlendi. */
+    font-size: 0.93rem;
     color: var(--metin-soluk);
   }
 
