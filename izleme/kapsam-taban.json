@@ -16,7 +16,7 @@
     ]
   },
   "veri": {
-    "_not": "veri/potansiyel — ana kayit alani + sayisi. Kayit DUSUSU kirmizi, sema degisimi sari, artis sessiz.",
+    "_not": "veri/potansiyel — ana kayit alani + sayisi. Kayit DUSUSU kirmizi, sema degisimi sari, artis sessiz. | 29.07 BILINCLI SEMA DEGISIMI (M5/M8): isletme-sahalari-ek.json 8->9 ust anahtar (rg_sayi_cikarim kunyesi eklendi — 417/419 kayitta rg_sayi cikarimi ve K3a/K3b dogrulamasi); kutle-il.json 5->6 (belirsiz_arastirmasi eklendi — 5 belirsiz kutlenin NHYP metin taramasi, ATAMA SIFIR, negatif sonuc kalici). Kayit SAYILARI degismedi (310 ve 472) — veri kaybi yok.",
     "dosyalar": {
       "akademik-kunye.json": {
         "alan": "iller",
@@ -36,7 +36,7 @@
       "isletme-sahalari-ek.json": {
         "alan": "kayitlar",
         "say": 310,
-        "ustAnahtar": 8
+        "ustAnahtar": 9
       },
       "isletme-sahalari.json": {
         "alan": "kayitlar",
@@ -46,7 +46,7 @@
       "kutle-il.json": {
         "alan": "kutleler",
         "say": 472,
-        "ustAnahtar": 5
+        "ustAnahtar": 6
       },
       "morfoloji.json": {
         "alan": "iller",
