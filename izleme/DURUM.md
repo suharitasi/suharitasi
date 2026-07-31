@@ -1,6 +1,6 @@
 # Su Kanunu İzleme — DURUM
 
-Son koşu (UTC): **2026-07-30T16-15-01Z**
+Son koşu (UTC): **2026-07-31T05-45-01Z**
 
 Özet: 12 hedef · ✳ olay: 1 · 🔴 hata: 0
 
@@ -14,7 +14,7 @@ Son koşu (UTC): **2026-07-30T16-15-01Z**
 | tbmm-tarim-orman-komisyonu | K1 | 🟢 tamam | değişiklik yok |
 | tbmm-komisyon-gundemleri | K1 | 🟢 tamam | değişiklik yok |
 | tarimorman-sygm | K4 | 🟢 tamam | değişiklik yok |
-| tarimorman-anasayfa | K4 | ✳ OLAY | içerik değişti (~12 satır) |
+| tarimorman-anasayfa | K4 | ✳ OLAY | içerik değişti (~8 satır) |
 | dsi-duyuru-listesi | K4 | 🟢 tamam | değişiklik yok |
 | su-kanunu-taslak-pdf | K4 | 🟢 tamam | Last-Modified değişmedi (Thu, 31 Oct 2019 08:20:54 GMT) |
 | su-kanunu-taslak-2026 | K4 | 🟢 tamam | Last-Modified değişmedi (Tue, 28 Apr 2026 10:44:15 GMT) |
@@ -23,6 +23,7 @@ Son koşu (UTC): **2026-07-30T16-15-01Z**
 
 ## Son 10 olay
 
+- 2026-07-31T05-45-01Z | tarimorman-anasayfa | içerik değişti (~8 satır) → arsiv/tarimorman-anasayfa/2026-07-31T05-45-01Z/
 - 2026-07-30T16-15-01Z | tarimorman-anasayfa | içerik değişti (~12 satır) → arsiv/tarimorman-anasayfa/2026-07-30T16-15-01Z/
 - 2026-07-30T05-45-01Z | tarimorman-anasayfa | içerik değişti (~4 satır) → arsiv/tarimorman-anasayfa/2026-07-30T05-45-01Z/
 - 2026-07-29T16-15-01Z | tbmm-komisyon-gundemleri | içerik değişti (~8 satır) → arsiv/tbmm-komisyon-gundemleri/2026-07-29T16-15-01Z/
@@ -32,7 +33,6 @@ Son koşu (UTC): **2026-07-30T16-15-01Z**
 - 2026-07-27T16-00-01Z | tbmm-kanun-teklifleri | içerik değişti (~3 satır) → arsiv/tbmm-kanun-teklifleri/2026-07-27T16-00-01Z/
 - 2026-07-27T16-00-01Z | tarimorman-anasayfa | içerik değişti (~10 satır) → arsiv/tarimorman-anasayfa/2026-07-27T16-00-01Z/
 - 2026-07-26T16-00-01Z | tarimorman-anasayfa | içerik değişti (~4 satır) → arsiv/tarimorman-anasayfa/2026-07-26T16-00-01Z/
-- 2026-07-24T16-00-01Z | tbmm-komisyon-gundemleri | içerik değişti (~18 satır) → arsiv/tbmm-komisyon-gundemleri/2026-07-24T16-00-01Z/
 
 ---
 _Cron: 05:30 + 16:00 UTC · fark motoru + RG deterministik · kaynak: rapor/su-kanunu-kaynak-kesif.md (700f216)_
