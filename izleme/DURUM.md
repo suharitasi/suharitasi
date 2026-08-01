@@ -1,6 +1,6 @@
 # Su Kanunu İzleme — DURUM
 
-Son koşu (UTC): **2026-08-01T05-45-01Z**
+Son koşu (UTC): **2026-08-01T16-15-01Z**
 
 Özet: 12 hedef · ✳ olay: 2 · 🔴 hata: 0
 
@@ -9,7 +9,7 @@ Son koşu (UTC): **2026-08-01T05-45-01Z**
 | Hedef | Katman | Durum | Not |
 |---|---|---|---|
 | RG-gunluk | M1 | 🟢 tamam | yayınlandı, eşleşme yok (ana:0 kanun-maddesi; ) |
-| tbmm-kanun-teklifleri | K1 | ✳ OLAY | içerik değişti (~6 satır) |
+| tbmm-kanun-teklifleri | K1 | ✳ OLAY | içerik değişti (~4 satır) |
 | tbmm-cevre-komisyonu | K1 | 🟢 tamam | değişiklik yok |
 | tbmm-tarim-orman-komisyonu | K1 | 🟢 tamam | değişiklik yok |
 | tbmm-komisyon-gundemleri | K1 | 🟢 tamam | değişiklik yok |
@@ -23,6 +23,8 @@ Son koşu (UTC): **2026-08-01T05-45-01Z**
 
 ## Son 10 olay
 
+- 2026-08-01T16-15-01Z | tbmm-kanun-teklifleri | içerik değişti (~4 satır) → arsiv/tbmm-kanun-teklifleri/2026-08-01T16-15-01Z/
+- 2026-08-01T16-15-01Z | tarimorman-anasayfa | içerik değişti (~4 satır) → arsiv/tarimorman-anasayfa/2026-08-01T16-15-01Z/
 - 2026-08-01T05-45-01Z | tbmm-kanun-teklifleri | içerik değişti (~6 satır) → arsiv/tbmm-kanun-teklifleri/2026-08-01T05-45-01Z/
 - 2026-08-01T05-45-01Z | tarimorman-anasayfa | içerik değişti (~4 satır) → arsiv/tarimorman-anasayfa/2026-08-01T05-45-01Z/
 - 2026-07-31T16-15-01Z | tbmm-komisyon-gundemleri | içerik değişti (~8 satır) → arsiv/tbmm-komisyon-gundemleri/2026-07-31T16-15-01Z/
@@ -31,8 +33,6 @@ Son koşu (UTC): **2026-08-01T05-45-01Z**
 - 2026-07-31T05-45-01Z | tarimorman-anasayfa | içerik değişti (~8 satır) → arsiv/tarimorman-anasayfa/2026-07-31T05-45-01Z/
 - 2026-07-30T16-15-01Z | tarimorman-anasayfa | içerik değişti (~12 satır) → arsiv/tarimorman-anasayfa/2026-07-30T16-15-01Z/
 - 2026-07-30T05-45-01Z | tarimorman-anasayfa | içerik değişti (~4 satır) → arsiv/tarimorman-anasayfa/2026-07-30T05-45-01Z/
-- 2026-07-29T16-15-01Z | tbmm-komisyon-gundemleri | içerik değişti (~8 satır) → arsiv/tbmm-komisyon-gundemleri/2026-07-29T16-15-01Z/
-- 2026-07-29T16-15-01Z | tarimorman-anasayfa | içerik değişti (~12 satır) → arsiv/tarimorman-anasayfa/2026-07-29T16-15-01Z/
 
 ---
 _Cron: 05:30 + 16:00 UTC · fark motoru + RG deterministik · kaynak: rapor/su-kanunu-kaynak-kesif.md (700f216)_
