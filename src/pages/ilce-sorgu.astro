@@ -1,0 +1,230 @@
+---
+// IL/ILCE SU POTANSiYELi SORGU ARACI — /ilce-sorgu/
+// JS'siz <select> mimarisi, build-time veri gozterimi.
+// Kullanici il secer → mevcut veri katmanlarindan il profili tek ekranda.
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import Katman from '../components/Katman.astro';
+import { tumIlProfilleri } from '../data/il-profil.js';
+import { ilPotansiyel } from '../data/potansiyel.js';
+import { tumHavzaRiskleri } from '../data/havza-risk.js';
+import ilKurum from '../../data/il-kurum.json';
+import morfoloji from '../../veri/potansiyel/morfoloji.json' assert { type: 'json' };
+
+const profiller = tumIlProfilleri();
+const riskler = tumHavzaRiskleri();
+const ilAdlari = profiller.map((p) => p.il);
+
+// URL'den il parametresini al (/?il=Ankara gibi)
+const seciliIl = Astro.url.searchParams.get('il') || '';
+const profil = seciliIl ? profiller.find((p) => p.il === seciliIl) : null;
+const potansiyel = seciliIl ? ilPotansiyel(seciliIl) : null;
+const morf = (seciliIl && morfoloji.iller?.[seciliIl]) ? morfoloji.iller[seciliIl] : null;
+
+const sayi = (n, o) => n?.toLocaleString('tr-TR', { minimumFractionDigits: o, maximumFractionDigits: o });
+
+// Risk puani yuksek havzalari sirala
+const riskliHavzalar = riskler.filter((r) => r.seviye !== 'dusuk').slice(0, 8);
+
+const ozet = 'Turkiye\'de il bazinda su potansiyeli, yeralti suyu kutleleri, baraj doluluklari, '
+  + 'arazi morfolojisi ve yetkili DSİ bolge bilgilerini tek ekranda sorgulayin. '
+  + 'Veriler resmi kaynaklardan derlenmistir; hukuki gorus veya tavsiye icermez.';
+
+const sema = [{
+  '@type': 'Dataset',
+  name: 'Turkiye Il/Ilce Su Potansiyeli Sorgu Araci',
+  description: ozet,
+  includedInDataCatalog: { '@type': 'DataCatalog', name: 'Su Haritasi' },
+}];
+
+// il-kurum.json'dan il → su idaresi
+const suIdareleri = ilKurum.suIdareleri || {};
+---
+
+<Sayfa baslik="Il Su Potansiyeli Sorgu Araci" aciklama={ozet} sema={sema}>
+  <SayfaBasi etiket="Arac" baslik="Il Su Potansiyeli Sorgulama" />
+
+  <OzCevap metin={ozet} />
+
+  <Katman baslik="Il Secimi" ipucu="81 il · aninda profil">
+    <form method="get" action="/ilce-sorgu/" class="sorgu-form">
+      <label for="il-sec" class="sr-only">Il seciniz</label>
+      <select id="il-sec" name="il" onchange="this.form.submit()" class="il-secici">
+        <option value="">— Il seciniz —</option>
+        {ilAdlari.map((il) => (
+          <option value={il} selected={il === seciliIl}>{il}</option>
+        ))}
+      </select>
+      <noscript>
+        <button type="submit">Sorgula</button>
+      </noscript>
+    </form>
+  </Katman>
+
+  {profil && (
+    <Fragment>
+      <Katman baslik={`${profil.il} — DSİ Yetkili Kurum`} ipucu="bolge mudurlugu · iletisim">
+        <dl class="kunye kunye-katman">
+          <div class="kunye-satir">
+            <dt>DSİ Bolge(ler)</dt>
+            <dd>
+              {profil.dsiBolgeleri.map((b) =>
+                `DSİ ${Number(b.no)}. Bolge Mudurlugu (${b.merkez})`
+              ).join(' · ')}
+            </dd>
+          </div>
+          <div class="kunye-satir">
+            <dt>Su idaresi</dt>
+            <dd>{suIdareleri[profil.il] || 'Il Ozel Idaresi / belediye'}</dd>
+          </div>
+          <div class="kunye-satir">
+            <dt>Havza(lar)</dt>
+            <dd>
+              {profil.havzalar.map((h) => (
+                <span style="margin-right:1rem">
+                  <a href={`/havzalar/${h.slug || h.ad.toLowerCase().replace(/\s+/g,'-').replace(/ı/g,'i').replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s').replace(/ö/g,'o').replace(/ç/g,'c')}/`}>
+                    {h.ad}
+                  </a>
+                  {h.riskPuan != null && (
+                    <span class="risk-badge" style={`background:${h.riskPuan >= 60 ? '#C62828' : h.riskPuan >= 35 ? '#E65100' : '#2E7D32'}`}>
+                      {h.riskPuan}
+                    </span>
+                  )}
+                </span>
+              ))}
+            </dd>
+          </div>
+        </dl>
+      </Katman>
+
+      {morf && (
+        <Katman baslik="Arazi Morfolojisi" ipucu="Copernicus GLO-90 DEM · il sinirlari icinde">
+          <dl class="kunye kunye-katman">
+            <div class="kunye-satir">
+              <dt>Duz arazi (&lt;%2 egim)</dt>
+              <dd>{sayi(morf.duz_oran * 100, 1)}%</dd>
+            </div>
+            <div class="kunye-satir">
+              <dt>Vadi tabani</dt>
+              <dd>{sayi(morf.vadi_oran * 100, 1)}%</dd>
+            </div>
+            <div class="kunye-satir">
+              <dt>Ortalama egim</dt>
+              <dd>{sayi(morf.ort_egim, 1)}°</dd>
+            </div>
+          </dl>
+          <p class="not">Duz arazi ve vadi tabani orani yuksek olan illerde yeralti suyu potansiyeli genellikle daha yuksektir. Bu, morfolojiye dayali GENEL bir gostergedir; saha etudu yerine GECMEZ.</p>
+        </Katman>
+      )}
+
+      {potansiyel && (
+        <Katman baslik="Su Potansiyeli Verileri" ipucu="NHYP · DSİ · Resmi Gazete · OSM">
+          <div class="potansiyel-ozet">
+            {potansiyel.kutleSayisi > 0 && (
+              <div class="metrik-kart">
+                <span class="metrik-deger">{potansiyel.kutleSayisi}</span>
+                <span class="metrik-etiket">YAS kutlesi</span>
+              </div>
+            )}
+            {potansiyel.rgSayisi > 0 && (
+              <div class="metrik-kart">
+                <span class="metrik-deger">{potansiyel.rgSayisi}</span>
+                <span class="metrik-etiket">RG isletme sahasi</span>
+              </div>
+            )}
+            {potansiyel.osmKaynak > 0 && (
+              <div class="metrik-kart">
+                <span class="metrik-deger">{sayi(potansiyel.osmKaynak, 0)}</span>
+                <span class="metrik-etiket">OSM su kaynagi</span>
+              </div>
+            )}
+          </div>
+        </Katman>
+      )}
+    </Fragment>
+  )}
+
+  {!profil && (
+    <Katman baslik="Risk Puani En Yuksek Havzalar" ipucu="6 gostergeli bilesik skor">
+      <div class="risk-listesi">
+        {riskliHavzalar.map((r) => (
+          <a href={`/havzalar/${r.ad.toLowerCase().replace(/\s+/g,'-').replace(/ı/g,'i').replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s').replace(/ö/g,'o').replace(/ç/g,'c').replace(/havzası/g,'')}/`} class="risk-kart">
+            <span class="risk-adi">{r.ad}</span>
+            <span class="risk-bar">
+              <span class="risk-dolgu" style={`width:${r.puan}%;background:${r.renk}`}></span>
+            </span>
+            <span class="risk-deger">{r.puan}/100</span>
+          </a>
+        ))}
+      </div>
+      <p class="not">Yukaridaki puan GRACE su depolama egilimi, baraj doluluk, YAS rezervi, tahsis durumu ve yuzey suyu potansiyelinden hesaplanmistir. Il secimi yaparak o ilin hangi havzalarda oldugunu ve risk puanini gorebilirsiniz.</p>
+    </Katman>
+  )}
+
+  <Katman baslik="Kapsam ve Uyari" ton="murekkep" ipucu="veri kaynaklari · sinirlar">
+    <p class="not">
+      Bu arac resmi kaynaklardan derlenen acik verileri sunar; hukuki gorus, yatirim
+      tavsiyesi veya saha etudu raporu NITELIGi TASIMAZ. Kuyu yeri secimi, ruhsat
+      basvurusu veya yatirim karari almadan once mutlaka yetkili bir hidrojeoloji
+      muhendisine ve/veya su hukuku avukatina danisiniz.
+    </p>
+    <p class="not">
+      Veri kaynaklari: DSİ Resmi Su Kaynaklari Istatistikleri (2024), SYGM NHYP
+      (12 havza), GRACE/GRACE-FO NASA GSFC, EPİAS Seffaflik Platformu,
+      Copernicus GLO-90 DEM, OpenStreetMap (ODbL), T.C. Resmi Gazete.
+      Tum veri TEMSİLİDİR; resmi saha dogrulamasi yapilmamistir.
+    </p>
+  </Katman>
+</Sayfa>
+
+<style>
+  .sorgu-form { margin: 1rem 0; }
+  .il-secici {
+    width: 100%;
+    max-width: 24rem;
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    font-family: var(--govde);
+    border: 1px solid var(--cizgi);
+    background: var(--zemin-kart);
+    color: var(--metin);
+    border-radius: 0;
+    appearance: auto;
+  }
+  .il-secici:focus { outline: 2px solid var(--su-500); outline-offset: 1px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+  .kunye { margin: 0 0 2rem; padding: 1.3rem 1.4rem 1.3rem 1.8rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); border-top: 2px solid var(--su-700); position: relative; }
+  .kunye::before { content: ""; position: absolute; left: 0.6rem; top: 1rem; bottom: 1rem; width: 6px; background: repeating-linear-gradient(180deg, rgba(46,126,160,.4) 0 1px, transparent 1px 7px), linear-gradient(90deg, rgba(46,126,160,.4) 0 1px, transparent 1px); }
+  .kunye-katman { margin: 0; padding: 0.4rem 0 0; background: transparent; border: 0; }
+  .kunye-katman::before { display: none; }
+  .kunye-satir { display: grid; grid-template-columns: minmax(8rem, 12rem) 1fr; gap: 0.4rem 1.2rem; padding: 0.5rem 0; }
+  .kunye-satir + .kunye-satir { border-top: 1px solid var(--cizgi); }
+  dt { font-family: var(--mono); font-size: 0.66rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--metin-soluk); align-self: center; }
+  dd { font-size: 0.96rem; }
+  dd a { color: var(--baglanti); }
+
+  .risk-badge { display: inline-block; color: #fff; font-size: 0.7rem; font-weight: 600; padding: 0.1rem 0.4rem; margin-left: 0.3rem; vertical-align: middle; }
+  .potansiyel-ozet { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .metrik-kart { flex: 1; min-width: 8rem; text-align: center; padding: 1rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); }
+  .metrik-deger { display: block; font-size: 2rem; font-weight: 600; color: var(--su-700); font-family: var(--serif); }
+  .metrik-etiket { display: block; font-size: 0.72rem; color: var(--metin-soluk); margin-top: 0.3rem; }
+
+  .risk-listesi { display: flex; flex-direction: column; gap: 0.4rem; }
+  .risk-kart { display: flex; align-items: center; gap: 0.8rem; padding: 0.5rem 0.8rem; text-decoration: none; border: 1px solid var(--cizgi); background: var(--zemin-kart); }
+  .risk-kart:hover { background: var(--zemin-kart-hover, #f0f4f7); }
+  .risk-adi { flex: 0 0 10rem; font-size: 0.9rem; color: var(--metin); }
+  .risk-bar { flex: 1; height: 10px; background: #e0e0e0; }
+  .risk-dolgu { display: block; height: 100%; }
+  .risk-deger { flex: 0 0 3rem; font-size: 0.8rem; font-weight: 600; color: var(--metin-soluk); text-align: right; font-family: var(--mono); }
+
+  .not { font-size: 0.88rem; color: var(--metin-soluk); margin: 0.5rem 0; }
+  .not a { color: var(--baglanti); }
+
+  @media (max-width: 560px) {
+    .kunye-satir { grid-template-columns: 1fr; gap: 0.1rem; }
+    .risk-adi { flex: 0 0 6rem; font-size: 0.8rem; }
+    .metrik-kart { min-width: 5rem; }
+  }
+</style>

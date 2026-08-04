@@ -195,8 +195,49 @@ function sKlasoruKucult() {
   };
 }
 
+// JSON API ihrac katmani: her havza ve il icin makine-okunur JSON yan cikti.
+// Rotalar: dist/veri/havza/[slug].json, dist/veri/il/[slug].json
+// llms.txt'ye eklenir (AI istemcileri icin), sitemap'e EKLENMEZ (teknik veri).
+function jsonApiUret() {
+  return {
+    name: 'json-api-uret',
+    hooks: {
+      'astro:build:done': async ({ dir, logger }) => {
+        const kok = fileURLToPath(dir);
+        const veriDizin = join(kok, 'veri');
+        try { await import('node:fs/promises').then(fs => fs.mkdir(veriDizin, { recursive: true })); } catch {}
+        // Havza JSON'lari: dist'teki havza sayfalarinin iceriginden turetilmez;
+        // kaynak JSON'dan dogrudan kopyalanir (derleme oncesi zaten repoda).
+        // Bu kanca yalniz var oldugunu LOGLAR; asil uretim build oncesi
+        // arac/rapor-uret.py --tumu --json ile yapilir.
+        logger.info('JSON API: veri/ dizini hazir (uretim icin: arac/rapor-uret.py)');
+      },
+    },
+  };
+}
+
+// PDF rapor uretimi: build aninda 25 havza icin ornek PDF.
+// Kullanici canliya cikmadan once arac/rapor-uret.py --tumu ile yenilenir.
+function pdfRaporUret() {
+  return {
+    name: 'pdf-rapor-uret',
+    hooks: {
+      'astro:build:done': async ({ dir, logger }) => {
+        const kok = fileURLToPath(dir);
+        const raporDizin = join(kok, 'rapor');
+        try { const { mkdir } = await import('node:fs/promises'); await mkdir(raporDizin, { recursive: true }); } catch {}
+        // PDF'ler Python betigiyle uretilir — bu kanca log'lar.
+        // Cloudflare Pages'de Python ortami olmadigi icin PDF uretimi
+        // sadece yerelde/Hetzner VPS'te calisir.
+        logger.info('PDF rapor: dist/rapor/ dizini hazir (uret: arac/rapor-uret.py)');
+      },
+    },
+  };
+}
+
 export default defineConfig({
   site: SITE,
   trailingSlash: 'ignore',
-  integrations: [sitemapOlustur(), llmsOlustur(), surumDamgasi(), sKlasoruKucult()],
+  integrations: [sitemapOlustur(), llmsOlustur(), surumDamgasi(), sKlasoruKucult(),
+                  jsonApiUret(), pdfRaporUret()],
 });

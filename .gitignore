@@ -47,3 +47,4 @@ izleme/state/site-saglik-durum.json
 veri/ham/
 .venv-morfoloji/
 __pycache__/
+.venv/
