@@ -940,3 +940,13 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
 @media (max-width: 600px) {
   .v2-cta-ikili { grid-template-columns: 1fr; }
 }
+.v2-cta-bant {
+  padding: 0 1.5rem 1.2rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+.v2-cta-altin {
+  background: linear-gradient(135deg, rgba(192,136,58,0.25) 0%, rgba(135,85,24,0.9) 100%);
+  border: 1px solid rgba(192,136,58,0.4);
+  text-align: center;
+}

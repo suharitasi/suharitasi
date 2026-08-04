@@ -123,6 +123,12 @@ const ozet = 'Turkiye\'de il ve ilce bazinda yeralti su potansiyeli, arazi morfo
         <div class="hukuk-yon-links"><a href="/su-hukuku/" class="hukuk-link hukuk-link-ana" id="hukuk-link-ana">Su Hukuku Analizi</a><a href="/rehberler/kuyu-ruhsati/" class="hukuk-link">Kuyu Ruhsati Basvuru Sureci</a><a href="/rehberler/ruhsatsiz-kuyu-cezalari/" class="hukuk-link">Ruhsatsiz Kuyu Cezalari</a></div>
       </div>
     </Katman>
+
+    <div class="b2b-banner" id="b2b-banner">
+      <p class="b2b-banner-baslik">Bu lokasyona ait detaylı B2B Su Potansiyeli ve Ruhsat Analizi Raporunu Alın</p>
+      <p class="b2b-banner-alt">Profesyonel hidrojeolojik değerlendirme, DSİ ruhsat risk analizi ve hukuki görüş tek raporda.</p>
+      <a href="/rapor-satin-al/" class="b2b-banner-btn" id="b2b-banner-link">B2B Rapor Paketlerini İncele</a>
+    </div>
   </div>
 
   <div id="analiz-bos">
@@ -179,6 +185,13 @@ const ozet = 'Turkiye\'de il ve ilce bazinda yeralti su potansiyeli, arazi morfo
   .hukuk-link:hover { background: var(--zemin-kart-hover, #f0f4f7); }
   .hukuk-link-ana { border-left: 4px solid var(--kehribar-600, #875518); font-weight: 600; }
   .not { font-size: 0.88rem; color: var(--metin-soluk); margin: 0.5rem 0; }
+
+  .b2b-banner { margin-top: 0.8rem; padding: 1rem 1.3rem; background: linear-gradient(135deg, rgba(135,85,24,0.08) 0%, rgba(192,136,58,0.15) 100%); border: 1px solid rgba(192,136,58,0.3); border-left: 4px solid var(--kehribar-600, #875518); }
+  .b2b-banner-baslik { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; color: var(--metin); margin-bottom: 0.3rem; }
+  .b2b-banner-alt { font-size: 0.82rem; color: var(--metin-soluk); margin: 0 0 0.7rem; }
+  .b2b-banner-btn { display: inline-block; padding: 0.5rem 1.2rem; background: linear-gradient(135deg, #875518, #C0883A); color: #fff; font-size: 0.85rem; font-weight: 600; text-decoration: none; font-family: var(--mono); }
+  .b2b-banner-btn:hover { background: linear-gradient(135deg, #6B4212, #A07030); }
+
   @media (max-width: 560px) {
     .sorgu-grid { grid-template-columns: 1fr; }
     .kunye-satir { grid-template-columns: 1fr; gap: 0.1rem; }
@@ -348,6 +361,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const lok = d.ilAd+' / '+d.ilceAd;
     setH('hukuk-yon-metin','<strong>'+lok+'</strong> bolgesinde kuyu acma ruhsati, DSi mesafe kisitlamalari, idari yaptirim surecleri ve ceza itiraz haklariniz hakkinda detayli bilgi icin asagidaki rehberleri inceleyin:');
     setT('hukuk-link-ana', d.ilceAd+' Su Hukuku Analizi — Ceza, Iptal ve Itiraz Rehberi');
+
+    // B2B banner link'ini secili il/ilce ile guncelle
+    const bannerLink = G('b2b-banner-link');
+    if (bannerLink) bannerLink.href = '/rapor-satin-al/?il=' + encodeURIComponent(d.ilAd) + '&ilce=' + encodeURIComponent(d.ilceAd);
 
     bos.style.display = 'none';
     sonuc.style.display = 'block';

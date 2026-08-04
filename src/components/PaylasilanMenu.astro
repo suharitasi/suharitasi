@@ -22,6 +22,8 @@ const veriler = VERI_ROTALARI;
     </ul>
   </nav>
 
+  <a class="pm-cta" href="/rapor-satin-al/">B2B Rapor Satın Al</a>
+
   <button type="button" class="pm-menu-dugme" id="pm-menu-dugme"
           aria-expanded="false" aria-controls="pm-mobil-panel"
           aria-label="Menüyü aç">
@@ -38,6 +40,7 @@ const veriler = VERI_ROTALARI;
 <nav class="pm-mobil-panel" id="pm-mobil-panel" aria-label="Menü">
   <ul>
     {veriler.map((r) => (<li><a href={r.yol}>{r.ad}</a></li>))}
+    <li><a href="/rapor-satin-al/" class="pm-mobil-cta">B2B Rapor Satın Al</a></li>
   </ul>
 </nav>
 
@@ -117,6 +120,29 @@ const veriler = VERI_ROTALARI;
   .pm-marka:focus-visible,
   .pm-menu-dugme:focus-visible {
     outline: 2px solid #7fd0ef; outline-offset: 3px;
+  }
+
+  /* B2B CTA butonu */
+  .pm-cta {
+    display: inline-block; padding: 0.4rem 1rem;
+    background: linear-gradient(135deg, #875518, #C0883A);
+    color: #fff; font-family: var(--mono, monospace);
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
+    text-decoration: none; white-space: nowrap;
+    border-radius: 4px;
+    transition: transform 120ms ease, box-shadow 120ms ease;
+  }
+  .pm-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(135,85,24,0.4); }
+  .pm-cta:active { transform: scale(0.97); }
+  .pm-cta:focus-visible { outline: 2px solid #7fd0ef; outline-offset: 3px; }
+  .pm-mobil-cta {
+    display: block; padding: 0.65rem 0;
+    color: #C0883A !important; font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  @media (max-width: 1023px) {
+    .pm-cta { display: none; }
   }
 
   .pm-menu-dugme {
