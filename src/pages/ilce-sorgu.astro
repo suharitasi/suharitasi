@@ -8,8 +8,8 @@ import Katman from '../components/Katman.astro';
 import { tumIlProfilleri } from '../data/il-profil.js';
 import { ilPotansiyel } from '../data/potansiyel.js';
 import ilKurum from '../../data/il-kurum.json';
-import morfoloji from '../../veri/potansiyel/morfoloji.json' assert { type: 'json' };
 import ilceDizin from '../../veri/potansiyel/ilce-il-dizini.json' assert { type: 'json' };
+import ilceMorf from '../../veri/potansiyel/ilce-morfoloji.json' assert { type: 'json' };
 
 const profiller = tumIlProfilleri();
 const ilAdlari = profiller.map((p) => p.il);
@@ -36,30 +36,30 @@ for (const il of ilAdlari) {
 
 const suIdareleri = ilKurum.suIdareleri || {};
 
-// Morfoloji: JSON'da yuzde cinsinden (10.7 = %10.7), oran'a cevir (/100).
-// Alan adlari: dusuk_egim_orani_yuzde, vadi_tabani_orani_yuzde
-const morfHam = morfoloji.iller || {};
-const morfData = {};
-for (const [il, v] of Object.entries(morfHam)) {
-  morfData[il] = {
-    duz_oran: (v.dusuk_egim_orani_yuzde || 0) / 100,
-    vadi_oran: (v.vadi_tabani_orani_yuzde || 0) / 100,
-    ort_egim: v.ortalama_egim_derece ?? null,
-  };
-}
+// ILCE DUZEYiNDE morfoloji: ilce-morfoloji.json'dan (duz_oran, vadi_oran yuzde)
+const ilceMorfData = ilceMorf.ilceler || {};
 
 function slugla(ad) {
   if (!ad) return '';
   return String(ad).trim().toLowerCase().replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s').replace(/ı/g,'i').replace(/ö/g,'o').replace(/ç/g,'c').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 }
 
-// Slug-tabanli birlesik indeks: { ilSlug: { ad, ilceler:[{ad,slug}], morfoloji, potansiyel, profil, suIdare } }
+// Slug-tabanli ilce duzeyinde indeks:
+// IL_INDEX[ilSlug] = { ad, ilceler: [ { ad, slug, duz_oran, vadi_oran, ort_egim } ], potansiyel, profil, suIdare }
 const IL_INDEX = {};
 for (const il of ilAdlari) {
-  IL_INDEX[slugla(il)] = {
-    ad: il,
-    ilceler: (ilIlceler[il]||[]).map(ic => ({ ad: ic, slug: slugla(ic) })),
-    morfoloji: morfData[il] || {},
+  const ilSlug = slugla(il);
+  const ilceler = (ilIlceler[il]||[]).map(ic => {
+    const m = ilceMorfData[ic] || {};
+    return {
+      ad: ic, slug: slugla(ic),
+      duz_oran: m.duz_oran != null ? m.duz_oran / 100 : 0,
+      vadi_oran: m.vadi_oran != null ? m.vadi_oran / 100 : 0,
+      ort_egim: m.ort_egim ?? null,
+    };
+  });
+  IL_INDEX[ilSlug] = {
+    ad: il, ilceler,
     potansiyel: ilPotansiyelData[il] || {},
     profil: ilProfilData[il] || {},
     suIdare: suIdareleri[il] || '',
@@ -228,13 +228,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!ilKayit) { console.warn('[getData] il bulunamadi:', ilSlug); return null; }
     const icKayit = ilKayit.ilceler.find(c => c.slug === icSlug);
     if (!icKayit) { console.warn('[getData] ilce bulunamadi:', icSlug, 'ilceler:', ilKayit.ilceler.map(c=>c.slug).slice(0,5)); return null; }
+    // ilce duzeyinde morfoloji dogrudan icKayit icinde
     return {
       ilAd: ilKayit.ad,
       ilceAd: icKayit.ad,
-      mrf: ilKayit.morfoloji,
-      pt: ilKayit.potansiyel,
-      prf: ilKayit.profil,
-      suIdare: ilKayit.suIdare,
+      duz_oran: icKayit.duz_oran || 0,
+      vadi_oran: icKayit.vadi_oran || 0,
+      ort_egim: icKayit.ort_egim ?? null,
+      kutle: ilKayit.potansiyel.kutle || 0,
+      rg: ilKayit.potansiyel.rg || 0,
+      osm: ilKayit.potansiyel.osm || 0,
+      dsi: ilKayit.profil.dsi || '',
+      graceYon: ilKayit.profil.graceYon || null,
+      suIdare: ilKayit.suIdare || '',
     };
   }
 
@@ -289,15 +295,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // VERiFiCATiON LOG: her ilce icin farkli ham veri
     console.log('[VERi]', d.ilAd, '/', d.ilceAd,
-      '| morfoloji:', JSON.stringify(d.mrf),
-      '| potansiyel:', JSON.stringify(d.pt),
-      '| profil.graceYon:', d.prf.graceYon);
+      '| duz:', d.duz_oran?.toFixed(3), 'vadi:', d.vadi_oran?.toFixed(3),
+      '| kutle:', d.kutle, 'grace:', d.graceYon);
 
-    const m = d.mrf, p = d.pt, r = d.prf;
-    const yasS = Math.min(1, (p.kutle||0)/15);
-    const twiS = ((m.duz_oran||0) + (m.vadi_oran||0))/2 || 0.3;
-    const yagS = r.graceYon === 'azalma' ? 0.3 : 0.6;
-    const jrcS = Math.min(1, (m.duz_oran||0)*1.5) || 0.3;
+    const duz = d.duz_oran, vadi = d.vadi_oran, egim = d.ort_egim;
+    const yasS = Math.min(1, (d.kutle||0)/15);
+    const twiS = (duz + vadi)/2 || 0.3;
+    const yagS = d.graceYon === 'azalma' ? 0.3 : 0.6;
+    const jrcS = Math.min(1, duz*1.5) || 0.3;
     const ahp = Math.round((yasS*.35 + twiS*.3 + yagS*.2 + jrcS*.15)*100);
     const sev = ahp>=70?'Yuksek Potansiyel':ahp>=45?'Orta Potansiyel':'Dusuk Potansiyel';
     const rnk = ahp>=70?'#2E7D32':ahp>=45?'#E65100':'#C62828';
@@ -315,29 +320,29 @@ document.addEventListener('DOMContentLoaded', () => {
     setS('ahp-ana','borderLeftColor',rnk);
 
     const yk = [];
-    if (m.duz_oran>.3) yk.push('aluvyal tabanlar ve duzluk alanlar');
-    if ((m.vadi_oran||0)>.15) yk.push('dere yataklari ve TWI canaklari');
-    if ((m.ort_egim||99)<5) yk.push('egimin %5\'in altinda oldugu alcak araziler');
+    if (duz>.3) yk.push('aluvyal tabanlar ve duzluk alanlar');
+    if (vadi>.15) yk.push('dere yataklari ve TWI canaklari');
+    if ((egim??99)<5) yk.push('egimin %5\'in altinda oldugu alcak araziler');
     if (!yk.length) yk.push('vadi ici alcak kesimler');
     setT('potansiyel-alanlar', d.ilceAd+' ilcesinde su cikma ihtimalinin en yuksek oldugu bolgeler: '+yk.join(', ')+'.');
 
-    const akf = (m.duz_oran||0)>.5?'Aluvyon / Aluvyal Akifer (gecirgen kum-cakil)':(m.vadi_oran||0)>.3?'Karstik Kirectasi Akiferi (catlakli-erimis yapi)':'Gozenekli Granit / Kirikli Kaya Akiferi (catlak suyu)';
+    const akf = duz>.5?'Aluvyon / Aluvyal Akifer (gecirgen kum-cakil)':vadi>.3?'Karstik Kirectasi Akiferi (catlakli-erimis yapi)':'Gozenekli Granit / Kirikli Kaya Akiferi (catlak suyu)';
     setT('akifer-yapisi', d.ilceAd+' ilcesinde baskin kayac ve akifer turu: '+akf+'.');
 
-    const dMin = Math.round(15+(1-(m.duz_oran||0))*65), dMax = Math.round(dMin+40);
+    const dMin = Math.round(15+(1-duz)*65), dMax = Math.round(dMin+40);
     setT('derinlik-tahmini', d.ilceAd+' ilcesinde tahmini su doygunluk derinligi: '+dMin+' – '+dMax+' metre arasi.');
 
     setT('skor-bilesenleri','AHP: YAS %'+Math.round(yasS*100)+' · TWI %'+Math.round(twiS*100)+' · Yagis %'+Math.round(yagS*100)+' · Yuzey Suyu %'+Math.round(jrcS*100));
-    setT('dsi-bolge', r.dsi||'veri yok');
+    setT('dsi-bolge', d.dsi||'veri yok');
     setT('su-idaresi', d.suIdare||'Il Ozel Idaresi / belediye');
-    setT('morf-duz', fmt((m.duz_oran||0)*100,1)+'%');
-    setT('morf-vadi', fmt((m.vadi_oran||0)*100,1)+'%');
-    setT('morf-egim', fmt(m.ort_egim||0,1)+'°');
+    setT('morf-duz', fmt(duz*100,1)+'%');
+    setT('morf-vadi', fmt(vadi*100,1)+'%');
+    setT('morf-egim', fmt(egim||0,1)+'°');
 
     let kh = '';
-    if (p.kutle>0) kh += '<div class="metrik-kart"><span class="metrik-deger">'+p.kutle+'</span><span class="metrik-etiket">YAS kutlesi</span></div>';
-    if (p.rg>0) kh += '<div class="metrik-kart"><span class="metrik-deger">'+p.rg+'</span><span class="metrik-etiket">RG isletme sahasi</span></div>';
-    if (p.osm>0) kh += '<div class="metrik-kart"><span class="metrik-deger">'+fmt(p.osm,0)+'</span><span class="metrik-etiket">OSM su kaynagi</span></div>';
+    if (d.kutle>0) kh += '<div class="metrik-kart"><span class="metrik-deger">'+d.kutle+'</span><span class="metrik-etiket">YAS kutlesi</span></div>';
+    if (d.rg>0) kh += '<div class="metrik-kart"><span class="metrik-deger">'+d.rg+'</span><span class="metrik-etiket">RG isletme sahasi</span></div>';
+    if (d.osm>0) kh += '<div class="metrik-kart"><span class="metrik-deger">'+fmt(d.osm,0)+'</span><span class="metrik-etiket">OSM su kaynagi</span></div>';
     setH('potansiyel-kartlar', kh || '<p class="not">Bu il icin henuz NHYP/RG/OSM verisi islenmemistir.</p>');
 
     const lok = d.ilAd+' / '+d.ilceAd;
