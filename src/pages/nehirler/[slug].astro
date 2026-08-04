@@ -1,0 +1,139 @@
+---
+// Nehir detay sayfasi: /nehirler/[slug]/
+// Veri kaynagi: tr-nehirler.json (OSM OpenStreetMap)
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import Katman from '../../components/Katman.astro';
+import { tumNehirler, nehirOzet } from '../../data/gol-nehir.js';
+import { OG_GORSEL } from '../../data/site';
+
+export async function getStaticPaths() {
+  return tumNehirler().map((n) => ({ params: { slug: n.slug }, props: { nehir: n } }));
+}
+
+const { nehir } = Astro.props;
+const ozet = nehirOzet(nehir);
+
+// Schema.org Place / BodyOfWater JSON-LD
+const sema = [{
+  '@type': 'BodyOfWater',
+  name: nehir.ad,
+  description: ozet,
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: nehir.merkez[1],
+    longitude: nehir.merkez[0],
+  },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Veri kaynagi', value: nehir.kaynak },
+  ],
+  containedInPlace: {
+    '@type': 'Place',
+    name: 'Turkiye',
+  },
+}];
+
+// FAQPage — nehrin temel sorusu
+sema.push({
+  '@type': 'FAQPage',
+  mainEntity: [{
+    '@type': 'Question',
+    name: `${nehir.ad} nerededir, hangi havzaya aittir?`,
+    acceptedAnswer: { '@type': 'Answer', text: ozet },
+  }],
+});
+---
+
+<Sayfa baslik={`${nehir.ad} — Turkiye Nehirleri`} aciklama={ozet} sema={sema}>
+  <SayfaBasi etiket="Nehir" baslik={nehir.ad} />
+
+  <OzCevap metin={ozet} />
+
+  <Katman baslik="Nehir profili" ipucu="koordinat · veri kaynagi">
+    <dl class="kunye kunye-katman">
+      <div class="kunye-satir">
+        <dt>Tur</dt>
+        <dd>Akarsu (nehir)</dd>
+      </div>
+      <div class="kunye-satir">
+        <dt>Koordinat (merkez)</dt>
+        <dd>{nehir.merkez[1].toFixed(4)}°N, {nehir.merkez[0].toFixed(4)}°E</dd>
+      </div>
+      <div class="kunye-satir">
+        <dt>Veri kaynagi</dt>
+        <dd>{nehir.kaynak}</dd>
+      </div>
+    </dl>
+  </Katman>
+
+  <Katman baslik="Konum" ipucu="yaklasik merkez koordinati · bilgi amaclidir" ton="murekkep">
+    <p class="not">
+      Bu sayfadaki koordinat, nehrin geometrik merkezidir; hidrografik referans
+      veya olcum noktasi DEGILDIR. Harita uzerinde nehir akis hatti icin
+      OpenStreetMap verisine basvurunuz.
+    </p>
+    <p class="not">
+      Bu nehir Turkiye su aginin bir parcasidir.
+      <a href="/havzalar/">Havza sayfalarimizda</a> akarsuyunuzun ait oldugu
+      havzadaki su potansiyeli, baraj doluluklari ve su hukuku ile ilgili
+      resmi verileri bulabilirsiniz.
+    </p>
+  </Katman>
+</Sayfa>
+
+<style>
+  .kunye {
+    margin: 0 0 2rem;
+    padding: 1.3rem 1.4rem 1.3rem 1.8rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+    position: relative;
+  }
+  .kunye::before {
+    content: "";
+    position: absolute;
+    left: 0.6rem;
+    top: 1rem;
+    bottom: 1rem;
+    width: 6px;
+    background:
+      repeating-linear-gradient(180deg,
+        rgba(46, 126, 160, 0.4) 0 1px, transparent 1px 7px),
+      linear-gradient(90deg, rgba(46, 126, 160, 0.4) 0 1px, transparent 1px);
+  }
+  .kunye-katman {
+    margin: 0;
+    padding: 0.4rem 0 0;
+    background: transparent;
+    border: 0;
+  }
+  .kunye-katman::before { display: none; }
+  .kunye-satir {
+    display: grid;
+    grid-template-columns: minmax(9rem, 13rem) 1fr;
+    gap: 0.4rem 1.2rem;
+    padding: 0.5rem 0;
+  }
+  .kunye-satir + .kunye-satir { border-top: 1px solid var(--cizgi); }
+  dt {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    align-self: center;
+  }
+  dd { font-size: 0.96rem; }
+  .not {
+    font-size: 0.9rem;
+    color: var(--metin-soluk);
+    margin: 0.6rem 0;
+  }
+  .not a { color: var(--baglanti); }
+  @media (max-width: 560px) {
+    .kunye-satir { grid-template-columns: 1fr; gap: 0.1rem; }
+  }
+</style>
