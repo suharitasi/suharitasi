@@ -61,7 +61,7 @@ const sema = [{
   <OzCevap metin={ozet} />
 
   <Katman baslik="Konum Secimi" ipucu="il secimi zorunlu · ilce opsiyonel">
-    <form id="sorgu-form" method="get" action="/ilce-sorgu/" class="sorgu-form">
+    <form id="sorgu-form" class="sorgu-form">
       <div class="sorgu-grid">
         <div>
           <label for="il-sec" class="saha-etiket">Il</label>
@@ -82,7 +82,7 @@ const sema = [{
           </select>
         </div>
       </div>
-      <button type="submit" id="sorgu-btn" class="sorgu-btn">Analiz Et</button>
+      <button type="button" id="sorgu-btn" class="sorgu-btn">Analiz Et</button>
     </form>
     {seciliIl && ilIlceListesi.length > 0 && (
       <p class="not" style="margin-top:0.6rem">
@@ -292,7 +292,23 @@ const sema = [{
   const form = document.getElementById('sorgu-form');
   const btn = document.getElementById('sorgu-btn');
 
+  function analizEt() {
+    const il = ilSec?.value;
+    if (!il) { ilSec?.focus(); return; }
+    const ilce = ilceSec?.value || '';
+    const params = new URLSearchParams();
+    params.set('il', il);
+    if (ilce) params.set('ilce', ilce);
+    window.location.href = '/ilce-sorgu/?' + params.toString();
+  }
+
   if (ilSec && ilceSec) {
+    // Form submit'i KESiNLiKLE engelle
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      return false;
+    });
+
     // Il secimi degistiginde ilce dropdown'unu JS ile doldur
     ilSec.addEventListener('change', () => {
       const il = ilSec.value;
@@ -312,25 +328,16 @@ const sema = [{
       }
     });
 
-    // Analiz Et butonu — form'u gonder
+    // Analiz Et butonu
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      const il = ilSec.value;
-      if (!il) {
-        ilSec.focus();
-        return;
-      }
-      // Ilce secili degilse sadece il parametresiyle git
-      const url = new URL(form.action, window.location.origin);
-      url.searchParams.set('il', il);
-      if (ilceSec.value) url.searchParams.set('ilce', ilceSec.value);
-      window.location.href = url.toString();
+      analizEt();
     });
 
-    // Ilce secildiginde direkt git (opsiyonel hizli yol)
+    // Ilce secildiginde otomatik analiz
     ilceSec.addEventListener('change', () => {
       if (ilceSec.value && ilSec.value) {
-        btn.click();
+        analizEt();
       }
     });
   }
