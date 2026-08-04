@@ -25,10 +25,28 @@ for (const p of profiller)
   ilProfilData[p.il] = { dsi: (p.dsiBolgeleri||[]).map(b => `DSİ ${Number(b.no)}. Bolge Mudurlugu (${b.merkez})`).join(' · '), graceYon: p.graceEgilim?.yon || null };
 
 const ilPotansiyelData = {};
-for (const il of ilAdlari) { const pt = ilPotansiyel(il); ilPotansiyelData[il] = { kutle: pt?.kutleSayisi||0, rg: pt?.rgSayisi||0, osm: pt?.osmKaynak||0 }; }
+for (const il of ilAdlari) {
+  const pt = ilPotansiyel(il);
+  ilPotansiyelData[il] = {
+    kutle: pt?.kutleler?.length || 0,
+    rg: (pt?.rgKayitlari?.length || 0) + (pt?.rgEkKayitlari?.length || 0),
+    osm: pt?.osm ? 1 : 0,
+  };
+}
 
 const suIdareleri = ilKurum.suIdareleri || {};
-const morfData = morfoloji.iller || {};
+
+// Morfoloji: JSON'da yuzde cinsinden (10.7 = %10.7), oran'a cevir (/100).
+// Alan adlari: dusuk_egim_orani_yuzde, vadi_tabani_orani_yuzde
+const morfHam = morfoloji.iller || {};
+const morfData = {};
+for (const [il, v] of Object.entries(morfHam)) {
+  morfData[il] = {
+    duz_oran: (v.dusuk_egim_orani_yuzde || 0) / 100,
+    vadi_oran: (v.vadi_tabani_orani_yuzde || 0) / 100,
+    ort_egim: v.ortalama_egim_derece ?? null,
+  };
+}
 
 function slugla(ad) {
   if (!ad) return '';
@@ -265,7 +283,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const d = getData(ilSlug, icSlug);
     if (!d) { alert('Secilen il/ilce icin veri bulunamadi.'); return; }
-    console.log('[Analiz]', d.ilAd, '/', d.ilceAd);
+
+    // VERiFiCATiON LOG: her ilce icin farkli ham veri
+    console.log('[VERi]', d.ilAd, '/', d.ilceAd,
+      '| morfoloji:', JSON.stringify(d.mrf),
+      '| potansiyel:', JSON.stringify(d.pt),
+      '| profil.graceYon:', d.prf.graceYon);
 
     const m = d.mrf, p = d.pt, r = d.prf;
     const yasS = Math.min(1, (p.kutle||0)/15);
