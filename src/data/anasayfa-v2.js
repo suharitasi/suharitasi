@@ -125,6 +125,7 @@ export const VERI_ROTALARI = [
   { ad: 'Hangi kurum?', yol: '/hangi-kurum/' },
   { ad: 'Su Kanunu takibi', yol: '/su-kanunu/' },
   { ad: 'Vakalar', yol: '/vaka/' },
+  { ad: 'B2B Raporlar — PDF indir', yol: '/raporlar/' },
 ];
 
 // Build-time assert (sessiz hata yasağı): zorunlu alanlar + yerel yol biçimi.

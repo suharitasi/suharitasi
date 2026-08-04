@@ -6,7 +6,7 @@ Her havza icin DSİ + GRACE + baraj + risk verisinden otomatik PDF.
 Kullanim:
   python3 arac/rapor-uret.py --havza sakarya
   python3 arac/rapor-uret.py --tumu          # 25 havza birden
-  python3 arac/rapor-uret.py --tumu --cikti dist/rapor/
+  python3 arac/rapor-uret.py --tumu --cikti public/rapor/
 """
 import json, os, sys, argparse
 from datetime import datetime, timezone
@@ -107,7 +107,7 @@ def yildiz(puan):
     return "★☆☆ DUSUK RISK"
 
 
-def uret_havza(hv_veri, gr_veri, bj_veri, havza_adi, cikti_dizin="dist/rapor"):
+def uret_havza(hv_veri, gr_veri, bj_veri, havza_adi, cikti_dizin="public/rapor"):
     vd = next((h for h in hv_veri["havzalar"] if h["ad"] == havza_adi), None)
     if not vd:
         print(f"HATA: '{havza_adi}' bulunamadi.")
@@ -291,7 +291,7 @@ def main():
     p = argparse.ArgumentParser(description="Havza Su Durum Raporu PDF")
     p.add_argument("--havza", help="Havza adi (ornek: 'Sakarya Havzası')")
     p.add_argument("--tumu", action="store_true", help="Tum 25 havza")
-    p.add_argument("--cikti", default="dist/rapor", help="Cikti dizini")
+    p.add_argument("--cikti", default="public/rapor", help="Cikti dizini")
     args = p.parse_args()
 
     hv, gr, bj = veri_yukle()
