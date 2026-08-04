@@ -201,7 +201,25 @@ const ozet = 'Turkiye\'de il ve ilce bazinda yeralti su potansiyeli, arazi morfo
 
 <script type="application/json" id="veri-paketi" set:html={VERI}></script>
 <script>
-  const D = JSON.parse(document.getElementById('veri-paketi').textContent);
+document.addEventListener('DOMContentLoaded', () => {
+  const veriEl = document.getElementById('veri-paketi');
+  if (!veriEl) { console.error('[ilce-sorgu] veri-paketi bulunamadi'); return; }
+  let D;
+  try { D = JSON.parse(veriEl.textContent); } catch (e) { console.error('[ilce-sorgu] JSON parse hatasi:', e); return; }
+
+  const $ = (id) => document.getElementById(id);
+  const ilSec = $('il-sec');
+  const ilceSec = $('ilce-sec');
+  const form = $('sorgu-form');
+  const btn = $('sorgu-btn');
+  const sonuc = $('analiz-sonuc');
+  const bos = $('analiz-bos');
+  const sayiP = $('ilce-sayisi');
+
+  if (!ilSec || !ilceSec || !btn || !sonuc || !bos) {
+    console.error('[ilce-sorgu] Kritik DOM elemani eksik:', { ilSec: !!ilSec, ilceSec: !!ilceSec, btn: !!btn, sonuc: !!sonuc, bos: !!bos });
+    return;
+  }
 
   function normalle(ad) {
     if (!ad) return '';
@@ -210,37 +228,76 @@ const ozet = 'Turkiye\'de il ve ilce bazinda yeralti su potansiyeli, arazi morfo
       .replace(/ı/g,'i').replace(/ö/g,'o').replace(/ç/g,'c')
       .replace(/[^a-z0-9]/g, '');
   }
-  const ilNorm = {}; for (const il of Object.keys(D.ilceler)) ilNorm[normalle(il)] = il;
 
   const fmt = (n, o) => n?.toLocaleString?.('tr-TR', { minimumFractionDigits: o, maximumFractionDigits: o }) ?? String(n);
 
-  const $ = (id) => document.getElementById(id);
-  const ilSec = $('il-sec'), ilceSec = $('ilce-sec'), form = $('sorgu-form'), btn = $('sorgu-btn');
-  const sonuc = $('analiz-sonuc'), bos = $('analiz-bos'), sayiP = $('ilce-sayisi');
-
-  form.addEventListener('submit', (e) => { e.preventDefault(); return false; });
-
+  // Il degisimi: ilceleri guvenle doldur
   ilSec.addEventListener('change', () => {
     const il = ilSec.value;
-    const ilceler = il ? (D.ilceler[il] || []) : [];
-    ilceSec.innerHTML = il
-      ? '<option value="">— Tum ilceler —</option>' + ilceler.map(ic => `<option value="${ic}">${ic}</option>`).join('')
-      : '<option value="">— Once il secin —</option>';
-    sayiP.textContent = il && ilceler.length ? `${il} ilinde ${ilceler.length} ilce bulunmaktadir. Ilce secip \"Analiz Et\"e tiklayin.` : '';
-    if (il) { const u = new URL(window.location); u.searchParams.set('il', il); u.searchParams.delete('ilce'); history.replaceState(null, '', u); }
-    bos.style.display = ''; sonuc.style.display = 'none';
+
+    // Ilce dropdown'u sifirla
+    ilceSec.innerHTML = '';
+    ilceSec.disabled = true;
+
+    if (!il) {
+      ilceSec.appendChild(new Option('— Once il secin —', ''));
+      if (sayiP) sayiP.textContent = '';
+      bos.style.display = '';
+      sonuc.style.display = 'none';
+      return;
+    }
+
+    try {
+      const ilceler = D.ilceler[il] || [];
+      ilceSec.appendChild(new Option('— Ilce seciniz —', ''));
+
+      for (const ic of ilceler) {
+        const opt = document.createElement('option');
+        opt.value = ic;
+        opt.textContent = ic;
+        ilceSec.appendChild(opt);
+      }
+
+      ilceSec.disabled = false;
+
+      if (sayiP && ilceler.length) {
+        sayiP.textContent = il + ' ilinde ' + ilceler.length + ' ilce bulunmaktadir. Ilce secip "Analiz Et"e tiklayin.';
+      }
+    } catch (e) {
+      console.error('[ilce-sorgu] Ilce doldurma hatasi:', e);
+      ilceSec.innerHTML = '';
+      ilceSec.appendChild(new Option('— Hata olustu —', ''));
+    }
+
+    // URL guncelle ama sayfa yenileme
+    try {
+      const u = new URL(window.location);
+      u.searchParams.set('il', il);
+      u.searchParams.delete('ilce');
+      history.replaceState(null, '', u);
+    } catch (e) { /* URL guncelleme basarisiz olursa sessizce devam et */ }
+
+    bos.style.display = '';
+    sonuc.style.display = 'none';
   });
+
+  // Form submit engeli (belt and suspenders)
+  if (form) {
+    form.addEventListener('submit', (e) => { e.preventDefault(); return false; });
+  }
 
   function analizEt() {
     const il = ilSec?.value;
-    if (!il) {
-      console.log('[Analiz] Il secilmedi — islem iptal');
-      ilSec?.focus();
+    const ilce = ilceSec?.value;
+
+    if (!il || !ilce) {
+      alert('Lutfen hem il hem de ilce seciniz.');
+      if (!il) ilSec?.focus();
+      else ilceSec?.focus();
       return;
     }
-    const ilce = ilceSec?.value || '';
 
-    console.log('[Analiz] Basladi — il:', il, 'ilce:', ilce || '(secili degil)');
+    console.log('[Analiz] Basladi — il:', il, 'ilce:', ilce);
 
     const mrf = D.morfoloji[il] || {};
     const pt = D.potansiyel[il] || {};
@@ -251,70 +308,74 @@ const ozet = 'Turkiye\'de il ve ilce bazinda yeralti su potansiyeli, arazi morfo
     const yagisSkor = prf.graceYon === 'azalma' ? 0.3 : 0.6;
     const jrcSkor = Math.min(1, (mrf.duz_oran || 0) * 1.5) || 0.3;
     const ahp = Math.round((yasSkor * 0.35 + twiSkor * 0.30 + yagisSkor * 0.20 + jrcSkor * 0.15) * 100);
-
-    console.log('[Analiz] AHP skor:', ahp + '%', '| YAS:', Math.round(yasSkor*100), 'TWI:', Math.round(twiSkor*100), 'Yagis:', Math.round(yagisSkor*100), 'JRC:', Math.round(jrcSkor*100));
+    console.log('[Analiz] AHP:', ahp + '% YAS:' + Math.round(yasSkor*100) + ' TWI:' + Math.round(twiSkor*100) + ' Yagis:' + Math.round(yagisSkor*100) + ' JRC:' + Math.round(jrcSkor*100));
 
     const seviye = ahp >= 70 ? 'Yuksek Potansiyel' : ahp >= 45 ? 'Orta Potansiyel' : 'Dusuk Potansiyel';
     const renk = ahp >= 70 ? '#2E7D32' : ahp >= 45 ? '#E65100' : '#C62828';
 
-    $('skor-degeri').textContent = ahp + '%';
-    $('skor-degeri').style.color = renk;
-    $('skor-etiket').innerHTML = seviye + ' — ' + il + (ilce ? ' / ' + ilce : '') + ' Ilce Genel Su Cikma Olasiligi';
-    $('ahp-ana').style.borderLeftColor = renk;
+    const gv = (id, val) => { const el = $(id); if (el) el.textContent = val; };
+    const gh = (id, val) => { const el = $(id); if (el) el.innerHTML = val; };
+    const gs = (id, prop, val) => { const el = $(id); if (el) el.style[prop] = val; };
+
+    gv('skor-degeri', ahp + '%');
+    gs('skor-degeri', 'color', renk);
+    gh('skor-etiket', seviye + ' — ' + il + ' / ' + ilce + ' Ilce Genel Su Cikma Olasiligi');
+    gs('ahp-ana', 'borderLeftColor', renk);
 
     const yuksek = [];
     if (mrf.duz_oran > 0.3) yuksek.push('aluvyal tabanlar ve duzluk alanlar');
     if ((mrf.vadi_oran || 0) > 0.15) yuksek.push('dere yataklari ve TWI canaklari');
     if ((mrf.ort_egim || 99) < 5) yuksek.push('egimin %5\'in altinda oldugu alcak araziler');
     if (!yuksek.length) yuksek.push('vadi ici alcak kesimler');
-    const ilceNot = ilce ? ilce + ' ilcesinde' : il + ' genelinde';
-    $('potansiyel-alanlar').textContent = ilceNot + ' su cikma ihtimalinin en yuksek oldugu bolgeler: ' + yuksek.join(', ') + '.';
+    gv('potansiyel-alanlar', ilce + ' ilcesinde su cikma ihtimalinin en yuksek oldugu bolgeler: ' + yuksek.join(', ') + '.');
 
     const akifer = (mrf.duz_oran || 0) > 0.5 ? 'Aluvyon / Aluvyal Akifer (gecirgen kum-cakil)'
       : (mrf.vadi_oran || 0) > 0.3 ? 'Karstik Kirectasi Akiferi (catlakli-erimis yapi)'
       : 'Gozenekli Granit / Kirikli Kaya Akiferi (catlak suyu)';
-    $('akifer-yapisi').textContent = ilceNot + ' baskin kayac ve akifer turu: ' + akifer + '.';
+    gv('akifer-yapisi', ilce + ' ilcesinde baskin kayac ve akifer turu: ' + akifer + '.');
 
     const dMin = Math.round(15 + (1 - (mrf.duz_oran || 0)) * 65), dMax = Math.round(dMin + 40);
-    $('derinlik-tahmini').textContent = ilceNot + ' tahmini su doygunluk derinligi: ' + dMin + ' – ' + dMax + ' metre arasi. Duzluk alanlarda daha sig, yamaclarda daha derin.';
+    gv('derinlik-tahmini', ilce + ' ilcesinde tahmini su doygunluk derinligi: ' + dMin + ' – ' + dMax + ' metre arasi. Duzluk alanlarda daha sig, yamaclarda daha derin.');
 
-    $('skor-bilesenleri').textContent = 'AHP: YAS %' + Math.round(yasSkor*100) + ' · TWI %' + Math.round(twiSkor*100) + ' · Yagis %' + Math.round(yagisSkor*100) + ' · Yuzey Suyu %' + Math.round(jrcSkor*100);
+    gv('skor-bilesenleri', 'AHP: YAS %' + Math.round(yasSkor*100) + ' · TWI %' + Math.round(twiSkor*100) + ' · Yagis %' + Math.round(yagisSkor*100) + ' · Yuzey Suyu %' + Math.round(jrcSkor*100));
 
-    $('dsi-bolge').textContent = prf.dsi || 'veri yok';
-    $('su-idaresi').textContent = D.suIdare[il] || 'Il Ozel Idaresi / belediye';
+    gv('dsi-bolge', prf.dsi || 'veri yok');
+    gv('su-idaresi', D.suIdare[il] || 'Il Ozel Idaresi / belediye');
 
-    $('morf-duz').textContent = fmt((mrf.duz_oran || 0) * 100, 1) + '%';
-    $('morf-vadi').textContent = fmt((mrf.vadi_oran || 0) * 100, 1) + '%';
-    $('morf-egim').textContent = fmt(mrf.ort_egim || 0, 1) + '°';
+    gv('morf-duz', fmt((mrf.duz_oran || 0) * 100, 1) + '%');
+    gv('morf-vadi', fmt((mrf.vadi_oran || 0) * 100, 1) + '%');
+    gv('morf-egim', fmt(mrf.ort_egim || 0, 1) + '°');
 
     let kartHtml = '';
     if (pt.kutle > 0) kartHtml += '<div class="metrik-kart"><span class="metrik-deger">' + pt.kutle + '</span><span class="metrik-etiket">YAS kutlesi</span></div>';
     if (pt.rg > 0) kartHtml += '<div class="metrik-kart"><span class="metrik-deger">' + pt.rg + '</span><span class="metrik-etiket">RG isletme sahasi</span></div>';
     if (pt.osm > 0) kartHtml += '<div class="metrik-kart"><span class="metrik-deger">' + fmt(pt.osm, 0) + '</span><span class="metrik-etiket">OSM su kaynagi</span></div>';
-    $('potansiyel-kartlar').innerHTML = kartHtml || '<p class="not">Bu il icin henuz NHYP/RG/OSM verisi islenmemistir.</p>';
+    gh('potansiyel-kartlar', kartHtml || '<p class="not">Bu il icin henuz NHYP/RG/OSM verisi islenmemistir.</p>');
 
-    const lok = il + (ilce ? ' / ' + ilce : '');
-    $('hukuk-yon-metin').innerHTML = '<strong>' + lok + '</strong> bolgesinde kuyu acma ruhsati, DSi mesafe kisitlamalari, idari yaptirim surecleri ve ceza itiraz haklariniz hakkinda detayli bilgi icin asagidaki rehberleri inceleyin:';
-    $('hukuk-link-ana').textContent = (ilce || il) + ' Su Hukuku Analizi — Ceza, Iptal ve Itiraz Rehberi';
+    const lok = il + ' / ' + ilce;
+    gh('hukuk-yon-metin', '<strong>' + lok + '</strong> bolgesinde kuyu acma ruhsati, DSi mesafe kisitlamalari, idari yaptirim surecleri ve ceza itiraz haklariniz hakkinda detayli bilgi icin asagidaki rehberleri inceleyin:');
+    gv('hukuk-link-ana', ilce + ' Su Hukuku Analizi — Ceza, Iptal ve Itiraz Rehberi');
 
     bos.style.display = 'none';
     sonuc.style.display = 'block';
     sonuc.classList.remove('hidden');
     sonuc.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-    const u = new URL(window.location);
-    u.searchParams.set('il', il);
-    if (ilce) u.searchParams.set('ilce', ilce); else u.searchParams.delete('ilce');
-    history.pushState({}, '', u);
+    try {
+      const u = new URL(window.location);
+      u.searchParams.set('il', il);
+      u.searchParams.set('ilce', ilce);
+      history.pushState({}, '', u);
+    } catch (e) { /* sessiz */ }
 
-    console.log('[Analiz] Tamamlandi — URL guncellendi, DOM render edildi');
+    console.log('[Analiz] Tamamlandi');
   }
 
-  // Analiz Et butonu — explicit click, stopPropagation, return false
+  // Analiz Et butonu
   btn.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('[Analiz] Buton tiklandi — il:', ilSec?.value, 'ilce:', ilceSec?.value);
+    console.log('[Analiz] Buton tiklandi — il:', ilSec.value, 'ilce:', ilceSec.value);
     analizEt();
     return false;
   });
@@ -326,4 +387,5 @@ const ozet = 'Turkiye\'de il ve ilce bazinda yeralti su potansiyeli, arazi morfo
       analizEt();
     }
   });
+});
 </script>
