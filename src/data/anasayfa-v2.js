@@ -113,9 +113,10 @@ export const SUREC = [
 //   erişilebilir.
 export const VERI_ROTALARI = [
   { ad: 'Su Nerede Çıkar?', yol: '/ilce-sorgu/' },
-  { ad: 'Su Hukuku & Ceza İptali', yol: '/su-hukuku/' },
-  { ad: 'Havza Risk Haritası', yol: '/havza-riski/' },
-  { ad: 'İletişim / Danışmanlık', yol: '/#iletisim' },
+  { ad: 'Su Hukuku & Cezalar', yol: '/su-hukuku/' },
+  { ad: 'Canlı Harita & Katmanlar', yol: '/' },
+  { ad: 'Havza & Veri Analizleri', yol: '/havza-riski/' },
+  { ad: 'İletişim / Uzman Görüşü', yol: '/#iletisim' },
 ];
 
 // Build-time assert (sessiz hata yasağı): zorunlu alanlar + yerel yol biçimi.
