@@ -37,6 +37,8 @@ const suIdareleri = ilKurum.suIdareleri || {};
 
 const sayi = (n, o) => n?.toLocaleString('tr-TR', { minimumFractionDigits: o, maximumFractionDigits: o });
 
+const ilIlcelerJSON = JSON.stringify(ilIlceler);
+
 const lokasyonEtiketi = seciliIlce
   ? `${seciliIl} / ${seciliIlce}`
   : seciliIl ? seciliIl : '';
@@ -59,11 +61,11 @@ const sema = [{
   <OzCevap metin={ozet} />
 
   <Katman baslik="Konum Secimi" ipucu="il secimi zorunlu · ilce opsiyonel">
-    <form method="get" action="/ilce-sorgu/" class="sorgu-form">
+    <form id="sorgu-form" method="get" action="/ilce-sorgu/" class="sorgu-form">
       <div class="sorgu-grid">
         <div>
           <label for="il-sec" class="saha-etiket">Il</label>
-          <select id="il-sec" name="il" onchange="this.form.submit()" class="il-secici">
+          <select id="il-sec" name="il" class="il-secici">
             <option value="">— Il seciniz —</option>
             {ilAdlari.map((il) => (
               <option value={il} selected={il === seciliIl}>{il}</option>
@@ -73,19 +75,19 @@ const sema = [{
         <div>
           <label for="ilce-sec" class="saha-etiket">Ilce</label>
           <select id="ilce-sec" name="ilce" class="il-secici">
-            <option value="">— Tum ilceler —</option>
+            <option value="">— Once il secin —</option>
             {ilIlceListesi.map((ic) => (
               <option value={ic} selected={ic === seciliIlce}>{ic}</option>
             ))}
           </select>
         </div>
       </div>
-      <noscript><button type="submit" class="sorgu-btn">Sorgula</button></noscript>
+      <button type="submit" id="sorgu-btn" class="sorgu-btn">Analiz Et</button>
     </form>
     {seciliIl && ilIlceListesi.length > 0 && (
       <p class="not" style="margin-top:0.6rem">
         <strong>{seciliIl}</strong> ilinde <strong>{ilIlceListesi.length}</strong> ilce bulunmaktadir.
-        Ilce seciMi yaparak daha lokalize analiz alabilirsiniz.
+        Ilce secip "Analiz Et" butonuna tiklayarak lokalize sonuc alabilirsiniz.
       </p>
     )}
   </Katman>
@@ -280,3 +282,56 @@ const sema = [{
     .ahp-ana { flex-direction: column; text-align: center; }
   }
 </style>
+
+<script type="application/json" id="il-ilce-data" set:html={ilIlcelerJSON}></script>
+<script>
+  const IL_ILCELER = JSON.parse(document.getElementById('il-ilce-data').textContent);
+
+  const ilSec = document.getElementById('il-sec');
+  const ilceSec = document.getElementById('ilce-sec');
+  const form = document.getElementById('sorgu-form');
+  const btn = document.getElementById('sorgu-btn');
+
+  if (ilSec && ilceSec) {
+    // Il secimi degistiginde ilce dropdown'unu JS ile doldur
+    ilSec.addEventListener('change', () => {
+      const il = ilSec.value;
+      const ilceler = il ? (IL_ILCELER[il] || []) : [];
+
+      ilceSec.innerHTML = il
+        ? '<option value="">— Tum ilceler —</option>' +
+          ilceler.map(ic => `<option value="${ic}">${ic}</option>`).join('')
+        : '<option value="">— Once il secin —</option>';
+
+      // URL'i guncelle ama sayfayi yeniden yukleme
+      if (il) {
+        const url = new URL(window.location);
+        url.searchParams.set('il', il);
+        url.searchParams.delete('ilce');
+        history.replaceState(null, '', url);
+      }
+    });
+
+    // Analiz Et butonu — form'u gonder
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const il = ilSec.value;
+      if (!il) {
+        ilSec.focus();
+        return;
+      }
+      // Ilce secili degilse sadece il parametresiyle git
+      const url = new URL(form.action, window.location.origin);
+      url.searchParams.set('il', il);
+      if (ilceSec.value) url.searchParams.set('ilce', ilceSec.value);
+      window.location.href = url.toString();
+    });
+
+    // Ilce secildiginde direkt git (opsiyonel hizli yol)
+    ilceSec.addEventListener('change', () => {
+      if (ilceSec.value && ilSec.value) {
+        btn.click();
+      }
+    });
+  }
+</script>
