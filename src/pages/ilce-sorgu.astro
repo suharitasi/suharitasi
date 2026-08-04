@@ -232,17 +232,28 @@ const ozet = 'Turkiye\'de il ve ilce bazinda yeralti su potansiyeli, arazi morfo
   });
 
   function analizEt() {
-    const il = ilSec?.value; if (!il) { ilSec?.focus(); return; }
+    const il = ilSec?.value;
+    if (!il) {
+      console.log('[Analiz] Il secilmedi — islem iptal');
+      ilSec?.focus();
+      return;
+    }
     const ilce = ilceSec?.value || '';
+
+    console.log('[Analiz] Basladi — il:', il, 'ilce:', ilce || '(secili degil)');
+
     const mrf = D.morfoloji[il] || {};
     const pt = D.potansiyel[il] || {};
     const prf = D.profil[il] || {};
 
     const yasSkor = Math.min(1, (pt.kutle || 0) / 15);
-    const twiSkor = (mrf.duz_oran || 0.2 + mrf.vadi_oran || 0.1) / 2 || 0.3;
+    const twiSkor = ((mrf.duz_oran || 0) + (mrf.vadi_oran || 0)) / 2 || 0.3;
     const yagisSkor = prf.graceYon === 'azalma' ? 0.3 : 0.6;
     const jrcSkor = Math.min(1, (mrf.duz_oran || 0) * 1.5) || 0.3;
     const ahp = Math.round((yasSkor * 0.35 + twiSkor * 0.30 + yagisSkor * 0.20 + jrcSkor * 0.15) * 100);
+
+    console.log('[Analiz] AHP skor:', ahp + '%', '| YAS:', Math.round(yasSkor*100), 'TWI:', Math.round(twiSkor*100), 'Yagis:', Math.round(yagisSkor*100), 'JRC:', Math.round(jrcSkor*100));
+
     const seviye = ahp >= 70 ? 'Yuksek Potansiyel' : ahp >= 45 ? 'Orta Potansiyel' : 'Dusuk Potansiyel';
     const renk = ahp >= 70 ? '#2E7D32' : ahp >= 45 ? '#E65100' : '#C62828';
 
@@ -287,16 +298,32 @@ const ozet = 'Turkiye\'de il ve ilce bazinda yeralti su potansiyeli, arazi morfo
     $('hukuk-link-ana').textContent = (ilce || il) + ' Su Hukuku Analizi — Ceza, Iptal ve Itiraz Rehberi';
 
     bos.style.display = 'none';
-    sonuc.style.display = '';
+    sonuc.style.display = 'block';
+    sonuc.classList.remove('hidden');
     sonuc.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     const u = new URL(window.location);
     u.searchParams.set('il', il);
     if (ilce) u.searchParams.set('ilce', ilce); else u.searchParams.delete('ilce');
     history.pushState({}, '', u);
+
+    console.log('[Analiz] Tamamlandi — URL guncellendi, DOM render edildi');
   }
 
-  btn.addEventListener('click', (e) => { e.preventDefault(); analizEt(); });
+  // Analiz Et butonu — explicit click, stopPropagation, return false
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('[Analiz] Buton tiklandi — il:', ilSec?.value, 'ilce:', ilceSec?.value);
+    analizEt();
+    return false;
+  });
 
-  ilceSec.addEventListener('change', () => { if (ilceSec.value && ilSec.value) analizEt(); });
+  // Ilce secildiginde otomatik analiz
+  ilceSec.addEventListener('change', () => {
+    if (ilceSec.value && ilSec.value) {
+      console.log('[Analiz] Ilce secimi tetikledi:', ilSec.value, '→', ilceSec.value);
+      analizEt();
+    }
+  });
 </script>
