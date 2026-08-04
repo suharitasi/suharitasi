@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 72" fill="none" role="img" aria-label="Arslan Hukuk Bürosu">
+  <title>Arslan Hukuk Bürosu</title>
+
+  <!-- Amblem: stilize A + terazi motifi -->
+  <g transform="translate(4,4)">
+    <!-- Dis halka -->
+    <circle cx="32" cy="32" r="28" stroke="#0C5A7C" stroke-width="1.5" fill="none"/>
+    <!-- Ic halka (terazi kefesi cagrisimi) -->
+    <circle cx="32" cy="32" r="22" stroke="#C0883A" stroke-width="0.8" fill="none" stroke-dasharray="3 3"/>
+
+    <!-- Merkez A harfi -->
+    <text x="32" y="40" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="28" font-weight="bold" fill="#0A2740">A</text>
+  </g>
+
+  <!-- Metin: ARSLAN (buyuk) + HUKUK BÜROSU (kucuk) -->
+  <g transform="translate(78,14)">
+    <text x="0" y="18" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="bold" fill="#0A2740" letter-spacing="2">
+      ARSLAN
+    </text>
+    <text x="0" y="38" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" font-weight="600" fill="#0C5A7C" letter-spacing="4">
+      HUKUK BÜROSU
+    </text>
+    <!-- İnce alt çizgi -->
+    <line x1="0" y1="46" x2="160" y2="46" stroke="#C0883A" stroke-width="0.6"/>
+  </g>
+</svg>
