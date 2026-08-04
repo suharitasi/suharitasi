@@ -900,3 +900,43 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
   .v2-ust-akis > .v2-mobil-sorular { order: 3; }
   .v2-ust-akis > .v2-kanit { order: 4; }
 }
+
+/* =============================================
+   ANA CTA İKİLİ KART (04.08.2026 refactor)
+   ============================================= */
+.v2-cta-ikili {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  padding: 1.5rem clamp(1.5rem, 4vw, 4rem);
+  max-width: 72rem;
+  margin: 0 auto;
+}
+.v2-cta-kart {
+  display: flex; flex-direction: column; gap: 0.4rem;
+  padding: 1.4rem 1.6rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+.v2-cta-sol {
+  background: linear-gradient(135deg, rgba(79,195,208,0.18) 0%, rgba(12,58,76,0.9) 100%);
+  border: 1px solid rgba(79,195,208,0.3);
+}
+.v2-cta-sag {
+  background: linear-gradient(135deg, rgba(192,136,58,0.18) 0%, rgba(108,66,18,0.9) 100%);
+  border: 1px solid rgba(192,136,58,0.3);
+}
+.v2-cta-kart:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+.v2-cta-ikon { font-size: 1.5rem; }
+.v2-cta-baslik {
+  font-family: var(--serif, "Cormorant", Georgia, serif);
+  font-size: 1.3rem; font-weight: 500; color: #fff;
+}
+.v2-cta-alt {
+  font-family: var(--sans, "Manrope", system-ui, sans-serif);
+  font-size: 0.82rem; color: rgba(255,255,255,0.7); line-height: 1.4;
+}
+@media (max-width: 600px) {
+  .v2-cta-ikili { grid-template-columns: 1fr; }
+}

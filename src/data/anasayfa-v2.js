@@ -107,25 +107,15 @@ export const SUREC = [
     metin: 'Hakkınızı güvence altına alıyor, gelecekteki riskler için de yol gösteriyoruz.' },
 ];
 
-// — "VERİLER" MENÜSÜ (FAZ 1.4: dist'te var olan gerçek rotalar;
-//   noindex pilotlar /harita-pilot/ ve /stil-pilot/ DIŞARIDA) —
+// — "VERİLER" MENÜSÜ → 4 ANA BAŞLIĞA iNDiRGENDi (04.08.2026 mimari refactor).
+//   Eski rotalar (/harita/, /rehberler/, vb.) URL'lerinde hâlâ canlıdır,
+//   sadece ana menüden kaldırılmıştır. Alt sayfalardan ve site içi linklerden
+//   erişilebilir.
 export const VERI_ROTALARI = [
-  // 28.07 (kapı briefi, kullanıcı kararı 1): giriş kapısı menüye TEK kayıt
-  // olarak girer. PaylasilanMenu bu listeyi tek kaynak olarak okur (masaüstü
-  // panel + mobil liste aynı diziden render edilir) — ikinci bir yere
-  // yazılmaz, dolayısıyla iki menü sapamaz.
-  { ad: 'Nerede su çıkar? — 81 il', yol: '/nerede-su-cikar/' },
-  { ad: 'Harita — Su Atlası', yol: '/harita/' },
-  { ad: 'Havzalar (25)', yol: '/havzalar/' },
-  { ad: 'Rehberler', yol: '/rehberler/' },
-  { ad: 'Kuyu Ruhsatı — 81 il', yol: '/kuyu-ruhsati/' },
-  // 28.07 K2 taşıması: /arac/il-rejimi/ → /ilimde-kim-yetkili/ (eski yol 301)
-  { ad: 'İlimde kim yetkili? — araç', yol: '/ilimde-kim-yetkili/' },
-  { ad: 'Durumum — sektör kapısı', yol: '/durumum/' },
-  { ad: 'Hangi kurum?', yol: '/hangi-kurum/' },
-  { ad: 'Su Kanunu takibi', yol: '/su-kanunu/' },
-  { ad: 'Vakalar', yol: '/vaka/' },
-  { ad: 'B2B Raporlar — PDF indir', yol: '/raporlar/' },
+  { ad: 'Su Nerede Çıkar?', yol: '/ilce-sorgu/' },
+  { ad: 'Su Hukuku & Ceza İptali', yol: '/su-hukuku/' },
+  { ad: 'Havza Risk Haritası', yol: '/havza-riski/' },
+  { ad: 'İletişim / Danışmanlık', yol: '/#iletisim' },
 ];
 
 // Build-time assert (sessiz hata yasağı): zorunlu alanlar + yerel yol biçimi.

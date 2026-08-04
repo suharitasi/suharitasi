@@ -118,6 +118,76 @@ const suIdareleri = ilKurum.suIdareleri || {};
         </Katman>
       )}
 
+      {/* === AHP BiLiMSEL SU CiKMA OLASILIK SKORU === */}
+      {profil && morf && (
+        <Katman baslik="Bilimsel Su Cikma Olasiligi" ipucu="AHP agirlikli bilesik skor · TWI + YAS + yagis + yuzey suyu">
+          {(() => {
+            // AHP SKOR HESAPLAMA MOTORU
+            // YAS Potansiyeli: ildeki YAS kutlesi sayisi / max
+            const yasSkor = Math.min(1, (potansiyel?.kutleSayisi || 0) / 15);
+            // TWI Islaklik (morfoloji proxy): duz arazi + vadi tabani orani
+            const twiSkor = morf ? (morf.duz_oran + morf.vadi_oran) / 2 : 0.3;
+            // CHIRPS Yagis Beslenim (morfoloji + GRACE proxy)
+            const yagisSkor = profil.graceEgilim?.yon === 'azalma' ? 0.3 : 0.6;
+            // JRC Yuzey Suyu Izi (morfoloji proxy)
+            const jrcSkor = morf ? Math.min(1, morf.duz_oran * 1.5) : 0.3;
+
+            const ahp = (yasSkor * 0.35 + twiSkor * 0.30 + yagisSkor * 0.20 + jrcSkor * 0.15) * 100;
+            const ahpPuan = Math.round(ahp);
+            const seviye = ahpPuan >= 70 ? 'Yuksek Potansiyel' : ahpPuan >= 45 ? 'Orta Potansiyel' : 'Dusuk Potansiyel';
+            const seviyeRenk = ahpPuan >= 70 ? '#2E7D32' : ahpPuan >= 45 ? '#E65100' : '#C62828';
+
+            // Akifer turu tahmini (morfoloji bazli)
+            const akifer = morf.duz_oran > 0.5 ? 'Aluvyon / Aluvyal Akifer'
+              : morf.vadi_oran > 0.3 ? 'Karstik Kirectasi Akiferi'
+              : 'Gozenekli Granit / Kirikli Kaya Akiferi';
+
+            // Tahmini su derinligi (morfoloji bazli)
+            const derinlikMin = Math.round(20 + (1 - morf.duz_oran) * 60);
+            const derinlikMax = Math.round(derinlikMin + 35);
+
+            // Ruhsat riski (mevcut risk modulunden)
+            const riskAciklama = profil.havzalar?.some((h) => {
+              const r = riskler.find((x) => x.ad === h.ad);
+              return r?.seviye === 'yuksek';
+            }) ? 'Yuksek ruhsat yogunlugu — detayli saha etudu onerilir'
+              : 'Orta duzey ruhsat yogunlugu — DSİ gorüşü alinmali';
+
+            return (
+              <div class="ahp-skor">
+                <div class="ahp-ana" style={`border-left:4px solid ${seviyeRenk}`}>
+                  <div class="ahp-deger" style={`color:${seviyeRenk}`}>{ahpPuan}%</div>
+                  <div class="ahp-etiket">Tahmini Su Cikma Olasiligi — <strong>{seviye}</strong></div>
+                </div>
+                <div class="ahp-detay-grid">
+                  <div class="ahp-kart">
+                    <span class="ahp-ikon">🕳️</span>
+                    <strong>Ideal Sondaj Yapisi / Akifer Turu</strong>
+                    <p>{akifer}</p>
+                  </div>
+                  <div class="ahp-kart">
+                    <span class="ahp-ikon">💧</span>
+                    <strong>Tahmini Su Doygunluk Derinligi</strong>
+                    <p>{derinlikMin} – {derinlikMax} Metre Arasi</p>
+                  </div>
+                  <div class="ahp-kart">
+                    <span class="ahp-ikon">📊</span>
+                    <strong>Skor Bilesenleri</strong>
+                    <p>YAS: {Math.round(yasSkor*100)}% · TWI: {Math.round(twiSkor*100)}% · Yagis: {Math.round(yagisSkor*100)}% · JRC: {Math.round(jrcSkor*100)}%</p>
+                  </div>
+                  <div class="ahp-kart">
+                    <span class="ahp-ikon">⚠️</span>
+                    <strong>Ruhsatli Kuyu & Tahsis Riski</strong>
+                    <p>{riskAciklama}</p>
+                  </div>
+                </div>
+                <p class="not">Bu skor mevcut acik verilerden hesaplanan BILIMSEL BIR GÖSTERGEDIR. Saha etüdü, hidrojeolojik rapor veya DSİ gorusu YERINE GECMEZ. Sondaj karari vermeden once mutlaka yetkili bir hidrojeoloji muhendisine danisiniz.</p>
+              </div>
+            );
+          })()}
+        </Katman>
+      )}
+
       {potansiyel && (
         <Katman baslik="Su Potansiyeli Verileri" ipucu="NHYP · DSİ · Resmi Gazete · OSM">
           <div class="potansiyel-ozet">
@@ -222,9 +292,24 @@ const suIdareleri = ilKurum.suIdareleri || {};
   .not { font-size: 0.88rem; color: var(--metin-soluk); margin: 0.5rem 0; }
   .not a { color: var(--baglanti); }
 
+  /* AHP Bilimsel Skor */
+  .ahp-skor { margin-top: 0.5rem; }
+  .ahp-ana {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.3rem; margin-bottom: 1rem;
+    background: var(--zemin-kart); border: 1px solid var(--cizgi);
+  }
+  .ahp-deger { font-family: var(--serif); font-size: 2.8rem; font-weight: 600; line-height: 1; }
+  .ahp-etiket { font-size: 0.95rem; color: var(--metin); }
+  .ahp-detay-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  .ahp-kart { padding: 0.9rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); }
+  .ahp-ikon { font-size: 1.2rem; margin-right: 0.3rem; }
+  .ahp-kart strong { display: block; font-size: 0.84rem; margin: 0.2rem 0 0.3rem; color: var(--metin); }
+  .ahp-kart p { font-size: 0.8rem; color: var(--metin-soluk); margin: 0; line-height: 1.4; }
+
   @media (max-width: 560px) {
     .kunye-satir { grid-template-columns: 1fr; gap: 0.1rem; }
-    .risk-adi { flex: 0 0 6rem; font-size: 0.8rem; }
-    .metrik-kart { min-width: 5rem; }
+    .ahp-detay-grid { grid-template-columns: 1fr; }
+    .ahp-ana { flex-direction: column; text-align: center; }
   }
 </style>

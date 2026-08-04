@@ -1,0 +1,200 @@
+---
+// SU HUKUKU VE CEZA / iPTAL DAVASI REHBERi — /su-hukuku/
+// Interaktif durum secici + hukuki akis + B2B lead formu.
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import Katman from '../components/Katman.astro';
+
+const durumlar = [
+  {
+    id: 'ceza',
+    baslik: 'Kaçak Kuyu / İdari Para Cezası Geldi',
+    kanun: '2872 s. Çevre K. & 167 s. YAS K.',
+    itirazSuresi: 'İYUK m. 7 uyarınca tebliğden itibaren 60 gün içinde idare mahkemesinde iptal davası açılmalıdır. Ayrıca cezanın tebliğinden itibaren 30 gün içinde idareye itiraz (idari başvuru) yapılabilir; bu başvuru dava açma süresini durdurur.',
+    mahkeme: 'Görevli Mahkeme: İdare Mahkemesi. Yetkili Mahkeme: Cezayı veren idarenin bulunduğu yer idare mahkemesi (İYUK m. 32).',
+    savunma: [
+      'Yürütmeyi Durdurma (YD) talebi: Cezanın tahsilini durdurmak için dava dilekçesinde telafisi güç zarar iddiasıyla YD istenmelidir.',
+      'Hidrojeolojik bilirkişi raporu: Kuyunun yeraltı suyuna etkisinin bilimsel tespiti, cezanın iptalinde kritik delildir.',
+      'Ölçülülük ilkesi: İdari cezanın fiilin ağırlığıyla orantılı olmadığı iddiası.',
+      'Kazanılmış hak / müktesep durum: Eski tarihli kuyularda zamanaşımı ve kazanılmış hak savunması.',
+    ],
+  },
+  {
+    id: 'iptal',
+    baslik: 'Arama / Kullanma Ruhsatı İptal Edildi',
+    kanun: '167 s. Yeraltı Suları K. & YAS Tüzüğü',
+    itirazSuresi: 'Ruhsat iptali idari bir işlemdir. Tebliğden itibaren 60 gün içinde iptal davası açılmalıdır. Ruhsat iptali sırasında yürütmenin durdurulması talep edilmezse kuyu kullanılamaz hale gelir.',
+    mahkeme: 'Görevli Mahkeme: İdare Mahkemesi. Yetkili Mahkeme: DSİ Bölge Müdürlüğü\'nün bulunduğu yer (İYUK m. 32). Danıştay 13. Dairesi temyiz merciidir.',
+    savunma: [
+      'YD talebi ZORUNLU: Ruhsat iptalinde YD alınmazsa işletme durur, telafisi imkansız zarar doğar.',
+      'Bilirkişi raporu: Kuyunun YAS rezervine etkisi, çekim miktarının beslenimle uyumu.',
+      'Usul eksikliği: DSİ\'nin ruhsat iptalinde savunma hakkı tanımaması (dinlenilme hakkı ihlali).',
+      'Alternatif çözüm: Tahsis miktarının revize edilerek ruhsatın devamı.',
+    ],
+  },
+  {
+    id: 'kapama',
+    baslik: 'Kuyu Kapatma (Mühürleme) Kararı Verildi',
+    kanun: '167 s. YAS K. m. 9 & DSİ Genelgesi',
+    itirazSuresi: 'Mühürleme/kapatma idari kolluk işlemidir. Tebliğ veya fiili mühürlemeden itibaren 60 gün içinde iptal davası açılmalıdır. Acil durum: YD talebiyle kapatmanın durdurulması istenmelidir.',
+    mahkeme: 'Görevli Mahkeme: İdare Mahkemesi. Yetkili Mahkeme: İşlemi yapan DSİ bölge müdürlüğünün bulunduğu yer.',
+    savunma: [
+      'YD talebi: Kuyunun mühürlenmesi durdurulmazsa ekonomik faaliyet bıçak gibi kesilir.',
+      'Sağlık ve hijyen istisnası: İçme/kullanma suyu amaçlı kuyular için kamu yararı savunması.',
+      'Mühürleme öncesi bildirim yapılmaması: Usul eksikliği (haber verme yükümlülüğü).',
+      'Bilirkişi marifetiyle keşif: Mühürlemenin yerinde incelenmesi ve bilimsel gerekçe denetimi.',
+    ],
+  },
+  {
+    id: 'ecrimisil',
+    baslik: 'Ecrimisil / DSİ Ceza İhbarnamesi',
+    kanun: 'DSİ Kanunu & 2886 s. Devlet İhale K.',
+    itirazSuresi: 'Ecrimisil ihbarnamesine karşı tebliğden itibaren 30 gün içinde idareye itiraz, 60 gün içinde idare mahkemesinde iptal davası. DSİ\'nin ecrimisil talebi fuzuli işgal hukukuna dayanır.',
+    mahkeme: 'Görevli Mahkeme: İdare Mahkemesi (idari işlem). Yetkili Mahkeme: DSİ Bölge Müdürlüğü\'nün bulunduğu yer. NOT: Bazı durumlarda adli yargı (asliye hukuk) görevli olabilir; görev uyuşmazlığı riski vardır.',
+    savunma: [
+      'Fuzuli işgalin olmadığı: Ruhsat/izin belgesinin varlığı durumunda ecrimisil dayanaksız kalır.',
+      'Hak düşürücü süre: Ecrimisil 5 yıllık zamanaşımına tabidir; eski dönemler için talep edilemez.',
+      'Bedel fahişliği: DSİ\'nin belirlediği ecrimisil bedelinin piyasa rayicinin çok üzerinde olduğu iddiası.',
+      'Bilirkişi ile bedel tespiti: Mahkemece atanacak bilirkişi heyetiyle gerçek ecrimisil hesabı.',
+    ],
+  },
+];
+
+const ozet = 'Kuyu cezası, ruhsat iptali, mühürleme kararı veya ecrimisil ihbarnamesi aldıysanız '
+  + 'hukuki haklarınızı ve itiraz sürelerini öğrenin. Her durum için görevli mahkeme, '
+  + 'itiraz süresi ve kritik savunma argümanları tek sayfada. Bu sayfa bilgilendirme '
+  + 'amaçlıdır; hukuki danışmanlık için avukatınıza başvurun.';
+
+const sema = [{
+  '@type': 'FAQPage',
+  mainEntity: durumlar.map((d) => ({
+    '@type': 'Question',
+    name: `${d.baslik} durumunda ne yapmalıyım?`,
+    acceptedAnswer: { '@type': 'Answer', text: `İtiraz süresi: ${d.itirazSuresi.slice(0, 200)}` },
+  })),
+}];
+---
+
+<Sayfa baslik="Su Hukuku & Ceza İptal Rehberi" aciklama={ozet} sema={sema}>
+  <SayfaBasi etiket="Su Hukuku" baslik="Su Hukuku & Ceza / İptal Davası Rehberi" />
+  <OzCevap metin={ozet} />
+
+  <Katman baslik="Durumunuzu Seçin" ipucu="4 senaryo · anında hukuki yol haritası">
+    <div class="durum-secici" id="durum-secici">
+      {durumlar.map((d) => (
+        <a href={`#${d.id}`} class="durum-kart" id={`btn-${d.id}`}>
+          <span class="durum-baslik">{d.baslik}</span>
+          <span class="durum-kanun">{d.kanun}</span>
+        </a>
+      ))}
+    </div>
+  </Katman>
+
+  {durumlar.map((d) => (
+    <Katman baslik={d.baslik} ipucu={d.kanun} ton="kehribar" id={d.id}>
+      <div class="hukuki-akis">
+        <div class="akis-oge">
+          <strong>İtiraz ve Dava Süresi</strong>
+          <p>{d.itirazSuresi}</p>
+        </div>
+        <div class="akis-oge">
+          <strong>Görevli ve Yetkili Mahkeme</strong>
+          <p>{d.mahkeme}</p>
+        </div>
+        <div class="akis-oge">
+          <strong>Kritik Savunma Argümanları</strong>
+          <ul>
+            {d.savunma.map((s) => <li>{s}</li>)}
+          </ul>
+        </div>
+      </div>
+
+      <div class="lead-form">
+        <p class="lead-baslik">Davaya / Cezaya Esas Teknik Rapor ve Hukuki Görüş İstiyorum</p>
+        <form action="mailto:serdar@arslanhukuk.com?subject=Su%20Hukuku%20Danışmanlık%20Talebi" method="post" enctype="text/plain" class="b2b-form">
+          <div class="form-grid">
+            <input type="text" name="Ad" placeholder="Adınız Soyadınız" required class="form-input" />
+            <input type="tel" name="Telefon" placeholder="Telefon Numaranız" required class="form-input" />
+          </div>
+          <select name="Durum" class="form-input form-select">
+            <option value="">— Durumunuzu seçin —</option>
+            {durumlar.map((d) => <option value={d.baslik}>{d.baslik}</option>)}
+          </select>
+          <textarea name="Not" placeholder="Durumunuzu kısaca açıklayın (il, kuyu tipi, ceza tutarı vb.)" rows={4} class="form-input form-textarea"></textarea>
+          <p class="form-alt">Bu form hukuki danışmanlık TALEBİDİR; avukat-müvekkil ilişkisi kurmaz. Bilgileriniz gizli tutulur.</p>
+          <button type="submit" class="form-btn">Teknik Rapor ve Hukuki Görüş Talebi Gönder</button>
+        </form>
+      </div>
+    </Katman>
+  ))}
+
+  <Katman baslik="Önemli Uyarı" ton="murekkep" ipucu="yasal bilgilendirme">
+    <p class="not">
+      Bu sayfadaki bilgiler yalnızca GENEL BİLGİLENDİRME AMAÇLIDIR; hukuki görüş,
+      danışmanlık veya avukatlık hizmeti niteliği TAŞIMAZ. Su hukuku konularında
+      karar vermeden önce mutlaka bir su hukuku avukatına danışınız. İdari para
+      cezaları ve ruhsat işlemleri il/ilçe bazında değişiklik gösterebilir.
+    </p>
+    <p class="not">
+      Hukuki içerik: Av. Serdar Arslan (Arslan Hukuk Bürosu). Portal:
+      <a href="/">suharitasi.com</a> — Türkiye su verisi ve su hukuku portalı.
+    </p>
+  </Katman>
+</Sayfa>
+
+<style>
+  .durum-secici { display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 0.7rem; }
+  .durum-kart {
+    display: flex; flex-direction: column; gap: 0.3rem;
+    padding: 1rem 1.1rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    text-decoration: none;
+    transition: border-color 150ms ease;
+  }
+  .durum-kart:hover, .durum-kart:focus { border-color: var(--su-500); }
+  .durum-baslik { font-family: var(--serif); font-size: 0.98rem; font-weight: 500; color: var(--metin); }
+  .durum-kanun { font-family: var(--mono); font-size: 0.66rem; color: var(--metin-soluk); letter-spacing: 0.04em; }
+
+  .hukuki-akis { margin-bottom: 1.5rem; }
+  .akis-oge { margin-bottom: 1rem; }
+  .akis-oge strong { display: block; font-family: var(--serif); font-size: 1.05rem; margin-bottom: 0.3rem; color: var(--metin); }
+  .akis-oge p { font-size: 0.92rem; color: var(--metin); margin: 0.3rem 0; line-height: 1.6; }
+  .akis-oge ul { margin: 0.3rem 0 0 1.2rem; font-size: 0.9rem; color: var(--metin); }
+  .akis-oge li { margin: 0.25rem 0; line-height: 1.5; }
+
+  .lead-form {
+    margin-top: 1.5rem; padding: 1.3rem 1.4rem;
+    background: linear-gradient(135deg, var(--zemin-kart) 0%, rgba(135,85,24,0.05) 100%);
+    border: 1px solid var(--cizgi);
+    border-left: 4px solid var(--kehribar-600, #875518);
+  }
+  .lead-baslik { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; margin-bottom: 1rem; color: var(--metin); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 0.6rem; }
+  .form-input {
+    width: 100%; padding: 0.6rem 0.8rem;
+    font-size: 0.9rem; font-family: var(--govde);
+    border: 1px solid var(--cizgi); background: #fff; color: var(--metin);
+    box-sizing: border-box;
+  }
+  .form-input:focus { outline: 2px solid var(--su-500); outline-offset: 1px; }
+  .form-select { appearance: auto; }
+  .form-textarea { resize: vertical; }
+  .form-alt { font-size: 0.72rem; color: var(--metin-soluk); margin: 0.5rem 0 0.8rem; }
+  .form-btn {
+    display: inline-block; padding: 0.7rem 1.6rem;
+    background: var(--kehribar-600, #875518);
+    color: #fff; border: 0;
+    font-size: 0.92rem; font-weight: 600; font-family: var(--mono);
+    cursor: pointer;
+  }
+  .form-btn:hover { background: var(--kehribar-700, #6B4212); }
+  .not { font-size: 0.88rem; color: var(--metin-soluk); margin: 0.5rem 0; }
+  .not a { color: var(--baglanti); }
+
+  @media (max-width: 560px) {
+    .durum-secici { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+  }
+</style>

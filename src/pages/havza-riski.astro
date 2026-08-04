@@ -1,0 +1,117 @@
+---
+// HAVZA RISK HARiTASI — /havza-riski/
+// 25 havza, en riskliden en guvenliye sirali.
+// 6 gostergeli bilesik skor: GRACE + baraj + YAS + tahsis + potansiyel.
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import Katman from '../components/Katman.astro';
+import { tumHavzaRiskleri, riskSemasi } from '../data/havza-risk.js';
+
+const riskler = tumHavzaRiskleri();
+
+const ozet = 'Türkiye\'nin 25 su havzası için 6 göstergeden (GRACE uydu verisi, baraj doluluk, '
+  + 'YAS rezervi, tahsis durumu, yüzey suyu potansiyeli) hesaplanan bileşik su riski haritası. '
+  + 'Havzalar en yüksek riskten düşüğe sıralanmıştır. Veriler DSİ 2024, NASA GRACE ve EPİAŞ\'tan '
+  + 'derlenmiştir.';
+
+const sema = [{
+  '@type': 'ItemList',
+  name: 'Türkiye Havza Su Riski Sıralaması',
+  description: ozet,
+  numberOfItems: riskler.length,
+  itemListElement: riskler.map((r, i) => ({
+    '@type': 'ListItem', position: i + 1, name: r.ad,
+    description: `Risk puanı: ${r.puan}/100 (${r.seviye})`,
+  })),
+}, ...riskler.map((r) => riskSemasi(r.no, r.ad, r))];
+---
+
+<Sayfa baslik="Havza Risk Haritası — Su Riski Sıralaması" aciklama={ozet} sema={sema}>
+  <SayfaBasi etiket="Risk" baslik="Havza Su Riski Haritası" />
+  <OzCevap metin={ozet} />
+
+  <Katman baslik="Risk Sıralaması (En Riskli Önce)" ipucu={`${riskler.length} havza · GRACE + baraj + YAS + tahsis + potansiyel`}>
+    <div class="risk-listesi">
+      {riskler.map((r, i) => (
+        <a href={`/havzalar/${r.ad.toLowerCase().replace(/ı/g,'i').replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s').replace(/ö/g,'o').replace(/ç/g,'c').replace(/havzası/g,'').replace(/\s+/g,'-')}/`} class="risk-satir">
+          <span class="risk-sira">{i + 1}</span>
+          <span class="risk-ad">{r.ad}</span>
+          <span class="risk-bar">
+            <span class="risk-dolgu" style={`width:${r.puan}%;background:${r.renk}`}></span>
+          </span>
+          <span class="risk-puan">{r.puan}</span>
+          <span class="risk-seviye" style={`color:${r.renk}`}>{r.seviye === 'yuksek' ? 'YÜKSEK' : r.seviye === 'orta' ? 'ORTA' : 'DÜŞÜK'}</span>
+        </a>
+      ))}
+    </div>
+  </Katman>
+
+  <Katman baslik="Risk Göstergeleri" ipucu="6 bileşen · her birinin anlamı" ton="murekkep">
+    <div class="gosterge-grid">
+      <div class="gosterge-kart">
+        <strong>GRACE Eğilimi (%30)</strong>
+        <p>NASA GRACE/GRACE-FO uydu verisinden son 5 yıllık toplam su depolaması değişimi. Negatif eğim = su kaybı = yüksek risk.</p>
+      </div>
+      <div class="gosterge-kart">
+        <strong>Baraj Doluluk (%25)</strong>
+        <p>EPİAŞ günlük verisinden havzadaki enerji barajlarının anlık doluluk yüzdesi. Düşük doluluk = yüksek risk.</p>
+      </div>
+      <div class="gosterge-kart">
+        <strong>YAS Rezervi (%20)</strong>
+        <p>DSİ 2024 verisinden yeraltı suyu işletme rezervinin beslenime oranı. Düşük oran = yüksek risk.</p>
+      </div>
+      <div class="gosterge-kart">
+        <strong>Tahsis Durumu (%15)</strong>
+        <p>Havzanın su tahsisine açık/kapalı olması. Kapalı/kısıtlı havza = yüksek risk.</p>
+      </div>
+      <div class="gosterge-kart">
+        <strong>Yüzey Suyu Potansiyeli (%10)</strong>
+        <p>DSİ 2024 verisinden havzanın yıllık ortalama yüzey suyu potansiyeli (km³/yıl). Düşük potansiyel = yüksek risk.</p>
+      </div>
+      <div class="gosterge-kart gosterge-uyari">
+        <strong>Önemli Uyarı</strong>
+        <p>Risk puanı bilimsel bir GÖSTERGEDİR; yatırım kararı veya hukuki bağlayıcılığı YOKTUR. Saha etüdü ve hidrojeolojik raporla doğrulanmalıdır.</p>
+      </div>
+    </div>
+  </Katman>
+</Sayfa>
+
+<style>
+  .risk-listesi { display: flex; flex-direction: column; gap: 0.35rem; }
+  .risk-satir {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.55rem 0.8rem;
+    text-decoration: none;
+    border: 1px solid var(--cizgi);
+    background: var(--zemin-kart);
+    transition: background 150ms ease;
+  }
+  .risk-satir:hover { background: var(--zemin-kart-hover, #f0f4f7); }
+  .risk-sira {
+    flex: 0 0 1.8rem; text-align: center;
+    font-family: var(--mono); font-size: 0.75rem; font-weight: 600; color: var(--metin-soluk);
+  }
+  .risk-ad { flex: 1; font-size: 0.92rem; color: var(--metin); min-width: 8rem; }
+  .risk-bar { flex: 2; height: 8px; background: #e0e0e0; min-width: 3rem; }
+  .risk-dolgu { display: block; height: 100%; transition: width 0.3s ease; }
+  .risk-puan {
+    flex: 0 0 2.2rem; text-align: right;
+    font-family: var(--mono); font-size: 0.85rem; font-weight: 600; color: var(--metin);
+  }
+  .risk-seviye {
+    flex: 0 0 3.5rem; text-align: right;
+    font-family: var(--mono); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.06em;
+  }
+  .gosterge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 0.8rem; }
+  .gosterge-kart { padding: 0.9rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); }
+  .gosterge-kart strong { display: block; font-size: 0.88rem; margin-bottom: 0.3rem; color: var(--metin); }
+  .gosterge-kart p { font-size: 0.8rem; color: var(--metin-soluk); margin: 0; line-height: 1.45; }
+  .gosterge-uyari { border-left: 3px solid var(--kehribar-600, #875518); }
+  @media (max-width: 560px) {
+    .risk-ad { font-size: 0.82rem; }
+    .risk-bar { flex: 1; }
+    .risk-seviye { display: none; }
+    .gosterge-grid { grid-template-columns: 1fr; }
+  }
+</style>
