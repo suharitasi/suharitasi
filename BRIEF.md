@@ -34,7 +34,7 @@ Menü: Harita / Havzalar / Rehberler / Su Kanunu / Hakkında.
 ## Teknik
 - Vanilla JS + Vite; harita MapLibre (harici tile servisi yok); içerik katmanı Astro; hero ileride Three.js. React/Next kullanılmaz.
 - Barındırma: Cloudflare Pages (statik, ücretsiz). Site sunucuya yük bindirmez.
-- Veri pipeline'ı: Hetzner VPS (2 vCPU/4GB — yeterli; yükseltme tetiği: müvekkil paneli canlı trafiği). Depo: SQLite.
+- Veri pipeline'ı: Hetzner VPS (4 çekirdek / 8 GB RAM — 2026-07-27 ölçümü). Depo: SQLite.
 - Domainler: suharitasi.com (ana) + suharitasi.tr (301 → .com). Alındı.
 - Proje hafızası: BRIEF.md + CLAUDE.md + DESIGN.md + KAYNAKLAR.md + GUNLUK.md + VIZYON.md (nihai deneyim hedefi).
 
@@ -43,14 +43,14 @@ Acele yok. Her aşamanın yazılı "bitti tanımı" var; karşılanmadan sonraki
 
 ## Yol haritası
 - [x] Aşama 0a — Repo: index (derin su), DESIGN.md, CLAUDE.md, _headers, robots.txt, 404, favicon, og meta.
-- [ ] Aşama 0b — Yayın: Gmail 2FA, Cloudflare hesabı, nameserver taşıma, Pages deploy, .tr→.com 301, SSL/başlık testleri (SSL Labs A+, securityheaders.com yeşil), Search Console + sitemap.
+- [x] Aşama 0b — Yayın: Gmail 2FA, Cloudflare hesabı, nameserver taşıma, Pages deploy, .tr→.com 301, SSL/başlık testleri (SSL Labs A+, securityheaders.com yeşil), Search Console + sitemap.
 - [x] Harita prototipi — il GeoJSON'uyla etkileşim mekaniği (hover'da canlanma, bilgi kartı, mobil dokunma). İller geçici; havza sınırları bulununca veri değişir, mekanik kalır.
 - [x] Harita v2 — koyu rölyef + su/etkileşim katmanları
-- [ ] **Harita v3 — atlas boyaması + su atmosferi (şu an)**
-- [ ] Aşama 1 — Derin kazı: GitHub + açık veri + literatür (havza GeoJSON, DSİ/MGM araçları, MODFLOW ekosistemi, uydudan su tespiti, OpenAlex/DergiPark). Çıktı: KAYNAKLAR.md. Bitti tanımı: her veri kaleminin doğrulanmış kaynağı ve lisans notu var.
-- [ ] Aşama 2 — Veri modeli + pipeline: havza şeması, SQLite, ilk DSİ/SYGM çekimleri.
-- [ ] Aşama 3 — Gerçek havza haritası: 25 havza + rezerv/tahsis/risk katmanları.
-- [ ] Aşama 4 — Hukuk/içerik katmanı: rehberler, Su Kanunu merkezi, havza hukuk blokları (Serdar'ın kalemi).
+- [x] Harita v3 — atlas boyaması + su atmosferi
+- [x] Aşama 1 — Derin kazı: KAYNAKLAR.md tamam (DSİ, GRACE, EPİAŞ, OpenAlex, NHYP, OSM). Hidrografya OSM + Natural Earth hibritine geçti (279 göl, 131 akarsu).
+- [x] Aşama 2 — Veri modeli + pipeline: havza şeması, canlı veri akışı (baraj, GRACE, RG nöbetçi).
+- [x] Aşama 3 — Gerçek havza haritası: 25 havza sayfası, rezerv/YAS/baraj verisi canlı.
+- [x] Aşama 4 — Hukuk/içerik katmanı: 11 rehber, 81 il sayfası, Su Kanunu takibi, vaka sayfaları.
 - [ ] Aşama 5 — Hero (Three.js terrain) + cila → yayın.
 
 ## Riskler

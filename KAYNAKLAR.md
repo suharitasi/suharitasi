@@ -50,30 +50,39 @@
   göre yapıldı, karşılaştırma görseli: `screenshots/atlas-renk-karsilastirma.png`.
   Poster eklenirse yeniden kalibre edilecek.
 
-## Nehirler ve göller (GEÇİCİ/BAŞLANGIÇ VERİSİ)
+## Nehirler ve göller (OSM + Natural Earth hibrit)
 
-- Dosyalar: `src/data/tr-nehirler.json`, `src/data/tr-goller.json`
-- Kaynak: Natural Earth 10m — `ne_10m_rivers_lake_centerlines` +
-  `ne_10m_rivers_europe` (nehirler), `ne_10m_lakes` (göller);
-  https://github.com/nvkelso/natural-earth-vector üzerinden indirildi,
-  il poligonlarıyla Türkiye'ye kesişenler filtrelendi.
-- Lisans: Natural Earth — kamu malı (public domain).
-- İndirme tarihi: 2026-07-12
-- Ad düzeltmeleri: NE'nin bozuk/İngilizce etiketleri Türkçeleştirildi
-  ("Kiz?lirmak"→Kızılırmak, "Lake Van"→Van Gölü, "Ataturk Barajt"→Atatürk
-  Baraj Gölü vb.). DİKKAT: NE'de (38.4E, 38.5N) konumundaki rezervuar
-  "Saksak Dagi" etiketliydi; koordinat Karakaya Baraj Gölü'ne karşılık
-  geldiğinden bu ad verildi — resmi kaynaktan DOĞRULANMADI.
-- NOT: Beyşehir, Eğirdir, Tuz, Van, Keban, Atatürk, Karakaya mevcut;
-  İznik/Burdur/Uluabat gibi orta boy göller NE 10m'de Türkiye için yok —
-  Aşama 1'de daha zengin hidrografi kaynağıyla (ör. DSİ/HydroSHEDS)
-  değiştirilmesi değerlendirilecek.
+- Dosyalar: `src/data/tr-nehirler.json` (131 akarsu, 92 KB),
+  `src/data/tr-goller.json` (279 göl, 122 KB)
+- Projeksiyon: EPSG:4326 (WGS84) — tüm dosyalarda CRS alanı mevcut
+- **Göller:** İki kaynak birleşimi:
+  - **OpenStreetMap** — `natural=water` yolları (`water=lake/reservoir`),
+    Overpass API üzerinden 04.08.2026'da çekildi. 0,5 km² üstü filtrelendi,
+    0.005° shapely basitleştirme. 279 göl içerir (Van, Salda, Kovada, Abant,
+    Uzungöl dahil).
+  - **Natural Earth 10m** (yedekten) — OSM'de multipolygon relation olarak
+    parçalı gelen mega-göller (Tuz, Van, Beyşehir, Eğirdir, Keban, Atatürk,
+    Karakaya Baraj gölleri) NE verisiyle tamamlandı. NE 10m kamu malı (public
+    domain).
+  - Lisans: OSM verisi **ODbL 1.0 — © OpenStreetMap katkıcıları**.
+    Natural Earth parçası kamu malı. Atıf: harita kenarında OSM telifi
+    + KAYNAKLAR.md.
+- **Akarsular:** OpenStreetMap `waterway=river` yolları, Overpass API
+  üzerinden 04.08.2026'da çekildi. Shapely linemerge ile isme göre
+  birleştirildi, 0.008° basitleştirme, en uzun 150 akarsu (131'i 12+
+  noktadan oluşuyor). Kızılırmak, Dicle, Sakarya, Büyük Menderes, Ceyhan,
+  Fırat kolları, Yeşilırmak, Çoruh dahil.
+  - Lisans: **ODbL 1.0 — © OpenStreetMap katkıcıları.**
+- Çekim aracı: `arac/fetch_hydro.py` (tekrar çalıştırılabilir)
+- ÖNCEKİ VERİ (2026-07-12): Natural Earth 10m — 7 göl, 69 akarsu (32 adlı,
+  37 adsız). OSM verisine geçişle göl sayısı 7→279, adlı akarsu 32→131 oldu.
 
 ## 25 havza sınırları (data/havzalar/)
 
 - Dosyalar: `data/havzalar/havzalar-ham.geojson` (2,7 MB, 27 poligon) +
   `data/havzalar/havzalar-web.geojson` (90 KB, 25 havza — Marmara
   parçaları birleştirildi, 0.01° sadeleştirme, `arac/havza-sadelestir.py`).
+- Projeksiyon: EPSG:4326 (WGS84)
 - Kaynak: ArcGIS Online feature service "Türkiye Havzalar"
   (services-eu1.arcgis.com/LHwUjP01iDaGy6Hk/.../Türkiye_Havzalar),
   öğe: arcgis.com item 8bb6457512914c359fc6be676f0aa391 (sahibi:
@@ -86,8 +95,25 @@
   yazım hatası düzeltildi). Geometri resmî kaynakla DOĞRULANMADI — resmî
   CBS uçları (geodata.tarimorman.gov.tr, cbs.dsi.gov.tr) yurt dışından
   erişilemedi (000, denetim 2026-07-14).
+- DEĞERLENDİRİLEN ALTERNATİFLER (04.08.2026):
+  - **HydroBASINS** (HydroSHEDS, Level 5-6): fizyografik su havzaları;
+    DSİ'nin 25 idari havza sistemiyle BİREBİR ÖRTÜŞMEZ. Ör: DSİ'de tek
+    havza olan Fırat-Dicle, HydroBASINS'te 10+ alt havzaya ayrılır.
+    Yönetimsel değil hidrolojik sınıflamadır — sitenin idari havza
+    modeline uymaz.
+  - **DSİ resmî CBS** (geodata.tarimorman.gov.tr, cbs.dsi.gov.tr): TR
+    IP'sinden erişimle alınabilir. Bu sunucudan erişilemedi (2026-07-14).
+    En yetkili kaynak; TR IP'siyle denenmeli.
+  - **Sonuç:** Mevcut ArcGIS verisi, DSİ 25-havza adlandırmasıyla tam
+    eşleştiği ve alternatifler idari havza sınırı sunmadığı için KORUNDU.
+    Resmî kaynağa erişilene kadar en iyi mevcut veridir.
 - İndirme tarihi: 2026-07-14. Kullanım yeri: 2D havza haritası (Faz 2)
   + havza sayfaları.
+- NOT: `src/data/havza-harita.js` havza konumlandırıcısı, havza poligonu
+  yerine havzanın KAPSADIĞI İLLERİ gösterir. Bu bilinçli bir tercihtir:
+  havza sınır geometrisi resmî kaynaktan doğrulanmadığı için haritada il
+  poligonu proxy'si kullanılır. Havza poligonları `havzalar-web.geojson`'da
+  mevcuttur; resmî doğrulama sonrası haritaya alınabilir.
 
 ## DSİ 2024 resmî su kaynakları istatistikleri (data/havza-veri.json)
 
