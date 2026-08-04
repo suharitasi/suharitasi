@@ -14,6 +14,18 @@ import ilceDizin from '../../veri/potansiyel/ilce-il-dizini.json' assert { type:
 const profiller = tumIlProfilleri();
 const ilAdlari = profiller.map((p) => p.il);
 
+function normalle(ad) {
+  if (!ad) return '';
+  return String(ad).trim().toLowerCase()
+    .replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ş/g, 's')
+    .replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ç/g, 'c')
+    .replace(/[^a-z0-9]/g, '');
+}
+
+// Normalize edilmis il adi → orijinal il adi
+const ilNormalize = {};
+for (const il of ilAdlari) ilNormalize[normalle(il)] = il;
+
 // il → ilceler haritasi
 const ilcelerRaw = ilceDizin.ilceler || {};
 const ilIlceler = {};
@@ -27,8 +39,21 @@ for (const il of Object.keys(ilIlceler)) {
   ilIlceler[il].sort((a, b) => a.localeCompare(b, 'tr'));
 }
 
-const seciliIl = Astro.url.searchParams.get('il') || '';
-const seciliIlce = Astro.url.searchParams.get('ilce') || '';
+// il → normalize edilmis ilce adi → orijinal ilce adi
+const ilceNormalize = {};
+for (const [il, ilceler] of Object.entries(ilIlceler)) {
+  const map = {};
+  for (const ic of ilceler) map[normalle(ic)] = ic;
+  ilceNormalize[il] = map;
+}
+
+// URL parametrelerini normalize ederek eslestir
+const paramIl = Astro.url.searchParams.get('il') || '';
+const paramIlce = Astro.url.searchParams.get('ilce') || '';
+const seciliIl = paramIl ? (ilNormalize[normalle(paramIl)] || '') : '';
+const seciliIlce = seciliIl && paramIlce
+  ? (ilceNormalize[seciliIl]?.[normalle(paramIlce)] || '') : '';
+
 const profil = seciliIl ? profiller.find((p) => p.il === seciliIl) : null;
 const potansiyel = seciliIl ? ilPotansiyel(seciliIl) : null;
 const morf = (seciliIl && morfoloji.iller?.[seciliIl]) ? morfoloji.iller[seciliIl] : null;
@@ -286,6 +311,26 @@ const sema = [{
 <script type="application/json" id="il-ilce-data" set:html={ilIlcelerJSON}></script>
 <script>
   const IL_ILCELER = JSON.parse(document.getElementById('il-ilce-data').textContent);
+
+  function normalle(ad) {
+    if (!ad) return '';
+    return String(ad).trim().toLowerCase()
+      .replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s')
+      .replace(/ı/g,'i').replace(/ö/g,'o').replace(/ç/g,'c')
+      .replace(/[^a-z0-9]/g, '');
+  }
+
+  // il normalize → orijinal il
+  const ilNormalize = {};
+  for (const il of Object.keys(IL_ILCELER)) ilNormalize[normalle(il)] = il;
+
+  // il → normalize ilce → orijinal ilce
+  const ilceNormalize = {};
+  for (const [il, ilceler] of Object.entries(IL_ILCELER)) {
+    const m = {};
+    for (const ic of ilceler) m[normalle(ic)] = ic;
+    ilceNormalize[il] = m;
+  }
 
   const ilSec = document.getElementById('il-sec');
   const ilceSec = document.getElementById('ilce-sec');
