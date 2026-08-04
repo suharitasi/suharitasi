@@ -1,0 +1,86 @@
+{
+  "kunye": {
+    "kaynak": "JRC Global Surface Water 1984-2021 (Landsat)",
+    "cozunurluk": "30m",
+    "lisans": "Free and open (CC BY 4.0)",
+    "url": "https://global-surface-water.appspot.com/"
+  },
+  "tile'lar": {},
+  "havzalar": {
+    "Meriç-Ergene Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Marmara Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Susurluk Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Kuzey Ege Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Gediz Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Küçük Menderes Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Büyük Menderes Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Batı Akdeniz Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Antalya Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Burdur Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Akarçay Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Sakarya Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Batı Karadeniz Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Yeşilırmak Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Kızılırmak Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Konya Kapalı Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Doğu Akdeniz Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Seyhan Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Asi Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Ceyhan Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Fırat-Dicle Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Doğu Karadeniz Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Çoruh Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Aras Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    },
+    "Van Gölü Havzası": {
+      "durum": "islenmedi (tile bazli hesap gerekir)"
+    }
+  }
+}

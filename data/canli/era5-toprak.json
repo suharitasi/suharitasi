@@ -1,0 +1,10 @@
+{
+  "kunye": {
+    "kaynak": "ERA5-Land (ECMWF/Copernicus)",
+    "cozunurluk": "0.1° (~9 km)",
+    "lisans": "Copernicus License (ucretsiz, kayitli)",
+    "degisken": "Volumetric soil water layer (m³/m³)",
+    "son_guncelleme": "2026-08-04T10:19:29Z"
+  },
+  "aylik": {}
+}
