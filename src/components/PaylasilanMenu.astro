@@ -14,7 +14,9 @@ const veriler = VERI_ROTALARI;
 ---
 <header class:list={['pm-bar', anaSayfa ? 'pm-ana' : (yuzer ? 'pm-yuzer' : 'pm-icerik')]} id="pm-bar">
 <div class="pm-ic">
-  <a class="pm-marka" href="/">Su Hukuku</a>
+  <a class="pm-marka" href="/">
+    <img src="/logo.jpg" alt="Su Haritası" class="pm-logo" width="160" height="40" />
+  </a>
 
   <nav class="pm-nav" aria-label="Site menüsü">
     <ul>
@@ -100,6 +102,14 @@ const veriler = VERI_ROTALARI;
     font-family: var(--serif, "Cormorant", Georgia, serif);
     font-size: 1.125rem; font-weight: 600; letter-spacing: -0.02em;
     white-space: nowrap;
+    display: flex; align-items: center;
+  }
+  .pm-logo {
+    display: block; height: 2rem; width: auto; max-width: 10rem;
+    object-fit: contain;
+  }
+  @media (max-width: 480px) {
+    .pm-logo { height: 1.6rem; max-width: 8rem; }
   }
   .pm-nav > ul {
     display: flex; align-items: center; gap: clamp(0.9rem, 2vw, 1.8rem);
