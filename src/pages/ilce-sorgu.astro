@@ -222,14 +222,15 @@ document.addEventListener('DOMContentLoaded', () => {
     bos.style.display = '';
   }
 
-  // ── getData(ilSlug, ilceSlug) → { ilAd, ilceAd, mrf, pt, prf, suIdare } ──
+  // ── getData(ilSlug, ilceSlug) → direk ilce slug lookup ──
   function getData(ilSlug, icSlug) {
     const ilKayit = IDX[ilSlug];
-    if (!ilKayit) return null;
+    if (!ilKayit) { console.warn('[getData] il bulunamadi:', ilSlug); return null; }
     const icKayit = ilKayit.ilceler.find(c => c.slug === icSlug);
+    if (!icKayit) { console.warn('[getData] ilce bulunamadi:', icSlug, 'ilceler:', ilKayit.ilceler.map(c=>c.slug).slice(0,5)); return null; }
     return {
       ilAd: ilKayit.ad,
-      ilceAd: icKayit?.ad || '',
+      ilceAd: icKayit.ad,
       mrf: ilKayit.morfoloji,
       pt: ilKayit.potansiyel,
       prf: ilKayit.profil,
@@ -277,8 +278,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── ANALİZ ET ──
   function analizEt() {
+    // ANLIK DEGER OKUMA — asla global state/cache
     const ilSlug = ilSel.value;
     const icSlug = icSel.value;
+    console.log('[Sorgu] Sorgulanan İl slug:', ilSlug, '| Sorgulanan İlçe slug:', icSlug);
     if (!ilSlug || !icSlug) { alert('Lutfen hem il hem de ilce seciniz.'); return; }
 
     const d = getData(ilSlug, icSlug);
