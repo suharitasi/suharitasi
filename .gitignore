@@ -49,3 +49,6 @@ veri/ham/
 __pycache__/
 .venv/
 data/arsiv/chirps/
+.env
+data/orders.db*
+server/node_modules/

@@ -1,0 +1,82 @@
+---
+// RAPOR iNDiRME SAYFASI — /rapor-indir/
+// PayTR odeme sonrasi yonlendirme
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import Katman from '../components/Katman.astro';
+
+const status = Astro.url.searchParams.get('status') || '';
+const ozet = status === 'success'
+  ? 'Odemeniz basariyla alindi. Raporunuz hazirlaniyor.'
+  : status === 'failed'
+  ? 'Odeme islemi basarisiz oldu.'
+  : 'Rapor indirme sayfasi.';
+const API_URL = 'https://api.suharitasi.com';
+---
+
+<Sayfa baslik="Rapor Indirme — Su Haritasi" aciklama={ozet}>
+  <SayfaBasi etiket="Rapor" baslik={status === 'success' ? 'Odeme Basarili' : status === 'failed' ? 'Odeme Basarisiz' : 'Rapor Indirme'} />
+
+  {status === 'success' && (
+    <Katman baslik="Raporunuz Hazirlaniyor" ipucu="PDF olusturuluyor · email ile gonderilecek">
+      <div id="rapor-durum">
+        <p>Siparişiniz alindi. Raporunuz hazirlanip email adresinize gonderilecektir.</p>
+        <p class="not" id="durum-metni">Durum kontrol ediliyor...</p>
+        <div id="indirme-alani" style="display:none;margin-top:1rem">
+          <a href="#" id="indir-link" class="indir-btn">PDF Raporu Indir</a>
+        </div>
+      </div>
+    </Katman>
+  )}
+
+  {status === 'failed' && (
+    <Katman baslik="Odeme Basarisiz" ipucu="lutfen tekrar deneyin" ton="kehribar">
+      <p>Odeme isleminiz tamamlanamadi. Lutfen tekrar deneyin veya farkli bir kart kullanin.</p>
+      <a href="/rapor-satin-al/" class="indir-btn">Tekrar Dene</a>
+    </Katman>
+  )}
+
+  {!status && (
+    <Katman baslik="Rapor Indirme" ipucu="siparis numaranizla sorgulayin">
+      <p>Raporunuzu indirmek icin size email ile gonderilen siparis numarasini kullanin.</p>
+    </Katman>
+  )}
+</Sayfa>
+
+<style>
+  .indir-btn { display: inline-block; padding: 0.7rem 1.6rem; background: var(--su-700); color: #fff; text-decoration: none; font-size: 0.95rem; font-weight: 600; font-family: var(--mono); margin-top: 1rem; }
+  .indir-btn:hover { background: var(--su-800, #08405A); }
+  .not { font-size: 0.9rem; color: var(--metin-soluk); }
+</style>
+
+<script>
+  const API = '{API_URL}';
+  const params = new URLSearchParams(window.location.search);
+  const oid = params.get('oid');
+  const durumEl = document.getElementById('durum-metni');
+  const indirAlani = document.getElementById('indirme-alani');
+  const indirLink = document.getElementById('indir-link');
+
+  if (oid && durumEl) {
+    async function poll() {
+      try {
+        const resp = await fetch(API + '/api/order-status/' + oid);
+        const data = await resp.json();
+        if (data.status === 'COMPLETED' && data.pdf_ready) {
+          durumEl.textContent = 'Raporunuz hazir! Asagidaki butondan indirebilirsiniz.';
+          indirLink.href = API + '/raporlar/' + oid + '.pdf';
+          indirAlani.style.display = '';
+          return;
+        }
+        if (data.status === 'PAID') {
+          durumEl.textContent = 'Odeme onaylandi, rapor hazirlaniyor...';
+        } else if (data.status === 'FAILED') {
+          durumEl.textContent = 'Odeme basarisiz. Lutfen tekrar deneyin.';
+          return;
+        }
+      } catch(e) { /* API offline */ }
+      setTimeout(poll, 3000);
+    }
+    poll();
+  }
+</script>
