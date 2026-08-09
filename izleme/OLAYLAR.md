@@ -1,5 +1,6 @@
 # Su Kanunu İzleme — OLAYLAR (en yeni üstte)
 
+- 2026-08-09T16-15-01Z | tbmm-kanun-teklifleri | içerik değişti (~6 satır) → arsiv/tbmm-kanun-teklifleri/2026-08-09T16-15-01Z/
 - 2026-08-09T05-45-01Z | tbmm-kanun-teklifleri | içerik değişti (~4 satır) → arsiv/tbmm-kanun-teklifleri/2026-08-09T05-45-01Z/
 - 2026-08-08T16-15-01Z | tbmm-kanun-teklifleri | içerik değişti (~8 satır) → arsiv/tbmm-kanun-teklifleri/2026-08-08T16-15-01Z/
 - 2026-08-08T16-15-01Z | tbmm-komisyon-gundemleri | içerik değişti (~8 satır) → arsiv/tbmm-komisyon-gundemleri/2026-08-08T16-15-01Z/
