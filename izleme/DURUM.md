@@ -1,6 +1,6 @@
 # Su Kanunu İzleme — DURUM
 
-Son koşu (UTC): **2026-08-22T16-15-01Z**
+Son koşu (UTC): **2026-08-23T05-45-01Z**
 
 Özet: 12 hedef · ✳ olay: 1 · 🔴 hata: 2
 
@@ -9,7 +9,7 @@ Son koşu (UTC): **2026-08-22T16-15-01Z**
 | Hedef | Katman | Durum | Not |
 |---|---|---|---|
 | RG-gunluk | M1 | 🔴 hata | fihrist çekilemedi — log/pipeline.log |
-| tbmm-kanun-teklifleri | K1 | ✳ OLAY | içerik değişti (~8 satır) |
+| tbmm-kanun-teklifleri | K1 | ✳ OLAY | içerik değişti (~6 satır) |
 | tbmm-cevre-komisyonu | K1 | 🟢 tamam | değişiklik yok |
 | tbmm-tarim-orman-komisyonu | K1 | 🟢 tamam | değişiklik yok |
 | tbmm-komisyon-gundemleri | K1 | 🟢 tamam | değişiklik yok |
@@ -23,6 +23,7 @@ Son koşu (UTC): **2026-08-22T16-15-01Z**
 
 ## Son 10 olay
 
+- 2026-08-23T05-45-01Z | tbmm-kanun-teklifleri | içerik değişti (~6 satır) → arsiv/tbmm-kanun-teklifleri/2026-08-23T05-45-01Z/
 - 2026-08-22T16-15-01Z | tbmm-kanun-teklifleri | içerik değişti (~8 satır) → arsiv/tbmm-kanun-teklifleri/2026-08-22T16-15-01Z/
 - 2026-08-22T05-45-01Z | tarimorman-anasayfa | içerik değişti (~8 satır) → arsiv/tarimorman-anasayfa/2026-08-22T05-45-01Z/
 - 2026-08-21T16-15-02Z | tbmm-kanun-teklifleri | içerik değişti (~6 satır) → arsiv/tbmm-kanun-teklifleri/2026-08-21T16-15-02Z/
@@ -32,8 +33,6 @@ Son koşu (UTC): **2026-08-22T16-15-01Z**
 - 2026-08-21T05-45-01Z | tarimorman-anasayfa | içerik değişti (~8 satır) → arsiv/tarimorman-anasayfa/2026-08-21T05-45-01Z/
 - 2026-08-20T16-15-01Z | tbmm-kanun-teklifleri | içerik değişti (~4 satır) → arsiv/tbmm-kanun-teklifleri/2026-08-20T16-15-01Z/
 - 2026-08-20T16-15-01Z | tarimorman-anasayfa | içerik değişti (~4 satır) → arsiv/tarimorman-anasayfa/2026-08-20T16-15-01Z/
-- 2026-08-20T05-45-01Z | tbmm-kanun-teklifleri | içerik değişti (~4 satır) → arsiv/tbmm-kanun-teklifleri/2026-08-20T05-45-01Z/
-_(henüz olay yok)_
 
 ---
 _Cron: 05:30 + 16:00 UTC · fark motoru + RG deterministik · kaynak: rapor/su-kanunu-kaynak-kesif.md (700f216)_
