@@ -26,8 +26,13 @@ AÇIK KALAN (bu turda bilinçli dokunulmayan):
   yöntem şerhi mevcut "TEMSİLÎDİR" uyarısıyla sınırlı — yeterlilik kararı.
 - [ ] md14 görsel taban yenilemesi deploy sonrası ana ağaçta koşulacak
   (bilinçli değişiklik: ana sayfa mobil sırası; --gorsel-taban-yenile).
-- [ ] .env PAYTR_* satırları ana ağaçta silinecek (worktree'de .env yok) —
-  merge sonrası adım, rapor/agustos-uyum.md kapanış listesinde.
+- [x] .env PAYTR_* satırları ana ağaçta SİLİNDİ (24.08 kapanışı; 6 satır).
+- [ ] Hidrografya çapraz bağları (.capraz) 44px dokunma hedefinin altında —
+  md21 ölçümü: /kuyu-ruhsati/manisa/ 7→12 (yeni bağlar mevcut kardeş-il
+  nav deseniyle aynı boy, 128×26). Mevcut 3a borcuyla (90 öğe <44px)
+  birlikte çözülmeli; desen değişikliği görsel kimlik → BÜYÜK İŞ.
+- [ ] md18 veri tabanı yenilemesi: ilce-morfoloji.json + isletme-sahalari-yeni.json
+  artık KARARLAR §25 ile kayıtlı — kapsam-taban güncellemesi küçük iş.
 
 BEKLEYEN İŞLER PAKETİ — MERGE EDİLDİ (29 Tem 2026, ön-onaylı). 16 kalem.
 KAPANANLAR: M1 üç ölü dış bağlantı (3/3 onarıldı, HTTP 200 + İÇERİK

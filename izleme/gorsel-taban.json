@@ -1,7 +1,7 @@
 {
  "_not": "GÖRSEL/DÜZEN TABANI — sürümlü YAPILANDIRMA (log değil). Bilinçli tasarım değişikliğinde `node arac/site-saglik.mjs --gorsel-taban-yenile --gerekce \"...\"` ile yenilenir; yenilenmeden kalem KIRMIZI kalır. Ölçüm deterministiktir: sabit viewport + DPR + reduced-motion (sahne 0'da donar).",
- "tabanTarihi": "2026-07-28T18:23:59.844Z",
- "gerekce": "ilk kurulum — hero saha kadrajı + reset :where düzeltmesi sonrası taban (gorsel-bekci Faz 1) · M12 (28.07): rehber grubuna ikinci örnek eklendi — G4 ritmi bu grupta sayfadan sayfaya değişiyordu (28.07 varyans ölçümü), tek örnek yetersizdi.",
+ "tabanTarihi": "2026-08-24T21:45:25.138Z",
+ "gerekce": "agustos-uyum merge (59c8720): ana sayfa mobil sırası S1 kuralına döndü (CTA kartları order 5), emoji CTA'lar kalktı, satış bandı/menü CTA'sı kaldırıldı, göl/nehir/ilçe-sorgu sayfa tipleri denetime girdi — bilinçli tasarım değişiklikleri; kanıt rapor/agustos-uyum.md",
  "esikler": {
   "g1KesismePx2": 2000,
   "g2OlcekOran": 1.05,
@@ -194,7 +194,7 @@
     }
    ],
    "hizalamaSapma": 0,
-   "kesismeAlan": 616,
+   "kesismeAlan": 0,
    "enYuksekOlcek": 0.49,
    "mobilIlkSoru": null,
    "aktifSahne": "(sahne yok)"
@@ -239,6 +239,11 @@
      "etiket": "section",
      "padUst": 0,
      "padAlt": 0
+    },
+    {
+     "etiket": "section",
+     "padUst": 0,
+     "padAlt": 0
     }
    ],
    "hizalamaSapma": 0,
@@ -258,6 +263,11 @@
      "etiket": "kahraman",
      "padUst": 17.6,
      "padAlt": 16
+    },
+    {
+     "etiket": "section",
+     "padUst": 0,
+     "padAlt": 0
     },
     {
      "etiket": "section",
@@ -537,5 +547,9 @@
    "mobilIlkSoru": null,
    "aktifSahne": "(sahne yok)"
   }
+ },
+ "oncekiTaban": {
+  "tarih": "2026-07-28T18:23:59.844Z",
+  "gerekce": "ilk kurulum — hero saha kadrajı + reset :where düzeltmesi sonrası taban (gorsel-bekci Faz 1) · M12 (28.07): rehber grubuna ikinci örnek eklendi — G4 ritmi bu grupta sayfadan sayfaya değişiyordu (28.07 varyans ölçümü), tek örnek yetersizdi."
  }
 }
