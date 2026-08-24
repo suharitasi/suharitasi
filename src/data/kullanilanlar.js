@@ -13,6 +13,7 @@
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { tumGoller, tumNehirler, elenenGoller, elenenNehirler } from './gol-nehir.js';
 
 const KOK = join(dirname(fileURLToPath(import.meta.url)), '../..');
 const oku = (y) => JSON.parse(readFileSync(join(KOK, y), 'utf8'));
@@ -46,6 +47,14 @@ const rgSayiliKayit = [...rgBaslik, ...rgEk].filter((k) => k.rg_sayi).length;
 
 const akademik = oku('veri/potansiyel/akademik-kunye.json');
 const ilKurum = oku('data/il-kurum.json');
+
+/* Hidrografya (24.08 M7.4): 04.08 dalgası bu kaynağı kayda hiç geçirmemişti.
+   Sayılar üretici modülün kendisinden gelir; Türkiye kapsamı dışında kalan
+   öznitelikler (uydurma denetimi 24.08: sınır ötesi göller/nehirler)
+   sayıma GİRMEZ, elenen sayısı ayrı basılır. */
+const golSayisi = tumGoller().length;
+const nehirSayisi = tumNehirler().length;
+const hidroElenen = elenenGoller().length + elenenNehirler().length;
 
 // ——— Denetim ve araç ———
 /* Sağlık kalemi sayısı: ölçerin KENDİ kaynağından sayılır (kaydet('N-ad')
@@ -84,6 +93,7 @@ export const OLCEK = {
   akademikIlKapsami: akademik.il_kapsami,
   dsiBolgesi: Object.keys(ilKurum.dsiBolgeleri).length,
   veriSeti, dsiArsiv, mevzuatArsiv,
+  golSayisi, nehirSayisi, hidroElenen,
   saglikKalemi, gorselKalemi, briefKurali, aracDosyasi, kararSayisi,
   skillSayisi,
 };

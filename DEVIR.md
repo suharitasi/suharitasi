@@ -46,7 +46,7 @@ Son güncelleme: 2026-07-28.
 ```
 suharitasi/
 ├── src/               Astro kaynak — sayfalar, bileşenler, veri modülleri
-│   ├── pages/         Yayımlanan her sayfa (174 sayfa)
+│   ├── pages/         Yayımlanan her sayfa (24.08.2026 build: 523 — güncel sayı sitemap.xml/llms.txt üretiminden okunur, elle güncellenmez)
 │   ├── components/    Bileşenler
 │   └── data/          Build anında okunan veri modülleri (sayı bekçileri burada)
 ├── public/            Doğrudan kopyalanan varlıklar (görsel, video, /s/*.js)

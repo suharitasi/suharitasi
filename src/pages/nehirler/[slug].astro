@@ -1,12 +1,17 @@
 ---
-// Nehir detay sayfasi: /nehirler/[slug]/
-// Veri kaynagi: tr-nehirler.json (OSM OpenStreetMap)
+// Nehir detay sayfası: /nehirler/[slug]/
+// Veri kaynağı: tr-nehirler.json (OpenStreetMap, erişim 04.08.2026).
+// 24.08.2026 (agustos-uyum M4+M5): aksansız şablon Türkçesi düzeltildi;
+// FAQ sorusu verinin CEVAPLAYAMADIĞI "hangi havzaya aittir?"ten, geometrik
+// eşlemeyle cevaplanabilen "hangi havzadan geçer?"e çevrildi; verisiz dolgu
+// cümlesi kaldırıldı; künye kapsam+erişim+lisans taşır; havza/il iç bağları
+// gol-nehir-cografya.js eşlemesinden.
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import OzCevap from '../../components/OzCevap.astro';
 import Katman from '../../components/Katman.astro';
-import { tumNehirler, nehirOzet } from '../../data/gol-nehir.js';
-import { OG_GORSEL } from '../../data/site';
+import { tumNehirler, nehirOzet,
+         GOLNEHIR_ERISIM, GOLNEHIR_KAPSAM_NEHIR, GOLNEHIR_LISANS } from '../../data/gol-nehir.js';
 
 export async function getStaticPaths() {
   return tumNehirler().map((n) => ({ params: { slug: n.slug }, props: { nehir: n } }));
@@ -14,72 +19,85 @@ export async function getStaticPaths() {
 
 const { nehir } = Astro.props;
 const ozet = nehirOzet(nehir);
+const havzalar = nehir.cografya.havzalar;
+const il = nehir.cografya.il;
 
-// Schema.org Place / BodyOfWater JSON-LD
 const sema = [{
   '@type': 'BodyOfWater',
   name: nehir.ad,
   description: ozet,
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: nehir.merkez[1],
-    longitude: nehir.merkez[0],
-  },
+  geo: { '@type': 'GeoCoordinates', latitude: nehir.merkez[1], longitude: nehir.merkez[0] },
   additionalProperty: [
-    { '@type': 'PropertyValue', name: 'Veri kaynagi', value: nehir.kaynak },
+    { '@type': 'PropertyValue', name: 'Veri kaynağı', value: nehir.kaynak },
   ],
-  containedInPlace: {
-    '@type': 'Place',
-    name: 'Turkiye',
-  },
-}];
-
-// FAQPage — nehrin temel sorusu
-sema.push({
+  containedInPlace: { '@type': 'Place', name: 'Türkiye' },
+}, {
   '@type': 'FAQPage',
   mainEntity: [{
     '@type': 'Question',
-    name: `${nehir.ad} nerededir, hangi havzaya aittir?`,
+    name: `${nehir.ad} nerededir, hangi havzadan geçer?`,
     acceptedAnswer: { '@type': 'Answer', text: ozet },
   }],
-});
+}];
 ---
 
-<Sayfa baslik={`${nehir.ad} — Turkiye Nehirleri`} aciklama={ozet} sema={sema}>
+<Sayfa baslik={`${nehir.ad} — Türkiye Nehirleri`} aciklama={ozet} sema={sema}>
   <SayfaBasi etiket="Nehir" baslik={nehir.ad} />
 
   <OzCevap metin={ozet} />
 
-  <Katman baslik="Nehir profili" ipucu="koordinat · veri kaynagi">
+  <Katman baslik="Nehir profili" ipucu="koordinat · havza · veri kaynağı">
     <dl class="kunye kunye-katman">
       <div class="kunye-satir">
-        <dt>Tur</dt>
+        <dt>Tür</dt>
         <dd>Akarsu (nehir)</dd>
       </div>
       <div class="kunye-satir">
         <dt>Koordinat (merkez)</dt>
-        <dd>{nehir.merkez[1].toFixed(4)}°N, {nehir.merkez[0].toFixed(4)}°E</dd>
+        <dd>{nehir.merkez[1].toFixed(4)}°K, {nehir.merkez[0].toFixed(4)}°D</dd>
       </div>
-      <div class="kunye-satir">
-        <dt>Veri kaynagi</dt>
-        <dd>{nehir.kaynak}</dd>
-      </div>
+      {havzalar.length > 0 && (
+        <div class="kunye-satir">
+          <dt>{havzalar.length === 1 ? 'Havza' : 'Geçtiği havzalar'}</dt>
+          <dd>
+            {havzalar.map((h, i) => (
+              <>
+                {i > 0 && ' · '}
+                <a href={`/havzalar/${h.slug}/`}>{h.ad}</a>
+              </>
+            ))}
+          </dd>
+        </div>
+      )}
+      {il && (
+        <div class="kunye-satir">
+          <dt>Örneklenen il</dt>
+          <dd><a href={`/kuyu-ruhsati/${il.slug}/`}>{il.ad}</a></dd>
+        </div>
+      )}
     </dl>
   </Katman>
 
-  <Katman baslik="Konum" ipucu="yaklasik merkez koordinati · bilgi amaclidir" ton="murekkep">
+  <Katman baslik="Konum ve ölçek şerhi" ipucu="yaklaşık merkez · geometrik eşleme · bilgi amaçlıdır" ton="murekkep">
     <p class="not">
-      Bu sayfadaki koordinat, nehrin geometrik merkezidir; hidrografik referans
-      veya olcum noktasi DEGILDIR. Harita uzerinde nehir akis hatti icin
-      OpenStreetMap verisine basvurunuz.
+      Koordinat, akarsu hattının sınır kutusunun geometrik merkezidir;
+      hidrografik referans veya ölçüm noktası DEĞİLDİR. Havza ve il eşlemesi
+      hat geometrisinin örneklenmiş noktalarından türetilmiştir; akarsu birden
+      çok il ve havzadan geçebilir — idari/hidrografik tescil yerine geçmez.
     </p>
     <p class="not">
-      Bu nehir Turkiye su aginin bir parcasidir.
-      <a href="/havzalar/">Havza sayfalarimizda</a> akarsuyunuzun ait oldugu
-      havzadaki su potansiyeli, baraj doluluklari ve su hukuku ile ilgili
-      resmi verileri bulabilirsiniz.
+      {havzalar.length > 0 && (
+        <>İlgili resmî veriler: <a href={`/havzalar/${havzalar[0].slug}/`}>{havzalar[0].ad}
+        rezerv ve doluluk verisi</a> · </>
+      )}
+      <a href="/nerede-su-cikar/">ilinizin su potansiyeli</a>.
     </p>
   </Katman>
+
+  <p class="veri-kunyesi">
+    Veri künyesi: {nehir.kaynak} — kapsam: {GOLNEHIR_KAPSAM_NEHIR}; erişim
+    {' '}{GOLNEHIR_ERISIM}. {GOLNEHIR_LISANS}. Bu sayfa hukuki görüş değildir.
+  </p>
 </Sayfa>
 
 <style>
@@ -112,7 +130,7 @@ sema.push({
   .kunye-katman::before { display: none; }
   .kunye-satir {
     display: grid;
-    grid-template-columns: minmax(9rem, 13rem) 1fr;
+    grid-template-columns: minmax(8rem, 12rem) 1fr;
     gap: 0.4rem 1.2rem;
     padding: 0.5rem 0;
   }
@@ -127,12 +145,18 @@ sema.push({
     align-self: center;
   }
   dd { font-size: 0.96rem; }
+  dd a { color: var(--baglanti, var(--su-700)); }
   .not {
     font-size: 0.9rem;
     color: var(--metin-soluk);
     margin: 0.6rem 0;
   }
-  .not a { color: var(--baglanti); }
+  .not a { color: var(--baglanti, var(--su-700)); }
+  .veri-kunyesi {
+    font-size: 0.8rem;
+    color: var(--metin-soluk);
+    margin: 1.2rem 0 0;
+  }
   @media (max-width: 560px) {
     .kunye-satir { grid-template-columns: 1fr; gap: 0.1rem; }
   }

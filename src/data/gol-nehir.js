@@ -1,8 +1,29 @@
-// GOL/NEHiR VERi MODULU — GeoJSON verisinden slug → detay eslemesi.
-// Goller ve nehirler icin ortak slug uretimi, ozet metin olusturma,
-// ve getStaticPaths verisi.
-import goller from './tr-goller.json';
-import nehirler from './tr-nehirler.json';
+// GÖL/NEHİR VERİ MODÜLÜ — GeoJSON verisinden slug → detay eşlemesi.
+// 24.08.2026 (agustos-uyum M4+M5): 04.08 sürümünün üç kusuru ölçülerek
+// düzeltildi:
+//   1) KAPSAM: Overpass bbox çekimi sınır ötesi öznitelikleri de almıştı
+//      (ölçüm: 32 göl + 36 nehir Türkiye dışında — Gürcü/Ermeni/Bulgar/
+//      İran/Irak/Yunan adlarıyla). Bunlar "Türkiye Gölleri" başlığıyla
+//      yayındaydı = kaynağı olmayan coğrafya iddiası. Artık geometri
+//      örneklemi 81 il çokgeninin (tr-iller.json) dışında kalanlar
+//      ÜRETİLMEZ; elenenler elenenGoller()/elenenNehirler() ile raporlanır.
+//   2) TÜRKÇE: şablon metinleri aksansızdı ("Dogal gol", "Turkiye") ve
+//      özet cümlesi virgül dizimiyle bozuktu ("bir doğal göldür, ve ...").
+//   3) UYDURMA ADAYI: nokta sayısından "tahmini uzunluk" üreten ÖLÜ KOD
+//      (tahminiKm) silindi — hiç basılmamıştı, veri karşılığı yoktu.
+// Erişim/kapsam künyesi KAYNAKLAR.md kaydından: Overpass çekimi 04.08.2026,
+// göllerde 0,5 km² üstü filtre; OSM verisi ODbL 1.0.
+import { readFileSync } from 'node:fs';
+import { cografyaEsle } from './gol-nehir-cografya.js';
+
+// JSON'lar fs ile okunur (Vite + çıplak node testinde aynı davranış).
+const goller = JSON.parse(readFileSync('src/data/tr-goller.json', 'utf8'));
+const nehirler = JSON.parse(readFileSync('src/data/tr-nehirler.json', 'utf8'));
+
+export const GOLNEHIR_ERISIM = '04.08.2026';
+export const GOLNEHIR_KAPSAM_GOL = 'OpenStreetMap (natural=water) + Natural Earth 10m; 0,5 km² üstü';
+export const GOLNEHIR_KAPSAM_NEHIR = 'OpenStreetMap (waterway=river) ana akarsu hatları';
+export const GOLNEHIR_LISANS = '© OpenStreetMap katkıcıları (ODbL 1.0) · Natural Earth kamu malı';
 
 const TR_ASCII = { ç: 'c', ğ: 'g', ı: 'i', ö: 'o', ş: 's', ü: 'u',
                    Ç: 'C', Ğ: 'G', I: 'I', İ: 'i', Ö: 'O', Ş: 'S', Ü: 'U' };
@@ -18,92 +39,85 @@ export function golNehirSlug(ad) {
   return slug || 'isimsiz';
 }
 
-let _adsizSayacGol = 0;
-let _adsizSayacNehir = 0;
-
-/** Tum goller icin { slug, ad, alan_km2, tip, kaynak, bbox, merkez } */
-export function tumGoller() {
-  _adsizSayacGol = 0;
-  const seen = new Set();
-  return goller.features.map((f) => {
-    const p = f.properties;
-    const b = f.bbox || [0, 0, 0, 0];
-    let slug = golNehirSlug(p.ad);
-    if (slug === 'isimsiz') slug = `gol-${++_adsizSayacGol}`;
-    // Cakisan slug'lara ek ekle (ayni adli iki gol olursa)
-    if (seen.has(slug)) {
-      let i = 2;
-      while (seen.has(`${slug}-${i}`)) i++;
-      slug = `${slug}-${i}`;
-    }
-    seen.add(slug);
-    return {
-      slug,
-      ad: p.ad,
-      alan_km2: p.alan_km2,
-      tip: p.tip,
-      kaynak: p.kaynak,
-      bbox: b,
-      merkez: [(b[0] + b[2]) / 2, (b[1] + b[3]) / 2],
-      geometry: f.geometry,
-    };
-  });
+// Göl türü: veri alanı `tip` → çekimli Türkçe karşılık. Veri tip taşımıyorsa
+// genel "göl" denir — tahmin YAZILMAZ.
+const TIP_METNI = {
+  reservoir: { ad: 'Baraj gölü', cekim: 'bir baraj gölüdür' },
+  lake:      { ad: 'Doğal göl',  cekim: 'bir doğal göldür' },
+  lagoon:    { ad: 'Lagün',      cekim: 'bir lagündür' },
+  pond:      { ad: 'Gölet',      cekim: 'bir gölettir' },
+};
+export function golTipi(gol) {
+  return TIP_METNI[gol.tip] ?? { ad: 'Göl', cekim: 'bir göldür' };
 }
 
-/** Tum nehirler icin { slug, ad, noktaSayisi, kaynak, bbox, merkez } */
-export function tumNehirler() {
-  _adsizSayacNehir = 0;
+function insaEt(features, onek) {
   const seen = new Set();
-  return nehirler.features.map((f) => {
+  const icinde = [], elenen = [];
+  let adsiz = 0;
+  for (const f of features) {
     const p = f.properties;
     const b = f.bbox || [0, 0, 0, 0];
+    const cografya = cografyaEsle(f.geometry);
+    if (!cografya.turkiyede) { elenen.push({ ad: p.ad, kaynak: p.kaynak }); continue; }
     let slug = golNehirSlug(p.ad);
-    if (slug === 'isimsiz') slug = `nehir-${++_adsizSayacNehir}`;
-    if (seen.has(slug)) {
-      let i = 2;
-      while (seen.has(`${slug}-${i}`)) i++;
-      slug = `${slug}-${i}`;
-    }
+    if (slug === 'isimsiz') slug = `${onek}-${++adsiz}`;
+    if (seen.has(slug)) { let i = 2; while (seen.has(`${slug}-${i}`)) i++; slug = `${slug}-${i}`; }
     seen.add(slug);
-    return {
-      slug,
-      ad: p.ad,
-      noktaSayisi: f.geometry.coordinates.length,
-      kaynak: p.kaynak,
-      bbox: b,
-      merkez: [(b[0] + b[2]) / 2, (b[1] + b[3]) / 2],
-      geometry: f.geometry,
-    };
-  });
+    icinde.push({
+      slug, ad: p.ad, kaynak: p.kaynak,
+      alan_km2: p.alan_km2 ?? null, tip: p.tip ?? null,
+      bbox: b, merkez: [(b[0] + b[2]) / 2, (b[1] + b[3]) / 2],
+      geometry: f.geometry, cografya,
+    });
+  }
+  return { icinde, elenen };
 }
 
-/** Gol icin ozet metin (oz-cevap) */
+let _gol = null, _nehir = null;
+function golVeri() { if (!_gol) _gol = insaEt(goller.features, 'gol'); return _gol; }
+function nehirVeri() { if (!_nehir) _nehir = insaEt(nehirler.features, 'nehir'); return _nehir; }
+
+/** Türkiye kapsamındaki göller (il/havza eşlemeli) */
+export function tumGoller() { return golVeri().icinde; }
+/** Türkiye kapsamındaki nehirler */
+export function tumNehirler() { return nehirVeri().icinde; }
+/** Kapsam dışı bırakılanlar (rapor + /kullanilanlar şerhi için) */
+export function elenenGoller() { return golVeri().elenen; }
+export function elenenNehirler() { return nehirVeri().elenen; }
+
+/** Göl için özet metin (öz-cevap + meta description) — her parça VERİDEN. */
 export function golOzet(gol) {
-  const parcalar = [];
-  parcalar.push(`${gol.ad}`);
-  if (gol.tip === 'reservoir' || gol.ad.includes('Baraj')) {
-    parcalar.push('bir baraj gölüdür');
-  } else {
-    parcalar.push('bir doğal göldür');
-  }
-  if (gol.alan_km2 != null) {
-    parcalar.push(`ve yaklaşık ${gol.alan_km2.toLocaleString('tr-TR')} km² yüzey alanına sahiptir`);
-  }
-  parcalar.push(`(kaynak: ${gol.kaynak}).`);
-  return parcalar.join(', ').replace('bir, ', 'bir ');
+  const tur = golTipi(gol);
+  const yer = gol.cografya.il ? `${gol.cografya.il.ad} ili sınırlarında ` : '';
+  const gövde = `${gol.ad}, ${yer}${tur.cekim}`;
+  const alan = gol.alan_km2 != null
+    ? `; yaklaşık ${gol.alan_km2.toLocaleString('tr-TR')} km² yüzey alanına sahiptir`
+    : '';
+  return `${gövde}${alan} (kaynak: ${gol.kaynak}, erişim ${GOLNEHIR_ERISIM}).`;
 }
 
-/** Nehir icin ozet metin */
+/** Nehir için özet metin — havza bilgisi geometrik örneklemden. */
 export function nehirOzet(nehir) {
-  const parcalar = [];
-  parcalar.push(`${nehir.ad}`);
-  parcalar.push('Türkiye akarsu ağında yer alan bir nehirdir');
-  if (nehir.noktaSayisi) {
-    // Nokta sayisindan yaklasik uzunluk tahmini (her nokta ~0.5-1 km)
-    const tahminiKm = Math.round(nehir.noktaSayisi * 0.7);
-    parcalar.push(`(kaynak: ${nehir.kaynak}).`);
-  } else {
-    parcalar.push(`(kaynak: ${nehir.kaynak}).`);
-  }
-  return parcalar.join(', ').replace('bir, ', 'bir ');
+  const h = nehir.cografya.havzalar;
+  const havzaMetni = h.length === 0
+    ? `Türkiye sınırları içinde akan bir akarsudur`
+    : h.length === 1
+      ? `${h[0].ad.replace(/\s*Havzası\s*$/, '')} Havzası'ndan geçen bir akarsudur`
+      : `${h.map((x) => x.ad.replace(/\s*Havzası\s*$/, '')).join(', ')} havzalarından geçen bir akarsudur`;
+  return `${nehir.ad}, ${havzaMetni} (kaynak: ${nehir.kaynak}, erişim ${GOLNEHIR_ERISIM}).`;
+}
+
+/** Ters eşleme (il/havza sayfalarının "geri bağı" — M5.7 ada-kalmaz kuralı). */
+export function ilinGolleri(ilSlug) {
+  return tumGoller().filter((g) => g.cografya.il?.slug === ilSlug);
+}
+export function ilinNehirleri(ilSlug) {
+  return tumNehirler().filter((n) => n.cografya.il?.slug === ilSlug);
+}
+export function havzaninGolleri(havzaSlug) {
+  return tumGoller().filter((g) => g.cografya.havzalar.some((h) => h.slug === havzaSlug));
+}
+export function havzaninNehirleri(havzaSlug) {
+  return tumNehirler().filter((n) => n.cografya.havzalar.some((h) => h.slug === havzaSlug));
 }

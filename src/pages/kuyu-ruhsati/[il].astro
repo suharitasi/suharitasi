@@ -12,6 +12,7 @@ import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import OzCevap from '../../components/OzCevap.astro';
 import IlgiliRehberler from '../../components/IlgiliRehberler.astro';
+import { ilinGolleri, ilinNehirleri } from '../../data/gol-nehir.js';
 import { yayinlananIller } from '../../data/il-profil.js';
 import IlPotansiyel from '../../components/IlPotansiyel.astro';
 import { ilPotansiyel } from '../../data/potansiyel.js';
@@ -37,6 +38,8 @@ const kardesIller = buBolgeNo.size
       .filter((x) => x.slug !== p.slug && x.dsiBolgeleri.some((b) => buBolgeNo.has(b.no)))
       .slice(0, 6)
   : [];
+const ilGolleri = ilinGolleri(p.slug);
+const ilNehirleri = ilinNehirleri(p.slug);
 
 const tumHavzalar = await getCollection('havzalar');
 const havzaSlug = (ad) => tumHavzalar.find((h) => h.data.baslik === ad)?.id;
@@ -181,6 +184,27 @@ const sema = [
     </>
   )}
 
+  {/* 24.08 (agustos-uyum M5.7): hidrografya geri bağı — ada kalmaz.
+      Eşleme geometrik örneklemdir; şerh blok sonunda. */}
+  {(ilGolleri.length > 0 || ilNehirleri.length > 0) && (
+    <>
+      <h2>Bu ilde hangi göller ve akarsular örnekleniyor?</h2>
+      {ilGolleri.length > 0 && (
+        <nav class="capraz" aria-label="İldeki göller">
+          {ilGolleri.map((g) => <a href={`/goller/${g.slug}/`}>&rarr; {g.ad}</a>)}
+        </nav>
+      )}
+      {ilNehirleri.length > 0 && (
+        <nav class="capraz" aria-label="İldeki akarsular">
+          {ilNehirleri.map((n) => <a href={`/nehirler/${n.slug}/`}>&rarr; {n.ad}</a>)}
+        </nav>
+      )}
+      <p class="hidro-serh">Liste, OSM/Natural Earth hidrografya verisinin
+        (erişim 04.08.2026) il sınırlarıyla geometrik kesişiminden türetilmiştir;
+        göl ve akarsular birden çok ile taşabilir.</p>
+    </>
+  )}
+
   <p class="veri-kunyesi">
     Veri künyesi: il–bölge/havza eşlemesi resmî kaynaklardan derlendi
     ({trTarih(p.veriKunyesi.ilKurumDerleme)}); havza sayıları
@@ -268,4 +292,5 @@ const sema = [
     line-height: 1.65;
     color: var(--metin-soluk);
   }
+  .hidro-serh { font-size: 0.8rem; color: var(--metin-soluk); margin: 0.6rem 0 0; }
 </style>

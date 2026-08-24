@@ -1,5 +1,18 @@
 # GUNLUK.md — seans notları
 
+## 24.08.2026 — 4 Ağustos dalgasının yakalanışı ve kurallara uydurulması
+Kayıtsız dalga NASIL fark edildi: kullanıcı brief'iyle koşulan SİTE DURUM
+DENETİMİ (rapor/site-durum-kazi.md) — sitemap tip envanteri 279 göl + 131
+nehri gösterdi, git log 02-04.08 commit'lerini kayıtlarla eşleştiremedi
+(KARARLAR/GUNLUK/SIRADAKILER'de sıfır iz), md14 kırmızısının başlangıcı
+dalga gününe denk düştü. YAKALAYAN MEKANİZMA = periyodik durum denetimi +
+kayıt disiplini çapraz kontrolü; sağlık sistemi tek başına yakalayamazdı
+(sayfalar 200 dönüyordu). Uygulama ve ölçümler: rapor/agustos-uyum.md;
+karar: KARARLAR §25. Ders: "MERGE = YAYIN" kuralı işlerken kayıtsız merge,
+denetim setine girmeyen sayfa tipleri ve taban yenilenmeden kalan md16/md18
+sarıları 20 gün görünmez kaldı; yeni tip → çekirdek sete kuralı bu turda
+göl/nehir/ilçe-sorgu için işletildi.
+
 ## 2026-07-29 (akşam) — panel sonrası doğrulama
 
 **www 522 KAPANDI.** Pages custom domain eklendi; 3/3 ölçüm **200**

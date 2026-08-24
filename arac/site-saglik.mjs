@@ -408,9 +408,25 @@ async function tarayiciKontrolleri() {
         await sayfa.goto(TABAN + ornek.yol, { waitUntil: 'load' });
         await sayfa.waitForTimeout(900);
         const olcum = await sayfa.evaluate(({ esik, azami }) => {
+          // 24.08 (agustos-uyum M3): rgb/rgba DIŞI renk uzayları (oklch, color())
+          // regex'te null dönüyordu → oklch ZEMİN saydam sanılıp gövdeye
+          // düşülüyor (14 yanlış kırmızı), oklch METİN rengi ise sessizce
+          // ATLANIYORDU (ölçülmeyen düğüm). Canvas dönüşümü her CSS rengini
+          // sRGB'ye indirger; regex hızlı yol olarak kalır.
+          const tuval = document.createElement('canvas');
+          tuval.width = tuval.height = 1;
+          const tctx = tuval.getContext('2d', { willReadFrequently: true });
           const ayrist = (r) => {
             const m = /rgba?\(([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)(?:[,\s/]+([\d.]+))?/.exec(r);
-            return m ? [+m[1], +m[2], +m[3], m[4] === undefined ? 1 : +m[4]] : null;
+            if (m) return [+m[1], +m[2], +m[3], m[4] === undefined ? 1 : +m[4]];
+            if (!r || r === 'transparent') return null;
+            try {
+              tctx.clearRect(0, 0, 1, 1);
+              tctx.fillStyle = '#000'; tctx.fillStyle = r;   // geçersiz renk: eski değer kalır
+              tctx.fillRect(0, 0, 1, 1);
+              const [cr, cg, cb, ca] = tctx.getImageData(0, 0, 1, 1).data;
+              return [cr, cg, cb, ca / 255];
+            } catch { return null; }
           };
           const ic = (c) => { const s = c / 255; return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4; };
           const parlaklik = ([r, g, b]) => 0.2126 * ic(r) + 0.7152 * ic(g) + 0.0722 * ic(b);

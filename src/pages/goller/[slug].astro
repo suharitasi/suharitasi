@@ -1,12 +1,16 @@
 ---
-// Gol detay sayfasi: /goller/[slug]/
-// Veri kaynagi: tr-goller.json (OSM + Natural Earth hibrit)
+// Göl detay sayfası: /goller/[slug]/
+// Veri kaynağı: tr-goller.json (OSM + Natural Earth hibrit, erişim 04.08.2026).
+// 24.08.2026 (agustos-uyum M4+M5): aksansız şablon Türkçesi düzeltildi;
+// verisiz dolgu cümlesi ("su zenginliğinin parçası") KALDIRILDI; künyeye
+// kapsam+erişim+lisans eklendi; il/havza iç bağları geometrik eşlemeden
+// (gol-nehir-cografya.js) kuruldu; ölçek şerhi (dürüstlük etiketi) eklendi.
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import OzCevap from '../../components/OzCevap.astro';
 import Katman from '../../components/Katman.astro';
-import { tumGoller, golOzet } from '../../data/gol-nehir.js';
-import { OG_GORSEL } from '../../data/site';
+import { tumGoller, golOzet, golTipi,
+         GOLNEHIR_ERISIM, GOLNEHIR_KAPSAM_GOL, GOLNEHIR_LISANS } from '../../data/gol-nehir.js';
 
 export async function getStaticPaths() {
   return tumGoller().map((g) => ({ params: { slug: g.slug }, props: { gol: g } }));
@@ -14,88 +18,92 @@ export async function getStaticPaths() {
 
 const { gol } = Astro.props;
 const ozet = golOzet(gol);
+const tur = golTipi(gol);
+const il = gol.cografya.il;
+const havza = gol.cografya.havzalar[0] ?? null;
 
 const sayi = (n, o) =>
   n?.toLocaleString('tr-TR', { minimumFractionDigits: o, maximumFractionDigits: o });
 
-// Tur tanimi
-const turMetni = (gol.tip === 'reservoir' || gol.ad.includes('Baraj'))
-  ? 'Baraj golu'
-  : gol.tip === 'lagoon' ? 'Lagun' : 'Dogal gol';
-
-// Schema.org Place / BodyOfWater JSON-LD
+// Schema.org BodyOfWater + FAQPage — her alan veriden.
 const sema = [{
   '@type': 'BodyOfWater',
   name: gol.ad,
   description: ozet,
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: gol.merkez[1],
-    longitude: gol.merkez[0],
-  },
-  additionalProperty: gol.alan_km2 != null ? [
-    { '@type': 'PropertyValue', name: 'Yuzey alani (km²)', value: gol.alan_km2 },
-    { '@type': 'PropertyValue', name: 'Veri kaynagi', value: gol.kaynak },
-  ] : [
-    { '@type': 'PropertyValue', name: 'Veri kaynagi', value: gol.kaynak },
+  geo: { '@type': 'GeoCoordinates', latitude: gol.merkez[1], longitude: gol.merkez[0] },
+  additionalProperty: [
+    ...(gol.alan_km2 != null
+      ? [{ '@type': 'PropertyValue', name: 'Yüzey alanı (km²)', value: gol.alan_km2 }] : []),
+    { '@type': 'PropertyValue', name: 'Veri kaynağı', value: gol.kaynak },
   ],
-  containedInPlace: {
-    '@type': 'Place',
-    name: 'Turkiye',
-  },
-}];
-
-// FAQPage — golun temel sorusu
-sema.push({
+  containedInPlace: { '@type': 'Place', name: il ? `${il.ad}, Türkiye` : 'Türkiye' },
+}, {
   '@type': 'FAQPage',
   mainEntity: [{
     '@type': 'Question',
-    name: `${gol.ad} nerede, yuzey alani ne kadar?`,
+    name: `${gol.ad} nerede, yüzey alanı ne kadar?`,
     acceptedAnswer: { '@type': 'Answer', text: ozet },
   }],
-});
+}];
 ---
 
-<Sayfa baslik={`${gol.ad} — Turkiye Golleri`} aciklama={ozet} sema={sema}>
-  <SayfaBasi etiket="Gol" baslik={gol.ad} />
+<Sayfa baslik={`${gol.ad} — Türkiye Gölleri`} aciklama={ozet} sema={sema}>
+  <SayfaBasi etiket="Göl" baslik={gol.ad} />
 
   <OzCevap metin={ozet} />
 
-  <Katman baslik="Gol profili" ipucu={`${turMetni} · koordinat · yuzey alani`}>
+  <Katman baslik="Göl profili" ipucu={`${tur.ad.toLowerCase()} · koordinat · yüzey alanı`}>
     <dl class="kunye kunye-katman">
       <div class="kunye-satir">
-        <dt>Tur</dt>
-        <dd>{turMetni}</dd>
+        <dt>Tür</dt>
+        <dd>{tur.ad}{gol.tip == null && ' (veri türü belirtilmemiş)'}</dd>
       </div>
       {gol.alan_km2 != null && (
         <div class="kunye-satir">
-          <dt>Yuzey alani</dt>
+          <dt>Yüzey alanı</dt>
           <dd>{sayi(gol.alan_km2, 1)} km²</dd>
         </div>
       )}
       <div class="kunye-satir">
         <dt>Koordinat</dt>
-        <dd>{gol.merkez[1].toFixed(4)}°N, {gol.merkez[0].toFixed(4)}°E</dd>
+        <dd>{gol.merkez[1].toFixed(4)}°K, {gol.merkez[0].toFixed(4)}°D</dd>
       </div>
-      <div class="kunye-satir">
-        <dt>Veri kaynagi</dt>
-        <dd>{gol.kaynak}</dd>
-      </div>
+      {il && (
+        <div class="kunye-satir">
+          <dt>İl</dt>
+          <dd><a href={`/kuyu-ruhsati/${il.slug}/`}>{il.ad}</a></dd>
+        </div>
+      )}
+      {havza && (
+        <div class="kunye-satir">
+          <dt>Havza</dt>
+          <dd><a href={`/havzalar/${havza.slug}/`}>{havza.ad}</a></dd>
+        </div>
+      )}
     </dl>
   </Katman>
 
-  <Katman baslik="Konum" ipucu="yaklasik merkez koordinati · bilgi amaclidir" ton="murekkep">
+  <Katman baslik="Konum ve ölçek şerhi" ipucu="yaklaşık merkez · geometrik eşleme · bilgi amaçlıdır" ton="murekkep">
     <p class="not">
-      Bu sayfadaki koordinat, golun geometrik merkezidir; hidrografik referans
-      veya olcum noktasi DEGILDIR. Harita uzerinde tam gol siniri icin
-      OpenStreetMap / Natural Earth verisine basvurunuz.
+      Koordinat, gölün sınır kutusunun geometrik merkezidir; hidrografik
+      referans veya ölçüm noktası DEĞİLDİR. İl ve havza eşlemesi göl
+      geometrisinin örneklenmiş noktalarından türetilmiştir; göl birden çok
+      il veya havzaya taşabilir — idari/hidrografik tescil yerine geçmez.
     </p>
     <p class="not">
-      Bu gol Turkiye'nin su zenginliginin bir parcasidir.
-      <a href="/havzalar/">Havza sayfalarimizda</a> bolgenizdeki su potansiyeli,
-      baraj doluluklari ve su hukuku ile ilgili resmi verileri bulabilirsiniz.
+      {il && havza && (
+        <>İlgili resmî veriler: <a href={`/kuyu-ruhsati/${il.slug}/`}>{il.ad} kuyu
+        ruhsatı ve yetkili merci</a> · <a href={`/havzalar/${havza.slug}/`}>{havza.ad}
+        rezerv ve doluluk verisi</a> · </>
+      )}
+      <a href="/nerede-su-cikar/">ilinizin su potansiyeli</a>.
     </p>
   </Katman>
+
+  <p class="veri-kunyesi">
+    Veri künyesi: {gol.kaynak} — kapsam: {GOLNEHIR_KAPSAM_GOL}; erişim
+    {' '}{GOLNEHIR_ERISIM}. {GOLNEHIR_LISANS}. Bu sayfa hukuki görüş değildir.
+  </p>
 </Sayfa>
 
 <style>
@@ -143,12 +151,18 @@ sema.push({
     align-self: center;
   }
   dd { font-size: 0.96rem; }
+  dd a { color: var(--baglanti, var(--su-700)); }
   .not {
     font-size: 0.9rem;
     color: var(--metin-soluk);
     margin: 0.6rem 0;
   }
-  .not a { color: var(--baglanti); }
+  .not a { color: var(--baglanti, var(--su-700)); }
+  .veri-kunyesi {
+    font-size: 0.8rem;
+    color: var(--metin-soluk);
+    margin: 1.2rem 0 0;
+  }
   @media (max-width: 560px) {
     .kunye-satir { grid-template-columns: 1fr; gap: 0.1rem; }
   }

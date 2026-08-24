@@ -9,3 +9,40 @@
 # jargonu arama diline çevrildi; /arac/ bölümü (tek üyeydi) kapandı.
 /arac/il-rejimi   /ilimde-kim-yetkili/   301
 /arac/il-rejimi/  /ilimde-kim-yetkili/   301
+
+# SATIŞ SAYFALARI KALDIRILDI (24.08.2026, kullanıcı kararı: PayTR mağazası
+# kapandı; rapor/agustos-uyum.md M1). Kaldırılan her URL en yakın anlamlı
+# içeriğe 301 döner: paket/ödeme sayfaları → /nerede-su-cikar/ (varsayılan
+# hedef), rapor kataloğu → /havzalar/ (bölgesel içerik), örnek PDF'ler →
+# ilgili havza sayfası.
+/rapor-satin-al   /nerede-su-cikar/   301
+/rapor-satin-al/  /nerede-su-cikar/   301
+/raporlar   /havzalar/   301
+/raporlar/  /havzalar/   301
+/rapor-indir   /nerede-su-cikar/   301
+/rapor-indir/  /nerede-su-cikar/   301
+/rapor/suharitasi-akarcay-havzasi-durum-raporu.pdf  /havzalar/akarcay/  301
+/rapor/suharitasi-antalya-havzasi-durum-raporu.pdf  /havzalar/antalya/  301
+/rapor/suharitasi-aras-havzasi-durum-raporu.pdf  /havzalar/aras/  301
+/rapor/suharitasi-asi-havzasi-durum-raporu.pdf  /havzalar/asi/  301
+/rapor/suharitasi-bati-akdeniz-havzasi-durum-raporu.pdf  /havzalar/bati-akdeniz/  301
+/rapor/suharitasi-bati-karadeniz-havzasi-durum-raporu.pdf  /havzalar/bati-karadeniz/  301
+/rapor/suharitasi-burdur-havzasi-durum-raporu.pdf  /havzalar/burdur/  301
+/rapor/suharitasi-buyuk-menderes-havzasi-durum-raporu.pdf  /havzalar/buyuk-menderes/  301
+/rapor/suharitasi-ceyhan-havzasi-durum-raporu.pdf  /havzalar/ceyhan/  301
+/rapor/suharitasi-coruh-havzasi-durum-raporu.pdf  /havzalar/coruh/  301
+/rapor/suharitasi-dogu-akdeniz-havzasi-durum-raporu.pdf  /havzalar/dogu-akdeniz/  301
+/rapor/suharitasi-dogu-karadeniz-havzasi-durum-raporu.pdf  /havzalar/dogu-karadeniz/  301
+/rapor/suharitasi-firat-dicle-havzasi-durum-raporu.pdf  /havzalar/firat-dicle/  301
+/rapor/suharitasi-gediz-havzasi-durum-raporu.pdf  /havzalar/gediz/  301
+/rapor/suharitasi-kizilirmak-havzasi-durum-raporu.pdf  /havzalar/kizilirmak/  301
+/rapor/suharitasi-konya-kapali-havzasi-durum-raporu.pdf  /havzalar/konya-kapali/  301
+/rapor/suharitasi-kucuk-menderes-havzasi-durum-raporu.pdf  /havzalar/kucuk-menderes/  301
+/rapor/suharitasi-kuzey-ege-havzasi-durum-raporu.pdf  /havzalar/kuzey-ege/  301
+/rapor/suharitasi-marmara-havzasi-durum-raporu.pdf  /havzalar/marmara/  301
+/rapor/suharitasi-meric-ergene-havzasi-durum-raporu.pdf  /havzalar/meric-ergene/  301
+/rapor/suharitasi-sakarya-havzasi-durum-raporu.pdf  /havzalar/sakarya/  301
+/rapor/suharitasi-seyhan-havzasi-durum-raporu.pdf  /havzalar/seyhan/  301
+/rapor/suharitasi-susurluk-havzasi-durum-raporu.pdf  /havzalar/susurluk/  301
+/rapor/suharitasi-van-golu-havzasi-durum-raporu.pdf  /havzalar/van-golu/  301
+/rapor/suharitasi-yesilirmak-havzasi-durum-raporu.pdf  /havzalar/yesilirmak/  301

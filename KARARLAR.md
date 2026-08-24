@@ -354,6 +354,38 @@ dönük çıkarıldı; o yüzden bazı satırlarda bu işaret vardır.
   tarihli yenileme kalemi yazıldı; ayrıca RG kendi zincirini düzeltirse
   demet zararsız fazlalık olur (kaldırma kararı o gün verilir).
 
+### 25. 4 AĞUSTOS DALGASI: göl/nehir KALDI (kurallara uyduruldu), satış katmanı KALDIRILDI
+- **Tarih:** 2026-08-24 (dalga: 2026-08-02..04, kayıtsız girmişti)
+- **Ne girmişti:** 279 göl + 131 nehir sayfası; PayTR'li B2B satış katmanı
+  (/rapor-satin-al/, /raporlar/, /rapor-indir/, 25 örnek PDF, server/
+  ödeme backend'i, menü/hero/havza/ilçe-sorgu CTA'ları); /ilce-sorgu/ +
+  /su-hukuku/; yeni üst gezinme; logo-lockup.svg. KARARLAR/GUNLUK/
+  SIRADAKILER kaydı YOKTU; durum denetimi (rapor/site-durum-kazi.md,
+  fe1fba3) yakaladı.
+- **Karar (kullanıcı, 2026-08-24):** göl/nehir sayfaları KALIR ve kurallara
+  uydurulur; satış sayfaları KALDIRILIR (PayTR mağazası kapandı);
+  bozukluklar düzeltilir. Uygulama: rapor/agustos-uyum.md (worktree
+  suharitasi-agustos).
+- **Uygulanan (ölçümleriyle raporda):** satış yüzeyi sıfırlandı + 31 adet
+  301; mobil ilk ekran S1'e döndü (ilk soru 1383→785px); emoji CTA'lar
+  kalktı (BRIEF.md yasağı + md13 1.92:1); md13 aracının oklch körlüğü
+  giderildi (falsifikasyonlu); 6.908 bozuk-Türkçe isabeti 0'a indi;
+  UYDURMA DENETİMİ: Türkiye dışındaki 32 göl + 36 nehir (Gürcü/Ermeni/
+  Bulgar/İran/Irak/Yunan öznitelikleri "Türkiye Gölleri" başlığıyla
+  yayındaydı) veri filtresiyle yayından düştü; künye/dürüstlük şerhi/
+  il-havza iç bağları kuruldu; göl/nehir/ilçe-sorgu denetim setine girdi.
+- **Gerekçe:** AY İLKESİ döneminde kayıtsız giren dalga hem karar
+  disiplinini hem ölçülen tabanları (md13/md14/md16) kırmıştı; satış
+  katmanı ise canlıda zaten ÇALIŞMIYORDU (ölçüm: CSP'de PayTR/api konağı
+  yok + api.suharitasi.com DNS kaydı yok — ödeme akışı tarayıcıda
+  engelliydi) ve mağaza kapandı.
+- **Reddedilen alternatifler:** (a) göl/nehir sayfalarını toptan kaldırmak —
+  kullanıcı kararıyla reddedildi; içerik veriye bağlanınca kurallara
+  uyuyor. (b) Satış sayfalarını "gizlemek" (noindex/link kaldırma) —
+  ölü ödeme altyapısı kalıntı bırakır; tam kaldırma + 301 seçildi.
+  (c) Sınır ötesi öznitelikleri "yabancı göller" diye etiketleyip tutmak —
+  site kapsamı Türkiye; kapsam dışı sayfa tutmanın veri değeri yok.
+
 ---
 
 ## Bu dosyaya kayıt ekleme kuralı

@@ -8,6 +8,27 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+4 AĞUSTOS DALGASI KURALLARA UYDURULDU (24.08.2026, kullanıcı kararlı brief;
+KARARLAR §25 · rapor/agustos-uyum.md). KAPANAN: satış sayfaları + PayTR
+kalıntıları (31 × 301 ile) · md13 kırmızısı (araç oklch düzeltmesi
+falsifikasyonlu + emoji CTA kaldırma) · md14 G6 (S1 mobilde 785px'e döndü) ·
+410 sayfadaki bozuk Türkçe (0 isabet) · göl/nehir uydurma denetimi (32+36
+sınır ötesi öznitelik yayından düştü, künye+şerh+iç bağ kuruldu) ·
+göl/nehir/ilçe-sorgu denetim setine alındı.
+AÇIK KALAN (bu turda bilinçli dokunulmayan):
+- [ ] /su-hukuku/ sayfasının hukuki içeriği (itiraz süreleri, mahkeme,
+  savunma listeleri) 04.08 dalgasıyla girmişti — [SERDAR-HUKUK] onay
+  kapısından geçmedi; içerik doğrulaması avukat kararı bekliyor.
+  Bu turda yalnız satış yüzeyi ölçüldü (fiyat/ödeme yok, mailto var).
+- [ ] /su-hukuku/ + /ilce-sorgu/ lead-mailto'ları serdar@arslanhukuk.com'a
+  gidiyor; site standardı bilgi@suharitasi.com — adres birleştirme kararı.
+- [ ] /ilce-sorgu/ analiz çıktılarının (akifer türü/derinlik tahmini)
+  yöntem şerhi mevcut "TEMSİLÎDİR" uyarısıyla sınırlı — yeterlilik kararı.
+- [ ] md14 görsel taban yenilemesi deploy sonrası ana ağaçta koşulacak
+  (bilinçli değişiklik: ana sayfa mobil sırası; --gorsel-taban-yenile).
+- [ ] .env PAYTR_* satırları ana ağaçta silinecek (worktree'de .env yok) —
+  merge sonrası adım, rapor/agustos-uyum.md kapanış listesinde.
+
 BEKLEYEN İŞLER PAKETİ — MERGE EDİLDİ (29 Tem 2026, ön-onaylı). 16 kalem.
 KAPANANLAR: M1 üç ölü dış bağlantı (3/3 onarıldı, HTTP 200 + İÇERİK
 doğrulamalı — trdizin'in base64 kimliğinden türeyen /318433 de 200 dönüyordu

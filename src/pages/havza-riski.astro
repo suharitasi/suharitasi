@@ -34,7 +34,7 @@ const sema = [{
   <Katman baslik="Risk Sıralaması (En Riskli Önce)" ipucu={`${riskler.length} havza · GRACE + baraj + YAS + tahsis + potansiyel`}>
     <div class="risk-listesi">
       {riskler.map((r, i) => (
-        <a href={`/havzalar/${r.ad.toLowerCase().replace(/ı/g,'i').replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s').replace(/ö/g,'o').replace(/ç/g,'c').replace(/havzası/g,'').replace(/\s+/g,'-')}/`} class="risk-satir">
+        <a href={`/havzalar/${r.ad.replace(/\s*Havzası\s*$/,'').toLowerCase().replace(/ı/g,'i').replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s').replace(/ö/g,'o').replace(/ç/g,'c').replace(/\s+/g,'-')}/`} class="risk-satir">
           <span class="risk-sira">{i + 1}</span>
           <span class="risk-ad">{r.ad}</span>
           <span class="risk-bar">

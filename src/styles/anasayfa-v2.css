@@ -899,6 +899,11 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
   .v2-ust-akis > noscript { order: 2; }
   .v2-ust-akis > .v2-mobil-sorular { order: 3; }
   .v2-ust-akis > .v2-kanit { order: 4; }
+  /* 24.08 (agustos-uyum M2): 04.08'de eklenen CTA kartları bu order
+     listesinin DIŞINDAydı → order 0 ile kadrajın başına biniyor, S1
+     dert-sorusunu 1383px'e itiyordu (md14 G6 kırmızısının kökü).
+     S1 sıra kuralı korunur: sorular ve kanıt banttan SONRA. */
+  .v2-ust-akis > .v2-cta-ikili { order: 5; }
 }
 
 /* =============================================
@@ -928,7 +933,6 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
   border: 1px solid rgba(192,136,58,0.3);
 }
 .v2-cta-kart:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-.v2-cta-ikon { font-size: 1.5rem; }
 .v2-cta-baslik {
   font-family: var(--serif, "Cormorant", Georgia, serif);
   font-size: 1.3rem; font-weight: 500; color: #fff;
@@ -939,14 +943,4 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
 }
 @media (max-width: 600px) {
   .v2-cta-ikili { grid-template-columns: 1fr; }
-}
-.v2-cta-bant {
-  padding: 0 1.5rem 1.2rem;
-  max-width: 72rem;
-  margin: 0 auto;
-}
-.v2-cta-altin {
-  background: linear-gradient(135deg, rgba(192,136,58,0.25) 0%, rgba(135,85,24,0.9) 100%);
-  border: 1px solid rgba(192,136,58,0.4);
-  text-align: center;
 }

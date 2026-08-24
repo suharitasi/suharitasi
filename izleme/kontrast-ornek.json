@@ -11,11 +11,48 @@
  "istisnalar": [],
  "_istisna_notu": "Bilinçli tasarım kararıyla AA altında bırakılan öğeler buraya {\"yol\": \"/\", \"secici\": \"span.no\", \"gerekce\": \"...\"} biçiminde YAZILIR ve ölçümden düşer. BOŞ BIRAKILDI (2026-07-27): 27.07 koşumunda iki bulgu çıktı — (a) / sayfasında span.no dekoratif adım numaraları rgba(255,255,255,0.15) 1.58:1, (b) /hangi-kurum/ span.ik-rozet.ik-teyit 9.28px metin 4.42:1. İkisi de tasarım kararıdır, tasarım KARA LİSTEDEDİR; istisna yazma yetkisi KULLANICIDA. Karar verilene kadar md13 kırmızı kalır — bu bilinçlidir.",
  "sayfalar": [
-  { "yol": "/", "tip": "ana", "not": "v2 hero — koyu zemin + krem metin" },
-  { "yol": "/kuyu-ruhsati/manisa/", "tip": "il", "not": "81 il sayfasının temsilcisi" },
-  { "yol": "/rehberler/kuyu-ruhsati/", "tip": "rehber", "not": "SEO omurgası rehber" },
-  { "yol": "/durumum/ana-metal-sanayii-nace-24/", "tip": "persona", "not": "sektör/persona sayfası" },
-  { "yol": "/havzalar/sakarya/", "tip": "havza", "not": "havza sayfası — veri kutuları" },
-  { "yol": "/hangi-kurum/", "tip": "arac", "not": "tablo ağırlıklı araç sayfası" }
- ]
+  {
+   "yol": "/",
+   "tip": "ana",
+   "not": "v2 hero — koyu zemin + krem metin"
+  },
+  {
+   "yol": "/kuyu-ruhsati/manisa/",
+   "tip": "il",
+   "not": "81 il sayfasının temsilcisi"
+  },
+  {
+   "yol": "/rehberler/kuyu-ruhsati/",
+   "tip": "rehber",
+   "not": "SEO omurgası rehber"
+  },
+  {
+   "yol": "/durumum/ana-metal-sanayii-nace-24/",
+   "tip": "persona",
+   "not": "sektör/persona sayfası"
+  },
+  {
+   "yol": "/havzalar/sakarya/",
+   "tip": "havza",
+   "not": "havza sayfası — veri kutuları"
+  },
+  {
+   "yol": "/hangi-kurum/",
+   "tip": "arac",
+   "not": "tablo ağırlıklı araç sayfası"
+  },
+  {
+   "yol": "/goller/tuz-golu/",
+   "tip": "gol"
+  },
+  {
+   "yol": "/nehirler/kizilirmak/",
+   "tip": "nehir"
+  },
+  {
+   "yol": "/ilce-sorgu/",
+   "tip": "arac-ilce"
+  }
+ ],
+ "_ek_24_08": "agustos-uyum M6.1: 04.08 dalgasının sayfa tipleri (göl · nehir · ilçe-sorgu) örnekleme eklendi."
 }
