@@ -22,12 +22,43 @@ IZ="$KOK/izleme"
 LOGP="$KOK/log/pipeline.log"
 mkdir -p "$KOK/log" "$IZ/arsiv" "$IZ/state" "$IZ/log"
 HLOG="$IZ/log/hata.log"          # per-hedef hata detayı
+
+# RG ARA SERTİFİKA DEMETİ (2026-08-24): resmigazete.gov.tr 2026-08-06'dan
+# beri TLS zincirinde ara sertifikayı göndermiyor (openssl: zincir=1) —
+# doğrulama düşüyordu. Çözüm: sistem CA demeti + depodaki doğrulanmış ara
+# sertifika (izleme/lib/rg-ara-sertifika.pem, zincir kanıtı dosya başında)
+# her koşumda birleştirilir; yalnız M1/RG çekimleri bu demeti kullanır.
+# Doğrulama KAPATILMAZ (-k YASAK). SU_IZLEME_RG_CA: falsifikasyon/test
+# kancası — demet yolunu ezer (örn. /dev/null ile kasıtlı bozma).
+RG_ARA="$IZ/lib/rg-ara-sertifika.pem"
+RG_CA="${SU_IZLEME_RG_CA:-$IZ/state/.rg-ca-demeti.pem}"
+if [ -z "${SU_IZLEME_RG_CA:-}" ]; then
+  if [ -s "$RG_ARA" ]; then
+    cat /etc/ssl/certs/ca-certificates.crt "$RG_ARA" > "$RG_CA.tmp" && mv "$RG_CA.tmp" "$RG_CA"
+  else
+    echo "UYARI: $RG_ARA yok — RG çekimi sistem demetiyle denenecek" >&2
+    RG_CA=/etc/ssl/certs/ca-certificates.crt
+  fi
+fi
 KW="$IZ/anahtar-kelimeler.txt"
 CONF="$IZ/hedefler.conf"
 MOTOR="$IZ/lib/motor.py"
 UA="Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0"
 RUN_UTC=$(date -u +%Y-%m-%dT%H-%M-%SZ)
 BUGUN=$(date -u +%Y-%m-%d)
+
+# --rg-tarih YYYY-MM-DD (2026-08-24, RG onarım brief'i): TELAFİ KİPİ —
+# yalnız M1'i verilen tarihle koşar; M2/M3 ve DURUM.md render ATLANIR
+# (DURUM "son koşu"yu temsil eder, telafi etmez). OLAYLAR + arşiv + commit
+# akışı çalışır. Mükerrer koruması ana akışta: o tarihin analizi zaten
+# varsa hiç dokunmadan çıkılır.
+RG_TARIH_KIPI=""
+if [ "${1:-}" = "--rg-tarih" ]; then
+  RG_TARIH_KIPI="${2:?kullanım: su-izleme.sh --rg-tarih YYYY-MM-DD}"
+  printf '%s' "$RG_TARIH_KIPI" | grep -qE '^20[0-9]{2}-[0-9]{2}-[0-9]{2}$' \
+    || { echo "geçersiz tarih: $RG_TARIH_KIPI" >&2; exit 2; }
+  BUGUN="$RG_TARIH_KIPI"
+fi
 
 # --- toplayıcılar (geçici; DURUM.md render için) ---
 STATUSF=$(mktemp) ; EVENTF=$(mktemp)
@@ -64,11 +95,11 @@ http_get(){
 # güvenilmez çıktı — 2026-07-21 T2'de boş döndü; ham status koduna geçildi.)
 http_get_noredir(){
   local url="$1" out="$2" code
-  code=$(curl -sS --compressed --max-time 45 -A "$UA" -o "$out" \
+  code=$(curl -sS --compressed --max-time 45 -A "$UA" --cacert "$RG_CA" -o "$out" \
          -w '%{http_code}' "$url" 2>>"$LOGP") || code="AG"
   if [ "$code" = "AG" ] || [ "${code:0:1}" = "5" ]; then
     sleep 5
-    code=$(curl -sS --compressed --max-time 45 -A "$UA" -o "$out" \
+    code=$(curl -sS --compressed --max-time 45 -A "$UA" --cacert "$RG_CA" -o "$out" \
            -w '%{http_code}' "$url" 2>>"$LOGP") || code="AG"
   fi
   echo "$code"
@@ -122,7 +153,7 @@ m1_rg(){
     kanun_ozet="${kanun_ozet}${et}:${kn:-0} kanun-maddesi; "
     while IFS= read -r ol; do
       [ -n "$ol" ] || continue
-      olay_ekle "RG-fihrist($et)" "$ol"
+      olay_ekle "RG-fihrist($et${RG_TARIH_KIPI:+ $BUGUN})" "$ol"
       olay_bu=1
     done < <(printf '%s\n' "$rgout" | grep '^OLAY:' || true)
     return 0
@@ -249,7 +280,16 @@ izle_pdfhead(){  # $1 id $2 kat $3 url
 PY=$(command -v python3 || true)
 [ -n "$PY" ] || { logla "python3 bulunamadı — izleme çalışamaz"; exit 1; }
 
-logla "SU-İZLEME başladı ($RUN_UTC)"
+logla "SU-İZLEME başladı ($RUN_UTC)${RG_TARIH_KIPI:+ [RG TELAFİ $BUGUN]}"
+
+# TELAFİ MÜKERRER KORUMASI: o tarih zaten başarıyla analiz edildiyse
+# (fihrist-ana-analiz.txt dolu) hiçbir şeye dokunmadan çık — çift OLAY
+# üretimi makine kontrolüyle imkânsız.
+if [ -n "$RG_TARIH_KIPI" ] && [ -s "$IZ/arsiv/rg/$BUGUN/fihrist-ana-analiz.txt" ]; then
+  logla "RG telafi $BUGUN: zaten taranmış (analiz mevcut) — atlandı"
+  echo "zaten taranmış: $BUGUN"
+  exit 0
+fi
 
 # M1 (kendi hatasını izole eder)
 m1_rg || { logla "M1 RG beklenmeyen çıkış"; durum_satir "RG-gunluk" "M1" "🔴 hata" "modül çöktü"; HATA_SAYAC=$((HATA_SAYAC+1)); }
@@ -258,6 +298,8 @@ m1_rg || { logla "M1 RG beklenmeyen çıkış"; durum_satir "RG-gunluk" "M1" "�
 trim(){ local s="$1"; s="${s#"${s%%[![:space:]]*}"}"; s="${s%"${s##*[![:space:]]}"}"; printf '%s' "$s"; }
 
 # M2/M3 — hedefler.conf sırayla; her hedef arası nezaket ≥5 sn
+# (RG telafi kipinde ATLANIR — yalnız M1)
+[ -n "$RG_TARIH_KIPI" ] || {
 FIRST=1
 while IFS='|' read -r id kat tip url; do
   id=$(trim "$id")
@@ -270,6 +312,7 @@ while IFS='|' read -r id kat tip url; do
     *) logla "bilinmeyen tip '$tip' ($id)"; durum_satir "$id" "$kat" "🔴 hata" "bilinmeyen tip: $tip";;
   esac
 done < "$CONF"
+}
 
 # --- OLAYLAR.md güncelle (yeni olaylar üstte, eski satırlar korunur) ---
 if [ "$OLAY_SAYAC" -gt 0 ]; then
@@ -282,8 +325,9 @@ if [ ! -f "$IZ/OLAYLAR.md" ]; then
   { echo "# Su Kanunu İzleme — OLAYLAR (en yeni üstte)"; echo; echo "_(henüz olay yok)_"; } > "$IZ/OLAYLAR.md"
 fi
 
-# --- DURUM.md render ---
-{
+# --- DURUM.md render --- (RG telafi kipinde ATLANIR: DURUM son koşuyu temsil eder)
+[ -n "$RG_TARIH_KIPI" ] || {
+
   echo "# Su Kanunu İzleme — DURUM"
   echo
   echo "Son koşu (UTC): **$RUN_UTC**"
@@ -313,6 +357,39 @@ fi
 
 logla "SU-İZLEME bitti: olay=$OLAY_SAYAC hata=$HATA_SAYAC"
 
+# ==================== TELEGRAM UYARISI (2026-08-24, RG onarım brief'i) ====================
+# Veri hattının kırmızısı SMTP'ye bağlı kalmasın: HATA_SAYAC>0 ise uyarı
+# arac/uyari-gonder.sh ile Telegram'a ÇIKAR (LLM'siz, doğrudan Bot API).
+# ALARM YORGUNLUĞU KORUMASI: 🔴 hedef kimliklerinden imza üretilir; AYNI
+# imza 24 saat içinde tekrar gönderilmez (izleme/state/uyari-imza-su-izleme.txt),
+# imza değişirse hemen gönderilir. Gönderim hatası koşuyu DÜŞÜRMEZ ama
+# loglanır (sessiz hata yasağı). Not: uyari-gonder.sh "kanal yapılandırılmadı"
+# durumunda 0 döner — bu durumda da imza yazılır; kanal kuruluyken bu ayrım
+# pratikte önemsizdir ve log/uyari.log iki hâli ayrı kaydeder.
+uyari_bildir(){
+  local imzaf="$IZ/state/uyari-imza-su-izleme.txt"
+  local kirmizi govde simdi_e eski_imza eski_zaman
+  kirmizi=$(grep -F '🔴' "$STATUSF" | cut -f1 | sort | paste -sd, -) || true
+  [ -n "$kirmizi" ] || return 0
+  simdi_e=$(date -u +%s)
+  if [ -f "$imzaf" ]; then
+    IFS=$'\t' read -r eski_imza eski_zaman < "$imzaf" || true
+    if [ "${eski_imza:-}" = "$kirmizi" ] && [ $((simdi_e - ${eski_zaman:-0})) -lt 86400 ]; then
+      logla "Telegram uyarısı atlandı: aynı imza <24 saat ($kirmizi)"
+      return 0
+    fi
+  fi
+  govde=$( { grep -F '🔴' "$STATUSF" || true; } | awk -F'\t' '{print "• " $1 " (" $2 "): " $4}')
+  if "$KOK/arac/uyari-gonder.sh" "veri hattı su-izleme${RG_TARIH_KIPI:+ (RG telafi $BUGUN)}: $HATA_SAYAC hata" "$govde"; then
+    printf '%s\t%s\n' "$kirmizi" "$simdi_e" > "$imzaf"
+    logla "Telegram uyarısı gönderildi (imza: $kirmizi)"
+  else
+    logla "TELEGRAM UYARISI GÖNDERİLEMEDİ (uyari-gonder exit $?) — bkz. log/uyari.log"
+  fi
+  return 0
+}
+if [ "$HATA_SAYAC" -gt 0 ]; then uyari_bildir; fi
+
 # ============================ COMMIT + PUSH (baraj deseni) ============================
 # git add KOŞULLU (var-olmayan yolda exit 128 + sessiz durma olmasın).
 [ -d "$IZ" ] && git add "$IZ" || true
@@ -328,7 +405,7 @@ if ! git diff --cached --quiet; then
   # rebase koptuğunda veriyi commit'siz bırakıyordu; artık veri önce kayda geçer,
   # pull ancak ondan sonra denenir, push yalnız pull başarılıysa yapılır.
   ONCE=$(git rev-parse HEAD)
-  git commit -q -m "Su izleme: $RUN_UTC (olay=$OLAY_SAYAC hata=$HATA_SAYAC) (otomatik)
+  git commit -q -m "Su izleme${RG_TARIH_KIPI:+ RG telafi $BUGUN}: $RUN_UTC (olay=$OLAY_SAYAC hata=$HATA_SAYAC) (otomatik)
 
 Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>" \
     || { logla "git commit BAŞARISIZ"; exit 1; }
