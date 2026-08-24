@@ -39,6 +39,14 @@ KAPANMAYANLAR (gerekçeli):
 ▸ M15 kalan pay: #DFE9F0 zemininde 6,58 (<7). Yeni palet değeri ister =
   DESIGN.md değişikliği = kullanıcı kararı.
 
+RG ARA SERTİFİKASI SÜRE KALEMİ (2026-08-24, KARARLAR §24): 
+`izleme/lib/rg-ara-sertifika.pem` **2027-11-02'de dolar** — o tarihten önce
+yenilenir (AIA ucundan indir + `openssl verify` + parmak izini dosya başına
+işle). RG kendi zincirini düzeltirse (openssl s_client zincir ≥2 görürse)
+demet zararsız fazlalıktır; kaldırma kararı o gün verilir. Bitti-tanımı:
+yeni sertifikayla `su-izleme.sh --rg-tarih <dün>` hatasız + nöbetçi
+`--test` sorgu hatası 0.
+
 ★ KULLANICI KARARI BEKLEYEN — SIRALI (yapısal revizyon, 28 Tem 2026)
 Hepsi ücretsiz ve kısa; sıra etki büyüklüğüne göre.
  1. **GSC kurulumu** (~15 dk) — indeks körlüğü kapanır. Ölçüldü: sitenin
@@ -59,8 +67,12 @@ Hepsi ücretsiz ve kısa; sıra etki büyüklüğüne göre.
     darboğazı; "günler → 15 dakika". rapor/kurtarma-plani.md K1
  4. **Makine dışı yedek konumu** — Cloudflare R2 ücretsiz katmanı önerildi
     (446 MB, 10 GB sınır, egress $0). rapor/yedek-envanteri.md §4
- 5. **Telegram uyarı kanalı** (~5 dk) — köprü kurulu ama kanal yok;
-    kurulmadan hiçbir uyarı sunucudan ÇIKMIYOR. rapor/dis-izleme.md §4.A
+ 5. ~~Telegram uyarı kanalı~~ **KAPANDI 24.08** — keşif botunun MEVCUT
+    kanalı .env'e bağlandı (TELEGRAM_BOT_TOKEN/CHAT_ID; kullanıcı talimatı);
+    uyari-gonder.sh + bekçi + veri hatları artık dışarı bildiriyor.
+    Falsifikasyon kanıtı: message_id 4656/4657 (rapor/rg-onarim.md §3).
+    AÇIK KARAR (küçük): ayrı/adanmış bir bot-kanal istenirse yalnız .env
+    değerleri değiştirilir. rapor/dis-izleme.md §4.A
  6. ~~www 522~~ **KAPANDI 29.07** — Pages custom domain eklendi, 3/3 ölçüm
     200; canonical apex'i gösteriyor, mükerrer içerik riski yok.
     AÇIK KALEM: "www 200 dönüyor mu" sağlık kalemi eklenmeli (beklenen-301

@@ -325,6 +325,35 @@ dönük çıkarıldı; o yüzden bazı satırlarda bu işaret vardır.
 - **Yan bulgu:** `imlec.js`te bir Türkçe yorum CSS DİZESİNİN içindeydi;
   esbuild dize içini küçültemez, yorum JS tarafına taşındı.
 
+### 24. RG erişimi: ara sertifika YERELDE tamamlanır; veri hattı kırmızısı TELEGRAM'a çıkar
+- **Tarih:** 2026-08-24
+- **Karar:** (a) resmigazete.gov.tr'nin zincirde göndermediği ara sertifika
+  (`GeoTrust TLS RSA CA G1`, AIA'dan indirilmiş, `openssl verify` ile
+  köke zincirlenmiş, SHA-256 parmak izi dosya başında) depoda tutulur:
+  `izleme/lib/rg-ara-sertifika.pem`; koşumda sistem demetiyle birleştirilip
+  (`izleme/state/.rg-ca-demeti.pem`, gitignore) yalnız RG çekimlerine
+  `cafile` olarak verilir. TLS doğrulaması HİÇBİR yerde kapatılmaz.
+  (b) Veri hattı hataları (su-izleme `HATA_SAYAC>0`, rg-nobetci `--kosum`
+  sorgu hatası) `arac/uyari-gonder.sh` ile Telegram'a bildirilir — SMTP'den
+  ve LLM'den bağımsız; su-izleme'de aynı-imza-24-saat mükerrer koruması.
+  (c) `su-izleme.sh --rg-tarih YYYY-MM-DD` telafi kipi: yalnız M1, DURUM.md'ye
+  dokunmaz, tarihi zaten analizli günü atlar.
+- **Gerekçe:** RG 2026-08-06'dan beri zincirde yalnız leaf gönderiyor;
+  fihrist 38 ardışık koşum, nöbetçi 2 hafta kördü ve SMTP boş olduğu için
+  hiçbir kırmızı dışarı çıkmıyordu. Falsifikasyon kanıtı: kasıtlı bozmada
+  Telegram message_id 4656 (su-izleme) ve 4657 (rg-nobetci); onarımla
+  nöbetçi 0→109 satır. Ayrıntı: rapor/rg-onarim.md.
+- **Reddedilen alternatifler:** TLS doğrulamasını kapatmak (`-k`) — MITM
+  yüzeyi, uydurma yasağının ağ karşılığı; sistem geneli
+  `update-ca-certificates` — kapsamı tüm sistem, izi proje deposunda
+  görünmez; karşı tarafın (RG) düzeltmesini beklemek — 18 gün beklendi,
+  veri kaybı büyüyor. Worktree'de çalışmak (§12) — cron'un koştuğu gerçek
+  state ağacında uçtan uca falsifikasyon gerekiyordu; değişiklik site yayın
+  hattına girmiyor, sapma gerekçesiyle kayıtlandı.
+- **Süre kalemi:** ara sertifika 2027-11-02'de dolar — SIRADAKILER'e
+  tarihli yenileme kalemi yazıldı; ayrıca RG kendi zincirini düzeltirse
+  demet zararsız fazlalık olur (kaldırma kararı o gün verilir).
+
 ---
 
 ## Bu dosyaya kayıt ekleme kuralı
