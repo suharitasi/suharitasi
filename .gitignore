@@ -52,3 +52,7 @@ data/arsiv/chirps/
 .env
 data/orders.db*
 server/node_modules/
+
+# RG onarımı (2026-08-24): koşum sırasında üretilen birleşik CA demeti — depoya girmez
+izleme/state/.rg-ca-demeti.pem
+izleme/state/.rg-ca-demeti.tmp

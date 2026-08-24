@@ -18,7 +18,7 @@ Kanıt kuralı (Faz 3 ile aynı): her kayıt RG tarih + sayı + kaynak URL
 taşır; taşımayan kayıt YAZILMAZ, "kaynaksiz" sayacına düşer.
 Sessiz hata yasağı: ağ/ayrıştırma hatası yutulmaz — stderr + çıkış kodu.
 """
-import argparse, json, re, sys, time, urllib.error, urllib.request
+import argparse, json, os, re, ssl, subprocess, sys, time, urllib.error, urllib.request
 from pathlib import Path
 
 KOK = Path(__file__).resolve().parent.parent
@@ -33,6 +33,59 @@ VARYANTLAR = ["yeraltısuyu işletme sahası",
               "YAS işletme sahası"]
 BEKLE = 1.5          # istekler arası (G5 nezaket kuralı)
 
+# RG ARA SERTİFİKA (2026-08-24, RG onarım brief'i): resmigazete.gov.tr
+# zincirde ara sertifikayı göndermiyor (2026-08-06'dan beri) — urllib
+# CERTIFICATE_VERIFY_FAILED ile düşüyordu ve nöbetçi KÖRDÜ. Sistem CA
+# demeti + depodaki doğrulanmış ara sertifika birleştirilir; doğrulama
+# KAPATILMAZ. RG_NOBETCI_CA: falsifikasyon/test kancası (yolu ezer,
+# örn. /dev/null ile kasıtlı bozma).
+ARA_SERT = KOK / "izleme/lib/rg-ara-sertifika.pem"
+DEMET = KOK / "izleme/state/.rg-ca-demeti.pem"
+UYARICI = KOK / "arac/uyari-gonder.sh"
+
+
+def ssl_baglami():
+    ezme = os.environ.get("RG_NOBETCI_CA")
+    if ezme:
+        return ssl.create_default_context(cafile=ezme)
+    if not ARA_SERT.exists():
+        print(f"UYARI: {ARA_SERT} yok — sistem demetiyle deneniyor", file=sys.stderr)
+        return ssl.create_default_context()
+    sistem = Path("/etc/ssl/certs/ca-certificates.crt")
+    gecici = DEMET.with_suffix(".tmp")
+    DEMET.parent.mkdir(parents=True, exist_ok=True)
+    gecici.write_bytes(sistem.read_bytes() + b"\n" + ARA_SERT.read_bytes())
+    gecici.replace(DEMET)          # atomik: su-izleme ile yazma yarışı olmasın
+    try:
+        return ssl.create_default_context(cafile=str(DEMET))
+    except (ssl.SSLError, OSError) as e:
+        # Demet bozuksa ÇÖKME: sistem varsayılanına düş ve uyar — istek
+        # yine doğrulama hatası verir, o hata yakalanır ve Telegram'a çıkar.
+        # (Falsifikasyon dersi 2026-08-24: modül-düzeyi çökme, uyarı yolunu
+        # hiç çalıştırmadan öldürüyordu.)
+        print(f"UYARI: CA demeti yüklenemedi ({e}) — sistem demetiyle deneniyor",
+              file=sys.stderr)
+        return ssl.create_default_context()
+
+
+CTX = ssl_baglami()
+
+
+def uyari_gonder(konu, govde):
+    """Telegram bildirimi (LLM'siz, uyari-gonder.sh üzerinden). Haftalık
+    kadans nedeniyle imza-mükerrer koruması GEREKMEZ (en fazla 1 mesaj/hafta).
+    Gönderim hatası koşuyu düşürmez; stderr'e yazılır (sessiz hata yasağı)."""
+    try:
+        r = subprocess.run([str(UYARICI), konu, govde],
+                           capture_output=True, text=True, timeout=30)
+        if r.returncode != 0:
+            print(f"UYARI: Telegram bildirimi gönderilemedi (exit {r.returncode}): "
+                  f"{(r.stderr or r.stdout).strip()[:200]}", file=sys.stderr)
+        else:
+            print(f"Telegram bildirimi: {(r.stdout or '').strip()[:120]}")
+    except (OSError, subprocess.TimeoutExpired) as e:
+        print(f"UYARI: Telegram bildirimi çağrılamadı: {e}", file=sys.stderr)
+
 
 def sorgu(kelime, start, length=25, searchtype="1"):
     govde = json.dumps({"draw": 1, "start": start, "length": length,
@@ -44,7 +97,7 @@ def sorgu(kelime, start, length=25, searchtype="1"):
         UC, data=govde.encode(),
         headers={"User-Agent": UA,
                  "Content-Type": "application/json; charset=utf-8"})
-    with urllib.request.urlopen(istek, timeout=60) as c:
+    with urllib.request.urlopen(istek, timeout=60, context=CTX) as c:
         return json.load(c)
 
 
@@ -183,6 +236,13 @@ def main():
         "sorgu_hatasi": len(hatalar),
     }, ensure_ascii=False, indent=1) + "\n")
     print(f"\nyazıldı: {CIKTI} (+{len(eklenecek)}) · {DURUM}")
+    # TELEGRAM (yalnız --kosum: --test sözleşmesi "hiçbir yere gönderim
+    # yapmaz" der ve bozulMAZ). Sorgu hatası = nöbetçi kör → dışarı bildir.
+    if hatalar:
+        ozet = "\n".join(f"• '{h['kelime']}' start={h['start']}: {h['hata'][:120]}"
+                          for h in hatalar[:5])
+        uyari_gonder(f"veri hattı rg-nobetci: {len(hatalar)} sorgu hatası, "
+                     f"taranan satır {len(bulunan)}", ozet)
     return 0 if not hatalar else 3
 
 
