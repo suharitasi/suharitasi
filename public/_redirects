@@ -1,9 +1,11 @@
-# WWW → APEX 301 (25.08.2026, havza-talep briefi E3): GSC aynı içeriği iki
-# host'ta ayrı sayıyordu (ör. /havzalar/gediz/ apex 0/50 + www 2/49).
-# Ölçüm: www 200 sunuyordu (yönlendirme YOK), canonical apex'i gösteriyordu;
-# canonical tek başına sinyali birleştirmedi. Host'lu kural Cloudflare Pages
-# _redirects sözleşmesinde desteklenir; md24 beklentisi 301'e güncellendi.
-https://www.suharitasi.com/* https://suharitasi.com/:splat 301
+# WWW → APEX (25.08.2026, havza-talep E3): GSC aynı içeriği iki host'ta
+# ayrı sayıyor (ör. /havzalar/gediz/ apex 0/50 + www 2/49). Host'lu kural
+# BURAYA YAZILAMAZ: Pages _redirects alan-düzeyi yönlendirmeyi desteklemez
+# (developers.cloudflare.com/pages/configuration/redirects — "Domain-level
+# redirects ❌", okundu 25.08.2026; ilk denemede buraya yazıldı, canlıda
+# etkisiz ölçüldü ve kaldırıldı). Çözüm Cloudflare panelinde Redirect Rule
+# ("Redirect from WWW to Root" şablonu) — kullanıcı adımı, rapor/havza-talep.md §7.
+# Kurulana kadar md24 SARI verir (301 gelince yeşile döner).
 
 # Cloudflare Pages yönlendirmeleri.
 # /deneyim/ ROTA KAPANIŞI (23.07): 6 sahne akışı ana sayfaya taşındı,

@@ -295,8 +295,27 @@ async function md24_www() {
   // canonical tek başına sinyali birleştirmedi. _redirects'e host kuralı
   // kondu — artık beklenen: www 301 → apex, hedef 200 + canonical apex.
   // www'nin 200 SUNMASI eski davranıştır ve kırmızıdır (sinyal bölünmesi).
+  // Pages _redirects alan-düzeyi yönlendirmeyi DESTEKLEMEZ (resmî belge,
+  // 25.08.2026) — 301 ancak Cloudflare panel Redirect Rule ile kurulur
+  // (kullanıcı adımı, rapor/havza-talep.md §7). O yüzden üç durum:
+  // 301→apex = yeşil · 200 + canonical apex = SARI (panel adımı bekliyor;
+  // kalıcı kırmızı gürültüsü üretilmez, eksik adım görünür kalır) ·
+  // diğer her şey = kırmızı.
   const WWW = process.env.SAGLIK_WWW_EZME || 'https://www.suharitasi.com/';
   const c = await getir(WWW);
+  if (c.status === 200) {
+    const govde200 = await c.text();
+    const m200 = govde200.match(/<link rel="canonical" href="([^"]+)"/);
+    const can200 = m200 ? m200[1] : null;
+    if (can200 && can200.startsWith('https://suharitasi.com/')) {
+      return kaydet('24-www', 'sari',
+        `www 200 sunuyor (canonical apex ✓) — 301 için Cloudflare panel Redirect Rule bekleniyor (rapor/havza-talep.md §7)`,
+        { url: WWW, canonical: can200 }, ['hizli', 'tam']);
+    }
+    return kaydet('24-www', 'kirmizi',
+      `www 200 + canonical apex DEĞİL (${can200 || 'canonical yok'}) — mükerrer içerik riski`,
+      { url: WWW, canonical: can200 }, ['hizli', 'tam']);
+  }
   if (c.status !== 301 && c.status !== 308) {
     return kaydet('24-www', 'kirmizi',
       `www ${c.status} döndü (beklenen 301 → apex) — sinyal bölünmesi riski`,
