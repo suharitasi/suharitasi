@@ -89,6 +89,18 @@ const sema = [
       },
     ],
   },
+  // Dataset şeması (gsc-mcp turu 25.08.2026, brief 5.3): alanlar KAPATMA_OZET
+  // ve KAPATMA_SERHI kayıtlarından; il eşlemesi yapılmadığı şerhi description'a
+  // aynen taşınır (dürüstlük etiketi şemada da görünür), lisans yazılmaz.
+  {
+    '@type': 'Dataset',
+    name: 'Yeraltı suyu tahsise kapatma ve kısıt kayıtları (Resmî Gazete derlemesi)',
+    description: `${KAPATMA_OZET.sayi} kayıt, ${KAPATMA_OZET.ilkYil}-${KAPATMA_OZET.sonYil}. ${KAPATMA_SERHI}`,
+    temporalCoverage: `${KAPATMA_OZET.ilkYil}/${KAPATMA_OZET.sonYil}`,
+    url: canonical,
+    inLanguage: 'tr-TR',
+    isAccessibleForFree: true,
+  },
 ];
 ---
 <Sayfa baslik="Tahsise kapatma kaydı var mı?" aciklama={OZ_CEVAP} sema={sema}>

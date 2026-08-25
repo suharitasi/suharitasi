@@ -12,6 +12,12 @@ export async function getStaticPaths() {
 const { giris } = Astro.props;
 const { Content } = await render(giris);
 
+// Kardeş-sayfa bağı (gsc-mcp turu 25.08.2026): taslak-takibi sitede yalnız
+// 1 gelen bağla "keşfedildi — dizine eklenmedi" ölçüldü (URL denetimi);
+// bölümün sayfaları birbirine satır-içi metin bağıyla bağlanır (gezinme,
+// hukuki içerik değil; başlık koleksiyon verisinden).
+const kardesler = (await getCollection('su-kanunu')).filter((g) => g.id !== giris.id);
+
 // Bülten yalnız taslak takibi sayfasında: mevzuat kütüphanesi durağan bir
 // referans, bildirime konu değil.
 const bultenli = giris.id === 'taslak-takibi';
@@ -41,6 +47,12 @@ const sema = [{
   />
   <div class="icerik">
     <Content />
+    {kardesler.length > 0 && (
+      <p>
+        Su Kanunu bölümünün diğer sayfası:{' '}
+        {kardesler.map((k) => <a href={`/su-kanunu/${k.id}/`}>{k.data.baslik}</a>)}
+      </p>
+    )}
   </div>
   {bultenli && <Bulten etiket="taslak-takibi" />}
 </Sayfa>
