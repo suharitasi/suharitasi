@@ -181,3 +181,111 @@ Faz kapısı TABAN koşusu (A sonrası, düzeltme öncesi): kırmızı 0 ·
 sarı 1 (md21 Manisa 7→12 — bilinen borç, B-iv'te kapanacak) · geçti 10 ·
 md14 G1-G6 sapma YOK (menü kalemi değişimi tabanı kırmadı) · yeni
 su-hukuku 301'leri dahil 6/6 yönlendirme yerelde çalışıyor.
+
+---
+
+## B. SEO/GEO tam denetimi — YAPILDI (faz i-iv, ayrı commit'ler)
+
+### B1-B2. Meta ve başlıklar [VERİ]
+- **Ölçüm aracı hatası bulundu ve düzeltildi** (`seo-geo-ortak.mjs`
+  metaIcerik/ogEtiket): `content=["']…["']` deseni İLK tırnak türünde
+  kesiyordu — "Havzası'ndan" içindeki kesme işareti 94 nehir sayfasında
+  sahte "meta-desc-uzunluk" bulgusu üretmişti (gerçek 95 kr, ölçülen 26).
+  Falsifikasyon testi kanıtlı. md16 taban sayısı bu yüzden yeniden
+  yorumlanmalı (aşağıda taban notu).
+- Merkezî meta-description kırpımı `Sayfa.astro`'ya kondu (50-160 bandı,
+  cümle→kelime sınırı, metin sayfanın kendi aciklama'sından türetilir).
+- durumum başlıkları veriden türetildi (37/42 sayfa 60 altına indi;
+  5'i sektör adı gereği 62-68'de kalıyor — ad veridir, kısaltılamaz),
+  ilce-sorgu başlığı kendi H1'inden kısaltıldı.
+- Sonuç: **SEO bulgusu 303 → 26** (kalan: 16 title-uzun [11'i içerik
+  başlığı → karar listesi, 5'i sektör adı] + noindex/404 kalemleri).
+- title-tekrar: **0** (519 sayfada başlık benzersizliği tam).
+
+### B3. Yapılandırılmış veri [VERİ]
+Sayfa tipi başına @type envanteri çıkarıldı: göl/nehir sayfaları
+ŞEMASIZ DEĞİL (BodyOfWater + Place + GeoCoordinates + FAQPage +
+PropertyValue tam); rehber Article(+HowTo), havza/durumum/kapatma/
+hangi-kurum/nerede FAQPage, il Article, arşiv ItemList; sitewide
+Organization + Person + WebSite + BreadcrumbList @graph. json-ld-gecersiz
+0. Eklenen: Organization `logo` (mevcut favicon.svg). **speakable
+bilinçli eklenmedi**: 16 şablona dokunma + @graph'ta çift WebPage düğümü
+kirliliği karşısında zayıf/beta sinyal; öz-cevap zaten
+`role="doc-abstract"` ile işaretli. SearchAction eklenmedi (sitede
+arama kutusu yok — uydurma yasak). sameAs boş ve DOĞRU (profil yok;
+profil açmak C listesinde kullanıcı kararı).
+
+### B4. Öz-cevap [VERİ]
+- Öz-cevapsız içerik sayfası: **0** (muaf: ana sayfa — 28.07 kullanıcı
+  kararı; noindex pilotlar). "İçerik kararı gerekli" (veriyle
+  yazılamayan) listesi: **boş** — tüm içerik sayfalarında öz-cevap var.
+- 280 üstü öz-cevap 48 → **12**: il şablonu veriden yeniden türetildi
+  (havza adı kısaltma + belge parantezi gövdeye + cümle-düşürme; hiçbir
+  yeni coğrafi/hukuki ifade yazılmadı). Kalan 12'nin 11'i ELLE YAZILMIŞ
+  içerik özeti (282-298 kr; 10 rehber + vaka/meysu — hukuki metin
+  dokunulmazı → karar listesi), 1'i noindex stil-pilot.
+
+### B5. İç bağ ağı [VERİ]
+- Mutlak yetim: 3 — üçü de noindex (2 pilot + /kullanilanlar/) → SEO
+  yüzeyinde yetim **0**.
+- Çift yönlülük ölçüldü: göl 247/247 · nehir 95/95 · il 81/81 ·
+  havza 25/25 — **tam**.
+- Ortalama gelen bağ 19,3; en zayıf sayfalar: /kapatma-kaydi/ (1 gövde
+  bağı), /su-kanunu/mevzuat-kutuphanesi/ ve /taslak-takibi/ (1'er),
+  /arsiv/ (2), göl uzun kuyruğu (2'şer, ağ deseni gereği normal).
+  Eklenen: kapatma-kaydi ↔ yeralti-suyu-isletme-sahasi rehberi çift
+  yönlü tematik bağ (satır-içi metin bağı — dokunma ölçümünden muaf
+  desen; kapatma sayfasının gerçek kapsam şerhine sadık metinle).
+- **Dokunma borcu kapandı:** `.capraz` bağlarına 44px min-height
+  ([il].astro scoped — md14 taban sayfalarına dokunmaz). Kanıt:
+  Manisa ihlal **12 → 7 = taban** (375px, DOKUNMA_OLC ile önce/sonra);
+  kapı koşusunda "6 sayfada taban korundu (201=201)". Kalan 7, açık
+  3a borcudur (90 öğe, ayrı kalem).
+
+### B6. AI/GEO yüzeyi [VERİ]
+- robots.txt geo-crawlers matrisiyle birebir: Tier-1 5/5 açık (GPTBot,
+  OAI-SearchBot, ChatGPT-User, ClaudeBot+Claude-User+Claude-SearchBot,
+  PerplexityBot+Perplexity-User), Tier-2 açık; Bytespider + CCBot
+  gerekçeli kapalı (kayıtlı kullanıcı kararı 26.07). Değişiklik gereksiz.
+- llms.txt build ürünü, canlıda 200; A5 sonrası 519 sayfa, tek düşen
+  su-hukuku.
+- Alıntılanabilirlik (geo-citability ölçütleriyle örneklem ölçümü):
+  cevap-önce yapı tüm tiplerde (öz-cevap tanım kalıbında, ilk cümle
+  kendi kendine yeterli); istatistik yoğunluğu il 5/500k · havza 14/500k
+  (rubrik üst bandı); soru-H2 oranı il 6/7, havza 7/10; künyeli iddia
+  deseni yerleşik. Mekanik iyileştirme gereksiz — rehber H2'lerinin
+  soru biçimine çevrilmesi içerik kararı (C listesinde).
+
+### B7. E-E-A-T (yalnız liste — uygulama YOK, karar maddeleri)
+Ölçülen mevcut: yazar kutusu her rehberde (Av. Serdar Arslan + büro +
+"içerik kendisi tarafından hazırlanır" beyanı) · Person şeması sitewide
+(jobTitle/worksFor/knowsAbout) · içtihat/kaynakça bölümleri · Organization.
+Eksik listesi (YMYL çıtasına göre):
+1. Görünür güncellik damgası yok; `dateModified` = `datePublished`
+   (2026-07-14 sabit) — içerik güncelleme süreci + damga kararı.
+2. Person/Organization `sameAs` boş — LinkedIn/GBP/Wikidata profili
+   açmak kullanıcı işi (dagitim-durumu §4 kaydıyla uyumlu).
+3. Birinci-elden deneyim sinyali (vaka anlatısı, "büromuzda şu dosyada…")
+   yok — hukuki iddia/avukat kimliği gerektirir, [SERDAR-HUKUK] kapısı.
+4. /hakkinda/ yazar sayfası var; dış doğrulama bağlantısı (baro kaydı,
+   yayın listesi) yok — karar.
+
+### B8. Teknik [VERİ]
+- Sitemap 519/519 içerik sayfası (+noindex'ler doğru biçimde dışarıda);
+  robots tutarlı; sitemap-disi 3 bulgunun 3'ü de noindex — doğru davranış.
+- Mobil ana sayfa ağırlığı ÖLÇÜLDÜ (390px, ağ günlüğü): yerel 1,91 MB /
+  22 istek; canlı 1,99 MB / 30 istek (ilk 12 sn). Föydeki "3,1 MB"
+  bu ölçümde YENİDEN ÜRETİLEMEDİ.
+- "Video mobilde iki kez iniyor" iddiası: canlıda aynı mp4'e çoklu istek
+  VAR ama içerik tek kez iniyor — fazla istekler 0-baytlık range
+  sondaları (sahne2: 3×0 KB + 1×1104 KB). Bu Chromium medya yığınının
+  normal davranışı; site kusuru değil, düzeltilecek şey yok. Ağırlık
+  artışı: 0 (değişiklikler metin kırpma + birkaç satır CSS).
+- Core Web Vitals: canlı --tam koşusunun Lighthouse kalemiyle kapı
+  bölümünde raporlanır (son taban: / 99/87).
+
+### md16 taban notu
+Araç düzeltmesi (tırnak hatası) md16'nın tarihsel sayımını değiştirir:
+eski 199-207 bandının önemli kısmı sahte nehir bulgusuydu. Deploy
+sonrası canlı --tam'ın ölçtüğü yeni değer taban yapılır (kapsam-taban
+güncellemesi, md18 emsalindeki gibi küçük-iş kaydıyla).
