@@ -112,6 +112,14 @@ Hepsi aynı dayanıklılık sözleşmesine uyar (CLAUDE.md "Sessiz hata yasağı
 hata sayacı ancak commit teyidinden sonra sıfırlanır · 3 ardışık hata →
 UYARI dosyası.
 
+**Dış bildirim (25.08.2026, KARARLAR §27):** her hattın kırmızısı artık
+`arac/uyari-gonder.sh` üzerinden **Telegram'a çıkar** — baraj (çekim/kilit/
+pull-push), grace (hata_say), yedek (olduc), rg-nobetci (sorgu hatası +
+yeni kayıt), nhyp-nobetci (sonda/ağ + yeni yayın), su-izleme ve
+saglik-bekcisi zaten bağlıydı. Kanal .env'deki TELEGRAM_* değerleridir;
+falsifikasyon kanıtları message_id 4656-4666 (rapor/rg-onarim.md ve
+rapor/kalanlar-paketi.md).
+
 1. **Baraj** (`arac/baraj-gunluk.sh` → `arac/baraj-cek.mjs`)
    EPİAŞ'tan günlük baraj doluluk verisi çeker → `data/canli/baraj.json` +
    `data/arsiv/baraj/` → değişiklik varsa commit+push → deploy hook.

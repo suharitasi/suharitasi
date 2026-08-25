@@ -8,6 +8,25 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ KALANLAR PAKETİ KAPANIŞI (25.08.2026, rapor/kalanlar-paketi.md) ═══
+KAPANAN: Görünür güncellik damgası C5 №5 (509 sayfa görünür + 508 şema
+dateModified; KARARLAR §27 K3) · veri hattı Telegram uyarı yolu 4 hatta
+tamamlandı (baraj/grace/yedek/nhyp; message_id 4662-4666, §27 K2) ·
+kirli-ağaç kök nedeni (rg-nobetci haftalık yazımı; §27 K1 — 18-24.08
+vakası) · md24 www kalemi (www-522'nin açık kalemi; falsifikasyon 2/2) ·
+--test 7/7 ölçülerek doğrulandı · md14 taban-yenileme kalemi (24.08'de
+yapılmıştı, son --tam yeşil) · nöbetçi canlılık kalemi (bekçi satır 107,
+M13) · "rg/nhyp nöbetçileri hiç koşmamış" bulgusu (state: 25.08 / 19.08) ·
+K1 Faz D ölçümü (pull hatası BULUNDU ve kök nedeni giderildi) · yedek
+geri-alma denemesi tazelendi (25.08: bundle klon + fsck temiz).
+AÇIK / İZLEME:
+- [ ] rg-nobetci ilk GERÇEK yeni-kayıt olayında zincirin uçtan uca gözlemi
+  (Telegram bildirimi + ertesi su-izleme commit'i) — sentetik falsifikasyon
+  geçti, gerçek olay tarihi bilinmiyor.
+- [ ] SIRADAKILER kürasyonu KISMİ: 7 tamamen kapanmış blok
+  arsiv/SIRADAKILER-ARSIV-1.md'ye taşındı; kalan karışık blokların
+  kürasyonu ayrı tur ister.
+
 ═══ GEO/SEO TURU KAPANIŞI (25.08.2026, rapor/geo-seo-katma-deger.md) ═══
 KAPANAN: 37 ölü dış bağlantı (md17 kırmızısının SYGM ailesi dahil) ·
 /su-hukuku/ rota kapanışı (§26) · md21 Manisa borcu · md16'daki sahte
@@ -21,7 +40,8 @@ AÇIK / KULLANICI KARARI BEKLEYEN (ayrıntı raporun C bölümünde, sıralı):
   tarayıcı-UA GET; falsifikasyon 2/2 (gerçek ölü KIRMIZI kaldı,
   DergiPark yanlış-pozitifi SAĞLAM+notlu); 39 onarılan bağlantı ölü 0;
   süre +35,8 sn/52 örneklem (yalnız --tam'da koşar, --hizli 0).
-- [ ] Görünür güncellik damgası + dateModified süreci (C5 №5, E-E-A-T).
+- [x] Görünür güncellik damgası KAPANDI (25.08 kalanlar paketi; KARARLAR §27 K3;
+  509 görünür + 508 dateModified, tarih yalnız veri kaydından).
 - [ ] 11 içerik title'ı + 11 uzun öz-cevap + rehber H2 soru biçimi —
   [SERDAR-HUKUK] içerik kararı (C5 №9).
 - [ ] 2 İÜC kitabı künyesi "doğrulanamadı" etiketiyle bekliyor
@@ -43,8 +63,8 @@ AÇIK KALAN (bu turda bilinçli dokunulmayan):
   canlı yüzeyde tek adres bilgi@suharitasi.com (ölçüldü; serdar@ src'de 0).
 - [ ] /ilce-sorgu/ analiz çıktılarının (akifer türü/derinlik tahmini)
   yöntem şerhi mevcut "TEMSİLÎDİR" uyarısıyla sınırlı — yeterlilik kararı.
-- [ ] md14 görsel taban yenilemesi deploy sonrası ana ağaçta koşulacak
-  (bilinçli değişiklik: ana sayfa mobil sırası; --gorsel-taban-yenile).
+- [x] md14 görsel taban yenilemesi YAPILMIŞTI (24.08, taban tarihi SITE-DURUM'da);
+  25.08 --tam ve izole kapıda md14 yeşil ölçüldü — kalem kapandı.
 - [x] .env PAYTR_* satırları ana ağaçta SİLİNDİ (24.08 kapanışı; 6 satır).
 - [x] Hidrografya çapraz bağları KAPANDI (25.08, GEO/SEO B-iv):
   [il].astro .capraz 44px min-height; Manisa 12→7=taban ölçüldü.
@@ -120,8 +140,8 @@ Hepsi ücretsiz ve kısa; sıra etki büyüklüğüne göre.
     değerleri değiştirilir. rapor/dis-izleme.md §4.A
  6. ~~www 522~~ **KAPANDI 29.07** — Pages custom domain eklendi, 3/3 ölçüm
     200; canonical apex'i gösteriyor, mükerrer içerik riski yok.
-    AÇIK KALEM: "www 200 dönüyor mu" sağlık kalemi eklenmeli (beklenen-301
-    DEĞİL — www artık yönlendirmiyor, doğrudan sunuyor). rapor/www-522.md
+    AÇIK KALEM KAPANDI (25.08): md24 www kalemi kuruldu (200 + canonical apex,
+    falsifikasyon 2/2; KARARLAR §27 K4). rapor/www-522.md
  7. **GitHub Actions dış nabzı** — sunucudan bağımsız tek izleme seçeneği,
     yeni sağlayıcı gerektirmiyor. rapor/dis-izleme.md §3
  8. ~~Keşif botu taşınsın mı~~ **UYGULANDI + DOĞRULANDI 29.07** —
@@ -220,12 +240,6 @@ TABAN YENİLEME (kalem kilitlenmesin): bilinçli tasarım değişikliğinde
 ZORUNLU). Yenilenmeden kalem KIRMIZI kalır. SITE-DURUM'da taban tarihi görünür.
 AÇIK: taban 28.07'de YEREL dist'e karşı alındı; deploy sonrası canlıya karşı
 ilk --tam koşumunda doğrulanır (fark çıkarsa taban canlıdan yenilenir).
-
-REDUCED-MOTION KADRAJ ARIZASI — KAPANDI (28 Tem, md14 Faz 0 ölçümünün
-bulduğu): hero yazımından kalan `.v2-videolar { display:none }` kuralı
-hareket-azaltma kullanan ziyaretçiye kadrajı HİÇ göstermiyordu. Ölü kural
-kaldırıldı; iki modda da kadraj 832×464 (ölçüldü). Ders: erişilebilirlik
-kuralları yapı değişince gözden geçirilmezse sessizce zararlı hale gelir.
 
 HERO "SAHA KADRAJI" + Ş3 KÖK DÜZELTMESİ — MERGE EDİLDİ (28 Tem 2026,
 ön-onaylı; merge b3046af). Kullanıcı şikâyetleri ölçümle doğrulanıp çözüldü:
@@ -370,7 +384,7 @@ kullanıcı kararıyla kaldırıldı; merge 896d8b1). İki iş:
   eski URL'nin "sayfa yönlendirme içeriyor" durumu HATA DEĞİLDİR. İsteğe
   bağlı hızlandırıcı (kullanıcı paneli): URL Denetimi → yeni URL indeksleme.
 
-YENİ AÇIK KALEM — site-saglik.mjs --test 6/7 (ölçüldü 28 Tem 2026, kapı işi
+[KAPANDI 29.07 M3; 25.08'de 7/7 ÖLÇÜLDÜ] site-saglik.mjs --test 6/7 (ölçüldü 28 Tem 2026, kapı işi
 sırasında): senaryo (i) "CSP media-src kaldırıldı → md4 🔴" KALIYOR. Kapı
 dalında da ana depoda da AYNI (6/7) — kapı işinin ürünü DEĞİL. Hipotez
 (kontrol edilmedi): 27.07'deki md4 revizyonu kontrolü zaman-döngüsü ölçümüne
@@ -378,32 +392,6 @@ dalında da ana depoda da AYNI (6/7) — kapı işinin ürünü DEĞİL. Hipotez
 sisteminin kendi öz-testinde sürekli bir kırmızı bırakıyor — "bilinen arıza"
 sayılmaya başlarsa md4 revizyonu dersinin ikizi doğar. Yapılacak: senaryo (i)
 md4'ün YENİ ölçüm biçimine göre yeniden yazılsın ya da gerekçeli kaldırılsın.
-
-SAĞLIK md4/md12/md10 YANLIŞ ALARMLARI — KAPANDI (28 Tem 2026, canlıda
-doğrulandı: 11 kontrol geçti): Su-potansiyeli merge'ü (5e08611) sabahtan beri
-deploy olmamış TÜM günü canlıya taşıdı; ana sayfa v2 DOM'unda #world/.sw-*
-yok (yeni: section.v2-hero > .v2-katman > #v2-videolar, 6 video, lazy).
-izleme/medya-beklenen.json hâlâ '#world .sw-scene' bektiği için md4 6/6
-"sahne DOM'da yok" veriyor. CANLI MEDYA SAĞLIKLI — ölçüldü: sahne1
-readyState=4, currentTime=2.85, paused=false; mp4'ler 200; konsol 0.
-REVİZYON YAPILDI (27 Tem akşam, kullanıcı onaylı; dal md4-2026-07-27,
-MERGE EDİLDİ 28.07): md4 zaman-döngüsü ölçümüne çevrildi (aktif-sahne
-poll + 206 Range normal + döngü-eksiği kontrolü); K2 kalemlerine
-DOKUNULMADI. Kanıt: canlıya karşı koşu GENEL YESIL — 6/6 sahne (6 farklı
-sahne adı, hepsi readyState 4 + currentTime>0), diğer 5 kontrol değişmedi;
-falsifikasyon: yanlış seçici → kırmızı (ölçüldü). MERGE EDİLDİ ve CANLIDA DOĞRULANDI (28.07): md4 6/6 geçti.
-AYNI DESEN İKİ YERDE DAHA ÇIKTI (gece paketi):
-  · md12 etkileşim, silinmiş #sv-menu DOM'unu arıyordu → menü AYLARDIR
-    hiç test edilmiyordu (24.07 arızasının senaryosu açıktaydı). Revizyon
-    sonrası 4/4 geçiyor — menü canlıda çalışıyor.
-  · md10 GRACE tazeliği yapısal olarak imkânsız bir şart koşuyordu
-    (grace-turkiye.json ~aylık değişir, eşik 8 gün) → md10 tümden kaldırıldı;
-    veri tazeliği bekçinin işi (pipeline kendini denetleyemez).
-  · sonBasariliKosu artık "koşum tamamlandı" damgası — tek kırmızı bekçide
-    ikinci yanlış alarm ("sağlık sistemi koşmuyor") doğurmuyor.
-DERS: her DOM/yeniden-tasarım işi, ona bağlı izleme yapılandırmasını da
-günceller; yoksa kontrol sessizce körelir ve kırmızısı "bilinen arıza"
-sayılmaya başlar.
 
 SU POTANSİYELİ KATMANI — 81 İLDE, KAPANDI (kullanıcı canlı onayı 28.07.2026)
 (merge edildi 27 Tem 2026 / 5e08611; iş kapanış kuralı gereği etiket
@@ -435,7 +423,7 @@ KALICI RG İŞLETME-SAHASI İZLEME CRON'U — KURULDU (28 Tem 2026,
 kullanıcı onayı; crontab: Sal 04:20 UTC, arac/rg-nobetci.py --kosum).
 Kanıt: --test koşumu 109 satır ayrıştırdı, kaynaksız 0, arşivde zaten
 var 109 → yeni 0. Varsayılan kip TEST (yazım/gönderim yok).
-AÇIK KALAN (SÜREKLİLİK): nöbetçinin kendi sessiz ölümünü kimse görmüyor —
+AÇIK KALAN KAPANDI (M13 29.07 + 25.08 doğrulaması): nöbetçinin sessiz ölümü artık bekçide —
 izleme/state/rg-nobetci-durum.json tazeliği saglik-bekcisi.sh'e canlılık
 kalemi olarak eklenmeli (dosya ilk koşumdan sonra doğacak).
 [ESKİ TANIM] RG /Home/Filter JSON ucuyla
@@ -443,38 +431,6 @@ kalemi olarak eklenmeli (dosya ilk koşumdan sonra doğacak).
 koşup yeni kayıtları isletme-sahalari*.json'a ekleyecek; site-saglik
 veri-bütünlüğü kontrolüne bağlanacak (SÜREKLİLİK İLKESİ). Altyapı hazır:
 arac/rg-tara.py + arac/rg-icerik-tara.py.
-
-OPENALEX EKSİK 32 İL — KAPANDI (28 Tem 2026): il kapsamı 49/81 → 81/81,
-künye 1226 → 1979, hata 0, DOI/açık-URL'siz kayıt 0 (baski_uygun tüm
-1979 kayıtta işaretli). zenginlestirme-birlestir.py yeniden koşuldu.
-KÖK NEDEN: OpenAlex kredi tabanlı kotaya geçmiş (x-ratelimit-limit 1000,
-10 kredi/istek, retry-after 4174 sn). Sabit saniye merdiveni bu ~70 dk'lik
-pencereyi ASLA aşamazdı; script artık Retry-After başlığını OKUYUP
-sunucunun söylediği süreyi bekliyor (90 dk tavan). Pencere açılınca 32 il
-tek koşuda indi.
-[ESKİ TANIM] OpenAlex kalıcı 429 kotası nedeniyle 32 ilin künyeleri eksikti
-(veri/potansiyel/akademik-kunye.json hatalar listesi). `python3
-arac/akademik-kunye.py` artımlıdır — birkaç saat sonra tek koşu tamamlar;
-sonra `arac/zenginlestirme-birlestir.py` yeniden koşulur. 4.B DergiPark→OpenAlex ikamesi ONAYLANDI (27 Tem 2026) — şart: basılacak
-her künye DOI/açık-erişim URL'si taşır, taşımayan basılmaz (baski_uygun
-etiketi veride).
-
-İLÇE DİZİNİ ÇAPRAZ DOĞRULAMA — KAPANDI, 0 FARK (28 Tem 2026):
-TÜİK engeli KALKMIŞ (biruni.tuik.gov.tr 200, favori_raporlar.xlsx 3,7 MB
-indi; YÖK Tez de 200). Resmî "İLÇE NÜFUSU" listesi (31 Ara 2021 ADNKS)
-OSM diziniyle karşılaştırıldı: adlı ilçe ortak 897 → il eşlemesi AYNI 897,
-çatışan 0; merkez ilçesi olan il TÜİK 51 = OSM 51, fark 0.
-kutle-il.json'da yeniden değerlendirilecek ilçe ÇIKMADI.
-SINIR: TÜİK dosyası 2021 tarihli; 2021 sonrası yeni ilçe kurulmadığı ayrıca
-doğrulanmadı. Hâlâ erişilemeyen: e-İçişleri (zaman aşımı). illeridaresi.gov.tr
-ise ENGEL DEĞİL — sertifikası yahyali.gov.tr adına, barındırma arızası.
-Kanıt: cikti/denetim/faz-k/ilce-capraz-dogrulama.json
-[ESKİ TANIM] kütle→il eşlemesinde kullanılan ilçe→il dizini OSM
-Overpass'tan (ODbL) üretildi (veri/potansiyel/ilce-il-dizini.json).
-Kullanıcı TR-IP'den resmî listeyi (e-İçişleri MulkiIdariBolumleri / TÜİK
-idari bölünüş) indirdiğinde OSM diziniyle ÇAPRAZ DOĞRULANACAK; fark çıkan
-ilçeler kutle-il.json'da yeniden değerlendirilecek. Sunucudan resmî
-kaynaklara erişim yok (6 kaynak denemesi: rapor/potansiyel-faz2.md).
 
 YENİ AÇILAN KALEMLER (28 Tem 2026, gece paketi tam-sistem denetimi):
 
@@ -518,7 +474,7 @@ YENİ AÇILAN KALEMLER (28 Tem 2026, gece paketi tam-sistem denetimi):
    82 il + 26 havza). BRIEF'teki "2 vCPU/4GB" kaydı da bayat (gerçek 4C/8GB,
    CLAUDE.md'de düzeltilmiş). Çatı belge gerçeği yansıtmalı.
 
-6. NÖBETÇİLERİN CANLILIK KALEMİ (SÜREKLİLİK) — rg-nobetci ve
+6. [KAPANDI 29.07 M13; 25.08'de bekçide ölçülerek doğrulandı] NÖBETÇİLERİN CANLILIK KALEMİ (SÜREKLİLİK) — rg-nobetci ve
    nhyp-yayin-nobetci crona kuruldu (Sal 04:20 / Çar 04:40 UTC) ama kendi
    sessiz ölümlerini kimse görmüyor. İlk koşumdan sonra
    izleme/state/{rg-nobetci-durum,nhyp-yayin-durum}.json doğacak; tazelikleri
@@ -538,15 +494,6 @@ YENİ AÇILAN KALEMLER (28 Tem 2026, gece paketi tam-sistem denetimi):
    üretimi yeniden değerlendirilecek. Eski hedef (2019 sürümü) korunuyor.
 
 
-KONTRAST ARIZASI — KAPANDI (27.07, kontrast-2026-07-27 canlıda,
-512ada3): index.astro'nun is:global body{#061824} stili Vite ortak
-chunk'ıyla 173 içerik sayfasına sızmıştı (menü birleştirme yan etkisi;
-il/persona 1.16:1, rehber 2.84:1). T1: kurallar html.v2-sayfa kapsamına
-alındı; 10 tip canlıda 5.16–12.33 AA. Ders: paylaşılan bileşen + sayfa
-is:global birleşimi chunk sızıntısı yaratır — sayfa-küresel stiller kök
-sınıfla kapsanır. site-saglik'e kontrast kontrolü eklenmesi DEĞERLENDİRİLMELİ
-(md.9 a11y açığı maddesiyle birleşir).
-
 SAGLIK SISTEMI — LIGHTHOUSE TEK ATIŞ (27 Tem 2026, KULLANICI KARARI BEKLİYOR)
 `arac/site-saglik.mjs:447` Lighthouse'u sayfa başına BİR KEZ çağırıyor.
 CLAUDE.md kuralı "3 tur medyan" diyor. Ölçüldü: aynı build'de mobil puan
@@ -554,10 +501,6 @@ CLAUDE.md kuralı "3 tur medyan" diyor. Ölçüldü: aynı build'de mobil puan
 üretecek. Performans eşiği otomatik onarım KARA LİSTESİNDE olduğu için
 DEĞİŞTİRİLMEDİ. Karar: 3 tur medyana çevrilsin mi (koşu süresi ~3 katına
 çıkar), yoksa eşik gevşetilsin mi?
-
-BENİM REGRESYONUM KAPANDI (27 Tem, `d64d5de`): breadcrumb sayfası olmayan
-ara halkayı link yapıyordu → /arac/ 404. 175 sayfa tarandı, kırık link 0.
-Ders kuyruğa: örnek sayfa öz-denetimi TAM SİTE taramasının yerine geçmez.
 
 AĞIRLIK KAYDI (27 Tem): IA turu + D3-A sonrası ortalama HTML sayfa
 24,3 → 28,9 KB (+%19), havza sayfası 40,8 → 50,2 KB, /durumum/ aktarılan
@@ -632,19 +575,6 @@ arac/brief-kurallari.json (kayıt-türetilmiş, T1-T8). Kurulum + 7 senaryo +
 kapı kuralı"nda. Yeni kural doğunca (GUNLUK hata kaydı) json güncellenir.
 BİLİNEN EKSİK: site-saglik v5 briefi diske kaydedilmemişti (denetlenemedi);
 araç use/mention ayrımı yapamaz (meta-briefler elle değerlendirilir).
-
-SU İDARESİ KURUM LİSTESİ — TUR 1A SERİSİ KAPANDI (TUR 1A-3, 2026-07-23).
-Güncel nihai durum: rapor/su-idaresi-tur1a3.md. Çıktı: su-birimleri.json
-(**155 kayıt**, şema_sürümü 2, 64 kayıtta USP eylem bağı), su-terim-havuzu.json
-(**126 terim**), ct3-kuyruk.json (**137 işlendi / 0 beklemede**), + YENİ:
-su-islemleri.json (20 işlem), hangi-kapi.json (20 satır; 11 doğrulandı, 9 APILEX bekliyor).
-Kapanış: 4 şarttan 3'ü (1,2,3) sağlandı; şart (4) yapısal olarak sağlanamaz
-(terim havuzu her yeni birincil kaynakta büyüyor). TUR 1A-4 AÇILMAZ — kalan
-boşluklar raporun "BİLİNEN EKSİKLER" başlığında (SYGM daireleri, 132 s.K.,
-Havza Yönetim Heyeti bileşimi, Ç5 sayımları, 9 APILEX satırı).
-TUR 1B'ye hazır girdi: kurum×faaliyet matrisi (USP eylem bağı) + hangi-kapı iskeleti.
-site-saglik.mjs veri-bütünlüğü kontrolü: KAPANDI (2026-07-23) — /hangi-kurum/ işiyle
-md11-veri-butunlugu eklendi (JSON geçerli mi🔴 + kayıt azaldı mı🟡 + şema tanınıyor mu🟡).
 
 KUYU ÇIKAR MI — keşif tamam (bf8e5fd); KULLANICI DEĞERLENDİRME OTURUMU
 bekleniyor, otomatik kur briefi YASAK. Sıra: keşif raporu → değerlendirme
@@ -1137,7 +1067,9 @@ DÜZELTME TURU 1'DEN AÇIK KALANLAR (2026-07-25):
 K1 — GIT/LOG HİJYENİ (2026-07-25). Uygulandı, main'de (9f68604). Canlı
 doğrulama açık:
 
-- [ ] K1 canlı doğrulama (Faz D). Bir sonraki pipeline koşumundan sonra:
+- [x] K1 canlı doğrulama (Faz D) — 25.08 ÖLÇÜLDÜ: koşumlar başarılı, commit'ler
+      teyitli; log'da PULL HATASI BULUNDU (18-24.08 kirli ağaç) ve kök nedeni
+      giderildi (KARARLAR §27 K1). [ESKİ TANIM] Bir sonraki pipeline koşumundan sonra:
       koşum başarılı mı, log'da pull hatası var mı, commit atıldı mı,
       push geçti mi, log'larda kayıp var mı. Bu kontrol yapılana kadar
       K1 "doğrulandı" SAYILMAZ. Yedek: ~/yedek/k1-log-*
@@ -1203,8 +1135,8 @@ DÖNÜŞÜM SEANSI (26 Tem 2026) — dal `donusum-2026-07-26`, worktree
 - [ ] /tmp/k1-test · /tmp/k1-test-onceki-tur · /tmp/skill-tarama temizliği.
 - [ ] Yabancı worktree: /tmp/claude-1000/.../scratchpad/wt-base (d2fea9d,
       detached HEAD).
-- [ ] www.suharitasi.com 522 bulgusu — tek ölçüme dayanıyor, bağımsız
-      kontrolde üretilemedi, üç kez tekrar ölçülmeli.
+- [x] www.suharitasi.com 522 — KAPANDI 29.07 (custom domain, 3/3 200);
+      25.08'den beri md24 kalemiyle sürekli izleniyor.
 - [ ] robots.txt AI botları: Cloudflare "Managed Content" bloğu ClaudeBot/
       GPTBot/PerplexityBot'u engelliyor olabilir — panelden doğrulanmalı.
       GEO stratejisinin ön koşulu.

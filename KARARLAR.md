@@ -420,6 +420,43 @@ dönük çıkarıldı; o yüzden bazı satırlarda bu işaret vardır.
 
 ---
 
+### 27. KALANLAR PAKETİ: veri hattı uyarı yolu tamamlandı · kirli-ağaç kuralı · güncellik damgası süreci · md24
+- **Tarih:** 2026-08-25 (brief: cikti/brief/2026-08-25T08-42-39Z-kalanlar-paketi.md; rapor: rapor/kalanlar-paketi.md)
+- **Karar 1 — nöbetçi çıktısı yalnız YENİ KAYITTA yazılır:** rg-nobetci
+  `--kosum`, isletme-sahalari-yeni.json'a yalnız yeni kayıt bulunca dokunur;
+  kalp atışı zaten izleme/state'tedir. Yeni kayıt yazıldığında dosyayı bir
+  sonraki su-izleme commit'i taşır (koşullu git add) ve Telegram bildirimi
+  düşer. **Gerekçe:** her salı basılan son_kosum damgası izleme/ dışında
+  kaldığından hiçbir commit'çi almıyor, ağaç kirli kalıyor ve TÜM hatların
+  pull/push'u tıkanıyordu — ölçülen vaka: 18-24.08, 41 bekleyen commit
+  (data/arsiv/baraj/log/cron-hata.log). **Reddedilenler:** git_pull_rebase'e
+  --autostash (arızayı tamamen görünmez kılar); nöbetçiye commit yetkisi
+  ("git'e dokunmaz" test sözleşmesini bulanıklaştırır).
+- **Karar 2 — §24 uyarı yolu TÜM hatlara genişletildi:** baraj-gunluk
+  (çekim/kilit/pull-push), grace-guncelle (hata_say), yedek-al (olduc),
+  nhyp-yayin-nobetci (sonda/ağ + yeni yayın), rg-nobetci (yeni kayıt).
+  Falsifikasyon message_id kanıtları: 4662 (baraj) · 4663 (grace) ·
+  4664 (nhyp) · 4665 (yedek) · 4666 (rg yeni-kayıt); yeşil yolda mesaj 0.
+  Falsifikasyon ayrıca gerçek bir kusur yakaladı: yedek-al uyarıcıyı
+  KOK'tan çözüyordu, script-yerel yola alındı.
+- **Karar 3 — güncellik damgası süreci (C5 №5, eeat-audit №1):** damga
+  tarihi YALNIZ veri kaydının kendi künyesinden gelir (uretim_tarihi /
+  sonGuncelleme / indirmeTarihi / kayitTarihi / OSM çekimi / nöbetçi son
+  taraması — kaynak: src/data/guncellik.js); build saati damga DEĞİLDİR
+  (her deploy'da oynayan tarih sahte tazelik sinyalidir). İçerik
+  koleksiyonlarında opsiyonel `guncelleme:` frontmatter alanı; ilk değerler
+  git geçmişinden ölçüldü, bundan sonra İÇERİK değişen md'de bu alan da
+  güncellenir. Görünür desen SayfaBasi'nın MEVCUT künye satırı; şemada
+  dateModified = guncelleme ?? tarih, datePublished değişmez. Tarihi
+  belirsiz sayfada damga BASILMAZ. **Reddedilenler:** build-time git
+  türetimi (Cloudflare Pages sığ klonunda güvenilmez); "bugün" basmak
+  (uydurma yasağı).
+- **Karar 4 — md24 www kalemi:** www.suharitasi.com kendi kalemiyle izlenir
+  (200 + canonical apex); beklenen-301'e yazılmaz çünkü www yönlendirmez,
+  sunar. Falsifikasyon 2/2 (SAGLIK_WWW_EZME).
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek

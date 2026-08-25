@@ -1,5 +1,25 @@
 # GUNLUK.md — seans notları
 
+## 25.08.2026 (3. seans) — KALANLAR PAKETİ (tek koşum, madde başına ayrı merge)
+Brief tam rejimden geçti (denetçi: 1 ENGEL yalnız-ekleme ile kapandı, 2 T1
+uyarısı açıklamalı). İKİ KÖK BULGU: (1) rg-nobetci her salı
+isletme-sahalari-yeni.json'a son_kosum damgası basıyor, dosya izleme/
+dışında olduğundan kimse commit etmiyor → 18-24.08 arası ağaç kirli,
+TÜM hatların pull/push'u tıkalı (41 bekleyen commit; cron-hata.log kanıtı).
+Onarım: yalnız-yeni-kayıtta yazım + su-izleme koşullu add + Telegram
+(KARARLAR §27 K1). (2) Baraj/grace/yedek/nhyp hatlarının kırmızısı yalnız
+log'da kalıyordu — §24 Telegram yolu 4 hatta genişletildi, falsifikasyon
+message_id 4662-4666 (yedek falsifikasyonu gerçek kusur da yakaladı:
+uyarıcı yolu KOK'a bağlıydı). GÖRÜNÜR GÜNCELLİK DAMGASI (C5 №5): 509
+sayfada görünür + 508 sayfada dateModified — tarih YALNIZ veri kaydından
+(guncellik.js); 36 md'ye git-ölçümlü guncelleme alanı; izole kapı TAM
+YEŞİL, md14 sapma 0 (taban yenileme gerekmedi), canlıda içerik imzasıyla
+teyit. md24 www kalemi kuruldu (falsifikasyon 2/2). --test 7/7. Yedek
+geri-alma denemesi tazelendi (bundle klon + fsck temiz). NHYP sonda
+URL'leri ölçüldü: 12/12 eski yolda 200 (SYGM taşıması NHYP'yi kapsamamış
+— negatif sonuç kayıtlı). Rapor: rapor/kalanlar-paketi.md.
+
+
 ## 25.08.2026 (2. seans) — md17 GET-düşümü (C5 №4, KÜÇÜK İŞ)
 `disLinkDenetle` artık başarısız HEAD'de (4xx/5xx/zaman aşımı) aynı
 adrese tarayıcı-UA'lı TEK GET atar; geçerse bağlantı SAĞLAM +
