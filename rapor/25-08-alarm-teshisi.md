@@ -696,7 +696,7 @@ rm -rf /home/suha/gsc-cikti
 # ── 4) COMMIT'LERİ GERİ AL ──────────────────────────────────────────
 # (gsc-haftalik.py'nin GSC_CIKTI_DIZIN ezmesi de bu revert'lerle kalkar)
 cd /home/suha/projeler/suharitasi
-git revert --no-edit <CRON-COMMIT>     # cron bağı + KARARLAR §31 + kayıtlar
+git revert --no-edit 22ffe8d           # cron bağı + KARARLAR §31 + kayıtlar
 git revert --no-edit 3f9e8fa           # teşhis raporu + GUNLUK + SIRADAKILER
 git revert --no-edit 563bf95           # su-izleme'nin rutin otomatik commit'i
 git push
