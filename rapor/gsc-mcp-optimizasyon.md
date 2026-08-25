@@ -267,7 +267,12 @@ uyuşmazlığı gösterecek sorgu hacmi yok (il/durumum kuyruğu ≤23 göst).
   önerisi C5 №6 bu ölçümle GÜÇLENDİ ama AY gereği kuyrukta).
 
 ### 5.6 IndexNow (4.6)
-{{INDEXNOW_SONUC}}
+Merge sonrası değişen 88 sayfa (81 il + arsiv + kapatma-kaydi + 3 rehber +
+2 su-kanunu) `--url-dosya` ile bildirildi — log kanıtı:
+`2026-08-25T15:15:31Z parti 1: 88 URL → HTTP 200 · bitti: 88 URL
+bildirildi` (log/indexnow.log). Not: sitemap lastmod veri-tarihli
+olduğundan bu içerik değişikliğini otomatik döngü yakalamazdı — elle
+liste bu yüzden kullanıldı (havza işindeki desenin aynısı).
 
 ## 6. Uydurma denetimi — eklenen her ifadenin veri karşılığı
 
@@ -386,7 +391,36 @@ URL" sayacını kontrol et (SIRADAKILER'deki mevcut kalem).
   kota).
 
 ## 9. KAPI
-{{KAPI_SONUC}}
+- İzole `--hizli` (dist-sun, merge ÖNCESİ): **kırmızı 0 · sarı 1 (md24,
+  bilinen panel-bekleyen durum) · geçti 11** — G1-G6 sapma 0 · dokunma
+  201=201 · konsol 0 · taşma 0 · build temiz 522.
+- Denetçi tabanları (worktree): SEO 26 = taban 26 · GEO 23 = taban 23 —
+  değişiklikler yeni bulgu üretmedi.
+- /havzalar/ koruması: dosyaya DOKUNULMADI + canlı↔dist bit-kıyası
+  (surum + CDN e-posta yeniden yazımı ayıklanarak): fark yalnız CDN
+  e-posta koruması (dünkü E4 kaydıyla aynı sınıf).
+- Havza kazanımları: meric-ergene + sakarya + /havzalar/ title/H1
+  canlıyla BİREBİR AYNI (25 sayfaya ve indekse dokunulmadı — git diff
+  kanıtı).
+- Ağırlık: medya/JS eklenmedi. /kuyu-ruhsati/malatya/ 54.777→54.541 B
+  (küçüldü) · /kapatma-kaydi/ +314 B · /arsiv/ +3.510 B (yalnız
+  DataCatalog şema metni — havza işindeki "metin/şema ekleme" emsal
+  sınıfı; Lighthouse /arsiv/ canlıda 98/85, eşik üstü).
+- **Merge:** `gsc-mcp` → main `0e626ff` → push; canlı sürüm `7f13d60`
+  (baraj otomatik commit'i üstüne bindi; `git merge-base --is-ancestor`
+  ile 0e626ff ⊆ 7f13d60 doğrulandı). **Deploy teyidi içerik imzasıyla:**
+  Malatya yeni title + DataCatalog + Dataset + kardeş bağ + ilgili bağı
+  canlıda ölçüldü (önbellek atlanarak).
+- **IndexNow:** 88 URL HTTP 200 (§ aşağıda).
+- **Canlı `--tam` (15:16-15:26Z): KIRMIZI 0 · SARI 2 · GEÇTİ 21.**
+  İki sarı da işten bağımsız ve açıklamalı: md24 (www panel adımı
+  bekleniyor — havza işinin tasarlanan ara durumu) · md17 (18 dış
+  bağlantı zaman aşımı/5xx, RG/handle ailesi; ölü 0). İşle ilişkili
+  kalemler: md16 bulgu **20 = taban 20** (81 yeni il title'ı bulgu
+  üretmedi) · md13 kontrast AA · md14 G1-G6 sapma 0 · md21 dokunma
+  201 = taban · md5 konsol 0 · md8 taşma 0 · md15 a11y 100/100 ·
+  md9 Lighthouse 14/14 eşik üstü (/havzalar/sakarya/ 98/99) ·
+  md2 erişim 519/519 · md23 altın örnek 23/23. **Taban gerilemesi 0.**
 
 ## 10. BEKLENTİ ŞERHİ
 Bu iş bir hipotez testidir, garanti değildir. Sıralama/tıklama etkisi

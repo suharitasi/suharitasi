@@ -1,5 +1,31 @@
 # GUNLUK.md — seans notları
 
+## 25.08.2026 (6. seans) — GSC MCP + SEO/GEO tam optimizasyon (worktree suharitasi-gsc-mcp)
+
+main 23f35ac → 0e626ff (merge; canlı 7f13d60 baraj commit'iyle). Rapor:
+rapor/gsc-mcp-optimizasyon.md; KARARLAR §30. KURULUM: google-seo-mcp
+v0.8.5 (inceleme→kur→sabitle; `mcp<2` pini gerekti), kullanıcı-kapsam
+kayıt, salt-okunur; çapraz doğrulama 4/4 BİREBİR (37/761 · 2/2701 ·
+8/110 · 0/2255, aralık 27.07-23.08). İLK KEZ ÖLÇÜLEN: pozisyonlar
+(Ergene ailesi poz 10,5 = 2. sayfa başı; "dsi su havzaları haritası"
+poz 5,1 CTR %22,7) ve TAM İNDEKS HARİTASI (519 URL tek tek: 170
+indeksli — omurga TAM; 349 dışarıda, 340'ı göl/nehir = tarama bütçesi).
+UYGULANAN (bulgulu): 81 il <title> il-önce ("malatya kuyu" bulgusu) ·
+Dataset/DataCatalog (/arsiv/+/kapatma-kaydi/) · kuyu-tasima iç bağ 5→7,
+taslak-takibi 1→2 (ikisi de "Google'a bilinmiyor/keşfedildi" + zayıf
+bağ ölçümüyle) · haftalık koşum arac/gsc-haftalik.py (CRON'SUZ, test
+çıktısı depoda). YAPILMAYAN (gerekçeli): Ergene yamyamlığına müdahale
+(dünkü iş izlenmeden kör atış; /havzalar/ dokunulmaz) · snippet
+optimizasyonu (tek 1-5 sorgusu zaten en yüksek CTR) · kalan 23 GEO
+bulgusu (muaf/içerik kararı — yeniden ölçümle doğrulandı). Kapılar:
+izole --hizli kırmızı 0 · SEO 26=taban · GEO 23=taban · canlı --tam
+KIRMIZI 0/SARI 2(md24+md17, ikisi de işten bağımsız)/GEÇTİ 21 ·
+IndexNow 88 URL HTTP 200 (15:15Z). ŞERH: Knowatoa "0$ katman" dünkü
+kayda rağmen bugün sayfada DOĞRULANAMADI (Start free trial + 59/199$
+planlar); Bing tarafı panel erişimsiz doğrulanmadı. DERS: GSC ekran
+sayılarını API'yle tutturmak için aralığı kaydırmak gerekti (veri
+gecikmesi ~2 gün) — çapraz doğrulama tarih-aralığı duyarlıdır.
+
 ## 25.08.2026 (5. seans) — Havza sayfaları arama talebine uyduruldu (worktree suharitasi-havza-talep)
 
 main 890dc1a → 55cd794 → 7e3740b (+kapanış kayıtları). Rapor:

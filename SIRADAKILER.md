@@ -8,6 +8,32 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ GSC MCP + SEO/GEO TURU KAPANIŞI (25.08.2026, rapor/gsc-mcp-optimizasyon.md; KARARLAR §30) ═══
+KAPANAN: google-seo-mcp v0.8.5 kuruldu (salt-okunur, çapraz doğrulama
+4/4 birebir, 102 araç) · ilk tam indeks haritası (519 URL: 170 indeksli,
+omurga TAM; 349 dışarıda, 340'ı göl/nehir) · 81 il <title> sorgu
+kalıbında · Dataset şemaları (/arsiv/ + /kapatma-kaydi/) · kuyu-tasima
+5→7, taslak-takibi 1→2 iç bağ · haftalık koşum hazır (cron'suz) ·
+IndexNow 88 URL HTTP 200 · canlı --tam KIRMIZI 0.
+İZLEME (1-4 hafta, haftalık koşumla ölçülür):
+- [ ] Ergene ailesi (~2.350 göst) tıklama/pozisyon değişimi (dünkü havza
+  işi + bugünkü tur; ~22 Eylül'deki mevcut GSC etki ölçümüyle birleşik).
+- [ ] "malatya kuyu" / il sayfası CTR (bugünkü title değişimi).
+- [ ] Yamyamlık ("ergene havzası harita"): birleşme olmazsa /havzalar/
+  ayrıştırması yeniden değerlendirilir (KARARLAR §30/4).
+- [ ] kuyu-tasima + taslak-takibi indekse girdi mi (URL denetimiyle).
+KULLANICI KARARI BEKLEYEN (rapor §12):
+- [ ] Haftalık GSC koşumu cron'a bağlansın mı — satır raporda; maliyet:
+  4 sorgu/hafta.
+- [ ] GSC panel: sitemap yeniden gönder + öncelikli sayfalara tekil
+  dizin isteği (özellikle /rehberler/kuyu-ruhsati/ "tarandı—eklenmedi",
+  son tarama 18.07 = iyileştirmeler öncesi).
+- [ ] Knowatoa denemesi (ŞERH: dün kayıtlı "0$ katman" bugün sayfada
+  doğrulanamadı; kredi kartsız deneme + 59/199$ planlar görünüyor) —
+  adım listesi rapor §7.7; ücretli adım atılmadı.
+- [ ] Göl/nehir kategori hub'ları (C5 №6): indeks ölçümüyle GÜÇLENDİ
+  (340 sayfa dışarıda) ama AY gereği kuyrukta.
+
 ═══ HAVZA TALEP UYUMU KAPANIŞI (25.08.2026, rapor/havza-talep.md; KARARLAR §29) ═══
 KAPANAN: 25 havza sayfası ölçülen sorgu ailesine uyduruldu (title ≤60
 soru kalıbı · H1 soru · öz-cevap konum cümlesi · iller+konum haritası

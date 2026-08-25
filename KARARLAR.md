@@ -513,6 +513,38 @@ dönük çıkarıldı; o yüzden bazı satırlarda bu işaret vardır.
   tanımı uydurmak (içerik kararı, kullanıcıda) · _redirects host
   kuralı (denendi, canlıda etkisiz ölçüldü, kaldırıldı).
 
+### 30. GSC ERİŞİMİ: MCP salt-okunur kuruldu · il title sorgu kalıbı · Dataset şeması · yamyamlık izlemede
+- **Tarih:** 2026-08-25 (rapor/gsc-mcp-optimizasyon.md)
+- **Karar (4 parça):**
+  1. GSC verisi programatik olarak **google-seo-mcp v0.8.5** ile okunur
+     (kaynak+venv /home/suha/araclar/google-seo-mcp, sürüm sabit
+     b0e9dee; `mcp<2` pini zorunlu — 2.x fastmcp'yi kaldırdı). Kayıt
+     kullanıcı kapsamında (`claude mcp add --scope user`), anahtar
+     YALNIZ ortam değişkeni yoluyla (/home/suha/gsc-anahtar.json, 600).
+     `GSC_ALLOW_DESTRUCTIVE` AYARLANMAZ — sitemap gönderme/Indexing
+     dahil yıkıcı işlemler kapalı; panel işleri kullanıcıda. Güven
+     kapısı: kurulum öncesi kod incelemesi + 25.08 çapraz doğrulaması
+     4/4 birebir (27.07-23.08 aralığı).
+  2. İl sayfalarında `<title>` sorgu kalıbında il-önce ("[İl] Kuyu
+     Ruhsatı — Yetkili Merci ve Başvuru", tarayiciBaslik); H1 ve
+     og:title DEĞİŞMEZ.
+  3. Dataset/DataCatalog şeması yalnız KAYITLI veri alanlarından
+     üretilir (/arsiv/, /kapatma-kaydi/); lisans alanı bilinmeden
+     YAZILMAZ; havza sayfalarına tekil Dataset basılmaz (katalog
+     temsil eder).
+  4. Ergene "harita" yamyamlığına MÜDAHALE EDİLMEZ — asıl hedef
+     /havzalar/meric-ergene/ belirlendi, dünkü title değişikliğinin
+     etkisi 1-4 hafta İZLENİR; /havzalar/ dokunulmazdır.
+- **Gerekçe:** İlk kez ölçülen pozisyon verisi (site ort. 9,2; Ergene
+  ailesi 10,5) ve ilk tam indeks haritası (170 indeksli / 349 dışarıda,
+  dışarıdakilerin 340'ı göl/nehir kuyruğu — tarama bütçesi, teknik
+  engel değil). "malatya kuyu" 23 göst/poz 8,3/0 tık il-title bulgusu.
+- **Reddedilen alternatifler:** sıfırdan kendi GSC scripti (MCP'nin
+  102 aracı + `_meta` kaynak damgası hazır) · yıkıcı-yetkili kurulum ·
+  /havzalar/ başlığını Ergene'den ayrıştırmak (en iyi sayfayı riske
+  atar, bulgu yetersiz) · haftalık koşumu cron'a bağlamak (kota/maliyet
+  kararı kullanıcının; script hazır, satır raporda).
+
 ---
 
 ## Bu dosyaya kayıt ekleme kuralı
