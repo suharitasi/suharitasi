@@ -8,7 +8,7 @@ kunye:
   yillikPotansiyel: '6,01 km³/yıl — <a href="https://www.dsi.gov.tr/Sayfa/Detay/2186" target="_blank" rel="noopener">DSİ 2024 Resmî Su Kaynakları İstatistikleri, Tablo 1.2</a>'
   yasRezervi: 'Beslenim 2.197,1 hm³/yıl · işletme rezervi 1.545,2 hm³/yıl — <a href="https://www.dsi.gov.tr/Sayfa/Detay/2186" target="_blank" rel="noopener">DSİ 2024, Tablo 1.3</a>'
   tahsis: '<span class="veri-yok">veri yok (14.07.2026)</span> — havza bazlı açık tahsis verisi kamuya yayımlanmıyor'
-  eylemPlani: '<a href="https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Sakarya_web.pdf" target="_blank" rel="noopener">Sakarya Havzası Koruma Eylem Planı (SYGM, PDF)</a>'
+  eylemPlani: '<a href="https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Sakarya_web.pdf" target="_blank" rel="noopener">Sakarya Havzası Koruma Eylem Planı (SYGM, PDF)</a>'
 hukuk:
   # Pilot blok. cerceve: her havzada geçerli olan, mevzuata bağlanmış rejim.
   # Havzaya özgü tek gerçek: yetkili DSİ bölge müdürlüğünün ile göre değişmesi
@@ -71,7 +71,7 @@ Eskişehir gibi büyük nüfus merkezlerini besler, Karadeniz'e boşalır.
 ## Sakarya Havzası nasıl planlanıyor ve korunuyor?
 
 Havzanın kirlilik ve koruma tedbirleri
-[Sakarya Havzası Koruma Eylem Planı'nda](https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Sakarya_web.pdf)
+[Sakarya Havzası Koruma Eylem Planı'nda](https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Sakarya_web.pdf)
 (SYGM) tanımlanmıştır.
 
 ## Veri notu

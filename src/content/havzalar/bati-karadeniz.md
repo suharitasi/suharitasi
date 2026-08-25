@@ -7,7 +7,7 @@ kunye:
   yillikPotansiyel: '10,25 km³/yıl — <a href="https://www.dsi.gov.tr/Sayfa/Detay/2186" target="_blank" rel="noopener">DSİ 2024 Resmî Su Kaynakları İstatistikleri, Tablo 1.2</a>'
   yasRezervi: 'Beslenim 641,2 hm³/yıl · işletme rezervi 607,6 hm³/yıl — <a href="https://www.dsi.gov.tr/Sayfa/Detay/2186" target="_blank" rel="noopener">DSİ 2024, Tablo 1.3</a>'
   tahsis: '<span class="veri-yok">veri yok (14.07.2026)</span> — havza bazlı açık tahsis verisi kamuya yayımlanmıyor'
-  eylemPlani: '<a href="https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Bat%C4%B1%20Karadeniz_web_rev3.pdf" target="_blank" rel="noopener">Batı Karadeniz Havzası Koruma Eylem Planı (SYGM, PDF)</a>'
+  eylemPlani: '<a href="https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Bat%C4%B1%20Karadeniz_web_rev3.pdf" target="_blank" rel="noopener">Batı Karadeniz Havzası Koruma Eylem Planı (SYGM, PDF)</a>'
 ---
 
 Batı Karadeniz Havzası, DSİ 2024 resmî istatistiklerine göre **28.855 km²** yağış alanına sahiptir.
@@ -20,7 +20,7 @@ Batı Karadeniz Havzası, DSİ 2024 resmî istatistiklerine göre **28.855 km²*
 ## Batı Karadeniz Havzası nasıl planlanıyor ve korunuyor?
 
 Havzanın kirlilik ve koruma tedbirleri
-[Batı Karadeniz Havzası Koruma Eylem Planı'nda](https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Bat%C4%B1%20Karadeniz_web_rev3.pdf)
+[Batı Karadeniz Havzası Koruma Eylem Planı'nda](https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Bat%C4%B1%20Karadeniz_web_rev3.pdf)
 (SYGM) tanımlanmıştır.
 
 ## Veri notu

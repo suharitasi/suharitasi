@@ -558,14 +558,16 @@
       "Bahattin Çetindağ"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.19076/mta.376765",
-     "url": "https://doi.org/10.19076/mta.376765",
+     "url": "https://dergipark.org.tr/tr/pub/bulletinofmre/article/376767",
      "dergi": "Maden Tetkik ve Arama Dergisi",
      "openalex_id": "https://openalex.org/W2783687852",
      "bulan_sorgu": [
       "Adana hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.19076/mta.376765",
+     "doi": "https://doi.org/10.19111/bulletinofmre.376767",
+     "kunye_notu": "Türkçe basımın (MTA Dergisi) DOI'si ve DergiPark kaydı erişilemez; bağlantı aynı çalışmanın İngilizce basımına (Bulletin of MRE) verildi — başlık eşleşmesi doğrulandı 2026-08-25."
     },
     {
      "baslik": "KUZALAN TABİAT PARKI’NIN DOĞA TURİZM POTANSİYELİ (DERELİ-GİRESUN)",
@@ -575,14 +577,14 @@
       "Günay Kaya"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.14781/mcd.386171",
      "url": "https://doi.org/10.14781/mcd.386171",
      "dergi": "Marmara Coğrafya Dergisi",
      "openalex_id": "https://openalex.org/W2787677712",
      "bulan_sorgu": [
       "Adana hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.14781/mcd.386171"
     },
     {
      "baslik": "The Effect Of Precipitation Deficits On Hydrological Systems In The Çatalan Dam Basin, Turkey",
@@ -652,14 +654,14 @@
       "Yasin Erdoğan"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.19111/bmre.74700",
      "url": "https://doi.org/10.19111/bmre.74700",
      "dergi": "Bulletin Of The Mineral Research and Exploration",
      "openalex_id": "https://openalex.org/W2416274893",
      "bulan_sorgu": [
       "Adana hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.19111/bmre.74700"
     },
     {
      "baslik": "Landslides on road network of the general directorate of highways 11. region and an application",
@@ -697,14 +699,15 @@
       "Selma Demer"
      ],
      "yil": 2014,
-     "doi": "https://doi.org/10.19113/sdufbed.69661",
      "url": "https://dergipark.org.tr/en/pub/sdufenbed/article/221974",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2344466507",
      "bulan_sorgu": [
       "Adana hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.19113/sdufbed.69661",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Burdur - Ağlasun Havzasının Hidrojeoloji İncelemesi",
@@ -788,14 +791,15 @@
       "Halil İbrahim Kurt"
      ],
      "yil": 1998,
-     "doi": "https://doi.org/10.14781/mcd.52670",
-     "url": "http://hdl.handle.net/11424/2403",
+     "url": "https://dergipark.org.tr/tr/pub/marucog/article/560549",
      "dergi": "Dspace Repository (Marmara Üniversitesi)",
      "openalex_id": "https://openalex.org/W1512970621",
      "bulan_sorgu": [
       "Adana yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.52670",
+     "kunye_notu": "Eski bağlantı (hdl.handle.net/11424/2403) 500 dönüyor; DergiPark kaydı başlık eşleşmesiyle doğrulandı 2026-08-25. DOI handle kaydı yok."
     },
     {
      "baslik": "Role of regional extension and uplift in the Plio-Pleistocene evolution of the Aksu Basin, SW Turkey",
@@ -1042,14 +1046,16 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Afyonkarahisar yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baslik": "İlk Tunç Çağında Uşak II Karahallı, Ulubey ve Eşme İlçeleri",
@@ -1704,14 +1710,16 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Aksaray yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baslik": "The Potential, utilization, and development of Geothermal Energy in Türkiye",
@@ -1936,14 +1944,15 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Aksaray hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Sedimentologic Characteristics of Pliocene–Quaternary Aluvial Fans Developed in Area between Sızma and Sille (Konya)",
@@ -2253,14 +2262,16 @@
       "Funda Yirmibeşoğlu"
      ],
      "yil": 2023,
-     "doi": "https://doi.org/10.5152/1100",
-     "url": "http://doi.org/10.5152/1100",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4389742031",
      "bulan_sorgu": [
       "Amasya hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/1100",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/1100",
+     "url": null
     },
     {
      "baslik": "SPI ve SPEI ile Samsun İli Kuraklık Analizi",
@@ -2354,14 +2365,14 @@
       "Yasin Erdoğan"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.19111/bmre.74700",
      "url": "https://doi.org/10.19111/bmre.74700",
      "dergi": "Bulletin Of The Mineral Research and Exploration",
      "openalex_id": "https://openalex.org/W2416274893",
      "bulan_sorgu": [
       "Amasya hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.19111/bmre.74700"
     },
     {
      "baslik": "Jeolojik Faktörlerin Kentsel Planamaya Etkisi: Yalova Termal Yerleşmesi Örneği",
@@ -2399,14 +2410,15 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Amasya hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Ladik-Hamamayağı (Samsun) sıcak ve soğuk su kaynaklarının hidrojeokimyası ve kökensel yorumu",
@@ -2416,14 +2428,15 @@
       "Arzu Fırat Ersoy"
      ],
      "yil": 2010,
-     "doi": "https://doi.org/10.17824/huyuamd.82329",
      "url": "https://dergipark.org.tr/en/pub/yerbilimleri/article/165189",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2551043940",
      "bulan_sorgu": [
       "Amasya hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.17824/huyuamd.82329",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Hydrogeochemistry and origin of the Ladik- Hamamayağı (Samsun) thermal spring and cold water springs",
@@ -3124,14 +3137,16 @@
       "Bahattin Çetindağ"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.19076/mta.376765",
-     "url": "https://doi.org/10.19076/mta.376765",
+     "url": "https://dergipark.org.tr/tr/pub/bulletinofmre/article/376767",
      "dergi": "Maden Tetkik ve Arama Dergisi",
      "openalex_id": "https://openalex.org/W2783687852",
      "bulan_sorgu": [
       "Ankara hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.19076/mta.376765",
+     "doi": "https://doi.org/10.19111/bulletinofmre.376767",
+     "kunye_notu": "Türkçe basımın (MTA Dergisi) DOI'si ve DergiPark kaydı erişilemez; bağlantı aynı çalışmanın İngilizce basımına (Bulletin of MRE) verildi — başlık eşleşmesi doğrulandı 2026-08-25."
     },
     {
      "baslik": "Konya Ovası’nda bitki deseni-yeraltı suyu etkileşimi",
@@ -3188,14 +3203,14 @@
       "Salim Güldür"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.7240/mufbed.79713",
-     "url": "https://doi.org/10.7240/mufbed.79713",
+     "url": "https://dergipark.org.tr/tr/pub/marufbd/article/260883",
      "dergi": "Marmara Fen Bilimleri Dergisi",
      "openalex_id": "https://openalex.org/W2480301401",
      "bulan_sorgu": [
       "Ankara yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.7240/mufbed.79713"
     },
     {
      "baslik": "Tuz Tabakalarında Çözelti Madenciliği ve Oluşan Boşlukta Doğalgaz Depolama İmkanlarının Araştırılması",
@@ -3696,14 +3711,16 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Antalya yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baslik": "DAĞBELİ KÖYÜ (ANTALYA) GÜNEYİ KİREÇTAŞI AKİFERİNİN HİDROJEOKİMYASAL ÖZELLİKLERİ",
@@ -3982,14 +3999,14 @@
       "Günay Kaya"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.14781/mcd.386171",
      "url": "https://doi.org/10.14781/mcd.386171",
      "dergi": "Marmara Coğrafya Dergisi",
      "openalex_id": "https://openalex.org/W2787677712",
      "bulan_sorgu": [
       "Antalya hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.14781/mcd.386171"
     },
     {
      "baslik": "Korkuteli (Antalya) su kaynaklarının hidrojeokimyasal özellikleri ve kullanılabilirliğinin belirlenmesi / Determination of usability and hydrogeochemical properties of Korkuteli (Antalya) water resources",
@@ -4093,14 +4110,15 @@
       "Mehmet Emin Sönmez"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.14781/mcd.24288",
      "url": "https://dergipark.org.tr/en/pub/marucog/article/260881",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2511186221",
      "bulan_sorgu": [
       "Antalya hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.24288",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "PRODUCTION OF AN INSULATION MATERIAL FROM CARPET AND BORON WASTES",
@@ -4108,14 +4126,14 @@
       "Yasin Erdoğan"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.19111/bmre.74700",
      "url": "https://doi.org/10.19111/bmre.74700",
      "dergi": "Bulletin Of The Mineral Research and Exploration",
      "openalex_id": "https://openalex.org/W2416274893",
      "bulan_sorgu": [
       "Antalya hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.19111/bmre.74700"
     },
     {
      "baslik": "Water Quality and Hydrogeochemical Characteristics of Surface Water and Groundwaters in Aksu (Isparta) Plain",
@@ -4242,14 +4260,16 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Ardahan yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baslik": "Kars kentinde deprem hasar risk potansiyeli taşıyan alanların CBS tabanlı AHP analizlerine dayalı olarak belirlenmesi",
@@ -4698,14 +4718,14 @@
       "Günay Kaya"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.14781/mcd.386171",
      "url": "https://doi.org/10.14781/mcd.386171",
      "dergi": "Marmara Coğrafya Dergisi",
      "openalex_id": "https://openalex.org/W2787677712",
      "bulan_sorgu": [
       "Artvin hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.14781/mcd.386171"
     },
     {
      "baslik": "Application of the distributed j2000-s hydrologic model: a case study drainage basin of Akarsu.",
@@ -4849,14 +4869,15 @@
       "Gürcan Gürgen"
      ],
      "yil": 2004,
-     "doi": "https://doi.org/10.17152/gefd.77285",
      "url": "https://dergipark.org.tr/en/pub/gefad/article/90926",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2154239711",
      "bulan_sorgu": [
       "Artvin hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.17152/gefd.77285",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     }
    ],
    "tuik_yas_payi": "veri yok",
@@ -5445,14 +5466,14 @@
       "Salim Güldür"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.7240/mufbed.79713",
-     "url": "https://doi.org/10.7240/mufbed.79713",
+     "url": "https://dergipark.org.tr/tr/pub/marufbd/article/260883",
      "dergi": "Marmara Fen Bilimleri Dergisi",
      "openalex_id": "https://openalex.org/W2480301401",
      "bulan_sorgu": [
       "Ağrı yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.7240/mufbed.79713"
     },
     {
      "baslik": "Landslides on road network of the general directorate of highways 11. region and an application",
@@ -5476,14 +5497,15 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Ağrı hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     }
    ],
    "tuik_yas_payi": "veri yok",
@@ -5854,14 +5876,16 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Batman yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baslik": "ELAZIĞ’IN METEOROLOJİK VE TARIMSAL KURAKLIĞININ FARKLI KURAKLIK İNDİSLERİ KULLANILARAK DEĞERLENDİRİLMESİ",
@@ -6136,14 +6160,16 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Bayburt yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baslik": "Doğal Ortamlarında Bazı Odunsu Yenilebilir Meyveli Bitki Türleri: Batı Karadeniz Örneği",
@@ -6182,14 +6208,14 @@
       "Yasin Erdoğan"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.19111/bmre.74700",
      "url": "https://doi.org/10.19111/bmre.74700",
      "dergi": "Bulletin Of The Mineral Research and Exploration",
      "openalex_id": "https://openalex.org/W2416274893",
      "bulan_sorgu": [
       "Bayburt hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.19111/bmre.74700"
     },
     {
      "baslik": "Geochemical, isotopic characteristics and heavy metal content of Ankara Stream (Ankara) bed sediments",
@@ -6212,14 +6238,15 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Bayburt hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     }
    ],
    "tuik_yas_payi": "veri yok",
@@ -6259,14 +6286,16 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Bilecik yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baslik": "Atıksuların Yeniden Kullanımına Genel Bir Bakış",
@@ -6451,14 +6480,14 @@
       "Yasin Erdoğan"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.19111/bmre.74700",
      "url": "https://doi.org/10.19111/bmre.74700",
      "dergi": "Bulletin Of The Mineral Research and Exploration",
      "openalex_id": "https://openalex.org/W2416274893",
      "bulan_sorgu": [
       "Bilecik hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.19111/bmre.74700"
     },
     {
      "baslik": "Sakarya Havzası'nın Yüksek Çözünürlüklü Hidrolojik Modelinin Yapılandırılması",
@@ -6571,14 +6600,15 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Bilecik hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "MARMARA BÖLGESİ TERMAL MİNERALLİ KAYNAK SULARI: HİDROKİMYASAL ÖZELLİKLERİ VE ZAMANA BAĞLI DEĞİŞİMİ",
@@ -6636,14 +6666,15 @@
       "Harun Aydın"
      ],
      "yil": 2007,
-     "doi": "https://doi.org/10.17824/huyuamd.58427",
      "url": "https://dergipark.org.tr/en/pub/yerbilimleri/article/165142",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2309506958",
      "bulan_sorgu": [
       "Bilecik hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.17824/huyuamd.58427",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Enginnering Geology And Earhquake Risk Of Asarsu Valley Between Gumusova (duzce) – Bolu (gerede)",
@@ -7216,14 +7247,15 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Bitlis hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Bingöl ovası ile karlıova arasında göynük çayı vadisinin jeomorfolojisi / The geomorphology of göynük river between Bingöl plain and Karliova",
@@ -7542,14 +7574,14 @@
       "Yasin Erdoğan"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.19111/bmre.74700",
      "url": "https://doi.org/10.19111/bmre.74700",
      "dergi": "Bulletin Of The Mineral Research and Exploration",
      "openalex_id": "https://openalex.org/W2416274893",
      "bulan_sorgu": [
       "Bolu hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.19111/bmre.74700"
     },
     {
      "baslik": "Thermal Springs as a Flourishing Pillar of Alternative Tourism in Turkey: Example of Tuzla İçmeler",
@@ -7666,14 +7698,15 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Bolu hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Evaluation of Nardın cave (Bilecik) deposits in relation to paleoenvironmental conditions",
@@ -8256,14 +8289,15 @@
       "Selma Demer"
      ],
      "yil": 2014,
-     "doi": "https://doi.org/10.19113/sdufbed.69661",
      "url": "https://dergipark.org.tr/en/pub/sdufenbed/article/221974",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2344466507",
      "bulan_sorgu": [
       "Burdur hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.19113/sdufbed.69661",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Burdur - Ağlasun Havzasının Hidrojeoloji İncelemesi",
@@ -8987,14 +9021,16 @@
       "Bahattin Çetindağ"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.19076/mta.376765",
-     "url": "https://doi.org/10.19076/mta.376765",
+     "url": "https://dergipark.org.tr/tr/pub/bulletinofmre/article/376767",
      "dergi": "Maden Tetkik ve Arama Dergisi",
      "openalex_id": "https://openalex.org/W2783687852",
      "bulan_sorgu": [
       "Bursa hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.19076/mta.376765",
+     "doi": "https://doi.org/10.19111/bulletinofmre.376767",
+     "kunye_notu": "Türkçe basımın (MTA Dergisi) DOI'si ve DergiPark kaydı erişilemez; bağlantı aynı çalışmanın İngilizce basımına (Bulletin of MRE) verildi — başlık eşleşmesi doğrulandı 2026-08-25."
     },
     {
      "baslik": "KUZALAN TABİAT PARKI’NIN DOĞA TURİZM POTANSİYELİ (DERELİ-GİRESUN)",
@@ -9004,14 +9040,14 @@
       "Günay Kaya"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.14781/mcd.386171",
      "url": "https://doi.org/10.14781/mcd.386171",
      "dergi": "Marmara Coğrafya Dergisi",
      "openalex_id": "https://openalex.org/W2787677712",
      "bulan_sorgu": [
       "Bursa hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.14781/mcd.386171"
     },
     {
      "baslik": "KORKUTELİ İLÇE MERKEZİ (ANTALYA) SU KAYNAKLARININ SU KALİTE İNDEKS (WQI) YÖNTEMİ İLE DEĞERLENDİRMESİ",
@@ -9134,14 +9170,15 @@
       "Mehmet Güvenç Negiz"
      ],
      "yil": 2008,
-     "doi": "https://doi.org/10.18182/tjf.80186",
      "url": "https://dergipark.org.tr/tr/pub/tjf/issue/20890/224120",
      "dergi": null,
      "openalex_id": "https://openalex.org/W3199599138",
      "bulan_sorgu": [
       "Bursa hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.18182/tjf.80186",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Bakırköy Havzasının Bilgisayar Ortamında Modellenmesi",
@@ -9439,14 +9476,16 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Denizli yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baslik": "BAFA GÖLÜ HAVZASI YÜZEY VE YERALTI SULARININ HİDROJEOKİMYASI VE KİRLİLİĞİ",
@@ -9701,14 +9740,14 @@
       "Günay Kaya"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.14781/mcd.386171",
      "url": "https://doi.org/10.14781/mcd.386171",
      "dergi": "Marmara Coğrafya Dergisi",
      "openalex_id": "https://openalex.org/W2787677712",
      "bulan_sorgu": [
       "Denizli hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.14781/mcd.386171"
     },
     {
      "baslik": "Türkiye karst jeomorfolojisi genelini karakterize eden bir bölge: Orta Anadolu Platoları karst kuşağı",
@@ -9765,14 +9804,15 @@
       "Ayşe EROĞLU-"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.29048/makufebed.206616",
-     "url": "https://doi.org/10.29048/makufebed.206616",
+     "url": "https://dergipark.org.tr/tr/pub/makufebed/article/206616",
      "dergi": "Mehmet Akif Ersoy Üniversitesi Fen Bilimleri Enstitüsü Dergisi",
      "openalex_id": "https://openalex.org/W2256052393",
      "bulan_sorgu": [
       "Denizli hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.29048/makufebed.206616",
+     "kunye_notu": "DOI, kapanmış dergipark.gov.tr çözücüsüne kayıtlı (404); DergiPark kaydı başlık eşleşmesiyle doğrulandı 2026-08-25."
     },
     {
      "baslik": "Çukurköy (Denizli) dolayının sığ yeraltı suyu hidrojeoloji incelemesi",
@@ -9861,14 +9901,15 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Denizli hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "DENİZLİ BELEDİYESİ MÜCAVİR ALANININ HİDROJEOLOJİK VE HİDROKİMYASAL İNCELEMESİ",
@@ -10462,14 +10503,16 @@
       "Funda Yirmibeşoğlu"
      ],
      "yil": 2023,
-     "doi": "https://doi.org/10.5152/1100",
-     "url": "http://doi.org/10.5152/1100",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4389742031",
      "bulan_sorgu": [
       "Edirne hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/1100",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/1100",
+     "url": null
     },
     {
      "baslik": "DEPREM RİSKİNİN KENTSEL PLANLAMA SÜRECİNE ETKİSİ: İPSALA, KEŞAN VE ENEZ İLÇELERİ (EDİRNE) ÖRNEĞİ",
@@ -11131,14 +11174,16 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Erzincan yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baslik": "Kars kentinde deprem hasar risk potansiyeli taşıyan alanların CBS tabanlı AHP analizlerine dayalı olarak belirlenmesi",
@@ -11316,14 +11361,14 @@
       "Günay Kaya"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.14781/mcd.386171",
      "url": "https://doi.org/10.14781/mcd.386171",
      "dergi": "Marmara Coğrafya Dergisi",
      "openalex_id": "https://openalex.org/W2787677712",
      "bulan_sorgu": [
       "Erzincan hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.14781/mcd.386171"
     },
     {
      "baslik": "Yukarı Kızılırmak Havzası’nda ırmak sularının tarımda sulama amaçlı kullanım özelliklerinin belirlenmesi üzerine bir araştırma",
@@ -11410,14 +11455,14 @@
       "Yasin Erdoğan"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.19111/bmre.74700",
      "url": "https://doi.org/10.19111/bmre.74700",
      "dergi": "Bulletin Of The Mineral Research and Exploration",
      "openalex_id": "https://openalex.org/W2416274893",
      "bulan_sorgu": [
       "Erzincan hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.19111/bmre.74700"
     },
     {
      "baslik": "Geochemical, isotopic characteristics and heavy metal content of Ankara Stream (Ankara) bed sediments",
@@ -11470,14 +11515,15 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Erzincan hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Bingöl ovası ile karlıova arasında göynük çayı vadisinin jeomorfolojisi / The geomorphology of göynük river between Bingöl plain and Karliova",
@@ -11753,14 +11799,16 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Erzurum yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baslik": "Kars kentinde deprem hasar risk potansiyeli taşıyan alanların CBS tabanlı AHP analizlerine dayalı olarak belirlenmesi",
@@ -12041,14 +12089,14 @@
       "Günay Kaya"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.14781/mcd.386171",
      "url": "https://doi.org/10.14781/mcd.386171",
      "dergi": "Marmara Coğrafya Dergisi",
      "openalex_id": "https://openalex.org/W2787677712",
      "bulan_sorgu": [
       "Erzurum hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.14781/mcd.386171"
     },
     {
      "baslik": "Tuz Tabakalarında Çözelti Madenciliği ve Oluşan Boşlukta Doğalgaz Depolama İmkanlarının Araştırılması",
@@ -12165,14 +12213,15 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Erzurum hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Kuyu Rasatlarından ve Yağışlardan Faydalanılarak Erzurum Ovası Yeraltısuyu Bilançosunun Hesaplanması",
@@ -12465,14 +12514,15 @@
       "Yahya Ayaşlıgil"
      ],
      "yil": 2014,
-     "doi": "https://doi.org/10.17099/jffiu.60849",
      "url": "https://dergipark.org.tr/tr/pub/jffiu/issue/18850/199032",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2117580721",
      "bulan_sorgu": [
       "Eskişehir hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.17099/jffiu.60849",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "DISTRIBUTION AND GENESIS OF NEOFORMED MINERALS IN KOYUNAĞILI (MIHALIÇÇIK-ESKİŞEHİR) AREA",
@@ -12842,14 +12892,16 @@
       "Bahattin Çetindağ"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.19076/mta.376765",
-     "url": "https://doi.org/10.19076/mta.376765",
+     "url": "https://dergipark.org.tr/tr/pub/bulletinofmre/article/376767",
      "dergi": "Maden Tetkik ve Arama Dergisi",
      "openalex_id": "https://openalex.org/W2783687852",
      "bulan_sorgu": [
       "Gaziantep hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.19076/mta.376765",
+     "doi": "https://doi.org/10.19111/bulletinofmre.376767",
+     "kunye_notu": "Türkçe basımın (MTA Dergisi) DOI'si ve DergiPark kaydı erişilemez; bağlantı aynı çalışmanın İngilizce basımına (Bulletin of MRE) verildi — başlık eşleşmesi doğrulandı 2026-08-25."
     },
     {
      "baslik": "Türkiye karst jeomorfolojisi genelini karakterize eden bir bölge: Orta Anadolu Platoları karst kuşağı",
@@ -12873,14 +12925,14 @@
       "Yasin Erdoğan"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.19111/bmre.74700",
      "url": "https://doi.org/10.19111/bmre.74700",
      "dergi": "Bulletin Of The Mineral Research and Exploration",
      "openalex_id": "https://openalex.org/W2416274893",
      "bulan_sorgu": [
       "Gaziantep hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.19111/bmre.74700"
     },
     {
      "baslik": "Thermal Springs as a Flourishing Pillar of Alternative Tourism in Turkey: Example of Tuzla İçmeler",
@@ -12980,14 +13032,15 @@
       "Halil İbrahim Kurt"
      ],
      "yil": 1998,
-     "doi": "https://doi.org/10.14781/mcd.52670",
-     "url": "http://hdl.handle.net/11424/2403",
+     "url": "https://dergipark.org.tr/tr/pub/marucog/article/560549",
      "dergi": "Dspace Repository (Marmara Üniversitesi)",
      "openalex_id": "https://openalex.org/W1512970621",
      "bulan_sorgu": [
       "Gaziantep yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.52670",
+     "kunye_notu": "Eski bağlantı (hdl.handle.net/11424/2403) 500 dönüyor; DergiPark kaydı başlık eşleşmesiyle doğrulandı 2026-08-25. DOI handle kaydı yok."
     },
     {
      "baslik": "M. T. A. ENSTİTÜSÜ FAALİYETİ",
@@ -13162,14 +13215,16 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Giresun yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baslik": "Sürdürülebilirlik Sürecinde Yağmur Suyu Hasadı: Sinop Üniversitesi Kuzey Yerleşkesi Örneği",
@@ -13247,14 +13302,14 @@
       "Günay Kaya"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.14781/mcd.386171",
      "url": "https://doi.org/10.14781/mcd.386171",
      "dergi": "Marmara Coğrafya Dergisi",
      "openalex_id": "https://openalex.org/W2787677712",
      "bulan_sorgu": [
       "Giresun hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.14781/mcd.386171"
     },
     {
      "baslik": "Türkiye karst jeomorfolojisi genelini karakterize eden bir bölge: Orta Anadolu Platoları karst kuşağı",
@@ -13353,14 +13408,15 @@
       "Gürcan Gürgen"
      ],
      "yil": 2004,
-     "doi": "https://doi.org/10.17152/gefd.77285",
      "url": "https://dergipark.org.tr/en/pub/gefad/article/90926",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2154239711",
      "bulan_sorgu": [
       "Giresun hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.17152/gefd.77285",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Rainfall Regimes in Turkey According to the Rates of Monthly Variation",
@@ -14288,14 +14344,16 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Hatay yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baslik": "İnsan Müdahalesi, İklim Değişikliği ve Toplumsal Sorunlar Sarmalında Yaşanan Çevre Felaketlerine Politik ve Ekolojik Bir Yaklaşım: Marmara Gölü (Manisa) Örneği",
@@ -14579,14 +14637,14 @@
       "Günay Kaya"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.14781/mcd.386171",
      "url": "https://doi.org/10.14781/mcd.386171",
      "dergi": "Marmara Coğrafya Dergisi",
      "openalex_id": "https://openalex.org/W2787677712",
      "bulan_sorgu": [
       "Hatay hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.14781/mcd.386171"
     },
     {
      "baslik": "Determination of Water Quality of Irrigation Water Sources in Tarakli District of Sakarya",
@@ -14645,14 +14703,15 @@
       "Cafer Bulut"
      ],
      "yil": 2014,
-     "doi": "https://doi.org/10.19113/sdufbed.70687",
      "url": "https://dergipark.org.tr/en/pub/sdufenbed/article/221947",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2537612634",
      "bulan_sorgu": [
       "Hatay hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.19113/sdufbed.70687",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Kırıkkale Katı Atık Deponi Alanı’nın Jeolojik-Jeoteknik İncelemesi",
@@ -14693,14 +14752,15 @@
       "Halil İbrahim Kurt"
      ],
      "yil": 1998,
-     "doi": "https://doi.org/10.14781/mcd.52670",
-     "url": "http://hdl.handle.net/11424/2403",
+     "url": "https://dergipark.org.tr/tr/pub/marucog/article/560549",
      "dergi": "Dspace Repository (Marmara Üniversitesi)",
      "openalex_id": "https://openalex.org/W1512970621",
      "bulan_sorgu": [
       "Hatay yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.52670",
+     "kunye_notu": "Eski bağlantı (hdl.handle.net/11424/2403) 500 dönüyor; DergiPark kaydı başlık eşleşmesiyle doğrulandı 2026-08-25. DOI handle kaydı yok."
     },
     {
      "baslik": "MTA Enstitüsü&amp;#039;nün 1951 Yılı Faaliyeti",
@@ -15275,14 +15335,15 @@
       "Selma Demer"
      ],
      "yil": 2014,
-     "doi": "https://doi.org/10.19113/sdufbed.69661",
      "url": "https://dergipark.org.tr/en/pub/sdufenbed/article/221974",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2344466507",
      "bulan_sorgu": [
       "Isparta hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.19113/sdufbed.69661",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Drought Analysis for Different Time Periods in the City of Kırıkkale",
@@ -15402,14 +15463,15 @@
       "Mehmet Güvenç Negiz"
      ],
      "yil": 2008,
-     "doi": "https://doi.org/10.18182/tjf.80186",
      "url": "https://dergipark.org.tr/tr/pub/tjf/issue/20890/224120",
      "dergi": null,
      "openalex_id": "https://openalex.org/W3199599138",
      "bulan_sorgu": [
       "Isparta hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.18182/tjf.80186",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Yeşilyurt (Isparta-Sütçüler) ovasının hidrojeoloji incelemesi",
@@ -16622,14 +16684,15 @@
       "Selma Demer"
      ],
      "yil": 2014,
-     "doi": "https://doi.org/10.19113/sdufbed.69661",
      "url": "https://dergipark.org.tr/en/pub/sdufenbed/article/221974",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2344466507",
      "bulan_sorgu": [
       "Karaman hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.19113/sdufbed.69661",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Burdur - Ağlasun Havzasının Hidrojeoloji İncelemesi",
@@ -16652,14 +16715,15 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Karaman hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Role of regional extension and uplift in the Plio-Pleistocene evolution of the Aksu Basin, SW Turkey",
@@ -17212,14 +17276,14 @@
       "Günay Kaya"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.14781/mcd.386171",
      "url": "https://doi.org/10.14781/mcd.386171",
      "dergi": "Marmara Coğrafya Dergisi",
      "openalex_id": "https://openalex.org/W2787677712",
      "bulan_sorgu": [
       "Kars hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.14781/mcd.386171"
     },
     {
      "baslik": "The Effect Of Precipitation Deficits On Hydrological Systems In The Çatalan Dam Basin, Turkey",
@@ -17353,14 +17417,15 @@
       "Selma Demer"
      ],
      "yil": 2014,
-     "doi": "https://doi.org/10.19113/sdufbed.69661",
      "url": "https://dergipark.org.tr/en/pub/sdufenbed/article/221974",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2344466507",
      "bulan_sorgu": [
       "Kars hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.19113/sdufbed.69661",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Burdur - Ağlasun Havzasının Hidrojeoloji İncelemesi",
@@ -17444,14 +17509,15 @@
       "Halil İbrahim Kurt"
      ],
      "yil": 1998,
-     "doi": "https://doi.org/10.14781/mcd.52670",
-     "url": "http://hdl.handle.net/11424/2403",
+     "url": "https://dergipark.org.tr/tr/pub/marucog/article/560549",
      "dergi": "Dspace Repository (Marmara Üniversitesi)",
      "openalex_id": "https://openalex.org/W1512970621",
      "bulan_sorgu": [
       "Kars yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.52670",
+     "kunye_notu": "Eski bağlantı (hdl.handle.net/11424/2403) 500 dönüyor; DergiPark kaydı başlık eşleşmesiyle doğrulandı 2026-08-25. DOI handle kaydı yok."
     },
     {
      "baslik": "Uşak Eşme-Örencik Kaplıcasının Jeoloji-Hidrojeoloji Etüdü",
@@ -17639,14 +17705,16 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Kastamonu yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baslik": "Balaban (Demirköy-Kırklareli) demir cevherleşmesinin jeolojisi ve oluşumu",
@@ -18010,14 +18078,15 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Kastamonu hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Rainfall Regimes in Turkey According to the Rates of Monthly Variation",
@@ -18193,14 +18262,16 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Kayseri yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baslik": "Zemin Sıvılaşmasını Denetleyen Koşulların ve Sıvılaşma Nedenli Deformasyonların İncelenmesi",
@@ -18537,14 +18608,15 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Kayseri hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Karst hydrogeology investigation of Saimbeyli (Adana) Obruk Waterfall.",
@@ -18613,14 +18685,15 @@
       "Halil İbrahim Kurt"
      ],
      "yil": 1998,
-     "doi": "https://doi.org/10.14781/mcd.52670",
-     "url": "http://hdl.handle.net/11424/2403",
+     "url": "https://dergipark.org.tr/tr/pub/marucog/article/560549",
      "dergi": "Dspace Repository (Marmara Üniversitesi)",
      "openalex_id": "https://openalex.org/W1512970621",
      "bulan_sorgu": [
       "Kayseri yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.14781/mcd.52670",
+     "kunye_notu": "Eski bağlantı (hdl.handle.net/11424/2403) 500 dönüyor; DergiPark kaydı başlık eşleşmesiyle doğrulandı 2026-08-25. DOI handle kaydı yok."
     }
    ],
    "tuik_yas_payi": "veri yok",
@@ -18709,14 +18782,16 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Kilis yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baslik": "Kars kentinde deprem hasar risk potansiyeli taşıyan alanların CBS tabanlı AHP analizlerine dayalı olarak belirlenmesi",
@@ -18917,14 +18992,16 @@
       "Bahattin Çetindağ"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.19076/mta.376765",
-     "url": "https://doi.org/10.19076/mta.376765",
+     "url": "https://dergipark.org.tr/tr/pub/bulletinofmre/article/376767",
      "dergi": "Maden Tetkik ve Arama Dergisi",
      "openalex_id": "https://openalex.org/W2783687852",
      "bulan_sorgu": [
       "Kilis hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.19076/mta.376765",
+     "doi": "https://doi.org/10.19111/bulletinofmre.376767",
+     "kunye_notu": "Türkçe basımın (MTA Dergisi) DOI'si ve DergiPark kaydı erişilemez; bağlantı aynı çalışmanın İngilizce basımına (Bulletin of MRE) verildi — başlık eşleşmesi doğrulandı 2026-08-25."
     },
     {
      "baslik": "Değişen ve Gelişen Lapseki Altyapısı",
@@ -19295,14 +19372,16 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Kocaeli yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baslik": "Balaban (Demirköy-Kırklareli) demir cevherleşmesinin jeolojisi ve oluşumu",
@@ -19742,14 +19821,15 @@
       "Cafer Bulut"
      ],
      "yil": 2014,
-     "doi": "https://doi.org/10.19113/sdufbed.70687",
      "url": "https://dergipark.org.tr/en/pub/sdufenbed/article/221947",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2537612634",
      "bulan_sorgu": [
       "Kocaeli hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.19113/sdufbed.70687",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baslik": "Effect Of Spatial Resolution Of Satellite Image Defining Landscape Types",
@@ -20197,14 +20277,16 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Konya yeraltı suyu potansiyel"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baslik": "Atıksuların Yeniden Kullanımına Genel Bir Bakış",
@@ -20648,14 +20730,14 @@
       "Yasin Erdoğan"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.19111/bmre.74700",
      "url": "https://doi.org/10.19111/bmre.74700",
      "dergi": "Bulletin Of The Mineral Research and Exploration",
      "openalex_id": "https://openalex.org/W2416274893",
      "bulan_sorgu": [
       "Konya hidrojeoloji"
      ],
-     "baski_uygun": true
+     "baski_uygun": true,
+     "doi": "https://doi.org/10.19111/bmre.74700"
     },
     {
      "baslik": "Affecting factors the groundwater level changes in the Sandikli (Afyonkarahisar) basin",
@@ -21350,13 +21432,15 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Malatya yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -21509,13 +21593,15 @@
       "Bahattin Çetindağ"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.19076/mta.376765",
-     "url": "https://doi.org/10.19076/mta.376765",
+     "url": "https://dergipark.org.tr/tr/pub/bulletinofmre/article/376767",
      "dergi": "Maden Tetkik ve Arama Dergisi",
      "openalex_id": "https://openalex.org/W2783687852",
      "bulan_sorgu": [
       "Malatya hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.19076/mta.376765",
+     "doi": "https://doi.org/10.19111/bulletinofmre.376767",
+     "kunye_notu": "Türkçe basımın (MTA Dergisi) DOI'si ve DergiPark kaydı erişilemez; bağlantı aynı çalışmanın İngilizce basımına (Bulletin of MRE) verildi — başlık eşleşmesi doğrulandı 2026-08-25."
     },
     {
      "baski_uygun": true,
@@ -22008,13 +22094,15 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Manisa yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -22346,13 +22434,14 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Manisa hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baski_uygun": true,
@@ -22409,13 +22498,15 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Mardin yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -22777,13 +22868,15 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Mersin yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -23033,13 +23126,13 @@
       "Günay Kaya"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.14781/mcd.386171",
      "url": "https://doi.org/10.14781/mcd.386171",
      "dergi": "Marmara Coğrafya Dergisi",
      "openalex_id": "https://openalex.org/W2787677712",
      "bulan_sorgu": [
       "Mersin hidrojeoloji"
-     ]
+     ],
+     "doi": "https://doi.org/10.14781/mcd.386171"
     },
     {
      "baski_uygun": true,
@@ -23109,13 +23202,14 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Mersin hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baski_uygun": true,
@@ -23159,13 +23253,14 @@
       "Mehmet Güvenç Negiz"
      ],
      "yil": 2008,
-     "doi": "https://doi.org/10.18182/tjf.80186",
      "url": "https://dergipark.org.tr/tr/pub/tjf/issue/20890/224120",
      "dergi": null,
      "openalex_id": "https://openalex.org/W3199599138",
      "bulan_sorgu": [
       "Mersin hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.18182/tjf.80186",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baski_uygun": true,
@@ -23175,13 +23270,14 @@
       "Halil İbrahim Kurt"
      ],
      "yil": 1998,
-     "doi": "https://doi.org/10.14781/mcd.52670",
-     "url": "http://hdl.handle.net/11424/2403",
+     "url": "https://dergipark.org.tr/tr/pub/marucog/article/560549",
      "dergi": "Dspace Repository (Marmara Üniversitesi)",
      "openalex_id": "https://openalex.org/W1512970621",
      "bulan_sorgu": [
       "Mersin yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.14781/mcd.52670",
+     "kunye_notu": "Eski bağlantı (hdl.handle.net/11424/2403) 500 dönüyor; DergiPark kaydı başlık eşleşmesiyle doğrulandı 2026-08-25. DOI handle kaydı yok."
     },
     {
      "baski_uygun": true,
@@ -23985,13 +24081,15 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Ordu yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -24118,13 +24216,13 @@
       "Günay Kaya"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.14781/mcd.386171",
      "url": "https://doi.org/10.14781/mcd.386171",
      "dergi": "Marmara Coğrafya Dergisi",
      "openalex_id": "https://openalex.org/W2787677712",
      "bulan_sorgu": [
       "Ordu hidrojeoloji"
-     ]
+     ],
+     "doi": "https://doi.org/10.14781/mcd.386171"
     },
     {
      "baski_uygun": true,
@@ -24208,13 +24306,14 @@
       "Gürcan Gürgen"
      ],
      "yil": 2004,
-     "doi": "https://doi.org/10.17152/gefd.77285",
      "url": "https://dergipark.org.tr/en/pub/gefad/article/90926",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2154239711",
      "bulan_sorgu": [
       "Ordu hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.17152/gefd.77285",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baski_uygun": true,
@@ -24376,13 +24475,15 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Osmaniye yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -24446,13 +24547,15 @@
       "Funda Yirmibeşoğlu"
      ],
      "yil": 2023,
-     "doi": "https://doi.org/10.5152/1100",
-     "url": "http://doi.org/10.5152/1100",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4389742031",
      "bulan_sorgu": [
       "Osmaniye hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/1100",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/1100",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -24599,13 +24702,14 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Osmaniye hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baski_uygun": true,
@@ -24706,13 +24810,14 @@
       "Halil İbrahim Kurt"
      ],
      "yil": 1998,
-     "doi": "https://doi.org/10.14781/mcd.52670",
-     "url": "http://hdl.handle.net/11424/2403",
+     "url": "https://dergipark.org.tr/tr/pub/marucog/article/560549",
      "dergi": "Dspace Repository (Marmara Üniversitesi)",
      "openalex_id": "https://openalex.org/W1512970621",
      "bulan_sorgu": [
       "Osmaniye yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.14781/mcd.52670",
+     "kunye_notu": "Eski bağlantı (hdl.handle.net/11424/2403) 500 dönüyor; DergiPark kaydı başlık eşleşmesiyle doğrulandı 2026-08-25. DOI handle kaydı yok."
     }
    ],
    "tuik_yas_payi": "veri yok",
@@ -24819,13 +24924,15 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Rize yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -24946,13 +25053,14 @@
       "Aydoğan Köksal"
      ],
      "yil": 2014,
-     "doi": "https://doi.org/10.17211/tcd.09863",
      "url": "https://dergipark.org.tr/tr/pub/tcd/issue/21262/228252",
      "dergi": null,
      "openalex_id": "https://openalex.org/W1806128098",
      "bulan_sorgu": [
       "Rize hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.17211/tcd.09863",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baski_uygun": true,
@@ -24976,13 +25084,14 @@
       "Gürcan Gürgen"
      ],
      "yil": 2004,
-     "doi": "https://doi.org/10.17152/gefd.77285",
      "url": "https://dergipark.org.tr/en/pub/gefad/article/90926",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2154239711",
      "bulan_sorgu": [
       "Rize hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.17152/gefd.77285",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     }
    ],
    "tuik_yas_payi": "veri yok",
@@ -25206,13 +25315,15 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Sakarya yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -25630,13 +25741,13 @@
       "Yasin Erdoğan"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.19111/bmre.74700",
      "url": "https://doi.org/10.19111/bmre.74700",
      "dergi": "Bulletin Of The Mineral Research and Exploration",
      "openalex_id": "https://openalex.org/W2416274893",
      "bulan_sorgu": [
       "Sakarya hidrojeoloji"
-     ]
+     ],
+     "doi": "https://doi.org/10.19111/bmre.74700"
     },
     {
      "baski_uygun": true,
@@ -25949,13 +26060,15 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Samsun yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -26287,13 +26400,14 @@
       "Cafer Bulut"
      ],
      "yil": 2014,
-     "doi": "https://doi.org/10.19113/sdufbed.70687",
      "url": "https://dergipark.org.tr/en/pub/sdufenbed/article/221947",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2537612634",
      "bulan_sorgu": [
       "Samsun hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.19113/sdufbed.70687",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baski_uygun": true,
@@ -26317,13 +26431,14 @@
       "Aydoğan Köksal"
      ],
      "yil": 2014,
-     "doi": "https://doi.org/10.17211/tcd.09863",
      "url": "https://dergipark.org.tr/tr/pub/tcd/issue/21262/228252",
      "dergi": null,
      "openalex_id": "https://openalex.org/W1806128098",
      "bulan_sorgu": [
       "Samsun hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.17211/tcd.09863",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baski_uygun": true,
@@ -26367,13 +26482,14 @@
       "Arzu Fırat Ersoy"
      ],
      "yil": 2010,
-     "doi": "https://doi.org/10.17824/huyuamd.82329",
      "url": "https://dergipark.org.tr/en/pub/yerbilimleri/article/165189",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2551043940",
      "bulan_sorgu": [
       "Samsun hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.17824/huyuamd.82329",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baski_uygun": true,
@@ -26842,13 +26958,15 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Sinop yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -27017,13 +27135,13 @@
       "Yasin Erdoğan"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.19111/bmre.74700",
      "url": "https://doi.org/10.19111/bmre.74700",
      "dergi": "Bulletin Of The Mineral Research and Exploration",
      "openalex_id": "https://openalex.org/W2416274893",
      "bulan_sorgu": [
       "Sinop hidrojeoloji"
-     ]
+     ],
+     "doi": "https://doi.org/10.19111/bmre.74700"
     },
     {
      "baski_uygun": true,
@@ -27047,13 +27165,14 @@
       "Aydoğan Köksal"
      ],
      "yil": 2014,
-     "doi": "https://doi.org/10.17211/tcd.09863",
      "url": "https://dergipark.org.tr/tr/pub/tcd/issue/21262/228252",
      "dergi": null,
      "openalex_id": "https://openalex.org/W1806128098",
      "bulan_sorgu": [
       "Sinop hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.17211/tcd.09863",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baski_uygun": true,
@@ -27079,13 +27198,14 @@
       "Arzu Fırat Ersoy"
      ],
      "yil": 2010,
-     "doi": "https://doi.org/10.17824/huyuamd.82329",
      "url": "https://dergipark.org.tr/en/pub/yerbilimleri/article/165189",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2551043940",
      "bulan_sorgu": [
       "Sinop hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.17824/huyuamd.82329",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baski_uygun": true,
@@ -27550,13 +27670,15 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Sivas yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -27728,13 +27850,13 @@
       "Günay Kaya"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.14781/mcd.386171",
      "url": "https://doi.org/10.14781/mcd.386171",
      "dergi": "Marmara Coğrafya Dergisi",
      "openalex_id": "https://openalex.org/W2787677712",
      "bulan_sorgu": [
       "Sivas hidrojeoloji"
-     ]
+     ],
+     "doi": "https://doi.org/10.14781/mcd.386171"
     },
     {
      "baski_uygun": true,
@@ -27821,13 +27943,14 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Sivas hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baski_uygun": true,
@@ -27901,13 +28024,14 @@
       "Kaan Şevki Kavak"
      ],
      "yil": 2006,
-     "doi": "https://doi.org/10.17824/huyuamd.37951",
      "url": "https://dergipark.org.tr/en/pub/yerbilimleri/article/165134",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2234406447",
      "bulan_sorgu": [
       "Sivas hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.17824/huyuamd.37951",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baski_uygun": true,
@@ -28225,13 +28349,15 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Tokat yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -28288,13 +28414,15 @@
       "Funda Yirmibeşoğlu"
      ],
      "yil": 2023,
-     "doi": "https://doi.org/10.5152/1100",
-     "url": "http://doi.org/10.5152/1100",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4389742031",
      "bulan_sorgu": [
       "Tokat hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/1100",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/1100",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -28435,13 +28563,14 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Tokat hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baski_uygun": true,
@@ -28746,13 +28875,15 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Trabzon yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -29034,13 +29165,13 @@
       "Günay Kaya"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.14781/mcd.386171",
      "url": "https://doi.org/10.14781/mcd.386171",
      "dergi": "Marmara Coğrafya Dergisi",
      "openalex_id": "https://openalex.org/W2787677712",
      "bulan_sorgu": [
       "Trabzon hidrojeoloji"
-     ]
+     ],
+     "doi": "https://doi.org/10.14781/mcd.386171"
     },
     {
      "baski_uygun": true,
@@ -29197,13 +29328,14 @@
       "Arzu Fırat Ersoy"
      ],
      "yil": 2010,
-     "doi": "https://doi.org/10.17824/huyuamd.82329",
      "url": "https://dergipark.org.tr/en/pub/yerbilimleri/article/165189",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2551043940",
      "bulan_sorgu": [
       "Trabzon hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.17824/huyuamd.82329",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baski_uygun": true,
@@ -29243,13 +29375,14 @@
       "Gürcan Gürgen"
      ],
      "yil": 2004,
-     "doi": "https://doi.org/10.17152/gefd.77285",
      "url": "https://dergipark.org.tr/en/pub/gefad/article/90926",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W2154239711",
      "bulan_sorgu": [
       "Trabzon hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.17152/gefd.77285",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baski_uygun": true,
@@ -29345,13 +29478,15 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Tunceli yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -30277,13 +30412,15 @@
       "Bahattin Çetindağ"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.19076/mta.376765",
-     "url": "https://doi.org/10.19076/mta.376765",
+     "url": "https://dergipark.org.tr/tr/pub/bulletinofmre/article/376767",
      "dergi": "Maden Tetkik ve Arama Dergisi",
      "openalex_id": "https://openalex.org/W2783687852",
      "bulan_sorgu": [
       "Van hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.19076/mta.376765",
+     "doi": "https://doi.org/10.19111/bulletinofmre.376767",
+     "kunye_notu": "Türkçe basımın (MTA Dergisi) DOI'si ve DergiPark kaydı erişilemez; bağlantı aynı çalışmanın İngilizce basımına (Bulletin of MRE) verildi — başlık eşleşmesi doğrulandı 2026-08-25."
     },
     {
      "baski_uygun": true,
@@ -30338,13 +30475,13 @@
       "Yasin Erdoğan"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.19111/bmre.74700",
      "url": "https://doi.org/10.19111/bmre.74700",
      "dergi": "Bulletin Of The Mineral Research and Exploration",
      "openalex_id": "https://openalex.org/W2416274893",
      "bulan_sorgu": [
       "Van hidrojeoloji"
-     ]
+     ],
+     "doi": "https://doi.org/10.19111/bmre.74700"
     },
     {
      "baski_uygun": true,
@@ -30414,13 +30551,14 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Van hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baski_uygun": true,
@@ -30565,13 +30703,15 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Yalova yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -30920,13 +31060,15 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Yozgat yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -31105,13 +31247,15 @@
       "Bahattin Çetindağ"
      ],
      "yil": 2018,
-     "doi": "https://doi.org/10.19076/mta.376765",
-     "url": "https://doi.org/10.19076/mta.376765",
+     "url": "https://dergipark.org.tr/tr/pub/bulletinofmre/article/376767",
      "dergi": "Maden Tetkik ve Arama Dergisi",
      "openalex_id": "https://openalex.org/W2783687852",
      "bulan_sorgu": [
       "Yozgat hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.19076/mta.376765",
+     "doi": "https://doi.org/10.19111/bulletinofmre.376767",
+     "kunye_notu": "Türkçe basımın (MTA Dergisi) DOI'si ve DergiPark kaydı erişilemez; bağlantı aynı çalışmanın İngilizce basımına (Bulletin of MRE) verildi — başlık eşleşmesi doğrulandı 2026-08-25."
     },
     {
      "baski_uygun": true,
@@ -31277,13 +31421,15 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "Zonguldak yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -31632,13 +31778,14 @@
       "Selahattin Polat"
      ],
      "yil": 2011,
-     "doi": "https://doi.org/10.14781/mcd.00426",
      "url": "https://dergipark.org.tr/tr/pub/marucog/issue/470/3827",
      "dergi": "DergiPark (Istanbul University)",
      "openalex_id": "https://openalex.org/W1571661364",
      "bulan_sorgu": [
       "Zonguldak hidrojeoloji"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.14781/mcd.00426",
+     "kunye_notu": "DOI bağlantısı 2026-08-25'te ölü ölçüldü (handle kaydı yok ya da kapanmış dergipark.gov.tr çözücüsüne işaret ediyor); bağlantı, başlık eşleşmesi doğrulanmış DergiPark sayfasına verilir."
     },
     {
      "baski_uygun": true,
@@ -32090,13 +32237,13 @@
       "Salim Güldür"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.7240/mufbed.79713",
-     "url": "https://doi.org/10.7240/mufbed.79713",
+     "url": "https://dergipark.org.tr/tr/pub/marufbd/article/260883",
      "dergi": "Marmara Fen Bilimleri Dergisi",
      "openalex_id": "https://openalex.org/W2480301401",
      "bulan_sorgu": [
       "Çanakkale yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi": "https://doi.org/10.7240/mufbed.79713"
     },
     {
      "baski_uygun": true,
@@ -32725,13 +32872,15 @@
       "Hüseyin E. Çelik"
      ],
      "yil": 2024,
-     "doi": "https://doi.org/10.5152/0010",
-     "url": "http://doi.org/10.5152/0010",
      "dergi": null,
      "openalex_id": "https://openalex.org/W4392891689",
      "bulan_sorgu": [
       "İstanbul yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.5152/0010",
+     "kunye_notu": "Kaynak taşındı, yeni adres doğrulanamadı (2026-08-25): DOI handle kaydı yok; yayınevi (İÜC/IUC Press) sayfası da 404 (Playwright ile ölçüldü).",
+     "url_olu": "http://doi.org/10.5152/0010",
+     "url": null
     },
     {
      "baski_uygun": true,
@@ -32987,13 +33136,13 @@
       "Salim Güldür"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.7240/mufbed.79713",
-     "url": "https://doi.org/10.7240/mufbed.79713",
+     "url": "https://dergipark.org.tr/tr/pub/marufbd/article/260883",
      "dergi": "Marmara Fen Bilimleri Dergisi",
      "openalex_id": "https://openalex.org/W2480301401",
      "bulan_sorgu": [
       "İstanbul yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi": "https://doi.org/10.7240/mufbed.79713"
     },
     {
      "baski_uygun": true,
@@ -33033,13 +33182,13 @@
       "Yasin Erdoğan"
      ],
      "yil": 2016,
-     "doi": "https://doi.org/10.19111/bmre.74700",
      "url": "https://doi.org/10.19111/bmre.74700",
      "dergi": "Bulletin Of The Mineral Research and Exploration",
      "openalex_id": "https://openalex.org/W2416274893",
      "bulan_sorgu": [
       "İstanbul hidrojeoloji"
-     ]
+     ],
+     "doi": "https://doi.org/10.19111/bmre.74700"
     },
     {
      "baski_uygun": true,
@@ -33199,13 +33348,14 @@
       "Halil İbrahim Kurt"
      ],
      "yil": 1998,
-     "doi": "https://doi.org/10.14781/mcd.52670",
-     "url": "http://hdl.handle.net/11424/2403",
+     "url": "https://dergipark.org.tr/tr/pub/marucog/article/560549",
      "dergi": "Dspace Repository (Marmara Üniversitesi)",
      "openalex_id": "https://openalex.org/W1512970621",
      "bulan_sorgu": [
       "İstanbul yeraltı suyu potansiyel"
-     ]
+     ],
+     "doi_olu": "https://doi.org/10.14781/mcd.52670",
+     "kunye_notu": "Eski bağlantı (hdl.handle.net/11424/2403) 500 dönüyor; DergiPark kaydı başlık eşleşmesiyle doğrulandı 2026-08-25. DOI handle kaydı yok."
     },
     {
      "baski_uygun": true,
