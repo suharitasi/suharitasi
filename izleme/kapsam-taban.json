@@ -3,10 +3,10 @@
   "tabanTarihi": "2026-07-28T19:30:00.000Z",
   "gerekce": "ilk kurulum — kapsam briefi (28.07.2026), rapor/denetim-kapsami.md bosluklari",
   "seoGeo": {
-    "toplam": 199,
-    "sayfa": 174,
-    "noindexAtlanan": 3,
-    "_not": "noindex sayfalar dislanir (SEO yuzeyi yok). Taban 28.07: title-uzun 48, meta-desc-uzunluk 146, soru-baslik-yok 4, h1-yok 1. Kalem YENI kritikte veya toplam artisinda atesler.",
+    "toplam": 20,
+    "sayfa": 519,
+    "noindexAtlanan": 4,
+    "_not": "noindex sayfalar dislanir (SEO yuzeyi yok). TABAN YENILENDI 25.08.2026 (KARARLAR §26): eski 199, metaIcerik tirnak hatasiyla olculmustu (94 sahte nehir bulgusu; arac falsifikasyonla duzeltildi) + GEO/SEO turu duzeltmeleri. Yeni taban canli --tam olcumu: 20 = title-uzun 16 (11 icerik basligi [SERDAR-HUKUK karari] + 5 uzun sektor adi) + soru-baslik-yok 4. Onceki taban 28.07: title-uzun 48, meta-desc-uzunluk 146, soru-baslik-yok 4, h1-yok 1. Kalem YENI kritikte veya toplam artisinda atesler.",
     "kabulEdilen": [
       {
         "kural": "h1-yok",
@@ -72,6 +72,18 @@
         "alan": "iller",
         "say": 81,
         "ustAnahtar": 5
+      },
+      "ilce-morfoloji.json": {
+        "alan": "ilceler",
+        "say": 948,
+        "ustAnahtar": 4,
+        "_not": "25.08 GEO/SEO turu: KARARLAR §25 kayitli dosya tabana alindi (SIRADAKILER on-onayli kucuk is)."
+      },
+      "isletme-sahalari-yeni.json": {
+        "alan": null,
+        "say": 0,
+        "ustAnahtar": 5,
+        "_not": "25.08: BOS dosya (say=0) tabana alindi — akibeti (doldur/kaldir) C-listesinde kullanici karari."
       }
     }
   },
