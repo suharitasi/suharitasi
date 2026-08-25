@@ -2,6 +2,7 @@
 baslik: "Küçük Menderes Havzası"
 ozet: "Yağış alanı 6.963 km²; yıllık ortalama yüzey suyu potansiyeli 0,54 km³ (DSİ 2024)."
 tarih: 2026-07-14
+guncelleme: 2026-08-25
 no: "06"
 kunye:
   yillikPotansiyel: '0,54 km³/yıl — <a href="https://www.dsi.gov.tr/Sayfa/Detay/2186" target="_blank" rel="noopener">DSİ 2024 Resmî Su Kaynakları İstatistikleri, Tablo 1.2</a>'

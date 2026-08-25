@@ -2,6 +2,7 @@
 baslik: "Batı Karadeniz Havzası"
 ozet: "Yağış alanı 28.855 km²; yıllık ortalama yüzey suyu potansiyeli 10,25 km³ (DSİ 2024)."
 tarih: 2026-07-14
+guncelleme: 2026-08-25
 no: "13"
 kunye:
   yillikPotansiyel: '10,25 km³/yıl — <a href="https://www.dsi.gov.tr/Sayfa/Detay/2186" target="_blank" rel="noopener">DSİ 2024 Resmî Su Kaynakları İstatistikleri, Tablo 1.2</a>'

@@ -2,6 +2,7 @@
 baslik: "Su tahsisinde öncelik sırası ve tahsis kriterleri"
 ozet: "DSİ'ye su tahsis başvurusu nasıl yapılır, talepler hangi ölçütlerle değerlendirilir: Su Tahsisleri Hakkında Yönetmelik m.8-10 ve Yeraltı Suları Tüzüğü m.15'teki kullanım öncelik sıralaması (içme, temizlik, hayvan sulaması, zirai sulama, sanayi, sportif tesisler)."
 tarih: 2026-07-14
+guncelleme: 2026-07-25
 kume: surec
 ozCevap: "Su tahsis talebi DSİ'ye yapılır (Su Tahsisleri Yönetmeliği m.8) ve suyun miktar-kalitesi ile kullanım önceliğine göre değerlendirilir (m.10). Öncelik sırası Yeraltı Suları Tüzüğü m.15'ten gelir: içme, temizlik/belediye, hayvan sulaması, zirai sulama, maden-sanayi, sportif tesisler."
 ilgili: [kuyu-ruhsati, kaynak-suyu-kiralama, yeralti-suyu-isletme-sahasi]

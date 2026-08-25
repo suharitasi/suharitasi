@@ -11,6 +11,7 @@
 // sayfaya gitmeden gösterilir; ?il= parametresiyle paylaşılabilir.
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
+import { TARIH } from '../data/guncellik.js';
 import { tumIlProfilleri } from '../data/il-profil.js';
 
 const profiller = tumIlProfilleri();
@@ -41,6 +42,7 @@ const aciklama =
   <SayfaBasi
     etiket="Araç"
     baslik="İlimde su işinden kim yetkili?"
+    tarih={TARIH.potansiyel ? new Date(TARIH.potansiyel) : undefined}
     ozet="Kuyu belgelerinde hangi DSİ bölgesine başvurulur, iliniz hangi havzada, havzada su ne durumda — ilinizi seçin, özet tek ekranda. Genel süreç kuyu ruhsatı rehberindedir."
     ozCevap
   />

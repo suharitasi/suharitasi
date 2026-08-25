@@ -15,6 +15,7 @@
 import { getCollection } from 'astro:content';
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
+import { TARIH } from '../data/guncellik.js';
 import OzCevap from '../components/OzCevap.astro';
 import CanliSayi from '../components/CanliSayi.astro';
 import CanliSayiMotor from '../components/CanliSayiMotor.astro';
@@ -42,6 +43,8 @@ if (iller.length !== SAYILAR.ilSayisi) {
 const sema = [
   {
     '@type': 'WebPage',
+    // Damga (25.08.2026): il potansiyel derlemelerinin veri kaydı tarihi.
+    ...(TARIH.potansiyel ? { dateModified: TARIH.potansiyel } : {}),
     name: 'Nerede su çıkar?',
     description: OZ_CEVAP,
     url: canonical,
@@ -70,7 +73,7 @@ const sema = [
 ];
 ---
 <Sayfa baslik="Nerede su çıkar?" aciklama={OZ_CEVAP} sema={sema}>
-  <SayfaBasi etiket="Giriş kapısı" baslik="Nerede su çıkar?" />
+  <SayfaBasi etiket="Giriş kapısı" baslik="Nerede su çıkar?" tarih={TARIH.potansiyel ? new Date(TARIH.potansiyel) : undefined} />
   <OzCevap metin={OZ_CEVAP} />
 
   <h2 id="iliniz">İliniz hangisi?</h2>

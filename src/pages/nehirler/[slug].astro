@@ -8,6 +8,7 @@
 // gol-nehir-cografya.js eşlemesinden.
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
+import { TARIH } from '../../data/guncellik.js';
 import OzCevap from '../../components/OzCevap.astro';
 import Katman from '../../components/Katman.astro';
 import { tumNehirler, nehirOzet,
@@ -33,6 +34,8 @@ const sema = [{
   containedInPlace: { '@type': 'Place', name: 'Türkiye' },
 }, {
   '@type': 'FAQPage',
+  // Damga (25.08.2026): OSM/Natural Earth çekim tarihi (gol-nehir.js künyesi).
+  ...(TARIH.golNehir ? { dateModified: TARIH.golNehir } : {}),
   mainEntity: [{
     '@type': 'Question',
     name: `${nehir.ad} nerededir, hangi havzadan geçer?`,
@@ -42,7 +45,7 @@ const sema = [{
 ---
 
 <Sayfa baslik={`${nehir.ad} — Türkiye Nehirleri`} aciklama={ozet} sema={sema}>
-  <SayfaBasi etiket="Nehir" baslik={nehir.ad} />
+  <SayfaBasi etiket="Nehir" baslik={nehir.ad} tarih={TARIH.golNehir ? new Date(TARIH.golNehir) : undefined} />
 
   <OzCevap metin={ozet} />
 

@@ -7,6 +7,12 @@ const rehberler = defineCollection({
     baslik: z.string(),
     ozet: z.string(),
     tarih: z.coerce.date(),
+    // Görünür güncellik damgası (kalanlar paketi 25.08.2026, eeat-audit №1):
+    // son GERÇEK içerik/künye değişikliğinin günü. İlk değerler git
+    // geçmişinden ölçüldü; bundan sonra içerik değişen dosyada bu alan da
+    // güncellenir (KARARLAR kaydı). Yoksa damga tarih'ten basılır,
+    // dateModified = guncelleme ?? tarih.
+    guncelleme: z.coerce.date().optional(),
     // true ise sayfa sonuna 81 il / yetkili kurum tablosu eklenir (data/il-kurum.json)
     ilKurumTablosu: z.boolean().optional(),
     // Sayfa sonundaki "İlgili rehberler" bloğu; slug listesi (2-3 önerilir).
@@ -36,6 +42,12 @@ const havzalar = defineCollection({
     baslik: z.string(),
     ozet: z.string(),
     tarih: z.coerce.date(),
+    // Görünür güncellik damgası (kalanlar paketi 25.08.2026, eeat-audit №1):
+    // son GERÇEK içerik/künye değişikliğinin günü. İlk değerler git
+    // geçmişinden ölçüldü; bundan sonra içerik değişen dosyada bu alan da
+    // güncellenir (KARARLAR kaydı). Yoksa damga tarih'ten basılır,
+    // dateModified = guncelleme ?? tarih.
+    guncelleme: z.coerce.date().optional(),
     no: z.string().optional(), // DSİ havza numarası (01–25); listede sıralama
     // Sayfa mimarisi kalıbı (DESIGN.md §17). 2 = reform kalıbı (kahraman
     // veri bandı + katmanlı sunum). Yalnız pilotlarda açılır; alan yoksa
@@ -71,6 +83,12 @@ const suKanunu = defineCollection({
     baslik: z.string(),
     ozet: z.string(),
     tarih: z.coerce.date(),
+    // Görünür güncellik damgası (kalanlar paketi 25.08.2026, eeat-audit №1):
+    // son GERÇEK içerik/künye değişikliğinin günü. İlk değerler git
+    // geçmişinden ölçüldü; bundan sonra içerik değişen dosyada bu alan da
+    // güncellenir (KARARLAR kaydı). Yoksa damga tarih'ten basılır,
+    // dateModified = guncelleme ?? tarih.
+    guncelleme: z.coerce.date().optional(),
   }),
 });
 
@@ -80,6 +98,12 @@ const vakalar = defineCollection({
     baslik: z.string(),
     ozet: z.string(),
     tarih: z.coerce.date(),
+    // Görünür güncellik damgası (kalanlar paketi 25.08.2026, eeat-audit №1):
+    // son GERÇEK içerik/künye değişikliğinin günü. İlk değerler git
+    // geçmişinden ölçüldü; bundan sonra içerik değişen dosyada bu alan da
+    // güncellenir (KARARLAR kaydı). Yoksa damga tarih'ten basılır,
+    // dateModified = guncelleme ?? tarih.
+    guncelleme: z.coerce.date().optional(),
     // Şirket adı (KAP kayıtlı unvan).
     sirket: z.string(),
     // Sayfa mimarisi kalıbı (DESIGN.md §17). 2 = reform kalıbı (kahraman

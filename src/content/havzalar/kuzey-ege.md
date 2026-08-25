@@ -2,6 +2,7 @@
 baslik: "Kuzey Ege Havzası"
 ozet: "Yağış alanı 9.861 km²; yıllık ortalama yüzey suyu potansiyeli 1,78 km³ (DSİ 2024)."
 tarih: 2026-07-14
+guncelleme: 2026-08-25
 no: "04"
 kunye:
   yillikPotansiyel: '1,78 km³/yıl — <a href="https://www.dsi.gov.tr/Sayfa/Detay/2186" target="_blank" rel="noopener">DSİ 2024 Resmî Su Kaynakları İstatistikleri, Tablo 1.2</a>'

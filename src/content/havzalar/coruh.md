@@ -2,6 +2,7 @@
 baslik: "Çoruh Havzası"
 ozet: "Yağış alanı 20.248 km²; yıllık ortalama yüzey suyu potansiyeli 7,14 km³ (DSİ 2024)."
 tarih: 2026-07-14
+guncelleme: 2026-07-25
 no: "23"
 kunye:
   yillikPotansiyel: '7,14 km³/yıl — <a href="https://www.dsi.gov.tr/Sayfa/Detay/2186" target="_blank" rel="noopener">DSİ 2024 Resmî Su Kaynakları İstatistikleri, Tablo 1.2</a>'

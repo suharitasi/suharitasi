@@ -2,6 +2,7 @@
 baslik: "Meysu: mineralli su kaynağının işletme ruhsatıyla güvenceye alınması"
 ozet: "Meysu Gıda'nın İncesu Subaşı doğal mineralli su sahasının işletme ruhsatını edinme süreci — yalnız KAP bildirimlerine dayanan olgu akışı."
 tarih: 2026-05-11
+guncelleme: 2026-07-21
 sirket: "Meysu Gıda Sanayi ve Ticaret A.Ş."
 erisimTarihi: "20.07.2026"
 hukukiYol: taslak

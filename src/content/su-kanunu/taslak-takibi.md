@@ -2,6 +2,7 @@
 baslik: "Su Kanunu taslağı: güncel durum takibi"
 ozet: "Su Kanunu taslağının yasalaşma sürecindeki somut gelişmeler; tarih ve kaynak bağlantısıyla, spekülasyonsuz."
 tarih: 2026-07-14
+guncelleme: 2026-07-25
 ---
 
 Bu sayfa, Su Kanunu taslağına ilişkin yalnızca **doğrulanabilir**

@@ -7,6 +7,9 @@
 // bandı); yeni renk/font/desen İCAT EDİLMEZ.
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
+import { TARIH, enYeni } from '../data/guncellik.js';
+// Damga (25.08.2026): arşivdeki veri setlerinin künye tarihlerinin en yenisi.
+const damgaISO = enYeni(TARIH.baraj, TARIH.grace, TARIH.potansiyel, TARIH.golNehir, TARIH.havzaVeri);
 import OzCevap from '../components/OzCevap.astro';
 import { ARSIV_SETLERI, ARSIV_OZ_CEVAP, KAPATMA_KAYITLARI, KAPATMA_OZET, KAPATMA_SERHI } from '../data/vitrin.js';
 
@@ -15,6 +18,7 @@ const canonical = new URL('/arsiv/', Astro.site).href;
 const sema = [
   {
     '@type': 'WebPage',
+    ...(damgaISO ? { dateModified: damgaISO } : {}),
     name: 'Veri arşivi',
     description: ARSIV_OZ_CEVAP,
     url: canonical,
@@ -34,7 +38,7 @@ const sema = [
 ];
 ---
 <Sayfa baslik="Veri arşivi" aciklama={ARSIV_OZ_CEVAP} sema={sema}>
-  <SayfaBasi etiket="Veri ve yöntem" baslik="Veri arşivi" />
+  <SayfaBasi etiket="Veri ve yöntem" baslik="Veri arşivi" tarih={damgaISO ? new Date(damgaISO) : undefined} />
   <OzCevap metin={ARSIV_OZ_CEVAP} />
 
   <h2 id="setler">Hangi veri setleri kullanılıyor?</h2>

@@ -18,6 +18,7 @@ const d = giris.data;
 const kok = new URL('/', Astro.site).href;
 const canonical = new URL(`/vaka/${giris.id}/`, Astro.site).href;
 const tarihISO = d.tarih.toISOString();
+const guncellemeISO = (d.guncelleme ?? d.tarih).toISOString(); // damga 25.08.2026
 
 // Article: YMYL benzeri; yazar kimliği E-E-A-T sinyali (rehber ailesiyle aynı).
 const sema = [
@@ -26,7 +27,7 @@ const sema = [
     headline: d.baslik,
     description: d.ozCevap,
     datePublished: tarihISO,
-    dateModified: tarihISO,
+    dateModified: guncellemeISO,
     inLanguage: 'tr-TR',
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
     image: new URL(OG_GORSEL, Astro.site).href,
@@ -59,7 +60,7 @@ if (kalip2 && !d.kahraman)
 {kalip2 ? (
   <Fragment>
     <div class="gk gk-baslik" style="--gk:0">
-      <SayfaBasi etiket="Vaka" baslik={d.baslik} tarih={d.tarih} yazarli />
+      <SayfaBasi etiket="Vaka" baslik={d.baslik} tarih={d.guncelleme ?? d.tarih} yazarli />
     </div>
 
     {/* Kahraman stat kartları (§17c): sayı paragraftan çıkar, ilk ekrana
@@ -160,7 +161,7 @@ if (kalip2 && !d.kahraman)
   </Fragment>
 ) : (
   <Fragment>
-  <SayfaBasi etiket="Vaka" baslik={d.baslik} ozet={d.ozet} tarih={d.tarih} yazarli />
+  <SayfaBasi etiket="Vaka" baslik={d.baslik} ozet={d.ozet} tarih={d.guncelleme ?? d.tarih} yazarli />
 
   <OzCevap metin={d.ozCevap} />
 

@@ -2,6 +2,7 @@
 baslik: "Marmara Havzası"
 ozet: "Yağış alanı 23.074 km²; yıllık ortalama yüzey suyu potansiyeli 7,36 km³ (DSİ 2024)."
 tarih: 2026-07-14
+guncelleme: 2026-08-25
 no: "02"
 kunye:
   yillikPotansiyel: '7,36 km³/yıl — <a href="https://www.dsi.gov.tr/Sayfa/Detay/2186" target="_blank" rel="noopener">DSİ 2024 Resmî Su Kaynakları İstatistikleri, Tablo 1.2</a>'

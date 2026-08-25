@@ -16,6 +16,7 @@ import { graceEgilim } from '../../data/grace-hesap.js';
 import { yayinlananIller } from '../../data/il-profil.js';
 import { havzaninGolleri, havzaninNehirleri } from '../../data/gol-nehir.js';
 import { havzaYasGeo } from '../../data/havza-yas-geo.js';
+import { TARIH, enYeni } from '../../data/guncellik.js';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('havzalar');
@@ -127,9 +128,17 @@ const aciklama = havzaOzCevap || giris.data.ozet;
 // — FAQPage JSON-LD: YAS potansiyeli öz-cevabı (AI-arama alıntısı). Tek
 //   kaynak havza-yas-geo.js; verisi yoksa şema eklenmez (uydurma yok).
 const yasGeo = havzaYasGeo(giris.data.no);
+// Damga (kalanlar paketi 25.08.2026): sayfanın dayandığı veri kayıtlarının
+// en yeni künye tarihi (DSİ/SYGM künyeleri · EPİAŞ günlük · GRACE işleme ·
+// havza metninin son gerçek değişikliği). Build saati DEĞİL — sahte tazelik yok.
+const damgaISO = enYeni(
+  TARIH.havzaVeri, TARIH.baraj, TARIH.grace,
+  (giris.data.guncelleme ?? giris.data.tarih).toISOString().slice(0, 10),
+);
 const semalar = yasGeo
   ? [{
       '@type': 'FAQPage',
+      ...(damgaISO ? { dateModified: damgaISO } : {}),
       mainEntity: [{
         '@type': 'Question',
         name: `${giris.data.baslik} yeraltı suyu potansiyeli nedir?`,
@@ -146,7 +155,7 @@ const semalar = yasGeo
         özet OzCevap'tır (ozet, liste kartları + og metni olarak yaşar).
         Yayılım notu: eski kalıpla ortak hukuk/il-kurum işaretlemesi yayılım
         fazında tekilleştirilir; pilotta eski yol bilerek DOKUNULMAMIŞTIR. */}
-    <SayfaBasi etiket="Havza" baslik={giris.data.baslik} />
+    <SayfaBasi etiket="Havza" baslik={giris.data.baslik} tarih={damgaISO ? new Date(damgaISO) : undefined} />
 
     <HavzaKahraman havzaNo={giris.data.no} havzaBaslik={giris.data.baslik} />
 
@@ -274,7 +283,7 @@ const semalar = yasGeo
   </Fragment>
 ) : (
   <Fragment>
-  <SayfaBasi etiket="Havza" baslik={giris.data.baslik} ozet={giris.data.ozet} />
+  <SayfaBasi etiket="Havza" baslik={giris.data.baslik} ozet={giris.data.ozet} tarih={damgaISO ? new Date(damgaISO) : undefined} />
 
   {havzaOzCevap && <OzCevap metin={havzaOzCevap} />}
 

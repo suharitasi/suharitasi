@@ -2,6 +2,7 @@
 baslik: "Sakarya Havzası"
 ozet: "İç Batı Anadolu'dan Karadeniz'e uzanan, Ankara ve Eskişehir'i besleyen havza — DSİ 2024 resmî istatistikleriyle."
 tarih: 2026-07-14
+guncelleme: 2026-08-25
 no: "12"
 kalip: 2
 kunye:

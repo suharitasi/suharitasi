@@ -6,6 +6,7 @@
 // (durumum.js, ≤2KB; kapalıyken tam liste görünür — GEO/curl etkilenmez).
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
+import { TARIH } from '../../data/guncellik.js';
 import OzCevap from '../../components/OzCevap.astro';
 import { personalar } from '../../data/persona.js';
 import { EPOSTA } from '../../data/site';
@@ -46,6 +47,7 @@ const nace = personalar
 const sema = [
   {
     '@type': 'ItemList',
+    ...(TARIH.persona ? { dateModified: TARIH.persona } : {}),
     name: 'Su hukukunda sektörler',
     itemListElement: personalar.map((p, i) => ({
       '@type': 'ListItem',
@@ -57,7 +59,7 @@ const sema = [
 ];
 ---
 <Sayfa baslik="Su hukukunda durumunuz ne?" aciklama={ozCevap} sema={sema}>
-  <SayfaBasi etiket="Sektör kapısı" baslik="Su hukukunda durumunuz ne?" />
+  <SayfaBasi etiket="Sektör kapısı" baslik="Su hukukunda durumunuz ne?" tarih={TARIH.persona ? new Date(TARIH.persona) : undefined} />
   <OzCevap metin={ozCevap} />
 
   <div class="ara">

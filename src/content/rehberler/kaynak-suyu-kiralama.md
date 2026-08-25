@@ -2,6 +2,7 @@
 baslik: "Kaynak suyu kiralama: yetki, ihale zorunluluğu ve sözleşme"
 ozet: "Kaynak sularının kim tarafından, hangi usulle kiraya verilebileceği: 167 sayılı Kanun m.4, 5393 sayılı Belediye Kanunu m.15 ve 831 sayılı Sular Hakkında Kanun çerçevesi; 2886 sayılı Devlet İhale Kanunu'na uygun ihale zorunluluğu."
 tarih: 2026-07-14
+guncelleme: 2026-07-25
 kume: surec
 ozCevap: "Kaynak suyu kiralamada iki soru belirleyici: kim yetkili ve hangi usul. Kullanım fazlası ile Devletin yerlerindeki sular il özel idaresince (167 s.K. m.4), kaynak suyunu belediye işletir/işlettirir (5393 m.15) — tümü 2886'ya göre ihaleyle yapılır. İhalesiz kiralama hukuka aykırıdır."
 ilgili: [kaynak-hakki-komsu-su, su-tahsisi-oncelik-sirasi, jeotermal-ruhsat]

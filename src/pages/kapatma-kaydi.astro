@@ -24,6 +24,10 @@
  */
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
+import { TARIH, enYeni } from '../data/guncellik.js';
+// Damga (25.08.2026): RG arşiv derlemesinin uretim_tarihi + nöbetçinin son
+// tarama günü (izleme/state — kayıt veriden, build saati değil).
+const damgaISO = enYeni(TARIH.potansiyel, TARIH.rgTarama);
 import OzCevap from '../components/OzCevap.astro';
 import { KAPATMA_KAYITLARI, KAPATMA_OZET, KAPATMA_SERHI } from '../data/vitrin.js';
 
@@ -56,6 +60,7 @@ const aranabilir = (s) =>
 const sema = [
   {
     '@type': 'WebPage',
+    ...(damgaISO ? { dateModified: damgaISO } : {}),
     name: 'Tahsise kapatma kaydı sorgusu',
     description: OZ_CEVAP,
     url: canonical,
@@ -87,7 +92,7 @@ const sema = [
 ];
 ---
 <Sayfa baslik="Tahsise kapatma kaydı var mı?" aciklama={OZ_CEVAP} sema={sema}>
-  <SayfaBasi etiket="Veri sorgusu" baslik="Tahsise kapatma kaydı var mı?" />
+  <SayfaBasi etiket="Veri sorgusu" baslik="Tahsise kapatma kaydı var mı?" tarih={damgaISO ? new Date(damgaISO) : undefined} />
   <OzCevap metin={OZ_CEVAP} />
 
   <div class="kk-arama" hidden id="kk-arama">
