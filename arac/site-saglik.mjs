@@ -290,22 +290,38 @@ async function md3_yonlendirme() {
 // koşumda da canlı www yüzeyi ölçülür. SAGLIK_WWW_EZME: falsifikasyon
 // kancası (üretimde ayarlanmaz).
 async function md24_www() {
+  // BEKLENTİ DEĞİŞİKLİĞİ (25.08.2026, havza-talep briefi E3): GSC aynı
+  // içeriği apex+www'de AYRI saydı (ör. /havzalar/gediz/ 0/50 + 2/49);
+  // canonical tek başına sinyali birleştirmedi. _redirects'e host kuralı
+  // kondu — artık beklenen: www 301 → apex, hedef 200 + canonical apex.
+  // www'nin 200 SUNMASI eski davranıştır ve kırmızıdır (sinyal bölünmesi).
   const WWW = process.env.SAGLIK_WWW_EZME || 'https://www.suharitasi.com/';
   const c = await getir(WWW);
-  if (c.status !== 200) {
-    return kaydet('24-www', 'kirmizi', `www yüzeyi ${c.status} döndü (beklenen 200)`,
+  if (c.status !== 301 && c.status !== 308) {
+    return kaydet('24-www', 'kirmizi',
+      `www ${c.status} döndü (beklenen 301 → apex) — sinyal bölünmesi riski`,
       { url: WWW, kod: c.status }, ['hizli', 'tam']);
   }
-  const govde = await c.text();
+  const hedef = c.headers.get('location') || '';
+  if (!hedef.startsWith('https://suharitasi.com/')) {
+    return kaydet('24-www', 'kirmizi', `www 301 hedefi apex değil (${hedef || 'Location yok'})`,
+      { url: WWW, hedef }, ['hizli', 'tam']);
+  }
+  const h = await getir(hedef);
+  if (h.status !== 200) {
+    return kaydet('24-www', 'kirmizi', `www 301 hedefi ${h.status} döndü (${hedef})`,
+      { url: WWW, hedef, kod: h.status }, ['hizli', 'tam']);
+  }
+  const govde = await h.text();
   const m = govde.match(/<link rel="canonical" href="([^"]+)"/);
   const canonical = m ? m[1] : null;
   if (!canonical || !canonical.startsWith('https://suharitasi.com/')) {
     return kaydet('24-www', 'kirmizi',
-      `www canonical apex'i göstermiyor (${canonical || 'canonical yok'}) — mükerrer içerik riski`,
-      { url: WWW, canonical }, ['hizli', 'tam']);
+      `apex canonical bozuk (${canonical || 'canonical yok'}) — mükerrer içerik riski`,
+      { url: hedef, canonical }, ['hizli', 'tam']);
   }
-  kaydet('24-www', 'gecti', `www 200 + canonical apex (${canonical})`,
-    { url: WWW, canonical }, ['hizli', 'tam']);
+  kaydet('24-www', 'gecti', `www 301 → apex (${hedef}) · hedef 200 + canonical apex`,
+    { url: WWW, hedef, canonical }, ['hizli', 'tam']);
 }
 
 // — Playwright gerektiren kontroller tek tarayıcı oturumunda toplanır —

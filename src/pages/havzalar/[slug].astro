@@ -101,6 +101,20 @@ const vd = havzaVeri.havzalar.find((h) => h.no === giris.data.no);
 const sayi = (n, ondalik) =>
   n.toLocaleString('tr-TR', { minimumFractionDigits: ondalik, maximumFractionDigits: ondalik });
 
+// — Talep uyumu (havza-talep briefi + GSC eki, 25.08.2026; rapor/havza-talep.md):
+//   "X havzası nerede / hangi illeri kapsar / haritası" sorgu ailesi ölçüldü.
+//   Konum cümlesi YALNIZ resmî il listesinden kurulur (il-kurum.json, SYGM
+//   tanıtım belgeleri). Coğrafi bölge/yön iddiası veri kaydında olmadığından
+//   YAZILMAZ (uydurma yasağı); iller havzaya kısmen girebilir — şerh, il
+//   bölümünün kaynak notunda ve SSS cevabında.
+const konumIller = havzaIl?.iller ?? [];
+const ilVe = (d) => (d.length > 1 ? `${d.slice(0, -1).join(', ')} ve ${d.at(-1)}` : (d[0] ?? ''));
+const konumCumlesi = konumIller.length >= 2
+  ? (konumIller.length <= 5
+      ? `${giris.data.baslik} ${ilVe(konumIller)} illerini kapsar.`
+      : `${giris.data.baslik}, aralarında ${konumIller.slice(0, 3).join(', ')} de bulunan ${konumIller.length} ilin topraklarını kapsar.`)
+  : '';
+
 const cumleler = [];
 // 1) Ad + yağış alanı + yüzey suyu potansiyeli (DSİ 2024)
 if (vd) {
@@ -109,7 +123,7 @@ if (vd) {
   if (vd.yuzeysuyuPotansiyeli_km3 != null)
     parcalar.push(`${sayi(vd.yuzeysuyuPotansiyeli_km3, 2)} km³/yıl yüzey suyu potansiyeli`);
   if (parcalar.length)
-    cumleler.push(`${giris.data.baslik}, DSİ ${vd.yuzeysuyuYili ?? 2024} verisine göre ${parcalar.join(' ve ')}ne sahiptir.`);
+    cumleler.push(`${konumCumlesi ? 'Havza' : giris.data.baslik}, DSİ ${vd.yuzeysuyuYili ?? 2024} verisine göre ${parcalar.join(' ve ')}ne sahiptir.`);
 }
 // 2) GRACE eğilimi (son 5 yıl gerçek aylardan) — "değişim, mutlak miktar değil".
 //    Hesap tek bakım noktasından (grace-hesap.js).
@@ -122,8 +136,34 @@ if (gSonuc) {
       : `GRACE uydu ölçümüne göre son 5 yılda toplam su depolaması ${gSonuc.yon} eğilimindedir (değişim verisidir, mutlak miktar değildir).`
   );
 }
-const havzaOzCevap = cumleler.join(' ');
-const aciklama = havzaOzCevap || giris.data.ozet;
+if (konumCumlesi) cumleler.unshift(konumCumlesi);
+// 280 bütçesi (geo-audit "oz-cevap-uzun" eşiği): sıra öncelikli — konum →
+// su varlığı → GRACE. Bütçeyi aşan İLK cümlede kesilir (soncul bilgiler
+// kendi bölümlerinde zaten var; kırpılmış yarım cümle basılmaz).
+const ozParcalar = [];
+for (const c of cumleler) {
+  if ([...ozParcalar, c].join(' ').length > 280) break;
+  ozParcalar.push(c);
+}
+const havzaOzCevap = ozParcalar.join(' ');
+// Meta description: merkezî kırpım (Sayfa.astro) cümle ortasında yarım sayı
+// bırakabiliyordu ("1,62…") — "emin" dili için TAM cümle bütçesi: 160'a
+// sığan cümle öneki (konum → su varlığı). 150-160 hedefinden sapma bilinçli:
+// cümle bütünlüğü dolgu metne tercih edildi (rapor/havza-talep.md).
+const descParcalar = [];
+for (const c of cumleler) {
+  if ([...descParcalar, c].join(' ').length > 160) break;
+  descParcalar.push(c);
+}
+const aciklama = descParcalar.join(' ') || havzaOzCevap || giris.data.ozet;
+
+// Title 60 karakter bütçesine ölçülüdür (seo-audit "title-uzun" eşiği >60;
+// en uzun ad "Büyük Menderes Havzası" ile 58). Aşım build'i DÜŞÜRÜR —
+// sessizce bulguya dönüşmez (sessiz hata yasağı).
+const tarayiciBaslik = `${giris.data.baslik} Nerede? Kapsadığı İller ve Haritası`;
+if (tarayiciBaslik.length > 60)
+  throw new Error(`havza "${giris.id}": title ${tarayiciBaslik.length} karakter (>60)`);
+const h1Baslik = konumCumlesi ? `${giris.data.baslik} nerede, hangi illeri kapsar?` : giris.data.baslik;
 
 // — FAQPage JSON-LD: YAS potansiyeli öz-cevabı (AI-arama alıntısı). Tek
 //   kaynak havza-yas-geo.js; verisi yoksa şema eklenmez (uydurma yok).
@@ -135,19 +175,41 @@ const damgaISO = enYeni(
   TARIH.havzaVeri, TARIH.baraj, TARIH.grace,
   (giris.data.guncelleme ?? giris.data.tarih).toISOString().slice(0, 10),
 );
-const semalar = yasGeo
+// SSS soruları ölçülen sorgu kalıplarından — YALNIZ veriyle cevaplananlar
+// (havza-talep briefi Faz 3.1): nerede · hangi iller · YAS potansiyeli.
+// "Açık havza mı kapalı havza mı" sorusu KONULMAZ: havza bazlı tahsis
+// sınıflaması hiçbir veri kaydında yok (25/25 tahsis=null ölçüldü);
+// cevabı veriden gelmeyen soru şemaya giremez.
+const sss = [];
+if (konumCumlesi) {
+  sss.push({
+    soru: `${giris.data.baslik} nerede?`,
+    cevap: `${konumCumlesi} Türkiye'nin 25 su havzasından biridir (DSİ). İller havzaya kısmen girebilir; il listesi resmî havza tanıtım belgesinden derlendi.`,
+  });
+  sss.push({
+    soru: `${giris.data.baslik} hangi illeri kapsar?`,
+    cevap: `${ilVe(konumIller)}. İller havzaya kısmen girebilir; liste resmî havza belgesinden derlendi (derleme: ${derleme}).`,
+  });
+}
+if (yasGeo) {
+  sss.push({
+    soru: `${giris.data.baslik} yeraltı suyu potansiyeli nedir?`,
+    cevap: yasGeo.cumle,
+  });
+}
+const semalar = sss.length
   ? [{
       '@type': 'FAQPage',
       ...(damgaISO ? { dateModified: damgaISO } : {}),
-      mainEntity: [{
+      mainEntity: sss.map((s) => ({
         '@type': 'Question',
-        name: `${giris.data.baslik} yeraltı suyu potansiyeli nedir?`,
-        acceptedAnswer: { '@type': 'Answer', text: yasGeo.cumle },
-      }],
+        name: s.soru,
+        acceptedAnswer: { '@type': 'Answer', text: s.cevap },
+      })),
     }]
   : [];
 ---
-<Sayfa baslik={giris.data.baslik} aciklama={aciklama} sema={semalar}>
+<Sayfa baslik={giris.data.baslik} tarayiciBaslik={tarayiciBaslik} aciklama={aciklama} sema={semalar}>
 {giris.data.kalip === 2 ? (
   <Fragment>
     {/* ——— KALIP 2 (DESIGN.md §17, pilot): kahraman veri bandı + katmanlı
@@ -155,11 +217,65 @@ const semalar = yasGeo
         özet OzCevap'tır (ozet, liste kartları + og metni olarak yaşar).
         Yayılım notu: eski kalıpla ortak hukuk/il-kurum işaretlemesi yayılım
         fazında tekilleştirilir; pilotta eski yol bilerek DOKUNULMAMIŞTIR. */}
-    <SayfaBasi etiket="Havza" baslik={giris.data.baslik} tarih={damgaISO ? new Date(damgaISO) : undefined} />
+    <SayfaBasi etiket="Havza" baslik={h1Baslik} tarih={damgaISO ? new Date(damgaISO) : undefined} />
 
     <HavzaKahraman havzaNo={giris.data.no} havzaBaslik={giris.data.baslik} />
 
     {havzaOzCevap && <OzCevap metin={havzaOzCevap} />}
+
+    {ilSatirlari.length > 0 && (
+      <Katman baslik="İller ve yetkili kurumlar" ipucu={`${ilSatirlari.length} il · DSİ bölgeleri · su idareleri`} ton="murekkep">
+        <section class="il-kurum">
+          <h2>Havzada hangi iller ve yetkili kurumlar var?</h2>
+      {konum && (
+        <figure class="konum">
+          <svg viewBox={`0 0 ${HARITA_EN} ${HARITA_BOY}`} width={HARITA_EN} height={HARITA_BOY}
+               role="img" aria-labelledby={`konum-baslik-${giris.id}`} xmlns="http://www.w3.org/2000/svg">
+            <title id={`konum-baslik-${giris.id}`}>{giris.data.baslik} — kapsadığı {konum.iller.length} il Türkiye haritasında işaretli</title>
+            <path d={ULKE_YOLU} fill="#DFE9F0" stroke="#B9CEDC" stroke-width="0.5" />
+            <path d={konum.yol} fill="#0C5A7C" fill-opacity="0.88" stroke="#08405A" stroke-width="0.6" stroke-linejoin="round" />
+          </svg>
+          <figcaption>
+            Koyu alan bu havzanın kapsadığı {konum.iller.length} ildir; havza sınırı değildir.
+            İller havzalara kısmen girebilir.
+          </figcaption>
+        </figure>
+      )}
+          <div class="tablo-kaydir">
+            <table>
+              <thead>
+                <tr>
+                  <th>İl</th>
+                  <th>DSİ bölge müdürlüğü</th>
+                  <th>Su ve kanalizasyon idaresi</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ilSatirlari.map((s) => (
+                  <tr>
+                    <td>{s.ilYolu ? <a href={s.ilYolu}>{s.il}</a> : s.il}</td>
+                    <td>{s.bolge ?? <span class="veri-yok">veri yok</span>}</td>
+                    <td>{s.suIdaresi}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="kaynak-notu">
+            İl listesi resmî havza belgesinden derlendi
+            (<a href={havzaIl.kaynak} target="_blank" rel="noopener">kaynak</a>);
+            iller havzaya kısmen girebilir.
+            {havzaIl.not ? ` ${havzaIl.not}.` : ''}
+            Büyükşehir olmayan illerde köy içme suları İl Özel İdaresi / belediye
+            görev alanındadır. Derleme: {ilKurum.derlemeTarihi}.
+            Açık/kapalı havza sınıflaması: havza bazlı tahsis ve kısıt
+            kararları resmî kaynakta kamuya açık ve derli biçimde
+            yayımlanmadığından bu sitede sınıflama verisi yer almaz;
+            doğrulanmamış bilgi yazılmaz.
+          </p>
+        </section>
+      </Katman>
+    )}
 
 
     <Katman baslik="Resmî yeraltısuyu verisi" ipucu="DSİ Tablo 1.3 / 1.6 · yıl serileri">
@@ -216,55 +332,6 @@ const semalar = yasGeo
       </Katman>
     )}
 
-    {ilSatirlari.length > 0 && (
-      <Katman baslik="İller ve yetkili kurumlar" ipucu={`${ilSatirlari.length} il · DSİ bölgeleri · su idareleri`} ton="murekkep">
-        <section class="il-kurum">
-          <h2>Havzada hangi iller ve yetkili kurumlar var?</h2>
-      {konum && (
-        <figure class="konum">
-          <svg viewBox={`0 0 ${HARITA_EN} ${HARITA_BOY}`} width={HARITA_EN} height={HARITA_BOY}
-               role="img" aria-labelledby={`konum-baslik-${giris.id}`} xmlns="http://www.w3.org/2000/svg">
-            <title id={`konum-baslik-${giris.id}`}>{giris.data.baslik} — kapsadığı {konum.iller.length} il Türkiye haritasında işaretli</title>
-            <path d={ULKE_YOLU} fill="#DFE9F0" stroke="#B9CEDC" stroke-width="0.5" />
-            <path d={konum.yol} fill="#0C5A7C" fill-opacity="0.88" stroke="#08405A" stroke-width="0.6" stroke-linejoin="round" />
-          </svg>
-          <figcaption>
-            Koyu alan bu havzanın kapsadığı {konum.iller.length} ildir; havza sınırı değildir.
-            İller havzalara kısmen girebilir.
-          </figcaption>
-        </figure>
-      )}
-          <div class="tablo-kaydir">
-            <table>
-              <thead>
-                <tr>
-                  <th>İl</th>
-                  <th>DSİ bölge müdürlüğü</th>
-                  <th>Su ve kanalizasyon idaresi</th>
-                </tr>
-              </thead>
-              <tbody>
-                {ilSatirlari.map((s) => (
-                  <tr>
-                    <td>{s.ilYolu ? <a href={s.ilYolu}>{s.il}</a> : s.il}</td>
-                    <td>{s.bolge ?? <span class="veri-yok">veri yok</span>}</td>
-                    <td>{s.suIdaresi}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p class="kaynak-notu">
-            İl listesi resmî havza belgesinden derlendi
-            (<a href={havzaIl.kaynak} target="_blank" rel="noopener">kaynak</a>);
-            iller havzaya kısmen girebilir.
-            {havzaIl.not ? ` ${havzaIl.not}.` : ''}
-            Büyükşehir olmayan illerde köy içme suları İl Özel İdaresi / belediye
-            görev alanındadır. Derleme: {ilKurum.derlemeTarihi}.
-          </p>
-        </section>
-      </Katman>
-    )}
 
     <Katman baslik="Kaynak künyesi" ipucu="resmî kaynak bağlantıları · eylem planı" ton="murekkep">
       <dl class="kunye kunye-katman">
@@ -283,9 +350,60 @@ const semalar = yasGeo
   </Fragment>
 ) : (
   <Fragment>
-  <SayfaBasi etiket="Havza" baslik={giris.data.baslik} ozet={giris.data.ozet} tarih={damgaISO ? new Date(damgaISO) : undefined} />
+  <SayfaBasi etiket="Havza" baslik={h1Baslik} ozet={giris.data.ozet} tarih={damgaISO ? new Date(damgaISO) : undefined} />
 
   {havzaOzCevap && <OzCevap metin={havzaOzCevap} />}
+
+  {ilSatirlari.length > 0 && (
+    <section class="il-kurum">
+      <h2>Havzada hangi iller ve yetkili kurumlar var?</h2>
+      {konum && (
+        <figure class="konum">
+          <svg viewBox={`0 0 ${HARITA_EN} ${HARITA_BOY}`} width={HARITA_EN} height={HARITA_BOY}
+               role="img" aria-labelledby={`konum-baslik-${giris.id}`} xmlns="http://www.w3.org/2000/svg">
+            <title id={`konum-baslik-${giris.id}`}>{giris.data.baslik} — kapsadığı {konum.iller.length} il Türkiye haritasında işaretli</title>
+            <path d={ULKE_YOLU} fill="#DFE9F0" stroke="#B9CEDC" stroke-width="0.5" />
+            <path d={konum.yol} fill="#0C5A7C" fill-opacity="0.88" stroke="#08405A" stroke-width="0.6" stroke-linejoin="round" />
+          </svg>
+          <figcaption>
+            Koyu alan bu havzanın kapsadığı {konum.iller.length} ildir; havza sınırı değildir.
+            İller havzalara kısmen girebilir.
+          </figcaption>
+        </figure>
+      )}
+      <div class="tablo-kaydir">
+        <table>
+          <thead>
+            <tr>
+              <th>İl</th>
+              <th>DSİ bölge müdürlüğü</th>
+              <th>Su ve kanalizasyon idaresi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ilSatirlari.map((s) => (
+              <tr>
+                <td>{s.ilYolu ? <a href={s.ilYolu}>{s.il}</a> : s.il}</td>
+                <td>{s.bolge ?? <span class="veri-yok">veri yok</span>}</td>
+                <td>{s.suIdaresi}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="kaynak-notu">
+        İl listesi resmî havza belgesinden derlendi
+        (<a href={havzaIl.kaynak} target="_blank" rel="noopener">kaynak</a>);
+        iller havzaya kısmen girebilir.
+        {havzaIl.not ? ` ${havzaIl.not}.` : ''}
+        Büyükşehir olmayan illerde köy içme suları İl Özel İdaresi / belediye
+        görev alanındadır. Derleme: {ilKurum.derlemeTarihi}.
+        Açık/kapalı havza sınıflaması: havza bazlı tahsis ve kısıt kararları
+        resmî kaynakta kamuya açık ve derli biçimde yayımlanmadığından bu
+        sitede sınıflama verisi yer almaz; doğrulanmamış bilgi yazılmaz.
+      </p>
+    </section>
+  )}
 
 
   <dl class="kunye">
@@ -345,53 +463,6 @@ const semalar = yasGeo
     </section>
   )}
 
-  {ilSatirlari.length > 0 && (
-    <section class="il-kurum">
-      <h2>Havzada hangi iller ve yetkili kurumlar var?</h2>
-      {konum && (
-        <figure class="konum">
-          <svg viewBox={`0 0 ${HARITA_EN} ${HARITA_BOY}`} width={HARITA_EN} height={HARITA_BOY}
-               role="img" aria-labelledby={`konum-baslik-${giris.id}`} xmlns="http://www.w3.org/2000/svg">
-            <title id={`konum-baslik-${giris.id}`}>{giris.data.baslik} — kapsadığı {konum.iller.length} il Türkiye haritasında işaretli</title>
-            <path d={ULKE_YOLU} fill="#DFE9F0" stroke="#B9CEDC" stroke-width="0.5" />
-            <path d={konum.yol} fill="#0C5A7C" fill-opacity="0.88" stroke="#08405A" stroke-width="0.6" stroke-linejoin="round" />
-          </svg>
-          <figcaption>
-            Koyu alan bu havzanın kapsadığı {konum.iller.length} ildir; havza sınırı değildir.
-            İller havzalara kısmen girebilir.
-          </figcaption>
-        </figure>
-      )}
-      <div class="tablo-kaydir">
-        <table>
-          <thead>
-            <tr>
-              <th>İl</th>
-              <th>DSİ bölge müdürlüğü</th>
-              <th>Su ve kanalizasyon idaresi</th>
-            </tr>
-          </thead>
-          <tbody>
-            {ilSatirlari.map((s) => (
-              <tr>
-                <td>{s.ilYolu ? <a href={s.ilYolu}>{s.il}</a> : s.il}</td>
-                <td>{s.bolge ?? <span class="veri-yok">veri yok</span>}</td>
-                <td>{s.suIdaresi}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <p class="kaynak-notu">
-        İl listesi resmî havza belgesinden derlendi
-        (<a href={havzaIl.kaynak} target="_blank" rel="noopener">kaynak</a>);
-        iller havzaya kısmen girebilir.
-        {havzaIl.not ? ` ${havzaIl.not}.` : ''}
-        Büyükşehir olmayan illerde köy içme suları İl Özel İdaresi / belediye
-        görev alanındadır. Derleme: {ilKurum.derlemeTarihi}.
-      </p>
-    </section>
-  )}
   </Fragment>
 )}
 

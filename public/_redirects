@@ -1,3 +1,10 @@
+# WWW → APEX 301 (25.08.2026, havza-talep briefi E3): GSC aynı içeriği iki
+# host'ta ayrı sayıyordu (ör. /havzalar/gediz/ apex 0/50 + www 2/49).
+# Ölçüm: www 200 sunuyordu (yönlendirme YOK), canonical apex'i gösteriyordu;
+# canonical tek başına sinyali birleştirmedi. Host'lu kural Cloudflare Pages
+# _redirects sözleşmesinde desteklenir; md24 beklentisi 301'e güncellendi.
+https://www.suharitasi.com/* https://suharitasi.com/:splat 301
+
 # Cloudflare Pages yönlendirmeleri.
 # /deneyim/ ROTA KAPANIŞI (23.07): 6 sahne akışı ana sayfaya taşındı,
 # sayfa arşive alındı (arsiv/deneyim-rota/deneyim.astro).

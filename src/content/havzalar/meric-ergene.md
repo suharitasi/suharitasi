@@ -13,6 +13,19 @@ kunye:
 
 Meriç-Ergene Havzası, DSİ 2024 resmî istatistiklerine göre **14.486 km²** yağış alanına sahiptir.
 
+## Ergene Havzası ile Meriç-Ergene Havzası aynı yer mi?
+
+Evet — DSİ'nin 25 havzalı resmî düzeninde havzanın adı **Meriç-Ergene
+Havzası**'dır; DSİ'nin Resmî Gazete'de yayımlanan yeraltısuyu işletme
+sahası ilanlarında ise **Ergene Havzası** ve **Meriç Havzası** ayrı ayrı
+anılır. 05.11.2009 tarihli ve 27397 sayılı Resmî Gazete'de yayımlanan
+["Ergene ve Meriç Havzaları Yeraltısuyu İşletme Sahası İlanı"](https://www.resmigazete.gov.tr/ilanlar/eskiilanlar/2009/11/20091105-4.htm),
+iki sahayı 167 sayılı Yeraltısuları Hakkında Kanun'un 3. maddesine göre
+yeraltısuyu işletme sahası olarak tespit etmiş; aynı ilanda **Ergene
+Havzası** toplam işletme rezervi **376,2 hm³/yıl**, Meriç Havzası
+emniyetli işletme rezervi **59 hm³/yıl** olarak belirtilmiştir
+(kaynak: sitenin Resmî Gazete işletme sahası arşivi).
+
 ## Meriç-Ergene Havzası'nın su varlığı ne kadar?
 
 - Yıllık ortalama yüzey suyu potansiyeli **1,62 km³** (DSİ 2024, Tablo 1.2).
