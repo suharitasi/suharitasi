@@ -289,3 +289,160 @@ Araç düzeltmesi (tırnak hatası) md16'nın tarihsel sayımını değiştirir:
 eski 199-207 bandının önemli kısmı sahte nehir bulgusuydu. Deploy
 sonrası canlı --tam'ın ölçtüğü yeni değer taban yapılır (kapsam-taban
 güncellemesi, md18 emsalindeki gibi küçük-iş kaydıyla).
+
+---
+
+## Skill koşumları — hangisi ne dedi (föy zorunluluğu)
+
+| Skill | Durum | Ne dedi / ne yapıldı |
+|---|---|---|
+| geo-schema | koşuldu | Şema envanteri tipe göre çıkarıldı; göl/nehir ŞEMASIZ DEĞİL (BodyOfWater+Geo+FAQ). Önerilerinden uygulanan: Organization `logo`. Bilinçli uygulanmayan: `speakable` (çift WebPage düğümü kirliliği vs beta sinyal; öz-cevap zaten role=doc-abstract), `SearchAction` (arama kutusu yok — uydurma yasak), `sameAs` doldurma (profil yok; C-listesi). |
+| geo-crawlers | koşuldu | robots.txt skill'in azami-görünürlük matrisiyle BİREBİR (Tier-1 5/5 + Claude/Perplexity kullanıcı botları; Bytespider+CCBot gerekçeli kapalı). Değişiklik gerekmedi. |
+| geo-citability | koşuldu | Örneklem ölçümü: cevap-önce tanım kalıbı + yüksek istatistik yoğunluğu (il 5/500k, havza 14/500k) + soru-H2'ler zaten yerleşik; mekanik iyileştirme gereksiz. Rehber H2 soru-oranı artışı içerik kararı → C. |
+| featured-snippet-optimizer | koşuldu | Kendi ön-koşulu: sıralama 1-5 yoksa uygulanmaz. GSC'de sıfır dizin → bugün uygulanamaz; yapı (soru-H2 + 40-60 kelimelik öz-cevap) snippet-uyumlu. Tarama başlayınca yeniden değerlendirilecek. |
+| eeat-audit | koşuldu | Mevcut: yazar kutusu + Person şeması + içtihat/kaynakça. Eksik listesi (YMYL çıtası, UYGULANMADI): görünür güncellik damgası, sabit dateModified, boş sameAs, birinci-elden deneyim anlatısı, dış doğrulama bağı — B7 bölümünde. |
+| site-architecture | koşuldu | Hub-and-spoke + kırıntı + URL düzeni ölçütlere uygun; yetim 0, çift yönlülük tam. Bulgu: /goller/ ve /nehirler/ KATEGORİ HUB'I YOK (342 spoke doğrudan; kırıntıda ara halka doğru şekilde linksiz) → C önerisi. |
+| content-strategy | koşuldu | Pillar yapısı fiilen mevcut (su hukuku rehberleri · il potansiyeli · hidrografya · mevzuat izleme). Arama-talebi verisi ÖLÇÜLEMİYOR (GSC'de sorgu verisi yok) → C2 kalemleri varsayım etiketiyle sınırlı tutuldu. |
+| seo-audit | **KURULU DEĞİL** | Ne proje `.agents/skills/` ne oturum envanterinde (skills-lock.json'da da yok). İşlevi projenin KENDİ ölçerleriyle karşılandı: `arac/seo-audit.mjs` + `arac/geo-audit.mjs` + md16 (bu koşumda araç hatası da bulunup düzeltildi). |
+
+## GSC tarama bütçesi şerhi (föyden, aynen)
+
+GSC: 168 sayfa "keşfedildi — dizine eklenmedi", 1 "tarandı — eklenmedi"
+[VERİ-kullanıcı beyanı; bu ortamdan GSC'ye erişim yok, yeniden
+ölçülemedi]. Teknik engel değil, tarama bütçesi darlığı; sebep yeni
+alan adı + sıfır dış bağlantı. **B bölümü tarama başladığında etkili
+olacak hazırlıktır, tek başına sıralama getirmez.** Tarama bütçesinin
+gerçek anahtarı dış bağlantıdır (C3).
+
+---
+
+## C. Katma değer raporu (UYGULAMA YOK — sıralı öneri listesi, karar yazılmadı)
+
+### C1. Veri kalemleri — kullanım ölçümüyle [VERİ]
+
+| Kalem | Ölçülen kullanım | Hangi soruyu cevaplar (kullanılmayan kısmıyla) |
+|---|---|---|
+| `ilce-morfoloji.json` (948 ilçe) | yalnız /ilce-sorgu/ (istemci-yanı) | "İlçemin yüzey şekli/eğimi kuyu açmaya elverişli mi?" — 948 ilçelik STATİK sayfa üretimi yapılmıyor; ilçe sayfaları doğsa uzun kuyruk sorgu yüzeyi 519→~1.400'e çıkar |
+| GRACE arşivi (`data/arsiv/grace`) | canlı eğilim (havza sayfası bandı) | "X havzası son N yılda ne kadar su kaybetti?" — tarihsel seri sayfalarda GRAFİKSİZ; yıl-yıl anlatı yok |
+| Baraj arşivi (`data/arsiv/baraj`) | yalnız güncel doluluk | "Barajlar geçen yıl bu ay ne durumdaydı?" — mevsimsel karşılaştırma cevaplanmıyor |
+| MTA katalog (64) + akademik künyeler (81 il) | il sayfalarında künye listesi | Kullanılıyor; A fazında 37 ölü bağ onarıldı. Alıntı-başına özet çıkarımı yapılmıyor ("bu ilde hangi etüt ne bulmuş") |
+| 23 kapatma kaydı | /kapatma-kaydi/ sorgusu | Kullanılıyor; il eşlemesi YOK (sayfanın kendi şerhi) — il sayfalarına bağlanamıyor |
+| Göl/nehir seti (247+95) | detay sayfaları + coğrafya ağı | Kullanılıyor; kategori hub'ı yok (site-architecture bulgusu) |
+| DSİ istatistik arşivi (`data/arsiv/dsi-yas`) | dolaylı (YAS verileri) | "Türkiye'de yıllara göre YAS tahsisi nasıl değişti?" — seri anlatısı yok |
+| `isletme-sahalari-yeni.json` | **0 kullanım, kayıt 0** (md18'de yeni dosya) | Atıl/boş — değerlendirme ya da kaldırma kararı gerekiyor |
+
+### C2. Arama talebi
+Ölçülebilen: YOK — GSC'de dizin 0 olduğundan sorgu verisi de yok;
+başka sıralama aracı kurulu değil. [VARSAYIM] etiketiyle, sitenin
+cevaplamadığı muhtemel talep aileleri: "kuyu ruhsatı ne kadar / harç"
+(maliyet verisi sitede yok) · "kuyu ruhsatı cezası itiraz dilekçe
+örneği" (şablon/dilekçe yok — hukuki belge, [SERDAR-HUKUK] kapısı) ·
+"[ilçe] su çıkar mı" (948 ilçe statik sayfası yok, yalnız interaktif
+sorgu) · "baraj doluluk oranları bugün" (var ama tarihçesiz). Bunlar
+ölçümsüz olduğundan sıralamaya girerken düşük güvenle işaretlendi.
+
+### C3. Dış bağlantı (tarama bütçesinin gerçek anahtarı)
+- Mevcut durum: bilinen dış bağlantı **0** [VERİ-kullanıcı beyanı;
+  bağımsız backlink aracıyla doğrulanamadı — araç yok].
+- HAZIR envanter (e-posta ATILMADI, atılmayacak — yalnız durum):
+  `rapor/temas-listesi.md` (28.07; JMO/TMMOB, akademik kurumsal
+  kapılar, veri gazetecisi kanalı §3 — dagitim-durumu.md #5 bunu "en
+  yüksek getirili dış bağlantı kanalı" olarak kaydetmiş) ·
+  `rapor/linkedin-sablonlar.md` · `icerik-taslak/su-kanunu-gunu-paketi.md`
+  (**BEKLEMEDE**, tetiklenmedi — izleyici K1/K4 hatları canlı ve bu tur
+  onarıldı: su-kanunu-taslak-pdf hedefi yeniden ölçülebilir durumda).
+
+### C4. Dönüşüm
+- Bekletilen satış kalemleri: PayTR mağazası 24.08'de kaldırıldı
+  (31×301); hazırlık dosyası `rapor/satis/TEKLIF-KATMANI-HAZIRLIK.md`
+  duruyor — yeniden açma kararı kullanıcıda (AY İLKESİ).
+- Lead-mailto birleşmesi: SIRADAKILER'deki açık kalem A5 ile FİİLEN
+  KAPANDI [VERİ]: `serdar@arslanhukuk.com` src'de 0 isabet (su-hukuku
+  arşive taşındı); canlı yüzeyde tek adres `bilgi@suharitasi.com`
+  (md19: 22 mailto CTA geçerli).
+- Çağrı tutarlılığı: md19 ölçümü yeşil; ana sayfa 4 mailto.
+
+### C5. Sıralı öneri listesi (dayanak · iş büyüklüğü · AY sınıfı · tahmini etki)
+
+1. **GSC'de sitemap yeniden gönder + öncelikli ~20 sayfaya tekil dizin
+   isteği** — dayanak: 168 keşfedildi-eklenmedi [VERİ-kullanıcı];
+   büyüklük: ~30 dk kullanıcı işi; AY: DAĞITIM ✓; etki: taramanın
+   başlaması için en ucuz kaldıraç (B hazırlığı ancak taramayla değer üretir).
+2. **Veri gazetecisi temas hattını çalıştır** (temas-listesi §3'ten
+   1-2 tekil, konuya özel temas; gönderim kullanıcının) — dayanak:
+   dagitim-durumu #5 + dış bağlantı 0; büyüklük: kullanıcı-saatleri;
+   AY: DAĞITIM ✓; etki: tarama bütçesinin gerçek anahtarı.
+3. **Kurum/yazar profilleri (LinkedIn şirket + Google Business +
+   Wikidata) açıp `sameAs` doldurmak** — dayanak: geo-schema/eeat-audit
+   boşluk listesi + site.ts aday sırası; büyüklük: ~2 saat kullanıcı +
+   5 dk kod; AY: DAĞITIM ✓; etki: varlık grafı + E-E-A-T.
+4. **md17 tarayıcısına GET-düşümü + UA esnekliği** — dayanak: bu turda
+   kanıtlanan 3 yanlış-pozitif (DergiPark HEAD/UA 404'ü) + TBMM dersi;
+   büyüklük: küçük (tek fonksiyon + falsifikasyon); AY: DAYANIKLILIK ✓
+   (yanlış alarm gürültüsünü keser); etki: md17 güvenilirliği.
+5. **Görünür güncellik damgası + dateModified süreci** — dayanak:
+   eeat-audit №1; büyüklük: orta (frontmatter alanı + şablon satırı +
+   süreç kuralı); AY: bakım sınırında; etki: YMYL güven sinyali.
+6. **/goller/ + /nehirler/ kategori hub sayfaları** — dayanak:
+   site-architecture bulgusu (342 spoke hub'sız); büyüklük: orta;
+   AY: **YENİ ÖZELLİK → kuyruğa, iki bacak hizalanmadan başlamaz**;
+   etki: gezinme + iç bağ eşitliği.
+7. **Baraj/GRACE arşivinden tarihçe bölümleri** (havza sayfalarına
+   yıl-yıl seri) — dayanak: C1 kullanılmayan seri verisi; büyüklük:
+   orta-büyük; AY: **YENİ ÖZELLİK → kuyruğa**; etki: özgün-veri
+   alıntılanabilirliği (geo-citability "uniqueness" ekseni).
+8. **948 ilçe statik sayfası** — dayanak: C1 morfoloji + C2 varsayımı;
+   büyüklük: büyük; AY: **YENİ ÖZELLİK → kuyruğa**; etki: uzun kuyruk;
+   risk: ince-içerik/tarama bütçesi — dış bağlantı gelmeden ZARARLI
+   olabilir (mevcut 519 sayfa bile taranmıyor).
+9. **11 uzun öz-cevap + rehber H2 soru biçimi + 11 içerik title'ı**
+   — dayanak: B4/B1 kalanları; büyüklük: küçük ama İÇERİK;
+   AY: bakım; etki: düşük-orta; [SERDAR-HUKUK] onayı ister.
+10. **isletme-sahalari-yeni.json kararı** (boş dosya: doldur ya da
+    kaldır) — dayanak: C1 ölçümü + md18 sarı kaydı; büyüklük: küçük;
+    AY: DAYANIKLILIK (veri hijyeni); etki: iç düzen.
+
+### Kullanıcı kararı bekleyenler (özet)
+- C5 №1-3 (GSC + temas + profiller) — hepsi kullanıcı eliyle.
+- 11 içerik title'ı + 11 uzun öz-cevap + rehber H2 soru biçimi
+  ([SERDAR-HUKUK]).
+- E-E-A-T listesi (B7 №1-4).
+- isletme-sahalari-yeni.json'un akıbeti.
+- Satış katmanının yeniden açılıp açılmayacağı (AY İLKESİ kalkınca).
+
+---
+
+## Kapılar · merge · deploy · canlı --tam (kapanış kanıtları) [VERİ]
+
+- **Faz kapıları (izole `--hizli`, worktree):** her fazdan sonra koşuldu;
+  son koşum **TAM YEŞİL (kırmızı 0 · sarı 0 · geçti 11)** — md13 ihlal 0 ·
+  md14 G1-G6 sapma 0 · md21 taban korundu (201=201; Manisa 12→7) ·
+  konsol 0 · 375 taşma 0 · altın örnek 23/23 · build temiz.
+- **Merge:** `geo-seo` → main `94bd91b` (39 dosya; A5 istisnası dışında
+  taban gerilemesi 0).
+- **Deploy teyidi:** canlı `surum.json` = 94bd91b (04:29:25Z'de yayında).
+- **Canlı 301:** `/su-hukuku/` ve `/su-hukuku` → 301 →
+  `/rehberler/ruhsatsiz-kuyu-cezalari/` → 200 (önbellek atlanarak ölçüldü);
+  canlı sitemap 519, su-hukuku isabeti 0.
+- **Canlı `--tam` (taze dist ile): KIRMIZI 0 · SARI 1 · GEÇTİ 21.**
+  - **md17 kırmızısı KAPANDI:** 52/1037 örneklem, **ölü 0** (haftalardır
+    süren SYGM kırmızısıydı). Kalan tek SARI: 18 bağlantı 5xx/zaman-aşımı
+    — RG/mevzuat eksik ara-sertifika ailesi + handle.net 500'leri
+    (kurum tarafı; raporun A1 şüphe sınıflaması).
+  - md16: **bulgu 20** (eski taban 199) → taban gerekçeyle 20'ye yenilendi
+    (KARARLAR §26 Karar 4; kalan 20 = 16 title-uzun + 4 soru-baslik-yok,
+    tamamı içerik/veri kararı).
+  - md18: 13 dosya yeşil (yeni iki dosya tabana alındı).
+  - Lighthouse canlı: ana sayfa **99/93** (önceki 99/87); 14 sayfa hepsi
+    eşik üstü.
+  - Not: ilk --tam koşusu main'deki 4 Ağustos bayat dist'ini taradığından
+    eski kırmızıyı tekrarladı; taze build ile ikinci koşum esas alındı
+    (iki çıktı da kayıtlı).
+- **İzleyici canlı teyidi (A6):** `su-izleme.sh` koşuldu —
+  `su-kanunu-taslak-pdf` **🔴 HTTP 404 → 🟢 tamam**, Last-Modified
+  birebir (Thu, 31 Oct 2019 08:20:54 GMT), sahte "yeni belge" olayı 0
+  (A4 tabanı doğrulandı). Koşum kendi commit'ini attı (b9b3472).
+
+Kapanış: brief'in A ve B bölümleri uygulandı ve kanıtlandı; C yalnız
+rapor. Kayıtlar: KARARLAR §26 · GUNLUK 25.08 · SIRADAKILER (4 kalem
+kapandı + GEO/SEO kapanış bloğu).

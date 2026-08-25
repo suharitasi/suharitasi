@@ -8,6 +8,23 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ GEO/SEO TURU KAPANIŞI (25.08.2026, rapor/geo-seo-katma-deger.md) ═══
+KAPANAN: 37 ölü dış bağlantı (md17 kırmızısının SYGM ailesi dahil) ·
+/su-hukuku/ rota kapanışı (§26) · md21 Manisa borcu · md16'daki sahte
+nehir bulguları (araç tırnak hatası, falsifikasyonlu düzeltme) ·
+SEO bulgusu 303→26, GEO 59→23 · meta/title/öz-cevap şablon düzeltmeleri.
+AÇIK / KULLANICI KARARI BEKLEYEN (ayrıntı raporun C bölümünde, sıralı):
+- [ ] GSC: sitemap yeniden gönder + ~20 öncelikli sayfaya dizin isteği (C5 №1).
+- [ ] Veri gazetecisi teması — temas-listesi §3 (C5 №2; e-posta kullanıcının).
+- [ ] LinkedIn/GBP/Wikidata profilleri → sameAs (C5 №3).
+- [ ] md17 tarayıcısına GET-düşümü + UA esnekliği (C5 №4 — bu turun
+  yanlış-pozitif dersi; küçük iş, falsifikasyonla).
+- [ ] Görünür güncellik damgası + dateModified süreci (C5 №5, E-E-A-T).
+- [ ] 11 içerik title'ı + 11 uzun öz-cevap + rehber H2 soru biçimi —
+  [SERDAR-HUKUK] içerik kararı (C5 №9).
+- [ ] 2 İÜC kitabı künyesi "doğrulanamadı" etiketiyle bekliyor
+  (yayınevi sayfaları 404; yeni adres çıkarsa güncellenir).
+
 4 AĞUSTOS DALGASI KURALLARA UYDURULDU (24.08.2026, kullanıcı kararlı brief;
 KARARLAR §25 · rapor/agustos-uyum.md). KAPANAN: satış sayfaları + PayTR
 kalıntıları (31 × 301 ile) · md13 kırmızısı (araç oklch düzeltmesi
@@ -16,23 +33,23 @@ falsifikasyonlu + emoji CTA kaldırma) · md14 G6 (S1 mobilde 785px'e döndü) �
 sınır ötesi öznitelik yayından düştü, künye+şerh+iç bağ kuruldu) ·
 göl/nehir/ilçe-sorgu denetim setine alındı.
 AÇIK KALAN (bu turda bilinçli dokunulmayan):
-- [ ] /su-hukuku/ sayfasının hukuki içeriği (itiraz süreleri, mahkeme,
-  savunma listeleri) 04.08 dalgasıyla girmişti — [SERDAR-HUKUK] onay
-  kapısından geçmedi; içerik doğrulaması avukat kararı bekliyor.
-  Bu turda yalnız satış yüzeyi ölçüldü (fiyat/ödeme yok, mailto var).
-- [ ] /su-hukuku/ + /ilce-sorgu/ lead-mailto'ları serdar@arslanhukuk.com'a
-  gidiyor; site standardı bilgi@suharitasi.com — adres birleştirme kararı.
+- [x] /su-hukuku/ KAPANDI (25.08, kullanıcı kararı — GEO/SEO briefi A5;
+  KARARLAR §26): sayfa arsiv/su-hukuku-rota/'da, canlıda 301 →
+  /rehberler/ruhsatsiz-kuyu-cezalari/ ölçüldü. Arşivden dönüş ancak
+  [SERDAR-HUKUK] onayıyla.
+- [x] Lead-mailto birleşmesi FİİLEN KAPANDI (25.08): /su-hukuku/ kalkınca
+  canlı yüzeyde tek adres bilgi@suharitasi.com (ölçüldü; serdar@ src'de 0).
 - [ ] /ilce-sorgu/ analiz çıktılarının (akifer türü/derinlik tahmini)
   yöntem şerhi mevcut "TEMSİLÎDİR" uyarısıyla sınırlı — yeterlilik kararı.
 - [ ] md14 görsel taban yenilemesi deploy sonrası ana ağaçta koşulacak
   (bilinçli değişiklik: ana sayfa mobil sırası; --gorsel-taban-yenile).
 - [x] .env PAYTR_* satırları ana ağaçta SİLİNDİ (24.08 kapanışı; 6 satır).
-- [ ] Hidrografya çapraz bağları (.capraz) 44px dokunma hedefinin altında —
-  md21 ölçümü: /kuyu-ruhsati/manisa/ 7→12 (yeni bağlar mevcut kardeş-il
-  nav deseniyle aynı boy, 128×26). Mevcut 3a borcuyla (90 öğe <44px)
-  birlikte çözülmeli; desen değişikliği görsel kimlik → BÜYÜK İŞ.
-- [ ] md18 veri tabanı yenilemesi: ilce-morfoloji.json + isletme-sahalari-yeni.json
-  artık KARARLAR §25 ile kayıtlı — kapsam-taban güncellemesi küçük iş.
+- [x] Hidrografya çapraz bağları KAPANDI (25.08, GEO/SEO B-iv):
+  [il].astro .capraz 44px min-height; Manisa 12→7=taban ölçüldü.
+  3a genel borcu (90 öğe, diğer şablonlar) AÇIK — desen kararı bekliyor.
+- [x] md18 veri tabanı yenilemesi YAPILDI (25.08): iki dosya kapsam-taban'a
+  alındı; isletme-sahalari-yeni.json BOŞ (say=0) — akıbeti kullanıcı kararı
+  (rapor/geo-seo-katma-deger.md C5 №10).
 
 BEKLEYEN İŞLER PAKETİ — MERGE EDİLDİ (29 Tem 2026, ön-onaylı). 16 kalem.
 KAPANANLAR: M1 üç ölü dış bağlantı (3/3 onarıldı, HTTP 200 + İÇERİK

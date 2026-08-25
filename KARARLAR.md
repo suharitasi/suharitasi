@@ -388,6 +388,38 @@ dönük çıkarıldı; o yüzden bazı satırlarda bu işaret vardır.
 
 ---
 
+### 26. GEO/SEO TURU: /su-hukuku/ rota kapanışı · ölü-kaynak onarım deseni · merkezî meta kırpımı
+- **Tarih:** 2026-08-25 (brief: cikti/brief/2026-08-25T03-29-43Z-geo-seo-katma-deger.md; rapor: rapor/geo-seo-katma-deger.md)
+- **Karar 1 — /su-hukuku/ KALDIRILDI (kullanıcı kararı, brief A5):** sayfa
+  `arsiv/su-hukuku-rota/`ya taşındı (silinmedi); 301 hedefi en yakın NÖTR
+  içerik: `/rehberler/ruhsatsiz-kuyu-cezalari/` (hukuki vaat ölçümü 0).
+  Arşivden geri getirilirse [SERDAR-HUKUK] onay kapısından geçmek zorunda
+  (içerik o kapıdan hiç geçmemişti). Canlı kanıt: 301 iki varyantta da
+  ölçüldü, sitemap 520→519 "diğer fark: 0".
+- **Karar 2 — ölü dış kaynak onarım deseni:** ölü ölçülen künye bağı
+  (a) otoriter kaynakla sınıflanır (handle API / tarayıcı-UA GET — HEAD
+  ve nöbetçi-UA 404'ü TEK BAŞINA kanıt DEĞİL; bu turda 3 yanlış-pozitif
+  çıktı), (b) doğrulanmış yeni adres başlık eşleşmesiyle yazılır,
+  (c) bulunamayan `url_olu`/`doi_olu` + `kunye_notu` "kaynak taşındı,
+  yeni adres doğrulanamadı (tarih)" ile KALIR (silinmez). SYGM tüm
+  /SYGM/Belgeler/ eylem-planı/NHYP/HİE ağacını /SYGM/BelgelerArsiv/
+  altına taşıdı (21 künye güncellendi; havza tanıtım ailesi TAŞINMADI).
+- **Karar 3 — meta description tek noktadan:** `Sayfa.astro` 50-160
+  bandına kırpar (cümle→kelime sınırı); şablonlar ham `aciklama` geçmeye
+  devam eder. Sayfa-tekil override gerekirse şablonda kısa metin üretilir.
+- **Karar 4 — ölçüm aracı tırnak düzeltmesi:** `seo-geo-ortak.mjs`
+  metaIcerik/ogEtiket artık açılış tırnağıyla eşleşen kapanışı arar
+  (falsifikasyon testli). ESKİ md16 tabanı (199) bu hatayla ölçülmüştü;
+  yeni taban deploy sonrası canlı --tam değeriyle yazılır.
+- **Reddedilen alternatifler:** (a) speakable şeması — 16 şablon +
+  @graph kirliliği vs beta sinyal, öz-cevap zaten role=doc-abstract;
+  (b) SearchAction — sitede arama kutusu yok, uydurma olurdu; (c) ölü
+  DOI'de linki "yayın (erişilemez)" diye bırakmak — üretim filtresi
+  (potansiyel.js) bağlantısız kaydı zaten düşürüyor, veri katmanında
+  etiketle çözüldü.
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek

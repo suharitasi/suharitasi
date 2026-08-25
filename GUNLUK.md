@@ -1,5 +1,22 @@
 # GUNLUK.md — seans notları
 
+## 25.08.2026 — GEO/SEO temizlik + tam denetim turu (worktree suharitasi-geo)
+Brief BÜYÜK İŞ rejiminden geçti (denetçi: 2 ENGEL yalnız-ekleme ile
+kapatıldı, D1-D4 + amaç özeti raporda). A: 1039 dış link TAM tarandı —
+37 gerçek ölü onarıldı (21 SYGM→BelgelerArsiv, Last-Modified birebir
+kanıtlı; 12 kayıtsız DOI + 2 ölü-hedefli DOI → başlık-eşleşmeli DergiPark;
+2 İÜC kitabı "doğrulanamadı" etiketiyle kaldı), tarayıcının 3 yanlış-pozitifi
+(HEAD/nöbetçi-UA) otoriter handle API + tarayıcı-UA GET ile ayıklandı ve
+geri alındı. /su-hukuku/ rota kapanışı (KARARLAR §26). B: seo-geo-ortak
+tırnak hatası bulundu (94 sahte nehir bulgusu) — falsifikasyonlu düzeltme;
+SEO bulgusu 303→26, GEO 59→23; il öz-cevapları 280 altına veriden indirildi;
+md21 Manisa borcu kapandı (12→7=taban); izole --hizli kapısı TAM YEŞİL.
+DERS: md17'nin HEAD-404'te GET'e düşmemesi + nöbetçi UA'sı kurum sitelerinde
+(TBMM, DergiPark) sahte ölü üretiyor — C-listesi №4. Ölçüm sürprizi:
+"video mobilde iki kez iniyor" iddiası 0-baytlık range-sondası çıktı
+(site kusuru değil); "3,1 MB" yeniden üretilemedi (1,91-1,99 MB ölçüldü).
+Rapor: rapor/geo-seo-katma-deger.md (skill koşumları + C listesi orada).
+
 ## 24.08.2026 — 4 Ağustos dalgasının yakalanışı ve kurallara uydurulması
 Kayıtsız dalga NASIL fark edildi: kullanıcı brief'iyle koşulan SİTE DURUM
 DENETİMİ (rapor/site-durum-kazi.md) — sitemap tip envanteri 279 göl + 131
