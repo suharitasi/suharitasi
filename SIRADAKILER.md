@@ -17,8 +17,10 @@ AÇIK / KULLANICI KARARI BEKLEYEN (ayrıntı raporun C bölümünde, sıralı):
 - [ ] GSC: sitemap yeniden gönder + ~20 öncelikli sayfaya dizin isteği (C5 №1).
 - [ ] Veri gazetecisi teması — temas-listesi §3 (C5 №2; e-posta kullanıcının).
 - [ ] LinkedIn/GBP/Wikidata profilleri → sameAs (C5 №3).
-- [ ] md17 tarayıcısına GET-düşümü + UA esnekliği (C5 №4 — bu turun
-  yanlış-pozitif dersi; küçük iş, falsifikasyonla).
+- [x] md17 GET-düşümü KAPANDI (25.08, küçük iş): başarısız HEAD'de
+  tarayıcı-UA GET; falsifikasyon 2/2 (gerçek ölü KIRMIZI kaldı,
+  DergiPark yanlış-pozitifi SAĞLAM+notlu); 39 onarılan bağlantı ölü 0;
+  süre +35,8 sn/52 örneklem (yalnız --tam'da koşar, --hizli 0).
 - [ ] Görünür güncellik damgası + dateModified süreci (C5 №5, E-E-A-T).
 - [ ] 11 içerik title'ı + 11 uzun öz-cevap + rehber H2 soru biçimi —
   [SERDAR-HUKUK] içerik kararı (C5 №9).

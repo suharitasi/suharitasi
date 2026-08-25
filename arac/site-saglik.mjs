@@ -774,19 +774,24 @@ async function md17_disBaglanti() {
   const hafta = Math.floor((simdiT - new Date(simdiT.getFullYear(), 0, 1)) / 604800000);
   const secilen = K.orneklemSec(linkler, boyut, hafta);
   const r = await K.disLinkDenetle(secilen, linkler, { bekleMs: tamTarama ? 500 : 1000 });
-  const olcum = { toplam: linkler.size, taranan: r.taranan, olu: r.olu, suphe: r.suphe.length, tamTarama };
+  // GET-düşümü notu (25.08 briefi): HEAD'in reddedip GET'in geçirdiği
+  // bağlantılar SAĞLAMDIR ama görünür kalır (yanlış-pozitif dedektörü).
+  const dusum = (r.headReddetti || []).length;
+  const dusumNotu = dusum ? ` · HEAD-reddetti-GET-geçti: ${dusum}` : '';
+  const olcum = { toplam: linkler.size, taranan: r.taranan, olu: r.olu, suphe: r.suphe.length,
+    headReddetti: r.headReddetti || [], tamTarama };
   if (r.olu.length) {
     kaydet('17-dis-baglanti', 'kirmizi',
-      `${r.olu.length} ÖLÜ dış bağlantı (404/410) — ${r.taranan}/${linkler.size} tarandı: ` +
-      r.olu.slice(0, 3).map((x) => `${x.kod} ${x.url.slice(0, 60)}`).join(' · '),
+      `${r.olu.length} ÖLÜ dış bağlantı (404/410, GET düşümü sonrası) — ${r.taranan}/${linkler.size} tarandı: ` +
+      r.olu.slice(0, 3).map((x) => `${x.kod} ${x.url.slice(0, 60)}`).join(' · ') + dusumNotu,
       olcum, ['tam']);
   } else if (r.suphe.length) {
     kaydet('17-dis-baglanti', 'sari',
       `${r.suphe.length} bağlantı yanıt vermedi (zaman aşımı/5xx — dış sunucu geçici olabilir) · ` +
-      `${r.taranan}/${linkler.size} tarandı, ölü 0`, olcum, ['tam']);
+      `${r.taranan}/${linkler.size} tarandı, ölü 0${dusumNotu}`, olcum, ['tam']);
   } else {
     kaydet('17-dis-baglanti', 'gecti',
-      `${r.taranan}/${linkler.size} dış bağlantı örneklemi sağlam (ölü 0)`, olcum, ['tam']);
+      `${r.taranan}/${linkler.size} dış bağlantı örneklemi sağlam (ölü 0)${dusumNotu}`, olcum, ['tam']);
   }
 }
 

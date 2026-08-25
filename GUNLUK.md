@@ -1,5 +1,20 @@
 # GUNLUK.md — seans notları
 
+## 25.08.2026 (2. seans) — md17 GET-düşümü (C5 №4, KÜÇÜK İŞ)
+`disLinkDenetle` artık başarısız HEAD'de (4xx/5xx/zaman aşımı) aynı
+adrese tarayıcı-UA'lı TEK GET atar; geçerse bağlantı SAĞLAM +
+"HEAD reddetti, GET geçti" notlu (md17 mesajında sayaç). Falsifikasyon
+2/2: eski-yol Gediz PDF'i hâlâ KIRMIZI; doi mcd.386171 (HEAD 404 /
+GET 200) artık notlu-sağlam. Sabah onarılan 37+2 bağlantı yeni mantıkla
+ölü 0 — mufbed/bmre DOI'leri düşümle kendiliğinden sağlam çıktı (sabah
+elle bulunan sınıfın otomasyonu). Süre: aynı 52 örneklemde 106,9→142,7 sn
+(+%33 kalem içi; --tam bütçesinde ≈+%8, %50 kapısının altında — düşüm
+--tam'da kaldı; --hizli'de md17 yok, +0). DERS (yanlış-negatif ikizi de
+kayıtlı): 200 dönen adresin BAŞKA yayın çıkabildiği gibi (trdizin vakası),
+404 dönen adres de UA/yöntem artefaktı olabilir — HTTP kodu tek başına
+içerik kanıtı değildir; künye güncellerken başlık/metin eşleşmesi,
+tarayıcı temizlerken otoriter kaynak (handle API / tarayıcı-GET) şart.
+
 ## 25.08.2026 — GEO/SEO temizlik + tam denetim turu (worktree suharitasi-geo)
 Brief BÜYÜK İŞ rejiminden geçti (denetçi: 2 ENGEL yalnız-ekleme ile
 kapatıldı, D1-D4 + amaç özeti raporda). A: 1039 dış link TAM tarandı —

@@ -77,28 +77,48 @@ export function orneklemSec(linkler, boyut, tohum) {
 }
 
 export async function disLinkDenetle(urller, kaynakSayfa, { bekleMs = 1000, zamanAsimi = 15000 } = {}) {
-  const olu = [], suphe = [];
+  const olu = [], suphe = [], headReddetti = [];
+  const NOBETCI_UA = 'suharitasi-baglanti-nobetcisi/1.0 (+https://suharitasi.com)';
+  /* GET-DÜŞÜMÜ (25.08.2026 briefi, C5 №4; KARARLAR §26 Karar 2 dersi):
+     bazı kurum siteleri (DergiPark, TBMM) HEAD'e ve/veya bot UA'sına 404
+     döner — 25.08 taramasında 3 sağlam bağlantı "ölü" görünmüştü
+     (yanlış-pozitif, gerçek ölüyü gölgeliyor). Kural: önce HEAD (nöbetçi
+     UA, mevcut görgüyle). HEAD başarısızsa (4xx/5xx/zaman aşımı) AYNI
+     adrese tarayıcı UA'sıyla TEK GET denenir; GET geçerse bağlantı SAĞLAM
+     sayılır ve "HEAD reddetti, GET geçti" notuyla işaretlenir. Düşüm
+     YALNIZ başarısız HEAD'lerde koşar — her bağlantıda iki istek atılmaz. */
+  const TARAYICI_UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
+  const iste = async (u, method, ua) => {
+    const kontrol = new AbortController();
+    const zaman = setTimeout(() => kontrol.abort(), zamanAsimi);
+    try {
+      const c = await fetch(u, { method, redirect: 'follow', signal: kontrol.signal,
+        headers: { 'user-agent': ua } });
+      // Gövde okunmaz; bağlantı sızıntısı olmasın diye iptal edilir
+      // (sonuç kodunu DEĞİŞTİRMEZ — durum satırı çoktan gelmiştir).
+      try { await c.body?.cancel(); } catch { /* gövdesiz yanıt */ }
+      return { kod: c.status, hata: null };
+    } catch (e) {
+      return { kod: null, hata: e.name === 'AbortError' ? 'zaman aşımı' : e.message };
+    } finally { clearTimeout(zaman); }
+  };
   for (const u of urller) {
-    let kod = null, hata = null;
-    for (const yontem of ['HEAD', 'GET']) {
-      const kontrol = new AbortController();
-      const zaman = setTimeout(() => kontrol.abort(), zamanAsimi);
-      try {
-        const c = await fetch(u, { method: yontem, redirect: 'follow', signal: kontrol.signal,
-          headers: { 'user-agent': 'suharitasi-baglanti-nobetcisi/1.0 (+https://suharitasi.com)' } });
-        kod = c.status;
-        // HEAD desteklenmiyorsa GET'e düş
-        if (yontem === 'HEAD' && [405, 501, 403].includes(kod)) { kod = null; continue; }
-        break;
-      } catch (e) { hata = e.name === 'AbortError' ? 'zaman aşımı' : e.message; }
-      finally { clearTimeout(zaman); }
-      break;
+    let { kod, hata } = await iste(u, 'HEAD', NOBETCI_UA);
+    if (kod === null || kod >= 400) {
+      const headKod = kod, headHata = hata;
+      ({ kod, hata } = await iste(u, 'GET', TARAYICI_UA));
+      if (kod !== null && kod < 400) {
+        headReddetti.push({ url: u, headKod, headHata, getKod: kod,
+          not: 'HEAD reddetti, GET geçti', sayfa: kaynakSayfa.get(u) });
+      }
     }
+    // Sınıflandırma AYNEN: 404/410 KIRMIZI · zaman aşımı/5xx/429 SARI.
+    // (Düşüm geçtiyse kod < 400 olduğundan iki kümeye de düşmez.)
     if (kod === 404 || kod === 410) olu.push({ url: u, kod, sayfa: kaynakSayfa.get(u) });
     else if (kod === null || kod >= 500 || kod === 429) suphe.push({ url: u, kod, hata, sayfa: kaynakSayfa.get(u) });
     await new Promise((r) => setTimeout(r, bekleMs));
   }
-  return { olu, suphe, taranan: urller.length };
+  return { olu, suphe, headReddetti, taranan: urller.length };
 }
 
 // ——————————————————————— M4: VERİ BÜTÜNLÜĞÜ ———————————————————————
