@@ -35,6 +35,26 @@ const sema = [
       name: s.ad,
     })),
   },
+  // Dataset şeması (gsc-mcp turu 25.08.2026, brief 5.3): AI sistemlerinin
+  // veri kaynağını tanıması için. Her alan ARSIV_SETLERI'nin KAYITLI
+  // alanlarından; kurum varlığı uydurulmaz (kaynak metni description'da),
+  // lisans alanı bilinmediği için YAZILMAZ. temporalCoverage yalnız
+  // kapsam alanı yıl aralığıysa basılır.
+  {
+    '@type': 'DataCatalog',
+    name: 'Su Haritası veri arşivi',
+    description: ARSIV_OZ_CEVAP,
+    url: canonical,
+    inLanguage: 'tr-TR',
+    dataset: ARSIV_SETLERI.map((s) => ({
+      '@type': 'Dataset',
+      name: s.ad,
+      description: `${s.sayim}. Kaynak: ${s.kaynak}. ${s.erisim}`,
+      ...(/^\d{4}/.test(s.kapsam) ? { temporalCoverage: s.kapsam } : {}),
+      url: new URL(s.yol, Astro.site).href,
+      isAccessibleForFree: true,
+    })),
+  },
 ];
 ---
 <Sayfa baslik="Veri arşivi" aciklama={ARSIV_OZ_CEVAP} sema={sema}>
