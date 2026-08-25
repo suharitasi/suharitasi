@@ -36,7 +36,9 @@ const SITE = 'https://suharitasi.com';
 const HOST = 'suharitasi.com';
 // Genel uç nokta: buraya yapılan bildirim TÜM katılımcı motorlara paylaşılır
 // (indexnow.org/documentation, okundu 2026-08-25).
-const UC_NOKTA = 'https://api.indexnow.org/indexnow';
+// Env override YALNIZ falsifikasyon içindir (RG hattındaki SU_IZLEME_RG_CA
+// deseninin aynısı): hata yolu gerçek uç noktaya zarar vermeden test edilir.
+const UC_NOKTA = process.env.INDEXNOW_UC_NOKTA || 'https://api.indexnow.org/indexnow';
 // Protokol tek istekte 10.000 URL'ye izin verir; kademeli kural gereği çok
 // altında kalıyoruz. Partiler arası bekleme nezaket içindir (limit dayatılmadı).
 const PARTI = 250;

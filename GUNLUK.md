@@ -1,5 +1,25 @@
 # GUNLUK.md — seans notları
 
+## 25.08.2026 (4. seans) — Otomatik dizin bildirimi: IndexNow canlıda (worktree suharitasi-indeks)
+
+main 6b57769 → fa5fd95 (+kapanış kayıtları). Rapor: rapor/indeks-bildirimi.md;
+KARARLAR §28. Kurulan: arac/indexnow-bildir.mjs (tetik = CANLI sitemap
+farkı + surum.json imzası; anahtar public/'te, SIR DEĞİL) · cron 6×/gün
+:25 · bekçi (d2) iki eşik (koşum >26s, bildirim >96s) · sitemap lastmod
+artık JSON-LD dateModified'dan (build günü damgası SAHTE TAZELİKTİ,
+kalktı; 508/519 tarihli, 11'i dürüstçe boş; loc kümesi diff FARK 0).
+İlk kademeli bildirim: çekirdek 20 (202) → 250+249 (200); 519/519.
+Falsifikasyon 5/5: anahtar-canlıda-yok DUR · geçersiz anahtar 202'de
+kalıyor (senkron red YOK — resmî davranış; host uyuşmazlığı 422 ölçüldü)
+· sahte uç nokta 500 → exit 1 + Telegram msg 4667 + state yazılmadı ·
+ikinci koşum fark=0 · bekçi eski-tarih 2/2 ateşledi, gerçek state yeşil.
+Google Indexing API: resmî kapsam yalnız JobPosting/BroadcastEvent →
+UYGUN DEĞİL ile kapandı (şema uydurulmaz). Bing kaydı + Crawler Hints
+panel işleri → SIRADAKILER kullanıcı adımları. Ders: IndexNow uç noktası
+geçersiz anahtarı ANINDA reddetmez (202 bekletir); "202 aldım" başarı
+kanıtı değildir — kanıt, anahtarın canlı dosyayla birebir eşleşmesi +
+sonraki koşumların 200'e geçmesidir.
+
 ## 25.08.2026 (3. seans) — KALANLAR PAKETİ (tek koşum, madde başına ayrı merge)
 Brief tam rejimden geçti (denetçi: 1 ENGEL yalnız-ekleme ile kapandı, 2 T1
 uyarısı açıklamalı). İKİ KÖK BULGU: (1) rg-nobetci her salı

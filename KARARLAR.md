@@ -455,6 +455,35 @@ dönük çıkarıldı; o yüzden bazı satırlarda bu işaret vardır.
   (200 + canonical apex); beklenen-301'e yazılmaz çünkü www yönlendirmez,
   sunar. Falsifikasyon 2/2 (SAGLIK_WWW_EZME).
 
+### 28. OTOMATİK DİZİN BİLDİRİMİ: IndexNow kuruldu · tetik = sitemap farkı · lastmod veri tarihinden · Google Indexing API uygun değil
+- **Tarih:** 2026-08-25 (rapor/indeks-bildirimi.md)
+- **Karar (4 parça):**
+  1. **IndexNow bildiricisi** `arac/indexnow-bildir.mjs` cron'la koşar
+     (6×/gün, :25). Anahtar `public/{anahtar}.txt` — SIR DEĞİLDİR
+     (protokol gereği herkese açık; .env'e konmaz). Uç nokta
+     `api.indexnow.org` (tüm katılımcı motorlara paylaşır; Google üye
+     değil). Başarısızlık log + Telegram'a çıkar; bekçide iki eşik
+     (koşum >26s, başarılı bildirim >96s).
+  2. **Yayın tetiği = CANLI sitemap farkı** (loc+lastmod), canlı
+     surum.json imzası kayıtla. Deploy hangi aktörden gelirse gelsin
+     yakalanır; bildirim tanım gereği canlıda VAR OLAN sayfa için çıkar.
+  3. **Sitemap lastmod sayfanın JSON-LD dateModified'ından** (o da
+     guncellik.js ile veri kaydından); tarihi belirsiz sayfada lastmod
+     BASILMAZ. Build günü damgası kaldırıldı (sahte tazelikti).
+  4. **State git dışında** (`izleme/state/indexnow-durum.json`,
+     .gitignore): commit'lense her koşum boş deploy tetiklerdi.
+     Kaybolursa betik ilk-koşum moduna döner (tek koşumda ≤20 URL).
+- **Gerekçe:** GSC'de 168 sayfa "keşfedildi — taranmadı"; tarama
+  bütçesi bildirimle desteklenir. Kanıt: 519/519 URL bildirildi,
+  yanıtlar 202→200; falsifikasyon 5/5 (rapor §5, Telegram msg 4667).
+- **Reddedilen alternatifler:** (a) deploy-doğrulama akışına kanca —
+  akış tek değil (4+ cron + elle merge), hepsine dokunmak gerekirdi;
+  (b) Cloudflare Crawler Hints'e yaslanmak — panel işi + hangi URL'nin
+  ne zaman bildirildiği ölçülemez (kanıt disiplinine kapalı; kullanıcı
+  isterse EK olarak açabilir); (c) Google Indexing API — resmî kapsam
+  yalnız JobPosting/BroadcastEvent, bu siteye uygun değil (uydurma şema
+  eklemek yasak).
+
 ---
 
 ## Bu dosyaya kayıt ekleme kuralı

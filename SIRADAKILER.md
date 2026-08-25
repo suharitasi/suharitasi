@@ -8,6 +8,30 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ OTOMATİK DİZİN BİLDİRİMİ KAPANIŞI (25.08.2026, rapor/indeks-bildirimi.md; KARARLAR §28) ═══
+KAPANAN: IndexNow kuruldu — anahtar canlıda, 519/519 URL bildirildi
+(202→200), bildirici cron 6×/gün, tetik = canlı sitemap farkı, bekçide
+2 eşik, falsifikasyon 5/5 (Telegram msg 4667 dahil) · sitemap lastmod
+artık sayfanın dateModified'ından (build günü damgası kalktı; tarihi
+belirsiz 11 sayfada lastmod dürüstçe yok) · Google Indexing API resmî
+kapsam gereği UYGUN DEĞİL ile kapandı (yalnız JobPosting/BroadcastEvent).
+KULLANICI ADIMLARI (panel işleri — ayrıntı rapor §7):
+- [ ] Bing Webmaster Tools kaydı: bing.com/webmasters → "Sign in" →
+  GSC hesabıyla "Import from Google Search Console" (en kısa yol; site
+  GSC'de DNS ile doğrulu). Kayıt yoksa IndexNow bildirimleri Bing
+  panelinde İZLENEMEZ (bildirim yine kabul ediliyor) ve ChatGPT arama
+  katmanı (Bing indeksi) körlemesine kalır.
+- [ ] (İsteğe bağlı) Cloudflare panel → suharitasi.com → Caching →
+  Configuration → "Crawler Hints" anahtarı: Cloudflare'ın kendi IndexNow
+  beslemesi; bizim deterministik yolla çakışmaz, ek sinyaldir.
+- [ ] Bing kaydı yapılınca: panelde IndexNow bölümünden bildirimlerin
+  görünüp görünmediğini kontrol et (kanıt: gönderilen URL sayısı).
+AÇIK / İZLEME:
+- [ ] İlk GERÇEK otomatik bildirim gözlemi: bir sonraki veri deploy'unda
+  (baraj ~15:05 → cron 16:25) log/indexnow.log'da farkın yalnız değişen
+  sayfalar olduğu doğrulanır (beklenti: havza + ana-veri sayfaları,
+  519 değil).
+
 ═══ KALANLAR PAKETİ KAPANIŞI (25.08.2026, rapor/kalanlar-paketi.md) ═══
 KAPANAN: Görünür güncellik damgası C5 №5 (509 sayfa görünür + 508 şema
 dateModified; KARARLAR §27 K3) · veri hattı Telegram uyarı yolu 4 hatta
