@@ -291,7 +291,10 @@ const sema = [
   .durum-listesi li { margin: 0.4rem 0; font-size: 0.94rem; }
 
   .capraz { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0 1.6rem; }
-  .capraz a { font-family: var(--mono); font-size: 0.8rem; color: var(--su-700); border: 1px solid var(--cizgi); padding: 0.4rem 0.7rem; text-decoration: none; }
+  /* B5 (25.08.2026): 44px dokunma hedefi (WCAG 2.5.8; md21 Manisa 7→12
+     borcunun kapanışı). Görsel dil aynı — yalnız dikey dolgu min-height'a
+     bağlandı; yazı/çerçeve/renk değişmedi. */
+  .capraz a { font-family: var(--mono); font-size: 0.8rem; color: var(--su-700); border: 1px solid var(--cizgi); padding: 0.4rem 0.7rem; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
   .capraz a:hover { background: var(--zemin-kart); }
 
   .veri-kunyesi {

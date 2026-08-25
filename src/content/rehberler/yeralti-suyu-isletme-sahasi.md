@@ -19,7 +19,9 @@ sınırları ve karakteristikleri DSİ tarafından tespit edilir; gerekli
 karar alındıktan sonra saha Resmî Gazete'de ve mahalli gazetelerde ilan
 olunur. Tüzüğün 4. maddesi uyarınca belgeli kuyu derinliklerini DSİ
 bölge bölge belirler; yeraltı suyu deposunun korunması gerektirirse bu
-derinlikler sonradan değiştirilebilir.
+derinlikler sonradan değiştirilebilir. Resmî Gazete'de yayımlanmış
+tahsise kapatma ve kısıt ilanlarından derlenen pasajlar bu sitedeki
+[kapatma kaydı sorgusunda](/kapatma-kaydi/) taranabilir.
 
 Tüzüğün 11 ve 12. maddeleri DSİ'nin **sürekli kontrol yetkisini** ve
 emniyetli su miktarının yeniden ayarlanabilmesini düzenler;
