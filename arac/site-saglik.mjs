@@ -282,6 +282,32 @@ async function md3_yonlendirme() {
     { toplam: yap.yonlendirme.length }, ['hizli', 'tam']);
 }
 
+// md24 — www YÜZEYİ (kalanlar paketi 25.08.2026; SIRADAKILER www-522 açık
+// kalemi). www.suharitasi.com 29.07'den beri YÖNLENDİRMEZ, doğrudan sunar
+// (Pages custom domain) — bu yüzden beklenen-301'e DEĞİL kendi kalemine
+// bağlanır. Ölçülen: (a) 200 döner, (b) canonical APEX'i gösterir (mükerrer
+// içerik koruması). Adres TABAN'dan bağımsız SABİTTİR: izole (--kok)
+// koşumda da canlı www yüzeyi ölçülür. SAGLIK_WWW_EZME: falsifikasyon
+// kancası (üretimde ayarlanmaz).
+async function md24_www() {
+  const WWW = process.env.SAGLIK_WWW_EZME || 'https://www.suharitasi.com/';
+  const c = await getir(WWW);
+  if (c.status !== 200) {
+    return kaydet('24-www', 'kirmizi', `www yüzeyi ${c.status} döndü (beklenen 200)`,
+      { url: WWW, kod: c.status }, ['hizli', 'tam']);
+  }
+  const govde = await c.text();
+  const m = govde.match(/<link rel="canonical" href="([^"]+)"/);
+  const canonical = m ? m[1] : null;
+  if (!canonical || !canonical.startsWith('https://suharitasi.com/')) {
+    return kaydet('24-www', 'kirmizi',
+      `www canonical apex'i göstermiyor (${canonical || 'canonical yok'}) — mükerrer içerik riski`,
+      { url: WWW, canonical }, ['hizli', 'tam']);
+  }
+  kaydet('24-www', 'gecti', `www 200 + canonical apex (${canonical})`,
+    { url: WWW, canonical }, ['hizli', 'tam']);
+}
+
 // — Playwright gerektiren kontroller tek tarayıcı oturumunda toplanır —
 async function tarayiciKontrolleri() {
   const pw = (await import(join(KOK, 'node_modules/playwright-core/index.js'))).default;
@@ -1315,6 +1341,7 @@ async function kosu() {
   await korumali('1-sitemap', ['hizli', 'tam'], md1_sitemap);
   await korumali('2-erisim', ['hizli', 'tam'], md2_erisim);
   await korumali('3-yonlendirme', ['hizli', 'tam'], md3_yonlendirme);
+  await korumali('24-www', ['hizli', 'tam'], md24_www);
   await korumali('tarayici', ['hizli', 'tam'], tarayiciKontrolleri);
   await korumali('9-lighthouse', ['tam'], md9_lighthouse);
   // 10-veri-tazeligi KALDIRILDI (B1+B3) — gerekçe md10 bloğundaki notta.
