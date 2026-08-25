@@ -480,8 +480,8 @@ Geri alınabilir tek iz, iki **rutin** koşumun kendi çıktısıdır:
 git -C /home/suha/projeler/suharitasi revert --no-edit 563bf95
 git -C /home/suha/projeler/suharitasi push
 
-# 2) bu rapor + kayıt commit'i (aşağıdaki commit karması işlendikten sonra)
-git -C /home/suha/projeler/suharitasi revert --no-edit <RAPOR-COMMIT>
+# 2) bu rapor + GUNLUK + SIRADAKILER kaydı
+git -C /home/suha/projeler/suharitasi revert --no-edit 3f9e8fa
 git -C /home/suha/projeler/suharitasi push
 
 # 3) yedek: geri alınacak bir şey YOK — 19:32 koşumu gecelik işin
