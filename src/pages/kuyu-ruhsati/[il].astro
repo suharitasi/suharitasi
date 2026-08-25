@@ -59,15 +59,24 @@ const bolgeMetni = p.dsiBolgeleri
   .join(' ve ');
 const cumleler = [];
 if (anaHavza && bolgeMetni) {
-  const havzaAdlari = p.havzalar.map((h) => h.ad).join(', ');
+  // B4 (25.08.2026): 280 sınırı için çok-havzalı illerde ad listesi
+  // kısaltılır ("X Havzası, Y Havzası" → "X ve Y havzaları") ve belge
+  // türleri parantezi öz-cevaptan çıkarıldı (gövdede zaten sayılıyor).
+  const adlar = p.havzalar.map((h) => h.ad.replace(/\s*Havzası\s*$/, ''));
+  const havzaMetni = p.havzalar.length === 1
+    ? `${p.havzalar[0].ad}`
+    : `${adlar.slice(0, -1).join(', ')} ve ${adlar.at(-1)} havzaları`;
   cumleler.push(
-    `${p.il} ili ${havzaAdlari} sınırları içindedir; kuyu ruhsatı (arama, kullanma, ıslah-tadil belgeleri) başvurusunun muhatabı ${bolgeMetni}'dür.`
+    `${p.il} ili ${havzaMetni} sınırları içindedir; kuyu ruhsatı başvurusunun muhatabı ${bolgeMetni}'dür.`
   );
 }
 if (p.suIdaresi) cumleler.push(`İçme suyu ve kanalizasyonda yetkili idare: ${p.suIdaresi}.`);
 const azalanlar = p.havzalar.filter((h) => h.egilim?.yon === 'azalma');
 if (azalanlar.length)
   cumleler.push(`Uydu ölçümüne göre havzada su depolaması son 5 yılda azalma eğilimindedir.`);
+// 280 sınırı (CLAUDE.md içerik ilkesi): aşılıyorsa sondan cümle düşürülür —
+// düşen bilgi sayfa gövdesinde zaten var; öz-cevap YENİ metin üretmez.
+while (cumleler.length > 1 && cumleler.join(' ').length > 280) cumleler.pop();
 const ozCevap = cumleler.join(' ');
 
 const baslik = `Kuyu ruhsatı — ${p.il}`;
