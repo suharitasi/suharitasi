@@ -81,6 +81,12 @@ while (cumleler.length > 1 && cumleler.join(' ').length > 280) cumleler.pop();
 const ozCevap = cumleler.join(' ');
 
 const baslik = `Kuyu ruhsatı — ${p.il}`;
+// GSC bulgusu (gsc-mcp turu, 28g 28.07-24.08): "malatya kuyu" 23 göst /
+// poz 8,3 / 0 tık — ölçülen sorgu dili il-önce ("[il] kuyu"). Yalnız
+// <title> sorgu kalıbına geçer (tarayiciBaslik, marka eksiz — havza
+// deseni); H1 ve og:title değişmez. Kelimeler sayfanın kendi
+// bölümlerinden ("yetkili merci", "başvuru"); en uzun il adıyla 54 kr.
+const tarayiciBaslik = `${p.il} Kuyu Ruhsatı — Yetkili Merci ve Başvuru`;
 const kok = new URL('/', Astro.site).href;
 const canonical = new URL(`/kuyu-ruhsati/${p.slug}/`, Astro.site).href;
 
@@ -107,7 +113,7 @@ const sema = [
   },
 ];
 ---
-<Sayfa baslik={baslik} aciklama={ozCevap} sema={sema}>
+<Sayfa baslik={baslik} tarayiciBaslik={tarayiciBaslik} aciklama={ozCevap} sema={sema}>
   <SayfaBasi etiket="İl rejimi" baslik={baslik} tarih={TARIH.potansiyel ? new Date(TARIH.potansiyel) : undefined} yazarli />
 
   <OzCevap metin={ozCevap} />
