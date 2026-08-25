@@ -1,6 +1,6 @@
 # GUNLUK.md — seans notları
 
-## 25.08.2026 (7. seans) — 25.08 ALARMLARININ TEŞHİSİ (adım 2'de DURDU)
+## 25.08.2026 (7. seans) — 25.08 ALARM TEŞHİSİ + GSC HAFTALIK CRON BAĞI
 
 Rapor: rapor/25-08-alarm-teshisi.md. **ŞERH: adım 0 konum kapısı elle
 geçildi** — oturum /var/www/arslanhukuk.tr'de açılmıştı, kapı kırmızı
@@ -49,9 +49,35 @@ DOĞRULANMADI — bist-* dizinlerine girme yasağı gereği okunmadı; bot adı
 karinedir, kanıt değildir. Cron bağı (adım 3) ve falsifikasyon (adım 4)
 BAŞLATILMADI: 3g yeni işin hata yolunu bu paylaşımlı kanala bağlayacak,
 4b oraya kasıtlı test uyarısı düşürecekti. Proje sınırı kullanıcının
-kararıdır. Salt-okunur hazırlık (3a/3b/3c) yapıldı; rapordaki hazır
-koşum satırının (Pzt 06:25) 3f'in 30 dk kuralını ÇİĞNEDİĞİ ölçüldü
-(06:00 ve 06:40 komşuları).
+kararıdır. DUR kapısında kullanıcıya kanıt sunuldu ve soruldu; KARAR:
+"paylaşımlı kalsın, cron bağını kur". Bunun üzerine adım 3-4 koşuldu.
+
+CRON BAĞI (KARARLAR §31): arac/gsc-haftalik.sh sarmalayıcısı yazıldı
+(set -euo pipefail · yorum dışında 2>/dev/null SIFIR · mutlak yollar ·
+flock -n tek örnek · log 512 KB tavanla döndürülür · başarı ölçütü exit
+kodu DEĞİL çıktı dosyasının varlığı+doluluğu). Satır: `30 10 * * 3`
+(Çar 10:30 UTC = 13:30 TR), kullanıcı suha, root'a dokunulmadı.
+Rapordaki hazır satır (Pzt 06:25) OLDUĞU GİBİ KURULMADI: 06:00'a 25 dk,
+06:40 --tam'a 15 dk — 3f'i çiğniyordu; komut gövdesi rapordan alındı,
+yalnız zamanlama değişti. GÜN ölçümle seçildi: yedi günden yalnız
+ÇARŞAMBA iki pencereyi de tam takvim haftasına (Pzt-Paz) oturtuyor,
+bitiş her zaman bugün-3 (≈2 günlük GSC gecikmesinin bir gün üstünde).
+SAAT: arslan-analytics hourly :00 → 10:00 ve 11:00'e tam 30 dk; 10.
+saatte indexnow yok. 30 dk kuralı dışı tutulanların maliyeti ÖLÇÜLDÜ
+(bellek-log tek `free -m`, muvekkil-saglik 0,06 sn, arslan-monitor
+0,66 sn, sysstat-collect 0,01 sn). ŞERH: apt-daily rastgele gecikmeli.
+ÇIKTI KADERİ (a): depo DIŞINA /home/suha/gsc-cikti — git hiç görmez,
+commit atılmaz; betiğe eklemeli GSC_CIKTI_DIZIN ezmesi kondu, ezme
+yokken eski davranış uçtan uca sınandı ve bit-eşit çıktı.
+
+FALSİFİKASYON 3/3: (4a) satır 2 dk sonrasına kuruldu, çıktı silindi,
+cron kısıtlı PATH'te tetikledi — syslog CRON[1912897] (suha) CMD, çıktı
+üretildi, sonra gerçek zamanlamaya çevrildi ve geçici satırın kalktığı
+ölçüldü · (4b) anahtar yolu kasten bozuldu → exit 1 + Telegram msg 4671
+→ geri alındı, sha256 BİREBİR aynı → yeşil · (4c) iki koşum aynı anda →
+ikincisi flock'a takılıp "ATLANDI" ile exit 0. 1a/1b'de ONARIM
+YAPILMADIĞI için orada boz-ölç-geri al uygulanacak değişiklik yoktu —
+uydurma onarım+uydurma falsifikasyon yazılmadı.
 
 
 ## 25.08.2026 (6. seans) — GSC MCP + SEO/GEO tam optimizasyon (worktree suharitasi-gsc-mcp)

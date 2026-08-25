@@ -1,0 +1,65 @@
+PATH=/usr/local/bin:/usr/bin:/bin
+# Baraj: her gun 18:05 TR (15:05 UTC) — EPIAS verisi 17:00 TR'de nihai.
+# 28.07 KAYNAK TAKVIMI: 15:00 -> 15:05 (bist-screener-intraday 15:00 UTC).
+5 15 * * * nice -n 10 /home/suha/projeler/suharitasi/arac/baraj-gunluk.sh >> /home/suha/projeler/suharitasi/data/arsiv/baraj/log/cron.log 2>&1
+# GRACE: haftalik Pzt. 28.07 KAYNAK TAKVIMI: 06:00 -> 02:40 UTC — 06:00'da
+# bist-health ile ayni dakikaydi VE 40 dk sonra --tam (1917 MB) basliyordu;
+# GRACE suresi olculmedi, 40 dk'yi asarsa cakisirdi. Yeni komsu mesafesi 50 dk.
+40 2 * * 1 nice -n 10 /home/suha/projeler/suharitasi/arac/grace-guncelle.sh >> /home/suha/projeler/suharitasi/data/arsiv/grace/cron.log 2>&1
+# Sağlık bekçisi: her gün 07:00 UTC — pipeline'dan BAĞIMSIZ sessiz-ölüm gözcüsü
+0 7 * * * /home/suha/projeler/suharitasi/saglik-bekcisi.sh >> /home/suha/projeler/suharitasi/log/bekci-cron.log 2>&1
+# Su Kanunu izleme: gunde 2x. 28.07 KAYNAK TAKVIMI: 05:30 -> 05:45 (bist-alerts
+# 05:30 UTC ile ayni dakikaydi), 16:00 -> 16:15 (bist-health 16:00 UTC).
+45 5 * * * nice -n 10 /home/suha/projeler/suharitasi/izleme/su-izleme.sh >> /home/suha/projeler/suharitasi/izleme/log/cron.log 2>&1
+15 16 * * * nice -n 10 /home/suha/projeler/suharitasi/izleme/su-izleme.sh >> /home/suha/projeler/suharitasi/izleme/log/cron.log 2>&1
+# Bellek logu: her 10 dk free -m ölçümü (saglik-bekcisi eşik girdisi)
+*/10 * * * * /home/suha/projeler/suharitasi/arac/bellek-log.sh >> /home/suha/projeler/suharitasi/log/bellek-log-cron.log 2>&1
+# Sürekli site sağlık sistemi: 06:40 + 19:30 UTC (--tam: tüm kontroller +
+# Lighthouse + sınırlı otomatik onarım). ÇAKIŞMA DÜZELTMESİ 2026-07-28
+# (sunucu donma teşhisi): sabah koşumu 07:30 UTC ideydi ve AYNI DAKİKADA
+# bist-flow + bist-katilim systemd timerlari atesliyordu (olculdu:
+# systemd-analyze next elapse 07:30:00 UTC). Ayrica 07:00-15:30 UTC,
+# BIST timerlarinin yogun penceresi. --tam maliyeti olculdu: 1,9 GB / 7,5 dk.
+# Yeni saat 06:40 UTC (09:40 TR) o pencerenin DISINDA; hicbir timer :40
+# dakikasinda ateslemiyor. 19:30 UTC olculerek TEMIZ bulundu, DEGISMEDI
+# (BIST timerlari 18:30 UTC de biter). Bekci 14 saat penceresi korunur:
+# kosumlar arasi 12s50d ve 11s10d.
+40 6 * * * nice -n 10 /usr/bin/node /home/suha/projeler/suharitasi/arac/site-saglik.mjs --tam >> /home/suha/projeler/suharitasi/log/site-saglik-cron.log 2>&1
+30 19 * * * nice -n 10 /usr/bin/node /home/suha/projeler/suharitasi/arac/site-saglik.mjs --tam >> /home/suha/projeler/suharitasi/log/site-saglik-cron.log 2>&1
+# RG isletme sahasi nobetcisi: haftalik Sal 04:20 UTC (kullanici onayi 28.07.2026;
+# kanit: --test kosumu 109 satir ayristirdi, 0 kaynaksiz, 0 yeni)
+20 4 * * 2 nice -n 10 /usr/bin/python3 /home/suha/projeler/suharitasi/arac/rg-nobetci.py --kosum >> /home/suha/projeler/suharitasi/log/rg-nobetci.log 2>&1
+# NHYP yayin nobetcisi: haftalik Car 04:40 UTC (kullanici onayi 28.07.2026;
+# kanit: --test iki kanal da saglik dogruladi, A 12/12, B 10 baglanti)
+40 4 * * 3 nice -n 10 /usr/bin/python3 /home/suha/projeler/suharitasi/arac/nhyp-yayin-nobetci.py --kosum >> /home/suha/projeler/suharitasi/log/nhyp-nobetci.log 2>&1
+# Gecelik yedek (B1.2, 2026-07-28): GitHub'a gitmeyen varliklar + tam depo
+# bundle -> /home/suha/yedek/suharitasi. Saat 02:10 UTC cakisma analiziyle
+# secildi (izleme/kaynak-takvimi.md); en yakin komsu 01:40 ve 03:30.
+# SINIR: ikinci konum AYNI MAKINEDE — makine olumune karsi KORUMAZ.
+10 2 * * * nice -n 15 /home/suha/projeler/suharitasi/arac/yedek-al.sh >> /home/suha/projeler/suharitasi/log/yedek-cron.log 2>&1
+# Aylik TAM dis baglanti taramasi (1039 link) — 29.07.2026 OLCUMU: bu kayit
+# YOKTU; yalniz haftalik %5 orneklem kosuyordu (--tam icinde). Tam tarama
+# ~27 dk surer (17-20 dk link + 7,5 dk kosumun kalani), bu yuzden gunluk
+# --tam butcesine sigmaz ve ayri saatte kosar. 20:10 UTC secildi: 19:30
+# --tam ~19:38'de biter, sonraki komsu 23:30 (bist-tefas) → 3+ saat aciklik
+# (izleme/kaynak-takvimi.md).
+10 20 1 * * nice -n 15 /usr/bin/node /home/suha/projeler/suharitasi/arac/site-saglik.mjs --tam --dis-link-tam >> /home/suha/projeler/suharitasi/log/site-saglik-cron.log 2>&1
+# arslanhukuk.tr saglik bekcisi: her gun 06:00 UTC (09:00 TR). CAKISMA OLCUMU
+# 2026-07-30: cron'da 06:00'da is yok (en yakin komsular 05:45 ve 06:40);
+# systemd timer'larinda da 06:00 yok (bist-scalp 06:30 TR = 03:30 UTC).
+0 6 * * * /usr/bin/python3 /home/suha/saglik/saglik.py >> /home/suha/saglik/kosum.log 2>&1
+# arslanhukuk.tr gozcu: bekcinin KENDISINI izler. 07:00 UTC — bekciden 1 saat
+# sonra. NOT: bu dakikada suharitasi saglik-bekcisi.sh de kosuyor; gozcu yalnız
+# yerel JSON okur (ag yok, ~0.05s), cakisma maliyeti olculebilir degil.
+# ALARM makine ICINDE /home/suha/saglik/ALARM dosyasina yazilir — DISA BILDIRIM YOK.
+0 7 * * * /usr/bin/python3 /home/suha/saglik/gozcu.py >> /home/suha/saglik/gozcu.log 2>&1
+# arslanhukuk.tr gecelik yedek: 03:00 UTC. CAKISMA OLCUMU 2026-07-30: en yakin
+# komsular 02:10 (suharitasi yedek-al.sh) ve 04:20 (rg-nobetci) — 50 dk aciklik.
+# SINIR: yedek AYNI MAKINEDE; dis felakete karsi KORUMAZ (KUYRUK.md acik kalem).
+0 3 * * * /usr/bin/bash /home/suha/yedek/yedek.sh >> /home/suha/yedek/yedek.log 2>&1
+# arslanhukuk.tr gorsel duzen + tarayici bekcisi: 05:00 UTC, saglik bekcisinden
+# 1 saat once. CAKISMA OLCUMU 2026-07-30: 05:00'te is yok (komsular 04:40 ve
+# 05:45). Tarayici acar (~90 sn, 5 sayfa x 2 gorunum + 5 tur basarim).
+# SALT OKUMA — otomatik onarim yok.
+0 5 * * * cd /home/suha/saglik/gorsel && /usr/bin/node bekci.mjs >> /home/suha/saglik/gorsel/kosum.log 2>&1
+25 0,4,8,12,16,20 * * * nice -n 10 /usr/bin/node /home/suha/projeler/suharitasi/arac/indexnow-bildir.mjs >> /home/suha/projeler/suharitasi/log/indexnow-cron.log 2>&1

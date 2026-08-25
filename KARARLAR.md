@@ -545,6 +545,51 @@ dönük çıkarıldı; o yüzden bazı satırlarda bu işaret vardır.
   atar, bulgu yetersiz) · haftalık koşumu cron'a bağlamak (kota/maliyet
   kararı kullanıcının; script hazır, satır raporda).
 
+### 31. GSC HAFTALIK KOŞUMU CRON'A BAĞLANDI · çıktı depo DIŞINA · uyarı kanalı bilinçli olarak PAYLAŞIMLI
+- **Tarih:** 2026-08-25 (rapor/25-08-alarm-teshisi.md; §30'un "cron'a
+  bağlamak" reddini YÜRÜRLÜKTEN KALDIRIR — kullanıcı kararı alındı)
+- **Karar (3 parça):**
+  1. `arac/gsc-haftalik.py` **Çar 10:30 UTC (13:30 TR)** koşar,
+     sarmalayıcı `arac/gsc-haftalik.sh` üzerinden, kullanıcı **suha**
+     (root'a ASLA — anahtar 600/suha). GÜN ölçümle seçildi: betiğin
+     `bugün-9..bugün-3` / `bugün-16..bugün-10` penceresi YALNIZ
+     çarşamba koşumunda iki tarafta da tam takvim haftasına (Pzt-Paz)
+     oturur; bitiş her zaman `bugün-3`, GSC'nin ~2 günlük gecikmesinin
+     bir gün üstünde. SAAT ölçümle seçildi: en yakın komşu
+     `arslan-analytics` (hourly, :00) → 10:00 ve 11:00, ikisi de tam
+     30 dk; 10. saatte indexnow yok.
+  2. **ÇIKTI DEPO DIŞINA** — `/home/suha/gsc-cikti/<bitiş>.md`; git
+     hiç görmez, commit atılmaz. Betiğe eklemeli `GSC_CIKTI_DIZIN`
+     ezmesi kondu; ezme yoksa eski davranış (rapor/gsc-haftalik/)
+     AYNEN korunur. Gerekçe: rapor sitede yayımlanmaz, yalnız teşhis/
+     izleme içindir. "Depo içine yaz, ne yok say ne commit et" tuzağı
+     yapısal olarak doğamaz (18-24.08'de 41 commit'i bu tıkamıştı).
+  3. **UYARI KANALI PAYLAŞIMLI KALIR** — bilinçli kullanıcı kararı.
+     Bot 8549777437 (TraderBOT/@TraderSerdar_BOT) + chat 1490086481
+     ikilisini `/home/suha/araclar/kesif-botu` de kullanıyor
+     (systemd kesif-botu.timer, 08:00 TR); `log/uyari.log` message_id
+     dizisindeki 4659-4661 boşluğu da başka gönderen olduğunu gösterir.
+     Yeni işin hata yolu MEVCUT `arac/uyari-gonder.sh` ile bu kanala
+     bağlandı; yeni bildirim yolu yazılmadı.
+- **Gerekçe:** haftalık koşum §30'da hazır ama cron'suz bırakılmıştı
+  (kota/maliyet kullanıcı kararı). Maliyet ölçüldü: koşum başına 4
+  Search Analytics sorgusu, sınır 1.200 QPM/site — ücretsiz. Kullanıcı
+  25.08'de hem bağlanmasına hem kanalın paylaşımlı kalmasına karar
+  verdi. Falsifikasyon 3/3: cron ortamı (syslog CRON[1912897], kısıtlı
+  PATH, çıktı üretildi) · kimlik hatası (exit 1 + Telegram msg 4671 +
+  bit-eşit geri alma) · flock (ikinci koşum ATLANDI, exit 0).
+- **Reddedilen alternatifler:** rapordaki hazır satırı olduğu gibi
+  kurmak (`25 6 * * 1` — 06:00'a 25 dk, 06:40 `--tam`'a 15 dk; 30 dk
+  kuralını çiğniyordu) · çıktıyı depo içinde tutup commit'lemek (site
+  yayını yok, git geçmişini haftalık teşhis dosyasıyla şişirir) ·
+  çıktıyı depo içinde tutup .gitignore'lamak (kabul edilebilirdi ama
+  (a) daha net: git hiç görmez) · suharitasi'ye ayrı Telegram botu
+  açmak (kullanıcı paylaşımlıyı seçti) · 30 dk kuralını `*/10`
+  bellek-log ve 5 dk'lık monitörlere de uygulamak (imkânsız; maliyet
+  ölçüldü: 0,01-0,66 sn, saniye altı — kural bunlar için anlamsız).
+- **ŞERH:** `apt-daily.timer` rastgele gecikmelidir; hiçbir saat ona
+  karşı garanti edilemez.
+
 ---
 
 ## Bu dosyaya kayıt ekleme kuralı

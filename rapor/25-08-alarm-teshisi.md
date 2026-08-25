@@ -1,8 +1,9 @@
 # 25.08 alarmlarının teşhisi — ölçüm raporu
 
 **Koşum:** 2026-08-25 19:25–20:0x UTC · tek oturum
-**Sonuç:** adım 1 (1a/1b/1c/1d) **KAPANDI** · adım 2 **DUR KAPISI TETİKLENDİ**
-· adım 3-4 (cron bağı + falsifikasyon) **BAŞLATILMADI**
+**Sonuç:** adım 1 (1a/1b/1c/1d) **KAPANDI** · adım 2 **DUR KAPISI TETİKLENDİ →
+kullanıcı kararı alındı ("paylaşımlı kalsın, cron bağını kur")** · adım 3-4
+(cron bağı + falsifikasyon) **TAMAMLANDI**
 
 ---
 
@@ -354,35 +355,41 @@ girmeyi yasakladığı için oradaki betikler okunmadı (aramada
 bu **kanıt değil, karine**. Kesin olan: kanal en az bir başka projeyle
 (`kesif-botu`) paylaşılıyor.
 
-### Sonuç: DURDUM
+### Sonuç: DURULDU, SORULDU, KARAR ALINDI
 
-Brief §2 gereği **kanal değiştirilmedi, hiçbir şey yapılmadı**. Proje
-sınırı kararı kullanıcıya aittir.
+Brief §2 gereği kanal **kendi kararımla değiştirilmedi**; durum kullanıcıya
+kanıtlarıyla bildirildi ve karar soruldu.
+
+**KULLANICI KARARI (25.08.2026): "Paylaşımlı kalsın, cron bağını kur."**
+
+Bunun üzerine adım 3-4 koşuldu ve yeni işin hata yolu **aynı paylaşımlı
+kanala** bağlandı. Kanal ayrımı yapılmadı; bu bilinçli kullanıcı kararıdır.
 
 ---
 
-## Adım 3-4 — BAŞLATILMADI
+## Adım 3 — CRON BAĞI: kuruldu
 
-Adım 3'ün ön şartı olan "1. adımın tüm kalemleri yeşil" **sağlandı**
-(1a/1b/1c/1d kapandı). Ancak adım 2 dur kapısı açık olduğu için cron
-bağı kurulmadı: 3g gereği yeni işin hata yolu **aynı paylaşımlı
-Telegram kanalına** bağlanacaktı, 4b ise o kanala kasıtlı test uyarısı
-düşürecekti. Kullanıcı kararı gelmeden ikisi de yapılmaz.
+### 3a — betiğin yazdığı dosyalar
 
-**Yapılan tek şey salt-okunur hazırlık ölçümüdür — hiçbir şey bağlanmadı:**
-
-**3a — betiğin yazdığı dosyalar** (`arac/gsc-haftalik.py`):
+`arac/gsc-haftalik.py` tek dosya yazar:
 ```
-107: cikti = KOK / "rapor" / "gsc-haftalik" / f"{bu_s.isoformat()}.md"
-108: cikti.parent.mkdir(parents=True, exist_ok=True)
+107: cikti_dizin = Path(os.environ.get("GSC_CIKTI_DIZIN") or (KOK / "rapor" / "gsc-haftalik"))
+108: cikti = cikti_dizin / f"{bu_s.isoformat()}.md"
+109: cikti.parent.mkdir(parents=True, exist_ok=True)
 116: cikti.write_text(...)
 ```
-Tek çıktı: `rapor/gsc-haftalik/<bitiş-tarihi>.md` — **depo içine**.
-Anahtar yalnız `GOOGLE_SEO_SERVICE_ACCOUNT_FILE` ortam değişkeninden
-(satır 36'da yoksa `sys.exit`). Kota: koşum başına 4 sorgu.
+Başka hiçbir yere yazmaz; **commit atmaz**. Anahtar yalnız
+`GOOGLE_SEO_SERVICE_ACCOUNT_FILE`'dan (satır 36'da yoksa `sys.exit`).
+Kota: koşum başına 4 Search Analytics sorgusu.
 
-**3b — mevcut zamanlanmış işler.** `crontab -l` (suha) 17 satır;
-`sudo crontab -l` (root) → `no crontab for root`. Dolu dakikalar (UTC):
+**Yapılan tek kaynak değişikliği (eklemeli):** çıktı dizini
+`GSC_CIKTI_DIZIN` ile ezilebilir hâle getirildi; **ezme yoksa davranış
+aynen eskisi gibi**. Bu, 3e kararının teknik ön şartıdır.
+
+### 3b — mevcut zamanlanmış işler
+
+`crontab -l` (suha) 65 satır · `sudo crontab -l` (root) → **`no crontab
+for root`**. Dolu dakikalar (UTC):
 ```
 02:10 yedek · 02:40 Pzt grace · 03:00 arslanhukuk-yedek · 04:20 Sal rg-nobetci
 04:40 Çar nhyp · 05:00 gorsel-bekci · 05:45 su-izleme · 06:00 arslanhukuk-saglik
@@ -390,24 +397,204 @@ Anahtar yalnız `GOOGLE_SEO_SERVICE_ACCOUNT_FILE` ortam değişkeninden
 16:15 su-izleme · 19:30 site-saglik --tam · 20:10 (ayın 1'i) dis-link-tam
 */10 bellek-log · :25 (0,4,8,12,16,20) indexnow
 ```
+systemd timer'ları (ayrıca ölçüldü): `arslan-analytics` **hourly (:00)** ·
+00:00 logrotate+dpkg · 00:07 sysstat-summary · 00:20 mail-backup ·
+01:06 restic-yedek · 03:00 muvekkil-yedek-db · 03:30 muvekkil-yedek ·
+04:30 imar · 05:00 kesif-botu + muvekkil-sure · 05:30 Pzt muvekkil-kvkk ·
+19:10 systemd-tmpfiles-clean · `apt-daily` (rastgele gecikmeli).
 
-**3c — koşum satırı raporda VAR** (`rapor/gsc-mcp-optimizasyon.md:389`),
-uydurulmadı:
-```
-25 6 * * 1 GOOGLE_SEO_SERVICE_ACCOUNT_FILE=/home/suha/gsc-anahtar.json /home/suha/araclar/google-seo-mcp/venv/bin/python3 /home/suha/projeler/suharitasi/arac/gsc-haftalik.py >> /home/suha/projeler/suharitasi/log/gsc-haftalik.log 2>&1
-```
-**UYARI — bu satır 3f kuralını ÇİĞNİYOR:** Pzt 06:25, `06:00`
-arslanhukuk-saglik'e 25 dk, `06:40` site-saglik `--tam`'a 15 dk
-mesafede. 30 dk kuralı uygulanırsa saat **değişmek zorunda**. Ayrıca
-`*/10` bellek-log her 10 dakikada bir koştuğu için hiçbir dakika ona
-30 dk uzak olamaz; o iş `free -m` okuyan tek satırlık ölçümdür
-(`arac/bellek-log.sh`), çakışma bütçesinde sayılmaması gerekir —
-**bu bir yorumdur, kullanıcı onayına tabidir.**
+### 3c — koşum satırı rapordan alındı (uydurulmadı)
 
-**3e — çıktı kaderi kararı VERİLMEDİ** (adım 3 başlamadığı için).
-Ölçülen girdi: çıktı `rapor/gsc-haftalik/*.md`, yani depo içi; sitede
-yayımlanmıyor, teşhis amaçlı. Kriter (a)'ya işaret ediyor ama karar
-adım 3 açıldığında yazılacak.
+`rapor/gsc-mcp-optimizasyon.md:389` hazır satırı taşıyordu. **Ancak o satır
+3f kuralını çiğniyordu** ve olduğu gibi kurulmadı:
+```
+25 6 * * 1  →  06:00 arslanhukuk-saglik'e 25 dk · 06:40 site-saglik --tam'a 15 dk
+```
+Komut gövdesi (yorumlayıcı, anahtar değişkeni, betik yolu) rapordan aynen
+alındı; yalnız **zamanlama** 3f gereği değiştirildi ve gerekçesi yazıldı.
+
+### 3d — sarmalayıcı: `arac/gsc-haftalik.sh`
+
+| Kural | Uygulama |
+|---|---|
+| `set -euo pipefail` | satır 26 |
+| `2>/dev/null` YASAK | **yorum dışında 0 adet** (ölçüldü: `grep -vE '^\s*#' \| grep -c` → 0) |
+| mutlak yollar | KOK/BETIK/UYARICI/PY/ANAHTAR/CIKTI_DIZIN/LOG/KILIT hepsi mutlak |
+| flock tek örnek | `flock -n` — ikinci koşum beklemez, "ATLANDI" yazıp **exit 0** |
+| log mutlak + boyut sınırı | `/home/suha/projeler/suharitasi/log/gsc-haftalik.log`, 512 KB tavan, aşarsa son yarısı korunur (atomik `mv`) |
+
+Ek: başarı ölçütü **komutun exit kodu değil, çıktı dosyasının varlığı +
+boş olmaması**. Ön kapılar (python/betik/anahtar) koşumdan önce ölçülür.
+
+### 3e — ÇIKTI KADERİ: **(a) depo dışına `/home/suha/gsc-cikti/`**
+
+**Gerekçe:** briefin kriteri — "çıktı sitede yayımlanacaksa (c), yalnız
+teşhisse (a)". Bu rapor siteye basılmaz; `SIRADAKILER`'deki "İZLEME
+(1-4 hafta, haftalık koşumla ölçülür)" kalemlerini beslemek için okunur.
+Dolayısıyla **(a)**. Git ağacı hiç kirlenmez, commit atılmaz —
+18-24.08'de 41 commit'i tıkayan "depo içine yaz, ne yok say ne commit
+et" tuzağı yapısal olarak doğamaz.
+
+Ölçülen teyit: sarmalayıcı koşumundan sonra
+```
+$ git status --porcelain      # (koşum çıktısı için)
+(boş)
+```
+Depoda duran eski test çıktısı (`rapor/gsc-haftalik/2026-08-22.md`,
+commit 51199e7) **olduğu yerde bırakıldı**; ezme yokken betik hâlâ
+oraya yazar — uçtan uca sınandı, üretilen dosya bit-eşit çıktı (git
+farkı 0).
+
+### 3f — zamanlama: **Çar 10:30 UTC (13:30 TR)**, kullanıcı `suha`
+
+**Gün seçimi — ölçümle:** betiğin penceresi `bugün-9..bugün-3` ve
+`bugün-16..bugün-10`. Yedi günün hangisinde iki pencerenin de tam takvim
+haftasına oturduğu hesaplandı:
+
+| koşum günü | BU HAFTA | ÖNCEKİ HAFTA | Pzt-Paz'a oturuyor mu |
+|---|---|---|---|
+| Pzt | 08-15 .. 08-21 | 08-08 .. 08-14 | hayır |
+| Sal | 08-16 .. 08-22 | 08-09 .. 08-15 | hayır |
+| **Çar** | **08-17 .. 08-23** | **08-10 .. 08-16** | **EVET ✔** |
+| Per | 08-18 .. 08-24 | 08-11 .. 08-17 | hayır |
+| Cum | 08-19 .. 08-25 | 08-12 .. 08-18 | hayır |
+| Cmt | 08-20 .. 08-26 | 08-13 .. 08-19 | hayır |
+| Paz | 08-21 .. 08-27 | 08-14 .. 08-20 | hayır |
+
+**Veri gecikmesi gerekçesi:** bitiş tarihi her koşumda `bugün-3`, yani
+GSC'nin ~2 günlük gecikmesinin **bir gün üstünde** — eksik son gün
+riskiyle hafta karşılaştırması bozulmaz.
+
+**Saat seçimi — ölçümle:** en yakın komşu `arslan-analytics`
+(`OnCalendar=hourly`, :00) → 10:00 ve 11:00, **ikisi de tam 30 dk**.
+Cron'da 10:00-11:00 arası boş; indexnow :25'te ama yalnız 0/4/8/12/16/20
+saatlerinde — **10. saatte yok**.
+
+30 dk kuralı dışında tutulanlar ve **ölçülen** maliyetleri (saniye altı,
+kural bu yüzden uygulanamaz ve uygulanması anlamsız):
+```
+bellek-log       */10   tek `free -m`
+muvekkil-saglik  5 dk   son koşum 0,06 sn
+arslan-monitor   5 dk   son koşum 0,66 sn
+sysstat-collect  10 dk  son koşum 0,01 sn
+```
+**ŞERH:** `apt-daily.timer` rastgele gecikmelidir (`RandomizedDelaySec`);
+hiçbir saat ona karşı garanti edilemez.
+
+Kurulan satır (`crontab -l | tail`, kullanıcı **suha**, root'a
+dokunulmadı):
+```
+30 10 * * 3 nice -n 10 /home/suha/projeler/suharitasi/arac/gsc-haftalik.sh >> /home/suha/projeler/suharitasi/log/gsc-haftalik-cron.log 2>&1
+```
+Crontab yedeği: `izleme/crontab-onceki-20260825.txt` (65 satır).
+
+### 3g — hata yolu: MEVCUT betik kullanıldı
+
+Baraj/GRACE/yedek/NHYP uyarılarının kullandığı betik bulundu ve
+**aynısı** kullanıldı, yenisi yazılmadı:
+```
+/home/suha/projeler/suharitasi/arac/uyari-gonder.sh
+```
+Sarmalayıcıdaki çağrı (satır ~48): `"$UYARICI" "GSC haftalık koşumu
+BAŞARISIZ" "$*"`. Gönderim hatası çıkışı değiştirmez (exit 1 kalır),
+ama sessiz de kalmaz (`UYARICI ÇAĞRISI DA BAŞARISIZ` loglanır).
+
+---
+
+## Adım 4 — FALSİFİKASYON: 3/3, ham çıktılar
+
+### 4a — CRON BAĞI (cron ortamı, kısıtlı PATH)
+
+Satır geçici olarak 2 dk sonrasına kuruldu, çıktı dosyası **silindi**
+(cron gerçekten üretecek mi diye), beklendi:
+
+```
+=== 4a SONUÇ · 2026-08-25T20:36:08Z ===
+--- cron log (sarmalayıcının stdout+stderr'i) ---
+GSC HAFTALIK TAMAM · /home/suha/gsc-cikti/2026-08-22.md · 2672 bayt
+--- gsc-haftalik.log ---
+2026-08-25T20:36:01Z gsc-haftalik: başlıyor → /home/suha/gsc-cikti
+2026-08-25T20:36:01Z gsc-haftalik: python çıktısı: yazıldı: /home/suha/gsc-cikti/2026-08-22.md
+2026-08-25T20:36:02Z gsc-haftalik: bitti · /home/suha/gsc-cikti/2026-08-22.md · 2672 bayt
+--- cron gerçekten mi tetikledi (syslog) ---
+2026-08-25T20:36:01.267531+00:00 vps-yeni CRON[1912897]: (suha) CMD (/home/suha/projeler/suharitasi/arac/gsc-haftalik.sh >> /home/suha/projeler/suharitasi/log/gsc-haftalik-cron.log 2>&1)
+```
+Sonra gerçek zamanlamaya (`30 10 * * 3`) çevrildi; geçici satırın
+kalktığı ölçüldü (`crontab -l | grep -c "36 20"` → 0) ve gsc satırının
+**tek** olduğu doğrulandı (`grep -c gsc-haftalik.sh` → 1).
+
+### 4b — KİMLİK HATASI (anahtar yolu kasten bozuldu)
+
+```
+sarmalayıcı sha256 (bozmadan önce): 1c239db181935550c7acbc5009ee22b70c8eab98a64750bcceae83fcd5a5a6f6
+son message_id (bozmadan önce): "message_id":4670
+
+=== ANAHTAR YOLUNU KASTEN BOZUYORUM ===
+27:ANAHTAR="/home/suha/gsc-anahtar-YOK.json"   # KASTEN BOZULDU (4b)
+
+=== KOŞUM (kırmızı beklenir) ===
+GSC HAFTALIK HATASI: GSC servis hesabı anahtarı yok/okunamıyor: /home/suha/gsc-anahtar-YOK.json
+uyarı gönderildi
+exit=1  (0 OLMAMALI)
+```
+
+Telegram'a düştüğünün ham kanıtı (`log/uyari.log`):
+```
+{"ok":true,"result":{"message_id":4671,"from":{"id":8549777437,"is_bot":true,
+"first_name":"TraderBOT","username":"TraderSerdar_BOT"},"chat":{"id":1490086481,
+...},"text":"🔴 suharitasi — GSC haftalık koşumu BAŞARISIZ\n\nGSC servis hesabı
+anahtarı yok/okunamıyor: /home/suha/gsc-anahtar-YOK.json\n\n2026-08-25T20:36:26Z · vps-yeni"}}
+2026-08-25T20:36:26Z uyari: gönderildi: GSC haftalık koşumu BAŞARISIZ
+```
+
+Geri alma ve yeşile dönüş:
+```
+27:ANAHTAR="/home/suha/gsc-anahtar.json"
+sha256 (geri aldıktan sonra): 1c239db181935550c7acbc5009ee22b70c8eab98a64750bcceae83fcd5a5a6f6
+>>> DOSYA BİREBİR ESKİ HÂLİNDE ✔
+
+=== YEŞİLE DÖNDÜ MÜ ===
+GSC HAFTALIK TAMAM · /home/suha/gsc-cikti/2026-08-22.md · 2672 bayt
+exit=0
+```
+
+### 4c — KİLİT (iki koşum aynı anda)
+
+```
+=== 4c: İKİ KOŞUM AYNI ANDA ===
+2026-08-25T20:36:52.955575026Z
+--- A (pid 1913133) exit=0 ---
+GSC HAFTALIK TAMAM · /home/suha/gsc-cikti/2026-08-22.md · 2672 bayt
+--- B (pid 1913134) exit=0 ---
+ATLANDI: başka koşum sürüyor
+
+=== log ===
+2026-08-25T20:36:52Z gsc-haftalik: başlıyor → /home/suha/gsc-cikti
+2026-08-25T20:36:52Z gsc-haftalik: başka bir koşum sürüyor (flock) — bu koşum ATLANDI
+2026-08-25T20:36:53Z gsc-haftalik: python çıktısı: yazıldı: /home/suha/gsc-cikti/2026-08-22.md
+2026-08-25T20:36:53Z gsc-haftalik: bitti · /home/suha/gsc-cikti/2026-08-22.md · 2672 bayt
+```
+İkincisi kilide takıldı, **temiz** çıktı (exit 0 — kota israfı arıza
+değildir), birincisi işini bitirdi.
+
+### 4d (ek) — LOG DÖNDÜRME: iddia sınandı
+
+3d'de "log boyut sınırıyla döndürülür" yazdım; beyanla bırakmadım:
+
+```
+şişirilmiş boyut : 704839 bayt (tavan 524288)
+koşum sonrası    : 262477 bayt
+'log döndürüldü' satırı: VAR ✔
+>>> DÖNDÜRME ÇALIŞTI ✔ (tavanın altına indi)
+```
+Sınama dolgusu sonra temizlendi; log'a ne yapıldığı dürüstçe yazıldı.
+
+### 1a/1b onarımları için falsifikasyon — GEREKMEDİ
+
+Brief "1a ve 1b'de yaptığın her onarım için aynı disiplin" diyor.
+**Bu iki kalemde onarım YAPILMADI** (1a'da kusur yoktu, 1b kaynak
+taraflıydı), dolayısıyla boz-ölç-geri al uygulanacak bir değişiklik de
+yok. Uydurma onarım yapılıp uydurma falsifikasyon yazılmadı.
 
 ---
 
@@ -437,19 +624,21 @@ başarım ölçümü CPU çekişmesine duyarlıdır.
 ### Ayrıştırma: yayılım mı, gerçek gerileme mi
 
 Betik zaten uyarlamalı medyan uyguluyor (`site-saglik.mjs:1125`;
-eşik+12'nin altındaysa 3 atış, medyan). Ham turlar:
+eşik+12'nin altındaysa 3 atış, medyan alınır). Ham turlar:
 
 | Koşum | `/harita/` mobil turlar | medyan | sonuç |
 |---|---|---|---|
 | 13:39 | **[68, 75, 75]** | 75 | geçti |
-| 15:28 | [71, 75, 72] | 72 | geçti |
+| 15:28 (taban) | [71, 75, 72] | 72 | geçti |
 | 19:42 (yedeğimle çakışık) | [69, 68, 68] | 68 | **sarı** |
-| 19:59 (makine boş) | **[75, 75, 75]** | **75** | **geçti** |
+| 19:59 (makine boş) | [75, 75, 75] | 75 | geçti |
+| 20:50 (cron bağından sonra) | [75, 72, 69] | 72 | geçti |
 
-13:39 koşumunda da tek başına bir **68** var — yani 68 bu sayfanın
-doğal yayılımı içinde ve eşik (70) tam bu yayılımın ortasında.
+13:39 koşumunda da tek başına bir **68** var — yani 68 bu sayfanın doğal
+yayılımı içinde ve eşik (70) tam bu yayılımın ortasında. Gerçek bir site
+gerilemesi değil, ölçüm çekişmesi.
 
-### Boş makinede yeniden ölçüm — taban geri geldi
+### İkinci ölçüm (19:59, makine boş) — taban geri geldi
 
 ```
 zaman: 2026-08-25T19:59:32.368Z  genel: SARI  🔴 0  🟡 2  🟢 21
@@ -458,9 +647,22 @@ zaman: 2026-08-25T19:59:32.368Z  genel: SARI  🔴 0  🟡 2  🟢 21
   /harita/ → mobilTurlar [75, 75, 75] · masaustuTurlar [93, 93, 94] · gecti: true
 ```
 
-**TABAN GERİLEMESİ 0.** 15:28 tabanıyla birebir aynı: 🔴0 · 🟡2 · 🟢21;
-iki sarı da bilinen/açıklamalı (24-www panel bekliyor, 17-dis-baglanti
-dış sunucu). Kırmızı **0**.
+### Üçüncü ölçüm (20:38–20:50) — cron bağı ve falsifikasyonlardan SONRA
+
+```
+TABAN (19:59) : SARI 🔴0 🟡2 🟢21
+ŞİMDİ 20:50:36: SARI 🔴0 🟡2 🟢21
+KALEM FARKI   : YOK — taban gerilemesi 0 ✔
+  SARI  24-www        : Cloudflare panel bekleniyor (bilinen)
+  SARI  17-dis-baglanti: 18 bağlantı yanıt vermedi · 52/1037, ölü 0 (dış)
+  /harita/ → mobilTurlar [75, 72, 69] · medyan 72 · gecti: true
+```
+
+Bu koşum sırasında **başka hiçbir ağır iş koşturulmadı** — aşağıdaki
+dersin kendisi uygulandı.
+
+**SONUÇ: TABAN GERİLEMESİ 0.** Kırmızı **0**; iki sarı da bilinen ve
+açıklamalı (24-www panel bekliyor, 17-dis-baglanti dış sunucu).
 
 **Ders (kayda değer):** `--tam` penceresinde (06:40 ve 19:30, ~13 dk)
 ağır CPU/IO işi koşturmak md9'u yanlış-sarı yapabilir. Elle yedek/paket
@@ -470,25 +672,45 @@ koşumları bu iki pencerenin dışında yapılmalı. → SIRADAKILER.
 
 ## GERİ ALMA
 
-Bu koşumda **kalıcı yapılandırma değişikliği yapılmadı**: cron satırı
-eklenmedi, sarmalayıcı yazılmadı, hiçbir betik düzenlenmedi.
-
-Geri alınabilir tek iz, iki **rutin** koşumun kendi çıktısıdır:
+Tek blok — sırayla koşulursa bu seansın TÜM izi silinir.
 
 ```bash
-# 1) su-izleme koşumunun otomatik commit'i (rutin cron işinin aynısı)
-git -C /home/suha/projeler/suharitasi revert --no-edit 563bf95
-git -C /home/suha/projeler/suharitasi push
+# ── 1) CRON SATIRINI SİL ────────────────────────────────────────────
+# BİRİNCİL YOL — bu seansın BAŞINDAKİ crontab'ı birebir geri yükle
+# (izleme/crontab-onceki-20260825.txt, 65 satır; gsc satırı ve yorum
+#  bloğu tek hamlede kalkar, başka hiçbir satır etkilenmez):
+crontab /home/suha/projeler/suharitasi/izleme/crontab-onceki-20260825.txt
+crontab -l | grep -c gsc-haftalik.sh      # 0 dönmeli
+# (Bu arada başka cron değişikliği yapıldıysa yedek onları da geri alır —
+#  o durumda `crontab -e` ile yalnız gsc bloğunu elle silmek daha doğrudur:
+#  '# GSC haftalik analiz' yorum satırından '30 10 * * 3 ...' satırına kadar.)
 
-# 2) bu rapor + GUNLUK + SIRADAKILER kaydı
-git -C /home/suha/projeler/suharitasi revert --no-edit 3f9e8fa
-git -C /home/suha/projeler/suharitasi push
+# ── 2) SARMALAYICIYI SİL ────────────────────────────────────────────
+rm -f /home/suha/projeler/suharitasi/arac/gsc-haftalik.sh
+rm -f /home/suha/projeler/suharitasi/log/gsc-haftalik.log
+rm -f /home/suha/projeler/suharitasi/log/gsc-haftalik-cron.log
 
-# 3) yedek: geri alınacak bir şey YOK — 19:32 koşumu gecelik işin
-#    aynısıdır; bir önceki kuşak zaten /home/suha/yedek/suharitasi/onceki/
-#    altında durur. Geri dönülmek istenirse:
-#    cp /home/suha/yedek/suharitasi/onceki/depo.bundle /home/suha/yedek/suharitasi/guncel/
+# ── 3) DEPO DIŞI ÇIKTI DİZİNİ (istenirse) ───────────────────────────
+rm -rf /home/suha/gsc-cikti
 
-# 4) scratch artefaktları (depo dışı, istenirse):
+# ── 4) COMMIT'LERİ GERİ AL ──────────────────────────────────────────
+# (gsc-haftalik.py'nin GSC_CIKTI_DIZIN ezmesi de bu revert'lerle kalkar)
+cd /home/suha/projeler/suharitasi
+git revert --no-edit <CRON-COMMIT>     # cron bağı + KARARLAR §31 + kayıtlar
+git revert --no-edit 3f9e8fa           # teşhis raporu + GUNLUK + SIRADAKILER
+git revert --no-edit 563bf95           # su-izleme'nin rutin otomatik commit'i
+git push
+
+# ── 5) YEDEK: geri alınacak bir şey YOK ─────────────────────────────
+# 19:32 koşumu gecelik işin aynısıdır; önceki kuşak zaten
+# /home/suha/yedek/suharitasi/onceki/ altında durur. Dönülmek istenirse:
+# cp /home/suha/yedek/suharitasi/onceki/depo.bundle /home/suha/yedek/suharitasi/guncel/
+
+# ── 6) SCRATCH ARTEFAKTLARI (depo dışı) ─────────────────────────────
 rm -rf /tmp/claude-1000/-var-www-arslanhukuk-tr/e8997e68-1f9f-4f62-8f77-e22b9c637926/scratchpad/geri-okuma
+rm -f  /tmp/suharitasi-gsc-haftalik.lock
 ```
+
+**Not:** `izleme/crontab-onceki-20260825.txt` bu seansın BAŞINDAKİ
+crontab'ın birebir kopyasıdır (65 satır) — 1. adımdaki tek komutluk
+geri yükleme yolu odur.

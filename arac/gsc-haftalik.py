@@ -14,8 +14,9 @@ CRON'A BAĞLI DEĞİLDİR — karar kullanıcının (kota + kredi maliyeti).
   dışında hiçbir sır yazılmaz (güvenlik kapısı).
 - GSC verisi ~2 gün gecikmelidir: "bu hafta" = bugün-9 .. bugün-3,
   "önceki hafta" = bugün-16 .. bugün-10.
-- Çıktı: rapor/gsc-haftalik/<bitiş-tarihi>.md (depoya işlemek kullanıcı
-  akışına kalır; script commit atmaz).
+- Çıktı: <GSC_CIKTI_DIZIN>/<bitiş-tarihi>.md; ezme yoksa
+  rapor/gsc-haftalik/. Cron koşumu depo DIŞINA yazar (bkz. sarmalayıcı
+  arac/gsc-haftalik.sh). Script commit ATMAZ.
 - Kota: koşum başına 4 Search Analytics sorgusu (sınır 1.200 QPM/site —
   resmî limit belgesi 25.08.2026 okundu); URL denetimi KULLANILMAZ.
 """
@@ -104,7 +105,14 @@ toplam = {
     "tik": sum(r["clicks"] for r in bu_sayfa), "gost": sum(r["impressions"] for r in bu_sayfa),
     "tik_once": sum(r["clicks"] for r in on_sayfa), "gost_once": sum(r["impressions"] for r in on_sayfa),
 }
-cikti = KOK / "rapor" / "gsc-haftalik" / f"{bu_s.isoformat()}.md"
+# ÇIKTI DİZİNİ (25.08.2026, 7. seans — cron bağı 3e kararı): çıktı sitede
+# YAYIMLANMAZ, yalnız teşhis/izleme içindir → cron koşumu depo DIŞINA yazar
+# (/home/suha/gsc-cikti). Böylece git ağacı hiç kirlenmez; 18-24.08'de 41
+# commit'i tıkayan "depo içine yaz, ne yok say ne commit et" tuzağı doğmaz.
+# Ezme YOKSA davranış AYNEN eskisi gibi (rapor/gsc-haftalik/) — elle koşum
+# ve mevcut test çıktısı etkilenmez.
+cikti_dizin = Path(os.environ.get("GSC_CIKTI_DIZIN") or (KOK / "rapor" / "gsc-haftalik"))
+cikti = cikti_dizin / f"{bu_s.isoformat()}.md"
 cikti.parent.mkdir(parents=True, exist_ok=True)
 satirlar = [
     f"# GSC haftalık değişim — {bu_b} .. {bu_s} (önceki: {on_b} .. {on_s})", "",

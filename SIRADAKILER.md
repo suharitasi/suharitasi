@@ -15,25 +15,21 @@ tekrar koştu) · 1c dört kırmızı + IndexNow 500 + bekçi ikilisi (hepsi
 dünkü falsifikasyon testi, kancalar kodda doğrulandı) · 1d ortak neden
 (tek olay = kasıtlı test dizisi; ağ/kaynak hipotezleri ölçümle elendi).
 Canlı --tam: 🔴0 · 🟡2-açıklamalı · 🟢21, taban gerilemesi 0.
+AYRICA: GSC haftalık koşumu cron'a BAĞLANDI (KARARLAR §31, falsifikasyon 3/3).
 
-KULLANICI KARARI BEKLİYOR — ADIM 2 DUR KAPISI (bu iş burada durdu):
-- [ ] **Telegram kanal sınırı.** Uyarılar bot 8549777437
-  (TraderBOT/@TraderSerdar_BOT) + chat 1490086481 üzerinden gidiyor.
-  Bu ikiliyi /home/suha/araclar/kesif-botu de AYNEN kullanıyor
-  (systemd kesif-botu.timer, 08:00 TR) — kanal PAYLAŞIMLI. Ayrıca
-  log/uyari.log message_id dizisinde 4659-4661 boşluğu var (suharitasi
-  göndermedi). ŞERH: BIST tarafındaki kullanım DOĞRULANMADI (bist-*
-  dizinlerine girme yasağı); bot adı karinedir, kanıt değil.
-  Karar seçenekleri: (a) paylaşımlı kalsın · (b) suharitasi'ye ayrı bot
-  · (c) ayrı chat/kanal. Karar gelmeden cron bağı YAPILMAZ.
-- [ ] **Haftalık GSC cron bağı** (yukarıdaki kararın ardında bekliyor).
-  ÖLÇÜLDÜ: rapor/gsc-mcp-optimizasyon.md:389'daki hazır satır
-  (`25 6 * * 1`) 3f'in "hiçbir işe 30 dk'dan yakın değil" kuralını
-  ÇİĞNİYOR — 06:00 arslanhukuk-saglik'e 25 dk, 06:40 site-saglik
-  --tam'a 15 dk. Saat yeniden seçilmeli. Ayrıca `*/10` bellek-log
-  her 10 dk koştuğu için 30 dk kuralı ona uygulanamaz; tek satırlık
-  `free -m` ölçümü olduğundan çakışma bütçesinde sayılmaması ÖNERİLİR
-  (bu bir öneridir, karar kullanıcının).
+KULLANICI KARARI ALINDI (25.08.2026) — İKİSİ DE KAPANDI:
+- [x] **Telegram kanal sınırı** → KARAR: "paylaşımlı kalsın". Bot
+  8549777437 + chat 1490086481 kesif-botu ile ortak kalır; yeni işin
+  hata yolu da MEVCUT arac/uyari-gonder.sh ile aynı kanala bağlandı.
+  ŞERH KORUNUYOR: BIST tarafındaki kullanım DOĞRULANMADI (bist-*
+  dizinlerine girme yasağı) — ileride kanal ayrımı istenirse bu ölçüm
+  yeniden yapılmalı.
+- [x] **Haftalık GSC cron bağı** → KURULDU: `30 10 * * 3` (Çar 10:30
+  UTC = 13:30 TR), kullanıcı suha, sarmalayıcı arac/gsc-haftalik.sh,
+  çıktı depo DIŞINA (/home/suha/gsc-cikti). Falsifikasyon 3/3
+  (cron ortamı · kimlik hatası msg 4671 · flock). KARARLAR §31.
+  İLK GERÇEK CRON KOŞUMU: 2026-08-26 Çar 10:30 UTC — çıktının
+  /home/suha/gsc-cikti/ altında doğduğu o gün teyit edilmeli.
 
 YENİ AÇILAN KALEMLER (bu seansın ölçümlerinden):
 - [ ] **yedek-al.sh kısmi kayıp kör noktası.** Üç varlıktan biri/ikisi
