@@ -1,5 +1,31 @@
 # GUNLUK.md — seans notları
 
+## 25.08.2026 (5. seans) — Havza sayfaları arama talebine uyduruldu (worktree suharitasi-havza-talep)
+
+main 890dc1a → 55cd794 → 7e3740b (+kapanış kayıtları). Rapor:
+rapor/havza-talep.md; KARARLAR §29. GSC ölçümü (kullanıcı): 146 sorgu /
+~3.900 gösterim / 19 tıklama; "ergene havzası nerede" 2.255/0 →
+/havzalar/meric-ergene/. Hipotez (a)(b)(c) ölçümle kanıtlandı; (d)
+sıralama ölçülmedi (sunucu TR'de değil). 25 sayfada: title "[Ad]
+Nerede? Kapsadığı İller ve Haritası" (≤60 guard) · H1 soru · öz-cevap
+konum cümlesiyle başlıyor (yalnız il-kurum resmî listesi; bölge/yön
+iddiası yok) · iller+konum haritası öz-cevabın altına taşındı · SSS 3
+soru (açık/kapalı KONULMADI — 25/25 tahsis=null) · Meriç-Ergene'ye
+künyeli RG "Ergene Havzası" bölümü (kayıt 36: RG 05.11.2009/27397).
+E4: /havzalar/ bit-eşit (fark yalnız CDN e-posta yeniden yazımı).
+İzole kapı: 11 GEÇTİ, md24 kırmızısı = geçiş penceresi teşhisi.
+HATA + DÜZELTME: _redirects'e host'lu www kuralı yazdım — canlıda
+etkisiz ÖLÇÜLDÜ; resmî belge Pages'in alan-düzeyi yönlendirme
+DESTEKLEMEDİĞİNİ söylüyor (25.08 okundu). Kural kaldırıldı; www 301
+panel Redirect Rule = kullanıcı adımı; md24 üç durumlu (301 yeşil ·
+200+canonical apex SARI · diğer kırmızı; falsifikasyon: .tr 301 yeşil,
+404 kırmızı, canlı sarı). IndexNow: değişen 25 sayfa elle bildirildi
+(13:26Z, HTTP 200) — lastmod veri-tarihli olduğundan İÇERİK
+değişikliğini yakalamıyor; olağan döngü yarınki veri güncellemesinde.
+DERS: "Nihai biçim ölçümle belirlenir" kuralı title'da hayat kurtardı
+(60 bütçesi md16 tabanını korudu); merkezî desc kırpımı yarım sayı
+bırakabiliyor — cümle-bütünlüklü bütçe gerekti.
+
 ## 25.08.2026 (4. seans) — Otomatik dizin bildirimi: IndexNow canlıda (worktree suharitasi-indeks)
 
 main 6b57769 → fa5fd95 (+kapanış kayıtları). Rapor: rapor/indeks-bildirimi.md;

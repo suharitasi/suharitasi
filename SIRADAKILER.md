@@ -8,6 +8,26 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ HAVZA TALEP UYUMU KAPANIŞI (25.08.2026, rapor/havza-talep.md; KARARLAR §29) ═══
+KAPANAN: 25 havza sayfası ölçülen sorgu ailesine uyduruldu (title ≤60
+soru kalıbı · H1 soru · öz-cevap konum cümlesi · iller+konum haritası
+öne · SSS 3 soru) · E4 /havzalar/ bit-eşit korundu · md24 üç durumlu ·
+değişen 25 sayfa IndexNow'a bildirildi (13:26Z, HTTP 200) · uydurma
+denetimi cümle-kaynak tablosuyla raporda.
+KULLANICI ADIMLARI:
+- [ ] **www → apex 301 (Cloudflare Redirect Rule, ~2 dk):** dash.cloudflare.com
+  → suharitasi.com → Rules → Redirect Rules → şablon "Redirect from WWW
+  to Root" → Deploy. (Pages _redirects alan-düzeyi yönlendirme
+  desteklemiyor — ölçüldü + resmî belge; kurulana dek md24 SARI.)
+- [ ] GSC etki ölçümü (1-4 hafta sonra, ~22 Eylül civarı): Ergene
+  ailesi (~2.700 gösterimlik tek sayfa) tıklama/sıralama değişimi.
+KULLANICI KARARI BEKLEYEN:
+- [ ] "Havza ne demek/nedir" tanımı: sitede YOK; teknik/hukuki tanım
+  [SERDAR-HUKUK] içerik kararı ister (rapor §8). Karar gelmeden (f)
+  sorgu ailesi cevapsız.
+- [ ] Açık/kapalı havza sınıflaması için resmî derli kaynak bulunursa
+  veri kaydı olarak eklenmesi ((d) ailesi 4 sorgu; bugün veri yok).
+
 ═══ OTOMATİK DİZİN BİLDİRİMİ KAPANIŞI (25.08.2026, rapor/indeks-bildirimi.md; KARARLAR §28) ═══
 KAPANAN: IndexNow kuruldu — anahtar canlıda, 519/519 URL bildirildi
 (202→200), bildirici cron 6×/gün, tetik = canlı sitemap farkı, bekçide

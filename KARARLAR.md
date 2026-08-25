@@ -484,6 +484,35 @@ dönük çıkarıldı; o yüzden bazı satırlarda bu işaret vardır.
   yalnız JobPosting/BroadcastEvent, bu siteye uygun değil (uydurma şema
   eklemek yasak).
 
+### 29. HAVZA SAYFALARI TALEP UYUMU: sorgu-kalıplı title/H1/öz-cevap · iller önce · md24 üç durumlu (www panel adımı)
+- **Tarih:** 2026-08-25 (rapor/havza-talep.md; GSC verisi kullanıcıdan)
+- **Karar (4 parça):**
+  1. Havza sayfası şablonu ölçülen sorgu ailesine göre: title
+     "[Ad] Nerede? Kapsadığı İller ve Haritası" (≤60 guard, aşım
+     build'i düşürür) · H1 soru biçimi · öz-cevap KONUM CÜMLESİYLE
+     başlar (yalnız il-kurum.json resmî il listesinden; bölge/yön
+     iddiası yazılmaz) · iller+konum haritası öz-cevabın hemen altında.
+  2. SSS şemasına yalnız veriyle cevaplanan sorular girer: nerede ·
+     hangi iller · YAS. "Açık/kapalı havza" sorusu KONULMAZ (25/25
+     tahsis=null ölçüldü); görünür dürüst şerh basılır.
+  3. Meta description havza sayfalarında cümle-bütünlüklü 160
+     bütçesiyle kurulur (merkezî kırpım yarım sayı bırakıyordu).
+  4. **md24 www kalemi üç durumlu** (§27'deki md24 kaydının yerine
+     geçer): www 301→apex = yeşil · 200+canonical apex = SARI ("panel
+     Redirect Rule bekleniyor") · diğer = kırmızı. Sebep: GSC sinyal
+     bölünmesi ölçüldü; Pages _redirects alan-düzeyi yönlendirmeyi
+     DESTEKLEMİYOR (resmî belge 25.08) → 301 ancak panelden kurulur
+     (kullanıcı adımı).
+- **Gerekçe:** GSC 146 sorgu / ~3.900 gösterim / 19 tıklama; en büyük
+  kayıp "ergene havzası nerede" 2.255 gösterim / 0 tıklama →
+  /havzalar/meric-ergene/. Hipotezler (a)(b)(c) ölçümle kanıtlandı;
+  sıralama hipotezi ölçülemez ve karar dayanağı yapılmadı.
+- **Reddedilen alternatifler:** Ergene'ye ayrı sayfa (resmî ad
+  Meriç-Ergene; RG arşivindeki künyeli "Ergene Havzası" bölümüyle
+  çözüldü) · açık/kapalı tahmini yazmak (veri yok) · "havza nedir"
+  tanımı uydurmak (içerik kararı, kullanıcıda) · _redirects host
+  kuralı (denendi, canlıda etkisiz ölçüldü, kaldırıldı).
+
 ---
 
 ## Bu dosyaya kayıt ekleme kuralı
