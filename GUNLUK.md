@@ -1,5 +1,59 @@
 # GUNLUK.md — seans notları
 
+## 25.08.2026 (7. seans) — 25.08 ALARMLARININ TEŞHİSİ (adım 2'de DURDU)
+
+Rapor: rapor/25-08-alarm-teshisi.md. **ŞERH: adım 0 konum kapısı elle
+geçildi** — oturum /var/www/arslanhukuk.tr'de açılmıştı, kapı kırmızı
+verdi, kullanıcı mutlak yollarla çalışmayı açıkça yetkilendirdi;
+arslanhukuk.tr ve bist-* dizinlerine girilmedi.
+
+BULGU: 25.08'in ALARMLARININ ÇOĞU GERÇEK ARIZA DEĞİL. 08:56-08:57
+arasındaki dört kırmızı (baraj 4662 · grace 4663 · nhyp 4664 · yedek
+4665) ile 10:05 IndexNow 500 (4667) ve 10:07 bekçi ikilisi (4668/4669),
+dünkü seansın kendi falsifikasyon testleridir. Kayda güvenilmedi:
+dört kancanın dördü de KODDA tek tek doğrulandı (BARAJ_CEK_KOMUT,
+GRACE_URL_EZME, NHYP_NOBETCI_SYGM_EZME, INDEXNOW_UC_NOKTA). Yedek
+alarmının belirleyici kanıtı: kırmızı koşumun satırı log/yedek.log'da
+YOK — LOG yolu $KOK'a bağlı olduğundan o koşumda YEDEK_KOK ezilmişti.
+1d ORTAK NEDEN: tek olay, ama ağ kesintisi DEĞİL — 08:56:28'de baraj
+deploy hook HTTP 200 aldı, 08:57:07'de nhyp SYGM'den 191076 bayt çekti;
+bellek 6413 MB boştu; alarmlar eşzamanlı değil 11 sn arayla sıralıydı.
+
+GERÇEK OLAN TEK KALEM 16:23'ün 5 hatasıydı ve o da KAYNAK TARAFLI:
+9 × curl(28) zaman aşımı / 0 bayt (TLS/DNS hatası yok, -k kullanılmadı,
+KARARLAR §24 korundu). Bizim taraf üç ölçümle elendi — bellek 6467 MB,
+aynı koşumun ortasında dsi.gov.tr başarıyla çekildi ve dsi,
+suverimliligi ile AYNI IP'de (212.175.143.60). Şu an beşi de 200/~1 sn;
+gerçek koşum tekrarlandı: 480 sn/5 hata → 61 sn/0 hata (563bf95).
+Emsal: izleme/log/hata.log tüm ömürde yalnız 2 ağ olayı (03.08 dsi,
+25.08 bu beşi) — ikisi de kendiliğinden kapandı. ONARIM YAPILMADI.
+
+YEDEK: envanter ile disk BİREBİR uyuşuyor (3/3 varlık yerinde).
+Gerçek yedek üretim hedefine alındı (214 sn, 1162 MB) ve GERİ OKUNDU:
+bundle klonu HEAD=563bf95 (yedekten 6 dk önceki commit), fsck temiz,
+537 commit/10 ref; varlık paketinden çıkarılan tr-atlas-master.png
+sha256'sı diskle birebir; manifest OK.
+
+SAĞLIK: 19:30 cron koşumu bir kalem geriletti (9-lighthouse /harita/
+mobil 72→68). NEDEN BENDİM — yedek koşumum (19:32-19:36) --tam
+penceresiyle çakıştı. Boş makinede yeniden ölçüm: /harita/ mobil
+[75,75,75] → GEÇTİ; 19:59 koşumu 🔴0 🟡2 🟢21 = 15:28 tabanıyla birebir.
+TABAN GERİLEMESİ 0.
+
+DURDURULDU (adım 2): Telegram kanalı PAYLAŞIMLI. Bot 8549777437
+(TraderBOT/@TraderSerdar_BOT) + chat 1490086481 ikilisini
+/home/suha/araclar/kesif-botu (systemd kesif-botu.timer, 08:00 TR)
+AYNEN kullanıyor; ayrıca uyari.log'da message_id dizisinde 4659-4661
+boşluğu var (o üç mesajı suharitasi göndermedi). BIST tarafı
+DOĞRULANMADI — bist-* dizinlerine girme yasağı gereği okunmadı; bot adı
+karinedir, kanıt değildir. Cron bağı (adım 3) ve falsifikasyon (adım 4)
+BAŞLATILMADI: 3g yeni işin hata yolunu bu paylaşımlı kanala bağlayacak,
+4b oraya kasıtlı test uyarısı düşürecekti. Proje sınırı kullanıcının
+kararıdır. Salt-okunur hazırlık (3a/3b/3c) yapıldı; rapordaki hazır
+koşum satırının (Pzt 06:25) 3f'in 30 dk kuralını ÇİĞNEDİĞİ ölçüldü
+(06:00 ve 06:40 komşuları).
+
+
 ## 25.08.2026 (6. seans) — GSC MCP + SEO/GEO tam optimizasyon (worktree suharitasi-gsc-mcp)
 
 main 23f35ac → 0e626ff (merge; canlı 7f13d60 baraj commit'iyle). Rapor:
