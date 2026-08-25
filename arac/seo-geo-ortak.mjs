@@ -39,16 +39,24 @@ export function metaIcerik(html, adAdi) {
   const re = new RegExp('<meta[^>]+name=["\']' + adAdi + '["\'][^>]*>', 'i');
   const tag = html.match(re);
   if (!tag) return null;
-  const c = tag[0].match(/content=["']([\s\S]*?)["']/i);
-  return c ? c[1].trim() : '';
+  // ARAÇ HATASI DÜZELTMESİ (25.08.2026, GEO/SEO briefi): eski desen İLK
+  // tırnak türünde kesiyordu — "Havzası'ndan" içindeki kesme işareti değeri
+  // kırpıp 94 nehir sayfasında sahte "meta-desc-uzunluk" üretti (gerçek 95,
+  // ölçülen 26). Doğrusu: açılış tırnağıyla aynı karakterde kapan (geri başvuru).
+  const c = tag[0].match(/content=(["'])([\s\S]*?)\1/i);
+  return c ? c[2].trim() : '';
 }
 
 export function ogEtiket(html, ozellik) {
   const re = new RegExp('<meta[^>]+property=["\']og:' + ozellik + '["\'][^>]*>', 'i');
   const tag = html.match(re);
   if (!tag) return null;
-  const c = tag[0].match(/content=["']([\s\S]*?)["']/i);
-  return c ? c[1].trim() : '';
+  // ARAÇ HATASI DÜZELTMESİ (25.08.2026, GEO/SEO briefi): eski desen İLK
+  // tırnak türünde kesiyordu — "Havzası'ndan" içindeki kesme işareti değeri
+  // kırpıp 94 nehir sayfasında sahte "meta-desc-uzunluk" üretti (gerçek 95,
+  // ölçülen 26). Doğrusu: açılış tırnağıyla aynı karakterde kapan (geri başvuru).
+  const c = tag[0].match(/content=(["'])([\s\S]*?)\1/i);
+  return c ? c[2].trim() : '';
 }
 
 export function h1ler(html) {

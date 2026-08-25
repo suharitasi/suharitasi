@@ -99,7 +99,9 @@ const sema = [
   },
 ];
 ---
-<Sayfa baslik={`${p.ad}: su hukukunda durumunuz`} aciklama={ozCevap} sema={sema}>
+{/* B1 (25.08): <title> 60 sınırı — tam kalıp sığmıyorsa yalnız sektör adı
+    kullanılır (veriden türetme; 37/42 sayfa 60'ı aşıyordu). H1 değişmez. */}
+<Sayfa baslik={`${p.ad}: su hukukunda durumunuz`.length <= 46 ? `${p.ad}: su hukukunda durumunuz` : p.ad} aciklama={ozCevap} sema={sema}>
   <SayfaBasi etiket="Sektör sonucu" baslik={`${p.ad}: su hukukunda durumunuz`} />
 
   <OzCevap metin={ozCevap} />
