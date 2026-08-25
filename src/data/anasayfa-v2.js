@@ -113,7 +113,9 @@ export const SUREC = [
 //   erişilebilir.
 export const VERI_ROTALARI = [
   { ad: 'Su Nerede Çıkar?', yol: '/ilce-sorgu/' },
-  { ad: 'Su Hukuku & Cezalar', yol: '/su-hukuku/' },
+  // '/su-hukuku/' kalemi 25.08.2026'da kaldırıldı (rota kapanışı,
+  // arsiv/su-hukuku-rota/NOT.md) — yerine rehber kümesi.
+  { ad: 'Su Hukuku Rehberleri', yol: '/rehberler/' },
   { ad: 'Canlı Harita & Katmanlar', yol: '/' },
   { ad: 'Havza & Veri Analizleri', yol: '/havza-riski/' },
   { ad: 'İletişim / Uzman Görüşü', yol: '/#iletisim' },

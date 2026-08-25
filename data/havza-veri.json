@@ -14,7 +14,8 @@
     "eylemPlanlari": {
       "ad": "SYGM Havza Koruma Eylem Planları",
       "url": "https://www.tarimorman.gov.tr/SYGM/Sayfalar/Detay.aspx?SayfaId=6",
-      "dogrulamaTarihi": "2026-07-14"
+      "dogrulamaTarihi": "2026-08-25",
+      "not": "SYGM /SYGM/Belgeler/ ağacını /SYGM/BelgelerArsiv/Belgeler/ altına taşıdı; bu dosyadaki 21 PDF adresi 25.08.2026'da tek tek HEAD ile doğrulandı (200 + application/pdf)."
     }
   },
   "havzalar": [
@@ -28,7 +29,7 @@
       "yasIsletmeRezervi_hm3": 498.2,
       "yasYili": 2024,
       "eylemPlani": null,
-      "nehirHavzasiYonetimPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/NHYP%20DEN%C4%B0Z/MER%C4%B0%C3%87-ERGENE%20NEH%C4%B0R%20HAVZASI%20Y%C3%96NET%C4%B0M%20PLANI.pdf",
+      "nehirHavzasiYonetimPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/NHYP%20DEN%C4%B0Z/MER%C4%B0%C3%87-ERGENE%20NEH%C4%B0R%20HAVZASI%20Y%C3%96NET%C4%B0M%20PLANI.pdf",
       "tahsis": null
     },
     {
@@ -40,7 +41,7 @@
       "yasBeslenimi_hm3": 241.7,
       "yasIsletmeRezervi_hm3": 210.7,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Marmara_Havzasi.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Marmara_Havzasi.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -53,7 +54,7 @@
       "yasBeslenimi_hm3": 780.4,
       "yasIsletmeRezervi_hm3": 585.9,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Susurluk-Havzasi.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Susurluk-Havzasi.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -66,7 +67,7 @@
       "yasBeslenimi_hm3": 289.4,
       "yasIsletmeRezervi_hm3": 212.9,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Kuzey_Ege_Havzasi.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Kuzey_Ege_Havzasi.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -79,7 +80,7 @@
       "yasBeslenimi_hm3": 1155.9,
       "yasIsletmeRezervi_hm3": 866.9,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Gediz_web.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Gediz_web.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -92,7 +93,7 @@
       "yasBeslenimi_hm3": 179.2,
       "yasIsletmeRezervi_hm3": 179.2,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Kucuk_Menderes_Havzasi.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Kucuk_Menderes_Havzasi.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -105,7 +106,7 @@
       "yasBeslenimi_hm3": 1045.4,
       "yasIsletmeRezervi_hm3": 761.5,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/B.Menderes_Havzas%C4%B1.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/B.Menderes_Havzas%C4%B1.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -118,7 +119,7 @@
       "yasBeslenimi_hm3": 473.2,
       "yasIsletmeRezervi_hm3": 316.7,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Bati_Akdeniz_web.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Bati_Akdeniz_web.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -131,7 +132,7 @@
       "yasBeslenimi_hm3": 1164.7,
       "yasIsletmeRezervi_hm3": 576.3,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Antalya_web.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Antalya_web.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -144,7 +145,7 @@
       "yasBeslenimi_hm3": 106.4,
       "yasIsletmeRezervi_hm3": 89.5,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Burdur_Havzas%C4%B1.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Burdur_Havzas%C4%B1.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -157,7 +158,7 @@
       "yasBeslenimi_hm3": 345.4,
       "yasIsletmeRezervi_hm3": 345.4,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Akarcay_web.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Akarcay_web.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -170,7 +171,7 @@
       "yasBeslenimi_hm3": 2197.1,
       "yasIsletmeRezervi_hm3": 1545.2,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Sakarya_web.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Sakarya_web.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -183,7 +184,7 @@
       "yasBeslenimi_hm3": 641.2,
       "yasIsletmeRezervi_hm3": 607.6,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Bat%C4%B1%20Karadeniz_web_rev3.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Bat%C4%B1%20Karadeniz_web_rev3.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -196,7 +197,7 @@
       "yasBeslenimi_hm3": 907.2,
       "yasIsletmeRezervi_hm3": 872.8,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Ye%C5%9Fil%C4%B1rmak%20Havzas%C4%B1.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Ye%C5%9Fil%C4%B1rmak%20Havzas%C4%B1.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -209,7 +210,7 @@
       "yasBeslenimi_hm3": 2003.1,
       "yasIsletmeRezervi_hm3": 1762.9,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/K%C4%B1z%C4%B1l%C4%B1rmak_Havzas%C4%B1.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/K%C4%B1z%C4%B1l%C4%B1rmak_Havzas%C4%B1.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -222,7 +223,7 @@
       "yasBeslenimi_hm3": 2597,
       "yasIsletmeRezervi_hm3": 2023,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Konya_Kapali_Havzasi.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Konya_Kapali_Havzasi.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -235,7 +236,7 @@
       "yasBeslenimi_hm3": 96.5,
       "yasIsletmeRezervi_hm3": 70.5,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Dogu_Akdeniz_web.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Dogu_Akdeniz_web.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -248,7 +249,7 @@
       "yasBeslenimi_hm3": 838.8,
       "yasIsletmeRezervi_hm3": 749.9,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Seyhan_Havzasi.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Seyhan_Havzasi.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -274,7 +275,7 @@
       "yasBeslenimi_hm3": 985.3,
       "yasIsletmeRezervi_hm3": 533.5,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Ceyhan_Havzas%C4%B1.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Ceyhan_Havzas%C4%B1.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -300,7 +301,7 @@
       "yasBeslenimi_hm3": 490.9,
       "yasIsletmeRezervi_hm3": 490.9,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Dogu_Karadeniz_web.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Dogu_Karadeniz_web.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     },
@@ -339,7 +340,7 @@
       "yasBeslenimi_hm3": 179.2,
       "yasIsletmeRezervi_hm3": 148.2,
       "yasYili": 2024,
-      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Van_Golu_web.pdf",
+      "eylemPlani": "https://www.tarimorman.gov.tr/SYGM/BelgelerArsiv/Belgeler/havza%20koruma%20eylem%20planlar%C4%B1/Van_Golu_web.pdf",
       "nehirHavzasiYonetimPlani": null,
       "tahsis": null
     }
