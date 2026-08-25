@@ -23,17 +23,28 @@ function sitemapOlustur() {
               const html = await readFile(yol, 'utf8');
               if (/name=["']robots["'][^>]*noindex/i.test(html)) continue;
               const gorece = relative(kok, dizin).split('\\').join('/');
-              urller.push(gorece === '' ? `${SITE}/` : `${SITE}/${gorece}/`);
+              // lastmod SAYFANIN KENDİ beyanından: JSON-LD dateModified alanı
+              // guncellik.js üzerinden veri kaydı tarihini taşır (uydurma
+              // yasağı: build günü basılmaz; tarihi belirsiz sayfada lastmod
+              // hiç yazılmaz — indeks-bildirimi briefi Faz 3, 2026-08-25).
+              const tarihler = [...html.matchAll(/"dateModified"\s*:\s*"(\d{4}-\d{2}-\d{2})/g)]
+                .map((m) => m[1]).sort();
+              urller.push({
+                loc: gorece === '' ? `${SITE}/` : `${SITE}/${gorece}/`,
+                lastmod: tarihler.at(-1) ?? null,
+              });
             }
           }
         }
         await tara(kok);
-        urller.sort();
-        const bugun = new Date().toISOString().slice(0, 10);
+        // Eski davranışla birebir aynı sıra (kod-birimi sırası; locale değil).
+        urller.sort((a, b) => (a.loc < b.loc ? -1 : a.loc > b.loc ? 1 : 0));
         const xml = `<?xml version="1.0" encoding="UTF-8"?>\n` +
           `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
           urller.map((u) =>
-            `  <url>\n    <loc>${u}</loc>\n    <lastmod>${bugun}</lastmod>\n  </url>`
+            `  <url>\n    <loc>${u.loc}</loc>\n` +
+            (u.lastmod ? `    <lastmod>${u.lastmod}</lastmod>\n` : '') +
+            `  </url>`
           ).join('\n') +
           `\n</urlset>\n`;
         await writeFile(join(kok, 'sitemap.xml'), xml, 'utf8');

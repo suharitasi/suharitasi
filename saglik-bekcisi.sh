@@ -107,6 +107,39 @@ print(n[0].get('ilkKosumBeklenen') or '' if n else '')
 nobetci_bak "rg-nobetci"   "izleme/state/rg-nobetci-durum.json"  336
 nobetci_bak "nhyp-nobetci" "izleme/state/nhyp-yayin-durum.json"  840
 
+# (d2) IndexNow bildirim tazeliği (indeks-bildirimi briefi, 2026-08-25).
+# İki ayrı soru: (1) betik KOŞUYOR mu — cron 6×/gün, 26 saat koşum yoksa cron
+# ölmüş demektir (eşik commit/baraj kalemleriyle aynı mantık); (2) BİLDİRİM
+# çıkıyor mu — baraj verisi her gün güncellenip havza sayfalarının lastmod'unu
+# oynattığı için normalde her gün en az bir bildirim doğar; 96 saat (4 gün)
+# bildirimsizlik ya sitemap üretiminin ya fark hesabının bozulduğunu gösterir
+# (baraj kaynağının kendi kesintisi zaten ayrı kalemde yakalanıyor; eşik bu
+# yüzden 24s değil 96s — yanlış alarm üretme ilkesi). Env INDEXNOW_DURUM ile
+# test kopyası verilebilir (falsifikasyon gerçek state'e dokunmadan koşar).
+INDX="${INDEXNOW_DURUM:-$KOK/izleme/state/indexnow-durum.json}"
+if [ -f "$INDX" ]; then
+  INDX_OKU() { python3 -c "
+import json,datetime,sys
+d=json.load(open('$INDX'))
+t=d.get('$1')
+if not t: print(-1); sys.exit()
+dt=datetime.datetime.fromisoformat(t.replace('Z','+00:00'))
+print(int((datetime.datetime.now(datetime.timezone.utc)-dt).total_seconds()//3600))
+" 2>>"$LOGP" || echo -2; }
+  KOSUM_YAS=$(INDX_OKU sonKosum)
+  BILDIRIM_YAS=$(INDX_OKU sonBasariliBildirim)
+  if [ "$KOSUM_YAS" -lt 0 ]; then
+    ekle "indexnow state okunamadı/sonKosum boş ($INDX)"
+  elif [ "$KOSUM_YAS" -gt 26 ]; then
+    ekle "indexnow bildiricisi ${KOSUM_YAS} saattir koşmamış (>26s) — cron durmuş olabilir"
+  fi
+  if [ "$BILDIRIM_YAS" -ge 0 ] && [ "$BILDIRIM_YAS" -gt 96 ]; then
+    ekle "indexnow son başarılı bildirim ${BILDIRIM_YAS} saat önce (>96s) — sitemap farkı ya da gönderim bozulmuş olabilir"
+  fi
+else
+  ekle "indexnow state dosyası YOK ($INDX) — bildirici hiç koşmamış ya da state silinmiş"
+fi
+
 # (e) bellek eşiği (bellek-log.txt; her 10 dk). PENCERE-tabanlı: tek ölçüm ASLA
 #     alarm üretmez. Eşik: SON 6 ÖLÇÜMÜN TAMAMINDA swap used > 2048MB VEYA
 #     SON 3 ÖLÇÜMÜN TAMAMINDA available < 500MB. Pencere dolmamışsa (soğuk
