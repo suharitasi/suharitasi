@@ -5,7 +5,7 @@ tarih: 2026-07-14
 guncelleme: 2026-07-25
 kume: uyusmazlik
 ozCevap: "DSİ'nin belge başvurusunu reddi veya mevcut belgeyi iptali idari işlemdir ve iptal davasına konu olur. Danıştay içtihadında işlemin sebebi somut kurulmalıdır: mevcut belgeye dayalı statü yok sayılamaz, işlemi yetkili idare tesis etmeli, teknik değerlendirme yapılmalıdır (167 s.K. m.13 ve m.18)."
-ilgili: [kuyu-ruhsati, ruhsatsiz-kuyu-cezalari, su-tahsisi-oncelik-sirasi]
+ilgili: [kuyu-ruhsati, ruhsatsiz-kuyu-cezalari, su-tahsisi-oncelik-sirasi, kuyu-tasima]
 ---
 
 DSİ'nin belge başvurusunu reddetmesi veya mevcut belgeyi iptal etmesi
