@@ -29,6 +29,18 @@ interface Props {
 }
 
 const { baslik, aciklama, sema = [], heroSlot, robots } = Astro.props;
+
+// GEO/SEO B1 (25.08.2026): meta description 50-160 bandına merkezî kırpım.
+// Metin sayfanın kendi aciklama'sından türetilir (yeni metin ÜRETİLMEZ);
+// 160'ı aşan değer önce cümle sınırında (≥100. karakterden sonraki son
+// ". "), olmazsa kelime sınırında kesilir. Ölçüm: 244 sayfa 160 üstüydü.
+const metaAciklama = (() => {
+  const a = (aciklama || '').trim();
+  if (a.length <= 160) return a;
+  const kes = a.lastIndexOf('. ', 159);
+  if (kes >= 100) return a.slice(0, kes + 1);
+  return a.slice(0, 157).replace(/\s+\S*$/u, '') + '…';
+})();
 const yol = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname
   : Astro.url.pathname + '/';
@@ -86,6 +98,9 @@ const kurum = {
   description:
     "Türkiye'nin su verisi, havzaları ve su mevzuatını tek haritada birleştiren bağımsız bilgi portalı.",
   email: EPOSTA,
+  // B3 (25.08.2026, geo-schema): logo — mevcut gerçek varlık favicon.svg
+  // (yeni görsel üretilmedi; ayrı logo dosyası doğarsa burası güncellenir).
+  logo: `${kok}favicon.svg`,
   founder: { '@id': `${kok}#yazar` },
   knowsAbout: ['Su hukuku', 'Yeraltı suyu ruhsatı', 'Su tahsisi', 'Su havzaları', 'İdari yargı'],
   // sameAs YALNIZ dolu olduğunda yazılır (B4.3): boş dizi yayımlamak
@@ -143,11 +158,11 @@ const jsonLd = JSON.stringify({
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{baslik} — Su Haritası</title>
-<meta name="description" content={aciklama} />
+<meta name="description" content={metaAciklama} />
 {robots && <meta name="robots" content={robots} />}
 <link rel="canonical" href={canonical} />
 <meta property="og:title" content={`${baslik} — Su Haritası`} />
-<meta property="og:description" content={aciklama} />
+<meta property="og:description" content={metaAciklama} />
 <meta property="og:url" content={canonical} />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content={SITE_ADI} />

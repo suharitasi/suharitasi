@@ -77,4 +77,107 @@ dosyaları (SIRADAKILER'de kayıtlı).
 
 ---
 
-*(A, B, C bölümleri koşum ilerledikçe doldurulacak.)*
+## A. Temizlik ve kaynak onarımı — YAPILDI
+
+### A1. Envanter [VERİ]
+Tam dış-link taraması: **1039 benzersiz `<a href>` dış bağlantısı**
+(taze worktree build'i, `disLinkleriTopla` + konak-sıralı tam koşum,
+400 ms görgü; ham sonuç `cikti/`e değil oturum çalışma dizinine yazıldı,
+özet burada). Sonuç: **801 sağlam · 40 tarayıcı-ölü (404) · 198 şüphe**.
+
+40 "ölü"nün otoriter yeniden sınıflaması (handle API + tarayıcı-UA GET):
+| Sınıf | Adet | Ayrıntı |
+|---|---|---|
+| Gerçek ölü — SYGM | 21 | 20 havza koruma eylem planı + Meriç-Ergene NHYP; kaynak: `data/havza-veri.json` + `src/content/havzalar/*.md` (21'i de her iki yerde) |
+| Gerçek ölü — kayıtsız DOI | 12 | handle `responseCode:100` (hiç kayıtlı değil; OpenAlex kalıntısı): mcd.00426/24288/52670 · huyuamd.37951/58427/82329 · sdufbed.69661/70687 · gefd.77285 · tjf.80186 · jffiu.60849 (+52670'in handle.net url'ü 500) |
+| Gerçek ölü — hedefi ölü DOI | 4 | mta.376765 (→ dergipark ttt/376765 404) · makufebed.206616 · 10.5152/0010 · 10.5152/1100 (ikisi squarespace PDF 404'üne çözülüyor) |
+| **Tarayıcı yanlış-pozitifi** | 3 | mcd.386171 · bmre.74700 · mufbed.79713 — nöbetçi UA + HEAD ile 404, tarayıcı UA + GET ile **200 ve başlık birebir**. Değişiklik geri alındı. |
+
+Şüphe (198) sınıflaması [VERİ]: resmigazete ×141 + mevzuat ×22 →
+**eksik ara-sertifika zinciri** (kurum sunucusu; `-k` ile 200 +
+application/pdf ölçüldü — ziyaretçi tarayıcıları AIA ile açıyor, RG
+arızasının ikizi, bizim onaracağımız şey değil) · hdl.handle.net ×18
+(örneklemde bir kısmı kalıcı 500 — C listesine izleme önerisi) ·
+avesis ×8 (tekrar ölçümde 200, geçici) · doi 5xx ×9.
+
+### A2-A3. Yeni adresler — hepsi İÇERİK KONTROLLÜ [VERİ]
+- **SYGM 21 PDF**: kalıp `/SYGM/Belgeler/…` → `/SYGM/BelgelerArsiv/Belgeler/…`
+  (kalıbı SYGM'nin kendi Detay sayfası verdi, SayfaId=6). 21/21 yeni adres
+  HEAD ile **200 + application/pdf**. `data/havza-veri.json` (21 URL +
+  künye `dogrulamaTarihi` 2026-08-25 + not) ve `src/content/havzalar/*.md`
+  (21 URL) güncellendi. NOT: `/SYGM/Belgeler/havza tanıtım …` ailesi
+  TAŞINMADI (200 ölçüldü) — il-kurum.json'a dokunulmadı.
+- **Su Kanunu Taslağı (izleyici hedefi)**: yeni adres aynı kalıpta;
+  içerik kanıtı **birebir**: yeni adresin `Last-Modified: Thu, 31 Oct
+  2019 08:20:54 GMT` = `izleme/state/su-kanunu-taslak-pdf.lastmod`
+  değeriyle aynı (aynı belge). `izleme/hedefler.conf` güncellendi.
+- **12 kayıtsız DOI**: künyenin kendi DergiPark sayfası canlı + başlık
+  kapsaması 1.0 ölçüldü → `doi` → `doi_olu` taşındı (silinmedi),
+  `kunye_notu` eklendi; bağ artık doğrulanmış DergiPark sayfasına.
+- **mta.376765**: Türkçe basım (MTA Dergisi) hiçbir adreste
+  doğrulanamadı; aynı çalışmanın İngilizce basımı bulundu ve doğrulandı
+  (`bulletinofmre/376767`, citation_title birebir; DOI
+  10.19111/bulletinofmre.376767 canlı çözülüyor) — künyeye notla yazıldı.
+- **makufebed.206616**: DergiPark sayfası bulundu, citation_title birebir.
+- **2 İÜC kitabı** (Peyzaj Sulama Tasarımı · Şehir ve Bölge Planlama):
+  DOI'ler kayıtlı ama squarespace 404'üne çözülüyor; yayınevi sayfaları
+  da 404 (Playwright ile JS'li ölçüldü). **"Kaynak taşındı, yeni adres
+  doğrulanamadı (2026-08-25)"** etiketiyle veri kaydında duruyor
+  (`url_olu` + `kunye_notu`); sayfa üretim filtresi (`potansiyel.js:98`,
+  bağlantısız kaydı zaten dışlar) gereği bu iki künye il sayfalarının
+  "akademik yayınlar" listesinden kendiliğinden düştü — veri SİLİNMEDİ.
+
+### A4. İzleyici tabanı [VERİ]
+State değeri yeni adresin Last-Modified'ıyla birebir aynı olduğundan
+URL değişimi sahte "yeni belge" olayı üretemez; ayrıca taban dosyasına
+dokunulmadı. İzleyicinin kendisi Firefox UA kullandığından TBMM
+hedefleri onda sağlıklı (nöbetçi-UA 404'leri yanlış alarmdı, ölçüldü).
+
+### A5. /su-hukuku/ kaldırma — YAPILDI [VERİ]
+- `src/pages/su-hukuku.astro` → `arsiv/su-hukuku-rota/` (kopya değil
+  taşıma; içerik olduğu gibi duruyor + NOT.md).
+- 301 hedefi: `/rehberler/ruhsatsiz-kuyu-cezalari/` — en yakın nötr
+  içerik: aynı konu (kuyu cezaları) salt mevzuat anlatımı; hukuki vaat
+  ölçümü 0 ("avukat/dava aç/itiraz ed" isabeti 0). `_redirects` +
+  `izleme/beklenen-301.json` (md3 canlı kanıtını kalıcılaştırır).
+- Gelen iç bağlar ÖLÇÜLDÜ: 1046 bağ, 3 kaynak: menü kalemi
+  (`anasayfa-v2.js` VERI_ROTALARI → `/rehberler/` kalemiyle değiştirildi,
+  menü geometrisi korundu) · ana sayfa CTA kartı (hedef `/rehberler/`,
+  metin hedef sayfanın kendi meta-description'ından) · ilce-sorgu bağı
+  (kaldırıldı; JS `setT` güncelleyicisi de).
+- Kanıt: yerel dist-sun (CSP+_redirects) ölçümü `/su-hukuku/` → **301 →
+  /rehberler/ruhsatsiz-kuyu-cezalari/ → 200** · dist'te kalan iç bağ **0** ·
+  sitemap diff **tek satır** (`/su-hukuku/` düştü), **diğer fark: 0** ·
+  llms.txt 520→519, tek düşen aynı sayfa. CANLI 301 kanıtı deploy
+  sonrası bölümde.
+
+### A6. Kanıt paketi ve B tabanı
+- A sonrası sayfa: **sitemap 519 URL** (build 522 sayfa = 519 + /404/ +
+  noindex 2 pilot). B'nin tabanı budur.
+- Yeni dist dış-link kümesi: 1037 benzersiz; **gerçek-ölü kümeden kalan 0**
+  (ölçüldü, aile aile grep + küme kesişimi).
+- md17/izleyici canlı teyidi deploy sonrası koşulacak (kapı bölümü).
+- Tarayıcı yanlış-pozitif dersi (karar maddesi C'de): md17 HEAD-404'te
+  GET'e düşmüyor ve nöbetçi UA'sı DergiPark/TBMM'de 404 yiyebiliyor.
+
+---
+
+## B0. Kaynak ve faz kapısı [VERİ — hepsi bu koşumda ölçüldü]
+
+| Ölçüm | Değer |
+|---|---|
+| A sonrası sayfa | sitemap **519** URL (build 522 = 519 + /404/ + 2 noindex pilot) |
+| Build | 10,7 sn duvar / ~16 sn CPU |
+| seo-audit + geo-audit (523 sayfa) | ~5 sn |
+| İzole faz kapısı (`--hizli --kok <worktree> --taban yerel dist-sun`) | **75 sn**, bellek tavan altı (boş 6441 MB) |
+| `--tam` (kayıtlı ölçüm, kaynak yorumu) | 452 sn / 1917 MB |
+
+Sonuç: iş tek oturumda sığar; **fazlar = ayrı commit'ler** (her biri
+kendi içinde merge edilebilir), her faz sonunda izole `--hizli` kapısı +
+seo/geo denetçileri; kapanışta merge → deploy teyidi → canlı `--tam`.
+Zaman aşımı riski yok (en pahalı adım 75 sn'lik kapı).
+
+Faz kapısı TABAN koşusu (A sonrası, düzeltme öncesi): kırmızı 0 ·
+sarı 1 (md21 Manisa 7→12 — bilinen borç, B-iv'te kapanacak) · geçti 10 ·
+md14 G1-G6 sapma YOK (menü kalemi değişimi tabanı kırmadı) · yeni
+su-hukuku 301'leri dahil 6/6 yönlendirme yerelde çalışıyor.
