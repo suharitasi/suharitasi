@@ -2,6 +2,7 @@
 baslik: "Burdur Havzası"
 ozet: "Yağış alanı 6.294 km²; yıllık ortalama yüzey suyu potansiyeli 0,22 km³ (DSİ 2024)."
 tarih: 2026-07-14
+guncelleme: 2026-08-25
 no: "10"
 kunye:
   yillikPotansiyel: '0,22 km³/yıl — <a href="https://www.dsi.gov.tr/Sayfa/Detay/2186" target="_blank" rel="noopener">DSİ 2024 Resmî Su Kaynakları İstatistikleri, Tablo 1.2</a>'

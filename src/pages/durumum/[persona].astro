@@ -6,6 +6,7 @@
 // anı JS: yalnız "kalan gün" (≤0,5KB, progressive — JS yoksa sabit tarih).
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
+import { TARIH } from '../../data/guncellik.js';
 import OzCevap from '../../components/OzCevap.astro';
 import { getCollection } from 'astro:content';
 import { personalar } from '../../data/persona.js';
@@ -91,6 +92,8 @@ const riskMetni = tarihli
 const sema = [
   {
     '@type': 'FAQPage',
+    // Damga (25.08.2026): persona veri temelinin kayıt tarihi (persona.json).
+    ...(TARIH.persona ? { dateModified: TARIH.persona } : {}),
     mainEntity: [{
       '@type': 'Question',
       name: `${p.ad} su hukukunda neyle yükümlü?`,
@@ -102,7 +105,7 @@ const sema = [
 {/* B1 (25.08): <title> 60 sınırı — tam kalıp sığmıyorsa yalnız sektör adı
     kullanılır (veriden türetme; 37/42 sayfa 60'ı aşıyordu). H1 değişmez. */}
 <Sayfa baslik={`${p.ad}: su hukukunda durumunuz`.length <= 46 ? `${p.ad}: su hukukunda durumunuz` : p.ad} aciklama={ozCevap} sema={sema}>
-  <SayfaBasi etiket="Sektör sonucu" baslik={`${p.ad}: su hukukunda durumunuz`} />
+  <SayfaBasi etiket="Sektör sonucu" baslik={`${p.ad}: su hukukunda durumunuz`} tarih={TARIH.persona ? new Date(TARIH.persona) : undefined} />
 
   <OzCevap metin={ozCevap} />
 

@@ -15,13 +15,28 @@ const { Content } = await render(giris);
 // Bülten yalnız taslak takibi sayfasında: mevzuat kütüphanesi durağan bir
 // referans, bildirime konu değil.
 const bultenli = giris.id === 'taslak-takibi';
+
+// Damga (kalanlar paketi 25.08.2026): son gerçek içerik değişikliği —
+// frontmatter guncelleme (git geçmişinden ölçülmüş); yoksa yayım tarihi.
+// Sayfada başka WebPage düğümü yok; dateModified bu düğümde taşınır.
+const damga = giris.data.guncelleme ?? giris.data.tarih;
+const canonical = new URL(`/su-kanunu/${giris.id}/`, Astro.site).href;
+const sema = [{
+  '@type': 'WebPage',
+  '@id': canonical,
+  name: giris.data.baslik,
+  description: giris.data.ozet,
+  datePublished: giris.data.tarih.toISOString(),
+  dateModified: damga.toISOString(),
+  inLanguage: 'tr-TR',
+}];
 ---
-<Sayfa baslik={giris.data.baslik} aciklama={giris.data.ozet}>
+<Sayfa baslik={giris.data.baslik} aciklama={giris.data.ozet} sema={sema}>
   <SayfaBasi
     etiket="Su Kanunu"
     baslik={giris.data.baslik}
     ozet={giris.data.ozet}
-    tarih={giris.data.tarih}
+    tarih={damga}
     ozCevap
   />
   <div class="icerik">

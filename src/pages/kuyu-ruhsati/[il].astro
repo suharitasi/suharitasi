@@ -17,6 +17,7 @@ import { yayinlananIller } from '../../data/il-profil.js';
 import IlPotansiyel from '../../components/IlPotansiyel.astro';
 import { ilPotansiyel } from '../../data/potansiyel.js';
 import { YAZAR, OG_GORSEL } from '../../data/site';
+import { TARIH } from '../../data/guncellik.js';
 
 export async function getStaticPaths() {
   return yayinlananIller().map((p) => ({ params: { il: p.slug }, props: { profil: p } }));
@@ -88,6 +89,9 @@ const sema = [
     '@type': 'Article',
     headline: `${p.il} ilinde kuyu ruhsatı: yetkili merci ve su rejimi`,
     description: ozCevap,
+    // Damga (kalanlar paketi 25.08.2026): il potansiyel derlemelerinin
+    // veri kaydındaki en yeni uretim_tarihi — build saati değil.
+    ...(TARIH.potansiyel ? { dateModified: TARIH.potansiyel } : {}),
     inLanguage: 'tr-TR',
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
     image: new URL(OG_GORSEL, Astro.site).href,
@@ -104,7 +108,7 @@ const sema = [
 ];
 ---
 <Sayfa baslik={baslik} aciklama={ozCevap} sema={sema}>
-  <SayfaBasi etiket="İl rejimi" baslik={baslik} yazarli />
+  <SayfaBasi etiket="İl rejimi" baslik={baslik} tarih={TARIH.potansiyel ? new Date(TARIH.potansiyel) : undefined} yazarli />
 
   <OzCevap metin={ozCevap} />
 

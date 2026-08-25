@@ -2,6 +2,7 @@
 baslik: "Kaynak hakkı, mecra irtifakı ve komşu parselden su alma"
 ozet: "TMK 718 ve 756 çerçevesinde kaynak üzerindeki hak, yeraltı suyunun kamu suyu niteliği ve Yeraltı Suları Tüzüğü m.16 uyarınca komşu arazideki yeraltı suyundan şartlı yararlanma."
 tarih: 2026-07-14
+guncelleme: 2026-07-25
 kume: uyusmazlik
 ozCevap: "Kaynak arazinin bütünleyici parçasıdır, mülkiyetiyle kazanılır; başkasının arazisindeki kaynak hakkı ancak tapuya tescilli irtifakla kurulur (TMK m.756). Yeraltı suyu ise kamu suyudur — arza malik olmak onu kapsamaz. Kendi suyu yetmeyen komşu, Yeraltı Suları Tüzüğü m.16 ile şartlı yararlanabilir."
 ilgili: [kaynak-suyu-kiralama, kuyu-ruhsati, yeralti-suyu-isletme-sahasi]

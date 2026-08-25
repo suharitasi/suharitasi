@@ -2,6 +2,7 @@
 baslik: "Baraj kamulaştırması, kamulaştırmasız el atma ve ecrimisil"
 ozet: "Baraj ve gölet projelerinde taşınmazı su altında kalanların hukuki durumu: 2942 sayılı Kamulaştırma Kanunu çerçevesi, kamulaştırmasız el atma ve ecrimisil tartışması, 6200 sayılı Kanun'un geçiş hükümleri."
 tarih: 2026-07-14
+guncelleme: 2026-07-25
 kume: uyusmazlik
 ozCevap: "Baraj ve göletlerde taşınmazı su altında kalanların çerçevesi 2942 sayılı Kamulaştırma Kanunu'dur. Üç ihtimal: usulüne uygun kamulaştırmada uyuşmazlık bedel üzerinde; kamulaştırmasız el atmada bedel/tazminat; ecrimisilde fiilî kullanım bedeli. Sonucu ilan ve fiilî el atma tarihi belirler."
 ilgili: [su-tahsisi-oncelik-sirasi, kaynak-hakki-komsu-su, kuyu-belgesi-iptal-davalari]

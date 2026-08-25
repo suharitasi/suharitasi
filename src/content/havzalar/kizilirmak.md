@@ -2,6 +2,7 @@
 baslik: "Kızılırmak Havzası"
 ozet: "Yağış alanı 82.181 km²; yıllık ortalama yüzey suyu potansiyeli 6,46 km³ (DSİ 2024)."
 tarih: 2026-07-14
+guncelleme: 2026-08-25
 no: "15"
 kunye:
   yillikPotansiyel: '6,46 km³/yıl — <a href="https://www.dsi.gov.tr/Sayfa/Detay/2186" target="_blank" rel="noopener">DSİ 2024 Resmî Su Kaynakları İstatistikleri, Tablo 1.2</a>'

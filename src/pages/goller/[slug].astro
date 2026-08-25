@@ -7,6 +7,7 @@
 // (gol-nehir-cografya.js) kuruldu; ölçek şerhi (dürüstlük etiketi) eklendi.
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
+import { TARIH } from '../../data/guncellik.js';
 import OzCevap from '../../components/OzCevap.astro';
 import Katman from '../../components/Katman.astro';
 import { tumGoller, golOzet, golTipi,
@@ -39,6 +40,8 @@ const sema = [{
   containedInPlace: { '@type': 'Place', name: il ? `${il.ad}, Türkiye` : 'Türkiye' },
 }, {
   '@type': 'FAQPage',
+  // Damga (25.08.2026): OSM/Natural Earth çekim tarihi (gol-nehir.js künyesi).
+  ...(TARIH.golNehir ? { dateModified: TARIH.golNehir } : {}),
   mainEntity: [{
     '@type': 'Question',
     name: `${gol.ad} nerede, yüzey alanı ne kadar?`,
@@ -48,7 +51,7 @@ const sema = [{
 ---
 
 <Sayfa baslik={`${gol.ad} — Türkiye Gölleri`} aciklama={ozet} sema={sema}>
-  <SayfaBasi etiket="Göl" baslik={gol.ad} />
+  <SayfaBasi etiket="Göl" baslik={gol.ad} tarih={TARIH.golNehir ? new Date(TARIH.golNehir) : undefined} />
 
   <OzCevap metin={ozet} />
 

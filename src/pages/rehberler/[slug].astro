@@ -36,6 +36,9 @@ const ilgiliPersonalar = tumPersonalar
   .filter((x) => (x.ilgiliIcerik ?? []).includes(rehberYolu))
   .map((x) => ({ ad: x.ad, slug: x.slug }));
 const tarihISO = giris.data.tarih.toISOString();
+// Damga (kalanlar paketi 25.08.2026): son gerçek içerik değişikliği —
+// frontmatter guncelleme (git geçmişinden ölçülmüş); yoksa yayım tarihi.
+const guncellemeISO = (giris.data.guncelleme ?? giris.data.tarih).toISOString();
 
 // Article: YMYL (hukuk) içerikte yazar kimliği en güçlü E-E-A-T sinyali.
 // FAQPage bilinçli olarak YOK: rehberlerde görünür soru-cevap bölümü
@@ -48,7 +51,7 @@ const sema: any[] = [
     // AI-arama alıntı yüzeyi de öz cevaptan beslenir (CLAUDE.md)
     description: giris.data.ozCevap,
     datePublished: tarihISO,
-    dateModified: tarihISO,
+    dateModified: guncellemeISO,
     inLanguage: 'tr-TR',
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
     image: new URL(OG_GORSEL, Astro.site).href,
@@ -162,7 +165,7 @@ if (kalip2) {
       <SayfaBasi
         etiket={giris.data.kume === 'surec' ? 'Rehber · Süreç' : 'Rehber · Uyuşmazlık'}
         baslik={giris.data.baslik}
-        tarih={giris.data.tarih}
+        tarih={giris.data.guncelleme ?? giris.data.tarih}
         yazarli
       />
     </div>
@@ -249,7 +252,7 @@ if (kalip2) {
     etiket={giris.data.kume === 'surec' ? 'Rehber · Süreç' : 'Rehber · Uyuşmazlık'}
     baslik={giris.data.baslik}
     ozet={giris.data.ozet}
-    tarih={giris.data.tarih}
+    tarih={giris.data.guncelleme ?? giris.data.tarih}
     yazarli
   />
   <OzCevap metin={giris.data.ozCevap} />

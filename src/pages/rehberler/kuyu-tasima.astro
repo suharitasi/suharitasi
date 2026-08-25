@@ -28,6 +28,7 @@ const d = giris.data;
 const kok = new URL('/', Astro.site).href;
 const canonical = new URL('/rehberler/kuyu-tasima/', Astro.site).href;
 const tarihISO = d.tarih.toISOString();
+const guncellemeISO = (d.guncelleme ?? d.tarih).toISOString(); // damga 25.08.2026
 
 // ——— İÇERİK (kaynaktan birebir) ———
 
@@ -260,7 +261,7 @@ const sema = [
     headline: d.baslik,
     description: d.ozCevap,
     datePublished: tarihISO,
-    dateModified: tarihISO,
+    dateModified: guncellemeISO,
     inLanguage: 'tr-TR',
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
     image: new URL(OG_GORSEL, Astro.site).href,
@@ -301,7 +302,7 @@ const sema = [
 ---
 <Sayfa baslik={d.baslik} aciklama={d.ozCevap} sema={sema} heroSlot="rehber-hero">
   <div class="gk gk-baslik" style="--gk:0">
-    <SayfaBasi etiket="Rehber · Süreç" baslik={d.baslik} tarih={d.tarih} yazarli />
+    <SayfaBasi etiket="Rehber · Süreç" baslik={d.baslik} tarih={d.guncelleme ?? d.tarih} yazarli />
   </div>
 
   <div class="gk" style="--gk:1">

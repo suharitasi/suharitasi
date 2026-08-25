@@ -3,6 +3,7 @@
 // Client-side render: slug-tabanli veri indeksi, sifir reload.
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
+import { TARIH } from '../data/guncellik.js';
 import OzCevap from '../components/OzCevap.astro';
 import Katman from '../components/Katman.astro';
 import { tumIlProfilleri } from '../data/il-profil.js';
@@ -75,7 +76,7 @@ const ozet = 'Türkiye\'de il ve ilçe bazında yeraltı su potansiyeli, arazi m
 
 {/* B1 (25.08): <title> 60 karakter sınırına, sayfanın kendi H1'inden türetildi. */}
 <Sayfa baslik="İl/İlçe Yeraltı Su Potansiyeli" aciklama={ozet}>
-  <SayfaBasi etiket="Araç" baslik="İl/İlçe Yeraltı Su Potansiyeli" />
+  <SayfaBasi etiket="Araç" baslik="İl/İlçe Yeraltı Su Potansiyeli" tarih={TARIH.ilceMorfoloji ? new Date(TARIH.ilceMorfoloji) : undefined} />
   <OzCevap metin={ozet} />
 
   <Katman baslik="Konum Seçimi" ipucu="il seçimi zorunlu · ilçe opsiyonel">

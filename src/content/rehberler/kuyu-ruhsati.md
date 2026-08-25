@@ -2,6 +2,7 @@
 baslik: "Kuyu ruhsatı: yeraltı suyu arama, kullanma ve ıslah-tadil belgeleri"
 ozet: "167 sayılı Yeraltı Suları Hakkında Kanun uyarınca kuyu açmadan önce alınması zorunlu arama belgesi, suyu kullanmak için gereken kullanma belgesi ve mevcut kuyuya müdahale için ıslah-tadil belgesi: kimden, hangi belgelerle, hangi sürede alınır."
 tarih: 2026-07-14
+guncelleme: 2026-07-26
 ilKurumTablosu: true
 kume: surec
 kalip: 2

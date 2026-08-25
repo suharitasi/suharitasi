@@ -2,6 +2,7 @@
 baslik: "Meriç-Ergene Havzası"
 ozet: "Yağış alanı 14.486 km²; yıllık ortalama yüzey suyu potansiyeli 1,62 km³ (DSİ 2024)."
 tarih: 2026-07-14
+guncelleme: 2026-08-25
 no: "01"
 kunye:
   yillikPotansiyel: '1,62 km³/yıl — <a href="https://www.dsi.gov.tr/Sayfa/Detay/2186" target="_blank" rel="noopener">DSİ 2024 Resmî Su Kaynakları İstatistikleri, Tablo 1.2</a>'
