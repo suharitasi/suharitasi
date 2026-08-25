@@ -393,6 +393,12 @@ if [ "$HATA_SAYAC" -gt 0 ]; then uyari_bildir; fi
 # ============================ COMMIT + PUSH (baraj deseni) ============================
 # git add KOŞULLU (var-olmayan yolda exit 128 + sessiz durma olmasın).
 [ -d "$IZ" ] && git add "$IZ" || true
+# RG hattının nöbetçi çıktısı (2026-08-25 kirli-ağaç düzeltmesi): rg-nobetci
+# izleme/ DIŞINA yazar ve kendisi git'e dokunmaz; yeni kayıt yazıldığında bu
+# dosyayı da BU hattın commit'i taşır — yoksa ağaç kirli kalır ve tüm
+# hatların pull/push'u tıkanır (ölçülen vaka: 18-24.08, 41 bekleyen commit).
+[ -f "$KOK/veri/potansiyel/isletme-sahalari-yeni.json" ] \
+  && git add "$KOK/veri/potansiyel/isletme-sahalari-yeni.json" || true
 
 if ! git diff --cached --quiet; then
   # ORTAK GIT KİLİDİ (2026-07-23): kilit alınamazsa İŞ ERTELENİR — arşiv ve

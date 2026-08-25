@@ -31,14 +31,34 @@ CRONTAB'A EKLENMEZ — kurulum satırı raporda, kullanıcı onayıyla.
 İndirme YAPMAZ: yalnız varlık yoklaması. PDF indirme ayrı, bilinçli iştir
 (arac/nhyp-indir.sh).
 """
-import argparse, html, json, re, sys, time, unicodedata
+import argparse, html, json, os, re, subprocess, sys, time, unicodedata
 import urllib.error, urllib.parse, urllib.request
 from pathlib import Path
 
 KOK = Path(__file__).resolve().parent.parent
 HAVZA_VERI = KOK / "data/havza-veri.json"
 DURUM = KOK / "izleme/state/nhyp-yayin-durum.json"
-SYGM = "https://www.tarimorman.gov.tr/SYGM"
+# NHYP_NOBETCI_SYGM_EZME: falsifikasyon kancası (SU_IZLEME_RG_CA emsali) —
+# üretimde ayarlanmaz; kasıtlı bozma testi sondaları gerçek SYGM'ye
+# gitmeden düşürür (2026-08-25, kalanlar paketi 5.3).
+SYGM = os.environ.get("NHYP_NOBETCI_SYGM_EZME", "https://www.tarimorman.gov.tr/SYGM")
+UYARICI = KOK / "arac/uyari-gonder.sh"
+
+
+def uyari_gonder(konu, govde):
+    """Telegram bildirimi (rg-nobetci deseni, 2026-08-25 kalanlar paketi 5.3).
+    Haftalık kadans → imza-mükerrer koruması gerekmez. Gönderim hatası
+    koşuyu düşürmez; stderr'e yazılır (sessiz hata yasağı)."""
+    try:
+        r = subprocess.run([str(UYARICI), konu, govde],
+                           capture_output=True, text=True, timeout=30)
+        if r.returncode != 0:
+            print(f"UYARI: Telegram bildirimi gönderilemedi (exit {r.returncode}): "
+                  f"{(r.stderr or r.stdout).strip()[:200]}", file=sys.stderr)
+        else:
+            print(f"Telegram bildirimi: {(r.stdout or '').strip()[:120]}")
+    except (OSError, subprocess.TimeoutExpired) as e:
+        print(f"UYARI: Telegram bildirimi çağrılamadı: {e}", file=sys.stderr)
 BELGE_KOK = SYGM + "/Belgeler"
 UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
       "Chrome/126.0 Safari/537.36 suharitasi.com-veri-derleme")
@@ -187,6 +207,17 @@ def main():
         "bulgu": bulgu, "yeni_bu_kosumda": yeni, "ag_hatasi": len(hata),
     }, ensure_ascii=False, indent=1) + "\n")
     print(f"\nyazıldı: {DURUM} · YENİ: {len(yeni)}")
+    # TELEGRAM (yalnız --kosum; --test "hiçbir yere gönderim yapmaz" sözünü
+    # tutar): nöbetçinin körlüğü (sonda bozuk / ağ hatası) ve asıl olay
+    # (yeni NHYP yayını) dışarı bildirilir — rg-nobetci deseni.
+    if yeni:
+        uyari_gonder(f"nhyp-nobetci: {len(yeni)} YENİ NHYP yayın bulgusu",
+                     "\n".join(f"• {b['havza']} — {b['baslik'][:90]}" for b in yeni[:5]))
+    if (not saglam) or hata:
+        uyari_gonder(f"veri hattı nhyp-nobetci: sonda/ağ arızası "
+                     f"(A={'🟢' if kanal_a_saglam else '🔴'} B={'🟢' if kanal_b_saglam else '🔴'} "
+                     f"ağ hatası {len(hata)})",
+                     "Bu koşumun 'yeni yayın yok' sonucu kanıt sayılmaz. Log: log/nhyp-nobetci.log")
     return 0 if (saglam and not hata) else 3
 
 

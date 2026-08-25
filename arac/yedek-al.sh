@@ -29,7 +29,16 @@ ZAMAN=$(date -u +%FT%TZ)
 
 mkdir -p "$HEDEF/guncel" "$HEDEF/onceki" "$KOK/log"
 logla() { echo "$(date -u +%FT%TZ) yedek: $*" >> "$LOG"; }
-olduc() { logla "HATA: $*"; echo "YEDEK HATASI: $*" >&2; exit 1; }
+# TELEGRAM (2026-08-25, kalanlar paketi 5.3): yedek hattının ölümcül hatası
+# yalnız log'da kalmasın — dışarı bildirilir; gönderim hatası çıkışı değiştirmez.
+# UYARICI, KOK'tan DEĞİL scriptin kendi dizininden çözülür: YEDEK_KOK test
+# kancası KOK'u ezdiğinde uyarı yolu kopmasın (falsifikasyon bulgusu 25.08).
+UYARICI="$(cd "$(dirname "$0")" && pwd)/uyari-gonder.sh"
+olduc() {
+  logla "HATA: $*"; echo "YEDEK HATASI: $*" >&2
+  "$UYARICI" "yedek hattı: YEDEK BAŞARISIZ" "$*" || true
+  exit 1
+}
 
 logla "başlıyor → $HEDEF"
 

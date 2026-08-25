@@ -14,11 +14,21 @@ mkdir -p "$KOK/log"
 LOGP="$KOK/log/pipeline.log"
 HATALOG="$KOK/data/arsiv/baraj/log/cron-hata.log"
 
+# TELEGRAM UYARI KÖPRÜSÜ (2026-08-25, kalanlar paketi 5.3): bu hattın
+# kırmızısı bugüne dek yalnız log dosyasında kalıyordu — 18-24.08 pull
+# tıkanıklığı 7 gün görünmez kaldı (cron-hata.log kanıtı). rg-nobetci/
+# su-izleme deseniyle dışarı bildirilir; gönderim hatası hattı DÜŞÜRMEZ.
+uyar() { "$KOK/arac/uyari-gonder.sh" "$1" "$2" || true; }
+
 # node başarısızlıkta da (exit 1) gün kaydı/log arşivlenmeli; çıkış kodu
 # 'if' ile yakalanır — set -e scripti burada DURDURMAMALI (bilinçli tolerans).
-if node arac/baraj-cek.mjs; then CEKIM=0; else CEKIM=$?; fi
+# BARAJ_CEK_KOMUT: falsifikasyon kancası (SU_IZLEME_RG_CA emsali) — üretimde
+# ayarlanmaz; kasıtlı bozma testi çekimi gerçek EPİAŞ'a gitmeden düşürür.
+if ${BARAJ_CEK_KOMUT:-node arac/baraj-cek.mjs}; then CEKIM=0; else CEKIM=$?; fi
 # 2 = .env doldurulmamış (kurulum eksik): commit'lik bir şey yok, sessiz çık.
 [ "$CEKIM" -eq 2 ] && exit 2
+[ "$CEKIM" -ne 0 ] && uyar "veri hattı baraj: çekim BAŞARISIZ (exit $CEKIM)" \
+  "EPİAŞ günlük çekimi düştü; son geçerli veri sitede kalır. Log: data/arsiv/baraj/log/"
 
 # Başarıda da başarısızlıkta da gün kaydı/log değişti — arşivle.
 # git add KOŞULLU: var-olmayabilir dosyada exit 128 + set -e ile sessiz durma
@@ -36,6 +46,7 @@ if ! git diff --cached --quiet; then
   # durur, staged kalır, sonraki koşuda commit edilir.
   if ! git_kilit_al "baraj"; then
     echo "[$(date -u +%FT%TZ)] git kilidi 10 dk'da alınamadı — commit ERTELENDİ" >> "$HATALOG"
+    uyar "veri hattı baraj: git kilidi alınamadı" "Commit ertelendi; dosyalar staged, sonraki koşuda denenir."
     exit 4
   fi
   # K1 (2026-07-25, bulgu F4-2): commit pull'DAN ÖNCE. Eski sıra (pull → commit)
@@ -100,5 +111,12 @@ if [ "$CEKIM" -eq 0 ]; then
 fi
 
 # push koptuysa exit 0 dönme (sessiz hata yasağı); değilse çekim kodunu döndür.
-[ "${PUSH_HATA:-0}" -eq 1 ] && exit 1
+# Telegram: pull/push arızası artık dışarı bildirilir (20 günlük kör nokta
+# sınıfı — kirli dosya adları mesajda, teşhis uzaktan başlayabilsin).
+if [ "${PUSH_HATA:-0}" -eq 1 ]; then
+  KIRLI=$(git status --porcelain --untracked-files=no | head -3 | tr '\n' ' ')
+  uyar "veri hattı baraj: pull/push ARIZASI — commit yerelde" \
+    "Veri arşivlendi ama origin'e gidemedi. Kirli/çatışan durum: ${KIRLI:-yok}. Log: data/arsiv/baraj/log/cron-hata.log"
+  exit 1
+fi
 exit "$CEKIM"

@@ -14,7 +14,9 @@ KOK=/home/suha/projeler/suharitasi
 # ORTAK GIT KİLİDİ (2026-07-23): 4 otomatik commit'çi aynı depoya yazıyor;
 # eşzamanlı commit/push çakışmasın diye tek flock kullanılır (arac/git-kilit.sh).
 . "$KOK/arac/git-kilit.sh"
-URL="https://earth.gsfc.nasa.gov/sites/default/files/geo/gsfc.glb_.200204_202603_rl06v2.0_obp-ice6gd_halfdegree.nc"
+# GRACE_URL_EZME: falsifikasyon kancası (SU_IZLEME_RG_CA emsali) — üretimde
+# ayarlanmaz; kasıtlı bozma testi kaynağı gerçek GSFC'ye gitmeden düşürür.
+URL="${GRACE_URL_EZME:-https://earth.gsfc.nasa.gov/sites/default/files/geo/gsfc.glb_.200204_202603_rl06v2.0_obp-ice6gd_halfdegree.nc}"
 HAM_DIZIN="$KOK/data/arsiv/grace/ham"
 DURUM="$KOK/data/arsiv/grace/durum.json"
 LOG="$KOK/data/arsiv/grace/log-$(date -u +%Y-%m).log"
@@ -31,6 +33,11 @@ hata_say() {
   N=$((N + 1))
   printf '{"ardisikHata": %d}\n' "$N" > "$DURUM"
   logla "HATA ($1) — ardışık: $N"
+  # TELEGRAM (2026-08-25, kalanlar paketi 5.3): hattın kırmızısı yalnız
+  # log/UYARI dosyasında kalmasın — su-izleme/rg-nobetci deseniyle dışarı
+  # bildirilir; gönderim hatası hattı DÜŞÜRMEZ (|| true).
+  "$KOK/arac/uyari-gonder.sh" "veri hattı grace: HATA — ardışık $N" \
+    "$1 — son geçerli veri sitede kalır. Log: data/arsiv/grace/" || true
   if [ "$N" -ge 3 ]; then
     printf '# GRACE PIPELINE UYARISI\n\n%s\n\nGRACE güncellemesi %d haftadır başarısız: %s\n' \
       "$(date -u)" "$N" "$1" > "$KOK/UYARI-GRACE.md"

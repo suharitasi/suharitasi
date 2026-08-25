@@ -25,6 +25,13 @@ KOK = Path(__file__).resolve().parent.parent
 ARSIV = [KOK / "veri/potansiyel/isletme-sahalari.json",
          KOK / "veri/potansiyel/isletme-sahalari-ek.json"]
 CIKTI = KOK / "veri/potansiyel/isletme-sahalari-yeni.json"
+# FALSİFİKASYON KANCALARI (SU_IZLEME_RG_CA emsali, 2026-08-25): "yeni
+# kayıt" yolu gerçek veri dosyalarına dokunulmadan uçtan uca sınanabilsin.
+# Üretimde ayarlanmaz; cron bu değişkenleri görmez.
+if os.environ.get("RG_NOBETCI_ARSIV_EZME"):
+    ARSIV = [Path(p) for p in os.environ["RG_NOBETCI_ARSIV_EZME"].split(":")]
+if os.environ.get("RG_NOBETCI_CIKTI_EZME"):
+    CIKTI = Path(os.environ["RG_NOBETCI_CIKTI_EZME"])
 DURUM = KOK / "izleme/state/rg-nobetci-durum.json"
 UA = "suharitasi.com veri derleme (mailto:avserdararslan@hotmail.com)"
 UC = "https://www.resmigazete.gov.tr/Home/Filter"
@@ -218,24 +225,39 @@ def main():
         print("\nTEST kipi — hiçbir dosya yazılmadı, gönderim yapılmadı.")
         return 0 if not hatalar else 3
 
-    CIKTI.parent.mkdir(parents=True, exist_ok=True)
+    # KİRLİ AĞAÇ DÜZELTMESİ (2026-08-25, kalanlar paketi): CIKTI'ya YALNIZ
+    # yeni kayıt varken yazılır. Eski davranış her koşumda son_kosum damgası
+    # basıyordu; dosya izleme/ dışında olduğundan hiçbir otomatik commit'çi
+    # almıyor, ağaç kirli kalıyor ve TÜM hatların pull/push'u tıkanıyordu
+    # (ölçüldü: 18-24.08 arası 41 commit birikti, cron-hata.log kanıtı).
+    # Koşum kalp atışı zaten DURUM'da (izleme/state — su-izleme commit'ler).
+    kosum_zamani = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
     onceki = json.loads(CIKTI.read_text()) if CIKTI.exists() else {"kayitlar": []}
     onceki_url = {k.get("kaynak_url") for k in onceki.get("kayitlar", [])}
     eklenecek = [b for b in yeni if b["kaynak_url"] not in onceki_url]
-    onceki["kayitlar"] = onceki.get("kayitlar", []) + eklenecek
-    onceki["kaynak"] = "resmigazete.gov.tr /Home/Filter (searchtype=1 başlık)"
-    onceki["son_kosum"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-    onceki["kayit_sayisi"] = len(onceki["kayitlar"])
-    onceki["kaynaksiz_kayit"] = 0
-    CIKTI.write_text(json.dumps(onceki, ensure_ascii=False, indent=1) + "\n")
+    if eklenecek:
+        CIKTI.parent.mkdir(parents=True, exist_ok=True)
+        onceki["kayitlar"] = onceki.get("kayitlar", []) + eklenecek
+        onceki["kaynak"] = "resmigazete.gov.tr /Home/Filter (searchtype=1 başlık)"
+        onceki["son_kosum"] = kosum_zamani
+        onceki["kayit_sayisi"] = len(onceki["kayitlar"])
+        onceki["kaynaksiz_kayit"] = 0
+        CIKTI.write_text(json.dumps(onceki, ensure_ascii=False, indent=1) + "\n")
+        # Yeni kayıt insan değerlendirmesi bekler (C5 №10) — dışarı bildir;
+        # dosyanın kendisi bir sonraki su-izleme koşumunda commit edilir.
+        ozet = "\n".join(f"• {b['rg_tarih']} | {b['baslik'][:90]}" for b in eklenecek[:5])
+        uyari_gonder(f"rg-nobetci: {len(eklenecek)} YENİ işletme sahası kaydı",
+                     ozet + "\nisletme-sahalari-yeni.json güncellendi — değerlendirme bekliyor.")
     DURUM.parent.mkdir(parents=True, exist_ok=True)
     DURUM.write_text(json.dumps({
-        "son_kosum": onceki["son_kosum"],
+        "son_kosum": kosum_zamani,
         "taranan_satir": len(bulunan),
         "yeni_kayit": len(eklenecek),
         "sorgu_hatasi": len(hatalar),
     }, ensure_ascii=False, indent=1) + "\n")
-    print(f"\nyazıldı: {CIKTI} (+{len(eklenecek)}) · {DURUM}")
+    print(f"\nyazıldı: {DURUM}"
+          + (f" · {CIKTI} (+{len(eklenecek)})" if eklenecek
+             else f" · {CIKTI.name} DOKUNULMADI (yeni kayıt 0 — kirli ağaç bırakılmaz)"))
     # TELEGRAM (yalnız --kosum: --test sözleşmesi "hiçbir yere gönderim
     # yapmaz" der ve bozulMAZ). Sorgu hatası = nöbetçi kör → dışarı bildir.
     if hatalar:
