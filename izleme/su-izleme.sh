@@ -63,6 +63,13 @@ fi
 # --- toplayıcılar (geçici; DURUM.md render için) ---
 STATUSF=$(mktemp) ; EVENTF=$(mktemp)
 trap 'rm -f "$STATUSF" "$EVENTF"' EXIT
+# ORTAK ÇIKIŞ KAYDI (K1, 26.08.2026 Faz B): bilinçli olarak yukarıdaki
+# trap'ten SONRA bağlanır — yardımcı mevcut EXIT trap'ini `trap -p EXIT`
+# ile okuyup ZİNCİRLER (ezmez): önce geçici dosya temizliği, sonra çıkış
+# satırı koşar. Körlemesine trap eklemek temizliği kaybettirirdi
+# (envanter §4 ölçümü, su-izleme bu desenin ölçüldüğü betik).
+. "$KOK/arac/cikis-kaydi.sh"
+cikis_kaydi_kur "su-izleme" "$IZ/log/cron.log"
 OLAY_SAYAC=0 ; HATA_SAYAC=0
 
 logla(){ echo "[$(date -u +%FT%TZ)] $1" >> "$LOGP"; }
@@ -389,6 +396,12 @@ uyari_bildir(){
   return 0
 }
 if [ "$HATA_SAYAC" -gt 0 ]; then uyari_bildir; fi
+
+# Çıkış satırının dosya alanı: koşumun ürünü DURUM.md (telafi kipinde
+# render atlanır — o zaman alan "-" kalır, satır yine yazılır).
+if [ -z "$RG_TARIH_KIPI" ] && [ -f "$IZ/DURUM.md" ]; then
+  cikis_kaydi_dosya "$IZ/DURUM.md" "$(stat -c %s "$IZ/DURUM.md")"
+fi
 
 # ============================ COMMIT + PUSH (baraj deseni) ============================
 # git add KOŞULLU (var-olmayan yolda exit 128 + sessiz durma olmasın).
