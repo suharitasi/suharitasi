@@ -1,5 +1,24 @@
 # GUNLUK.md — seans notları
 
+## 26.08.2026 (10. seans) — ALTYAPI KUYRUĞU KAPATMA (üç faz)
+
+Rapor: rapor/26-08-kuyruk-kapatma.md · Karar: KARARLAR §33. BÜYÜK rejim
+(denetçi ilk tur 1 ENGEL + 3 UYARI → yalnız ekleme ile 0 ENGEL).
+Faz A: md17 varlık-kaçışı onarıldı (falsifikasyon 4/4 + körleştirme
+sınaması; commit d4c4f86). Faz B: çıkış-kaydı sözleşmesi node+python'a
+taşındı, 9/9 betik bağlandı, yedek/bekçi körlükleri kapandı (B6/B7/B8
+falsifikasyonları ham çıktıyla). Faz C: 4 kalem karara bağlandı.
+
+**HATA KAYDI + DERS (yeniden doğdu, aynı gün yakalandı):** python
+betiğine eklenen `from cikis_kaydi import ...` yalnız betik doğrudan
+çalıştırılınca işliyordu; altin-ornek.mjs betiği `python3 -c` ile BAŞKA
+çalışma dizininden yükleyince ModuleNotFoundError → md23 KIRMIZI (16:16
+--tam). DERS: bir betiğe modül bağımlılığı eklerken betiğin TÜM çağrılma
+yolları (doğrudan · cron · başka araçtan gömülü) ölçülmeli; sys.path
+güvencesi (`sys.path.insert(0, dirname(__file__))`) bu depoda python
+import'larının ön şartıdır. Sağlık sistemi kendi işini yaptı: hatayı
+--tam koşumu yakaladı, elle fark edilmedi.
+
 ## 26.08.2026 (9. seans) — ASTRO 5 → 7 YÜKSELTMESİ: keşif, düzeltme, YAYIN
 
 Raporlar: rapor/26-08-astro7-faz1.md (build'i geçirmek) +

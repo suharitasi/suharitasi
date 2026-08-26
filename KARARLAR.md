@@ -636,6 +636,54 @@ dönük çıkarıldı; o yüzden bazı satırlarda bu işaret vardır.
   budur. Resmî komşuluk yalnız eşitlik bozucunun gerekçesidir, sayfada
   komşuluk iddiası olarak yazılmaz.
 
+### 33. ALTYAPI KUYRUĞU KAPANIŞI: çıkış-kaydı sözleşmesi üç dilde · bekçi ölü-adam anahtarı · Astro 7 bulgu kararları · npm açıkları build-zamanı
+
+- **Tarih:** 2026-08-26 (kuyruk kapatma briefi; rapor/26-08-kuyruk-kapatma.md)
+
+**K1 — Çıkış kaydı sözleşmesi artık üç dilde, 13/13 cron kalemi kapsandı.**
+Sözleşme TEK (ISO-8601 UTC · exit kodu · üretilen dosya · bayt; yoksa "-",
+512 KB tavan + 5 kayan arşiv, kırpmasız), uygulama DİL BAŞINA:
+`arac/cikis-kaydi.sh` (bash, Faz 1'den) · `arac/cikis-kaydi.mjs` (node,
+process.on('exit') yığılır) · `arac/cikis_kaydi.py` (python, atexit yığılır).
+Bash'te trap ZİNCİRLENİR (`trap -p EXIT`), asla ezilmez — su-izleme'nin
+temizlik trap'i korunarak kanıtlandı. Python tarafında sys.path güvencesi
+ZORUNLU (altin-ornek `python3 -c` ile başka dizinden yükler; 26.08 --tam
+md23 kırmızısıyla ölçüldü).
+
+**K2 — Bekçi ölü-adam anahtarı: izleyici indexnow-bildir.mjs seçildi.**
+Bekçi her koşum başında `izleme/state/bekci-damga.txt` basar; damga >26s
+(günlük koşum + 2s pay) ise indexnow-bildir Telegram'a düşürür (24s
+baskılama ile). Seçim gerekçesi: (1) yedek-al OLAMAZ — B6'da bekçi yedeği
+izlemeye başladı, karşılıklı izleme çifti ikisi birden ölünce susar;
+(2) 6×/gün koşan en sık bağımsız kalem → ≤4s tespit gecikmesi; (3) işlevi
+sağlık/yedek zincirinden bağımsız. **BİLİNEN ORTAK HATA NOKTASI (çözülmedi,
+bilinçli kapsam dışı): cron'un kendisi ölürse hiçbir kalem koşmaz ve hiçbir
+alarm düşmez.** Bekçi ayrıca yedeği izler: son-yedek.json >26s ya da YOK →
+kırmızı + Telegram (hem "başarısız" hem "hiç koşmadı" körlüğü kapandı).
+
+**K3 — Sayfa.astro:362 `is:global` içinde `:global()` — Astro 7'de de
+BİLEREK DÜZELTİLMEDİ.** Düzeltilirse bugüne dek hiç uygulanmamış
+`height:100%` kuralı AKTİFLEŞİR ve görsel değişir; görsel değişiklik kıyas
+karesi + kullanıcı onayı ister. Düzeltme ancak ayrı, onaylı bir görsel işle
+yapılır.
+
+**K4 — stil-pilot ilgili-kart sırası koleksiyon sırasına bağlı kalır.**
+Sayfa noindex + sitemap dışı pilot; sıralamanın kararlılığı yayın yüzeyini
+etkilemiyor. İstenirse frontmatter sırasına sabitleme ayrı küçük iştir.
+KARARLA KAPATILDI.
+
+**K5 — npm açıkları (24: 16 orta + 8 yüksek) TAMAMI build/ölçüm-zamanı;
+yayınlanan çıktıya giren SIFIR. KARARLA KAPATILDI, onarım yapılmadı.**
+Ölçüm 26.08: 22/24 lighthouse zinciri (opentelemetry ailesi 15 + sentry +
+puppeteer-core + @puppeteer/browsers + extract-zip + ip-address +
+brace-expansion + lighthouse'un kendisi) — lighthouse yalnız md9 ölçümünde
+sunucuda koşar, siteye kod göndermez. nanoid: astro→vite→postcss (build
+CSS işleme). sharp: astro görsel işleme (build). Kanıt: dist/ içinde
+nanoid/opentelemetry/sentry imzası 0 eşleşme. `npm audit fix`
+ÇALIŞTIRILMADI (lighthouse sürüm düşürmesi md9 tabanını bozar — §M9
+kararıyla tutarlı). Yeni açık doğarsa md20 zaten kırmızı verir (taban
+dedektörü).
+
 ---
 
 ## Bu dosyaya kayıt ekleme kuralı

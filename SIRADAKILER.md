@@ -28,47 +28,44 @@ KAPANAN:
   metin + JSON-LD BİREBİR · /arsiv/ canlıda dolu (23 pasaj / 24 tarih /
   53 li, tarih listesi birebir) · boşluk-yutma canlıda düzgün
   (/goller/abant-golu/: "Havzası rezerv") · apex 200 · www 301→apex.
-AÇIK:
-- [ ] **🔴 md17 KIRMIZI — ÖLÇÜM YAPAYI, SİTE SAĞLAM. ONARILMADI, KARAR
-  BEKLİYOR.** Astro 7 `href`'teki `&`'i DOĞRU biçimde `&amp;` kaçırıyor
-  (376 yerde; Astro 5 eksik kaçırıyordu). `arac/kapsam-kalemleri.mjs:37`
-  ham HTML'de regex ile href topluyor ve **varlık kaçışını çözmüyor** →
-  `...&amp;product_id=` diye istek atıp 404 alıyor.
-  ÖLÇÜLDÜ: ham `&` URL → **200**, `&amp;` URL → **404**; gerçek tarayıcıda
-  canlı sayfada DOM href'i ham `&`'e çözülüyor ve **HTTP 200**.
-  YANİ: ziyaretçi etkilenmiyor, YALNIZ denetim yanılıyor.
-  RİSK: her `--tam` koşumu yanlış KIRMIZI verecek; gerçek ölü bağlantı
-  sinyali bu gürültünün altında kaybolur (alarm körelmesi).
-  ÖNERİLEN DÜZELTME (tek satır): href'i istek atmadan önce varlık-çöz.
-  BİTTİ-TANIMI: aynı örneklemde ölü 0 + gerçek bir ölü bağlantının HÂLÂ
-  kırmızı verdiği falsifikasyon. (Denetim altyapısı = kara liste, elle.)
-- [ ] **7 GÜN SONRA (2026-09-02'den itibaren): /home/suha/astro5-referans/
-  SİL.** Astro 7 canlıda sorunsuz kalırsa. Dizinde NOT.txt var (hangi
-  tarih/sürüm/commit + şerh). O tarihten ÖNCE SİLİNMEZ.
-- [ ] md9 /harita/ mobil İZLEMEDE: yükseltme sonrası medyan 68 (turlar
-  [68,68,75], eşik 70). GERİLEME KANITI YOK — 92 ölçümlük geçmişte band
-  68-75 ve medyan 68 Astro 5'te de iki kez görüldü. Aracın kuralı gereği
-  iki ARDIŞIK koşuda tekrarlarsa KIRMIZI olur; bir sonraki `--tam`
-  koşumunda bakılacak. (Zaten açık olan "md9 eşik payı" kalemiyle aynı kök.)
-- [ ] md9 lighthouse tabanının Astro 7 çıktısıyla yeniden ölçümü
-  (JS küçültücü esbuild→oxc değişti; taban kayabilir).
+AÇIK → KAPANDI (26.08.2026, 10. seans — kuyruk kapatma;
+rapor/26-08-kuyruk-kapatma.md · KARARLAR §33):
+- [x] **md17 ONARILDI** (Faz A, commit d4c4f86): href istek atılmadan önce
+  varlık-çözülüyor (htmlVarlikCoz). Falsifikasyon 4/4 + körleştirme
+  sınaması (kasten eklenen ölü URL yakalandı). --tam: 52/1037, ölü 0 —
+  kalem kırmızıdan çıktı.
+- [x] md9 /harita/ mobil izleme ÖLÇÜLDÜ: 16:16 koşumunda iki-ardışık
+  kuralıyla kırmızı oldu, 17:02 koşumunda 75 ile GEÇTİ. Band davranışı
+  (68-75, eşik 70) yeni bilgi üretmedi — karar zaten açık olan "md9 eşik
+  payı" kullanıcı kalemindedir (25.08 bloğu).
+- [x] md9 tabanı Astro 7 çıktısıyla yeniden ÖLÇÜLDÜ: 26.08'de iki tam
+  md9 turu (14'er sayfa) kayıtlı; masaüstü 93-100, mobil 75-99 — taban
+  kaymadı, tek eşik-payı davranışı /harita/ mobil (yukarıdaki kalem).
 - [ ] site-saglik/izleme'ye Astro sürüm kalemi (süreklilik ilkesi):
-  "package.json astro major sürümü ile node_modules'daki eşleşiyor mu"
-  + NODE_VERSION ön koşulunun kalıcı hatırlatması.
-YENİ AÇILAN (kapsam dışı bulgular, uygulanmadı):
+  "package.json astro major ile node_modules eşleşiyor mu" + NODE_VERSION
+  hatırlatması. **KAPANMADI (26.08 kuyruk kapatma): brief kapsamında
+  değildi (A=md17 · B=cron/yedek/bekçi · C=karar); onarım fazları
+  kapandığı için büyütülmedi** — sebep raporda, tek açık altyapı kalemi.
+- [x] PaylasilanMenu yetim CSS bloğu SİLİNDİ (Faz C1; ölçülen konum
+  133-136): silme öncesi/sonrası build CSS 12/12 dosya sha256 BİT-EŞİT —
+  sıfır etki kanıtlı, görsel kimlik kararı gerekmedi.
+- [x] Sayfa.astro:362 KARARLA KAPATILDI (KARARLAR §33/K3): Astro 7'de de
+  bilerek düzeltilmedi; düzeltilirse hiç uygulanmamış height:100%
+  aktifleşir, görsel değişir — ayrı onay ister.
+- [x] stil-pilot ilgili-kart sırası KARARLA KAPATILDI (§33/K4): noindex +
+  sitemap dışı pilot; koleksiyon sırasına bağlı kalır.
+KULLANICI KARARI BEKLEYEN (kapanmadı, karar kalemi):
 - [ ] **YEREL BUILD ile CANLI BUILD aynı sayıyı basmıyor.** /arsiv/ ve
   /kullanilanlar/ baraj arşiv dosya sayısı: yerelde 946, canlıda 903.
   Kök neden ölçüldü: 43 dosya `data/arsiv/baraj/log/*.log` ve bilinçli
   gitignore'lu (.gitignore:14-19, eski F4-7 bulgusu). Astro'dan BAĞIMSIZ,
   yükseltme öncesi de böyleydi. Karar gerekir: sayım git'in gördüğüyle mi
   sınırlansın (canlı=yerel olur), yoksa fark kabul mü edilsin.
-- [ ] PaylasilanMenu.astro:131-135 seçicisiz yetim CSS bloğu (iki
-  sürümde de ölü kod; temizlik görsel kimlik kararı ister).
-- [ ] Sayfa.astro:362 `is:global` içinde `:global()` — düzeltilirse bugüne
-  dek hiç uygulanmamış height:100% kuralı AKTİFLEŞİR; görsel risk,
-  bilinçli bırakıldı.
-- [ ] stil-pilot ilgili-kart sırası koleksiyon sırasına bağlı (noindex
-  pilot; istenirse frontmatter sırasına sabitlenir).
+
+═══ TARİHLİ ═══
+- [ ] **2026-09-02'den itibaren: /home/suha/astro5-referans/ SİL** (Astro 7
+  canlıda sorunsuz kalırsa). NOT.txt yerinde (26.08 teyit edildi, 1629
+  bayt). O tarihten ÖNCE SİLİNMEZ.
 
 ═══ 26.08 CRON DOĞRULAMASI + K1/K2 LOG ONARIMI (26.08.2026, 8. seans;
 rapor/26-08-k1-k2-log-onarimi.md) ═══
@@ -124,53 +121,37 @@ gsc-haftalik.sh · bekçinin kendisi.
   log/yedek-cron.log silindi (29 satırı tek log'a taşındı).
   Gerçek yedek alındı ve bundle'dan klonla GERİ OKUNDU (HEAD eşleşti,
   545 commit); varlık paketi bit-eşit korundu.
-- [ ] **2. saglik-bekcisi.sh (bekçinin kendisi)** — ölürse (a)-(f)
-  sekiz kalem birden sessizce kör kalır; suharitasi tarafında onu
-  izleyen yok. K1 tam açık (0/38).
-- [ ] **3. arac/site-saglik.mjs** (3 cron satırı) — en büyük ve en hızlı
-  büyüyen log (144847 B, 4080 B/gün), 1591 satırda hiç damga yok;
-  process.exitCode hesaplanıyor ama log'a yazılmıyor. Bekçi (f) kapsıyor.
-- [ ] **4. izleme/su-izleme.sh** — bekçi (d) kapsıyor. DİKKAT: mevcut
-  `trap ... EXIT` (satır 65) geçici dosya temizliği yapıyor; ortak
-  yardımcı körlemesine eklenirse bu temizlik EZİLİR (ölçüldü).
-- [ ] **5. arac/baraj-gunluk.sh** — bekçi (b) kapsıyor, K1 kısmen zaten
-  kapalı (cron log'undaki tek damgalı kalem, 330/383). En az iş.
-- [ ] **6. arac/indexnow-bildir.mjs** — bekçi (d2) çift kalemle kapsıyor,
-  iç log tam damgalı (32/32).
-- [ ] **7. rg-nobetci.py · nhyp-yayin-nobetci.py** — haftalık, düşük
-  hacim, bekçi (d2) kapsıyor; python tarafı ayrı uygulama.
-- [ ] **8. arac/grace-guncelle.sh** — haftalık, 8 B/gün, bekçi (c).
-- [ ] **9. arac/bellek-log.sh** — RİSK YOK, 35+ gündür 0 bayt. Onarılacak
-  bir şey yok.
+- [x] **2-9. TAMAMI KAPANDI (26.08.2026, kuyruk kapatma Faz B; commit
+  abcfbc0; rapor/26-08-kuyruk-kapatma.md B4).** Çıkış kaydı sözleşmesi
+  9/9 betiğe bağlandı (bekçi · site-saglik · su-izleme [trap ZİNCİRLENDİ,
+  temizlik korundu] · baraj · indexnow · rg/nhyp [python uygulaması +
+  sys.path güvencesi] · grace · bellek-log [risk yok denmişti ama bağlama
+  ucuzdu, o da bağlandı]). Her betik için elle koşum kanıt satırı raporda.
 
 ═══ K1 FAZ 2+ — YARDIMCININ YAYGINLAŞTIRILMASI (26.08.2026 Faz 1'den) ═══
 arac/cikis-kaydi.sh Faz 1'de yazıldı ve YALNIZ yedek-al.sh'e bağlandı.
 Yardımcı kendi falsifikasyonundan geçti; yaygınlaştırma sıradaki fazlarda.
-- [ ] **Faz 2 — kalan 9 betiğe bağlama.** Öncelik sırası envanterdeki
-  gibi: saglik-bekcisi.sh → site-saglik.mjs → su-izleme.sh →
-  baraj-gunluk.sh → indexnow-bildir.mjs → rg/nhyp → grace-guncelle.sh.
-  (bellek-log.sh RİSK YOK, 35+ gündür 0 bayt — bağlanmasına gerek yok.)
-  DİKKAT 1: su-izleme.sh:65'te MEVCUT trap var — 4e orada GERÇEKTEN
-  uygulanabilir ve uygulanmalı (Faz 1'de uygulanamamıştı).
-  DİKKAT 2: node (site-saglik, indexnow) ve python (rg, nhyp) için
-  yardımcının AYRI uygulamaları gerekir; bash sürümü onlara sökülemez.
-  DİKKAT 3: her betik kendi falsifikasyonundan ayrı geçmeli — yardımcı
-  ortak diye kanıt ortaklaşmaz.
-- [ ] **saglik-bekcisi.sh'in kendisi izlenmiyor** (envanter öncelik-2).
-  Bekçi ölürse (a)-(f) sekiz kalem birden sessizce kör kalır. Bu, K1
-  yardımcısıyla ÇÖZÜLMEZ — ayrı bir dış gözcü kalemi gerekir.
-- [ ] **yedek-al.sh bekçi kapsamına alınsın.** Faz 1 K1'i kapattı ama
-  bekçi hâlâ yedek kalemi taşımıyor: "hiç koşmama" hâli yine kör.
-  son-yedek.json mtime eşiği doğal aday (grace durum.json deseniyle aynı).
-- [ ] **yedek-al.sh'de temizlik trap'i yok** (Faz 1 yan bulgusu, ONARILMADI).
-  Sinyal/hata ile ölünce .depo.bundle.tmp (925 MB!) ve .imza-yeni kalıyor.
-  Yardımcı zincirleme desteklediği için temizlik trap'i eklenebilir.
-- [ ] **site-saglik.mjs SIGTERM'de kilidini bırakmıyor** (Faz 1 yan
-  bulgusu). Betik bayat kilidi kendisi devraldığı için arıza değil,
-  ama process.on('exit') SIGTERM'de koşmuyor — kayıtta dursun.
-- [ ] **Sinyal gecikmesi sınırı** (Faz 1'de ölçüldü): bash trap'i çalışan
-  foreground alt komut bitene kadar işlemiyor; yedek-al.sh'de TERM 3 dk
-  45 sn geç kaydedildi. Uzun alt komutu olan betiklerde akılda tutulacak.
+TAMAMI KAPANDI (26.08.2026, kuyruk kapatma Faz B; commit abcfbc0):
+- [x] **Faz 2 — 9 betiğe bağlama YAPILDI** (B4 kanıtı 9/9; DİKKAT 1-3'ün
+  üçü de uygulandı: su-izleme trap'i zincirlendi, node+python ayrı
+  uygulamalar yazıldı ve birim sınamalarından geçti).
+- [x] **Bekçinin ölümü artık izleniyor** (B8): bekçi her koşumda damga
+  basar; indexnow-bildir.mjs 4 saatte bir yaşına bakar, >26s → Telegram
+  (24s baskılamalı). İzleyici seçimi gerekçeli (yedek DEĞİL — döngüsellik
+  yasağı). BİLİNEN SINIR: cron'un kendisi ölürse alarm da ölür (§33/K2).
+- [x] **yedek-al.sh bekçi kapsamında** (B6): son-yedek.json >26s VEYA yok
+  → kırmızı + Telegram; "başarısız" ve "hiç koşmadı" tek eşikle.
+  Falsifikasyon 3/3.
+- [x] **yedek-al.sh temizlik trap'i eklendi** (B7): .imza-yeni +
+  .depo.bundle.tmp + .tmp.lock (yan bulgu: kalıntıyı git bundle'ın kendi
+  .lock'u taşıyor) sinyalde silinir VE çıkış satırı yazılır — ikisi birden
+  ölçüldü (exit=143).
+- [x] **site-saglik SIGTERM kilidi** — yardımcının TERM→process.exit(143)
+  çevirimiyle 'exit' dinleyicileri (kilitBirak) artık SIGTERM'de de
+  koşuyor (birim sınaması n3'te çağıran dinleyicisinin çalıştığı ölçüldü).
+- [x] **Sinyal gecikmesi sınırı** — kalıcı bilgi olarak rapora işlendi
+  (değişmedi): trap, koşan foreground alt komut bitmeden işlemez; süreç
+  GRUBU öldürülürse gecikme yok.
 
 ORTAK YARDIMCI KARARI (Faz 1'de UYGULANDI — aşağısı özgün öneri metnidir):
 EVET ama tek parça DEĞİL. Diller: 7 bash · 2 node · 2 python → en az üç
@@ -184,12 +165,19 @@ HATA NOKTASI yaratır (bozulursa 7 bash betiği birden düşer) — bu yüzden
 kendi falsifikasyonu (gsc'deki 5a/5b/5c/5d deseni) kurulmadan hiçbir
 betiğe bağlanmamalı, ve önce YALNIZ öncelik-1 betiğinde kanıtlanmalı.
 
-AYRICA AÇILDI (envanterin yan bulguları, onarılmadı):
-- [ ] `izleme/log/cron.log` içeriği git hata mesajları
-  ("cannot pull with rebase: You have unstaged changes") — büyüme hızı
-  ölçülemedi (koşum imzası yok). İçerik ayrıca kendi başına incelenmeli.
-- [ ] `log/uyari.log` (Telegram) tavansız ve döndürmesiz — 320 B/gün.
-- [ ] `log/site-saglik-cron.log.uyum` (2508 B) — ne olduğu incelenmedi.
+AYRICA AÇILDI (envanterin yan bulguları) — 26.08 KAPANDI:
+- [x] `izleme/log/cron.log` ONARILDI-kayıtla: artık her koşumda zincir +
+  ÇIKIŞ satırı damgalı (büyüme ölçülebilir; 512 KB tavan + 5 arşiv).
+  İçerikteki git hataları bilinen desen: kirli ağaç/rebase erteleme —
+  su-izleme bunları zaten loglayıp exit≠0 dönüyor; 18-24.08 vakasının
+  kökü §27/K1'de kapanmıştı.
+- [x] `log/uyari.log` KARARLA KAPATILDI: 320 B/gün → 1 MB'a 8,9 yıl
+  (envanter ölçümü); risk pratikte yok, dokunulmadı. Yeni tavan işi
+  açılmadı (K2 acil değil kararıyla tutarlı).
+- [x] `log/site-saglik-cron.log.uyum` KİMLİĞİ BELİRLENDİ: agustos-uyum
+  seansından tek koşumluk --tam çıktı kopyası (25 satır, statik,
+  büyümüyor). Silme = geri alınamaz işlem → kullanıcıya bırakıldı; zarar
+  yok, durabilir.
 
 ═══ 25.08 ALARM TEŞHİSİ (25.08.2026, 7. seans; rapor/25-08-alarm-teshisi.md) ═══
 KAPANAN: 1a yedek (envanter=disk, gerçek yedek alındı+geri okundu) ·
