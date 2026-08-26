@@ -15,6 +15,19 @@
 # Sessiz hata yasağı (CLAUDE.md): set -euo pipefail · her hata loglanır ·
 # başarı ölçütü yazılan dosyanın VARLIĞI + sha256 doğrulaması, komutun
 # exit kodu değil · durum dosyası ancak doğrulamadan SONRA yazılır.
+#
+# K1/K2 (26.08.2026, 8. seans — Faz 1). Envanter
+# (rapor/26-08-cron-log-envanteri.md) bu betiği ÖNCELİK-1 seçti: makinedeki
+# tek veri kaybı koruması ve saglik-bekcisi.sh onu KAPSAMIYOR (ölçüldü:
+# bekçide yedek kalemi yok) — yani "hiç koşmama" hâli tamamen kör.
+#  K1 — koşumun ne zaman ve HANGİ ÇIKIŞLA bittiği log'dan okunamıyordu
+#       (0/29 damga, exit kodu hiç yazılmıyordu). Artık arac/cikis-kaydi.sh
+#       ile trap tabanlı tek satır: başarı, hata ve sinyal üç durumda da
+#       garanti. Bu betikte ÖNCEDEN trap YOKTU (ölçüldü) — yardımcı yine de
+#       ezmez, `trap -p EXIT` ile okuyup zincirler.
+#  K2 — log/yedek.log'un tavanı yoktu (satır 77/81'deki "kuşak döndürme"
+#       YEDEK PAKETİ içindir, log için değil). Yardımcı 512 KB tavan +
+#       en fazla 5 kayan arşiv getiriyor; KIRPMA YOK.
 set -euo pipefail
 
 # KOK: normalde scriptin bulunduğu depo. YEDEK_KOK yalnız TEST içindir
@@ -27,6 +40,13 @@ KILIT="/tmp/suharitasi-git.lock"
 BASLANGIC=$(date -u +%s)
 ZAMAN=$(date -u +%FT%TZ)
 
+# ── Ortak çıkış kaydı + log döndürme ────────────────────────────────
+# mkdir'DEN ÖNCE bağlanır: aşağıdaki mkdir/hedef hataları da çıkış
+# satırına yansısın (trap kurulmadan düşülen pencere olabildiğince dar).
+source "$(cd "$(dirname "$0")" && pwd)/cikis-kaydi.sh"
+cikis_kaydi_kur "yedek" "$LOG"
+cikis_kaydi_tek_log
+
 mkdir -p "$HEDEF/guncel" "$HEDEF/onceki" "$KOK/log"
 logla() { echo "$(date -u +%FT%TZ) yedek: $*" >> "$LOG"; }
 # TELEGRAM (2026-08-25, kalanlar paketi 5.3): yedek hattının ölümcül hatası
@@ -35,7 +55,10 @@ logla() { echo "$(date -u +%FT%TZ) yedek: $*" >> "$LOG"; }
 # kancası KOK'u ezdiğinde uyarı yolu kopmasın (falsifikasyon bulgusu 25.08).
 UYARICI="$(cd "$(dirname "$0")" && pwd)/uyari-gonder.sh"
 olduc() {
-  logla "HATA: $*"; echo "YEDEK HATASI: $*" >&2
+  logla "HATA: $*"
+  # Ekrana yalnız elle koşumda: cron'da bu satır log'a ZAMAN DAMGASIZ
+  # düşerdi (gsc-haftalik'te ölçülen kusur). Kayıt zaten logla + trap'te.
+  if [ -t 2 ]; then echo "YEDEK HATASI: $*" >&2; fi
   "$UYARICI" "yedek hattı: YEDEK BAŞARISIZ" "$*" || true
   exit 1
 }
@@ -145,5 +168,10 @@ cat > "$DURUM" <<JSON
 }
 JSON
 rm -f "$IMZA_YENI"
+# Çıkış satırının "üretilen dosya" alanı: durum dosyası. Seçim gerekçesi —
+# $DURUM ANCAK manifest doğrulamasından SONRA yazılır, yani varlığı
+# yedeğin doğrulandığının kanıtıdır. Boyut alanı guncel/ dizininin
+# toplamıdır (yedeğin gerçek büyüklüğü).
+cikis_kaydi_dosya "$DURUM" "$BOYUT"
 logla "bitti · $SURE sn · $(( BOYUT / 1048576 )) MB · varlık: $VARLIK_DURUM"
-echo "YEDEK TAMAM · $SURE sn · $(( BOYUT / 1048576 )) MB · varlık paketi: $VARLIK_DURUM"
+if [ -t 1 ]; then echo "YEDEK TAMAM · $SURE sn · $(( BOYUT / 1048576 )) MB · varlık paketi: $VARLIK_DURUM"; fi

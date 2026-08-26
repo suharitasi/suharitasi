@@ -1,5 +1,73 @@
 # GUNLUK.md — seans notları
 
+## 26.08.2026 (8. seans, 3. iş) — K1 YAYGINLAŞTIRMASI FAZ 1: yedek-al.sh
+
+Rapor: rapor/26-08-k1-faz1-yedek-al.md. BÜYÜK iş rejimi uygulandı:
+brief cikti/brief/'e yazıldı, denetçi 1 ENGEL + 2 UYARI verdi, ENGEL
+yalnız EKLEME ile kapatıldı (E1-E4), ikinci turda 2 UYARI kaldı ve
+kabul edildi (cikis-kaydi.sh bu işin ÜRETTİĞİ dosya, girdi değil).
+
+**NE YAPILDI.** Ortak yardımcı arac/cikis-kaydi.sh yazıldı ve YALNIZ
+yedek-al.sh'e bağlandı. Envanterde öncelik-1 seçilmişti çünkü makinedeki
+tek veri kaybı koruması ve saglik-bekcisi.sh onu KAPSAMIYOR — "hiç
+koşmama" hâli tamamen kör. Sözleşme gsc-haftalik'le AYNI:
+`<ISO-8601 UTC> <ad>: ÇIKIŞ · exit=<kod> · dosya=<yol> · bayt=<n>`,
+üretilmemişse "-". Çıktı alanı için son-yedek.json seçildi: o dosya
+ANCAK manifest doğrulamasından SONRA yazılır, yani varlığı yedeğin
+doğrulandığının kanıtıdır.
+
+**YARDIMCI, TRAP'İ EZMEZ — ZİNCİRLER.** Envanterde ölçülmüştü: bash'te
+ikinci `trap ... EXIT` birincisini SESSİZCE ezer (node process.on('exit')
+ve python atexit YIĞILIR; sorun bash'e özgü). Yardımcı `trap -p EXIT` ile
+mevcut trap'i okuyup zincirliyor. Sinyal trap'leri de yalnız o sinyalde
+trap YOKSA kuruluyor.
+
+**E1 KAPISI BİR VEKİL KRİTERİ YAKALADI.** Envanter iddiaları yeniden
+ölçüldü. `grep -c "TAVAN|döndür|tail -c" arac/yedek-al.sh` → 2 döndü,
+yani "log döndürme YOK" iddiası yanlışlanmış GİBİ göründü. Satırlar
+okundu: ikisi de (77, 81) YEDEK PAKETİ kuşak döndürmesi, log döndürmesi
+değil. Grep'in kendisi vekil kriterdi; satır okunmadan sonuç yazılsaydı
+envanteri yanlış yere düzeltmiş olacaktık. İddia ayakta.
+
+**FALSİFİKASYON 4a-4g.** 4a başarı (exit=0 · dosya · 1218971523 bayt) ·
+4b erken hata, betiğin KENDİ test kancasıyla, betik dosyası hiç
+değişmeden (exit=1, alanlar "-", md5 önce=sonra) · 4c geç hata, durum
+dosyası yazma anında — vekil kriter DEĞİL (exit=1, çıktı md5 bozulmadı) ·
+4d sinyal (exit=143) · 4e yedek-al.sh'de UYGULANAMAZ (mevcut trap yok,
+ölçüldü: grep 0) — uydurma test kurulmadı, zincirleme yardımcının kendi
+birim sınamasıyla kanıtlandı · 4f döndürme 6 tur (.1=TUR-6 .. .5=TUR-2,
+TUR-1 silindi, .6 hiç doğmadı, kırpma yok) · 4g gerçek yedek + geri okuma.
+
+**4d'DE ÖLÇÜLEN SINIR.** TERM 11:30:16'da gönderildi, ÇIKIŞ satırı
+11:34:01'de yazıldı — 3 dk 45 sn gecikme. Sinyal, çalışan `git bundle
+create` alt komutu bitene kadar işlenmedi (bash trap'i foreground komut
+bittikten sonra işler). Kayıt GARANTİ ama sinyal ANINDA değil. Uzun alt
+komutu olan her betikte geçerli; Faz 2'de akılda tutulacak.
+
+**4g'DE HASH FARKI ÇIKTI, GİZLENMEDİ.** depo.bundle sha256'sı testlerden
+öncekinden farklıydı. Nedeni ölçüldü: `git bundle` DETERMİNİSTİK DEĞİL
+(aynı depodan iki bundle farklı hash verdi). Sağlamlık hash'le değil
+GERÇEK KLONLA kanıtlandı: bundle'dan klonlanan HEAD canlı depo HEAD'iyle
+eşleşti (545 commit, 10 ref). Varlık paketi bit-eşit korundu (E4 kapısı).
+
+**K2 BEDAVAYA GELDİ + CRON `>>` KALDIRILDI.** Yardımcı 512 KB tavan +
+en fazla 5 kayan arşiv getirdi (kırpma yok). Ayrıca cron satırındaki
+`>>` kaldırıldı ve tavansız log/yedek-cron.log silindi (29 satırı
+"[taşındı]" etiketiyle tek log'a geçti). ŞERH: brief bunu açıkça
+istemedi; madde 3'ün ("K2 bedavaya geliyor, ayrı iş açma") gereği olarak
+yapıldı — aksi halde tavansız ikinci log kalırdı. Karar itiraza açık,
+geri alma bloğu raporda.
+
+**YAN BULGU, ONARILMADI (kapsam dışı).** 4d'de sinyalle ölünce
+.depo.bundle.tmp (925 MB) ve .imza-yeni kaldı — yedek-al.sh'de temizlik
+trap'i yok. Test artığı temizlendi, kusur SIRADAKILER'e yazıldı.
+Ayrıca site-saglik.mjs SIGTERM ile ölünce kilidini bırakmıyor (betik
+bayat kilidi kendisi devralıyor, o yüzden arıza değil ama kayıtta).
+
+KAPSAM DIŞI, DOKUNULMADI: diğer 9 betik · Telegram yolu · arslanhukuk.tr
+ve bist-*. Faz 2 kalemleri SIRADAKILER'e yazıldı.
+
+
 ## 26.08.2026 (8. seans) — CRON DOĞRULAMASI + K1/K2 LOG ONARIMI
 
 Rapor: rapor/26-08-k1-k2-log-onarimi.md. Adım 0 konum kapısı TEMİZ

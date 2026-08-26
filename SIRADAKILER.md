@@ -53,9 +53,15 @@ YENİ AÇILAN (bu seansın ölçümlerinden):
 Öncelik sırası ölçümle kuruldu: kritiklik × BEKÇİ KAPSAMI × K1 açığı.
 Bekçinin kapsamadığı kalemler grep ile doğrulandı: yedek-al.sh ·
 gsc-haftalik.sh · bekçinin kendisi.
-- [ ] **1. arac/yedek-al.sh** — tek veri kaybı koruması ve bekçi
-  KAPSAMIYOR (bekçide yedek kalemi yok). Başarısızlık uyarısı var ama
-  "hiç koşmama" hâli kör. K1 tam açık (0/29 damga).
+- [x] **1. arac/yedek-al.sh** → **FAZ 1 YAPILDI** (26.08.2026;
+  rapor/26-08-k1-faz1-yedek-al.md). Ortak yardımcı arac/cikis-kaydi.sh
+  yazıldı ve YALNIZ bu betiğe bağlandı. Falsifikasyon 4a-4g; 4e bu
+  betikte UYGULANAMAZ (mevcut trap yok, ölçüldü) — zincirleme
+  yardımcının kendi birim sınamasıyla kanıtlandı. K2 de kapandı:
+  512 KB tavan + 5 kayan arşiv, cron `>>` kaldırıldı, tavansız
+  log/yedek-cron.log silindi (29 satırı tek log'a taşındı).
+  Gerçek yedek alındı ve bundle'dan klonla GERİ OKUNDU (HEAD eşleşti,
+  545 commit); varlık paketi bit-eşit korundu.
 - [ ] **2. saglik-bekcisi.sh (bekçinin kendisi)** — ölürse (a)-(f)
   sekiz kalem birden sessizce kör kalır; suharitasi tarafında onu
   izleyen yok. K1 tam açık (0/38).
@@ -75,7 +81,36 @@ gsc-haftalik.sh · bekçinin kendisi.
 - [ ] **9. arac/bellek-log.sh** — RİSK YOK, 35+ gündür 0 bayt. Onarılacak
   bir şey yok.
 
-ORTAK YARDIMCI KARARI (öneri, UYGULANMADI — kullanıcı kararı bekliyor):
+═══ K1 FAZ 2+ — YARDIMCININ YAYGINLAŞTIRILMASI (26.08.2026 Faz 1'den) ═══
+arac/cikis-kaydi.sh Faz 1'de yazıldı ve YALNIZ yedek-al.sh'e bağlandı.
+Yardımcı kendi falsifikasyonundan geçti; yaygınlaştırma sıradaki fazlarda.
+- [ ] **Faz 2 — kalan 9 betiğe bağlama.** Öncelik sırası envanterdeki
+  gibi: saglik-bekcisi.sh → site-saglik.mjs → su-izleme.sh →
+  baraj-gunluk.sh → indexnow-bildir.mjs → rg/nhyp → grace-guncelle.sh.
+  (bellek-log.sh RİSK YOK, 35+ gündür 0 bayt — bağlanmasına gerek yok.)
+  DİKKAT 1: su-izleme.sh:65'te MEVCUT trap var — 4e orada GERÇEKTEN
+  uygulanabilir ve uygulanmalı (Faz 1'de uygulanamamıştı).
+  DİKKAT 2: node (site-saglik, indexnow) ve python (rg, nhyp) için
+  yardımcının AYRI uygulamaları gerekir; bash sürümü onlara sökülemez.
+  DİKKAT 3: her betik kendi falsifikasyonundan ayrı geçmeli — yardımcı
+  ortak diye kanıt ortaklaşmaz.
+- [ ] **saglik-bekcisi.sh'in kendisi izlenmiyor** (envanter öncelik-2).
+  Bekçi ölürse (a)-(f) sekiz kalem birden sessizce kör kalır. Bu, K1
+  yardımcısıyla ÇÖZÜLMEZ — ayrı bir dış gözcü kalemi gerekir.
+- [ ] **yedek-al.sh bekçi kapsamına alınsın.** Faz 1 K1'i kapattı ama
+  bekçi hâlâ yedek kalemi taşımıyor: "hiç koşmama" hâli yine kör.
+  son-yedek.json mtime eşiği doğal aday (grace durum.json deseniyle aynı).
+- [ ] **yedek-al.sh'de temizlik trap'i yok** (Faz 1 yan bulgusu, ONARILMADI).
+  Sinyal/hata ile ölünce .depo.bundle.tmp (925 MB!) ve .imza-yeni kalıyor.
+  Yardımcı zincirleme desteklediği için temizlik trap'i eklenebilir.
+- [ ] **site-saglik.mjs SIGTERM'de kilidini bırakmıyor** (Faz 1 yan
+  bulgusu). Betik bayat kilidi kendisi devraldığı için arıza değil,
+  ama process.on('exit') SIGTERM'de koşmuyor — kayıtta dursun.
+- [ ] **Sinyal gecikmesi sınırı** (Faz 1'de ölçüldü): bash trap'i çalışan
+  foreground alt komut bitene kadar işlemiyor; yedek-al.sh'de TERM 3 dk
+  45 sn geç kaydedildi. Uzun alt komutu olan betiklerde akılda tutulacak.
+
+ORTAK YARDIMCI KARARI (Faz 1'de UYGULANDI — aşağısı özgün öneri metnidir):
 EVET ama tek parça DEĞİL. Diller: 7 bash · 2 node · 2 python → en az üç
 ayrı uygulama; paylaşılan şey KOD değil SÖZLEŞME (satır biçimi + 512 KB
 tavan + en fazla 5 kayan arşiv, kırpmasız).
