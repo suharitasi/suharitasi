@@ -136,7 +136,7 @@ const sema = [
             {havzaSlug(h.ad)
               ? <a href={`/havzalar/${havzaSlug(h.ad)}/`}>{h.ad} sayfası</a>
               : h.ad}
-            {h.yagisAlani_km2 != null && ` — yağış alanı ${sayi(h.yagisAlani_km2, 0)} km²`}
+            {h.yagisAlani_km2 != null && ` — yağış alanı ${sayi(h.yagisAlani_km2, 0)} km²`}{' '}
             {h.yuzeysuyuPotansiyeli_km3 != null &&
               `, yüzey suyu potansiyeli ${sayi(h.yuzeysuyuPotansiyeli_km3, 2)} km³/yıl`}
             {h.veriYili && ` (DSİ ${h.veriYili})`}
@@ -228,7 +228,7 @@ const sema = [
     Veri künyesi: il–bölge/havza eşlemesi resmî kaynaklardan derlendi
     ({trTarih(p.veriKunyesi.ilKurumDerleme)}); havza sayıları
     {' '}{p.veriKunyesi.havzaVeriKaynak} kaynaklıdır; su depolaması eğilimi
-    {' '}{p.veriKunyesi.graceKaynak}, baraj doluluk {p.veriKunyesi.barajKaynak}
+    {' '}{p.veriKunyesi.graceKaynak}, baraj doluluk {p.veriKunyesi.barajKaynak}{' '}
     verisidir. İller havzalara kısmen girebilir; bu sayfa hukuki görüş değildir.
   </p>
 </Sayfa>

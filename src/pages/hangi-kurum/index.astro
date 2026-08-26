@@ -127,8 +127,8 @@ const sema = [
 
   <!-- ALT: tam tablo — HER ZAMAN görünür, JS'siz DOM'da (GEO kritik). -->
   <h2 class="ik-tablo-baslik" id="tam-tablo">Tam liste — {satirlar.length} su işlemi</h2>
-  <p class="ik-tablo-alt">Durum dağılımı: {dagilim.dogrulandi} doğrulandı ·
-    {dagilim.birden_fazla_kurum} yetki paylaşımlı · {dagilim.dayanak_eksik} teyit ediliyor (dayanak eksik) ·
+  <p class="ik-tablo-alt">Durum dağılımı: {dagilim.dogrulandi} doğrulandı ·{' '}
+    {dagilim.birden_fazla_kurum} yetki paylaşımlı · {dagilim.dayanak_eksik} teyit ediliyor (dayanak eksik) ·{' '}
     {dagilim.belirsiz} teyit ediliyor (belirsiz).</p>
   <div class="ik-tablo-kap" role="region" aria-label="Yetkili kurum tam tablosu" tabindex="0">
     <table class="ik-tablo">

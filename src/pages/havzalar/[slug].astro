@@ -69,10 +69,13 @@ const kesisenHavzalar = buIller.size
       .filter((g) => g.id !== giris.id && g.data.no)
       .map((g) => {
         const il = ilKurum.havzaIlleri[g.data.no]?.iller ?? [];
-        return { id: g.id, ad: g.data.baslik, ortak: il.filter((x) => buIller.has(x)).length };
+        return { id: g.id, ad: g.data.baslik, no: g.data.no, ortak: il.filter((x) => buIller.has(x)).length };
       })
       .filter((x) => x.ortak > 0)
-      .sort((a, b) => b.ortak - a.ortak)
+      // Eşitlikte id'ye göre sıralanır: getCollection dönüş sırası Astro
+      // sürümüne göre değişiyor (7: id-alfabetik; 5: loader sırası) — eşitlik
+      // açıkça bozulmazsa sıra sürüm/ortam değiştikçe kayar (26.08 ölçümü).
+      .sort((a, b) => (b.ortak - a.ortak) || (a.id < b.id ? -1 : 1))
       .slice(0, 5)
   : [];
 const ilBolge = {};
@@ -265,7 +268,7 @@ const semalar = sss.length
             İl listesi resmî havza belgesinden derlendi
             (<a href={havzaIl.kaynak} target="_blank" rel="noopener">kaynak</a>);
             iller havzaya kısmen girebilir.
-            {havzaIl.not ? ` ${havzaIl.not}.` : ''}
+            {havzaIl.not ? ` ${havzaIl.not}.` : ''}{' '}
             Büyükşehir olmayan illerde köy içme suları İl Özel İdaresi / belediye
             görev alanındadır. Derleme: {ilKurum.derlemeTarihi}.
             Açık/kapalı havza sınıflaması: havza bazlı tahsis ve kısıt
@@ -395,7 +398,7 @@ const semalar = sss.length
         İl listesi resmî havza belgesinden derlendi
         (<a href={havzaIl.kaynak} target="_blank" rel="noopener">kaynak</a>);
         iller havzaya kısmen girebilir.
-        {havzaIl.not ? ` ${havzaIl.not}.` : ''}
+        {havzaIl.not ? ` ${havzaIl.not}.` : ''}{' '}
         Büyükşehir olmayan illerde köy içme suları İl Özel İdaresi / belediye
         görev alanındadır. Derleme: {ilKurum.derlemeTarihi}.
         Açık/kapalı havza sınıflaması: havza bazlı tahsis ve kısıt kararları

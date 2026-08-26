@@ -11,11 +11,12 @@
  * değeri döndürmez. Sayfa da bunları basmaz (brief güvenlik kapısı).
  */
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
-import { join, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { join } from 'node:path';
 import { tumGoller, tumNehirler, elenenGoller, elenenNehirler } from './gol-nehir.js';
 
-const KOK = join(dirname(fileURLToPath(import.meta.url)), '../..');
+// KOK = process.cwd(): bundle derinliği Astro sürümüyle değiştiği için
+// import.meta.url güvenilmez (vitrin.js'teki notla aynı ölçüm).
+const KOK = process.cwd();
 const oku = (y) => JSON.parse(readFileSync(join(KOK, y), 'utf8'));
 
 /** Bir dizindeki dosyaları (alt dizinler dahil) sayar; yoksa null. */

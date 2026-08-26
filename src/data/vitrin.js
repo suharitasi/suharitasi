@@ -7,7 +7,6 @@
 // veri dosyalarının kendi `kaynak`/`kunye` alanlarından kurulur; yeni
 // jeoloji/hukuk cümlesi yazılmaz.
 import { readFileSync, readdirSync, statSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
 
 import yasKutleleri from '../../veri/potansiyel/yas-kutleleri.json';
@@ -23,7 +22,11 @@ import suBirimleri from '../../data/kamu/su-birimleri.json';
 import suIslemleri from '../../data/kamu/su-islemleri.json';
 import { sayiIle } from './rg-sayi.js';
 
-const KOK = fileURLToPath(new URL('../../', import.meta.url));
+// KOK, import.meta.url'den TÜRETİLMEZ: bundle'ın dizin derinliği Astro
+// sürümüyle değişiyor (5: dist/chunks → ../../ = kök; 7: dist/.prerender/
+// chunks → ../../ = dist, ENOENT). Build hep proje kökünden koşar
+// (gol-nehir-cografya.js'teki ölçülmüş desenle aynı).
+const KOK = process.cwd();
 
 function pozitif(n, ad) {
   if (!Number.isFinite(n) || n <= 0) {

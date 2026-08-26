@@ -8,6 +8,33 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ ASTRO 5→7 FAZ 1 — BUILD GEÇTİ, COMMIT'SİZ BEKLİYOR (26.08.2026,
+9. seans; rapor/26-08-astro7-faz1.md) ═══
+DURUM: astro@7.2.7 kuruldu, build hatasız; 523 sayfa + sitemap 519
+referansla birebir liste; JSON-LD 523/523 bit-eşit; görünür metin farkı
+6 sayfada ve tamamı açıklamalı (rapor §6). Ağaç 13 modified dosyayla
+KİRLİ bırakıldı (brief gereği commit/push YOK). Referans:
+/home/suha/astro5-referans/ (Astro 5 dist'i, depo dışı — SİLME).
+KULLANICI ADIMLARI (commit'ten ÖNCE, sıralı):
+- [ ] **Cloudflare Pages NODE_VERSION 20 → 22** (panel). Yapılmadan
+  push edilirse canlı build KIRILIR. Sonra karar: commit + push.
+- [ ] konya-kapali "aynı illeri kapsayan havzalar" 5-kesiti eşitlik
+  kuralıyla Burdur→Akarçay oldu (rapor §6/5c) — kabul/başka kural?
+FAZ 2 ADAYLARI (commit fazı): site-saglik/izleme kalıcı kontrol maddesi
+güncellemesi (süreklilik ilkesi — Faz 1 commit'siz olduğundan ertelendi) ·
+md9 lighthouse tabanının Astro 7 çıktısıyla yeniden ölçümü.
+YENİ AÇILAN (kapsam dışı bulgular, uygulanmadı):
+- [ ] PaylasilanMenu.astro:131-135 seçicisiz yetim CSS bloğu (iki
+  sürümde de ölü kod; temizlik görsel kimlik kararı ister).
+- [ ] Sayfa.astro:362 `is:global` içinde `:global()` — düzeltilirse bugüne
+  dek hiç uygulanmamış height:100% kuralı AKTİFLEŞİR; görsel risk,
+  bilinçli bırakıldı.
+- [ ] stil-pilot ilgili-kart sırası koleksiyon sırasına bağlı (noindex
+  pilot; istenirse frontmatter sırasına sabitlenir).
+KALICI DERS (KARARLAR adayı): getCollection eşitlik sırasına yaslanmak
+yasak — Astro 5'te bile store durumuna bağlıydı (falsifikasyon deneyi
+rapor §5.3); sıralamada eşitlik her zaman açıkça bozulur.
+
 ═══ 26.08 CRON DOĞRULAMASI + K1/K2 LOG ONARIMI (26.08.2026, 8. seans;
 rapor/26-08-k1-k2-log-onarimi.md) ═══
 KAPANAN:
