@@ -296,8 +296,8 @@ Dizine dokunulmadı; silme 2026-09-02'den önce YAPILMAZ. SIRADAKILER'de
 
 ## 12. BİTTİ-TANIMI KARŞILAMASI
 - adım 0 kanıtı ✓ · A1 teşhis kodda ✓ · A3 4/4 + A4 ham çıktı ✓
-- üç faz üç commit: **d4c4f86** (A) · **abcfbc0** (B) · Faz C commit'i
-  (bu raporla birlikte; hash commit mesajında ve git log'da)
+- üç faz üç commit: **d4c4f86** (A) · **abcfbc0** (B) · **23f9614** (C)
+  (C hash'i kapanış commit'iyle işlendi — 858b1c5 emsali)
 - B4 9/9 kanıt satırı ✓ (atlanan 0) · B6/B7/B8 falsifikasyonları ham
   çıktıyla ✓ · B8 izleyici gerekçeli + döngüsel değil ✓ · cron ortak
   hata noktası yazılı ✓
