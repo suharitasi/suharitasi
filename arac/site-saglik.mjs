@@ -46,6 +46,16 @@ if (!MOD) {
 // yapabilsin. Varsayılan değişmediği için cron davranışı AYNI kalır.
 const KOK = (deger('--kok', VARSAYILAN_KOK)).replace(/\/$/, '');
 const IZOLE = KOK !== VARSAYILAN_KOK;
+
+// ORTAK ÇIKIŞ KAYDI (K1, 26.08.2026 Faz B): başarı/hata/sinyalde tek satır.
+// Sözleşme arac/cikis-kaydi.sh ile aynı; node uygulaması arac/cikis-kaydi.mjs.
+// process.on('exit') YIĞILIR — aşağıdaki kilitBirak dinleyicisi EZİLMEZ
+// (envanter §4 ölçümü). Yan kazanç: yardımcının SIGTERM→process.exit(143)
+// çevirimi sayesinde kilitBirak SIGTERM'de de artık koşuyor (Faz 1 yan
+// bulgusu "SIGTERM'de kilit bırakılmıyor" bu bağlamayla kapanır).
+// İzole koşumda (--kok) log o köke gider — ana ağacın logu kirlenmez.
+const { cikisKaydiKur, cikisKaydiDosya } = await import('./cikis-kaydi.mjs');
+cikisKaydiKur('site-saglik', join(KOK, 'log/site-saglik-cron.log'));
 const IZLEME = join(KOK, 'izleme');
 const DURUM_YOL = join(IZLEME, 'state', 'site-saglik-durum.json');
 const LOG_YOL = join(IZLEME, 'site-saglik-log.jsonl');
@@ -1657,6 +1667,7 @@ ${kayit.mail?.gonderildi ? 'E-posta gönderildi.' : `E-posta gönderilmedi — $
 _Üreten: \`arac/site-saglik.mjs\` · onarım günlüğü: \`izleme/onarim-log.jsonl\` · ham log: \`izleme/site-saglik-log.jsonl\`_
 `;
   await writeFile(DURUM_MD, metin);
+  cikisKaydiDosya(DURUM_MD, statSync(DURUM_MD).size);
 }
 
 // ============================================================================

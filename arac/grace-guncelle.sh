@@ -24,6 +24,11 @@ LOGP="$KOK/log/pipeline.log"
 cd "$KOK" || exit 1
 mkdir -p "$HAM_DIZIN" "$KOK/log"
 
+# ORTAK ÇIKIŞ KAYDI (K1, 26.08.2026 Faz B): başarı/hata/sinyal — üç durumda
+# da tek satır. Bu betikte önceden trap yoktu; yardımcı ezmez, zincirler.
+. "$KOK/arac/cikis-kaydi.sh"
+cikis_kaydi_kur "grace" "$KOK/data/arsiv/grace/cron.log"
+
 logla() { echo "[$(date -u +%FT%TZ)] $1" >> "$LOG"; echo "$1"; }
 
 hata_say() {
@@ -60,6 +65,7 @@ YEREL=""
 if [ "$UZAK" = "$YEREL" ]; then
   logla "değişiklik yok (kaynak: $UZAK)"
   printf '{"ardisikHata": 0}\n' > "$DURUM"
+  cikis_kaydi_dosya "$DURUM" "$(stat -c %s "$DURUM")"
   exit 0
 fi
 
@@ -137,6 +143,7 @@ fi
 # koparsa hata_say zaten sayacı artırıp çıkmıştır; buraya ancak arşiv
 # doğrulanınca gelinir, o yüzden sıfırlama güvenli.
 printf '{"ardisikHata": 0}\n' > "$DURUM"
+cikis_kaydi_dosya "$DURUM" "$(stat -c %s "$DURUM")"
 logla "arşiv doğrulandı, sayaç sıfırlandı"
 
 # 6) Deploy hook — SON adım, asla çökertmez (baraj ile aynı kural)

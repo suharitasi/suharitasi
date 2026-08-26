@@ -16,6 +16,19 @@ set -euo pipefail
 KOK="${SAGLIK_KOK:-/home/suha/projeler/suharitasi}"
 cd "$KOK" || exit 1
 mkdir -p "$KOK/log"
+# ORTAK ÇIKIŞ KAYDI (K1, 26.08.2026 Faz B): başarı/hata/sinyal — üç durumda
+# da tek satır. Bu betikte ÖNCEDEN trap yoktu (envanter ölçümü); yardımcı
+# yine de ezmez, `trap -p EXIT` ile okuyup zincirler.
+. "$KOK/arac/cikis-kaydi.sh"
+cikis_kaydi_kur "bekci" "$KOK/log/bekci-cron.log"
+# ÖLÜ-ADAM DAMGASI (B8, 26.08.2026): bekçi her koşumda damga basar; damga
+# 26 saatten eskiyse BAĞIMSIZ bir kalem (arac/indexnow-bildir.mjs, 4 saatte
+# bir koşar) Telegram'a düşürür — bekçinin kendi ölümü artık sessiz değil.
+# Damga koşum BAŞINDA basılır: "bekçi çalıştı mı" sinyalidir, "sorun var mı"
+# değil (uyarı yolunda exit 1 ile çıkarken de basılmış olmalı).
+# SAGLIK_DAMGA env yalnız falsifikasyon içindir (INDEXNOW_DURUM deseni).
+mkdir -p "$KOK/izleme/state"
+date -u +%FT%TZ > "${SAGLIK_DAMGA:-$KOK/izleme/state/bekci-damga.txt}"
 # Test/izolasyon kancaları (BELLEK_LOG deseniyle aynı, 2026-07-27): bekçi
 # ANA AĞACI okurken çıktısı başka bir köke yönlendirilebilsin — worktree'de
 # gerçek veriye karşı ölçüm alınırken canlı UYARI/log dosyaları KİRLENMESİN.
@@ -220,6 +233,23 @@ print(d.get('sonBasariliKosu') or '')
   fi
 else
   ekle "🔴 sağlık sistemi koşmuyor — $SAGLIK_DURUM YOK (hiç koşmamış)"
+fi
+
+# (g) YEDEK CANLILIĞI (B6, 26.08.2026): yedek-al.sh cron'u günlük 02:10 UTC;
+#     son-yedek.json ANCAK manifest doğrulamasından SONRA yazılır (yedek-al.sh
+#     §6) — yani mtime'ı hem "yedek BAŞARISIZ" hem "yedek HİÇ KOŞMADI"
+#     hâlinde yaşlanır: iki körlük tek eşikle kapanır. EŞİK 26s = günlük
+#     koşum aralığı + 2s pay — (a) commit ve (b) baraj kalemleriyle aynı
+#     türetme (bekçi 07:00'de sağlıklı yedek ~5s tazedir).
+#     YEDEK_DURUM env yalnız falsifikasyon içindir (INDEXNOW_DURUM deseni).
+YDURUM="${YEDEK_DURUM:-/home/suha/yedek/suharitasi/son-yedek.json}"
+if [ -f "$YDURUM" ]; then
+  YS=$(( (NOW - $(date -u -r "$YDURUM" +%s)) / 3600 ))
+  if [ "$YS" -gt 26 ]; then
+    ekle "🔴 yedek ${YS} saattir alınmamış (>26s) — yedek-al.sh başarısız ya da cron'u durmuş (son-yedek.json bayat)"
+  fi
+else
+  ekle "🔴 yedek durum dosyası YOK ($YDURUM) — yedek hiç koşmamış ya da hedef silinmiş"
 fi
 
 if [ -n "$SORUN" ]; then

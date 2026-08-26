@@ -79,6 +79,13 @@ VARLIKLAR=(
 # Büyük varlıklar her gece yeniden sıkıştırılmaz; içerik imzası
 # değişmediyse mevcut yedek KORUNUR (disk + CPU tasarrufu).
 IMZA_YENI="$HEDEF/.imza-yeni"
+# B7 (26.08.2026): sinyal/hata ile ölürken geçici dosyalar kalmasın —
+# çıkış trap'i kayıtlı yolları siler (başarı yolunda zaten silinmiş/taşınmış
+# olurlar, trap boşa döner). Ölçülen vaka: TERM sonrası 925 MB .depo.bundle.tmp.
+# .depo.bundle.tmp.lock da listede: git bundle çıktıyı önce kendi .lock
+# dosyasına yazar ve sinyalle ölünce onu bırakır (B7 falsifikasyonunda
+# ölçüldü) — büyük kalıntının gerçek taşıyıcısı tmp değil .lock olabilir.
+cikis_kaydi_gecici "$IMZA_YENI" "$HEDEF/guncel/.depo.bundle.tmp" "$HEDEF/guncel/.depo.bundle.tmp.lock"
 : > "$IMZA_YENI"
 for v in "${VARLIKLAR[@]}"; do
   if [ -e "$KOK/$v" ]; then

@@ -38,6 +38,15 @@ from pathlib import Path
 KOK = Path(__file__).resolve().parent.parent
 HAVZA_VERI = KOK / "data/havza-veri.json"
 DURUM = KOK / "izleme/state/nhyp-yayin-durum.json"
+# ORTAK ÇIKIŞ KAYDI (K1, 26.08.2026 Faz B): başarı/hata/sinyalde tek satır.
+# Sözleşme arac/cikis-kaydi.sh ile aynı; python uygulaması arac/cikis_kaydi.py
+# (atexit YIĞILIR — mevcut davranış ezilmez, envanter §4 ölçümü).
+# sys.path güvencesi ZORUNLU: altin-ornek.mjs bu betiği başka çalışma
+# dizininden yükleyebilir — sys.path[0] o zaman arac/ değildir (26.08 --tam
+# md23 kırmızısıyla rg-nobetci'de ölçülen hata; aynı desen burada da).
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from cikis_kaydi import kur as _cikis_kur, dosya_bildir as _cikis_dosya
+_cikis_kur("nhyp-nobetci", str(KOK / "log/nhyp-nobetci.log"))
 # NHYP_NOBETCI_SYGM_EZME: falsifikasyon kancası (SU_IZLEME_RG_CA emsali) —
 # üretimde ayarlanmaz; kasıtlı bozma testi sondaları gerçek SYGM'ye
 # gitmeden düşürür (2026-08-25, kalanlar paketi 5.3).
@@ -206,6 +215,7 @@ def main():
         "kanal_a_saglam": kanal_a_saglam, "kanal_b_saglam": kanal_b_saglam,
         "bulgu": bulgu, "yeni_bu_kosumda": yeni, "ag_hatasi": len(hata),
     }, ensure_ascii=False, indent=1) + "\n")
+    _cikis_dosya(str(DURUM), DURUM.stat().st_size)
     print(f"\nyazıldı: {DURUM} · YENİ: {len(yeni)}")
     # TELEGRAM (yalnız --kosum; --test "hiçbir yere gönderim yapmaz" sözünü
     # tutar): nöbetçinin körlüğü (sonda bozuk / ağ hatası) ve asıl olay

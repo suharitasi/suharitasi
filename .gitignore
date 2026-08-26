@@ -59,3 +59,7 @@ izleme/state/.rg-ca-demeti.tmp
 # IndexNow bildirim durumu: 6×/gün güncellenir; commit'lense her koşum
 # gereksiz deploy tetiklerdi (kirli-ağaç dersi). Diskte kalır, yedek alır.
 /izleme/state/indexnow-durum.json
+# Bekçi ölü-adam damgaları (B8, 26.08.2026): her koşumda güncellenir,
+# commit'lense her gün ağacı kirletirdi (kirli-ağaç dersi, 24-25.08).
+/izleme/state/bekci-damga.txt
+/izleme/state/bekci-alarm-damga.txt

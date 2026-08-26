@@ -26,7 +26,7 @@
  *   node arac/indexnow-bildir.mjs --anahtar <k>      # anahtar override (falsifikasyon testi)
  */
 import { readFile, writeFile, readdir, mkdir, rename } from 'node:fs/promises';
-import { existsSync, appendFileSync } from 'node:fs';
+import { existsSync, appendFileSync, statSync, rmSync, writeFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -48,6 +48,12 @@ const PARTI_BEKLE_MS = 3000;
 const CEKIRDEK_SINIR = 20;
 const DURUM_YOL = join(KOK, 'izleme/state/indexnow-durum.json');
 const LOG_YOL = join(KOK, 'log/indexnow.log');
+
+// ORTAK ÇIKIŞ KAYDI (K1, 26.08.2026 Faz B): başarı/hata/sinyalde tek satır.
+// Sözleşme arac/cikis-kaydi.sh ile aynı; node uygulaması arac/cikis-kaydi.mjs
+// (process.on('exit') YIĞILIR — mevcut davranış ezilmez, envanter §4 ölçümü).
+import { cikisKaydiKur, cikisKaydiDosya } from './cikis-kaydi.mjs';
+cikisKaydiKur('indexnow', join(KOK, 'log/indexnow-cron.log'));
 
 const arg = process.argv.slice(2);
 const argDeger = (ad) => { const i = arg.indexOf(ad); return i >= 0 ? arg[i + 1] : null; };
@@ -120,8 +126,53 @@ async function parti(anahtar, urller) {
   return { kod: r.status, metin: metin.slice(0, 300) };
 }
 
+// ── BEKÇİNİN ÖLÜ-ADAM ANAHTARI (B8, 26.08.2026 kuyruk kapatma) ──────────
+// saglik-bekcisi.sh her koşum başında izleme/state/bekci-damga.txt basar
+// (günlük 07:00 UTC). Damga 26 saatten eskiyse (günlük koşum + 2s pay —
+// bekçinin kendi (a)/(b) eşikleriyle aynı türetme) bekçi ölmüş demektir;
+// bu betik Telegram'a düşürür.
+// İZLEYİCİ SEÇİM GEREKÇESİ: (1) yedek-al DEĞİL — B6'da bekçi yedeği
+// izlemeye başladı, karşılıklı izleme yasak (ikisi birden ölünce sessizlik);
+// (2) 6×/gün koşan en sık kalem → en hızlı tespit (≤4s gecikme);
+// (3) işlevi (IndexNow) sağlık/yedek zincirinden bağımsız.
+// BİLİNEN ORTAK HATA NOKTASI (çözülmez, kapsam dışı): cron'un kendisi
+// ölürse bu betik de koşmaz, hiçbir alarm düşmez.
+// Baskılama: bekçi ölü kaldıkça 6 msj/gün spam olmasın — 24 saatte 1 mesaj.
+// BEKCI_DAMGA env yalnız falsifikasyon içindir (INDEXNOW_DURUM deseni).
+const BEKCI_DAMGA = process.env.BEKCI_DAMGA || join(KOK, 'izleme/state/bekci-damga.txt');
+const BEKCI_ALARM_DAMGA = join(KOK, 'izleme/state/bekci-alarm-damga.txt');
+const BEKCI_ESIK_SAAT = 26;
+function bekciDamgaKontrol() {
+  try {
+    let yasSaat = null;
+    if (existsSync(BEKCI_DAMGA)) {
+      yasSaat = (Date.now() - statSync(BEKCI_DAMGA).mtimeMs) / 3600000;
+      if (yasSaat <= BEKCI_ESIK_SAAT) {
+        // Sağlıklı: varsa eski alarm baskılama damgasını temizle (bekçi
+        // dirilince bir sonraki ölümde alarm yeniden ilk koşumda çıksın).
+        if (existsSync(BEKCI_ALARM_DAMGA)) rmSync(BEKCI_ALARM_DAMGA);
+        return;
+      }
+    }
+    const mesaj = yasSaat == null
+      ? `bekçi damgası YOK (${BEKCI_DAMGA}) — saglik-bekcisi.sh hiç koşmamış ya da damga silinmiş`
+      : `bekçi damgası ${yasSaat.toFixed(1)} saat eski (>26s) — saglik-bekcisi.sh ölmüş olabilir; 8 izleme kalemi kör`;
+    if (existsSync(BEKCI_ALARM_DAMGA)
+        && Date.now() - statSync(BEKCI_ALARM_DAMGA).mtimeMs < 24 * 3600000) {
+      logla(`${mesaj} · alarm BASKILANDI (son 24 saatte gönderildi)`);
+      return;
+    }
+    logla(`ALARM: ${mesaj}`);
+    uyar('saglik-bekcisi ÖLÜ olabilir', mesaj);
+    writeFileSync(BEKCI_ALARM_DAMGA, new Date().toISOString() + '\n');
+  } catch (e) {
+    logla(`bekçi damga kontrolü hatası (bildirim akışını durdurmaz): ${e.message}`);
+  }
+}
+
 async function ana() {
   await mkdir(dirname(LOG_YOL), { recursive: true });
+  bekciDamgaKontrol();
   const anahtar = await anahtarBul();
 
   // 1) Anahtar dosyası CANLIDA erişilebilir mi? (canlı-koşul: anahtar canlıda
@@ -172,7 +223,7 @@ async function ana() {
   logla(`koşum: canlı=${canliCommit} sitemap=${canli.size} URL, fark=${hedefler.length}${KURU ? ' [KURU]' : ''}`);
   if (hedefler.length === 0) {
     durum.sonKosum = new Date().toISOString();
-    if (!KURU) await durumYaz(durum);
+    if (!KURU) { await durumYaz(durum); cikisKaydiDosya(DURUM_YOL, statSync(DURUM_YOL).size); }
     logla('değişiklik yok — bildirim çıkmadı');
     return;
   }
@@ -214,6 +265,7 @@ async function ana() {
     for (const u of Object.keys(durum.bilinen)) if (!canli.has(u)) delete durum.bilinen[u];
     await durumYaz(durum);
   }
+  cikisKaydiDosya(DURUM_YOL, statSync(DURUM_YOL).size);
   logla(`bitti: ${hedefler.length} URL bildirildi`);
 }
 

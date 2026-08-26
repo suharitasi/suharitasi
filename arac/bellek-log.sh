@@ -4,6 +4,12 @@
 # Sessiz hata yasağı: set -euo pipefail; alan çıkarımı awk ile kesin kolon.
 set -euo pipefail
 LOG="$HOME/bellek-log.txt"
+# ORTAK ÇIKIŞ KAYDI (K1, 26.08.2026 Faz B): 10 dk'lık koşum başına tek satır.
+# Büyüme sınırlı: ~11 KB/gün → yardımcının 512 KB tavanı + 5 kayan arşivi
+# ile bir daha sınırsız log yok. Bu betikte önceden trap yoktu.
+KOKDIZIN="$(cd "$(dirname "$0")/.." && pwd)"
+. "$KOKDIZIN/arac/cikis-kaydi.sh"
+cikis_kaydi_kur "bellek" "$KOKDIZIN/log/bellek-log-cron.log"
 # free -m: Mem satırı $7 = available; Swap satırı $3 = used (MB).
 SWAP_USED=$(free -m | awk '/^Swap:/{print $3}')
 MEM_AVAIL=$(free -m | awk '/^Mem:/{print $7}')
@@ -17,3 +23,4 @@ echo "$(date -u +%FT%TZ) swap_used_mb=${SWAP_USED} mem_avail_mb=${MEM_AVAIL}" >>
 if [ "$(wc -l < "$LOG")" -gt 2000 ]; then
   tail -n 2000 "$LOG" > "$LOG.tmp" && mv "$LOG.tmp" "$LOG"
 fi
+cikis_kaydi_dosya "$LOG" "$(stat -c %s "$LOG")"

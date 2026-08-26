@@ -63,15 +63,33 @@ _cikis_kaydi_dondur() {
   _cikis_kaydi_logla "log döndürüldü ($b > $T bayt) → $L.1 · arşiv tavanı $A"
 }
 
-# EXIT trap gövdesi: ÖNCE çağıranın kendi trap'i, SONRA çıkış satırı.
-# eval yalnız `trap -p` çıktısından gelen, betiğin KENDİ yazdığı komutu
-# çalıştırır (dış girdi değil). Çağıranın trap'i hata verse bile çıkış
-# satırı yazılır — kayıt, temizliğe bağlı olmamalı.
+# GEÇİCİ DOSYA TEMİZLİĞİ (B7, 26.08.2026 kuyruk kapatma): sinyal/hata ile
+# ölürken yarım kalan geçici dosyalar diskte kalmasın (ölçülen vaka:
+# yedek-al.sh TERM ile ölünce 925 MB .depo.bundle.tmp kalıyordu).
+# Kayıtlı yollar çıkışta silinir. SINIR: yollar boşluk içeremez (bu
+# depodaki tüm geçici yollar boşluksuz; boşluklu yol gerekirse dizi yapısı
+# kurulmalı). Başarı yolunda dosya zaten yoksa sessizce geçilir.
+cikis_kaydi_gecici() {
+  CIKIS_KAYDI_GECICILER="${CIKIS_KAYDI_GECICILER:-} $*"
+}
+
+# EXIT trap gövdesi: ÖNCE çağıranın kendi trap'i, SONRA geçici dosya
+# temizliği, EN SON çıkış satırı. eval yalnız `trap -p` çıktısından gelen,
+# betiğin KENDİ yazdığı komutu çalıştırır (dış girdi değil). Çağıranın
+# trap'i ya da temizlik hata verse bile çıkış satırı yazılır — kayıt,
+# temizliğe bağlı olmamalı.
 _cikis_kaydi_calistir() {
   local kod=$?
   if [ -n "${CIKIS_KAYDI_ONCEKI_TRAP:-}" ]; then
     eval "$CIKIS_KAYDI_ONCEKI_TRAP" || _cikis_kaydi_logla "UYARI: zincirlenen önceki EXIT trap'i hata verdi"
   fi
+  local _g
+  for _g in ${CIKIS_KAYDI_GECICILER:-}; do
+    if [ -e "$_g" ]; then
+      rm -f "$_g" && _cikis_kaydi_logla "geçici dosya temizlendi: $_g" \
+        || _cikis_kaydi_logla "UYARI: geçici dosya silinemedi: $_g"
+    fi
+  done
   _cikis_kaydi_logla "ÇIKIŞ · exit=$kod · dosya=${CIKIS_DOSYA:--} · bayt=${CIKIS_BOYUT:--}"
 }
 

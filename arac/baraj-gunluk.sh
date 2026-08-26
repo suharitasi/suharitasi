@@ -14,6 +14,11 @@ mkdir -p "$KOK/log"
 LOGP="$KOK/log/pipeline.log"
 HATALOG="$KOK/data/arsiv/baraj/log/cron-hata.log"
 
+# ORTAK ÇIKIŞ KAYDI (K1, 26.08.2026 Faz B): başarı/hata/sinyal — üç durumda
+# da tek satır. Bu betikte önceden trap yoktu; yardımcı ezmez, zincirler.
+. "$KOK/arac/cikis-kaydi.sh"
+cikis_kaydi_kur "baraj" "$KOK/data/arsiv/baraj/log/cron.log"
+
 # TELEGRAM UYARI KÖPRÜSÜ (2026-08-25, kalanlar paketi 5.3): bu hattın
 # kırmızısı bugüne dek yalnız log dosyasında kalıyordu — 18-24.08 pull
 # tıkanıklığı 7 gün görünmez kaldı (cron-hata.log kanıtı). rg-nobetci/
@@ -29,6 +34,11 @@ if ${BARAJ_CEK_KOMUT:-node arac/baraj-cek.mjs}; then CEKIM=0; else CEKIM=$?; fi
 [ "$CEKIM" -eq 2 ] && exit 2
 [ "$CEKIM" -ne 0 ] && uyar "veri hattı baraj: çekim BAŞARISIZ (exit $CEKIM)" \
   "EPİAŞ günlük çekimi düştü; son geçerli veri sitede kalır. Log: data/arsiv/baraj/log/"
+
+# Çıkış satırının dosya alanı: günlük çekimin ürünü (yalnız başarılı çekimde).
+if [ "$CEKIM" -eq 0 ] && [ -f data/canli/baraj.json ]; then
+  cikis_kaydi_dosya "data/canli/baraj.json" "$(stat -c %s data/canli/baraj.json)"
+fi
 
 # Başarıda da başarısızlıkta da gün kaydı/log değişti — arşivle.
 # git add KOŞULLU: var-olmayabilir dosyada exit 128 + set -e ile sessiz durma
