@@ -23,6 +23,23 @@ import { execFileSync } from 'node:child_process';
    SINIFLANDIRMA: 404/410 = KIRMIZI (link gerçekten ölmüş);
    zaman aşımı/5xx/429 = SARI (dış sunucu geçici olabilir — bizim
    arızamız değil, ama görünmeli). */
+/* HTML VARLIK ÇÖZÜMÜ (26.08.2026, md17 onarımı): Astro 7 href içindeki
+   & işaretini DOĞRU biçimde &amp; olarak kaçırıyor (geçerli HTML). Ham
+   HTML'den regex ile toplanan href bu kaçışla kalırsa istek
+   `...&amp;product_id=` diye atılır ve 404 alınır (yanlış kırmızı —
+   ölçüldü: ham & → 200, &amp; → 404). Gerçek URL = varlıkları çözülmüş
+   hal; istek atılmadan ÖNCE burada çözülür. Tek geçiş yeterlidir:
+   çift-kaçış (&amp;lt;) tek geçişte doğru sonucu (&lt; metni) verir. */
+export function htmlVarlikCoz(s) {
+  return s.replace(/&(amp|lt|gt|quot|#39|apos|#x[0-9a-f]+|#\d+);/gi, (t, ad) => {
+    const duz = { amp: '&', lt: '<', gt: '>', quot: '"', '#39': "'", apos: "'" }[ad.toLowerCase()];
+    if (duz !== undefined) return duz;
+    const kod = ad[1] === 'x' || ad[1] === 'X'
+      ? parseInt(ad.slice(2), 16) : parseInt(ad.slice(1), 10);
+    return Number.isFinite(kod) ? String.fromCodePoint(kod) : t;
+  });
+}
+
 export function disLinkleriTopla(distKok) {
   const linkler = new Map();
   const gez = (d) => {
@@ -35,7 +52,8 @@ export function disLinkleriTopla(distKok) {
         // DEĞİLDİR. Ölçüldü 28.07: ham href taraması fonts.gstatic.com
         // preconnect'ini "ölü link" sanıyordu (yanlış pozitif).
         for (const m of h.matchAll(/<a\b[^>]*\bhref="(https?:\/\/[^"]+)"/gi)) {
-          const u = m[1];
+          // İstek atılmadan ÖNCE varlık çöz (md17 onarımı, 26.08.2026).
+          const u = htmlVarlikCoz(m[1]);
           if (/suharitasi\.com/.test(u)) continue;
           if (!linkler.has(u)) linkler.set(u, y.replace(distKok, '').replace('/index.html', '/'));
         }
