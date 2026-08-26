@@ -351,9 +351,9 @@ kilidi · sinyal gecikmesi sınırı.
 cd /home/suha/projeler/suharitasi
 
 # 1) yedek-al.sh + yardımcı
-git revert <bu commit>
+git revert 40aa627
 #    (yardımcı yeni dosya; revert onu da kaldırır. Elle:
-#     git checkout <önceki sha> -- arac/yedek-al.sh && rm -f arac/cikis-kaydi.sh)
+#     git checkout 40aa627~1 -- arac/yedek-al.sh && rm -f arac/cikis-kaydi.sh)
 
 # 2) Crontab (>> yönlendirmesini geri getirir)
 crontab /home/suha/projeler/suharitasi/izleme/crontab-onceki-20260826b.txt
