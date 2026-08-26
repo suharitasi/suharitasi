@@ -8,6 +8,42 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ 26.08 CRON DOĞRULAMASI + K1/K2 LOG ONARIMI (26.08.2026, 8. seans;
+rapor/26-08-k1-k2-log-onarimi.md) ═══
+KAPANAN:
+- [x] **GSC cron ilk gerçek koşumu** — çalıştığı kanıtlandı (yalnız
+  tetiklenmedi): syslog + çıktı + içerik + exit 0 + Telegram sessiz.
+- [x] **md24 www kalemi SARI → YEŞİL.** www 301 → apex canlıda
+  doğrulandı (curl: HTTP/2 301, location https://suharitasi.com/,
+  tek hop, hedef 200); md24 yeniden ölçüldü: `[GEÇTİ] 24-www`.
+  İzole --hizli: kırmızı 0 · sarı 0 · geçti 12. Cloudflare panel
+  Redirect Rule adımı TAMAMLANMIŞ — SIRADAKILER'deki www-522 zinciri
+  bu kalemle kapandı.
+- [x] **K1 — çıkış kaydı garanti değildi.** Son satırdaki echo,
+  set -euo pipefail altında erken düşüşte hiç çalışmıyordu. `trap
+  cikis_kaydi EXIT` + sinyalin exit'e çevrilmesiyle başarı/hata/sinyal
+  üç durumda da tek satır garanti. Falsifikasyon 5a/5b/5c + sinyal.
+- [x] **K2 — tavanı olan yanlış log'du.** Cron satırındaki `>>`
+  kaldırıldı, tavansız gsc-haftalik-cron.log silindi (iki satırı tek
+  log'a taşındı). Döndürme arşivli yapıldı: en fazla 5 arşiv, 6.'sı
+  silinir, hiçbir satır kırpılmaz. Falsifikasyon 5d/5e.
+
+AÇIK KALAN / KAPSAM DIŞI:
+- [ ] **K3 — md17 SARI.** Dış sunucu kaynaklı; bu işte KAPSAM DIŞI
+  bırakıldı, onarılmadı. Ayrıca `--hizli` sınıfında olmadığı için
+  26.08 koşumunda ÖLÇÜLMEDİ — durumu bilinmiyor, sonraki `--tam`
+  koşumunda görülecek.
+- [ ] K4 (not, kusur değil): cron koşumu ~1 sn sürüyor. İki GSC API
+  çağrısı için hızlı ama içerik farkı gerçek veriyi kanıtlıyor.
+
+YENİ AÇILAN (bu seansın ölçümlerinden):
+- [ ] **Diğer cron işlerinde aynı iki kusur var mı?** Bu iş yalnız
+  gsc-haftalik'i onardı. crontab'daki DİĞER 12 satırın hepsi hâlâ
+  `>>` ile ayrı log'a yazıyor ve bu logların tavanı ÖLÇÜLMEDİ
+  (site-saglik-cron.log şu an 144 KB, pipeline.log 56 KB — büyüyorlar).
+  Aynı K1 (exit kodu kayıtta yok) sorusu da her biri için açık.
+  Ölçülmeden onarılmasın; önce envanter.
+
 ═══ 25.08 ALARM TEŞHİSİ (25.08.2026, 7. seans; rapor/25-08-alarm-teshisi.md) ═══
 KAPANAN: 1a yedek (envanter=disk, gerçek yedek alındı+geri okundu) ·
 1b su-izleme 5 hata (kaynak taraflı, kendiliğinden geçti, 0 hata ile
@@ -28,8 +64,11 @@ KULLANICI KARARI ALINDI (25.08.2026) — İKİSİ DE KAPANDI:
   UTC = 13:30 TR), kullanıcı suha, sarmalayıcı arac/gsc-haftalik.sh,
   çıktı depo DIŞINA (/home/suha/gsc-cikti). Falsifikasyon 3/3
   (cron ortamı · kimlik hatası msg 4671 · flock). KARARLAR §31.
-  İLK GERÇEK CRON KOŞUMU: 2026-08-26 Çar 10:30 UTC — çıktının
-  /home/suha/gsc-cikti/ altında doğduğu o gün teyit edilmeli.
+  İLK GERÇEK CRON KOŞUMU **TEYİT EDİLDİ** (26.08.2026, 8. seans):
+  CRON[2009304] 10:30:01 UTC → 2026-08-23.md 2531 bayt 10:30:02,
+  exit 0, Telegram'a hata yok. "Eski çıktı tekrarı" ihtimali üç
+  ölçümle elendi (pencere ilerledi · veri değişti · önbellek yok).
+  Rapor: rapor/26-08-k1-k2-log-onarimi.md.
 
 YENİ AÇILAN KALEMLER (bu seansın ölçümlerinden):
 - [ ] **yedek-al.sh kısmi kayıp kör noktası.** Üç varlıktan biri/ikisi

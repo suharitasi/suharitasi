@@ -1,5 +1,81 @@
 # GUNLUK.md — seans notları
 
+## 26.08.2026 (8. seans) — CRON DOĞRULAMASI + K1/K2 LOG ONARIMI
+
+Rapor: rapor/26-08-k1-k2-log-onarimi.md. Adım 0 konum kapısı TEMİZ
+geçildi (doğru dizin + doğru remote); arslanhukuk.tr ve bist-* dizinlerine
+girilmedi.
+
+**BÖLÜM 1 — İLK GERÇEK CRON KOŞUMU DOĞRULANDI (yalnız ölçüm, onarım yok).**
+25.08'de kurulan GSC haftalık cron'unun ilk gerçek koşumu 2026-08-26
+10:30:01 UTC'de düştü ve GERÇEKTEN çalıştı — yalnız tetiklenmedi.
+Kanıt zinciri: syslog CRON[2009304] · çıktı /home/suha/gsc-cikti/
+2026-08-23.md 2531 bayt 10:30:02 · içerik dolu (49 satır) · exit 0 ·
+Telegram'a hata yok. "Eski çıktının tekrarı" ihtimali ÜÇ ölçümle elendi:
+pencere ilerledi (08-16..08-22 → 08-17..08-23), veri değişti (tık 35→41
+iken 31→45; md5 farklı; 69 satır farklı), önbellek yok
+(`cache_discovery=False`, canlı searchanalytics().query().execute()).
+Sunucu UTC — TR farkı yok. md24 yeniden ölçüldü: www 301 → apex, hedef
+200 + canonical apex → **SARI'DAN YEŞİLE DÖNDÜ** (izole --hizli: kırmızı
+0 · sarı 0 · geçti 12; ağaç önce ve sonra temiz).
+
+**BÖLÜM 2 — DOĞRULAMANIN AÇTIĞI İKİ KUSUR ONARILDI.**
+- **K1** — çıkış satırı betiğin SON SATIRINDAKİ echo'ydu; set -euo
+  pipefail altında erken düşüşte hiç çalışmıyordu, yani "hangi çıkışla
+  bitti?" log'dan cevaplanamıyordu (26.08 doğrulamasında exit 0'a ancak
+  dolaylı akıl yürütmeyle varılabildi). Çözüm son satıra echo eklemek
+  DEĞİL: `trap cikis_kaydi EXIT` + sinyalin exit'e çevrilmesi
+  (TERM/INT/HUP) — bash'te sinyalle ölürken EXIT trap'i garanti değildir.
+  Biçim: `<ISO-8601 UTC> ... ÇIKIŞ · exit=<kod> · dosya=<yol> · bayt=<n>`;
+  dosya üretilmemişse alanlar "-", satır yine yazılır.
+- **K2** — iki log vardı ve TAVANI OLAN YANLIŞ LOG'du: sarmalayıcının
+  kendi log'u 512 KB kuralına tabiydi, cron'un `>>` ile yazdığı
+  gsc-haftalik-cron.log sınırsız büyüyordu. Cron satırındaki `>>`
+  kaldırıldı; sarmalayıcı TTY yoksa stdout+stderr'i kendi log'una
+  yönlendiriyor (`exec >> "$LOG" 2>&1`), böylece cron mail'i üretilmiyor
+  ve bash'in kendi hata mesajları dahil hiçbir çıktı kaybolmuyor —
+  /dev/null KULLANILMADI. İkinci log silindi, iki satırı "[taşındı]"
+  etiketiyle tek log'a geçti.
+
+**3a BEYAN DENETİMİ — beyan kısmen doğruydu, örtmediği kusur bulundu.**
+512 KB eşiği KODDA DOĞRULANDI (`LOG_TAVAN=$((512 * 1024))` = 524288
+bayt). ANCAK döndürme ARŞİVSİZDİ ve VERİ KAYBEDİYORDU: `tail -c
+$((LOG_TAVAN / 2))` ile log'un ilk yarısı kalıcı atılıyordu. "Boyut
+sınırıyla döndürülür" doğruydu ama döndürme = kırpmaydı. Arşiv
+mekanizması sıfırdan kuruldu: en fazla 5 arşiv (.1..5), 6.'sı silinir,
+hiçbir satır kırpılmaz.
+
+**FALSİFİKASYON 5/5 + 1 EK.** 5a başarı (exit=0 + dosya + boyut) ·
+5b erken hata, ön kapıda (exit=1, alanlar "-", betik md5 bit-eşit geri
+alındı) · 5c geç hata, python yazma anında (exit=1, traceback log'a
+düştü, çıktı md5 bozulmadı) · 5d döndürme (6 tur; .1=TUR-6 ... .5=TUR-2,
+TUR-1 silindi, .6 hiç doğmadı) · 5e crontab'da `>>` yok. EK: sinyal
+(TERM → exit=143 satırı yazıldı).
+
+**HATA KAYDI — VEKİL KRİTER.** 5c'nin ilk denemesi GEÇERSİZDİ: çıktı
+DİZİNİNİ yazılamaz yaptım (chmod 500), koşum exit 0 döndü. Neden: hedef
+dosya zaten vardı ve mevcut dosyaya yazmak dizin yazma izni gerektirmez.
+Ölçmek istediğim şeyin (yazma başarısızlığı) yerine ölçmesi kolay bir
+vekili (dizin izni) seçmiştim. Gerçek kriterle tekrarlandı: çıktı
+DOSYASI chmod 400. Kural zaten yazılıydı (CLAUDE.md "Brief yazarı
+öz-denetim" md.3) — uygulamada kaçtı, kayda geçiriliyor.
+
+**KENDİ YORUMUMU DÜZELTTİM.** Arşiv üst sınırını koda "(1+5)×512 KB
+≈ 3 MB" diye yazmıştım; 5d bunu YANLIŞLADI — arşiv, döndürme ANINDAKİ
+boyutu dondurur, tavanı aşabilir (sınamada 726 KB). Yorum düzeltildi:
+garanti edilen tek şey arşiv SAYISININ sınırlı olması.
+
+**ŞERH — BRIEF SINIFI.** Brief "KÜÇÜK İŞ" beyan etti; CLAUDE.md ölçütüne
+göre iş BÜYÜK sınıfına düşüyor (tek dosya değil + mimari: cron satırı ve
+script çıktı sözleşmesi). İş durdurulmadı — brief zaten bitti-tanımı,
+falsifikasyon matrisi ve kapsam-dışı listesi taşıdığı için BÜYÜK rejimin
+içeriğini fiilen sağlıyordu. Uyuşmazlık kayda geçirildi.
+
+KAPSAM DIŞI, DOKUNULMADI: Telegram yolu (uyari-gonder.sh — git status
+boş), K3/md17 (dış sunucu kaynaklı), gsc-haftalik.py. K4 not olarak
+kaldı (koşum ~1 sn; içerik farkı gerçek veriyi kanıtlıyor).
+
+
 ## 25.08.2026 (7. seans) — 25.08 ALARM TEŞHİSİ + GSC HAFTALIK CRON BAĞI
 
 Rapor: rapor/25-08-alarm-teshisi.md. **ŞERH: adım 0 konum kapısı elle
