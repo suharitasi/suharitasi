@@ -37,12 +37,62 @@ AÇIK KALAN / KAPSAM DIŞI:
   çağrısı için hızlı ama içerik farkı gerçek veriyi kanıtlıyor.
 
 YENİ AÇILAN (bu seansın ölçümlerinden):
-- [ ] **Diğer cron işlerinde aynı iki kusur var mı?** Bu iş yalnız
-  gsc-haftalik'i onardı. crontab'daki DİĞER 12 satırın hepsi hâlâ
-  `>>` ile ayrı log'a yazıyor ve bu logların tavanı ÖLÇÜLMEDİ
-  (site-saglik-cron.log şu an 144 KB, pipeline.log 56 KB — büyüyorlar).
-  Aynı K1 (exit kodu kayıtta yok) sorusu da her biri için açık.
-  Ölçülmeden onarılmasın; önce envanter.
+- [x] **Diğer cron işlerinde aynı iki kusur var mı?** → ENVANTER
+  ÇIKARILDI (26.08.2026, aynı seans; rapor/26-08-cron-log-envanteri.md).
+  Sayım düzeltmesi: "12 satır" YANLIŞTI — gsc hariç 17 satır var, 4'ü
+  arslanhukuk.tr (yasak, ölçülmedi), ölçülen 13 satır / 10 log.
+  BULGU: 10/10 log'da tavan/döndürme YOK · 13/13 satırda exit kodu
+  log'a yazılmıyor · zaman damgası yalnız baraj'ın cron log'unda var ·
+  sistem logrotate /home/suha'yı HİÇ kapsamıyor.
+  ÖLÇÜM UYARIMI SINIRLANDIRDI: en hızlı büyüyen log (site-saglik-cron,
+  4080 B/gün) bile 1 MB'a 0,6 yılda varıyor — K2 acil DEĞİL, öncelik
+  K1'de. (İlgili ironi: gsc-haftalik ~36 B/gün büyüyordu, yani tavanı
+  olan tek log en yavaş büyüyendi.)
+
+═══ CRON LOG K1 AÇIĞI — ONARIM KUYRUĞU (26.08.2026; envanter raporu) ═══
+Öncelik sırası ölçümle kuruldu: kritiklik × BEKÇİ KAPSAMI × K1 açığı.
+Bekçinin kapsamadığı kalemler grep ile doğrulandı: yedek-al.sh ·
+gsc-haftalik.sh · bekçinin kendisi.
+- [ ] **1. arac/yedek-al.sh** — tek veri kaybı koruması ve bekçi
+  KAPSAMIYOR (bekçide yedek kalemi yok). Başarısızlık uyarısı var ama
+  "hiç koşmama" hâli kör. K1 tam açık (0/29 damga).
+- [ ] **2. saglik-bekcisi.sh (bekçinin kendisi)** — ölürse (a)-(f)
+  sekiz kalem birden sessizce kör kalır; suharitasi tarafında onu
+  izleyen yok. K1 tam açık (0/38).
+- [ ] **3. arac/site-saglik.mjs** (3 cron satırı) — en büyük ve en hızlı
+  büyüyen log (144847 B, 4080 B/gün), 1591 satırda hiç damga yok;
+  process.exitCode hesaplanıyor ama log'a yazılmıyor. Bekçi (f) kapsıyor.
+- [ ] **4. izleme/su-izleme.sh** — bekçi (d) kapsıyor. DİKKAT: mevcut
+  `trap ... EXIT` (satır 65) geçici dosya temizliği yapıyor; ortak
+  yardımcı körlemesine eklenirse bu temizlik EZİLİR (ölçüldü).
+- [ ] **5. arac/baraj-gunluk.sh** — bekçi (b) kapsıyor, K1 kısmen zaten
+  kapalı (cron log'undaki tek damgalı kalem, 330/383). En az iş.
+- [ ] **6. arac/indexnow-bildir.mjs** — bekçi (d2) çift kalemle kapsıyor,
+  iç log tam damgalı (32/32).
+- [ ] **7. rg-nobetci.py · nhyp-yayin-nobetci.py** — haftalık, düşük
+  hacim, bekçi (d2) kapsıyor; python tarafı ayrı uygulama.
+- [ ] **8. arac/grace-guncelle.sh** — haftalık, 8 B/gün, bekçi (c).
+- [ ] **9. arac/bellek-log.sh** — RİSK YOK, 35+ gündür 0 bayt. Onarılacak
+  bir şey yok.
+
+ORTAK YARDIMCI KARARI (öneri, UYGULANMADI — kullanıcı kararı bekliyor):
+EVET ama tek parça DEĞİL. Diller: 7 bash · 2 node · 2 python → en az üç
+ayrı uygulama; paylaşılan şey KOD değil SÖZLEŞME (satır biçimi + 512 KB
+tavan + en fazla 5 kayan arşiv, kırpmasız).
+ÖLÇÜLEN ZORUNLU ŞART: bash'te ikinci `trap ... EXIT` birincisini SESSİZCE
+EZER (deney yapıldı); node `process.on('exit')` ve python `atexit` ise
+YIĞILIR. Bu yüzden bash yardımcısı `trap -p EXIT` ile mevcut trap'i okuyup
+ZİNCİRLEMEK ZORUNDA. Karşı argüman kayıtta: ortak yardımcı YENİ BİR TEK
+HATA NOKTASI yaratır (bozulursa 7 bash betiği birden düşer) — bu yüzden
+kendi falsifikasyonu (gsc'deki 5a/5b/5c/5d deseni) kurulmadan hiçbir
+betiğe bağlanmamalı, ve önce YALNIZ öncelik-1 betiğinde kanıtlanmalı.
+
+AYRICA AÇILDI (envanterin yan bulguları, onarılmadı):
+- [ ] `izleme/log/cron.log` içeriği git hata mesajları
+  ("cannot pull with rebase: You have unstaged changes") — büyüme hızı
+  ölçülemedi (koşum imzası yok). İçerik ayrıca kendi başına incelenmeli.
+- [ ] `log/uyari.log` (Telegram) tavansız ve döndürmesiz — 320 B/gün.
+- [ ] `log/site-saglik-cron.log.uyum` (2508 B) — ne olduğu incelenmedi.
 
 ═══ 25.08 ALARM TEŞHİSİ (25.08.2026, 7. seans; rapor/25-08-alarm-teshisi.md) ═══
 KAPANAN: 1a yedek (envanter=disk, gerçek yedek alındı+geri okundu) ·
