@@ -226,7 +226,7 @@ kanıtladığı için şüphe yok.
 ```bash
 # 1) Sarmalayıcı
 cd /home/suha/projeler/suharitasi
-git revert <bu commit>          # ya da: git checkout <önceki sha> -- arac/gsc-haftalik.sh
+git revert f1424c7                 # ya da: git checkout f1424c7~1 -- arac/gsc-haftalik.sh
 
 # 2) Crontab (>> yönlendirmesini geri getirir)
 crontab /home/suha/projeler/suharitasi/izleme/crontab-onceki-20260826.txt
