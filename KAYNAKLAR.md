@@ -174,6 +174,25 @@
   Havzası Yönetim Planı bulundu:
   https://www.tarimorman.gov.tr/SYGM/Belgeler/NHYP%20DENİZ/MERİÇ-ERGENE%20NEHİR%20HAVZASI%20YÖNETİM%20PLANI.pdf
 
+## SYGM kuraklık yönetim planları (havza komşuluğu dayanağı)
+
+Kayıt nedeni: KARARLAR §32/3 — "aynı illeri kapsayan havzalar" listesinde
+eşitlik bozucunun gerekçesi. SİTEDE KOMŞULUK İDDİASI OLARAK KULLANILMAZ;
+yalnız karar dayanağıdır (sayfadaki ölçüt il örtüşmesidir).
+
+- Giriş sayfası: https://www.tarimorman.gov.tr/SYGM/Sayfalar/Detay.aspx?SayfaId=61
+  — HTTP 200 doğrulandı (2026-08-26). 20 havzanın kuraklık yönetim planını
+  listeler; **Konya Havzası** dahil (Cilt 1, Cilt 2, Cilt 3, Yönetici Özeti).
+  Belge klasörü: `/SYGM/Belgeler/KURAKLIK%20YÖNETİM%20PLANLARI%2009.01.2023/`.
+- DOĞRUDAN CİLT BAĞLANTISI KAYDEDİLMEDİ: arama sonucundan gelen
+  `.../Kuraklık%20Yönetim%20Planları/Konya%20Havzası%20Kuraklık%20Yönetim%20Plan%C4%B1%20Cilt%203.pdf`
+  adresi **HTTP 404** döndü (2026-08-26 ölçümü; klasör adı bayat). Belgeye
+  giriş sayfasından inilir — ölü bağlantı kaydedilmez.
+- Konya Havzası tanıtım belgesi (havza → il listesi kaynağının Konya
+  parçası; genel künye "İl-kurum katmanı" bölümünde zaten kayıtlı):
+  https://www.tarimorman.gov.tr/SYGM/Belgeler/havza%20tan%C4%B1t%C4%B1m%2023.03.2023/t%C3%BCrk%C3%A7e/Konya%20Havzas%C4%B1%20Tan%C4%B1t%C4%B1m.pdf
+  — HTTP 200 + `application/pdf` doğrulandı (2026-08-26).
+
 ## Su mevzuatı tam metin bağlantıları
 
 - mevzuat.gov.tr üzerindeki tüm bağlantılar (831, 167, 6200, 5686

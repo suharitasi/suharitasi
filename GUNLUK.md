@@ -1,5 +1,113 @@
 # GUNLUK.md — seans notları
 
+## 26.08.2026 (9. seans) — ASTRO 5 → 7 YÜKSELTMESİ: keşif, düzeltme, YAYIN
+
+Raporlar: rapor/26-08-astro7-faz1.md (build'i geçirmek) +
+rapor/26-08-astro7-faz2-yayin.md (yayına alma). Karar: KARARLAR §32.
+İki BÜYÜK iş rejimi ayrı ayrı uygulandı; Faz 1 denetçisi 1 ENGEL + 4
+UYARI, Faz 2 denetçisi 0 ENGEL + 3 UYARI verdi, ikisi de yalnız EKLEME
+ile kapatıldı. Sonuç: **astro@7.2.7 canlıda** (commit eaa951d).
+
+**ÜÇ KUSUR, ÜÇ FARKLI CİNS.** Yükseltmenin bize çıkardığı iş tek bir
+"breaking change" değildi:
+1. *Sert hata* — ENOENT. `vitrin.js`/`kullanilanlar.js` proje kökünü
+   `import.meta.url`'den türetiyordu; Astro 7 bundle'ı
+   `dist/.prerender/chunks/`e taşıyınca kök bir seviye kaydı ve
+   `dist/data/arsiv/baraj` diye olmayan bir yol doğdu. Build düştü,
+   yani KENDİNİ GÖSTERDİ.
+2. *Sessiz hata* — boşluk-yutma. Build GEÇİYORDU ama 453 sayfada
+   kelimeler bitişmişti ("Havzasırezerv"). Hiçbir test, hiçbir kalem
+   bunu yakalamazdı; yalnız referansla metin kıyası yakaladı.
+3. *Kararsızlık* — getCollection sırası. Ne hata ne bozulma; sıra
+   değişti.
+
+**ASIL DERS: REFERANS ALMADAN YÜKSELTME YAPILMAZ.** 2 numaralı kusur
+build'i geçiriyordu. "Build geçti, 522 sayfa üretildi, sitemap 519"
+diyerek push edilseydi 453 sayfa bitişik kelimelerle yayına girecekti.
+Yakalayan şey testler değil, işin İLK adımında alınan Astro 5 dist
+kopyasıydı (brief bunu "kıyasın ön koşulu, atlanamaz" diye yazmıştı;
+doğru yazılmış).
+
+**VEKİL KRİTER TUZAĞI — "diff" ölçmek istediğim şeyi ölçmüyordu.**
+İlk kıyas denemesi satır-diff'iydi: 5 sayfada 45-113 satır fark çıktı,
+hepsi minify üslubu ve hash'li dosya adlarıydı. Sayısı büyük ama
+anlamı sıfır. Ölçmek istediğim "içerik kaybı var mı"ydı; onu ölçmek
+için üç katman ayrıldı — görünür metin, JSON-LD, script. Ayrılınca
+gerçek sinyal göründü: JSON-LD 523/523 bit-eşit, metin farkı 453
+sayfa. Aynı ham veri, doğru kriterle okununca teşhis oldu.
+
+**FALSİFİKASYON, KORUMAYI HAKLI ÇIKARMAK YERİNE ONU ÇÜRÜTTÜ.** Sıra
+değişimini "Astro 5 davranışına geri döndürmek" için önce havza-no
+sırası denendi (referansla eşleşiyordu) — 22 sayfada tutmadı. Sonra
+asıl soru soruldu: *Astro 5 gerçekten kararlı mıydı?* Deney: yamalar
+stash'lendi, Astro 5 yeniden kuruldu, art arda iki build alındı. A=B
+ama ikisi de sabahki referanstan FARKLI. Yani korunmaya çalışılan
+"Astro 5 sırası" diye bir şey yoktu — store durumundan gelen tarihsel
+bir kazaydı. Doğru çözüm taklit değil, eşitliği açıkça bozmak oldu.
+KARARLAR §32/2: getCollection dönüş sırasına yaslanmak yasak.
+
+**KULLANICI KARARI KENDİ GEREKÇESİNİ AŞTI.** konya-kapali komşu
+listesinde Burdur yerine Akarçay görünmesi kullanıcıya soruldu; kabul
+edildi (resmî komşu listesinde Burdur yok). Yayın doğrulamasında
+şu ölçüldü: **yükseltme ÖNCESİ canlı sayfa da Akarçay gösteriyordu.**
+Cloudflare'ın Astro 5 build'i benim yerel referansımdan farklı sıra
+üretmiş. Yani karar hiçbir sayfayı değiştirmedi — zaten yayında olan
+davranışı onayladı. Yerel referansı "canlının aynısı" sanmak bir
+varsayımdı; ölçülünce yanlış çıktı. (NOT.txt'ye şerh olarak işlendi.)
+
+**DENETLENEMEZ ŞART, DAHA GÜÇLÜ KANITA ÇEVRİLDİ.** Faz 2 briefi "build
+log'unda Node 22'yi göster" diyordu. Ölçüldü: bu makinede Cloudflare
+build log'u okunamıyor (yalnız CF_DEPLOY_HOOK var, API token yok).
+Şart terk edilmedi: astro@7'nin bin'i `>=22.12.0` istiyor ve düşük
+sürümde HİÇ BUILD ETMEDEN exit 1 veriyor. Sahte `process.versions.node
+= 20.11.0` ile kapı yerelde falsifiye edildi. Dolayısıyla canlıda YENİ
+çıktı üretilmiş olması Node 22'nin kanıtı — log bir beyandır, bu bir
+kapı testidir. KALICI ÖN KOŞUL: NODE_VERSION=22 silinirse build kırılır.
+
+**YAN BULGU: yerel build ile canlı build aynı sayıyı basmıyor.**
+/arsiv/ ve /kullanilanlar/ baraj dosya sayısı yerelde 946, canlıda 903.
+Kök neden: 43 dosya `data/arsiv/baraj/log/*.log` ve bilinçli gitignore'lu
+(F4-7 bulgusu). Astro'dan bağımsız, yükseltmeden önce de böyleydi —
+ama bu iş olmasa görülmezdi. Kıyas tabanı temiz git worktree build'ine
+eşitlendi; sonra 5/5 sayfada metin + JSON-LD birebir tuttu.
+SIRADAKILER'e karar kalemi olarak yazıldı, ONARILMADI.
+
+**Yayın ölçümleri:** push 13:18Z → deploy 13:19:28Z (~45 sn) · 5 sayfa
+içerik imzası 5/5 · /arsiv/ canlıda 23 pasaj / 24 tarih / 53 li
+(birebir) · boşluk canlıda düzgün · apex 200 · www 301 → apex tek hop.
+
+**SAĞLIK KIRMIZI VERDİ — VE KIRMIZI HAKLI DEĞİLDİ.** `--tam` sonucu:
+kırmızı 1 · sarı 1 · geçti 21; taban taşıyan yedi kalemin (md14 görsel
+G1-G6, md21, md15, md16, md18, md23, md11) hepsi geçti, **taban
+gerilemesi 0**. Kırmızı md17'den geldi: 5 "ölü" dış bağlantı.
+Log satırındaki URL kesik görünüyordu ("...product/product&") ve ilk
+akla gelen "yükseltme URL'leri bozdu" oldu. Belirtiden nedene
+atlanmadı: dist'teki tam URL okundu (`&amp;product_id=10069` — kesik
+değil, log 60 karakterde kırpıyor), sonra referansla sayıldı —
+**Astro 5: ham `&` 376 / `&amp;` 0 · Astro 7: ham `&` 0 / `&amp;` 376**.
+Astro 7 `href` içindeki `&`'i kaçırıyor, ki DOĞRU HTML budur; Astro 5
+eksik kaçırıyormuş. Sunucu ölçüldü: ham `&` → **200**, `&amp;` → **404**.
+Aracın kodu okundu (`kapsam-kalemleri.mjs:37`): ham HTML üzerinde regex,
+**varlık kaçışını çözmüyor**. Son olarak gerçek kullanıcı ölçüldü —
+canlı sayfada headless tarayıcı DOM'unda href ham `&`'e çözülüyor ve
+istek **200** dönüyor.
+
+Yani araç, yıllardır HTML'in EKSİK kaçırılmasına bağımlıymış; site
+doğrulaşınca denetim yanlış alarma geçti. Ziyaretçi etkilenmiyor.
+ONARILMADI (brief "gerileme varsa DUR, kendi başına onarma" + denetim
+altyapısı kara listede) — SIRADAKILER'e tek satırlık düzeltme önerisi
+ve falsifikasyonlu bitti-tanımıyla yazıldı. Asıl risk performans değil
+**alarm körelmesi**: her koşumda yanlış kırmızı yanarsa gerçek ölü
+bağlantı bu gürültünün altında kaybolur.
+
+**SARI (md9 /harita/ mobil 68) GERİLEME DEĞİL — geçmişe bakılarak
+ayrıldı.** 92 ölçümlük tarihçe çıkarıldı: band 68-75, medyanın 70 altına
+düşmesi 3 kez olmuş ve **ikisi Astro 5 döneminde**; 68 turu yükseltmeden
+bir saat önceki koşumda da var ([68,75,75]). Masaüstü 93→94 ile hafif
+İYİLEŞTİ. Şerh kayda geçti: üç turun ikisi 68 bandın alt ucudur, tek
+koşumluk örneklem küçük bir kaymayı kesin dışlayamaz — aracın kendi
+"iki ardışık koşu = kırmızı" kuralı gerçek kaymayı yakalar.
+
 ## 26.08.2026 (8. seans, 3. iş) — K1 YAYGINLAŞTIRMASI FAZ 1: yedek-al.sh
 
 Rapor: rapor/26-08-k1-faz1-yedek-al.md. BÜYÜK iş rejimi uygulandı:

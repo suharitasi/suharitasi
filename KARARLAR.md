@@ -590,6 +590,52 @@ dönük çıkarıldı; o yüzden bazı satırlarda bu işaret vardır.
 - **ŞERH:** `apt-daily.timer` rastgele gecikmelidir; hiçbir saat ona
   karşı garanti edilemez.
 
+### 32. ASTRO 7'YE YÜKSELTME · getCollection eşitlik sırası ARTIK AÇIKÇA BOZULUR · konya-kapali komşu listesi ALFABETİK eşitlik bozucuyla kabul
+- **Tarih:** 2026-08-26 (rapor/26-08-astro7-faz1.md + rapor/26-08-astro7-faz2-yayin.md;
+  §"9. astro 5→7 yükseltmesi yapılsın mı" kalemini KAPATIR — kullanıcı kararı alındı)
+- **Karar (3 parça):**
+  1. **Astro 5.18.2 → 7.2.7 yayına alındı** (commit eaa951d). Sürüm
+     kapısı sert: astro@7'nin kendi bin'i `>=22.12.0` istiyor ve
+     düşük sürümde HİÇ BUILD ETMEDEN exit 1 veriyor (yerel
+     falsifikasyon: sahte `process.versions.node=20.11.0` →
+     "Node.js v20.11.0 is not supported by Astro!"). Bu yüzden
+     Cloudflare Pages'te **NODE_VERSION=22 kalıcı bir ön koşuldur**;
+     değişken silinirse yayın build'i sessizce eskimez, KIRILIR.
+  2. **getCollection'ın dönüş sırasına yaslanmak YASAK.** Sıralamada
+     eşitlik her zaman açıkça bozulur (`|| (a.id < b.id ? -1 : 1)`).
+     Gerekçe ölçümle kuruldu: sıra Astro 7'de id-alfabetik, Astro 5'te
+     content-layer store'unun durumuna bağlıydı — Astro 5 yeniden
+     kurulup art arda iki build alındığında ikisi birbirine eşit ama
+     sabahki referans kopyadan FARKLI çıktı. Yani "Astro 5 davranışı"
+     diye korunacak kararlı bir sıra hiç yoktu.
+  3. **konya-kapali komşu listesi: alfabetik eşitlik bozucu KALIR,
+     Akarçay görünür** (kullanıcı kararı 26.08). "Aynı illeri kapsayan
+     havzalar" listesi il örtüşmesiyle hesaplanır ve ilk 5 gösterilir;
+     eşit ortak-il sayısında sıra alfabetiktir.
+- **Gerekçe (3. parça — kullanıcı):** resmî kaynaklar Konya Kapalı
+  Havzası'nın komşularını kuzeyde Sakarya-Kızılırmak, doğuda
+  Kızılırmak-Seyhan, güneyde Doğu Akdeniz, batıda Antalya-Akarçay
+  olarak sayıyor; **Burdur bu komşu listesinde YOK** (Göller Yöresi
+  kapalı havza grubunda). Liste il örtüşmesiyle hesaplansa da,
+  eşitlikte hidrolojik komşuluğu olan havzanın görünmesi okuyucu için
+  doğrudur. Kaynaklar: SYGM havza tanıtım belgeleri + Konya Havzası
+  Kuraklık Yönetim Planı (künyeler KAYNAKLAR.md'de).
+- **ÖLÇÜM NOTU (kararı güçlendiren):** bu karar canlıda GÖRÜNÜR bir
+  değişiklik YARATMADI — yükseltme öncesi canlı sayfa da Akarçay
+  gösteriyordu (26.08 13:18Z ölçümü, Astro 5 build'i commit 858b1c5).
+  Yerel Astro 5 referans kopyasının Burdur göstermesi, 2. parçadaki
+  store-bağımlılığının bir sonucuydu. Yani kabul edilen davranış,
+  zaten yayında olan davranıştır.
+- **Reddedilen alternatif:** ortak-il **eşiğiyle** sıralama (ör. "N
+  ortak ilden azını gösterme") — liste uzunluğunu öngörülemez kılıyor,
+  bazı havzalarda blok tamamen boşalabilirdi. REDDEDİLDİ.
+- **Kod değişmedi:** karar mevcut davranışı onaylar; 26.08'de yalnız
+  kayıt yapıldı (KARARLAR + KAYNAKLAR + SIRADAKILER).
+- **ŞERH:** komşuluk listesi bir HİDROLOJİK KOMŞULUK İDDİASI DEĞİLDİR;
+  başlık ve blok metni "aynı illeri kapsayan havzalar" der ve ölçüt
+  budur. Resmî komşuluk yalnız eşitlik bozucunun gerekçesidir, sayfada
+  komşuluk iddiası olarak yazılmaz.
+
 ---
 
 ## Bu dosyaya kayıt ekleme kuralı

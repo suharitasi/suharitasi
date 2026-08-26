@@ -8,22 +8,60 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
-═══ ASTRO 5→7 FAZ 1 — BUILD GEÇTİ, COMMIT'SİZ BEKLİYOR (26.08.2026,
-9. seans; rapor/26-08-astro7-faz1.md) ═══
-DURUM: astro@7.2.7 kuruldu, build hatasız; 523 sayfa + sitemap 519
-referansla birebir liste; JSON-LD 523/523 bit-eşit; görünür metin farkı
-6 sayfada ve tamamı açıklamalı (rapor §6). Ağaç 13 modified dosyayla
-KİRLİ bırakıldı (brief gereği commit/push YOK). Referans:
-/home/suha/astro5-referans/ (Astro 5 dist'i, depo dışı — SİLME).
-KULLANICI ADIMLARI (commit'ten ÖNCE, sıralı):
-- [ ] **Cloudflare Pages NODE_VERSION 20 → 22** (panel). Yapılmadan
-  push edilirse canlı build KIRILIR. Sonra karar: commit + push.
-- [ ] konya-kapali "aynı illeri kapsayan havzalar" 5-kesiti eşitlik
-  kuralıyla Burdur→Akarçay oldu (rapor §6/5c) — kabul/başka kural?
-FAZ 2 ADAYLARI (commit fazı): site-saglik/izleme kalıcı kontrol maddesi
-güncellemesi (süreklilik ilkesi — Faz 1 commit'siz olduğundan ertelendi) ·
-md9 lighthouse tabanının Astro 7 çıktısıyla yeniden ölçümü.
+═══ ASTRO 5→7 YAYINDA (26.08.2026, 9. seans; KARARLAR §32;
+rapor/26-08-astro7-faz1.md + rapor/26-08-astro7-faz2-yayin.md) ═══
+KAPANAN:
+- [x] **Astro 5.18.2 → 7.2.7 yayına alındı.** commit eaa951d, push
+  13:18Z, Cloudflare deploy'u ~45 sn'de landi (surum.json eaa951d).
+- [x] **Cloudflare NODE_VERSION=22** (kullanıcı panelde yaptı).
+  Kanıt log okumadan kuruldu: astro@7 bin'i <22.12'de HİÇ BUILD
+  ETMEDEN exit 1 veriyor (yerel falsifikasyon: sahte node 20.11.0 →
+  "not supported"), dolayısıyla yeni çıktı üretilmiş olması Node 22'nin
+  kanıtıdır. KALICI ÖN KOŞUL: değişken silinirse yayın build'i KIRILIR.
+- [x] **konya-kapali 5-kesiti — KULLANICI KARARI: KABUL.** Alfabetik
+  eşitlik bozucu kalır, Akarçay görünür (KARARLAR §32/3; gerekçe resmî
+  komşu listesi, künyeler KAYNAKLAR'da). Ölçüm notu: yükseltme ÖNCESİ
+  canlı da Akarçay gösteriyordu — kabul edilen davranış zaten yayındaydı.
+  Reddedilen alternatif: ortak-il eşiğiyle sıralama (liste uzunluğunu
+  öngörülemez kılıyor).
+- [x] Yayın doğrulaması: 5 sayfada canlı ↔ temiz-kaynak build görünür
+  metin + JSON-LD BİREBİR · /arsiv/ canlıda dolu (23 pasaj / 24 tarih /
+  53 li, tarih listesi birebir) · boşluk-yutma canlıda düzgün
+  (/goller/abant-golu/: "Havzası rezerv") · apex 200 · www 301→apex.
+AÇIK:
+- [ ] **🔴 md17 KIRMIZI — ÖLÇÜM YAPAYI, SİTE SAĞLAM. ONARILMADI, KARAR
+  BEKLİYOR.** Astro 7 `href`'teki `&`'i DOĞRU biçimde `&amp;` kaçırıyor
+  (376 yerde; Astro 5 eksik kaçırıyordu). `arac/kapsam-kalemleri.mjs:37`
+  ham HTML'de regex ile href topluyor ve **varlık kaçışını çözmüyor** →
+  `...&amp;product_id=` diye istek atıp 404 alıyor.
+  ÖLÇÜLDÜ: ham `&` URL → **200**, `&amp;` URL → **404**; gerçek tarayıcıda
+  canlı sayfada DOM href'i ham `&`'e çözülüyor ve **HTTP 200**.
+  YANİ: ziyaretçi etkilenmiyor, YALNIZ denetim yanılıyor.
+  RİSK: her `--tam` koşumu yanlış KIRMIZI verecek; gerçek ölü bağlantı
+  sinyali bu gürültünün altında kaybolur (alarm körelmesi).
+  ÖNERİLEN DÜZELTME (tek satır): href'i istek atmadan önce varlık-çöz.
+  BİTTİ-TANIMI: aynı örneklemde ölü 0 + gerçek bir ölü bağlantının HÂLÂ
+  kırmızı verdiği falsifikasyon. (Denetim altyapısı = kara liste, elle.)
+- [ ] **7 GÜN SONRA (2026-09-02'den itibaren): /home/suha/astro5-referans/
+  SİL.** Astro 7 canlıda sorunsuz kalırsa. Dizinde NOT.txt var (hangi
+  tarih/sürüm/commit + şerh). O tarihten ÖNCE SİLİNMEZ.
+- [ ] md9 /harita/ mobil İZLEMEDE: yükseltme sonrası medyan 68 (turlar
+  [68,68,75], eşik 70). GERİLEME KANITI YOK — 92 ölçümlük geçmişte band
+  68-75 ve medyan 68 Astro 5'te de iki kez görüldü. Aracın kuralı gereği
+  iki ARDIŞIK koşuda tekrarlarsa KIRMIZI olur; bir sonraki `--tam`
+  koşumunda bakılacak. (Zaten açık olan "md9 eşik payı" kalemiyle aynı kök.)
+- [ ] md9 lighthouse tabanının Astro 7 çıktısıyla yeniden ölçümü
+  (JS küçültücü esbuild→oxc değişti; taban kayabilir).
+- [ ] site-saglik/izleme'ye Astro sürüm kalemi (süreklilik ilkesi):
+  "package.json astro major sürümü ile node_modules'daki eşleşiyor mu"
+  + NODE_VERSION ön koşulunun kalıcı hatırlatması.
 YENİ AÇILAN (kapsam dışı bulgular, uygulanmadı):
+- [ ] **YEREL BUILD ile CANLI BUILD aynı sayıyı basmıyor.** /arsiv/ ve
+  /kullanilanlar/ baraj arşiv dosya sayısı: yerelde 946, canlıda 903.
+  Kök neden ölçüldü: 43 dosya `data/arsiv/baraj/log/*.log` ve bilinçli
+  gitignore'lu (.gitignore:14-19, eski F4-7 bulgusu). Astro'dan BAĞIMSIZ,
+  yükseltme öncesi de böyleydi. Karar gerekir: sayım git'in gördüğüyle mi
+  sınırlansın (canlı=yerel olur), yoksa fark kabul mü edilsin.
 - [ ] PaylasilanMenu.astro:131-135 seçicisiz yetim CSS bloğu (iki
   sürümde de ölü kod; temizlik görsel kimlik kararı ister).
 - [ ] Sayfa.astro:362 `is:global` içinde `:global()` — düzeltilirse bugüne
@@ -31,9 +69,6 @@ YENİ AÇILAN (kapsam dışı bulgular, uygulanmadı):
   bilinçli bırakıldı.
 - [ ] stil-pilot ilgili-kart sırası koleksiyon sırasına bağlı (noindex
   pilot; istenirse frontmatter sırasına sabitlenir).
-KALICI DERS (KARARLAR adayı): getCollection eşitlik sırasına yaslanmak
-yasak — Astro 5'te bile store durumuna bağlıydı (falsifikasyon deneyi
-rapor §5.3); sıralamada eşitlik her zaman açıkça bozulur.
 
 ═══ 26.08 CRON DOĞRULAMASI + K1/K2 LOG ONARIMI (26.08.2026, 8. seans;
 rapor/26-08-k1-k2-log-onarimi.md) ═══
@@ -359,10 +394,11 @@ KAPANMAYANLAR (gerekçeli):
   (kendi venv'i, BIST dizinine/portuna referans yok); tek bağ birim ADI
   (`bist-kesif`). Taşıma planı + BIST taban ölçümü hazır:
   rapor/kesif-botu-tasima.md. KULLANICI ROOT OLARAK KOŞAR.
-▸ M9 astro 5→7 ve lighthouse düşürmesi — rapor/npm-acik-degerlendirmesi.md
-  §4 (astro'nun düzelttiği açıkların hiçbiri bize dokunmuyor: define:vars,
-  server:defer, adlı slot, SSR hepsi 0 ölçüldü; lighthouse "fix"i DÜŞÜRME
-  ve md9 skor tabanını geçersiz kılar).
+▸ M9 astro 5→7 — **KAPANDI 26.08.2026: YÜKSELTİLDİ VE YAYINA ALINDI**
+  (astro@7.2.7, commit eaa951d; KARARLAR §32). Erteleme gerekçesi hâlâ
+  doğruydu (açıkların hiçbiri bize dokunmuyordu) — yükseltme güvenlik
+  değil bakım kararı olarak yapıldı. Lighthouse DÜŞÜRMESİ hâlâ AÇIK ve
+  hâlâ reddediliyor (md9 skor tabanını geçersiz kılar).
 ▸ M15 kalan pay: #DFE9F0 zemininde 6,58 (<7). Yeni palet değeri ister =
   DESIGN.md değişikliği = kullanıcı kararı.
 
@@ -412,8 +448,9 @@ Hepsi ücretsiz ve kısa; sıra etki büyüklüğüne göre.
     (bist-api active · 8001 → 403, taban ile aynı).
     KALAN KARAR: /root'taki eski kopya ne zaman silinsin (geri alınamaz).
     rapor/kesif-botu-tasima.md §6
- 9. **astro 5→7 yükseltmesi** yapılsın mı (güvenlik aciliyeti YOK, bakım
-    kararı; ayrı BÜYÜK İŞ) — rapor/npm-acik-degerlendirmesi.md §4.1
+ 9. ~~astro 5→7 yükseltmesi yapılsın mı~~ **KAPANDI 26.08.2026 — YAPILDI
+    VE YAYINDA.** astro@7.2.7, commit eaa951d, Cloudflare NODE_VERSION=22.
+    KARARLAR §32 · rapor/26-08-astro7-faz1.md + rapor/26-08-astro7-faz2-yayin.md
 
 NHYP KAYNAK PDF'LERİ GERİ GETİRİLDİ (29 Tem 2026, kullanıcı kararı;
 KARARLAR.md §20). 41/41 dosya, 1,1 GB, 0 hata. Zincirin tamamı artık
