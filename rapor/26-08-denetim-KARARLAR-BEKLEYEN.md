@@ -17,6 +17,26 @@ uygulanır" cinsindendir.
 
 ---
 
+# ✅ UYGULANANLAR (kullanıcı onayı 27.08.2026, commit `bf21aed`)
+
+**K1** (ve onun (a) seçeneğine dahil olan **K12**, **K13**) · **K2** ·
+**K3** · **K9** kullanıcı tarafından onaylandı ve uygulandı.
+Önce/sonra ölçümleri: `26-08-denetim-dogrulama.md` **D21**.
+
+| Kalem | Ölçülen sonuç |
+|---|---|
+| K1 | baraj eşleşmesi 0/25 → **17/25**; sabit `50/100` kırıldı (**15 farklı değer**); 22/25 havzanın puanı değişti; "6 göstergeden" ve "bilimsel" dist'te **0** |
+| K2 | yapışma **205 → 6** (kalan 6'sı kasıtlı Türkçe ek yazımı); künye 519 sayfada düzeldi |
+| K3 | boş etiketli kardeş bağlantı **230 → 0**; md21 dokunma ihlali 201 → 199 |
+| K9 | şerhli sayfa **425 → 516**, şerhsiz **97 → 6** (gerekçeli hariç tutulanlar); çift basım 0 |
+
+Sağlık `--tam` deploy sonrası: 🔴0 · 🟡1 · 🟢22 — **taban gerilemesi 0**.
+md14 görsel taban GEÇTİ, yenileme gerekmedi.
+
+Aşağıdaki liste **kalan** kalemlerdir.
+
+---
+
 # 0. DEVRALINAN ÜÇ AÇIK KARAR (denetim öncesinden)
 
 Üçü de 26.08.2026 hero düzeltmesi oturumundan. Bekleyen değişiklikler

@@ -753,3 +753,182 @@ açıklaması U1'dir.
 DEĞİŞTİRİLMEDİ.** Denetimden doğan hiçbir bulgu kuyruğa yazılmadı;
 hepsi karar dosyasında duruyor. Tarihli kalem doğmadı (mevcut tek
 tarihli kalem 02.09.2026 astro5-referans silme kalemi, dokunulmadı).
+
+---
+
+# D21 — K1 · K2 · K3 · K9 UYGULAMASI (kullanıcı onaylı, 27.08.2026)
+
+Kullanıcı dört kararı onayladı ("k1 k2 k3 ve k9'u onaylıyorum uygula").
+K1 için onaylanan seçenek karar dosyasındaki **tavsiye (a)**'dır; (a)'nın
+metni K12 (gösterge sayısı) ve K13 (yöntem künyesi) kalemlerinin bu turda
+birlikte kapanacağını açıkça yazıyordu — ikisi de K1 kapsamında yapıldı.
+
+Brief: `cikti/brief/2026-08-27-K1-K2-K3-K9-uygulama.md` (+ düzeltilmiş hâli).
+Denetçi: **ENGEL 0 · UYARI 1** (uyarı, üretilecek bileşen dosyasıydı).
+Düşman geçişi D1-D4 briefte; D2 iki gerçek kusur yakaladı ve brief
+düzeltildi (8 havzada boş açıklama riski + kapsam aritmetiği).
+
+## K1 — `/havza-riski/` risk puanı
+
+**Yapılan (`src/data/havza-risk.js`):**
+1. Baraj araması havza adını çıplaklaştırıyor (`il-profil.js:34-35` deseni).
+2. Doluluk `barajlar[AD].seri[EN_SON_TARİH].doluluk` yolundan okunuyor.
+3. **Verisi olmayan gösterge puana girmiyor** — nötr 0,5 dolgusu kaldırıldı;
+   ağırlıklar havza bazında yeniden normalize ediliyor. **Ağırlık sabitleri
+   (0.30/0.25/0.20/0.15/0.10) DEĞİŞMEDİ.**
+4. Hiçbir göstergenin verisi yoksa puan `null` → sayfa "HESAPLANAMADI".
+5. Tahsis kartı **silinmedi**, "veri yok — puana dahil edilmiyor" oldu;
+   mantık korundu, veri gelirse kendiliğinden devreye girer.
+
+**Ölçüm — ÖNCE / SONRA:**
+
+| | ÖNCE | SONRA |
+|---|---|---|
+| baraj eşleşmesi | **0/25** | **17/25** |
+| `baraj doluluk etkisi` farklı değer | **1** (25/25'te sabit `50/100`) | **15** |
+| puanı değişen havza | — | **22/25** |
+| puan aralığı | 39-63 | **32-62** |
+| `"6 göstergeden"` (dist) | var | **0** |
+| `"bilimsel"` (dist) | 1 | **0** |
+
+Baraj verisi olmayan 8 havzada (Meriç-Ergene, Küçük Menderes, Burdur,
+Akarçay, Konya Kapalı, Fırat-Dicle, Çoruh, Aras) şema açıklaması artık
+"baraj doluluk etkisi" ifadesini **hiç basmıyor** — brief D2'de yakalanan
+risk giderildi.
+
+**K12:** gösterge sayısı sabit yazılmıyor, `gostergeAraligi()` ile koddan
+türetiliyor (sayı bekçisi deseni).
+**K13:** "bilimsel gösterge" ifadesi kaldırıldı; yerine puanın
+suharitasi.com'un kendi bileşik göstergesi olduğu, resmî sınıflandırma
+olmadığı ve ağırlıkların portal tarafından seçildiği yazıldı.
+**Şema yapısı değişmedi** — `Observation.value`/`observationDate` eklemek
+K6'dır ve onaylanmamıştır; yalnız yanlış olan açıklama metni düzeltildi.
+
+## K2 — boşluk yutması
+
+Kör düzeltme yapılmadı: önce kaynak dedektörü (satır sonu + satır-içi
+etiket sınırı), sonra **dist üzerinde yer-gerçeği ölçümü** yazıldı.
+Ölçüt daraltıldı: `span` CSS ile blok olabildiği için kapsam dışı
+bırakıldı (yanlış-pozitif), yalnız `a|strong|em|abbr|b|i|q|cite`.
+
+| | ÖNCE | SONRA |
+|---|---|---|
+| yapışma isabeti | **205** (115 sayfa) | **6** (4 sayfa) |
+| `Arslan —<a` deseni | **519 sayfa** | **0** |
+
+Kalan 6 isabetin tamamı **kasıtlı Türkçe ek yazımı ya da görsel olarak
+ayrı öğe** — tek tek açıldı ve doğrulandı:
+- `<em>anlam</em>dır` (`/kullanilanlar/`) — ek etiket dışında, kasıtlı.
+- `<a>…kuyu ruhsatı rehberi</a>ne` (`/kuyu-ruhsati/`) — aynı desen.
+- `/ilce-sorgu/` iki bitişik buton-bağlantı (`hukuk-yon-links`).
+- `/harita-pilot/` (noindex) bitişik gezinme bağlantıları.
+
+Düzeltilen dosyalar: `AltBilgi` (519 sayfa), `kuyu-ruhsati/[il]` (81×2),
+`HavzaYasBandi` (25), `hakkinda` (4 yer), `arsiv` (2), `durumum/index` (2),
+`kuyu-ruhsati/index`, `nerede-su-cikar`, `IlKurumTablosu`, `KanitBandi`,
+`IlPotansiyel`.
+
+**Yan bulgu (kendi hatam, ölçümle yakalandı):** K1 için yazdığım yeni
+metin de aynı kusuru üretmişti ("…olurdu; ancak**havza** bazlı…");
+ölçüm yakaladı, düzeltildi.
+
+## K3 — kardeş il bağlantıları
+
+`src/pages/kuyu-ruhsati/[il].astro:201` `{x.ad}` → `{x.il}`
+(veri nesnesinde alan adı `il`; `il-profil.js:105`).
+
+| | ÖNCE | SONRA |
+|---|---|---|
+| boş etiketli kardeş bağlantı | **230** (76 sayfa) | **0** |
+
+Yan fayda ölçüldü: md21 dokunma hedefi ihlali **201 → 199** (bağlantılar
+metin kazanınca hedef alanı büyüdü).
+
+## K9 — hukuki şerh
+
+Yeni bileşen `src/components/HukukSerhi.astro`, 16 şablona bağlandı.
+**Yeni hukuki metin yazılmadı:** cümle `/hakkinda/`'da yayımlanmış
+cümlenin sayfa-bağımsız hâli. Ölçümle doğrulandı — tek fark özne:
+```
+HAKKINDA : Rehberler bilgilendirme amaçlıdır; somut bir uyuşmazlığa dair hukuki görüş veya tavsiye niteliği taşımaz.
+ŞERH     : Bu sayfa bilgilendirme amaçlıdır; somut bir uyuşmazlığa dair hukuki görüş veya tavsiye niteliği taşımaz.
+Fark yalnız 'Rehberler'→'Bu sayfa' mı: True
+```
+
+| | ÖNCE | SONRA |
+|---|---|---|
+| şerhli sayfa | **425** | **516** |
+| şerhsiz sayfa | **97** | **6** |
+| çift basılan | — | **0** |
+
+Kalan 6 şerhsiz sayfa, briefteki gerekçeli hariç tutma listesinin
+**tamamı**: ana sayfa · `/harita/` · `/arsiv/` · `/kullanilanlar/` ·
+`/stil-pilot/` · `/harita-pilot/` (son ikisi noindex).
+Kapsam aritmetiği kapanıyor: 97 = 90 (eklendi) + 1 (`/havza-riski/`,
+K1 kartının içine) + 6 (hariç).
+
+## E1 — "yalnız amaçlanan değişiklik" kapısı
+
+2b bit-eşitlik kuralı bu işte geçerli değildi (görünür çıktı BİLEREK
+değişiyor); yerine her farkın onaylı bir kaleme bağlanabilmesi arandı:
+
+```
+görünür metni DEĞİŞEN sayfa: 519/523
+  K9 (şerh eklendi):            91
+  K2/K3 (boşluk + kardeş il):  428
+  BAĞLANAMAYAN:                  0
+```
+Sayfa **522**, sitemap **519** — ikisi de tabanla aynı. Kaybolan/yeni
+sayfa 0.
+
+## E2 — md14 görsel taban
+
+Brief, K9'un md14 kapsamındaki 5 sayfaya metin eklediğini ve kalemin
+kırmızı verebileceğini öngörmüştü; taban yenilemesi hazırdı.
+**Gerek kalmadı — md14 GEÇTİ:** *"22 ölçümde G1-G6 sapması yok · taban
+2026-08-24"*. Alt bilgi üstüne eklenen tek satır G1-G6 ölçülerini
+(metin-görsel örtüşmesi, ölçek, tipografi, ritim, ortalama, S1)
+etkilemiyor. **Taban yenilenmedi, gerekçe kaydı açılmadı.**
+
+## E4 — canlı doğrulama (deploy `bf21aed`)
+
+```
+apex 200 · www 301 → apex
+/havza-riski/ 200 · /durumum/ 200 · /rehberler/kuyu-ruhsati/ 200 · /kuyu-ruhsati/adana/ 200
+canlı /havza-riski/: "6 göstergeden" 0 · "bilimsel" 0 · farklı baraj skoru 15
+canlı şerh: "Bu sayfa bilgilendirme amaçlıdır; …"
+canlı künye: "Hukuki içerik: Av. Serdar Arslan — <a …>Arslan Hukuk Bürosu"
+```
+
+## E3 — sağlık kapısı (deploy sonrası, commit `bf21aed`)
+
+```
+TABAN (denetim öncesi, 04:57): GENEL: SARI — kırmızı 0 · sarı 1 · geçti 22
+K1+K2+K3+K9 SONRASI  (10:34): GENEL: SARI — kırmızı 0 · sarı 1 · geçti 22
+```
+**TABAN GERİLEMESİ: 0.** Tek sarı yine md17 (dış bağlantı; denetim
+öncesinde de sarıydı, tam tarama ölü 0 kanıtladı — D14).
+
+Kritik kalemler:
+- **md14 görsel** GEÇTİ — G1-G6 sapması yok (K9 metin eklemesine rağmen).
+- **md21 dokunma** ihlal **201 → 199** — K3'ün yan faydası (bağlantılar
+  metin kazanınca dokunma hedefi büyüdü). Taban korundu.
+- **md15 a11y** 14 sayfa 100/100.
+- **md9** 14/14 sayfa eşiği geçti (`/` 99/99).
+- **md16** bulgu 20 = taban 20 (yeni SEO/GEO bulgusu doğmadı).
+- **md4 medya** 6/6, **md5 konsol** 0 hata, **md6 iç link** kırık 0.
+
+## KALEM DURUMU
+
+| Karar | Durum |
+|---|---|
+| **K1** (+K12, +K13 — (a) seçeneğinin parçası) | **UYGULANDI** |
+| **K2** | **UYGULANDI** |
+| **K3** | **UYGULANDI** |
+| **K9** | **UYGULANDI** |
+| K4, K5, K6, K7, K8, K10, K11, K14-K36, K38 | karar dosyasında **BEKLİYOR** |
+
+**Geri alma (tek commit):**
+```
+git revert bf21aed && npm run build && git push origin main
+```
