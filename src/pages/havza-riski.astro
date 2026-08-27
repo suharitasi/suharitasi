@@ -9,6 +9,7 @@ import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
 import Katman from '../components/Katman.astro';
 import { tumHavzaRiskleri, riskSemasi, gostergeAraligi, W as AGIRLIK } from '../data/havza-risk.js';
+import { VERI_KATALOGU } from '../data/site';
 
 const riskler = tumHavzaRiskleri();
 const aralik = gostergeAraligi();
@@ -36,7 +37,7 @@ const sema = [{
       ? 'Risk puanı hesaplanamadı (gösterge verisi yok)'
       : `Risk puanı: ${r.puan}/100 (${r.seviye})`,
   })),
-}, ...riskler.map((r) => riskSemasi(r.no, r.ad, r))];
+}, VERI_KATALOGU, ...riskler.map((r) => riskSemasi(r.no, r.ad, r))];
 ---
 
 <Sayfa baslik="Havza Risk Haritası — Su Riski Sıralaması" aciklama={ozet} sema={sema}>

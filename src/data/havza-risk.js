@@ -22,6 +22,7 @@ import havzaVeri from '../../data/havza-veri.json';
 import graceHavza from '../../data/canli/grace-havza.json';
 import baraj from '../../data/canli/baraj.json';
 import { graceEgilim } from './grace-hesap.js';
+import { SITE } from './site';
 
 // Her göstergenin ağırlığı (toplam 1.0). SABİTTİR — veri yokluğunda
 // değiştirilmez, yalnız katkı verenler arasında yeniden normalize edilir.
@@ -61,17 +62,24 @@ const ciplakAd = (ad) => (ad ?? '').replace(/\s*Havzası\s*$/, '');
 function barajSonDoluluk(bHavza) {
   if (!bHavza?.barajlar) return null;
   const son = [];
+  const tarih = [];
   for (const kayit of Object.values(bHavza.barajlar)) {
     const seri = kayit?.seri;
     if (!seri) continue;
     const tarihler = Object.keys(seri).sort();
     for (let i = tarihler.length - 1; i >= 0; i--) {
       const d = seri[tarihler[i]]?.doluluk;
-      if (d != null) { son.push(d); break; }
+      if (d != null) { son.push(d); tarih.push(tarihler[i]); break; }
     }
   }
   if (!son.length) return null;
-  return { ortalama: son.reduce((a, b) => a + b, 0) / son.length, barajSayisi: son.length };
+  return {
+    ortalama: son.reduce((a, b) => a + b, 0) / son.length,
+    barajSayisi: son.length,
+    // K6 (27.08): Observation.observationDate icin GERCEK tarih — serideki
+    // en son olcum gunu. Uydurulmus/derleme tarihi DEGILDIR.
+    sonOlcumTarihi: tarih.sort().at(-1) ?? null,
+  };
 }
 
 /** Havza numarasına göre 0-100 risk puanı (verisi olmayan gösterge puana girmez) */
@@ -143,7 +151,7 @@ export function havzaRisk(no) {
     gostergeSayisi: katkiVerenler.length,
     detay: {
       grace: kalem('grace', { egim: gSonuc?.egim, yon: gSonuc?.yon }),
-      baraj: kalem('baraj', { barajSayisi: bDoluluk?.barajSayisi ?? 0, ortalamaDoluluk: bDoluluk?.ortalama ?? null }),
+      baraj: kalem('baraj', { barajSayisi: bDoluluk?.barajSayisi ?? 0, ortalamaDoluluk: bDoluluk?.ortalama ?? null, sonOlcumTarihi: bDoluluk?.sonOlcumTarihi ?? null }),
       yas: kalem('yas', { beslenim: vd?.yasBeslenimi_hm3, rezerv: vd?.yasIsletmeRezervi_hm3 }),
       tahsis: kalem('tahsis', { durum: vd?.tahsis ?? 'veri yok' }),
       yuzeysuyu: kalem('yuzeysuyu', { potansiyel: vd?.yuzeysuyuPotansiyeli_km3 }),
@@ -173,7 +181,11 @@ export function riskSemasi(no, ad, risk) {
   // 27.08 K1: açıklama YALNIZ verisi olan göstergelerden kurulur.
   // Önceden veri yokken bile "baraj doluluk etkisi: 50/100" basılıyordu
   // (25/25 havzada aynı sabit) ve "6 göstergeden" deniyordu (fiilen 5).
-  // ŞEMA YAPISI DEĞİŞMEDİ — value/observationDate eklemek ayrı karardır (K6).
+  // 27.08 K6: `value` ve `observationDate` EKLENDİ. Önceden değer yalnız
+  // `measuredProperty.value` içindeydi; `Observation.value` 0/25,
+  // `observationDate` 0/25 idi. observationDate UYDURULMAZ: risk hesabının
+  // en taze girdisi olan baraj serisinin son ölçüm günü kullanılır; o veri
+  // yoksa alan hiç yazılmaz.
   const parcalar = [];
   if (risk.detay.grace.veriVar) parcalar.push(`GRACE eğilim: ${risk.detay.grace.yon}`);
   if (risk.detay.baraj.veriVar) parcalar.push(`baraj doluluk etkisi: ${risk.detay.baraj.skor}/100`);
@@ -186,13 +198,23 @@ export function riskSemasi(no, ad, risk) {
       + `${parcalar.join(', ')}. `
       + `${risk.gostergeSayisi} göstergeden hesaplanmıştır; verisi olmayan gösterge puana katılmaz.`;
 
+  const olcumTarihi = risk.detay.baraj.sonOlcumTarihi;
+
   return {
     '@type': 'Observation',
     name: risk.puan == null
       ? `${ad} Su Riski Puani: hesaplanamadi`
       : `${ad} Su Riski Puani: ${risk.puan}/100 (${risk.seviye})`,
     description: govde,
-    measuredProperty: { '@type': 'PropertyValue', name: 'Su Riski Puani', value: risk.puan },
+    // Puan yoksa deger alanlari HIC yazilmaz (uydurma yasagi).
+    ...(risk.puan != null && { value: risk.puan, unitText: 'puan (0-100)' }),
+    measuredProperty: {
+      '@type': 'PropertyValue',
+      name: 'Su Riski Puani',
+      ...(risk.puan != null && { value: risk.puan, minValue: 0, maxValue: 100 }),
+    },
+    ...(olcumTarihi && { observationDate: olcumTarihi }),
     observationAbout: { '@type': 'Place', name: ad },
+    includedInDataCatalog: { '@id': `${SITE}/#veri-katalogu` },
   };
 }

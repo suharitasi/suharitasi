@@ -72,7 +72,7 @@ for (const il of ilAdlari) {
 const IL_LISTESI = ilAdlari.map(il => ({ ad: il, slug: slugla(il) }));
 const VERI = JSON.stringify(IL_INDEX);
 
-const ozet = 'Türkiye\'de il ve ilçe bazında yeraltı su potansiyeli, arazi morfolojisi ve sondaj lokasyon analizi.';
+const ozet = 'Türkiye\'de il ve ilçe bazında yeraltı su potansiyeli: YAS kütlesi ve Resmî Gazete işletme sahası sayıları, yetkili DSİ bölgesi ile su idaresi, ilçe arazi morfolojisi.';
 ---
 
 {/* B1 (25.08): <title> 60 karakter sınırına, sayfanın kendi H1'inden türetildi. */}
@@ -310,8 +310,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (duz>.3) yk.push('düzlük alanlar');
     if (vadi>.15) yk.push('dere yatakları');
     if (egim != null && egim<5) yk.push('eğimin %5\'in altında olduğu alçak araziler');
-    if (!yk.length) yk.push('vadi içi alçak kesimler');
-    setT('potansiyel-alanlar', d.ilceAd+' ilçesinde su çıkma ihtimalinin en yüksek olduğu bölgeler: '+yk.join(', ')+'.');
+    setT('potansiyel-alanlar', yk.length
+      ? d.ilceAd+' ilçesinde düz arazi ve vadi tabanı oranı en yüksek kesimler: '+yk.join(', ')+'.'
+      : d.ilceAd+' ilçesinde düz arazi ve vadi tabanı oranları eşiklerin altında — belirgin kesim yok.');
 
     setT('dsi-bolge', d.dsi||'veri yok');
     setT('su-idaresi', d.suIdare||'Il Ozel Idaresi / belediye');

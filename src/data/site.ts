@@ -56,3 +56,28 @@ export const YAZAR_SOSYAL: string[] = [
 export const EPOSTA = 'bilgi@suharitasi.com';
 
 export const OG_GORSEL = '/og-suharitasi.v1.png';
+
+/**
+ * VERİ KATALOĞU — Schema.org DataCatalog düğümü (K6, 27.08.2026).
+ *
+ * Neden: `Dataset.includedInDataCatalog` ve `Observation` düğümleri
+ * önceden `#site` (WebSite) düğümüne işaret ediyordu; WebSite bir
+ * DataCatalog değildir. Tek kanonik katalog düğümü burada tanımlanır ve
+ * ona referans verilir.
+ *
+ * Alanlar sitenin GERÇEK durumundan türetilmiştir: yayın erişimi
+ * ücretsiz, dil tr-TR, sahibi kurum düğümü.
+ */
+export const VERI_KATALOGU = {
+  '@type': 'DataCatalog',
+  '@id': `${SITE}/#veri-katalogu`,
+  name: `${SITE_ADI} veri kataloğu`,
+  url: `${SITE}/kullanilanlar/`,
+  description:
+    'Türkiye su verisinin kamuya açık kaynaklardan derlenmiş kayıtları: ' +
+    'DSİ, SYGM Nehir Havza Yönetim Planları, NASA GRACE/GRACE-FO, EPİAŞ, ' +
+    'Copernicus GLO-90 DEM, Resmî Gazete ve OpenStreetMap.',
+  inLanguage: 'tr-TR',
+  isAccessibleForFree: true,
+  publisher: { '@id': `${SITE}/#kurum` },
+};

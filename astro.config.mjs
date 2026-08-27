@@ -91,14 +91,19 @@ function surumDamgasi() {
 // İçerik dist'ten üretilir (title + meta description) — elle yazılmış metin
 // yok, dolayısıyla bayatlamaz. Sitemap dışı (noindex) sayfalar hariç.
 function llmsOlustur() {
+  // K20 (27.08.2026): `arac/` öneki ÇIKARILDI — rota 28.07'de öldü, eşleşen
+  // sayfa 0'dı. `goller/` ve `nehirler/` EKLENDİ: bu iki aile 342 sayfa
+  // tutuyor ve önek olmadığı için tamamı "Diğer sayfalar" altına düşüyordu,
+  // yani AI istemcilerine kategorisiz gidiyordu.
   const BOLUM = [
     ['rehberler/', 'Mevzuat rehberleri'],
     ['havzalar/', 'Havzalar (25 havza)'],
     ['kuyu-ruhsati/', 'Kuyu ruhsatında il bazında yetkili kurum (81 il)'],
     ['durumum/', 'Sektöre göre su hukuku durumu'],
     ['su-kanunu/', 'Su Kanunu ve mevzuat kütüphanesi'],
+    ['goller/', 'Göller'],
+    ['nehirler/', 'Nehirler'],
     ['vaka/', 'Vaka incelemeleri'],
-    ['arac/', 'Araçlar'],
   ];
   return {
     name: 'llms-olustur',

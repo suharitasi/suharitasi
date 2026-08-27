@@ -1,34 +1,17 @@
 ---
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
-import { YAZAR, EPOSTA, OG_GORSEL } from '../data/site';
+import { YAZAR, EPOSTA } from '../data/site';
 
 const kok = new URL('/', Astro.site).href;
 
-// Person: rehberlerdeki Article.author bu kimliğe (@id) bağlanır — Google
-// için tek ve tutarlı yazar varlığı oluşur.
-const sema = [
-  {
-    '@type': 'Person',
-    '@id': `${kok}hakkinda/#yazar`,
-    name: YAZAR.adSade,
-    jobTitle: YAZAR.unvan,
-    description: YAZAR.bio,
-    url: YAZAR.buroUrl,
-    image: new URL(OG_GORSEL, Astro.site).href,
-    worksFor: {
-      '@type': 'Organization',
-      name: YAZAR.buro,
-      url: YAZAR.buroUrl,
-    },
-    knowsAbout: [
-      'Su hukuku',
-      'Yeraltı suyu mevzuatı',
-      'İdari yargı',
-      'Kamulaştırma hukuku',
-    ],
-  },
-];
+// K5 (27.08): buradaki ikinci Person düğümü KALDIRILDI. Yazar kimliği
+// artık tek `@id` altında (`Sayfa.astro` → `${kok}#yazar`); bu sayfa da
+// onu taşıyor. Önceki hâlde iki Person vardı ve `url`'leri çelişiyordu
+// (biri /hakkinda/, biri arslanhukuk.tr) — 92 Article ikincisine
+// bağlanıyordu. Ek alanlar (image, genişletilmiş knowsAbout) kanonik
+// düğüme taşındı; bilgi kaybı yok.
+const sema = [];
 ---
 <Sayfa
   heroSlot="bolum-vinyeti"

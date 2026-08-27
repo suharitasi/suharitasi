@@ -266,14 +266,10 @@ const sema = [
     inLanguage: 'tr-TR',
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
     image: new URL(OG_GORSEL, Astro.site).href,
-    author: {
-      '@type': 'Person',
-      '@id': `${kok}hakkinda/#yazar`,
-      name: YAZAR.adSade,
-      jobTitle: YAZAR.unvan,
-      url: YAZAR.buroUrl,
-      worksFor: { '@type': 'Organization', name: YAZAR.buro, url: YAZAR.buroUrl },
-    },
+    // K5 (27.08): yazar kimligi tek @id altinda — zengin Person dugumu
+    // Sayfa.astro'daki graph'ta (`${kok}#yazar`). Burada yalniz REFERANS
+    // verilir; ikinci, celisen url'li Person dugumu uretilmez.
+    author: { '@id': `${kok}#yazar` },
     publisher: { '@id': `${kok}#kurum` },
   },
   {

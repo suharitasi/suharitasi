@@ -38,12 +38,32 @@ const { baslik, tarayiciBaslik, aciklama, sema = [], heroSlot, robots } = Astro.
 // Metin sayfanın kendi aciklama'sından türetilir (yeni metin ÜRETİLMEZ);
 // 160'ı aşan değer önce cümle sınırında (≥100. karakterden sonraki son
 // ". "), olmazsa kelime sınırında kesilir. Ölçüm: 244 sayfa 160 üstüydü.
+// K16 (27.08.2026): kelime sınırında kesmek yetmiyordu — kırpım açılmış
+// parantezin ve yarım kalmış tarih/atıf parçasının ortasında bitebiliyordu
+// (ölçülen vaka: "…il özel idaresince (167 s.K." — hem meta description'a
+// hem llms.txt'e böyle giriyordu; llms.txt metni bu meta'dan okur).
+// Kırpılan metin şimdi ayrıca BÜTÜNLÜK onarımından geçiyor.
+function butunle(parca: string): string {
+  let t = parca;
+  // 1) Dengesiz açık parantez: son '(' den itibaren at.
+  let guvenlik = 0;
+  while ((t.match(/\(/g) || []).length > (t.match(/\)/g) || []).length && guvenlik++ < 8) {
+    t = t.slice(0, t.lastIndexOf('(')).trimEnd();
+  }
+  // 2) Sonda yarım kalmış sayı ya da tarih parçası ("… Son başvuru: 27",
+  //    "… 27 Aralık") — sayı tek başına bilgi taşımaz, yanıltır.
+  t = t.replace(/[\s,;:(–—-]+\d{1,4}(\s+\p{L}+)?$/u, '');
+  // 3) Sonda yarım kalmış kısaltmalı atıf ("… 167 s.K.", "… m.18/a").
+  t = t.replace(/[\s,;:(–—-]+\d{1,4}\s+[\p{L}]{1,3}\.[\p{L}]?\.?$/u, '');
+  // 4) Artakalan noktalama.
+  return t.replace(/[\s,;:(–—-]+$/u, '');
+}
 const metaAciklama = (() => {
   const a = (aciklama || '').trim();
   if (a.length <= 160) return a;
   const kes = a.lastIndexOf('. ', 159);
-  if (kes >= 100) return a.slice(0, kes + 1);
-  return a.slice(0, 157).replace(/\s+\S*$/u, '') + '…';
+  if (kes >= 100) return butunle(a.slice(0, kes)) + '.';
+  return butunle(a.slice(0, 157).replace(/\s+\S*$/u, '')) + '…';
 })();
 const yol = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname
@@ -112,6 +132,11 @@ const kurum = {
   ...(KURUM_SOSYAL.length && { sameAs: KURUM_SOSYAL }),
 };
 
+// K5 (27.08): yazar kimliğinin TEK kanonik düğümü. Önceden ikinci bir
+// `hakkinda/#yazar` düğümü vardı ve `url`'i arslanhukuk.tr'yi gösteriyordu;
+// 92 Article ona bağlanıyordu. Artık tek `@id` var, Article'lar buna
+// REFERANS veriyor. hakkinda.astro'nun taşıdığı ek alanlar (image,
+// genişletilmiş knowsAbout) bilgi kaybı olmasın diye buraya taşındı.
 const yazarSema = {
   '@type': 'Person',
   '@id': `${kok}#yazar`,
@@ -119,8 +144,15 @@ const yazarSema = {
   jobTitle: YAZAR.unvan,
   url: `${kok}hakkinda/`,
   description: YAZAR.uzmanlik,
+  image: ogGorselTam,
   worksFor: { '@type': 'Organization', name: YAZAR.buro, url: YAZAR.buroUrl },
-  knowsAbout: ['Su hukuku', 'İdari yargı', 'Şirketler hukuku'],
+  knowsAbout: [
+    'Su hukuku',
+    'Yeraltı suyu mevzuatı',
+    'İdari yargı',
+    'Kamulaştırma hukuku',
+    'Şirketler hukuku',
+  ],
   ...(YAZAR_SOSYAL.length && { sameAs: YAZAR_SOSYAL }),
 };
 

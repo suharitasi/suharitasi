@@ -25,7 +25,7 @@ import '../styles/hareket.css';
 import havzaVeri from '../../data/havza-veri.json';
 import yasVeri from '../../data/canli/havza-yas.json';
 import grace from '../../data/canli/grace-havza.json';
-import { SITE_ADI, YAZAR } from '../data/site';
+import { SITE_ADI, YAZAR, VERI_KATALOGU } from '../data/site';
 
 const KOK_URL = 'https://suharitasi.com/';
 const SAYFA_URL = 'https://suharitasi.com/harita/';
@@ -122,7 +122,8 @@ const jsonLd = JSON.stringify({
       inLanguage: 'tr-TR',
       isAccessibleForFree: true,
       creator: { '@id': `${KOK_URL}#kurum` },
-      includedInDataCatalog: { '@id': `${KOK_URL}#site` },
+      // K6 (27.08): WebSite düğümü DataCatalog değildir — gerçek katalog düğümüne bağlandı.
+      includedInDataCatalog: { '@id': `${KOK_URL}#veri-katalogu` },
       spatialCoverage: { '@type': 'Place', name: 'Türkiye' },
       temporalCoverage: `${graceIlk}/${graceSon}`,
       variableMeasured: [
@@ -140,6 +141,8 @@ const jsonLd = JSON.stringify({
       ],
       isBasedOn: [dsiKunye.url, 'https://earth.gsfc.nasa.gov/geo/data/grace-mascons'],
     },
+    // K6 (27.08): Dataset'in bağlandığı gerçek katalog düğümü.
+    VERI_KATALOGU,
   ],
 }).replace(/</g, '\\u003c');
 ---
