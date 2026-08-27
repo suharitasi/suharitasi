@@ -232,8 +232,44 @@ altında olduğu hâlde sayfa yine "vadi içi alçak kesimler" yazıyor
 Listelendi ve karar dosyasına yazıldı: **K7-C** (meta/title/H1/öz-cevap)
 · **K7-D** (1043 iç link, iki metin). Uygulama yapılmadı.
 
-### 6.6 (6e) Sağlık `--tam` · (6f) Canlı doğrulama
-→ §7 (deploy sonrası ölçümler).
+### 6.6 (6f) CANLI DOĞRULAMA — deploy sonrası
+Commit `06b3062` · canlı chunk `…BP1O03bw.js` (yereldekiyle aynı).
+
+| İfade | Canlı HTML | Canlı chunk |
+|---|---|---|
+| `su doygunluk derinliği` · `doygunluk` | 0 | 0 |
+| `akifer` | 0 | 0 |
+| `Su Çıkma Olasılığı` · `olasılığı` | 0 | 0 |
+| `Ortalama eğim: 0,0` | 0 | 0 |
+| `Alüvyon` · `Karstik` · `Granit` | 0 | 0 |
+| `\bTWI\b` · `\bAHP\b` · `ahp-` | 0 | 0 |
+| **`Copernicus` (korunmalı)** | **4** ✔ | 0 |
+
+```
+https://suharitasi.com/ilce-sorgu/      → 200
+https://www.suharitasi.com/             → 301 → https://suharitasi.com/
+```
+
+### 6.7 (6e) SAĞLIK `--tam` — deploy sonrası · TABAN GERİLEMESİ 0
+```
+2026-08-27T12:01:35Z  --tam   🔴 0 · 🟡 1 · 🟢 22
+taban (10:32, K7 öncesi)      🔴 0 · 🟡 1 · 🟢 22   → GERİLEME 0
+```
+Tek sarı **17-dis-baglanti** (19 dış bağlantı zaman aşımı, ölü 0) —
+tabanla **aynı kalem**, bu işle ilgisi yok.
+
+İlgili kanıtlar:
+- `18-veri-genis` GEÇTİ — *"veri/potansiyel 13 dosya: kayıt sayısı
+  düşmedi, şema aynı"* → veri dosyalarına dokunulmadığının bağımsız
+  kanıtı.
+- `23-altin-ornek` 23/23 · `6-baglantilar` kırık 0 · `5-konsol` JS
+  hatası 0 · `12-etkilesim` 4/4 · `14-gorsel` G1-G6 sapma yok.
+- `9-lighthouse` `/ilce-sorgu/` **99/94** (taban koşusu 98/86).
+
+*Not (altyapı gözlemi, iş kapsamı dışı):* koşu iki kez arka planda
+kesildi; `setsid` ile koparılınca tamamlandı. `izleme/site-saglik-log.jsonl`
+içinde 11:53:32'de "koşum atlandı — başka koşum sürüyor" kaydı bu
+çakışmanın izidir, kusur değildir (kilit doğru çalıştı).
 
 ---
 
