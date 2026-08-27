@@ -112,7 +112,8 @@ const sema = [{
     text-decoration: none;
     border: 1px solid var(--cizgi);
     background: var(--zemin-kart);
-    transition: background 150ms ease;
+    /* K31 (27.08): sözlük eğrisi (renk/yüzey durumu). */
+    transition: background 150ms var(--e-akinti);
   }
   .risk-satir:hover { background: var(--zemin-kart-hover, #f0f4f7); }
   .risk-sira {
@@ -120,8 +121,8 @@ const sema = [{
     font-family: var(--mono); font-size: 0.75rem; font-weight: 600; color: var(--metin-soluk);
   }
   .risk-ad { flex: 1; font-size: 0.92rem; color: var(--metin); min-width: 8rem; }
-  .risk-bar { flex: 2; height: 8px; background: #e0e0e0; min-width: 3rem; }
-  .risk-dolgu { display: block; height: 100%; transition: width 0.3s ease; }
+  .risk-bar { flex: 2; height: 8px; background: var(--nötr-cubuk, #e0e0e0); min-width: 3rem; }
+  .risk-dolgu { display: block; height: 100%; transition: width 0.3s var(--e-suzul); }
   .risk-puan {
     flex: 0 0 2.2rem; text-align: right;
     font-family: var(--mono); font-size: 0.85rem; font-weight: 600; color: var(--metin);

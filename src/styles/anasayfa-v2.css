@@ -32,6 +32,13 @@
   /* emil-design-eng: yerleşik easing'ler zayıf — güçlü özel eğriler. */
   --sh-eo: cubic-bezier(0.23, 1, 0.32, 1);      /* güçlü ease-out (giriş) */
   --sh-eio: cubic-bezier(0.77, 0, 0.175, 1);    /* güçlü ease-in-out (sahne) */
+  /* K30 (27.08): DESIGN.md §9 odak sözlüğü — koyu dünyada KÖPÜK.
+     Değer site global paletiyle birebir aynı (--kopuk, Sayfa.astro);
+     bu dosya kendi :root'unu taşıdığı için burada da tanımlanır. */
+  --kopuk: #DBEAF4;
+  /* K34 (27.08): ana sayfa kendi :root'unu taşıdığı için türev token
+     burada da tanımlanır — değer site paletiyle birebir aynı. */
+  --mavi-soluk: #93AFC4;
 }
 
 /* ——— ÜST BAR ——— */
@@ -95,7 +102,7 @@
   text-decoration: none;
   background: none; border: 0; cursor: pointer;
   padding: 0.35rem 0.1rem;
-  transition: color 150ms ease;
+  transition: color 150ms var(--sh-eo);
 }
 @media (hover: hover) and (pointer: fine) {
   .v2-nav a:hover, .v2-veri-dugme:hover { color: var(--v0-beyaz); }
@@ -150,7 +157,7 @@
   border-radius: 0.45rem;
   font-size: 0.84rem;
   white-space: nowrap;
-  transition: background-color 150ms ease, color 150ms ease;
+  transition: background-color 150ms var(--sh-eo), color 150ms var(--sh-eo);
 }
 @media (hover: hover) and (pointer: fine) {
   .v2-veri-liste a:hover { background: rgba(255, 255, 255, 0.08); }
@@ -172,7 +179,7 @@
 }
 .v2-randevu:active { transform: scale(0.97); }
 @media (hover: hover) and (pointer: fine) {
-  .v2-randevu:hover { background: #dcecf5; }
+  .v2-randevu:hover { background: var(--kopuk); } /* K34: #dcecf5 → --kopuk (Δ2) */
 }
 
 /* Mobil: hamburger + tam liste panel (Veriler listesi AÇIK hâlde). */
@@ -760,7 +767,7 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
   color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   font-size: 0.95rem;
-  transition: color 150ms ease;
+  transition: color 150ms var(--sh-eo);
 }
 @media (hover: hover) and (pointer: fine) {
   .v2-kanal:hover { color: var(--v0-beyaz); }
@@ -800,13 +807,15 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
   color: var(--v0-beyaz);
   font: inherit;
   font-size: 0.875rem; /* v0 text-sm */
-  transition: border-color 150ms ease;
+  transition: border-color 150ms var(--sh-eo);
 }
 .v2-form ::placeholder { color: rgba(255, 255, 255, 0.4); } /* v0 */
 .v2-form textarea { resize: none; } /* v0 resize-none */
+/* K30 (27.08): odak halkası sözlük değerine (KÖPÜK) çevrildi — koyu
+   zeminde kontrast 8,84 → 12,41. */
 .v2-form input:focus-visible, .v2-form textarea:focus-visible {
-  outline: 2px solid #7fd0ef; outline-offset: 2px;
-  border-color: rgba(127, 208, 239, 0.6);
+  outline: 2px solid var(--kopuk); outline-offset: 2px;
+  border-color: rgba(219, 234, 244, 0.6);
 }
 .v2-form button {
   justify-self: start;
@@ -820,19 +829,19 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
 }
 .v2-form button:active { transform: scale(0.97); }
 @media (hover: hover) and (pointer: fine) {
-  .v2-form button:hover { background: #dcecf5; }
+  .v2-form button:hover { background: var(--kopuk); } /* K34: #dcecf5 → --kopuk (Δ2) */
 }
 
 /* ——— JS'siz sahne yedeği (noscript, eski sayfadan AYNEN korunan blok) ——— */
 .akis-yedek { max-width: 68rem; margin: 0 auto; padding: 2rem 1.2rem; }
 .akis-yedek-not { font-family: var(--mono, ui-monospace, monospace);
-  font-size: 0.8rem; color: #93AFC4; margin-bottom: 1rem; }
+  font-size: 0.8rem; color: var(--mavi-soluk, #93AFC4); margin-bottom: 1rem; }
 .akis-yedek-liste { list-style: none; display: grid; gap: 1rem; padding: 0;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
 .akis-yedek-liste img { width: 100%; height: auto; display: block; }
 .akis-yedek-liste span { display: block; margin-top: 0.4rem;
   font-family: var(--mono, ui-monospace, monospace); font-size: 0.72rem;
-  letter-spacing: 0.16em; text-transform: uppercase; color: #93AFC4; }
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--mavi-soluk, #93AFC4); }
 
 /* ——— ERİŞİLEBİLİRLİK: hareket azaltma (emil: azaltma ≠ sıfır; anlamayı
    bozan HAREKET durur, opaklık geçişleri kalır) ——— */
@@ -875,13 +884,14 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
   0%,100% { opacity: .35; transform: scaleX(1) scaleY(1); }
   50%     { opacity: .6;  transform: scaleX(1.12) scaleY(1.2); }
 }
-.sh-drift { animation: sh-drift 9s ease-in-out infinite; }
+/* K31 (27.08): ham ease-in-out → bu dosyanın kendi sözlük eğrisi. */
+.sh-drift { animation: sh-drift 9s var(--sh-eio) infinite; }
 .sh-spray {
   animation: sh-spray var(--dur,2.4s) cubic-bezier(.2,.55,.5,1) infinite;
   animation-delay: var(--delay,0s);
   will-change: transform, opacity;
 }
-.sh-mist { animation: sh-mist 3s ease-in-out infinite; }
+.sh-mist { animation: sh-mist 3s var(--sh-eio) infinite; }
 @media (prefers-reduced-motion: reduce) {
   .sh-drift, .sh-spray, .sh-mist { animation: none; }
 }
@@ -922,7 +932,7 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
   padding: 1.4rem 1.6rem;
   border-radius: 0.75rem;
   text-decoration: none;
-  transition: transform 150ms ease, box-shadow 150ms ease;
+  transition: transform 150ms var(--sh-eo), box-shadow 150ms var(--sh-eo);
 }
 .v2-cta-sol {
   background: linear-gradient(135deg, rgba(79,195,208,0.18) 0%, rgba(12,58,76,0.9) 100%);

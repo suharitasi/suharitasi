@@ -135,7 +135,8 @@ const niyetKapilari = [
   .alt-imza a {
     color: var(--metin-soluk);
     text-decoration: none;
-    transition: color 0.2s ease;
+    /* K31 (27.08): sözlük dışı `ease` → DESIGN.md §9 renk durumu eğrisi. */
+    transition: color 0.2s var(--e-akinti, cubic-bezier(0.45, 0.05, 0.55, 0.95));
   }
 
   .alt-imza a:hover { color: var(--metin); }

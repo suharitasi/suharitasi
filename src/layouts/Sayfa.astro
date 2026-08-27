@@ -262,6 +262,17 @@ const jsonLd = JSON.stringify({
     --akuamarin: #57BAE0;       /* koyu dünyada ışıma (SIĞ'ın parlak türevi) */
     --kopuk: #DBEAF4;
 
+    /* — K34 (27.08.2026): PALET DIŞI DEĞERLERİN TÜREV TOKENLARI —
+       Aşağıdaki dört değer sitede fiilen kullanılıyordu ama palette
+       karşılıkları yoktu (DESIGN.md tanımıyordu). Değerler DEĞİŞTİRİLMEDİ
+       — görsel çıktı aynı kalsın diye yalnız ada bağlandı; artık palet
+       kaydı var ve gelecekte tek yerden değişir. Ölçülen en yakın palet
+       komşuları yorumda. */
+    --kopuk-koyu: #C2D6E4;      /* köpüğün koyu türevi — koyu zeminde ayraç/şerh metni (en yakın --kopuk, Δ36) */
+    --kehribar-zemin: #F6EDDE;  /* kehribar ailesinin açık zemini — risk/ceza kutusu */
+    --nötr-cubuk: #e0e0e0;      /* gösterge çubuğu boş zemini — tek kullanım (havza-riski) */
+    --mavi-soluk: #93AFC4;      /* koyu zeminde soluk mono etiket (en yakın --akuamarin, Δ67) */
+
     /* K4 (27.08.2026): B2B MODERN PALET KALDIRILDI. 04.08 satış/B2B
        dalgasının kalıntısıydı; o dalga KARARLAR §25 ile kaldırılmış, palet
        gözden kaçmıştı. Ölçüm: repo genelinde `var(--b2b-…)` kullanımı 0 —
@@ -307,7 +318,7 @@ const jsonLd = JSON.stringify({
     font-size: 0.8rem;
     text-decoration: none;
     border: 1px solid var(--su-700);
-    transition: transform 0.18s ease;
+    transition: transform 0.18s var(--e-suzul, cubic-bezier(0.22, 1, 0.36, 1));
   }
   .atla-baglantisi:focus {
     transform: translateY(0);

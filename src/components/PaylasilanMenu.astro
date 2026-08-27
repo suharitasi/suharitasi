@@ -119,7 +119,7 @@ const veriler = VERI_ROTALARI;
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none; background: none; border: 0; cursor: pointer;
     padding: 0.35rem 0.1rem;
-    transition: color 150ms ease;
+    transition: color 150ms var(--pm-eo);
   }
   @media (hover: hover) and (pointer: fine) {
     .pm-nav a:hover { color: #fff; }
@@ -127,7 +127,12 @@ const veriler = VERI_ROTALARI;
   .pm-nav a:focus-visible,
   .pm-marka:focus-visible,
   .pm-menu-dugme:focus-visible {
-    outline: 2px solid #7fd0ef; outline-offset: 3px;
+  /* K30 (27.08.2026): odak halkası #7fd0ef → DESIGN.md §9 sözlüğündeki
+     KÖPÜK (#DBEAF4). §9: ":focus-visible … koyu dünyada köpük". #7fd0ef
+     sözlükte yoktu (ne köpük ne ışıma). Ölçüm sözlük değerinin aynı
+     zamanda daha erişilebilir olduğunu gösterdi: koyu zeminde kontrast
+     8,84 → 12,41. */
+    outline: 2px solid var(--kopuk, #DBEAF4); outline-offset: 3px;
   }
 
   @media (max-width: 1023px) {

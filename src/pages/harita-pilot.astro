@@ -107,7 +107,7 @@ import PaylasilanMenu from '../components/PaylasilanMenu.astro';
   .kopya__cta a {
     font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em;
     text-decoration: none; padding: 0.62rem 1.15rem; border-radius: 999px;
-    transition: transform 0.2s ease, background 0.2s ease;
+    transition: transform 0.2s var(--e-suzul), background 0.2s var(--e-akinti);
   }
   .cta-birincil { background: var(--akuamarin); color: #04121F; }
   .cta-birincil:hover { transform: translateY(-2px); background: var(--kopuk); }
@@ -121,7 +121,7 @@ import PaylasilanMenu from '../components/PaylasilanMenu.astro';
   }
   .ray button {
     width: 8px; height: 8px; border-radius: 50%; background: rgba(234,243,242,0.35);
-    transition: background 0.3s ease, transform 0.3s ease; cursor: pointer;
+    transition: background 0.3s var(--e-akinti), transform 0.3s var(--e-suzul); cursor: pointer;
     border: 0; padding: 0;
   }
   .ray button.aktif { background: var(--akuamarin); transform: scale(1.5); }

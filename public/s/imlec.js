@@ -35,7 +35,7 @@ function baslat() {
     #sv-imlec {
       position: fixed; left: 0; top: 0; z-index: 2147483000;
       pointer-events: none; will-change: transform;
-      opacity: 0; transition: opacity 0.25s ease;
+      opacity: 0; transition: opacity 0.25s var(--e-akinti, cubic-bezier(0.45, 0.05, 0.55, 0.95));
     }
     #sv-imlec.sv-gorunur { opacity: 1; }
     #sv-imlec .sv-damla {
@@ -43,14 +43,17 @@ function baslat() {
       margin: -2px 0 0 -8px; /* sivri uç ~pointer noktası */
       transform-origin: 50% 35%;
       transform: scale(1);
-      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+      /* K31 (27.08): taşmalı yay eğrisi (y=1.56) DESIGN.md "su aniden
+         fırlamaz" ilkesiyle çelişiyordu; sözlükteki KABARMA eğrisine
+         çevrildi (--e-kabar, taşmasız). */
+      transition: transform 0.22s var(--e-kabar, cubic-bezier(0.35, 0, 0.15, 1));
     }
     #sv-imlec .sv-damla svg { display: block; width: 100%; height: 100%; }
 
     #sv-imlec .sv-v-${krem ? 'koyu' : 'krem'} { display: none; }
     #sv-imlec.sv-buyuk .sv-damla {
       transform: scale(1.65);
-      animation: sv-yuzey 0.2s cubic-bezier(0.34, 1.8, 0.64, 1);
+      animation: sv-yuzey 0.2s var(--e-kabar, cubic-bezier(0.35, 0, 0.15, 1));
     }
     #sv-imlec.sv-bas .sv-damla { transform: scale(0.85); }
     #sv-imlec.sv-buyuk.sv-bas .sv-damla { transform: scale(1.35); }

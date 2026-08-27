@@ -69,3 +69,14 @@ KULLANICI KALEMİ'ne yazıldı.
 (27.08) — öz-cevap bloğu olmayan indekslenen sayfa **1** (yalnız ana
 sayfa, muafiyeti KARARLAR §8'de kayıtlı).
 
+## GRUP 4 — tasarım sözlüğü, palet ve güvenlik başlığı (K30, K31, K33, K34, K35, K36)
+
+| Kalem | Yapılan | Ölçüm (taban → yeni) |
+|---|---|---|
+| **K30** | `#7fd0ef` odak halkası → DESIGN.md §9 sözlüğündeki **KÖPÜK** (`--kopuk` #DBEAF4). §9: *":focus-visible … koyu dünyada köpük"*. Sözlük değeri aynı zamanda daha erişilebilir çıktı: koyu zeminde kontrast **8,84 → 12,41** | `#7fd0ef` **3 → 0** kullanım |
+| **K31** | Sözlük dışı easing'in tamamı sözlük eğrilerine bağlandı. `imlec.js`'teki **taşmalı yay eğrileri** (y=1,56 / y=1,8 — *"su aniden fırlamaz"* ilkesiyle çelişiyordu) `--e-kabar`'a çevrildi. `hareket.css` istisna beyanı gerçek kapsamla eşlendi: beyan "landing hero + /deneyim/" diyordu, ölçüm ana sayfanın TAMAMININ kendi sözlüğünü taşıdığını gösterdi | sözlük dışı easing **14 → 0** |
+| **K33** | DESIGN.md §2 "Landing İstisnası" tablosu bayattı. Ölçüldü: eski `:root` bugün **yalnız `harita.astro`**'da; ana sayfa kendi v0 ailesini kullanıyor. Tablo iki adaya bölündü ve **depoda hiç kullanılmayan 6 değer** (`--yukselti`, `--akis-sonuk`, `--akis-canli`, `--metin`, `--bakir`, en dip gölge — hepsi 0 kullanım ölçüldü) çıkarıldı | tablo gerçek kapsamla eş |
+| **K34** | Palet dışı 7 renk ölçüldü. Palet komşusuna **pratik olarak eşit** olan 3'ü tokene bağlandı (`#12293a`→`--murekkep-900` Δ5, `#dcecf5`→`--kopuk` Δ2 ×2). Gerçekten farklı 4'ü **değeri değişmeden** türev token olarak palete kaydedildi (`--kopuk-koyu`, `--kehribar-zemin`, `--nötr-cubuk`, `--mavi-soluk`). Ayrıca **M15 koyulaştırmasının ulaşmadığı 5 konum** düzeltildi: `rgba(72,98,122,…)` → `rgba(60,82,102,…)` | palet dışı ham hex **7 → 0**; eski türev **5 → 0** |
+| **K35** | Kişisel e-posta 3 araç betiğinin kibar-scraping User-Agent'ından kurumsal adrese çevrildi (4 konum). **`TELEGRAM_CHAT_ID` bulgusu ölçümle düştü:** belgelerde yalnız DEĞİŞKEN ADI geçiyor, gerçek kanal kimliği (sayı) hiçbir yerde yok — ifşa yok | kişisel adres `arac/` içinde **4 → 0** |
+| **K36** | `form-action 'self'` CSP'ye eklendi (CSP3'te `default-src`'den türemez). `izleme/csp-izinli-kaynaklar.json` da güncellendi (**SÜREKLİLİK İLKESİ**). `unsafe-inline` KALDIRILMADI — Astro'nun sayfa-içi `<style>`/`<script type="module">` üretimi buna dayanıyor, nonce/hash'e geçiş build mimarisi kararı (ayrı iş) | `form-action` **yok → var**; `--test` 7/7 geçti |
+

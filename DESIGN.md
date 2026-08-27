@@ -77,28 +77,45 @@ ama SİLİNMEDİ — geri dönülmek istenirse tek commit'lik yol açıktır
 - Kehribar her iki sette de korundu — alışkanlık değil, sıcak ikinci sesin
   kritik-vurgu işlevi.
 
-### Landing İstisnası (bilinçli — palet denetiminden muaf)
+### Ada Paletleri İstisnası (bilinçli — palet denetiminden muaf)
 
-Landing (`src/pages/index.astro` hero) koyu **derin-su / "gece denizi"**
-paletini kullanır: bu SU-DİLİ aydınlık derinlik skalasının DIŞINDADIR ve
-bilinçli tasarım kararıdır. Landing bir giriş atmosferi/koreografisidir;
-iç sayfaların aydınlık iş dilini taşımaz. Bu tonlar palet uyum
-denetimlerinde İSTİSNA sayılır — "palet-dışı hex" bulgusu değildir.
-(Renk değiştirilmez; yalnız belgelenir. Kaynak: index.astro `:root`,
-2026-07-21 okumasıyla.)
+**Güncellendi 27.08.2026 (denetim K33).** Tablo eski landing hero'nun
+`:root`'unu listeliyordu; o palet artık orada yaşamıyor. Ölçüm: eski
+değerler bugün **yalnız `src/pages/harita.astro`** içinde duruyor; ana
+sayfa ise kendi **v0** ailesini kullanıyor (`src/styles/anasayfa-v2.css`).
+İstisnanın adresi landing'den harita adasına kaydı.
+
+Bu "adalar" SU-DİLİ aydınlık derinlik skalasının DIŞINDADIR ve bilinçli
+tasarım kararıdır: giriş atmosferi/koreografisi taşırlar, iç sayfaların
+aydınlık iş dilini değil. Palet uyum denetimlerinde İSTİSNA sayılırlar —
+"palet-dışı hex" bulgusu değildir. Renkler değiştirilmez, belgelenir.
+
+**Ada 1 — `/harita/`** (kaynak: `src/pages/harita.astro` `:root`,
+27.08.2026 okuması):
 
 | Değişken | Hex |
 |---|---|
 | `--deniz` | `#04121F` |
-| `--yukselti` | `#071D2E` |
-| `--akis-sonuk` | `#0E3247` |
-| `--akis-canli` | `#1E5A78` |
-| `--akuamarin` | `#4FC3D0` |
 | `--kopuk` | `#A8DDE0` |
-| `--metin` | `#DCE9ED` |
+| `--akuamarin` | `#4FC3D0` |
 | `--metin-soluk` | `#6C8A96` |
-| `--bakir` | `#C08A4F` |
-| (en dip gölge) | `#030D17` |
+
+**Ada 2 — ana sayfa (v0 ailesi)** (kaynak: `src/styles/anasayfa-v2.css`
+`:root`, 27.08.2026 okuması):
+
+| Değişken | Hex / değer |
+|---|---|
+| `--v0-koyu` | `#08202f` |
+| `--v0-dip` | `#061824` |
+| `--v0-beyaz` | `#ffffff` |
+| `--v2-muted-fg` | `#3C5266` (site paletiyle ortak — M15/KARARLAR §22) |
+| `--v2-randevu-metin` | `#0a2438` |
+| `--kopuk` | `#DBEAF4` (site paletiyle ortak — K30) |
+| `--mavi-soluk` | `#93AFC4` (site paletiyle ortak — K34) |
+
+**Artık istisna DEĞİL:** eski tablodaki `--yukselti`, `--akis-sonuk`,
+`--akis-canli`, `--metin`, `--bakir` ve "en dip gölge" değerleri
+depoda hiçbir yerde kullanılmıyor (27.08 ölçümü) — tablodan çıkarıldı.
 
 ## 3. AKIŞ — suyun ivmesi (easing sözlüğü)
 

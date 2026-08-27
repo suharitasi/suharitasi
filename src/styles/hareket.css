@@ -3,8 +3,12 @@
    Bu dosyayı import eden her giriş noktası (Sayfa layout, /harita/) sözlüğe
    ve .gk koreografisine erişir. Önce Sayfa.astro ve rehber/vaka kalıplarında
    ayrı ayrı yaşayan tanımlar buraya tekilleştirildi (mükerrer kopya 0).
-   İSTİSNA: landing hero + /deneyim/ kendi sözlüklerini taşır; bu dosya
-   onların koreografisini yönetmez. */
+   İSTİSNA (kapsam 27.08.2026'da ölçülüp DÜZELTİLDİ — K31): beyan
+   "landing hero + /deneyim/" diyordu, oysa `anasayfa-v2.css` ANA SAYFANIN
+   TAMAMINI kapsıyor ve kendi sözlüğünü taşıyor (--sh-eo / --sh-eio).
+   Gerçek istisna kümesi: (i) ana sayfa (`src/styles/anasayfa-v2.css`,
+   `src/pages/index.astro`), (ii) /harita/ ada sözlüğü, (iii) /deneyim/.
+   Bu dosya onların koreografisini yönetmez. */
 
 :root {
   --e-suzul: cubic-bezier(0.22, 1, 0.36, 1);   /* süzülme: reveal/transform */

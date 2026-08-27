@@ -16,10 +16,17 @@
 # Genişleme sınırı DAR: yalnız iki Cloudflare konağı, yalnız iki
 # direktif. Panel açılmadığı sürece bu izin ATIL durur — hiçbir istek
 # yapılmaz. Panel adımları: rapor/dagitim-durumu.md §5.
+# FORM-ACTION (K36, 2026-08-27) — `form-action 'self'` EKLENDİ. CSP3'te bu
+# direktif `default-src`'den TÜREMEZ; yokken enjekte edilmiş bir form her
+# yere gönderim yapabilirdi. Sitede sunucuya gönderim yapan form yok (tek
+# etkileşim `mailto:` bağlantısı), pratik etki bugün sıfır — ama yüzeyi
+# kapatır. `unsafe-inline` KALDIRILMADI: Astro'nun sayfa-içi <style> ve
+# <script type="module"> üretimi buna dayanıyor; nonce/hash'e geçiş build
+# mimarisi kararıdır (K36'nın ikinci yarısı, ayrı iş).
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://cloudflareinsights.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://cloudflareinsights.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'

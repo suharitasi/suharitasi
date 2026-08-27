@@ -133,14 +133,15 @@ const sahneVeri = SAHNELER.map((s) => ({
   :where(.v2-sayfa *) { margin: 0; padding: 0; }
   .v2-sayfa body {
     background: #061824;
-    color: #12293a;
+    color: var(--murekkep-900, #12293a); /* K34: palet dışı → token (Δ5, görsel fark yok) */
     font-family: var(--sans);
     font-size: 1.02rem;
     line-height: 1.75;
   }
   .v2-sayfa a:focus-visible, .v2-sayfa button:focus-visible,
   .v2-sayfa summary:focus-visible {
-    outline: 2px solid #7fd0ef;
+    /* K30 (27.08): DESIGN.md §9 — koyu dünyada KÖPÜK. */
+    outline: 2px solid var(--kopuk, #DBEAF4);
     outline-offset: 3px;
   }
   /* Paylaşılan AltBilgi (M8: dokunulmadı) SU-DİLİ tokenlarını bekler —
