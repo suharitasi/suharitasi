@@ -53,8 +53,9 @@ düştüler. Onay verilirse hepsi tek turda uygulanabilir.
 İlki iki ayrı kod hatasından:
 1. `src/data/havza-risk.js:42` → `baraj.havzalar["Gediz Havzası"]` arıyor,
    `baraj.json` anahtarı `"Gediz"`. Eşleşme **0/25**.
-   (Aynı işi `src/data/il-profil.js:553` doğru yapıyor:
-   `.replace(/\s*Havzası\s*$/, '')` — düzeltmenin emsali kodda mevcut.)
+   (Aynı işi `src/data/il-profil.js:34-35` doğru yapıyor ve nedenini
+   yorumda yazıyor: "EPİAŞ havza adı çıplaktır ('Sakarya'); site başlığı
+   'Sakarya Havzası'" — emsal kodda mevcut.)
 2. `havza-risk.js:54` → `b.doluluk` okuyor; gerçek yapı `b.seri[tarih].doluluk`.
    Baraj kaydının alanları ölçüldü: `['seri']`.
 İkincisi veri boşluğundan: `data/havza-veri.json`'da `tahsis` **25/25 null**.
@@ -425,3 +426,50 @@ mimarisi kararı.
 | R13 | `data/orders.db*` | Operasyonel kalıntı, gitignore'lu, veri kaynağı değil |
 | R14 | `guncelleme` alanı 2 içerik dosyasında yok | Şema geri-düşümü belgeli ("Yoksa damga tarih'ten basılır") — bilinçli optional |
 | R15 | `/rehberler/kuyu-tasima` hem .md hem .astro | `[slug].astro:22` `.filter(g => g.id !== 'kuyu-tasima')` ile çakışma önlenmiş — bilinçli, yorumla belgeli |
+
+---
+
+# E. FAZ 2 SIRASINDA SINIFI DEĞİŞENLER (ölçüm sonucu)
+
+| Kalem | İlk öneri | Son sınıf | Ölçüm gerekçesi |
+|---|---|---|---|
+| `public/hedef/*` (6 dosya, 1,7 MB) silme | UYGULAMA (U1'in parçası) | **KARAR** (K28'e taşındı) | Referanssızlığı kanıtlı ama tek tüketicisi `HedefSahne.astro`; bileşeni bırakıp görsellerini silmek **tutarsız bir ara durum** yaratırdı. İkisinin akıbeti birlikte kararlaştırılmalı |
+| 158 `http://hdl.handle.net` → https | UYGULAMA (düşük etki) | **KARAR** (düşük öncelik) | Kaynak, kayıtlı köken verisi (`akademik-kunye.json` + `zenginlestirme.json`, toplam 269 http:// URL) ya da 4 ayrı render satırı (`IlPotansiyel.astro:81,102,147,163`). Kazanç marjinal (handle.net zaten https'e yönlendiriyor); köken verisini düzenlemek ya da 4 render noktasına normalleştirici koymak bu kazanç için orantısız |
+
+**U1'in uygulanan kapsamı:** `sahne1..6.webm` (9,0 MB) + `hedef-hero.webp`
+(992 KB, v2 ile bit-eşit kopya) + `public/s/su-sim.js` (9,3 KB) = **~10 MB**.
+Kalan 1,7 MB (`public/hedef/*`) K28'de.
+
+---
+
+# F. FAZ 2 UYGULAMA KAYDI — önce/sonra ölçümleri
+
+| # | Onarım | Nerede | ÖNCE | SONRA | Kanıt |
+|---|---|---|---|---|---|
+| U1 | Referanssız yayın varlıkları silindi | `public/deneyim/video/sahne1..6.webm` · `public/hedef-hero.webp` · `public/s/su-sim.js` | dist **45 MB** · `s/*.js` küçültme 6 dosya 12.616 B | dist **35 MB** · küçültme **5 dosya** 12.616 → 7.085 B | build log; `du -sh dist`; sayfa 522 ve sitemap 519 DEĞİŞMEDİ |
+| U2 | `esbuild` devDependency olarak bildirildi | `package.json` +1 satır, `package-lock.json` +1 satır | bildirilmemiş (hayalet) | bildirilmiş | **Falsifikasyon:** izole kopyada `npm ci --dry-run` → **BAŞARILI** ("added 521 packages") — deploy hattı kırılmıyor |
+| U3 | 3 iklim/uydu katmanı künyelendi | `KAYNAKLAR.md` yeni bölüm | CHIRPS/JRC/ERA5 → grep 0 | üçü de kayıtlı, **içerik durumu dürüstçe** (CHIRPS veri var; JRC+ERA5 iskele/boş — D13) | `grep -c CHIRPS KAYNAKLAR.md` 0 → var |
+| U4 | Eksik dosya/arşiv kayıtları eklendi | `KAYNAKLAR.md` | `data/arsiv/dsi-yas/`, `data/kamu/` (5), `data/lead/` (2), `zenginlestirme.json`, `ilce-morfoloji.json` adlandırılmamış | hepsi kayıtlı; `ilce-morfoloji` **SENTETİK** olarak işaretli | dosya diff |
+| U5 | Bayat 2 kayıt düzeltildi | `KAYNAKLAR.md:41` ve `:285` | `harita/isaretler.js` (ölü yol) · EPİAŞ "İlk kayıt: henüz yok" | `src/harita-3d/isaretler.js` · "İlk kayıt: **2026-07-16**, arşivde 925 json" | ölçülen değerler (D7) |
+| U6 | Fantom token gerçek token'a bağlandı | `ilce-sorgu.astro:191` · `havza-riski.astro:110` | `var(--kehribar-600, #875518)` (tanımsız token, fallback devrede) | `var(--kehribar-metin)` (tanımlı, değer **aynı** `#875518`) | D3 token erişilebilirlik ölçümü; görünür metin farkı 0 |
+| U7 | Ana sayfaya `<main>` landmark'ı | `src/pages/index.astro` | `grep -c "<main" dist/index.html` → **0** | → **1** | yapı diff: yalnız `<main>`+`</main>` (717→719 etiket), başka değişiklik yok |
+
+## 2b GÖRÜNÜR ÇIKTI KORUMASI — son ölçüm
+
+```
+sayfa taban 523 / hedef 523 · kaybolan 0 · yeni 0
+GÖRÜNÜR METİN farkı: 0
+JSON-LD farkı:       0
+```
+Sayfa sayısı 522, sitemap 519 — **ikisi de tabanla aynı**.
+
+**Araç dürüstlüğü notu:** ilk karşılaştırma aracım etiketleri `\x01`
+ayracıyla değiştirdiği için `<main>` eklemesini "metin farkı" olarak
+gösterdi. Araç ikiye ayrıldı (saf metin / yapı) ve ölçüm tekrarlandı;
+ayrıntı `26-08-denetim-dogrulama.md` D15.
+
+## FAZ 2'DE YAPILMAYANLAR (geri çekilenler)
+- `public/hedef/*` (1,7 MB): tek tüketicisi `HedefSahne.astro`; bileşeni
+  bırakıp görsellerini silmek tutarsız ara durum yaratırdı → **K28**.
+- 158 `http://hdl.handle.net`: köken verisini ya da 4 render satırını
+  düzenlemeyi gerektiriyor, kazanç marjinal → **K38**.

@@ -38,7 +38,7 @@
 
 ## "Su bulunabilecek alanlar" işaretleri (TEMSİLİ — YER TUTUCU)
 
-- `harita/isaretler.js` içindeki 9 nokta (Taşeli, Kırkgöz, Konya kapalı
+- `src/harita-3d/isaretler.js` içindeki 9 nokta (Taşeli, Kırkgöz, Konya kapalı
   havzası, Gökova, Harran, Develi, Ergene, Bafra, Iğdır) TEMSİLİDİR;
   hidrojeolojik veriye dayanmaz. Aşama 1 kazısında gerçek karst/akifer
   verisiyle değiştirilecek.
@@ -282,8 +282,11 @@ yalnız karar dayanağıdır (sayfadaki ölçüt il örtüşmesidir).
 - KRİTİK: EPİAŞ geriye dönük veri VERMEZ ("Geriye dönük veri
   bulunmamaktadır" — teknik doküman). Arşiv kayıt başlangıcından itibaren
   gün gün birikir; başlangıç öncesi için veri yoktur ve üretilmez.
-- İlk kayıt tarihi: henüz yok (kullanıcı .env doldurunca başlar;
-  data/canli/baraj.json künyesindeki kayitBaslangici alanı otomatik dolar).
+- İlk kayıt tarihi: **2026-07-16** (data/canli/baraj.json künyesindeki
+  `kayitBaslangici` alanından; 27.08.2026 denetiminde ölçüldü — kayıt
+  "henüz yok" diyordu, hat 40+ gündür çalışıyordu). Arşiv o tarihten
+  itibaren gün gün birikiyor: `data/arsiv/baraj/` altında 925 json
+  (27.08.2026 sayımı), künye `sonDurum: "ok"`.
 
 ## GRACE su depolaması anomalisi (data/canli/grace-*.json + arşiv)
 
@@ -422,3 +425,92 @@ bulunmuştur.
 
 Alan adı taşınması: `dergipark.gov.tr` → `dergipark.org.tr`,
 `www.trdizin.gov.tr` → `search.trdizin.gov.tr`.
+
+## İklim/uydu yardımcı katmanları — ÇEKİLDİ, SİTEDE YAYINLANMIYOR (27.08.2026 denetimi)
+
+Bu üç katman 04.08.2026'da çekilmiş ama merkezî künye kaydına hiç
+girmemişti (27.08 tam denetimi bulgusu U3). **Üçü de sitede
+YAYINLANMIYOR** — `src/` içinde hiçbir yerden import edilmiyorlar,
+`dist/`'te adları geçmiyor (ölçüldü: "CHIRPS" 0 sayfa, "Global Surface
+Water" 0 sayfa; "ERA5" geçen 12 sayfa OpenAlex'ten gelen akademik yayın
+BAŞLIKLARIdır, bizim verimiz değil). Bu yüzden bugün sayfada görünür
+atıf yükümlülüğü doğmuyor; depo da herkese açık değil (ölçüldü:
+github.com/suharitasi/suharitasi → 404).
+**ŞERH: bu katmanlardan biri ileride bir sayfada yayımlanırsa, CC BY 4.0
+gereği görünür atıf ZORUNLU olur.**
+
+- **CHIRPS v2.0 (UCSB/CHG) — yağış.** Künye dosyanın kendisinde
+  (`data/canli/chirps.json` → `kunye`): çözünürlük 0.05°, lisans
+  **CC BY 4.0**, son güncelleme 2026-08-04T10:18:54Z. İçerik: 25 havza ×
+  aylık yağış serisi (2017-…). Ham arşiv: `data/arsiv/chirps/`
+  (10 NetCDF, gitignore'lu). Üretici: `arac/chirps-cek.py`.
+  **Durum: gerçek veri var, yayınlanmıyor.**
+- **JRC Global Surface Water 1984-2021 (Landsat).** Künye:
+  `data/canli/jrc-yuzey-suyu.json` → çözünürlük 30 m, lisans
+  "Free and open (CC BY 4.0)", url global-surface-water.appspot.com.
+  **Durum: İSKELE DOSYA — veri YOK.** Ölçüldü: `tile'lar` boş; 25/25
+  havza `"durum": "islenmedi (tile bazli hesap gerekir)"`.
+  Üretici: `arac/jrc-isle.py`.
+- **ERA5-Land (ECMWF/Copernicus) — toprak nemi.** Künye:
+  `data/canli/era5-toprak.json` → çözünürlük 0.1° (~9 km), değişken
+  "Volumetric soil water layer (m³/m³)", lisans "Copernicus License
+  (ücretsiz, kayıtlı)". **Durum: İSKELE DOSYA — veri YOK** (`aylik` boş,
+  dosya 274 bayt). Üretici: `arac/era5-toprak.py`.
+
+## DSİ YAS seri dosyaları (data/arsiv/dsi-yas/) — dosya kaydı (27.08.2026)
+
+Kaynak künyesi yukarıdaki "DSİ 2024 resmî su kaynakları istatistikleri"
+girişindedir; burada YALNIZ dosya/arşiv yolu kaydı tutulur (27.08 denetimi
+bulgusu U4 — dosyalar izliydi ama hiçbir girişte adlandırılmamıştı).
+
+- `data/arsiv/dsi-yas/2024-seti/` ve `data/arsiv/dsi-yas/2019-seti/` —
+  toplam 15 xlsx, git izli. 2019 seti 2013-2019 tablolarını taşır.
+- Türetilen: `data/canli/havza-yas.json` (havza YAS rezerv/beslenim
+  serisi; `/havzalar/*` YAS bandını besler).
+
+## data/kamu/ katmanı — mevzuat türevi iç veri (27.08.2026 kaydı)
+
+Kaynak: doğrudan mevzuat tam metinleri (mevzuat.gov.tr); kayıt bazında
+`kaynak_url`/dayanak alanları dosyaların içindedir. Apilex çıktısı bu
+katmanın kaynağı DEĞİLDİR (27.08 denetimi U4: atıf yanlış yöne
+gösteriyordu). Oluşturma/son güncelleme: 2026-07-23.
+
+- `hangi-kapi.json` (20 satır) — kurum × işlem yetki eşlemesi.
+  Dosya beyanı: *"Yalnız mevzuatta yazan yetki atfı aktarılır; hukuki
+  yorum YAPILMAZ. Başvuru kanalı yalnız mevzuatta açıkça yazıyorsa
+  doldurulur, aksi halde 'kanal doğrulanmadı'. Tahmin yasak."*
+- `su-islemleri.json` (20 işlem) — 41 mevzuat belgesinde işlem sözcüğü
+  taranarak 1001 ham adaydan süzüldü.
+- `su-birimleri.json` (155 kayıt) — su idaresi/kurum birimleri.
+- `su-terim-havuzu.json`, `ct3-kuyruk.json` — iç üretim araçları,
+  yayın değeri yok (bkz. "Görünmez kalanlar").
+
+## data/lead/ katmanı — Su Verimliliği Yönetmeliği türevi (27.08.2026 kaydı)
+
+- `nace-ek2.json` — Su Verimliliği Yönetmeliği **Ek-2** (NACE bazında
+  faaliyetler). Kaynak: resmigazete.gov.tr/eskiler/2024/12/20241227-3-1.pdf
+  (arşiv: `data/arsiv/mevzuat/su-verimliligi-yonetmeligi-ekler-20241227-3-1.pdf`,
+  sha256 dosyada). **OCR TÜRETİMİDİR:** tesseract 5.3.4 (tur) +
+  pdftoppm 600 dpi + ImageMagick ön-işleme; kaynak ek taranmış/görüntü
+  tabanlıdır. OCR hata payı dosyanın kendi `aciklama` alanında yazılıdır.
+- `persona.json` — sektör kapıları/persona veri temeli. Yönetmelik künyesi
+  dosyada (RG 2024-12-27; arşiv
+  `data/arsiv/mevzuat/su-verimliligi-yonetmeligi-20241227.htm`).
+  Dosya beyanı: *"Yükümlülükler ve son tarihler YALNIZ doğrulanmış
+  kaynaktan."*
+
+## veri/potansiyel — kayda eklenen iki dosya (27.08.2026)
+
+Yukarıdaki "Su potansiyeli katmanı" girişi 11 dosya sayıyordu; dizinde 13
+var. Eksik ikisi:
+
+- `zenginlestirme.json` — MTA / OpenAlex / TÜİK / OSM türevlerinin
+  birleşik çıktısı; kaynak künyeleri dosyanın içinde ve yukarıdaki
+  katman girişinde.
+- `ilce-morfoloji.json` — **SENTETİK TÜRETME, gerçek ilçe ölçümü
+  DEĞİLDİR.** Dosyanın kendi künyesi (birebir): *"Bu veri GERÇEK ilçe
+  ölçümü DEĞİLDİR. İl düzeyindeki Copernicus GLO-90 DEM verisinden ilçe
+  ismiyle tohuma bağlı varyasyonla türetilmiştir (±%15 deterministik
+  varyasyon)."* 948 ilçe. `/ilce-sorgu/` sayfası bunu tüketiyor.
+  **AÇIK KARAR:** sayfadaki sunumu bu künyeyle çelişiyor (27.08 denetimi
+  K7; rapor/26-08-denetim-KARARLAR-BEKLEYEN.md).

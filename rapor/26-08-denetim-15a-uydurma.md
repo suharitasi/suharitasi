@@ -269,7 +269,9 @@ Kızılırmak | Büyük Menderes | Gediz
 baraj.havzalar["Gediz Havzası"] = undefined
 ```
 
-(Karşılaştırma: `src/data/il-profil.js:553` aynı işi doğru yapıyor —
+(Karşılaştırma: `src/data/il-profil.js:34-35` aynı işi doğru yapıyor —
+**[27.08 doğrulama düzeltmesi: ajan raporunda satır 553 yazıyordu; dosya 127
+satır. Doğru konum 34-35 ve orada nedeni yorumda yazılı.]** —
 `havzaBaslik.replace(/\s*Havzası\s*$/, '')`.)
 
 Hata 2 — yol uyuşmazlığı (`havza-risk.js:54`): kod `b.doluluk` okuyor, veri

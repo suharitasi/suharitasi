@@ -399,3 +399,233 @@ değişmese de yapısal veri değişiyor → UYGULAMA sınıfına giremezler.
 onarımları (FAQPage yaygınlaştırma, Observation alanları, Person
 birleştirme, DataCatalog bağı) KARAR sınıfına taşındı — hiçbiri
 uygulanmadı.
+
+---
+
+## D13 — ÜÇ KATMANIN İÇERİĞİ: ikisi BOŞ/İŞLENMEMİŞ (künye yazımı için kritik)
+
+U3 kalemini yazmadan önce üç dosyanın içeriği açıldı. Sonuç, künye
+metnini doğrudan belirledi — "veri kaynağı" diye kaydetmek ikisinde
+**uydurma** olurdu:
+
+| Dosya | Gerçek içerik | Doğru kayıt |
+|---|---|---|
+| `data/canli/chirps.json` (79 KB) | `havzalar` → 25 havza × aylık yağış serisi (2017-…). **Gerçek veri var.** Arşiv: `data/arsiv/chirps/` 10 NetCDF | "çekildi ve türetildi, sitede yayınlanmıyor" |
+| `data/canli/jrc-yuzey-suyu.json` (2,5 KB) | `tile'lar: {}` **boş**; 25/25 havza `"durum": "islenmedi (tile bazli hesap gerekir)"` | **İskele dosya** — veri YOK |
+| `data/canli/era5-toprak.json` (274 bayt) | `aylik: {}` **tamamen boş**; yalnız künye | **İskele dosya** — veri YOK |
+
+Üreticiler mevcut: `arac/chirps-cek.py`, `arac/jrc-isle.py`,
+`arac/era5-toprak.py`.
+
+**Sonuç:** KAYNAKLAR.md kaydı üçünü de "veri seti" diye yazamaz;
+CHIRPS için "veri var, yayınlanmıyor", JRC ve ERA5 için "çekim
+başlatıldı, işlenmedi/boş" yazılmalıdır. Bu, K7'deki bulguyla da
+tutarlı: `/ilce-sorgu/` "JRC/yüzey suyu" bileşeni gösterirken kaynak
+dosya 25/25 havzada `islenmedi` diyor.
+
+---
+
+## D14 — 1.7 DIŞ BAĞLANTI TAM TARAMASI: ÖLÜ BAĞLANTI **0**
+
+md17 sağlık kalemi haftalık %5 örneklem tarıyor (52/1037). Bu denetimde
+**tamamı** tarandı — üretim kodunun kendi fonksiyonlarıyla
+(`arac/kapsam-kalemleri.mjs` → `disLinkleriTopla` + `disLinkDenetle`),
+vekil ölçüm kullanılmadan.
+
+```
+toplam 1037 · taranan 1037 · süre 2057 sn (34 dk)
+ÖLÜ (404/410): 0
+ŞÜPHE (zaman aşımı/5xx): 109
+HEAD-reddetti-GET-geçti: 10
+```
+
+**ŞÜPHE dağılımı — kusur değil, bilinen erişim deseni:**
+
+| Konak | Adet | Yorum |
+|---|---:|---|
+| `www.resmigazete.gov.tr` | **75** | Resmî TR kaynaklarının bu sunucudan (yurtdışı IP) engellenmesi KAYNAKLAR.md'de zaten kayıtlı bilinen desendir |
+| `hdl.handle.net` | 20 | 500 dönenler geçici sunucu hatası |
+| `avesis.*` (3 üniversite) | 7 | 500 / zaman aşımı |
+| `doi.org` | 5 | zaman aşımı |
+| `www.mevzuat.gov.tr` | 1 | zaman aşımı |
+| `acikerisim.pau.edu.tr:8080` | 1 | standart dışı port |
+
+Kod dağılımı: zaman aşımı 89 · HTTP 500 20. **404/410 sıfır.**
+
+**SONUÇ: 1.7'de onarılacak kırık dış bağlantı YOK.** md17'nin 🟡 sarısı
+dış sunucu kaynaklıdır ve tam tarama bunu doğruladı: örneklemdeki 19
+şüphe, tam taramada 109'a çıkıyor ama ölü sayısı **her iki ölçümde de 0**.
+Not: 109/1037 = %10,5'lik şüphe oranının dörtte üçü tek konaktan
+(resmigazete.gov.tr) geliyor.
+
+---
+
+## D15 — FAZ 2 BİT-EŞİTLİK ÖLÇÜMÜ (2b) — ve ölçüm aracının kendi kusuru
+
+**Önce araç kusuru (dürüstlük kaydı):** ilk yazdığım karşılaştırma aracı
+HTML etiketlerini `\x01` ayracıyla değiştiriyordu; bu, eklediğim `<main>`
+etiketini "görünür metin farkı" gibi gösterdi. Yani araç, **metin
+içeriğini değil yapıyı** ölçüyordu. Araç ikiye ayrıldı ve ölçüm
+tekrarlandı:
+
+| Ölçüm | Yöntem | Sonuç |
+|---|---|---|
+| **Saf görünür metin** | etiketler tamamen silinir, varlıklar çözülür, boşluk normalize | **0 / 523 sayfa farklı** |
+| **JSON-LD** | her `application/ld+json` ayrıştırılıp anahtar-sıralı kanonik JSON'a çevrilir | **0 / 523 sayfa farklı** |
+| **Yapı** (etiket dizisi) | etiket adları dizisi | **1 sayfa**: `index.html` |
+
+`index.html` yapı farkının tamamı ölçüldü:
+```
+taban etiket sayısı: 717 · hedef: 719 · fark: 2
+DEĞİŞEN: <main   0 → 1
+DEĞİŞEN: </main  0 → 1
+```
+Yani tek yapısal değişiklik **kasten eklenen `<main>` sarmalayıcısıdır**;
+başka hiçbir etiket eklenmedi/silinmedi.
+
+**Sayfa envanteri:** kaybolan sayfa 0 · yeni sayfa 0 · sitemap 519 (taban
+ile aynı) · build 522 sayfa (taban ile aynı).
+**dist boyutu: 45 MB → 35 MB** (U1 silmeleri).
+
+---
+
+## D16 — 1.4 PERFORMANS TURU (canlı site, şablon başına 3 tur MEDYAN)
+
+Ölçüm: yerel Lighthouse, canlı `https://suharitasi.com` hedefli, her sayfa
+için mobil + masaüstü × 3 tur, **medyan** (CLAUDE.md: tek ölçümle karar
+verilmez). Boş makinede koşuldu.
+
+| Şablon | Kırılım | perf | LCP | CLS | TBT | FCP |
+|---|---|---:|---:|---:|---:|---:|
+| anasayfa `/` | mobil | **81** | **4325 ms** | 0 | 0 ms | 2590 ms |
+| anasayfa | masaüstü | 98 | 930 ms | 0,002 | 0 ms | 850 ms |
+| havza `/havzalar/sakarya/` | mobil | 90 | 2896 ms | 0,001 | 0 ms | 2896 ms |
+| havza | masaüstü | 98 | 840 ms | 0,002 | 0 ms | 840 ms |
+| rehber `/rehberler/kuyu-ruhsati/` | mobil | 91 | 2755 ms | 0 | 0 ms | 2755 ms |
+| rehber | masaüstü | 99 | 794 ms | 0,004 | 0 ms | 794 ms |
+| arşiv `/arsiv/` | mobil | 91 | 2754 ms | 0,023 | 0 ms | 2754 ms |
+| arşiv | masaüstü | 99 | 795 ms | 0,014 | 0 ms | 795 ms |
+| il `/kuyu-ruhsati/adana/` | mobil | 92 | 2681 ms | 0,006 | 0 ms | 2681 ms |
+| il | masaüstü | 99 | 764 ms | 0,008 | 0 ms | 764 ms |
+
+**BULGU P1 — ana sayfa mobil LCP 4325 ms, sitenin en yavaş kalemi.**
+Diğer üç şablon mobilde 2755-2896 ms bandında; ana sayfa ~1,5 kat daha
+yavaş ve tek 80'ler puanı orada. LCP öğesi ölçüldü:
+`div.v2-sahne-alan > figure.v2-kadraj > div#v2-videolar > img#v2-kadraj-poster`
+— yani hero sahnesinin **video posteri**. Lighthouse'un
+"Preload Largest Contentful Paint image" denetimi **skor 1** (geçiyor),
+yani preload zaten var; darboğaz görselin kendisi/boyutu.
+**SINIF: KARAR** — hero görsel/sahne alanı görsel kimliktir (md14 G1-G6
+taban kapsamında); optimizasyon görünür çıktıyı etkileyebilir.
+**ETKİ: Orta** — mobil ilk izlenim ve CWV sinyali.
+
+**CLS:** hepsi eşik altında (en yüksek `/arsiv/` mobil 0,023; iyi eşiği
+0,1). Boyutsuz `<img>` taraması 523 sayfada **tek 1 adet** bulmuştu
+(`harita.astro:274` hero) — CLS ölçümü bunu doğruluyor, sorun üretmiyor.
+
+**TBT: 0 ms** — beş şablonun onunda da. Site pratikte JS'siz (dist toplam
+JS 18 KB).
+
+**ÖLÇÜLEMEYEN — dürüstçe:**
+- **INP** saha metriğidir, laboratuvarda ölçülmez. TBT vekildir ama INP
+  YERİNE KONMADI.
+- **Gerçek-kullanıcı CWV (CrUX)**: `crux_current` API anahtarı istiyor
+  (`CRUX_API_KEY` yok; hesap açma yasak) → **ölçülemedi**.
+- **PageSpeed Insights API**: günlük kota doldu (HTTP 429) → **ölçülemedi**.
+  Bu iki kaynak olmadan saha verisi alınamaz; yalnız laboratuvar verisi var.
+
+**ÖLÇÜM HATASI KAYDI (kendi hatam):** ilk turda il şablonu için
+`/nerede-su-cikar/adana/` kullanıldı — o rota **404** (il sayfaları
+`/kuyu-ruhsati/[il]/` altında). Araç bunu "perf 0 · ÖLÇÜLEMEDİ" diye
+dürüstçe raporladı (null-güvenli medyan sayesinde 0 sanılmadı) ve ölçüm
+doğru URL ile tekrarlandı.
+
+**İKİNCİ ÖLÇÜM HATASI KAYDI:** ilk perf turu, dış link taraması sürerken
+koşulmuştu ve "ağ kirlenmesi" şüphesi doğmuştu (ana sayfa mobil 82 vs
+md9'un 92'si). Boş makinede tekrar koşuldu: **81** çıktı — yani kirlenme
+YOKTU, fark md9'un kendi belgelediği mobil yayılımdır
+(`site-saglik.mjs:1112` yorumu: "/hangi-kurum/ mobilde 11 PUAN (88-99)").
+Şüphe ölçümle kapatıldı, varsayımla değil.
+
+---
+
+## D17 — KARAR DOSYASINA GİREN İKİ İDDİANIN BAĞIMSIZ SAYIMI
+
+**K5 (Person şeması bölünmesi) — doğrulandı, sayı birebir:**
+```
+Article toplam: 92
+  author → hakkinda/#yazar (zengin OLMAYAN düğüm): 92
+  author → #yazar (zengin düğüm): 0
+```
+Yani 92 makalenin **92'si** `jobTitle`/`description`/`knowsAbout`
+taşımayan düğüme bağlı; zengin düğüm hiçbir makaleden referans almıyor.
+
+**K9 (hukuki şerh dağılımı) — bu denetimde YENİDEN ölçüldü ve
+ajan raporundan farklı, daha kritik bir tablo çıktı:**
+```
+şerhli: 425 · şerhsiz: 97 · toplam: 522
+şerhsiz dağılımı: durumum 43 · havzalar 26 · rehberler 11 · su-kanunu 3 ·
+vaka 2 · (ana, kuyu-ruhsati, nerede-su-cikar, arsiv, kapatma-kaydi,
+ilimde-kim-yetkili, harita, kullanilanlar, ilce-sorgu, havza-riski) 1'er
+```
+**Yeni bulgu:** sitenin en iddialı iki türetilmiş çıktısını üreten sayfa —
+`/ilce-sorgu/` ("su çıkma olasılığı", akifer türü, kuyu derinliği) ve
+`/havza-riski/` (bileşik risk puanı) — **ikisi de şerhsiz.** K9 bu
+ölçümle güncellendi.
+
+**AJAN RAPORU DÜZELTMESİ (kayda geçirildi):** 1.5a raporu K1'in emsalini
+`src/data/il-profil.js:553` diye gösteriyordu; dosya **127 satır**.
+Doğru konum **34-35** ve orada uyuşmazlığın nedeni yorumda yazılı:
+*"EPİAŞ havza adı çıplaktır ('Sakarya'); site başlığı 'Sakarya Havzası'"*.
+Bu düzeltme K1'i **güçlendiriyor**: depo bu uyuşmazlığı biliyor ve bir
+yerde doğru çözüyor, risk hesabında çözmüyor. Yanlış satır atfı üç
+rapordan da temizlendi.
+
+---
+
+## D18 — D16 PERFORMANS TABLOSU GEÇERSİZ: ölçüm protokolü hatalıydı
+
+**D16'daki tablo, projenin kendi ölçüm protokolüne aykırı bir betikle
+alınmıştır ve sayıları sistematik olarak DÜŞÜKTÜR.**
+
+**Nasıl yakalandı.** D16'da "ana sayfa mobil 81, sitenin en yavaş kalemi"
+diye bulgu açılmıştı (K37). Aynı gün md9 sağlık kalemi aynı sayfayı
+**94** ölçtü. 5 turluk tekrar ölçümüm 75-84 bandında kaldı — yani fark
+gürültü değil **sistematikti**.
+
+**Kök neden.** `arac/site-saglik.mjs:1117` şunu açıkça yazıyor:
+> *"PARALEL YASAK: her ölçüm kendi tarayıcısını açar ve kapatır."*
+
+Benim `perf-turu.mjs` betiğim **tek Chrome örneğini bütün turlarda ve
+bütün sayfalarda paylaşıyordu.**
+
+**Doğru protokolle (her tur için yeni tarayıcı) tekrar ölçüm:**
+```
+tur 1: perf 94 · LCP 2478 ms
+tur 2: perf 90 · LCP 2932 ms
+tur 3: perf 81 · LCP 3679 ms
+MEDYAN: perf 90 · LCP 2932 ms   (paylaşılan tarayıcıda: 82 / 4515 ms)
+```
+
+**Sonuçlar.**
+1. **K37 GERİ ÇEKİLDİ** — ana sayfa diğer şablonlarla aynı bantta
+   (2681-2932 ms). Bulgu ölçüm aracımın kusuruydu.
+2. **D16 tablosunun mutlak değerleri kullanılmamalıdır.** Tüm satırlar
+   aynı hatalı protokolle alındığından karşılaştırmalı sıralama da
+   güvenilir değildir.
+3. **1.4 performans boyutu md9'a devredildi.** md9 doğru protokolü
+   kullanıyor, uyarlamalı medyan uyguluyor (eşiğe 12 puandan yakınsa
+   3 tur) ve 27.08 koşumunda **14 sayfanın 14'ü de eşiği geçti**:
+   `/ 100/94 · /nerede-su-cikar/ 99/85 · /arsiv/ 99/100 · /harita/ 93/75 ·
+   /havzalar/sakarya/ 100/93 · /rehberler/kuyu-ruhsati/ 100/86 ·
+   /rehberler/kuyu-tasima/ 99/83 · /durumum/ 98/99 · /hangi-kurum/ 99/99 ·
+   /vaka/meysu/ 99/93 · /kapatma-kaydi/ 98/86 · /goller/tuz-golu/ 99/91 ·
+   /nehirler/kizilirmak/ 98/94 · /ilce-sorgu/ 98/94`
+4. **CLS ve TBT gözlemleri ayakta kalıyor** (protokolden bağımsız):
+   CLS her şablonda eşik altında (en yüksek 0,023), TBT 0 ms — site
+   pratikte JS'siz (dist toplam JS 18 KB). Boyutsuz `<img>` 523 sayfada
+   yalnız 1 adet.
+
+**DERS (kayda geçirildi):** bir ölçüm mevcut bir sağlık kalemiyle
+çelişiyorsa, önce **kendi aracımı** sorgulamalıyım. Bu denetimde bu
+tersine sıra iki kez işe yaradı: burada ve D15'te (etiket ayracı).

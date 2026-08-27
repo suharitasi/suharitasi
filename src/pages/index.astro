@@ -160,6 +160,12 @@ const sahneVeri = SAHNELER.map((s) => ({
 
   <PaylasilanMenu />
 
+  {/* 27.08 denetimi U7: ana sayfa 518 iç sayfanın aksine <main> landmark'ı
+      taşımıyordu (WCAG 1.3.1 / ARIA landmark). Sarmalayıcı SINIFSIZ ve
+      stilsizdir — .govde iç sayfa düzeni içindir, buraya uygulanmaz;
+      görünür metin ve JSON-LD değişmez (bit-eşitlik ölçümü raporda). */}
+  <main>
+
   {/* .v2-ust-akis: U2 mobil istisnasının taşıyıcısı — masaüstünde DOM
       sırası (kanıt bandı hero'dan hemen sonra), mobilde CSS order ile
       eski sıra (sorular önce). Kural: anasayfa-v2.css sonu. */}
@@ -221,6 +227,8 @@ const sahneVeri = SAHNELER.map((s) => ({
   <Hakkinda />
 
   <Iletisim />
+
+  </main>
 
   <div class="v2-altkap"><AltBilgi /></div>
 
