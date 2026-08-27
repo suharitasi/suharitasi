@@ -686,6 +686,61 @@ dedektörü).
 
 ---
 
+## §34 · K7 — `/ilce-sorgu/` veri karşılığı olmayan üç çıktı kaldırıldı,
+## künye türetme yolunu söylüyor (27.08.2026, kullanıcı onaylı)
+
+**Karar: (a) + (b) birlikte uygulandı. (c) REDDEDİLDİ.**
+
+**(c) neden reddedildi.** Sayfa `noindex`e ALINMADI, sitemap'te kaldı,
+521 iç link korundu. Gerekçe: (a)+(b) uygulandıktan sonra sayfada kalan
+her çıktının veri karşılığı var; yayın yüzeyinden çıkarmayı gerektiren
+bir kusur kalmadı. `noindex` kalıcı bir çare değil, ertelemeydi.
+
+**(a) — kaldırılan üç çıktı ve hesapları.** Depoda karşılığı olmayan
+veri üretiyorlardı:
+- *"tahmini su doygunluk derinliği: X–Y metre"* — `dMin = 15+(1-duz)*65`;
+  depoda derinlik verisi YOK.
+- *"baskın kayaç ve akifer türü: Alüvyal / Karstik / Granit"* — `duz>.5` /
+  `vadi>.3` eşiklerinden; depoda litoloji verisi YOK.
+- *"Su Çıkma Olasılığı %"* — `yasS*.35+twiS*.3+yagS*.2+jrcS*.15` bileşik
+  indeksi; indeks olasılık DEĞİLDİR.
+Hesaplayan kod, bileşen dökümü kartı, `graceYon` veri yolu, `setS`
+yardımcısı ve `.ahp-*` CSS kuralları da kaldırıldı — ölü kod bırakılmadı.
+
+**(b) — künye ve yöntem etiketleri.** Ölçülen gerçek durum:
+- **AHP değil.** Kodda pairwise karşılaştırma matrisi, özvektör ve
+  tutarlılık oranı yok; sabit ağırlıklı doğrusal toplam vardı. Etiket
+  bileşik indeksle birlikte kaldırıldı.
+- **TWI hesaplanmıyor.** `morfoloji.json` `yontem.twi = "hesaplanmadı"`;
+  sayfadaki "TWI" bileşeni `(duz+vadi)/2` idi. Bileşen listesinden ÇIKTI.
+- **"Yağış" bileşeni CHIRPS'ten gelmiyordu**, `graceYon` etiketinden
+  geliyordu — havza sayfalarının kendi şerhi "GRACE il/ilçe ölçeğinde
+  kullanılamaz" dediği için iç çelişkiydi. Gerçek kaynağıyla
+  etiketlemek yerine ÇIKARILDI: GRACE bu ölçekte kullanılamaz olduğuna
+  göre etiketi düzeltmek de bileşeni meşrulaştırırdı.
+- **"Yüzey Suyu" bileşeni boştu.** `jrc-yuzey-suyu.json` 25/25 havzada
+  `"islenmedi"` ve `src/` içinde HİÇ import edilmiyordu; bileşen
+  `min(1, duz*1.5)` ile `duz_oran`'dan üretiliyordu. K1 kuralı gereği
+  (verisi olmayan gösterge puana girmez) ÇIKARILDI.
+- **Ters künye düzeltildi.** "Arazi Yapısı · Copernicus GLO-90 DEM" →
+  "il düzeyi Copernicus GLO-90 DEM'den türetilmiş — ilçe ölçümü
+  değildir". Kaynağın ADI silinmedi (kaynak gerçek); türetme YOLU
+  eklendi. Metin `ilce-morfoloji.json` `kunye.not` ve `kunye.yontem`
+  alanlarından türetildi.
+- **`ort_egim` 948/948 null** olduğu hâlde her ilçede "Ortalama eğim:
+  0,0°" basılıyordu (K1'de kapatılan kusurun ikizi). Artık null ise
+  değer basılmıyor, "veri yok" yazıyor.
+
+**Kaynak listesi ölçülene indirildi.** Kapsam şerhindeki GRACE NASA GSFC
+ve EPİAŞ silindi: ikisinin de bu sayfada veri yolu YOK (EPİAŞ hiç
+olmamıştı). Kalanlar sayfanın fiilen okuduğu kaynaklar.
+
+**Bağlayıcı ilke (K1 ile aynı).** Bu depoda türetilmiş veri, türetildiği
+söylenmeden yayınlanmaz; verisi olmayan gösterge puana girmez; yöntem
+adı (AHP, TWI) kodda karşılığı yoksa yazılmaz.
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek

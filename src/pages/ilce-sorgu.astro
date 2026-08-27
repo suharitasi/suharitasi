@@ -25,7 +25,7 @@ for (const il of Object.keys(ilIlceler)) ilIlceler[il].sort((a, b) => a.localeCo
 
 const ilProfilData = {};
 for (const p of profiller)
-  ilProfilData[p.il] = { dsi: (p.dsiBolgeleri||[]).map(b => `DSİ ${Number(b.no)}. Bolge Mudurlugu (${b.merkez})`).join(' · '), graceYon: p.graceEgilim?.yon || null };
+  ilProfilData[p.il] = { dsi: (p.dsiBolgeleri||[]).map(b => `DSİ ${Number(b.no)}. Bolge Mudurlugu (${b.merkez})`).join(' · ') };
 
 const ilPotansiyelData = {};
 for (const il of ilAdlari) {
@@ -72,7 +72,7 @@ for (const il of ilAdlari) {
 const IL_LISTESI = ilAdlari.map(il => ({ ad: il, slug: slugla(il) }));
 const VERI = JSON.stringify(IL_INDEX);
 
-const ozet = 'Türkiye\'de il ve ilçe bazında yeraltı su potansiyeli, arazi morfolojisi ve sondaj lokasyon analizi. İl ve ilçe seçerek bölgenizdeki su çıkma olasılığını hesaplayın.';
+const ozet = 'Türkiye\'de il ve ilçe bazında yeraltı su potansiyeli, arazi morfolojisi ve sondaj lokasyon analizi.';
 ---
 
 {/* B1 (25.08): <title> 60 karakter sınırına, sayfanın kendi H1'inden türetildi. */}
@@ -103,23 +103,12 @@ const ozet = 'Türkiye\'de il ve ilçe bazında yeraltı su potansiyeli, arazi m
   </Katman>
 
   <div id="analiz-sonuc" style="display:none">
-    <Katman baslik="Su Çıkma Olasılığı ve Bilimsel Analiz" ipucu="AHP ağırlıklı · TWI + YAS + yağış + yüzey suyu">
-      <div class="ahp-skor">
-        <div class="ahp-ana" id="ahp-ana">
-          <div class="ahp-deger" id="skor-degeri">—</div>
-          <div class="ahp-etiket" id="skor-etiket"></div>
-        </div>
-        <div class="ahp-detay-grid">
-          <div class="ahp-kart"><strong>Potansiyeli Yüksek Alanlar</strong><p id="potansiyel-alanlar"></p></div>
-          <div class="ahp-kart"><strong>Jeolojik / Akifer Yapısı</strong><p id="akifer-yapisi"></p></div>
-          <div class="ahp-kart"><strong>Tahmini Derinlik Aralığı</strong><p id="derinlik-tahmini"></p></div>
-          <div class="ahp-kart"><strong>İlçe Genel Skor Bileşenleri</strong><p id="skor-bilesenleri"></p></div>
-        </div>
-        <p class="not" style="margin-top:0.8rem">Bu analiz Copernicus GLO-90 DEM, DSİ 2024, NHYP ve GRACE verilerinden turetilen BILIMSEL BIR GOSTERGEDIR. Saha etudu veya hidrojeolojik rapor YERINE GECMEZ.</p>
-      </div>
+    <Katman baslik="Potansiyeli Yüksek Alanlar" ipucu="ilçe düz arazi ve vadi tabanı oranından">
+      <p class="alan-metin" id="potansiyel-alanlar"></p>
+      <p class="not" style="margin-top:0.8rem">Bu liste yalnız ilçe düz arazi ve vadi tabanı oranlarından türetilmiştir; bu oranlar il düzeyindeki Copernicus GLO-90 DEM verisinden ilçe adına bağlı deterministik varyasyonla üretilmiştir, gerçek ilçe ölçümü DEĞİLDİR. Saha etudu veya hidrojeolojik rapor YERINE GECMEZ.</p>
     </Katman>
     <Katman baslik="Yetkili Kurum" ipucu="DSİ bölge · su idaresi"><dl class="kunye kunye-katman"><div class="kunye-satir"><dt>DSİ Bölge(ler)</dt><dd id="dsi-bolge"></dd></div><div class="kunye-satir"><dt>Su idaresi</dt><dd id="su-idaresi"></dd></div></dl></Katman>
-    <Katman baslik="Arazi Yapısı" ipucu="Copernicus GLO-90 DEM"><dl class="kunye kunye-katman"><div class="kunye-satir"><dt>Düz arazi (&lt;%2 eğim)</dt><dd id="morf-duz"></dd></div><div class="kunye-satir"><dt>Vadi tabanı</dt><dd id="morf-vadi"></dd></div><div class="kunye-satir"><dt>Ortalama eğim</dt><dd id="morf-egim"></dd></div></dl></Katman>
+    <Katman baslik="Arazi Yapısı" ipucu="il düzeyi Copernicus GLO-90 DEM'den türetilmiş — ilçe ölçümü değildir"><dl class="kunye kunye-katman"><div class="kunye-satir"><dt>Düz arazi (&lt;%2 eğim)</dt><dd id="morf-duz"></dd></div><div class="kunye-satir"><dt>Vadi tabanı</dt><dd id="morf-vadi"></dd></div><div class="kunye-satir"><dt>Ortalama eğim</dt><dd id="morf-egim"></dd></div></dl></Katman>
     <Katman baslik="Su Potansiyeli Verileri" ipucu="NHYP · DSİ · Resmî Gazete · OSM"><div class="potansiyel-ozet" id="potansiyel-kartlar"></div></Katman>
     <Katman baslik="Su Hukuku ve Ruhsat Süreçleri" ipucu="kuyu ruhsatı · DSİ kısıtları · idari yaptırım" ton="kehribar">
       <div class="hukuk-yonlendirme">
@@ -141,7 +130,7 @@ const ozet = 'Türkiye\'de il ve ilçe bazında yeraltı su potansiyeli, arazi m
     <Katman baslik="Nasıl Kullanılır?" ipucu="3 adımda su potansiyeli analizi">
       <div class="kullanim-grid">
         <div class="kullanim-adim"><strong>1. İl seçin</strong><p>81 ilden birini seçerek il düzeyinde arazi morfolojisi ve su potansiyeli analizini görüntüleyin.</p></div>
-        <div class="kullanim-adim"><strong>2. İlçe seçin</strong><p>İlçe seçimiyle daha yerel analiz alın. Potansiyeli yüksek alanlar, akifer yapısı ve derinlik aralığı gösterilir.</p></div>
+        <div class="kullanim-adim"><strong>2. İlçe seçin</strong><p>İlçe seçimiyle daha yerel analiz alın. Potansiyeli yüksek alanlar gösterilir.</p></div>
         <div class="kullanim-adim"><strong>3. Analiz Et</strong><p>Düğmeye tıklayın; sonuç sayfa yenilenmeden anında karşınıza gelsin.</p></div>
       </div>
     </Katman>
@@ -149,7 +138,8 @@ const ozet = 'Türkiye\'de il ve ilçe bazında yeraltı su potansiyeli, arazi m
 
   <Katman baslik="Kapsam ve Uyarı" ton="murekkep" ipucu="veri kaynakları · sınırlar">
     <p class="not">Bu araç resmî kaynaklardan derlenen açık verileri sunar; hukuki görüş, yatırım tavsiyesi veya saha etüdü raporu NİTELİĞİ TAŞIMAZ.</p>
-    <p class="not">Veri kaynakları: DSİ, SYGM NHYP, GRACE NASA GSFC, EPİAŞ, Copernicus GLO-90 DEM, OSM (ODbL). Tüm veri TEMSİLÎDİR.</p>
+    <p class="not">Veri kaynakları: SYGM NHYP (YAS kütleleri), DSİ bölge dizini, Resmî Gazete işletme sahaları, OSM (ODbL) su noktaları, Copernicus GLO-90 DEM (arazi morfolojisi). Tüm veri TEMSİLÎDİR.</p>
+    <p class="not">İlçe düzeyindeki düz arazi ve vadi tabanı oranları ölçüm DEĞİLDİR: il düzeyindeki Copernicus GLO-90 DEM verisinden ilçe adına bağlı deterministik varyasyonla (±%15) türetilmiştir. Ortalama eğim 948 ilçenin tamamında hesaplanmamıştır.</p>
   </Katman>
 
   {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
@@ -180,13 +170,7 @@ const ozet = 'Türkiye\'de il ve ilçe bazında yeraltı su potansiyeli, arazi m
   .kullanim-adim { padding: 0.9rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); }
   .kullanim-adim strong { display: block; font-size: 0.92rem; color: var(--metin); margin-bottom: 0.3rem; }
   .kullanim-adim p { font-size: 0.82rem; color: var(--metin-soluk); margin: 0; line-height: 1.45; }
-  .ahp-ana { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.3rem; margin-bottom: 1rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); }
-  .ahp-deger { font-family: var(--serif); font-size: 2.8rem; font-weight: 600; line-height: 1; }
-  .ahp-etiket { font-size: 0.95rem; color: var(--metin); }
-  .ahp-detay-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
-  .ahp-kart { padding: 0.9rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); }
-  .ahp-kart strong { display: block; font-size: 0.84rem; margin-bottom: 0.3rem; color: var(--metin); }
-  .ahp-kart p { font-size: 0.82rem; color: var(--metin-soluk); margin: 0; line-height: 1.4; }
+  .alan-metin { font-size: 0.94rem; color: var(--metin); margin: 0; line-height: 1.55; padding: 0.9rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); }
   .hukuk-yonlendirme { padding: 0.3rem 0; }
   .hukuk-yon-metin { font-size: 0.92rem; color: var(--metin); margin-bottom: 1rem; line-height: 1.5; }
   .hukuk-yon-links { display: flex; flex-direction: column; gap: 0.5rem; }
@@ -199,8 +183,6 @@ const ozet = 'Türkiye\'de il ve ilçe bazında yeraltı su potansiyeli, arazi m
   @media (max-width: 560px) {
     .sorgu-grid { grid-template-columns: 1fr; }
     .kunye-satir { grid-template-columns: 1fr; gap: 0.1rem; }
-    .ahp-detay-grid { grid-template-columns: 1fr; }
-    .ahp-ana { flex-direction: column; text-align: center; }
   }
   .ilce-temas { margin-top: 0.8rem; font-size: 0.9rem; color: var(--metin-soluk); }
   .ilce-temas a { color: var(--baglanti, var(--su-700)); }
@@ -234,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const fmt = (n, o) => n?.toLocaleString?.('tr-TR', { minimumFractionDigits: o, maximumFractionDigits: o }) ?? String(n);
 
   // ── YARDIMCI: tum cikti alanlarini temizle ──
-  const CIKTI_ALANLARI = ['skor-degeri','skor-etiket','potansiyel-alanlar','akifer-yapisi','derinlik-tahmini','skor-bilesenleri','dsi-bolge','su-idaresi','morf-duz','morf-vadi','morf-egim','potansiyel-kartlar','hukuk-yon-metin'];
+  const CIKTI_ALANLARI = ['potansiyel-alanlar','dsi-bolge','su-idaresi','morf-duz','morf-vadi','morf-egim','potansiyel-kartlar','hukuk-yon-metin'];
   function tumunuTemizle() {
     for (const id of CIKTI_ALANLARI) { const el = G(id); if (el) el.textContent = el.innerHTML = ''; }
     sonuc.style.display = 'none';
@@ -258,7 +240,6 @@ document.addEventListener('DOMContentLoaded', () => {
       rg: ilKayit.potansiyel.rg || 0,
       osm: ilKayit.potansiyel.osm || 0,
       dsi: ilKayit.profil.dsi || '',
-      graceYon: ilKayit.profil.graceYon || null,
       suIdare: ilKayit.suIdare || '',
     };
   }
@@ -315,48 +296,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // VERiFiCATiON LOG: her ilce icin farkli ham veri
     console.log('[VERi]', d.ilAd, '/', d.ilceAd,
       '| duz:', d.duz_oran?.toFixed(3), 'vadi:', d.vadi_oran?.toFixed(3),
-      '| kutle:', d.kutle, 'grace:', d.graceYon);
+      '| kutle:', d.kutle);
 
     const duz = d.duz_oran, vadi = d.vadi_oran, egim = d.ort_egim;
-    const yasS = Math.min(1, (d.kutle||0)/15);
-    const twiS = (duz + vadi)/2 || 0.3;
-    const yagS = d.graceYon === 'azalma' ? 0.3 : 0.6;
-    const jrcS = Math.min(1, duz*1.5) || 0.3;
-    const ahp = Math.round((yasS*.35 + twiS*.3 + yagS*.2 + jrcS*.15)*100);
-    const sev = ahp>=70?'Yüksek Potansiyel':ahp>=45?'Orta Potansiyel':'Düşük Potansiyel';
-    const rnk = ahp>=70?'#2E7D32':ahp>=45?'#E65100':'#C62828';
-    console.log('[Analiz] AHP:',ahp+'% YAS:'+Math.round(yasS*100)+' TWI:'+Math.round(twiS*100)+' Yagis:'+Math.round(yagS*100)+' JRC:'+Math.round(jrcS*100));
 
     // Tum ciktilari once temizle, sonra yaz
     tumunuTemizle();
 
     const setT = (id,v) => { const e=G(id); if(e) e.textContent = v; };
     const setH = (id,v) => { const e=G(id); if(e) e.innerHTML = v; };
-    const setS = (id,p,v) => { const e=G(id); if(e) e.style[p] = v; };
-
-    setT('skor-degeri', ahp+'%'); setS('skor-degeri','color',rnk);
-    setH('skor-etiket', sev+' — '+d.ilAd+' / '+d.ilceAd+' İlçe Genel Su Çıkma Olasılığı');
-    setS('ahp-ana','borderLeftColor',rnk);
 
     const yk = [];
-    if (duz>.3) yk.push('alüvyal tabanlar ve düzlük alanlar');
-    if (vadi>.15) yk.push('dere yatakları ve TWI çanakları');
-    if ((egim??99)<5) yk.push('eğimin %5\'in altında olduğu alçak araziler');
+    if (duz>.3) yk.push('düzlük alanlar');
+    if (vadi>.15) yk.push('dere yatakları');
+    if (egim != null && egim<5) yk.push('eğimin %5\'in altında olduğu alçak araziler');
     if (!yk.length) yk.push('vadi içi alçak kesimler');
     setT('potansiyel-alanlar', d.ilceAd+' ilçesinde su çıkma ihtimalinin en yüksek olduğu bölgeler: '+yk.join(', ')+'.');
 
-    const akf = duz>.5?'Alüvyon / Alüvyal Akifer (geçirgen kum-çakıl)':vadi>.3?'Karstik Kireçtaşı Akiferi (çatlaklı-erimiş yapı)':'Gözenekli Granit / Kırıklı Kaya Akiferi (çatlak suyu)';
-    setT('akifer-yapisi', d.ilceAd+' ilçesinde baskın kayaç ve akifer türü: '+akf+'.');
-
-    const dMin = Math.round(15+(1-duz)*65), dMax = Math.round(dMin+40);
-    setT('derinlik-tahmini', d.ilceAd+' ilçesinde tahmini su doygunluk derinliği: '+dMin+' – '+dMax+' metre arası.');
-
-    setT('skor-bilesenleri','AHP: YAS %'+Math.round(yasS*100)+' · TWI %'+Math.round(twiS*100)+' · Yağış %'+Math.round(yagS*100)+' · Yüzey Suyu %'+Math.round(jrcS*100));
     setT('dsi-bolge', d.dsi||'veri yok');
     setT('su-idaresi', d.suIdare||'Il Ozel Idaresi / belediye');
     setT('morf-duz', fmt(duz*100,1)+'%');
     setT('morf-vadi', fmt(vadi*100,1)+'%');
-    setT('morf-egim', fmt(egim||0,1)+'°');
+    setT('morf-egim', egim == null ? 'veri yok' : fmt(egim,1)+'°');
 
     let kh = '';
     if (d.kutle>0) kh += '<div class="metrik-kart"><span class="metrik-deger">'+d.kutle+'</span><span class="metrik-etiket">YAS kutlesi</span></div>';

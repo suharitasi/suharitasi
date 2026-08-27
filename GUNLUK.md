@@ -1,5 +1,47 @@
 # GUNLUK.md — seans notları
 
+## 27.08.2026 (11. seans, ikinci tur) — K7 UYGULAMASI (a)+(b)
+
+Rapor: `rapor/27-08-K7-uygulama.md` · Karar: KARARLAR **§34** · Brief:
+`cikti/brief/k7-uygulama{,-duzeltilmis}.md` (denetçi 1 ENGEL + 2 UYARI →
+yalnız ekleme ile TEMİZ).
+
+`/ilce-sorgu/` sayfasından veri karşılığı olmayan üç çıktı ve hesapları
+kaldırıldı (derinlik tahmini · akifer türü · "Su Çıkma Olasılığı %");
+kalan çıktıların künyesi türetme yolunu söylüyor. (c) noindex
+uygulanmadı — sayfa yayında, 521 iç link korundu. `ort_egim` 948/948
+null olduğu hâlde basılan "0,0°" → **"veri yok"**.
+
+Ölçüm: `doygunluk`·`akifer`·`olasılığı`·`\bTWI\b`·`\bAHP\b`·`ahp-`·
+`Alüvyon`·`Karstik`·`Granit` → HTML **0** + JS chunk **0** (taban: 3/6,
+4/1, 1/3, 1/3, 10/0, .../1). `Copernicus` **4** (kaynak gerçek,
+silinmedi). Sayfa 523, sitemap 519 — taban ile küme-eş.
+
+**DÜŞMAN GEÇİŞİ DERSİ (yeni kural adayı):** "TWI dist'te 0 olmalı"
+şartı büyük/küçük harf duyarsız aramayla **her sayfada yanlış-pozitif
+verir** — `<meta name="twitter:card">` içindeki `twi` eşleşir. Ölçüm
+tabanla doğrulanıp bitti-tanımı **kelime sınırlı + harf duyarlı**
+(`\bTWI\b`) hâle getirildi. DERS: kısa büyük-harfli kısaltma
+(TWI/AHP/DSİ/RG) üzerine kurulu "sıfır olmalı" şartlarında arama deseni
+her zaman kelime sınırlı yazılır; aksi hâlde şart ya hiç geçmez ya
+sahte geçer.
+
+**İKİNCİ DERS (D2, kendi metnimi kendi ölçütümle denetleme):**
+`morfoloji.json`'un dürüst etiketi *"akifer varlığının kanıtı değildir"*
+cümlesini içeriyor. Bu cümleyi yeni şerhe alıntılasaydım kendi
+"akifer = 0" şartımı ihlal ederdim. K1'de aynı sınıf hata (yeni yazılan
+metinde eski kusurun tekrarı) yaşandığı için yeni her cümle yazıldıktan
+sonra bitti-tanımına karşı tekrar tarandı.
+
+K7 uygulamasından **6 yeni karar kalemi** doğdu ve
+`rapor/26-08-denetim-KARARLAR-BEKLEYEN.md` §6'ya yazıldı: **K7-A** kalan
+çıktı hâlâ "su çıkma ihtimali" diyor (öneri metniyle) · **K7-B** hiçbir
+eşik geçilmediğinde yer tutucu bölge basılıyor (Ankara/Polatlı ölçümü) ·
+**K7-C** öz-cevaptaki "sondaj" · **K7-D** 1 CTA'daki "sondaj analizi" ·
+**K7-E** `jrc-yuzey-suyu.json` artık tümüyle ölü · **K7-F** 2b taraması
+temiz.
+
+
 ## 26.08.2026 (10. seans) — ALTYAPI KUYRUĞU KAPATMA (üç faz)
 
 Rapor: rapor/26-08-kuyruk-kapatma.md · Karar: KARARLAR §33. BÜYÜK rejim

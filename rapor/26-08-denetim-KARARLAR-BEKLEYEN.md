@@ -29,6 +29,7 @@ uygulanır" cinsindendir.
 | K2 | yapışma **205 → 6** (kalan 6'sı kasıtlı Türkçe ek yazımı); künye 519 sayfada düzeldi |
 | K3 | boş etiketli kardeş bağlantı **230 → 0**; md21 dokunma ihlali 201 → 199 |
 | K9 | şerhli sayfa **425 → 516**, şerhsiz **97 → 6** (gerekçeli hariç tutulanlar); çift basım 0 |
+| K7 | (a)+(b) uygulandı **27.08 ikinci tur** — `doygunluk`·`akifer`·`olasılığı`·`\bTWI\b`·`\bAHP\b`·`Alüvyon`·`Karstik`·`Granit` HTML+JS chunk'ta **0**; `Ortalama eğim: 0,0°` → **veri yok**; `Copernicus` **4** (korundu); kalan 9 çıktının hepsinin veri karşılığı listelendi. (c) reddedildi — sayfa yayında. Kayıt: KARARLAR **§34**, rapor `27-08-K7-uygulama.md` |
 
 Sağlık `--tam` deploy sonrası: 🔴0 · 🟡1 · 🟢22 — **taban gerilemesi 0**.
 md14 görsel taban GEÇTİ, yenileme gerekmedi.
@@ -59,7 +60,7 @@ kanıt canlı testtir (İş kapanış kuralı).
 
 ---
 
-# 1. ÖNCE BUNLAR — dürüstlük sınırına dokunan üç kalem
+# 1. ÖNCE BUNLAR — dürüstlük sınırına dokunan kalemler (K7 uygulandı, §6)
 
 ## K1 · `/havza-riski/` puanının %40'ı her havzada aynı sabit
 
@@ -109,53 +110,6 @@ sıralamasını ve JSON-LD `Observation` şemasını değiştirir.
 taahhüdü *"Doğrulanamayan hiçbir veri doğrulanmış gibi gösterilmez…
 tahmin veya ara değer üretilmez."* (c) bu taahhüdü karşılamaz, çünkü
 sabit 0,5 tam olarak bir ara değerdir. **ETKİ: YÜKSEK.**
-
-## K7 · `/ilce-sorgu/` veri karşılığı olmayan akifer türü, derinlik ve "olasılık" üretiyor
-
-**Ne bulundu.** Üç katman:
-1. **Künye ters yönde.** `veri/potansiyel/ilce-morfoloji.json` kendi
-   künyesinde *"Bu veri GERÇEK ilçe ölçümü DEĞİLDİR. İl düzeyindeki
-   Copernicus GLO-90 DEM verisinden ilçe ismiyle tohuma bağlı
-   varyasyonla türetilmiştir (±%15 deterministik varyasyon)"* diyor;
-   sayfa bunu **"Arazi Yapısı · Copernicus GLO-90 DEM"** künyesiyle
-   basıyor. Şerh eksik değil — **olmayan bir ölçüm kaynağı iddia
-   ediliyor.** Ayrıca `ort_egim` 948/948 null olduğu için her ilçede
-   "Ortalama eğim: 0,0°" yazıyor.
-2. **Veri karşılığı hiç olmayan çıktı.** `dMin = 15 + (1-duz)*65`
-   formülünden "tahmini su doygunluk derinliği: X–Y metre"; eşiklerden
-   "baskın kayaç ve akifer türü: Alüvyal / Karstik / Granit". Depoda ne
-   litoloji ne derinlik verisi var.
-3. **Yöntem etiketleri dayanaksız.** "AHP" iddiası; `morfoloji.json`
-   "twi: hesaplanmadı" derken TWI bileşen olarak gösteriliyor;
-   `jrc-yuzey-suyu.json` 25/25 havzada `"islenmedi"`; "yağış" bileşeni
-   CHIRPS'ten değil GRACE yön etiketinden geliyor — oysa havza
-   sayfalarının kendi şerhi "GRACE il/ilçe ölçeğinde kullanılamaz"
-   diyor. Bileşik skor **"Su Çıkma Olasılığı %"** olarak sunuluyor; bu
-   bir indeks, olasılık değil.
-
-**Ölçüm kanıtı.** `src/pages/ilce-sorgu.astro:14` (import), `:41-62`,
-`:121`, `:347-348`, `:353-355`; künye alıntıları birebir yukarıda.
-Sayfada genel "TEMSİLÎDİR" şerhi var (`:151`) ama türetme yöntemini
-söylemiyor. Yayın yüzeyi: sitemap'te · indekslenebilir · 521 iç link.
-
-**Neden karar sınıfı.** Görünür içerik ve sayfanın vaadi değişir; ayrıca
-bu bir **maddi karar aracıdır** — CLAUDE.md "Altyapıda hızlı, iddiada
-yavaş" kuralı bu tür araçlarda keşif raporu → değerlendirme oturumu →
-[SERDAR-HUKUK] onayı → uygulama briefi sırasını zorunlu kılıyor.
-
-**Seçenekler ve sonuçları.**
-- **(a) Veri karşılığı olmayan üç çıktıyı kaldır** (akifer türü, derinlik
-  aralığı, "olasılık"), sayfayı ölçülen veriye indir. Sonuç: sayfa
-  küçülür ama söylediği her şey doğrulanabilir olur.
-- **(b) Künye ve yöntem şerhini dürüstleştir** ("bu değerler il
-  verisinden türetilmiş tahmindir; ilçe ölçümü yoktur"; "AHP" ve "TWI"
-  etiketlerini gerçek yönteme çevir). Sonuç: çıktı kalır, iddia küçülür.
-- **(c) Sayfayı `noindex`e al**, yeniden tasarlanana kadar yayın
-  yüzeyinden çıkar. Sonuç: geçici, tersine çevrilebilir.
-
-**Tavsiye: (a) + (b) birlikte.** Türetilmiş olduğu açıkça yazılamayan
-çıktı kaldırılsın, kalanın künyesi gerçek yöntemi söylesin. (c) bunlar
-yapılana kadar geçici çare olarak uygulanabilir. **ETKİ: YÜKSEK.**
 
 ## K8 · Ceza rehberi 2008 nominal tutarlarını güncel gibi bırakıyor · [SERDAR-HUKUK]
 
@@ -500,3 +454,104 @@ durum tespiti.
   Sınır vakaları: `durumum/*` CTA "Uyum planlaması için iletişim …
   ulaşın" · ana sayfa formu "Ön görüşme talebi" · menüde "İletişim /
   Uzman Görüşü" · footer "Arslan Hukuk Bürosu güvencesiyle".
+
+---
+
+# 6. K7 UYGULAMASINDAN DOĞAN YENİ KALEMLER (27.08.2026, ikinci tur)
+
+Aşağıdakiler K7 uygulaması sırasında **ölçüldü ama uygulanmadı** —
+brief kuralı gereği (görünür metin değişikliği = KARAR; yeni cümle
+yazmak = KARAR; kapsam dışı bulgu = yalnız kayıt).
+
+## K7-A · Kalan çıktı hâlâ "su çıkma ihtimali" diyor · ETKİ: ORTA
+
+**Mevcut metin** (`src/pages/ilce-sorgu.astro`, `analizEt`):
+> "*{İlçe}* ilçesinde **su çıkma ihtimalinin en yüksek olduğu bölgeler**:
+> düzlük alanlar, dere yatakları."
+
+**Neden tutarsız.** Kaldırılan "Su Çıkma Olasılığı %" ile aynı iddianın
+kelime değiştirmiş hâli. Cümlenin dayandığı tek veri `duz_oran` ve
+`vadi_oran` — yani **topografya**. Topografyadan su çıkma ihtimali
+çıkarmak için gereken akifer/derinlik/geçirgenlik verisi depoda yok
+(K7'nin kaldırdığı çıktıların kaldırılma gerekçesiyle aynı).
+
+**Neden uygulanmadı.** Atfı silmek cümleyi bozuyor ("*X* ilçesinde:
+düzlük alanlar."), yani 3b İSTİSNA'sına girmiyor — yeni cümle yazmak
+KARAR sınıfı.
+
+**Önerilen yeni metin** (dayandığı veri: `ilce-morfoloji.json`
+`duz_oran`, `vadi_oran`; künye: "il düzeyindeki Copernicus GLO-90 DEM
+verisinden ilçe adına bağlı deterministik varyasyonla türetilmiştir"):
+> "*{İlçe}* ilçesinde **düz arazi ve vadi tabanı oranı en yüksek
+> kesimler**: düzlük alanlar, dere yatakları."
+
+Söylediği şey ölçülene eşit: topografya sıralaması, su vaadi değil.
+
+## K7-B · Hiçbir eşik geçilmediğinde yine de bölge sayılıyor · ETKİ: ORTA
+
+`if (!yk.length) yk.push('vadi içi alçak kesimler');` — `duz≤%30` ve
+`vadi≤%15` iken (ör. **Ankara/Polatlı**: duz 11,9% · vadi 8,1%) sayfa
+yine "vadi içi alçak kesimler" yazıyor. Bu satırın altında ölçüm yok;
+eşiklerin hiçbiri geçilmediği için üretilmiş bir yer tutucu.
+
+**Öneri:** eşik geçilmiyorsa liste yerine ölçümü söyle — "bu ilçede düz
+arazi ve vadi tabanı oranları eşiklerin altında" — ya da alanı boş
+bırak. Dayanağı: aynı iki alan.
+
+## K7-C · `title` / `H1` / öz-cevap · DEĞİŞİKLİK GEREKMİYOR (ölçüldü)
+
+| Yüzey | Ölçülen metin | Kaldırılan çıktıyı vaat ediyor mu |
+|---|---|---|
+| `<title>` | "İl/İlçe Yeraltı Su Potansiyeli — Su Haritası" | **Hayır** — kalan YAS kütlesi / RG sahası / morfoloji çıktılarıyla örtüşüyor |
+| `<h1>` | "İl/İlçe Yeraltı Su Potansiyeli" | **Hayır** |
+| `og:title` | title ile aynı | **Hayır** |
+| JSON-LD `itemListElement.name` | "İl/İlçe Yeraltı Su Potansiyeli" | **Hayır** |
+| meta `description` + öz-cevap | "…yeraltı su potansiyeli, arazi morfolojisi ve sondaj lokasyon analizi." | Vaat cümlesi ("su çıkma olasılığını hesaplayın") **silindi** — 3b İSTİSNA'sı (atıf silinebilir, cümle bozulmuyor) |
+
+**Kalan tartışmalı ifade:** "**sondaj lokasyon analizi**". Derinlik
+çıktısı kalktıktan sonra "sondaj" kelimesi ne konum ne derinlik
+üretiyor. Silme cümleyi bozmuyor ("…yeraltı su potansiyeli ve arazi
+morfolojisi.") ama öz-cevap metnini kısaltır ve bu bir vaat daralmasıdır
+→ karar sizin. **Uygulanmadı.**
+
+## K7-D · İç link metni · ÖLÇÜLDÜ, DEĞİŞTİRİLMEDİ
+
+`/ilce-sorgu/` sayfasına **1043** `<a>`, **521** HTML dosyadan. Yalnız
+iki metin var:
+
+| Adet | Metin | Vaat kelimesi |
+|---|---|---|
+| 1042 | "Su Nerede Çıkar?" | — (global gezinti; `src/data/anasayfa-v2.js:115`) |
+| 1 | "Su Nerede Çıkar? İl/ilçe seçin, su potansiyeli ve sondaj analizi alın" | **sondaj** (`src/pages/index.astro:181`) |
+
+"derinlik", "akifer", "olasılık" vaat eden link metni **YOK**. Tek
+kalem tek CTA'daki "sondaj analizi" — K7-C ile aynı karar (metin
+değişikliği). **Uygulanmadı.**
+
+## K7-E · `jrc-yuzey-suyu.json` ölü veri dosyası · ETKİ: DÜŞÜK
+
+`data/canli/jrc-yuzey-suyu.json` 25/25 havzada
+`durum = "islenmedi (tile bazli hesap gerekir)"`. K7 öncesinde bile
+`src/` içinde **hiç import edilmiyordu** — sayfadaki "Yüzey Suyu"
+bileşeni bu dosyadan değil `duz_oran`'dan üretiliyordu. Bileşen
+kaldırıldığına göre dosyanın artık hiçbir tüketicisi yok.
+**Karar gerekiyor:** ya JRC yüzey suyu gerçekten işlenir (ayrı iş), ya
+dosya arşive alınır. Şu hâliyle "veri var" izlenimi veren boş dosya.
+
+## K7-F · 2b taramasının diğer bulguları · TEMİZ
+
+`veri/` ve `data/` altındaki tüm JSON'lar "türetilmiştir / gerçek ölçüm
+değildir / varyasyon / hesaplanmadı / islenmedi" desenine karşı tarandı.
+Sayfada **gerçek ölçüm gibi sunulan** başka kalem bulunmadı:
+
+| Dosya | Ters künye deseni | Sayfada gerçek ölçüm gibi sunuluyor mu |
+|---|---|---|
+| `veri/potansiyel/ilce-morfoloji.json` | "GERÇEK ilçe ölçümü DEĞİLDİR" | **Sunuluyordu → K7 ile kapatıldı** |
+| `data/canli/jrc-yuzey-suyu.json` | 25/25 "islenmedi" | Hayır — tüketicisi yok (**K7-E**) |
+| `veri/potansiyel/morfoloji.json` | `yontem.twi = "hesaplanmadı"` | Hayır — künyesi zaten dürüst ("türetilmiş morfolojik göstergedir; akifer varlığının kanıtı değildir") ve TWI il sayfalarında hiç gösterilmiyor |
+| `data/kamu/su-birimleri.json` | (yanlış eşleşme: "temsilci" kelimesi) | — |
+
+**Tüketici taraması (2a):** `ilce-morfoloji.json`'u yalnız
+`src/pages/ilce-sorgu.astro` (tam veri) ve `src/data/guncellik.js:78`
+(**yalnız** `kunye.uretim_tarihi`) okuyor. Başka sayfa/bileşen yok →
+aynı ters künye başka yerde tekrarlanmıyor.
