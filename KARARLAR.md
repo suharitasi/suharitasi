@@ -741,6 +741,62 @@ adı (AHP, TWI) kodda karşılığı yoksa yazılmaz.
 
 ---
 
+## §35 · KAPATMA TURU — karar dosyasının tamamı uygulandı (27.08.2026)
+
+Kullanıcı talimatı: *"Bulduğun her eksiği DÜZELT; sorma. Yalnız dört
+istisna sınıfı uygulanmaz: hukuki metin · ücretli adım · geri alınamaz ·
+marka kimliği."* 23 kalem uygulandı, 8 kalem KULLANICI KALEMİ olarak
+ayrıldı, 3 kalem ölçümle gerekçelendirilerek açık bırakıldı.
+Ayrıntı: `rapor/27-08-kapatma.md` · durum tablosu:
+`rapor/26-08-denetim-KARARLAR-BEKLEYEN.md`.
+
+**Bu turda kurala dönüşen kararlar:**
+
+1. **Yazar kimliği tek `@id` (K5).** Site genelinde tek `Person` düğümü
+   vardır: `${kok}#yazar`. Article'lar ona REFERANS verir, kendi Person
+   nesnelerini gömmezler. İkinci düğüm (`hakkinda/#yazar`) ve onun
+   `arslanhukuk.tr` işaret eden `url`'i kaldırıldı.
+
+2. **Damga tarihi asla build saati değildir (K14).** §27/Karar 3 ile
+   çelişen `hangi-kurum` build damgası kaldırıldı; §27 geçerlidir.
+   Görünür `<time>` ile şemadaki `dateModified` bundan sonra AYNI
+   kaynaktan gelir (`Sayfa.astro` → `guncelleme` prop'u, `WebPage`
+   düğümü). Tarihi belirsiz sayfada damga basılmaz.
+
+3. **Cevap önce, dayanak sonra — künye sırası (K17).** `SayfaBasi`'da
+   künye satırı ("Güncelleme: …") öz-cevabın ALTINDADIR. Sayfanın ilk
+   cümlesi bir tarih olamaz.
+
+4. **Doğrulanamayan adres yazılmaz (K19).** Otorite bağı eklenirken URL
+   bu sunucudan sınanır. Göl/nehir kaynakları eklendi (OSM copyright,
+   Natural Earth — ikisi de 200). `durumum` sayfalarına mevzuat.gov.tr
+   bağı EKLENMEDİ: iki aday adres de yanıt vermedi (HTTP 000); yerine
+   veri künyesindeki doğrulanmış yayım tarihi basıldı.
+
+5. **Palet dışı değer ya tokene bağlanır ya palete kaydedilir (K34).**
+   Ham hex bırakılmaz. Palet komşusuna pratik olarak eşit olan değer
+   (Δ≤13) tokene bağlanır; gerçekten farklı olan, DEĞERİ DEĞİŞMEDEN
+   türev token olarak palete girer. Böylece görsel çıktı korunur ama
+   palet kaydı oluşur.
+
+6. **Hareket sözlüğü istisnasız (K31).** Ham `ease`/`ease-in-out`
+   kullanılmaz; her geçiş sözlük eğrisine bağlanır. Taşmalı yay eğrisi
+   (y>1) DESIGN.md "su aniden fırlamaz" ilkesini ihlal eder — kullanılmaz.
+
+7. **Ölü kod silinmez, arşivlenir.** `arsiv/olu-kod-2708/` ve
+   `arsiv/jrc-yuzey-suyu/`: referans ölçümü + gerekçe NOT.md ile birlikte.
+
+**Ölçümle düşen üç kayıt (denetimin kendi hatası):** `menu.ts` "0
+referans" deniyordu — gerçek **9**; `scrub-engine.js` ölü sanılıyordu —
+**2 referans**; `TELEGRAM_CHAT_ID` sızıntısı — belgelerde yalnız değişken
+adı var, kanal kimliği hiçbir yerde yok.
+
+**Sağlık sistemi kendi işini yaptı:** bu turda iki regresyon üretildi ve
+`--tam` koşumu ikisini de yakaladı — skip-link 42 px (dokunma eşiği 44)
+ve K11 ad ayıklamasının doğurduğu `<title>` tekrarı. İkisi de onarıldı.
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek

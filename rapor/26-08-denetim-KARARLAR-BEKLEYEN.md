@@ -1,4 +1,119 @@
-# DENETİM — KULLANICI KARARI BEKLEYEN KALEMLER
+# DENETİM — KALEM DURUMU
+
+> **27.08.2026 KAPATMA TURU.** Kullanıcı talimatı: *"Bulduğun her eksiği
+> DÜZELT; yalnız dört istisna sınıfı (hukuki metin · ücretli adım · geri
+> alınamaz · marka kimliği) uygulanmaz."* Tur sonucu aşağıda; ayrıntılı
+> ölçümler `rapor/27-08-kapatma.md`'de.
+
+---
+
+# ⛔ KULLANICI KALEMİ — uygulanmadı, karar sizin
+
+Bu kalemler dört istisna sınıfından birine girdiği için **hazırlığı
+yapıldı ama uygulanmadı.** Her birinde neyin gerektiği ve nereye gireceği
+yazılı; **metin yazılmadı.**
+
+## KK-1 · KVKK / aydınlatma / çerez metni · [HUKUKİ METİN]
+**Durum (ölçüldü 27.08):** 523 sayfada arandı, sitemap'te 0, footer'da
+link yok. Sitede çerez yok, tek etkileşim `mailto:`.
+**Ne gerekiyor:** metnin kendisi — sizin imzanızla yayınlanacak.
+**Nereye girer:** yeni `src/pages/gizlilik.astro` (ya da `kvkk.astro`),
+`AltBilgi.astro` künye bloğuna link, `sitemap` otomatik alır.
+**Açık kalan olgu:** Cloudflare analitiğinin fiilen açık olup olmadığı bu
+sunucudan doğrulanamıyor (29.07 kaydı: tek vantaj noktasından negatif
+ölçüm kanıt değildir) — çerez/analitik bildirimi buna bağlı.
+
+## KK-2 · Künyede eksik hukuki alanlar · [HUKUKİ METİN]
+**Ne var:** içerik sorumlusu adı/sıfatı, `bilgi@suharitasi.com`, büro
+linki, yöntem-kaynak politikası, sorumluluk sınırı cümlesi.
+**Ne yok:** fiziki adres, telefon, ticaret unvanı, baro sicili,
+yer/içerik sağlayıcı beyanı.
+**Nereye girer:** `src/pages/hakkinda.astro` künye bölümü +
+`src/components/AltBilgi.astro`.
+
+## KK-3 · K8 · Ceza rehberi 2008 nominal tutarları · [HUKUKİ METİN + PARA]
+`/rehberler/ruhsatsiz-kuyu-cezalari/` öz-cevabı ve meta description'ı
+"167 s.K. m.18/a 1.000–5.000 TL, m.18/b 500–2.000 TL" diyor. Yeniden
+değerleme uyarısı dist'te **yalnız** `/rehberler/kuyu-tasima/`'da var.
+**Hazır olan:** taşınabilecek şerh metni o sayfada mevcut ve sizin onaylı
+metniniz. **Yapılmadı çünkü** güncel tutar bu turda da doğrulanamadı;
+doğrulanmamış rakam yazmak uydurma olur.
+**Nereye girer:** `src/content/rehberler/ruhsatsiz-kuyu-cezalari.md`
+öz-cevap bloğu.
+
+## KK-4 · K10 · Yayımlanmış rehberde çözülmemiş QA notu · [HUKUKİ METİN]
+`/rehberler/kaynak-suyu-kiralama/` içinde ziyaretçiye açık:
+*"(Bu karar ilk üretimde 2020/1104 E., 2023/4576 K. olarak künyelenmişti;
+çelişki doğrulanacaktır.)"* Bir Danıştay künyesinin doğruluğu yayında
+askıda. **Karar:** künye doğrulanıp not kaldırılacak mı, yoksa cümle mi
+düzeltilecek — ikisi de hukuki metin.
+
+## KK-5 · K17'nin ana sayfa bacağı · [HERO — DOKUNULMAZ]
+Ana sayfa H1 bir soru ("Kuyunuz için ruhsat mı lazım, ceza mı geldi?"),
+ilk cümle onu cevaplamıyor: *"472 yeraltısuyu kütlesi, 25 havza ve 1963'e
+uzanan 419 Resmî Gazete kaydı…"* — bu cümle aynı zamanda `llms.txt`'in
+tek üst-özeti. Cümle `HERO_ALT` (`src/data/anasayfa-satis.js`) ve o dosya
+**ağaçta onayınızı bekleyen hero değişikliğinin parçası** — bu turda
+dokunulmadı.
+
+## KK-6 · K25 · `server/` 67 MB yetim dizin · [GERİ ALINAMAZ]
+**Ölçüm:** içinde yalnız `node_modules` (192 paket), git izli dosya 0,
+**`package.json` ve lock dosyası YOK** → silinirse `npm install` ile geri
+gelmez. Yayına girmiyor, hiçbir script çağırmıyor.
+**Karar:** silinsin mi, yoksa dursun mu.
+
+## KK-7 · `src/assets/arslan-logo.svg` · [MARKA KİMLİĞİ]
+Repo genelinde 0 referans. Ölü görünüyor ama logo seçimi zaten açık bir
+kullanıcı kalemi (§0.2) — bu dosya aday olabilir. Taşınmadı.
+
+## KK-8 · Devralınan üç açık karar (§0)
+`0.1` Rozet "DANIŞMANLIK" · `0.2` Logo seçimi · `0.3` Hero kıyas kareleri
+onayı. Üçü de hero/marka; bu turda açılmadı.
+
+---
+
+# ✅ BU TURDA UYGULANANLAR (27.08.2026)
+
+| Kalem | Sonuç |
+|---|---|
+| **K4** | Ölü B2B paleti kaldırıldı — dist'te b2b değişkeni taşıyan dosya 1 → **0** |
+| **K5** | İkinci `Person` düğümü kaldırıldı; 92 Article tek kanonik `#yazar`'a bağlandı |
+| **K6** | `Observation.value` 0/25 → **25/25**, `observationDate` 0/25 → **17/25**; `DataCatalog` düğümü eklendi |
+| **K11** | Çok dilli OSM adlarından latin bileşen ayıklandı (çeviri/uydurma yok); slug değişmedi, 301 gerekmedi |
+| **K14** | `hangi-kurum` build tarihi damgası kaldırıldı — **KARARLAR §27/K3 geçerli sayıldı** |
+| **K15** | "adım adım doluyor" (25/25 havza yayında) ve "Yeni vakalar eklenecektir" → 0 |
+| **K16** | Kırpım bütünlük onarımı — kusurlu meta description 1 → **0**, llms.txt 1 → **0** |
+| **K17** | Cevap-önce: künye satırı öz-cevabın altına alındı; "Güncelleme:" ile açılan sayfa 4 → **0** (ana sayfa bacağı KK-5) |
+| **K18** | 81 il sayfasına `FAQPage` — **395 soru** |
+| **K19** | Göl/nehir kaynak bağı 0 → **342/342**; `durumum` yönetmelik künyesi 0 → **42** (mevzuat.gov.tr adresi doğrulanamadığı için YAZILMADI) |
+| **K20** | `llms.txt` "Diğer sayfalar" **351 → 9** satır |
+| **K21** | MTA il ataması şerhi + `durumum` son-başvuru dayanağı basılıyor |
+| **K22** | Görünür güncellik damgası 0/10 → **7/10**; `WebPage` + `dateModified` 0 → **519 sayfa** |
+| **K23** | Skip-link 0 → **520/523** sayfa (44 px dokunma hedefiyle) |
+| **K24** | "Astro 5" → **"Astro 7"** (kurulu 7.2.7) |
+| **K27 + K28** | 5 ölü dosya arşive. **Ölçüm düzeltmesi:** `menu.ts` 9 referansla YAŞIYOR, `scrub-engine.js` 2 referans — kayıt yanlıştı |
+| **K30** | Odak halkası sözlük değerine (KÖPÜK); kontrast **8,84 → 12,41** |
+| **K31** | Sözlük dışı easing **14 → 0**; `imlec.js` taşmalı yay eğrileri ilkeye uyduruldu |
+| **K33** | DESIGN.md §2 tablosu gerçek kapsamla eşlendi; kullanılmayan 6 değer çıkarıldı |
+| **K34** | Palet dışı ham hex **7 → 0**; M15'in ulaşmadığı 5 rgba türevi düzeltildi |
+| **K35** | Kişisel e-posta `arac/` içinde **4 → 0**. `TELEGRAM_CHAT_ID` bulgusu ölçümle düştü (yalnız değişken adı, kimlik yok) |
+| **K36** | `form-action 'self'` eklendi + izleme yapılandırması güncellendi |
+| **K38** | `http://hdl.handle.net` **158 → 0** |
+| **K7-A..F** | Önceki turda; ayrıntı `rapor/27-08-K7-uygulama.md` |
+| **K1, K2, K3, K9, K12, K13** | Önceki turda uygulandı (aşağıdaki blokları kayıt olarak duruyor) |
+
+# ⏸️ UYGULANMADI — ölçümle gerekçeli (istisna değil)
+
+- **K26** · `goller`/`nehirler` CSS kopyası **birebir aynı** (diff 0
+  satır), ama sınıf adları sitede yaygın (`kunye` 15 dosya, `not` 8).
+  Ortak CSS'e taşımak scope'u kaldırır → 15+ sayfada stil sızıntısı.
+  Kazanç yalnız bakım kolaylığı, bedel gerçek regresyon.
+- **K36'nın ikinci yarısı** · `unsafe-inline` kaldırma — Astro'nun
+  sayfa-içi `<style>`/`<script type="module">` üretimi buna dayanıyor;
+  nonce/hash'e geçiş build mimarisi kararı.
+- **K37** · zaten GERİ ÇEKİLMİŞTİ (ölçüm aracı kusuruydu).
+
+---
 
 Tam denetim (27.08.2026). Kural gereği iş sırasında hiç soru sorulmadı;
 karar sınıfına giren her bulgu buraya yazıldı ve iş kesintisiz sürdü.

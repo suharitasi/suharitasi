@@ -346,6 +346,20 @@ AÇIK KALAN (bu turda bilinçli dokunulmayan):
   [SERDAR-HUKUK] onayıyla.
 - [x] Lead-mailto birleşmesi FİİLEN KAPANDI (25.08): /su-hukuku/ kalkınca
   canlı yüzeyde tek adres bilgi@suharitasi.com (ölçüldü; serdar@ src'de 0).
+- [~] **KARAR DOSYASI KAPATMA TURU — KULLANICI ONAYI BEKLİYOR (27.08).**
+  23 kalem uygulandı, 8 kalem KULLANICI KALEMİ, 3 kalem gerekçeli açık.
+  Görünür içerik ve düzen değiştiği için canlı testinize kadar AÇIK.
+  Kayıt: KARARLAR §35 · `rapor/27-08-kapatma.md` · durum tablosu
+  `rapor/26-08-denetim-KARARLAR-BEKLEYEN.md`.
+- [ ] **KULLANICI KALEMİ — 8 kalem karar bekliyor** (karar dosyası başı):
+  KK-1 KVKK/aydınlatma/çerez metni · KK-2 künyede eksik hukuki alanlar ·
+  KK-3 ceza rehberi yeniden değerleme şerhi · KK-4 Danıştay künyesi QA
+  notu · KK-5 ana sayfa H1↔ilk cümle (HERO_ALT, dokunulmaz) ·
+  KK-6 `server/` 67 MB (silinirse geri gelmez: package.json yok) ·
+  KK-7 `arslan-logo.svg` · KK-8 devralınan üç hero/marka kararı.
+- [ ] **Gerekçeli açık kalanlar:** K26 (CSS tekilleştirme — sınıf adları
+  yaygın, global'e taşımak 15+ sayfada sızdırır) · K36'nın ikinci yarısı
+  (`unsafe-inline` → nonce/hash, build mimarisi kararı).
 - [~] **K7 UYGULANDI — KULLANICI ONAYI BEKLİYOR (27.08, commit 06b3062 +
   f3ad27a).** /ilce-sorgu/ akifer türü · derinlik tahmini · "Su Çıkma
   Olasılığı %" ve hesapları KALDIRILDI; künye artık türetme yolunu

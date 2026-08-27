@@ -1,5 +1,43 @@
 # GUNLUK.md — seans notları
 
+## 27.08.2026 (11. seans, üçüncü tur) — KARAR DOSYASI KAPATMA (tek geçiş)
+
+Rapor: `rapor/27-08-kapatma.md` · Karar: KARARLAR **§35** · Durum tablosu:
+`rapor/26-08-denetim-KARARLAR-BEKLEYEN.md`.
+
+Kullanıcı talimatı "sorma, düzelt" idi. **23 kalem uygulandı**
+(K4·K5·K6·K11·K14·K15·K16·K17·K18·K19·K20·K21·K22·K23·K24·K27·K28·K30·
+K31·K33·K34·K35·K36·K38 + K7-A..E), **8 kalem** dört istisna sınıfı
+gereği KULLANICI KALEMİ'ne ayrıldı, **3 kalem** ölçümle gerekçelendirilip
+açık bırakıldı (K26 · K36-unsafe-inline · K37-zaten-geri-çekilmiş).
+
+**DERS 1 — kendi düzeltmen regresyon üretebilir; sistemi koş.** İki
+regresyon doğdu, ikisini de sağlık `--tam` yakaladı: (a) K23'ün eklediği
+skip-link **124×42 px** çıktı, 44 px dokunma eşiğinin altında — 5 sayfada
+ihlal +1; (b) K11'in ad ayıklaması `Aras / Արաքս` kaydını "Aras" yapınca
+OSM'deki mevcut "Aras" ile `<title>` tekrarı doğdu. İkisi de onarıldı.
+Kural: görünür öğe ekleyen her düzeltme, eklediği öğeyi kendi ölçütleriyle
+(dokunma hedefi, başlık benzersizliği) tekrar ölçmelidir.
+
+**DERS 2 — denetim kaydı da yanlış olabilir; ölç.** Karar dosyası
+`menu.ts` için "repo genelinde 0 referans" diyordu; ölçüm **9 referans**
+buldu (silinseydi menü kırılırdı). `scrub-engine.js` "erişilemez"
+sanılıyordu — **2 referans**. `TELEGRAM_CHAT_ID` sızıntısı iddiası:
+belgelerde yalnız DEĞİŞKEN ADI geçiyor, kanal kimliği hiçbir yerde yok.
+Üç kayıt da ölçümle düzeltildi.
+
+**DERS 3 — doğrulanamayan adres yazılmaz.** K19'da otorite bağı
+eklenirken URL'ler sunucudan sınandı: OSM copyright ve Natural Earth 200
+verdi → link eklendi. mevzuat.gov.tr ve Resmî Gazete HTTP 000 verdi →
+**link EKLENMEDİ**, yerine veri künyesindeki doğrulanmış yayım tarihi
+basıldı. Aynı disiplin K38'de de işledi: http ve https AYNI yanıtı
+verdiği ölçüldükten sonra normalleştirme yapıldı.
+
+**HARCANAN ZAMAN NOTU:** deploy bekleme döngüsü `surum.json`'da olmayan
+bir anahtarı (`surum`) okuduğu için 10 dakika boşa döndü; dosyadaki
+alanlar `commit`/`kisa`. Bekleme döngüsü yazarken hedef alanın varlığı
+önce doğrulanmalı.
+
 ## 27.08.2026 (11. seans, ikinci tur) — K7 UYGULAMASI (a)+(b)
 
 Rapor: `rapor/27-08-K7-uygulama.md` · Karar: KARARLAR **§34** · Brief:
