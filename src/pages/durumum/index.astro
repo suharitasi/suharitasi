@@ -12,10 +12,21 @@ import { personalar } from '../../data/persona.js';
 import { EPOSTA } from '../../data/site';
 import HukukSerhi from '../../components/HukukSerhi.astro';
 
+// ozCevap ozet tarihi de veriden gelir; personalar.js import'u yukarıda.
+const _naceTarih = [...new Set(personalar.filter((p) => p.nace).map((p) => p.sonTarihMetni).filter(Boolean))];
 const ozCevap =
   'Sektörünüzü seçin; yükümlülüğünüzü, son başvuru tarihini ve ilk adımları ' +
   'tek ekranda görün. Yeşil su verimliliği belgesi yükümlüsü sektörler için ' +
-  'son başvuru 27 Aralık 2029. Listede yoksanız doğrudan ulaşın.';
+  (_naceTarih.length === 1 ? `son başvuru ${_naceTarih[0]}. ` : '') +
+  'Listede yoksanız doğrudan ulaşın.';
+
+// K21 (27.08): NACE grubunun son başvuru tarihi ve DAYANAĞI veriden
+// okunur (data/lead/persona.json) — sayfada sabit yazılmaz. Personalar
+// arasında tek bir tarih yoksa metin basılmaz (uydurma yasağı).
+const naceler = personalar.filter((p) => p.nace);
+const naceTarihler = [...new Set(naceler.map((p) => p.sonTarihMetni).filter(Boolean))];
+const naceSonTarihMetni = naceTarihler.length === 1 ? naceTarihler[0] : null;
+const naceDayanak = naceler.find((p) => p.sonTarihMetni === naceSonTarihMetni)?.dayanak?.[0] ?? null;
 
 // Kısa kicker: ad'ın ilk anlamlı sözcüğü (mock deseni)
 const kicker = (ad) => ad.split(/[\s/(]/)[0].toLocaleUpperCase('tr-TR');
@@ -92,8 +103,12 @@ const sema = [
     {nace.length > 0 && (
       <section class="grup" aria-label="NACE Ek-2 faaliyetleri">
         <p class="grup-etiket">NACE Ek-2 faaliyetleri · yeşil su verimliliği belgesi</p>
+        {/* K21 (27.08): indeks türetilmiş son-başvuru tarihini DAYANAKSIZ
+            basıyordu; persona sayfasındaki dayanak cümlesi buraya
+            taşındı ve tarih sabit yazılmak yerine veriden okunuyor. */}
         <p class="grup-not">Su Verimliliği Yönetmeliği Ek-2’de sayılan NACE
-          kodu bazında faaliyetler; son başvuru 27 Aralık 2029.</p>
+          kodu bazında faaliyetler{naceSonTarihMetni ? `; son başvuru ${naceSonTarihMetni}` : ''}.</p>
+        {naceDayanak && <p class="grup-not grup-dayanak">Dayanak: {naceDayanak}</p>}
         <div class="izgara">
           {nace.map((p) => (
             <a class="pk" href={`/durumum/${p.slug}/`}
@@ -150,6 +165,7 @@ const sema = [
   }
   .grup-etiket::before { content: ""; width: 1.6rem; height: 1px; background: var(--su-400); }
   .grup-not { margin: 0.35rem 0 0.8rem; font-family: var(--mono); font-size: 0.7rem; color: var(--metin-soluk); }
+  .grup-dayanak { margin-top: -0.5rem; line-height: 1.5; }
 
   .izgara { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
 

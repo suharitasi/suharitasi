@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import havzaVeri from '../../../data/havza-veri.json';
+import { TARIH } from '../../data/guncellik.js';
 import HukukSerhi from '../../components/HukukSerhi.astro';
 
 // DSİ havza numarasına göre sırala; numarasızlar sona, ada göre
@@ -21,10 +22,15 @@ const sayi = (n: number) => n.toLocaleString('tr-TR');
   heroSlot="bolum-vinyeti"
   baslik="Havzalar"
   aciklama="Türkiye'nin 25 su havzası: sınırlar, su potansiyeli, tahsis durumu ve koruma eylem planları."
+
+  guncelleme={TARIH.havzaVeri ? new Date(TARIH.havzaVeri) : undefined}
 >
+    {/* K22 (27.08): güncellik damgası — tarih YALNIZ veri künyesinden
+        (KARARLAR §27/Karar 3: build saati damga değildir). */}
   <SayfaBasi
+    tarih={TARIH.havzaVeri ? new Date(TARIH.havzaVeri) : undefined}
     baslik="Havzalar"
-    ozet="Türkiye'nin 25 su havzası, havza bazında veri künyeleriyle. Sayfalar açık kaynaklardan doğrulanmış veriyle adım adım doluyor."
+    ozet="Türkiye'nin 25 su havzası, havza bazında veri künyeleriyle. Yirmi beş havzanın tamamı yayında; her sayfa kaynağını ve veri künyesini gösterir."
     ozCevap
   />
   <ul class="sv-liste">

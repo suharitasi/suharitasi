@@ -7,12 +7,25 @@ import HukukSerhi from '../../components/HukukSerhi.astro';
 const girisler = (await getCollection('vakalar')).sort(
   (a, b) => b.data.tarih.getTime() - a.data.tarih.getTime(),
 );
+// K22 (27.08): indeks damgası — koleksiyondaki en yeni içerik tarihi
+// (`guncelleme ?? tarih`). Build saati KULLANILMAZ (KARARLAR §27/K3).
+const _tarihler = girisler
+  .map((g) => (g.data as any).guncelleme ?? (g.data as any).tarih)
+  .filter(Boolean)
+  .map((t: any) => new Date(t).getTime());
+const enYeniTarih = _tarihler.length ? new Date(Math.max(..._tarihler)) : undefined;
+
 ---
 <Sayfa
   baslik="Vakalar"
   aciklama="Şirketlerin su kaynağını nasıl güvenceye aldığını gösteren, yalnız kamuya açık KAP bildirimlerine dayanan vaka incelemeleri."
+
+  guncelleme={enYeniTarih}
 >
+    {/* K22 (27.08): güncellik damgası — tarih YALNIZ veri künyesinden
+        (KARARLAR §27/Karar 3: build saati damga değildir). */}
   <SayfaBasi
+    tarih={enYeniTarih}
     etiket="Vakalar"
     baslik="Vakalar"
     ozet="Şirketlerin su kaynağını güvenceye alma süreçleri — yalnız kamuya açık, doğrulanmış KAP bildirimlerine dayanan olgu incelemeleri."
@@ -31,7 +44,6 @@ const girisler = (await getCollection('vakalar')).sort(
     ))}
   </ul>
 
-  <p class="vaka-not">Yeni vakalar eklenecektir.</p>
 
   {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
   <HukukSerhi />

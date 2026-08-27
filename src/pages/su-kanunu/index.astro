@@ -11,12 +11,25 @@ const girisler = (await getCollection('su-kanunu')).sort(
 const tarihYaz = (t: Date) =>
   t.toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' });
 const noYaz = (i: number) => String(i + 1).padStart(2, '0');
+// K22 (27.08): indeks damgası — koleksiyondaki en yeni içerik tarihi
+// (`guncelleme ?? tarih`). Build saati KULLANILMAZ (KARARLAR §27/K3).
+const _tarihler = girisler
+  .map((g) => (g.data as any).guncelleme ?? (g.data as any).tarih)
+  .filter(Boolean)
+  .map((t: any) => new Date(t).getTime());
+const enYeniTarih = _tarihler.length ? new Date(Math.max(..._tarihler)) : undefined;
+
 ---
 <Sayfa
   baslik="Su Kanunu"
   aciklama="Su mevzuatı kütüphanesi ve Su Kanunu taslağının güncel takibi: kaynak linkli, spekülasyonsuz."
+
+  guncelleme={enYeniTarih}
 >
+    {/* K22 (27.08): güncellik damgası — tarih YALNIZ veri künyesinden
+        (KARARLAR §27/Karar 3: build saati damga değildir). */}
   <SayfaBasi
+    tarih={enYeniTarih}
     baslik="Su Kanunu"
     ozet="Yürürlükteki su mevzuatının kütüphanesi ve Su Kanunu taslağının tarih + kaynak bağlantılı takibi."
     ozCevap

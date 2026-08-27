@@ -30,12 +30,25 @@ const kumeler = [
 ];
 
 const noYaz = (i: number) => String(i + 1).padStart(2, '0');
+// K22 (27.08): indeks damgası — koleksiyondaki en yeni içerik tarihi
+// (`guncelleme ?? tarih`). Build saati KULLANILMAZ (KARARLAR §27/K3).
+const _tarihler = girisler
+  .map((g) => (g.data as any).guncelleme ?? (g.data as any).tarih)
+  .filter(Boolean)
+  .map((t: any) => new Date(t).getTime());
+const enYeniTarih = _tarihler.length ? new Date(Math.max(..._tarihler)) : undefined;
+
 ---
 <Sayfa
   baslik="Rehberler"
   aciklama="Su hukuku rehberleri: kuyu ruhsatı, su tahsisi, ruhsatsız kuyu cezaları, kuyu belgesi iptal davaları ve daha fazlası."
+
+  guncelleme={enYeniTarih}
 >
+    {/* K22 (27.08): güncellik damgası — tarih YALNIZ veri künyesinden
+        (KARARLAR §27/Karar 3: build saati damga değildir). */}
   <SayfaBasi
+    tarih={enYeniTarih}
     baslik="Rehberler"
     ozet="Su hukukunun pratik soruları için adım adım rehberler. Her rehber mevzuata tam metin bağlantısıyla atıf verir."
     ozCevap

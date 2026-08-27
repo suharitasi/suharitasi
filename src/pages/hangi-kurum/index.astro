@@ -51,8 +51,10 @@ const satirlar = kapiVeri.satirlar.map((s) => {
 
 const dagilim = kapiVeri.olgunluk; // {dogrulandi, dayanak_eksik, birden_fazla_kurum, belirsiz}
 const veriTarihi = kapiVeri.son_guncelleme;
-// Sayfa derleme tarihi (brief madde 5: son güncelleme build tarihinden basılır).
-const derlemeTarihi = new Date().toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' });
+// K14 (27.08.2026): build tarihi damgası KALDIRILDI — KARARLAR §27/Karar 3
+// ile çelişiyordu: "build saati damga DEĞİLDİR (her deploy'da oynayan tarih
+// sahte tazelik sinyalidir)". Görünür tarih artık yalnız veri künyesinden
+// (`hangi-kapi.json` son_guncelleme).
 
 const ozCevap =
   'Su işleminizde hangi kuruma başvuracağınızı mevzuata dayalı olarak gösterir: ' +
@@ -87,8 +89,12 @@ const sema = [
   { '@type': 'FAQPage', mainEntity: sss },
 ];
 ---
-<Sayfa baslik="Su işimde hangi kuruma gideceğim?" aciklama={ozCevap} sema={sema}>
-  <SayfaBasi etiket="Yetkili kurum rehberi" baslik="Su işimde hangi kuruma gideceğim?" />
+<Sayfa baslik="Su işimde hangi kuruma gideceğim?" aciklama={ozCevap} sema={sema}
+  guncelleme={veriTarihi ? new Date(veriTarihi) : undefined}
+>
+    {/* K22 (27.08): güncellik damgası — tarih YALNIZ veri künyesinden
+        (KARARLAR §27/Karar 3: build saati damga değildir). */}
+  <SayfaBasi etiket="Yetkili kurum rehberi" baslik="Su işimde hangi kuruma gideceğim?" tarih={veriTarihi ? new Date(veriTarihi) : undefined} />
   <OzCevap metin={ozCevap} />
   <p class="ik-serh-ust">Yalnızca mevzuattaki yetki atfı; hukuki görüş değildir.</p>
 
@@ -171,7 +177,7 @@ const sema = [
   <p class="ik-kapsam">
     Bu rehber mevzuattaki yetki atıflarına dayanır; hukuki görüş değildir.
     Kurum yapıları ve yetki paylaşımı zamanla değişebilir. Kaynak veri:
-    hangi-kapi.json ({veriTarihi}). Sayfa derlemesi: {derlemeTarihi}.
+    hangi-kapi.json ({veriTarihi}).
   </p>
 
   <!-- İLETİŞİM (/durumum/ + rehber onaylı dili; FORM YOK) -->

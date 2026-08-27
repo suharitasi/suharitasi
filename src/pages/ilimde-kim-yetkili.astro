@@ -39,7 +39,9 @@ const aciklama =
   'İlinizi seçin: kuyu belgelerinde muhatap DSİ bölge müdürlüğü, bağlı havza ' +
   've künyesi, uydu ölçümlü su depolaması eğilimi ve baraj doluluk durumu tek ekranda.';
 ---
-<Sayfa baslik="İlimde su işinden kim yetkili?" aciklama={aciklama}>
+<Sayfa baslik="İlimde su işinden kim yetkili?" aciklama={aciklama}
+  guncelleme={TARIH.potansiyel ? new Date(TARIH.potansiyel) : undefined}
+>
   <SayfaBasi
     etiket="Araç"
     baslik="İlimde su işinden kim yetkili?"

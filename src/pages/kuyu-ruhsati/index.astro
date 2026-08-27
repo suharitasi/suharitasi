@@ -4,6 +4,7 @@
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import { yayinlananIller } from '../../data/il-profil.js';
+import { TARIH } from '../../data/guncellik.js';
 import HukukSerhi from '../../components/HukukSerhi.astro';
 
 const iller = yayinlananIller();
@@ -12,8 +13,13 @@ const aciklama =
   `güncel su durumu: ${iller.length} il için il-özgü veri sayfası. Genel süreç ` +
   `kuyu ruhsatı rehberinde tek merkezde anlatılır.`;
 ---
-<Sayfa baslik="Kuyu ruhsatı — il rejimi sayfaları" aciklama={aciklama}>
+<Sayfa baslik="Kuyu ruhsatı — il rejimi sayfaları" aciklama={aciklama}
+  guncelleme={TARIH.havzaVeri ? new Date(TARIH.havzaVeri) : undefined}
+>
+    {/* K22 (27.08): güncellik damgası — tarih YALNIZ veri künyesinden
+        (KARARLAR §27/Karar 3: build saati damga değildir). */}
   <SayfaBasi
+    tarih={TARIH.havzaVeri ? new Date(TARIH.havzaVeri) : undefined}
     etiket="İl rejimi"
     baslik="Kuyu ruhsatında iliniz"
     ozet={`Belgelerin şartları Türkiye genelinde aynı, muhatap merci ve havza verisi ilden ile değişir. ${iller.length} il için il-özgü sayfa; hızlı bakış için il rejimi aracını da kullanabilirsiniz.`}

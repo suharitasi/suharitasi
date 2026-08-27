@@ -10,6 +10,7 @@ import OzCevap from '../components/OzCevap.astro';
 import Katman from '../components/Katman.astro';
 import { tumHavzaRiskleri, riskSemasi, gostergeAraligi, W as AGIRLIK } from '../data/havza-risk.js';
 import { VERI_KATALOGU } from '../data/site';
+import { TARIH } from '../data/guncellik.js';
 
 const riskler = tumHavzaRiskleri();
 const aralik = gostergeAraligi();
@@ -40,8 +41,12 @@ const sema = [{
 }, VERI_KATALOGU, ...riskler.map((r) => riskSemasi(r.no, r.ad, r))];
 ---
 
-<Sayfa baslik="Havza Risk Haritası — Su Riski Sıralaması" aciklama={ozet} sema={sema}>
-  <SayfaBasi etiket="Risk" baslik="Havza Su Riski Haritası" />
+<Sayfa baslik="Havza Risk Haritası — Su Riski Sıralaması" aciklama={ozet} sema={sema}
+  guncelleme={TARIH.baraj ? new Date(TARIH.baraj) : undefined}
+>
+    {/* K22 (27.08): güncellik damgası — tarih YALNIZ veri künyesinden
+        (KARARLAR §27/Karar 3: build saati damga değildir). */}
+  <SayfaBasi etiket="Risk" baslik="Havza Su Riski Haritası" tarih={TARIH.baraj ? new Date(TARIH.baraj) : undefined} />
   <OzCevap metin={ozet} />
 
   <Katman baslik="Risk Sıralaması (En Riskli Önce)" ipucu={`${riskler.length} havza · ${gostergeIfade} · verisi olmayan gösterge puana girmez`}>

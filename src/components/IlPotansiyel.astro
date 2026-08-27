@@ -3,6 +3,8 @@
 // (tek üretici). Görsel dil: mevcut il sayfası bileşenleri (il-kunye veri
 // bandı, soru-H2, mono künye) — yeni renk/font İCAT EDİLMEZ (DESIGN.md).
 // JS yok; katmanlar native <details> (proje kalıbı).
+import MTA_KUNYE from '../../veri/potansiyel/mta-katalog.json';
+
 const { p } = Astro.props;
 const sayi = (n, o = 0) =>
   n.toLocaleString('tr-TR', { minimumFractionDigits: o, maximumFractionDigits: o });
@@ -142,6 +144,11 @@ const cokIlliler = p.kutleler.filter((k) => k.cokIlli);
       <li>
         <details class="pot-katman">
           <summary>MTA rapor kataloğu künyeleri ({p.mta.length})</summary>
+          {/* K21 (27.08): il ataması yönteminin şerhi basılmıyordu. Metin
+              veri künyesinden alındı (`mta-katalog.json` → `not`,
+              `toplam_kunye`, `il_atanamayan_sayisi`) — yeni cümle
+              üretilmedi. */}
+          <p class="pot-yontem-serh">{MTA_KUNYE.not} Katalogda toplam {MTA_KUNYE.toplam_kunye} künye var; {MTA_KUNYE.il_atanamayan_sayisi} künyenin ili rapor adından çıkarılamadığı için hiçbir il sayfasında listelenmez.</p>
           <ul>
             {p.mta.map((k) => (
               <li>{k.rapor_adi} — <a href={k.url} rel="nofollow">katalog kaydı</a></li>
@@ -278,6 +285,7 @@ const cokIlliler = p.kutleler.filter((k) => k.cokIlli);
   }
 
   .pot-katman summary:hover { text-decoration: underline; }
+  .pot-yontem-serh { font-size: 0.82rem; color: var(--metin-soluk); margin: 0.4rem 0 0.6rem; line-height: 1.5; }
 
   .pot-katman ul { padding-left: 1.1rem; }
   .pot-katman li { margin: 0.4rem 0; font-size: 0.88rem; }

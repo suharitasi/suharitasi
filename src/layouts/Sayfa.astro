@@ -30,9 +30,15 @@ interface Props {
      noindex basıldığında sitemap ve llms.txt üreticileri o sayfayı
      zaten atlar (astro.config'teki iki üretici de aynı kuralı okur). */
   robots?: string;
+  /* K22 (27.08.2026): görünür güncellik damgası ile şemadaki dateModified
+     ayrışıktı — bazı sayfada <time> vardı dateModified yoktu, bazısında
+     tersi. Bu prop verildiğinde WebPage düğümü `dateModified` ile basılır.
+     Tarih YALNIZ veri künyesinden gelir (KARARLAR §27/Karar 3); belirsizse
+     prop hiç geçilmez ve düğüm tarihsiz kalır. */
+  guncelleme?: Date;
 }
 
-const { baslik, tarayiciBaslik, aciklama, sema = [], heroSlot, robots } = Astro.props;
+const { baslik, tarayiciBaslik, aciklama, sema = [], heroSlot, robots, guncelleme } = Astro.props;
 
 // GEO/SEO B1 (25.08.2026): meta description 50-160 bandına merkezî kırpım.
 // Metin sayfanın kendi aciklama'sından türetilir (yeni metin ÜRETİLMEZ);
@@ -168,6 +174,16 @@ const semalar = [
     publisher: { '@id': `${kok}#kurum` },
   },
   {
+    '@type': 'WebPage',
+    '@id': `${canonical}#sayfa`,
+    url: canonical,
+    name: baslik,
+    description: metaAciklama,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${kok}#site` },
+    ...(guncelleme && { dateModified: guncelleme.toISOString().slice(0, 10) }),
+  },
+  {
     '@type': 'BreadcrumbList',
     itemListElement: kirintilar.map((k, i) => ({
       '@type': 'ListItem',
@@ -246,29 +262,13 @@ const jsonLd = JSON.stringify({
     --akuamarin: #57BAE0;       /* koyu dünyada ışıma (SIĞ'ın parlak türevi) */
     --kopuk: #DBEAF4;
 
-    /* — B2B MODERN PALET (04.08.2026): kurumsal rapor, odeme ve veri gorsellestirme — */
-    --b2b-altin-900: #5C3A0A;     /* koyu altin — baslik/CTA hover */
-    --b2b-altin-600: #875518;     /* orta altin — CTA, vurgu (kehribar-metin ile ayni) */
-    --b2b-altin-400: #C0883A;     /* acik altin — buton/kenar (kehribar ile ayni) */
-    --b2b-altin-100: #F5E6CC;     /* cok acik altin — arka plan vurgusu */
-    --b2b-teal-900: #052A3A;      /* en koyu — kart header */
-    --b2b-teal-700: #0C5A7C;      /* koyu teal — ana vurgu (su-700 ile ayni) */
-    --b2b-teal-500: #2E7EA0;      /* orta teal — ikincil (su-400 ile ayni) */
-    --b2b-teal-300: #57BAE0;      /* acik teal — hover/isaret (akuamarin ile ayni) */
-    --b2b-teal-100: #D4EDF7;      /* cok acik teal — arka plan */
-    --b2b-yuzey: #F7FAFC;         /* ana kart zemini */
-    --b2b-yuzey-koyu: #EDF2F7;    /* alternatif kart zemini */
-    --b2b-basarili: #2E7D32;      /* yesil — odeme basarili, pozitif */
-    --b2b-hata: #C62828;          /* kirmizi — odeme hatasi, negatif */
-    --b2b-uyari: #E65100;         /* turuncu — uyari/risk */
-    --b2b-bilgi: #1565C0;         /* mavi — bilgi/not */
-    --b2b-gradient-altin: linear-gradient(135deg, #875518 0%, #C0883A 100%);
-    --b2b-gradient-teal: linear-gradient(135deg, #0C5A7C 0%, #2E7EA0 100%);
-    --b2b-gradient-koyu: linear-gradient(180deg, #04121F 0%, #0A2740 100%);
-    --b2b-golge-kart: 0 2px 8px rgba(4,18,31,0.08);
-    --b2b-golge-yukari: 0 8px 24px rgba(4,18,31,0.15);
-    --b2b-radius: 6px;
-    --b2b-radius-sm: 4px;
+    /* K4 (27.08.2026): B2B MODERN PALET KALDIRILDI. 04.08 satış/B2B
+       dalgasının kalıntısıydı; o dalga KARARLAR §25 ile kaldırılmış, palet
+       gözden kaçmıştı. Ölçüm: repo genelinde `var(--b2b-…)` kullanımı 0 —
+       ama blok her sayfaya CSS olarak basılıyordu. DESIGN.md bu aileyi
+       tanımıyor; içinde #1565C0 / #C62828 / #E65100 gibi palet dışı
+       değerler vardı. Hiçbir kural bu değişkenlere başvurmadığı için
+       render değişmez. */
 
     /* — Anlamsal tokenlar — */
     --zemin: var(--krem);
