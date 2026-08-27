@@ -629,3 +629,127 @@ MEDYAN: perf 90 · LCP 2932 ms   (paylaşılan tarayıcıda: 82 / 4515 ms)
 **DERS (kayda geçirildi):** bir ölçüm mevcut bir sağlık kalemiyle
 çelişiyorsa, önce **kendi aracımı** sorgulamalıyım. Bu denetimde bu
 tersine sıra iki kez işe yaradı: burada ve D15'te (etiket ayracı).
+
+---
+
+## D19 — FAZ 3 CANLI DOĞRULAMA (deploy sonrası)
+
+Deploy: commit `4a6ad62` canlıda (surum.json ile doğrulandı, ~2 dk sonra).
+
+**Rotalar:**
+```
+apex  https://suharitasi.com/            → 200
+www   https://www.suharitasi.com/havzalar/ → 301 · location: https://suharitasi.com/havzalar/
+```
+
+**Silinen varlıklar canlıda gerçekten kalktı mı:**
+| URL | Durum |
+|---|---|
+| `/deneyim/video/sahne1.webm` | **404** ✓ |
+| `/hedef-hero.webp` | **404** ✓ |
+| `/s/su-sim.js` | **404** ✓ |
+
+**Kullanılan varlıklar bozulmadı mı:**
+| URL | Durum |
+|---|---|
+| `/deneyim/video/sahne1.mp4` | 200 ✓ |
+| `/hedef-hero.v2.webp` | 200 ✓ |
+| `/s/imlec.js` · `/s/sayfa.js` | 200 ✓ |
+
+**Beş sayfanın canlı görünür metni ↔ yerel build:**
+| Sayfa | Sonuç |
+|---|---|
+| `/havzalar/sakarya/` | **BİREBİR** (9035 = 9035 karakter) |
+| `/rehberler/kuyu-ruhsati/` | **BİREBİR** (18672 = 18672) |
+| `/kuyu-ruhsati/adana/` | **BİREBİR** (18198 = 18198) |
+| `/` | FARKLI — **beklenen** (aşağıda) |
+| `/arsiv/` | FARKLI — **beklenen** (aşağıda) |
+
+**İki fark da kanıtlandı, ikisi de bu denetimin sonucu DEĞİL:**
+
+1. **Ana sayfa** — fark tam olarak **bekleyen hero değişikliğidir**
+   (kullanıcı onayı bekliyor, commit edilmedi):
+   - git'te (canlıya giden): *"Kuyunuzun ilindeki 472 kütleden hangisinde
+     olduğunu bilen avukatla konuşun — tahminle değil, resmî veriyle."*
+   - çalışma ağacında (yerel build'e giren): *"472 yeraltısuyu kütlesi,
+     25 havza ve 1963'e uzanan 419 Resmî Gazete kaydı — hepsi kaynağı
+     gösterilmiş tek haritada."*
+
+2. **`/arsiv/`** — "969 dosya" (yerel) vs "925 dosya" (canlı). Bu,
+   SIRADAKILER'deki **bilinen açık karar kalemidir** (yerel build ile
+   canlı build aynı sayıyı basmıyor). Ölçüldü:
+   `find data/arsiv/baraj -type f` → **969** · `git ls-files` → **925** ·
+   fark **44** = `.gitignore`'daki `*.log` deseni (F4-7 bulgusu, reflog
+   ile kanıtlı bilinçli karar). Astro'dan ve bu denetimden bağımsızdır.
+
+   *Not: kalem SIRADAKILER'de "946/903" sayılarıyla kayıtlı; bugünkü
+   ölçüm 969/925. Fark büyüklüğü 43'ten 44'e çıkmış — log dosyaları
+   günlük üretildiği için sayılar zamanla artıyor, kalem aynı kalem.*
+
+**Not (28.07 kuralı uygulandı):** canlı karşılaştırmada Cloudflare
+e-posta gizlemesi (`[email protected]`) normalize edildi; aksi halde
+yerel-canlı farkı yanlış-pozitif üretirdi.
+
+---
+
+## D20 — FAZ 3 KAPANIŞ ÖLÇÜMLERİ (deploy sonrası)
+
+### 3a · Sağlık `--tam` (canlı, commit 4a6ad62) — kalem kalem
+
+| Kalem | Taban (04:57, denetim öncesi) | Faz 3 (08:45, deploy sonrası) |
+|---|---|---|
+| 22-kaynak | GEÇTİ | GEÇTİ |
+| 1-sitemap | GEÇTİ · 519 URL | GEÇTİ · **519 URL** |
+| 2-erisim | GEÇTİ · 519/519 · 200 | GEÇTİ · **519/519 · 200** |
+| 3-yonlendirme | GEÇTİ · 6/6 | GEÇTİ · 6/6 |
+| 24-www | GEÇTİ | GEÇTİ |
+| 4-medya | GEÇTİ · 6/6 sahne oynuyor | **GEÇTİ · 6/6** (webm silindikten SONRA) |
+| 5-konsol | GEÇTİ · hata 0 | GEÇTİ · hata 0 |
+| 8-mobil | GEÇTİ · taşma 0 px | GEÇTİ · taşma 0 px |
+| 13-kontrast | GEÇTİ · en dar 3.5:1 | GEÇTİ · en dar 3.5:1 |
+| 7-geo-seo | GEÇTİ · 13/14 | GEÇTİ · 13/14 |
+| 6-baglantilar | GEÇTİ · kırık 0 | GEÇTİ · kırık 0 |
+| 12-etkilesim | GEÇTİ · 4/4 | GEÇTİ · 4/4 |
+| 14-gorsel | GEÇTİ · G1-G6 sapma yok | **GEÇTİ · sapma yok** (`<main>` eklendikten SONRA) |
+| 21-dokunma | GEÇTİ · ihlal 201 = taban | GEÇTİ · ihlal 201 = taban |
+| 15-erisilebilirlik | GEÇTİ · 100/100 | GEÇTİ · 100/100 |
+| 9-lighthouse | GEÇTİ · 14 sayfa | GEÇTİ · 14 sayfa (`/` 98/87) |
+| 11-veri-butunlugu | GEÇTİ | GEÇTİ |
+| 16-seo-geo-genis | GEÇTİ · bulgu 20 = taban | GEÇTİ · bulgu 20 = taban |
+| **17-dis-baglanti** | **SARI** · 19 şüphe, ölü 0 | **SARI** · 20 şüphe, **ölü 0** |
+| 18-veri-genis | GEÇTİ | GEÇTİ |
+| 19-baslik-og-cta | GEÇTİ · 6 başlık + 22 mailto | GEÇTİ · 6 başlık + 22 mailto |
+| 20-altyapi | GEÇTİ | GEÇTİ |
+| 23-altin-ornek | GEÇTİ · 23/23 | GEÇTİ · 23/23 |
+
+```
+TABAN: GENEL: SARI — kırmızı 0 · sarı 1 · geçti 22
+FAZ 3: GENEL: SARI — kırmızı 0 · sarı 1 · geçti 22
+```
+**TABAN GERİLEMESİ: 0.** Tek sarı, denetim öncesinde de sarı olan md17
+(dış bağlantı) — ve tam tarama onun **ölü bağlantı içermediğini**
+kanıtladı (D14: 1037/1037, ölü 0).
+
+**İki kalem özellikle önemli:**
+- **md4 (medya) GEÇTİ** — 6 sahnenin altısı da oynuyor. `.webm`
+  dosyalarının silinmesi medyayı bozmadı (zaten hiç istenmiyorlardı).
+- **md14 (görsel/düzen) GEÇTİ** — G1-G6 sapma yok. Ana sayfaya eklenen
+  `<main>` sarmalayıcısı görsel düzeni bozmadı.
+
+### 3b · Build ve sitemap sayıları
+
+| | Taban | Faz 3 | Durum |
+|---|---|---|---|
+| Sayfa | 522 | **522** | aynı |
+| Sitemap URL | 519 | **519** | aynı |
+| dist boyutu | 45 MB | **35 MB** | **−10 MB** (U1 silmeleri — kasıtlı) |
+
+Kaybolan sayfa **0**, yeni sayfa **0**. Boyut düşüşü tek fark ve
+açıklaması U1'dir.
+
+### 3e · SIRADAKILER
+
+`git diff` ile doğrulandı: **SIRADAKILER.md bu denetimde HİÇ
+DEĞİŞTİRİLMEDİ.** Denetimden doğan hiçbir bulgu kuyruğa yazılmadı;
+hepsi karar dosyasında duruyor. Tarihli kalem doğmadı (mevcut tek
+tarihli kalem 02.09.2026 astro5-referans silme kalemi, dokunulmadı).

@@ -162,3 +162,51 @@ Ayrıca **iki bulgu ölçümle çürütüldü** ve rapordan düşürüldü:
 
 Ve bir bulgu **kasten açılmadı**: "analitik çalışmıyor" — projenin kendi
 29.07 kaydı bu ölçümün tek vantaj noktasından kanıt olmadığını yazmış (D8).
+
+---
+
+## 6. KAPANIŞ KANITLARI
+
+| Bitti-tanımı maddesi | Sonuç |
+|---|---|
+| Kapı (dizin · remote · node) | ✓ `/home/suha/projeler/suharitasi` · `suharitasi/suharitasi` · v22.23.2 |
+| Taban dizini NOT.txt'li duruyor | ✓ `/home/suha/denetim-taban/` · commit 22e3e86 · Astro 7.2.7 |
+| 1.5'in beş alt kalemi (a-e) | ✓ `26-08-denetim-15a-uydurma.md` (a) + `26-08-denetim-15be-dil.md` (b-e) |
+| 1.4 / 1.7 / 1.8 eksik turları | ✓ 1.7 tam tarama (1037/1037, ölü 0) · 1.8 derin analiz (27 bulgu) · **1.4 kendi aracımın protokol hatası yüzünden geçersiz ilan edildi, md9'a devredildi** |
+| Her bulgu sınıflandırıldı, "bekliyor" yok | ✓ 7 onarıldı · 37 karar · 16 reddedildi |
+| Faz 2'de her onarımın önce/sonra ölçümü | ✓ `26-08-denetim-SINIFLANDIRMA.md` §F tablosu |
+| 2b bit-eşitlik her onarım grubunda | ✓ görünür metin 0 fark · JSON-LD 0 fark (523 sayfa) |
+| Sağlık `--tam` taban gerilemesi 0 | ✓ taban 🔴0/🟡1/🟢22 → Faz 3 🔴0/🟡1/🟢22 |
+| Karar dosyası tam, devralınan 3 kalem başında | ✓ `26-08-denetim-KARARLAR-BEKLEYEN.md` §0 |
+| SIRADAKILER'de denetim bulgusu yok | ✓ dosya hiç değiştirilmedi (`git diff` boş) |
+| Faz commit'leri push'landı | ✓ 7746ed8 (Faz 0) · c394420 (Faz 1) · 4a6ad62 (Faz 2) |
+| Hero değişikliğine dokunulmadı | ✓ çalışma ağacında duruyor, commit edilmedi |
+
+## 7. GERİ ALMA BLOKLARI (faz başına)
+
+**Faz 0 — `7746ed8`** (yalnız karar dosyası iskeleti)
+```
+git revert 7746ed8
+```
+
+**Faz 1 — `c394420`** (yalnız rapor dosyaları; kod/veri değişikliği yok)
+```
+git revert c394420
+```
+
+**Faz 2 — `4a6ad62`** (7 onarım + raporlar)
+```
+git revert 4a6ad62 && npm run build && git push origin main
+```
+Tek tek geri alma:
+```
+# U1 silinen varlıklar (git izli — kayıp yok)
+git checkout c394420 -- public/deneyim/video public/hedef-hero.webp public/s/su-sim.js
+# U2 esbuild bildirimi
+git checkout c394420 -- package.json package-lock.json
+# U6 token · U7 main
+git checkout c394420 -- src/pages/ilce-sorgu.astro src/pages/havza-riski.astro src/pages/index.astro
+# U3/U4/U5 künye kayıtları
+git checkout c394420 -- KAYNAKLAR.md
+```
+Her geri almadan sonra `npm run build` + `node arac/site-saglik.mjs --tam`.
