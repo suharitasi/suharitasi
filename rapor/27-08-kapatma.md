@@ -106,3 +106,56 @@ kullanılan sınıf adları sitede YAYGIN: `kunye` **15 başka dosyada**,
 Global'e taşımak 15+ sayfada stil sızdırırdı — kazanç yalnız bakım
 kolaylığı, bedel gerçek görsel regresyon. Kalem açık bırakıldı.
 
+---
+
+# KAPANIŞ ÖLÇÜMLERİ (§7)
+
+## 7a · Sağlık `--tam` — deploy sonrası, commit `6ebbf97`
+```
+2026-08-27  --tam   🔴 0 · 🟡 1 · 🟢 22
+taban (K7 öncesi)   🔴 0 · 🟡 1 · 🟢 22      → TABAN GERİLEMESİ 0
+```
+Tek sarı **17-dis-baglanti** (16 dış bağlantı zaman aşımı/5xx, ölü 0) —
+tabanla aynı kalem, bu turla ilgisi yok.
+
+Tur içinde doğan iki regresyon bu koşumdan ÖNCE onarıldı ve doğrulandı:
+- `21-dokunma` **GEÇTİ** — ihlal 199, taban 201 (skip-link 44 px)
+- `16-seo-geo-genis` **GEÇTİ** — bulgu 20 = taban 20 (title tekrarı 0)
+- `15-erisilebilirlik` 14 sayfa **100/100** · `14-gorsel` G1-G6 sapma yok
+- `18-veri-genis` GEÇTİ — veri dosyalarında kayıt düşmedi, şema aynı
+- `23-altin-ornek` **23/23**
+
+## 7b · Build ve yayın yüzeyi
+```
+HTML dosya   : 523  (taban 523)   ✔  küme diff BOŞ
+sitemap <loc>: 519  (taban 519)   ✔  küme diff BOŞ
+```
+
+## 7c · Canlı ↔ yerel görünür metin (5 sayfa)
+| Sayfa | Sonuç |
+|---|---|
+| `/havzalar/` | **BİREBİR EŞİT** (3590 karakter) |
+| `/kuyu-ruhsati/adana/` | **BİREBİR EŞİT** (18050) |
+| `/goller/tuz-golu/` | **BİREBİR EŞİT** (1094) |
+| `/durumum/` | **BİREBİR EŞİT** (10356) |
+| `/` | **BEKLENEN FARK** — yerel build ağaçtaki *commit edilmemiş* hero değişikliğini içeriyor (`HERO_ALT`), canlı commit'li hâli sunuyor. Hero dosyalarına dokunulmadığının kanıtı. |
+
+```
+https://suharitasi.com/       → 200
+https://www.suharitasi.com/   → 301 → https://suharitasi.com/
+```
+
+## 7e · Ağaç
+`git status` → yalnız `src/components/anasayfa/Hero.astro` ve
+`src/data/anasayfa-satis.js` (tur başındaki hâliyle, onayınızı bekliyor).
+Bu turun tüm değişiklikleri commit'lendi ve push'landı.
+
+## GERİ ALMA
+```bash
+git revert 6ebbf97 5b98b85 84017e3 997f5ae f517c27 66b9cb4   # ters sırada
+npm run build
+```
+Altı commit, grup grup. Tek bir grubu geri almak da mümkün — her commit
+kendi içinde tutarlı. Veri dosyaları değişmedi; arşive taşınan dosyalar
+`arsiv/jrc-yuzey-suyu/` ve `arsiv/olu-kod-2708/` altında duruyor,
+revert onları eski yerlerine geri getirir.
