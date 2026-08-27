@@ -266,9 +266,21 @@ const jsonLd = JSON.stringify({
   @media print {
     .oz-cevap { background: none; }
   }
+
+  /* K23 (27.08): skip-link — Sayfa.astro'daki global kuralın eşi
+     (bu sayfa o layout'u kullanmıyor). Değerler birebir aynı. */
+  .atla-baglantisi { position: fixed; top: 0.5rem; left: 0.5rem; z-index: 999; transform: translateY(calc(-100% - 1rem)); padding: 0.6rem 1rem; background: var(--su-700); color: #fff; font-family: var(--mono); font-size: 0.8rem; text-decoration: none; border: 1px solid var(--su-700); transition: transform 0.18s ease; }
+  .atla-baglantisi:focus { transform: translateY(0); outline: 2px solid var(--kopuk); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { .atla-baglantisi { transition: none; } }
+  #ana-icerik:focus { outline: none; }
 </style>
 </head>
 <body>
+
+  {/* K23 (27.08): "içeriğe atla" — WCAG 2.4.1 (A). Stil `Sayfa.astro`
+      global bloğunda; bu sayfa o layout'u kullanmadığı için bağlantı
+      elle eklendi. */}
+  <a href="#ana-icerik" class="atla-baglantisi">İçeriğe atla</a>
 
   <PaylasilanMenu yuzer />
 
@@ -280,7 +292,7 @@ const jsonLd = JSON.stringify({
 
   {/* Eski tek "menü" tetikleyicisi KALKTI: hedefi (sv-menu) artık render
       edilmiyor; gezinme PaylasilanMenu barında (27.07 birleştirme). */}
-  <main data-menu-dis>
+  <main data-menu-dis id="ana-icerik" tabindex="-1">
     {/* ÖZ-CEVAP: hero'dan hemen sonra, panelden önce. Panelle aynı açık
         slab üstünde durur ki iki ayrı zemin görünmesin. JS'siz DOM'da. */}
     <section class="oz-kap" aria-label="Sayfa özeti">

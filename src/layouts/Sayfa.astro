@@ -291,6 +291,34 @@ const jsonLd = JSON.stringify({
 
   html { scroll-behavior: smooth; }
 
+  /* K23 (27.08): "içeriğe atla" — WCAG 2.4.1 (A). Görünmez ama okuyucuya
+     ve klavyeye açık; odaklanınca ekranın üstüne gelir. Renk/boşluk
+     yalnız mevcut tokenlardan (yeni değer yok). */
+  .atla-baglantisi {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 999;
+    transform: translateY(calc(-100% - 1rem));
+    padding: 0.6rem 1rem;
+    background: var(--su-700);
+    color: #fff;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    text-decoration: none;
+    border: 1px solid var(--su-700);
+    transition: transform 0.18s ease;
+  }
+  .atla-baglantisi:focus {
+    transform: translateY(0);
+    outline: 2px solid var(--kopuk);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .atla-baglantisi { transition: none; }
+  }
+  #ana-icerik:focus { outline: none; }
+
   body {
     background: var(--zemin);
     color: var(--metin);
@@ -597,11 +625,17 @@ const jsonLd = JSON.stringify({
 </style>
 </head>
 <body>
+  {/* K23 (27.08): "içeriğe atla" bağlantısı — WCAG 2.4.1 (A). Sitede hiç
+      yoktu; 523 sayfa etkileniyordu. Odaklanınca görünür, aksi hâlde
+      görünmez (kaydırma çubuğu ve düzen etkilenmesin diye konumlandırma
+      `position: fixed`). Renkler DESIGN.md tokenlarından — yeni değer
+      icat edilmedi. */}
+  <a href="#ana-icerik" class="atla-baglantisi">İçeriğe atla</a>
   <PaylasilanMenu />
   {heroSlot
     ? <div class="sv-hero sv-hero-slot" aria-hidden="true"><GorselSlot ad={heroSlot} yukseklik="100%" /></div>
     : <div class="sv-hero" aria-hidden="true"></div>}
-  <main class="govde">
+  <main class="govde" id="ana-icerik" tabindex="-1">
     {kirintilar.length > 1 && (
       <nav class="kirinti" aria-label="Sayfa yolu">
         <ol>

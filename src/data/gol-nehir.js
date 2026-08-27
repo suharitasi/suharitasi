@@ -25,6 +25,20 @@ export const GOLNEHIR_KAPSAM_GOL = 'OpenStreetMap (natural=water) + Natural Eart
 export const GOLNEHIR_KAPSAM_NEHIR = 'OpenStreetMap (waterway=river) ana akarsu hatları';
 export const GOLNEHIR_LISANS = '© OpenStreetMap katkıcıları (ODbL 1.0) · Natural Earth kamu malı';
 
+// K19 (27.08.2026): otorite bağı — 342 göl/nehir sayfası kaynak ADINI
+// yazıp bağ vermiyordu. URL'ler bu sunucudan sınandı (HTTP 200):
+//   openstreetmap.org/copyright · naturalearthdata.com 10m fiziki vektörler
+// Doğrulanamayan hiçbir adres yazılmadı.
+export const KAYNAK_BAGLARI = {
+  'OpenStreetMap': 'https://www.openstreetmap.org/copyright',
+  'Natural Earth (10m)': 'https://www.naturalearthdata.com/downloads/10m-physical-vectors/',
+  'Natural Earth': 'https://www.naturalearthdata.com/downloads/10m-physical-vectors/',
+};
+/** Kaynak adına karşılık gelen resmî adres; bilinmiyorsa null (uydurma yasağı). */
+export function kaynakBagi(ad) {
+  return KAYNAK_BAGLARI[ad] ?? null;
+}
+
 const TR_ASCII = { ç: 'c', ğ: 'g', ı: 'i', ö: 'o', ş: 's', ü: 'u',
                    Ç: 'C', Ğ: 'G', I: 'I', İ: 'i', Ö: 'O', Ş: 'S', Ü: 'U' };
 

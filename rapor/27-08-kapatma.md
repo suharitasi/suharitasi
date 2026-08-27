@@ -49,3 +49,23 @@ künyesi yok — §27: *"Tarihi belirsiz sayfada damga BASILMAZ"*),
 `/harita/` ve `/` (kendi layout'larını kullanıyorlar, `SayfaBasi`
 deseni yok).
 
+## GRUP 3 — erişilebilirlik, otorite ve GEO (K23, K19, K17, K18)
+
+| Kalem | Yapılan | Ölçüm (taban → yeni) |
+|---|---|---|
+| **K23** | "İçeriğe atla" bağlantısı (WCAG 2.4.1 A) `Sayfa.astro`'ya global, `index.astro` ve `harita.astro`'ya elle eklendi. `<main>` artık `id="ana-icerik"` taşıyor. Renk/boşluk yalnız mevcut tokenlardan; odaklanınca görünür, `prefers-reduced-motion` desteği var | skip-link **0 → 520/523** sayfa (kalan 3: `404.html`, 2 noindex pilot) |
+| **K19-a** | 342 göl/nehir sayfasında kaynak ADI artık resmî adresine bağlanıyor. **Adresler bu sunucudan sınandı:** `openstreetmap.org/copyright` 200, `naturalearthdata.com/…/10m-physical-vectors/` 200. Bilinmeyen kaynak adı düz metin kalır (`kaynakBagi()` null döner) | kaynak bağı **0 → 342/342** |
+| **K19-b** | 42 `durumum` sayfasına yönetmeliğin yayım künyesi eklendi. **mevzuat.gov.tr / Resmî Gazete ADRESİ YAZILMADI:** iki adres de sınandı, bu sunucudan yanıt gelmedi (HTTP 000) — doğrulanamayan adres yazmak uydurma olurdu. Yerine `persona.json` → `yonetmelik.rgTarih` künyesi basıldı | künye **0 → 42/43** |
+| **K17** | *Cevap önce, dayanak sonra* (CLAUDE.md): `SayfaBasi`'da künye satırı ("Güncelleme: …") başlıkla öz-cevap ARASINDAN öz-cevabın ALTINA alındı. Sayfanın ilk cümlesi artık tarih değil, alıntılanabilir cevap. Sınıf adları ve su hattının konumu değişmedi | 4 sayfa "Güncelleme:" ile açılıyordu → **0** |
+| **K18** | 81 il sayfasına `FAQPage` eklendi. Cevaplar sayfadaki GÖRÜNÜR soru-H2'lerin kendi verisinden düz metne çevrildi; verisi olmayan soru şemaya girmez (Google şartı: FAQ içeriği sayfada görünür olmalı) | FAQPage'li il sayfası **0 → 81**, toplam **395 soru** |
+
+**K17'nin ana sayfa bacağı UYGULANMADI:** H1 bir soru ("Kuyunuz için
+ruhsat mı lazım, ceza mı geldi?"), ilk cümle onu cevaplamıyor — ama o
+cümle `HERO_ALT` (`src/data/anasayfa-satis.js`) ve o dosya **ağaçta
+kullanıcı onayı bekleyen hero değişikliğinin parçası**, dokunulmaz.
+KULLANICI KALEMİ'ne yazıldı.
+
+**K17'nin "6 hub sayfasında öz-cevap yok" bacağı zaten kapanmış:** ölçüm
+(27.08) — öz-cevap bloğu olmayan indekslenen sayfa **1** (yalnız ana
+sayfa, muafiyeti KARARLAR §8'de kayıtlı).
+

@@ -12,7 +12,7 @@ import { TARIH } from '../../data/guncellik.js';
 import OzCevap from '../../components/OzCevap.astro';
 import Katman from '../../components/Katman.astro';
 import { tumNehirler, nehirOzet,
-         GOLNEHIR_ERISIM, GOLNEHIR_KAPSAM_NEHIR, GOLNEHIR_LISANS } from '../../data/gol-nehir.js';
+         GOLNEHIR_ERISIM, GOLNEHIR_KAPSAM_NEHIR, GOLNEHIR_LISANS, kaynakBagi } from '../../data/gol-nehir.js';
 
 export async function getStaticPaths() {
   return tumNehirler().map((n) => ({ params: { slug: n.slug }, props: { nehir: n } }));
@@ -98,7 +98,11 @@ const sema = [{
   </Katman>
 
   <p class="veri-kunyesi">
-    Veri künyesi: {nehir.kaynak} — kapsam: {GOLNEHIR_KAPSAM_NEHIR}; erişim
+    {/* K19 (27.08): kaynak adı artık resmî adresine bağlanıyor;
+        adres bilinmiyorsa düz metin kalır (uydurma yasağı). */}
+    Veri künyesi: {kaynakBagi(nehir.kaynak)
+      ? <a href={kaynakBagi(nehir.kaynak)} rel="nofollow noopener" target="_blank">{nehir.kaynak}</a>
+      : nehir.kaynak} — kapsam: {GOLNEHIR_KAPSAM_NEHIR}; erişim
     {' '}{GOLNEHIR_ERISIM}. {GOLNEHIR_LISANS}. Bu sayfa hukuki görüş değildir.
   </p>
 </Sayfa>

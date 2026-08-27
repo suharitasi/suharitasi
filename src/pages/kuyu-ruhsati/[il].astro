@@ -90,6 +90,60 @@ const tarayiciBaslik = `${p.il} Kuyu Ruhsatı — Yetkili Merci ve Başvuru`;
 const kok = new URL('/', Astro.site).href;
 const canonical = new URL(`/kuyu-ruhsati/${p.slug}/`, Astro.site).href;
 
+// K18 (27.08): FAQPage — sayfada GÖRÜNÜR soru-H2'lerin cevapları aynı
+// veriden düz metne çevrilir. Yeni bilgi üretilmez: her cevap, ilgili
+// bölümün kendi verisinden kurulur; verisi olmayan soru şemaya GİRMEZ
+// (Google şartı: FAQ içeriği sayfada görünür olmalı).
+const sss = [];
+{
+  const merci = [];
+  if (bolgeMetni) merci.push(`Kuyu belgeleri için başvuru mercii: ${bolgeMetni}.`);
+  if (p.suIdaresi) merci.push(`Su ve kanalizasyon idaresi: ${p.suIdaresi}.`);
+  for (const h of p.havzalar) {
+    const ek = [];
+    if (h.yagisAlani_km2 != null) ek.push(`yağış alanı ${sayi(h.yagisAlani_km2, 0)} km²`);
+    if (h.yuzeysuyuPotansiyeli_km3 != null) ek.push(`yüzey suyu potansiyeli ${sayi(h.yuzeysuyuPotansiyeli_km3, 2)} km³/yıl`);
+    merci.push(`${h.ad}${ek.length ? ` — ${ek.join(', ')}` : ''}${h.veriYili ? ` (DSİ ${h.veriYili})` : ''}.`);
+  }
+  if (merci.length) sss.push(['Bu ilde yetkili merci hangisi?', merci.join(' ')]);
+
+  const durum = [];
+  for (const h of p.havzalar) {
+    if (h.egilim) {
+      const yon = h.egilim.yon === 'sabit'
+        ? 'belirgin değişim göstermiyor'
+        : `${h.egilim.yon} eğiliminde`;
+      durum.push(`${h.ad}: uydu ölçümüne göre son 5 yılda toplam su depolaması ${yon} `
+        + `(${h.egilim.egim > 0 ? '+' : ''}${sayi(h.egilim.egim, 2)} cm/yıl, `
+        + `${h.egilim.aySayisi} gerçek aylık ölçümden; değişim verisidir, mutlak miktar değildir).`);
+    }
+    if (h.baraj) {
+      durum.push(`${h.ad}: enerji rezervuarlarında ortalama aktif doluluk %${sayi(h.baraj.ortalamaDoluluk, 1)} `
+        + `(${h.baraj.barajSayisi} baraj, ${trTarih(h.baraj.tarih)} kaydı).`);
+    }
+  }
+  if (durum.length) sss.push(['Havzada su durumu nedir?', durum.join(' ')]);
+
+  sss.push(['Belge süreci nasıl işler?',
+    'Arama, kullanma ve ıslah-tadil belgelerinin şartları, süreleri ve yaptırımları '
+    + `Türkiye genelinde aynıdır; adım adım süreç, madde metinleri ve başvuru akışı kuyu `
+    + `ruhsatı rehberinde tek merkezde anlatılır. Bu sayfa yalnız ${p.il} iline özgü merci `
+    + 've havza verisini taşır.']);
+
+  if (kardesIller.length) {
+    sss.push(['Aynı DSİ bölgesindeki diğer iller hangileri?',
+      kardesIller.map((x) => x.il).join(', ') + '.']);
+  }
+  if (ilGolleri.length || ilNehirleri.length) {
+    const par = [];
+    if (ilGolleri.length) par.push(`Göller: ${ilGolleri.map((g) => g.ad).join(', ')}.`);
+    if (ilNehirleri.length) par.push(`Akarsular: ${ilNehirleri.map((n) => n.ad).join(', ')}.`);
+    par.push('Liste, OSM/Natural Earth hidrografya verisinin (erişim 04.08.2026) il '
+      + 'sınırlarıyla geometrik kesişiminden türetilmiştir; göl ve akarsular birden çok ile taşabilir.');
+    sss.push(['Bu ilde hangi göller ve akarsular örnekleniyor?', par.join(' ')]);
+  }
+}
+
 const sema = [
   {
     '@type': 'Article',
@@ -106,6 +160,15 @@ const sema = [
     // verilir; ikinci, celisen url'li Person dugumu uretilmez.
     author: { '@id': `${kok}#yazar` },
     publisher: { '@id': `${kok}#kurum` },
+  },
+  {
+    '@type': 'FAQPage',
+    ...(TARIH.potansiyel ? { dateModified: TARIH.potansiyel } : {}),
+    mainEntity: sss.map(([soru, cevap]) => ({
+      '@type': 'Question',
+      name: soru,
+      acceptedAnswer: { '@type': 'Answer', text: cevap },
+    })),
   },
 ];
 ---

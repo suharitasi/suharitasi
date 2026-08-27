@@ -11,7 +11,7 @@ import { TARIH } from '../../data/guncellik.js';
 import OzCevap from '../../components/OzCevap.astro';
 import Katman from '../../components/Katman.astro';
 import { tumGoller, golOzet, golTipi,
-         GOLNEHIR_ERISIM, GOLNEHIR_KAPSAM_GOL, GOLNEHIR_LISANS } from '../../data/gol-nehir.js';
+         GOLNEHIR_ERISIM, GOLNEHIR_KAPSAM_GOL, GOLNEHIR_LISANS, kaynakBagi } from '../../data/gol-nehir.js';
 
 export async function getStaticPaths() {
   return tumGoller().map((g) => ({ params: { slug: g.slug }, props: { gol: g } }));
@@ -104,7 +104,11 @@ const sema = [{
   </Katman>
 
   <p class="veri-kunyesi">
-    Veri künyesi: {gol.kaynak} — kapsam: {GOLNEHIR_KAPSAM_GOL}; erişim
+    {/* K19 (27.08): kaynak adı artık resmî adresine bağlanıyor;
+        adres bilinmiyorsa düz metin kalır (uydurma yasağı). */}
+    Veri künyesi: {kaynakBagi(gol.kaynak)
+      ? <a href={kaynakBagi(gol.kaynak)} rel="nofollow noopener" target="_blank">{gol.kaynak}</a>
+      : gol.kaynak} — kapsam: {GOLNEHIR_KAPSAM_GOL}; erişim
     {' '}{GOLNEHIR_ERISIM}. {GOLNEHIR_LISANS}. Bu sayfa hukuki görüş değildir.
   </p>
 </Sayfa>

@@ -26,6 +26,17 @@ const tarihYaz = (t: Date) =>
 <div class="sayfa-basi">
   {etiket && <p class="sayfa-etiket">{etiket}</p>}
   <h1>{baslik}</h1>
+  {/* K17 (27.08): CEVAP ÖNCE, DAYANAK SONRA (CLAUDE.md içerik ilkesi).
+      Künye satırı ("Güncelleme: …") önceden başlıkla öz-cevap ARASINDA
+      duruyordu; sayfanın ilk cümlesi bir tarih oluyor, alıntılanabilir
+      cevap aşağı itiliyordu. Künye artık öz-cevabın ALTINDA. Su hattının
+      konumu ve tüm sınıf adları değişmedi. */}
+  <hr class="su-hatti" aria-hidden="true" />
+  {ozet && (
+    ozCevap
+      ? <p class="sayfa-ozet oz-cevap" role="doc-abstract">{ozet}</p>
+      : <p class="sayfa-ozet">{ozet}</p>
+  )}
   {(tarih || yazarli) && (
     <p class="sayfa-kunye">
       {tarih && (
@@ -40,12 +51,6 @@ const tarihYaz = (t: Date) =>
         </span>
       )}
     </p>
-  )}
-  <hr class="su-hatti" aria-hidden="true" />
-  {ozet && (
-    ozCevap
-      ? <p class="sayfa-ozet oz-cevap" role="doc-abstract">{ozet}</p>
-      : <p class="sayfa-ozet">{ozet}</p>
   )}
 </div>
 

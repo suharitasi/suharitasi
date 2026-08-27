@@ -155,9 +155,21 @@ const sahneVeri = SAHNELER.map((s) => ({
     --cizgi: rgba(19, 42, 63, 0.14);
     background: #E9F0F4;
   }
+
+  /* K23 (27.08): skip-link — Sayfa.astro'daki global kuralın eşi
+     (bu sayfa o layout'u kullanmıyor). Değerler birebir aynı. */
+  .atla-baglantisi { position: fixed; top: 0.5rem; left: 0.5rem; z-index: 999; transform: translateY(calc(-100% - 1rem)); padding: 0.6rem 1rem; background: var(--su-700); color: #fff; font-family: var(--mono); font-size: 0.8rem; text-decoration: none; border: 1px solid var(--su-700); transition: transform 0.18s ease; }
+  .atla-baglantisi:focus { transform: translateY(0); outline: 2px solid var(--kopuk); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { .atla-baglantisi { transition: none; } }
+  #ana-icerik:focus { outline: none; }
 </style>
 </head>
 <body>
+
+  {/* K23 (27.08): "içeriğe atla" — WCAG 2.4.1 (A). Stil `Sayfa.astro`
+      global bloğunda; bu sayfa o layout'u kullanmadığı için bağlantı
+      elle eklendi. */}
+  <a href="#ana-icerik" class="atla-baglantisi">İçeriğe atla</a>
 
   <PaylasilanMenu />
 
@@ -165,7 +177,7 @@ const sahneVeri = SAHNELER.map((s) => ({
       taşımıyordu (WCAG 1.3.1 / ARIA landmark). Sarmalayıcı SINIFSIZ ve
       stilsizdir — .govde iç sayfa düzeni içindir, buraya uygulanmaz;
       görünür metin ve JSON-LD değişmez (bit-eşitlik ölçümü raporda). */}
-  <main>
+  <main id="ana-icerik" tabindex="-1">
 
   {/* .v2-ust-akis: U2 mobil istisnasının taşıyıcısı — masaüstünde DOM
       sırası (kanıt bandı hero'dan hemen sonra), mobilde CSS order ile

@@ -9,7 +9,7 @@ import SayfaBasi from '../../components/SayfaBasi.astro';
 import { TARIH } from '../../data/guncellik.js';
 import OzCevap from '../../components/OzCevap.astro';
 import { getCollection } from 'astro:content';
-import { personalar } from '../../data/persona.js';
+import { personalar, yonetmelik } from '../../data/persona.js';
 import { EPOSTA, YAZAR } from '../../data/site';
 import HukukSerhi from '../../components/HukukSerhi.astro';
 
@@ -102,6 +102,12 @@ const sema = [
     }],
   },
 ];
+// K19 (27.08): yönetmeliğin yayım künyesi — veri dosyasından okunur.
+const _rg = yonetmelik?.rgTarih;
+const yonetmelikKunyesi = _rg
+  ? ` · ${yonetmelik.ad}, Resmî Gazete ${_rg.split('-').reverse().join('.')}`
+  : '';
+
 ---
 {/* B1 (25.08): <title> 60 sınırı — tam kalıp sığmıyorsa yalnız sektör adı
     kullanılır (veriden türetme; 37/42 sayfa 60'ı aşıyordu). H1 değişmez. */}
@@ -126,7 +132,13 @@ const sema = [
       <p class="kh-not">Bu sektör için sabit bir yasal son başvuru tarihi
         yok; yükümlülük süreç/işleme bağlıdır ({p.sonTarihDurum.replace(/^dogrulanamadi\s*[—-]?\s*/, '')}).</p>
     )}
-    <p class="kh-dayanak">Dayanak: {p.dayanak.join(' · ')}</p>
+    {/* K19 (27.08): 42 sayfa "Su Verimliliği Yönetmeliği Ek-2" deyip
+        kaynağın yayım künyesini basmıyordu. mevzuat.gov.tr / Resmî Gazete
+        ADRESİ YAZILMADI: bu sunucudan iki adres de sınandı ve yanıt
+        alınamadı (HTTP 000) — doğrulanamayan adres yazmak uydurma olurdu.
+        Bunun yerine veri künyesindeki DOĞRULANMIŞ yayım tarihi basılıyor
+        (`persona.json` → `yonetmelik.rgTarih`). */}
+    <p class="kh-dayanak">Dayanak: {p.dayanak.join(' · ')}{yonetmelikKunyesi}</p>
   </section>
 
   {/* Risk çerçevesi (onaylı genel dil; yaptırım [APILEX]) */}
