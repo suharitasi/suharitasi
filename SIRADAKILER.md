@@ -346,8 +346,18 @@ AÇIK KALAN (bu turda bilinçli dokunulmayan):
   [SERDAR-HUKUK] onayıyla.
 - [x] Lead-mailto birleşmesi FİİLEN KAPANDI (25.08): /su-hukuku/ kalkınca
   canlı yüzeyde tek adres bilgi@suharitasi.com (ölçüldü; serdar@ src'de 0).
-- [ ] /ilce-sorgu/ analiz çıktılarının (akifer türü/derinlik tahmini)
-  yöntem şerhi mevcut "TEMSİLÎDİR" uyarısıyla sınırlı — yeterlilik kararı.
+- [~] **K7 UYGULANDI — KULLANICI ONAYI BEKLİYOR (27.08, commit 06b3062 +
+  f3ad27a).** /ilce-sorgu/ akifer türü · derinlik tahmini · "Su Çıkma
+  Olasılığı %" ve hesapları KALDIRILDI; künye artık türetme yolunu
+  söylüyor; ort_egim null → "veri yok". Canlıda 9 yasak ifade 0,
+  Copernicus korundu, sağlık --tam gerileme 0. Görünür içerik değiştiği
+  için canlı kullanıcı testine kadar AÇIK.
+  Kayıt: KARARLAR §34 · rapor/27-08-K7-uygulama.md
+- [ ] **K7 devamı — 6 yeni karar kalemi** (karar dosyası §6, K7-A..K7-F):
+  K7-A kalan çıktı hâlâ "su çıkma ihtimali" diyor (önerilen metin hazır) ·
+  K7-B eşik geçilmeyince yer tutucu bölge basılıyor · K7-C/K7-D öz-cevap
+  ve 1 CTA'daki "sondaj" vaadi · K7-E jrc-yuzey-suyu.json tümüyle ölü ·
+  K7-F 2b taraması temiz. Hepsi ölçüldü, uygulanmadı — kullanıcı kararı.
 - [x] md14 görsel taban yenilemesi YAPILMIŞTI (24.08, taban tarihi SITE-DURUM'da);
   25.08 --tam ve izole kapıda md14 yeşil ölçüldü — kalem kapandı.
 - [x] .env PAYTR_* satırları ana ağaçta SİLİNDİ (24.08 kapanışı; 6 satır).
