@@ -106,6 +106,9 @@ const sema = [{
   <p class="veri-kunyesi">
     {/* K19 (27.08): kaynak adı artık resmî adresine bağlanıyor;
         adres bilinmiyorsa düz metin kalır (uydurma yasağı). */}
+    {gol.ad_kaynakta && gol.ad_kaynakta !== gol.ad && (
+      <>Kaynaktaki tam ad: {gol.ad_kaynakta}. </>
+    )}
     Veri künyesi: {kaynakBagi(gol.kaynak)
       ? <a href={kaynakBagi(gol.kaynak)} rel="nofollow noopener" target="_blank">{gol.kaynak}</a>
       : gol.kaynak} — kapsam: {GOLNEHIR_KAPSAM_GOL}; erişim

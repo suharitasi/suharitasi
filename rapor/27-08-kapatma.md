@@ -80,3 +80,29 @@ sayfa, muafiyeti KARARLAR §8'de kayıtlı).
 | **K35** | Kişisel e-posta 3 araç betiğinin kibar-scraping User-Agent'ından kurumsal adrese çevrildi (4 konum). **`TELEGRAM_CHAT_ID` bulgusu ölçümle düştü:** belgelerde yalnız DEĞİŞKEN ADI geçiyor, gerçek kanal kimliği (sayı) hiçbir yerde yok — ifşa yok | kişisel adres `arac/` içinde **4 → 0** |
 | **K36** | `form-action 'self'` CSP'ye eklendi (CSP3'te `default-src`'den türemez). `izleme/csp-izinli-kaynaklar.json` da güncellendi (**SÜREKLİLİK İLKESİ**). `unsafe-inline` KALDIRILMADI — Astro'nun sayfa-içi `<style>`/`<script type="module">` üretimi buna dayanıyor, nonce/hash'e geçiş build mimarisi kararı (ayrı iş) | `form-action` **yok → var**; `--test` 7/7 geçti |
 
+## GRUP 5 — içerik adları, kaynak protokolü ve iki regresyon onarımı (K11, K38 + K26 gerekçesi)
+
+| Kalem | Yapılan | Ölçüm (taban → yeni) |
+|---|---|---|
+| **K11** | OSM `name` alanı sınır sularında çok dilli geliyor; sayfa ham dizeyi başlık yapıyordu. **Latin bileşen ayıklandı — çeviri YAPILMADI, ad UYDURULMADI:** yalnız kaynakta zaten yazan parça seçildi. Ham ad künyede `Kaynaktaki tam ad: …` olarak korunuyor. Slug'lar HAM addan türediği için **değişmedi → 301 gerekmedi** (küme diff boş) | `Έβρος/Meriç/Марица` → **Meriç** · `Резовска река - Mutludere` → **Mutludere** · `Aras / Արաքս` → (aşağıdaki onarımdan sonra ham kaldı) |
+| **K38** | 158 `http://hdl.handle.net` bağlantısı https'e normalleştirildi — **köken veri dosyalarına dokunulmadan**, 4 render noktasında. **Ölçüm:** aynı hedef http ve https ile AYNI yanıtı veriyor (3/3 adres, ikisinde de 503 — kurum sunucusu geçici); protokol farkı davranışı değiştirmediğine göre güvenli olanı basılır. Normalleştirme yalnız ölçülen konakla sınırlı | `http://hdl` **158 → 0** |
+
+### İŞ SIRASINDA DOĞAN İKİ REGRESYON — sağlık sistemi yakaladı, onarıldı
+1. **`21-dokunma` SARI:** K23'ün eklediği "İçeriğe atla" bağlantısı
+   **124×42 px** ölçüldü, 44 px dokunma eşiğinin altında; 5 sayfada ihlal
+   +1 arttı. Onarım: `padding 0.6rem → 0.75rem` + `min-height: 44px` +
+   `inline-flex`. Üç tanımda da (layout + index + harita) aynı değer.
+2. **`16-seo-geo-genis` SARI (`title-tekrar×1`):** K11'in ad ayıklaması
+   `Aras / Արաքս` kaydını "Aras" yaptı, oysa OSM'de zaten "Aras" adlı
+   ayrı bir kayıt vardı → iki sayfa aynı `<title>`. Onarım: ayıklanmış ad
+   başka kayıtla çakışıyorsa **ham ad korunur** (`benzersizAd`). Ölçüm:
+   tekrar eden title **1 → 0**.
+
+### K26 — UYGULANMADI (ölçümle gerekçeli)
+`goller`/`nehirler` şablonlarının `<style>` blokları **birebir aynı**
+(diff 0 satır). Ama ortak CSS'e taşımak Astro scope'unu kaldırır ve
+kullanılan sınıf adları sitede YAYGIN: `kunye` **15 başka dosyada**,
+`not` **8**, `kunye-katman`/`kunye-satir` **2'şer**, `veri-kunyesi` **1**.
+Global'e taşımak 15+ sayfada stil sızdırırdı — kazanç yalnız bakım
+kolaylığı, bedel gerçek görsel regresyon. Kalem açık bırakıldı.
+

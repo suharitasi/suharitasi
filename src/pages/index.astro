@@ -159,7 +159,7 @@ const sahneVeri = SAHNELER.map((s) => ({
 
   /* K23 (27.08): skip-link — Sayfa.astro'daki global kuralın eşi
      (bu sayfa o layout'u kullanmıyor). Değerler birebir aynı. */
-  .atla-baglantisi { position: fixed; top: 0.5rem; left: 0.5rem; z-index: 999; transform: translateY(calc(-100% - 1rem)); padding: 0.6rem 1rem; background: var(--su-700); color: #fff; font-family: var(--mono); font-size: 0.8rem; text-decoration: none; border: 1px solid var(--su-700); transition: transform 0.18s ease; }
+  .atla-baglantisi { position: fixed; top: 0.5rem; left: 0.5rem; z-index: 999; transform: translateY(calc(-100% - 1rem)); padding: 0.75rem 1rem; min-height: 44px; display: inline-flex; align-items: center; background: var(--su-700); color: #fff; font-family: var(--mono); font-size: 0.8rem; text-decoration: none; border: 1px solid var(--su-700); transition: transform 0.18s var(--e-suzul, cubic-bezier(0.22, 1, 0.36, 1)); }
   .atla-baglantisi:focus { transform: translateY(0); outline: 2px solid var(--kopuk); outline-offset: 2px; }
   @media (prefers-reduced-motion: reduce) { .atla-baglantisi { transition: none; } }
   #ana-icerik:focus { outline: none; }

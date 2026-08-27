@@ -67,7 +67,32 @@ export function golTipi(gol) {
 
 function insaEt(features, onek) {
   const seen = new Set();
+/** K11 (27.08.2026): OSM `name` alanı sınır sularında ÇOK DİLLİ gelir
+ *  ("Έβρος/Meriç/Марица", "Резовска река - Mutludere", "Aras / Արաքս").
+ *  Sayfa başlığı bu ham dizeyi basıyordu. Burada latin-harfli bileşen
+ *  AYIKLANIR — çeviri YAPILMAZ, ad UYDURULMAZ: yalnız kaynakta zaten
+ *  yazan parça seçilir. Latin bileşen yoksa ham ad korunur.
+ *  Tam ad künyede `ad_kaynakta` olarak saklanır. */
+/** Ayıklanmış ad başka bir kayıtla ÇAKIŞIYORSA ham ad korunur — aksi
+ *  halde iki ayrı su kütlesi aynı başlığı taşır (ölçülen vaka: OSM'de
+ *  "Aras" ve "Aras / Արաքս" iki ayrı kayıt; ayıklama ikisini de "Aras"
+ *  yapıp <title> tekrarı üretmişti). */
+function benzersizAd(ham, gorulen) {
+  const ad = gorunenAd(ham);
+  const secim = gorulen.has(ad) ? ham : ad;
+  gorulen.add(secim);
+  return secim;
+}
+
+function gorunenAd(ham) {
+  const parcalar = String(ham ?? '').split(/\s*[/|·]\s*|\s+-\s+/).map((x) => x.trim()).filter(Boolean);
+  if (parcalar.length < 2) return ham;
+  const latin = parcalar.filter((x) => /^[A-Za-zÇĞİIÖŞÜçğıiöşü0-9\s.'-]+$/u.test(x));
+  return latin.length ? latin[0] : ham;
+}
+
   const icinde = [], elenen = [];
+  const adlar = new Set();
   let adsiz = 0;
   for (const f of features) {
     const p = f.properties;
@@ -79,7 +104,7 @@ function insaEt(features, onek) {
     if (seen.has(slug)) { let i = 2; while (seen.has(`${slug}-${i}`)) i++; slug = `${slug}-${i}`; }
     seen.add(slug);
     icinde.push({
-      slug, ad: p.ad, kaynak: p.kaynak,
+      slug, ad: benzersizAd(p.ad, adlar), ad_kaynakta: p.ad, kaynak: p.kaynak,
       alan_km2: p.alan_km2 ?? null, tip: p.tip ?? null,
       bbox: b, merkez: [(b[0] + b[2]) / 2, (b[1] + b[3]) / 2],
       geometry: f.geometry, cografya,

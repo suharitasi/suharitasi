@@ -5,6 +5,15 @@
 // JS yok; katmanlar native <details> (proje kalıbı).
 import MTA_KUNYE from '../../veri/potansiyel/mta-katalog.json';
 
+// K38 (27.08.2026): akademik künye bağlantılarının 158'i `http://` idi.
+// ÖLÇÜM: aynı hedef http ve https ile AYNI yanıtı veriyor (sınanan 3/3
+// adres, her iki protokolde de 503 — kurum sunucusu geçici). Protokol
+// farkı davranışı değiştirmediğine göre güvenli olanı basılır.
+// Normalleştirme YALNIZ ölçülen konakla sınırlı; başka konak dokunulmaz
+// ve köken veri dosyaları DEĞİŞTİRİLMEZ.
+const GUVENLI_KONAK = /^http:\/\/(hdl\.handle\.net)\//;
+const httpsle = (u) => (typeof u === 'string' ? u.replace(GUVENLI_KONAK, 'https://$1/') : u);
+
 const { p } = Astro.props;
 const sayi = (n, o = 0) =>
   n.toLocaleString('tr-TR', { minimumFractionDigits: o, maximumFractionDigits: o });
@@ -80,7 +89,7 @@ const cokIlliler = p.kutleler.filter((k) => k.cokIlli);
                 RG {k.tarih}
                 {k.sayi != null && <> · Sayı {k.sayi}{k.sayiKaynak === 'cikarim' && '*'}</>}
                 {' '}· {k.durum} ·{' '}
-                <a href={k.url} rel="nofollow">fihrist kaydı</a>
+                <a href={httpsle(k.url)} rel="nofollow">fihrist kaydı</a>
               </span>
             </li>
           ))}
@@ -101,7 +110,7 @@ const cokIlliler = p.kutleler.filter((k) => k.cokIlli);
                   RG {k.tarih}
                   {k.sayi != null && <> · Sayı {k.sayi}{k.sayiKaynak === 'cikarim' && '*'}</>}
                   {' '}· {k.durum} ·{' '}
-                  <a href={k.url} rel="nofollow">kaynak</a>
+                  <a href={httpsle(k.url)} rel="nofollow">kaynak</a>
                 </span>
               </li>
             ))}
@@ -151,7 +160,7 @@ const cokIlliler = p.kutleler.filter((k) => k.cokIlli);
           <p class="pot-yontem-serh">{MTA_KUNYE.not} Katalogda toplam {MTA_KUNYE.toplam_kunye} künye var; {MTA_KUNYE.il_atanamayan_sayisi} künyenin ili rapor adından çıkarılamadığı için hiçbir il sayfasında listelenmez.</p>
           <ul>
             {p.mta.map((k) => (
-              <li>{k.rapor_adi} — <a href={k.url} rel="nofollow">katalog kaydı</a></li>
+              <li>{k.rapor_adi} — <a href={httpsle(k.url)} rel="nofollow">katalog kaydı</a></li>
             ))}
           </ul>
         </details>
@@ -167,7 +176,7 @@ const cokIlliler = p.kutleler.filter((k) => k.cokIlli);
                 {k.yazarlar.filter(Boolean).slice(0, 3).join(', ')}
                 {k.yazarlar.length > 3 && ' vd.'} ({k.yil}). {k.baslik}.
                 {k.dergi && ` ${k.dergi}.`}{' '}
-                <a href={k.doi || k.url} rel="nofollow">yayın</a>
+                <a href={httpsle(k.doi || k.url)} rel="nofollow">yayın</a>
               </li>
             ))}
           </ul>
