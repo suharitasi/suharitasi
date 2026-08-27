@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
+import HukukSerhi from '../../components/HukukSerhi.astro';
 
 const girisler = (await getCollection('vakalar')).sort(
   (a, b) => b.data.tarih.getTime() - a.data.tarih.getTime(),
@@ -31,6 +32,9 @@ const girisler = (await getCollection('vakalar')).sort(
   </ul>
 
   <p class="vaka-not">Yeni vakalar eklenecektir.</p>
+
+  {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
+  <HukukSerhi />
 </Sayfa>
 
 <style>

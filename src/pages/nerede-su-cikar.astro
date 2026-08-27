@@ -21,6 +21,7 @@ import CanliSayi from '../components/CanliSayi.astro';
 import CanliSayiMotor from '../components/CanliSayiMotor.astro';
 import { OZ_CEVAP, DURUSTLUK_ETIKETI, KATMANLAR, VERI_YOK_NOTU, SAYILAR, iller } from '../data/kapi.js';
 import { sssListesi } from '../data/kapi-sss.js';
+import HukukSerhi from '../components/HukukSerhi.astro';
 
 const canonical = new URL('/nerede-su-cikar/', Astro.site).href;
 
@@ -80,7 +81,7 @@ const sema = [
   <p class="kapi-yonerge">
     Cevap il ölçeğinde verilir: her il sayfasında o ile eşlenmiş yeraltı suyu
     kütleleri, Resmî Gazete'de ilan edilmiş işletme sahaları ve arazi biçimi
-    göstergeleri birlikte durur. Havza ölçeğindeki tablo için
+    göstergeleri birlikte durur. Havza ölçeğindeki tablo için{' '}
     <a href="/havzalar/">havza sayfalarına</a> bakabilirsiniz.
   </p>
 
@@ -139,6 +140,9 @@ const sema = [
   ))}
 
   <p class="kapi-durustluk">{DURUSTLUK_ETIKETI}</p>
+
+  {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
+  <HukukSerhi />
 </Sayfa>
 
 <style>

@@ -12,6 +12,7 @@ import ilKurum from '../../data/il-kurum.json';
 import { EPOSTA, YAZAR } from '../data/site';
 import ilceDizin from '../../veri/potansiyel/ilce-il-dizini.json' assert { type: 'json' };
 import ilceMorf from '../../veri/potansiyel/ilce-morfoloji.json' assert { type: 'json' };
+import HukukSerhi from '../components/HukukSerhi.astro';
 
 const profiller = tumIlProfilleri();
 const ilAdlari = profiller.map((p) => p.il);
@@ -150,6 +151,9 @@ const ozet = 'Türkiye\'de il ve ilçe bazında yeraltı su potansiyeli, arazi m
     <p class="not">Bu araç resmî kaynaklardan derlenen açık verileri sunar; hukuki görüş, yatırım tavsiyesi veya saha etüdü raporu NİTELİĞİ TAŞIMAZ.</p>
     <p class="not">Veri kaynakları: DSİ, SYGM NHYP, GRACE NASA GSFC, EPİAŞ, Copernicus GLO-90 DEM, OSM (ODbL). Tüm veri TEMSİLÎDİR.</p>
   </Katman>
+
+  {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
+  <HukukSerhi />
 </Sayfa>
 
 <style>

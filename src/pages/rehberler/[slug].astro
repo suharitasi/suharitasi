@@ -11,6 +11,7 @@ import { YAZAR, OG_GORSEL } from '../../data/site';
 import SonrakiAdim from '../../components/SonrakiAdim.astro';
 import RehberKapanis from '../../components/RehberKapanis.astro';
 import { personalar as tumPersonalar } from '../../data/persona.js';
+import HukukSerhi from '../../components/HukukSerhi.astro';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('rehberler');
@@ -266,6 +267,9 @@ if (kalip2) {
     <IlgiliRehberler slugler={giris.data.ilgili} haric={giris.id} />
   </Fragment>
 )}
+
+  {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
+  <HukukSerhi />
 </Sayfa>
 
 <style>

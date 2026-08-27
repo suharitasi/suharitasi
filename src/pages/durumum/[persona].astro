@@ -11,6 +11,7 @@ import OzCevap from '../../components/OzCevap.astro';
 import { getCollection } from 'astro:content';
 import { personalar } from '../../data/persona.js';
 import { EPOSTA, YAZAR } from '../../data/site';
+import HukukSerhi from '../../components/HukukSerhi.astro';
 
 export async function getStaticPaths() {
   return personalar.map((p) => ({ params: { persona: p.slug }, props: { p } }));
@@ -190,6 +191,9 @@ const sema = [
   {/* İstemci: "kalan gün" (progressive; JS yoksa sabit tarih durur). Arama+
       kalan tek dosyada (durumum.js) — index ve sonuç sayfası aynı script. */}
   <script type="module" src="/s/durumum.js" is:inline></script>
+
+  {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
+  <HukukSerhi />
 </Sayfa>
 
 <style>

@@ -17,6 +17,7 @@ import { yayinlananIller } from '../../data/il-profil.js';
 import { havzaninGolleri, havzaninNehirleri } from '../../data/gol-nehir.js';
 import { havzaYasGeo } from '../../data/havza-yas-geo.js';
 import { TARIH, enYeni } from '../../data/guncellik.js';
+import HukukSerhi from '../../components/HukukSerhi.astro';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('havzalar');
@@ -498,6 +499,9 @@ const semalar = sss.length
       hidrografik envanter yerine geçmez.</p>
   </section>
 )}
+
+  {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
+  <HukukSerhi />
 </Sayfa>
 
 <style>

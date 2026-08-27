@@ -183,8 +183,8 @@ const sema = [
     <p>
       Arama, kullanma ve ıslah-tadil belgelerinin şartları, süreleri ve
       yaptırımları Türkiye genelinde aynıdır; adım adım süreç, madde
-      metinleri ve başvuru akışı
-      <a href="/rehberler/kuyu-ruhsati/">kuyu ruhsatı rehberinde</a>
+      metinleri ve başvuru akışı{' '}
+      <a href="/rehberler/kuyu-ruhsati/">kuyu ruhsatı rehberinde</a>{' '}
       tek merkezde anlatılır. Bu sayfa yalnız {p.il} iline özgü merci ve
       havza verisini taşır.
     </p>
@@ -198,7 +198,10 @@ const sema = [
     <>
       <h2>Aynı DSİ bölgesindeki diğer iller hangileri?</h2>
       <nav class="capraz" aria-label="Aynı DSİ bölgesindeki iller">
-        {kardesIller.map((x) => <a href={`/kuyu-ruhsati/${x.slug}/`}>&rarr; {x.ad}</a>)}
+        {/* 27.08 denetimi K3: burada `x.ad` okunuyordu, oysa il-profil.js'in
+            döndürdüğü nesnede alan adı `il`. 76 sayfada bağlantılar
+            etiketsiz ("→ ") çıkıyordu. */}
+        {kardesIller.map((x) => <a href={`/kuyu-ruhsati/${x.slug}/`}>&rarr; {x.il}</a>)}
       </nav>
     </>
   )}

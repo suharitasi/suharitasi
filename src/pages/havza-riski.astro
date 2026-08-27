@@ -1,19 +1,29 @@
 ---
 // HAVZA RISK HARiTASI — /havza-riski/
 // 25 havza, en riskliden en guvenliye sirali.
-// 6 gostergeli bilesik skor: GRACE + baraj + YAS + tahsis + potansiyel.
+// Bilesik skor: GRACE + baraj + YAS + tahsis + yuzey suyu.
+// 27.08.2026 (K1 + K12 + K13): gosterge sayisi SABIT YAZILMAZ, koddan
+// turetilir; verisi olmayan gosterge puana girmez ve sayfada oyle yazar.
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
 import Katman from '../components/Katman.astro';
-import { tumHavzaRiskleri, riskSemasi } from '../data/havza-risk.js';
+import { tumHavzaRiskleri, riskSemasi, gostergeAraligi, W as AGIRLIK } from '../data/havza-risk.js';
 
 const riskler = tumHavzaRiskleri();
+const aralik = gostergeAraligi();
+const barajliHavza = riskler.filter((r) => r.detay.baraj.veriVar).length;
 
-const ozet = 'Türkiye\'nin 25 su havzası için 6 göstergeden (GRACE uydu verisi, baraj doluluk, '
-  + 'YAS rezervi, tahsis durumu, yüzey suyu potansiyeli) hesaplanan bileşik su riski haritası. '
-  + 'Havzalar en yüksek riskten düşüğe sıralanmıştır. Veriler DSİ 2024, NASA GRACE ve EPİAŞ\'tan '
-  + 'derlenmiştir.';
+// SAYI BEKÇİSİ: metindeki gösterge sayısı veriden gelir; sabit yazılırsa
+// veri değiştiğinde sessizce yalan olur (K1'in kök nedeni buydu).
+const gostergeIfade = aralik.enAz === aralik.enCok
+  ? `${aralik.enAz} göstergeden`
+  : `havzaya göre ${aralik.enAz}-${aralik.enCok} göstergeden`;
+
+const ozet = `Türkiye'nin 25 su havzası için ${gostergeIfade} (GRACE uydu verisi, baraj doluluk, `
+  + 'YAS rezervi, yüzey suyu potansiyeli) hesaplanan bileşik su riski haritası. '
+  + 'Verisi olmayan gösterge puana katılmaz. Havzalar en yüksek riskten düşüğe '
+  + 'sıralanmıştır. Veriler DSİ 2024, NASA GRACE ve EPİAŞ\'tan derlenmiştir.';
 
 const sema = [{
   '@type': 'ItemList',
@@ -22,7 +32,9 @@ const sema = [{
   numberOfItems: riskler.length,
   itemListElement: riskler.map((r, i) => ({
     '@type': 'ListItem', position: i + 1, name: r.ad,
-    description: `Risk puanı: ${r.puan}/100 (${r.seviye})`,
+    description: r.puan == null
+      ? 'Risk puanı hesaplanamadı (gösterge verisi yok)'
+      : `Risk puanı: ${r.puan}/100 (${r.seviye})`,
   })),
 }, ...riskler.map((r) => riskSemasi(r.no, r.ad, r))];
 ---
@@ -31,23 +43,23 @@ const sema = [{
   <SayfaBasi etiket="Risk" baslik="Havza Su Riski Haritası" />
   <OzCevap metin={ozet} />
 
-  <Katman baslik="Risk Sıralaması (En Riskli Önce)" ipucu={`${riskler.length} havza · GRACE + baraj + YAS + tahsis + potansiyel`}>
+  <Katman baslik="Risk Sıralaması (En Riskli Önce)" ipucu={`${riskler.length} havza · ${gostergeIfade} · verisi olmayan gösterge puana girmez`}>
     <div class="risk-listesi">
       {riskler.map((r, i) => (
         <a href={`/havzalar/${r.ad.replace(/\s*Havzası\s*$/,'').toLowerCase().replace(/ı/g,'i').replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s').replace(/ö/g,'o').replace(/ç/g,'c').replace(/\s+/g,'-')}/`} class="risk-satir">
           <span class="risk-sira">{i + 1}</span>
           <span class="risk-ad">{r.ad}</span>
           <span class="risk-bar">
-            <span class="risk-dolgu" style={`width:${r.puan}%;background:${r.renk}`}></span>
+            <span class="risk-dolgu" style={`width:${r.puan ?? 0}%;background:${r.renk}`}></span>
           </span>
-          <span class="risk-puan">{r.puan}</span>
-          <span class="risk-seviye" style={`color:${r.renk}`}>{r.seviye === 'yuksek' ? 'YÜKSEK' : r.seviye === 'orta' ? 'ORTA' : 'DÜŞÜK'}</span>
+          <span class="risk-puan">{r.puan ?? '—'}</span>
+          <span class="risk-seviye" style={`color:${r.renk}`}>{r.seviye === 'yuksek' ? 'YÜKSEK' : r.seviye === 'orta' ? 'ORTA' : r.seviye === 'dusuk' ? 'DÜŞÜK' : 'HESAPLANAMADI'}</span>
         </a>
       ))}
     </div>
   </Katman>
 
-  <Katman baslik="Risk Göstergeleri" ipucu="6 bileşen · her birinin anlamı" ton="murekkep">
+  <Katman baslik="Risk Göstergeleri" ipucu={`${Object.keys(AGIRLIK).length} tanımlı bileşen · ${gostergeIfade} hesaplanır`} ton="murekkep">
     <div class="gosterge-grid">
       <div class="gosterge-kart">
         <strong>GRACE Eğilimi (%30)</strong>
@@ -55,23 +67,32 @@ const sema = [{
       </div>
       <div class="gosterge-kart">
         <strong>Baraj Doluluk (%25)</strong>
-        <p>EPİAŞ günlük verisinden havzadaki enerji barajlarının anlık doluluk yüzdesi. Düşük doluluk = yüksek risk.</p>
+        <p>EPİAŞ günlük verisinden havzadaki enerji barajlarının en son kayıtlı doluluk yüzdesi. Düşük doluluk = yüksek risk.
+          Bu gösterge {barajliHavza}/25 havzada hesaplanabiliyor; EPİAŞ kapsamı enerji üretimiyle ilişkili rezervuarlardır,
+          kalan havzalarda baraj kaydı yoktur ve gösterge puana katılmaz.</p>
       </div>
       <div class="gosterge-kart">
         <strong>YAS Rezervi (%20)</strong>
         <p>DSİ 2024 verisinden yeraltı suyu işletme rezervinin beslenime oranı. Düşük oran = yüksek risk.</p>
       </div>
-      <div class="gosterge-kart">
-        <strong>Tahsis Durumu (%15)</strong>
-        <p>Havzanın su tahsisine açık/kapalı olması. Kapalı/kısıtlı havza = yüksek risk.</p>
+      <div class="gosterge-kart gosterge-veri-yok">
+        <strong>Tahsis Durumu (%15) — veri yok</strong>
+        <p>Havzanın su tahsisine açık/kapalı olması kapalı havzalarda yüksek risk göstergesi olurdu; ancak{' '}
+          <strong>havza bazlı açık tahsis verisi kamuya yayımlanmıyor</strong> (25/25 havzada kayıt boş).
+          Bu gösterge <strong>puana katılmıyor</strong>; veri yayımlanırsa kendiliğinden devreye girer.</p>
       </div>
       <div class="gosterge-kart">
         <strong>Yüzey Suyu Potansiyeli (%10)</strong>
         <p>DSİ 2024 verisinden havzanın yıllık ortalama yüzey suyu potansiyeli (km³/yıl). Düşük potansiyel = yüksek risk.</p>
       </div>
       <div class="gosterge-kart gosterge-uyari">
-        <strong>Önemli Uyarı</strong>
-        <p>Risk puanı bilimsel bir GÖSTERGEDİR; yatırım kararı veya hukuki bağlayıcılığı YOKTUR. Saha etüdü ve hidrojeolojik raporla doğrulanmalıdır.</p>
+        <strong>Bu puan nedir, ne değildir</strong>
+        <p>Risk puanı <strong>suharitasi.com'un kendi bileşik göstergesidir</strong>; resmî bir sınıflandırma değildir
+          ve hiçbir kurum tarafından yayımlanmamıştır. Göstergeler ve ağırlıkları bu portal tarafından seçilmiştir.
+          Verisi olmayan gösterge puana katılmaz; kalan göstergelerin ağırlıkları kendi aralarında yeniden
+          ölçeklenir. Yatırım kararı veya hukuki bağlayıcılığı yoktur; saha etüdü ve hidrojeolojik raporla
+          doğrulanmalıdır.</p>
+        <p class="serh-hukuk">Bu sayfa bilgilendirme amaçlıdır; somut bir uyuşmazlığa dair hukuki görüş veya tavsiye niteliği taşımaz.</p>
       </div>
     </div>
   </Katman>
@@ -108,6 +129,9 @@ const sema = [{
   .gosterge-kart strong { display: block; font-size: 0.88rem; margin-bottom: 0.3rem; color: var(--metin); }
   .gosterge-kart p { font-size: 0.8rem; color: var(--metin-soluk); margin: 0; line-height: 1.45; }
   .gosterge-uyari { border-left: 3px solid var(--kehribar-metin); }
+  /* 27.08 K1: verisi olmayan gösterge görsel olarak da ayrışır */
+  .gosterge-veri-yok { border-left: 3px solid var(--murekkep-500); opacity: 0.92; }
+  .serh-hukuk { margin-top: 0.5rem !important; font-family: var(--mono); font-size: 0.68rem !important; }
   @media (max-width: 560px) {
     .risk-ad { font-size: 0.82rem; }
     .risk-bar { flex: 1; }

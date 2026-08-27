@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
+import HukukSerhi from '../../components/HukukSerhi.astro';
 
 // İki küme: izin/başvuru süreci arayan okur (P3) ile yaptırım/dava ekseninde
 // okuyan (P1) aynı düz listede kaybolmasın. Küme içi sıralama başlığa göre;
@@ -59,6 +60,9 @@ const noYaz = (i: number) => String(i + 1).padStart(2, '0');
       </ul>
     </section>
   ))}
+
+  {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
+  <HukukSerhi />
 </Sayfa>
 
 <style>

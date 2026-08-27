@@ -10,6 +10,7 @@ import { TARIH } from '../../data/guncellik.js';
 import OzCevap from '../../components/OzCevap.astro';
 import { personalar } from '../../data/persona.js';
 import { EPOSTA } from '../../data/site';
+import HukukSerhi from '../../components/HukukSerhi.astro';
 
 const ozCevap =
   'Sektörünüzü seçin; yükümlülüğünüzü, son başvuru tarihini ve ilk adımları ' +
@@ -68,7 +69,7 @@ const sema = [
       aria-label="Sektör ara" aria-controls="durumum-izgara" />
     <p class="ara-not">Arama build-time listeden istemci-tarafı; JavaScript
       kapalıysa sektörlerin tamamı zaten aşağıda listelidir.</p>
-    <p id="durumum-bos" class="ara-bos" hidden>Eşleşen sektör yok — aşağıdan
+    <p id="durumum-bos" class="ara-bos" hidden>Eşleşen sektör yok — aşağıdan{' '}
       <a href={`mailto:${EPOSTA}?subject=${encodeURIComponent('Sektör durumu')}`}>doğrudan iletin</a>.</p>
   </div>
 
@@ -108,13 +109,16 @@ const sema = [
     )}
 
     <div class="yok">
-      Listede yoksanız — durumunuzu
+      Listede yoksanız — durumunuzu{' '}
       <a href={`mailto:${EPOSTA}?subject=${encodeURIComponent('Sektör durumu')}`}>doğrudan iletin</a>,
       size özel değerlendirelim.
     </div>
   </div>
 
   <script type="module" src="/s/durumum.js" is:inline></script>
+
+  {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
+  <HukukSerhi />
 </Sayfa>
 
 <style>

@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import Bulten from '../../components/Bulten.astro';
+import HukukSerhi from '../../components/HukukSerhi.astro';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('su-kanunu');
@@ -55,4 +56,7 @@ const sema = [{
     )}
   </div>
   {bultenli && <Bulten etiket="taslak-takibi" />}
+
+  {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
+  <HukukSerhi />
 </Sayfa>

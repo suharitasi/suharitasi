@@ -20,6 +20,7 @@ const ilgiliPersonalar = tumPersonalar
   .map((x) => ({ ad: x.ad, slug: x.slug }));
 import { getEntry } from 'astro:content';
 import { YAZAR, OG_GORSEL, EPOSTA } from '../../data/site';
+import HukukSerhi from '../../components/HukukSerhi.astro';
 
 const giris = await getEntry('rehberler', 'kuyu-tasima');
 if (!giris) throw new Error('kuyu-tasima koleksiyon girişi yok — sayfa render edilemez.');
@@ -522,6 +523,9 @@ const sema = [
   <YazarKutusu />
   <SonrakiAdim konu="Kuyu taşıma" personalar={ilgiliPersonalar} />
   <IlgiliRehberler slugler={d.ilgili} haric={giris.id} />
+
+  {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
+  <HukukSerhi />
 </Sayfa>
 
 <style>

@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import Bulten from '../../components/Bulten.astro';
+import HukukSerhi from '../../components/HukukSerhi.astro';
 
 const girisler = (await getCollection('su-kanunu')).sort(
   (a, b) => b.data.tarih.valueOf() - a.data.tarih.valueOf()
@@ -35,6 +36,9 @@ const noYaz = (i: number) => String(i + 1).padStart(2, '0');
     ))}
   </ul>
   <Bulten etiket="su-kanunu" />
+
+  {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
+  <HukukSerhi />
 </Sayfa>
 
 <style>

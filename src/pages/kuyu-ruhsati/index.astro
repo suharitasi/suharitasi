@@ -4,6 +4,7 @@
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import { yayinlananIller } from '../../data/il-profil.js';
+import HukukSerhi from '../../components/HukukSerhi.astro';
 
 const iller = yayinlananIller();
 const aciklama =
@@ -21,7 +22,7 @@ const aciklama =
 
   <p class="arac-baglanti">
     <a href="/ilimde-kim-yetkili/">"İlimde kim yetkili?" aracı</a> ile ilinizi seçip özeti tek
-    ekranda görün; genel süreç için
+    ekranda görün; genel süreç için{' '}
     <a href="/rehberler/kuyu-ruhsati/">kuyu ruhsatı rehberi</a>ne bakın.
   </p>
 
@@ -32,6 +33,9 @@ const aciklama =
       </li>
     ))}
   </ul>
+
+  {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
+  <HukukSerhi />
 </Sayfa>
 
 <style>

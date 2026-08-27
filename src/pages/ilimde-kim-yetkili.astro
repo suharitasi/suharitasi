@@ -13,6 +13,7 @@ import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
 import { TARIH } from '../data/guncellik.js';
 import { tumIlProfilleri } from '../data/il-profil.js';
+import HukukSerhi from '../components/HukukSerhi.astro';
 
 const profiller = tumIlProfilleri();
 
@@ -124,6 +125,9 @@ const aciklama =
       goster(parametre);
     }
   </script>
+
+  {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
+  <HukukSerhi />
 </Sayfa>
 
 <style>

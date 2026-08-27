@@ -5,6 +5,7 @@ import SayfaBasi from '../../components/SayfaBasi.astro';
 import OzCevap from '../../components/OzCevap.astro';
 import YazarKutusu from '../../components/YazarKutusu.astro';
 import { YAZAR, OG_GORSEL } from '../../data/site';
+import HukukSerhi from '../../components/HukukSerhi.astro';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('vakalar');
@@ -216,6 +217,9 @@ if (kalip2 && !d.kahraman)
   <YazarKutusu />
   </Fragment>
 )}
+
+  {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
+  <HukukSerhi />
 </Sayfa>
 
 <style>

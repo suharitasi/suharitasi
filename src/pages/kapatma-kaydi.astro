@@ -30,6 +30,7 @@ import { TARIH, enYeni } from '../data/guncellik.js';
 const damgaISO = enYeni(TARIH.potansiyel, TARIH.rgTarama);
 import OzCevap from '../components/OzCevap.astro';
 import { KAPATMA_KAYITLARI, KAPATMA_OZET, KAPATMA_SERHI } from '../data/vitrin.js';
+import HukukSerhi from '../components/HukukSerhi.astro';
 
 const canonical = new URL('/kapatma-kaydi/', Astro.site).href;
 
@@ -152,6 +153,9 @@ const sema = [
   <p class="kk-alt">
     Kayıtların künyesi ve derleme yöntemi: <a href="/arsiv/">veri arşivi</a>.
   </p>
+
+  {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
+  <HukukSerhi />
 </Sayfa>
 
 <style>
