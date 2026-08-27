@@ -159,3 +159,71 @@ Altı commit, grup grup. Tek bir grubu geri almak da mümkün — her commit
 kendi içinde tutarlı. Veri dosyaları değişmedi; arşive taşınan dosyalar
 `arsiv/jrc-yuzey-suyu/` ve `arsiv/olu-kod-2708/` altında duruyor,
 revert onları eski yerlerine geri getirir.
+
+---
+
+# EK TUR — KK-6 ve KK-7 (27.08.2026, kullanıcı kararı)
+
+## KK-6 · `server/` → arşivlendi, kaldırıldı
+
+**Karar: SİLME, ARŞİVLE.** Uygulandı.
+
+**Dizin neydi (adım 1).** Yalnız `node_modules` (195 üst düzey giriş,
+`.package-lock.json`'a göre 215 paket; kurulum 04.08.2026). Lock dosyası
+proje adını **`suharitasi-api`** veriyor — Express + better-sqlite3 +
+puppeteer arka ucu. `package.json`, kaynak kod, README, Dockerfile,
+betik, `.env`, unit dosyası: **hiçbiri yok**. 5.255 girdi, 54.152.186 bayt.
+
+**Altı yüzey — hiçbirinde dizine referans yok** (ayrıntı: karar dosyası
+KK-6 ve `/home/suha/arsiv/server-20260827.NOT.txt`). İki bulgu ayrıca
+kayda geçti, ikisi de kapsam dışı ve **dokunulmadı**:
+`nginx/sites-enabled/suharitasi-api` (yol değil port proxy'si `:3099`,
+nginx **inactive**, yasak alan `api.arslanhukuk.tr`) ve `.env` içindeki
+`API_PORT` (yol içermiyor).
+
+**Doğrulama sırası — dizin kaldırılmadan ÖNCE:** tar.gz alındı →
+sha256 kaydedildi → **ayrı geçici dizine açıldı** → girdi sayısı
+**5.255 = 5.255** ✔ · boyut **54.152.186 = 54.152.186** ✔ · içerik
+ayrıştırılarak okundu (`.package-lock.json` 215 kayıt, `.bin` 12 giriş,
+`better-sqlite3@11.10.0`) → `diff -r` **fark yok** → geçici dizin silindi
+→ **ancak bundan sonra** `server/` kaldırıldı.
+
+**⚠ Bu arşiv yeniden kurulamaz** (package.json/lock yok) — tar.gz bu
+bağımlılık ağacının tek kopyasıdır.
+
+## KK-7 · logo → yalnız yedek, kalem AÇIK
+
+Dosya **depodan kaldırılmadı**, sitede basılan logo **değiştirilmedi**.
+Import ölçümü: `src/`, `public/`, `arac/`, `izleme/`,
+`astro.config.mjs`, `package.json` → **referans 0**; `dist/` çıktısında
+da yok. Yedek: `/home/suha/arsiv/arslan-logo-20260827.svg`
+(sha256 `ee69f0a9…`, özgünle birebir).
+Sitede basılan: `public/assets/logo-lockup.svg` (üst bar) +
+`public/favicon.svg` (sekme + JSON-LD). **"Hangi logo basılacak" kararı
+kullanıcıda — kalem kapatılmadı.**
+
+## Kapanış ölçümleri
+```
+build            → exit 0
+HTML dosya       → 523 (taban 523)  · küme diff BOŞ ✔
+sitemap <loc>    → 519 (taban 519)  · küme diff BOŞ ✔
+apex /           → 200
+www              → 301 → https://suharitasi.com/
+disk             → 27 GB boş (arşivleme öncesi de 27 GB; 67 MB geri alındı)
+```
+
+## GERİ ALMA — bu ek tur
+
+**`server/` dizinini geri yükle:**
+```bash
+cd /home/suha/projeler/suharitasi
+sha256sum -c /home/suha/arsiv/server-20260827.tar.gz.sha256   # önce doğrula
+tar -xzf /home/suha/arsiv/server-20260827.tar.gz -C .
+find server/ | wc -l    # 5255 vermeli
+```
+
+**Logo:** geri alınacak bir şey yok — depodaki dosyaya dokunulmadı,
+yalnız `/home/suha/arsiv/` altına kopya alındı.
+
+**Kayıt commit'i:** `git revert <bu commit>` — yalnız belge değişikliğini
+geri alır; arşiv dosyaları `/home/suha/arsiv/` altında depo dışında durur.

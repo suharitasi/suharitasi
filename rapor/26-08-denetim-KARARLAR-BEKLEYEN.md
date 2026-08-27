@@ -56,15 +56,71 @@ tek üst-özeti. Cümle `HERO_ALT` (`src/data/anasayfa-satis.js`) ve o dosya
 **ağaçta onayınızı bekleyen hero değişikliğinin parçası** — bu turda
 dokunulmadı.
 
-## KK-6 · K25 · `server/` 67 MB yetim dizin · [GERİ ALINAMAZ]
-**Ölçüm:** içinde yalnız `node_modules` (192 paket), git izli dosya 0,
-**`package.json` ve lock dosyası YOK** → silinirse `npm install` ile geri
-gelmez. Yayına girmiyor, hiçbir script çağırmıyor.
-**Karar:** silinsin mi, yoksa dursun mu.
+## ✅ KK-6 · `server/` 67 MB yetim dizin — KAPANDI (27.08.2026, arşivlendi)
 
-## KK-7 · `src/assets/arslan-logo.svg` · [MARKA KİMLİĞİ]
-Repo genelinde 0 referans. Ölü görünüyor ama logo seçimi zaten açık bir
-kullanıcı kalemi (§0.2) — bu dosya aday olabilir. Taşınmadı.
+**Kullanıcı kararı: SİLME, ARŞİVLE.** Uygulandı.
+
+**Dizin neydi.** İçinde yalnız `node_modules` vardı (195 üst düzey giriş,
+`.package-lock.json`'a göre 215 paket kaydı; kurulum 04.08.2026). Lock
+dosyası proje adını **`suharitasi-api`** veriyor; bağımlılıklar Express +
+better-sqlite3 + puppeteer arka ucuna işaret ediyor. `package.json`,
+kaynak kod, README, Dockerfile, betik, `.env`, systemd unit — **hiçbiri
+yoktu**, yalnız bağımlılık ağacı kalmıştı.
+
+**Altı yüzey tarandı, hiçbirinde DİZİNE referans yok:**
+
+| Yüzey | Sonuç |
+|---|---|
+| Depo içi (kod · betik · sağlık · build) | Yol referansı **YOK**. `server/` dizesi yalnız BELGELERDE (KARARLAR, SIRADAKILER, rapor/*) ve hepsi "yetim" kaydı. `package.json`'da workspaces/script yok |
+| crontab | suha: **yok** (19 satır) · root: *"no crontab for root"* · `/etc/cron*`: **yok** |
+| systemd | `suharitasi` unit'i yok; `/etc/systemd/system/` + `/lib/systemd/system/` içinde yol referansı **yok**. Çalışan `bist-api` ve `muvekkil-portal` (ikisi de bu işin kapsamı DIŞINDA) bu dizini kullanmıyor — `WorkingDirectory`/`ExecStart` ölçüldü |
+| caddy (aktif) | Caddyfile'da `suharitasi` referansı **yok** |
+| nginx (**inactive**) | `sites-enabled/suharitasi-api` dosyası **VAR** — ama dosya sistemi yolu içermiyor: `api.arslanhukuk.tr` → `proxy_pass 127.0.0.1:3099`. nginx çalışmıyor, `:3099` dinlenmiyor. **Dokunulmadı** (yasak alan) |
+| `.env` | `API_PORT` anahtarı var, değeri nginx proxy hedefiyle aynı port. Dizin **YOLU geçmiyor**. **Dokunulmadı** |
+| Süreç / port / lsof | `:3099` dinlenmiyor · `ps aux`'ta bu dizinden koşan süreç yok · `/proc/*/cwd` taramasında yok · `lsof +D` açık dosya yok |
+
+**Arşiv doğrulaması — dizin kaldırılmadan ÖNCE yapıldı:**
+- `/home/suha/arsiv/server-20260827.tar.gz` (12 MB) · sha256
+  `faeff137…23157f` (yanında `.sha256` dosyası)
+- Ayrı geçici dizine açıldı: **5.255 = 5.255** girdi ✔ ·
+  **54.152.186 = 54.152.186** bayt ✔
+- İçerik okunabilirliği: `.package-lock.json` ayrıştırıldı (215 kayıt),
+  `.bin` 12 giriş, `better-sqlite3@11.10.0` okundu
+- `diff -r` özgün ↔ açılan: **FARK YOK** (bit-kıyas geçti)
+- Geçici dizin silindi; **ancak bundan sonra** özgün dizin kaldırıldı
+
+**⚠ Arşiv yeniden kurulamaz:** `package.json`/lock olmadığı için
+`npm install` ile geri gelmez — bu tar.gz bu bağımlılık ağacının **tek
+kopyasıdır**. Künye ve geri yükleme komutu:
+`/home/suha/arsiv/server-20260827.NOT.txt`.
+
+**Not — aynı terk edilmiş projenin iki kalıntısı duruyor** (ikisi de bu
+işin kapsamı dışı, dokunulmadı): `nginx/sites-enabled/suharitasi-api`
+(yasak alan `api.arslanhukuk.tr`, nginx zaten inactive) ve `.env`
+içindeki `API_PORT`. İstenirse ayrı bir işte temizlenebilir.
+
+## KK-7 · `src/assets/arslan-logo.svg` · [MARKA KİMLİĞİ] — **AÇIK**
+
+**27.08.2026: yalnız YEDEK alındı, dosya depoda YERİNDE DURUYOR.**
+Sitede basılan logo **değiştirilmedi**.
+
+**Ölçüm (27.08):** dosya koddan hiçbir yerde import edilmiyor — `src/`,
+`public/`, `arac/`, `izleme/`, `astro.config.mjs`, `package.json`
+tarandı, referans **0**; `dist/` çıktısında da yok, yani **yayına
+çıkmıyor**. Adı yalnız denetim belgelerinde geçiyor.
+
+**Sitede fiilen basılan logo (dokunulmadı):**
+- `public/assets/logo-lockup.svg` → `PaylasilanMenu.astro:18` (üst bar)
+- `public/favicon.svg` → `Sayfa.astro:228` (sekme ikonu) ve
+  `Sayfa.astro:133` (JSON-LD `Organization.logo`)
+
+**Yedek:** `/home/suha/arsiv/arslan-logo-20260827.svg` (sha256 `ee69f0a9…`,
+özgünle birebir) + `arslan-logo-20260827.NOT.txt`.
+
+**KARAR SİZDE — kalem kapatılmadı:** `arslan-logo.svg` ile
+`logo-lockup.svg` arasında seçim yapılacak mı, yoksa `arslan-logo.svg`
+tamamen kaldırılacak mı? *"Hangi logo basılacak"* bir marka kimliği
+kararıdır; karar verilene kadar dosya depoda duruyor (bkz. §0.2).
 
 ## KK-8 · Devralınan üç açık karar (§0)
 `0.1` Rozet "DANIŞMANLIK" · `0.2` Logo seçimi · `0.3` Hero kıyas kareleri
