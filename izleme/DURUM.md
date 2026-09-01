@@ -1,6 +1,6 @@
 # Su Kanunu İzleme — DURUM
 
-Son koşu (UTC): **2026-08-31T16-15-01Z**
+Son koşu (UTC): **2026-09-01T05-45-01Z**
 
 Özet: 12 hedef · ✳ olay: 2 · 🔴 hata: 0
 
@@ -9,12 +9,12 @@ Son koşu (UTC): **2026-08-31T16-15-01Z**
 | Hedef | Katman | Durum | Not |
 |---|---|---|---|
 | RG-gunluk | M1 | 🟢 tamam | yayınlandı, eşleşme yok (ana:0 kanun-maddesi; ) |
-| tbmm-kanun-teklifleri | K1 | ✳ OLAY | içerik değişti (~4 satır) |
+| tbmm-kanun-teklifleri | K1 | ✳ OLAY | içerik değişti (~6 satır) |
 | tbmm-cevre-komisyonu | K1 | 🟢 tamam | değişiklik yok |
 | tbmm-tarim-orman-komisyonu | K1 | 🟢 tamam | değişiklik yok |
 | tbmm-komisyon-gundemleri | K1 | 🟢 tamam | değişiklik yok |
 | tarimorman-sygm | K4 | 🟢 tamam | değişiklik yok |
-| tarimorman-anasayfa | K4 | ✳ OLAY | içerik değişti (~6 satır) |
+| tarimorman-anasayfa | K4 | ✳ OLAY | içerik değişti (~10 satır) |
 | dsi-duyuru-listesi | K4 | 🟢 tamam | değişiklik yok |
 | su-kanunu-taslak-pdf | K4 | 🟢 tamam | Last-Modified değişmedi (Thu, 31 Oct 2019 08:20:54 GMT) |
 | su-kanunu-taslak-2026 | K4 | 🟢 tamam | Last-Modified değişmedi (Tue, 28 Apr 2026 10:44:15 GMT) |
@@ -23,6 +23,8 @@ Son koşu (UTC): **2026-08-31T16-15-01Z**
 
 ## Son 10 olay
 
+- 2026-09-01T05-45-01Z | tbmm-kanun-teklifleri | içerik değişti (~6 satır) → arsiv/tbmm-kanun-teklifleri/2026-09-01T05-45-01Z/
+- 2026-09-01T05-45-01Z | tarimorman-anasayfa | içerik değişti (~10 satır) → arsiv/tarimorman-anasayfa/2026-09-01T05-45-01Z/
 - 2026-08-31T16-15-01Z | tbmm-kanun-teklifleri | içerik değişti (~4 satır) → arsiv/tbmm-kanun-teklifleri/2026-08-31T16-15-01Z/
 - 2026-08-31T16-15-01Z | tarimorman-anasayfa | içerik değişti (~6 satır) → arsiv/tarimorman-anasayfa/2026-08-31T16-15-01Z/
 - 2026-08-31T05-45-01Z | tbmm-kanun-teklifleri | içerik değişti (~8 satır) → arsiv/tbmm-kanun-teklifleri/2026-08-31T05-45-01Z/
@@ -31,8 +33,6 @@ Son koşu (UTC): **2026-08-31T16-15-01Z**
 - 2026-08-29T16-15-01Z | tbmm-kanun-teklifleri | içerik değişti (~6 satır) → arsiv/tbmm-kanun-teklifleri/2026-08-29T16-15-01Z/
 - 2026-08-29T05-45-01Z | tbmm-kanun-teklifleri | içerik değişti (~8 satır) → arsiv/tbmm-kanun-teklifleri/2026-08-29T05-45-01Z/
 - 2026-08-29T05-45-01Z | tarimorman-anasayfa | içerik değişti (~4 satır) → arsiv/tarimorman-anasayfa/2026-08-29T05-45-01Z/
-- 2026-08-28T16-15-01Z | tbmm-kanun-teklifleri | içerik değişti (~4 satır) → arsiv/tbmm-kanun-teklifleri/2026-08-28T16-15-01Z/
-- 2026-08-28T16-15-01Z | tarimorman-anasayfa | içerik değişti (~19 satır) → arsiv/tarimorman-anasayfa/2026-08-28T16-15-01Z/
 _(henüz olay yok)_
 
 ---
