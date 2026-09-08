@@ -129,6 +129,11 @@ const kurum = {
   description:
     "Türkiye'nin su verisi, havzaları ve su mevzuatını tek haritada birleştiren bağımsız bilgi portalı.",
   email: EPOSTA,
+  // Faz C (08.09.2026, karar-kapatma §D6, KULLANICI KARARI): telefon yalnız
+  // yapılandırılmış veride (schema.org Organization.telephone). Görünür metinde
+  // ve düğme href'inde numara YOK (D4); hedef değişirse functions/whatsapp.js
+  // + public/_redirects + index.astro/harita.astro kopyaları da değişir.
+  telephone: '+90 532 449 71 44',
   // B3 (25.08.2026, geo-schema): logo — mevcut gerçek varlık favicon.svg
   // (yeni görsel üretilmedi; ayrı logo dosyası doğarsa burası güncellenir).
   logo: `${kok}favicon.svg`,

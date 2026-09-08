@@ -181,3 +181,33 @@ sayfalama), yanlış/tanımsız anahtar → 302. Canlı kanıt aşağıda.
 `beklenenBaslik: {x-kaynak: fn}`; md3 artık yönlendirme çalışıp başlık
 yoksa SARI verir ("Function devre dışı, _redirects yedeği servis ediyor —
 sayaç saymıyor"); yönlendirme kopması yine KIRMIZI.
+
+### Faz B — canlı ölçüm (deploy c78be94, 16:59Z)
+- `/whatsapp/` ve `/whatsapp` → **302 + `x-kaynak: fn`** + `cache-control:
+  no-store` + HSTS → isteği Function karşılıyor; `_redirects` bu yola
+  uygulanmıyor (doküman + ölçüm uyumlu). Statik sayfada (`/havzalar/gediz/`)
+  `x-kaynak` yok → Function yalnız /whatsapp'ta çağrılıyor (statik istekler
+  ücretsiz sınıfta kalır). `_routes.json` elle yazmak gerekmedi.
+- **B5 canlı:** KV bağlı değilken `/whatsapp/?sayac=<anahtar>` → 302 (JSON
+  yok, sızıntı yok); düğme yolu çalışıyor. `arac/whatsapp-sayac.sh --ozet` →
+  "SAYAÇ HENÜZ KURULMADI … KV bağlaması (WA_SAYAC) ya da SAYAC_ANAHTAR
+  secret'ı panelde eksik" (exit 3) — kullanıcı KV'yi bağlamayı unutursa düğme
+  kırılmaz, betik durumu söyler.
+
+## FAZ C — §D6 şema telefon alanı (KULLANICI KARARI: eklenecek)
+- C1: `Sayfa.astro` `kurum` (Organization #kurum), `index.astro` ve
+  `harita.astro` Organization kopyalarına `telephone: '+90 532 449 71 44'`.
+  C2: yeni düğüm yok; LegalService eklenmedi.
+- C3 doğrulama: `telephone` schema.org `Organization` özelliğidir (Thing →
+  Organization.telephone, Text). Build sonrası 523 HTML'in JSON-LD'si
+  ayrıştırıldı: **geçersiz 0**; Faz C öncesi/sonrası JSON-LD farkı yalnız
+  `"telephone"` alanı; alan **520 sayfada** (`404.html`, `harita-pilot`,
+  `stil-pilot` Organization düğümü taşımıyor — 404 ve iki noindex pilot).
+- **C4 açık beyan:** numara artık 520 sayfanın kaynağında JSON-LD içinde
+  görünür (`view-source`da okunur); görünür metinde ve `href`'te yok.
+  D4'ün bot-koruma amacı bilinçli olarak bilgi paneli/LocalBusiness
+  sinyaline tercih edildi (kullanıcı kararı). Numaranın üç yeri: JSON-LD ·
+  `functions/whatsapp.js` HEDEF · `public/_redirects` yedek.
+- Görünür çıktı koruması: C düzenlemeleri stash'lenip HEAD build'i alındı
+  (`cikti/dist-once3`), geri alınıp yeniden build → **523/523 görünür metin
+  bit-eşit**, sitemap 519/519.
