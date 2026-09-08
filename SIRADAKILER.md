@@ -8,20 +8,22 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
-═══ 08.09.2026 — GSC ÖLÇÜM TURU + WHATSAPP (rapor/08-09-gsc-ticari-whatsapp.md
-· karar: rapor/08-09-KARAR-KULLANICI.md · KARARLAR §36) ═══
+═══ 08.09.2026 — GSC ÖLÇÜM TURU + WHATSAPP + KARAR KAPATMA
+(rapor/08-09-gsc-ticari-whatsapp.md · rapor/08-09-karar-kapatma.md ·
+karar: rapor/08-09-KARAR-KULLANICI.md · KARARLAR §36-37) ═══
+- [ ] **09.09.2026 Çar 10:30 UTC — ilk cron'lu haftalık GSC + indeks izleme
+  koşumu** (arac/gsc-haftalik.sh; üç rehber: kuyu-ruhsati / su-tahsisi /
+  kuyu-tasima; 08.09 17:16Z tabanı: üçü "Tarandı - şu anda dizine eklenmiş
+  değil"; değişim Telegram'a düşer).
 - [ ] **06.10.2026 — GSC + WhatsApp kıyas ölçümü.** Taban (GSC 09.08–05.09):
   193 tıklama · 13.092 gösterim · CTR %1,5 · poz 9,7 · hukuk sayfaları payı
-  29/193 (%15) · WhatsApp tıklaması 0 (ölçüm yok, karar §D7). Ayrıca üç
-  rehberin dizin durumu (kuyu-ruhsati / su-tahsisi / kuyu-tasima) ve nehir
-  sayfalarının CTR'si (taban %0,35, 29.08–05.09).
-- [ ] **KULLANICI ONAYI BEKLİYOR — WhatsApp düğmesi canlı testi:** üç sayfa
-  (ana sayfa, bir havza, bir rehber), mobilde imza satırı kapanmıyor mu,
-  wa.me açılıyor mu. Kareler: cikti/denetim/whatsapp-dugme/.
-- [ ] KULLANICI KARARI (rapor/08-09-KARAR-KULLANICI.md): §A 777 yazar adı
-  (OpenAlex) · §B OSM tip çelişkisi · §C 3 rehber dizinde değil (GSC'de
-  "dizine eklenmesini iste") · §D6 şema telefon · §D7 tıklama ölçümü
-  (öneri: Pages Function sayaç + CF Web Analytics).
+  29/193 (%15) · nehir türü CTR %0,35 · WhatsApp tıklaması: sayaç kodu canlı,
+  KV bağlanınca 0'dan başlar (karar dosyası Kalem 1) · md25 deploy yaşı
+  kalemi yeşil · akademik künye 1.118 / yazar adı 494.
+- [ ] **KULLANICI ONAYI BEKLİYOR (§E) — WhatsApp düğmesi canlı testi:** üç
+  sayfa, mobilde imza satırı, wa.me açılışı; kareler
+  cikti/denetim/whatsapp-dugme/. Panel adımları (KV bağlama, secret, Web
+  Analytics) karar dosyasında Kalem 1-2.
 
 ═══ ASTRO 5→7 YAYINDA (26.08.2026, 9. seans; KARARLAR §32;
 rapor/26-08-astro7-faz1.md + rapor/26-08-astro7-faz2-yayin.md) ═══

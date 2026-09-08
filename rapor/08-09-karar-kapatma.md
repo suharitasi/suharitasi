@@ -348,3 +348,120 @@ kayıtta … çelişkisi şerhli"; KAYNAKLAR.md OSM bloğuna tür şerhi.
 Doğrulama: build 522/519; Faz D build'i (`cikti/dist-once5`) ile kıyas
 görünür metin değişen **58** = 57 göl + /kullanilanlar/; **465 sayfa
 bit-eşit**; JSON-LD geçersiz 0.
+
+## FAZ F — §C indeks izleme + kapanış
+
+**F1a taban ve KRİTİK BULGU:** 11:52Z ölçümünde üç rehber "Gönderildi ve
+dizine eklendi" (PASS, tarama 11:38Z) idi. 17:16Z (haftalık betik,
+servis hesabı) ve 17:17Z (MCP) ölçümleri **AYNI 11:38Z taramasına ait
+sonucu "Tarandı - şu anda dizine eklenmiş değil" (NEUTRAL)** verdi → elle
+dizin isteği kalıcı olmadı; Google tarama sonrası değerlendirmede üçünü
+yeniden dışarıda bıraktı. Haftalık taban (state): üçü NEUTRAL, tık 0 /
+göst 0 (pencere 30.08–05.09). Karar dosyası Kalem 3.
+
+**F1b/F1c uygulama:** `arac/gsc-haftalik.py` — aynı servis hesabı + aynı
+`webmasters.readonly` kapsamıyla ikinci istemci `build("searchconsole","v1")`
+(yerel keşif belgesi: inspect scopes readonly'yi kapsıyor; MCP aynı
+anahtarla çalışıyordu); haftada 3 URL denetimi (kota 2.000/gün). Tık/göst
+zaten çekilen `bu_sayfa`'dan (ek Search Analytics sorgusu yok; www satırı
+toplanır). State `/home/suha/gsc-cikti/indeks-durum.json` (depo dışı;
+`.gitignore` askısı `/rapor/gsc-haftalik/indeks-durum.json`). Telegram
+yalnız: coverageState/verdict değişimi · ilk gösterim · ilk tıklama · ilk
+kayıt · denetim hatası. Değişiklik yoksa sessiz. Tüm izleme çıktısı
+**stderr**'e (sarmalayıcı stdout'u "yazıldı: <yol>" diye ayrıştırır —
+stdout'a eklenen satır koşumu düşürürdü; keşif §1.8). Rapor dosyasına
+"İndeks durumu" tablosu eklendi. `--kuru` bayrağı (denetle + farkı göster;
+yazma/gönderme yok); `gsc-haftalik.sh` argv'yi python'a geçirir. Cron
+değişmedi (Çar 10:30 UTC, sonraki 09.09).
+
+**F1d falsifikasyon (ham çıktı):**
+1. `--kuru` (python doğrudan): stderr 3 satır `indeks /rehberler/…:
+   NEUTRAL · Tarandı - şu anda dizine eklenmiş değil · tık 0 göst 0` +
+   "KURU kip — durum dosyası YAZILMADI, Telegram GÖNDERİLMEDİ"; state dosyası
+   yok, uyari.log +0.
+2. Gerçek koşum (`arac/gsc-haftalik.sh`): exit 0; log `ÇIKIŞ · exit=0 ·
+   dosya=/home/suha/gsc-cikti/2026-09-05.md · bayt=7331` (stdout kısıtı
+   bozulmadı); state yazıldı (3 URL, son_kosum 17:16:40Z); Telegram
+   **message_id 8666** "GSC indeks izleme: 3 değişiklik — İLK KAYIT ×3";
+   rapor dosyasında tablo.
+3. Tekrar koşum: Telegram +0, son_kosum 17:17:01Z güncellendi (değişiklik
+   yok → sessiz).
+4. Hata yolu (`GSC_IZLENEN_EZME=https://example.com/`, ayrı state dizini):
+   HTTP 403 → rapor yine yazıldı, exit 0, state `denetim_hatasi: "2026-09-08
+   HTTP 403"`, Telegram "1 URL denetlenemedi".
+Indexing API kullanılmadı.
+
+**F3 build:** 522 sayfa / sitemap 519 — 27.08 denetim tabanıyla (522/519)
+küme-eş, URL kümesi birebir aynı.
+
+**F4 canlı (377d523, 17:18Z):** apex 200 · www 301 → apex · üç sayfada
+düğme + JSON-LD telephone · `/whatsapp/` 302 + `x-kaynak: fn` ·
+dokunulmayan beş sayfa (havzalar/sakarya, rehberler/kuyu-ruhsati, durumum,
+hangi-kurum, vaka/meysu) canlı ↔ yerel görünür metin ve JSON-LD birebir.
+
+**F5 IndexNow:** telephone JSON-LD ile tüm sayfalar değiştiği için 519 URL
+`--url-dosya` ile bildirildi: 3 parti (250+250+19) HTTP 200.
+
+**F6 karar dosyası:** `rapor/08-09-KARAR-KULLANICI.md` yeniden yazıldı —
+durum tablosu (uygulandı / kullanıcı kalemi) + 6 kalem adım adım: (1) KV
+bağlama + secret + redeploy + fail-open + doğrulama komutu, (2) Web
+Analytics Metrics → Enable, (3) üç rehber dizin durumu ve seçenekler,
+(4) §A seçenek 2 (KVKK, tek satır), (5) doğrulanamayan 18 göl kaydı ve
+seçenekler, (6) canlı onay.
+
+**F7 E6 tabanı:** SIRADAKILER 06.10.2026 kalemi güncellendi (WhatsApp
+sayacı KV bağlanınca 0'dan; md25 yeşil; künye 1.118/494); 09.09 ilk cron
+koşumu tarihli kalem. SIRADAKILER bloğunda yalnız tarihli kalemler + §E.
+
+**F8:** GUNLUK (akşam kaydı) · KARARLAR §37 (1-9) · bu rapor.
+
+**F2 sağlık `--tam` (canlı 7e02d80, 17:18–17:32Z):** **kırmızı 0 · sarı 1 ·
+geçti 23** (yeni kalem md25 dahil: "canlı 7e02d80 · içerik 0.1s · build 0.1s
+önce · origin/main 1 commit ileride" — ölçüm anında F1 commit'i deploy
+oluyordu, bilgi notu). Tek sarı md17 dış bağlantı (11 zaman aşımı, ölü 0 —
+önceki koşumlarda da sarı, bu işle ilgisiz). Taban gerilemesi 0: md14 görsel
+22 ölçümde sapma yok · md21 dokunma taban korundu (198/201) · md15 a11y
+14 sayfa 100/100 · md5 konsol 0 · md16 bulgu 20 = taban 20 · md3 8/8
+(x-kaynak başlığı dahil) · md20 yeşil. Falsifikasyon koşusunun kırmızısı
+(16:49 --hizli) "Son 10 koşu" tablosunda görünür; sonraki koşumla kapandı.
+
+## Geri alma blokları (faz başına)
+- **Faz A** `git revert 916690f` — md25 kalemi, Telegram bağlama, cron açık
+  listeleri, ata-kontrollü pull, kapsam-taban `deploy`, KARARLAR §37 geri
+  gider. DİKKAT: geri alınırsa kirli ağaçta cron push'u yine tıkanır.
+- **Faz B** `git revert c78be94` — functions/whatsapp.js, okuma betiği, md3
+  başlık kontrolü, beklenen-301 `beklenenBaslik`, _redirects yorumu. Deploy
+  sonrası `/whatsapp/` yine `_redirects` ile 302 döner (x-kaynak yok);
+  `.env` WA_SAYAC_ANAHTAR satırı elle silinir (gitignore'lu).
+- **Faz C** `git revert 6988b48` — üç dosyada `telephone` satırı; 520 sayfa
+  JSON-LD'den numara çıkar.
+- **Faz D** `git revert a043f95` — süzgeç modülü, sayaç cümleleri, entity
+  çözümü; 81 il sayfası 1.979 künyeye döner (Sarkım dahil).
+- **Faz E** `git revert 7e02d80` — düzeltme listesi + şerh mantığı;
+  57 göl sayfası eski hâle ("bir doğal göldür" iddiaları dahil) döner.
+- **Faz F** `git revert 377d523` (kod) + kapanış commit'i (belgeler);
+  `/home/suha/gsc-cikti/indeks-durum.json` depo dışı — elle silinir.
+  IndexNow bildirimi geri alınamaz (zararsız).
+
+## TEK ÖZET
+**UYGULANDI:** A1 md25 deploy yaşı (72s/168s, commit tarihi, Telegram;
+falsifikasyon 8664/8665) · A2 cron açık dosya listeleri + git_pull_rebase
+ata-kontrolü (A2e: 8 kirli dosyayla yalnız kendi 13 dosyası, push geçti) ·
+A3 KARARLAR §37 · B1/B3/B5 Pages Function sayacı + okuma betiği + md3
+x-kaynak (13/13 test, canlı x-kaynak: fn, KV yokken 302) · C1-C4 JSON-LD
+telephone (520 sayfa, geçersiz 0) · D1-D4/D6 alaka süzgeci (1.118/494,
+3 ilde şerh, sayaçlar, entity çözümü) · E1-E4 39 tür düzeltmesi + 18 şerh
+("baraj adlı + doğal göl" 0) · F1 haftalık indeks izleme (İLK KAYIT 8666,
+kuru/tekrar/hata yolu kanıtlı) · F2-F5 sağlık kırmızı 0 / taban gerilemesi
+0, build küme-eş, canlı doğrulama, IndexNow 519.
+**ATLANDI (sebebiyle):** B2 KV bağlama + secret, B4 Web Analytics — panel
+adımı, bu sunucudan yapılamaz (API token yok) · §A seçenek 2 — KVKK
+(hukuki karar) · 18 göl kaydı düzeltmesi — dayanak yok (uydurma yasağı;
+ilçe-adı çakışması dayanak sayılmadı) · Karakaya/Kültepe — il farklı
+(KISMİ) · jenerik "Baraj Gölü"/"Gölet" sayfalarını kapatma — sayfa kapatma
+kararı · Indexing API — politika · rehber title/H1 değişikliği — ölçmeden
+uygulama yasağı, ayrı brief.
+**KULLANICI KALEMİ (karar dosyası, adım adım):** 1 KV bağlama + secret +
+redeploy + fail-open · 2 Web Analytics Enable · 3 üç rehber dizin durumu
+(elle istek kalıcı olmadı; izleme kuruldu) · 4 yazar adı (KVKK) · 5 18 göl
+kaydı seçenekleri · 6 WhatsApp canlı onayı.

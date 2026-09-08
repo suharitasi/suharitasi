@@ -2035,3 +2035,22 @@ kontrast 7,58/12,41, JS'siz çalışır; footer dar ekran alt payı (D5 ölçüm
 D7 ölçüm KURULAMADI: CF Web Analytics canlıda yok + özel olay yok → karar §D.
 DERS: "kurulu" denen analitik canlıda ölçülmeden brief'e yazılmış; 28.07'de
 de aynı bulgu vardı. Öncül, ölçümle doğrulanmadan taşınmaz.
+
+## 08.09.2026 (akşam) — Karar dosyası kapatma + tekrar önleyiciler (BÜYÜK, 6 faz)
+Rapor: rapor/08-09-karar-kapatma.md · karar: rapor/08-09-KARAR-KULLANICI.md
+(güncel durum tablosu) · KARARLAR §37. Keşif 6 ajanlı salt-okunur Workflow
+(çürütme ajanı oturum limitine takıldı; süzgeç çürütmesi elle yapıldı).
+A: md25 deploy yaşı (commit tarihi; deploy hook build zamanını oynatıyor)
+72s/168s + Telegram (msg 8664/8665 falsifikasyon); cron `git add <dizin>`
+→ açık liste; git_pull_rebase ata-kontrolü (94 ertelemenin 94'ü kirli ağaç,
+çatışma 0) — A2e: 8 kirli dosyayla su-izleme yalnız kendi 13 dosyasını
+commit'ledi, push geçti. B: Pages Function sayacı (KV yokken 302, 13/13 +
+canlı x-kaynak: fn). C: Organization.telephone 520 sayfa. D: alaka süzgeci
+1.979→1.118, 777→494 ad, 3 ilde şerh; sayaçlar düzeltildi. E: 39 göl türü
+DSİ/EPİAŞ atfıyla düzeltildi, 18 şerhli; "baraj adlı + doğal göl" 0.
+F: haftalık indeks izleme (İLK KAYIT msg 8666); elle dizin isteği kalıcı
+olmadı (PASS → NEUTRAL aynı taramada). Kullanıcı kalemleri: KV bağlama +
+secret + Web Analytics (panel), KVKK yazar adı, 18 göl kaydı, canlı onay.
+DERS: ajan raporu da beyandır — D2 süzgeci ve E3 kaynak satırları bağımsız
+ikinci yolla (Python paritesi, ham bayt araması) yeniden ölçüldü; ajanın
+"doğrulanmadı" dediği Altınoluk bulundu, ilçe-adı çakışmaları elendi.

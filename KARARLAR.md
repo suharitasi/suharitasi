@@ -867,6 +867,25 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 5. **§36/5 düzeltmesi:** WhatsApp numarası artık "tek yer `_redirects`"
    değil — Faz B (Pages Function `functions/whatsapp.js` HEDEF) ve Faz C
    (JSON-LD `telephone`) ile üç yerde; hedef değişirse üçü birden.
+6. **WhatsApp tıklama sayacı = Pages Function + KV** (`functions/whatsapp.js`).
+   Çerez ve kişisel veri yok (anahtar: gün + zaman + rastgele); yalnız
+   tarayıcı gezinmesi sayılır (Sec-Fetch-Dest/Referer); KV yokken de 302
+   (13/13 test + canlı). `_redirects` kuralı yedek kalır (Function öncelikli,
+   Cloudflare belgesi). Okuma: `/whatsapp/?sayac=<secret>` / `arac/whatsapp-sayac.sh`.
+7. **Akademik künye alaka süzgeci kural tabanlıdır** (`src/data/akademik-suzgec.js`):
+   sorgu terimleri + hidroloji sözlüğü, kelime sınırı, veriyle sınanmış
+   dışlamalar (jeoloji/iklim/kaynak/potansiyel). Veri dosyası değişmez; site
+   geneli sayaçlar "süzgeçten geçen (toplanan N)" biçiminde yazılır.
+8. **Göl türü yerel düzeltme yalnız il + öz-ad birebir eşleşen depo içi
+   kaynakla** (`src/data/gol-tip-duzeltme.js`; DSİ 2024 4.1/4.6, EPİAŞ). İlçe
+   adı çakışması dayanak DEĞİLDİR. Doğrulanamayan sert çelişkide yanlış
+   sınıf basılmaz: "bir su kütlesidir (tür kaynakta çelişkili, doğrulanmadı)"
+   + Tür satırında kaynağın ne dediği. "Gölet" adlı + reservoir çelişki
+   sayılmaz (DSİ'nin kendisi 12 göleti "Barajı" diye listeler).
+9. **Üç rehberin indeks durumu haftalık izlenir** (arac/gsc-haftalik.py,
+   URL Inspection, tr-TR sabit; state depo dışı; değişim/ilk gösterim/hata
+   Telegram'a). Elle dizin isteği kalıcı olmadı: 11:52Z PASS → 17:17Z aynı
+   taramada NEUTRAL. Title/H1 hipotezi ancak ölçüm tanımlanarak denenir (§37).
 
 ---
 
