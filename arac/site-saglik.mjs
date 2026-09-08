@@ -353,6 +353,67 @@ async function md24_www() {
     { url: WWW, hedef, canonical }, ['hizli', 'tam']);
 }
 
+// md25 — DEPLOY YAŞI (karar-kapatma Faz A1, 08.09.2026). NEDEN: 27.08→08.09
+// canlı 11,5 gün 8b39efe'de kaldı (kirli ağaç → push yok → deploy yok);
+// md20 yalnız "push bekliyor" (sabit sarı, bildirimsiz) dedi, hiçbir kalem
+// "canlı içerik kaç saattir aynı" sormadı; Telegram'a yalnız pipeline/IndexNow
+// dilinde dolaylı alarm düştü. ÖLÇÜM: canlı /surum.json (mevcut sürüm
+// imzası, astro.config.mjs surumDamgasi) → `commit` → yerel git tarihi.
+// `zaman` alanı DEĞİL: CF_DEPLOY_HOOK aynı commit'i her gün yeniden derleyip
+// build zamanını oynatıyor (baraj-gunluk.sh, cron.log 27.08–07.09 HTTP 200);
+// zaman'a bakan kalem bu olayda hiç ateşlemezdi. Eşik izleme/kapsam-taban.json
+// `deploy` (72s sarı = 3 kaçırılmış günlük deploy; 168s kırmızı = 7 gün).
+// SAGLIK_DEPLOY_ZAMAN: falsifikasyon kancası (ISO-8601; üretimde ayarlanmaz).
+async function md25_deployYasi() {
+  const esik = yap.kapsamTaban?.deploy ?? { sariSaat: 72, kirmiziSaat: 168 };
+  const SARI = esik.sariSaat, KIRMIZI = esik.kirmiziSaat;
+  const modlar = ['hizli', 'tam'];
+  let c;
+  try { c = await getir(`${TABAN}/surum.json?t=${Date.now()}`); }
+  catch (e) {
+    return kaydet('25-deploy-yasi', 'kirmizi',
+      `surum.json okunamadı (${e.message}) — canlı sürüm imzası ölçülemiyor`, { hata: e.message }, modlar);
+  }
+  if (c.status !== 200) {
+    return kaydet('25-deploy-yasi', 'kirmizi',
+      `surum.json ${c.status} döndü — canlı sürüm imzası okunamıyor`, { kod: c.status }, modlar);
+  }
+  const s = await c.json();
+  const git = (a) => execFileSync('git', ['-C', KOK, ...a],
+    { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
+  let commitTs = null, kaynak = 'build-zamani';
+  try {
+    const ct = Number(git(['log', '-1', '--format=%ct', s.commit]));
+    if (ct > 0) { commitTs = ct * 1000; kaynak = 'commit-tarihi'; }
+  } catch { /* canlı commit yerelde yok → build zamanına düşer, mesajda görünür */ }
+  let originGeride = null;
+  try { originGeride = Number(git(['rev-list', '--count', `${s.commit}..@{u}`])); } catch { /* upstream yok */ }
+  const ezme = process.env.SAGLIK_DEPLOY_ZAMAN || '';
+  const icerikZaman = ezme ? Date.parse(ezme) : (commitTs ?? Date.parse(s.zaman));
+  const yasSaat = +((Date.now() - icerikZaman) / 3600000).toFixed(1);
+  const buildYas = +((Date.now() - Date.parse(s.zaman)) / 3600000).toFixed(1);
+  const olcum = { canli: s.kisa, dal: s.dal, buildZaman: s.zaman, buildYasSaat: buildYas,
+    icerikYasSaat: yasSaat, kaynak: ezme ? 'SAGLIK_DEPLOY_ZAMAN (falsifikasyon)' : kaynak,
+    originGeride, esik: { sariSaat: SARI, kirmiziSaat: KIRMIZI } };
+  const ek = (originGeride > 0 ? ` · origin/main ${originGeride} commit ileride (deploy gecikti)` : '')
+    + (ezme ? ' [FALSİFİKASYON: SAGLIK_DEPLOY_ZAMAN]' : '');
+  if (!(yasSaat >= 0)) {
+    return kaydet('25-deploy-yasi', 'kirmizi', `içerik zamanı çözülemedi (${s.commit ?? '?'} / ${s.zaman ?? '?'})`, olcum, modlar);
+  }
+  if (yasSaat > KIRMIZI) {
+    return kaydet('25-deploy-yasi', 'kirmizi',
+      `canlı içerik ${yasSaat} saattir aynı (${s.kisa}) — >${KIRMIZI}s (${Math.round(KIRMIZI / 24)} gün); deploy zinciri kopmuş olabilir${ek}`,
+      olcum, modlar);
+  }
+  if (yasSaat > SARI) {
+    return kaydet('25-deploy-yasi', 'sari',
+      `canlı içerik ${yasSaat} saattir aynı (${s.kisa}) — >${SARI}s; günlük push/deploy ${Math.round(SARI / 24)} gündür yok${ek}`,
+      olcum, modlar);
+  }
+  kaydet('25-deploy-yasi', 'gecti',
+    `canlı ${s.kisa} (${s.dal}) · içerik ${yasSaat}s · build ${buildYas}s önce${ek}`, olcum, modlar);
+}
+
 // — Playwright gerektiren kontroller tek tarayıcı oturumunda toplanır —
 async function tarayiciKontrolleri() {
   const pw = (await import(join(KOK, 'node_modules/playwright-core/index.js'))).default;
@@ -1318,6 +1379,20 @@ function envOku() {
   return o;
 }
 
+// A1c (08.09.2026): Telegram — mevcut yol arac/uyari-gonder.sh (indexnow-bildir.mjs
+// uyar() deseni). Betik yapılandırılmamışsa exit 0 + "KANAL YAPILANDIRILMADI"
+// döner; gönderim hatası koşumu DÜŞÜRMEZ, sonuç durum dosyasına yazılır.
+function telegramGonder(konu, govde) {
+  try {
+    const cikti = execFileSync('bash', [join(KOK, 'arac/uyari-gonder.sh'), konu, govde],
+      { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+    return { gonderildi: true, cikti: cikti.trim().slice(0, 200) };
+  } catch (e) {
+    const sebep = String(e.stderr || e.stdout || e.message || '').trim().slice(0, 200);
+    return { gonderildi: false, sebep: `uyari-gonder.sh hata: ${sebep}` };
+  }
+}
+
 async function mailGonder(konu, govde) {
   const env = envOku();
   const eksik = ['SMTP_HOST', 'SMTP_USER', 'SMTP_PASS', 'ALARM_TO'].filter((k) => !env[k]);
@@ -1387,6 +1462,7 @@ async function kosu() {
   await korumali('2-erisim', ['hizli', 'tam'], md2_erisim);
   await korumali('3-yonlendirme', ['hizli', 'tam'], md3_yonlendirme);
   await korumali('24-www', ['hizli', 'tam'], md24_www);
+  await korumali('25-deploy-yasi', ['hizli', 'tam'], md25_deployYasi);
   await korumali('tarayici', ['hizli', 'tam'], tarayiciKontrolleri);
   await korumali('9-lighthouse', ['tam'], md9_lighthouse);
   // 10-veri-tazeligi KALDIRILDI (B1+B3) — gerekçe md10 bloğundaki notta.
@@ -1448,12 +1524,19 @@ async function onarimlariUygula() {
     // G3: ayrı commit → kilitle push → SHA-BEKLE → ilgili kontrolü tekrar koş
     const mesaj = `otomatik onarım: ${o.tip} — ${sonuc.sebep}`;
     const g = kilitliGit([
-      'git add -A public/ izleme/',
+      // A2 (08.09.2026): `git add -A public/ izleme/` YASAK deseniydi (dizin +
+      // -A: kullanıcının bekleyen değişikliğini süpürebilir). Onarım
+      // fonksiyonları yalnız iki dosya yazar (onarimYonlendirme → _redirects,
+      // onarimCsp → _headers); açık liste.
+      'git add -- public/_headers public/_redirects',
       `git commit -q -m ${JSON.stringify(mesaj + '\n\nCo-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>')}`,
       // K1 (25 Tem 2026, bulgu F4-2): pull commit'ten SONRA, push'tan ÖNCE —
       // uzaktaki commit'lerin üstüne yazmayı önler. Pull koparsa push ATLANIR
       // (commit yerelde kalır, sonraki koşuda denenir) ve script hata FIRLATMAZ.
-      'if git pull --rebase -q; then git push -q; else git rebase --abort || true; echo "K1-PULL-BASARISIZ"; fi',
+      // A2 (08.09.2026): arac/git-kilit.sh git_pull_rebase ile aynı mantık —
+      // uzak HEAD'in atasıysa rebase atlanır (kirli ağaç push'u engellemez).
+      'git fetch -q && if git merge-base --is-ancestor "$(git rev-parse @{u})" HEAD; then git push -q; '
+      + 'elif git pull --rebase -q; then git push -q; else git rebase --abort || true; echo "K1-PULL-BASARISIZ"; fi',
       'git rev-parse HEAD',
     ], 'site-saglik');
     if (!g.tamam) {
@@ -1533,20 +1616,33 @@ async function bitir() {
     if (sitemapUrlleri.length) durum.sonSitemapSayisi = sitemapUrlleri.length;
 
     // E3 tekrar koruması: aynı arıza her koşuda mail atmaz — durum DEĞİŞİMİNDE.
+    // A1c (08.09.2026): aynı durum-değişimi MEVCUT Telegram yoluna da düşer
+    // (arac/uyari-gonder.sh). Ölçüm: bu betikte Telegram çağrısı hiç yoktu,
+    // SMTP .env'de boş → kırmızılar sunucuda kalıyordu (deploy sessizliği
+    // olayında md20 sarıydı, sarı zaten bildirim üretmez). Sarı yine sessiz.
+    // İzole kökten (--kok) gerçek kanala mesaj düşmez.
     const imza = kirmizi.map((k) => k.ad).sort().join('|');
     const oncekiImza = durum.sonBildirim?.imza ?? '';
     let mail = { gonderildi: false, sebep: 'gerek yok (durum değişmedi)' };
+    let telegram = { gonderildi: false, sebep: 'gerek yok (durum değişmedi)' };
     if (imza !== oncekiImza) {
+      let konu, govde;
       if (imza) {
-        mail = await mailGonder(`suharitasi UYARI — ${kirmizi.map((k) => k.ad).join(', ')}`,
-          kirmizi.map((k) => `${k.ad}: ${k.mesaj}`).join('\n'));
+        konu = `suharitasi UYARI — ${kirmizi.map((k) => k.ad).join(', ')}`;
+        govde = kirmizi.map((k) => `${k.ad}: ${k.mesaj}`).join('\n');
       } else if (oncekiImza) {
-        mail = await mailGonder('suharitasi ONARILDI — tüm kontroller geçti',
-          `Önceki arıza: ${oncekiImza}\nŞu an: temiz (${simdi()})`);
+        konu = 'suharitasi ONARILDI — tüm kontroller geçti';
+        govde = `Önceki arıza: ${oncekiImza}\nŞu an: temiz (${simdi()})`;
       }
-      durum.sonBildirim = { imza, zaman: simdi(), mail };
+      if (konu) {
+        mail = await mailGonder(konu, govde);
+        telegram = IZOLE ? { gonderildi: false, sebep: 'izole kök — gerçek kanala gönderilmez' }
+          : telegramGonder(`sağlık ${MOD}: ${konu}`, govde);
+      }
+      durum.sonBildirim = { imza, zaman: simdi(), mail, telegram };
     }
     kayit.mail = mail;
+    kayit.telegram = telegram;
     await writeFile(DURUM_YOL, JSON.stringify(durum, null, 2) + '\n');
     await durumMdYaz(kayit);
   }

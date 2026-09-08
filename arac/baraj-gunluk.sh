@@ -43,9 +43,15 @@ fi
 # Başarıda da başarısızlıkta da gün kaydı/log değişti — arşivle.
 # git add KOŞULLU: var-olmayabilir dosyada exit 128 + set -e ile sessiz durma
 # olmasın (eski bug ailesi: koşulsuz git add).
-[ -e data/arsiv/baraj ]      && git add data/arsiv/baraj
-[ -f data/canli/baraj.json ] && git add data/canli/baraj.json
-[ -f UYARI-BARAJ.md ]        && git add UYARI-BARAJ.md
+# A2 (08.09.2026): dizin-deseni `git add data/arsiv/baraj` yerine yalnız bu
+# koşumun ürettiği yollar (gün dizini TR takvimiyle, baraj-cek.mjs L26-29 ile
+# aynı hesap: UTC+3, DST yok) + durum.json. Geçmiş kanıtta dizin dışı süpürme
+# yoktu; kural gereği açık liste.
+BUGUN_TR=$(date -u -d '+3 hours' +%F)
+[ -d "data/arsiv/baraj/$BUGUN_TR" ]   && git add -- "data/arsiv/baraj/$BUGUN_TR"
+[ -f data/arsiv/baraj/durum.json ]   && git add -- data/arsiv/baraj/durum.json
+[ -f data/canli/baraj.json ]         && git add -- data/canli/baraj.json
+[ -f UYARI-BARAJ.md ]                && git add -- UYARI-BARAJ.md
 
 # ORTAK GIT KİLİDİ (2026-07-23): 4 otomatik commit'çi aynı depoya yazıyor;
 # eşzamanlı commit/push çakışmasın diye tek flock kullanılır (arac/git-kilit.sh).

@@ -828,6 +828,48 @@ Rapor `rapor/08-09-gsc-ticari-whatsapp.md`; karar kalemleri
 
 ---
 
+## §37 · TEKRAR ÖNLEYİCİLER + KARAR DOSYASI KAPATMA (08.09.2026)
+
+Rapor `rapor/08-09-karar-kapatma.md`; karar kalemleri
+`rapor/08-09-KARAR-KULLANICI.md` (güncel durum tablosu orada).
+
+**§ Ölçmeden uygulama yasağı:** bir değişikliğin etkisi hakkında hipotez
+kurulduğunda, uygulamadan ÖNCE hipotezi test edecek ölçüm tanımlanır,
+uygulamadan SONRA o ölçüm yapılır. Ağustos havza title işinde bu
+yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
+öncesi ve sonrası 10-11'de sabit). (08.09.2026)
+
+1. **Deploy yaşı sağlık kalemidir (md25).** Canlı `/surum.json` commit'inin
+   yerel git tarihi ölçülür (build zamanı DEĞİL: deploy hook aynı commit'i
+   her gün yeniden derleyip `zaman`'ı oynatıyor). 72 s sarı, 168 s kırmızı
+   (`izleme/kapsam-taban.json` → `deploy`). Falsifikasyon kancası
+   `SAGLIK_DEPLOY_ZAMAN`. Kanıt: 8 gün ezmesiyle kırmızı + Telegram
+   (msg 8664), ezme kalkınca yeşil + ONARILDI (msg 8665).
+2. **Sağlık kırmızısı Telegram'a düşer.** `site-saglik.mjs` `bitir()`
+   durum-değişiminde mevcut `arac/uyari-gonder.sh` yolunu çağırır (SMTP
+   .env'de boştu; kırmızılar sunucuda kalıyordu). Sarı yine sessiz.
+   İzole kökten (--kok) gerçek kanala gönderilmez.
+3. **Cron yalnız kendi ürettiği dosyayı commit'ler — `git add <dizin>` ve
+   `-A` yasak.** su-izleme.sh `git add izleme/` → açık liste (DURUM.md,
+   OLAYLAR.md, arsiv/, state/<id>.sha|.son.txt|.lastmod, uyari-imza,
+   rg/nhyp durum dosyaları); baraj-gunluk.sh → gün dizini + durum.json;
+   site-saglik onarım yolu → `public/_headers public/_redirects`;
+   grace uyarı yolu kilit + ata-kontrollü pull aldı. Kanıt: 6 otomatik
+   commit kullanıcı dosyalarını süpürmüştü (su-izleme.sh dac501c/7a268ef…,
+   kapsam-taban.json b9b3472).
+4. **Kirli ağaç push'u engellemez (`git_pull_rebase` ata-kontrolü).**
+   `git fetch` + `merge-base --is-ancestor @{u} HEAD` → uzak ilerlememişse
+   rebase atlanır, push fast-forward. 27.08–07.09'da 94 ertelemenin 94'ü
+   kirli ağaç, gerçek çatışma 0. `--autostash` bilerek yok (kullanıcı
+   dosyasına çatışma sızdırır). Kanıt (A2e): 7 bekleyen değişiklik + 1
+   untracked dosya ile su-izleme elle koşturuldu → yalnız kendi 13 dosyası
+   commit'lendi (ccd90bc), kirli dosyalara dokunulmadı, push geçti.
+5. **§36/5 düzeltmesi:** WhatsApp numarası artık "tek yer `_redirects`"
+   değil — Faz B (Pages Function `functions/whatsapp.js` HEDEF) ve Faz C
+   (JSON-LD `telephone`) ile üç yerde; hedef değişirse üçü birden.
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek

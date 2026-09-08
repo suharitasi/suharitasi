@@ -405,7 +405,22 @@ fi
 
 # ============================ COMMIT + PUSH (baraj deseni) ============================
 # git add KOŞULLU (var-olmayan yolda exit 128 + sessiz durma olmasın).
-[ -d "$IZ" ] && git add "$IZ" || true
+# A2 (08.09.2026): `git add "$IZ"` (izleme/ dizininin TAMAMI) kullanıcı
+# dosyalarını süpürüyordu — ölçülen vakalar: izleme/su-izleme.sh 6 otomatik
+# commit'te (dac501c, 7a268ef, 4171891…), kapsam-taban.json b9b3472,
+# rg-ara-sertifika.pem 7a268ef, geçici .dsi-duyuru-listesi.tmp.html 948dcbc.
+# Artık YALNIZ bu hattın ürettiği dosyalar, AÇIK LİSTEYLE (kendi çıktısı
+# atlanmaz, başkasının değişikliği alınmaz):
+#   DURUM.md · OLAYLAR.md · arsiv/ (yalnız bu betik yazar) ·
+#   state/<id>.sha|.son.txt|.lastmod · uyari-imza-su-izleme.txt ·
+#   rg-nobetci-durum.json + nhyp-yayin-durum.json (nöbetçiler yazar, taşıyıcı bu hat).
+for f in "$IZ/DURUM.md" "$IZ/OLAYLAR.md" \
+         "$IZ"/state/*.sha "$IZ"/state/*.son.txt "$IZ"/state/*.lastmod \
+         "$IZ/state/uyari-imza-su-izleme.txt" \
+         "$IZ/state/rg-nobetci-durum.json" "$IZ/state/nhyp-yayin-durum.json"; do
+  [ -f "$f" ] && git add -- "$f" || true
+done
+[ -d "$IZ/arsiv" ] && git add -- "$IZ/arsiv" || true
 # RG hattının nöbetçi çıktısı (2026-08-25 kirli-ağaç düzeltmesi): rg-nobetci
 # izleme/ DIŞINA yazar ve kendisi git'e dokunmaz; yeni kayıt yazıldığında bu
 # dosyayı da BU hattın commit'i taşır — yoksa ağaç kirli kalır ve tüm

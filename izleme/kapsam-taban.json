@@ -137,6 +137,11 @@
     "sariSaat": 30,
     "kirmiziSaat": 54
   },
+  "deploy": {
+    "_not": "md25 DEPLOY YASI (08.09.2026, karar-kapatma Faz A1). Olcum: canli /surum.json commit'inin yerel git tarihi (build zamani DEGIL — deploy hook ayni commit'i her gun yeniden derleyip zaman'i oynatiyor). Esik gerekcesi cron takviminden: deploy yalniz push'ta; baraj gunluk 15:05 UTC push -> saglikli yas <=28 s. 72 s = uc ardisik gunluk deploy yok (sari); 168 s = 7 gun (kirmizi; bekci GRACE 8 gun sinifi). Olayda (27.08-08.09, 11,5 gun) ilk sari 30.08 19:30, ilk kirmizi 03.09 19:30 olurdu.",
+    "sariSaat": 72,
+    "kirmiziSaat": 168
+  },
   "dokunma": {
     "_not": "375px bagimsiz denetimler (satir-ici metin linkleri WCAG 2.5.8 geregi MUAF). Taban = mevcut ihlal sayisi; kalem ARTISTA sari verir (regresyon dedektoru).",
     "sayfalar": {

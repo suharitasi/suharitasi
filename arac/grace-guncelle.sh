@@ -47,10 +47,17 @@ hata_say() {
     printf '# GRACE PIPELINE UYARISI\n\n%s\n\nGRACE güncellemesi %d haftadır başarısız: %s\n' \
       "$(date -u)" "$N" "$1" > "$KOK/UYARI-GRACE.md"
     # uyarı push'u kopsa bile UYARI dosyası yerelde durur; zincir hatası yutulmaz.
-    git add UYARI-GRACE.md \
-      && git commit -q -m "GRACE uyarısı (otomatik)" \
-      && { git push -q || logla "uyarı push BAŞARISIZ (yerelde)"; } \
-      || logla "uyarı commit/push zinciri tamamlanamadı"
+    # A2 (08.09.2026): bu hata yolu KİLİTSİZ ve PULL'SUZ commit+push yapıyordu
+    # (tek kilitsiz git yazıcısı); artık ortak kilit + ata-kontrollü pull.
+    if git_kilit_al "grace-uyari"; then
+      git add -- UYARI-GRACE.md \
+        && git commit -q -m "GRACE uyarısı (otomatik)" \
+        && { { git_pull_rebase && git push -q; } || logla "uyarı push BAŞARISIZ (yerelde)"; } \
+        || logla "uyarı commit/push zinciri tamamlanamadı"
+      git_kilit_birak
+    else
+      logla "uyarı commit ERTELENDİ: git kilidi alınamadı (UYARI-GRACE.md yerelde)"
+    fi
   fi
   exit 1
 }
