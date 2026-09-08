@@ -797,6 +797,37 @@ ve K11 ad ayıklamasının doğurduğu `<title>` tekrarı. İkisi de onarıldı.
 
 ---
 
+## §36 · GSC ÖLÇÜM TURU + WHATSAPP KANALI (08.09.2026)
+
+Rapor `rapor/08-09-gsc-ticari-whatsapp.md`; karar kalemleri
+`rapor/08-09-KARAR-KULLANICI.md`.
+
+1. **Title değişikliği kanıtsız sayılır.** 25.08 soru-title'ının etkisi
+   GSC günlük seriyle ölçüldü: Ergene pozisyonu 10–11 sabit, talep dalgası
+   title'dan önce söndü. Bundan sonra title/H1 değişikliği "daha iyi olur"
+   diye yapılmaz; ölçülmüş kusur + 28 gün sonra kıyas ister.
+2. **Yeni indekslenen geniş kuyruk CTR'yi düşürür; bu kusur değildir.**
+   Göl/nehir (342 sayfa) 26.08 sonrası dizine girdi, 8 günde 6.559
+   gösterim / poz 10–11. Site CTR'si karışım etkisiyle düşer; title ile
+   "onarılmaz".
+3. **İç bağlantı yoğunluğu performans kaldıracı değildir.** 90–99 gelen
+   bağlantılı üç rehber 0 tık (ikisi dizinde değil); 7 gelen bağlantılı
+   rehber CTR %9. Köprü bağlantısı yalnız kullanıcı yolu + alaka
+   gerekçesiyle eklenir (C6: il→işletme sahası, baraj gölü→kamulaştırma).
+4. **Nehir özeti il taşır** (`nehirOzet`): "…; hattı X ili sınırlarından
+   geçer" — geometrik örnekleme şerhiyle. Göl özeti zaten il taşıyordu.
+5. **WhatsApp kanalı:** numara HTML'e basılmaz; tek yer `_redirects`
+   (`/whatsapp/` 302 → wa.me). Düğme SU-DİLİ paleti (DERİN/KÖPÜK), WhatsApp
+   yeşili yok; simge + etiket birlikte; e-posta eklenmez; animasyon yok.
+   Şema `telephone` alanı D4 ile çeliştiği için EKLENMEDİ (karar §D6).
+6. **"Kurulu" analitik öncülü ölçümsüz taşınmaz.** CF Web Analytics
+   canlıda yoktu (beacon 0, ikinci kez: 28.07 ve 08.09). Dönüşüm ölçümü
+   seçenekleri karar §D7; kurulana kadar WhatsApp tıklaması = ölçülmüyor.
+7. **UYARI-SAGLIK.md** üretilen izleme çıktısıdır (bekçi yazar/siler);
+   .gitignore'da, SITE-DURUM.md sınıfı.
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek

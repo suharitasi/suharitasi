@@ -2015,3 +2015,23 @@ zorunlu uzantısı.
 Düzeltme vekil kritere kaçmadı: gizli biçim çözülüyor (`cfEpostaCoz`) ve
 adres aynı testten geçiyor; CTA gerçekten silinirse iki biçim de kaybolur
 ve kalem yine ateşler (falsifikasyonla doğrulandı).
+
+## 08.09.2026 — GSC bulguları + ticari omurga + WhatsApp (BÜYÜK, 5 faz)
+Rapor: rapor/08-09-gsc-ticari-whatsapp.md · karar: rapor/08-09-KARAR-KULLANICI.md.
+Kapı: hero commit'lendi (3aac89a), 34 bekleyen otomatik commit push'landı,
+cron pull blokajı kalktı; UYARI-SAGLIK.md .gitignore'a (bekçi üretir/siler).
+A: "İbrahim Furkan Sarkım" OpenAlex akademik künyesi (DOI'li), 777 yazar
+adı 81 il sayfasında — kaynaklı, kaldırılmadı, karar §A; %35 künye konu dışı.
+B (dosya değişmedi): Ergene title hipotezi ÇÜRÜK — pozisyon 10–11 sabit,
+talep dalgası (Trends 11/19.08 zirve) title'dan 2 gün önce söndü; gösterim
+sıçraması (29.08+) göl/nehir sayfalarının indekslenmesi (8 günde 6.559
+göst, poz 10–11, CTR karışım etkisi); 3 ana rehber (kuyu-ruhsati,
+su-tahsisi, kuyu-tasima) Google dizininde DEĞİL; bağlantı yoğunluğu
+performansı açıklamıyor (7 gelen → CTR %9; 90+ gelen → 0 tık).
+C: nehir özeti il cümlesi (95), il→işletme sahası rehberi (81), baraj
+gölü→kamulaştırma rehberi (150); title'a, Ergene'ye, Kelkit'e dokunulmadı.
+D: WhatsApp düğmesi 523/523, /whatsapp/ 302 (numara HTML'de 0), 44px,
+kontrast 7,58/12,41, JS'siz çalışır; footer dar ekran alt payı (D5 ölçümü).
+D7 ölçüm KURULAMADI: CF Web Analytics canlıda yok + özel olay yok → karar §D.
+DERS: "kurulu" denen analitik canlıda ölçülmeden brief'e yazılmış; 28.07'de
+de aynı bulgu vardı. Öncül, ölçümle doğrulanmadan taşınmaz.

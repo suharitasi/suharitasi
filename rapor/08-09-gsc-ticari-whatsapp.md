@@ -368,3 +368,54 @@ wa.me) eklendi — md3 yönlendirme kalemi bundan sonra izler.
 Görünür metin kıyası (Faz D): C'de dokunulmayan 97 sayfanın görünür metni,
 "WhatsApp" etiketi düşülünce dist-once ile **bit-eşit**; sayfa 522 /
 sitemap 519 küme-eş.
+
+## FAZ E — Kapanış
+
+- **E1 sağlık `--tam` (canlı, 09:18–09:26Z, deploy sonrası):** **kırmızı 0 ·
+  sarı 1 · geçti 22.** Tek sarı md17 dış bağlantı (20 zaman aşımı, ölü 0 —
+  önceki 6 koşumda da sarıydı, bu işle ilgisiz). Taban gerilemesi 0:
+  md14 görsel 22 ölçümde G1-G6 sapması yok (düğme kadraj/kesişme eşiğine
+  takılmadı) · md21 dokunma 6 sayfada taban korundu (ihlal 199, taban 201)
+  · md15 a11y 14 sayfa 100/100 · md5 konsol 0 · md8 taşma 0 px · md3
+  yönlendirme 8/8 (yeni /whatsapp kuralları dahil) · md16 bulgu 20 = taban
+  20 (C1 description değişikliği bulgu üretmedi) · md6 iç link 92 kırık 0 ·
+  md9 Lighthouse 14 sayfa 94–99 / 75–99 (önceki koşumla aynı band) · md20
+  altyapı SARI→YEŞİL (34 bekleyen commit push'landı).
+- **E2 canlı (09:06Z, sürüm dfa2b56):** apex 200 · www → 301 → https://suharitasi.com/ ·
+  `/whatsapp/` ve `/whatsapp` → 302 → wa.me (D9f) · üç sayfada düğme var,
+  numara 0 (/, /havzalar/gediz/, /rehberler/kuyu-belgesi-iptal-davalari/).
+  Dokunulmayan beş sayfa canlı ↔ yerel: /havzalar/sakarya/, /rehberler/
+  kuyu-ruhsati/, /durumum/, /hangi-kurum/, /vaka/meysu/ — görünür metin ve
+  JSON-LD **birebir**; ham bayt farkı yalnız Cloudflare e-posta gizleme
+  yeniden yazımı (28.07 dersi; 245–560 bayt).
+- **E3 IndexNow:** `--kuru` 28 aday gösterdi (lastmod farkı); tüm sayfalar
+  düğmeyle değiştiği için sitemap'in 519 URL'si `--url-dosya` ile bildirildi:
+  3 parti (250+250+19) HTTP 200, "519 URL bildirildi" (09:07Z). Google'a
+  etkisi yok (IndexNow Bing/Yandex); bekçinin 274 saatlik indexnow uyarısı
+  bu koşumla kapanır.
+- **E4 commit'ler:** Faz 0 `3aac89a` + `c11e1b8` · Faz B `46437a2` · Faz C
+  `03b5863` · Faz D `dfa2b56` · Faz E (bu rapor + GUNLUK/KARARLAR/SIRADAKILER)
+  aşağıda. Hepsi push'landı.
+- **E5:** rapor (bu dosya) · GUNLUK 08.09 kaydı · KARARLAR §36 · karar
+  dosyası `rapor/08-09-KARAR-KULLANICI.md` (§A yazar adları, §B OSM tip,
+  §C dizin, §D6 telefon şeması, §D7 ölçüm, §E canlı onay).
+- **E6 ÖLÇÜM NOKTASI (06.10.2026'da kıyaslanacak):**
+  GSC 09.08–05.09: **193 tıklama · 13.092 gösterim · CTR %1,5 · poz 9,7** ·
+  hukuk sayfaları payı **29/193 (%15)** · nehir türü CTR %0,35 (29.08–05.09)
+  · üç rehber dizin durumu (kuyu-ruhsati: tarandı-dizinde değil; su-tahsisi:
+  keşfedildi; kuyu-tasima: bilinmiyor) · **WhatsApp tıklaması: 0 — ölçüm
+  yok** (karar §D7 kurulursa sayaç 0'dan başlar). SIRADAKILER'e tarihli
+  kalem yazıldı.
+
+### Geri alma blokları (faz başına)
+- Faz 0: `git revert c11e1b8 3aac89a` (hero ve gitignore). Not: hero geri
+  alınırsa dört-sayı bekçisi eski tek-sayı kalıbına döner, build geçer.
+- Faz B: `git revert 46437a2` (yalnız rapor).
+- Faz C: `git revert 03b5863` — nehir özeti, il→işletme sahası bağı, baraj
+  gölü→kamulaştırma bağı birlikte gider; 327 sayfa eski hâline döner.
+- Faz D: `git revert dfa2b56` — düğme, 404 kopyası, `_redirects` 302,
+  beklenen-301 kuralları, footer alt payı, kare betiği, karar dosyası.
+  Geri alındıktan sonra `/whatsapp/` 404 döner; md3 kalemi beklenen-301'den
+  de düştüğü için alarm vermez.
+- Faz E: `git revert <E commit>` — belgeler. IndexNow bildirimi geri
+  alınamaz (zararsız: yalnız "değişti" sinyali).
