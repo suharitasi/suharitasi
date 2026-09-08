@@ -64,11 +64,17 @@
 /su-hukuku   /rehberler/ruhsatsiz-kuyu-cezalari/   301
 /su-hukuku/  /rehberler/ruhsatsiz-kuyu-cezalari/   301
 
-# WHATSAPP KANALI (08.09.2026, Faz D — rapor/08-09-gsc-ticari-whatsapp.md §D).
-# Numara HTML'e BASILMAZ (D4 numara koruması): 523 sayfadaki düğme aynı-köken
-# /whatsapp/ yoluna gider, hedef yalnız burada durur. 302 (kalıcı değil):
-# numara değişirse tarayıcı/CDN önbelleği eski hedefi tutmasın. JS'siz
-# çalışır. Yan kazanım: tıklama bir edge isteğidir — ileride sayfa
-# koduna dokunmadan sayılabilir (D7 karar dosyası).
+# WHATSAPP KANALI (08.09.2026, Faz D — rapor/08-09-gsc-ticari-whatsapp.md §D;
+# sayaç: karar-kapatma Faz B, functions/whatsapp.js).
+# 523 sayfadaki düğme aynı-köken /whatsapp/ yoluna gider. CANLIDA BU İKİ SATIR
+# NORMALDE ÇALIŞMAZ: aynı yolda Pages Function var ve Cloudflare _redirects
+# kurallarını Function'ın servis ettiği isteğe UYGULAMAZ
+# (developers.cloudflare.com/pages/configuration/redirects: "not applied to
+# requests served by Pages Functions"). Satırlar YEDEK: (a) ücretsiz plan
+# Functions kotası bitip "Fail open" statik sunuma düşünce, (b) yerel
+# arac/dist-sun.mjs (Functions çalıştırmaz), (c) site-saglik G1(b) onarımı.
+# 302 (kalıcı değil): numara değişirse önbellek eski hedefi tutmasın.
+# HEDEF DEĞİŞİRSE ÜÇ YERDE değiştir: burada + functions/whatsapp.js HEDEF +
+# JSON-LD telephone (Sayfa.astro / index.astro / harita.astro, Faz C).
 /whatsapp   https://wa.me/905324497144   302
 /whatsapp/  https://wa.me/905324497144   302

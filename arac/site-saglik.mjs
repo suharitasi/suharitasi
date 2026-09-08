@@ -274,19 +274,33 @@ async function md2_erisim() {
 }
 
 async function md3_yonlendirme() {
-  const bozuk = [];
+  const bozuk = [], zayif = [];
   for (const k of yap.yonlendirme) {
     const c = await getir(TABAN + k.kaynak);
     const konum = c.headers.get('location') || '';
     const hedefTam = konum.replace(TABAN, '') || konum;
     if (c.status !== k.kod || (hedefTam !== k.hedef && konum !== TABAN + k.hedef)) {
       bozuk.push({ kaynak: k.kaynak, beklenen: `${k.kod} → ${k.hedef}`, gelen: `${c.status} → ${konum || '(yok)'}` });
+      continue;
+    }
+    // Faz B (08.09.2026, süreklilik ilkesi): kural `beklenenBaslik` taşıyorsa
+    // (ör. /whatsapp → x-kaynak: fn) yanıtı Pages Function'ın verdiği de
+    // ölçülür. Yönlendirme çalışıp başlık yoksa istek _redirects yedeğine
+    // düşmüştür → sayaç devre dışı: SARI (kırmızı değil, kanal kopmadı).
+    for (const [ad, deger] of Object.entries(k.beklenenBaslik || {})) {
+      const gelen = c.headers.get(ad);
+      if (gelen !== deger) zayif.push({ kaynak: k.kaynak, baslik: ad, beklenen: deger, gelen: gelen ?? '(yok)' });
     }
   }
   if (bozuk.length) {
     onarimlar.push({ tip: 'yonlendirme', veri: bozuk });
     return kaydet('3-yonlendirme', 'kirmizi', `${bozuk.length} yönlendirme çalışmıyor`,
-      { bozuk, toplam: yap.yonlendirme.length }, ['hizli', 'tam']);
+      { bozuk, zayif, toplam: yap.yonlendirme.length }, ['hizli', 'tam']);
+  }
+  if (zayif.length) {
+    return kaydet('3-yonlendirme', 'sari',
+      `${yap.yonlendirme.length}/${yap.yonlendirme.length} yönlendirme çalışıyor · ${zayif.length} yanıtta beklenen başlık yok (${zayif.map((z) => `${z.kaynak} ${z.baslik}=${z.gelen}`).join(' · ')}) — Pages Function devre dışı, _redirects yedeği servis ediyor (sayaç saymıyor)`,
+      { zayif, toplam: yap.yonlendirme.length }, ['hizli', 'tam']);
   }
   kaydet('3-yonlendirme', 'gecti', `${yap.yonlendirme.length}/${yap.yonlendirme.length} yönlendirme çalışıyor`,
     { toplam: yap.yonlendirme.length }, ['hizli', 'tam']);

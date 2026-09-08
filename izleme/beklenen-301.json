@@ -41,13 +41,19 @@
       "kaynak": "/whatsapp/",
       "hedef": "https://wa.me/905324497144",
       "kod": 302,
-      "gerekce": "WhatsApp kanalı — numara HTML'e basılmaz, tek yer _redirects (Faz D, 08.09.2026)"
+      "gerekce": "WhatsApp kanalı — numara HTML'e basılmaz, _redirects yedek + functions/whatsapp.js sayaç (Faz D + karar-kapatma Faz B, 08.09.2026)",
+      "beklenenBaslik": {
+        "x-kaynak": "fn"
+      }
     },
     {
       "kaynak": "/whatsapp",
       "hedef": "https://wa.me/905324497144",
       "kod": 302,
-      "gerekce": "WhatsApp kanalı — numara HTML'e basılmaz, tek yer _redirects (Faz D, 08.09.2026) — eğik çizgisiz hâli"
+      "gerekce": "WhatsApp kanalı — numara HTML'e basılmaz, _redirects yedek + functions/whatsapp.js sayaç (Faz D + karar-kapatma Faz B, 08.09.2026) — eğik çizgisiz hâli",
+      "beklenenBaslik": {
+        "x-kaynak": "fn"
+      }
     }
   ]
 }

@@ -9,9 +9,11 @@
 //   koyu adalarda (ana sayfa / harita / pilotlar) `koyu` prop'u: KÖPÜK
 //   zemin + DİP metin (12,4:1). Tanınırlık simge + "WhatsApp" etiketi
 //   ikisiyle birlikte; çağrı dili yok, animasyon yok.
-// - Numara HTML'e basılmaz: bağlantı aynı-köken `/whatsapp/` yoluna gider,
-//   Cloudflare `_redirects` 302 ile wa.me'ye yönlendirir (D4). JS'siz
-//   çalışır; satır içi script yok.
+// - Bağlantı aynı-köken `/whatsapp/` yoluna gider; canlıda Pages Function
+//   (functions/whatsapp.js, karar-kapatma Faz B) tıklamayı sayar ve 302 ile
+//   wa.me'ye yönlendirir; `_redirects` aynı kuralı yedek olarak taşır. JS'siz
+//   çalışır; satır içi script yok. Numara görünür metinde yok; Faz C kararıyla
+//   yalnız JSON-LD Organization.telephone alanında (yapılandırılmış veri).
 // - Dokunma hedefi ≥44px; odak halkası DESIGN.md §9 sözlüğü (aydınlıkta
 //   DERİN 2px/offset 3px, koyuda KÖPÜK — K30).
 // - z-index 50: menü barı (60) ve mobil menü paneli (59) ALTINDA, içerik

@@ -125,3 +125,59 @@ taradı ve dizine aldı**:
 ### A3 — Kalıcı kural
 KARARLAR §37'ye "Ölçmeden uygulama yasağı" brief'teki metinle yazıldı;
 A1/A2 kararları aynı bölümde.
+
+## FAZ B — §D7 tıklama ölçümü: Pages Function sayacı (c) + Web Analytics (a)
+
+**Doküman kanıtı (keşif ajanı, resmî Cloudflare markdown'ları):** aynı yolda
+hem `_redirects` kuralı hem Function varsa **Function kazanır**; `_redirects`
+"not applied to requests served by Pages Functions" (pages/configuration/
+redirects). `functions/` dizini proje KÖKÜNDE olmalı (dist içinde değil);
+`functions/whatsapp.js` → `/whatsapp`, sondaki eğik çizgi isteğe bağlı
+(`[[path]]` gerekmez). KV'de atomik artış YOK (aynı anahtara 1 yazma/sn,
+eventual consistency) → her tıklama ayrı anahtar, okuma `list({prefix})`.
+Ücretsiz kota: Functions 100.000 istek/gün; KV 1.000 yazma + 1.000 list/gün.
+`_headers` Function yanıtına uygulanmaz → HSTS/Cache-Control kodda.
+
+**B1 — `functions/whatsapp.js` (68 satır):** `onRequest(context)`; sayım
+yalnız `sec-fetch-dest: document` ya da aynı-köken Referer taşıyan GET'lerde
+(sağlık betiği/bot sayılmaz — Node 22 fetch başlıklarında ikisi de yok,
+ölçüldü); anahtar `t:<TR günü>:<ms>-<8 rastgele>`, değer boş, TTL 400 gün;
+**IP/UA/Referer değeri saklanmaz, çerez yok.** `context.waitUntil` ile yazım
+yanıtı bekletmez; her hata yutulur; **302 koşulsuz** (`Location`,
+`Cache-Control: no-store`, HSTS, `X-Kaynak: fn`). `WA_HEDEF` ortam
+değişkeniyle hedef ezilebilir. `_redirects` satırları YEDEK olarak kaldı
+(kota bitince "Fail open", yerel dist-sun, sağlık onarımı) — yorumu
+güncellendi; numara artık `_redirects` + Function (+ Faz C JSON-LD).
+Sıra ölçümü (B1 son madde) deploy sonrası canlı `X-Kaynak` başlığıyla (§B
+canlı bölümü).
+
+**B2 — KV bağlaması (KULLANICI ADIMI):** karar dosyası §D7'de adım adım
+(namespace adı `suharitasi-wa-sayac`, değişken adı `WA_SAYAC`, Production +
+Preview, ardından yeniden deploy).
+
+**B3 — okuma yolu:** `GET /whatsapp/?sayac=<SAYAC_ANAHTAR>` → JSON
+`{gunler:{"YYYY-MM-DD":n}, toplam, okuma}`; anahtar yok/yanlış → normal 302
+(sızıntı yok). Tek komut: `arac/whatsapp-sayac.sh` (`--ozet` ile tek satır),
+anahtarı `.env` `WA_SAYAC_ANAHTAR`'dan okur (bu koşumda üretildi; değer rapora
+girmez). Panelde `SAYAC_ANAHTAR` secret'ı aynı değerle tanımlanana kadar
+betik "SAYAÇ HENÜZ KURULMADI" der (302'yi ayırt eder).
+
+**B4 — Web Analytics (KULLANICI ADIMI):** doküman: Workers & Pages → proje →
+**Metrics → Enable** (Web Analytics); beacon bir sonraki deploy'da otomatik
+enjekte edilir. Kod tarafı: CSP `script-src static.cloudflareinsights.com` +
+`connect-src 'self' cloudflareinsights.com` zaten yeterli; `Cache-Control:
+public, no-transform` (enjeksiyonu engeller) `_headers`'ta yok → kod
+değişikliği GEREKMEDİ.
+
+**B5 — falsifikasyon (KV yokken):** `node arac/test/whatsapp-fn.test.mjs`
+(Node 22 Request/Response, Workers taklidi yok) **13/13 geçti**: env boş →
+302 + Location + X-Kaynak; env undefined → 302; KV `put` reddediyor → 302;
+KV senkron fırlatıyor → 302; gezinme isteği 1 put (anahtar biçimi, TTL,
+IP/UA yok); Node-fetch benzeri başlıksız istek / yabancı Referer / HEAD
+sayılmaz (1/4); okuma yolu doğru anahtar → JSON (gün→sayı, cursor
+sayfalama), yanlış/tanımsız anahtar → 302. Canlı kanıt aşağıda.
+
+**Süreklilik:** `izleme/beklenen-301.json` `/whatsapp` kurallarına
+`beklenenBaslik: {x-kaynak: fn}`; md3 artık yönlendirme çalışıp başlık
+yoksa SARI verir ("Function devre dışı, _redirects yedeği servis ediyor —
+sayaç saymıyor"); yönlendirme kopması yine KIRMIZI.
