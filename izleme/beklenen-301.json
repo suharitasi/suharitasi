@@ -36,6 +36,18 @@
       "hedef": "/rehberler/ruhsatsiz-kuyu-cezalari/",
       "kod": 301,
       "gerekce": "eğik çizgisiz hâli"
+    },
+    {
+      "kaynak": "/whatsapp/",
+      "hedef": "https://wa.me/905324497144",
+      "kod": 302,
+      "gerekce": "WhatsApp kanalı — numara HTML'e basılmaz, tek yer _redirects (Faz D, 08.09.2026)"
+    },
+    {
+      "kaynak": "/whatsapp",
+      "hedef": "https://wa.me/905324497144",
+      "kod": 302,
+      "gerekce": "WhatsApp kanalı — numara HTML'e basılmaz, tek yer _redirects (Faz D, 08.09.2026) — eğik çizgisiz hâli"
     }
   ]
 }

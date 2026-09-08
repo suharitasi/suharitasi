@@ -332,3 +332,39 @@ diğer 195 sayfa BİT-EŞİT. 27.08 denetim tabanına göre ek farklar veri-güd
 **Uydurma öz-denetimi:** yeni metin iki cümle kalıbı; "hattı X ili
 sınırlarından geçer" ↔ `cografya.il` (95/95 dolu), bağlantı metinleri
 hedef sayfa başlığıyla birebir konu. Yeni sayı, yeni hukuki iddia yok.
+
+## FAZ D — Sabit WhatsApp düğmesi
+
+Bileşen `src/components/WhatsAppDugme.astro`; dahil edildiği yerler:
+`Sayfa.astro` (AltBilgi'den sonra, 518 iç sayfa), `index.astro`,
+`harita.astro`, `harita-pilot.astro`, `stil-pilot.astro` (koyu adalarda
+`koyu` prop'u) ve `public/404.html` (statik; markup+CSS tekrar). Skill notu:
+CLAUDE.md tasarım skill kuralı gereği ui-ux-pro-max/frontend-design önerileri
+bu işte DESIGN.md §9 durum sözlüğü (odak, hover eğrisi `--e-akinti`, gölge
+yok) ve K30/K34 palet kararlarıyla sınırlı uygulandı; yeni renk/eğri
+üretilmedi.
+
+| Madde | Ölçüm (dist-sun, CSP + _redirects uygulanır) |
+|---|---|
+| D1 konum | `position: fixed`, sağ alt, z-index 50 (menü barı 60, mobil panel 59 üstte kalır; "içeriğe atla" 999). Kutu 430px: x288 y874 128×44 · 1440px: x1290 y834 128×44. Kapatılamaz, animasyon yok. |
+| D1 çakışma | Sabit öğeler envanteri: menü barı (top, z60), mobil panel (top, z59), atla bağlantısı (z999, odakta), /harita/ ve pilot yüzer öğeler (üst/sağ-orta, z6-7). Sağ alt köşede başka sabit öğe yok → kesişme 0. |
+| D2 renk | Aydınlık: zemin `--su-700` #0C5A7C, metin #fff → **7,58:1**. Koyu adalar: zemin `--kopuk`, metin `--deniz` → **12,41:1** (ana sayfa ölçümü). WhatsApp yeşili yok, palet dışı hex yok. Simge (Simple Icons yolu, CC0, inline SVG, currentColor) + "WhatsApp" etiketi birlikte. Çağrı dili yok. |
+| D3 erişilebilirlik | dokunma hedefi 128×44 (≥44) · kontrast 7,58 / 12,41 (≥4,5) · `aria-label="WhatsApp ile iletişim"` (görünür metni içerir) · klavye: Tab ile odaklanıyor (`activeElement` doğrulandı), odak halkası aydınlıkta `2px #0C5A7C offset 3px`, koyuda `2px #DBEAF4 offset 3px` (K30 sözlüğü) · ekran okuyucu: `<a>` + etiket; SVG `aria-hidden`. |
+| D4 numara | dist'te 523 HTML'in 0'ında numara geçiyor. href `/whatsapp/` → `_redirects` 302 → wa.me (yalnız o dosyada). JS kapalı test (Playwright, javaScriptEnabled:false): tıklama → `/whatsapp/` → 302 → `https://wa.me/905324497144` → api.whatsapp.com'a ulaştı. Satır içi script yok (bileşende script yok). |
+| D5 mobil | 430×932'de kaplama **%1,4** (1440×900'de %0,43). İlk ölçümde ana sayfada sayfa sonunda imza satırıyla ("suharitasi.com · Arslan Hukuk Bürosu güvencesiyle") kesişme ölçüldü → `AltBilgi.astro` ≤720px'te `padding-bottom: calc(1.4rem + 44px + 1rem)`; ikinci ölçümde 3 sayfa × 2 genişlik sayfa sonunda kesişen öğe **0**. Hukuki şerh ("Bu sayfa hukuki görüş değildir", main içinde) kesişmiyor. |
+| D6 şema | Organization `telephone` EKLENMEDİ — D4 ile çelişir (JSON-LD HTML'dedir). Karar dosyası §D. LegalService düğümü sitede yok; alan uydurulmadı. |
+| D7 ölçüm | KURULAMADI: canlıda CF Web Analytics beacon 0; CF Web Analytics özel olay desteklemez; GA4 Admin API kapalı (403) ve çerez metni ister. Altyapı hazırlandı (`/whatsapp/` edge isteği); üç seçenek karar dosyası §D7. |
+| D8 kareler | `cikti/denetim/whatsapp-dugme/{once,sonra}-{anasayfa,havza-gediz,rehber-iptal}-{430,1440}[-son|-odak].png` + `*-olcum.json` (24 kare + 2 ölçüm dosyası; cikti/ depo dışı). |
+| D9a | 523/523 HTML'de düğme (522 sayfa + 404). |
+| D9b | beş ölçüm yukarıda; taban seviyesinin altına düşen yok. |
+| D9c | JS kapalı: çalışıyor (D4 satırı). |
+| D9d | 3 sayfa × 2 genişlik konsol hata/uyarı 0 (dist-sun CSP altında; CSP ihlali 0). |
+| D9e | Faz E'de `--tam` (md14 görsel taban, md21 dokunma). |
+| D9f | Faz E'de canlı. |
+| D9g | Ölçüm yok → tetiklenemez (D7). |
+
+Süreklilik: `izleme/beklenen-301.json`'a `/whatsapp` ve `/whatsapp/` (302 →
+wa.me) eklendi — md3 yönlendirme kalemi bundan sonra izler.
+Görünür metin kıyası (Faz D): C'de dokunulmayan 97 sayfanın görünür metni,
+"WhatsApp" etiketi düşülünce dist-once ile **bit-eşit**; sayfa 522 /
+sitemap 519 küme-eş.

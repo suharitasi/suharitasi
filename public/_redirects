@@ -63,3 +63,12 @@
 # rehber (hukuki vaat ölçümü 0).
 /su-hukuku   /rehberler/ruhsatsiz-kuyu-cezalari/   301
 /su-hukuku/  /rehberler/ruhsatsiz-kuyu-cezalari/   301
+
+# WHATSAPP KANALI (08.09.2026, Faz D — rapor/08-09-gsc-ticari-whatsapp.md §D).
+# Numara HTML'e BASILMAZ (D4 numara koruması): 523 sayfadaki düğme aynı-köken
+# /whatsapp/ yoluna gider, hedef yalnız burada durur. 302 (kalıcı değil):
+# numara değişirse tarayıcı/CDN önbelleği eski hedefi tutmasın. JS'siz
+# çalışır. Yan kazanım: tıklama bir edge isteğidir — ileride sayfa
+# koduna dokunmadan sayılabilir (D7 karar dosyası).
+/whatsapp   https://wa.me/905324497144   302
+/whatsapp/  https://wa.me/905324497144   302

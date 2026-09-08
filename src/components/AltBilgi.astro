@@ -96,6 +96,10 @@ const niyetKapilari = [
 
   @media (max-width: 720px) {
     .alt-kolonlar { grid-template-columns: repeat(2, 1fr); gap: 1.6rem; }
+    /* Faz D (08.09.2026, D5 ölçümü): sabit WhatsApp düğmesi (44px, sağ alt)
+       430px'te imza satırını kapatıyordu — dar ekranda footer'a düğme
+       yüksekliği + boşluk kadar alt pay. Masaüstünde kesişme ölçülmedi. */
+    footer.alt { padding-bottom: calc(1.4rem + 44px + 1rem); }
   }
 
   .alt-baslik {

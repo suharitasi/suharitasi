@@ -31,6 +31,7 @@ import '../styles/anasayfa-v2.css';
 // yeni H1+alt satırla uyumlandı. Envanter sayıları kanıt bandında yaşıyor.
 // Ana sayfanın öz-cevap MUAFİYETİ (28.07 kullanıcı kararı) değişmedi.
 import { HERO_ALT } from '../data/anasayfa-satis.js';
+import WhatsAppDugme from '../components/WhatsAppDugme.astro';
 
 // Sahne kaynakları (poster + klip) — eski sayfadan AYNEN (video/poster
 // dosyalarına DOKUNULMADI, M6).
@@ -246,5 +247,6 @@ const sahneVeri = SAHNELER.map((s) => ({
 
   <div class="v2-altkap"><AltBilgi /></div>
 
+  <WhatsAppDugme koyu />
 </body>
 </html>

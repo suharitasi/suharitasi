@@ -26,6 +26,7 @@ import havzaVeri from '../../data/havza-veri.json';
 import yasVeri from '../../data/canli/havza-yas.json';
 import grace from '../../data/canli/grace-havza.json';
 import { SITE_ADI, YAZAR, VERI_KATALOGU } from '../data/site';
+import WhatsAppDugme from '../components/WhatsAppDugme.astro';
 
 const KOK_URL = 'https://suharitasi.com/';
 const SAYFA_URL = 'https://suharitasi.com/harita/';
@@ -311,5 +312,6 @@ const jsonLd = JSON.stringify({
     else hero.addEventListener('load', goster);
     setTimeout(goster, 2500); // emniyet
   </script>
+  <WhatsAppDugme koyu />
 </body>
 </html>
