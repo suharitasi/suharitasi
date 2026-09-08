@@ -63,3 +63,7 @@ izleme/state/.rg-ca-demeti.tmp
 # commit'lense her gün ağacı kirletirdi (kirli-ağaç dersi, 24-25.08).
 /izleme/state/bekci-damga.txt
 /izleme/state/bekci-alarm-damga.txt
+# Sağlık bekçisi uyarı dosyası (saglik-bekcisi.sh): uyarı varken yazılır,
+# sağlıklı koşuda silinir (satır 270). SITE-DURUM.md ile aynı sınıf —
+# üretilen yerel izleme çıktısı, depoya girmez (08.09.2026 kapı temizliği).
+/UYARI-SAGLIK.md
