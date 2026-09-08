@@ -134,7 +134,7 @@ logla "başlıyor → $CIKTI_DIZIN"
 CIKTI_SATIR=""
 if CIKTI_SATIR=$(GOOGLE_SEO_SERVICE_ACCOUNT_FILE="$ANAHTAR" \
                  GSC_CIKTI_DIZIN="$CIKTI_DIZIN" \
-                 "$PY" "$BETIK" 2>>"$LOG"); then
+                 "$PY" "$BETIK" "$@" 2>>"$LOG"); then
   logla "python çıktısı: $CIKTI_SATIR"
 else
   olduc "python koşumu exit≠0 (ayrıntı yukarıdaki log satırlarında)"
