@@ -14,7 +14,7 @@ import isletmeEk from '../../veri/potansiyel/isletme-sahalari-ek.json';
 import zengin from '../../veri/potansiyel/zenginlestirme.json';
 import morfoloji from '../../veri/potansiyel/morfoloji.json';
 import { yayinlananIller } from './il-profil.js';
-import { ilPotansiyel } from './potansiyel.js';
+import { ilPotansiyel, AKADEMIK_SAYIM } from './potansiyel.js';
 
 function say(n, ad) {
   if (!Number.isFinite(n)) throw new Error(`kapi: "${ad}" sayıya çözülmedi (${n}).`);
@@ -66,8 +66,12 @@ const morfIl = say(Object.keys(morfoloji.iller).length, 'morfoloji ili');
 const oz = zengin.ozet;
 const mtaKunye = say(oz.mta_kunye_toplam, 'MTA künyesi');
 const mtaIl = say(oz.mta_il_kapsami, 'MTA ili');
-const akademikKunye = say(oz.akademik_kunye_toplam, 'akademik künye');
-const akademikIl = say(oz.akademik_il_kapsami, 'akademik künye ili');
+// Faz D (08.09.2026): sayı artık alaka süzgecinden geçen künyedir; toplanan
+// ayrıca yazılır (AKADEMIK_SAYIM, potansiyel.js) — "1.979 yayın" iddiası
+// süzgeç sonrası yanlış olurdu.
+const akademikKunye = say(AKADEMIK_SAYIM.kalan, 'akademik künye (süzgeç sonrası)');
+const akademikToplanan = say(AKADEMIK_SAYIM.toplanan, 'akademik künye (toplanan)');
+const akademikIl = say(AKADEMIK_SAYIM.il, 'akademik künye ili');
 const osmKaynak = say(oz.osm_spring_toplam, 'OSM su kaynağı');
 const osmKuyu = say(oz.osm_well_toplam, 'OSM kuyusu');
 
@@ -148,8 +152,9 @@ export const KATMANLAR = [
     ad: 'Rapor ve yayın künyeleri',
     kunye: 'MTA e-ticaret katalog metaverisi · OpenAlex API · OpenStreetMap / Overpass API',
     kaynakNot: 'OpenAlex metadata CC0 · OpenStreetMap ODbL 1.0, © OpenStreetMap katkıcıları',
-    olcum: `${mtaKunye} MTA rapor künyesi (${mtaIl} il) · ${akademikKunye} açık ` +
-      `erişim yayın künyesi (${akademikIl} il) · ${osmKaynak} su kaynağı, ${osmKuyu} kuyu işareti`,
+    olcum: `${mtaKunye} MTA rapor künyesi (${mtaIl} il) · ${akademikKunye} su konulu açık ` +
+      `erişim yayın künyesi (${akademikIl} il; ${akademikToplanan} toplanan, alaka süzgecinden geçen basılır) · ` +
+      `${osmKaynak} su kaynağı, ${osmKuyu} kuyu işareti`,
     aciklama: `Yalnız künye ve bağlantı basılır; rapor içeriği alınmaz ve ` +
       `DOI/açık erişim bağlantısı olmayan yayın yayımlanmaz.`,
   },

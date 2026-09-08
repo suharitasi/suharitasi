@@ -14,6 +14,27 @@ import isletmeEk from '../../veri/potansiyel/isletme-sahalari-ek.json';
 import zengin from '../../veri/potansiyel/zenginlestirme.json';
 import morfoloji from '../../veri/potansiyel/morfoloji.json';
 import { sayiIle } from './rg-sayi.js';
+import { akademikBasilir } from './akademik-suzgec.js';
+
+// Faz D (08.09.2026): OpenAlex başlıklarında HTML varlık kalıntısı (58 başlıkta
+// &amp;#039; / &#039; / &quot; / &lt; …) sayfada harfiyen basılıyordu — çözülür.
+// Yeni metin üretilmez; yalnız kaynağın kendi kodlaması geri açılır.
+const entityCoz = (s) => String(s ?? '')
+  .replace(/&amp;/g, '&').replace(/&#0?39;|&apos;/g, "'").replace(/&quot;/g, '"')
+  .replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+
+// Site geneli sayım (kapı/vitrin/kullanılanlar sayfaları): toplanan künye
+// ile alaka süzgecinden geçen künye AYRI raporlanır — süzgeç sonrası
+// "1.979 açık erişim yayın" demek yanlış olurdu.
+export const AKADEMIK_SAYIM = (() => {
+  let toplanan = 0, kalan = 0, il = 0;
+  for (const z of Object.values(zengin.iller)) {
+    const ks = Array.isArray(z.akademik_kunyeler) ? z.akademik_kunyeler : [];
+    const k = ks.filter(akademikBasilir).length;
+    toplanan += ks.length; kalan += k; if (k > 0) il++;
+  }
+  return { toplanan, kalan, il };
+})();
 
 // PİLOT KAPISI KALDIRILDI (6.4, kullanıcı pilot onayı 2026-07-27):
 // blok 81 ilde basılır. (Pilot listesi tarihçe için: Manisa, Çanakkale.)
@@ -94,9 +115,15 @@ export function ilPotansiyel(ilAdi) {
   const z = zengin.iller[ilAdi] ?? {};
   const mta = Array.isArray(z.mta_kunyeleri) ? z.mta_kunyeleri : null;
   const akademikHam = Array.isArray(z.akademik_kunyeler) ? z.akademik_kunyeler : null;
+  // Faz D (08.09.2026, karar §A seçenek 3): baski_uygun + DOI/URL şartına
+  // ALAKA SÜZGECİ eklendi (akademik-suzgec.js — başlık/dergi su terimi
+  // taşımayan künye basılmaz; ölçüm: 1.979 → 1.118, 777 → 494 yazar adı).
+  // Veri dosyası değişmez. Elenen sayısı sayfada açıkça yazılır.
   const akademik = akademikHam
-    ? akademikHam.filter((k) => k.baski_uygun !== false && (k.doi || k.url))
+    ? akademikHam.filter(akademikBasilir)
+      .map((k) => ({ ...k, baslik: entityCoz(k.baslik), dergi: k.dergi ? entityCoz(k.dergi) : k.dergi }))
     : null;
+  const akademikElenen = akademikHam ? akademikHam.length - akademik.length : 0;
   const osm = typeof z.osm_su_noktalari === 'object' ? z.osm_su_noktalari : null;
 
   // (a) öz-cevap — ŞABLON cümleler (serbest metin yok)
@@ -140,11 +167,15 @@ export function ilPotansiyel(ilAdi) {
 
   return {
     il: ilAdi, ozCevap, kutleler, dagilim,
-    rgKayitlari, rgEkKayitlari, morf, mta, akademik, osm,
+    rgKayitlari, rgEkKayitlari, morf, mta, akademik, akademikElenen, osm,
     tuik: 'veri yok',
+    // Faz D: süzgeç her künyeyi elerse boş başlık BIRAKILMAZ, sebep yazılır
+    // (sessiz kaybolma yok — 3 il: Adıyaman, Karabük, Şırnak).
     akademikEksikNedeni: akademik === null
       ? 'veri yok (OpenAlex kota sınırı — tamamlanması iş kuyruğunda)'
-      : null,
+      : akademik.length === 0 && akademikElenen > 0
+        ? `su konulu açık erişim yayın bulunamadı (${akademikElenen} künye alaka süzgecinde elendi)`
+        : null,
     durustlukEtiketi:
       'Resmî havza ve yeraltı suyu kütlesi ölçeğindeki verilerden derlenmiştir. ' +
       'Parsel düzeyinde tahmin değildir; kesin tespit hidrojeolojik etüt ve ' +

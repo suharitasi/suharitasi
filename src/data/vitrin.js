@@ -14,6 +14,7 @@ import kutleIl from '../../veri/potansiyel/kutle-il.json';
 import isletme from '../../veri/potansiyel/isletme-sahalari.json';
 import isletmeEk from '../../veri/potansiyel/isletme-sahalari-ek.json';
 import zengin from '../../veri/potansiyel/zenginlestirme.json';
+import { AKADEMIK_SAYIM } from './potansiyel.js';
 import graceTurkiye from '../../data/canli/grace-turkiye.json';
 import graceHavza from '../../data/canli/grace-havza.json';
 import havzaYas from '../../data/canli/havza-yas.json';
@@ -197,7 +198,8 @@ export const ARSIV_SETLERI = [
     ad: 'Rapor ve yayın künyeleri',
     kaynak: 'MTA e-ticaret katalog metaverisi · OpenAlex API (CC0) · OpenStreetMap/Overpass (ODbL, © OpenStreetMap katkıcıları)',
     kapsam: '81 il',
-    sayim: `${oz.mta_kunye_toplam} MTA künyesi (${oz.mta_il_kapsami} il) · ${oz.akademik_kunye_toplam} açık erişim yayın (${oz.akademik_il_kapsami} il) · ${oz.osm_spring_toplam} kaynak + ${oz.osm_well_toplam} kuyu işareti`,
+    // Faz D (08.09.2026): süzgeç sonrası sayı + toplanan; potansiyel.js AKADEMIK_SAYIM.
+    sayim: `${oz.mta_kunye_toplam} MTA künyesi (${oz.mta_il_kapsami} il) · ${AKADEMIK_SAYIM.kalan} su konulu açık erişim yayın (${AKADEMIK_SAYIM.il} il; ${AKADEMIK_SAYIM.toplanan} toplanan, alaka süzgeci) · ${oz.osm_spring_toplam} kaynak + ${oz.osm_well_toplam} kuyu işareti`,
     erisim: 'İl sayfalarında künye listeleri olarak görüntülenir.',
     yol: '/nerede-su-cikar/',
   },

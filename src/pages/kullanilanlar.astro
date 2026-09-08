@@ -100,7 +100,7 @@ const say = (n) => n.toLocaleString('tr-TR');
     {say(OLCEK.golSayisi)} göl ve {say(OLCEK.nehirSayisi)} akarsu sayfası
     (OSM/Natural Earth hidrografyası; Türkiye kapsamı dışında kalan{' '}
     {say(OLCEK.hidroElenen)} öznitelik yayına alınmadı) ·{' '}
-    {say(OLCEK.akademikKunye)} akademik künye,{' '}
+    {say(OLCEK.akademikKunye)} su konulu akademik künye ({say(OLCEK.akademikToplanan)} toplanan; alaka süzgecinden geçen basılır),{' '}
     {say(OLCEK.akademikIlKapsami)} il · {say(OLCEK.dsiBolgesi)} bölge idaresi ·{' '}
     {say(OLCEK.veriSeti)} türetilmiş veri seti ·{' '}
     {say(OLCEK.dsiArsiv)} arşivlenmiş istatistik dosyası ·{' '}
@@ -178,7 +178,7 @@ const say = (n) => n.toLocaleString('tr-TR');
   <ul class="kl-olcek">
     <li><span class="kl-sayi">{say(OLCEK.yasKutlesi)}</span> yeraltı suyu kütlesi</li>
     <li><span class="kl-sayi">{say(OLCEK.rgKaydi)}</span> resmî ilan kaydı</li>
-    <li><span class="kl-sayi">{say(OLCEK.akademikKunye)}</span> akademik künye</li>
+    <li><span class="kl-sayi">{say(OLCEK.akademikKunye)}</span> su konulu akademik künye</li>
     <li><span class="kl-sayi">{say(OLCEK.dsiArsiv)}</span> arşiv dosyası</li>
     <li><span class="kl-sayi">{say(OLCEK.saglikKalemi)}</span> sağlık denetim kalemi</li>
     <li><span class="kl-sayi">{say(OLCEK.aracDosyasi)}</span> ölçüm ve veri betiği</li>

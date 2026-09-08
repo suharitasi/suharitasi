@@ -175,7 +175,7 @@ const cokIlliler = p.kutleler.filter((k) => k.cokIlli);
     {p.akademik && p.akademik.length > 0 && (
       <li>
         <details class="pot-katman">
-          <summary>Açık erişim akademik yayınlar ({p.akademik.length})</summary>
+          <summary>Açık erişim akademik yayınlar ({p.akademik.length}{p.akademikElenen > 0 && `; ${p.akademikElenen} künye su konusu dışı olduğu için basılmadı`})</summary>
           <ul>
             {p.akademik.map((k) => (
               <li>

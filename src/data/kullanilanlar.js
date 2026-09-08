@@ -13,6 +13,7 @@
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { tumGoller, tumNehirler, elenenGoller, elenenNehirler } from './gol-nehir.js';
+import { AKADEMIK_SAYIM } from './potansiyel.js';
 
 // KOK = process.cwd(): bundle derinliği Astro sürümüyle değiştiği için
 // import.meta.url güvenilmez (vitrin.js'teki notla aynı ölçüm).
@@ -90,8 +91,10 @@ const skillSayisi = null;
 
 export const OLCEK = {
   yasKutlesi, havzaPlani, rgKaydi, rgSayiliKayit,
-  akademikKunye: akademik.toplam_kunye,
-  akademikIlKapsami: akademik.il_kapsami,
+  // Faz D (08.09.2026): basılan = alaka süzgecinden geçen; toplanan ayrı.
+  akademikKunye: AKADEMIK_SAYIM.kalan,
+  akademikToplanan: akademik.toplam_kunye,
+  akademikIlKapsami: AKADEMIK_SAYIM.il,
   dsiBolgesi: Object.keys(ilKurum.dsiBolgeleri).length,
   veriSeti, dsiArsiv, mevzuatArsiv,
   golSayisi, nehirSayisi, hidroElenen,

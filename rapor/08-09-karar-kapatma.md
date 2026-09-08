@@ -211,3 +211,86 @@ sayaç saymıyor"); yönlendirme kopması yine KIRMIZI.
 - Görünür çıktı koruması: C düzenlemeleri stash'lenip HEAD build'i alındı
   (`cikti/dist-once3`), geri alınıp yeniden build → **523/523 görünür metin
   bit-eşit**, sitemap 519/519.
+
+## FAZ D — §A akademik künyeler: alaka süzgeci (KULLANICI KARARI: seçenek 3)
+
+**D2 ölçüt (tekrar üretilebilir; `src/data/akademik-suzgec.js`):** başlık +
+dergi adı yerel-bağımsız normalize edilir (İ/I→i, küçük harf, ı→i, NFKD
+aksan atma, [a-z0-9] dışı → boşluk) ve SU-TERİMİ sözlüğünden en az biri
+kelime sınırında eşleşirse künye basılır. Sözlük iki kaynaktan türetildi:
+(a) toplama betiğinin sorgu terimleri (`arac/akademik-kunye.py:91` "yeraltı
+suyu", "hidrojeoloji"); "potansiyel" ve çıplak "yeraltı" veride konu dışı
+eşleştiği için (ısı pompası/turizm potansiyeli; yeraltı çarşısı/madenciliği)
+ALINMADI; (b) hidroloji-hidrojeoloji alan sözlüğü: su kökü (yalnız Türkçe
+çekim ekleriyle — suyu/suları/sular/suya/sulu/susuz; sunum/suç/sultan/Şubat/
+sürdürülebilir eşleşmez) ve bileşikleri (yeraltısuyu, atıksu, içmesuyu,
+akarsu), hidro-/hydro- (hidroterapi/hidrokarbon/hidrojen hariç), water,
+akifer/aquifer, kuyu, havza/basin, sulama/sulak/irrigation, yağış/yağmur/
+precipitation/rainfall, kurak/drought, baraj/dam, göl/lake, akarsu/nehir/
+çay/dere/river/stream/spring/şelale/çağlayan, taşkın/sel/flood, jeotermal/
+geothermal, karst, kaplıca, drenaj/drainage. Veriyle ELENEN adaylar (tek
+başına eşleşmeleri konu dışıydı): jeoloji (66 ayrıcalıklı eşleşme: cevher,
+jeoteknik zemin), iklim (49), kaynak ("afet kaynaklı"), kirlilik, sondaj,
+sediman, deniz ("Denizli"), ova, çıplak termal. Ek şartlar: DOI/URL var
+(önceden vardı) + başlık boş değil (1 kayıt: Aksaray W4255776210 başlıksız).
+Süzgeç yalnız basım katmanında; `veri/potansiyel/akademik-kunye.json`
+DEĞİŞMEDİ. Sınır sözcük testi 76/76 (arac/test/akademik-suzgec.test.mjs).
+Python paritesi: aynı regex + normalizasyonla 1.118 / 861 / 494 — node ile
+birebir.
+
+**D3 gerçek sayılar:** 1.979 künye → **1.118 kalan / 861 elenen (%43,5)**;
+farklı yazar adı **777 → 494** (sitede ilk-3 kuralıyla görünen 440);
+farklı openalex_id 509 → 309. Beklenti ~1.282 / ~500 idi: ad tutuyor,
+künye beklenenin altında — 08.09 karar dosyasındaki 697 sayısı jeoloji ve
+iklim terimlerini "su terimi" saymıştı (V1+jeoloj+iklim = 1.271); bu iki
+terimin tek başına eşleşmeleri veride konu dışı olduğundan dışarıda tutuldu.
+İl başına kalan min 1 / maks 39.
+
+**Kanıt örnekleri (seed 8; tam çıktı `cikti/d2-suzgec-node.txt`):**
+- Elenen 10: Beşyol zemin incelemesi (jeoteknik) · Afetler ve Çevre Sağlığı
+  · Peyzaj karakter alanları · "Sur le climat de la plaine de Bafra" ·
+  başlıksız Aksaray kaydı · dijitalleşme ve vergilendirme · afetlerde aile
+  hekimliği · toprak kirliliği zenginleştirme faktörleri · 1955 Jeoloji
+  Kongresi tutanağı · CBS çalıştayı raporu → 10/10 doğru eleme.
+- Kalan 10: Çivril-Baklan yeraltısuyuna iklim etkisi · Water-Food Nexus ·
+  Denizli groundwater levels · Kahramanmaraş sel ve taşkınları · Van
+  Havzası mera toprak kalitesi (zayıf) · Seyfe Gölü sulak alanı · Konya
+  Ovası yeraltı suyu · Bolluk-Tersakan Gölleri InSAR · Türkiye jeotermal
+  enerji · Trakya su kaynakları → 9 su konulu, 1 zayıf.
+- Sınır/elenen 10 (geniş yer-bilimi terimi taşıyan): Bozdağ iklimi,
+  yeraltı yapıları sismik analizi, Bafra Ovası iklimi, Ekinözü jeolojik
+  özellikleri, Erzincan çevre jeolojisi, deprem parkları, planlamada
+  jeolojik eşik, Thornthwaite iklim tipleri (tek tartışmalı), demir
+  cevherleşmesi, deprem hasar riski → 9/10 doğru eleme, 1 sınırda.
+- Sınır/kalan 10 (tek zayıf terim): karst jeomorfolojisi, İznik Gölü ağır
+  metal, akifer DNAPL, Harran yeraltı suyu kirliliği, Bakırçay Havzası
+  arazi kullanımı (zayıf), Ilıca Kaplıcaları termal turizm (zayıf),
+  Korkuteli su kalitesi, Aşağı Seyhan yeraltı/yüzey suları, Aksu River
+  flow, katı atık depolama–water → 8 ilgili, 2 zayıf. Kuralla ayıklanamayan
+  kabul edilmiş kalıntı.
+
+**D4 boş bölüm:** süzgeç sonrası künyesi kalmayan **3 il (Adıyaman, Karabük,
+Şırnak)**: akademik `<details>` bloğu hiç basılmıyor (mevcut koşul), boş
+başlık yok; sessiz kaybolma olmasın diye "Kaynak künyeleri" listesinde tek
+satır: "Akademik yayın künyeleri: su konulu açık erişim yayın bulunamadı
+(2 künye alaka süzgecinde elendi)". Diğer 78 ilde `<summary>` elenen sayıyı
+açıkça yazar ("Açık erişim akademik yayınlar (8; 22 künye su konusu dışı
+olduğu için basılmadı)"). Dist ölçümü: 78 sayfada bölüm var, basılan künye
+toplamı **1.118**, summary'lerde elenen toplamı 855 (+ 3 ilin 6'sı = 861).
+"İbrahim Furkan Sarkım" artık 0 sayfada (künyesi konu dışı sınıfındaydı).
+
+**Tutarlılık düzeltmeleri (yan bulgu, ölçülen):** site geneli sayaçlar
+hâlâ "1.979 açık erişim yayın (81 il)" diyordu (`kapi.js`, `vitrin.js`,
+`kullanilanlar.js`) — süzgeç sonrası yanlış iddia olurdu → "1.118 su konulu
+açık erişim yayın (78 il; 1.979 toplanan, alaka süzgeci)" biçimine çekildi
+(/nerede-su-cikar/, /kullanilanlar/, /arsiv/ Dataset şeması). OpenAlex
+başlıklarındaki HTML varlık kalıntısı (58 başlıkta `&amp;#039;`, `&quot;`…)
+harfiyen basılıyordu → basım katmanında çözüldü (yeni metin yok).
+
+**D5:** seçenek 2 (yazar adını düşürme) karar dosyasında KULLANICI KALEMİ
+olarak duruyor (kalan 494 ad, KVKK m.28 değerlendirmesi hukukçunun).
+
+**D6 doğrulama:** build 522 sayfa / sitemap 519 (küme-eş); Faz C build'i
+(`cikti/dist-once4`) ile kıyas: görünür metin değişen 83 sayfa = 80 il
+sayfası + /nerede-su-cikar/ + /kullanilanlar/ + /arsiv/ (sayaç cümleleri);
+kalan **440 sayfa bit-eşit**. Bir il sayfası (elenen 0 olan) değişmedi.
