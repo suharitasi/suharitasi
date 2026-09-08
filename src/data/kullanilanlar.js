@@ -57,6 +57,9 @@ const ilKurum = oku('data/il-kurum.json');
 const golSayisi = tumGoller().length;
 const nehirSayisi = tumNehirler().length;
 const hidroElenen = elenenGoller().length + elenenNehirler().length;
+// Faz E (08.09.2026): ada-kalmaz — tür düzeltmesi ve kaynak çelişkisi şerhi sayıları.
+const golTipDuzeltme = tumGoller().filter((g) => g.tip_duzeltme).length;
+const golTipCeliski = tumGoller().filter((g) => g.tip_celiski && !g.tip_duzeltme).length;
 
 // ——— Denetim ve araç ———
 /* Sağlık kalemi sayısı: ölçerin KENDİ kaynağından sayılır (kaydet('N-ad')
@@ -97,7 +100,7 @@ export const OLCEK = {
   akademikIlKapsami: AKADEMIK_SAYIM.il,
   dsiBolgesi: Object.keys(ilKurum.dsiBolgeleri).length,
   veriSeti, dsiArsiv, mevzuatArsiv,
-  golSayisi, nehirSayisi, hidroElenen,
+  golSayisi, nehirSayisi, hidroElenen, golTipDuzeltme, golTipCeliski,
   saglikKalemi, gorselKalemi, briefKurali, aracDosyasi, kararSayisi,
   skillSayisi,
 };

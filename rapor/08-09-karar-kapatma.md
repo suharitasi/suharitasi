@@ -294,3 +294,57 @@ olarak duruyor (kalan 494 ad, KVKK m.28 değerlendirmesi hukukçunun).
 (`cikti/dist-once4`) ile kıyas: görünür metin değişen 83 sayfa = 80 il
 sayfası + /nerede-su-cikar/ + /kullanilanlar/ + /arsiv/ (sayaç cümleleri);
 kalan **440 sayfa bit-eşit**. Bir il sayfası (elenen 0 olan) değişmedi.
+
+## FAZ E — §B OSM tip ↔ ad çelişkisi
+
+**E1 yaygınlık (247 Türkiye-kapsamlı göl kaydı; `cikti/e-dogrulama.json`):**
+adında "baraj" geçip tür ≠ reservoir **25** (lake 22 + tür alanı yok 3:
+Keban/Atatürk/Karakaya — Natural Earth kayıtlarında `tip` yok) · adında
+"gölet" geçip tür = lake **18** · adında "gölet" geçip tür = reservoir 49
+(adlandırma farkı: ikisi de yapay; DSİ'nin kendisi 12 "Göleti"ni "Barajı"
+diye listeliyor — çelişki sayılmadı) · lagün adlı ≠ lagoon **1** (Hersek) ·
+jenerik ad 2 ("Baraj Gölü"/Karaman, "Gölet"/Edirne — tesis belirsiz). Kök
+bulgu: `arac/fetch_hydro.py:196` OSM'de `water=*` etiketi olmayan yolları
+`lake` yazıyor → "tip: lake" = "OSM doğal göl diyor" DEĞİL; ham Overpass
+yanıtı depoda yok, ayrıştırılamaz. Nehirlerde tip alanı yok (çelişki
+tanımsız).
+
+**E2/E3 çözüm — yerel liste + kural tabanlı şerh, kaynak JSON değişmedi:**
+`src/data/gol-tip-duzeltme.js` (**39 kayıt**) yalnız depo içi kaynakla
+doğrulananları taşır: DSİ 2024 4.1 (yapımı tamamlanan barajlar) / 4.6
+(göletler) tablolarında **il + öz-ad birebir** eşleşen satır (ilçe adı
+çakışması SAYILMADI — ör. "Erzurum-Şenkaya Sarıyar Barajı" Şenkaya Göleti'ni
+doğrulamaz) ya da EPİAŞ Şeffaflık baraj listesi (`data/canli/baraj.json`:
+EŞEN 1, ALADEREÇAM, BALKUSAN). Tür kuralı: 4.1 → reservoir, 4.6 → pond,
+EPİAŞ → reservoir. Doğrulama iki bağımsız yolla: keşif ajanının BIFF8
+satır ayrıştırması + bu oturumda `xls` dosyalarında UTF-16LE/cp1254 dize
+çıkarımı ve ham bayt bağlam araması (ör. "Malatya-Polat Barajı",
+"Şırnak-İdil Dirsekli Göleti", "Burdur-Karamanlı Barajı" satırları
+görüldü). Örnek: Keban (tür yok → reservoir, "Elazığ-Keban Barajı"),
+Kale Göleti (reservoir → pond, "Bingöl-Karlıova Kale Göleti"), Altınoluk
+Baraj Gölü (lake → pond, "Sivas-Yıldızeli Altınoluk Göleti" — ajanın
+"doğrulanmadı" dediği kayıt bu oturumda bulundu).
+`gol-nehir.js`: `tipCeliskisi()` (kural), `golTurSerhi()` (Tür satırı
+metni), `insaEt()` alanları `tip` (düzeltilmiş), `tip_kaynakta`,
+`tip_duzeltme`, `tip_celiski`; `golTipi()` doğrulanamayan çelişkide yanlış
+sınıf BASMAZ → "bir su kütlesidir (tür kaynakta çelişkili, doğrulanmadı)".
+Şema: düzeltilen kayıtlarda `additionalProperty` "Tür kaynağı".
+
+**E4 şerh yolu (dist ölçümü):** 247 göl sayfasında yerel düzeltme şerhi
+**39**, kaynak çelişkisi şerhi **18** (Karakaya — DSİ ili Diyarbakır, site
+ili Malatya: KISMİ; Kültepe Aksaray↔Kırşehir; Bayburt/Kars, Gülüç, Hersek,
+Yüzüncü Yıl, Belevi, Kutlu Aktaş, Çağsere, Değirmi, Soğulca, Akbenli,
+Kıranköy, İğdeli, Çerkezmüsellim, Şenkaya, İkizce + jenerik "Baraj Gölü"),
+jenerik-ad şerhi 1; **baraj adlı sayfada "bir doğal göldür" ifadesi 0**
+(önce 22). Örnek: /goller/baraj-golu/ → "Baraj Gölü, Karaman ili
+sınırlarında bir su kütlesidir (tür kaynakta çelişkili, doğrulanmadı)…";
+Tür satırı: "kaynak çelişkisi: ad 'baraj gölü' diyor, kaynakta 'lake'
+olarak kayıtlı ya da etiketsiz (OSM); depo içi DSİ/EPİAŞ listelerinde il +
+ad eşleşmesi bulunamadı — doğrulanmadı (08.09.2026); kaynak yalnız jenerik
+ad veriyor…". Yan etki: C6b kamulaştırma köprüsü düzeltilmiş türü görür →
+158 baraj gölü sayfası (önce 150; Keban, Atatürk dahil). Ada-kalmaz:
+/kullanilanlar/ cümlesi "39 göl kaydında tür … yerelde düzeltildi, 18
+kayıtta … çelişkisi şerhli"; KAYNAKLAR.md OSM bloğuna tür şerhi.
+Doğrulama: build 522/519; Faz D build'i (`cikti/dist-once5`) ile kıyas
+görünür metin değişen **58** = 57 göl + /kullanilanlar/; **465 sayfa
+bit-eşit**; JSON-LD geçersiz 0.

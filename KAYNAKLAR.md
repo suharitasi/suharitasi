@@ -57,6 +57,16 @@
 - Projeksiyon: EPSG:4326 (WGS84) — tüm dosyalarda CRS alanı mevcut
 - **Göller:** İki kaynak birleşimi:
   - **OpenStreetMap** — `natural=water` yolları (`water=lake/reservoir`),
+    - **Tür şerhi (08.09.2026, karar-kapatma Faz E):** `water=*` etiketi olmayan
+      yollar çekimde `lake` yazılır (`arac/fetch_hydro.py:196`); Natural Earth
+      kayıtlarında tür alanı yoktur. Ad ile tür çelişen 247 kayıttan 39'u depo
+      içi DSİ 2024 4.1/4.6 tabloları ve EPİAŞ baraj listesiyle il+ad birebir
+      eşleşerek yerelde düzeltildi (`src/data/gol-tip-duzeltme.js`; kaynak JSON
+      değişmedi); sert çelişkisi doğrulanamayan 18 kayıt (baraj/lagün adlı ama
+      kaynakta "lake"/etiketsiz, gölet adlı ama "lake") sayfada "kaynak
+      çelişkisi, doğrulanmadı" şerhiyle nötr ("bir su kütlesidir") basılır;
+      "gölet" adlı + `reservoir` (28 kayıt) çelişki sayılmaz (ikisi de yapay;
+      DSİ'nin kendisi 12 "Göleti"ni "Barajı" diye listeler).
     Overpass API üzerinden 04.08.2026'da çekildi. 0,5 km² üstü filtrelendi,
     0.005° shapely basitleştirme. 279 göl içerir (Van, Salda, Kovada, Abant,
     Uzungöl dahil).

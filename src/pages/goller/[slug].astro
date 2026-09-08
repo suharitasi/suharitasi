@@ -10,7 +10,7 @@ import SayfaBasi from '../../components/SayfaBasi.astro';
 import { TARIH } from '../../data/guncellik.js';
 import OzCevap from '../../components/OzCevap.astro';
 import Katman from '../../components/Katman.astro';
-import { tumGoller, golOzet, golTipi,
+import { tumGoller, golOzet, golTipi, golTurSerhi,
          GOLNEHIR_ERISIM, GOLNEHIR_KAPSAM_GOL, GOLNEHIR_LISANS, kaynakBagi } from '../../data/gol-nehir.js';
 
 export async function getStaticPaths() {
@@ -20,6 +20,8 @@ export async function getStaticPaths() {
 const { gol } = Astro.props;
 const ozet = golOzet(gol);
 const tur = golTipi(gol);
+// Faz E (08.09.2026): tür şerhi — yerel düzeltme dayanağı ya da kaynak çelişkisi.
+const turSerhi = golTurSerhi(gol);
 const il = gol.cografya.il;
 const havza = gol.cografya.havzalar[0] ?? null;
 
@@ -36,6 +38,8 @@ const sema = [{
     ...(gol.alan_km2 != null
       ? [{ '@type': 'PropertyValue', name: 'Yüzey alanı (km²)', value: gol.alan_km2 }] : []),
     { '@type': 'PropertyValue', name: 'Veri kaynağı', value: gol.kaynak },
+    ...(gol.tip_duzeltme
+      ? [{ '@type': 'PropertyValue', name: 'Tür kaynağı', value: gol.tip_duzeltme.kaynak }] : []),
   ],
   containedInPlace: { '@type': 'Place', name: il ? `${il.ad}, Türkiye` : 'Türkiye' },
 }, {
@@ -59,7 +63,7 @@ const sema = [{
     <dl class="kunye kunye-katman">
       <div class="kunye-satir">
         <dt>Tür</dt>
-        <dd>{tur.ad}{gol.tip == null && ' (veri türü belirtilmemiş)'}</dd>
+        <dd>{tur.ad}{gol.tip == null && !gol.tip_celiski && ' (veri türü belirtilmemiş)'}{turSerhi && <> — <span class="not">{turSerhi}</span></>}</dd>
       </div>
       {gol.alan_km2 != null && (
         <div class="kunye-satir">

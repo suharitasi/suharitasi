@@ -15,6 +15,7 @@
 // göllerde 0,5 km² üstü filtre; OSM verisi ODbL 1.0.
 import { readFileSync } from 'node:fs';
 import { cografyaEsle } from './gol-nehir-cografya.js';
+import { TIP_DUZELTME } from './gol-tip-duzeltme.js';
 
 // JSON'lar fs ile okunur (Vite + çıplak node testinde aynı davranış).
 const goller = JSON.parse(readFileSync('src/data/tr-goller.json', 'utf8'));
@@ -62,7 +63,47 @@ const TIP_METNI = {
   pond:      { ad: 'Gölet',      cekim: 'bir gölettir' },
 };
 export function golTipi(gol) {
+  // Faz E (08.09.2026): ad ile kaynak türü çelişiyor ve depo içi kaynakla
+  // düzeltilemediyse yanlış sınıf ("bir doğal göldür") BASILMAZ — nötr
+  // ifade + şerh (sayfada kaynağın ne dediği açıkça yazılır).
+  if (gol.tip_celiski && !gol.tip_duzeltme) {
+    return { ad: 'Tür kaynakta çelişkili', cekim: 'bir su kütlesidir (tür kaynakta çelişkili, doğrulanmadı)' };
+  }
   return TIP_METNI[gol.tip] ?? { ad: 'Göl', cekim: 'bir göldür' };
+}
+
+// Faz E (08.09.2026, karar §B): ad ↔ OSM türü çelişkisi (kural tabanlı, liste
+// bakımı yok). Yalnız SERT çelişkiler: adında "baraj" geçip tür reservoir
+// değilse; adında "gölet" geçip tür lake ise; adında "lagün/dalyan" geçip
+// tür lagoon değilse. "Gölet" adlı + reservoir ÇELİŞKİ SAYILMAZ (ikisi de
+// yapay; DSİ'nin kendisi 12 "Göleti"ni "Barajı" diye listeliyor — adlandırma
+// farkı). Ölçüm (247 kayıt): 25 baraj-adlı ≠ reservoir · 18 gölet-adlı =
+// lake · 1 lagün · 2 jenerik ad ("Baraj Gölü", "Gölet" — tesis belirsiz).
+// NOT: arac/fetch_hydro.py:196 OSM'de water=* etiketi olmayan yolları da
+// 'lake' yazar; bu yüzden şerh "OSM doğal göl diyor" DEMEZ, "kaynakta 'göl'
+// olarak kayıtlı ya da etiketsiz" der.
+export function tipCeliskisi(ad, tip) {
+  const a = String(ad ?? '').toLocaleLowerCase('tr');
+  const jenerik = /^(baraj gölü|gölet|göl|baraj|lagün)$/.test(a.trim());
+  if (/\bbaraj/.test(a) && tip !== 'reservoir') return { adIma: 'baraj gölü', kaynakta: tip, jenerik };
+  if (/gölet/.test(a) && tip === 'lake') return { adIma: 'gölet', kaynakta: tip, jenerik };
+  if (/lagün|dalyan/.test(a) && tip !== 'lagoon') return { adIma: 'lagün', kaynakta: tip, jenerik };
+  return null;
+}
+
+/** Sayfada basılacak tür şerhi (Tür satırı) — Faz E. */
+export function golTurSerhi(gol) {
+  if (gol.tip_duzeltme) {
+    const osm = gol.tip_duzeltme.osm ?? 'belirtilmemiş';
+    return `yerel düzeltme — kaynakta (OSM/Natural Earth) tür "${osm}"; dayanak: ${gol.tip_duzeltme.kaynak} (08.09.2026)`;
+  }
+  if (gol.tip_celiski) {
+    const c = gol.tip_celiski;
+    const kaynakta = c.kaynakta == null ? 'tür alanı yok (Natural Earth)' : `kaynakta "${c.kaynakta}" olarak kayıtlı ya da etiketsiz (OSM)`;
+    const ek = c.jenerik ? '; kaynak yalnız jenerik ad veriyor, hangi tesis olduğu belirlenemedi' : '';
+    return `kaynak çelişkisi: ad "${c.adIma}" diyor, ${kaynakta}; depo içi DSİ/EPİAŞ listelerinde il + ad eşleşmesi bulunamadı — doğrulanmadı (08.09.2026)${ek}`;
+  }
+  return null;
 }
 
 function insaEt(features, onek) {
@@ -103,9 +144,16 @@ function gorunenAd(ham) {
     if (slug === 'isimsiz') slug = `${onek}-${++adsiz}`;
     if (seen.has(slug)) { let i = 2; while (seen.has(`${slug}-${i}`)) i++; slug = `${slug}-${i}`; }
     seen.add(slug);
+    // Faz E (08.09.2026): yerel tür düzeltmesi (yalnız göller; nehirde tip yok)
+    // ve ad↔tür çelişki şerhi. Kaynak JSON'a dokunulmaz; tip_kaynakta ham değer.
+    const tipKaynakta = p.tip ?? null;
+    const duzeltme = onek === 'gol' ? (TIP_DUZELTME[slug] ?? null) : null;
+    const tip = duzeltme ? duzeltme.tip : tipKaynakta;
     icinde.push({
       slug, ad: benzersizAd(p.ad, adlar), ad_kaynakta: p.ad, kaynak: p.kaynak,
-      alan_km2: p.alan_km2 ?? null, tip: p.tip ?? null,
+      alan_km2: p.alan_km2 ?? null, tip,
+      tip_kaynakta: tipKaynakta, tip_duzeltme: duzeltme,
+      tip_celiski: onek === 'gol' ? tipCeliskisi(p.ad, tipKaynakta) : null,
       bbox: b, merkez: [(b[0] + b[2]) / 2, (b[1] + b[3]) / 2],
       geometry: f.geometry, cografya,
     });
