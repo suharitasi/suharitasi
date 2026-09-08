@@ -99,7 +99,14 @@ const sema = [{
         ruhsatı ve yetkili merci</a> · <a href={`/havzalar/${havza.slug}/`}>{havza.ad}{' '}
         rezerv ve doluluk verisi</a> · </>
       )}
-      <a href="/nerede-su-cikar/">ilinizin su potansiyeli</a>.
+      <a href="/nerede-su-cikar/">ilinizin su potansiyeli</a>
+      {/* C6b (08.09.2026): yalnız baraj gölü (OSM tip=reservoir) sayfalarında,
+          konuyla birebir ilgili rehbere bağ — ölçüm: göl→rehber içerik
+          bağlantısı 0/247; baraj-kamulastirmasi rehberinin gelen bağlantısı
+          2 (en düşük), coğrafyadan 0. Doğal göl/gölet/lagünde eklenmez. */}
+      {gol.tip === 'reservoir' && (
+        <> · <a href="/rehberler/baraj-kamulastirmasi/">baraj kamulaştırması rehberi</a></>
+      )}.
     </p>
   </Katman>
 

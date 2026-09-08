@@ -303,3 +303,32 @@ kararı yoğunluk gerekçesiyle DEĞİL, yalnız kullanıcı yolu (coğrafya→r
 **Yan bulgu (E6 tabanı için):** Cloudflare Web Analytics canlıda YOK
 (ana sayfa ve /havzalar/gediz/ HTML'inde beacon 0 — _headers'taki 28.07
 ölçümüyle aynı). Brief'in "kurulu" öncülü yanlış → D7'de ele alınır.
+
+## FAZ C — Uygulama (yalnız B'de kanıtlananlar)
+
+| Kalem | Karar | Dayanak (ölçüm) |
+|---|---|---|
+| C1 title | **DOKUNULMADI** | B1a: soru-title'ın etkisi ölçülemedi (Ergene poz 10–11 sabit; havza türü CTR %2,4→%1,2). B5 kazanan desen varlık-önce; nehir/göl title'ları zaten varlık-önce. Değiştirmek "daha iyi olur" sınıfı. |
+| C1 description | **nehir özeti il cümlesi aldı** (95 sayfa) | B2b: sıfır-tık ilk 20'nin 9'u "<nehir> nerede", özet il/konum vermiyordu; göl özeti il taşıyor, göl CTR %0,89 / nehir %0,35 (poz 10,2 / 10,7). Veri: `nehir.cografya.il` (sayfada zaten "Örneklenen il"). Metin: "…; hattı Muğla ili sınırlarından geçer" — geometrik örnekleme şerhi sayfada durur. Description bandı 126–148 kr (≤160). Öz-cevap + FAQ cevabı aynı kaynaktan (`nehirOzet`). |
+| C2 Ergene | **DOKUNULMADI — sebep bulunamadı** | B1b/B1c: içerik eksiği yok (harita, kaynak, öz-cevap ilk ekranda; rakiplerde hiçbiri yok). Pozisyon 10–11 = alan otoritesi (haberturk/hurriyet/sabah/wikipedia). Title değişikliği pozisyonu oynatmadı. Kör deneme yapılmadı. |
+| C3 Kelkit | **DOKUNULMADI — veri karşılığı yok** | "Hangi akarsuyun kolu" ilişkisi tr-nehirler.json'da yok (ad, kaynak, geometri); Terme Çayı veri kümesinde yok. C1 ile özet "Sivas ili" aldı; "Yeşilırmak Havzası" cevabı zaten vardı. |
+| C4 uydurma veri | yok | A4: kaynaklı (OpenAlex). |
+| C5 yönlendirme | gerekmez | B4a: 301 çalışıyor; bölünme geçmiş veri. |
+| C6a köprü | **il sayfası → yeraltı suyu işletme sahası rehberi** (81 sayfa) | B6c/B6d: rehberin gelen içerik bağlantısı 7 (yalnız rehber ailesi), il/coğrafyadan 0; 70 il sayfası RG işletme sahası kaydı basıyor ve hemen altındaki cümle "İşletme sahası ilanının kuyu ruhsatına etkisi…" diyor ama o rehbere bağlanmıyordu. Bağlantı metni: "yeraltı suyu işletme sahası rehberi" (mevcut cümle içinde, yeni bölüm yok). |
+| C6b köprü | **baraj gölü sayfası → baraj kamulaştırması rehberi** (150 sayfa, yalnız `tip=reservoir`) | B6c: göl→rehber 0/247; B6d: baraj-kamulastirmasi 2 gelen (en düşük), coğrafyadan 0, 8 göst. Mevcut "İlgili resmî veriler" satırına eklendi; doğal göl/gölet/lagünde eklenmedi. |
+| C6e | il sayfası açılmadı | B6b: 81/81 zaten var. |
+
+Bağlantı listesi (C6c):
+- Kaynak /kuyu-ruhsati/<il>/ (81) → /rehberler/yeralti-suyu-isletme-sahasi/ · metin "yeraltı suyu işletme sahası rehberi" · ölçüm B6c/B6d.
+- Kaynak /goller/<baraj-gölü>/ (150) → /rehberler/baraj-kamulastirmasi/ · metin "baraj kamulaştırması rehberi" · ölçüm B6c/B6d.
+
+**Değişiklik sonrası kıyas** (build 522 sayfa / sitemap 519 = önce ile küme-eş;
+kıyas tabanı `cikti/dist-once` = değişiklik öncesi aynı HEAD build'i):
+değişen sayfa 327 = nehirler 95 + kuyu-ruhsati 81 + goller 150 (yalnız baraj
+gölleri) + /kullanilanlar/ 1 (araç sayısı 91→92: `arac/whatsapp-kare.mjs`
+eklendi, sayfa `arac/` dizinini sayıyor). havzalar/rehberler/durumum/kök/
+diğer 195 sayfa BİT-EŞİT. 27.08 denetim tabanına göre ek farklar veri-güdümlü
+(güncelleme damgası, baraj arşivi) — o taban hero değişikliğini de içeriyordu.
+**Uydurma öz-denetimi:** yeni metin iki cümle kalıbı; "hattı X ili
+sınırlarından geçer" ↔ `cografya.il` (95/95 dolu), bağlantı metinleri
+hedef sayfa başlığıyla birebir konu. Yeni sayı, yeni hukuki iddia yok.

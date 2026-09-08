@@ -136,7 +136,14 @@ export function golOzet(gol) {
   return `${gövde}${alan} (kaynak: ${gol.kaynak}, erişim ${GOLNEHIR_ERISIM}).`;
 }
 
-/** Nehir için özet metin — havza bilgisi geometrik örneklemden. */
+/** Nehir için özet metin — havza ve il bilgisi geometrik örneklemden.
+ *  C1 (08.09.2026, GSC ölçümü): 28 günde sıfır tıklamalı ilk 20 sorgunun
+ *  9'u "<nehir> nerede" biçimindeydi ve nehir özeti il/konum cevabı
+ *  vermiyordu (göl özeti il taşıyor; göl CTR'si nehrin 2,5 katı, pozisyon
+ *  aynı). İl verisi zaten sayfada "Örneklenen il" olarak basılıyordu;
+ *  yalnız özete alındı. Yeni iddia yok: "hattı … ili sınırlarından geçer"
+ *  = örneklenmiş hat noktalarından en az biri o il çokgeninde
+ *  (gol-nehir-cografya.js şerhi sayfada durur). */
 export function nehirOzet(nehir) {
   const h = nehir.cografya.havzalar;
   const havzaMetni = h.length === 0
@@ -144,7 +151,9 @@ export function nehirOzet(nehir) {
     : h.length === 1
       ? `${h[0].ad.replace(/\s*Havzası\s*$/, '')} Havzası'ndan geçen bir akarsudur`
       : `${h.map((x) => x.ad.replace(/\s*Havzası\s*$/, '')).join(', ')} havzalarından geçen bir akarsudur`;
-  return `${nehir.ad}, ${havzaMetni} (kaynak: ${nehir.kaynak}, erişim ${GOLNEHIR_ERISIM}).`;
+  const il = nehir.cografya.il;
+  const ilMetni = il ? `; hattı ${il.ad} ili sınırlarından geçer` : '';
+  return `${nehir.ad}, ${havzaMetni}${ilMetni} (kaynak: ${nehir.kaynak}, erişim ${GOLNEHIR_ERISIM}).`;
 }
 
 /** Ters eşleme (il/havza sayfalarının "geri bağı" — M5.7 ada-kalmaz kuralı). */

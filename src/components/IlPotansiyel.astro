@@ -123,7 +123,13 @@ const cokIlliler = p.kutleler.filter((k) => k.cokIlli);
       <span class="veri-yok"> bulunamadı</span>.</p>
   )}
   <p>
+    {/* C6a (08.09.2026): cümle işletme sahası ilanını anlatıyor ama o konunun
+        kendi rehberine (yeralti-suyu-isletme-sahasi) bağlanmıyordu — ölçüm:
+        rehberin gelen içerik bağlantısı 7 (yalnız rehber ailesinden),
+        coğrafya/il sayfalarından 0; 70 il sayfası RG işletme sahası kaydı
+        basıyor. Bağlantı metni sayfanın konusuyla birebir. */}
     İşletme sahası ilanının kuyu ruhsatına etkisi ve yaptırımlar için:{' '}
+    <a href="/rehberler/yeralti-suyu-isletme-sahasi/">yeraltı suyu işletme sahası rehberi</a> ·
     <a href="/rehberler/kuyu-ruhsati/">kuyu ruhsatı rehberi</a> ·
     <a href="/rehberler/ruhsatsiz-kuyu-cezalari/">ruhsatsız kuyu cezaları</a>.
   </p>
