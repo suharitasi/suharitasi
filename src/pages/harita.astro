@@ -68,20 +68,22 @@ if (ozCevap.length > 280) {
      Table — sunum biçimi, içerik tipi değil. ItemList — 25 kart bir liste ama
      asıl varlık ölçülen veri; Dataset onu variableMeasured ile daha doğru
      tarif ediyor.
-   · license alanı YAZILMADI: DSİ istatistiklerinin açık lisans etiketi
-     doğrulanamadı, NASA GRACE kamu malı — karışık kümeye tek lisans
-     yazmak uydurma olurdu. Yerine citation + isBasedOn kullanıldı.
+   · license (geo-schema brief V2, 10.09.2026 — kullanıcı kararı): TEK lisans
+     URL'i uydurulmaz (kaynaklar karışık: NASA GRACE kamu malı, DSİ/SYGM açık
+     resmî istatistik). Kaynak lisans niteliği metin olarak license alanına
+     yazılır; yanı sıra citation + isBasedOn kullanılır.
    · distribution YAZILMADI: indirilebilir veri dosyası yayımlanmıyor. */
 const jsonLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'Organization',
+      '@type': ['Organization', 'LegalService'],
       '@id': `${KOK_URL}#kurum`,
       name: SITE_ADI,
       url: KOK_URL,
       description:
         "Türkiye'nin su verisi, havzaları ve su mevzuatını tek haritada birleştiren bağımsız bilgi portalı.",
+      areaServed: { '@type': 'Country', name: 'Türkiye' },
       telephone: '+90 532 449 71 44',
       founder: { '@type': 'Person', name: YAZAR.adSade, jobTitle: YAZAR.unvan },
     },
@@ -126,6 +128,8 @@ const jsonLd = JSON.stringify({
       creator: { '@id': `${KOK_URL}#kurum` },
       // K6 (27.08): WebSite düğümü DataCatalog değildir — gerçek katalog düğümüne bağlandı.
       includedInDataCatalog: { '@id': `${KOK_URL}#veri-katalogu` },
+      // Publisher: bu derlenmiş veri kümesini yayımlayan kurum = portalın kendisi.
+      publisher: { '@id': `${KOK_URL}#kurum` },
       spatialCoverage: { '@type': 'Place', name: 'Türkiye' },
       temporalCoverage: `${graceIlk}/${graceSon}`,
       variableMeasured: [
@@ -142,6 +146,13 @@ const jsonLd = JSON.stringify({
         grace.kunye.kaynak,
       ],
       isBasedOn: [dsiKunye.url, 'https://earth.gsfc.nasa.gov/geo/data/grace-mascons'],
+      // License (geo-schema brief V2, 10.09.2026 — kullanıcı kararı): TEK
+      // lisans URL'i UYDURULMAZ (kaynaklar karışık). Bunun yerine kaynakların
+      // lisans niteliği dürüstçe metinle yazılır.
+      license:
+        'NASA GRACE/GRACE-FO verisi kamu malıdır; DSİ, SYGM, EPİAŞ ve Resmî Gazete ' +
+        'verileri kamuya açık resmî kaynaklardan derlenmiştir (kaynak başına ayrı ' +
+        'açık lisans etiketi doğrulanmamıştır).',
     },
     // K6 (27.08): Dataset'in bağlandığı gerçek katalog düğümü.
     VERI_KATALOGU,
@@ -155,6 +166,9 @@ const jsonLd = JSON.stringify({
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Harita — Su Haritası</title>
 <meta name="description" content="Türkiye'nin su haritası. Havza verisi ve etkileşimli katman yolda." />
+<meta name="robots" content="index, follow" />
+<meta name="googlebot" content="index, follow" />
+<meta name="bingbot" content="index, follow" />
 <link rel="canonical" href="https://suharitasi.com/harita/" />
 <meta property="og:title" content="Harita — Su Haritası" />
 <meta property="og:description" content="Türkiye'nin su haritası. Havza verisi ve etkileşimli katman yolda." />

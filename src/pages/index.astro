@@ -58,6 +58,9 @@ const sahneVeri = SAHNELER.map((s) => ({
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Kuyunuz için ruhsat mı lazım, ceza mı geldi? — Su Haritası</title>
 <meta name="description" content={HERO_ALT} />
+<meta name="robots" content="index, follow" />
+<meta name="googlebot" content="index, follow" />
+<meta name="bingbot" content="index, follow" />
 <link rel="canonical" href="https://suharitasi.com/" />
 <meta property="og:title" content="Kuyunuz için ruhsat mı lazım, ceza mı geldi? — Su Haritası" />
 <meta property="og:description" content={HERO_ALT} />
@@ -75,10 +78,11 @@ const sahneVeri = SAHNELER.map((s) => ({
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
+      "@type": ["Organization", "LegalService"],
       "@id": "https://suharitasi.com/#kurum",
       "name": "Su Haritası",
       "url": "https://suharitasi.com",
+      "areaServed": { "@type": "Country", "name": "Türkiye" },
       "email": EPOSTA,
       "telephone": "+90 532 449 71 44",
       "description": "Türkiye'nin su verisi, havzaları ve su mevzuatını tek haritada birleştiren bağımsız bilgi portalı.",

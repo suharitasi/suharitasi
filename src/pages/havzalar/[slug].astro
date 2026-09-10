@@ -479,6 +479,18 @@ const semalar = sss.length
   </section>
 )}
 
+{/* Geo-schema brief V2 (10.09.2026) — "Mevzuat" çapraz link bloğu. "İlişkili
+    Havzalar" yukarıda (kesisenHavzalar); bu blok havza sayfasını mevzuat
+    merkezine bağlar. Yalnız GENEL bağlantılar (uydurma yok) — havzaya özgü
+    rehberler, varsa, yukarıdaki hukuk bloğunda listelenir. */}
+<section aria-label="İlgili mevzuat">
+  <h2>İlgili su mevzuatı</h2>
+  <nav class="capraz">
+    <a href="/su-kanunu/">&rarr; Su Kanunu ve mevzuat kütüphanesi</a>
+    <a href="/rehberler/">&rarr; Su hukuku rehberleri</a>
+  </nav>
+</section>
+
 {/* 24.08 (agustos-uyum M5.7): göl/nehir sayfalarının geri bağı — ada kalmaz.
     Eşleme geometrik örneklemdir (gol-nehir-cografya.js); şerh blok sonunda. */}
 {(havzaGolleri.length > 0 || havzaNehirleri.length > 0) && (

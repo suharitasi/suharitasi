@@ -26,8 +26,8 @@ interface Props {
   // görünüm su bandıyla aynı aileden; iki bant üst üste asla binmez).
   heroSlot?: 'rehber-hero' | 'bolum-vinyeti';
   /* robots: YALNIZ arama motorlarına kapatılacak sayfalar için
-     ("noindex, nofollow"). Verilmezse etiket HİÇ basılmaz — mevcut
-     sayfaların çıktısı bit-eşit kalır (ölçüldü: 178/178 fark 0).
+     ("noindex, nofollow"). Verilmezse açık "index, follow" + googlebot/
+     bingbot direktifi basılır (geo-schema brief V2, 10.09.2026).
      noindex basıldığında sitemap ve llms.txt üreticileri o sayfayı
      zaten atlar (astro.config'teki iki üretici de aynı kuralı okur). */
   robots?: string;
@@ -122,12 +122,20 @@ const kirintilar = parcalar.map((p, i) => {
 kirintilar.unshift({ ad: 'Ana sayfa', url: kok });
 
 const kurum = {
-  '@type': 'Organization',
+  // LegalService (geo-schema brief V2, 10.09.2026): portal hukuki bilgi
+  // sunar ve hukuki içeriğini bir hukuk bürosu (Arslan Hukuk Bürosu —
+  // founder/Person düğümüyle) hazırlar; Organization'a EK @type olarak
+  // bağlanır. GovernmentService BİLİNÇLİ EKLENMEDİ: site devlet hizmeti
+  // DEĞİL, özel bilgi portalıdır (uydurma yasağı). Kamusal veri niteliği
+  // zaten Dataset + DataCatalog düğümleriyle temsil edilir.
+  '@type': ['Organization', 'LegalService'],
   '@id': `${kok}#kurum`,
   name: SITE_ADI,
   url: kok,
   description:
     "Türkiye'nin su verisi, havzaları ve su mevzuatını tek haritada birleştiren bağımsız bilgi portalı.",
+  // Hizmet alanı Türkiye'dir (portal ulusal su verisini kapsar).
+  areaServed: { '@type': 'Country', name: 'Türkiye' },
   email: EPOSTA,
   // Faz C (08.09.2026, karar-kapatma §D6, KULLANICI KARARI): telefon yalnız
   // yapılandırılmış veride (schema.org Organization.telephone). Görünür metinde
@@ -217,7 +225,13 @@ const jsonLd = JSON.stringify({
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{tarayiciBaslik ?? `${baslik} — Su Haritası`}</title>
 <meta name="description" content={metaAciklama} />
-{robots && <meta name="robots" content={robots} />}
+{/* Robots direktifleri (geo-schema brief V2, 10.09.2026): noindex
+    sayfalarda YALNIZ o direktif basılır (çelişki olmasın); diğer sayfalarda
+    açık "index, follow" + Google/Bing AI-bot direktifi. Bu değişiklik
+    noindex sayfaların çıktısını DEĞİŞTİRMEZ; diğer sayfalara 3 satır ekler. */}
+<meta name="robots" content={robots ?? 'index, follow'} />
+{!robots && <meta name="googlebot" content="index, follow" />}
+{!robots && <meta name="bingbot" content="index, follow" />}
 <link rel="canonical" href={canonical} />
 <meta property="og:title" content={`${baslik} — Su Haritası`} />
 <meta property="og:description" content={metaAciklama} />
