@@ -685,7 +685,12 @@ const jsonLd = JSON.stringify({
         </ol>
       </nav>
     )}
-    <slot />
+    {/* C4 (V5, 10.09.2026): içerik, alıntılanabilir tek makale bloğuna alınır —
+        LLM/RAG sistemleri <article> içindeki bölümleri kaynak olarak daha
+        kolay işaretler. <article> blok elemandır; görsel düzen değişmez. */}
+    <article>
+      <slot />
+    </article>
   </main>
   <AltBilgi />
   <WhatsAppDugme />

@@ -156,14 +156,78 @@ function gorunenAd(ham) {
       tip_celiski: onek === 'gol' ? tipCeliskisi(p.ad, tipKaynakta) : null,
       bbox: b, merkez: [(b[0] + b[2]) / 2, (b[1] + b[3]) / 2],
       geometry: f.geometry, cografya,
+      // C2 (V5, 10.09.2026): akarsu topolojisi alanları — YALNIZ nehirde.
+      // akarsuTopolojisi() yüksek güvenli eşleşmede doldurur; dolduramazsa
+      // null kalır ve özet/şema yalan cümle BASMAZ (uydurma yasağı).
+      ...(onek === 'nehir' ? { kolu_oldugu_akarsu: null, dokuldugu_yer: null } : {}),
     });
   }
   return { icinde, elenen };
 }
 
+// ── C2 (V5, 10.09.2026) — AKARSU AĞ TOPOLOJİSİ ──────────────────────────
+// "kolu / nereye dökülür" ilişkisi geometrik ağdan türetilir. KAYNAKTA
+// geometri BASİTLEŞTİRİLMİŞ merkez çizgisidir (ölçüm: Gökırmak = 20 nokta;
+// uç noktası Kızılırmak hattına 230 km uzakta) — ağ bağlantısı KORUNMADIĞI
+// için bu türetme YALNIZ yüksek güvenli uç-nokta eşleşmesinde (≤ 300 m)
+// sonuç üretir; basitleştirilmiş veride sonuç 0'dır → alanlar null kalır
+// (uydurma yasağı). Veri kaynağı tam çözünürlüklü ağa geçerse türetme
+// kendiliğinden dolar, başka hiçbir dosyaya dokunulmaz.
+const TOPOLOJI_ESIK_KM = 0.3; // 300 m — yüksek güven eşiği
+function haversineKm(a, b) {
+  const R = 6371;
+  const dLat = (b[1] - a[1]) * Math.PI / 180;
+  const dLon = (b[0] - a[0]) * Math.PI / 180;
+  const la1 = a[1] * Math.PI / 180, la2 = b[1] * Math.PI / 180;
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(la1) * Math.cos(la2) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+function ucNoktalari(geometry) {
+  if (!geometry) return [];
+  if (geometry.type === 'LineString') return [geometry.coordinates[0], geometry.coordinates.at(-1)];
+  if (geometry.type === 'MultiLineString') return [geometry.coordinates[0][0], geometry.coordinates.at(-1).at(-1)];
+  return [];
+}
+function hatNoktalari(geometry) {
+  if (!geometry) return [];
+  if (geometry.type === 'LineString') return geometry.coordinates;
+  if (geometry.type === 'MultiLineString') return geometry.coordinates.flat();
+  return [];
+}
+function akarsuTopolojisi(nehirler) {
+  for (const n of nehirler) {
+    const uclar = ucNoktalari(n.geometry);
+    if (uclar.length !== 2) continue;
+    let enYakin = null, enYakinKm = Infinity;
+    for (const m of nehirler) {
+      if (m === n) continue;
+      const hat = hatNoktalari(m.geometry);
+      for (const u of uclar) {
+        for (const p of hat) {
+          const d = haversineKm(u, p);
+          if (d < enYakinKm) { enYakinKm = d; enYakin = m; }
+        }
+      }
+    }
+    if (enYakin && enYakinKm <= TOPOLOJI_ESIK_KM) {
+      // Bir akarsuya dökülen akarsu, onun KOLUDUR — iki alan aynı hedefe yazılır
+      // (deniz/göl dökülmesi kıyı geometrisi olmadığından türetilmez).
+      n.dokuldugu_yer = enYakin.ad;
+      n.kolu_oldugu_akarsu = enYakin.ad;
+    }
+  }
+}
+
 let _gol = null, _nehir = null;
 function golVeri() { if (!_gol) _gol = insaEt(goller.features, 'gol'); return _gol; }
-function nehirVeri() { if (!_nehir) _nehir = insaEt(nehirler.features, 'nehir'); return _nehir; }
+function nehirVeri() {
+  if (!_nehir) {
+    const v = insaEt(nehirler.features, 'nehir');
+    akarsuTopolojisi(v.icinde);
+    _nehir = v;
+  }
+  return _nehir;
+}
 
 /** Türkiye kapsamındaki göller (il/havza eşlemeli) */
 export function tumGoller() { return golVeri().icinde; }
@@ -201,7 +265,16 @@ export function nehirOzet(nehir) {
       : `${h.map((x) => x.ad.replace(/\s*Havzası\s*$/, '')).join(', ')} havzalarından geçen bir akarsudur`;
   const il = nehir.cografya.il;
   const ilMetni = il ? `; hattı ${il.ad} ili sınırlarından geçer` : '';
-  return `${nehir.ad}, ${havzaMetni}${ilMetni} (kaynak: ${nehir.kaynak}, erişim ${GOLNEHIR_ERISIM}).`;
+  // C2 (V5): topoloji cümlesi YALNIZ güvenilir türetildiğinde eklenir;
+  // alanlar null iken yalan cümle ÜRETİLMEZ (uydurma yasağı).
+  const kolu = nehir.kolu_oldugu_akarsu;
+  const dokuldugu = nehir.dokuldugu_yer;
+  const topolojiMetni = kolu
+    ? (kolu === dokuldugu
+        ? `; ${kolu} akarsuyunun koludur`
+        : `; ${kolu} akarsuyunun koludur ve ${dokuldugu}'a dökülür`)
+    : '';
+  return `${nehir.ad}, ${havzaMetni}${ilMetni}${topolojiMetni} (kaynak: ${nehir.kaynak}, erişim ${GOLNEHIR_ERISIM}).`;
 }
 
 /** Ters eşleme (il/havza sayfalarının "geri bağı" — M5.7 ada-kalmaz kuralı). */

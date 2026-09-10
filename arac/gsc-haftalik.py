@@ -164,6 +164,35 @@ def tablo(satirlar: list[dict], esik: int, ad: str) -> list[str]:
     return p
 
 
+# ── C7 (V5, 10.09.2026) — CTR ANOMALİ TARAMASI ─────────────────────────
+# "Gösterim > eşik ama CTR = %0" sorgu/sayfa çiftleri: görünür olup
+# tıklanmayan fırsat yüzeyi (V4 bulgusu: nehir/göl "nerede" kümesi 0 tık).
+# AYRI Search Analytics sorgusu YOK — mevcut bu_sorgu/bu_sayfa satırlarından
+# süzülür; kota artmaz. Eşik 500, tek-haneli gösterim gürültüsünü eler.
+ANOMALI_ESIK = 500
+
+
+def ctr_anomali(satirlar: list[dict]) -> list[dict]:
+    a = [r for r in satirlar
+         if r["impressions"] > ANOMALI_ESIK and r["clicks"] == 0]
+    a.sort(key=lambda r: -r["impressions"])
+    return a
+
+
+def anomali_tablo(satirlar: list[dict], ad: str) -> list[str]:
+    a = ctr_anomali(satirlar)
+    p = [f"## {ad} — CTR anomalisi (göst > {ANOMALI_ESIK} & CTR = %0)", ""]
+    if not a:
+        p += ["_yok — yüksek gösterimli tüm satırlar tıklama üretiyor_", ""]
+        return p
+    p += ["| anahtar | gösterim | pozisyon |", "|---|---|---|"]
+    for r in a[:30]:
+        ad_ = r["keys"][0].replace("https://suharitasi.com", "")
+        p.append(f"| {ad_} | {r['impressions']} | {r['position']:.1f} |")
+    p.append("")
+    return p
+
+
 toplam = {
     "tik": sum(r["clicks"] for r in bu_sayfa), "gost": sum(r["impressions"] for r in bu_sayfa),
     "tik_once": sum(r["clicks"] for r in on_sayfa), "gost_once": sum(r["impressions"] for r in on_sayfa),
@@ -184,6 +213,10 @@ satirlar = [
 ]
 satirlar += tablo(esle(bu_sorgu, on_sorgu), 20, "Sorgular")
 satirlar += tablo(esle(bu_sayfa, on_sayfa), 20, "Sayfalar")
+
+# ── C7 (V5): CTR anomalisi — mevcut satırlardan, kota artmadan. ──
+satirlar += anomali_tablo(bu_sorgu, "Sorgular")
+satirlar += anomali_tablo(bu_sayfa, "Sayfalar")
 
 # ── İNDEKS İZLEME (F1b) ──────────────────────────────────────────────
 # Durum dosyası çıktı diziniyle AYNI yerde (cron'da /home/suha/gsc-cikti —

@@ -22,29 +22,63 @@ const { nehir } = Astro.props;
 const ozet = nehirOzet(nehir);
 const havzalar = nehir.cografya.havzalar;
 const il = nehir.cografya.il;
+const kok = new URL('/', Astro.site).href;
+
+// C1 (V5, 10.09.2026): <title> arama niyetiyle hizalanır. YALNIZ sayfanın
+// CEVAPLAYABİLDİĞİ niyet yazılır: "nerede" (koordinat + geçtiği havza/il).
+// "kolu/dökülür" niyeti VERİSİZ (basitleştirilmiş OSM geometrisi; C2 null) —
+// title'a girmez (uydurma yasağı). H1 ve og:title DEĞİŞMEZ (baslik korunur).
+const tarayiciBaslik = `${nehir.ad} Nerede? Hangi Havzadan Geçer`;
+if (tarayiciBaslik.length > 60)
+  throw new Error(`nehir "${nehir.slug}": title ${tarayiciBaslik.length} karakter (>60)`);
+
+// C5 (V5): FAQ soruları ölçülen sorgu kalıplarına ("nerede", "hangi havzadan
+// geçer") ayrıştırılır; her cevap veriden. "kolu/kapalı havza" sorusu VERİSİZ
+// olduğundan eklenmez (uydurma yasağı).
+const konumCevabi = `${nehir.ad} hattı ${il ? `${il.ad} ili sınırlarından geçer` : 'Türkiye sınırları içinde akar'} (merkez koordinatı ${nehir.merkez[1].toFixed(4)}°K, ${nehir.merkez[0].toFixed(4)}°D).`;
+const havzaCevabi = havzalar.length === 0
+  ? 'Örneklenmiş hat noktaları 25 havza çokgeninden hiçbiriyle kesişmedi; bu geometrik örneklemedir, hidrografik tescil değildir.'
+  : havzalar.length === 1
+    ? `${havzalar[0].ad}'ndan geçer.`
+    : `${havzalar.map((x) => x.ad).join(', ')} havzalarından geçer.`;
 
 const sema = [{
   '@type': 'BodyOfWater',
   name: nehir.ad,
   description: ozet,
-  geo: { '@type': 'GeoCoordinates', latitude: nehir.merkez[1], longitude: nehir.merkez[0] },
+  // C3 (V5): merkez GeoCoordinates + bbox GeoShape (çokgen) — koordinat ve
+  // çokgen bazlı uzamsal kapsam birlikte. `spatialCoverage` CreativeWork
+  // özelliğidir; Place (BodyOfWater) için geo doğru alandır.
+  geo: [
+    { '@type': 'GeoCoordinates', latitude: nehir.merkez[1], longitude: nehir.merkez[0] },
+    { '@type': 'GeoShape', box: `${nehir.bbox[1]} ${nehir.bbox[0]} ${nehir.bbox[3]} ${nehir.bbox[2]}` },
+  ],
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Veri kaynağı', value: nehir.kaynak },
+    ...(nehir.kolu_oldugu_akarsu
+      ? [{ '@type': 'PropertyValue', name: 'Kolu olduğu akarsu', value: nehir.kolu_oldugu_akarsu }] : []),
   ],
-  containedInPlace: { '@type': 'Place', name: 'Türkiye' },
+  containedInPlace: { '@type': 'Place', name: il ? `${il.ad}, Türkiye` : 'Türkiye' },
 }, {
   '@type': 'FAQPage',
   // Damga (25.08.2026): OSM/Natural Earth çekim tarihi (gol-nehir.js künyesi).
   ...(TARIH.golNehir ? { dateModified: TARIH.golNehir } : {}),
+  // C3 (V5): FAQPage CreativeWork'tür — publisher + license burada geçerli.
+  publisher: { '@id': `${kok}#kurum` },
+  license: GOLNEHIR_LISANS,
   mainEntity: [{
     '@type': 'Question',
-    name: `${nehir.ad} nerededir, hangi havzadan geçer?`,
-    acceptedAnswer: { '@type': 'Answer', text: ozet },
+    name: `${nehir.ad} nerededir?`,
+    acceptedAnswer: { '@type': 'Answer', text: konumCevabi },
+  }, {
+    '@type': 'Question',
+    name: `${nehir.ad} hangi havzadan geçer?`,
+    acceptedAnswer: { '@type': 'Answer', text: havzaCevabi },
   }],
 }];
 ---
 
-<Sayfa baslik={`${nehir.ad} — Türkiye Nehirleri`} aciklama={ozet} sema={sema}>
+<Sayfa baslik={`${nehir.ad} — Türkiye Nehirleri`} tarayiciBaslik={tarayiciBaslik} aciklama={ozet} sema={sema}>
   <SayfaBasi etiket="Nehir" baslik={nehir.ad} tarih={TARIH.golNehir ? new Date(TARIH.golNehir) : undefined} />
 
   <OzCevap metin={ozet} />
@@ -57,7 +91,7 @@ const sema = [{
       </div>
       <div class="kunye-satir">
         <dt>Koordinat (merkez)</dt>
-        <dd>{nehir.merkez[1].toFixed(4)}°K, {nehir.merkez[0].toFixed(4)}°D</dd>
+        <dd><data value={`${nehir.merkez[1].toFixed(4)},${nehir.merkez[0].toFixed(4)}`}>{nehir.merkez[1].toFixed(4)}°K, {nehir.merkez[0].toFixed(4)}°D</data></dd>
       </div>
       {havzalar.length > 0 && (
         <div class="kunye-satir">
@@ -108,6 +142,19 @@ const sema = [{
       : nehir.kaynak} — kapsam: {GOLNEHIR_KAPSAM_NEHIR}; erişim
     {' '}{GOLNEHIR_ERISIM}. {GOLNEHIR_LISANS}. Bu sayfa hukuki görüş değildir.
   </p>
+
+  {/* C6 (V5, 10.09.2026): hub çapraz link bloğu — PageRank akışını havza/il
+      ve dönüşüm sayfalarına (rehberler, /nerede-su-cikar/) yönlendirir.
+      Yalnız gerçek iç bağlar (uydurma yok). */}
+  <nav class="ilgili" aria-label="İlgili içerik">
+    <h2>İlgili su verisi ve mevzuat</h2>
+    <div class="capraz">
+      {havzalar.slice(0, 3).map((h) => <a href={`/havzalar/${h.slug}/`}>{h.ad} verisi</a>)}
+      {il && <a href={`/kuyu-ruhsati/${il.slug}/`}>{il.ad} kuyu ruhsatı</a>}
+      <a href="/nerede-su-cikar/">İlinizde su nerede çıkar</a>
+      <a href="/rehberler/">Su hukuku rehberleri</a>
+    </div>
+  </nav>
 </Sayfa>
 
 <style>
@@ -170,4 +217,11 @@ const sema = [{
   @media (max-width: 560px) {
     .kunye-satir { grid-template-columns: 1fr; gap: 0.1rem; }
   }
+
+  /* C6 (V5): hub çapraz link bloğu — havza/il sayfalarındaki .capraz dili. */
+  .ilgili { margin-top: 2.4rem; }
+  .ilgili h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 500; margin-bottom: 0.8rem; }
+  .capraz { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.2rem 0 0; }
+  .capraz a { font-family: var(--mono); font-size: 0.8rem; color: var(--su-700); border: 1px solid var(--cizgi); padding: 0.4rem 0.7rem; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+  .capraz a:hover { background: var(--zemin-kart); }
 </style>
