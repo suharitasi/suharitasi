@@ -18,14 +18,23 @@ KOD=$(curl -sS -m 30 -o "$YANIT" -w '%{http_code}' "$SITE/olay?sayac=$ANAHTAR")
 case "$KOD" in
   200)
     if [ "${1:-}" = "--ozet" ]; then
-      python3 -c 'import json,sys,datetime
-d=json.load(open(sys.argv[1])); olaylar=d.get("olaylar",{})
-bugun=(datetime.datetime.utcnow()+datetime.timedelta(hours=3)).strftime("%Y-%m-%d")
+      python3 -c "
+import json,datetime
+d=json.load(open('$YANIT')); olaylar=d.get('olaylar',{})
+bugun=(datetime.datetime.now(datetime.timezone.utc)+datetime.timedelta(hours=3)).strftime('%Y-%m-%d')
 parca=[]
 for ad,gunler in sorted(olaylar.items()):
-    toplam=sum(gunler.values()); bugun_n=gunler.get(bugun,0)
-    parca.append(f"{ad}: bugün {bugun_n} / toplam {toplam}")
-print("Temas tıklamaları — " + (" · ".join(parca) if parca else "kayıt yok") + f" · okuma {d.get(\"okuma\",\"?\")}")' "$YANIT"
+    parca.append(ad+': bugün '+str(gunler.get(bugun,0))+' / toplam '+str(sum(gunler.values())))
+print('Temas tıklamaları — '+(' · '.join(parca) if parca else 'kayıt yok')+' · okuma '+str(d.get('okuma','?')))
+"
+    elif [ "${1:-}" = "--lead" ]; then
+      python3 -c "
+import json
+d=json.load(open('$YANIT')); ds=d.get('danismalar',[])
+print('Hızlı danışma lead — toplam '+str(d.get('danismaToplam',0))+' (en yeni '+str(len(ds))+' gösteriliyor):')
+for x in ds[:20]:
+    print(' -', x.get('zaman','?')[:19], '|', x.get('ad','?'), '|', x.get('telefon','?'), '|', x.get('il',''), '|', x.get('konu',''))
+"
     else
       cat "$YANIT"; echo
     fi ;;

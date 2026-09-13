@@ -52,6 +52,27 @@ async function sayacOku(kv) {
   return { olaylar, toplam };
 }
 
+// Hızlı danışma formundan gelen lead'ler (prefix 'd:'). En yeni 50 kayıt.
+async function danismalariOku(kv) {
+  const anahtarlar = [];
+  let cursor;
+  do {
+    const s = await kv.list({ prefix: 'd:', cursor });
+    for (const k of s.keys) anahtarlar.push(k.name);
+    cursor = s.list_complete ? undefined : s.cursor;
+  } while (cursor);
+  anahtarlar.sort().reverse();
+  const secili = anahtarlar.slice(0, 50);
+  const kayitlar = [];
+  for (const a of secili) {
+    try {
+      const v = await kv.get(a);
+      if (v) kayitlar.push(JSON.parse(v));
+    } catch { /* bozuk kayıt atlanır */ }
+  }
+  return { danismalar: kayitlar, danismaToplam: anahtarlar.length };
+}
+
 export async function onRequest(context) {
   const { request, env } = context;
   const kv = env && env.WA_SAYAC;
@@ -62,7 +83,8 @@ export async function onRequest(context) {
   if (kv && env.SAYAC_ANAHTAR && url.searchParams.get('sayac') === env.SAYAC_ANAHTAR) {
     try {
       const sonuc = await sayacOku(kv);
-      return new Response(JSON.stringify({ ...sonuc, okuma: new Date().toISOString() }), {
+      const leads = await danismalariOku(kv);
+      return new Response(JSON.stringify({ ...sonuc, ...leads, okuma: new Date().toISOString() }), {
         headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Kaynak': 'fn' },
       });
     } catch (e) {

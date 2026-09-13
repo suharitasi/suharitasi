@@ -11,6 +11,22 @@ import OzCevap from '../components/OzCevap.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
 import CtaBlok from '../components/CtaBlok.astro';
 import emsal from '../../data/kamu/emsal-kararlar.json';
+import mevzuat from '../../data/kamu/mevzuat-maddeleri.json';
+
+// İki yönlü bağ: hangi emsal hangi maddelere bağlı (madde.emsaller ters çevrilir).
+const maddeSlug = (s) =>
+  s.toLowerCase().replace(/ı/g, 'i').replace(/İ/g, 'i').replace(/ş/g, 's')
+    .replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ö/g, 'o').replace(/ç/g, 'c')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const maddeByEmsal = {};
+for (const m of mevzuat.maddeler) {
+  for (const eid of m.emsaller) {
+    (maddeByEmsal[eid] = maddeByEmsal[eid] ?? []).push({
+      ad: `${m.kanunKisa} ${m.madde}`,
+      yol: `/mevzuat/${maddeSlug(m.kanunKisa)}/${maddeSlug(m.madde)}/`,
+    });
+  }
+}
 
 const OZ_CEVAP =
   'Türkiye\'de su hukukuna yön veren Danıştay ve Yargıtay kararlarından derlenmiş ' +
@@ -79,6 +95,7 @@ const sema = [
           <th scope="col">Konu</th>
           <th scope="col">Özet</th>
           <th scope="col">İlgili rehber</th>
+          <th scope="col">İlgili maddeler</th>
           <th scope="col">Doğrulama</th>
         </tr>
       </thead>
@@ -93,6 +110,7 @@ const sema = [
               {k.not && <span class="em-not"> {k.not}</span>}
             </td>
             <td>{k.rehberler.map((r, i) => (<>{i > 0 && ' · '}<a href={`/rehberler/${r}/`}>{r}</a></>))}</td>
+            <td>{(maddeByEmsal[k.id] ?? []).map((m, i) => (<>{i > 0 && ' · '}<a href={m.yol}>{m.ad}</a></>))}{!(maddeByEmsal[k.id] ?? []).length && <span class="em-kunye-bekliyor">—</span>}</td>
             <td>
               {k.kaynak
                 ? <a href={k.kaynak} target="_blank" rel="noopener" class="em-ok">kaynaklı</a>

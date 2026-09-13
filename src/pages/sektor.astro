@@ -26,30 +26,60 @@ const sektorler = [
     aciklama: 'Organize sanayi bölgesi, endüstri bölgesi ve serbest bölgede faaliyet: su verimliliği belgesi, tesis su tahsisi ve deşarj izinleri.',
     persona: bul('osb'),
     rehberler: ['su-tahsisi-oncelik-sirasi', 'kaynak-suyu-kiralama'],
+    adimlar: ['Su verimliliği belgesi / tesis su tahsisi talebi (DSİ)', 'Kuyu arama-kullanma belgesi ve ölçüm sistemi', 'Atıksu bağlantı / deşarj izni (SUKİ, ÇŞİDB)', 'Sürekli denetim ve raporlama'],
+    riskler: [
+      { r: 'Belgesiz kuyu / belge dışı çekim', s: 'yüksek' },
+      { r: 'Tahsis reddi veya kısıt', s: 'orta' },
+      { r: 'Deşarj/atıksu ihlali', s: 'orta' },
+    ],
   },
   {
     ad: 'Tarımsal sulama kooperatifleri',
     aciklama: 'Sulama kooperatifi ve ziraat odası: su tahsisi önceliği, yeraltı suyu işletme sahası ve kuyu belgeleri.',
     persona: bul('sulama kooperatifi'),
     rehberler: ['su-tahsisi-oncelik-sirasi', 'yeralti-suyu-isletme-sahasi', 'kuyu-ruhsati'],
+    adimlar: ['Su tahsisi başvurusu (DSİ)', 'Kullanım önceliği değerlendirmesi (içme > sulama)', 'Kuyu arama/kullanma belgeleri ve ölçüm', 'İşletme sahası kısıtlarına uyum'],
+    riskler: [
+      { r: 'Tahsis önceliğinde geriye düşme', s: 'orta' },
+      { r: 'Belgesiz kuyu cezası', s: 'yüksek' },
+      { r: 'İşletme sahası derinlik kısıtı', s: 'orta' },
+    ],
   },
   {
     ad: 'Jeotermal tesisler',
     aciklama: 'Jeotermal kaynak ve doğal mineralli su arama/işletme ruhsatı, öncelik hakkı, geçiş rejimi ve iptal-ihale.',
     persona: bul('jeotermal') ?? bul('enerji yatırımcısı'),
     rehberler: ['jeotermal-ruhsat', 'baraj-kamulastirmasi'],
+    adimlar: ['Arama ruhsatı başvurusu (öncelik hakkı)', 'Arama süresi son gününe kadar işletme ruhsatı başvurusu', 'İlgili kurum izinleri (işletmeye geçiş)', 'Onar yıllık dönemlerle uzatma'],
+    riskler: [
+      { r: 'İşletme başvurusunda gecikme = hak kaybı', s: 'yüksek' },
+      { r: 'Ruhsat iptali → teminat irat + ihale', s: 'yüksek' },
+      { r: 'İzinsiz kuyu/proje değişikliği', s: 'orta' },
+    ],
   },
   {
     ad: 'Hazır beton / maden işletmeleri',
     aciklama: 'Maden ve taş ocağı işletmeleri: su tahsisi, hammadde üretim izni ve sulak alan kısıtları.',
     persona: bul('maden işletmecisi'),
-    rehberler: ['su-tahsisi-oncelik-sirasi', 'yeralti-suyu-isletme-sahasi'],
+    rehberler: ['su-tahsis-oncelik-sirasi', 'yeralti-suyu-isletme-sahasi'],
+    adimlar: ['Hammadde üretim izni (kum-çakıl vb.)', 'Su tahsisi başvurusu (DSİ)', 'Sulak alan kısıtı kontrolü (DKMP)', 'Kuyu belgeleri ve ölçüm'],
+    riskler: [
+      { r: 'Sulak alanda izinsiz faaliyet', s: 'yüksek' },
+      { r: 'Su tahsisi reddi / kısıt', s: 'orta' },
+      { r: 'Belgesiz kuyu', s: 'orta' },
+    ],
   },
   {
     ad: 'Gıda-içecek üreticisi',
     aciklama: 'İçecek ve gıda üretimi: kaynak suyu kiralama, doğal mineralli su tesisi ve içme suyu temini.',
     persona: bul('gıda-içecek'),
     rehberler: ['kaynak-suyu-kiralama', 'jeotermal-ruhsat'],
+    adimlar: ['Kaynak suyu kiralama (2886 ihale)', 'Doğal mineralli su tesis izni', 'İçme-kullanma suyu temini ve kalite', 'Ambalajlı su denetim şartları'],
+    riskler: [
+      { r: 'İhalesiz kiralama → iptal', s: 'yüksek' },
+      { r: 'Kalite/denetim uygunsuzluğu', s: 'orta' },
+      { r: 'Tesis izni eksikliği', s: 'orta' },
+    ],
   },
 ];
 
@@ -92,6 +122,20 @@ const sema = [
           <a href="/islem-matrisi/">→ işlem → yetkili kurum</a>
         </div>
         {s.persona && <p class="sk-yukumluluk">{s.persona.yukumluluk}</p>}
+        <div class="sk-blok">
+          <h3>İzin adımları</h3>
+          <ol class="sk-adimlar">
+            {s.adimlar.map((a) => <li>{a}</li>)}
+          </ol>
+        </div>
+        <div class="sk-blok">
+          <h3>Risk analiz matrisi</h3>
+          <ul class="sk-riskler">
+            {s.riskler.map((r) => (
+              <li><span class={`sk-risk sk-${r.s}`}>{r.s}</span> {r.r}</li>
+            ))}
+          </ul>
+        </div>
       </section>
     ))}
   </div>
@@ -117,6 +161,15 @@ const sema = [
   .sk-baglar a:hover { text-decoration: underline; }
   .sk-birincil { font-family: var(--serif); font-size: 1.02rem; font-weight: 500; }
   .sk-yukumluluk { margin-top: 0.7rem; padding-top: 0.6rem; border-top: 1px solid var(--cizgi); font-size: 0.84rem; color: var(--metin-soluk); }
+  .sk-blok { margin-top: 0.9rem; }
+  .sk-blok h3 { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--su-700); margin-bottom: 0.35rem; }
+  .sk-adimlar { margin: 0 0 0 1.1rem; font-size: 0.88rem; }
+  .sk-adimlar li { margin: 0.15rem 0; }
+  .sk-riskler { list-style: none; padding: 0; font-size: 0.88rem; }
+  .sk-riskler li { margin: 0.2rem 0; }
+  .sk-risk { display: inline-block; min-width: 4.2rem; text-align: center; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.05rem 0.35rem; border: 1px solid var(--cizgi); }
+  .sk-yüksek, .sk-yuksek { background: #fbe3e1; color: #8a1f17; border-color: #e6b3ae; }
+  .sk-orta { background: #f6edde; color: var(--kehribar-metin); border-color: #e0c9a0; }
   .sk-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
   .sk-capraz a { color: var(--baglanti); text-decoration: none; }
   .sk-capraz a:hover { text-decoration: underline; }

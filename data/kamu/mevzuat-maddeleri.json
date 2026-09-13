@@ -13,8 +13,15 @@
       "baslik": "Kuyu/sondaj/galeri/tünel açmada belge zorunluluğu",
       "metin": "Aşağıdaki (a) ve (b) fıkralarında beyan edilen kazıların yapılması veya kuyuların açılması için Devlet Su İşleri Umum Müdürlüğünden belge alınması mecburidir: a) Su temini maksadıyla, kesitleri ne olursa olsun, tabii zemin üstünden itibaren derinliği Devlet Su İşleri Genel Müdürlüğü tarafından tesbit ve ilgili bakanlığın onayından sonra ilan olunan haddi aşan her türlü çukur, sondaj ve kuyular (el ile açılan kuyular hariç), b) Su temini maksadiyle, boyları ve kesitleri ne olursa olsun, ufki veya meyilli her türlü galeriler ve tüneller. Bu kazıların yapılması ve kuyuların açılması su temini maksadını gütmemesi halinde, bunlar hakkında belge aranmamakla beraber, Devlet Su İşleri Umum Müdürlüğünün talebi üzerine bilgi verilmesi mecburidir.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=167&mevzuatTur=1&mevzuatTertip=4",
-      "rehberler": ["kuyu-ruhsati"],
-      "emsaller": ["danistay-8d-2022-3005"]
+      "rehberler": [
+        "kuyu-ruhsati"
+      ],
+      "emsaller": [
+        "danistay-8d-2022-3005"
+      ],
+      "merci": "DSİ (bölge müdürlüğü)",
+      "sure": "—",
+      "yorum": "Belge zorunluluğunun çekirdeği; el ile açılan kuyular ve su temini dışı kazılar istisnadır."
     },
     {
       "id": "167-m10",
@@ -25,8 +32,13 @@
       "baslik": "Kullanma belgesi ve ölçüm sistemi",
       "metin": "Arama belgesine dayanarak arazisinde yeraltı suyu bulunan kimse, bu suyu kullanabilir. Ancak, bir ay içinde Devlet Su İşleri Umum Müdürlüğüne müracaat ederek kullanma belgesi alır. Kuyu, galeri, tünel ve benzerlerine ölçüm sistemleri kurulmadan kullanma belgesi verilemez. Ölçüm sistemlerinin kurulmasını lüzumlu kılacak yeraltı suyunun; kullanım maksadı, miktarı, havza sınırı ve diğer hususlar Devlet Su İşleri Genel Müdürlüğünün teklifi üzerine Devlet Su İşleri Genel Müdürlüğünün bağlı olduğu Bakanlıkça tespit edilir. Devlet Su İşleri Genel Müdürlüğünün bağlı olduğu Bakanlıkça tespit edilen hususlara ilişkin uygulama usul ve esasları ile ölçüm sistemine dair hususlar yönetmelikle belirlenir. Su ölçüm sisteminin kurulmasına dair süre Devlet Su İşleri Genel Müdürlüğünün bağlı olduğu Bakanlığın kararıyla uzatılabilir.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=167&mevzuatTur=1&mevzuatTertip=4",
-      "rehberler": ["kuyu-ruhsati"],
-      "emsaller": []
+      "rehberler": [
+        "kuyu-ruhsati"
+      ],
+      "emsaller": [],
+      "merci": "DSİ",
+      "sure": "Su bulunca bir ay içinde müracaat",
+      "yorum": "Ölçüm sistemi kurulmadan kullanma belgesi verilemez."
     },
     {
       "id": "167-m11",
@@ -37,8 +49,14 @@
       "baslik": "Islah ve tadil belgesi",
       "metin": "Kullanma belgesini haiz bir kimse arazisindeki kuyuların veya yeraltı suyu menbalarının verimini artırmak veya başka bir maksadı sağlamak gibi mülahazalarla bunlar üzerinde kendiliğinden her hangi bir müdahalede bulunamaz veya kuyuların kullanma şeklini değiştiremez. Ancak, Devlet Su İşleri Umum Müdürlüğünden \"ıslah ve tadil belgesi\" almak suretiyle, böyle bir ameliyeye girişebilir.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=167&mevzuatTur=1&mevzuatTertip=4",
-      "rehberler": ["kuyu-ruhsati", "kuyu-tasima"],
-      "emsaller": []
+      "rehberler": [
+        "kuyu-ruhsati",
+        "kuyu-tasima"
+      ],
+      "emsaller": [],
+      "merci": "DSİ",
+      "sure": "—",
+      "yorum": "Mevcut kuyuya müdahale ıslah-tadil belgesine bağlıdır."
     },
     {
       "id": "167-m18",
@@ -49,8 +67,17 @@
       "baslik": "İdari para cezaları ve kuyu kapatma",
       "metin": "(Değişik: 23/1/2008-5728/270 md.) Bu Kanundaki vecibeleri yerine getirmeyenler bu hareketlerinden dolayı, diğer kanunlara göre suç oluşturmadığı takdirde, bu madde hükmüne göre cezalandırılırlar. a) Belge almadan 8 inci maddedeki işleri yapanlar ile kasten yanlış bilgi verenler bin Türk Lirasından beşbin Türk Lirasına kadar idarî para cezası ile cezalandırılır. Ceza alınmakla beraber, kuyunun açılıp işletilmesinde Devlet Su İşleri Genel Müdürlüğünce bir mahzur görülmezse, sahibine gerekli belge verilir. Aksi hâlde, kuyu kapatılır ve masrafı kuyuyu açtırandan alınır. b) 10 ve 11 inci madde hükümlerine aykırı hareket edenlerle arama, kullanma, ıslah ve tadil faaliyetleri sırasında konulan şartlara riayet etmeyenler, müracaat formlarında istenen bilgileri vermeyenler, 8 inci maddenin son fıkrasındaki mecburiyete riayet etmeyenler beşyüz Türk Lirasından ikibin Türk Lirasına kadar idarî para cezası ile cezalandırılır. Ayrıca, kuyu kapatılarak masrafı açtırandan alınır. Bu Kanunda yazılı olan idarî para cezaları mahallî mülkî amir tarafından verilir.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=167&mevzuatTur=1&mevzuatTertip=4",
-      "rehberler": ["ruhsatsiz-kuyu-cezalari", "kuyu-belgesi-iptal-davalari"],
-      "emsaller": ["yargitay-7hd-2011-3727", "danistay-8d-2023-663"]
+      "rehberler": [
+        "ruhsatsiz-kuyu-cezalari",
+        "kuyu-belgesi-iptal-davalari"
+      ],
+      "emsaller": [
+        "yargitay-7hd-2011-3727",
+        "danistay-8d-2023-663"
+      ],
+      "merci": "Mahallî mülkî amir (valilik/kaymakamlık)",
+      "sure": "—",
+      "yorum": "m.18/a 1.000–5.000 TL, m.18/b 500–2.000 TL; ceza yanında kuyu kapatma."
     },
     {
       "id": "yas-m2",
@@ -61,8 +88,15 @@
       "baslik": "İşletme sahalarının ilanı",
       "metin": "Yeraltı suyu işletme sahalarının sınırları ve karakteristikleri Devlet Su İşleri (DSİ) Genel Müdürlüğünce tayin ve tesbit edildikçe, gerekli Bakanlar Kurulu Kararı alınmak üzere keyfiyet Bayındırlık Bakanlığına intikal ettirilir. Çıkacak karara göre \"Yeraltı Suyu İşletme Sahaları\" DSİ tarafından Resmi Gazete ile ve ayrıca mahallerinde çıkan gazetelerde, gazete çıkmayan yerlerde de mütat vasıtalarla ilan olunur.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=51465&mevzuatTur=2&mevzuatTertip=4",
-      "rehberler": ["yeralti-suyu-isletme-sahasi"],
-      "emsaller": ["danistay-8d-2018-6147"]
+      "rehberler": [
+        "yeralti-suyu-isletme-sahasi"
+      ],
+      "emsaller": [
+        "danistay-8d-2018-6147"
+      ],
+      "merci": "DSİ",
+      "sure": "—",
+      "yorum": "İşletme sahası ilanı kamusal denetimi ağırlaştırır."
     },
     {
       "id": "yas-m3",
@@ -73,8 +107,13 @@
       "baslik": "El ile açılan kuyular",
       "metin": "a) Satıh alüvyonları içinde kazma, kürek, varyoz ve baramin gibi el kazısı aletleri ile kazılan her derinlikteki kuyularla, ilk su tabakası içinde en çok 10 metre derinliğe kadar, en çok 100 milimetre çapında boru çakılarak açılan kuyular, el ile açılan kuyu sayılır. b) El ile açılan kuyulardan en çok faydalı ihtiyaca yetecek kadar su çekilebilir. Yeraltı suyu deposu bu ihtiyacı karşılayamıyacak durumda ise, deponun normal verimi kadar su alınması gereklidir. c) Artezyen sahalarda el ile açılan kuyular teknik yönetmelikte belirtildiği şekilde tercih ve teçhiz edilir. Artezyen yapan kuyulardan faydalı ihtiyaçtan fazla su alınmasını önliyecek tarzda ilgilinin gerekli bütün tedbirleri alması ve bu hususta DSİ.ce yapılacak tavsiyeleri yerine getirmesi mecburidir.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=51465&mevzuatTur=2&mevzuatTertip=4",
-      "rehberler": ["kuyu-ruhsati"],
-      "emsaller": []
+      "rehberler": [
+        "kuyu-ruhsati"
+      ],
+      "emsaller": [],
+      "merci": "—",
+      "sure": "—",
+      "yorum": "El ile açılan kuyunun tanımı ve faydalı ihtiyaç sınırı."
     },
     {
       "id": "yas-m4",
@@ -85,8 +124,14 @@
       "baslik": "Belgeli kuyu derinlikleri",
       "metin": "a) Belge alınarak açılacak kuyu derinlikleri DSİ tarafından bölge bölge tesbit edilerek Bakanlar Kurulunun tasvibinden sonra ilan olunur. b) Yeraltı suyu araştırmaları ilerledikçe yeraltı suyu deposunun korunması bakımından zaruret hasıl olursa, (a) fıkrasında tesbit ve ilan olunan derinlikler yer yer değiştirilir ve Bakanlar Kurulunun tasvibi alınmak suretiyle yeni kuyu derinlikleri ilan olunur.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=51465&mevzuatTur=2&mevzuatTertip=4",
-      "rehberler": ["kuyu-ruhsati", "yeralti-suyu-isletme-sahasi"],
-      "emsaller": []
+      "rehberler": [
+        "kuyu-ruhsati",
+        "yeralti-suyu-isletme-sahasi"
+      ],
+      "emsaller": [],
+      "merci": "DSİ",
+      "sure": "—",
+      "yorum": "Belgeli kuyu derinliğini DSİ bölge bölge belirler; sonradan değişebilir."
     },
     {
       "id": "2942-m1",
@@ -97,8 +142,13 @@
       "baslik": "Kamulaştırmanın kapsamı",
       "metin": "Bu Kanun; kamu yararının gerektirdiği hallerde gerçek ve özel hukuk tüzelkişilerinin mülkiyetinde bulunan taşınmaz malların, Devlet ve kamu tüzelkişilerince kamulaştırılmasında yapılacak işlemleri, kamulaştırma bedelinin hesaplanmasını, taşınmaz malın ve irtifak hakkının idare adına tescilini, kullanılmayan taşınmaz malın geri alınmasını, idareler arasında taşınmaz malların devir işlemlerini, karşılıklı hak ve yükümlülükler ile bunlara dayalı uyuşmazlıkların çözüm usul ve yöntemlerini düzenler.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=2942&mevzuatTur=1&mevzuatTertip=5",
-      "rehberler": ["baraj-kamulastirmasi"],
-      "emsaller": []
+      "rehberler": [
+        "baraj-kamulastirmasi"
+      ],
+      "emsaller": [],
+      "merci": "İdare; uyuşmazlıkta kamulaştırma mahkemesi",
+      "sure": "—",
+      "yorum": "Kamu yararına taşınmaz kamulaştırmasının çerçevesi."
     },
     {
       "id": "2942-ek-m1",
@@ -109,8 +159,13 @@
       "baslik": "İmar kısıtlılığı ve beş yıllık süre",
       "metin": "Uygulama imar planlarında umumi hizmetlere ve resmî kurumlara ayrılmak suretiyle mülkiyet hakkının özüne dokunacak şekilde tasarrufu hukuken kısıtlanan taşınmazlar hakkında, uygulama imar planlarının yürürlüğe girmesinden itibaren beş yıllık süre içerisinde imar programları veya imar uygulamaları yapılır ve bütçe imkânları dâhilinde bu taşınmazlar ilgili idarelerce kamulaştırılır veya mülkiyet hakkını kullanmasına engel teşkil edecek kısıtlılığı kaldıracak şekilde imar planı değişikliği yapılır.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=2942&mevzuatTur=1&mevzuatTertip=5",
-      "rehberler": ["baraj-kamulastirmasi"],
-      "emsaller": []
+      "rehberler": [
+        "baraj-kamulastirmasi"
+      ],
+      "emsaller": [],
+      "merci": "İdare",
+      "sure": "İmar planı yürürlüğünden itibaren beş yıl",
+      "yorum": "İmar kısıtlılığında kamulaştırma veya plan değişikliği zorunluluğu."
     },
     {
       "id": "2886-m1",
@@ -121,8 +176,16 @@
       "baslik": "Kapsam",
       "metin": "Genel bütçeye dahil dairelerle katma bütçeli idarelerin, özel idare ve belediyelerin alım, satım, hizmet, yapım, kira, trampa, mülkiyetin gayri ayni hak tesisi ve taşıma işleri bu Kanunda yazılı hükümlere göre yürütülür.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=2886&mevzuatTur=1&mevzuatTertip=5",
-      "rehberler": ["kaynak-suyu-kiralama"],
-      "emsaller": ["danistay-13d-2013-263", "danistay-13d-2015-4133"]
+      "rehberler": [
+        "kaynak-suyu-kiralama"
+      ],
+      "emsaller": [
+        "danistay-13d-2013-263",
+        "danistay-13d-2015-4133"
+      ],
+      "merci": "İdare",
+      "sure": "—",
+      "yorum": "Kira dahil işlemlerin ihale rejimine bağlılığı."
     },
     {
       "id": "5393-m15",
@@ -133,8 +196,13 @@
       "baslik": "Belediyenin yetkileri (kaynak suyu işletme)",
       "metin": "Belediyenin yetkileri ve imtiyazları arasında; belde sakinlerinin mahallî müşterek nitelikteki ihtiyaçlarını karşılamak amacıyla faaliyet ve girişimde bulunmak, içme-kullanma ve endüstri suyu sağlamak, kaynak sularını işletmek veya işlettirmek, taşınmazları kiralamak veya kiraya vermek ve kanunların belediyelere verdiği yetki çerçevesinde yönetmelik çıkarmak yer alır.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=5393&mevzuatTur=1&mevzuatTertip=5",
-      "rehberler": ["kaynak-suyu-kiralama"],
-      "emsaller": []
+      "rehberler": [
+        "kaynak-suyu-kiralama"
+      ],
+      "emsaller": [],
+      "merci": "Belediye",
+      "sure": "—",
+      "yorum": "Belediyenin kaynak suyu işletme/işlettirme yetkisi."
     },
     {
       "id": "831-m1",
@@ -145,8 +213,13 @@
       "baslik": "İhtiyaç sularının idaresi",
       "metin": "Şehir ve kasabalarla köylerde ihtiyacatı ammeyi temine mahsus suların tedarik ve idaresi belediye teşkilatı olan mahallerde belediyelere, olmıyan yerlerde Köy Kanunu mucibince ihtiyar meclislerine aittir.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=831&mevzuatTur=1&mevzuatTertip=3",
-      "rehberler": ["kaynak-suyu-kiralama"],
-      "emsaller": []
+      "rehberler": [
+        "kaynak-suyu-kiralama"
+      ],
+      "emsaller": [],
+      "merci": "Belediye / ihtiyar meclisi",
+      "sure": "—",
+      "yorum": "İhtiyaç sularının tedarik ve idaresi."
     },
     {
       "id": "831-ek-m1",
@@ -157,8 +230,13 @@
       "baslik": "Kaynağı sınır dışında bulunan sular",
       "metin": "Bir belde veya belde halkının müşterek ihtiyacına mahsus suların kaynakları belediye sınırı dışında bulunsa bile su yollarının ve kaynaklarının bakımı, onarılması, temizlenmesi ve suyun sıhhat şartlarına uygun bir halde bulundurulması belediyelere aittir.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=831&mevzuatTur=1&mevzuatTertip=3",
-      "rehberler": ["kaynak-suyu-kiralama"],
-      "emsaller": []
+      "rehberler": [
+        "kaynak-suyu-kiralama"
+      ],
+      "emsaller": [],
+      "merci": "Belediye",
+      "sure": "—",
+      "yorum": "Kaynak belediye sınırı dışında olsa da bakım belediyeye aittir."
     },
     {
       "id": "5686-m4",
@@ -169,8 +247,13 @@
       "baslik": "Hak sahibi olabilecekler",
       "metin": "Jeotermal kaynaklar ve doğal mineralli sulara ilişkin haklar, medeni hakları kullanmaya ehil Türkiye Cumhuriyeti vatandaşlarına, bu hususta yetkisi bulunan kamu kurum, kuruluş ve idarelerine verilir. Bu haklar gerçek veya tüzel tek kişi adına verilir.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=5686&mevzuatTur=1&mevzuatTertip=5",
-      "rehberler": ["jeotermal-ruhsat"],
-      "emsaller": []
+      "rehberler": [
+        "jeotermal-ruhsat"
+      ],
+      "emsaller": [],
+      "merci": "İdare",
+      "sure": "—",
+      "yorum": "Jeotermal/doğal mineralli su haklarının kimlere verilebileceği."
     },
     {
       "id": "5686-m5",
@@ -181,8 +264,13 @@
       "baslik": "Arama ruhsatı ve öncelik hakkı",
       "metin": "Arama ruhsatı müracaatları, talep sahibi tarafından 1/25000 ölçekli pafta adı ve koordinatları belirtilerek beş bin hektarı geçmeyecek şekilde arama projesi ile birlikte idareye yapılır. Müracaatlarda öncelik hakkı esastır. Aynı yer için aynı anda birden fazla talep olması halinde, projeler incelenerek en hızlı ve en fazla yatırımı teklif eden proje sahibinin talebi tercih edilir.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=5686&mevzuatTur=1&mevzuatTertip=5",
-      "rehberler": ["jeotermal-ruhsat"],
-      "emsaller": []
+      "rehberler": [
+        "jeotermal-ruhsat"
+      ],
+      "emsaller": [],
+      "merci": "İdare",
+      "sure": "Arama ruhsatı üç yıl; +1 yıl uzatma",
+      "yorum": "Öncelik hakkı esastır; çakışan talepte proje yarışı."
     },
     {
       "id": "5686-m6",
@@ -193,8 +281,16 @@
       "baslik": "İşletme ruhsatı, süre ve iptal",
       "metin": "Arama ruhsatı sahibinin, arama ruhsat süresinin son günü akşamına kadar işletme projesi ile idareye işletme ruhsatı başvurusunda bulunması halinde \"işletme ruhsatı\" verilir ve varsa tespit edilen bloke alanıyla birlikte MAPEG'e bildirilir. İşletme ruhsatı sahipleri, işletme faaliyetine geçmek için ilgili kurumlardan gerekli izinleri almakla yükümlüdür. İşletme ruhsatı sahibi, projesinde belirtilen süre içinde işletmeye geçmez veya herhangi bir sebeple işletme ruhsatının iptal edilmesi durumunda teminat irat kaydedilir ve saha idare tarafından ihaleye çıkarılır. İşletme projeleri ile ihaleye katılan isteklilerden idareye en fazla geliri teklif eden istekliye işletme ruhsatı verilir ve MAPEG'e bildirilir. İdareden izin alınmaksızın, projede yer alan herhangi bir kuyunun yenilenmesi, sayısının ve kapasitesinin artırılması, enjeksiyon, reenjeksiyon, üretim amaçlı tüm sondaj faaliyetleri ile diğer proje değişiklikleri ve revizyonları yapılamaz. İşletme ruhsatı süresi otuz yıldır. Süre sonunda ruhsat sahibinin talep etmesi durumunda onar yıllık dönemler halinde uzatılır. Doğal çıkış halindeki jeotermal ve doğal mineralli sular için, kaptajı yapılarak doğrudan işletme talepleri de İdarece bu Kanun hükümlerine göre işletme ruhsatına bağlanır ve MAPEG'e bildirilir.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=5686&mevzuatTur=1&mevzuatTertip=5",
-      "rehberler": ["jeotermal-ruhsat"],
-      "emsaller": ["danistay-8d-2018-6147", "danistay-8d-2021-5225"]
+      "rehberler": [
+        "jeotermal-ruhsat"
+      ],
+      "emsaller": [
+        "danistay-8d-2018-6147",
+        "danistay-8d-2021-5225"
+      ],
+      "merci": "İdare",
+      "sure": "İşletme ruhsatı otuz yıl; arama süresinin son günü akşamına kadar başvuru",
+      "yorum": "Süresinde başvuru yoksa hak kaybı; iptalde teminat irat + ihale."
     },
     {
       "id": "su-tahsis-m8",
@@ -205,8 +301,13 @@
       "baslik": "Tahsis talebi",
       "metin": "Gerçek veya tüzel kişiler; bu Yönetmelik kapsamındaki kaynak, akarsu, yeraltı suyu, baraj, göl ve gölet gibi su kaynaklarından 7 nci maddede belirtilen amaçlar için 9 uncu maddede belirtilen başvuru usulleri ile DSİ'ye müracaat ederek su tahsis talebinde bulunabilirler.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=34021&mevzuatTur=7&mevzuatTertip=5",
-      "rehberler": ["su-tahsisi-oncelik-sirasi"],
-      "emsaller": []
+      "rehberler": [
+        "su-tahsisi-oncelik-sirasi"
+      ],
+      "emsaller": [],
+      "merci": "DSİ",
+      "sure": "—",
+      "yorum": "Tahsis talebi DSİ'ye yapılır."
     },
     {
       "id": "su-tahsis-m9",
@@ -217,8 +318,13 @@
       "baslik": "Başvuru usulleri",
       "metin": "Yeraltı suyu kullanımına yönelik tahsis başvuruları, 167 sayılı Yeraltısuları Hakkında Kanun, Yeraltısuları Tüzüğü ve DSİ Yeraltısuları Teknik Yönetmeliği hükümlerine göre yapılır. Yüzey suyu kullanımına yönelik başvurularda ise içme ve kullanma, tarımsal sulama, su ürünleri yetiştiriciliği, termik enerji, endüstriyel ve madencilik tesisleri için ayrı usuller öngörülür.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=34021&mevzuatTur=7&mevzuatTertip=5",
-      "rehberler": ["su-tahsisi-oncelik-sirasi"],
-      "emsaller": []
+      "rehberler": [
+        "su-tahsisi-oncelik-sirasi"
+      ],
+      "emsaller": [],
+      "merci": "DSİ",
+      "sure": "—",
+      "yorum": "Yeraltı ve yüzey suyu başvuruları ayrı usullere tabidir."
     },
     {
       "id": "su-tahsis-m10",
@@ -229,8 +335,13 @@
       "baslik": "Değerlendirme ölçütleri",
       "metin": "Su tahsis talepleri; suyun miktarı ve kalitesi esas alınarak kullanım önceliklerine göre değerlendirilir, mevcut ve mutasavver projeler açısından incelenir, suyun etkin ve verimli kullanılabilmesi için yıllara göre ihtiyaçlar dikkate alınır ve göl, gölet, baraj, regülatör ve benzeri yapıların etkilediği alanlarda proje verileri ile beslenim koşulları göz önünde bulundurulur.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=34021&mevzuatTur=7&mevzuatTertip=5",
-      "rehberler": ["su-tahsisi-oncelik-sirasi"],
-      "emsaller": []
+      "rehberler": [
+        "su-tahsisi-oncelik-sirasi"
+      ],
+      "emsaller": [],
+      "merci": "DSİ",
+      "sure": "—",
+      "yorum": "Miktar, kalite ve kullanım önceliği birlikte değerlendirilir."
     },
     {
       "id": "6200-gecici-m13",
@@ -241,8 +352,14 @@
       "baslik": "Eski su tahsislerinin korunması",
       "metin": "Bu maddenin yürürlüğe girdiği tarihten önce yapılmış olan su tahsisleri mevcut hukuki durumlarını korumaya devam eder.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=6200&mevzuatTur=1&mevzuatTertip=3",
-      "rehberler": ["su-tahsisi-oncelik-sirasi", "baraj-kamulastirmasi"],
-      "emsaller": []
+      "rehberler": [
+        "su-tahsisi-oncelik-sirasi",
+        "baraj-kamulastirmasi"
+      ],
+      "emsaller": [],
+      "merci": "DSİ",
+      "sure": "—",
+      "yorum": "Eski su tahsisleri mevcut durumlarını korur."
     },
     {
       "id": "6200-gecici-m12",
@@ -253,8 +370,13 @@
       "baslik": "Sulama yatırım bedeli takibinden vazgeçme",
       "metin": "Bu maddenin yürürlüğe girdiği tarihten önce tahakkuka bağlanmış ancak tahsil edilememiş baraj ve gölet gibi depolama tesislerinin sulama maksadına ilişkin yatırım bedeli ve sulama tesislerinin yatırım bedellerinin tahsilinden ve takip işlemlerinden vazgeçilir.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=6200&mevzuatTur=1&mevzuatTertip=3",
-      "rehberler": ["baraj-kamulastirmasi"],
-      "emsaller": []
+      "rehberler": [
+        "baraj-kamulastirmasi"
+      ],
+      "emsaller": [],
+      "merci": "DSİ",
+      "sure": "—",
+      "yorum": "Tahsil edilememiş sulama yatırım bedeli takibinden vazgeçilir."
     },
     {
       "id": "6200-ek-m2",
@@ -265,8 +387,13 @@
       "baslik": "İçme suyu tahsisinde yatırım bedeli geri ödemesi",
       "metin": "Bu Kanuna göre inşa edilen barajlardan ve/veya tesislerden içme suyu tahsisi yapılanların bu yatırımda içme suyuna isabet eden yatırım bedellerinin geri ödemeleri ve süreleri için Belediye Teşkîlatı Olan Yerleşim Yerlerine İçme, Kullanma ve Endüstri Suyu Temini Hakkında Kanun hükümleri uygulanır.",
       "kaynakUrl": "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=6200&mevzuatTur=1&mevzuatTertip=3",
-      "rehberler": ["baraj-kamulastirmasi"],
-      "emsaller": []
+      "rehberler": [
+        "baraj-kamulastirmasi"
+      ],
+      "emsaller": [],
+      "merci": "İdare / belediye",
+      "sure": "—",
+      "yorum": "İçme suyu tahsisinde yatırım bedeli geri ödemesi."
     }
   ]
 }

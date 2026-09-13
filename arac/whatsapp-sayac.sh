@@ -20,9 +20,12 @@ KOD=$(curl -sS -m 30 -o "$YANIT" -w '%{http_code}' "$SITE/whatsapp/?sayac=$ANAHT
 case "$KOD" in
   200)
     if [ "${1:-}" = "--ozet" ]; then
-      python3 -c 'import json,sys,datetime
-d=json.load(open(sys.argv[1])); bugun=(datetime.datetime.utcnow()+datetime.timedelta(hours=3)).strftime("%Y-%m-%d")
-print(f"WhatsApp tıklama: bugün {d.get(\"gunler\",{}).get(bugun,0)} · toplam {d.get(\"toplam\",0)} · okuma {d.get(\"okuma\",\"?\")}")' "$YANIT"
+      python3 -c "
+import json,datetime
+d=json.load(open('$YANIT'))
+bugun=(datetime.datetime.now(datetime.timezone.utc)+datetime.timedelta(hours=3)).strftime('%Y-%m-%d')
+print('WhatsApp tıklama: bugün', d.get('gunler',{}).get(bugun,0), '· toplam', d.get('toplam',0), '· okuma', d.get('okuma','?'))
+"
     else
       cat "$YANIT"; echo
     fi ;;
