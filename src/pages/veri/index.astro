@@ -1,0 +1,114 @@
+---
+// /veri/ — AÇIK VERİ KATALOĞU (13.09.2026).
+// Sitenin makine-okunur veri katmanı: AI ajanları ve geliştiriciler için
+// kanonik kaynak. Veriler build anında kaynak JSON'lardan üretilir.
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import CtaBlok from '../../components/CtaBlok.astro';
+import HukukSerhi from '../../components/HukukSerhi.astro';
+
+const OZ_CEVAP =
+  'Su Haritası verisinin makine-okunur katmanı: 25 havza, 81 il, 20 su işlemi, ' +
+  '75 mevzuat maddesi, emsal kararlar, Resmî Gazete kısıt kayıtları ve sözlük. ' +
+  'Her veri kümesi JSON olarak yayımlanır; kaynak gösterilerek yapay zeka ' +
+  'ajanları, araştırmacılar ve geliştiriciler tarafından kullanılabilir.';
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/veri/', Astro.site).href;
+
+const kumeler = [
+  { ad: 'Havzalar', yol: '/veri/havzalar.json', kayit: '25 havza', aciklama: 'Yağış alanı, yüzey suyu potansiyeli, YAS beslenimi/işletme rezervi, NHYP bağlantısı.', guncelleme: 'Veri kaydı: DSİ 2024' },
+  { ad: 'İller', yol: '/veri/iller.json', kayit: '81 il', aciklama: 'İl → DSİ bölge müdürlüğü, havza(lar) ve su/kanalizasyon idaresi eşlemesi.', guncelleme: 'Resmî belge derlemesi' },
+  { ad: 'Su işlemleri', yol: '/veri/islemler.json', kayit: '20 işlem', aciklama: 'İşlem → yetkili kurum, mevzuat dayanağı, başvuru kanalı ve ilgili rehber.', guncelleme: 'Mevzuat atfı' },
+  { ad: 'Mevzuat maddeleri', yol: '/veri/mevzuat.json', kayit: '75 madde', aciklama: '167, YAS Tüzüğü, Su Tahsisleri ve ilgili kanunların madde metinleri (resmî).', guncelleme: 'mevzuat.gov.tr (radar izler)' },
+  { ad: 'Emsal kararlar', yol: '/veri/emsal.json', kayit: '15 karar', aciklama: 'Danıştay/Yargıtay su hukuku künyeleri ve özetleri.', guncelleme: 'Doğrulama sürecinde' },
+  { ad: 'Sözlük', yol: '/veri/sozluk.json', kayit: '126 terim', aciklama: 'Su hukuku ve yönetimi terimleri, mevzuat kaynaklarıyla.', guncelleme: 'Mevzuat taraması' },
+  { ad: 'Kısıt kayıtları', yol: '/kisit.json', kayit: '204 kayıt', aciklama: 'DSİ Resmî Gazete işletme sahası ve tahsise kapatma/kısıt ilanları (il eşlemeli).', guncelleme: 'RG taraması' },
+  { ad: 'Arama indeksi', yol: '/arama.json', kayit: '605 sayfa', aciklama: 'Tüm sayfaların başlık/açıklama indeksi (site içi arama).', guncelleme: 'Her build' },
+  { ad: 'Mevzuat sürümü', yol: '/veri/mevzuat-surum.json', kayit: '9 mevzuat', aciklama: 'İzlenen mevzuatın madde bazlı SHA-256 anlık görüntüsü (değişiklik radarı).', guncelleme: 'Radar taraması' },
+];
+
+const sema = [
+  {
+    '@type': 'DataCatalog',
+    '@id': `${canonical}#katalog`,
+    name: 'Su Haritası açık veri kataloğu',
+    url: canonical,
+    description: OZ_CEVAP,
+    inLanguage: 'tr-TR',
+    publisher: { '@id': `${kok}#kurum` },
+    dataset: kumeler.map((k) => ({
+      '@type': 'Dataset',
+      name: k.ad,
+      description: k.aciklama,
+      url: new URL(k.yol, Astro.site).href,
+      distribution: { '@type': 'DataDownload', contentUrl: new URL(k.yol, Astro.site).href, encodingFormat: 'application/json' },
+      isAccessibleForFree: true,
+    })),
+  },
+  { '@type': 'WebPage', '@id': `${canonical}#sayfa`, url: canonical, name: 'Açık veri', description: OZ_CEVAP, inLanguage: 'tr-TR', isPartOf: { '@id': `${kok}#site` } },
+];
+---
+<Sayfa baslik="Açık veri" aciklama={OZ_CEVAP} tarayiciBaslik="Su Haritası Açık Veri: JSON API (havza, il, mevzuat)" sema={sema}>
+  <SayfaBasi etiket="Açık veri" baslik="Açık veri kataloğu" ozet="Sitenin makine-okunur veri katmanı; JSON uçları AI ajanları ve geliştiriciler için." ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Özet" />
+
+  <div class="vd-kaydir">
+    <table class="vd-tablo">
+      <caption>Veri kümesi · kayıt · JSON ucu · güncelleme.</caption>
+      <thead><tr><th scope="col">Veri kümesi</th><th scope="col">Kayıt</th><th scope="col">JSON ucu</th><th scope="col">Güncelleme</th></tr></thead>
+      <tbody>
+        {kumeler.map((k) => (
+          <tr>
+            <th scope="row">{k.ad}<span class="vd-aciklama">{k.aciklama}</span></th>
+            <td>{k.kayit}</td>
+            <td><a href={k.yol}><code>{k.yol}</code></a></td>
+            <td>{k.guncelleme}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <section class="vd-bolum" aria-label="Kullanım">
+    <h2>Nasıl kullanılır?</h2>
+    <p>Her uç düz JSON döner; kimlik doğrulama gerekmez. Kaynak gösterin:</p>
+    <pre><code>{`curl -s ${kok}veri/mevzuat.json | jq '.[0]'
+# Kaynak: Su Haritası (suharitasi.com) — ${kok}veri/`}</code></pre>
+    <p class="vd-not">
+      Veriler kamuya açık resmî kaynaklardan derlenmiştir (DSİ, SYGM, mevzuat.gov.tr,
+      Resmî Gazete). Ticari kullanımda kaynak gösterilmesi beklenir; hukuki görüş
+      niteliği taşımaz. Ayrıntı: <a href="/hakkinda/">yöntem ve kaynak politikası</a>.
+    </p>
+  </section>
+
+  <nav class="vd-capraz" aria-label="İlgili bölümler">
+    <a href="/mevzuat/degisiklikler/">→ Mevzuat değişiklik radarı</a>
+    <a href="/kuyu-kisit-sorgu/">→ Kısıt sorgu motoru</a>
+    <a href="/islem-matrisi/">→ İşlem → kurum matrisi</a>
+    <a href="/llms.txt">→ llms.txt (AI içindekiler)</a>
+  </nav>
+
+  <CtaBlok konu="Kurumsal veri" baslik="Kurumsal veri / API erişimi mi gerekiyor?" metin="Kurumsal lisans, özel rapor veya veri entegrasyonu için ulaşın." />
+  <HukukSerhi />
+</Sayfa>
+
+<style>
+  .vd-kaydir { overflow-x: auto; }
+  .vd-tablo { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 50rem; }
+  .vd-tablo caption { caption-side: top; text-align: left; font-size: 0.78rem; color: var(--metin-soluk); padding-bottom: 0.5rem; }
+  .vd-tablo th, .vd-tablo td { text-align: left; vertical-align: top; padding: 0.6rem 0.7rem; border-bottom: 1px solid var(--cizgi); }
+  .vd-tablo thead th { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--metin-soluk); background: var(--zemin); border-bottom: 2px solid var(--su-700); white-space: nowrap; }
+  .vd-tablo tbody th { font-family: var(--serif); font-size: 1rem; font-weight: 500; }
+  .vd-aciklama { display: block; margin-top: 0.15rem; font-family: var(--sans); font-size: 0.8rem; font-weight: 400; color: var(--metin-soluk); }
+  .vd-tablo code { font-family: var(--mono); font-size: 0.82rem; }
+  .vd-bolum { margin-top: 2rem; }
+  .vd-bolum h2 { font-family: var(--serif); font-weight: 500; font-size: 1.4rem; margin-bottom: 0.7rem; }
+  .vd-bolum pre { background: var(--deniz); color: #DBEAF4; padding: 1rem 1.2rem; overflow-x: auto; font-family: var(--mono); font-size: 0.82rem; line-height: 1.6; }
+  .vd-bolum pre code { color: inherit; }
+  .vd-not { margin-top: 0.8rem; font-size: 0.88rem; color: var(--metin-soluk); max-width: 72ch; }
+  .vd-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .vd-capraz a { color: var(--baglanti); text-decoration: none; }
+  .vd-capraz a:hover { text-decoration: underline; }
+</style>

@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import { readdir, writeFile, readFile } from 'node:fs/promises';
+import { readdir, writeFile, readFile, mkdir } from 'node:fs/promises';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { join, relative } from 'node:path';
@@ -129,6 +129,65 @@ function kisitJsonOlustur() {
   };
 }
 
+// veri API: sitenin makine-okunur açık veri katmanı (dist/veri/*.json).
+// AI ajanları ve geliştiriciler için kanonik kaynak. Kaynak JSON'lardan
+// build anında türetilir; uydurma yok.
+function veriApiOlustur() {
+  return {
+    name: 'veri-api',
+    hooks: {
+      'astro:build:done': async ({ dir, logger }) => {
+        const kok = fileURLToPath(dir);
+        const proje = fileURLToPath(new URL('.', import.meta.url));
+        const oku = (p) => JSON.parse(readFileSync(join(proje, p), 'utf8'));
+        const veriDir = join(kok, 'veri');
+        await mkdir(veriDir, { recursive: true });
+        const yaz = (ad, veri) => writeFile(join(veriDir, ad), JSON.stringify(veri), 'utf8');
+
+        const hv = oku('data/havza-veri.json');
+        await yaz('havzalar.json', hv.havzalar.map((h) => ({
+          no: h.no, ad: h.ad, yagisAlani_km2: h.yagisAlani_km2,
+          yuzeysuyuPotansiyeli_km3: h.yuzeysuyuPotansiyeli_km3, yasBeslenimi_hm3: h.yasBeslenimi_hm3,
+          yasIsletmeRezervi_hm3: h.yasIsletmeRezervi_hm3, yil: h.yuzeysuyuYili,
+          nehirHavzasiYonetimPlani: h.nehirHavzasiYonetimPlani,
+        })));
+
+        const ilk = oku('data/il-kurum.json');
+        const ilBolge = {}, ilHavza = {};
+        for (const [no, b] of Object.entries(ilk.dsiBolgeleri)) for (const il of b.iller) (ilBolge[il] = ilBolge[il] || []).push({ no, merkez: b.merkez });
+        const havzaByNo = Object.fromEntries(hv.havzalar.map((h) => [h.no, h.ad]));
+        for (const [no, h] of Object.entries(ilk.havzaIlleri)) for (const il of h.iller) (ilHavza[il] = ilHavza[il] || []).push(havzaByNo[no] || no);
+        const iller = Object.keys({ ...ilBolge, ...ilHavza, ...ilk.suIdareleri }).sort((a, b) => a.localeCompare(b, 'tr'))
+          .map((il) => ({ il, dsiBolgeleri: ilBolge[il] || [], havzalar: ilHavza[il] || [], suIdaresi: ilk.suIdareleri[il] || null }));
+        await yaz('iller.json', iller);
+
+        const si = oku('data/kamu/su-islemleri.json'), hk = oku('data/kamu/hangi-kapi.json'), sb = oku('data/kamu/su-birimleri.json');
+        const kb = Object.fromEntries(sb.kayitlar.map((k) => [k.id, k]));
+        const hb = Object.fromEntries(hk.satirlar.map((s) => [s.islem_id, s]));
+        await yaz('islemler.json', si.islemler.map((i) => {
+          const s = hb[i.id] || {};
+          return {
+            id: i.id, ad: i.islem_adi, dayanak: i.dayanak, kaynak: i.kaynak,
+            yetkiliKurumlar: (s.yetkili_kurum_id || []).map((id) => ({ id, ad: (kb[id] || {}).ad_resmi || id, kisaltma: (kb[id] || {}).kisaltma || null })),
+            mevzuatDayanagi: s.mevzuat_dayanagi || null, basvuruKanali: s.basvuru_kanali || null,
+            durum: s.durum || null, ilgiliRehber: s.ilgili_rehber || null,
+          };
+        }));
+
+        const mv = oku('data/kamu/mevzuat-maddeleri.json');
+        await yaz('mevzuat.json', mv.maddeler.map((m) => ({
+          kanunKisa: m.kanunKisa, kanun: m.kanun, tur: m.tur, madde: m.madde, metin: m.metin,
+          kaynak: m.kaynakUrl, merci: m.merci || null, sure: m.sure || null, yorum: m.yorum || null,
+        })));
+        await yaz('emsal.json', oku('data/kamu/emsal-kararlar.json').kararlar);
+        await yaz('sozluk.json', oku('data/kamu/su-terim-havuzu.json').terimler);
+        await yaz('mevzuat-surum.json', oku('data/kamu/mevzuat-surum.json'));
+        logger.info('veri API: havzalar · iller · islemler · mevzuat · emsal · sozluk');
+      },
+    },
+  };
+}
+
 // arama.json: statik site içi arama indeksi. dist'ten üretilir (title +
 // meta description + h1 + bölüm). Sayfa başına ~200 bayt; ~530 sayfa ≈ 110 KB.
 // İçerik elle yazılmaz — sayfa çıktısından türetilir, bayatlamaz.
@@ -190,6 +249,7 @@ function llmsOlustur() {
   // tutuyor ve önek olmadığı için tamamı "Diğer sayfalar" altına düşüyordu,
   // yani AI istemcilerine kategorisiz gidiyordu.
   const BOLUM = [
+    ['veri/', 'Açık veri kataloğu (JSON API)'],
     ['su-hukuku/', 'Su hukuku omurga sayfası (karar matrisi)'],
     ['rehberler/', 'Mevzuat rehberleri'],
     ['mevzuat/', 'Mevzuat maddeleri (madde madde)'],
@@ -320,5 +380,5 @@ function sKlasoruKucult() {
 export default defineConfig({
   site: SITE,
   trailingSlash: 'ignore',
-  integrations: [sitemapOlustur(), llmsOlustur(), aramaOlustur(), kisitJsonOlustur(), surumDamgasi(), sKlasoruKucult()],
+  integrations: [sitemapOlustur(), llmsOlustur(), aramaOlustur(), kisitJsonOlustur(), veriApiOlustur(), surumDamgasi(), sKlasoruKucult()],
 });
