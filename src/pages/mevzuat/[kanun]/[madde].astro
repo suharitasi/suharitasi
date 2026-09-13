@@ -33,11 +33,14 @@ const ilgiliEmsaller = m.emsaller.map((id) => emsalById[id]).filter(Boolean);
 const kok = new URL('/', Astro.site).href;
 const canonical = new URL(`/mevzuat/${slugla(m.kanunKisa)}/${slugla(m.madde)}/`, Astro.site).href;
 
-// Öz cevap: maddenin kendi metninden damıtılır (yeni iddia yok).
-const oz = `${m.kanun} ${m.madde} (${m.baslik}): ${m.metin}`.slice(0, 300);
-const aciklama = `${m.kanun} ${m.madde}: ${m.baslik}. ${m.metin.slice(0, 140)}…`;
+// Kısa başlık yoksa madde künyesine düş (uydurma başlık üretilmez).
+const baslikMetni = m.baslik || m.madde;
+
+// Öz cevap: maddenin kendi resmî metninden damıtılır (yeni iddia yok).
+const oz = `${m.kanun} ${m.madde}${m.baslik ? ` (${m.baslik})` : ''}: ${m.metin}`.slice(0, 300);
+const aciklama = `${m.kanun} ${m.madde}${m.baslik ? `: ${m.baslik}` : ''}. ${m.metin.slice(0, 140)}…`;
 // <title> 60 sınırı: tam kalıp sığmazsa kısa künyeye düş (marka eki eklenmez).
-const tamBaslik = `${m.kanunKisa} ${m.madde}: ${m.baslik}`;
+const tamBaslik = `${m.kanunKisa} ${m.madde}${m.baslik ? `: ${m.baslik}` : ''}`;
 const tarayiciBaslik = tamBaslik.length <= 60 ? tamBaslik : `${m.kanunKisa} ${m.madde}`;
 
 const sema = [
@@ -74,30 +77,37 @@ const sema = [
 ];
 ---
 <Sayfa baslik={`${m.kanun} — ${m.madde}`} aciklama={aciklama} tarayiciBaslik={tarayiciBaslik} sema={sema}>
-  <SayfaBasi etiket={`${m.tur} · madde`} baslik={`${m.kanun} — ${m.madde}`} ozet={m.baslik} />
+  <SayfaBasi etiket={`${m.tur} · madde`} baslik={`${m.kanun} — ${m.madde}`} ozet={baslikMetni} />
   <OzCevap metin={oz} etiket="Madde özeti" />
 
-  <blockquote class="mv-metin">{m.metin}</blockquote>
+  <section class="mv-bolum" aria-label="Resmî madde metni">
+    <h2>Resmî madde metni</h2>
+    <blockquote class="mv-metin">{m.metin}</blockquote>
+  </section>
 
   <p class="mv-kaynak">
     Kaynak: <a href={m.kaynakUrl} target="_blank" rel="noopener">resmî tam metin (mevzuat.gov.tr)</a>.
-    Yürürlükteki güncel metin için resmî kaynak esastır.
+    Metin resmî kaynaktan birebir aktarılmıştır; yürürlükteki güncel metin için resmî kaynak esastır.
   </p>
 
   <section class="mv-bolum" aria-label="Yetkili merci ve süreler">
     <h2>Yetkili merci ve süreler</h2>
-    <dl class="mv-dl">
-      <div><dt>Yetkili merci</dt><dd>{m.merci ?? '—'}</dd></div>
-      <div><dt>Süre / hak düşürücü</dt><dd>{m.sure ?? '—'}</dd></div>
-    </dl>
+    {(m.merci || m.sure) ? (
+      <dl class="mv-dl">
+        <div><dt>Yetkili merci</dt><dd>{m.merci ?? '—'}</dd></div>
+        <div><dt>Süre / hak düşürücü</dt><dd>{m.sure ?? '—'}</dd></div>
+      </dl>
+    ) : (
+      <p class="mv-veri-yok">Bu madde için doğrulanmış merci/süre notu henüz eklenmemiştir; resmî metin esastır.</p>
+    )}
   </section>
 
-  {m.yorum && (
-    <section class="mv-bolum" aria-label="Gerekçe ve yorum">
-      <h2>Gerekçe / yorum</h2>
-      <p class="mv-yorum">{m.yorum}</p>
-    </section>
-  )}
+  <section class="mv-bolum" aria-label="Gerekçe ve yorum">
+    <h2>Gerekçe / yorum</h2>
+    {m.yorum
+      ? <p class="mv-yorum">{m.yorum}</p>
+      : <p class="mv-veri-yok">Bu madde için doğrulanmış yorum notu henüz eklenmemiştir. İlgili rehberler aşağıdadır.</p>}
+  </section>
 
   {m.rehberler.length > 0 && (
     <section class="mv-bolum" aria-label="Bu maddeyi kullanan rehberler">
@@ -149,6 +159,7 @@ const sema = [
   .mv-dl dt { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--metin-soluk); }
   .mv-dl dd { margin: 0; }
   .mv-yorum { max-width: 70ch; }
+  .mv-veri-yok { color: var(--metin-soluk); font-style: italic; max-width: 70ch; }
   @media (max-width: 560px) { .mv-dl > div { grid-template-columns: 1fr; gap: 0.1rem; } }
   .mv-bolum { margin-top: 1.8rem; }
   .mv-bolum h2 { font-family: var(--serif); font-weight: 500; font-size: 1.35rem; margin-bottom: 0.6rem; }

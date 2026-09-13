@@ -1,0 +1,41 @@
+{
+  "_not": "EMSAL KARAR ADAY HAVUZU. UYDURMA YASAĞI: buraya doğrulanmamış künye YAZILMAZ. 'adaylar' dizisi boş başlar; her aday resmî bir kaynaktan (Resmî Gazete, baro bülteni, UYAP, Apilex) doğrulanıp 'dogrulama':'dogrulandi' olmadan yayına alınmaz. Mevcut yayımlanmış 15 künye data/kamu/emsal-kararlar.json'dadır.",
+  "surum": 1,
+  "olusturma": "2026-09-13",
+  "dogrulanmis_kaynak": "data/kamu/emsal-kararlar.json",
+  "dogrulanmis_sayi": 15,
+  "hedef": 30,
+  "alanlar": {
+    "merci": "Danıştay 8. Daire | Danıştay 6. Daire | Yargıtay 3. Hukuk Dairesi | ...",
+    "esas": "YYYY/NNNN",
+    "karar": "YYYY/NNNN",
+    "yil": "karar yılı (sayı)",
+    "konu": "kısa konu etiketi",
+    "ozet": "kararın özü (kaynak metinden, yorum katmadan)",
+    "kaynak_url": "resmî/doğrulanabilir kaynak bağlantısı",
+    "kaynak_turu": "resmi-gazete | baro-bulteni | uyap | apilex",
+    "dogrulama": "bekliyor | dogrulandi | reddedildi",
+    "rehberler": ["ilgili rehber slug'ları"],
+    "maddeler": ["ilgili mevzuat madde id'leri (ör. 167-m18)"],
+    "not": "varsa künye çelişkisi / not"
+  },
+  "hedef_konular": [
+    "kuyu ruhsatı iptali",
+    "idari para cezası zamanaşımı",
+    "mecra irtifakı bedeli",
+    "kuyu kapatma tedbirine itiraz",
+    "tarımsal sulama birliği cezaları",
+    "OSB su tahsisi",
+    "kaynak suyu kiralama ihaleleri",
+    "jeotermal 5686 / 167 geçiş rejimi"
+  ],
+  "arama_kaliplari": [
+    "Danıştay 8. Daire 167 sayılı kanun idari para cezası iptali",
+    "Danıştay 8. Daire kuyu kapatma işlemi iptal",
+    "Danıştay 6. Daire yeraltı suyu tahsisi iptal",
+    "Yargıtay 3. Hukuk Dairesi mecra irtifakı bedel",
+    "Yargıtay 3. Hukuk Dairesi kaynak hakkı ecrimisil",
+    "Danıştay tarımsal sulama birliği para cezası iptal"
+  ],
+  "adaylar": []
+}
