@@ -13,6 +13,8 @@ const json = (g, k = 200) =>
 const kirp = (s, n) => (typeof s === 'string' ? s.trim().slice(0, n) : '');
 const gecerli = (e) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e);
 
+import { rateLimit } from './_limit.js';
+
 export async function onRequest(context) {
   const { request, env } = context;
   const kv = env && env.WA_SAYAC;
@@ -37,6 +39,9 @@ export async function onRequest(context) {
   // KAYNAK KONTROLÜ: yalnız kendi sitemizden POST kabul edilir.
   const gelenOrigin = request.headers.get('origin');
   if (gelenOrigin && gelenOrigin !== url.origin) return json({ hata: 'gecersiz kaynak' }, 403);
+  // RATE LIMIT: 5 abonelik isteği / saat.
+  const rl = await rateLimit(request, env, 'takip', 5, 3600);
+  if (!rl.ok) return json({ hata: 'Cok fazla istek. Lutfen sonra tekrar deneyin.' }, 429);
   let veri;
   try { veri = await request.json(); } catch { return json({ hata: 'gecersiz govde' }, 400); }
   if (kirp(veri.website, 40)) return json({ ok: true }); // honeypot

@@ -50,7 +50,7 @@ const sema = [
 
   <section class="sr-bolum" aria-label="Havza risk karnesi">
     <h2>Havza risk karnesi (25)</h2>
-    <div class="sr-kaydir">
+    <div class="sr-kaydir" tabindex="0" role="region">
       <table class="sr-tablo">
         <caption>Havza · skor · kategori · bileşenler (yüksek=risk).</caption>
         <thead><tr><th scope="col">Havza</th><th scope="col">Skor</th><th scope="col">Kategori</th><th scope="col">Doluluk riski</th><th scope="col">GRACE</th><th scope="col">Yağış</th><th scope="col">Kısıt</th></tr></thead>
@@ -73,7 +73,7 @@ const sema = [
 
   <section class="sr-bolum" aria-label="İl risk karnesi">
     <h2>İl risk karnesi (81)</h2>
-    <div class="sr-kaydir">
+    <div class="sr-kaydir" tabindex="0" role="region">
       <table class="sr-tablo">
         <caption>İl · skor · kategori · kapsadığı havzalar.</caption>
         <thead><tr><th scope="col">İl</th><th scope="col">Skor</th><th scope="col">Kategori</th><th scope="col">Havzalar</th></tr></thead>
@@ -130,7 +130,7 @@ const sema = [
   .sr-tablo tbody th { font-family: var(--serif); font-size: 0.95rem; font-weight: 500; }
   .sr-skor { font-family: var(--mono); font-weight: 600; }
   .sr-kat { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.05rem 0.35rem; border: 1px solid var(--cizgi); white-space: nowrap; }
-  .sr-d { color: #1f8a4c; } .sr-o { color: var(--kehribar-metin); } .sr-y { color: #b06a12; } .sr-k { color: #8a1f17; } .sr-v { color: var(--metin-soluk); }
+  .sr-d { color: #0f6b38; } .sr-o { color: var(--kehribar-metin); } .sr-y { color: #8a4f0a; } .sr-k { color: #8a1f17; } .sr-v { color: var(--metin-soluk); }
   .sr-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
   .sr-capraz a { color: var(--baglanti); text-decoration: none; }
   .sr-yazdir { margin-top: 0.9rem; font: inherit; font-weight: 600; padding: 0.6rem 1.2rem; min-height: 44px; background: var(--su-700); color: #fff; border: 0; border-radius: 2px; cursor: pointer; }

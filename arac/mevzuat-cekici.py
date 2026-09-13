@@ -36,6 +36,18 @@ MEVZUATLAR = [
      "no": "51465", "mtur": "2", "tertip": "4"},
     {"kisa": "Su Tahsisleri Yön.", "ad": "Su Tahsisleri Hakkında Yönetmelik", "tur": "Yönetmelik",
      "no": "34021", "mtur": "7", "tertip": "5"},
+    {"kisa": "2942", "ad": "2942 Sayılı Kamulaştırma Kanunu", "tur": "Kanun",
+     "no": "2942", "mtur": "1", "tertip": "5"},
+    {"kisa": "2886", "ad": "2886 Sayılı Devlet İhale Kanunu", "tur": "Kanun",
+     "no": "2886", "mtur": "1", "tertip": "5"},
+    {"kisa": "831", "ad": "831 Sayılı Sular Hakkında Kanun", "tur": "Kanun",
+     "no": "831", "mtur": "1", "tertip": "3"},
+    {"kisa": "5686", "ad": "5686 Sayılı Jeotermal Kaynaklar ve Doğal Mineralli Sular Kanunu", "tur": "Kanun",
+     "no": "5686", "mtur": "1", "tertip": "5"},
+    {"kisa": "5393", "ad": "5393 Sayılı Belediye Kanunu", "tur": "Kanun",
+     "no": "5393", "mtur": "1", "tertip": "5"},
+    {"kisa": "6200", "ad": "6200 Sayılı DSİ Kanunu", "tur": "Kanun",
+     "no": "6200", "mtur": "1", "tertip": "3"},
 ]
 
 MADDE_PAT = re.compile(r"(?mi)^\s*(Geçici\s+Madde|Ek\s+Madde|Madde)\s+(\d+)\s*[\.\-–—]?\s*")

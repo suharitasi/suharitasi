@@ -36,9 +36,13 @@ const canonical = new URL(`/mevzuat/${slugla(m.kanunKisa)}/${slugla(m.madde)}/`,
 // Kısa başlık yoksa madde künyesine düş (uydurma başlık üretilmez).
 const baslikMetni = m.baslik || m.madde;
 
-// Öz cevap: maddenin kendi resmî metninden damıtılır (yeni iddia yok).
-const oz = `${m.kanun} ${m.madde}${m.baslik ? ` (${m.baslik})` : ''}: ${m.metin}`.slice(0, 300);
-const aciklama = `${m.kanun} ${m.madde}${m.baslik ? `: ${m.baslik}` : ''}. ${m.metin.slice(0, 140)}…`;
+// Öz cevap: maddenin kendi resmî metninden damıtılır; ≤280 (GEO bandı).
+const oz = `${m.kanun} ${m.madde}${m.baslik ? ` (${m.baslik})` : ''}: ${m.metin}`.slice(0, 270);
+// Meta açıklama: kısa maddelerde 50 karakter altına düşmesin diye sabit kuyruk.
+const aciklama = (
+  `${m.kanun} ${m.madde}${m.baslik ? `: ${m.baslik}` : ''}. ${m.metin.slice(0, 130)} ` +
+  '— resmî madde metni, yetkili merci ve ilgili rehberler Su Haritası mevzuat motorunda.'
+).slice(0, 160);
 // <title> 60 sınırı: tam kalıp sığmazsa kısa künyeye düş (marka eki eklenmez).
 const tamBaslik = `${m.kanunKisa} ${m.madde}${m.baslik ? `: ${m.baslik}` : ''}`;
 const tarayiciBaslik = tamBaslik.length <= 60 ? tamBaslik : `${m.kanunKisa} ${m.madde}`;

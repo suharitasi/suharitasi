@@ -1,0 +1,123 @@
+{
+  "kanunKisa": "831",
+  "kanun": "831 Sayılı Sular Hakkında Kanun",
+  "tur": "Kanun",
+  "kaynakUrl": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=831&MevzuatTur=1&MevzuatTertip=3",
+  "cekimUrl": "https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatTur=1&MevzuatNo=831&MevzuatTertip=3",
+  "baslikSatirlari": [
+    "661",
+    "SULAR",
+    "HAKKINDA KANUN [1]"
+  ],
+  "maddeSayisi": 18,
+  "maddeler": [
+    {
+      "id": "831-madde-1",
+      "etiket": "Madde",
+      "numara": "1",
+      "metin": "Şehir ve kasabalarla köylerde ihtiyacatı ammeyi temine mahsus suların tedarik ve idaresi belediye teşkilatı olan mahallerde belediyelere, olmıyan yerlerde Köy Kanunu mucibince ihtiyar meclislerine aittir."
+    },
+    {
+      "id": "831-madde-2",
+      "etiket": "Madde",
+      "numara": "2",
+      "metin": "Gerek vakfa ait olsun ve gerek suveri saire ile vücuda getirilmiş bulunsun umumun istifadesine mahsus olarak şehir ve kasabalar ve köylere isale edilmiş suların idaresi, kaffei müessesat ve menabii varidatiyle birlikte birinci madde veçhile belediye ve köy ihtiyar meclislerine müdevver ve mevdudur. Ancak Devletçe ve mahalli idarelerle belediyelerce mukaveleye merbut suların idaresi kemakan mukavelatı mahsusları ahkamına tabi olacağı gibi su ile birlikte diğer hususatı hayriyeye ait olan vakıflar kemakan evkaf idaresi veya mütevellileri tarafından idare ve varidattan sulara ait olan hisseler her sene evkaf idareleri veya mütevellileri tarafından belediye ve köy ihtiyar meclislerine teslim olunurlar."
+    },
+    {
+      "id": "831-madde-3",
+      "etiket": "Madde",
+      "numara": "3",
+      "metin": "(Mülga: 31/8/1956- 6830/35 md.)"
+    },
+    {
+      "id": "831-madde-4",
+      "etiket": "Madde",
+      "numara": "4",
+      "metin": "Suların tesis, isale, idame masarifi belediye ve köylerce temin ve tesviye edilir. [2]"
+    },
+    {
+      "id": "831-madde-5",
+      "etiket": "Madde",
+      "numara": "5",
+      "metin": "İşbu kanunun tarihi neşrinden itibaren azami beş sene zarfında belediye teşkilatı bulunan mahaller belediyeleri tarafından hali hazırda mevcut su tesisatının miktar, evsaf ve sair havas itibariyle o mahallin nüfusuna ve şeraiti hususiyesine göre hıfzıssıhha kavaidine muvafık bir surette ıslah, tadil veya yeniden inşası için bir proje tertip ve tetkik ve tasdik zımnında Sıhhiye ve Muaveneti İçtimaiye Vekaletine irsal olunur. Bu projelerin nihayet iki ay zarfında vekaletçe tasdikı meşruttur. Projelerin tasdikından itibaren mürur edecek iki sene zarfında inşaat ve tesisata başlanılması mecburidir. Köylere getirilen ve getirilecek veya mahallerinde edarik olunmuş veya olunacak olan suların ve tesisatın dahi şeraiti lazimei sıhhiye ve fenniyeyi haiz olmaları muktazi olup bu bapta mahalli memurini sıhhiyesinin rey ve mütalaasiyle hareket olunur."
+    },
+    {
+      "id": "831-madde-6",
+      "etiket": "Madde",
+      "numara": "6",
+      "metin": "(Mülga: 31/8/1956- 6830/35 md.)"
+    },
+    {
+      "id": "831-madde-7",
+      "etiket": "Madde",
+      "numara": "7",
+      "metin": "Müessesatı vakfiyeye veya efrada ait olup idarei belediyeye devrolunan suların muhassasunlehleri, bu sularda hissei iştirak tediyesine mecbur tutulmaksızın kemakan istifade ederler."
+    },
+    {
+      "id": "831-ek-madde-1",
+      "etiket": "Ek Madde",
+      "numara": "1",
+      "metin": "(23/12/1934- 2659 sayılı ek Kanunun 1 inci maddesi hükmü olup, ek madde haline getirilmiştir.) Bir belde veya belde halkının müşterek ihtiyacına mahsus suların kaynakları belediye sınırı dışında bulunsa bile su yollarının ve kaynaklarının bakımı, onarılması, temizlenmesi ve suyun sıhhat şartlarına uygun bir halde bulundurulması belediyelere aittir."
+    },
+    {
+      "id": "831-ek-madde-2",
+      "etiket": "Ek Madde",
+      "numara": "2",
+      "metin": "(23/12/1934- 2659 sayılı ek Kanunun 2 nci maddesi hükmü olup, ek madde haline getirilmiştir.) Bir köy veya köy halkının müşterek ihtiyacına mahsus suların kaynakları kendi sınırı dışında ise yukarki maddede yazılı yumuşları köy ihtiyar meclisi yapar."
+    },
+    {
+      "id": "831-ek-madde-3",
+      "etiket": "Ek Madde",
+      "numara": "3",
+      "metin": "(23/12/1934- 2659 sayılı ek Kanunun 3 üncü maddesi hükmü olup, ek madde haline getirilmiştir.) Şehir ve kasabalarla köylerin ortak sularındaki intifa payları mevcut belgelere ve teammüllere göre tesbit olunur. Paylardan başlı başına istifade edilebilirse hisseler ayrılır. Edilemezse tesbit olunup katıleşen teamüllerine göre ortaklama idare olunur."
+    },
+    {
+      "id": "831-ek-madde-4",
+      "etiket": "Ek Madde",
+      "numara": "4",
+      "metin": "(23/12/1934- 2659 sayılı ek Kanunun 4 üncü maddesi hükmü olup, ek madde haline getirilmiştir.) Ortaklama idare olunacak suları, alakalı olan şehir ve kasabalarla köyler Belediye Kanunu hükümlerine göre tesis edecekleri bir birlik marifetiyle de idare edebilirler. Anlaşamamazlık yüzünden teamüllere göre veya birlik yapılarak idaresi yoluna konulmıyan ortak sular, en büyük idare amirinin kararı ve ekseriyetin reyi ile kurulacak bir birlik tarafından idare olunur. Birliğin ekseriyetle verdiği kararlara uymak bütün alakalılar için mecburidir."
+    },
+    {
+      "id": "831-ek-madde-5",
+      "etiket": "Ek Madde",
+      "numara": "5",
+      "metin": "(23/12/1934- 2659 sayılı ek Kanunun 5 inci maddesi hükmü olup, ek madde haline getirilmiştir.) Bu kanunda gösterilen tesbit ve ayırma işleri belediye encümenleri, ihtiyar meclisleri ve muayyen hisseli hakiki ve hükmi şahıslar tarafından seçilecek birer aza ve belediye reisinin reisliği altında toplanacak bir komisyon tarafından yapılır. Komisyona aza seçmekten kaçınanlar namına mahallin en büyük idare amiri tarafından birisi gönderilir. Komisyonların ekseriyetle verecekleri karar muteber olup belediyeye ve köy odalarına asılmak suretiyle ilan ve alakalılara tebliğ olunur. Tebliğden on beş gün içinde alakalılar bu kararlara karşı idare heyetince yazılı itirazda bulunabilirler. İdare Heyetleri bu itirazları her işten önce tetkik ve hallederler. Bu kararlarla, gününde itiraz olunmıyan ve idare amiri tarafından da tasdik olunmuş bulunan kararlar katidir. Bu suretle tesbit olunan intifa payına razı olmıyanlar mahkemeye müracaat edebilirler. Şu kadar ki mahkemeden aksine kati bir karar alınıncaya kadar komisyonun kararları tatbik olunur."
+    },
+    {
+      "id": "831-ek-madde-6",
+      "etiket": "Ek Madde",
+      "numara": "6",
+      "metin": "(23/12/1934- 2659 sayılı ek Kanunun 6 ncı maddesi hükmü olup, ek madde haline getirilmiştir.) Teamül tesbit olunarak katileştirildikten sonra su başından belediye sınırına kadar olan müşterek su yollarının bakımı, onarılması, temizlenmesi ve suyun sıhhat şartlarına uygun bir halde bulundurulması için gerekli olan masraflar belediye ile hisselilere payları nispetinde tevzi ve tahsil olunarak sarfedilir. Fevkalade hallerde belediye önce gerekli olan tedbirleri alır ve masrafları yapar ve alakalılardan hisselerini ister. Bedenen çalışmak istiyen alakalıların mesaileri iştirak hisselerine sayılır. Alakalılar belediyenin, varsa birliğin tesbit edeceği masraf miktarına tebliğinden yedi gün içinde o yerin idare heyetine yazılı itirazda bulunabilir. İdare heyetinin vereceği kararlar katidir."
+    },
+    {
+      "id": "831-ek-madde-7",
+      "etiket": "Ek Madde",
+      "numara": "7",
+      "metin": "(23/12/1934- 2659 sayılı ek Kanunun 7 nci maddesi hükmü olup, ek madde haline getirilmiştir.) İçme suları kaynaklarında zarar verecek ve sıhhat şartlarını bozacak şekilde tarla açmak ve hayvan bırakmak ve sulamak belediye veya ihtiyar meclisleri tarafından yasak edilebilir."
+    },
+    {
+      "id": "831-ek-madde-8",
+      "etiket": "Ek Madde",
+      "numara": "8",
+      "metin": "(23/12/1934- 2659 sayılı ek Kanunun 8 inci maddesi hükmü olup, ek madde haline getirilmiştir.) Kaynağı belediye sınırı dışında bulunan suların kaynak ve yollarının bakımı, korunması, sıhhat şartlarına uygun bir halde bulundurulması ve idaresi için belediyelerin alacakları tedbir ve kararlara ve yedinci madde hükümlerine göre yasaklarına aykırı hareket edenler hakkında belediye ceza vermek salahiyeti, belediye sınırına bağlı olmaksızın kaynağa kadar gider. Birlik kurulmuş ise bu selahiyeti birlik kullanır. [3]"
+    },
+    {
+      "id": "831-ek-madde-9",
+      "etiket": "Ek Madde",
+      "numara": "9",
+      "metin": "(23/12/1934- 2659 sayılı ek Kanunun 9 uncu maddesi hükmü olup, ek madde haline getirilmiştir.) Masrafa iştirak paylarını vermiyenler hakkında Tahsili Emval Kanunu hükümleri tatbik olunur."
+    },
+    {
+      "id": "831-madde-8",
+      "etiket": "Madde",
+      "numara": "8",
+      "metin": "İşbu kanun neşri tarihinden muteberdir."
+    },
+    {
+      "id": "831-madde-9",
+      "etiket": "Madde",
+      "numara": "9",
+      "metin": "İşbu kanun ahkamının icrasına Başvekil, Dahiliye ve Sıhhiye ve Muaveneti İçtimaiye Vekilleri memurdur. 831 SAYILI KANUNDA EK VE DEĞİŞİKLİK YAPAN MEVZUATIN YÜRÜRLÜKTEN KALDIRDIĞI KANUN VE HÜKÜMLERİ GÖSTERİR LİSTE Yürürlükten Kaldırılan Yürürlükten Kaldırılan Mevzuatın Kanun ve Kanun Hükümleri Tarihi Sayısı Maddesi 28/4/1926 tarih ve 831 sayılı Kanunun 3. ve 6. maddeleri 31/8/1956 6830 35 831 SAYILI"
+    }
+  ]
+}

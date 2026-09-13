@@ -22,6 +22,8 @@ const json = (govde, kod = 200) =>
     headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Kaynak': 'fn' },
   });
 
+import { rateLimit } from './_limit.js';
+
 export async function onRequest(context) {
   const { request, env } = context;
   if (request.method !== 'POST') return json({ hata: 'yalnız POST' }, 405);
@@ -32,6 +34,10 @@ export async function onRequest(context) {
   try { origin = new URL(request.url).origin; } catch { origin = ''; }
   const gelenOrigin = request.headers.get('origin');
   if (gelenOrigin && origin && gelenOrigin !== origin) return json({ hata: 'geçersiz kaynak' }, 403);
+
+  // RATE LIMIT: IP+UA başına 5 istek / 10 dakika (abuse freni).
+  const rl = await rateLimit(request, env, 'danisma', 5, 600);
+  if (!rl.ok) return json({ hata: 'Çok fazla istek. Lütfen biraz sonra tekrar deneyin.' }, 429);
 
   let veri;
   try {

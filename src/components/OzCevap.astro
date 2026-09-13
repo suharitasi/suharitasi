@@ -13,15 +13,15 @@ interface Props {
 }
 const { metin, etiket } = Astro.props;
 ---
-<div class="oz-cevap-kutu">
-  {etiket && <p class="oz-cevap-etiket">{etiket}</p>}
+<div class="oz-kap">
+  {etiket && <p class="oz-etiket">{etiket}</p>}
   <p class="oz-cevap" role="doc-abstract">{metin}</p>
 </div>
 
 <style>
-  .oz-cevap-kutu { margin: 0 0 1.8rem; }
+  .oz-kap { margin: 0 0 1.8rem; }
 
-  .oz-cevap-etiket {
+  .oz-etiket {
     font-family: var(--mono);
     font-size: 0.62rem;
     font-weight: 500;

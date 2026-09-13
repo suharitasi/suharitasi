@@ -16,6 +16,8 @@
 const OMUR_SN = 60 * 60 * 24 * 400; // ~400 gün
 const GECERLI = new Set(['telefon', 'eposta', 'whatsapp', 'iletisim-form']);
 
+import { rateLimit } from './_limit.js';
+
 const trGun = (ms) => new Date(ms + 3 * 3600 * 1000).toISOString().slice(0, 10);
 
 const rastgele = () => {
@@ -100,6 +102,9 @@ export async function onRequest(context) {
     // KAYNAK KONTROLÜ: Origin varsa kendi sitemiz olmalı.
     const gelenOrigin = request.headers.get('origin');
     if (gelenOrigin && gelenOrigin !== url.origin) return bosYanit();
+    // RATE LIMIT: IP+UA başına 120 beacon / dakika (kaba abuse freni).
+    const rl = await rateLimit(request, env, 'olay', 120, 60);
+    if (!rl.ok) return bosYanit();
     const gezinme = !!request.headers.get('sec-fetch-dest')
       || (request.headers.get('referer') || '').startsWith(url.origin + '/');
     if (gezinme && (request.method === 'GET' || request.method === 'POST')) {
