@@ -18,6 +18,7 @@ import { havzaninGolleri, havzaninNehirleri } from '../../data/gol-nehir.js';
 import { havzaYasGeo } from '../../data/havza-yas-geo.js';
 import { TARIH, enYeni } from '../../data/guncellik.js';
 import HukukSerhi from '../../components/HukukSerhi.astro';
+import HukukKopru from '../../components/HukukKopru.astro';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('havzalar');
@@ -490,6 +491,12 @@ const semalar = sss.length
     <a href="/rehberler/">&rarr; Su hukuku rehberleri</a>
   </nav>
 </section>
+
+{/* Yüksek niyetli hukuki rehber köprüsü (13.09.2026): havza sayfası
+    "su nerede / hangi kurum" cevabını veriyor; bu blok "peki izin, ceza,
+    ihtilaf?" sorusunu adım adım rehberlere bağlar. Ölçüm: coğrafya→rehber
+    doğrudan bağ 0'dı (rapor/08-09-gsc-ticari-whatsapp.md B6c). */}
+<HukukKopru />
 
 {/* 24.08 (agustos-uyum M5.7): göl/nehir sayfalarının geri bağı — ada kalmaz.
     Eşleme geometrik örneklemdir (gol-nehir-cografya.js); şerh blok sonunda. */}

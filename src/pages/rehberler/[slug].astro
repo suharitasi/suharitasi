@@ -12,6 +12,8 @@ import SonrakiAdim from '../../components/SonrakiAdim.astro';
 import RehberKapanis from '../../components/RehberKapanis.astro';
 import { personalar as tumPersonalar } from '../../data/persona.js';
 import HukukSerhi from '../../components/HukukSerhi.astro';
+import Sss from '../../components/Sss.astro';
+import HukukDanismanlik from '../../components/HukukDanismanlik.astro';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('rehberler');
@@ -42,9 +44,11 @@ const tarihISO = giris.data.tarih.toISOString();
 const guncellemeISO = (giris.data.guncelleme ?? giris.data.tarih).toISOString();
 
 // Article: YMYL (hukuk) içerikte yazar kimliği en güçlü E-E-A-T sinyali.
-// FAQPage bilinçli olarak YOK: rehberlerde görünür soru-cevap bölümü
-// bulunmuyor; olmayan içeriği işaretlemek Google yapılandırılmış veri
-// kurallarına aykırıdır. Rehberlere gerçek SSS bölümü eklenirse eklenir.
+// FAQPage: yalnız sayfada GÖRÜNÜR "Sık sorulan sorular" bölümü varsa
+// (frontmatter `sss`) eklenir; görünmeyen içeriği işaretlemek Google
+// yapılandırılmış veri kurallarına aykırıdır. Şema ile görünür bölüm AYNI
+// diziden beslenir — iki kaynak ayrışamaz (Sss.astro).
+const sss = giris.data.sss ?? [];
 const sema: any[] = [
   {
     '@type': 'Article',
@@ -63,6 +67,16 @@ const sema: any[] = [
     publisher: { '@id': `${kok}#kurum` },
   },
 ];
+if (sss.length > 0) {
+  sema.push({
+    '@type': 'FAQPage',
+    mainEntity: sss.map((s) => ({
+      '@type': 'Question',
+      name: s.soru,
+      acceptedAnswer: { '@type': 'Answer', text: s.cevap },
+    })),
+  });
+}
 
 // ——— KALIP 2 (DESIGN.md §17, pilot) build-time hazırlığı ———
 // Gövde markdown'ı DOSYADA TEK PARÇA kalır (içerik tek kaynak); bölümleme
@@ -150,7 +164,7 @@ if (kalip2) {
   ];
 }
 ---
-<Sayfa baslik={giris.data.baslik} aciklama={giris.data.ozCevap} sema={sema} heroSlot="rehber-hero">
+<Sayfa baslik={giris.data.baslik} tarayiciBaslik={giris.data.seoBaslik} aciklama={giris.data.ozCevap} sema={sema} heroSlot="rehber-hero">
 {kalip2 ? (
   <Fragment>
     {/* ——— KALIP 2 (DESIGN.md §17, pilot): ilk ekran = öz cevap + "ne çözer"
@@ -168,7 +182,7 @@ if (kalip2) {
     </div>
 
     <div class="gk" style="--gk:1">
-      <OzCevap metin={giris.data.ozCevap} />
+      <OzCevap metin={giris.data.ozCevap} etiket="Kanun özeti" />
     </div>
 
     {giris.data.cozer && (
@@ -238,10 +252,12 @@ if (kalip2) {
       </div>
     )}
 
+    <Sss maddeler={sss} />
     <RehberKapanis />
     <YazarKutusu />
     <SonrakiAdim konu={giris.data.baslik} personalar={ilgiliPersonalar} />
     <IlgiliRehberler slugler={giris.data.ilgili} haric={giris.id} />
+    <HukukDanismanlik konu={giris.data.baslik} />
   </Fragment>
 ) : (
   <Fragment>
@@ -252,15 +268,17 @@ if (kalip2) {
     tarih={giris.data.guncelleme ?? giris.data.tarih}
     yazarli
   />
-  <OzCevap metin={giris.data.ozCevap} />
+  <OzCevap metin={giris.data.ozCevap} etiket="Kanun özeti" />
   <div class="icerik">
     <Content />
   </div>
   {giris.data.ilKurumTablosu && <IlKurumTablosu />}
+  <Sss maddeler={sss} />
   <RehberKapanis />
   <YazarKutusu />
   <SonrakiAdim konu={giris.data.baslik} personalar={ilgiliPersonalar} />
     <IlgiliRehberler slugler={giris.data.ilgili} haric={giris.id} />
+  <HukukDanismanlik konu={giris.data.baslik} />
   </Fragment>
 )}
 

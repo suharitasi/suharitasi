@@ -5,6 +5,14 @@ tarih: 2026-07-14
 guncelleme: 2026-07-25
 kume: surec
 ozCevap: "Kaynak suyu kiralamada iki soru belirleyici: kim yetkili ve hangi usul. Kullanım fazlası ile Devletin yerlerindeki sular il özel idaresince (167 s.K. m.4), kaynak suyunu belediye işletir/işlettirir (5393 m.15) — tümü 2886'ya göre ihaleyle yapılır. İhalesiz kiralama hukuka aykırıdır."
+seoBaslik: "Kaynak Suyu Kiralama: İhale, Yetki ve Sözleşme"
+sss:
+  - soru: "Kaynak suyu kiralamaya hangi idare yetkilidir?"
+    cevap: "Kullanım fazlası ile Devletin hüküm ve tasarrufundaki yerlerdeki kaynak suları il özel idaresince (167 s.K. m.4); belediye sınırındaki kaynak suyu belediyece işletilir veya işlettirilir (5393 m.15)."
+  - soru: "Kaynak suyu kiralama ihalesiz yapılabilir mi?"
+    cevap: "Hayır. Kiralama 2886 sayılı Devlet İhale Kanunu'na uyularak ihale ile yapılır; ihalesiz veya ölçümsüz kiralama iptal riski taşır."
+  - soru: "Kira süresi, devir ve fesih nasıl belirlenir?"
+    cevap: "Veri tabanında süre için açık bir üst sınır yoktur; süre, devir ve fesih ihale şartnamesi ile sözleşme ve 2886'nın genel hükümlerine göre belirlenir."
 ilgili: [kaynak-hakki-komsu-su, su-tahsisi-oncelik-sirasi, jeotermal-ruhsat]
 ---
 

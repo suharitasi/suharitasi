@@ -22,6 +22,8 @@ import CanliSayiMotor from '../components/CanliSayiMotor.astro';
 import { OZ_CEVAP, DURUSTLUK_ETIKETI, KATMANLAR, VERI_YOK_NOTU, SAYILAR, iller } from '../data/kapi.js';
 import { sssListesi } from '../data/kapi-sss.js';
 import HukukSerhi from '../components/HukukSerhi.astro';
+import HukukKopru from '../components/HukukKopru.astro';
+import HukukDanismanlik from '../components/HukukDanismanlik.astro';
 
 const canonical = new URL('/nerede-su-cikar/', Astro.site).href;
 
@@ -140,6 +142,15 @@ const sema = [
   ))}
 
   <p class="kapi-durustluk">{DURUSTLUK_ETIKETI}</p>
+
+  {/* Yüksek niyetli hukuki rehber köprüsü (13.09.2026): bu kapı "su nerede
+      çıkar" cevabını verir; "buldum, izin/ruhsat/ceza ne olacak?" sorusunu
+      rehberlere ve iletişime bağlar. */}
+  <HukukKopru
+    baslik="Suyu buldum, şimdi izin ve ihtilaf ne olacak?"
+    aciklama="Kuyu açma, belge, ceza ve komşu su uyuşmazlıklarında izlenecek adımlar için su hukuku rehberleri."
+  />
+  <HukukDanismanlik konu="Yeraltı suyu ve kuyu hukuku" />
 
   {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
   <HukukSerhi />

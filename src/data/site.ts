@@ -55,6 +55,17 @@ export const YAZAR_SOSYAL: string[] = [
 // Kurumsal e-posta: kullanıcı kutuyu kurana dek yalnız künyede görünür.
 export const EPOSTA = 'bilgi@suharitasi.com';
 
+/* TELEFON — yapılandırılmış veride (Sayfa.astro Organization.telephone) ve
+ * /whatsapp/ hedefinde (functions/whatsapp.js) zaten kullanılan doğrulanmış
+ * numaranın TEK kaynağı. Görünür hukuki danışmanlık bloğunda `tel:` bağlantısı
+ * olarak kullanılır (kullanıcı talebi, 13.09.2026). Biçimler: `tel` href için
+ * boşluksuz, `gorunur` metin için okunur. Numara değişirse burayı, Sayfa.astro
+ * şemasını ve functions/whatsapp.js HEDEF'ini birlikte güncelle. */
+export const TELEFON = {
+  tel: '+905324497144',
+  gorunur: '+90 532 449 71 44',
+};
+
 export const OG_GORSEL = '/og-suharitasi.v1.png';
 
 /**

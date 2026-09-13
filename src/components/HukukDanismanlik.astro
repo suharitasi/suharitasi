@@ -1,0 +1,150 @@
+---
+// HUKUKİ DANIŞMANLIK VE İLETİŞİM — TBB uyumlu dönüşüm bloğu.
+//
+// TBB SINIRI: metin nesnel ve bilgilendiricidir; "bize ulaşın, davanızı
+// alırız, hemen arayın" gibi hizmet vaadi/davet dili YOKTUR. Yalnız somut
+// durumun değerlendirilmesi için bir hukukçuya danışılması gerektiği
+// söylenir ve mevcut doğrulanmış iletişim kanalları listelenir. Cümleler
+// /hakkinda/ ve YazarKutusu ile aynı üsluptadır.
+//
+// KAYNAK: e-posta, telefon ve büro adı src/data/site.ts'ten gelir (tek
+// kaynak). WhatsApp hedefi site genelindeki /whatsapp/ yoludur (düğmeyle
+// aynı). Yeni kanal/numara uydurulmaz.
+import { EPOSTA, TELEFON, YAZAR } from '../data/site';
+
+interface Props {
+  // E-posta konu satırına giren sayfa konusu (ör. rehber başlığı).
+  konu?: string;
+}
+
+const { konu = 'Su hukuku' } = Astro.props;
+const mailKonu = `${konu} — hukuki değerlendirme talebi`;
+---
+<section class="hukuk-danismanlik" aria-label="Hukuki danışmanlık ve iletişim">
+  <p class="hd-kicker">Hukuki danışmanlık ve iletişim</p>
+  <h2>Somut durumunuz için hukuki değerlendirme</h2>
+  <p class="hd-metin">
+    Bu sayfa genel bilgilendirme amaçlıdır; somut bir uyuşmazlığa dair hukuki
+    görüş veya tavsiye niteliği taşımaz. Durumunuzun hukuki olarak
+    değerlendirilmesi için bir hukukçuya danışmanız gerekir. Bu konuda bilgi
+    almak isterseniz aşağıdaki kanallardan ulaşabilirsiniz.
+  </p>
+  <ul class="hd-kanallar">
+    <li>
+      <a class="hd-kanal" href={`tel:${TELEFON.tel}`}>
+        <span class="hd-etiket">Telefon</span>
+        <span class="hd-deger">{TELEFON.gorunur}</span>
+      </a>
+    </li>
+    <li>
+      <a class="hd-kanal" href={`mailto:${EPOSTA}?subject=${encodeURIComponent(mailKonu)}`}>
+        <span class="hd-etiket">E-posta</span>
+        <span class="hd-deger">{EPOSTA}</span>
+      </a>
+    </li>
+    <li>
+      <a class="hd-kanal" href="/whatsapp/" rel="nofollow noopener">
+        <span class="hd-etiket">WhatsApp</span>
+        <span class="hd-deger">Mesaj gönderin</span>
+      </a>
+    </li>
+  </ul>
+  <p class="hd-kunye">
+    Hukuki içerik {YAZAR.buro} tarafından hazırlanır ·{' '}
+    <a href={YAZAR.buroUrl} target="_blank" rel="noopener">{YAZAR.buro}</a>
+  </p>
+</section>
+
+<style>
+  .hukuk-danismanlik {
+    margin-top: clamp(2.4rem, 5vh, 3.4rem);
+    padding: 1.3rem 1.4rem 1.4rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-left: 3px solid var(--su-700);
+  }
+
+  .hd-kicker {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+
+  .hukuk-danismanlik h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.35rem;
+    line-height: 1.25;
+    margin: 0.5rem 0 0.6rem;
+  }
+
+  .hd-metin {
+    max-width: 68ch;
+    font-size: 0.94rem;
+    color: var(--metin);
+  }
+
+  .hd-kanallar {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.7rem;
+    margin: 1.1rem 0 0;
+    padding: 0;
+  }
+
+  .hd-kanal {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-height: 44px;
+    padding: 0.7rem 0.9rem;
+    text-decoration: none;
+    color: var(--metin);
+    background: var(--zemin);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-400);
+    transition: transform 240ms var(--e-suzul), background-color 240ms var(--e-akinti);
+  }
+
+  .hd-kanal:hover {
+    transform: translateY(-2px);
+    background: var(--kopuk);
+  }
+
+  .hd-etiket {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+
+  .hd-deger {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--baglanti);
+  }
+
+  .hd-kunye {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--metin-soluk);
+  }
+
+  .hd-kunye a { color: var(--baglanti); }
+
+  @media (max-width: 620px) {
+    .hd-kanallar { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hd-kanal { transition: none; }
+    .hd-kanal:hover { transform: none; }
+  }
+</style>

@@ -6,14 +6,33 @@
 // bileşen metin ÜRETMEZ, yalnız sunar.
 interface Props {
   metin: string;
+  // Görünür callout etiketi (ör. "Kanun özeti"). Verilmezse yalnız kutu
+  // render edilir (mevcut davranış korunur). LLM/RAG istemcilerinin kutuyu
+  // tanım olarak çekmesini kolaylaştırır; metni DEĞİŞTİRMEZ.
+  etiket?: string;
 }
-const { metin } = Astro.props;
+const { metin, etiket } = Astro.props;
 ---
-<p class="oz-cevap" role="doc-abstract">{metin}</p>
+<div class="oz-cevap-kutu">
+  {etiket && <p class="oz-cevap-etiket">{etiket}</p>}
+  <p class="oz-cevap" role="doc-abstract">{metin}</p>
+</div>
 
 <style>
+  .oz-cevap-kutu { margin: 0 0 1.8rem; }
+
+  .oz-cevap-etiket {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--su-700);
+    margin-bottom: 0.4rem;
+  }
+
   .oz-cevap {
-    margin: 0 0 1.8rem;
+    margin: 0;
     padding: 1rem 1.2rem;
     border-left: 3px solid var(--su-400);
     background: rgba(46, 126, 160, 0.06);

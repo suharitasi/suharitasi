@@ -5,6 +5,14 @@ tarih: 2026-07-14
 guncelleme: 2026-07-25
 kume: uyusmazlik
 ozCevap: "DSİ'nin belge başvurusunu reddi veya mevcut belgeyi iptali idari işlemdir ve iptal davasına konu olur. Danıştay içtihadında işlemin sebebi somut kurulmalıdır: mevcut belgeye dayalı statü yok sayılamaz, işlemi yetkili idare tesis etmeli, teknik değerlendirme yapılmalıdır (167 s.K. m.13 ve m.18)."
+seoBaslik: "Kuyu Belgesi İptal Davası: DSİ İşlemine İtiraz"
+sss:
+  - soru: "DSİ'nin belge iptali yargı yoluna gider mi?"
+    cevap: "Evet. Belge başvurusunun reddi veya mevcut belgenin iptali bir idari işlemdir ve iptal davasına konu edilebilir."
+  - soru: "İptal davasında hangi unsurlar incelenir?"
+    cevap: "İşlemin sebebinin somut ve teknik dayanağı, mevcut belgeye dayalı statünün korunması, işlemi tesis eden idarenin yetkisi ve teknik değerlendirme yapılmış olması."
+  - soru: "Belge başvurusuna ne kadar sürede cevap verilir?"
+    cevap: "167 sayılı Kanun m.13 uyarınca başvuruya bir ay içinde cevap verilmesi zorunludur."
 ilgili: [kuyu-ruhsati, ruhsatsiz-kuyu-cezalari, su-tahsisi-oncelik-sirasi, kuyu-tasima]
 ---
 

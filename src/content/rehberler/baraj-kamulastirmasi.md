@@ -5,6 +5,16 @@ tarih: 2026-07-14
 guncelleme: 2026-07-25
 kume: uyusmazlik
 ozCevap: "Baraj ve göletlerde taşınmazı su altında kalanların çerçevesi 2942 sayılı Kamulaştırma Kanunu'dur. Üç ihtimal: usulüne uygun kamulaştırmada uyuşmazlık bedel üzerinde; kamulaştırmasız el atmada bedel/tazminat; ecrimisilde fiilî kullanım bedeli. Sonucu ilan ve fiilî el atma tarihi belirler."
+seoBaslik: "Baraj Kamulaştırması: Bedel, El Atma ve Ecrimisil"
+sss:
+  - soru: "Baraj kamulaştırmasında uyuşmazlık ne üzerinde çıkar?"
+    cevap: "İdare usulüne uygun kamulaştırma kararı almış ve bedel süreci işletilmişse uyuşmazlık esasen bedelin miktarı üzerinde yürür."
+  - soru: "Kamulaştırmasız el atmada ne olur?"
+    cevap: "İdare kamulaştırma yapmadan taşınmaza fiilen el atmışsa (taşınmaz su altında kalmışsa) bedel/tazminat sorunu doğar."
+  - soru: "Ecrimisil ne zaman gündeme gelir?"
+    cevap: "Haksız işgal rejimi çerçevesinde fiilî kullanım bedeli tartışması ecrimisil başlığında ele alınır."
+  - soru: "İmar kısıtlılığında beş yıllık süre ne anlama gelir?"
+    cevap: "2942 Ek m.1, uygulama imar planında umumi hizmete ayrılan taşınmazın beş yıl içinde kamulaştırılmasını veya kısıtlılığı kaldıran plan değişikliğini öngörür."
 ilgili: [su-tahsisi-oncelik-sirasi, kaynak-hakki-komsu-su, kuyu-belgesi-iptal-davalari]
 ---
 

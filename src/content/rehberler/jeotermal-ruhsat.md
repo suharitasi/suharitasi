@@ -5,6 +5,14 @@ tarih: 2026-07-14
 guncelleme: 2026-07-25
 kume: surec
 ozCevap: "Jeotermal kaynaklar Devletin hüküm ve tasarrufundadır; faaliyet 5686 s.K. ile ruhsata bağlıdır. Arama ruhsatında öncelik hakkı esastır, süre üç yıldır (m.5). İşletme ruhsatı için arama süresinin son günü akşamına kadar başvuru şarttır, aksi halde hak kaybı doğar; işletme süresi otuz yıldır (m.6)."
+seoBaslik: "Jeotermal Ruhsat: Arama, İşletme ve Uyuşmazlık"
+sss:
+  - soru: "Jeotermal arama ruhsatının süresi ne kadardır?"
+    cevap: "5686 s.K. m.5 uyarınca arama ruhsat süresi üç yıldır; faaliyetler olumlu gelişirse bir yıl uzatılabilir."
+  - soru: "İşletme ruhsatına ne zaman başvurulur?"
+    cevap: "Arama ruhsat süresinin son günü akşamına kadar işletme projesiyle başvuru şarttır; başvuru yapılmazsa hak kaybı doğar (m.6)."
+  - soru: "İşletme ruhsatının süresi ne kadardır?"
+    cevap: "İşletme ruhsatı süresi otuz yıldır ve talep halinde onar yıllık dönemlerle uzatılır (m.6)."
 ilgili: [kuyu-ruhsati, kaynak-suyu-kiralama, su-tahsisi-oncelik-sirasi]
 ---
 

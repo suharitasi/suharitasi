@@ -21,6 +21,8 @@ const ilgiliPersonalar = tumPersonalar
 import { getEntry } from 'astro:content';
 import { YAZAR, OG_GORSEL, EPOSTA } from '../../data/site';
 import HukukSerhi from '../../components/HukukSerhi.astro';
+import Sss from '../../components/Sss.astro';
+import HukukDanismanlik from '../../components/HukukDanismanlik.astro';
 
 const giris = await getEntry('rehberler', 'kuyu-tasima');
 if (!giris) throw new Error('kuyu-tasima koleksiyon girişi yok — sayfa render edilemez.');
@@ -297,13 +299,13 @@ const sema = [
   },
 ];
 ---
-<Sayfa baslik={d.baslik} aciklama={d.ozCevap} sema={sema} heroSlot="rehber-hero">
+<Sayfa baslik={d.baslik} tarayiciBaslik={d.seoBaslik} aciklama={d.ozCevap} sema={sema} heroSlot="rehber-hero">
   <div class="gk gk-baslik" style="--gk:0">
     <SayfaBasi etiket="Rehber · Süreç" baslik={d.baslik} tarih={d.guncelleme ?? d.tarih} yazarli />
   </div>
 
   <div class="gk" style="--gk:1">
-    <OzCevap metin={d.ozCevap} />
+    <OzCevap metin={d.ozCevap} etiket="Kanun özeti" />
   </div>
 
   <section class="cozer gk" style="--gk:2" aria-label="Bu rehber ne çözer">
@@ -515,10 +517,12 @@ const sema = [
     {personaBaglar.map((b) => <a href={b.yol}>→ {b.ad}</a>)}
   </nav>
 
+  <Sss maddeler={sss.map((q) => ({ soru: q.s, cevap: q.c }))} />
   <RehberKapanis />
   <YazarKutusu />
   <SonrakiAdim konu="Kuyu taşıma" personalar={ilgiliPersonalar} />
   <IlgiliRehberler slugler={d.ilgili} haric={giris.id} />
+  <HukukDanismanlik konu="Kuyu taşıma" />
 
   {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
   <HukukSerhi />

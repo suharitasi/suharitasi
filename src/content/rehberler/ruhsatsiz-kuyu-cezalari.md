@@ -5,6 +5,14 @@ tarih: 2026-07-14
 guncelleme: 2026-07-25
 kume: uyusmazlik
 ozCevap: "Belgesiz kuyu açmak veya belge dışına çıkmak 167 s.K. m.18 uyarınca idari para cezası doğurur: m.18/a kapsamında 1.000–5.000 TL, m.18/b kapsamında 500–2.000 TL. Ceza yanında kuyu kapatılır ve masraf açtırandan alınır. Cezayı DSİ değil, mahallî mülkî amir (valilik/kaymakamlık) verir."
+seoBaslik: "Ruhsatsız Kuyu Cezası: Kaçak Sondaj ve Kapatma"
+sss:
+  - soru: "Belgesiz kuyu açmanın cezası nedir?"
+    cevap: "167 sayılı Kanun m.18/a uyarınca 1.000–5.000 TL idari para cezası verilir; ceza yanında kuyu kapatılır, kapatma masrafı açtırandan alınır."
+  - soru: "Belge kapsamı dışında su kullanmanın yaptırımı nedir?"
+    cevap: "Belge şartlarına aykırı çekim veya izin dışı amaçla kullanım m.18/b kapsamında 500–2.000 TL idari para cezası doğurur; kuyu kapatılabilir."
+  - soru: "Ruhsatsız kuyu cezasını hangi makam verir?"
+    cevap: "Cezayı DSİ değil, mahallî mülkî amir (valilik veya kaymakamlık) verir."
 ilgili: [kuyu-ruhsati, kuyu-belgesi-iptal-davalari, yeralti-suyu-isletme-sahasi]
 ---
 

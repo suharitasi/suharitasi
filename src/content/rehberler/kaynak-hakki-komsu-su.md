@@ -5,6 +5,16 @@ tarih: 2026-07-14
 guncelleme: 2026-07-25
 kume: uyusmazlik
 ozCevap: "Kaynak arazinin bütünleyici parçasıdır, mülkiyetiyle kazanılır; başkasının arazisindeki kaynak hakkı ancak tapuya tescilli irtifakla kurulur (TMK m.756). Yeraltı suyu ise kamu suyudur — arza malik olmak onu kapsamaz. Kendi suyu yetmeyen komşu, Yeraltı Suları Tüzüğü m.16 ile şartlı yararlanabilir."
+seoBaslik: "Kaynak Hakkı ve Komşu Su: Mecra İrtifakı"
+sss:
+  - soru: "Araziden çıkan kaynak kime aittir?"
+    cevap: "Kaynak arazinin bütünleyici parçasıdır ve mülkiyeti araziyle birlikte kazanılır (TMK m.756)."
+  - soru: "Başkasının arazisindeki kaynaktan yararlanılabilir mi?"
+    cevap: "Kaynak üzerindeki hak ancak tapu kütüğüne tescil edilen bir irtifak hakkı olarak kurulur (TMK m.756)."
+  - soru: "Yeraltı suyu arazinin altında olduğu için malike mi aittir?"
+    cevap: "Hayır; yeraltı suları kamu yararına ait sulardandır ve arza malik olmak onu kapsamaz (TMK m.756)."
+  - soru: "Kendi suyu yetmeyen komşu ne yapabilir?"
+    cevap: "Yeraltı Suları Tüzüğü m.16 uyarınca komşu arazide işletilen yeraltı suyundan şartlı yararlanabilir; kullanma belgesi alması, zararı tazmin etmesi ve tesis masraflarına katılması gerekir."
 ilgili: [kaynak-suyu-kiralama, kuyu-ruhsati, yeralti-suyu-isletme-sahasi]
 ---
 

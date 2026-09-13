@@ -1,0 +1,65 @@
+---
+// SIK SORULAN SORULAR — görünür SSS bloğu.
+//
+// NEDEN: rehberlerde FAQPage JSON-LD bilinçli olarak YOKTU çünkü sayfada
+// görünür soru-cevap bölümü bulunmuyordu; olmayan içeriği işaretlemek
+// Google yapılandırılmış veri kurallarına aykırıdır (rehberler/[slug].astro
+// eski notu). Bu bileşen görünür SSS'i ekler; FAQPage şeması AYNI diziden
+// (giris.data.sss) üretilir — iki kaynak ayrışamaz.
+//
+// UYDURMA YASAĞI: maddeler frontmatter'dan gelir ve YALNIZ sayfanın kendi
+// doğrulanmış gövdesinden/öz-cevabından damıtılır; bileşen metin üretmez.
+interface Props {
+  maddeler: { soru: string; cevap: string }[];
+  baslik?: string;
+}
+
+const { maddeler, baslik = 'Sık sorulan sorular' } = Astro.props;
+---
+{maddeler.length > 0 && (
+  <section class="sss" aria-label={baslik}>
+    <h2>{baslik}</h2>
+    {maddeler.map((m) => (
+      <div class="sss-madde">
+        <h3>{m.soru}</h3>
+        <p>{m.cevap}</p>
+      </div>
+    ))}
+  </section>
+)}
+
+<style>
+  .sss {
+    margin-top: clamp(2.4rem, 5vh, 3.4rem);
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--cizgi);
+  }
+
+  .sss h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+
+  .sss-madde {
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--cizgi);
+  }
+
+  .sss-madde:last-child { border-bottom: 0; }
+
+  .sss-madde h3 {
+    font-family: var(--serif);
+    font-size: 1.16rem;
+    font-weight: 500;
+    line-height: 1.3;
+    margin: 0 0 0.35rem;
+  }
+
+  .sss-madde p {
+    margin: 0;
+    max-width: 68ch;
+  }
+</style>

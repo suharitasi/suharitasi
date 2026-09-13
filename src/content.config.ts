@@ -33,6 +33,18 @@ const rehberler = defineCollection({
     // içeriğinden damıtılır; yeni iddia/künye eklenmez. Meta description'ın
     // da kaynağıdır. Uzunluk build'de sınırlanır (aşırıysa hata).
     ozCevap: z.string().min(120).max(340),
+    // Arama niyetine göre <title> metni (marka eki eklenmez; ≤60 karakter).
+    // Verilmezse baslik kullanılır. YALNIZ mevcut başlığın niyet-odaklı
+    // yeniden ifadesidir; yeni hukuki iddia içermez (uydurma yasağı).
+    seoBaslik: z.string().max(60).optional(),
+    // Görünür "Sık sorulan sorular" bloğu + FAQPage JSON-LD'nin TEK kaynağı.
+    // Her madde YALNIZ sayfanın kendi doğrulanmış gövdesinden/öz-cevabından
+    // damıtılır; görünür bölüm olmadan şema yayınlanmaz (Google kuralı).
+    sss: z
+      .array(z.object({ soru: z.string().min(8), cevap: z.string().min(20) }))
+      .min(2)
+      .max(6)
+      .optional(),
   }),
 });
 

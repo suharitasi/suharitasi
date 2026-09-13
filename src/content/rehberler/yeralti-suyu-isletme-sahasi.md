@@ -5,6 +5,14 @@ tarih: 2026-07-14
 guncelleme: 2026-08-25
 kume: surec
 ozCevap: "Bir bölge 'yeraltı suyu işletme sahası' ilan edilince kamusal denetim ağırlaşır. Sınırlar DSİ'ce tespit edilip Resmî Gazete'de ilan olunur (YAS Tüzüğü m.2); belgeli kuyu derinliğini DSİ bölge bölge belirler (m.4) ve kontrol süreklidir (m.11-12). Mevcut belge sahibinin statüsü otomatik yok sayılamaz."
+seoBaslik: "Yeraltı Suyu İşletme Sahası İlanı: Hukuki Sonuçlar"
+sss:
+  - soru: "Yeraltı suyu işletme sahası ilanı nasıl yapılır?"
+    cevap: "Sınırlar ve karakteristikler DSİ'ce tespit edilir; karar sonrası saha Resmî Gazete'de ve mahalli gazetelerde ilan olunur (Yeraltı Suları Tüzüğü m.2)."
+  - soru: "Belgeli kuyu derinliğini kim belirler?"
+    cevap: "Belge alınarak açılacak kuyu derinliklerini DSİ bölge bölge belirler; deponun korunması gerekirse bu derinlikler sonradan değiştirilebilir (m.4)."
+  - soru: "İlan, mevcut belge sahiplerinin hakkını ortadan kaldırır mı?"
+    cevap: "Mevcut belge sahibinin statüsü otomatik yok sayılamaz; somut dosyada belge tarihi ile saha ilan tarihi birlikte değerlendirilir."
 ilgili: [kuyu-ruhsati, ruhsatsiz-kuyu-cezalari, su-tahsisi-oncelik-sirasi, kuyu-tasima]
 ---
 

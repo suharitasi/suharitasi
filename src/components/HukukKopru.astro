@@ -1,0 +1,183 @@
+---
+// HUKUK KÖPRÜSÜ — yüksek niyetli hukuki rehberlere bağlanan bağlantı kartları.
+//
+// NEDEN: coğrafya sayfaları (havzalar, /nerede-su-cikar/) ziyaretçiye "su
+// nerede / hangi kurum" cevabını veriyor ama "peki izin, ceza, ihtilaf ne
+// olacak?" sorusunu hukuk rehberlerine bağlamıyordu (ölçüm: coğrafya→rehber
+// doğrudan bağ 0 — rapor/08-09-gsc-ticari-whatsapp.md B6c). Bu bileşen o
+// boşluğu kapatır.
+//
+// UYDURMA YASAĞI: bağlantı metinleri hedef rehberin KENDİ frontmatter
+// başlığından gelir; burada yeni hukuki iddia/özet üretilmez. Slug'lar
+// build sırasında doğrulanır — olmayan slug build'i düşürür (sessiz hata
+// yasağı).
+import { getCollection } from 'astro:content';
+
+interface Props {
+  // Hedef rehber slug'ları. Verilmezse yüksek niyetli varsayılan küme.
+  rehberler?: string[];
+  baslik?: string;
+  // Bölüm başlığının altında görünen tek cümle (nötr, bilgilendirici).
+  aciklama?: string;
+}
+
+// Yüksek ticari/danışmanlık niyeti taşıyan çekirdek küme. Sıralama niyet
+// aciliyetine göre (ceza → belge/dava → ruhsat → komşu su).
+const VARSAYILAN = [
+  'ruhsatsiz-kuyu-cezalari',
+  'kuyu-belgesi-iptal-davalari',
+  'kuyu-ruhsati',
+  'kaynak-hakki-komsu-su',
+];
+
+const {
+  rehberler = VARSAYILAN,
+  baslik = 'Yasal izin ve ihtilaf rehberi',
+  aciklama = 'Bu sayfadaki su verisinin ardındaki izin, ceza ve uyuşmazlık rejimi için adım adım hukuk rehberleri.',
+} = Astro.props;
+
+const hepsi = await getCollection('rehberler');
+const kartlar = rehberler.map((s) => {
+  const g = hepsi.find((r) => r.id === s);
+  if (!g) {
+    throw new Error(`HukukKopru: "${s}" adlı rehber yok.`);
+  }
+  return g;
+});
+
+const kicker = (k: string) => (k === 'surec' ? 'Rehber · Süreç' : 'Rehber · Uyuşmazlık');
+---
+{kartlar.length > 0 && (
+  <section class="hukuk-kopru" aria-label={baslik}>
+    <p class="hk-kicker">Hukuk rehberleri</p>
+    <h2>{baslik}</h2>
+    {aciklama && <p class="hk-aciklama">{aciklama}</p>}
+    <ul>
+      {kartlar.map((g) => (
+        <li>
+          <a class={`hk-kart hk-${g.data.kume}`} href={`/rehberler/${g.id}/`}>
+            <span class="hk-etiket">{kicker(g.data.kume)}</span>
+            <span class="hk-baslik">{g.data.baslik}</span>
+            <span class="hk-ozet">{g.data.ozet}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
+
+<style>
+  .hukuk-kopru {
+    margin-top: clamp(2.4rem, 5vh, 3.4rem);
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--cizgi);
+  }
+
+  .hk-kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--su-700);
+  }
+
+  .hk-kicker::before {
+    content: "";
+    width: 1.6rem;
+    height: 1px;
+    background: var(--su-400);
+  }
+
+  .hukuk-kopru h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    margin: 0.5rem 0 0.6rem;
+  }
+
+  .hk-aciklama {
+    max-width: 68ch;
+    font-size: 0.92rem;
+    color: var(--metin-soluk);
+    margin-bottom: 1.1rem;
+  }
+
+  .hukuk-kopru ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Kart dili DESIGN.md §8: zemin-kart + hairline + kümeye göre üst çizgi.
+     Görsel dil IlgiliRehberler ile aynı ailedendir (kopya desen değil, aynı
+     tokenlar). */
+  .hk-kart {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1rem 1.2rem;
+    text-decoration: none;
+    color: inherit;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    transition: transform 240ms var(--e-suzul), background-color 240ms var(--e-akinti);
+  }
+
+  .hk-kart.hk-surec { border-top: 2px solid var(--yesil-kara); }
+  .hk-kart.hk-uyusmazlik { border-top: 2px solid var(--kehribar); }
+
+  .hk-kart:hover { transform: translateY(-2px); }
+  .hk-kart.hk-surec:hover { background: rgba(44, 85, 112, 0.07); }
+  .hk-kart.hk-uyusmazlik:hover { background: rgba(192, 136, 58, 0.08); }
+  .hk-kart:active { transform: translateY(0) scale(0.985); transition-duration: 120ms; }
+
+  .hk-etiket {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .hk-surec .hk-etiket { color: var(--yesil-kara); }
+  .hk-uyusmazlik .hk-etiket { color: var(--kehribar-metin); }
+
+  .hk-baslik {
+    margin-top: 0.35rem;
+    font-family: var(--serif);
+    font-size: 1.12rem;
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--metin);
+  }
+
+  .hk-kart:hover .hk-baslik { color: var(--su-700); }
+
+  .hk-ozet {
+    margin-top: 0.3rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--metin-soluk);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (max-width: 620px) {
+    .hukuk-kopru ul { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hk-kart { transition: none; }
+    .hk-kart:hover, .hk-kart:active { transform: none; }
+  }
+</style>

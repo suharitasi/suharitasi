@@ -5,6 +5,7 @@ tarih: 2026-07-21
 kume: surec
 ilgili: [kuyu-ruhsati, ruhsatsiz-kuyu-cezalari, kuyu-belgesi-iptal-davalari, yeralti-suyu-isletme-sahasi]
 ozCevap: "Kuyu taşınması hukuken çoğu kez 'aynı ruhsatı başka yere götürmek' değildir: yeni noktada sondaj gerekiyorsa yeni arama, ardından yeni kullanma belgesi alınır. Mevcut kuyu onarılabiliyorsa ıslah-tadil yeterli olabilir. Bu belgeler harca ve damga resmine tabi değildir (167 s.K. m.12)."
+seoBaslik: "Kuyu Taşıma: Kuruyan Kuyuda Yeni Ruhsat ve Islah"
 ---
 
 Bu rehber özel bir sayfa şablonuyla (src/pages/rehberler/kuyu-tasima.astro)
