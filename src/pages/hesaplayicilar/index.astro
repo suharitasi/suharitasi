@@ -14,19 +14,19 @@ const OZ_CEVAP =
 
 const araclar = [
   {
-    ad: 'İdari Para Cezası ve Zamanaşımı Hesaplayıcı',
+    ad: 'Ceza ne kadar, ne zaman itiraz?',
     yol: '/hesaplayicilar/kuyu-cezasi-hesaplama/',
-    aciklama: '167 m.18 ceza aralıkları, yetkili merci ve itiraz/dava süreleri.',
+    aciklama: '167 m.18 ceza aralığı, yetkili merci ve itiraz/dava süreleri.',
   },
   {
-    ad: 'Mecra İrtifakı Süreç Simülatörü',
+    ad: 'Komşudan su geçirme nasıl olur?',
     yol: '/hesaplayicilar/mecra-irtifaki-simulasyonu/',
-    aciklama: 'TMK kapsamında su geçirme (mecra irtifakı) aşamaları ve zorunlu unsurlar.',
+    aciklama: 'TMK kapsamında su geçirme (mecra irtifakı) aşamaları.',
   },
 ];
 ---
 <Sayfa baslik="Hesaplayıcılar" aciklama={OZ_CEVAP} tarayiciBaslik="Su Hukuku Hesaplayıcıları: Ceza ve Mecra İrtifakı" sema={[{ '@type': 'WebPage', name: 'Su hukuku hesaplayıcıları', description: OZ_CEVAP, inLanguage: 'tr-TR' }]}>
-  <SayfaBasi etiket="Legal tech" baslik="Su hukuku hesaplayıcıları" ozet="Süre ve yaptırım hesaplama araçları." ozCevap />
+  <SayfaBasi etiket="Hesapla" baslik="Ne kadar, ne zaman?" ozet="Süre ve yaptırım hesaplama araçları." ozCevap />
   <OzCevap metin={OZ_CEVAP} etiket="Özet" />
   <ul class="hp-liste">
     {araclar.map((a) => (

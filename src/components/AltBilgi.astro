@@ -11,25 +11,24 @@ import { YAZAR, EPOSTA } from '../data/site';
 // Mevcut "Bölümler" sütunu AYNEN korunur (onaylı metin, sıra dahil);
 // eksikler YENİ bir sütuna eklenir — hiçbir bağlantı kaldırılmadı.
 const bolumler = [
-  { ad: 'Arama', yol: '/ara/' },
-  { ad: 'Açık Veri (API)', yol: '/veri/' },
-  { ad: 'Kısıt Sorgu', yol: '/kuyu-kisit-sorgu/' },
-  { ad: 'Hesaplayıcılar', yol: '/hesaplayicilar/' },
+  { ad: 'Ara', yol: '/ara/' },
+  { ad: 'Veriler (indir)', yol: '/veri/' },
+  { ad: 'Kısıt var mı?', yol: '/kuyu-kisit-sorgu/' },
+  { ad: 'Hesapla (ceza, süre)', yol: '/hesaplayicilar/' },
   { ad: 'Su Hukuku', yol: '/su-hukuku/' },
-  { ad: 'Mevzuat Maddeleri', yol: '/mevzuat/' },
-  { ad: 'Emsal Kararlar', yol: '/emsal-kararlar/' },
+  { ad: 'Kanun Maddeleri', yol: '/mevzuat/' },
+  { ad: 'Mahkeme Kararları', yol: '/emsal-kararlar/' },
   { ad: 'Sözlük', yol: '/sozluk/' },
   { ad: 'Hakkında', yol: '/hakkinda/' },
 ];
 
 const niyetKapilari = [
-  { ad: 'Kuyu Karar Motoru', yol: '/kuyu-karar-motoru/' },
-  { ad: 'Su Riski Endeksi', yol: '/su-riski-endeksi/' },
+  { ad: 'Ne yapmalıyım? (kuyu)', yol: '/kuyu-karar-motoru/' },
+  { ad: 'Riskim ne? (il, havza)', yol: '/su-riski-endeksi/' },
   { ad: 'Hızlı Danışma', yol: '/hizli-danisma/' },
-  { ad: 'Sektörel rehber', yol: '/sektor/' },
+  { ad: 'Sektörüm (izin, dava)', yol: '/sektor/' },
   { ad: 'Hangi Kurum', yol: '/hangi-kurum/' },
-  { ad: 'İşlem Matrisi (81 il)', yol: '/islem-matrisi/' },
-  { ad: 'Emsal Kararlar', yol: '/emsal-kararlar/' },
+  { ad: 'İşlemler (kurum, il)', yol: '/islem-matrisi/' },
   { ad: 'Kuyu Ruhsatı — iller', yol: '/kuyu-ruhsati/' },
   { ad: 'Vakalar', yol: '/vaka/' },
 ];

@@ -36,7 +36,7 @@ const sema = [
 ];
 ---
 <Sayfa baslik="Su riski endeksi" aciklama={OZ_CEVAP} tarayiciBaslik="Su Riski Endeksi: İl ve Havza Risk Karnesi" sema={sema}>
-  <SayfaBasi etiket="Veri ürünü" baslik="Su riski endeksi" ozet={`${OZET.havzaSayisi} havza · ${OZET.ilSayisi} il · şeffaf bileşik gösterge.`} ozCevap />
+  <SayfaBasi etiket="Riskim ne?" baslik="Riskim ne?" ozet={`${OZET.havzaSayisi} havza · ${OZET.ilSayisi} il · şeffaf bileşik gösterge.`} ozCevap />
   <OzCevap metin={OZ_CEVAP} etiket="Özet" />
 
   <p class="sr-formul"><strong>Formül:</strong> {FORMUL}</p>
@@ -93,9 +93,9 @@ const sema = [
 
   <nav class="sr-capraz" aria-label="İlgili bölümler">
     <a href="/veri/su-riski.json">→ API: su-riski.json</a>
-    <a href="/veri/">→ Açık veri kataloğu</a>
+    <a href="/veri/">→ Veriler (indir)</a>
     <a href="/havzalar/">→ Havza sayfaları</a>
-    <a href="/kuyu-kisit-sorgu/">→ Kısıt sorgu motoru</a>
+    <a href="/kuyu-kisit-sorgu/">→ Kısıt var mı?</a>
   </nav>
 
   <CtaBlok konu="Su riski" baslik="Yatırımınız için su riski raporu" metin="Seçili il/havza için derinlemesine su riski ve hukuki durum raporu talep edin." />
