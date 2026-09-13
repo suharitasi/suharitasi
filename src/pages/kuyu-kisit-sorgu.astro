@@ -1,0 +1,146 @@
+---
+// /kuyu-kisit-sorgu/ — YERALTI SUYU KISIT SORGU MOTORU (13.09.2026).
+// İl seç → DSİ bölge/havza/su idaresi + o ile ait DSİ Resmî Gazete işletme
+// sahası ve tahsise kapatma/kısıt ilanları (resmî linkli).
+// UYDURMA YASAĞI: "açık/kapalı/kısıtlı/yasak" sınıflaması ÜRETİLMEZ; yalnız
+// gerçek RG ilanları gösterilir (kayıt: src/data/kisit-sorgu.js).
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import CtaBlok from '../components/CtaBlok.astro';
+import HukukSerhi from '../components/HukukSerhi.astro';
+import { kayitliIller, TOPLAM, KISIT_TOPLAM, KAYNAK_NOTU } from '../data/kisit-sorgu.js';
+import { tumIller, ilMatrisi } from '../data/islem-matrisi.js';
+
+const OZ_CEVAP =
+  'İlinizi seçin: DSİ bölge müdürlüğünüz, havzanız ve o ile ait Resmî Gazete ' +
+  'yeraltı suyu işletme sahası ile tahsise kapatma/kısıt ilanları resmî ' +
+  'linkleriyle listelenir. Panel resmî bir "açık/kapalı/kısıtlı/yasak" ' +
+  'sınıflaması üretmez; gösterilen her kayıt Resmî Gazete ilanının kendisidir.';
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/kuyu-kisit-sorgu/', Astro.site).href;
+
+const iller = tumIller();
+const kayitli = new Set(kayitliIller());
+const ilBilgi = Object.fromEntries(iller.map((il) => [il, ilMatrisi(il)]));
+
+const sss = [
+  {
+    soru: 'İlimde yeraltı suyu tahsisi kısıtlı mı?',
+    cevap:
+      'Bu panel il seçtiğinizde o ile ait DSİ Resmî Gazete işletme sahası ve tahsise kapatma/kısıt ilanlarını listeler; ilanın resmî linkinden tam metne ulaşırsınız. Resmî bir "açık/kapalı/kısıtlı/yasak" sınıflaması kamuya açık yayımlanmadığından panel böyle bir sınıflama üretmez.',
+  },
+  {
+    soru: 'Bu kayıtlar hangi kaynaktan geliyor?',
+    cevap:
+      'DSİ Genel Müdürlüğü’nün Resmî Gazete’de yayımladığı yeraltı suyu işletme sahası ilanları ve tahsise kapatma/kısıt kayıtlarından; her kayıt tarih ve resmî link taşır.',
+  },
+  {
+    soru: 'Hangi kurum yetkili ve nereye başvurulur?',
+    cevap:
+      'Yeraltı suyu işlemlerinde ilinizin bağlı olduğu DSİ Bölge Müdürlüğü yetkilidir; panelde ilinizin bölge müdürlüğü gösterilir. Belge başvuruları DSİ’ye yapılır (167 sayılı Kanun m.8).',
+  },
+];
+
+const sema = [
+  {
+    '@type': 'Dataset',
+    '@id': `${canonical}#veri`,
+    name: 'Yeraltı suyu işletme sahası ve kısıt kayıtları (Resmî Gazete)',
+    description:
+      'DSİ’nin Resmî Gazete’de yayımladığı yeraltı suyu işletme sahası ve tahsise kapatma/kısıt ilanlarından derlenen, il eşlemeli kayıt kümesi.',
+    creator: { '@id': `${kok}#kurum` },
+    isAccessibleForFree: true,
+    inLanguage: 'tr-TR',
+    numberOfItems: TOPLAM,
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: sss.map((s) => ({
+      '@type': 'Question',
+      name: s.soru,
+      acceptedAnswer: { '@type': 'Answer', text: s.cevap },
+    })),
+  },
+  {
+    '@type': 'WebPage',
+    '@id': `${canonical}#sayfa`,
+    url: canonical,
+    name: 'Yeraltı suyu kısıt sorgusu',
+    description: OZ_CEVAP,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${kok}#site` },
+  },
+];
+---
+<Sayfa baslik="Yeraltı suyu kısıt sorgusu" aciklama={OZ_CEVAP} tarayiciBaslik="Yeraltı Suyu Kısıt Sorgu: İl Bazında İşletme Sahası" sema={sema}>
+  <SayfaBasi etiket="Kısıt sorgu" baslik="İlinizde yeraltı suyu kısıtı var mı?" ozet={`${TOPLAM} Resmî Gazete işletme sahası/kapatma kaydı, il bazında. DSİ bölgeniz ve o ile ait ilanlar resmî linkleriyle.`} ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Kanun özeti" />
+
+  <label class="ks-sec">
+    <span>İl seçin</span>
+    <select id="ks-il">
+      <option value="">— İl seçin —</option>
+      {iller.map((il) => (
+        <option value={il}>{il}{kayitli.has(il) ? ' • kayıt var' : ''}</option>
+      ))}
+    </select>
+  </label>
+
+  <div id="ks-bilgi" class="ks-bilgi" hidden></div>
+  <p class="ks-durum" id="ks-durum" aria-live="polite">Bir il seçin; o ile ait resmî kayıtlar burada listelenir.</p>
+  <div class="ks-kaydir">
+    <table class="ks-tablo" id="ks-tablo" hidden>
+      <caption>İl · durum · tarih · saha · resmî kaynak.</caption>
+      <thead>
+        <tr><th scope="col">Durum</th><th scope="col">Tarih</th><th scope="col">Saha</th><th scope="col">Resmî kaynak</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <p class="ks-not">{KAYNAK_NOTU}</p>
+  <p class="ks-ozet">Toplam <strong>{TOPLAM}</strong> kayıt · tahsise kapatma/kısıt kaydı <strong>{KISIT_TOPLAM}</strong>.</p>
+
+  <nav class="ks-capraz" aria-label="İlgili bölümler">
+    <a href="/islem-matrisi/">→ İşlem → yetkili kurum matrisi</a>
+    <a href="/kapatma-kaydi/">→ Resmî Gazete kapatma kaydı (metin araması)</a>
+    <a href="/mevzuat/167/madde-8/">→ 167 m.8 (belge zorunluluğu)</a>
+    <a href="/rehberler/yeralti-suyu-isletme-sahasi/">→ İşletme sahası rehberi</a>
+  </nav>
+
+  <CtaBlok konu="Yeraltı suyu kısıtı" baslik="İlinizde kısıt varsa ne yapmalısınız?" metin="Kısıt/işletme sahası ilanının dosyanıza etkisini ve itiraz yolunu değerlendirelim." />
+  <HukukSerhi />
+</Sayfa>
+
+<script type="application/json" id="ks-iller" set:html={JSON.stringify(ilBilgi)} />
+<script type="module" src="/s/kisit-sorgu.js" is:inline></script>
+
+<style>
+  .ks-sec { display: flex; flex-direction: column; gap: 0.3rem; max-width: 24rem; margin-bottom: 0.8rem; }
+  .ks-sec span { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--metin-soluk); }
+  .ks-sec select { font: inherit; padding: 0.6rem 0.7rem; min-height: 44px; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); }
+  .ks-sec select:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+
+  .ks-bilgi { margin: 0.4rem 0 1rem; padding: 1rem 1.2rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); border-left: 3px solid var(--su-700); }
+  .ks-bilgi dl { display: grid; gap: 0.35rem; }
+  .ks-bilgi dl > div { display: grid; grid-template-columns: 12rem 1fr; gap: 0.6rem; }
+  .ks-bilgi dt { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--metin-soluk); }
+  .ks-bilgi dd { margin: 0; }
+
+  .ks-durum { font-size: 0.9rem; color: var(--metin-soluk); margin-bottom: 0.8rem; }
+
+  .ks-kaydir { overflow-x: auto; }
+  .ks-tablo { width: 100%; border-collapse: collapse; font-size: 0.84rem; min-width: 46rem; }
+  .ks-tablo caption { caption-side: top; text-align: left; font-size: 0.78rem; color: var(--metin-soluk); padding-bottom: 0.5rem; }
+  .ks-tablo th, .ks-tablo td { text-align: left; vertical-align: top; padding: 0.55rem 0.65rem; border-bottom: 1px solid var(--cizgi); }
+  .ks-tablo thead th { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--metin-soluk); background: var(--zemin); border-bottom: 2px solid var(--su-700); white-space: nowrap; }
+  .ks-tablo .ks-kapatma { color: #8a1f17; font-weight: 600; }
+  .ks-not { margin-top: 1rem; padding: 0.8rem 1.1rem; border: 1px solid var(--cizgi); border-left: 3px solid var(--kehribar); font-size: 0.88rem; color: var(--metin-soluk); max-width: 72ch; }
+  .ks-ozet { margin-top: 0.8rem; font-size: 0.9rem; }
+  .ks-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .ks-capraz a { color: var(--baglanti); text-decoration: none; }
+  .ks-capraz a:hover { text-decoration: underline; }
+  @media (max-width: 560px) { .ks-bilgi dl > div { grid-template-columns: 1fr; gap: 0.1rem; } }
+</style>

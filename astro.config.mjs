@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import { readdir, writeFile, readFile } from 'node:fs/promises';
+import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { join, relative } from 'node:path';
 
@@ -87,6 +88,47 @@ function surumDamgasi() {
   };
 }
 
+// kisit.json: kısıt sorgu motoru için il-eşlemeli RG kayıtları (build-time).
+// Kaynak: veri/potansiyel/isletme-sahalari*.json. Sınıflama ÜRETİLMEZ; yalnız
+// gerçek RG ilanları (il, durum, tarih, resmî link) dışa aktarılır.
+function kisitJsonOlustur() {
+  return {
+    name: 'kisit-json',
+    hooks: {
+      'astro:build:done': async ({ dir, logger }) => {
+        const kok = fileURLToPath(dir);
+        const proje = fileURLToPath(new URL('.', import.meta.url));
+        const oku = (p) => JSON.parse(readFileSync(join(proje, p), 'utf8'));
+        const ana = oku('veri/potansiyel/isletme-sahalari.json');
+        const ek = oku('veri/potansiyel/isletme-sahalari-ek.json');
+        const BELIRSIZ = /belirsiz/i;
+        const kayitlar = [];
+        const gorulen = new Set();
+        for (const k of [...(ana.kayitlar ?? []), ...(ek.kayitlar ?? [])]) {
+          const ilHam = k.il;
+          const iller = (Array.isArray(ilHam) ? ilHam : (ilHam ? [ilHam] : [])).filter((x) => x && !BELIRSIZ.test(x));
+          if (!iller.length) continue;
+          const saha = (k.saha_adi || '').replace(/\s+/g, ' ').trim().slice(0, 200);
+          const anahtar = `${k.kaynak_url || ''}|${k.rg_tarih || ''}|${saha.slice(0, 60)}`;
+          if (gorulen.has(anahtar)) continue;
+          gorulen.add(anahtar);
+          kayitlar.push({
+            il: iller,
+            ilce: k.ilceler && typeof k.ilceler === 'object' ? Object.keys(k.ilceler) : [],
+            durum: k.durum || 'belirsiz',
+            tarih: k.rg_tarih || '',
+            kaynak: k.kaynak_url || '',
+            saha,
+          });
+        }
+        kayitlar.sort((a, b) => (b.tarih || '').localeCompare(a.tarih || ''));
+        await writeFile(join(kok, 'kisit.json'), JSON.stringify(kayitlar), 'utf8');
+        logger.info(`kisit.json: ${kayitlar.length} RG kaydı`);
+      },
+    },
+  };
+}
+
 // arama.json: statik site içi arama indeksi. dist'ten üretilir (title +
 // meta description + h1 + bölüm). Sayfa başına ~200 bayt; ~530 sayfa ≈ 110 KB.
 // İçerik elle yazılmaz — sayfa çıktısından türetilir, bayatlamaz.
@@ -152,6 +194,8 @@ function llmsOlustur() {
     ['rehberler/', 'Mevzuat rehberleri'],
     ['mevzuat/', 'Mevzuat maddeleri (madde madde)'],
     ['emsal-kararlar/', 'Emsal kararlar veritabanı'],
+    ['kuyu-kisit-sorgu/', 'Yeraltı suyu kısıt sorgu motoru'],
+    ['hesaplayicilar/', 'Su hukuku hesaplayıcıları'],
     ['islem-matrisi/', 'Su işlemleri ve yetkili kurum matrisi (81 il)'],
     ['su-kanunu/', 'Su Kanunu ve mevzuat kütüphanesi'],
     ['sozluk/', 'Su hukuku sözlüğü'],
@@ -276,5 +320,5 @@ function sKlasoruKucult() {
 export default defineConfig({
   site: SITE,
   trailingSlash: 'ignore',
-  integrations: [sitemapOlustur(), llmsOlustur(), aramaOlustur(), surumDamgasi(), sKlasoruKucult()],
+  integrations: [sitemapOlustur(), llmsOlustur(), aramaOlustur(), kisitJsonOlustur(), surumDamgasi(), sKlasoruKucult()],
 });

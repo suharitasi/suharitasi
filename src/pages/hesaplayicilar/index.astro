@@ -1,0 +1,52 @@
+---
+// /hesaplayicilar/ — LEGAL TECH HESAPLAYICILAR HUB'I (13.09.2026).
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import CtaBlok from '../../components/CtaBlok.astro';
+import HukukSerhi from '../../components/HukukSerhi.astro';
+
+const OZ_CEVAP =
+  'Su hukukunda süre ve yaptırım hesaplama araçları: 167 sayılı Kanun m.18 idari ' +
+  'para cezası aralıkları ve itiraz/dava süreleri; TMK kapsamında mecra irtifakı ' +
+  '(su geçirme) süreç aşamaları. Araçlar bilgilendirme amaçlıdır; somut dosyada ' +
+  'süre ve sonuç uzman değerlendirmesi gerektirir.';
+
+const araclar = [
+  {
+    ad: 'İdari Para Cezası ve Zamanaşımı Hesaplayıcı',
+    yol: '/hesaplayicilar/kuyu-cezasi-hesaplama/',
+    aciklama: '167 m.18 ceza aralıkları, yetkili merci ve itiraz/dava süreleri.',
+  },
+  {
+    ad: 'Mecra İrtifakı Süreç Simülatörü',
+    yol: '/hesaplayicilar/mecra-irtifaki-simulasyonu/',
+    aciklama: 'TMK kapsamında su geçirme (mecra irtifakı) aşamaları ve zorunlu unsurlar.',
+  },
+];
+---
+<Sayfa baslik="Hesaplayıcılar" aciklama={OZ_CEVAP} tarayiciBaslik="Su Hukuku Hesaplayıcıları: Ceza ve Mecra İrtifakı" sema={[{ '@type': 'WebPage', name: 'Su hukuku hesaplayıcıları', description: OZ_CEVAP, inLanguage: 'tr-TR' }]}>
+  <SayfaBasi etiket="Legal tech" baslik="Su hukuku hesaplayıcıları" ozet="Süre ve yaptırım hesaplama araçları." ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Özet" />
+  <ul class="hp-liste">
+    {araclar.map((a) => (
+      <li>
+        <a href={a.yol}>
+          <span class="hp-ad">{a.ad}</span>
+          <span class="hp-aciklama">{a.aciklama}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+  <CtaBlok konu="Su hukuku hesabı" baslik="Hesap sonucunu dosyanıza uygulayalım" metin="Süre ve yaptırım hesabı bilgilendirmedir; somut dosyanızın değerlendirmesi için ulaşın." />
+  <HukukSerhi />
+</Sayfa>
+
+<style>
+  .hp-liste { list-style: none; padding: 0; display: grid; gap: 0.8rem; }
+  .hp-liste a { display: block; padding: 1.1rem 1.3rem; text-decoration: none; color: inherit; background: var(--zemin-kart); border: 1px solid var(--cizgi); border-top: 2px solid var(--su-700); transition: transform 200ms var(--e-suzul), background-color 200ms var(--e-akinti); }
+  .hp-liste a:hover { transform: translateY(-2px); background: var(--kopuk); }
+  .hp-ad { display: block; font-family: var(--serif); font-size: 1.2rem; font-weight: 500; color: var(--metin); }
+  .hp-aciklama { display: block; margin-top: 0.25rem; font-size: 0.9rem; color: var(--metin-soluk); }
+  @media (prefers-reduced-motion: reduce) { .hp-liste a { transition: none; } .hp-liste a:hover { transform: none; } }
+</style>

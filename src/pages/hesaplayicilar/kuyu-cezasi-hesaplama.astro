@@ -1,0 +1,94 @@
+---
+// /hesaplayicilar/kuyu-cezasi-hesaplama/ — 167 m.18 ceza + süre hesaplayıcı.
+// Aralıklar kanuni metinden (167 m.18) birebir; "güncel/enflasyon güncellemesi"
+// UYDURULMAZ. İtiraz süreleri iki yol olarak sunulur (uzman değerlendirmesi notu).
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import CtaBlok from '../../components/CtaBlok.astro';
+import HukukSerhi from '../../components/HukukSerhi.astro';
+
+const OZ_CEVAP =
+  '167 sayılı Kanun m.18 kapsamında belgesiz kuyu açma veya kasten yanlış bilgi ' +
+  'verme 1.000–5.000 TL, belge şartlarına aykırılık 500–2.000 TL idari para cezası ' +
+  'doğurur; ceza yanında kuyu kapatılabilir. Cezayı mahallî mülkî amir verir. ' +
+  'İtiraz/dava yolu ve süresi somut dosyada uzman değerlendirmesi gerektirir.';
+
+const FIILLER = [
+  { id: 'belgesiz', ad: 'Belgesiz kuyu açma / kasten yanlış bilgi verme', madde: '167 m.18/a', alt: 1000, ust: 5000, ek: 'Kuyu kapatma (mahzur yoksa belge verilir)' },
+  { id: 'aykirilik', ad: 'Kullanma/ıslah-tadil hükümlerine (m.10-11) aykırılık', madde: '167 m.18/b', alt: 500, ust: 2000, ek: 'Kuyu kapatma, masraf açtırandan alınır' },
+  { id: 'sart', ad: 'Belge şartlarına riayet etmeme / bilgi verme yükümlülüğü', madde: '167 m.18/b', alt: 500, ust: 2000, ek: 'Kuyu kapatma' },
+];
+
+const sema = [
+  {
+    '@type': 'HowTo',
+    name: '167 sayılı Kanun m.18 idari para cezası ve süre hesabı',
+    description: OZ_CEVAP,
+    inLanguage: 'tr-TR',
+    step: [
+      { '@type': 'HowToStep', position: 1, name: 'Fiil türünü seçin', text: 'Belgesiz kuyu açma, m.10-11 aykırılığı veya belge şartlarına aykırılık.' },
+      { '@type': 'HowToStep', position: 2, name: 'Ceza aralığını görün', text: '167 m.18/a 1.000–5.000 TL; m.18/b 500–2.000 TL.' },
+      { '@type': 'HowToStep', position: 3, name: 'Süreleri görün', text: 'Tebliğ tarihine göre 15 gün (sulh ceza) ve 60 gün (idare mahkemesi) seçenekleri.' },
+    ],
+  },
+  { '@type': 'WebPage', name: 'Kuyu cezası hesaplayıcı', description: OZ_CEVAP, inLanguage: 'tr-TR' },
+];
+---
+<Sayfa baslik="Kuyu cezası ve süre hesaplayıcı" aciklama={OZ_CEVAP} tarayiciBaslik="Kuyu Cezası Hesaplayıcı: 167 m.18 ve Süreler" sema={sema}>
+  <SayfaBasi etiket="Hesaplayıcı" baslik="İdari para cezası ve süre hesaplayıcı" ozet="167 sayılı Kanun m.18 ceza aralıkları, yetkili merci ve itiraz/dava süreleri." ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Özet" />
+
+  <form id="hc-form" class="hc-form">
+    <label>Fiil türü
+      <select id="hc-fiil" name="fiil">
+        {FIILLER.map((f) => <option value={f.id}>{f.ad}</option>)}
+      </select>
+    </label>
+    <label>Tebliğ tarihi (varsa)
+      <input type="date" id="hc-teblig" name="teblig" />
+    </label>
+  </form>
+
+  <div id="hc-sonuc" class="hc-sonuc" aria-live="polite"></div>
+
+  <p class="hc-uyari">
+    Bu araç bilgilendirme amaçlıdır; ceza aralıkları 167 sayılı Kanun m.18'deki
+    kanuni sınırlardır (2008 değişikliği). İtiraz/dava yolu ve süresi somut
+    dosyaya göre değişir; <strong>uzman değerlendirmesi gerektirir</strong>.
+  </p>
+
+  <nav class="hc-capraz" aria-label="İlgili bölümler">
+    <a href="/mevzuat/167/madde-18/">→ 167 m.18 tam metni</a>
+    <a href="/rehberler/ruhsatsiz-kuyu-cezalari/">→ Ruhsatsız kuyu cezaları rehberi</a>
+    <a href="/emsal-kararlar/">→ İlgili emsal kararlar</a>
+    <a href="/hesaplayicilar/">→ Tüm hesaplayıcılar</a>
+  </nav>
+
+  <CtaBlok konu="Kuyu cezası" baslik="Cezanıza itiraz süresini kaçırmayın" metin="Tebliğ tarihinizi ve fiili iletin; itiraz/dava yolunu ve süresini değerlendirelim." />
+  <HukukSerhi />
+</Sayfa>
+
+<script type="application/json" id="hc-veri" set:html={JSON.stringify(FIILLER)} />
+<script type="module" src="/s/hesap-ceza.js" is:inline></script>
+
+<style>
+  .hc-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; max-width: 44rem; }
+  .hc-form label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.9rem; }
+  .hc-form select, .hc-form input { font: inherit; padding: 0.6rem 0.7rem; min-height: 44px; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); width: 100%; max-width: 100%; }
+  .hc-sonuc { margin-top: 1.4rem; }
+  .hc-sonuc .hc-kart { padding: 1.1rem 1.3rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); border-top: 2px solid var(--su-700); }
+  .hc-sonuc h2 { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; margin-bottom: 0.5rem; }
+  .hc-sonuc dl { display: grid; gap: 0.4rem; }
+  .hc-sonuc dl > div { display: grid; grid-template-columns: 14rem 1fr; gap: 0.6rem; min-width: 0; }
+  .hc-sonuc dt { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--metin-soluk); }
+  .hc-sonuc dd { margin: 0; overflow-wrap: anywhere; }
+  .hc-ceza { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; color: #8a1f17; }
+  .hc-sure { margin-top: 0.7rem; padding-top: 0.7rem; border-top: 1px solid var(--cizgi); }
+  .hc-sure ul { margin: 0.4rem 0 0 1.1rem; }
+  .hc-sure strong { color: var(--su-700); }
+  .hc-uyari { margin-top: 1.2rem; padding: 0.8rem 1.1rem; border: 1px solid var(--cizgi); border-left: 3px solid var(--kehribar); font-size: 0.88rem; color: var(--metin-soluk); max-width: 72ch; }
+  .hc-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .hc-capraz a { color: var(--baglanti); text-decoration: none; }
+  @media (max-width: 560px) { .hc-form, .hc-sonuc dl > div { grid-template-columns: 1fr; } }
+</style>

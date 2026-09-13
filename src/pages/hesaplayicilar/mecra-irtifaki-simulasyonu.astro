@@ -1,0 +1,99 @@
+---
+// /hesaplayicilar/mecra-irtifaki-simulasyonu/ — TMK kapsamında su geçirme
+// (mecra irtifakı) süreç simülatörü (13.09.2026).
+// UYDURMA YASAĞI: bilirkişi kriterleri/bedel kalemleri doğrulanmış kaynakta
+// olmadığından ÜRETİLMEZ; yalnız süreç aşamaları ve zorunlu unsurlar gösterilir.
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import CtaBlok from '../../components/CtaBlok.astro';
+import HukukSerhi from '../../components/HukukSerhi.astro';
+
+const OZ_CEVAP =
+  'Kendi arazisinde faydalı ihtiyacına yetecek su bulunmayan malik, komşu parselden ' +
+  'su geçirme (mecra irtifakı) isteyebilir. Yol: ihtiyaç tespiti, komşu parselde ' +
+  'kaynak, anlaşma veya mahkeme kararıyla irtifak tesisi ve bedel/masraf. Bedel ve ' +
+  'bilirkişi kriterleri somut dosyaya göre belirlenir; bu araç yalnız süreç ' +
+  'aşamalarını gösterir.';
+
+const AŞAMALAR = [
+  { no: 1, ad: 'İhtiyacın tespiti', aciklama: 'Kendi arazinizde faydalı ihtiyaca yetecek su bulunmuyor.' },
+  { no: 2, ad: 'Komşu parselde kaynak/yeraltı suyu', aciklama: 'Su geçirilecek komşu parselde kaynak veya yeraltı suyu tespiti.' },
+  { no: 3, ad: 'Anlaşma yolu', aciklama: 'Komşuyla irtifak sözleşmesi; kaynak hakkı için tapuya tescil (TMK m.756).' },
+  { no: 4, ad: 'Mahkeme yolu', aciklama: 'Anlaşma yoksa mecra irtifakı/su geçirme için mahkeme kararı.' },
+  { no: 5, ad: 'Bedel ve tesis masrafı', aciklama: 'Bedel, zarar ve tesis masrafı somut değerlendirmeye bağlı.' },
+  { no: 6, ad: 'Tescil', aciklama: 'İrtifakın tapu kütüğüne tescili ile hak kurulur.' },
+];
+
+const sema = [
+  {
+    '@type': 'HowTo',
+    name: 'Mecra irtifakı (su geçirme) süreç aşamaları',
+    description: OZ_CEVAP,
+    inLanguage: 'tr-TR',
+    step: AŞAMALAR.map((a) => ({ '@type': 'HowToStep', position: a.no, name: a.ad, text: a.aciklama })),
+  },
+  { '@type': 'WebPage', name: 'Mecra irtifakı süreç simülatörü', description: OZ_CEVAP, inLanguage: 'tr-TR' },
+];
+---
+<Sayfa baslik="Mecra irtifakı süreç simülatörü" aciklama={OZ_CEVAP} tarayiciBaslik="Mecra İrtifakı (Su Geçirme) Süreç Simülatörü" sema={sema}>
+  <SayfaBasi etiket="Hesaplayıcı" baslik="Mecra irtifakı (su geçirme) simülatörü" ozet="Komşu parselden su geçirme sürecinin aşamaları ve zorunlu unsurları." ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Özet" />
+
+  <form id="hm-form" class="hm-form">
+    <label>İhtiyaç türü
+      <select id="hm-ihtiyac">
+        <option value="evsel">Evsel / içme-kullanma</option>
+        <option value="tarimsal">Tarımsal sulama</option>
+        <option value="sanayi">Sanayi / ticari</option>
+      </select>
+    </label>
+    <label>Komşu parselde durum
+      <select id="hm-komsu">
+        <option value="kaynak">Kaynak (yerüstü) var</option>
+        <option value="yeralti">Yeraltı suyu var</option>
+        <option value="belirsiz">Bilinmiyor</option>
+      </select>
+    </label>
+  </form>
+
+  <div id="hm-sonuc" class="hm-sonuc" aria-live="polite"></div>
+
+  <p class="hm-uyari">
+    Bu araç yalnız <strong>süreç aşamalarını</strong> gösterir. Bilirkişi kriterleri
+    ve muhtemel bedel kalemleri somut dosyaya göre belirlenir; doğrulanmış bir
+    kriter/bedel listesi kaynakta bulunmadığından burada <strong>üretilmemiştir</strong>.
+    Yeraltı suyu kamu suyudur (TMK m.756); komşu parselden yararlanma Yeraltı Suları
+    Tüzüğü m.16 koşullarına bağlıdır.
+  </p>
+
+  <nav class="hm-capraz" aria-label="İlgili bölümler">
+    <a href="/rehberler/kaynak-hakki-komsu-su/">→ Kaynak hakkı ve komşu su rehberi</a>
+    <a href="/rehberler/kuyu-ruhsati/">→ Kuyu ruhsatı rehberi</a>
+    <a href="/emsal-kararlar/">→ İlgili emsal kararlar</a>
+    <a href="/hesaplayicilar/">→ Tüm hesaplayıcılar</a>
+  </nav>
+
+  <CtaBlok konu="Mecra irtifakı" baslik="Komşu su uyuşmazlığınız için yol haritası" metin="Parsellerinizi ve ihtiyacınızı iletin; anlaşma mı dava mı gerektiğini değerlendirelim." />
+  <HukukSerhi />
+</Sayfa>
+
+<script type="application/json" id="hm-veri" set:html={JSON.stringify(AŞAMALAR)} />
+<script type="module" src="/s/hesap-mecra.js" is:inline></script>
+
+<style>
+  .hm-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; max-width: 44rem; }
+  .hm-form label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.9rem; }
+  .hm-form select { font: inherit; padding: 0.6rem 0.7rem; min-height: 44px; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); }
+  .hm-sonuc { margin-top: 1.4rem; }
+  .hm-sonuc ol { list-style: none; padding: 0; display: grid; gap: 0.6rem; }
+  .hm-sonuc li { display: grid; grid-template-columns: 2.2rem 1fr; gap: 0.8rem; padding: 0.7rem 0.9rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); border-left: 3px solid var(--su-400); }
+  .hm-no { display: grid; place-items: center; width: 2.2rem; height: 2.2rem; font-family: var(--mono); font-size: 0.8rem; color: var(--su-700); border: 1px solid var(--su-400); border-radius: 50%; }
+  .hm-ad { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; }
+  .hm-aciklama { font-size: 0.9rem; color: var(--metin-soluk); }
+  .hm-vurgu { margin-top: 0.9rem; padding: 0.8rem 1.1rem; background: rgba(46,126,160,0.06); border-left: 3px solid var(--su-400); }
+  .hm-uyari { margin-top: 1.2rem; padding: 0.8rem 1.1rem; border: 1px solid var(--cizgi); border-left: 3px solid var(--kehribar); font-size: 0.88rem; color: var(--metin-soluk); max-width: 72ch; }
+  .hm-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .hm-capraz a { color: var(--baglanti); text-decoration: none; }
+  @media (max-width: 560px) { .hm-form { grid-template-columns: 1fr; } }
+</style>
