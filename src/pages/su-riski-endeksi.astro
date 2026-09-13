@@ -1,0 +1,144 @@
+---
+// /su-riski-endeksi/ — SU RİSKİ ENDEKSİ (13.09.2026).
+// Şeffaf formüllü bileşik gösterge: baraj doluluk + GRACE + yağış + RG kısıt.
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import CtaBlok from '../components/CtaBlok.astro';
+import HukukSerhi from '../components/HukukSerhi.astro';
+import { HAVZA_RISK, IL_RISK, FORMUL, AGIRLIK, OZET, SERILER, BUTCE } from '../data/su-riski.js';
+
+const OZ_CEVAP =
+  'İl ve havza bazında su riski: baraj doluluk (%40), GRACE yerçekimi eğilimi (%25), ' +
+  'yağış trendi (%25) ve Resmî Gazete kısıt/kapatma yoğunluğu (%10) birleştirilerek ' +
+  'şeffaf bir gösterge üretir. Sonuç Düşük/Orta/Yüksek/Kritik olarak sınıflanır. ' +
+  'Bu resmî bir sınıflama değil, Su Haritası’nın bileşik göstergesidir.';
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/su-riski-endeksi/', Astro.site).href;
+
+const katSinif = (k) => ({ 'Düşük': 'd', 'Orta': 'o', 'Yüksek': 'y', 'Kritik': 'k' }[k] || 'v');
+const veri = { havzalar: HAVZA_RISK, iller: IL_RISK, seriler: SERILER, butce: BUTCE };
+
+const sema = [
+  {
+    '@type': 'Dataset',
+    '@id': `${canonical}#veri`,
+    name: 'Su Haritası Su Riski Endeksi',
+    description: OZ_CEVAP,
+    creator: { '@id': `${kok}#kurum` },
+    isAccessibleForFree: true,
+    inLanguage: 'tr-TR',
+    url: `${kok}veri/su-riski.json`,
+    variableMeasured: ['Baraj doluluk', 'GRACE yerçekimi eğilimi', 'Yağış trendi', 'RG kısıt yoğunluğu'],
+  },
+  { '@type': 'WebPage', '@id': `${canonical}#sayfa`, url: canonical, name: 'Su riski endeksi', description: OZ_CEVAP, inLanguage: 'tr-TR', isPartOf: { '@id': `${kok}#site` } },
+];
+---
+<Sayfa baslik="Su riski endeksi" aciklama={OZ_CEVAP} tarayiciBaslik="Su Riski Endeksi: İl ve Havza Risk Karnesi" sema={sema}>
+  <SayfaBasi etiket="Veri ürünü" baslik="Su riski endeksi" ozet={`${OZET.havzaSayisi} havza · ${OZET.ilSayisi} il · şeffaf bileşik gösterge.`} ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Özet" />
+
+  <p class="sr-formul"><strong>Formül:</strong> {FORMUL}</p>
+  <p class="sr-ozet">Kritik havza: <strong>{OZET.kritik}</strong> · Yüksek: <strong>{OZET.yuksek}</strong> · API: <a href="/veri/su-riski.json">/veri/su-riski.json</a></p>
+
+  <label class="sr-sec">
+    <span>İl veya havza seçin</span>
+    <select id="sr-sec"><option value="">— Seçin —</option></select>
+  </label>
+  <div id="sr-detay" class="sr-detay" hidden></div>
+
+  <section class="sr-bolum" aria-label="Havza risk karnesi">
+    <h2>Havza risk karnesi (25)</h2>
+    <div class="sr-kaydir">
+      <table class="sr-tablo">
+        <caption>Havza · skor · kategori · bileşenler (yüksek=risk).</caption>
+        <thead><tr><th scope="col">Havza</th><th scope="col">Skor</th><th scope="col">Kategori</th><th scope="col">Doluluk riski</th><th scope="col">GRACE</th><th scope="col">Yağış</th><th scope="col">Kısıt</th></tr></thead>
+        <tbody>
+          {HAVZA_RISK.map((h) => (
+            <tr data-havza={h.ad}>
+              <th scope="row">{h.ad}</th>
+              <td class="sr-skor">{h.puan ?? '—'}</td>
+              <td><span class={`sr-kat sr-${katSinif(h.kategori)}`}>{h.kategori}</span></td>
+              <td>{h.bilesenler.doluluk ?? '—'}</td>
+              <td>{h.bilesenler.grace ?? '—'}</td>
+              <td>{h.bilesenler.yagis ?? '—'}</td>
+              <td>{h.bilesenler.kisit ?? '—'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sr-bolum" aria-label="İl risk karnesi">
+    <h2>İl risk karnesi (81)</h2>
+    <div class="sr-kaydir">
+      <table class="sr-tablo">
+        <caption>İl · skor · kategori · kapsadığı havzalar.</caption>
+        <thead><tr><th scope="col">İl</th><th scope="col">Skor</th><th scope="col">Kategori</th><th scope="col">Havzalar</th></tr></thead>
+        <tbody>
+          {IL_RISK.map((x) => (
+            <tr data-il={x.il}>
+              <th scope="row">{x.il}</th>
+              <td class="sr-skor">{x.puan ?? '—'}</td>
+              <td><span class={`sr-kat sr-${katSinif(x.kategori)}`}>{x.kategori}</span></td>
+              <td>{x.havzalar.join(' · ')}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <nav class="sr-capraz" aria-label="İlgili bölümler">
+    <a href="/veri/su-riski.json">→ API: su-riski.json</a>
+    <a href="/veri/">→ Açık veri kataloğu</a>
+    <a href="/havzalar/">→ Havza sayfaları</a>
+    <a href="/kuyu-kisit-sorgu/">→ Kısıt sorgu motoru</a>
+  </nav>
+
+  <CtaBlok konu="Su riski" baslik="Yatırımınız için su riski raporu" metin="Seçili il/havza için derinlemesine su riski ve hukuki durum raporu talep edin." />
+  <HukukSerhi />
+  <script type="application/json" id="sr-veri" set:html={JSON.stringify(veri)} />
+  <script type="module" src="/s/su-riski.js" is:inline></script>
+</Sayfa>
+
+<style>
+  .sr-formul { font-size: 0.9rem; color: var(--metin-soluk); max-width: 80ch; margin-bottom: 0.5rem; }
+  .sr-ozet { font-size: 0.95rem; margin-bottom: 1.2rem; }
+  .sr-sec { display: flex; flex-direction: column; gap: 0.3rem; max-width: 26rem; margin-bottom: 0.9rem; }
+  .sr-sec span { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--metin-soluk); }
+  .sr-sec select { font: inherit; padding: 0.6rem 0.7rem; min-height: 44px; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); }
+  .sr-detay { margin-bottom: 1.6rem; padding: 1.1rem 1.3rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); border-top: 3px solid var(--su-700); }
+  .sr-detay h3 { font-family: var(--serif); font-size: 1.4rem; font-weight: 500; margin-bottom: 0.4rem; }
+  .sr-skor-buyuk { font-family: var(--serif); font-size: 2rem; font-weight: 600; color: var(--su-700); }
+  .sr-bar { display: grid; grid-template-columns: 10rem 1fr 3rem; align-items: center; gap: 0.6rem; margin: 0.3rem 0; font-size: 0.84rem; }
+  .sr-bar-cubuk { height: 10px; background: var(--cizgi); position: relative; }
+  .sr-bar-dolgu { height: 100%; background: var(--su-400); }
+  .sr-bar-dolgu.y { background: #d99a2b; }
+  .sr-bar-dolgu.k { background: #b3261e; }
+  .sr-spark { margin-top: 0.6rem; }
+  .sr-spark svg { width: 100%; max-width: 22rem; height: 48px; display: block; }
+  .sr-bolum { margin-bottom: 2rem; }
+  .sr-bolum h2 { font-family: var(--serif); font-weight: 500; font-size: 1.4rem; margin-bottom: 0.7rem; }
+  .sr-kaydir { overflow-x: auto; }
+  .sr-tablo { width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 48rem; }
+  .sr-tablo caption { caption-side: top; text-align: left; font-size: 0.78rem; color: var(--metin-soluk); padding-bottom: 0.5rem; }
+  .sr-tablo th, .sr-tablo td { text-align: left; vertical-align: top; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--cizgi); }
+  .sr-tablo thead th { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--metin-soluk); background: var(--zemin); border-bottom: 2px solid var(--su-700); white-space: nowrap; }
+  .sr-tablo tbody th { font-family: var(--serif); font-size: 0.95rem; font-weight: 500; }
+  .sr-skor { font-family: var(--mono); font-weight: 600; }
+  .sr-kat { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.05rem 0.35rem; border: 1px solid var(--cizgi); white-space: nowrap; }
+  .sr-d { color: #1f8a4c; } .sr-o { color: var(--kehribar-metin); } .sr-y { color: #b06a12; } .sr-k { color: #8a1f17; } .sr-v { color: var(--metin-soluk); }
+  .sr-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .sr-capraz a { color: var(--baglanti); text-decoration: none; }
+  .sr-yazdir { margin-top: 0.9rem; font: inherit; font-weight: 600; padding: 0.6rem 1.2rem; min-height: 44px; background: var(--su-700); color: #fff; border: 0; border-radius: 2px; cursor: pointer; }
+  .sr-spark-bas { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--metin-soluk); margin-top: 0.5rem; }
+  .sr-ham, .sr-butce { font-size: 0.86rem; color: var(--metin-soluk); margin-top: 0.5rem; }
+  @media print {
+    .pm-bar, .adb, .sr-sec, .sr-capraz, .cta, .kirinti { display: none !important; }
+    .sr-tablo { font-size: 0.7rem; }
+    .sr-detay { border: 1px solid #000; }
+  }
+</style>

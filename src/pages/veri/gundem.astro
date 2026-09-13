@@ -1,0 +1,92 @@
+---
+// /veri/gundem/ — VERİ GÜNDEMİ (otomatik veri gazeteciliği, 13.09.2026).
+// Mevcut doğrulanmış veriden otomatik özet/hikâye. Uydurma yok.
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import CtaBlok from '../../components/CtaBlok.astro';
+import HukukSerhi from '../../components/HukukSerhi.astro';
+import { EN_RISKLI, REZERV_AZALAN, EN_KURAK, KISIT_ILLER, SON_KAPATMA, GUNDEM_SAYI } from '../../data/gundem.js';
+
+const OZ_CEVAP =
+  'Su Haritası verisinden otomatik derlenen gündem: en yüksek su riskli havzalar, ' +
+  'rezervi en hızlı azalan bölgeler, son 12 ayda yağışı düşen havzalar, en çok ' +
+  'tahsise kapatma kaydı olan iller ve en yeni Resmî Gazete kapatma ilanları. ' +
+  'Her başlık resmî veriden türetilir; yorum değil, veridir.';
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/veri/gundem/', Astro.site).href;
+
+const sema = [
+  { '@type': 'Dataset', name: 'Su Haritası veri gündemi', description: OZ_CEVAP, creator: { '@id': `${kok}#kurum` }, isAccessibleForFree: true, inLanguage: 'tr-TR', url: canonical },
+  { '@type': 'WebPage', '@id': `${canonical}#sayfa`, url: canonical, name: 'Veri gündemi', description: OZ_CEVAP, inLanguage: 'tr-TR', isPartOf: { '@id': `${kok}#site` } },
+];
+---
+<Sayfa baslik="Veri gündemi" aciklama={OZ_CEVAP} tarayiciBaslik="Su Haritası Veri Gündemi: Risk, Kuraklık, Kapatma" sema={sema}>
+  <SayfaBasi etiket="Veri gündemi" baslik="Veri gündemi" ozet={`${GUNDEM_SAYI.izlenenHavza} havza · ${GUNDEM_SAYI.kapatmaKaydi} kapatma/kısıt kaydı — otomatik derlendi.`} ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Özet" />
+
+  <section class="gd-bolum">
+    <h2>En yüksek su riskli havzalar</h2>
+    <ol class="gd-liste">{EN_RISKLI.map((h) => (
+      <li><a href={`/havzalar/${h.ad.toLowerCase().replace(/\s*havzası$/,'').replace(/[^a-z0-9]+/g,'-')}/`}>{h.ad}</a> <span class="gd-deger">{h.puan}</span> <span class={`gd-kat gd-${h.kategori}`}>{h.kategori}</span></li>
+    ))}</ol>
+  </section>
+
+  <section class="gd-bolum">
+    <h2>Rezervi en hızlı azalan havzalar (GRACE)</h2>
+    <ol class="gd-liste">{REZERV_AZALAN.map((h) => (
+      <li>{h.ad} <span class="gd-deger">{h.ham.graceEgim}</span> <span class="gd-not">cm/ay eğim</span></li>
+    ))}</ol>
+  </section>
+
+  <section class="gd-bolum">
+    <h2>Son 12 ayda yağışı en çok düşen havzalar</h2>
+    <ol class="gd-liste">{EN_KURAK.map((h) => (
+      <li>{h.ad} <span class="gd-deger">{h.ham.yagisDegisim}%</span> <span class="gd-not">12 ay değişim</span></li>
+    ))}</ol>
+  </section>
+
+  <section class="gd-bolum">
+    <h2>En çok tahsise kapatma/kısıt kaydı olan iller</h2>
+    <ol class="gd-liste">{KISIT_ILLER.map((x) => (
+      <li>{x.il} <span class="gd-deger">{x.n}</span> <span class="gd-not">kayıt</span></li>
+    ))}</ol>
+  </section>
+
+  <section class="gd-bolum">
+    <h2>En yeni Resmî Gazete kapatma/kısıt ilanları</h2>
+    <ul class="gd-kayitlar">{SON_KAPATMA.map((k) => (
+      <li><span class="gd-tarih">{k.tarih}</span> {k.il && <strong>{k.il}</strong>} {k.saha} {k.kaynak && <a href={k.kaynak} target="_blank" rel="noopener">RG</a>}</li>
+    ))}</ul>
+  </section>
+
+  <p class="gd-not-kaynak">Tüm veriler resmî kaynaklardan derlenmiştir (DSİ, EPİAŞ, GRACE, CHIRPS, Resmî Gazete). Yöntem: <a href="/hakkinda/">kaynak politikası</a> · API: <a href="/veri/">açık veri</a>.</p>
+
+  <nav class="gd-capraz" aria-label="İlgili bölümler">
+    <a href="/su-riski-endeksi/">→ Su riski endeksi</a>
+    <a href="/mevzuat/degisiklikler/">→ Mevzuat değişiklik radarı (takip)</a>
+    <a href="/kuyu-kisit-sorgu/">→ Kısıt sorgu motoru</a>
+    <a href="/veri/">→ Açık veri kataloğu</a>
+  </nav>
+
+  <CtaBlok konu="Veri gündemi" baslik="Bu veriler yatırımınızı nasıl etkiliyor?" metin="Seçili il/havza için su riski ve hukuki durum raporu talep edin." />
+  <HukukSerhi />
+</Sayfa>
+
+<style>
+  .gd-bolum { margin-bottom: 1.8rem; }
+  .gd-bolum h2 { font-family: var(--serif); font-weight: 500; font-size: 1.35rem; margin-bottom: 0.6rem; }
+  .gd-liste { margin-left: 1.1rem; font-size: 0.94rem; }
+  .gd-liste li { margin: 0.25rem 0; }
+  .gd-deger { font-family: var(--mono); font-weight: 600; color: var(--su-700); }
+  .gd-not { color: var(--metin-soluk); font-size: 0.82rem; }
+  .gd-kat { font-family: var(--mono); font-size: 0.6rem; text-transform: uppercase; padding: 0.05rem 0.35rem; border: 1px solid var(--cizgi); }
+  .gd-Düşük { color: #1f8a4c; } .gd-Orta { color: var(--kehribar-metin); } .gd-Yüksek { color: #b06a12; } .gd-Kritik { color: #8a1f17; }
+  .gd-kayitlar { list-style: none; padding: 0; display: grid; gap: 0.4rem; font-size: 0.9rem; }
+  .gd-kayitlar li { padding: 0.5rem 0.7rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); border-left: 3px solid var(--kehribar); }
+  .gd-tarih { font-family: var(--mono); font-size: 0.78rem; color: var(--metin-soluk); margin-right: 0.4rem; }
+  .gd-not-kaynak { font-size: 0.86rem; color: var(--metin-soluk); margin-top: 1.2rem; }
+  .gd-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .gd-capraz a { color: var(--baglanti); text-decoration: none; }
+</style>

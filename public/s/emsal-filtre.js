@@ -3,8 +3,9 @@
 (function () {
   'use strict';
   var girdi = document.getElementById('em-filtre');
+  var konu = document.getElementById('em-konu-sec');
   var tablo = document.getElementById('em-tablo');
-  if (!girdi || !tablo) return;
+  if (!tablo) return;
   var satirlar = Array.prototype.slice.call(tablo.tBodies[0].rows);
   var sayac = document.getElementById('em-sayac');
   var bos = document.getElementById('em-bos');
@@ -17,17 +18,19 @@
   }
 
   function suz() {
-    var q = norm(girdi.value.trim());
+    var q = norm(girdi ? girdi.value.trim() : '');
+    var kq = norm(konu ? konu.value : '');
     var gorunen = 0;
     for (var i = 0; i < satirlar.length; i++) {
-      var esles = !q || norm(satirlar[i].textContent).indexOf(q) !== -1;
-      satirlar[i].hidden = !esles;
+      var tr = satirlar[i];
+      var esles = (!q || norm(tr.textContent).indexOf(q) !== -1) && (!kq || norm(tr.textContent).indexOf(kq) !== -1);
+      tr.hidden = !esles;
       if (esles) gorunen++;
     }
-    if (sayac) sayac.textContent = q ? (gorunen + ' / ' + toplam + ' karar') : (toplam + ' karar');
+    if (sayac) sayac.textContent = (q || kq) ? (gorunen + ' / ' + toplam + ' karar') : (toplam + ' karar');
     if (bos) bos.hidden = gorunen !== 0;
   }
 
-  girdi.addEventListener('input', suz);
-  girdi.addEventListener('search', suz);
+  if (girdi) { girdi.addEventListener('input', suz); girdi.addEventListener('search', suz); }
+  if (konu) konu.addEventListener('change', suz);
 })();

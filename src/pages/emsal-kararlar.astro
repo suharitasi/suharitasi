@@ -83,6 +83,13 @@ const sema = [
     <span>Karar ara</span>
     <input type="search" id="em-filtre" placeholder="ör. 5686, kiralama, TMK 756, Danıştay…" autocomplete="off" />
   </label>
+  <label class="em-konu">
+    <span>Uyuşmazlık konusu seç (emsal eşleştirici)</span>
+    <select id="em-konu-sec">
+      <option value="">— Konu seçin —</option>
+      {[...new Set(kararlar.map((k) => k.konu))].sort((a, b) => a.localeCompare(b, 'tr')).map((k) => <option value={k}>{k}</option>)}
+    </select>
+  </label>
   <p class="em-sayac" id="em-sayac" aria-live="polite">{kararlar.length} karar</p>
 
   <div class="em-kaydir">
@@ -147,6 +154,11 @@ const sema = [
   }
 
   .em-arama { display: flex; flex-direction: column; gap: 0.3rem; max-width: 30rem; margin-bottom: 0.6rem; }
+  .em-konu { display: flex; flex-direction: column; gap: 0.3rem; max-width: 30rem; margin-bottom: 0.6rem; }
+  .em-konu select { font: inherit; padding: 0.6rem 0.8rem; min-height: 44px; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); }
+  .em-konu span {
+    font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--metin-soluk);
+  }
   .em-arama span {
     font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--metin-soluk);
   }

@@ -250,6 +250,8 @@ function llmsOlustur() {
   // yani AI istemcilerine kategorisiz gidiyordu.
   const BOLUM = [
     ['veri/', 'Açık veri kataloğu (JSON API)'],
+    ['su-riski-endeksi/', 'Su riski endeksi (il/havza)'],
+    ['kuyu-karar-motoru/', 'Kuyu karar motoru (süre, merci, evrak)'],
     ['su-hukuku/', 'Su hukuku omurga sayfası (karar matrisi)'],
     ['rehberler/', 'Mevzuat rehberleri'],
     ['mevzuat/', 'Mevzuat maddeleri (madde madde)'],
