@@ -8,6 +8,29 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ 13.09.2026 — DENETİM 16 BULGU: 14'ü KODA DÖKÜLDÜ, 2'si KULLANICIYA ═══
+Kaynak: 7 kimlikli denetim. Uygulama commit'leri 599696d + e4d2f35 + 27866c7;
+Cloudflare deploy landi. Doğrulama `--tam` 23:01Z: 🔴0 · 🟡1 (geçici dış
+bağlantı) · 🟢23. Build 1011 sayfa · sitemap 1007 · SEO denetimi O:0.
+KAPANAN:
+- [x] 1 risk birleştirme (tek kanonik havza-risk.js; Marmara=60) · 2 KVKK +
+  /gizlilik/ · 3 sağlık kırmızıları (16-seo-geo-genis + 20-altyapi + 13-kontrast
+  — CtaBlok gradyan/arka plan) · 4 mevzuat çift içerik (24 alıntı → link) ·
+  5 navigasyon sadeleştirme · 6 GA4 altyapısı (GA4_ID boş = kapalı) ·
+  7 ölü bağımlılık (maplibre-gl + three söküldü) · 8 build-time normalizasyon
+  (ortak-normalize.js tek kaynak) · 9 /kullanilanlar/ → /veri/ 301 ·
+  10 hero çift yönlü mesaj · 11 RSS (/feed.xml) · 12 hreflang + /en/ özet ·
+  13 OpenAPI (/veri/openapi.json, 10 uç) · 14 otonom veri hikâyesi
+  (/veri/hikaye/baraj-doluluk/).
+KULLANICIYA DEVREDİLEN (kod ile çözülemez):
+- [ ] **15 — sunucu-taraflı PDF:** Cloudflare Pages Function'da headless
+  tarayıcı yok. İstemci yazdırma zaten var. Sunucu-taraflı üretim ayrı servis
+  (ücretli) gerektirir → karar bekler (AY İLKESİ: yeni bağımlılık onay ister).
+- [ ] **16 — secret rotasyonu:** KV `SAYAC_ANAHTAR` sohbette paylaşıldı.
+  Panelden yeni değer üret → Cloudflare Pages → Settings → Environment
+  variables → `SAYAC_ANAHTAR` (Production) → Save → yeniden deploy. Eski
+  değeri geçersiz say.
+
 ═══ 08.09.2026 — GSC ÖLÇÜM TURU + WHATSAPP + KARAR KAPATMA
 (rapor/08-09-gsc-ticari-whatsapp.md · rapor/08-09-karar-kapatma.md ·
 karar: rapor/08-09-KARAR-KULLANICI.md · KARARLAR §36-37) ═══
