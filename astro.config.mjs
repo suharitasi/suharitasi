@@ -98,6 +98,8 @@ function llmsOlustur() {
   const BOLUM = [
     ['su-hukuku/', 'Su hukuku omurga sayfası (karar matrisi)'],
     ['rehberler/', 'Mevzuat rehberleri'],
+    ['emsal-kararlar/', 'Emsal kararlar veritabanı'],
+    ['islem-matrisi/', 'Su işlemleri ve yetkili kurum matrisi (81 il)'],
     ['su-kanunu/', 'Su Kanunu ve mevzuat kütüphanesi'],
     ['sozluk/', 'Su hukuku sözlüğü'],
     ['havzalar/', 'Havzalar (25 havza)'],

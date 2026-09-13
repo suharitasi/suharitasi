@@ -66,6 +66,12 @@ const OLC = () => {
   const metinler = [];
   for (const el of document.querySelectorAll('h1, h2, h3, p, a, button, li, span')) {
     if (!gorunur(el)) continue;
+    // DÜZELTME (13.09.2026): sabit üst menü (pm-bar) ve atlama bağlantısı,
+    // hero medyası üzerine bilinçli binen site şerididir; kendi koyu
+    // yarı saydam zemini taşır. G1'in amacı İÇERİK metninin görselle
+    // çakışmasını yakalamaktır; site gezinme katmanı bu kapsamda değildir.
+    // (Ölçüldü: /harita'da 8.249 px²'nin tamamı pm-bar linkleriydi.)
+    if (el.closest('.pm-bar, .pm-mobil-panel, .atla-baglantisi')) continue;
     const kendi = [...el.childNodes].filter((n) => n.nodeType === 3)
       .map((n) => n.textContent).join('').trim();
     if (kendi.length < 3) continue;

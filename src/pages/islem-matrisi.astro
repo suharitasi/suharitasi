@@ -1,0 +1,223 @@
+---
+// /islem-matrisi/ — 81 İL × İŞLEM MATRİSİ (13.09.2026).
+//
+// İki eksen: (1) 20 su işlemi → yetkili kurum + mevzuat dayanağı + başvuru
+// kanalı + ilgili rehber; (2) il seçici → o ilin DSİ bölge müdürlüğü, havzası
+// ve su idaresi. Veri src/data/islem-matrisi.js'ten (tek kaynak) gelir;
+// hiçbir eşleme bu sayfada üretilmez (uydurma yasağı).
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import HukukDanismanlik from '../components/HukukDanismanlik.astro';
+import HukukSerhi from '../components/HukukSerhi.astro';
+import { ISLEMLER, DURUM_ETIKET, ilMatrisi, tumIller, KAYNAK_NOTU } from '../data/islem-matrisi.js';
+import { ilSlug } from '../data/il-profil.js';
+
+const OZ_CEVAP =
+  'Türkiye\'de su işlemlerinde yetkili kurum işleme göre değişir: kuyu ve yeraltı ' +
+  'suyu belgelerinde DSİ, su tahsisinde DSİ, atıksu ve kanalizasyonda belediye/SUKİ, ' +
+  'jeotermalde MAPEG, sulak alanda DKMP. Bu matris 20 işlemi yetkili kurum, mevzuat ' +
+  'dayanağı ve başvuru kanalıyla eşler; il seçici o ilin DSİ bölgesini gösterir.';
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/islem-matrisi/', Astro.site).href;
+
+const iller = tumIller();
+const ilVeri = iller.map((il) => ({ ...ilMatrisi(il), slug: ilSlug(il) }));
+
+const durumSinif = (d) =>
+  d === 'dogrulandi' ? 'ok' : d === 'belirsiz' ? 'belirsiz' : 'eksik';
+
+const sema = [
+  {
+    '@type': 'ItemList',
+    '@id': `${canonical}#islemler`,
+    name: 'Su işlemleri ve yetkili kurumlar',
+    numberOfItems: ISLEMLER.length,
+    itemListElement: ISLEMLER.map((i, n) => ({
+      '@type': 'ListItem',
+      position: n + 1,
+      name: i.ad,
+      description: `${i.kurumlar.map((k) => k.ad).join(', ')} · ${i.mevzuatDayanagi ?? i.dayanak}`,
+    })),
+  },
+  {
+    '@type': 'WebPage',
+    '@id': `${canonical}#sayfa`,
+    url: canonical,
+    name: 'Su işlemleri ve yetkili kurumlar matrisi',
+    description: OZ_CEVAP,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${kok}#site` },
+  },
+];
+---
+<Sayfa
+  baslik="Su işlemleri ve yetkili kurumlar"
+  aciklama={OZ_CEVAP}
+  tarayiciBaslik="Su İşlemleri ve Yetkili Kurum Matrisi (81 İl)"
+  sema={sema}
+>
+  <SayfaBasi etiket="İşlem matrisi" baslik="Su işlemleri ve yetkili kurumlar" ozet="20 su işlemi, yetkili kurum, mevzuat dayanağı ve başvuru kanalı; il seçici ile DSİ bölgeniz." ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Kanun özeti" />
+
+  {/* İL MATRİSİ — 81 il; seçici satırları süzer (no-JS'te tümü görünür). */}
+  <section class="im-il" aria-label="İlinize göre yetkili kurum">
+    <h2>İlinizde DSİ bölgesi, havza ve su idaresi</h2>
+    <label class="im-sec">
+      <span>İl seçin</span>
+      <select id="im-il-sec">
+        <option value="">— İl seçin —</option>
+        {ilVeri.map((x) => <option value={x.slug}>{x.il}</option>)}
+      </select>
+    </label>
+    <p class="im-bos" id="im-bos" hidden aria-live="polite">Bu il için kayıt görünür.</p>
+    <div class="im-kaydir">
+      <table class="im-il-tablo" id="im-il-tablo">
+        <caption>İl · DSİ bölge müdürlüğü · havza · su ve kanalizasyon idaresi.</caption>
+        <thead>
+          <tr>
+            <th scope="col">İl</th>
+            <th scope="col">DSİ bölge müdürlüğü</th>
+            <th scope="col">Havza</th>
+            <th scope="col">Su ve kanalizasyon idaresi</th>
+            <th scope="col">Kuyu ruhsatı</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ilVeri.map((x) => (
+            <tr data-il={x.slug}>
+              <th scope="row">{x.il}</th>
+              <td>{x.bolgeler.length
+                ? x.bolgeler.map((b, i) => (<>{i > 0 && ' · '}<span>{b.no}. Bölge (merkez: {b.merkez})</span></>))
+                : <span class="im-yok">veri yok</span>}</td>
+              <td>{x.havzalar.length
+                ? x.havzalar.map((h, i) => (<>{i > 0 && ' · '}<span>{h.ad}</span></>))
+                : <span class="im-yok">veri yok</span>}</td>
+              <td>{x.suIdaresi ?? <span class="im-yok">açık kayıt yok</span>}</td>
+              <td><a href={`/kuyu-ruhsati/${x.slug}/`}>{x.il} →</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  {/* İŞLEM × KURUM TABLOSU. */}
+  <section class="im-tablo-kap" aria-label="İşlem, kurum ve dayanak">
+    <h2>Hangi işlem, hangi kurum?</h2>
+    <p class="im-not">{KAYNAK_NOTU}</p>
+    <div class="im-kaydir">
+      <table class="im-tablo">
+        <caption>20 su işlemi · yetkili kurum · mevzuat dayanağı · başvuru kanalı · ilgili rehber.</caption>
+        <thead>
+          <tr>
+            <th scope="col">İşlem</th>
+            <th scope="col">Yetkili kurum</th>
+            <th scope="col">Mevzuat dayanağı</th>
+            <th scope="col">Başvuru kanalı</th>
+            <th scope="col">Rehber</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ISLEMLER.map((i) => (
+            <tr>
+              <th scope="row">{i.ad}</th>
+              <td>
+                {i.kurumlar.length
+                  ? i.kurumlar.map((k, n) => (<>{n > 0 && ', '}<span title={k.ad}>{k.kisaltma ?? k.ad}</span></>))
+                  : <span class="im-yok">doğrulanmadı</span>}
+                <span class={`im-durum im-${durumSinif(i.durum)}`}>{DURUM_ETIKET[i.durum] ?? i.durum}</span>
+              </td>
+              <td>{i.mevzuatDayanagi ?? i.dayanak}</td>
+              <td>{i.basvuruKanali ?? <span class="im-yok">kanal doğrulanmadı</span>}</td>
+              <td>{i.ilgiliRehber ? <a href={`/rehberler/${i.ilgiliRehber}/`}>{i.ilgiliRehber}</a> : '—'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <nav class="im-capraz" aria-label="İlgili bölümler">
+    <a href="/su-hukuku/">→ Su hukuku omurga sayfası</a>
+    <a href="/hangi-kurum/">→ İşlem → kurum (özet)</a>
+    <a href="/kuyu-ruhsati/">→ İl bazında kuyu ruhsatı</a>
+    <a href="/kapatma-kaydi/">→ Resmî Gazete kapatma kaydı</a>
+  </nav>
+
+  <HukukDanismanlik konu="Su işlemleri ve yetkili kurum" />
+  <HukukSerhi />
+</Sayfa>
+
+<script type="module" src="/s/islem-matrisi.js" is:inline></script>
+
+<style>
+  .im-il { margin: 0 0 2.6rem; }
+  .im-il h2,
+  .im-tablo-kap h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.6rem;
+    margin: 0.4rem 0 0.7rem;
+  }
+
+  .im-sec { display: flex; flex-direction: column; gap: 0.3rem; max-width: 22rem; }
+  .im-sec span {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+  .im-sec select {
+    font: inherit;
+    padding: 0.6rem 0.7rem;
+    min-height: 44px;
+    border: 1px solid var(--cizgi);
+    background: var(--zemin-kart);
+    color: var(--metin);
+  }
+  .im-sec select:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+
+  .im-bos { margin-top: 0.9rem; color: var(--metin-soluk); font-style: italic; }
+
+  .im-il-tablo { width: 100%; border-collapse: collapse; font-size: 0.84rem; min-width: 52rem; margin-top: 1rem; }
+  .im-il-tablo caption { caption-side: top; text-align: left; font-size: 0.78rem; color: var(--metin-soluk); padding-bottom: 0.5rem; }
+  .im-il-tablo th, .im-il-tablo td { text-align: left; vertical-align: top; padding: 0.5rem 0.65rem; border-bottom: 1px solid var(--cizgi); }
+  .im-il-tablo thead th {
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--metin-soluk); background: var(--zemin); border-bottom: 2px solid var(--su-700); white-space: nowrap;
+  }
+  .im-il-tablo tbody th { font-family: var(--serif); font-size: 0.98rem; font-weight: 500; white-space: nowrap; }
+  .im-il-tablo tbody tr:hover { background: rgba(12, 90, 124, 0.04); }
+
+  .im-not { max-width: 72ch; font-size: 0.9rem; color: var(--metin-soluk); margin-bottom: 0.9rem; }
+  .im-kaydir { overflow-x: auto; }
+  .im-tablo { width: 100%; border-collapse: collapse; font-size: 0.84rem; min-width: 52rem; }
+  .im-tablo caption { caption-side: top; text-align: left; font-size: 0.78rem; color: var(--metin-soluk); padding-bottom: 0.5rem; }
+  .im-tablo th, .im-tablo td { text-align: left; vertical-align: top; padding: 0.55rem 0.65rem; border-bottom: 1px solid var(--cizgi); }
+  .im-tablo thead th {
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--metin-soluk); background: var(--zemin); border-bottom: 2px solid var(--su-700); white-space: nowrap;
+  }
+  .im-tablo tbody th { font-family: var(--serif); font-size: 0.96rem; font-weight: 500; width: 22%; }
+  .im-tablo tbody tr:hover { background: rgba(12, 90, 124, 0.04); }
+
+  .im-yok { color: var(--metin-soluk); font-style: italic; }
+  .im-durum {
+    display: inline-block; margin-left: 0.4rem; padding: 0.05rem 0.4rem;
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.04em; border: 1px solid var(--cizgi);
+  }
+  .im-ok { color: var(--yesil-kara); }
+  .im-eksik { color: var(--kehribar-metin); }
+  .im-belirsiz { color: var(--metin-soluk); }
+
+  .im-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .im-capraz a { color: var(--baglanti); text-decoration: none; }
+  .im-capraz a:hover { text-decoration: underline; }
+
+  @media (max-width: 640px) {
+    .im-il-kart dl > div { grid-template-columns: 1fr; gap: 0.1rem; }
+  }
+</style>
