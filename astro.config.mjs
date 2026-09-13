@@ -158,6 +158,7 @@ function llmsOlustur() {
     ['havzalar/', 'Havzalar (25 havza)'],
     ['kuyu-ruhsati/', 'Kuyu ruhsatında il bazında yetkili kurum (81 il)'],
     ['durumum/', 'Sektöre göre su hukuku durumu'],
+    ['sektor/', 'Sektörel su izni ve dava yolları'],
     ['goller/', 'Göller'],
     ['nehirler/', 'Nehirler'],
     ['vaka/', 'Vaka incelemeleri'],

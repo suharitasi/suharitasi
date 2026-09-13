@@ -1,0 +1,124 @@
+---
+// /sektor/ — SEKTÖREL İZİN/DAVA REHBERLERİ HUB'I (13.09.2026).
+// OSB/sanayi, tarımsal sulama kooperatifleri, jeotermal tesisler, hazır
+// beton/maden ve gıda-içecek için: ilgili sektör profili + işlem + rehber.
+// Eşleme mevcut doğrulanmış veriden türetilir (uydurma yok).
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import CtaBlok from '../components/CtaBlok.astro';
+import HukukSerhi from '../components/HukukSerhi.astro';
+import { personalar } from '../data/persona.js';
+
+const OZ_CEVAP =
+  'Sektörünüze göre su izni ve dava yolları: OSB/sanayi, tarımsal sulama ' +
+  'kooperatifleri, jeotermal tesisler, hazır beton/maden ve gıda-içecek ' +
+  'işletmeleri için hangi belge, hangi kurum, hangi süre ve hangi uyuşmazlık yolu.';
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/sektor/', Astro.site).href;
+
+const bul = (parca) => personalar.find((p) => p.ad.toLowerCase().includes(parca));
+
+const sektorler = [
+  {
+    ad: 'OSB / sanayi yatırımcısı',
+    aciklama: 'Organize sanayi bölgesi, endüstri bölgesi ve serbest bölgede faaliyet: su verimliliği belgesi, tesis su tahsisi ve deşarj izinleri.',
+    persona: bul('osb'),
+    rehberler: ['su-tahsisi-oncelik-sirasi', 'kaynak-suyu-kiralama'],
+  },
+  {
+    ad: 'Tarımsal sulama kooperatifleri',
+    aciklama: 'Sulama kooperatifi ve ziraat odası: su tahsisi önceliği, yeraltı suyu işletme sahası ve kuyu belgeleri.',
+    persona: bul('sulama kooperatifi'),
+    rehberler: ['su-tahsisi-oncelik-sirasi', 'yeralti-suyu-isletme-sahasi', 'kuyu-ruhsati'],
+  },
+  {
+    ad: 'Jeotermal tesisler',
+    aciklama: 'Jeotermal kaynak ve doğal mineralli su arama/işletme ruhsatı, öncelik hakkı, geçiş rejimi ve iptal-ihale.',
+    persona: bul('jeotermal') ?? bul('enerji yatırımcısı'),
+    rehberler: ['jeotermal-ruhsat', 'baraj-kamulastirmasi'],
+  },
+  {
+    ad: 'Hazır beton / maden işletmeleri',
+    aciklama: 'Maden ve taş ocağı işletmeleri: su tahsisi, hammadde üretim izni ve sulak alan kısıtları.',
+    persona: bul('maden işletmecisi'),
+    rehberler: ['su-tahsisi-oncelik-sirasi', 'yeralti-suyu-isletme-sahasi'],
+  },
+  {
+    ad: 'Gıda-içecek üreticisi',
+    aciklama: 'İçecek ve gıda üretimi: kaynak suyu kiralama, doğal mineralli su tesisi ve içme suyu temini.',
+    persona: bul('gıda-içecek'),
+    rehberler: ['kaynak-suyu-kiralama', 'jeotermal-ruhsat'],
+  },
+];
+
+const sema = [
+  {
+    '@type': 'CollectionPage',
+    '@id': `${canonical}#sayfa`,
+    url: canonical,
+    name: 'Sektöre göre su izni ve dava yolları',
+    description: OZ_CEVAP,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${kok}#site` },
+  },
+  {
+    '@type': 'ItemList',
+    name: 'Sektörel su hukuku rehberleri',
+    numberOfItems: sektorler.length,
+    itemListElement: sektorler.map((s, i) => ({
+      '@type': 'ListItem', position: i + 1, name: s.ad,
+    })),
+  },
+];
+---
+<Sayfa baslik="Sektöre göre su izni ve dava yolları" aciklama={OZ_CEVAP} tarayiciBaslik="Sektöre Göre Su İzni ve Dava Yolları" sema={sema}>
+  <SayfaBasi etiket="Sektörel rehber" baslik="Sektörünüze göre su izni ve dava yolları" ozet="OSB, tarımsal sulama, jeotermal, madencilik ve gıda-içecek için hangi belge, hangi kurum, hangi süre." ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Kanun özeti" />
+
+  <div class="sk-izgara">
+    {sektorler.map((s) => (
+      <section class="sk-kart" aria-label={s.ad}>
+        <h2>{s.ad}</h2>
+        <p class="sk-aciklama">{s.aciklama}</p>
+        <div class="sk-baglar">
+          {s.persona && (
+            <a class="sk-birincil" href={`/durumum/${s.persona.slug}/`}>
+              → {s.persona.ad} profili
+            </a>
+          )}
+          {s.rehberler.map((r) => <a href={`/rehberler/${r}/`}>→ {r}</a>)}
+          <a href="/islem-matrisi/">→ işlem → yetkili kurum</a>
+        </div>
+        {s.persona && <p class="sk-yukumluluk">{s.persona.yukumluluk}</p>}
+      </section>
+    ))}
+  </div>
+
+  <nav class="sk-capraz" aria-label="İlgili bölümler">
+    <a href="/durumum/">→ Tüm sektör profilleri (43)</a>
+    <a href="/su-hukuku/">→ Su hukuku omurga sayfası</a>
+    <a href="/islem-matrisi/">→ 20 su işlemi matrisi</a>
+    <a href="/emsal-kararlar/">→ Emsal kararlar</a>
+  </nav>
+
+  <CtaBlok konu="Sektörel su izni" baslik="Sektörünüzün izin yükümlülüğünü netleştirelim" metin="Faaliyet kolunuzu ve durumunuzu iletin; hangi belge, hangi kurum ve hangi son tarih gerektiğini değerlendirelim." />
+  <HukukSerhi />
+</Sayfa>
+
+<style>
+  .sk-izgara { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; }
+  .sk-kart { padding: 1.1rem 1.3rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); border-top: 2px solid var(--su-700); }
+  .sk-kart h2 { font-family: var(--serif); font-weight: 500; font-size: 1.25rem; margin-bottom: 0.4rem; }
+  .sk-aciklama { font-size: 0.92rem; color: var(--metin); }
+  .sk-baglar { display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.7rem; font-size: 0.9rem; }
+  .sk-baglar a { color: var(--baglanti); text-decoration: none; }
+  .sk-baglar a:hover { text-decoration: underline; }
+  .sk-birincil { font-family: var(--serif); font-size: 1.02rem; font-weight: 500; }
+  .sk-yukumluluk { margin-top: 0.7rem; padding-top: 0.6rem; border-top: 1px solid var(--cizgi); font-size: 0.84rem; color: var(--metin-soluk); }
+  .sk-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .sk-capraz a { color: var(--baglanti); text-decoration: none; }
+  .sk-capraz a:hover { text-decoration: underline; }
+  @media (max-width: 640px) { .sk-izgara { grid-template-columns: 1fr; } }
+</style>
