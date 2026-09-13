@@ -1,0 +1,7 @@
+Contact: mailto:avserdararslan@hotmail.com
+Expires: 2027-09-13T00:00:00.000Z
+Preferred-Languages: tr, en
+Canonical: https://suharitasi.com/.well-known/security.txt
+Policy: https://suharitasi.com/hakkinda/
+# Güvenlik açığı bildirimi için yukarıdaki adrese yazın. Kapsam:
+# suharitasi.com ve alt alan adları.

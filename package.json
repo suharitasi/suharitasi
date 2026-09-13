@@ -12,7 +12,7 @@
   "description": "suharitasi.com — Türkiye su verisi, havzaları ve su mevzuatı",
   "dependencies": {
     "astro": "^7.2.7",
-    "maplibre-gl": "^5.24.0",
+    "maplibre-gl": "^6.9.0",
     "three": "0.185.1"
   },
   "private": true,

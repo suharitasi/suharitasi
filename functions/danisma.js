@@ -26,6 +26,13 @@ export async function onRequest(context) {
   const { request, env } = context;
   if (request.method !== 'POST') return json({ hata: 'yalnız POST' }, 405);
 
+  // KAYNAK KONTROLÜ (13.09.2026): yalnız kendi sitemizden POST kabul edilir
+  // (siteler arası form suistimalini kapatır). Origin başlığı varsa eşleşmeli.
+  let origin;
+  try { origin = new URL(request.url).origin; } catch { origin = ''; }
+  const gelenOrigin = request.headers.get('origin');
+  if (gelenOrigin && origin && gelenOrigin !== origin) return json({ hata: 'geçersiz kaynak' }, 403);
+
   let veri;
   try {
     veri = await request.json();

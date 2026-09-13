@@ -34,6 +34,9 @@ export async function onRequest(context) {
   }
 
   if (request.method !== 'POST') return json({ hata: 'yalniz POST' }, 405);
+  // KAYNAK KONTROLÜ: yalnız kendi sitemizden POST kabul edilir.
+  const gelenOrigin = request.headers.get('origin');
+  if (gelenOrigin && gelenOrigin !== url.origin) return json({ hata: 'gecersiz kaynak' }, 403);
   let veri;
   try { veri = await request.json(); } catch { return json({ hata: 'gecersiz govde' }, 400); }
   if (kirp(veri.website, 40)) return json({ ok: true }); // honeypot

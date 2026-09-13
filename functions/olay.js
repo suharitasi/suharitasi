@@ -97,6 +97,9 @@ export async function onRequest(context) {
   // SAYIM — yalnız geçerli olay adı + tarayıcı isteği.
   const olay = (url.searchParams.get('o') || '').slice(0, 24);
   if (kv && GECERLI.has(olay)) {
+    // KAYNAK KONTROLÜ: Origin varsa kendi sitemiz olmalı.
+    const gelenOrigin = request.headers.get('origin');
+    if (gelenOrigin && gelenOrigin !== url.origin) return bosYanit();
     const gezinme = !!request.headers.get('sec-fetch-dest')
       || (request.headers.get('referer') || '').startsWith(url.origin + '/');
     if (gezinme && (request.method === 'GET' || request.method === 'POST')) {
