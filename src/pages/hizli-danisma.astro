@@ -1,0 +1,134 @@
+---
+// /hizli-danisma/ — HIZLI DANIŞMA FORMU (13.09.2026).
+// Form, /danisma Pages Function'ına POST eder (KV'ye lead yazar); JS kapalıysa
+// mailto'ya düşer. KVKK: açık rıza kutusu zorunlu, amaç ve saklama notu var.
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import HukukSerhi from '../components/HukukSerhi.astro';
+import { EPOSTA, TELEFON } from '../data/site';
+import { ISLEMLER } from '../data/islem-matrisi.js';
+
+const aciklama =
+  'Su hukuku hızlı danışma formu: kuyu ruhsatı, belge reddi, idari para cezası, ' +
+  'su tahsisi, komşu su uyuşmazlığı ve jeotermal konularında durumunuzu iletin. ' +
+  'En kısa sürede dönüş yapılır.';
+const mailKonu = 'Hızlı danışma talebi';
+---
+<Sayfa baslik="Hızlı hukuki danışma" aciklama={aciklama} tarayiciBaslik="Hızlı Hukuki Danışma — Su Hukuku">
+  <SayfaBasi etiket="Hızlı danışma" baslik="Durumunuzu iletin, dönüş yapalım" ozet="Kuyu ruhsatı, belge reddi, idari para cezası, su tahsisi veya komşu su uyuşmazlığı — durumunuzu kısaca yazın." />
+
+  <div class="hd-ust">
+    <a class="hd-kanal hd-tel" href={`tel:${TELEFON.tel}`} data-olay="telefon">
+      <span class="hd-etiket">Hemen ara</span>
+      <span class="hd-deger">{TELEFON.gorunur}</span>
+    </a>
+    <a class="hd-kanal hd-wa" href="/whatsapp/" rel="nofollow noopener" data-olay="whatsapp">
+      <span class="hd-etiket">WhatsApp</span>
+      <span class="hd-deger">Mesaj gönderin</span>
+    </a>
+  </div>
+
+  <form id="danisma-form" class="hd-form" data-olay-form="iletisim-form">
+    <div class="hd-satir">
+      <label>Ad Soyad <span class="hd-zorunlu">*</span>
+        <input type="text" name="ad" required autocomplete="name" placeholder="Adınız Soyadınız" />
+      </label>
+      <label>Telefon <span class="hd-zorunlu">*</span>
+        <input type="tel" name="telefon" required autocomplete="tel" placeholder="05xx xxx xx xx" />
+      </label>
+    </div>
+    <div class="hd-satir">
+      <label>İl
+        <input type="text" name="il" autocomplete="address-level1" placeholder="Örn. Ankara" />
+      </label>
+      <label>Konu
+        <select name="konu">
+          <option value="Kuyu ruhsatı / belge">Kuyu ruhsatı / belge</option>
+          <option value="İdari para cezası / kuyu kapatma">İdari para cezası / kuyu kapatma</option>
+          <option value="Belge reddi / iptal davası">Belge reddi / iptal davası</option>
+          <option value="Su tahsisi">Su tahsisi</option>
+          <option value="Komşu su / kaynak hakkı">Komşu su / kaynak hakkı</option>
+          <option value="Jeotermal / doğal mineralli su">Jeotermal / doğal mineralli su</option>
+          <option value="Kamulaştırma / baraj">Kamulaştırma / baraj</option>
+          <option value="Diğer">Diğer</option>
+        </select>
+      </label>
+    </div>
+    <label class="hd-tam">Durumunuz <span class="hd-zorunlu">*</span>
+      <textarea name="mesaj" rows="5" required placeholder="Örn. DSİ kuyu kullanma belgesi başvurumu reddetti; tebliğ tarihi ..."></textarea>
+    </label>
+    {/* Honeypot — botlar doldurur, insan görmez. */}
+    <label class="hd-tuzak" aria-hidden="true">Bu alanı boş bırakın
+      <input type="text" name="website" tabindex="-1" autocomplete="off" />
+    </label>
+    <label class="hd-onay">
+      <input type="checkbox" name="onay" required />
+      <span>İletişim bilgilerimin yalnız bu talebe dönüş amacıyla işlenmesine (KVKK) onay veriyorum.</span>
+    </label>
+    <div class="hd-gonder">
+      <button type="submit" class="hd-btn">Talebi gönder</button>
+      <a class="hd-mail" href={`mailto:${EPOSTA}?subject=${encodeURIComponent(mailKonu)}`} data-olay="eposta">veya e-posta gönder</a>
+    </div>
+    <p class="hd-durum" id="danisma-durum" aria-live="polite"></p>
+    <p class="hd-not">
+      Bu form hukuki görüş vermez; talebinizi iletir. Gönderilen bilgiler yalnız
+      dönüş amacıyla işlenir ve talep kapanınca silinir.
+    </p>
+  </form>
+
+  <p class="hd-islemler">
+    Hangi konuları ele alıyoruz? <a href="/islem-matrisi/">20 su işleminin tamamı →</a>
+  </p>
+
+  <HukukSerhi />
+</Sayfa>
+
+<script type="module" src="/s/danisma.js" is:inline></script>
+
+<style>
+  .hd-ust { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; margin: 0 0 1.4rem; }
+  .hd-kanal {
+    display: flex; flex-direction: column; gap: 0.15rem; padding: 0.8rem 1rem; min-height: 56px;
+    text-decoration: none; border: 1px solid var(--cizgi); border-left: 3px solid var(--su-700); background: var(--zemin-kart);
+  }
+  .hd-etiket { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--metin-soluk); }
+  .hd-deger { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; color: var(--baglanti); }
+  .hd-tel { background: var(--su-700); border-color: transparent; }
+  .hd-tel .hd-etiket { color: #cfe6f2; }
+  .hd-tel .hd-deger { color: #fff; }
+  .hd-wa { background: #1f8a4c; border-color: transparent; }
+  .hd-wa .hd-etiket { color: #d7f2e2; }
+  .hd-wa .hd-deger { color: #fff; }
+
+  .hd-form { margin-top: 0.4rem; }
+  .hd-satir { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; }
+  .hd-form label { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.9rem; font-size: 0.9rem; }
+  .hd-form input, .hd-form select, .hd-form textarea {
+    font: inherit; padding: 0.6rem 0.7rem; min-height: 44px; border: 1px solid var(--cizgi);
+    background: var(--zemin-kart); color: var(--metin); width: 100%;
+  }
+  .hd-form textarea { min-height: 120px; resize: vertical; }
+  .hd-form input:focus-visible, .hd-form select:focus-visible, .hd-form textarea:focus-visible {
+    outline: 2px solid var(--su-700); outline-offset: 2px;
+  }
+  .hd-zorunlu { color: #b3261e; }
+  .hd-tam { display: block; }
+  .hd-tuzak { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .hd-onay { flex-direction: row !important; align-items: flex-start; gap: 0.5rem !important; font-size: 0.86rem; }
+  .hd-onay input { width: auto; min-height: auto; margin-top: 0.2rem; }
+  .hd-gonder { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.4rem; }
+  .hd-btn {
+    font: inherit; font-weight: 600; padding: 0.8rem 1.6rem; min-height: 48px; cursor: pointer;
+    background: var(--su-700); color: #fff; border: 0; border-radius: 2px;
+  }
+  .hd-btn:hover { background: var(--deniz); }
+  .hd-btn:disabled { opacity: 0.6; cursor: wait; }
+  .hd-mail { color: var(--baglanti); }
+  .hd-durum { margin-top: 0.8rem; font-weight: 500; }
+  .hd-durum.ok { color: #1f8a4c; }
+  .hd-durum.hata { color: #b3261e; }
+  .hd-not { margin-top: 0.8rem; font-size: 0.8rem; color: var(--metin-soluk); max-width: 68ch; }
+  .hd-islemler { margin-top: 1.4rem; font-size: 0.92rem; }
+
+  @media (max-width: 560px) { .hd-ust, .hd-satir { grid-template-columns: 1fr; } }
+</style>

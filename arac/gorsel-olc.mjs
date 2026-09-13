@@ -71,7 +71,7 @@ const OLC = () => {
     // yarı saydam zemini taşır. G1'in amacı İÇERİK metninin görselle
     // çakışmasını yakalamaktır; site gezinme katmanı bu kapsamda değildir.
     // (Ölçüldü: /harita'da 8.249 px²'nin tamamı pm-bar linkleriydi.)
-    if (el.closest('.pm-bar, .pm-mobil-panel, .atla-baglantisi')) continue;
+    if (el.closest('.pm-bar, .pm-mobil-panel, .atla-baglantisi, .adb')) continue;
     const kendi = [...el.childNodes].filter((n) => n.nodeType === 3)
       .map((n) => n.textContent).join('').trim();
     if (kendi.length < 3) continue;

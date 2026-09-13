@@ -15,6 +15,7 @@ import HukukSerhi from '../../components/HukukSerhi.astro';
 import Sss from '../../components/Sss.astro';
 import HukukDanismanlik from '../../components/HukukDanismanlik.astro';
 import KararMatrisi from '../../components/KararMatrisi.astro';
+import CtaBlok from '../../components/CtaBlok.astro';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('rehberler');
@@ -257,6 +258,7 @@ if (kalip2) {
       </div>
     )}
 
+    <CtaBlok konu={giris.data.baslik} />
     <Sss maddeler={sss} />
     <RehberKapanis />
     <YazarKutusu />
@@ -281,6 +283,7 @@ if (kalip2) {
     <Content />
   </div>
   {giris.data.ilKurumTablosu && <IlKurumTablosu />}
+  <CtaBlok konu={giris.data.baslik} />
   <Sss maddeler={sss} />
   <RehberKapanis />
   <YazarKutusu />

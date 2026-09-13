@@ -24,6 +24,7 @@ import HukukSerhi from '../../components/HukukSerhi.astro';
 import Sss from '../../components/Sss.astro';
 import HukukDanismanlik from '../../components/HukukDanismanlik.astro';
 import KararMatrisi from '../../components/KararMatrisi.astro';
+import CtaBlok from '../../components/CtaBlok.astro';
 
 const giris = await getEntry('rehberler', 'kuyu-tasima');
 if (!giris) throw new Error('kuyu-tasima koleksiyon girişi yok — sayfa render edilemez.');
@@ -522,6 +523,7 @@ const sema = [
     {personaBaglar.map((b) => <a href={b.yol}>→ {b.ad}</a>)}
   </nav>
 
+  <CtaBlok konu="Kuyu taşıma" />
   <Sss maddeler={sss.map((q) => ({ soru: q.s, cevap: q.c }))} />
   <RehberKapanis />
   <YazarKutusu />

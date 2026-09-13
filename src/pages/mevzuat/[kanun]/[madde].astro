@@ -1,0 +1,133 @@
+---
+// /mevzuat/[kanun]/[madde]/ — bağımsız madde sayfası (13.09.2026).
+// Metin birebir; ilgili rehberlere ve emsal kararlara çapraz bağlı.
+import Sayfa from '../../../layouts/Sayfa.astro';
+import SayfaBasi from '../../../components/SayfaBasi.astro';
+import OzCevap from '../../../components/OzCevap.astro';
+import CtaBlok from '../../../components/CtaBlok.astro';
+import HukukSerhi from '../../../components/HukukSerhi.astro';
+import mevzuat from '../../../../data/kamu/mevzuat-maddeleri.json';
+import emsal from '../../../../data/kamu/emsal-kararlar.json';
+
+export async function getStaticPaths() {
+  const slug = (s) =>
+    s.toLowerCase().replace(/ı/g, 'i').replace(/İ/g, 'i').replace(/ş/g, 's')
+      .replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ö/g, 'o').replace(/ç/g, 'c')
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  return mevzuat.maddeler.map((m) => ({
+    params: { kanun: slug(m.kanunKisa), madde: slug(m.madde) },
+    props: { m },
+  }));
+}
+
+function slugla(s) {
+  return s.toLowerCase().replace(/ı/g, 'i').replace(/İ/g, 'i').replace(/ş/g, 's')
+    .replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ö/g, 'o').replace(/ç/g, 'c')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+const { m } = Astro.props;
+const emsalById = Object.fromEntries(emsal.kararlar.map((k) => [k.id, k]));
+const ilgiliEmsaller = m.emsaller.map((id) => emsalById[id]).filter(Boolean);
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL(`/mevzuat/${slugla(m.kanunKisa)}/${slugla(m.madde)}/`, Astro.site).href;
+
+// Öz cevap: maddenin kendi metninden damıtılır (yeni iddia yok).
+const oz = `${m.kanun} ${m.madde} (${m.baslik}): ${m.metin}`.slice(0, 300);
+const aciklama = `${m.kanun} ${m.madde}: ${m.baslik}. ${m.metin.slice(0, 140)}…`;
+// <title> 60 sınırı: tam kalıp sığmazsa kısa künyeye düş (marka eki eklenmez).
+const tamBaslik = `${m.kanunKisa} ${m.madde}: ${m.baslik}`;
+const tarayiciBaslik = tamBaslik.length <= 60 ? tamBaslik : `${m.kanunKisa} ${m.madde}`;
+
+const sema = [
+  {
+    '@type': 'Legislation',
+    '@id': `${canonical}#madde`,
+    name: `${m.kanun} — ${m.madde}`,
+    legislationIdentifier: m.madde,
+    legislationType: m.tur,
+    text: m.metin,
+    inLanguage: 'tr-TR',
+    url: canonical,
+    sameAs: m.kaynakUrl,
+  },
+  {
+    '@type': 'WebPage',
+    '@id': `${canonical}#sayfa`,
+    url: canonical,
+    name: `${m.kanun} ${m.madde}`,
+    description: aciklama,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${kok}#site` },
+    about: { '@id': `${canonical}#madde` },
+  },
+];
+---
+<Sayfa baslik={`${m.kanun} — ${m.madde}`} aciklama={aciklama} tarayiciBaslik={tarayiciBaslik} sema={sema}>
+  <SayfaBasi etiket={`${m.tur} · madde`} baslik={`${m.kanun} — ${m.madde}`} ozet={m.baslik} />
+  <OzCevap metin={oz} etiket="Madde özeti" />
+
+  <blockquote class="mv-metin">{m.metin}</blockquote>
+
+  <p class="mv-kaynak">
+    Kaynak: <a href={m.kaynakUrl} target="_blank" rel="noopener">resmî tam metin (mevzuat.gov.tr)</a>.
+    Yürürlükteki güncel metin için resmî kaynak esastır.
+  </p>
+
+  {m.rehberler.length > 0 && (
+    <section class="mv-bolum" aria-label="Bu maddeyi kullanan rehberler">
+      <h2>Bu maddeyi kullanan rehberler</h2>
+      <nav class="mv-capraz">
+        {m.rehberler.map((r) => <a href={`/rehberler/${r}/`}>→ {r}</a>)}
+      </nav>
+    </section>
+  )}
+
+  {ilgiliEmsaller.length > 0 && (
+    <section class="mv-bolum" aria-label="İlgili emsal kararlar">
+      <h2>Bu maddeye bağlı emsal kararlar</h2>
+      <ul class="mv-emsaller">
+        {ilgiliEmsaller.map((k) => (
+          <li>
+            <a href="/emsal-kararlar/">{k.merci} {k.esas} E., {k.karar} K.</a>
+            <span> — {k.konu}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <nav class="mv-capraz mv-geri" aria-label="İlgili bölümler">
+    <a href="/mevzuat/">→ Tüm mevzuat maddeleri</a>
+    <a href="/su-hukuku/">→ Su hukuku omurga sayfası</a>
+    <a href="/islem-matrisi/">→ İşlem → yetkili kurum</a>
+  </nav>
+
+  <CtaBlok konu={`${m.kanun} ${m.madde}`} baslik="Bu maddeyi somut durumunuza uygulayalım" metin="Maddenin olayınıza nasıl uygulandığını değerlendirmek için durumunuzu iletin." />
+  <HukukSerhi />
+</Sayfa>
+
+<style>
+  .mv-metin {
+    margin: 0.4rem 0 1.2rem;
+    padding: 1rem 1.2rem;
+    border-left: 3px solid var(--su-400);
+    background: rgba(46, 126, 160, 0.06);
+    font-family: var(--serif);
+    font-size: 1.12rem;
+    line-height: 1.7;
+    max-width: 70ch;
+  }
+  .mv-kaynak { font-size: 0.86rem; color: var(--metin-soluk); max-width: 70ch; }
+  .mv-bolum { margin-top: 1.8rem; }
+  .mv-bolum h2 { font-family: var(--serif); font-weight: 500; font-size: 1.35rem; margin-bottom: 0.6rem; }
+  .mv-emsaller { list-style: none; padding: 0; display: grid; gap: 0.4rem; }
+  .mv-emsaller li { font-size: 0.92rem; padding-left: 0.8rem; border-left: 2px solid var(--kehribar); }
+  .mv-emsaller a { font-family: var(--serif); font-weight: 500; }
+  .mv-emsaller span { color: var(--metin-soluk); }
+  .mv-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 0.4rem; }
+  .mv-capraz a { color: var(--baglanti); text-decoration: none; }
+  .mv-capraz a:hover { text-decoration: underline; }
+  .mv-geri { margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+</style>

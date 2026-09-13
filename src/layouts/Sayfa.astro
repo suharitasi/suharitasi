@@ -9,7 +9,7 @@ import GorselSlot from '../components/GorselSlot.astro';
 import { SITE_ADI, YAZAR, EPOSTA, OG_GORSEL, KURUM_SOSYAL, YAZAR_SOSYAL } from '../data/site';
 // Hareket sözlüğü + giriş koreografisi TEK KAYNAK (ödül-üstü Faz 1).
 import '../styles/hareket.css';
-import WhatsAppDugme from '../components/WhatsAppDugme.astro';
+import AcilDestekBar from '../components/AcilDestekBar.astro';
 
 interface Props {
   baslik: string;
@@ -693,7 +693,7 @@ const jsonLd = JSON.stringify({
     </article>
   </main>
   <AltBilgi />
-  <WhatsAppDugme />
+  <AcilDestekBar />
   <script type="module" src="/s/imlec.js" is:inline></script>
   <script type="module" src="/s/sayfa.js" is:inline></script>
   <script type="module" src="/s/olcum.js" is:inline></script>

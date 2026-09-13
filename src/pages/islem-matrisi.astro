@@ -10,6 +10,7 @@ import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
 import HukukDanismanlik from '../components/HukukDanismanlik.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
+import CtaBlok from '../components/CtaBlok.astro';
 import { ISLEMLER, DURUM_ETIKET, ilMatrisi, tumIller, KAYNAK_NOTU } from '../data/islem-matrisi.js';
 import { ilSlug } from '../data/il-profil.js';
 
@@ -146,6 +147,7 @@ const sema = [
     <a href="/kapatma-kaydi/">→ Resmî Gazete kapatma kaydı</a>
   </nav>
 
+  <CtaBlok konu="Su işlemleri ve yetkili kurum" baslik="Hangi belge, hangi kurum, hangi süre?" metin="İşleminizi ve ilinizi söyleyin; izlenecek adımı ve yetkili mercileri netleştirelim." />
   <HukukDanismanlik konu="Su işlemleri ve yetkili kurum" />
   <HukukSerhi />
 </Sayfa>

@@ -1,0 +1,127 @@
+---
+// CTA BLOK — gövde içi agresif dönüşüm bloğu (13.09.2026).
+// Rehber / havza / ceza / il sayfalarının kritik noktalarına gömülür.
+// Sahte vaat yok: "acil durumunuz varsa hemen danışın" der, sonuç garantisi
+// vermez. Ölçüm: data-olay tetikleyicileri (/olay sayacı).
+import { TELEFON, EPOSTA } from '../data/site';
+
+interface Props {
+  konu?: string;
+  baslik?: string;
+  metin?: string;
+}
+
+const {
+  konu = 'Su hukuku',
+  baslik = 'Acil durumunuz mu var?',
+  metin = 'Süre kaybı hak kaybıdır. Belge reddi, idari para cezası, kuyu kapatma veya komşu su uyuşmazlığında erken adım sonucu değiştirir.',
+} = Astro.props;
+const mailKonu = `${konu} — acil hukuki destek`;
+---
+<aside class="cta" aria-label="Acil hukuki destek">
+  <div class="cta-ic">
+    <p class="cta-kicker">Acil hukuki destek</p>
+    <h2 class="cta-baslik">{baslik}</h2>
+    <p class="cta-metin">{metin}</p>
+    <div class="cta-eylem">
+      <a class="cta-btn cta-tel" href={`tel:${TELEFON.tel}`} data-olay="telefon">
+        <span class="cta-etiket">Hemen ara</span>
+        <span class="cta-deger">{TELEFON.gorunur}</span>
+      </a>
+      <a class="cta-btn cta-wa" href="/whatsapp/" rel="nofollow noopener" data-olay="whatsapp">
+        <span class="cta-etiket">WhatsApp</span>
+        <span class="cta-deger">Mesaj gönderin</span>
+      </a>
+      <a class="cta-btn cta-form" href="/hizli-danisma/" data-olay="iletisim-form">
+        <span class="cta-etiket">Hızlı danışma</span>
+        <span class="cta-deger">Formu doldurun</span>
+      </a>
+      <a class="cta-btn cta-mail" href={`mailto:${EPOSTA}?subject=${encodeURIComponent(mailKonu)}`} data-olay="eposta">
+        <span class="cta-etiket">E-posta</span>
+        <span class="cta-deger">{EPOSTA}</span>
+      </a>
+    </div>
+    <p class="cta-not">Bu sayfa bilgilendirme amaçlıdır; somut uyuşmazlıkta hukuki görüş için bir hukukçuya danışın.</p>
+  </div>
+</aside>
+
+<style>
+  .cta {
+    margin: clamp(2.2rem, 5vh, 3.2rem) 0 0;
+    background: linear-gradient(135deg, #0A2740 0%, #0C5A7C 100%);
+    border-top: 3px solid var(--akuamarin, #57BAE0);
+  }
+
+  .cta-ic { padding: clamp(1.4rem, 4vw, 2.2rem); }
+
+  .cta-kicker {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--akuamarin, #57BAE0);
+  }
+
+  .cta-baslik {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.5rem, 3.4vw, 2rem);
+    line-height: 1.2;
+    color: #fff;
+    margin: 0.5rem 0 0.6rem;
+  }
+
+  .cta-metin { color: #D6E6F0; max-width: 62ch; font-size: 1rem; }
+
+  .cta-eylem {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem;
+    margin-top: 1.3rem;
+  }
+
+  .cta-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.8rem 1rem;
+    min-height: 56px;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 160ms var(--e-suzul, ease), background-color 160ms var(--e-akinti, ease);
+  }
+
+  .cta-etiket {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--akuamarin, #57BAE0);
+  }
+
+  .cta-deger { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; color: #fff; }
+
+  .cta-tel { background: var(--akuamarin, #57BAE0); border-color: transparent; }
+  .cta-tel .cta-etiket { color: #0A2740; }
+  .cta-tel .cta-deger { color: #0A2740; }
+
+  .cta-wa { background: #1f8a4c; border-color: transparent; }
+  .cta-wa .cta-etiket { color: #d7f2e2; }
+
+  .cta-btn:hover { transform: translateY(-2px); background: rgba(255, 255, 255, 0.14); }
+  .cta-tel:hover { background: #7ccdea; }
+  .cta-wa:hover { background: #23a25a; }
+  .cta-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+  .cta-not { margin-top: 1rem; font-size: 0.78rem; color: #9FB9CB; }
+
+  @media (max-width: 560px) {
+    .cta-eylem { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-btn { transition: none; }
+    .cta-btn:hover { transform: none; }
+  }
+</style>

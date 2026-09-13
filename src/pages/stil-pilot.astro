@@ -6,7 +6,7 @@
 // noindex + sitemap dışı: pilot, arama motorlarına açılmaz.
 import { getCollection, render } from 'astro:content';
 import { YAZAR } from '../data/site';
-import WhatsAppDugme from '../components/WhatsAppDugme.astro';
+import AcilDestekBar from '../components/AcilDestekBar.astro';
 
 const giris = (await getCollection('rehberler')).find((g) => g.id === 'kuyu-ruhsati');
 if (!giris) throw new Error('stil-pilot: kuyu-ruhsati bulunamadı');
@@ -338,6 +338,6 @@ const tarihYaz = giris.data.tarih.toLocaleDateString('tr-TR', {
   <footer>
     <a href="https://arslanhukuk.tr" target="_blank" rel="noopener">suharitasi.com · Arslan Hukuk Bürosu güvencesiyle · 2026</a>
   </footer>
-  <WhatsAppDugme />
+  <AcilDestekBar />
 </body>
 </html>

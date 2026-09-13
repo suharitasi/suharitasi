@@ -1,0 +1,135 @@
+---
+// /mevzuat/ — MEVZUAT MADDE MOTORU (13.09.2026).
+// Her madde bağımsız sayfaya sahiptir; bu indeks aranabilir listedir.
+// Metinler rehberlerde birebir yayımlanmıştır (uydurma yok).
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import CtaBlok from '../../components/CtaBlok.astro';
+import HukukSerhi from '../../components/HukukSerhi.astro';
+import mevzuat from '../../../data/kamu/mevzuat-maddeleri.json';
+import emsal from '../../../data/kamu/emsal-kararlar.json';
+
+const OZ_CEVAP =
+  'Türkiye su hukukunun çekirdek maddeleri tek yerde, aranabilir: 167 sayılı Kanun ' +
+  '(yeraltı suyu belgeleri ve cezalar), Yeraltı Suları Tüzüğü, 2942 kamulaştırma, 2886 ' +
+  'ihale, 831/5393 su idaresi, 5686 jeotermal, Su Tahsisleri Yönetmeliği ve 6200 geçiş ' +
+  'hükümleri. Her madde ilgili rehber ve emsal kararlarla çapraz bağlıdır.';
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/mevzuat/', Astro.site).href;
+
+const slug = (s) =>
+  s.toLowerCase().replace(/ı/g, 'i').replace(/İ/g, 'i').replace(/ş/g, 's')
+    .replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ö/g, 'o').replace(/ç/g, 'c')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+const maddeler = mevzuat.maddeler;
+const emsalById = Object.fromEntries(emsal.kararlar.map((k) => [k.id, k]));
+
+// Kanuna göre grupla (kaynak sırası korunur).
+const gruplar = [];
+for (const m of maddeler) {
+  let g = gruplar.find((x) => x.kanunKisa === m.kanunKisa);
+  if (!g) { g = { kanunKisa: m.kanunKisa, kanun: m.kanun, tur: m.tur, liste: [] }; gruplar.push(g); }
+  g.liste.push(m);
+}
+
+const sema = [
+  {
+    '@type': 'ItemList',
+    name: 'Su hukuku mevzuat maddeleri',
+    numberOfItems: maddeler.length,
+    itemListElement: maddeler.map((m, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: `${m.kanun} — ${m.madde}`,
+      url: new URL(`/mevzuat/${slug(m.kanunKisa)}/${slug(m.madde)}/`, Astro.site).href,
+    })),
+  },
+  {
+    '@type': 'WebPage',
+    '@id': `${canonical}#sayfa`,
+    url: canonical,
+    name: 'Su hukuku mevzuat maddeleri',
+    description: OZ_CEVAP,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${kok}#site` },
+  },
+];
+---
+<Sayfa baslik="Mevzuat maddeleri" aciklama={OZ_CEVAP} tarayiciBaslik="Su Hukuku Mevzuatı: Madde Madde (167, YAS, 2942…)" sema={sema}>
+  <SayfaBasi etiket="Mevzuat motoru" baslik="Su hukuku mevzuat maddeleri" ozet="Çekirdek kanun, tüzük ve yönetmelik maddeleri; her biri ilgili rehber ve emsal kararlarla bağlı." ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Kanun özeti" />
+
+  <label class="mv-arama">
+    <span>Madde ara</span>
+    <input type="search" id="mv-filtre" placeholder="ör. 167, ölçüm sistemi, kamulaştırma, tahsis…" autocomplete="off" />
+  </label>
+  <p class="mv-sayac" id="mv-sayac" aria-live="polite">{maddeler.length} madde · {gruplar.length} mevzuat</p>
+
+  {gruplar.map((g) => (
+    <section class="mv-grup" aria-label={g.kanun}>
+      <h2>{g.kanun} <span class="mv-tur">{g.tur}</span></h2>
+      <ul class="mv-liste">
+        {g.liste.map((m) => (
+          <li data-madde={`${m.kanun} ${m.madde} ${m.baslik} ${m.metin}`}>
+            <a href={`/mevzuat/${slug(m.kanunKisa)}/${slug(m.madde)}/`}>
+              <span class="mv-madde">{m.madde}</span>
+              <span class="mv-baslik">{m.baslik}</span>
+              {m.emsaller.length > 0 && <span class="mv-emsal">{m.emsaller.length} emsal</span>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  <p class="mv-bos" id="mv-bos" hidden>Bu süzgeçle eşleşen madde bulunamadı.</p>
+
+  <nav class="mv-capraz" aria-label="İlgili bölümler">
+    <a href="/su-hukuku/">→ Su hukuku omurga sayfası</a>
+    <a href="/emsal-kararlar/">→ Emsal kararlar</a>
+    <a href="/su-kanunu/mevzuat-kutuphanesi/">→ Resmî tam metin bağlantıları</a>
+    <a href="/sozluk/">→ Sözlük</a>
+  </nav>
+
+  <CtaBlok konu="Su hukuku mevzuatı" baslik="Mevzuatı uygulamada nasıl kullanacağınızı bilmiyor musunuz?" metin="Hangi madde, hangi belge, hangi süre — somut durumunuz için değerlendirme alın." />
+  <HukukSerhi />
+</Sayfa>
+
+<script type="module" src="/s/mevzuat-filtre.js" is:inline></script>
+
+<style>
+  .mv-arama { display: flex; flex-direction: column; gap: 0.3rem; max-width: 34rem; margin-bottom: 0.6rem; }
+  .mv-arama span { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--metin-soluk); }
+  .mv-arama input { font: inherit; padding: 0.6rem 0.8rem; min-height: 44px; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); }
+  .mv-arama input:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+  .mv-sayac { font-family: var(--mono); font-size: 0.7rem; color: var(--metin-soluk); margin-bottom: 1.2rem; }
+
+  .mv-grup { margin-bottom: 1.8rem; }
+  .mv-grup h2 { font-family: var(--serif); font-weight: 500; font-size: 1.4rem; margin-bottom: 0.7rem; }
+  .mv-tur { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--metin-soluk); margin-left: 0.5rem; }
+
+  .mv-liste { list-style: none; padding: 0; display: grid; gap: 0.5rem; }
+  .mv-liste a {
+    display: grid; grid-template-columns: 8rem 1fr auto; gap: 0.8rem; align-items: baseline;
+    padding: 0.7rem 0.9rem; text-decoration: none; color: inherit;
+    background: var(--zemin-kart); border: 1px solid var(--cizgi); border-left: 3px solid var(--su-400);
+    transition: transform 200ms var(--e-suzul), background-color 200ms var(--e-akinti);
+  }
+  .mv-liste a:hover { transform: translateX(2px); background: var(--kopuk); }
+  .mv-madde { font-family: var(--mono); font-size: 0.78rem; color: var(--su-700); white-space: nowrap; }
+  .mv-baslik { font-family: var(--serif); font-size: 1.05rem; }
+  .mv-emsal { font-family: var(--mono); font-size: 0.62rem; color: var(--kehribar-metin); white-space: nowrap; }
+
+  .mv-bos { margin-top: 0.8rem; color: var(--metin-soluk); font-style: italic; }
+  .mv-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .mv-capraz a { color: var(--baglanti); text-decoration: none; }
+  .mv-capraz a:hover { text-decoration: underline; }
+
+  @media (max-width: 620px) {
+    .mv-liste a { grid-template-columns: 1fr; gap: 0.2rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { .mv-liste a { transition: none; } .mv-liste a:hover { transform: none; } }
+</style>

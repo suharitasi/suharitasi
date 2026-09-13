@@ -9,6 +9,7 @@ import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
+import CtaBlok from '../components/CtaBlok.astro';
 import emsal from '../../data/kamu/emsal-kararlar.json';
 
 const OZ_CEVAP =
@@ -110,6 +111,7 @@ const sema = [
     <a href="/su-kanunu/mevzuat-kutuphanesi/">→ Mevzuat kütüphanesi</a>
   </nav>
 
+  <CtaBlok konu="Emsal kararlar" baslik="Dosyanız bu emsallerden biriyle mi örtüşüyor?" metin="Somut uyuşmazlığınızı anlatın; hangi emsal çizginin uygulanabileceğini değerlendirelim." />
   <HukukSerhi />
 </Sayfa>
 
