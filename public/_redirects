@@ -56,13 +56,10 @@
 /rapor/suharitasi-van-golu-havzasi-durum-raporu.pdf  /havzalar/van-golu/  301
 /rapor/suharitasi-yesilirmak-havzasi-durum-raporu.pdf  /havzalar/yesilirmak/  301
 
-# /su-hukuku/ ROTA KAPANIŞI (25.08.2026, kullanıcı kararı; GEO/SEO
-# temizlik briefi A5 — arsiv/su-hukuku-rota/NOT.md). Hukuki içerik
-# [SERDAR-HUKUK] onay kapısından geçmemişti; en yakın NÖTR içerik
-# hedefi: aynı konuyu (kuyu cezaları) salt mevzuat anlatımıyla veren
-# rehber (hukuki vaat ölçümü 0).
-/su-hukuku   /rehberler/ruhsatsiz-kuyu-cezalari/   301
-/su-hukuku/  /rehberler/ruhsatsiz-kuyu-cezalari/   301
+# /su-hukuku/ HUB (13.09.2026): 25.08'deki rota kapanışı ve bu yönlendirme
+# KALDIRILDI — /su-hukuku/ artık gerçek bir omurga sayfası (rehberler, cezalar,
+# mevzuat ve karar matrisini toplayan hub). Eski 301 hedefi
+# /rehberler/ruhsatsiz-kuyu-cezalari/ idi; o sayfa hub'dan erişilebilir.
 
 # WHATSAPP KANALI (08.09.2026, Faz D — rapor/08-09-gsc-ticari-whatsapp.md §D;
 # sayaç: karar-kapatma Faz B, functions/whatsapp.js).
