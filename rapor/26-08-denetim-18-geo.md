@@ -455,7 +455,7 @@ hakkinda           0/1    ✗
 **NE VAR (telafi):** altbilgi künyesi 519/523 sayfada yazar adını ve
 e-postayı taşıyor:
 > "Künye Hukuki içerik: Av. Serdar Arslan — Arslan Hukuk Bürosu ·
-> bilgi@suharitasi.com"
+> avserdararslan@hotmail.com"
 
 İl sayfaları ayrıca başlık altında satır taşıyor:
 > "Güncelleme: 27 Temmuz 2026 · Hukuki içerik: Av. Serdar Arslan"

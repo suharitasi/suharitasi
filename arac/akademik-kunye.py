@@ -11,14 +11,14 @@ from pathlib import Path
 
 KOK = Path(__file__).resolve().parent.parent
 CIKTI = KOK / "veri/potansiyel/akademik-kunye.json"
-UA = "suharitasi.com veri derleme (mailto:bilgi@suharitasi.com)"
+UA = "suharitasi.com veri derleme (mailto:avserdararslan@hotmail.com)"
 ILKURUM = json.loads((KOK / "data/il-kurum.json").read_text())
 ILLER = sorted({il for b in ILKURUM["dsiBolgeleri"].values() for il in b["iller"]})
 
 def getir(url):
     # 429'da uzun geri çekilme (ölçülen: 90 sn soğuma yetmedi) + polite-pool
     # mailto parametresi
-    url += ("&" if "?" in url else "?") + "mailto=bilgi@suharitasi.com"
+    url += ("&" if "?" in url else "?") + "mailto=avserdararslan@hotmail.com"
     son = None
     # 2026-07-27 (gece paketi D) — TEŞHİS DÜZELTMESİ.
     # Eski sabit merdiven (30/75/150 sn, sonra 60/150/300) YAPISAL OLARAK

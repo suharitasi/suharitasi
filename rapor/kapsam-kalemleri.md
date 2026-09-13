@@ -72,7 +72,7 @@ değil, yerel ortamın bir tesadüfünü ölçüyordu.
 
 Düzeltme vekil değil: gizli biçim **çözülüyor** (`cfEpostaCoz` — ilk bayt
 anahtar, kalan baytlar XOR) ve adres aynı biçim testinden geçiyor.
-- Çözücü doğrulaması: `b4d6dd…` → `bilgi@suharitasi.com` ✓
+- Çözücü doğrulaması: `b4d6dd…` → `avserdararslan@hotmail.com` ✓
 - Canlı, düzeltme sonrası: **mailto 17, kırmızı 0** ✓
 - Falsifikasyon (her iki biçim de silinmiş sayfa): **ateşledi** ✓
 

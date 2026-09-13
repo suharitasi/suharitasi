@@ -495,7 +495,7 @@ arslanhukuk.tr 1053 · resmigazete 569 · dergipark 292 · **hdl.handle.net
 **Sızıntı:** `.env` git'te değil (`.gitignore:24,52`, izin 600);
 `TELEGRAM_BOT_TOKEN`, `EPIAS_*`, `CF_DEPLOY_HOOK` değerleri izli
 dosyalarda **0**, `git log -S` ile geçmişte de **0**. dist'te görünür tek
-e-posta `bilgi@suharitasi.com` (bilinçli CTA).
+e-posta `avserdararslan@hotmail.com` (bilinçli CTA).
 İki küçük kalem, ikisi de **KARAR**: `TELEGRAM_CHAT_ID` düz metin olarak
 4 belgede (GUNLUK, KARARLAR, SIRADAKILER, rapor/25-08-alarm-teshisi) —
 token'sız kullanılamaz ama kanal kimliğini ifşa eder · kişisel e-posta
@@ -513,7 +513,7 @@ DSİ'nin kendi sitesinin arşivlenmiş public tarayıcı anahtarı.
   (alakasız). Bağlamsal olgu: çerez yok, analitik yüklü değil, tek form
   `mailto:` ile çalışıyor — sunucuya kişisel veri gönderen uç yok.
 - **Künye — ne var:** içerik sorumlusu adı ve sıfatı ("Hukuki içerik:
-  Av. Serdar Arslan — Arslan Hukuk Bürosu"), `bilgi@suharitasi.com`, büro
+  Av. Serdar Arslan — Arslan Hukuk Bürosu"), `avserdararslan@hotmail.com`, büro
   sitesi linki, yöntem/kaynak politikası, güncelleme taahhüdü, sorumluluk
   sınırı cümlesi ("bilgilendirme amaçlıdır; hukuki görüş veya tavsiye
   niteliği taşımaz"). **Ne yok:** fiziki adres, telefon, ticaret unvanı,

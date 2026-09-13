@@ -42,7 +42,7 @@ DURUM = KOK / "izleme/state/rg-nobetci-durum.json"
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from cikis_kaydi import kur as _cikis_kur, dosya_bildir as _cikis_dosya
 _cikis_kur("rg-nobetci", str(KOK / "log/rg-nobetci.log"))
-UA = "suharitasi.com veri derleme (mailto:bilgi@suharitasi.com)"
+UA = "suharitasi.com veri derleme (mailto:avserdararslan@hotmail.com)"
 UC = "https://www.resmigazete.gov.tr/Home/Filter"
 VARYANTLAR = ["yeraltısuyu işletme sahası",
               "yeraltı suyu işletme sahası",

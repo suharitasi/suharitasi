@@ -302,7 +302,7 @@ oturum scratchpad `a1-etkilesim.mjs` (salt-okuma; siteye yazmadı).
 | /kapatma-kaydi/ boş-sonuç hukuki şerhi | 🟢 | "**Bu, orada tahsise kapatma olmadığı anlamına gelmez**" cümlesi canlıda MEVCUT ve boş sonuçta görünüyor. (İlk ölçümde benim test desenim yanlış kelimeyi aradı ve KALDI verdi; kaynak+canlı HTML'den doğrulandı — kalan test kapısıydı, site değil. Kayda geçirildi: falsifikasyon disiplini kendi kapıma da uygulandı.) |
 | Uçuşan sorular (ana sayfa soru şeridi) | 🟢 | "Sondaj ile alakalı neler yapılmalı?" → `/rehberler/kuyu-ruhsati/` → 200 |
 | Rehber içi linkler | 🟢 | /rehberler/kuyu-ruhsati/ içinde 40 benzersiz iç link, kırık 0 |
-| mailto CTA'lar | 🟢 | 6 sayfada 8 mailto bağı; tek adres `bilgi@suharitasi.com`, biçim geçerli. (Cloudflare e-posta gizlemesi şu an UYGULANMIYOR — düz mailto; GUNLUK 28.07 dersindeki `/cdn-cgi/l/email-protection` biçimi 0 sayıldı) |
+| mailto CTA'lar | 🟢 | 6 sayfada 8 mailto bağı; tek adres `avserdararslan@hotmail.com`, biçim geçerli. (Cloudflare e-posta gizlemesi şu an UYGULANMIYOR — düz mailto; GUNLUK 28.07 dersindeki `/cdn-cgi/l/email-protection` biçimi 0 sayıldı) |
 | 404 davranışı | 🟢* | Kod 404, gövde 5.309 B, başlık "Sayfa bulunamadı — Su Haritası", 6 iç çıkış (M11 kapanışındaki tasarıma uygun). *Betiğimin "gövde ≥200 krk" eşiği görünür metinde 130 krk saydı ve KALDI dedi — eşik keyfîydi, sayfa tasarlanan hâlinde |
 | Sayfa JS hataları | 🟢 | Test boyunca 0 |
 | Konsol (6 sayfa tipi × 2 kırılım) | 🟢 | 12/12 ölçümde hata+uyarı 0 (A2 koşusundan) |

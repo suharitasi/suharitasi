@@ -50,7 +50,7 @@ from pathlib import Path
 KOK = Path(__file__).resolve().parent.parent
 BASLIK = KOK / "veri/potansiyel/isletme-sahalari.json"      # 109, sayı BİLİNEN
 EK = KOK / "veri/potansiyel/isletme-sahalari-ek.json"       # 310, sayı YOK
-UA = "suharitasi.com veri derleme (mailto:bilgi@suharitasi.com)"
+UA = "suharitasi.com veri derleme (mailto:avserdararslan@hotmail.com)"
 BEKLE = 1.2                                                 # nezaket
 ARSIV = re.compile(r"/arsiv/(\d+)\.pdf(?:$|[?#])")
 # Sayı kalıbı TARİHİYLE BİRLİKTE aranır. Ölçüm hatası kaydı (29.07):

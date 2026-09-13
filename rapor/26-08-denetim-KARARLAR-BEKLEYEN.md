@@ -24,7 +24,7 @@ sunucudan doğrulanamıyor (29.07 kaydı: tek vantaj noktasından negatif
 ölçüm kanıt değildir) — çerez/analitik bildirimi buna bağlı.
 
 ## KK-2 · Künyede eksik hukuki alanlar · [HUKUKİ METİN]
-**Ne var:** içerik sorumlusu adı/sıfatı, `bilgi@suharitasi.com`, büro
+**Ne var:** içerik sorumlusu adı/sıfatı, `avserdararslan@hotmail.com`, büro
 linki, yöntem-kaynak politikası, sorumluluk sınırı cümlesi.
 **Ne yok:** fiziki adres, telefon, ticaret unvanı, baro sicili,
 yer/içerik sağlayıcı beyanı.
@@ -604,7 +604,7 @@ durum tespiti.
   Bağlamsal olgu (yorumsuz): sitede çerez yok, tek form `mailto:` ile
   çalışıyor — sunucuya kişisel veri gönderen uç yok.
 - **Künye — ne var:** içerik sorumlusu adı ve sıfatı ("Hukuki içerik:
-  Av. Serdar Arslan — Arslan Hukuk Bürosu"), `bilgi@suharitasi.com`,
+  Av. Serdar Arslan — Arslan Hukuk Bürosu"), `avserdararslan@hotmail.com`,
   büro sitesi linki, yöntem/kaynak politikası, güncelleme taahhüdü ve
   sorumluluk sınırı cümlesi ("bilgilendirme amaçlıdır; hukuki görüş veya
   tavsiye niteliği taşımaz").

@@ -358,7 +358,7 @@ sorgu) · "baraj doluluk oranları bugün" (var ama tarihçesiz). Bunlar
   duruyor — yeniden açma kararı kullanıcıda (AY İLKESİ).
 - Lead-mailto birleşmesi: SIRADAKILER'deki açık kalem A5 ile FİİLEN
   KAPANDI [VERİ]: `serdar@arslanhukuk.com` src'de 0 isabet (su-hukuku
-  arşive taşındı); canlı yüzeyde tek adres `bilgi@suharitasi.com`
+  arşive taşındı); canlı yüzeyde tek adres `avserdararslan@hotmail.com`
   (md19: 22 mailto CTA geçerli).
 - Çağrı tutarlılığı: md19 ölçümü yeşil; ana sayfa 4 mailto.
 

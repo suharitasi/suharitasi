@@ -129,7 +129,7 @@ gerekirse hazırlayıp iletebilirim.
 Saygılarımla,
 Av. Serdar Arslan
 Arslan Hukuk Bürosu · arslanhukuk.tr
-bilgi@suharitasi.com
+avserdararslan@hotmail.com
 ```
 
 **Taslağın kuralları:**

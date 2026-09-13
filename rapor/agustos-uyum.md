@@ -37,7 +37,7 @@ model değiştirilemez — KARARLAR §14 iş bölüşümünden sapma bu gerekçe
   /raporlar(/)→/havzalar/ · /rapor-indir(/)→/nerede-su-cikar/ · 25 PDF →
   ilgili /havzalar/<slug>/ (hedeflerin varlığı build'e karşı doğrulandı).
 - **CTA ikamesi (1.4):** ilce-sorgu banner'ı → SonrakiAdim mailto deseniyle
-  tek satır ("Bu konuda görüş alın", `bilgi@suharitasi.com`); fiyat/ödeme/yeni
+  tek satır ("Bu konuda görüş alın", `avserdararslan@hotmail.com`); fiyat/ödeme/yeni
   vaat/hukuki ifade YOK. Menü CTA'sı ikamesizdir (menüde "İletişim / Uzman
   Görüşü" zaten var).
 - **Kanıt:** dist HTML'de `paytr` isabeti **0** · dist'te rapor* rotaları yok ·
