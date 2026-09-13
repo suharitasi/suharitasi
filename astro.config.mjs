@@ -87,6 +87,58 @@ function surumDamgasi() {
   };
 }
 
+// arama.json: statik site içi arama indeksi. dist'ten üretilir (title +
+// meta description + h1 + bölüm). Sayfa başına ~200 bayt; ~530 sayfa ≈ 110 KB.
+// İçerik elle yazılmaz — sayfa çıktısından türetilir, bayatlamaz.
+function aramaOlustur() {
+  const BOLUM_ADI = {
+    rehberler: 'Rehber', havzalar: 'Havza', goller: 'Göl', nehirler: 'Nehir',
+    'kuyu-ruhsati': 'Kuyu ruhsatı', durumum: 'Sektör', 'su-kanunu': 'Mevzuat',
+    'su-hukuku': 'Su hukuku', 'islem-matrisi': 'İşlem matrisi', 'emsal-kararlar': 'Emsal karar',
+    sozluk: 'Sözlük', vaka: 'Vaka', 'hangi-kurum': 'Kurum', 'ilimde-kim-yetkili': 'İl aracı',
+    'nerede-su-cikar': 'Giriş', 'kapatma-kaydi': 'Kapatma kaydı', 'ilce-sorgu': 'İlçe sorgu',
+    hakkinda: 'Hakkında', harita: 'Harita', arsiv: 'Arşiv',
+  };
+  return {
+    name: 'arama-olustur',
+    hooks: {
+      'astro:build:done': async ({ dir, logger }) => {
+        const kok = fileURLToPath(dir);
+        const kayitlar = [];
+        async function tara(dizin) {
+          for (const giris of await readdir(dizin, { withFileTypes: true })) {
+            const yol = join(dizin, giris.name);
+            if (giris.isDirectory()) await tara(yol);
+            else if (giris.name === 'index.html') {
+              const html = await readFile(yol, 'utf8');
+              if (/name=["']robots["'][^>]*noindex/i.test(html)) continue;
+              const gorece = relative(kok, dizin).split('\\').join('/');
+              const t = html.match(/<title>([\s\S]*?)<\/title>/i);
+              const d = html.match(/<meta\s+name=["']description["']\s+content=(["'])((?:(?!\1).)*)\1/i);
+              const h = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+              if (!t) throw new Error(`arama.json: ${gorece || '/'} sayfasında <title> yok.`);
+              const temiz = (s) => (s || '').replace(/<[^>]+>/g, ' ').replace(/&#39;/g, "'")
+                .replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+              const bolum = gorece.split('/')[0] || 'ana';
+              kayitlar.push({
+                y: gorece === '' ? '/' : `/${gorece}/`,
+                b: temiz(t[1]).replace(/\s*—\s*Su Haritası\s*$/, ''),
+                a: temiz(d ? d[2] : ''),
+                h: temiz(h ? h[1] : ''),
+                k: BOLUM_ADI[bolum] ?? 'Sayfa',
+              });
+            }
+          }
+        }
+        await tara(kok);
+        kayitlar.sort((a, b) => a.y.localeCompare(b.y));
+        await writeFile(join(kok, 'arama.json'), JSON.stringify(kayitlar), 'utf8');
+        logger.info(`arama.json: ${kayitlar.length} kayıt`);
+      },
+    },
+  };
+}
+
 // llms.txt: AI istemcileri için sitenin makine-okunur içindekiler dosyası.
 // İçerik dist'ten üretilir (title + meta description) — elle yazılmış metin
 // yok, dolayısıyla bayatlamaz. Sitemap dışı (noindex) sayfalar hariç.
@@ -222,5 +274,5 @@ function sKlasoruKucult() {
 export default defineConfig({
   site: SITE,
   trailingSlash: 'ignore',
-  integrations: [sitemapOlustur(), llmsOlustur(), surumDamgasi(), sKlasoruKucult()],
+  integrations: [sitemapOlustur(), llmsOlustur(), aramaOlustur(), surumDamgasi(), sKlasoruKucult()],
 });

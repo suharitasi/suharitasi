@@ -1,0 +1,68 @@
+---
+// /ara/ — SİTE İÇİ ARAMA (13.09.2026).
+// İndeks build anında üretilir (dist/arama.json: title + description + h1 +
+// bölüm). Bu sayfa noindex'tir (yardımcı sayfa) — indekse giren ince içerik
+// üretmez; sonuçlar istemcide süzülür.
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import HukukSerhi from '../components/HukukSerhi.astro';
+
+const aciklama =
+  'Su Haritası içinde ara: havza, il, kuyu ruhsatı, su hukuku rehberi, mevzuat, ' +
+  'emsal karar, göl ve nehir sayfaları. Sonuçlar anında süzülür.';
+---
+<Sayfa baslik="Arama" aciklama={aciklama} robots="noindex, follow">
+  <SayfaBasi etiket="Arama" baslik="Sitede ara" ozet="Havza, il, rehber, mevzuat, emsal karar, göl ve nehir — tüm sayfalarda arama." />
+
+  <label class="ara-kap">
+    <span>Arama</span>
+    <input type="search" id="ara-girdi" placeholder="ör. kuyu ruhsatı, 167, Ergene, kamulaştırma…" autocomplete="off" autofocus />
+  </label>
+  <p class="ara-durum" id="ara-durum" aria-live="polite">Aramak için yazmaya başlayın.</p>
+  <ol class="ara-sonuc" id="ara-sonuc"></ol>
+
+  <noscript>
+    <p class="ara-noscript">
+      Arama JavaScript gerektirir. Bunun yerine
+      <a href="/llms.txt">llms.txt</a> (tüm sayfalar) ya da
+      <a href="/sitemap.xml">site haritası</a> kullanılabilir.
+    </p>
+  </noscript>
+
+  <HukukSerhi />
+</Sayfa>
+
+<script type="module" src="/s/ara.js" is:inline></script>
+
+<style>
+  .ara-kap { display: flex; flex-direction: column; gap: 0.35rem; max-width: 40rem; margin-bottom: 0.7rem; }
+  .ara-kap span {
+    font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--metin-soluk);
+  }
+  .ara-kap input {
+    font: inherit; font-size: 1.05rem; padding: 0.8rem 1rem; min-height: 52px;
+    border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin);
+  }
+  .ara-kap input:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+
+  .ara-durum { font-family: var(--mono); font-size: 0.72rem; color: var(--metin-soluk); margin-bottom: 1rem; }
+
+  .ara-sonuc { list-style: none; padding: 0; display: grid; gap: 0.7rem; }
+  .ara-sonuc li {
+    padding: 0.9rem 1.1rem; background: var(--zemin-kart);
+    border: 1px solid var(--cizgi); border-left: 3px solid var(--su-400);
+  }
+  .ara-sonuc .a-k {
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--su-700);
+  }
+  .ara-sonuc .a-b {
+    display: block; margin-top: 0.2rem; font-family: var(--serif);
+    font-size: 1.18rem; font-weight: 500; color: var(--metin); text-decoration: none;
+  }
+  .ara-sonuc .a-b:hover { color: var(--su-700); }
+  .ara-sonuc .a-a { margin-top: 0.25rem; font-size: 0.88rem; color: var(--metin-soluk); }
+  .ara-sonuc mark { background: rgba(46, 126, 160, 0.22); color: inherit; }
+  .ara-noscript { margin-top: 1rem; }
+</style>
