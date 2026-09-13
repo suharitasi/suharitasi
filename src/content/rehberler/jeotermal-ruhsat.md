@@ -14,6 +14,27 @@ sss:
   - soru: "İşletme ruhsatının süresi ne kadardır?"
     cevap: "İşletme ruhsatı süresi otuz yıldır ve talep halinde onar yıllık dönemlerle uzatılır (m.6)."
 ilgili: [kuyu-ruhsati, kaynak-suyu-kiralama, su-tahsisi-oncelik-sirasi]
+karar:
+  - senaryo: "Jeotermal arama ruhsatı"
+    merci: "Yetkili kamu idaresi"
+    sure: "Üç yıl; olumlu gelişmede bir yıl uzatma (5686 m.5)"
+    ceza: "—"
+    emsal: "5686 s.K. m.5 — öncelik hakkı esastır"
+  - senaryo: "İşletme ruhsatı başvurusu"
+    merci: "İdare"
+    sure: "Arama süresinin son günü akşamına kadar (m.6)"
+    ceza: "Başvuru yapılmazsa hak kaybı doğar"
+    emsal: "5686 s.K. m.6"
+  - senaryo: "İşletmeye geçmeme / ruhsat iptali"
+    merci: "İdare"
+    sure: "İşletme ruhsatı otuz yıl; onar yıllık uzatma (m.6)"
+    ceza: "Teminat irat kaydı; saha ihaleye çıkarılır"
+    emsal: "5686 s.K. m.6"
+  - senaryo: "Geçiş rejimi ve yetki uyuşmazlığı"
+    merci: "İdari yargı"
+    sure: "Doğrulanmış süre yok"
+    ceza: "—"
+    emsal: "Danıştay 8.D. 2018/6147 E., 2024/72 K. · 2021/5225 E., 2023/6171 K."
 ---
 
 Jeotermal kaynaklar ve doğal mineralli sular Devletin hüküm ve

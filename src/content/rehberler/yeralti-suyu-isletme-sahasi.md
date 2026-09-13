@@ -14,6 +14,27 @@ sss:
   - soru: "İlan, mevcut belge sahiplerinin hakkını ortadan kaldırır mı?"
     cevap: "Mevcut belge sahibinin statüsü otomatik yok sayılamaz; somut dosyada belge tarihi ile saha ilan tarihi birlikte değerlendirilir."
 ilgili: [kuyu-ruhsati, ruhsatsiz-kuyu-cezalari, su-tahsisi-oncelik-sirasi, kuyu-tasima]
+karar:
+  - senaryo: "İşletme sahası ilanı"
+    merci: "DSİ (tespit) → Resmî Gazete ilanı"
+    sure: "Doğrulanmış süre yok"
+    ceza: "—"
+    emsal: "Yeraltı Suları Tüzüğü m.2"
+  - senaryo: "Belgeli kuyu derinliği sınırı"
+    merci: "DSİ"
+    sure: "Doğrulanmış süre yok (sonradan değiştirilebilir)"
+    ceza: "—"
+    emsal: "Yeraltı Suları Tüzüğü m.4"
+  - senaryo: "Sürekli denetim ve uygunsuzluk tespiti"
+    merci: "DSİ"
+    sure: "Doğrulanmış süre yok"
+    ceza: "Zabıtla tespit; emniyetli miktar yeniden ayarlanabilir"
+    emsal: "Yeraltı Suları Tüzüğü m.11-12"
+  - senaryo: "Mevcut belge sahibinin kazanılmış hakkı"
+    merci: "İdare → idari yargı"
+    sure: "Doğrulanmış süre yok"
+    ceza: "—"
+    emsal: "Danıştay 8.D. 2018/6147 E., 2024/72 K. — statü otomatik yok sayılamaz"
 ---
 
 Bir bölge "yeraltı suyu işletme sahası" ilan edildiğinde, o sahadaki

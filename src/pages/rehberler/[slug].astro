@@ -14,6 +14,7 @@ import { personalar as tumPersonalar } from '../../data/persona.js';
 import HukukSerhi from '../../components/HukukSerhi.astro';
 import Sss from '../../components/Sss.astro';
 import HukukDanismanlik from '../../components/HukukDanismanlik.astro';
+import KararMatrisi from '../../components/KararMatrisi.astro';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('rehberler');
@@ -185,6 +186,10 @@ if (kalip2) {
       <OzCevap metin={giris.data.ozCevap} etiket="Kanun özeti" />
     </div>
 
+    {giris.data.karar && (
+      <KararMatrisi satirlar={giris.data.karar} />
+    )}
+
     {giris.data.cozer && (
       <section class="cozer gk" style="--gk:2" aria-label="Bu rehber ne çözer">
         <p class="blok-etiket">Bu rehber ne çözer</p>
@@ -269,6 +274,9 @@ if (kalip2) {
     yazarli
   />
   <OzCevap metin={giris.data.ozCevap} etiket="Kanun özeti" />
+  {giris.data.karar && (
+    <KararMatrisi satirlar={giris.data.karar} />
+  )}
   <div class="icerik">
     <Content />
   </div>

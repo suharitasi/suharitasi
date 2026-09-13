@@ -14,6 +14,27 @@ sss:
   - soru: "Belge başvurusuna ne kadar sürede cevap verilir?"
     cevap: "167 sayılı Kanun m.13 uyarınca başvuruya bir ay içinde cevap verilmesi zorunludur."
 ilgili: [kuyu-ruhsati, ruhsatsiz-kuyu-cezalari, su-tahsisi-oncelik-sirasi, kuyu-tasima]
+karar:
+  - senaryo: "Belge başvurusunun reddi"
+    merci: "DSİ (başvuru) → idari yargı (iptal davası)"
+    sure: "Başvuruya bir ay içinde cevap zorunlu (167 m.13)"
+    ceza: "—"
+    emsal: "Danıştay 8.D. 2018/6147 E., 2024/72 K. — sebep somut kurulmalı"
+  - senaryo: "Mevcut belgenin iptali / rejim geçişi"
+    merci: "İşlemi tesis eden idare → idari yargı"
+    sure: "Doğrulanmış süre yok"
+    ceza: "—"
+    emsal: "Danıştay 8.D. 2018/6147 E., 2024/72 K. — 167 belgesi 5686'ya otomatik intibak etmez"
+  - senaryo: "Yetkisiz idarece tesis edilen işlem"
+    merci: "İdari yargı"
+    sure: "Doğrulanmış süre yok"
+    ceza: "—"
+    emsal: "Danıştay 8.D. 2021/5225 E., 2023/6171 K. — yetkisiz işlem sakat"
+  - senaryo: "Sondajın çevredeki kaynaklara etkisi"
+    merci: "İdare → idari yargı"
+    sure: "Doğrulanmış süre yok"
+    ceza: "—"
+    emsal: "Danıştay 10.D. 2017/40 E., 2021/4632 K. — teknik değerlendirme şart"
 ---
 
 DSİ'nin belge başvurusunu reddetmesi veya mevcut belgeyi iptal etmesi

@@ -45,6 +45,24 @@ const rehberler = defineCollection({
       .min(2)
       .max(6)
       .optional(),
+    // KARAR MATRİSİ (13.09.2026): her satır somut bir senaryoyu 5 eksende
+    // çözer. Hücreler YALNIZ sayfanın doğrulanmış gövdesinden/mevzuat
+    // metninden damıtılır; veri yoksa "Doğrulanmış süre yok" gibi dürüst
+    // ifade yazılır (uydurma yasağı). Yeni hukuki iddia üretilmez.
+    karar: z
+      .array(
+        z.object({
+          senaryo: z.string().min(10).max(180),
+          merci: z.string().min(2).max(140),
+          sure: z.string().min(2).max(140),
+          // "—" (doğrudan mali yükümlülük yok) meşru bir hücre değeridir.
+          ceza: z.string().min(1).max(180),
+          emsal: z.string().min(2).max(240),
+        }),
+      )
+      .min(2)
+      .max(8)
+      .optional(),
   }),
 });
 
@@ -142,6 +160,8 @@ const vakalar = defineCollection({
       .optional(),
     // "Cevap önce" öz cevap — YALNIZ doğrulanmış olgudan; iddia/yorum yok.
     ozCevap: z.string().min(120).max(340),
+    // Arama niyetine göre <title> (marka eki eklenmez; ≤60 kr).
+    seoBaslik: z.string().max(60).optional(),
     // Olay akışı — her olay bir KAP bildirimine bağlı (künye zorunlu, url).
     olaylar: z
       .array(

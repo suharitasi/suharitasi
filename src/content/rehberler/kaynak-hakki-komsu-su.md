@@ -16,6 +16,22 @@ sss:
   - soru: "Kendi suyu yetmeyen komşu ne yapabilir?"
     cevap: "Yeraltı Suları Tüzüğü m.16 uyarınca komşu arazide işletilen yeraltı suyundan şartlı yararlanabilir; kullanma belgesi alması, zararı tazmin etmesi ve tesis masraflarına katılması gerekir."
 ilgili: [kaynak-suyu-kiralama, kuyu-ruhsati, yeralti-suyu-isletme-sahasi]
+karar:
+  - senaryo: "Araziden çıkan kaynağa el atma"
+    merci: "Asliye hukuk mahkemesi (el atmanın önlenmesi)"
+    sure: "Doğrulanmış süre yok"
+    ceza: "—"
+    emsal: "Yargıtay 7.HD 2024/1239 E., 2024/2246 K. — TMK 718 ve 756 birlikte uygulanır"
+  - senaryo: "Başkasının arazisindeki kaynak hakkı"
+    merci: "Tapu kütüğü (irtifak tescili)"
+    sure: "Doğrulanmış süre yok"
+    ceza: "—"
+    emsal: "Yargıtay 14.HD 2013/5715 E., 2013/7588 K. — irtifakla kurulur"
+  - senaryo: "Suyu yetmeyen komşunun yararlanması"
+    merci: "İdare (kullanma belgesi) / komşuluk"
+    sure: "Doğrulanmış süre yok"
+    ceza: "Zarar tazmini + tesis masrafına katılım"
+    emsal: "Yeraltı Suları Tüzüğü m.16 — şartlı yararlanma"
 ---
 
 Arazinizden kaynak çıkıyorsa kaynak arazinin bütünleyici parçasıdır ve

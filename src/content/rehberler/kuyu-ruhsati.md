@@ -20,6 +20,22 @@ sss:
   - soru: "Kuyu ruhsatı başvurusu nereye yapılır, cevap süresi nedir?"
     cevap: "Başvuru ilin bağlı olduğu DSİ Bölge Müdürlüğü'ne yapılır; 167 s.K. m.13 uyarınca cevap süresi bir aydır ve belgeler harçtan muaftır (m.12)."
 ilgili: [kuyu-tasima, ruhsatsiz-kuyu-cezalari, kuyu-belgesi-iptal-davalari, su-tahsisi-oncelik-sirasi]
+karar:
+  - senaryo: "Su temini için kuyu, sondaj, galeri veya tünel açma"
+    merci: "DSİ (ilin bağlı olduğu bölge müdürlüğü)"
+    sure: "Başvuruya bir ay içinde cevap (Yeraltı Suları Tüzüğü m.13)"
+    ceza: "Belgesiz açım yasak; 167 m.18 yaptırımları"
+    emsal: "167 m.8; Yargıtay 7.HD 2011/3727 E., 2012/3244 K."
+  - senaryo: "Bulunan suyu kullanma"
+    merci: "DSİ"
+    sure: "Arama belgesine dayanarak bir ay içinde müracaat (167 m.10)"
+    ceza: "Ölçüm sistemi kurulmadan kullanma belgesi verilmez"
+    emsal: "167 m.10"
+  - senaryo: "Mevcut kuyuda teknik müdahale (ıslah-tadil)"
+    merci: "DSİ"
+    sure: "Doğrulanmış süre yok"
+    ceza: "Belgeler harç ve damga resminden muaf (167 m.12)"
+    emsal: "167 m.11"
 ---
 
 Türkiye'de yeraltı suyu, kamu yararına ait sulardandır; arazinize sahip

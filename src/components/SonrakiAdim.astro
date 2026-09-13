@@ -38,7 +38,7 @@ const { konu, personalar = [] } = Astro.props;
       <span>20 su işlemi için yetkili kurum ve başvuru kanalı.</span>
     </li>
     <li>
-      <a href={`mailto:${EPOSTA}?subject=${encodeURIComponent((konu ?? 'Su hukuku') + ' — rehber üzerinden')}`}>Bu konuda görüş alın</a>
+      <a href={`mailto:${EPOSTA}?subject=${encodeURIComponent((konu ?? 'Su hukuku') + ' — rehber üzerinden')}`} data-olay="eposta">Bu konuda görüş alın</a>
       <span>Hukuki içerik {YAZAR.buro} tarafından hazırlanır — {EPOSTA}</span>
     </li>
   </ul>

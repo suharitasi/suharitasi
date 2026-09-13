@@ -1,0 +1,187 @@
+---
+// /sozluk/ — SU HUKUKU VE SU YÖNETİMİ TERİM DİZİNİ.
+//
+// KAYNAK: data/kamu/su-terim-havuzu.json (126 terim; her terimin kaynağı
+// mevzuat künyesidir). UYDURMA YASAĞI: bu sayfa TANIM UYDURMAZ — terimleri
+// ve hangi mevzuattan geldiklerini listeler. Tanım metni olmayan bir terime
+// sahte tanım yazmak, sitenin doğrulama ilkesine aykırı olurdu.
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import HukukSerhi from '../components/HukukSerhi.astro';
+import terimVeri from '../../data/kamu/su-terim-havuzu.json';
+
+const OZ_CEVAP =
+  'Su hukuku ve su yönetiminde geçen terimlerin dizini: yeraltı suyu, arama ve ' +
+  'kullanma belgesi, işletme sahası, tahsis, jeotermal, kamulaştırma, havza planı ' +
+  've daha fazlası. Her terimin yanında dayandığı mevzuat künyesi yer alır.';
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/sozluk/', Astro.site).href;
+
+const kumeAdlari = {
+  kaynak: 'Su kaynakları ve kaynak türleri',
+  islem: 'İşlemler, belgeler ve ruhsatlar',
+  'koruma-risk': 'Koruma, planlama ve risk',
+};
+
+const terimler = terimVeri.terimler ?? [];
+const kumeler = ['kaynak', 'islem', 'koruma-risk'].map((k) => ({
+  anahtar: k,
+  ad: kumeAdlari[k],
+  liste: terimler.filter((t) => t.kume === k).sort((a, b) => a.terim.localeCompare(b.terim, 'tr')),
+}));
+
+const sema = [
+  {
+    '@type': 'DefinedTermSet',
+    '@id': `${canonical}#terimler`,
+    name: 'Su hukuku ve su yönetimi terimleri',
+    url: canonical,
+    inLanguage: 'tr-TR',
+    hasDefinedTerm: terimler.slice(0, 200).map((t) => ({
+      '@type': 'DefinedTerm',
+      name: t.terim,
+      description: `Kaynak: ${t.kaynak}`,
+      inDefinedTermSet: `${canonical}#terimler`,
+    })),
+  },
+  {
+    '@type': 'WebPage',
+    '@id': `${canonical}#sayfa`,
+    url: canonical,
+    name: 'Su hukuku sözlüğü',
+    description: OZ_CEVAP,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${kok}#site` },
+  },
+];
+---
+<Sayfa
+  baslik="Su hukuku sözlüğü"
+  aciklama={OZ_CEVAP}
+  tarayiciBaslik="Su Hukuku Sözlüğü: Terimler ve Mevzuat Kaynakları"
+  sema={sema}
+>
+  <SayfaBasi etiket="Sözlük" baslik="Su hukuku sözlüğü" ozet="Su hukuku ve su yönetiminde geçen terimlerin mevzuat kaynaklı dizini." ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Tanım" />
+
+  <label class="soz-arama">
+    <span>Terim ara</span>
+    <input type="search" id="soz-filtre" placeholder="ör. kullanma belgesi, tahsis, havza…" autocomplete="off" />
+  </label>
+  <p class="soz-sayac" id="soz-sayac" aria-live="polite">{terimler.length} terim</p>
+
+  {kumeler.map((k) => (
+    <section class="soz-grup" aria-label={k.ad}>
+      <h2>{k.ad}</h2>
+      <ul class="soz-liste">
+        {k.liste.map((t) => (
+          <li data-terim={t.terim}>
+            <span class="soz-terim">{t.terim}</span>
+            <span class="soz-kaynak">{t.kaynak}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  <p class="soz-bos" id="soz-bos" hidden>Bu süzgeçle eşleşen terim bulunamadı.</p>
+
+  <nav class="soz-capraz" aria-label="İlgili bölümler">
+    <a href="/su-hukuku/">→ Su hukuku omurga sayfası</a>
+    <a href="/su-kanunu/mevzuat-kutuphanesi/">→ Mevzuat kütüphanesi</a>
+    <a href="/rehberler/">→ Tüm rehberler</a>
+  </nav>
+
+  <HukukSerhi />
+</Sayfa>
+
+<script type="module" src="/s/sozluk-filtre.js" is:inline></script>
+
+<style>
+  .soz-arama {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    max-width: 30rem;
+    margin: 0 0 0.6rem;
+  }
+
+  .soz-arama span {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+
+  .soz-arama input {
+    font: inherit;
+    padding: 0.6rem 0.8rem;
+    min-height: 44px;
+    border: 1px solid var(--cizgi);
+    background: var(--zemin-kart);
+    color: var(--metin);
+  }
+
+  .soz-arama input:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+
+  .soz-sayac {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--metin-soluk);
+    margin-bottom: 1.2rem;
+  }
+
+  .soz-grup { margin: 0 0 2rem; }
+
+  .soz-grup h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .soz-liste {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem 1.2rem;
+    padding: 0;
+  }
+
+  .soz-liste li {
+    padding: 0.5rem 0.7rem;
+    border-left: 2px solid var(--su-400);
+    background: var(--zemin-kart);
+  }
+
+  .soz-terim { display: block; font-weight: 500; }
+
+  .soz-kaynak {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    color: var(--metin-soluk);
+    margin-top: 0.1rem;
+  }
+
+  .soz-bos { margin-top: 0.8rem; color: var(--metin-soluk); font-style: italic; }
+
+  .soz-capraz {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.2rem;
+    margin-top: 1.6rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--cizgi);
+  }
+
+  .soz-capraz a { color: var(--baglanti); text-decoration: none; }
+  .soz-capraz a:hover { text-decoration: underline; }
+
+  @media (max-width: 640px) {
+    .soz-liste { grid-template-columns: 1fr; }
+  }
+</style>

@@ -13,8 +13,10 @@ import { YAZAR, EPOSTA } from '../data/site';
 const bolumler = [
   { ad: 'Harita', yol: '/harita/' },
   { ad: 'Havzalar', yol: '/havzalar/' },
+  { ad: 'Su Hukuku', yol: '/su-hukuku/' },
   { ad: 'Rehberler', yol: '/rehberler/' },
   { ad: 'Su Kanunu', yol: '/su-kanunu/' },
+  { ad: 'Sözlük', yol: '/sozluk/' },
   { ad: 'Hakkında', yol: '/hakkinda/' },
 ];
 
@@ -65,7 +67,7 @@ const niyetKapilari = [
         <a href={YAZAR.buroUrl} target="_blank" rel="noopener">{YAZAR.buro}</a>
       </p>
       <p class="alt-metin">
-        <a href={`mailto:${EPOSTA}`}>{EPOSTA}</a>
+        <a href={`mailto:${EPOSTA}`} data-olay="eposta">{EPOSTA}</a>
       </p>
     </div>
   </div>

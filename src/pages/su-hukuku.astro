@@ -1,0 +1,420 @@
+---
+// /su-hukuku/ — HUKUK OMURGA SAYFASI (Hub).
+//
+// NEDEN: rehberler, ceza sayfası, il sayfaları ve mevzuat kütüphanesi
+// birbirine dağınık bağlanıyordu; tek bir "su hukuku" girişi yoktu. Bu sayfa
+// hepsini tek çatıda toplar ve site genelindeki karar matrislerini TEK
+// filtrelenebilir tabloda birleştirir.
+//
+// UYDURMA YASAĞI: tablo satırları rehber frontmatter'ındaki `karar`
+// dizilerinden gelir (her biri kendi doğrulanmış gövdesinden damıtıldı).
+// İşlem listesi data/kamu/su-islemleri.json'dan (dayanaklı) okunur. Bu
+// sayfa yeni hukuki iddia üretmez; yalnız toplar ve bağlar.
+import { getCollection } from 'astro:content';
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import KararMatrisi from '../components/KararMatrisi.astro';
+import HukukDanismanlik from '../components/HukukDanismanlik.astro';
+import HukukSerhi from '../components/HukukSerhi.astro';
+import { personalar } from '../data/persona.js';
+import islemVeri from '../../data/kamu/su-islemleri.json';
+
+const OZ_CEVAP =
+  'Türkiye\'de su hukuku tek bir rejim değildir: yeraltı suyu 167 sayılı Kanun, ' +
+  'jeotermal 5686, kamulaştırma 2942, kamu ihaleleri 2886 ve su tahsisi ayrı ' +
+  'yönetmeliklerle düzenlenir. Bu sayfa hangi işlemde hangi merciye, hangi süre ' +
+  'içinde başvurulacağını ve olası ceza ile emsal kararları tek tabloda toplar.';
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/su-hukuku/', Astro.site).href;
+
+const rehberler = await getCollection('rehberler');
+const sirali = [...rehberler].sort((a, b) => a.data.baslik.localeCompare(b.data.baslik, 'tr'));
+
+// Master karar matrisi: her rehberin `karar` satırları + kaynak rehber.
+const master = [];
+for (const g of sirali) {
+  for (const k of g.data.karar ?? []) {
+    master.push({ rehber: g.id, baslik: g.data.baslik, ...k });
+  }
+}
+
+const surec = sirali.filter((g) => g.data.kume === 'surec');
+const uyusmazlik = sirali.filter((g) => g.data.kume === 'uyusmazlik');
+
+const islemler = islemVeri.islemler ?? [];
+
+// Persona bağları: hangi sektör hangi rehberle ilgili (veriden türetilir).
+const personaBag = personalar
+  .filter((p) => (p.ilgiliIcerik ?? []).length > 0)
+  .map((p) => ({
+    ad: p.ad,
+    slug: p.slug,
+    ilkRehber: p.ilgiliIcerik[0].replace('/rehberler/', '').replace(/\/$/, ''),
+  }));
+
+const sema = [
+  {
+    '@type': 'CollectionPage',
+    '@id': `${canonical}#sayfa`,
+    url: canonical,
+    name: 'Su hukuku',
+    description: OZ_CEVAP,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${kok}#site` },
+    about: { '@id': `${kok}#kurum` },
+  },
+  {
+    '@type': 'ItemList',
+    name: 'Su hukuku rehberleri',
+    numberOfItems: sirali.length,
+    itemListElement: sirali.map((g, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: g.data.baslik,
+      url: new URL(`/rehberler/${g.id}/`, Astro.site).href,
+    })),
+  },
+];
+---
+<Sayfa
+  baslik="Su hukuku"
+  aciklama={OZ_CEVAP}
+  tarayiciBaslik="Su Hukuku Rehberi: İzin, Ceza ve Dava Yolları"
+  sema={sema}
+>
+  <SayfaBasi etiket="Hukuk omurgası" baslik="Su hukuku" ozet="Yeraltı suyu, kuyu ruhsatı, sondaj, tahsis, jeotermal ve kamulaştırma: izin, ceza ve uyuşmazlık rehberlerinin tek girişi." ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Kanun özeti" />
+
+  {/* MASTER KARAR MATRİSİ — tüm rehberlerin senaryoları tek tabloda. */}
+  <section class="hub-matris" aria-label="Karar matrisi — tüm konular">
+    <p class="hub-kicker">Karar matrisi</p>
+    <h2>Hangi durumda hangi merci, süre ve ceza?</h2>
+    <p class="hub-aciklama">
+      Aşağıdaki tablo tüm su hukuku rehberlerindeki karar satırlarını birleştirir.
+      Bir konuyu arayın (ör. “ceza”, “ihale”, “kamulaştırma”); sonuç anında süzülür.
+      Satırlar yalnız doğrulanmış mevzuat ve içtihattan damıtılmıştır.
+    </p>
+    <label class="hub-arama">
+      <span>Konu ara</span>
+      <input type="search" id="karar-filtre" placeholder="ör. ceza, ihale, süre, DSİ…" autocomplete="off" />
+    </label>
+    <p class="hub-sayac" id="karar-sayac" aria-live="polite">{master.length} karar satırı</p>
+    <div class="hub-kaydir">
+      <table id="karar-tablo">
+        <caption>Senaryo · yetkili merci · süre · ceza/maliyet · emsal ve çözüm yolu.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Konu</th>
+            <th scope="col">Senaryo / sorun</th>
+            <th scope="col">Yetkili merci</th>
+            <th scope="col">İtiraz / başvuru süresi</th>
+            <th scope="col">Ceza / maliyet</th>
+            <th scope="col">Emsal ve çözüm yolu</th>
+          </tr>
+        </thead>
+        <tbody>
+          {master.map((r) => (
+            <tr data-konu={r.rehber}>
+              <td class="hub-konu"><a href={`/rehberler/${r.rehber}/`}>{r.baslik.split(':')[0]}</a></td>
+              <td>{r.senaryo}</td>
+              <td>{r.merci}</td>
+              <td>{r.sure}</td>
+              <td>{r.ceza}</td>
+              <td>{r.emsal}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="hub-bos" id="karar-bos" hidden>Bu süzgeçle eşleşen karar satırı bulunamadı.</p>
+  </section>
+
+  {/* REHBERLER — süreç / uyuşmazlık. */}
+  {[
+    { ad: 'Süreç rehberleri', ozet: 'İzin, başvuru ve belge süreçleri: hangi belge, kimden, hangi sürede.', liste: surec },
+    { ad: 'Uyuşmazlık rehberleri', ozet: 'Yaptırım, dava ve ihtilaf ekseni: ceza, iptal davası, kamulaştırma.', liste: uyusmazlik },
+  ].map((k) => (
+    <section class="hub-grup" aria-label={k.ad}>
+      <h2>{k.ad}</h2>
+      <p class="hub-aciklama">{k.ozet}</p>
+      <ul class="hub-kartlar">
+        {k.liste.map((g) => (
+          <li>
+            <a class={`hub-kart hub-${g.data.kume}`} href={`/rehberler/${g.id}/`}>
+              <span class="hub-etiket">{g.data.kume === 'surec' ? 'Rehber · Süreç' : 'Rehber · Uyuşmazlık'}</span>
+              <span class="hub-baslik">{g.data.baslik}</span>
+              <span class="hub-ozet">{g.data.ozet}</span>
+              {g.data.karar && <span class="hub-rozet">{g.data.karar.length} karar satırı</span>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  {/* İŞLEMLER — hangi işlem, hangi dayanak. */}
+  <section class="hub-grup" aria-label="Su işlemleri ve dayanakları">
+    <h2>Su işlemleri ve hukuki dayanakları</h2>
+    <p class="hub-aciklama">
+      {islemler.length} su işlemi ve her birinin kanuni/yönetmelik dayanağı. Hangi
+      kuruma gideceğinizi adım adım görmek için{' '}
+      <a href="/hangi-kurum/">işlem → kurum sayfasına</a> bakın.
+    </p>
+    <ul class="hub-islem">
+      {islemler.map((i) => (
+        <li>
+          <span class="hub-islem-ad">{i.islem_adi}</span>
+          <span class="hub-islem-dayanak">{i.dayanak}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  {/* SEKTÖR BAĞLARI. */}
+  {personaBag.length > 0 && (
+    <section class="hub-grup" aria-label="Sektörünüze göre">
+      <h2>Sektörünüze göre durumunuz</h2>
+      <p class="hub-aciklama">Faaliyet kolunuza göre yükümlülük ve ilgili rehber eşleşmesi.</p>
+      <nav class="hub-capraz">
+        {personaBag.slice(0, 24).map((p) => (
+          <a href={`/durumum/${p.slug}/`}>→ {p.ad}</a>
+        ))}
+      </nav>
+    </section>
+  )}
+
+  <nav class="hub-capraz hub-kaynak" aria-label="İlgili bölümler">
+    <a href="/su-kanunu/mevzuat-kutuphanesi/">→ Mevzuat kütüphanesi</a>
+    <a href="/hangi-kurum/">→ İşlem → yetkili kurum</a>
+    <a href="/kuyu-ruhsati/">→ İl bazında kuyu ruhsatı</a>
+    <a href="/kapatma-kaydi/">→ Resmî Gazete kapatma kaydı</a>
+    <a href="/sozluk/">→ Su hukuku sözlüğü</a>
+  </nav>
+
+  <HukukDanismanlik konu="Su hukuku" />
+  <HukukSerhi />
+</Sayfa>
+
+<script type="module" src="/s/karar-filtre.js" is:inline></script>
+
+<style>
+  .hub-kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--su-700);
+  }
+
+  .hub-kicker::before {
+    content: "";
+    width: 1.6rem;
+    height: 1px;
+    background: var(--su-400);
+  }
+
+  .hub-matris { margin: 0 0 2.6rem; }
+
+  .hub-matris h2,
+  .hub-grup h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 1.25;
+    margin: 0.5rem 0 0.6rem;
+  }
+
+  .hub-aciklama {
+    max-width: 72ch;
+    font-size: 0.92rem;
+    color: var(--metin-soluk);
+    margin-bottom: 1rem;
+  }
+
+  .hub-arama {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    max-width: 30rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .hub-arama span {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+
+  .hub-arama input {
+    font: inherit;
+    padding: 0.6rem 0.8rem;
+    min-height: 44px;
+    border: 1px solid var(--cizgi);
+    background: var(--zemin-kart);
+    color: var(--metin);
+  }
+
+  .hub-arama input:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+
+  .hub-sayac {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--metin-soluk);
+    margin-bottom: 0.8rem;
+  }
+
+  .hub-kaydir { overflow-x: auto; }
+
+  .hub-matris table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.84rem;
+    min-width: 56rem;
+  }
+
+  .hub-matris caption {
+    caption-side: top;
+    text-align: left;
+    font-size: 0.78rem;
+    color: var(--metin-soluk);
+    padding-bottom: 0.5rem;
+  }
+
+  .hub-matris th,
+  .hub-matris td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.55rem 0.65rem;
+    border-bottom: 1px solid var(--cizgi);
+  }
+
+  .hub-matris thead th {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    background: var(--zemin);
+    border-bottom: 2px solid var(--su-700);
+    white-space: nowrap;
+  }
+
+  .hub-konu a { font-family: var(--serif); font-weight: 500; }
+
+  .hub-matris tbody tr:hover { background: rgba(12, 90, 124, 0.04); }
+
+  .hub-bos { margin-top: 0.8rem; color: var(--metin-soluk); font-style: italic; }
+
+  .hub-grup { margin: 0 0 2.4rem; }
+
+  .hub-kartlar {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    padding: 0;
+  }
+
+  .hub-kart {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1rem 1.2rem;
+    text-decoration: none;
+    color: inherit;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    transition: transform 240ms var(--e-suzul), background-color 240ms var(--e-akinti);
+  }
+
+  .hub-kart.hub-surec { border-top: 2px solid var(--yesil-kara); }
+  .hub-kart.hub-uyusmazlik { border-top: 2px solid var(--kehribar); }
+  .hub-kart:hover { transform: translateY(-2px); background: var(--kopuk); }
+  .hub-kart:active { transform: translateY(0) scale(0.985); }
+
+  .hub-etiket {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .hub-surec .hub-etiket { color: var(--yesil-kara); }
+  .hub-uyusmazlik .hub-etiket { color: var(--kehribar-metin); }
+
+  .hub-baslik {
+    margin-top: 0.35rem;
+    font-family: var(--serif);
+    font-size: 1.12rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  .hub-kart:hover .hub-baslik { color: var(--su-700); }
+
+  .hub-ozet {
+    margin-top: 0.3rem;
+    font-size: 0.84rem;
+    line-height: 1.55;
+    color: var(--metin-soluk);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .hub-rozet {
+    margin-top: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    color: var(--su-700);
+  }
+
+  .hub-islem { list-style: none; padding: 0; display: grid; gap: 0.5rem; }
+
+  .hub-islem li {
+    padding: 0.6rem 0.8rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-left: 3px solid var(--su-400);
+  }
+
+  .hub-islem-ad { display: block; font-weight: 500; }
+  .hub-islem-dayanak {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--metin-soluk);
+    margin-top: 0.15rem;
+  }
+
+  .hub-capraz {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.2rem;
+    margin-top: 0.6rem;
+  }
+
+  .hub-capraz a { color: var(--baglanti); text-decoration: none; }
+  .hub-capraz a:hover { text-decoration: underline; }
+
+  .hub-kaynak { margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+
+  @media (max-width: 640px) {
+    .hub-kartlar { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hub-kart { transition: none; }
+    .hub-kart:hover, .hub-kart:active { transform: none; }
+  }
+</style>

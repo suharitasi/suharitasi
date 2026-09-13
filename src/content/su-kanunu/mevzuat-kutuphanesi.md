@@ -18,6 +18,12 @@ buraya kopyalanmaz; güncel metin her zaman resmî kaynaktan okunmalıdır.
   — DSİ'nin görev, yetki ve teşkilatı; su yapıları ve tahsislerin kurumsal temeli.
 - [5686 sayılı Jeotermal Kaynaklar ve Doğal Mineralli Sular Kanunu (2007)](https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5686.pdf)
   — Jeotermal ve doğal mineralli suların aranması, ruhsatlandırılması ve işletilmesi.
+- [2942 sayılı Kamulaştırma Kanunu (1983)](https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=2942&mevzuatTur=1&mevzuatTertip=5)
+  — Kamu yararına taşınmaz kamulaştırması, kamulaştırmasız el atma ve imar kısıtlılığı; baraj/gölet uyuşmazlıklarının dayanağı.
+- [2886 sayılı Devlet İhale Kanunu (1983)](https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=2886&mevzuatTur=1&mevzuatTertip=5)
+  — Kamu idarelerinin kira, satım ve hizmet işlemlerinde ihale zorunluluğu; kaynak suyu kiralamasının usul temeli.
+- [5393 sayılı Belediye Kanunu (2005)](https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=5393&mevzuatTur=1&mevzuatTertip=5)
+  — Belediyelerin içme-kullanma suyu sağlama, kaynak sularını işletme veya işlettirme yetkisi (m.15).
 
 ## Tüzük
 
@@ -36,6 +42,22 @@ buraya kopyalanmaz; güncel metin her zaman resmî kaynaktan okunmalıdır.
   — İçme suyu temin edilen yüzeysel ve yeraltı sularının kalite kategorileri.
 - [Doğal Mineralli Sular Hakkında Yönetmelik (2004)](https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=4821&MevzuatTur=7&MevzuatTertip=5)
   — Doğal mineralli suların onay, ruhsat ve denetim şartları.
+- [Su Tahsisleri Hakkında Yönetmelik](https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=34021&mevzuatTur=7&mevzuatTertip=5)
+  — Su tahsisi talebinin DSİ'ye yapılması (m.8), başvuru usulleri (m.9) ve değerlendirme ölçütleri (m.10).
+
+## Rehberlerdeki birebir madde metinleri
+
+Aşağıdaki rehberler, dayandıkları hükümlerin **birebir madde metnini** sayfa
+içinde taşır; kütüphane yalnız resmî tam metne bağlanır, metni kopyalamaz.
+
+- [Kuyu ruhsatı — 167 m.8, 10, 11 ve YAS Tüzüğü m.3, 4](/rehberler/kuyu-ruhsati/#madde-metni)
+- [Ruhsatsız kuyu cezaları — 167 m.18](/rehberler/ruhsatsiz-kuyu-cezalari/#madde-metni)
+- [Kaynak suyu kiralama — 2886 m.1, 5393 m.15, 831 m.1](/rehberler/kaynak-suyu-kiralama/#madde-metni)
+- [Kaynak hakkı ve komşu su — TMK m.718, 756](/rehberler/kaynak-hakki-komsu-su/#madde-metni)
+- [Su tahsisi — Yönetmelik m.8-10, 6200 Geçici m.13](/rehberler/su-tahsisi-oncelik-sirasi/#madde-metni)
+- [Baraj kamulaştırması — 2942 m.1, Ek m.1, 6200 Geçici m.12-13](/rehberler/baraj-kamulastirmasi/#madde-metni)
+- [Jeotermal ruhsat — 5686 m.4, 5, 6](/rehberler/jeotermal-ruhsat/#madde-metni)
+- [Yeraltı suyu işletme sahası — YAS Tüzüğü m.2, 4](/rehberler/yeralti-suyu-isletme-sahasi/#madde-metni)
 
 ## Tebliğ
 

@@ -14,6 +14,22 @@ sss:
   - soru: "Kira süresi, devir ve fesih nasıl belirlenir?"
     cevap: "Veri tabanında süre için açık bir üst sınır yoktur; süre, devir ve fesih ihale şartnamesi ile sözleşme ve 2886'nın genel hükümlerine göre belirlenir."
 ilgili: [kaynak-hakki-komsu-su, su-tahsisi-oncelik-sirasi, jeotermal-ruhsat]
+karar:
+  - senaryo: "Kaynağı kiraya verme (yetki sorunu)"
+    merci: "İl özel idaresi / belediye"
+    sure: "Doğrulanmış süre yok (şartname ve sözleşme)"
+    ceza: "—"
+    emsal: "Danıştay 13.D. 2013/263 E., 2018/2731 K. — ihalesiz kiralama hukuka aykırı"
+  - senaryo: "İhalesiz kiralama"
+    merci: "İdare → idari yargı"
+    sure: "Doğrulanmış süre yok"
+    ceza: "—"
+    emsal: "Danıştay 13.D. 2015/4133 E., 2021/4015 K. — 167, kiralamayı 2886'ya bağlar"
+  - senaryo: "Özel mülkiyetteki kaynağın kiralanabilirliği"
+    merci: "İdare → idari yargı"
+    sure: "Doğrulanmış süre yok"
+    ceza: "—"
+    emsal: "Danıştay 8.D. 2018/2016 E., 2020/4396 K. — açık düzenleme yok"
 ---
 
 Kaynak suyu kiralamak isteyen yatırımcının da kaynağını kiraya vermek

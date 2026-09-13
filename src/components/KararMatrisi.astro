@@ -1,0 +1,147 @@
+---
+// KARAR MATRİSİ — rehberi "ansiklopedik özet"ten "karar aracı"na çeviren tablo.
+//
+// Her satır somut bir senaryoyu 5 eksende çözer: senaryo · yetkili merci ·
+// itiraz/başvuru süresi · ceza/maliyet · emsal ve çözüm yolu.
+//
+// UYDURMA YASAĞI: hücreler frontmatter'daki `karar` dizisinden gelir ve
+// YALNIZ sayfanın doğrulanmış gövdesinden/mevzuat metninden damıtılır.
+// Bileşen metin ÜRETMEZ. Doğrulanmış süre/emsal yoksa hücrede açıkça
+// "doğrulanmış süre yok" yazar — boş bırakmak da uydurmak da yasak.
+//
+// ERİŞİLEBİLİRLİK: gerçek <table> + <caption> (ekran okuyucu ve LLM tabloyu
+// yapısal okur). Dar ekranda tablo yatay kayar; sayfa gövdesi kaymaz.
+interface Props {
+  satirlar: {
+    senaryo: string;
+    merci: string;
+    sure: string;
+    ceza: string;
+    emsal: string;
+  }[];
+  baslik?: string;
+  aciklama?: string;
+}
+
+const { satirlar, baslik = 'Karar matrisi', aciklama } = Astro.props;
+---
+{satirlar.length > 0 && (
+  <section class="karar" aria-label={baslik}>
+    <p class="karar-kicker">Karar matrisi</p>
+    <h2>{baslik}</h2>
+    {aciklama && <p class="karar-aciklama">{aciklama}</p>}
+    <div class="karar-kaydir">
+      <table>
+        <caption class="karar-caption">
+          Senaryo · yetkili merci · süre · ceza/maliyet · emsal ve çözüm yolu.
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Senaryo / sorun</th>
+            <th scope="col">Yetkili merci</th>
+            <th scope="col">İtiraz / başvuru süresi</th>
+            <th scope="col">Ceza / maliyet</th>
+            <th scope="col">Emsal ve çözüm yolu</th>
+          </tr>
+        </thead>
+        <tbody>
+          {satirlar.map((s) => (
+            <tr>
+              <th scope="row">{s.senaryo}</th>
+              <td>{s.merci}</td>
+              <td>{s.sure}</td>
+              <td>{s.ceza}</td>
+              <td>{s.emsal}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+)}
+
+<style>
+  .karar {
+    margin: 0 0 2.2rem;
+    padding: 1.1rem 1.2rem 1.3rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+  }
+
+  .karar-kicker {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--su-700);
+  }
+
+  .karar h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.35rem;
+    line-height: 1.25;
+    margin: 0.4rem 0 0.5rem;
+  }
+
+  .karar-aciklama {
+    max-width: 68ch;
+    font-size: 0.9rem;
+    color: var(--metin-soluk);
+    margin-bottom: 0.9rem;
+  }
+
+  .karar-kaydir { overflow-x: auto; }
+
+  .karar table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+    min-width: 44rem;
+  }
+
+  .karar-caption {
+    caption-side: top;
+    text-align: left;
+    font-size: 0.78rem;
+    color: var(--metin-soluk);
+    padding-bottom: 0.5rem;
+  }
+
+  .karar th,
+  .karar td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.6rem 0.7rem;
+    border-bottom: 1px solid var(--cizgi);
+  }
+
+  .karar thead th {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    background: var(--zemin);
+    border-bottom: 2px solid var(--su-700);
+    white-space: nowrap;
+  }
+
+  .karar tbody th {
+    font-family: var(--serif);
+    font-size: 0.98rem;
+    font-weight: 500;
+    color: var(--metin);
+    width: 20%;
+  }
+
+  .karar tbody tr:hover { background: rgba(12, 90, 124, 0.04); }
+
+  @media print {
+    .karar-kaydir { overflow: visible; }
+    .karar table { min-width: 0; font-size: 0.72rem; }
+  }
+</style>

@@ -41,6 +41,9 @@ const kicker = (k) => (k === 'surec' ? 'Rehber · Süreç' : 'Rehber · Uyuşmaz
         </li>
       ))}
     </ul>
+    <p class="ilgili-hub">
+      <a href="/su-hukuku/">Su hukuku omurga sayfası — tüm rehberler ve karar matrisi →</a>
+    </p>
   </nav>
 )}
 
@@ -96,6 +99,16 @@ const kicker = (k) => (k === 'surec' ? 'Rehber · Süreç' : 'Rehber · Uyuşmaz
   }
 
   .ilgili a:hover .ilgili-baslik { color: var(--su-700); }
+
+  .ilgili-hub {
+    margin-top: 1.1rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--cizgi);
+    font-size: 0.9rem;
+  }
+
+  .ilgili-hub a { color: var(--baglanti); text-decoration: none; }
+  .ilgili-hub a:hover { text-decoration: underline; }
 
   .ilgili-ozet {
     display: block;

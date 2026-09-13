@@ -1,7 +1,7 @@
 {
  "_not": "GÖRSEL/DÜZEN TABANI — sürümlü YAPILANDIRMA (log değil). Bilinçli tasarım değişikliğinde `node arac/site-saglik.mjs --gorsel-taban-yenile --gerekce \"...\"` ile yenilenir; yenilenmeden kalem KIRMIZI kalır. Ölçüm deterministiktir: sabit viewport + DPR + reduced-motion (sahne 0'da donar).",
- "tabanTarihi": "2026-08-24T21:45:25.138Z",
- "gerekce": "agustos-uyum merge (59c8720): ana sayfa mobil sırası S1 kuralına döndü (CTA kartları order 5), emoji CTA'lar kalktı, satış bandı/menü CTA'sı kaldırıldı, göl/nehir/ilçe-sorgu sayfa tipleri denetime girdi — bilinçli tasarım değişiklikleri; kanıt rapor/agustos-uyum.md",
+ "tabanTarihi": "2026-09-13T19:10:07.091Z",
+ "gerekce": "13.09.2026: G4 secicisi main>section -> main section duzeltildi (10.09 article sarmalayicisi olcumu bozmustu); 08.09-13.09 arasi bilincli degisiklikler (WhatsApp dugmesi, V5 semantik DOM, hukuk kopruleri/karar matrisi/SSS) yeni tabana alindi. /harita G1 metin-gorsel ortusmesi onceden var; ayri degerlendirme kalemi.",
  "esikler": {
   "g1KesismePx2": 2000,
   "g2OlcekOran": 1.05,
@@ -36,6 +36,16 @@
     "altPx": 18
    },
    "bolumler": [
+    {
+     "etiket": "v2-hero",
+     "padUst": 88,
+     "padAlt": 56
+    },
+    {
+     "etiket": "v2-cta-ikili",
+     "padUst": 24,
+     "padAlt": 24
+    },
     {
      "etiket": "v2-bolum.v2-kanit",
      "padUst": 96,
@@ -76,9 +86,24 @@
    },
    "bolumler": [
     {
+     "etiket": "v2-hero",
+     "padUst": 57.6,
+     "padAlt": 14.4
+    },
+    {
+     "etiket": "v2-cta-ikili",
+     "padUst": 24,
+     "padAlt": 24
+    },
+    {
      "etiket": "v2-bolum.v2-kanit",
      "padUst": 96,
      "padAlt": 96
+    },
+    {
+     "etiket": "v2-mobil-sorular",
+     "padUst": 32,
+     "padAlt": 32
     },
     {
      "etiket": "v2-bolum.v2-hizmetler",
@@ -106,8 +131,8 @@
    "enYuksekOlcek": 0.41,
    "mobilIlkSoru": {
     "metin": "Ruhsatsız kuyu cezası aldım, ne yapmalıyım?",
-    "ust": 736,
-    "alt": 785
+    "ust": 675,
+    "alt": 724
    },
    "aktifSahne": "Sondaj"
   },
@@ -117,7 +142,18 @@
     "h1SatirYuk": 55.2,
     "altPx": null
    },
-   "bolumler": [],
+   "bolumler": [
+    {
+     "etiket": "hukuk-kopru",
+     "padUst": 25.6,
+     "padAlt": 0
+    },
+    {
+     "etiket": "hukuk-danismanlik",
+     "padUst": 20.8,
+     "padAlt": 22.4
+    }
+   ],
    "hizalamaSapma": 0,
    "kesismeAlan": 0,
    "enYuksekOlcek": null,
@@ -130,7 +166,18 @@
     "h1SatirYuk": 36.8,
     "altPx": null
    },
-   "bolumler": [],
+   "bolumler": [
+    {
+     "etiket": "hukuk-kopru",
+     "padUst": 25.6,
+     "padAlt": 0
+    },
+    {
+     "etiket": "hukuk-danismanlik",
+     "padUst": 20.8,
+     "padAlt": 22.4
+    }
+   ],
    "hizalamaSapma": 0,
    "kesismeAlan": 0,
    "enYuksekOlcek": null,
@@ -194,7 +241,7 @@
     }
    ],
    "hizalamaSapma": 0,
-   "kesismeAlan": 0,
+   "kesismeAlan": 8249,
    "enYuksekOlcek": 0.49,
    "mobilIlkSoru": null,
    "aktifSahne": "(sahne yok)"
@@ -236,8 +283,43 @@
      "padAlt": 17.6
     },
     {
+     "etiket": "il-kurum",
+     "padUst": 0,
+     "padAlt": 0
+    },
+    {
+     "etiket": "yas-bandi",
+     "padUst": 22.4,
+     "padAlt": 20.8
+    },
+    {
+     "etiket": "baraj-doluluk",
+     "padUst": 22.4,
+     "padAlt": 22.4
+    },
+    {
+     "etiket": "grace-egilim",
+     "padUst": 22.4,
+     "padAlt": 22.4
+    },
+    {
+     "etiket": "hukuk",
+     "padUst": 22.4,
+     "padAlt": 22.4
+    },
+    {
      "etiket": "section",
      "padUst": 0,
+     "padAlt": 0
+    },
+    {
+     "etiket": "section",
+     "padUst": 0,
+     "padAlt": 0
+    },
+    {
+     "etiket": "hukuk-kopru",
+     "padUst": 25.6,
      "padAlt": 0
     },
     {
@@ -265,8 +347,43 @@
      "padAlt": 16
     },
     {
+     "etiket": "il-kurum",
+     "padUst": 0,
+     "padAlt": 0
+    },
+    {
+     "etiket": "yas-bandi",
+     "padUst": 22.4,
+     "padAlt": 20.8
+    },
+    {
+     "etiket": "baraj-doluluk",
+     "padUst": 22.4,
+     "padAlt": 22.4
+    },
+    {
+     "etiket": "grace-egilim",
+     "padUst": 22.4,
+     "padAlt": 22.4
+    },
+    {
+     "etiket": "hukuk",
+     "padUst": 22.4,
+     "padAlt": 22.4
+    },
+    {
      "etiket": "section",
      "padUst": 0,
+     "padAlt": 0
+    },
+    {
+     "etiket": "section",
+     "padUst": 0,
+     "padAlt": 0
+    },
+    {
+     "etiket": "hukuk-kopru",
+     "padUst": 25.6,
      "padAlt": 0
     },
     {
@@ -289,14 +406,34 @@
    },
    "bolumler": [
     {
+     "etiket": "karar",
+     "padUst": 17.6,
+     "padAlt": 20.8
+    },
+    {
      "etiket": "cozer.gk",
      "padUst": 16.8,
      "padAlt": 18.4
     },
     {
+     "etiket": "il-kurum-tablosu",
+     "padUst": 0,
+     "padAlt": 0
+    },
+    {
+     "etiket": "sss",
+     "padUst": 25.6,
+     "padAlt": 0
+    },
+    {
      "etiket": "sonraki",
      "padUst": 19.2,
      "padAlt": 19.2
+    },
+    {
+     "etiket": "hukuk-danismanlik",
+     "padUst": 20.8,
+     "padAlt": 22.4
     }
    ],
    "hizalamaSapma": 0,
@@ -313,14 +450,34 @@
    },
    "bolumler": [
     {
+     "etiket": "karar",
+     "padUst": 17.6,
+     "padAlt": 20.8
+    },
+    {
      "etiket": "cozer.gk",
      "padUst": 16.8,
      "padAlt": 18.4
     },
     {
+     "etiket": "il-kurum-tablosu",
+     "padUst": 0,
+     "padAlt": 0
+    },
+    {
+     "etiket": "sss",
+     "padUst": 25.6,
+     "padAlt": 0
+    },
+    {
      "etiket": "sonraki",
      "padUst": 19.2,
      "padAlt": 19.2
+    },
+    {
+     "etiket": "hukuk-danismanlik",
+     "padUst": 20.8,
+     "padAlt": 22.4
     }
    ],
    "hizalamaSapma": 0,
@@ -337,9 +494,34 @@
    },
    "bolumler": [
     {
+     "etiket": "karar",
+     "padUst": 17.6,
+     "padAlt": 20.8
+    },
+    {
      "etiket": "cozer.gk",
      "padUst": 16.8,
      "padAlt": 18.4
+    },
+    {
+     "etiket": "hal",
+     "padUst": 17.6,
+     "padAlt": 19.2
+    },
+    {
+     "etiket": "hal",
+     "padUst": 17.6,
+     "padAlt": 19.2
+    },
+    {
+     "etiket": "hal",
+     "padUst": 17.6,
+     "padAlt": 19.2
+    },
+    {
+     "etiket": "hal",
+     "padUst": 17.6,
+     "padAlt": 19.2
     },
     {
      "etiket": "iletisim",
@@ -347,9 +529,19 @@
      "padAlt": 19.2
     },
     {
+     "etiket": "sss",
+     "padUst": 25.6,
+     "padAlt": 0
+    },
+    {
      "etiket": "sonraki",
      "padUst": 19.2,
      "padAlt": 19.2
+    },
+    {
+     "etiket": "hukuk-danismanlik",
+     "padUst": 20.8,
+     "padAlt": 22.4
     }
    ],
    "hizalamaSapma": 0,
@@ -366,9 +558,34 @@
    },
    "bolumler": [
     {
+     "etiket": "karar",
+     "padUst": 17.6,
+     "padAlt": 20.8
+    },
+    {
      "etiket": "cozer.gk",
      "padUst": 16.8,
      "padAlt": 18.4
+    },
+    {
+     "etiket": "hal",
+     "padUst": 17.6,
+     "padAlt": 19.2
+    },
+    {
+     "etiket": "hal",
+     "padUst": 17.6,
+     "padAlt": 19.2
+    },
+    {
+     "etiket": "hal",
+     "padUst": 17.6,
+     "padAlt": 19.2
+    },
+    {
+     "etiket": "hal",
+     "padUst": 17.6,
+     "padAlt": 19.2
     },
     {
      "etiket": "iletisim",
@@ -376,9 +593,19 @@
      "padAlt": 19.2
     },
     {
+     "etiket": "sss",
+     "padUst": 25.6,
+     "padAlt": 0
+    },
+    {
      "etiket": "sonraki",
      "padUst": 19.2,
      "padAlt": 19.2
+    },
+    {
+     "etiket": "hukuk-danismanlik",
+     "padUst": 20.8,
+     "padAlt": 22.4
     }
    ],
    "hizalamaSapma": 0,
@@ -393,7 +620,18 @@
     "h1SatirYuk": 55.2,
     "altPx": null
    },
-   "bolumler": [],
+   "bolumler": [
+    {
+     "etiket": "grup",
+     "padUst": 0,
+     "padAlt": 0
+    },
+    {
+     "etiket": "grup",
+     "padUst": 0,
+     "padAlt": 0
+    }
+   ],
    "hizalamaSapma": 0,
    "kesismeAlan": 0,
    "enYuksekOlcek": null,
@@ -406,7 +644,18 @@
     "h1SatirYuk": 36.8,
     "altPx": null
    },
-   "bolumler": [],
+   "bolumler": [
+    {
+     "etiket": "grup",
+     "padUst": 0,
+     "padAlt": 0
+    },
+    {
+     "etiket": "grup",
+     "padUst": 0,
+     "padAlt": 0
+    }
+   ],
    "hizalamaSapma": 0,
    "kesismeAlan": 0,
    "enYuksekOlcek": null,
@@ -517,9 +766,24 @@
    },
    "bolumler": [
     {
+     "etiket": "karar",
+     "padUst": 17.6,
+     "padAlt": 20.8
+    },
+    {
+     "etiket": "sss",
+     "padUst": 25.6,
+     "padAlt": 0
+    },
+    {
      "etiket": "sonraki",
      "padUst": 19.2,
      "padAlt": 19.2
+    },
+    {
+     "etiket": "hukuk-danismanlik",
+     "padUst": 20.8,
+     "padAlt": 22.4
     }
    ],
    "hizalamaSapma": 0,
@@ -536,9 +800,24 @@
    },
    "bolumler": [
     {
+     "etiket": "karar",
+     "padUst": 17.6,
+     "padAlt": 20.8
+    },
+    {
+     "etiket": "sss",
+     "padUst": 25.6,
+     "padAlt": 0
+    },
+    {
      "etiket": "sonraki",
      "padUst": 19.2,
      "padAlt": 19.2
+    },
+    {
+     "etiket": "hukuk-danismanlik",
+     "padUst": 20.8,
+     "padAlt": 22.4
     }
    ],
    "hizalamaSapma": 0,
@@ -549,7 +828,7 @@
   }
  },
  "oncekiTaban": {
-  "tarih": "2026-07-28T18:23:59.844Z",
-  "gerekce": "ilk kurulum — hero saha kadrajı + reset :where düzeltmesi sonrası taban (gorsel-bekci Faz 1) · M12 (28.07): rehber grubuna ikinci örnek eklendi — G4 ritmi bu grupta sayfadan sayfaya değişiyordu (28.07 varyans ölçümü), tek örnek yetersizdi."
+  "tarih": "2026-08-24T21:45:25.138Z",
+  "gerekce": "agustos-uyum merge (59c8720): ana sayfa mobil sırası S1 kuralına döndü (CTA kartları order 5), emoji CTA'lar kalktı, satış bandı/menü CTA'sı kaldırıldı, göl/nehir/ilçe-sorgu sayfa tipleri denetime girdi — bilinçli tasarım değişiklikleri; kanıt rapor/agustos-uyum.md"
  }
 }

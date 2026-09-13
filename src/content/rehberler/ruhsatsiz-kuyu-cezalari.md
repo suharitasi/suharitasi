@@ -14,6 +14,22 @@ sss:
   - soru: "Ruhsatsız kuyu cezasını hangi makam verir?"
     cevap: "Cezayı DSİ değil, mahallî mülkî amir (valilik veya kaymakamlık) verir."
 ilgili: [kuyu-ruhsati, kuyu-belgesi-iptal-davalari, yeralti-suyu-isletme-sahasi]
+karar:
+  - senaryo: "Belgesiz kuyu açma veya kasten yanlış bilgi verme"
+    merci: "Mahallî mülkî amir (valilik/kaymakamlık)"
+    sure: "Doğrulanmış süre yok (tespit sonrası yaptırım)"
+    ceza: "167 m.18/a: 1.000–5.000 TL; kuyu kapatma, masraf açtırandan alınır"
+    emsal: "Danıştay 8.D. 2022/3005 E., 2022/3470 K. — arama belgesi rejimin çekirdeği"
+  - senaryo: "Belge şartlarına aykırı su kullanma (m.10-11 ihlali)"
+    merci: "Mahallî mülkî amir"
+    sure: "Doğrulanmış süre yok"
+    ceza: "167 m.18/b: 500–2.000 TL; ayrıca kuyu kapatma"
+    emsal: "Danıştay 8.D. 2023/663 E., 2023/829 K. — izin aşımını DSİ tespit eder"
+  - senaryo: "Kesilen cezaya veya kapatma kararına karşı yargı yolu"
+    merci: "İdari yargı (iptal davası)"
+    sure: "Doğrulanmış süre yok"
+    ceza: "—"
+    emsal: "Yargıtay 7.HD 2011/3727 E., 2012/3244 K. — kuyu suyu 167 rejimine tabi"
 ---
 
 Ruhsatsız kuyu iki ayrı yoldan yaptırıma yol açar: ya kuyu baştan

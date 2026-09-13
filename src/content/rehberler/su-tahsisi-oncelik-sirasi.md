@@ -14,6 +14,27 @@ sss:
   - soru: "Su kullanımında öncelik sırası nedir?"
     cevap: "Yeraltı Suları Tüzüğü m.15'e göre içme, temizlik/belediye, hayvan sulaması, zirai sulama, maden-sanayi ve sportif tesisler."
 ilgili: [kuyu-ruhsati, kaynak-suyu-kiralama, yeralti-suyu-isletme-sahasi]
+karar:
+  - senaryo: "Su tahsisi talebi"
+    merci: "DSİ"
+    sure: "Doğrulanmış süre yok"
+    ceza: "—"
+    emsal: "Su Tahsisleri Hakkında Yönetmelik m.8"
+  - senaryo: "Talebin değerlendirilmesi"
+    merci: "DSİ"
+    sure: "Doğrulanmış süre yok"
+    ceza: "—"
+    emsal: "m.10 — miktar, kalite ve kullanım önceliği birlikte"
+  - senaryo: "Kullanım öncelik sırası"
+    merci: "DSİ"
+    sure: "Doğrulanmış süre yok"
+    ceza: "—"
+    emsal: "Yeraltı Suları Tüzüğü m.15 — içme ilk sırada"
+  - senaryo: "Yürürlükten önceki eski tahsisler"
+    merci: "DSİ"
+    sure: "Doğrulanmış süre yok"
+    ceza: "—"
+    emsal: "6200 s.K. Geçici m.13 — mevcut durum korunur"
 ---
 
 Kaynak, akarsu, yeraltı suyu, baraj, göl ve gölet gibi su

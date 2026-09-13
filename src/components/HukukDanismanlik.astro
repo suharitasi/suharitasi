@@ -31,19 +31,19 @@ const mailKonu = `${konu} — hukuki değerlendirme talebi`;
   </p>
   <ul class="hd-kanallar">
     <li>
-      <a class="hd-kanal" href={`tel:${TELEFON.tel}`}>
+      <a class="hd-kanal" href={`tel:${TELEFON.tel}`} data-olay="telefon">
         <span class="hd-etiket">Telefon</span>
         <span class="hd-deger">{TELEFON.gorunur}</span>
       </a>
     </li>
     <li>
-      <a class="hd-kanal" href={`mailto:${EPOSTA}?subject=${encodeURIComponent(mailKonu)}`}>
+      <a class="hd-kanal" href={`mailto:${EPOSTA}?subject=${encodeURIComponent(mailKonu)}`} data-olay="eposta">
         <span class="hd-etiket">E-posta</span>
         <span class="hd-deger">{EPOSTA}</span>
       </a>
     </li>
     <li>
-      <a class="hd-kanal" href="/whatsapp/" rel="nofollow noopener">
+      <a class="hd-kanal" href="/whatsapp/" rel="nofollow noopener" data-olay="whatsapp">
         <span class="hd-etiket">WhatsApp</span>
         <span class="hd-deger">Mesaj gönderin</span>
       </a>

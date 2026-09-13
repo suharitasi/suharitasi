@@ -53,7 +53,7 @@ const kalip2 = d.kalip === 2;
 if (kalip2 && !d.kahraman)
   throw new Error(`vaka "${giris.id}": kalip 2 için kahraman alanı zorunlu.`);
 ---
-<Sayfa baslik={d.baslik} aciklama={d.ozCevap} sema={sema} heroSlot="rehber-hero">
+<Sayfa baslik={d.baslik} tarayiciBaslik={d.seoBaslik} aciklama={d.ozCevap} sema={sema} heroSlot="rehber-hero">
 {kalip2 ? (
   <Fragment>
     <div class="gk gk-baslik" style="--gk:0">

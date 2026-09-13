@@ -117,7 +117,11 @@ const OLC = () => {
   };
 
   // — G4: bölüm ritmi (padding dizisi) —
-  const bolumler = [...document.querySelectorAll('.v2-bolum, .il-blok, .ar-liste, main > section')]
+  // DÜZELTME (13.09.2026): 10.09'da Sayfa.astro içeriği <article> ile
+  // sarmaladı → `main > section` artık 0 eşleşiyordu ve ölçüm sessizce
+  // boşa koşuyordu (tüm içerik sayfalarında "bölüm sayısı 0"). `main section`
+  // hem doğrudan hem <article> içindeki bölümleri yakalar.
+  const bolumler = [...document.querySelectorAll('.v2-bolum, .il-blok, .ar-liste, main section')]
     .filter(gorunur)
     .map((el) => {
       const st = getComputedStyle(el);

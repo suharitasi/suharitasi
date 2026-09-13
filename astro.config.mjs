@@ -96,11 +96,13 @@ function llmsOlustur() {
   // tutuyor ve önek olmadığı için tamamı "Diğer sayfalar" altına düşüyordu,
   // yani AI istemcilerine kategorisiz gidiyordu.
   const BOLUM = [
+    ['su-hukuku/', 'Su hukuku omurga sayfası (karar matrisi)'],
     ['rehberler/', 'Mevzuat rehberleri'],
+    ['su-kanunu/', 'Su Kanunu ve mevzuat kütüphanesi'],
+    ['sozluk/', 'Su hukuku sözlüğü'],
     ['havzalar/', 'Havzalar (25 havza)'],
     ['kuyu-ruhsati/', 'Kuyu ruhsatında il bazında yetkili kurum (81 il)'],
     ['durumum/', 'Sektöre göre su hukuku durumu'],
-    ['su-kanunu/', 'Su Kanunu ve mevzuat kütüphanesi'],
     ['goller/', 'Göller'],
     ['nehirler/', 'Nehirler'],
     ['vaka/', 'Vaka incelemeleri'],

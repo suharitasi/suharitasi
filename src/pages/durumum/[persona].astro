@@ -108,10 +108,15 @@ const yonetmelikKunyesi = _rg
   ? ` · ${yonetmelik.ad}, Resmî Gazete ${_rg.split('-').reverse().join('.')}`
   : '';
 
+// B1 düzeltmesi (13.09.2026): eski eşik 46 idi ama Sayfa.astro <title>'a
+// " — Su Haritası" (15 kr) ekliyordu → 60'ı yine aşıyordu (5 sayfa 62-68).
+// Artık tarayiciBaslik ile marka eki eklenmez ve eşik doğrudan 60'tır.
+const personaBaslik = `${p.ad}: su hukukunda durumunuz`.length <= 60
+  ? `${p.ad}: su hukukunda durumunuz`
+  : p.ad;
 ---
-{/* B1 (25.08): <title> 60 sınırı — tam kalıp sığmıyorsa yalnız sektör adı
-    kullanılır (veriden türetme; 37/42 sayfa 60'ı aşıyordu). H1 değişmez. */}
-<Sayfa baslik={`${p.ad}: su hukukunda durumunuz`.length <= 46 ? `${p.ad}: su hukukunda durumunuz` : p.ad} aciklama={ozCevap} sema={sema}>
+{/* H1 değişmez; yalnız <title> 60 sınırına çekilir (veriden türetme). */}
+<Sayfa baslik={personaBaslik} tarayiciBaslik={personaBaslik} aciklama={ozCevap} sema={sema}>
   <SayfaBasi etiket="Sektör sonucu" baslik={`${p.ad}: su hukukunda durumunuz`} tarih={TARIH.persona ? new Date(TARIH.persona) : undefined} />
 
   <OzCevap metin={ozCevap} />

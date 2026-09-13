@@ -16,6 +16,27 @@ sss:
   - soru: "İmar kısıtlılığında beş yıllık süre ne anlama gelir?"
     cevap: "2942 Ek m.1, uygulama imar planında umumi hizmete ayrılan taşınmazın beş yıl içinde kamulaştırılmasını veya kısıtlılığı kaldıran plan değişikliğini öngörür."
 ilgili: [su-tahsisi-oncelik-sirasi, kaynak-hakki-komsu-su, kuyu-belgesi-iptal-davalari]
+karar:
+  - senaryo: "Usulüne uygun kamulaştırma"
+    merci: "İdare; uyuşmazlıkta kamulaştırma mahkemesi"
+    sure: "Doğrulanmış süre yok"
+    ceza: "Uyuşmazlık bedelin miktarı üzerinde"
+    emsal: "2942 s.K. m.1"
+  - senaryo: "Kamulaştırmasız el atma (taşınmaz su altında)"
+    merci: "İdari / adli yargı"
+    sure: "Doğrulanmış süre yok"
+    ceza: "Bedel / tazminat sorunu"
+    emsal: "Doğrulanmış içtihat yok (veri tabanında bulunmuyor)"
+  - senaryo: "İmar kısıtlılığı"
+    merci: "İdare"
+    sure: "İmar planı yürürlüğünden itibaren beş yıl (2942 Ek m.1)"
+    ceza: "—"
+    emsal: "2942 s.K. Ek m.1"
+  - senaryo: "Ecrimisil (fiilî kullanım bedeli)"
+    merci: "Adli yargı"
+    sure: "Doğrulanmış süre yok"
+    ceza: "Fiilî kullanım bedeli tartışması"
+    emsal: "Doğrulanmış içtihat yok (veri tabanında bulunmuyor)"
 ---
 
 Baraj ve gölet projeleri, geniş arazilerin kamulaştırılmasını veya
