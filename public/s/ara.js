@@ -44,12 +44,19 @@
       durum.textContent = q ? 'En az iki karakter yazın.' : 'Aramak için yazmaya başlayın.';
       return;
     }
-    var terimler = norm(q).split(/\s+/).filter(Boolean);
+    var terimler = norm(q)
+      // "167 m.18" / "m18" / "md.18" → "madde 18" (mevzuat kısaltması)
+      .replace(/\bm(d)?\.?\s*(\d+)/g, 'madde $2')
+      .split(/\s+/).filter(Boolean);
+    var tamIfade = terimler.join(' ');
     var puanli = [];
     for (var i = 0; i < indeks.length; i++) {
       var k = indeks[i];
       var b = norm(k.b), h = norm(k.h), a = norm(k.a), y = norm(k.y), bol = norm(k.k);
       var hepsi = true, puan = 0;
+      // Tam ifade başlıkta/başlıkta geçiyorsa güçlü bonus (ör. "madde 8" → madde-8 üste).
+      if (b.indexOf(tamIfade) !== -1) puan += 20;
+      else if (h.indexOf(tamIfade) !== -1) puan += 12;
       for (var j = 0; j < terimler.length; j++) {
         var t = terimler[j];
         var hit = false;
