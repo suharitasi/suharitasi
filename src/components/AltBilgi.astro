@@ -11,26 +11,22 @@ import { YAZAR, EPOSTA } from '../data/site';
 // Mevcut "Bölümler" sütunu AYNEN korunur (onaylı metin, sıra dahil);
 // eksikler YENİ bir sütuna eklenir — hiçbir bağlantı kaldırılmadı.
 const bolumler = [
-  { ad: 'Ara', yol: '/ara/' },
-  { ad: 'Veriler (indir)', yol: '/veri/' },
-  { ad: 'Kısıt var mı?', yol: '/kuyu-kisit-sorgu/' },
-  { ad: 'Hesapla (ceza, süre)', yol: '/hesaplayicilar/' },
   { ad: 'Su Hukuku', yol: '/su-hukuku/' },
-  { ad: 'Kanun Maddeleri', yol: '/mevzuat/' },
-  { ad: 'Mahkeme Kararları', yol: '/emsal-kararlar/' },
+  { ad: 'Mevzuat', yol: '/mevzuat/' },
+  { ad: 'Veriler', yol: '/veri/' },
   { ad: 'Sözlük', yol: '/sozluk/' },
+  { ad: 'Ara', yol: '/ara/' },
   { ad: 'Hakkında', yol: '/hakkinda/' },
+  { ad: 'Gizlilik', yol: '/gizlilik/' },
 ];
 
 const niyetKapilari = [
-  { ad: 'Ne yapmalıyım? (kuyu)', yol: '/kuyu-karar-motoru/' },
-  { ad: 'Riskim ne? (il, havza)', yol: '/su-riski-endeksi/' },
+  { ad: 'Ne yapmalıyım?', yol: '/kuyu-karar-motoru/' },
+  { ad: 'Riskim ne?', yol: '/su-riski-endeksi/' },
+  { ad: 'Kısıt var mı?', yol: '/kuyu-kisit-sorgu/' },
+  { ad: 'Hesapla', yol: '/hesaplayicilar/' },
   { ad: 'Hızlı Danışma', yol: '/hizli-danisma/' },
-  { ad: 'Sektörüm (izin, dava)', yol: '/sektor/' },
-  { ad: 'Hangi Kurum', yol: '/hangi-kurum/' },
-  { ad: 'İşlemler (kurum, il)', yol: '/islem-matrisi/' },
   { ad: 'Kuyu Ruhsatı — iller', yol: '/kuyu-ruhsati/' },
-  { ad: 'Vakalar', yol: '/vaka/' },
 ];
 ---
 <footer class="alt">

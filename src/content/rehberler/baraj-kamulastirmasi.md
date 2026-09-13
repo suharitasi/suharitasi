@@ -90,40 +90,13 @@ tahsislerinin mevcut hukuki durumlarını koruduğunu hükme bağlar.
 
 ## Madde metni
 
-> **2942 sayılı Kamulaştırma Kanunu, Madde 1** – Bu Kanun; kamu
-> yararının gerektirdiği hallerde gerçek ve özel hukuk tüzelkişilerinin
-> mülkiyetinde bulunan taşınmaz malların, Devlet ve kamu
-> tüzelkişilerince kamulaştırılmasında yapılacak işlemleri,
-> kamulaştırma bedelinin hesaplanmasını, taşınmaz malın ve irtifak
-> hakkının idare adına tescilini, kullanılmayan taşınmaz malın geri
-> alınmasını, idareler arasında taşınmaz malların devir işlemlerini,
-> karşılıklı hak ve yükümlülükler ile bunlara dayalı uyuşmazlıkların
-> çözüm usul ve yöntemlerini düzenler.
+Bu rehberde andığımız hükümlerin birebir metni bağımsız mevzuat sayfalarındadır:
 
-> **2942 sayılı Kanun, Ek Madde 1** – Uygulama imar planlarında umumi
-> hizmetlere ve resmî kurumlara ayrılmak suretiyle mülkiyet hakkının
-> özüne dokunacak şekilde tasarrufu hukuken kısıtlanan taşınmazlar
-> hakkında, uygulama imar planlarının yürürlüğe girmesinden itibaren
-> beş yıllık süre içerisinde imar programları veya imar uygulamaları
-> yapılır ve bütçe imkânları dâhilinde bu taşınmazlar ilgili idarelerce
-> kamulaştırılır veya mülkiyet hakkını kullanmasına engel teşkil edecek
-> kısıtlılığı kaldıracak şekilde imar planı değişikliği yapılır.
-
-> **6200 sayılı Kanun, Ek Madde 2** – Bu Kanuna göre inşa edilen
-> barajlardan ve/veya tesislerden içme suyu tahsisi yapılanların bu
-> yatırımda içme suyuna isabet eden yatırım bedellerinin geri ödemeleri
-> ve süreleri için Belediye Teşkîlatı Olan Yerleşim Yerlerine İçme,
-> Kullanma ve Endüstri Suyu Temini Hakkında Kanun hükümleri uygulanır.
-
-> **6200 sayılı Kanun, Geçici Madde 12** – Bu maddenin yürürlüğe girdiği
-> tarihten önce tahakkuka bağlanmış ancak tahsil edilememiş baraj ve
-> gölet gibi depolama tesislerinin sulama maksadına ilişkin yatırım
-> bedeli ve sulama tesislerinin yatırım bedellerinin tahsilinden ve
-> takip işlemlerinden vazgeçilir.
-
-> **6200 sayılı Kanun, Geçici Madde 13** – Bu maddenin yürürlüğe girdiği
-> tarihten önce yapılmış olan su tahsisleri mevcut hukuki durumlarını
-> korumaya devam eder.
+- [Madde 1](/mevzuat/2942/madde-1/)
+- [Ek Madde 1](/mevzuat/2942/ek-madde-1/)
+- [Ek Madde 2](/mevzuat/6200/ek-madde-2/)
+- [Geçici Madde 12](/mevzuat/6200/gecici-madde-12/)
+- [Geçici Madde 13](/mevzuat/6200/gecici-madde-13/)
 
 ## Dikkat
 

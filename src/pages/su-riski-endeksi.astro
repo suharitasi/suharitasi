@@ -53,17 +53,18 @@ const sema = [
     <div class="sr-kaydir" tabindex="0" role="region">
       <table class="sr-tablo">
         <caption>Havza · skor · kategori · bileşenler (yüksek=risk).</caption>
-        <thead><tr><th scope="col">Havza</th><th scope="col">Skor</th><th scope="col">Kategori</th><th scope="col">Doluluk riski</th><th scope="col">GRACE</th><th scope="col">Yağış</th><th scope="col">Kısıt</th></tr></thead>
+        <thead><tr><th scope="col">Havza</th><th scope="col">Skor</th><th scope="col">Kategori</th><th scope="col">GRACE</th><th scope="col">Baraj</th><th scope="col">YAS</th><th scope="col">Tahsis</th><th scope="col">Yüzey</th></tr></thead>
         <tbody>
           {HAVZA_RISK.map((h) => (
             <tr data-havza={h.ad}>
               <th scope="row">{h.ad}</th>
               <td class="sr-skor">{h.puan ?? '—'}</td>
               <td><span class={`sr-kat sr-${katSinif(h.kategori)}`}>{h.kategori}</span></td>
-              <td>{h.bilesenler.doluluk ?? '—'}</td>
               <td>{h.bilesenler.grace ?? '—'}</td>
-              <td>{h.bilesenler.yagis ?? '—'}</td>
-              <td>{h.bilesenler.kisit ?? '—'}</td>
+              <td>{h.bilesenler.baraj ?? '—'}</td>
+              <td>{h.bilesenler.yas ?? '—'}</td>
+              <td>{h.bilesenler.tahsis ?? '—'}</td>
+              <td>{h.bilesenler.yuzeysuyu ?? '—'}</td>
             </tr>
           ))}
         </tbody>

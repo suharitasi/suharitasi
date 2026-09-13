@@ -1,0 +1,53 @@
+---
+// /en/ — ENGLISH SUMMARY (13.09.2026). Uluslararası atıf ve AI erişimi için.
+// Tam İngilizce katman sonraki iş; bu sayfa projenin özetini İngilizce verir.
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import { SITE } from '../../data/site';
+
+const OZ_CEVAP =
+  'Su Haritası (suharitasi.com) is an independent, source-cited portal that unifies ' +
+  "Türkiye's water data and water law: 25 river basins, 81 provinces, 247 lakes, 95 rivers, " +
+  '469 statutory articles, court precedents and daily dam-level records — in one map. ' +
+  'All data is derived from public official sources and published as an open JSON API.';
+
+const canonical = new URL('/en/', Astro.site).href;
+---
+<Sayfa baslik="Su Haritası — English summary" aciklama={OZ_CEVAP} tarayiciBaslik="Su Haritası — Türkiye Water Data & Law" robots="index, follow" alternates={[
+  { hreflang: 'tr', href: `${SITE}/` },
+  { hreflang: 'en', href: canonical },
+  { hreflang: 'x-default', href: `${SITE}/` },
+]} sema={[
+  { '@type': 'WebPage', '@id': `${canonical}#sayfa`, url: canonical, name: 'Su Haritası — English summary', description: OZ_CEVAP, inLanguage: 'en' },
+]}>
+  <SayfaBasi etiket="English" baslik="Türkiye water data & law, in one map" ozet="An independent, source-cited portal." ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Summary" />
+
+  <div class="en-icerik">
+    <h2>What it is</h2>
+    <p>Su Haritası brings together two things that are usually separate: <strong>technical water data</strong> (river basins, groundwater, lakes, rivers, daily dam levels, satellite GRACE trends, precipitation) and <strong>water law</strong> (permits, well licences, allocation, administrative fines, litigation).</p>
+
+    <h2>What it contains</h2>
+    <ul>
+      <li>25 river basins and 81 provinces with competent-authority mapping (DSİ regional offices, water utilities).</li>
+      <li>469 statutory articles (Law 167 on groundwater, the Groundwater Regulation, the Water Allocation Regulation and related statutes).</li>
+      <li>Court precedents (Danıştay / Yargıtay) cross-linked to the articles.</li>
+      <li>Daily dam-fill records (EPİAŞ) and a composite Water Risk Index per basin and province.</li>
+      <li>Official Gazette records on groundwater operating areas and closure restrictions.</li>
+    </ul>
+
+    <h2>Open data</h2>
+    <p>Every dataset is published as JSON without authentication: <a href="/veri/">/veri/</a> (basins, provinces, procedures, statutes, precedents, glossary, water risk). An OpenAPI schema is at <a href="/veri/openapi.json">/veri/openapi.json</a>. Data is derived from public official sources (DSİ, SYGM, mevzuat.gov.tr, Resmî Gazete, EPİAŞ, NASA GRACE, CHIRPS) and may be reused with attribution.</p>
+
+    <h2>Legal content</h2>
+    <p>Legal content is prepared by Av. Serdar Arslan (Arslan Hukuk Bürosu). The portal is informational; it does not provide legal advice or advertise legal services.</p>
+  </div>
+</Sayfa>
+
+<style>
+  .en-icerik { max-width: 74ch; }
+  .en-icerik h2 { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; margin: 1.5rem 0 0.5rem; }
+  .en-icerik p, .en-icerik li { line-height: 1.7; }
+  .en-icerik ul { margin: 0.6rem 0 0.6rem 1.2rem; }
+</style>

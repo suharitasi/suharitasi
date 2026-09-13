@@ -43,7 +43,7 @@ const sema = [
   <section class="gd-bolum">
     <h2>Son 12 ayda yağışı en çok düşen havzalar</h2>
     <ol class="gd-liste">{EN_KURAK.map((h) => (
-      <li>{h.ad} <span class="gd-deger">{h.ham.yagisDegisim}%</span> <span class="gd-not">12 ay değişim</span></li>
+      <li>{h.ad} <span class="gd-deger">{h.degisim}%</span> <span class="gd-not">12 ay değişim</span></li>
     ))}</ol>
   </section>
 
@@ -64,6 +64,7 @@ const sema = [
   <p class="gd-not-kaynak">Tüm veriler resmî kaynaklardan derlenmiştir (DSİ, EPİAŞ, GRACE, CHIRPS, Resmî Gazete). Yöntem: <a href="/hakkinda/">kaynak politikası</a> · API: <a href="/veri/">açık veri</a>.</p>
 
   <nav class="gd-capraz" aria-label="İlgili bölümler">
+    <a href="/veri/hikaye/baraj-doluluk/">→ Veri hikâyesi: baraj doluluk havza görünümü</a>
     <a href="/su-riski-endeksi/">→ Su riski endeksi</a>
     <a href="/mevzuat/degisiklikler/">→ Mevzuat değişiklik radarı (takip)</a>
     <a href="/kuyu-kisit-sorgu/">→ Kısıt sorgu motoru</a>

@@ -78,40 +78,11 @@ proje değişiklikleri yapılamaz.
 
 ## Madde metni
 
-> **5686 sayılı Kanun, Madde 4** – Jeotermal kaynaklar ve doğal
-> mineralli sulara ilişkin haklar, medeni hakları kullanmaya ehil
-> Türkiye Cumhuriyeti vatandaşlarına, bu hususta yetkisi bulunan kamu
-> kurum, kuruluş ve idarelerine verilir. Bu haklar gerçek veya tüzel tek
-> kişi adına verilir.
+Bu rehberde andığımız hükümlerin birebir metni bağımsız mevzuat sayfalarındadır:
 
-> **5686 sayılı Kanun, Madde 5** – Arama ruhsatı müracaatları, talep
-> sahibi tarafından 1/25000 ölçekli pafta adı ve koordinatları
-> belirtilerek beş bin hektarı geçmeyecek şekilde arama projesi ile
-> birlikte idareye yapılır. Müracaatlarda öncelik hakkı esastır. Aynı
-> yer için aynı anda birden fazla talep olması halinde, projeler
-> incelenerek en hızlı ve en fazla yatırımı teklif eden proje sahibinin
-> talebi tercih edilir.
-
-> **5686 sayılı Kanun, Madde 6** – Arama ruhsatı sahibinin, arama
-> ruhsat süresinin son günü akşamına kadar işletme projesi ile idareye
-> işletme ruhsatı başvurusunda bulunması halinde "işletme ruhsatı"
-> verilir ve varsa tespit edilen bloke alanıyla birlikte MAPEG'e
-> bildirilir. İşletme ruhsatı sahipleri, işletme faaliyetine geçmek için
-> ilgili kurumlardan gerekli izinleri almakla yükümlüdür. İşletme
-> ruhsatı sahibi, projesinde belirtilen süre içinde işletmeye geçmez
-> veya herhangi bir sebeple işletme ruhsatının iptal edilmesi durumunda
-> teminat irat kaydedilir ve saha idare tarafından ihaleye çıkarılır.
-> İşletme projeleri ile ihaleye katılan isteklilerden idareye en fazla
-> geliri teklif eden istekliye işletme ruhsatı verilir ve MAPEG'e
-> bildirilir. İdareden izin alınmaksızın, projede yer alan herhangi bir
-> kuyunun yenilenmesi, sayısının ve kapasitesinin artırılması,
-> enjeksiyon, reenjeksiyon, üretim amaçlı tüm sondaj faaliyetleri ile
-> diğer proje değişiklikleri ve revizyonları yapılamaz. İşletme ruhsatı
-> süresi otuz yıldır. Süre sonunda ruhsat sahibinin talep etmesi
-> durumunda onar yıllık dönemler halinde uzatılır. Doğal çıkış
-> halindeki jeotermal ve doğal mineralli sular için, kaptajı yapılarak
-> doğrudan işletme talepleri de İdarece bu Kanun hükümlerine göre
-> işletme ruhsatına bağlanır ve MAPEG'e bildirilir.
+- [Madde 4](/mevzuat/5686/madde-4/)
+- [Madde 5](/mevzuat/5686/madde-5/)
+- [Madde 6](/mevzuat/5686/madde-6/)
 
 ## Dikkat
 

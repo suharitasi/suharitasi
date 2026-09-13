@@ -47,6 +47,8 @@ export async function onRequest(context) {
   if (kirp(veri.website, 40)) return json({ ok: true }); // honeypot
   const eposta = kirp(veri.eposta, 160).toLowerCase();
   if (!gecerli(eposta)) return json({ hata: 'gecersiz e-posta' }, 400);
+  const onay = veri.onay === true || veri.onay === 'on' || veri.onay === 'true';
+  if (!onay) return json({ hata: 'KVKK onayi gerekli' }, 400);
   if (!kv) return json({ hata: 'takip deposu yapilandirilmadi' }, 503);
   try {
     const simdi = Date.now();

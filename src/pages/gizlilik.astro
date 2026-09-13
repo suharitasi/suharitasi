@@ -1,0 +1,58 @@
+---
+// /gizlilik/ — KVKK AYDINLATMA METNİ VE GİZLİLİK (13.09.2026).
+// Metin, sitenin GERÇEK veri işleme pratiğini tarif eder (hangi alan, nereye,
+// ne kadar süre). Hukuki metin [SERDAR-HUKUK] onayına tabidir.
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import HukukSerhi from '../components/HukukSerhi.astro';
+import { EPOSTA, YAZAR } from '../data/site';
+
+const OZ_CEVAP =
+  'Su Haritası çerez kullanmaz ve ziyaretçi davranışını reklam amaçlı izlemez. ' +
+  'Yalnızca sizin gönderdiğiniz bilgiler (ad, telefon, e-posta, mesaj) işlenir; ' +
+  'bu bilgiler talebe dönüş amacıyla Cloudflare altyapısında saklanır ve amaç ' +
+  'sona erince silinir. Haklarınız için ' + EPOSTA + ' adresine başvurabilirsiniz.';
+---
+<Sayfa baslik="Gizlilik ve KVKK" aciklama={OZ_CEVAP} tarayiciBaslik="Gizlilik ve KVKK Aydınlatma Metni" sema={[{ '@type': 'WebPage', name: 'Gizlilik ve KVKK aydınlatma metni', description: OZ_CEVAP, inLanguage: 'tr-TR' }]}>
+  <SayfaBasi etiket="Gizlilik" baslik="Gizlilik ve KVKK aydınlatma metni" ozet="Hangi bilgi, neden, nerede ve ne kadar süre işlenir." ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Özet" />
+
+  <div class="gz-icerik">
+    <h2>1. Veri sorumlusu</h2>
+    <p>Bu portal <strong>Su Haritası</strong> (suharitasi.com) tarafından işletilir. Hukuki içerik {YAZAR.ad} ({YAZAR.buro}) tarafından hazırlanır. İletişim: <a href={`mailto:${EPOSTA}`}>{EPOSTA}</a>.</p>
+
+    <h2>2. Hangi bilgiler işlenir?</h2>
+    <ul>
+      <li><strong>Hızlı danışma formu:</strong> ad soyad, telefon, (varsa) il, konu ve mesaj metni.</li>
+      <li><strong>Mevzuat değişiklik aboneliği:</strong> e-posta adresi.</li>
+      <li><strong>Çerez yok:</strong> site tarayıcınıza çerez yerleştirmez ve reklam izleme (tracking) yapmaz.</li>
+      <li><strong>Çerezsiz ölçüm:</strong> iletişim bağlantılarına (telefon/e-posta/WhatsApp) yapılan tıklamalar, IP adresi veya kullanıcı kimliği saklanmadan, yalnızca gün ve sayfa bazında sayılır.</li>
+    </ul>
+
+    <h2>3. İşleme amacı ve hukuki sebep</h2>
+    <p>Bilgiler yalnızca <strong>talebinize dönüş yapmak</strong> ve (abonelikte) <strong>mevzuat değişikliği bildirimi göndermek</strong> amacıyla işlenir. Hukuki sebep: KVKK m.5/2 (açık rıza) ve talebe dönüş için gereklilik.</p>
+
+    <h2>4. Nerede ve ne kadar süre saklanır?</h2>
+    <p>Bilgiler Cloudflare altyapısında (Cloudflare KV) saklanır; sunucumuzda ayrı bir kopya tutulmaz. Saklama süresi: danışma talepleri için <strong>~180 gün</strong>, abonelikler için <strong>~2 yıl</strong>; süre sonunda otomatik silinir. Reklam veya profilleme amaçlı üçüncü taraf paylaşımı yapılmaz.</p>
+
+    <h2>5. KVKK m.11 kapsamındaki haklarınız</h2>
+    <p>Kişisel verilerinizin işlenip işlenmediğini öğrenme, işlenmişse bilgi talep etme, düzeltilmesini veya silinmesini isteme ve işlemeye itiraz etme haklarına sahipsiniz. Talebiniz için <a href={`mailto:${EPOSTA}`}>{EPOSTA}</a> adresine yazmanız yeterlidir; talepler en kısa sürede yanıtlanır.</p>
+
+    <h2>6. Onay</h2>
+    <p>Danışma formundaki onay kutusunu işaretlediğinizde, iletişim bilgilerinizin yalnız yukarıdaki amaçla işlenmesine açık rıza vermiş olursunuz. Onay vermeden form gönderilmez.</p>
+
+    <p class="gz-not">Bu metin, portalın fiilî veri işleme pratiğini yansıtır. Ayrıntılı hukuki değerlendirme için bir hukukçuya danışabilirsiniz.</p>
+  </div>
+
+  <HukukSerhi />
+</Sayfa>
+
+<style>
+  .gz-icerik { max-width: 74ch; }
+  .gz-icerik h2 { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; margin: 1.6rem 0 0.5rem; }
+  .gz-icerik p { margin: 0.6rem 0; }
+  .gz-icerik ul { margin: 0.6rem 0 0.6rem 1.2rem; }
+  .gz-icerik li { margin: 0.3rem 0; }
+  .gz-not { margin-top: 1.4rem; padding: 0.8rem 1.1rem; border-left: 3px solid var(--kehribar); background: var(--zemin-kart); font-size: 0.88rem; color: var(--metin-soluk); }
+</style>

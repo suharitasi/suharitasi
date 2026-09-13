@@ -10,6 +10,7 @@ import { SITE_ADI, YAZAR, EPOSTA, OG_GORSEL, KURUM_SOSYAL, YAZAR_SOSYAL } from '
 // Hareket sözlüğü + giriş koreografisi TEK KAYNAK (ödül-üstü Faz 1).
 import '../styles/hareket.css';
 import AcilDestekBar from '../components/AcilDestekBar.astro';
+import Analitik from '../components/Analitik.astro';
 
 interface Props {
   baslik: string;
@@ -37,9 +38,11 @@ interface Props {
      Tarih YALNIZ veri künyesinden gelir (KARARLAR §27/Karar 3); belirsizse
      prop hiç geçilmez ve düğüm tarihsiz kalır. */
   guncelleme?: Date;
+  // hreflang alternatifleri (uluslararası atıf). Verilirse <head>'e basılır.
+  alternates?: { hreflang: string; href: string }[];
 }
 
-const { baslik, tarayiciBaslik, aciklama, sema = [], heroSlot, robots, guncelleme } = Astro.props;
+const { baslik, tarayiciBaslik, aciklama, sema = [], heroSlot, robots, guncelleme, alternates = [] } = Astro.props;
 
 // GEO/SEO B1 (25.08.2026): meta description 50-160 bandına merkezî kırpım.
 // Metin sayfanın kendi aciklama'sından türetilir (yeni metin ÜRETİLMEZ);
@@ -233,6 +236,7 @@ const jsonLd = JSON.stringify({
 {!robots && <meta name="googlebot" content="index, follow" />}
 {!robots && <meta name="bingbot" content="index, follow" />}
 <link rel="canonical" href={canonical} />
+{alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
 <meta property="og:title" content={`${baslik} — Su Haritası`} />
 <meta property="og:description" content={metaAciklama} />
 <meta property="og:url" content={canonical} />
@@ -246,6 +250,7 @@ const jsonLd = JSON.stringify({
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content={ogGorselTam} />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="alternate" type="application/rss+xml" title="Su Haritası" href="/feed.xml" />
 <script type="application/ld+json" is:inline set:html={jsonLd} />
 <link rel="stylesheet" href="/fonts/fonts.css" />
 <style is:global>
@@ -693,6 +698,7 @@ const jsonLd = JSON.stringify({
   </main>
   <AltBilgi />
   <AcilDestekBar />
+  <Analitik />
   <script type="module" src="/s/imlec.js" is:inline></script>
   <script type="module" src="/s/sayfa.js" is:inline></script>
   <script type="module" src="/s/olcum.js" is:inline></script>

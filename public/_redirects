@@ -75,3 +75,8 @@
 # JSON-LD telephone (Sayfa.astro / index.astro / harita.astro, Faz C).
 /whatsapp   https://wa.me/905324497144   302
 /whatsapp/  https://wa.me/905324497144   302
+
+# KONSOLİDASYON (13.09.2026): veri/kaynak sayfaları tek katalogda birleşti.
+# /kullanilanlar/ içeriği /veri/ altına taşındı; eski URL 301 ile yönlendirilir.
+/kullanilanlar/  /veri/  301
+/kullanilanlar   /veri/  301

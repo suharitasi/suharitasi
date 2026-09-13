@@ -1,0 +1,61 @@
+---
+// ANALİTİK — GA4 entegrasyonu (KVKK-uyumlu, onay kapılı, 13.09.2026).
+//
+// TASARIM: Site çerezsizdir. GA4 çerez kullandığından YALNIZ kullanıcı
+// açıkça onay verdikten sonra yüklenir. GA4_ID boşsa (varsayılan) hiçbir şey
+// yüklenmez — site çerezsiz kalır.
+//
+// AKTİF ETMEK İÇİN: src/data/analitik.js içindeki GA4_ID'yi GA4 ölçüm
+// kimliğiyle (G-XXXXXXX) doldur. O andan itibaren onay banner'ı görünür ve
+// onay sonrası GA4 + olaylar (dataLayer) devreye girer.
+import { GA4_ID } from '../data/analitik.js';
+---
+{GA4_ID && (
+  <>
+    <div id="kvkk-banner" class="kvkk-banner" role="dialog" aria-label="Ölçüm izni" hidden>
+      <p>Deneyimi iyileştirmek için anonim ölçüm (Google Analytics) yapmak istiyoruz. Çerez yalnız onay verirseniz kullanılır.</p>
+      <div class="kvkk-eylem">
+        <button type="button" id="kvkk-kabul" class="kvkk-btn">Kabul et</button>
+        <button type="button" id="kvkk-red" class="kvkk-btn kvkk-ikincil">Reddet</button>
+        <a href="/gizlilik/">Gizlilik</a>
+      </div>
+    </div>
+    <script is:inline define:vars={{ GA4_ID }}>
+      (function () {
+        var ID = GA4_ID;
+        if (!ID) return;
+        var karar = null;
+        try { karar = localStorage.getItem('kvkk-olcum'); } catch (e) {}
+        function yukle() {
+          if (window.__ga4) return; window.__ga4 = 1;
+          var s = document.createElement('script'); s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ID;
+          document.head.appendChild(s);
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){ dataLayer.push(arguments); }
+          window.gtag = gtag; gtag('js', new Date()); gtag('config', ID, { anonymize_ip: true });
+        }
+        if (karar === '1') { yukle(); return; }
+        if (karar === '0') return;
+        var b = document.getElementById('kvkk-banner'); if (b) b.hidden = false;
+        var k = document.getElementById('kvkk-kabul'), r = document.getElementById('kvkk-red');
+        if (k) k.addEventListener('click', function () { try { localStorage.setItem('kvkk-olcum','1'); } catch(e){} b.hidden = true; yukle(); });
+        if (r) r.addEventListener('click', function () { try { localStorage.setItem('kvkk-olcum','0'); } catch(e){} b.hidden = true; });
+      })();
+    </script>
+  </>
+)}
+
+<style>
+  .kvkk-banner {
+    position: fixed; left: 0; right: 0; bottom: 68px; z-index: 54;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.2rem;
+    padding: 0.8rem clamp(1rem, 4vw, 2rem);
+    background: var(--deniz, #0A2740); color: #fff; font-size: 0.86rem;
+  }
+  .kvkk-banner p { margin: 0; max-width: 70ch; }
+  .kvkk-eylem { display: flex; align-items: center; gap: 0.6rem; }
+  .kvkk-btn { font: inherit; font-weight: 600; padding: 0.5rem 1rem; min-height: 44px; background: var(--akuamarin, #57BAE0); color: var(--deniz, #0A2740); border: 0; border-radius: 2px; cursor: pointer; }
+  .kvkk-ikincil { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.4); }
+  .kvkk-eylem a { color: var(--akuamarin, #57BAE0); }
+</style>

@@ -30,7 +30,7 @@ import '../styles/anasayfa-v2.css';
 // cümlesi (HERO_ALT) aldı; head katmanı (title/description/OG/WebSite)
 // yeni H1+alt satırla uyumlandı. Envanter sayıları kanıt bandında yaşıyor.
 // Ana sayfanın öz-cevap MUAFİYETİ (28.07 kullanıcı kararı) değişmedi.
-import { HERO_ALT } from '../data/anasayfa-satis.js';
+import { HERO_ALT, META_ACIKLAMA } from '../data/anasayfa-satis.js';
 import AcilDestekBar from '../components/AcilDestekBar.astro';
 
 // Sahne kaynakları (poster + klip) — eski sayfadan AYNEN (video/poster
@@ -56,14 +56,18 @@ const sahneVeri = SAHNELER.map((s) => ({
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Kuyunuz için ruhsat mı lazım, ceza mı geldi? — Su Haritası</title>
-<meta name="description" content={HERO_ALT} />
+<title>Türkiye'nin su verisi ve su hukuku tek haritada</title>
+<meta name="description" content={META_ACIKLAMA} />
 <meta name="robots" content="index, follow" />
 <meta name="googlebot" content="index, follow" />
 <meta name="bingbot" content="index, follow" />
 <link rel="canonical" href="https://suharitasi.com/" />
-<meta property="og:title" content="Kuyunuz için ruhsat mı lazım, ceza mı geldi? — Su Haritası" />
-<meta property="og:description" content={HERO_ALT} />
+<link rel="alternate" type="application/rss+xml" title="Su Haritası" href="/feed.xml" />
+<link rel="alternate" hreflang="tr" href="https://suharitasi.com/" />
+<link rel="alternate" hreflang="en" href="https://suharitasi.com/en/" />
+<link rel="alternate" hreflang="x-default" href="https://suharitasi.com/" />
+<meta property="og:title" content="Türkiye'nin su verisi ve su hukuku tek haritada — Su Haritası" />
+<meta property="og:description" content={META_ACIKLAMA} />
 <meta property="og:url" content="https://suharitasi.com" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Su Haritası" />

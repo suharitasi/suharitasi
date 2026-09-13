@@ -84,31 +84,12 @@ tahsisleri mevcut hukuki durumlarını korur.
 
 ## Madde metni
 
-> **Su Tahsisleri Hakkında Yönetmelik, Madde 8** – Gerçek veya tüzel
-> kişiler; bu Yönetmelik kapsamındaki kaynak, akarsu, yeraltı suyu,
-> baraj, göl ve gölet gibi su kaynaklarından 7 nci maddede belirtilen
-> amaçlar için 9 uncu maddede belirtilen başvuru usulleri ile DSİ'ye
-> müracaat ederek su tahsis talebinde bulunabilirler.
+Bu rehberde andığımız hükümlerin birebir metni bağımsız mevzuat sayfalarındadır:
 
-> **Su Tahsisleri Hakkında Yönetmelik, Madde 9** – Yeraltı suyu
-> kullanımına yönelik tahsis başvuruları, 167 sayılı Yeraltısuları
-> Hakkında Kanun, Yeraltısuları Tüzüğü ve DSİ Yeraltısuları Teknik
-> Yönetmeliği hükümlerine göre yapılır. Yüzey suyu kullanımına yönelik
-> başvurularda ise içme ve kullanma, tarımsal sulama, su ürünleri
-> yetiştiriciliği, termik enerji, endüstriyel ve madencilik tesisleri
-> için ayrı usuller öngörülür.
-
-> **Su Tahsisleri Hakkında Yönetmelik, Madde 10** – Su tahsis
-> talepleri; suyun miktarı ve kalitesi esas alınarak kullanım
-> önceliklerine göre değerlendirilir, mevcut ve mutasavver projeler
-> açısından incelenir, suyun etkin ve verimli kullanılabilmesi için
-> yıllara göre ihtiyaçlar dikkate alınır ve göl, gölet, baraj, regülatör
-> ve benzeri yapıların etkilediği alanlarda proje verileri ile beslenim
-> koşulları göz önünde bulundurulur.
-
-> **6200 sayılı Kanun, Geçici Madde 13** – Bu maddenin yürürlüğe girdiği
-> tarihten önce yapılmış olan su tahsisleri mevcut hukuki durumlarını
-> korumaya devam eder.
+- [Madde 8](/mevzuat/su-tahsisleri-yon/madde-8/)
+- [Madde 9](/mevzuat/su-tahsisleri-yon/madde-9/)
+- [Madde 10](/mevzuat/su-tahsisleri-yon/madde-10/)
+- [Geçici Madde 13](/mevzuat/6200/gecici-madde-13/)
 
 ## Dikkat
 

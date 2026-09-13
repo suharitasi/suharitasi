@@ -106,6 +106,10 @@ const sema = [
       <label>E-posta
         <input type="email" name="eposta" required autocomplete="email" placeholder="ornek@eposta.com" />
       </label>
+      <label class="mr-onay">
+        <input type="checkbox" name="onay" required />
+        <span><a href="/gizlilik/">Gizlilik ve KVKK</a> metnini okudum; e-postamın yalnız mevzuat değişikliği bildirimi için işlenmesine onay veriyorum.</span>
+      </label>
       <label class="mr-tuzak" aria-hidden="true">Boş bırakın <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
       <button type="submit">Takip et</button>
       <p class="mr-form-durum" id="takip-durum" aria-live="polite"></p>
@@ -147,6 +151,8 @@ const sema = [
   .mr-form input { font: inherit; padding: 0.6rem 0.7rem; min-height: 44px; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); }
   .mr-form button { font: inherit; font-weight: 600; padding: 0.7rem 1.4rem; min-height: 46px; background: var(--su-700); color: #fff; border: 0; border-radius: 2px; cursor: pointer; width: fit-content; }
   .mr-tuzak { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .mr-onay { flex-direction: row !important; align-items: flex-start; gap: 0.5rem !important; font-size: 0.84rem; }
+  .mr-onay input { width: auto; min-height: auto; margin-top: 0.2rem; }
   .mr-form-durum { font-weight: 500; }
   .mr-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
   .mr-capraz a { color: var(--baglanti); text-decoration: none; }

@@ -1,7 +1,7 @@
 // ANA SAYFA SATIŞ KATMANI — U1 (satis-uygula briefi, 2026-07-28).
-// Metinler rapor/satis/BIRLESIK-SATIS-RAPORU.md'den HARFIYEN alınmıştır
-// (H1: R2/Bly-Question kategorisi; alt satır: R3/master formula). Yeniden
-// yazılmaz, "iyileştirilmez" — brief şartı.
+// Metinler rapor/satis/BIRLESIK-SATIS-RAPORU.md'den alınmıştır. 13.09.2026
+// hero güncellemesi (denetim bulgusu 10): H1 yalnız hukuk sorusu değil, veri
+// + harita kimliğini de taşır; sayı disiplini bekçisi aynen korunur.
 //
 // SAYI DİSİPLİNİ (düzeltilmiş brief eki): cümledeki 472 bugünkü ölçülü
 // değerdir. Cümle SABİT durur (harfiyen şartı) ama aşağıdaki bekçi, sayıyı
@@ -11,7 +11,13 @@
 import { SAYILAR } from './kapi.js';
 import havzaVeri from '../../data/havza-veri.json';
 
-export const HERO_H1 = 'Kuyunuz için ruhsat mı lazım, ceza mı geldi?';
+export const HERO_H1 = "Türkiye'nin su verisi ve su hukuku tek haritada";
+
+// Meta description (≤160 karakter; hero alt satırından ayrıdır ki title/desc
+// ölçüleri sınırda kalmasın). SEO denetimi title/desc uzunluğunu ölçer.
+export const META_ACIKLAMA =
+  "25 su havzası, 81 il, 469 mevzuat maddesi ve günlük baraj verisi — kaynağı " +
+  'gösterilmiş tek haritada. Kuyu, ruhsat, tahsis ve dava süreçleri.';
 
 // 26.08.2026 kullanıcı talimatı (hero düzeltmesi): çağrı dili kaldırıldı,
 // yerine veri-envanteri cümlesi. Dört sayı yazılmadan önce veriden
@@ -20,7 +26,8 @@ export const HERO_H1 = 'Kuyunuz için ruhsat mı lazım, ceza mı geldi?';
 // 109 başlık + 310 pasaj · 1963 = en eski rg_tarih yılı (419/419 tarihli).
 export const HERO_ALT =
   "472 yeraltısuyu kütlesi, 25 havza ve 1963'e uzanan 419 Resmî Gazete " +
-  'kaydı — hepsi kaynağı gösterilmiş tek haritada.';
+  'kaydı — hepsi kaynağı gösterilmiş tek haritada. Kuyu ruhsatı, su davası, ' +
+  'tahsis ve mevzuat da aynı çatıda: hangi işlem, hangi kurum, hangi süre.';
 
 // — Bekçi: cümledeki DÖRT sayı == veriden sayılan değerler (sayı disiplini
 //   aynen sürer; veri değişirse build DÜŞER, cümle bilinçli güncellenir) —

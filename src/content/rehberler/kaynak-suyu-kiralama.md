@@ -84,28 +84,12 @@ somut sözleşme hükümleri ile 2886'nın genel hükümleri esas alınır.
 
 ## Madde metni
 
-> **2886 sayılı Devlet İhale Kanunu, Madde 1** – Genel bütçeye dahil
-> dairelerle katma bütçeli idarelerin, özel idare ve belediyelerin alım,
-> satım, hizmet, yapım, kira, trampa, mülkiyetin gayri ayni hak tesisi
-> ve taşıma işleri bu Kanunda yazılı hükümlere göre yürütülür.
+Bu rehberde andığımız hükümlerin birebir metni bağımsız mevzuat sayfalarındadır:
 
-> **5393 sayılı Belediye Kanunu, Madde 15** – Belediyenin yetkileri ve
-> imtiyazları arasında; belde sakinlerinin mahallî müşterek nitelikteki
-> ihtiyaçlarını karşılamak amacıyla faaliyet ve girişimde bulunmak,
-> içme-kullanma ve endüstri suyu sağlamak, kaynak sularını işletmek veya
-> işlettirmek, taşınmazları kiralamak veya kiraya vermek ve kanunların
-> belediyelere verdiği yetki çerçevesinde yönetmelik çıkarmak yer alır.
-
-> **831 sayılı Sular Hakkında Kanun, Madde 1** – Şehir ve kasabalarla
-> köylerde ihtiyacatı ammeyi temine mahsus suların tedarik ve idaresi
-> belediye teşkilatı olan mahallerde belediyelere, olmıyan yerlerde Köy
-> Kanunu mucibince ihtiyar meclislerine aittir.
-
-> **831 sayılı Kanun, Ek Madde 1** – Bir belde veya belde halkının
-> müşterek ihtiyacına mahsus suların kaynakları belediye sınırı dışında
-> bulunsa bile su yollarının ve kaynaklarının bakımı, onarılması,
-> temizlenmesi ve suyun sıhhat şartlarına uygun bir halde bulundurulması
-> belediyelere aittir.
+- [Madde 1](/mevzuat/2886/madde-1/)
+- [Madde 15](/mevzuat/5393/madde-15/)
+- [Madde 1](/mevzuat/831/madde-1/)
+- [Ek Madde 1](/mevzuat/831/ek-madde-1/)
 
 ## Dikkat
 

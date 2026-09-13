@@ -84,21 +84,10 @@ ile saha ilan tarihi birlikte değerlendirilir.
 
 ## Madde metni
 
-> **Yeraltı Suları Tüzüğü, Madde 2** – Yeraltı suyu işletme sahalarının
-> sınırları ve karakteristikleri Devlet Su İşleri (DSİ) Genel
-> Müdürlüğünce tayin ve tesbit edildikçe, gerekli Bakanlar Kurulu Kararı
-> alınmak üzere keyfiyet Bayındırlık Bakanlığına intikal ettirilir.
-> Çıkacak karara göre "Yeraltı Suyu İşletme Sahaları" DSİ tarafından
-> Resmi Gazete ile ve ayrıca mahallerinde çıkan gazetelerde, gazete
-> çıkmayan yerlerde de mütat vasıtalarla ilan olunur.
+Bu rehberde andığımız hükümlerin birebir metni bağımsız mevzuat sayfalarındadır:
 
-> **Yeraltı Suları Tüzüğü, Madde 4** – a) Belge alınarak açılacak kuyu
-> derinlikleri DSİ tarafından bölge bölge tesbit edilerek Bakanlar
-> Kurulunun tasvibinden sonra ilan olunur. b) Yeraltı suyu araştırmaları
-> ilerledikçe yeraltı suyu deposunun korunması bakımından zaruret hasıl
-> olursa, (a) fıkrasında tesbit ve ilan olunan derinlikler yer yer
-> değiştirilir ve Bakanlar Kurulunun tasvibi alınmak suretiyle yeni kuyu
-> derinlikleri ilan olunur.
+- [Madde 2](/mevzuat/yas-tuzugu/madde-2/)
+- [Madde 4](/mevzuat/yas-tuzugu/madde-4/)
 
 ## Dayanak
 

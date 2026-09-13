@@ -1,117 +1,51 @@
-// SU RİSKİ ENDEKSİ — ŞEFFAF FORMÜLLÜ HESAPLAMA MOTORU (13.09.2026).
+// SU RİSKİ ENDEKSİ — TEK KAYNAK (birleşik, 13.09.2026).
 //
-// Bileşenler (her biri 0-100, YÜKSEK = risk):
-//   %40 Baraj doluluk düşüklüğü  (100 − ortalama doluluk %)
-//   %25 GRACE yerçekimi eğilimi   (azalma → risk; egim cm/ay)
-//   %25 Yağış trendi (CHIRPS)     (son 12 ay < önceki 12 ay → risk)
-//   %10 Yönetim baskısı           (havza illerindeki RG tahsise kapatma/kısıt kaydı)
-// Eksik bileşen varsa ağırlıklar yeniden normalize edilir.
+// ÇELİŞKİ ÇÖZÜMÜ: Önceden iki ayrı risk formülü vardı (havza-risk.js ve
+// bu dosya) ve aynı havza için farklı puan üretiyordu (Marmara 60 vs 63,7).
+// Artık HAVZA PUANI TEK YERDEN gelir: `havza-risk.js` → `havzaRisk(no)`.
+// Bu dosya yalnızca İL toplaması + zaman serileri + su bütçesi ekler;
+// havza puanını YENİDEN HESAPLAMAZ.
 //
-// UYDURMA YASAĞI: hiçbir değer üretilmez; hepsi mevcut resmî veriden türetilir.
-// Bu, resmî bir sınıflama DEĞİL, Su Haritası'nın şeffaf bileşik göstergesidir.
-import baraj from '../../data/canli/baraj.json';
-import graceHavza from '../../data/canli/grace-havza.json';
-import chirps from '../../data/canli/chirps.json';
+// UYDURMA YASAĞI: hiçbir değer üretilmez; hepsi resmî veriden türetilir.
 import havzaVeri from '../../data/havza-veri.json';
 import ilKurum from '../../data/il-kurum.json';
-import isletmeEk from '../../veri/potansiyel/isletme-sahalari-ek.json';
-import { graceEgilim } from './grace-hesap.js';
+import baraj from '../../data/canli/baraj.json';
+import chirps from '../../data/canli/chirps.json';
+import { havzaRisk, W as HAVZA_W } from './havza-risk.js';
 
-const clamp = (x, a = 0, b = 100) => Math.max(a, Math.min(b, x));
 const yuvarla = (x) => (x == null ? null : Math.round(x * 10) / 10);
+const katSinif = (seviye) => ({ dusuk: 'Düşük', orta: 'Orta', yuksek: 'Yüksek' }[seviye] || 'Veri yok');
 
-export const AGIRLIK = { doluluk: 0.4, grace: 0.25, yagis: 0.25, kisit: 0.1 };
+export const AGIRLIK = HAVZA_W;
 export const FORMUL =
-  'Su Riski = 0,40·(100 − baraj doluluk%) + 0,25·GRACE risk + 0,25·yağış risk + 0,10·yönetim baskısı. ' +
-  'Bileşenler 0-100 (yüksek=risk); eksik bileşende ağırlıklar normalize edilir. ' +
-  'Kategori: 0-25 Düşük · 25-50 Orta · 50-75 Yüksek · 75-100 Kritik.';
+  'Tek formül (havza-risk.js): %30 GRACE depolama eğilimi + %25 baraj doluluk + ' +
+  '%20 YAS rezerv/beslenim + %15 tahsis durumu + %10 yüzey suyu potansiyeli. ' +
+  'Verisi olmayan gösterge puana katılmaz; ağırlıklar katkı verenler arasında normalize edilir. ' +
+  'Kategori: <35 Düşük · 35-59 Orta · ≥60 Yüksek.';
 
-// — 1) Baraj doluluk —
-function barajOrtalama(havzaAd) {
-  const ad = havzaAd.replace(/\s*Havzası\s*$/, '');
-  const h = baraj.havzalar?.[ad];
-  if (!h) return null;
-  const d = [];
-  for (const b of Object.values(h.barajlar || {})) {
-    const gunler = Object.keys(b.seri || {}).sort();
-    if (!gunler.length) continue;
-    const son = b.seri[gunler[gunler.length - 1]];
-    if (son && son.doluluk != null) d.push(son.doluluk);
-  }
-  return d.length ? d.reduce((t, v) => t + v, 0) / d.length : null;
-}
-
-// — 2) GRACE —
-function graceRisk(havzaAd) {
-  const g = graceHavza.havzalar?.[havzaAd];
-  if (!g || !g.seri) return { risk: null, egim: null };
-  const e = graceEgilim(g.seri);
-  if (!e) return { risk: null, egim: null };
-  return { risk: clamp(50 - e.egim * 50, 0, 100), egim: yuvarla(e.egim) };
-}
-
-// — 3) Yağış trendi —
-function yagisRisk(havzaAd) {
-  const c = chirps.havzalar?.[havzaAd];
-  if (!c || !c.aylik) return { risk: null, degisim: null };
-  const aylar = Object.keys(c.aylik).sort();
-  if (aylar.length < 24) return { risk: null, degisim: null };
-  const topla = (arr) => arr.reduce((t, a) => t + (c.aylik[a] || 0), 0);
-  const son = topla(aylar.slice(-12));
-  const onceki = topla(aylar.slice(-24, -12));
-  if (!onceki) return { risk: null, degisim: null };
-  const degisim = ((son - onceki) / onceki) * 100;
-  return { risk: clamp(-degisim * 2, 0, 100), degisim: yuvarla(degisim) };
-}
-
-// — 4) Yönetim baskısı (RG tahsise kapatma/kısıt) —
-const kisitIl = {};
-for (const k of isletmeEk.kayitlar || []) {
-  if (!/tahsise kapatma|kısıt|kisit/i.test(k.durum || '')) continue;
-  const iller = Array.isArray(k.il) ? k.il : (k.il ? [k.il] : []);
-  for (const il of iller) if (il && !/belirsiz/i.test(il)) kisitIl[il] = (kisitIl[il] || 0) + 1;
-}
-const maxKisit = Math.max(1, ...Object.values(kisitIl));
-function kisitRisk(havzaAd) {
-  const hv = havzaVeri.havzalar.find((h) => h.ad === havzaAd);
-  if (!hv) return { risk: null, sayi: 0 };
-  const iller = ilKurum.havzaIlleri[hv.no]?.iller || [];
-  const sayi = iller.reduce((t, il) => t + (kisitIl[il] || 0), 0);
-  return { risk: clamp((sayi / maxKisit) * 100, 0, 100), sayi };
-}
-
-function kategori(p) {
-  if (p == null) return 'Veri yok';
-  if (p < 25) return 'Düşük';
-  if (p < 50) return 'Orta';
-  if (p < 75) return 'Yüksek';
-  return 'Kritik';
-}
-
-// — Havza riski —
+// — Havza riski: TEK kaynak havza-risk.js —
 export const HAVZA_RISK = havzaVeri.havzalar.map((hv) => {
-  const b = barajOrtalama(hv.ad);
-  const g = graceRisk(hv.ad);
-  const y = yagisRisk(hv.ad);
-  const k = kisitRisk(hv.ad);
-  const parcalar = {
-    doluluk: b == null ? null : clamp(100 - b, 0, 100),
-    grace: g.risk, yagis: y.risk, kisit: k.risk,
-  };
-  let t = 0, w = 0;
-  for (const [ad, v] of Object.entries(parcalar)) if (v != null) { t += v * AGIRLIK[ad]; w += AGIRLIK[ad]; }
-  const puan = w ? yuvarla(t / w) : null;
+  const r = havzaRisk(hv.no);
   return {
-    no: hv.no, ad: hv.ad, puan, kategori: kategori(puan),
-    bilesenler: { doluluk: yuvarla(parcalar.doluluk), grace: yuvarla(g.risk), yagis: yuvarla(y.risk), kisit: yuvarla(k.risk) },
-    ham: { barajDoluluk: yuvarla(b), graceEgim: g.egim, yagisDegisim: y.degisim, kisitSayi: k.sayi },
+    no: hv.no, ad: hv.ad, puan: r.puan, kategori: katSinif(r.seviye),
+    bilesenler: {
+      grace: r.detay.grace.skor, baraj: r.detay.baraj.skor, yas: r.detay.yas.skor,
+      tahsis: r.detay.tahsis.skor, yuzeysuyu: r.detay.yuzeysuyu.skor,
+    },
+    ham: {
+      graceEgim: r.detay.grace.egim ?? null,
+      barajDoluluk: r.detay.baraj.ortalamaDoluluk ?? null,
+      yasBeslenim: r.detay.yas.beslenim ?? null,
+      yasRezerv: r.detay.yas.rezerv ?? null,
+      yuzyPotansiyel: r.detay.yuzeysuyu.potansiyel ?? null,
+    },
   };
 }).sort((a, b) => (b.puan ?? -1) - (a.puan ?? -1));
 
 // — İl riski (illerin havzalarının ortalaması) —
 const havzaByAd = Object.fromEntries(HAVZA_RISK.map((h) => [h.ad, h]));
-const ilHavzaAd = {}; // il → [havzaAd]
 const havzaAdByNo = Object.fromEntries(havzaVeri.havzalar.map((h) => [h.no, h.ad]));
+const ilHavzaAd = {};
 for (const [no, h] of Object.entries(ilKurum.havzaIlleri)) {
   const ad = havzaAdByNo[no];
   for (const il of h.iller) (ilHavzaAd[il] = ilHavzaAd[il] || []).push(ad);
@@ -121,17 +55,18 @@ export const IL_RISK = [...illerSet].sort((a, b) => a.localeCompare(b, 'tr')).ma
   const adlar = ilHavzaAd[il] || [];
   const puanlar = adlar.map((a) => havzaByAd[a]?.puan).filter((x) => x != null);
   const puan = puanlar.length ? yuvarla(puanlar.reduce((t, v) => t + v, 0) / puanlar.length) : null;
-  return { il, puan, kategori: kategori(puan), havzalar: adlar };
+  const kategori = puan == null ? 'Veri yok' : puan >= 60 ? 'Yüksek' : puan >= 35 ? 'Orta' : 'Düşük';
+  return { il, puan, kategori, havzalar: adlar };
 }).sort((a, b) => (b.puan ?? -1) - (a.puan ?? -1));
 
 export const OZET = {
   havzaSayisi: HAVZA_RISK.length,
   ilSayisi: IL_RISK.length,
-  kritik: HAVZA_RISK.filter((h) => h.kategori === 'Kritik').length,
+  kritik: HAVZA_RISK.filter((h) => (h.puan ?? 0) >= 80).length,
   yuksek: HAVZA_RISK.filter((h) => h.kategori === 'Yüksek').length,
 };
 
-// — Zaman serileri (kuraklık/taşkın görünümü + su bütçesi) —
+// — Zaman serileri (kuraklık/taşkın görünümü) —
 function barajSeri(havzaAd, n = 30) {
   const ad = havzaAd.replace(/\s*Havzası\s*$/, '');
   const h = baraj.havzalar?.[ad];
@@ -153,7 +88,7 @@ export const SERILER = Object.fromEntries(
   havzaVeri.havzalar.map((hv) => [hv.ad, { baraj: barajSeri(hv.ad), chirps: chirpsSeri(hv.ad) }])
 );
 
-// Su bütçesi göstergeleri (YAS beslenimi vs işletme rezervi) — havza-veri'den.
+// — Su bütçesi göstergeleri (YAS beslenimi vs işletme rezervi) —
 export const BUTCE = Object.fromEntries(
   havzaVeri.havzalar.map((hv) => [hv.ad, {
     beslenim_hm3: hv.yasBeslenimi_hm3 ?? null,

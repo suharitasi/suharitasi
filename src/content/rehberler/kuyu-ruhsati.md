@@ -105,61 +105,13 @@ aykırıdır.
 
 ## Madde metni
 
-> **167 sayılı Yeraltı Suları Hakkında Kanun, Madde 8** – Aşağıdaki (a)
-> ve (b) fıkralarında beyan edilen kazıların yapılması veya kuyuların
-> açılması için Devlet Su İşleri Umum Müdürlüğünden belge alınması
-> mecburidir: a) Su temini maksadıyla, kesitleri ne olursa olsun, tabii
-> zemin üstünden itibaren derinliği Devlet Su İşleri Genel Müdürlüğü
-> tarafından tesbit ve ilgili bakanlığın onayından sonra ilan olunan
-> haddi aşan her türlü çukur, sondaj ve kuyular (el ile açılan kuyular
-> hariç), b) Su temini maksadiyle, boyları ve kesitleri ne olursa olsun,
-> ufki veya meyilli her türlü galeriler ve tüneller. Bu kazıların
-> yapılması ve kuyuların açılması su temini maksadını gütmemesi halinde,
-> bunlar hakkında belge aranmamakla beraber, Devlet Su İşleri Umum
-> Müdürlüğünün talebi üzerine bilgi verilmesi mecburidir.
+Bu rehberde andığımız hükümlerin birebir metni bağımsız mevzuat sayfalarındadır:
 
-> **167 sayılı Kanun, Madde 10** – Arama belgesine dayanarak arazisinde
-> yeraltı suyu bulunan kimse, bu suyu kullanabilir. Ancak, bir ay içinde
-> Devlet Su İşleri Umum Müdürlüğüne müracaat ederek kullanma belgesi
-> alır. Kuyu, galeri, tünel ve benzerlerine ölçüm sistemleri kurulmadan
-> kullanma belgesi verilemez. Ölçüm sistemlerinin kurulmasını lüzumlu
-> kılacak yeraltı suyunun; kullanım maksadı, miktarı, havza sınırı ve
-> diğer hususlar Devlet Su İşleri Genel Müdürlüğünün teklifi üzerine
-> Devlet Su İşleri Genel Müdürlüğünün bağlı olduğu Bakanlıkça tespit
-> edilir. Devlet Su İşleri Genel Müdürlüğünün bağlı olduğu Bakanlıkça
-> tespit edilen hususlara ilişkin uygulama usul ve esasları ile ölçüm
-> sistemine dair hususlar yönetmelikle belirlenir. Su ölçüm sisteminin
-> kurulmasına dair süre Devlet Su İşleri Genel Müdürlüğünün bağlı olduğu
-> Bakanlığın kararıyla uzatılabilir.
-
-> **167 sayılı Kanun, Madde 11** – Kullanma belgesini haiz bir kimse
-> arazisindeki kuyuların veya yeraltı suyu menbalarının verimini
-> artırmak veya başka bir maksadı sağlamak gibi mülahazalarla bunlar
-> üzerinde kendiliğinden her hangi bir müdahalede bulunamaz veya
-> kuyuların kullanma şeklini değiştiremez. Ancak, Devlet Su İşleri Umum
-> Müdürlüğünden "ıslah ve tadil belgesi" almak suretiyle, böyle bir
-> ameliyeye girişebilir.
-
-> **Yeraltı Suları Tüzüğü, Madde 3** – a) Satıh alüvyonları içinde
-> kazma, kürek, varyoz ve baramin gibi el kazısı aletleri ile kazılan
-> her derinlikteki kuyularla, ilk su tabakası içinde en çok 10 metre
-> derinliğe kadar, en çok 100 milimetre çapında boru çakılarak açılan
-> kuyular, el ile açılan kuyu sayılır. b) El ile açılan kuyulardan en
-> çok faydalı ihtiyaca yetecek kadar su çekilebilir. Yeraltı suyu deposu
-> bu ihtiyacı karşılayamıyacak durumda ise, deponun normal verimi kadar
-> su alınması gereklidir. c) Artezyen sahalarda el ile açılan kuyular
-> teknik yönetmelikte belirtildiği şekilde tercih ve teçhiz edilir.
-> Artezyen yapan kuyulardan faydalı ihtiyaçtan fazla su alınmasını
-> önliyecek tarzda ilgilinin gerekli bütün tedbirleri alması ve bu
-> hususta DSİ.ce yapılacak tavsiyeleri yerine getirmesi mecburidir.
-
-> **Yeraltı Suları Tüzüğü, Madde 4** – a) Belge alınarak açılacak kuyu
-> derinlikleri DSİ tarafından bölge bölge tesbit edilerek Bakanlar
-> Kurulunun tasvibinden sonra ilan olunur. b) Yeraltı suyu araştırmaları
-> ilerledikçe yeraltı suyu deposunun korunması bakımından zaruret hasıl
-> olursa, (a) fıkrasında tesbit ve ilan olunan derinlikler yer yer
-> değiştirilir ve Bakanlar Kurulunun tasvibi alınmak suretiyle yeni kuyu
-> derinlikleri ilan olunur.
+- [Madde 8](/mevzuat/167/madde-8/)
+- [Madde 10](/mevzuat/167/madde-10/)
+- [Madde 11](/mevzuat/167/madde-11/)
+- [Madde 3](/mevzuat/yas-tuzugu/madde-3/)
+- [Madde 4](/mevzuat/yas-tuzugu/madde-4/)
 
 ## Dikkat
 

@@ -11,9 +11,9 @@ import hangiKapi from '../../data/kamu/hangi-kapi.json';
 import suBirimleri from '../../data/kamu/su-birimleri.json';
 import ilKurum from '../../data/il-kurum.json';
 import havzaVeri from '../../data/havza-veri.json';
+import { islemJoin } from './ortak-normalize.js';
 
 const kurumById = Object.fromEntries((suBirimleri.kayitlar ?? []).map((k) => [k.id, k]));
-const kapiById = Object.fromEntries((hangiKapi.satirlar ?? []).map((s) => [s.islem_id, s]));
 
 /** Yetkili kurum id'sini okunur kurum nesnesine çevirir. */
 export function kurumCoz(id) {
@@ -22,22 +22,9 @@ export function kurumCoz(id) {
   return { id, ad: k.ad_resmi, kisaltma: k.kisaltma, url: k.kaynak_url ?? null, tur: k.tur };
 }
 
-// 20 işlem: su-islemleri + hangi-kapi + kurum çözümü.
-export const ISLEMLER = (suIslemleri.islemler ?? []).map((i) => {
-  const kapi = kapiById[i.id] ?? null;
-  const kurumlar = (kapi?.yetkili_kurum_id ?? []).map(kurumCoz);
-  return {
-    id: i.id,
-    ad: i.islem_adi,
-    dayanak: i.dayanak,
-    kaynak: i.kaynak,
-    kurumlar,
-    basvuruKanali: kapi?.basvuru_kanali ?? null,
-    durum: kapi?.durum ?? 'belirsiz',
-    ilgiliRehber: kapi?.ilgili_rehber ?? null,
-    mevzuatDayanagi: kapi?.mevzuat_dayanagi ?? null,
-  };
-});
+// 20 işlem: birleştirme TEK KAYNAK: ortak-normalize.js (astro.config'teki
+// veri-api kancası da aynı fonksiyonu kullanır).
+export const ISLEMLER = islemJoin(suIslemleri.islemler ?? [], hangiKapi.satirlar ?? [], suBirimleri.kayitlar ?? []);
 
 // İşlem durumunun okunur etiketi (hangi-kapi durum_degerleri).
 export const DURUM_ETIKET = {

@@ -3,6 +3,8 @@ import { readdir, writeFile, readFile, mkdir } from 'node:fs/promises';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { join, relative } from 'node:path';
+// Normalizasyon TEK KAYNAK: src/data/ortak-normalize.js (src/data modülleriyle aynı).
+import { kisitNormalize, islemJoin } from './src/data/ortak-normalize.js';
 
 const SITE = 'https://suharitasi.com';
 
@@ -101,27 +103,7 @@ function kisitJsonOlustur() {
         const oku = (p) => JSON.parse(readFileSync(join(proje, p), 'utf8'));
         const ana = oku('veri/potansiyel/isletme-sahalari.json');
         const ek = oku('veri/potansiyel/isletme-sahalari-ek.json');
-        const BELIRSIZ = /belirsiz/i;
-        const kayitlar = [];
-        const gorulen = new Set();
-        for (const k of [...(ana.kayitlar ?? []), ...(ek.kayitlar ?? [])]) {
-          const ilHam = k.il;
-          const iller = (Array.isArray(ilHam) ? ilHam : (ilHam ? [ilHam] : [])).filter((x) => x && !BELIRSIZ.test(x));
-          if (!iller.length) continue;
-          const saha = (k.saha_adi || '').replace(/\s+/g, ' ').trim().slice(0, 200);
-          const anahtar = `${k.kaynak_url || ''}|${k.rg_tarih || ''}|${saha.slice(0, 60)}`;
-          if (gorulen.has(anahtar)) continue;
-          gorulen.add(anahtar);
-          kayitlar.push({
-            il: iller,
-            ilce: k.ilceler && typeof k.ilceler === 'object' ? Object.keys(k.ilceler) : [],
-            durum: k.durum || 'belirsiz',
-            tarih: k.rg_tarih || '',
-            kaynak: k.kaynak_url || '',
-            saha,
-          });
-        }
-        kayitlar.sort((a, b) => (b.tarih || '').localeCompare(a.tarih || ''));
+        const kayitlar = kisitNormalize(ana.kayitlar, ek.kayitlar);
         await writeFile(join(kok, 'kisit.json'), JSON.stringify(kayitlar), 'utf8');
         logger.info(`kisit.json: ${kayitlar.length} RG kaydı`);
       },
@@ -162,17 +144,7 @@ function veriApiOlustur() {
         await yaz('iller.json', iller);
 
         const si = oku('data/kamu/su-islemleri.json'), hk = oku('data/kamu/hangi-kapi.json'), sb = oku('data/kamu/su-birimleri.json');
-        const kb = Object.fromEntries(sb.kayitlar.map((k) => [k.id, k]));
-        const hb = Object.fromEntries(hk.satirlar.map((s) => [s.islem_id, s]));
-        await yaz('islemler.json', si.islemler.map((i) => {
-          const s = hb[i.id] || {};
-          return {
-            id: i.id, ad: i.islem_adi, dayanak: i.dayanak, kaynak: i.kaynak,
-            yetkiliKurumlar: (s.yetkili_kurum_id || []).map((id) => ({ id, ad: (kb[id] || {}).ad_resmi || id, kisaltma: (kb[id] || {}).kisaltma || null })),
-            mevzuatDayanagi: s.mevzuat_dayanagi || null, basvuruKanali: s.basvuru_kanali || null,
-            durum: s.durum || null, ilgiliRehber: s.ilgili_rehber || null,
-          };
-        }));
+        await yaz('islemler.json', islemJoin(si.islemler, hk.satirlar, sb.kayitlar));
 
         const mv = oku('data/kamu/mevzuat-maddeleri.json');
         await yaz('mevzuat.json', mv.maddeler.map((m) => ({
