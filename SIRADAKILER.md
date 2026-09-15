@@ -8,6 +8,24 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ 15.09.2026 — AJAN TURU: ŞEMA DENETİMİ + KUYRUĞA EKLENENLER ═══
+DENETİM (ölçüldü; değişiklik GEREKMEDİ — zaten kurulu ve canlıda doğrulandı):
+Dataset/DataCatalog/Legislation/FAQPage şemaları, /veri OpenAPI, hız sınırlama
+(functions/_limit.js), CSP-hash middleware (script-src), video tembel yükleme
+(preload="metadata"/"none") ve robots (arama/yanıt botları açık, eğitim
+tarayıcıları kapalı). Schema.org doğrulaması: /veri ve /nerede-su-cikar/ temiz;
+ana sayfa prerender yeşil. Yani önceki ajanda "eklenecek" sanılan kalemlerin
+çoğu bu projede zaten vardır.
+KUYRUĞA (AY İLKESİ: yeni özellik/performans kararı — onay bekler):
+- [ ] **VİDEO CODEC** — hero sahneleri yalnız H.264 mp4 (6 dosya, ~8 MB).
+  libvpx/libaom ile .webm (VP9/AV1) üretilip <video>'ya <source> fallback
+  eklenir; mp4 KALIR (geri dönüş). Bitti-tanımı: toplam bayt ölçülür, Chromium
+  kare-kıyası (pixelmatch) ile görsel fark eşiği altında doğrulanır, Lighthouse
+  ≥90 korunur. Görsel yüzey → KULLANICI ONAYI.
+- [ ] **İNGİLİZCE VERİ YÜZEYİ** — /en yalnız özet landing. /en/data/ altında
+  /veri/'nin çevirisi (Dataset şemalı, dış atıf/AI alıntısı için). Yeni içerik:
+  çeviri + insan onayı; DESIGN.md ve uydurma yasağına tabi.
+
 ═══ 13.09.2026 — DENETİM 16 BULGU: 14'ü KODA DÖKÜLDÜ, 2'si KULLANICIYA ═══
 Kaynak: 7 kimlikli denetim. Uygulama commit'leri 599696d + e4d2f35 + 27866c7;
 Cloudflare deploy landi. Doğrulama `--tam` 23:01Z: 🔴0 · 🟡1 (geçici dış
