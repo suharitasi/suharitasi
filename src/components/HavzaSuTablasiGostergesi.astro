@@ -1,0 +1,166 @@
+---
+// HAVZA SU TABLASI GÖSTERGESİ — Topolojik Vektörel Akifer Göstergesi (ADIM 2, v6.0).
+//
+// Sıfır harici JS/kütüphane: grafik build-time üretilen saf satır-içi SVG'dir.
+// Seri ve kategori GERÇEK veriden gelir (src/data/akifer-egilim-matrisi.json):
+// son 120 ay GRACE su-depolama anomalisi + DSİ YAS rezervi (Tablo 1.3).
+//
+// K7: serisi olmayan havzada grafik ÜRETİLMEZ; deterministik fallback metni
+// gösterilir. "Kısıtlı İşletme" sınıflaması veri olmadığından basılmaz.
+import matris from '../data/akifer-egilim-matrisi.json';
+
+interface Props {
+  // Havza no (DSİ 01…25). Verilmezse bileşen hiç render edilmez.
+  no?: string | null;
+  ad?: string | null;
+}
+const { no, ad } = Astro.props;
+
+const kayit = no ? matris.havzalar.find((h) => h.no === no) : null;
+const veriVar = !!(kayit && kayit.kategori && kayit.seri);
+
+// Renkler mevcut risk sözlüğünden (havza-risk.js seviye renkleri); yeni değer yok.
+const RENK: Record<string, string> = {
+  'Kritik Düşüş': '#C62828',
+  'Dengeli': '#E65100',
+  'Yükseliş': '#2E7D32',
+  'Kısıtlı İşletme': '#875518',
+};
+const renk = veriVar ? (RENK[kayit!.kategori!] ?? '#3C5266') : '#3C5266';
+
+// — Satır-içi SVG sparkline (build-time) —
+const W = 320, H = 56, PAD = 3;
+let noktalar = '', sonX = 0, sonY = 0, tabanY = H / 2;
+if (veriVar) {
+  const seri = kayit!.seri as Record<string, number>;
+  const anahtarlar = Object.keys(seri).sort();
+  const degerler = anahtarlar.map((k) => seri[k]);
+  const enAz = Math.min(...degerler), enCok = Math.max(...degerler);
+  const aciklik = enCok - enAz || 1;
+  const n = degerler.length;
+  noktalar = degerler
+    .map((v, i) => {
+      const x = PAD + (i / (n - 1)) * (W - 2 * PAD);
+      const y = PAD + (1 - (v - enAz) / aciklik) * (H - 2 * PAD);
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
+    })
+    .join(' ');
+  // son nokta işaretçisi
+  sonX = PAD + (W - 2 * PAD);
+  sonY = (PAD + (1 - (degerler[n - 1] - enAz) / aciklik) * (H - 2 * PAD));
+  // sıfır çizgisi (anomali 0) — serinin min/max'ı arasında kalıyorsa
+  if (enAz < 0 && enCok > 0) tabanY = PAD + (1 - (0 - enAz) / aciklik) * (H - 2 * PAD);
+}
+
+const sayi = (n: number | null | undefined, o = 2) =>
+  n == null ? null : n.toLocaleString('tr-TR', { minimumFractionDigits: o, maximumFractionDigits: o });
+
+const dsiYas = kayit?.dsi_yas;
+const aciklama = veriVar
+  ? `${kayit!.ad} için son 10 yıl (${kayit!.aralik}) su depolama eğilimi: `
+    + `${kayit!.kategori} (${kayit!.egilim_cm_yil > 0 ? '+' : ''}${sayi(kayit!.egilim_cm_yil)} cm/yıl, `
+    + `${kayit!.ay_sayisi} gerçek aylık GRACE ölçümü). DEĞİŞİM verisidir; mutlak su miktarı değildir.`
+  : (kayit?.durum ?? 'Bölge Akifer Rasat Kaydı Bulunmuyor (DSİ Etüdü Gerekir)');
+---
+
+{no && kayit && (
+  <div class="akifer" itemscope itemtype="https://schema.org/DataCatalog">
+    <div class="akifer-ic" itemprop="dataset" itemscope itemtype="https://schema.org/Dataset">
+      <meta itemprop="name" content={`${kayit.ad} akifer su tablası eğilimi`} />
+      <meta itemprop="description" content={aciklama} />
+      <meta itemprop="creator" content="Su Haritası — Arslan Hukuk Bürosu" />
+      {veriVar && <meta itemprop="temporalCoverage" content={kayit.aralik?.replace(' – ', '/')} />}
+      {veriVar && (
+        <div itemprop="variableMeasured" itemscope itemtype="https://schema.org/PropertyValue">
+          <meta itemprop="name" content="Yeraltı su depolama eğilimi (GRACE TWS anomalisi)" />
+          <meta itemprop="value" content={String(kayit.egilim_cm_yil)} />
+          <meta itemprop="unitText" content="cm/yıl" />
+        </div>
+      )}
+
+      {veriVar ? (
+        <>
+          <p class="akifer-ust">
+            <span class="akifer-etiket">{ad ?? kayit.ad}</span>
+            <span class="akifer-kat" data-kategori={kayit.kategori}>{kayit.kategori}</span>
+          </p>
+
+          <figure class="akifer-grafik">
+            <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="56" role="img"
+                 aria-label={aciklama} preserveAspectRatio="none" focusable="false">
+              <line x1="0" y1={tabanY.toFixed(1)} x2={W} y2={tabanY.toFixed(1)}
+                    stroke="var(--cizgi)" stroke-width="1" stroke-dasharray="3 4" />
+              <polyline points={noktalar} fill="none" stroke={renk}
+                        stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" />
+              <circle cx={sonX.toFixed(1)} cy={sonY.toFixed(1)} r="2.4" fill={renk} />
+            </svg>
+            <figcaption class="akifer-aralik">
+              {kayit.aralik} · aylık GRACE TWS anomalisi ({kayit.ay_sayisi} ölçüm)
+            </figcaption>
+          </figure>
+
+          <dl class="akifer-kunye">
+            <div><dt>Eğilim</dt><dd><strong data-kategori={kayit.kategori}>{kayit.kategori}</strong> · {kayit.egilim_cm_yil > 0 ? '+' : ''}{sayi(kayit.egilim_cm_yil)} cm/yıl</dd></div>
+            {dsiYas && dsiYas.rezerv_hm3 != null && (
+              <div><dt>DSİ YAS işletme rezervi</dt><dd>{sayi(dsiYas.rezerv_hm3, 1)} hm³/yıl ({dsiYas.yil})</dd></div>
+            )}
+            {dsiYas && dsiYas.potansiyel_hm3 != null && (
+              <div><dt>DSİ YAS potansiyeli</dt><dd>{sayi(dsiYas.potansiyel_hm3, 1)} hm³/yıl ({dsiYas.yil})</dd></div>
+            )}
+            <div><dt>Kısıtlı işletme</dt><dd class="veri-yok">{kayit.isletme_durumu}</dd></div>
+          </dl>
+
+          <p class="akifer-not">
+            Kaynak: NASA/DLR GRACE-FO mascon TWS anomalisi (değişim verisidir, mutlak
+            miktar değildir) · DSİ Resmî Su Kaynakları İstatistikleri Tablo 1.3.
+            Havza düzeyinde resmî "kısıtlı işletme" sınıflaması yayımlı olmadığından
+            üretilmemiştir. Bu araç bilgilendirme amaçlıdır; hukuki görüş değildir.
+          </p>
+        </>
+      ) : (
+        <p class="akifer-yok">
+          <strong>{kayit.durum}</strong> — bu havza için doğrulanmış bir akifer su
+          tablası serisi bulunmuyor; uydurma veri basılmaz.
+        </p>
+      )}
+    </div>
+  </div>
+)}
+
+<style>
+  .akifer {
+    margin-top: 0.6rem;
+    padding: 0.9rem 1rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-400);
+  }
+  .akifer + .akifer { margin-top: 0.8rem; }
+  .akifer-ust { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.8rem; margin: 0 0 0.5rem; }
+  .akifer-etiket { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; }
+  .akifer-kat,
+  .akifer-kunye strong {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.12rem 0.4rem;
+    border: 1px solid currentColor;
+    color: var(--metin-soluk);
+  }
+  [data-kategori="Kritik Düşüş"] { color: #C62828; }
+  [data-kategori="Dengeli"] { color: #E65100; }
+  [data-kategori="Yükseliş"] { color: #2E7D32; }
+  [data-kategori="Kısıtlı İşletme"] { color: #875518; }
+  .akifer-grafik { margin: 0; }
+  .akifer-grafik svg { display: block; background: var(--zemin); border: 1px solid var(--cizgi); }
+  .akifer-aralik { font-family: var(--mono); font-size: 0.68rem; color: var(--metin-soluk); margin-top: 0.35rem; }
+  .akifer-kunye { margin: 0.7rem 0 0; }
+  .akifer-kunye > div { display: grid; grid-template-columns: minmax(9rem, 12rem) 1fr; gap: 0.4rem 1rem; padding: 0.35rem 0; }
+  .akifer-kunye > div + div { border-top: 1px solid var(--cizgi); }
+  .akifer-kunye dt { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--metin-soluk); align-self: center; }
+  .akifer-kunye dd { font-size: 0.9rem; margin: 0; }
+  .akifer-not { font-size: 0.78rem; color: var(--metin-soluk); margin-top: 0.7rem; max-width: 72ch; }
+  .akifer-yok { font-size: 0.92rem; margin: 0; max-width: 72ch; }
+  @media (max-width: 560px) { .akifer-kunye > div { grid-template-columns: 1fr; gap: 0.1rem; } }
+</style>
