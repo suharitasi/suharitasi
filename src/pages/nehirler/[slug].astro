@@ -28,7 +28,18 @@ const kok = new URL('/', Astro.site).href;
 // CEVAPLAYABİLDİĞİ niyet yazılır: "nerede" (koordinat + geçtiği havza/il).
 // "kolu/dökülür" niyeti VERİSİZ (basitleştirilmiş OSM geometrisi; C2 null) —
 // title'a girmez (uydurma yasağı). H1 ve og:title DEĞİŞMEZ (baslik korunur).
-const tarayiciBaslik = `${nehir.ad} Nerede? Hangi Havzadan Geçer`;
+// VERİ-KOŞULLU (2026-09-21): yalnız DOLU veri başlığa girer; null ise mevcut
+// başlık AYNEN korunur (uydurma yasağı). Öncelik: dökülür > kolu > mevcut.
+const dokulur = nehir.dokuldugu_yer || null;
+const kolu = nehir.kolu_oldugu_akarsu || null;
+// NOT: değere EK (apostrofly) otomatik eklenmez — Türkçe ünlü uyumu addan
+// ada değişir ("Dicle'ye" vs "Fırat'a"); yanlış ek üretmemek için ek
+// gerektirmeyen soru kalıbı seçildi (niyet: "nereye dökülür/kolu").
+const tarayiciBaslik = dokulur
+  ? `${nehir.ad} Nerede, Nereye Dökülür?`
+  : (kolu
+    ? `${nehir.ad} Nerede, Hangi Akarsuyun Kolu?`
+    : `${nehir.ad} Nerede? Hangi Havzadan Geçer`);
 if (tarayiciBaslik.length > 60)
   throw new Error(`nehir "${nehir.slug}": title ${tarayiciBaslik.length} karakter (>60)`);
 
@@ -41,6 +52,36 @@ const havzaCevabi = havzalar.length === 0
   : havzalar.length === 1
     ? `${havzalar[0].ad}'ndan geçer.`
     : `${havzalar.map((x) => x.ad).join(', ')} havzalarından geçer.`;
+
+// Meta açıklama: dolu veri varsa somut olgu (konum + dökülür/kolu) + öz-cevap;
+// yoksa yalnız mevcut öz-cevap (uydurma yok).
+const konumCumlesi = il ? `${il.ad} ilinden geçer` : 'Türkiye sınırları içinde akar';
+const aciklamaZengin = dokulur
+  ? `${nehir.ad}, ${konumCumlesi}; döküldüğü yer: ${dokulur}. ${ozet}`
+  : (kolu
+    ? `${nehir.ad}, ${konumCumlesi}; kolu olduğu akarsu: ${kolu}. ${ozet}`
+    : ozet);
+
+// FAQPage: yalnız DOLU veri için ek soru; cevap metni veriden (görünür).
+const sorular: any[] = [{
+  '@type': 'Question',
+  name: `${nehir.ad} nerededir?`,
+  acceptedAnswer: { '@type': 'Answer', text: konumCevabi },
+}, {
+  '@type': 'Question',
+  name: `${nehir.ad} hangi havzadan geçer?`,
+  acceptedAnswer: { '@type': 'Answer', text: havzaCevabi },
+}];
+if (dokulur) sorular.push({
+  '@type': 'Question',
+  name: `${nehir.ad} nereye dökülür?`,
+  acceptedAnswer: { '@type': 'Answer', text: `${nehir.ad} — döküldüğü yer: ${dokulur}.` },
+});
+if (kolu) sorular.push({
+  '@type': 'Question',
+  name: `${nehir.ad} hangi akarsuyun kolu?`,
+  acceptedAnswer: { '@type': 'Answer', text: `${nehir.ad} — kolu olduğu akarsu: ${kolu}.` },
+});
 
 const sema = [{
   '@type': 'BodyOfWater',
@@ -66,19 +107,11 @@ const sema = [{
   // C3 (V5): FAQPage CreativeWork'tür — publisher + license burada geçerli.
   publisher: { '@id': `${kok}#kurum` },
   license: GOLNEHIR_LISANS,
-  mainEntity: [{
-    '@type': 'Question',
-    name: `${nehir.ad} nerededir?`,
-    acceptedAnswer: { '@type': 'Answer', text: konumCevabi },
-  }, {
-    '@type': 'Question',
-    name: `${nehir.ad} hangi havzadan geçer?`,
-    acceptedAnswer: { '@type': 'Answer', text: havzaCevabi },
-  }],
+  mainEntity: sorular,
 }];
 ---
 
-<Sayfa baslik={`${nehir.ad} — Türkiye Nehirleri`} tarayiciBaslik={tarayiciBaslik} aciklama={ozet} sema={sema}>
+<Sayfa baslik={`${nehir.ad} — Türkiye Nehirleri`} tarayiciBaslik={tarayiciBaslik} aciklama={aciklamaZengin} sema={sema}>
   <SayfaBasi etiket="Nehir" baslik={nehir.ad} tarih={TARIH.golNehir ? new Date(TARIH.golNehir) : undefined} />
 
   <OzCevap metin={ozet} />
@@ -110,6 +143,18 @@ const sema = [{
         <div class="kunye-satir">
           <dt>Örneklenen il</dt>
           <dd><a href={`/kuyu-ruhsati/${il.slug}/`}>{il.ad}</a></dd>
+        </div>
+      )}
+      {kolu && (
+        <div class="kunye-satir">
+          <dt>Kolu olduğu akarsu</dt>
+          <dd>{kolu}</dd>
+        </div>
+      )}
+      {dokulur && (
+        <div class="kunye-satir">
+          <dt>Döküldüğü yer</dt>
+          <dd>{dokulur}</dd>
         </div>
       )}
     </dl>
