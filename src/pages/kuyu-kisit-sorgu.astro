@@ -9,6 +9,7 @@ import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
 import CtaBlok from '../components/CtaBlok.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
+import DsiKuralMotoru from '../components/DsiKuralMotoru.astro';
 import { kayitliIller, TOPLAM, KISIT_TOPLAM, KAYNAK_NOTU } from '../data/kisit-sorgu.js';
 import { tumIller, ilMatrisi } from '../data/islem-matrisi.js';
 
@@ -109,6 +110,8 @@ const sema = [
     <a href="/mevzuat/167/madde-8/">→ 167 m.8 (belge zorunluluğu)</a>
     <a href="/rehberler/yeralti-suyu-isletme-sahasi/">→ İşletme sahası rehberi</a>
   </nav>
+
+  <DsiKuralMotoru />
 
   <CtaBlok konu="Yeraltı suyu kısıtı" baslik="İlinizde kısıt varsa ne yapmalısınız?" metin="Kısıt/işletme sahası ilanının dosyanıza etkisini ve itiraz yolunu değerlendirelim." />
   <HukukSerhi />

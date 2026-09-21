@@ -1,0 +1,120 @@
+---
+// DSİ KURAL MOTORU (non-fabricated) — 27.09.2026.
+// Girdi: İl + İşlem. Deterministik çıktı; SABİT derinlik/debi eşiği ÜRETİLMEZ
+// (K7) — yalnız "eşik idarece belirlenir" şerhi. Hüküm/ceza tutarı yazılmaz;
+// mevzuat DAYANAĞI gösterilir. Veri build-time gömülür; istemci dışa istek atmaz.
+import { tumIlProfilleri } from '../data/il-profil.js';
+import { ilKayitlari } from '../data/kisit-sorgu.js';
+
+const ISLEMLER = [
+  { id: 'arama', ad: 'Yeraltı suyu arama belgesi' },
+  { id: 'kullanma', ad: 'Kullanma belgesi' },
+  { id: 'islah', ad: 'Islah-tadilat belgesi' },
+  { id: 'kapatma', ad: 'Kuyu kapatma' },
+];
+
+const iller = tumIlProfilleri().map((p) => ({
+  il: p.il,
+  slug: p.slug,
+  b: (p.dsiBolgeleri || []).map((x) => `DSİ ${x.no}. Bölge Müdürlüğü (${x.merkez})`).join(' · '),
+  k: (() => {
+    try {
+      return (ilKayitlari(p.il) || []).map((r) => ({ d: r.durum ?? '', t: r.tarih ?? '' }));
+    } catch {
+      return [];
+    }
+  })(),
+}));
+---
+<section class="dsi-motor" id="dsi-motor" aria-label="DSİ kural motoru">
+  <h2>DSİ kural motoru: belge, merci ve kısıt</h2>
+  <p class="dsi-not">
+    İlinizi ve işlemi seçin: 167 sayılı Kanun m. 8 uyarınca belge zorunluluğu,
+    yetkili DSİ bölge müdürlüğü ve varsa ildeki Resmî Gazete işletme/kısıt
+    kaydı gösterilir. <strong>Kritik derinlik/debi eşiği DSİ tarafından
+    belirlenir</strong>; bu araç eşik üretmez. Bilgilendirme amaçlıdır.
+  </p>
+  <form id="dsi-form" class="dsi-form">
+    <label class="dsi-alan">İl
+      <select id="dsi-il" required>
+        {iller.map((x) => <option value={x.slug}>{x.il}</option>)}
+      </select>
+    </label>
+    <label class="dsi-alan">İşlem
+      <select id="dsi-islem" required>
+        {ISLEMLER.map((x) => <option value={x.id}>{x.ad}</option>)}
+      </select>
+    </label>
+    <button type="submit" class="dsi-dugme">Durumu göster</button>
+  </form>
+
+  <div id="dsi-sonuc" class="dsi-sonuc" hidden>
+    <dl class="dsi-dl">
+      <div class="dsi-satir"><dt>Belge şartı</dt><dd id="dsi-belge"></dd></div>
+      <div class="dsi-satir"><dt>Yetkili idare</dt><dd id="dsi-merci"></dd></div>
+      <div class="dsi-satir"><dt>Resmî Gazete kısıt kaydı</dt><dd id="dsi-kisit"></dd></div>
+      <div class="dsi-satir"><dt>Yaptırım (m. 18)</dt><dd id="dsi-yaptirim"></dd></div>
+    </dl>
+    <p class="dsi-lead">
+      Somut durum için <a href="/whatsapp/">durum tespiti talebi</a> iletebilir
+      veya <a href="/rehberler/ruhsatsiz-kuyu-cezalari/">ruhsatsız kuyu cezaları</a>
+      rehberini inceleyebilirsiniz.
+    </p>
+  </div>
+
+  <script type="application/json" id="dsi-veri" set:html={JSON.stringify({ iller, islemler: ISLEMLER })}></script>
+</section>
+
+<script>
+  const ham = document.getElementById('dsi-veri')?.textContent || '{}';
+  const veri = JSON.parse(ham);
+  const form = document.getElementById('dsi-form') as HTMLFormElement | null;
+  const ilSel = document.getElementById('dsi-il') as HTMLSelectElement | null;
+  const islemSel = document.getElementById('dsi-islem') as HTMLSelectElement | null;
+  const sonuc = document.getElementById('dsi-sonuc');
+  const el = (id: string) => document.getElementById(id);
+
+  form?.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const p = (veri.iller || []).find((x: any) => x.slug === ilSel?.value);
+    if (!p || !sonuc) return;
+    const islemAd = (veri.islemler || []).find((x: any) => x.id === islemSel?.value)?.ad || 'İşlem';
+    const belge = el('dsi-belge');
+    if (belge) belge.textContent =
+      `167 s.K. m. 8 uyarınca "${islemAd}" için DSİ'den belge alınması zorunludur. Kritik derinlik/debi eşiği idarece (DSİ) belirlenir.`;
+    const merci = el('dsi-merci');
+    if (merci) merci.textContent = p.b || 'Bölge verisi bulunamadı; DSİ genel müdürlüğüne başvurun.';
+    const kisit = el('dsi-kisit');
+    if (kisit) {
+      kisit.textContent = (p.k && p.k.length)
+        ? `${p.il} ilinde ${p.k.length} Resmî Gazete kaydı var (örn. ${p.k[0].d}${p.k[0].t ? ' — ' + p.k[0].t : ''}). Ayrıntı için kısıt sorgu listesi.`
+        : 'Bu il için listelenen Resmî Gazete işletme/kısıt kaydı bulunamadı.';
+    }
+    const yap = el('dsi-yaptirim');
+    if (yap) yap.textContent =
+      '167 s.K. m. 18: belgesiz kuyu açma/kullanma idari para cezası; masrafı sahibinden alınarak kuyunun kapatılması riski. (Tutar ve usul idarece uygulanır.)';
+    sonuc.removeAttribute('hidden');
+  });
+</script>
+
+<style>
+  .dsi-motor {
+    margin-top: 1.6rem;
+    padding: 1.1rem 1.3rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+  }
+  .dsi-motor h2 { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; margin: 0 0 0.6rem; }
+  .dsi-not { font-size: 0.9rem; color: var(--metin-soluk); max-width: 68ch; margin: 0 0 1rem; }
+  .dsi-form { display: flex; flex-wrap: wrap; gap: 0.8rem 1.2rem; align-items: end; }
+  .dsi-alan { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.85rem; }
+  .dsi-dugme { padding: 0.5rem 1rem; cursor: pointer; }
+  .dsi-sonuc { margin-top: 1.1rem; }
+  .dsi-dl { margin: 0; }
+  .dsi-satir { display: grid; grid-template-columns: minmax(9rem, 12rem) 1fr; gap: 0.4rem 1.2rem; padding: 0.5rem 0; }
+  .dsi-satir + .dsi-satir { border-top: 1px solid var(--cizgi); }
+  .dsi-satir dt { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--metin-soluk); align-self: center; }
+  .dsi-lead { font-size: 0.9rem; color: var(--metin-soluk); margin-top: 0.6rem; }
+  @media (max-width: 640px) { .dsi-satir { grid-template-columns: 1fr; gap: 0.1rem; } }
+</style>
