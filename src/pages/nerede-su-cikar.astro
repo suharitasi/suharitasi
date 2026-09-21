@@ -79,6 +79,39 @@ const sema = [
   <SayfaBasi etiket="Giriş kapısı" baslik="Nerede su çıkar?" tarih={TARIH.potansiyel ? new Date(TARIH.potansiyel) : undefined} />
   <OzCevap metin={OZ_CEVAP} />
 
+  {/* NİYET-YÖNLENDİRME HUB'I (2026-09-21): kapı "su nerede çıkar" cevabını
+      verir; hukuki niyeti MEVCUT kanonik motora BAĞLAR. Yeni motor/rota yok,
+      hüküm/ceza/süre ÜRETİLMEZ — yalnız doğrulanmış sayfalara bağlantı. */}
+  <nav class="yonlendirme" aria-label="Ne arıyorsunuz?">
+    <h2 id="yonlendirme">Ne arıyorsunuz?</h2>
+    <ul>
+      <li>
+        <a href="/kuyu-karar-motoru/">
+          <span class="yn-baslik">İşlem, süre, ceza veya dilekçe taslağı</span>
+          <span class="yn-alt">Kuyu ruhsatı, ceza itirazı ve kapatma tebliğinde son tarih (15/60 gün), yetkili merci, evrak listesi ve ön taslak.</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ilimde-kim-yetkili/">
+          <span class="yn-baslik">Hangi DSİ bölgesi / idare yetkili?</span>
+          <span class="yn-alt">İlinizin DSİ bölge müdürlüğü, su idaresi ve havzaları.</span>
+        </a>
+      </li>
+      <li>
+        <a href="/kuyu-kisit-sorgu/">
+          <span class="yn-baslik">Araziniz kısıtlı / işletme sahasında mı?</span>
+          <span class="yn-alt">İlinize ait Resmî Gazete yeraltı suyu işletme sahası ve tahsise kapatma/kısıt ilanları (resmî linkli).</span>
+        </a>
+      </li>
+      <li>
+        <a href="#iliniz">
+          <span class="yn-baslik">İl bazında detay</span>
+          <span class="yn-alt">İl sayfasında yeraltı suyu kütleleri, Resmî Gazete kayıtları ve arazi biçimi göstergeleri.</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
   <h2 id="iliniz">İliniz hangisi?</h2>
   <p class="kapi-yonerge">
     Cevap il ölçeğinde verilir: her il sayfasında o ile eşlenmiş yeraltı suyu
@@ -276,5 +309,50 @@ const sema = [
     border: 1px solid var(--cizgi);
     font-size: 0.88rem;
     color: var(--metin-soluk);
+  }
+
+  /* NİYET-YÖNLENDİRME HUB'I — kart dili `kapi-katmanlar` ile AYNI aile
+     (zemin-kart + hairline + su-700 üst çizgi). Yeni renk/font icat edilmedi. */
+  .yonlendirme { margin: 1.6rem 0 2rem; }
+  .yonlendirme h2 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 0 0 0.9rem;
+  }
+  .yonlendirme ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.9rem;
+  }
+  @media (max-width: 720px) { .yonlendirme ul { grid-template-columns: 1fr; } }
+  .yonlendirme li { display: flex; }
+  .yonlendirme a {
+    display: block;
+    width: 100%;
+    padding: 1rem 1.2rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 160ms var(--e-akinti);
+  }
+  .yonlendirme a:hover { border-color: var(--su-400); }
+  .yn-baslik {
+    display: block;
+    font-family: var(--serif);
+    font-size: 1.12rem;
+    font-weight: 500;
+    color: var(--su-700);
+    margin-bottom: 0.3rem;
+  }
+  .yn-alt {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--metin-soluk);
+    max-width: 60ch;
   }
 </style>
