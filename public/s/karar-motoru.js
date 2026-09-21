@@ -65,17 +65,29 @@
 
     var evrak = '<div class="km-blok"><h3>Gerekli evrak listesi</h3><ul>' + d.evrak.map(function (e) { return '<li>' + kacir(e) + '</li>'; }).join('') + '</ul></div>';
 
-    var dilekce =
-      '[Tarih]\n\n' + (islem === 'itiraz' ? 'SULH CEZA HAKİMLİĞİNE / İDARE MAHKEMESİNE' : (il + ' VALİLİĞİNE / KAYMAKAMLIĞINA')) + '\n\n' +
+    // Dilekçe ön taslağı — FAZ 1 (v5.2): seçilen il/merci/tebliğ verileri
+    // {IL}, {MERCI}, {TARIH} yer tutucularına aktarılır; metin kullanıcı
+    // tarafından düzenlenebilir bir <textarea> içinde sunulur.
+    var tarih = teblig ? tr(new Date(teblig + 'T00:00:00')) : '';
+    var merci = islem === 'itiraz'
+      ? 'SULH CEZA HAKİMLİĞİNE / İDARE MAHKEMESİNE'
+      : (il + ' VALİLİĞİNE / KAYMAKAMLIĞINA');
+    var dilekce = (
+      '{TARIH}\n\n' +
+      '{MERCI}\n\n' +
       'KONU: ' + islemAdi(islem) + ' hakkında ' + (islem === 'itiraz' ? 'itiraz/dava' : 'yeniden değerlendirme') + ' talebi.\n\n' +
       'AÇIKLAMALAR\n' +
-      '1. Tarafıma ' + (teblig ? tr(new Date(teblig + 'T00:00:00')) + ' tarihinde ' : '') + (il ? il + ' ilinde ' : '') + 'tebliğ edilen ' + d.dayanak + ' kapsamındaki işlem, aşağıdaki nedenlerle hukuka aykırıdır.\n' +
+      '1. Tarafıma ' + (tarih ? tarih + ' tarihinde ' : '') + '{IL} ilinde tebliğ edilen ' + d.dayanak + ' kapsamındaki işlem, aşağıdaki nedenlerle hukuka aykırıdır.\n' +
       '2. İşlemin sebep unsuru somut ve teknik dayanaktan yoksundur; mevcut belge/statü dikkate alınmamıştır.\n' +
       '3. Yetkili merci ve usul yönünden inceleme yapılmasını talep ederim.\n\n' +
       'HUKUKİ NEDENLER: ' + d.dayanak + '\n' +
       'DELİLLER: Tebliğ, ceza tutanağı, belge ve bilirkişi incelemesi.\n\n' +
       'SONUÇ VE İSTEM: Yukarıda açıklanan nedenlerle işlemin iptali / yeniden değerlendirilmesi talebinin kabulünü saygılarımla arz ederim.\n\n' +
-      'Ad Soyad\nİmza';
+      'Ad Soyad\nİmza'
+    )
+      .replace('{TARIH}', tarih || '[Tarih]')
+      .replace('{MERCI}', merci)
+      .replace('{IL}', il);
 
     sonuc.innerHTML =
       '<div class="km-kart">' +
@@ -83,12 +95,44 @@
       '<p class="km-merci"><strong>Yetkili merci:</strong> ' + kacir(d.merci) + ' · <strong>DSİ:</strong> ' + kacir(bolge) + '</p>' +
       '<p class="km-ceza"><strong>Dayanak:</strong> ' + kacir(d.dayanak) + ' · <strong>Yaptırım:</strong> ' + kacir(d.ceza) + '</p>' +
       sureHtml + evrak +
-      '<div class="km-blok"><h3>Dilekçe ön taslağı (uyarlanacak)</h3><textarea class="km-dilekce" readonly>' + kacir(dilekce) + '</textarea>' +
-      '<button type="button" class="km-yazdir" id="km-yazdir">Bu karneyi yazdır / PDF</button></div>' +
+      '<div class="km-blok"><h3>Dilekçe ön taslağı (düzenlenebilir)</h3>' +
+      '<textarea class="km-dilekce" id="km-dilekce" aria-label="Dilekçe ön taslağı — düzenleyebilirsiniz">' + kacir(dilekce) + '</textarea>' +
+      '<p class="km-ipucu">Taslağı doğrudan tarayıcıda düzenleyebilirsiniz. <strong>Taslağı Kopyala</strong> düzenlediğiniz son hâli panoya aktarır.</p>' +
+      '<div class="km-dugme-satiri">' +
+      '<button type="button" class="km-yazdir" id="km-kopyala">Taslağı Kopyala</button>' +
+      '<button type="button" class="km-yazdir km-yazdir-ikincil" id="km-yazdir">Bu karneyi yazdır / PDF</button>' +
+      '</div></div>' +
       '</div>';
 
     var btn = document.getElementById('km-yazdir');
     if (btn) btn.addEventListener('click', function () { window.print(); });
+
+    var kopyaBtn = document.getElementById('km-kopyala');
+    var taslakEl = document.getElementById('km-dilekce');
+    if (kopyaBtn && taslakEl) {
+      kopyaBtn.addEventListener('click', function () {
+        var sifirla = function (metin) {
+          kopyaBtn.textContent = metin;
+          setTimeout(function () { kopyaBtn.textContent = 'Taslağı Kopyala'; }, 1800);
+        };
+        var kopyala = function () {
+          taslakEl.focus();
+          taslakEl.select();
+          try {
+            if (document.execCommand('copy')) { sifirla('Taslağı kopyalandı'); return; }
+          } catch (e) { /* execCommand desteklenmiyor — pano API denenir */ }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(taslakEl.value).then(
+              function () { sifirla('Taslağı kopyalandı'); },
+              function () { sifirla('Kopyalanamadı — metni seçip Ctrl+C'); }
+            );
+          } else {
+            sifirla('Kopyalanamadı — metni seçip Ctrl+C');
+          }
+        };
+        kopyala();
+      });
+    }
   }
 
   function islemAdi(id) { return { ruhsatsiz: 'Ruhsatsız kuyu açma', tahsis: 'Tahsis/izin aşımı', kapatma: 'Kuyu kapatma tebliği', itiraz: 'İdari para cezasına itiraz' }[id] || id; }

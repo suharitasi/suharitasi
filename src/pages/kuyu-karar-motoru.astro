@@ -1,5 +1,5 @@
 ---
-// /kuyu-karar-motoru/ — KUYU KARAR MOTORU (13.09.2026).
+// /kuyu-karar-motoru/ — KUYU RUHSAT & İTİRAZ SİHİRBAZI (13.09.2026).
 // İl + işlem + tebliğ tarihi → kişiselleştirilmiş yol haritası, son tarih
 // takvimi, yetkili merci, evrak listesi ve dilekçe ön taslağı.
 // Bilgilendirme amaçlıdır; somut dosyada hukuki görüş uzman değerlendirmesi ister.
@@ -10,6 +10,10 @@ import CtaBlok from '../components/CtaBlok.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
 import IyukSureSayaci from '../components/IyukSureSayaci.astro';
 import { tumIller } from '../data/islem-matrisi.js';
+
+// Görünür ad tercihi (FAZ 1, v5.2): H1 ve tüm yönlendirme metinlerinde tam ad,
+// menüde/bağlantı etiketlerinde kısa ad kullanılır. URL DEĞİŞMEZ (kanonik koruma).
+const SIHIRBAZ_AD = 'DSİ Kuyu Ruhsatı & İdari Ceza İtiraz Sihirbazı';
 
 const OZ_CEVAP =
   'İlinizi, işlemi ve tebliğ tarihinizi seçin: kuyu ruhsatı, ceza itirazı veya kapatma ' +
@@ -30,7 +34,7 @@ const ISLEMLER = [
 const sema = [
   {
     '@type': 'HowTo',
-    name: 'Kuyu cezası itiraz süresi ve yol haritası',
+    name: SIHIRBAZ_AD,
     description: OZ_CEVAP,
     inLanguage: 'tr-TR',
     step: [
@@ -39,11 +43,11 @@ const sema = [
       { '@type': 'HowToStep', position: 3, name: 'Evrak listesini ve dilekçe taslağını alın', text: 'Gerekli belgeler ve başvuru taslağı üretilir.' },
     ],
   },
-  { '@type': 'WebPage', '@id': `${canonical}#sayfa`, url: canonical, name: 'Kuyu karar motoru', description: OZ_CEVAP, inLanguage: 'tr-TR', isPartOf: { '@id': `${kok}#site` } },
+  { '@type': 'WebPage', '@id': `${canonical}#sayfa`, url: canonical, name: SIHIRBAZ_AD, description: OZ_CEVAP, inLanguage: 'tr-TR', isPartOf: { '@id': `${kok}#site` } },
 ];
 ---
-<Sayfa baslik="Kuyu karar motoru" aciklama={OZ_CEVAP} tarayiciBaslik="Kuyu Karar Motoru: Süre, Merci ve Evrak Listesi" sema={sema}>
-  <SayfaBasi etiket="Kuyu sorunu" baslik="Ne yapmalıyım?" ozet="İl + işlem + tebliğ tarihi → süre, yetkili merci, evrak listesi ve dilekçe taslağı." ozCevap />
+<Sayfa baslik={SIHIRBAZ_AD} aciklama={OZ_CEVAP} tarayiciBaslik={SIHIRBAZ_AD} sema={sema}>
+  <SayfaBasi etiket="Kuyu sorunu" baslik={SIHIRBAZ_AD} ozet="İl + işlem + tebliğ tarihi → süre, yetkili merci, evrak listesi ve düzenlenebilir dilekçe taslağı." ozCevap />
   <OzCevap metin={OZ_CEVAP} etiket="Özet" />
 
   <form id="km-form" class="km-form">
@@ -105,8 +109,11 @@ const sema = [
   .km-blok { margin-top: 1rem; }
   .km-blok h3 { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--su-700); margin-bottom: 0.4rem; }
   .km-blok ul, .km-blok ol { margin-left: 1.1rem; font-size: 0.92rem; }
-  .km-dilekce { width: 100%; min-height: 220px; font-family: var(--mono); font-size: 0.82rem; line-height: 1.6; padding: 0.9rem; border: 1px solid var(--cizgi); background: #fff; color: var(--metin); white-space: pre-wrap; }
+  .km-dilekce { width: 100%; min-height: 220px; font-family: var(--mono); font-size: 0.82rem; line-height: 1.6; padding: 0.9rem; border: 1px solid var(--cizgi); background: #fff; color: var(--metin); white-space: pre-wrap; resize: vertical; }
+  .km-ipucu { margin-top: 0.4rem; font-size: 0.8rem; color: var(--metin-soluk); }
+  .km-dugme-satiri { display: flex; flex-wrap: wrap; gap: 0.6rem; }
   .km-yazdir { margin-top: 0.6rem; font: inherit; font-weight: 600; padding: 0.6rem 1.2rem; min-height: 44px; background: var(--su-700); color: #fff; border: 0; border-radius: 2px; cursor: pointer; }
+  .km-yazdir-ikincil { background: transparent; color: var(--su-700); border: 1px solid var(--su-700); }
   .km-uyari { margin-top: 1.2rem; padding: 0.8rem 1.1rem; border: 1px solid var(--cizgi); border-left: 3px solid var(--kehribar); font-size: 0.88rem; color: var(--metin-soluk); max-width: 74ch; }
   .km-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
   .km-capraz a { color: var(--baglanti); text-decoration: none; }
