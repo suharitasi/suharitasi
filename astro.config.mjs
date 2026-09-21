@@ -221,6 +221,7 @@ function llmsOlustur() {
   // tutuyor ve önek olmadığı için tamamı "Diğer sayfalar" altına düşüyordu,
   // yani AI istemcilerine kategorisiz gidiyordu.
   const BOLUM = [
+    ['acik-veri/', 'Açık veri ve geliştirici portalı (OpenAPI)'],
     ['veri/', 'Açık veri kataloğu (JSON API)'],
     ['su-riski-endeksi/', 'Su riski endeksi (il/havza)'],
     ['kuyu-karar-motoru/', 'Kuyu karar motoru (süre, merci, evrak)'],
@@ -274,7 +275,10 @@ function llmsOlustur() {
         const kullanilan = new Set(['/']);
         let metin = `# Su Haritası\n\n> ${ana.aciklama}\n\n`;
         metin += `Kaynak: ${SITE}/ · Hukuki içerik: Av. Serdar Arslan (Arslan Hukuk Bürosu).\n`;
-        metin += `Tam URL listesi: ${SITE}/sitemap.xml\n\n`;
+        metin += `Tam URL listesi: ${SITE}/sitemap.xml\n`;
+        // ADIM 3 (v6.0): OpenAPI spesifikasyonunun tam URL'i AI istemcilerine
+        // açıkça bildirilir (makine-okunur veri standardı).
+        metin += `Makine-okunur API şeması (OpenAPI 3.0): ${SITE}/api/v1/openapi.json\n\n`;
         for (const [onek, ad] of BOLUM) {
           const grup = sayfalar.filter((x) => x.yol.startsWith(`/${onek}`));
           if (!grup.length) continue;
@@ -289,6 +293,10 @@ function llmsOlustur() {
         // token-verimli tam indeks. Elle metin yok → bayatlamaz.
         let tam = `# Su Haritası — Tam İçerik İndeksi\n\n> ${ana.aciklama}\n\n`;
         tam += `Kaynak: ${SITE}/ · Hukuki içerik: Av. Serdar Arslan (Arslan Hukuk Bürosu).\n`;
+        // ADIM 3 (v6.0): OpenAPI 3.0 tam URL + uç listesi (AI istemcileri için).
+        tam += `\n## Makine-okunur API (OpenAPI 3.0)\n${SITE}/api/v1/openapi.json\n`;
+        tam += `Uçlar: ${SITE}/api/v1/il/{il}.json · ${SITE}/api/v1/havza/{havza}.json\n`;
+        tam += `Veri standardı ve atıf: ${SITE}/acik-veri/\n\n`;
         tam += `Her sayfa için başlık, kalıcı URL ve öz-cevap (meta açıklama):\n\n`;
         for (const x of sayfalar) {
           tam += `## ${x.baslik}\n${SITE}${x.yol}\n${x.aciklama}\n\n`;
