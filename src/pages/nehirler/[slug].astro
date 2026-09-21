@@ -7,6 +7,7 @@
 // cümlesi kaldırıldı; künye kapsam+erişim+lisans taşır; havza/il iç bağları
 // gol-nehir-cografya.js eşlemesinden.
 import Sayfa from '../../layouts/Sayfa.astro';
+import { tumIlProfilleri } from '../../data/il-profil.js';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import { TARIH } from '../../data/guncellik.js';
 import OzCevap from '../../components/OzCevap.astro';
@@ -22,6 +23,7 @@ const { nehir } = Astro.props;
 const ozet = nehirOzet(nehir);
 const havzalar = nehir.cografya.havzalar;
 const il = nehir.cografya.il;
+const dsiBolge = il ? (tumIlProfilleri().find((x) => x.slug === il.slug)?.dsiBolgeleri ?? []) : [];
 const kok = new URL('/', Astro.site).href;
 
 // C1 (V5, 10.09.2026): <title> arama niyetiyle hizalanır. YALNIZ sayfanın
@@ -155,6 +157,12 @@ const sema = [{
         <div class="kunye-satir">
           <dt>Döküldüğü yer</dt>
           <dd>{dokulur}</dd>
+        </div>
+      )}
+      {dsiBolge.length > 0 && (
+        <div class="kunye-satir">
+          <dt>İdari Yetki Mercii</dt>
+          <dd>{dsiBolge.map((b) => `DSİ ${b.no}. Bölge Müdürlüğü (${b.merkez})`).join(' · ')}</dd>
         </div>
       )}
     </dl>

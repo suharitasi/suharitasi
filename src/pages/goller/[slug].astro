@@ -6,6 +6,7 @@
 // kapsam+erişim+lisans eklendi; il/havza iç bağları geometrik eşlemeden
 // (gol-nehir-cografya.js) kuruldu; ölçek şerhi (dürüstlük etiketi) eklendi.
 import Sayfa from '../../layouts/Sayfa.astro';
+import { tumIlProfilleri } from '../../data/il-profil.js';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import { TARIH } from '../../data/guncellik.js';
 import OzCevap from '../../components/OzCevap.astro';
@@ -23,6 +24,7 @@ const tur = golTipi(gol);
 // Faz E (08.09.2026): tür şerhi — yerel düzeltme dayanağı ya da kaynak çelişkisi.
 const turSerhi = golTurSerhi(gol);
 const il = gol.cografya.il;
+const dsiBolge = il ? (tumIlProfilleri().find((x) => x.slug === il.slug)?.dsiBolgeleri ?? []) : [];
 const havza = gol.cografya.havzalar[0] ?? null;
 const kok = new URL('/', Astro.site).href;
 
@@ -113,6 +115,12 @@ const sema = [{
         <div class="kunye-satir">
           <dt>Havza</dt>
           <dd><a href={`/havzalar/${havza.slug}/`}>{havza.ad}</a></dd>
+        </div>
+      )}
+      {dsiBolge.length > 0 && (
+        <div class="kunye-satir">
+          <dt>İdari Yetki Mercii</dt>
+          <dd>{dsiBolge.map((b) => `DSİ ${b.no}. Bölge Müdürlüğü (${b.merkez})`).join(' · ')}</dd>
         </div>
       )}
     </dl>

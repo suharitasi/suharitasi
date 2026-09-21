@@ -1,0 +1,30 @@
+---
+// CITE-THIS-DATA — makine-okunur atıf kutusu (27.09.2026). Saf metin +
+// seçilebilir <code>; harici script YOK (CSP 'self' ile uyumlu). Basligi
+// çağıran sayfa verir; URL Astro.url.pathname'den gelir (uydurma yok).
+interface Props { baslik: string }
+const { baslik } = Astro.props;
+const atif = `Atıf: ${baslik}. Su Haritası Açık Hidroloji ve Hukuk Veri Tabanı (2026). URL: https://suharitasi.com${Astro.url.pathname}`;
+---
+<section class="cite" aria-label="Kaynak atfı">
+  <p class="cite-baslik">Bu veriye nasıl atıf yapılır?</p>
+  <p class="cite-metin"><code>{atif}</code></p>
+</section>
+<style>
+  .cite {
+    margin-top: 2rem;
+    padding: 0.9rem 1.1rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+  }
+  .cite-baslik {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    margin: 0 0 0.4rem;
+  }
+  .cite-metin { margin: 0; font-size: 0.9rem; }
+  .cite code { font-family: var(--mono); font-size: 0.82rem; }
+</style>

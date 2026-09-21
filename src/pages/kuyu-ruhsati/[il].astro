@@ -17,6 +17,7 @@ import { yayinlananIller } from '../../data/il-profil.js';
 import IlPotansiyel from '../../components/IlPotansiyel.astro';
 import IlIslemKutusu from '../../components/IlIslemKutusu.astro';
 import CtaBlok from '../../components/CtaBlok.astro';
+import CiteThisData from '../../components/CiteThisData.astro';
 import { ilPotansiyel } from '../../data/potansiyel.js';
 import { YAZAR, OG_GORSEL } from '../../data/site';
 import { TARIH } from '../../data/guncellik.js';
@@ -301,6 +302,7 @@ const sema = [
     {' '}{p.veriKunyesi.graceKaynak}, baraj doluluk {p.veriKunyesi.barajKaynak}{' '}
     verisidir. İller havzalara kısmen girebilir; bu sayfa hukuki görüş değildir.
   </p>
+<CiteThisData baslik={`${p.il} kuyu ruhsatı ve idari süreç`} />
 </Sayfa>
 
 <style>
