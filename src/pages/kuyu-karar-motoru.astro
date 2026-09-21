@@ -8,6 +8,7 @@ import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
 import CtaBlok from '../components/CtaBlok.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
+import IyukSureSayaci from '../components/IyukSureSayaci.astro';
 import { tumIller } from '../data/islem-matrisi.js';
 
 const OZ_CEVAP =
@@ -83,6 +84,8 @@ const sema = [
     <a href="/mevzuat/167/madde-18/">→ 167 m.18 tam metni</a>
     <a href="/emsal-kararlar/">→ Emsal kararlar</a>
   </nav>
+
+  <IyukSureSayaci />
 
   <CtaBlok konu="Kuyu cezası / kapatma" baslik="Dosyanızı avukata inceletın" metin="Süre kaybı hak kaybıdır. Evrakınızı ve tebliğ tarihinizi iletin; yol haritasını değerlendirelim." />
   <HukukSerhi />

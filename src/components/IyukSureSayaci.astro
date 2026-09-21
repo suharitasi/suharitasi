@@ -1,0 +1,111 @@
+---
+// İYUK m. 7 — 60 GÜN İDARİ DAVA AÇMA SÜRESİ SAYACI (27.09.2026).
+// Saf istemci (Vanilla JS, harici kütüphane/sunucu/DB YOK). Bilgilendirme
+// amaçlıdır; hukuki görüş değildir. TBB m.55: hizmet vaadi yok; yalnız
+// durum tespiti kanalına bağlanır.
+import { EPOSTA } from '../data/site';
+
+const TURLER = [
+  { id: 'ceza', ad: 'İdari para cezası (167 s.K. m.18)' },
+  { id: 'kapatma', ad: 'Kuyu kapatma tebliği' },
+  { id: 'red', ad: 'Ruhsat / belge başvurusunun reddi' },
+];
+---
+<section class="iyuk" aria-label="İdari dava açma süresi hesaplayıcı">
+  <h2>İdari süre: 60 günlük dava açma süresi</h2>
+  <p class="iyuk-not">
+    2577 sayılı İYUK m. 7 uyarınca idari işlemlere karşı dava açma süresi
+    kural olarak <strong>60 gündür</strong> (tebliğ tarihinden itibaren).
+    Özel kanunlarda farklı süre öngörülmüş olabilir; teyit edilmelidir.
+    Bu araç bilgilendirme amaçlıdır; hukuki görüş değildir.
+  </p>
+  <form id="iyuk-form" class="iyuk-form">
+    <label class="iyuk-alan">Tebliğ tarihi
+      <input type="date" id="iyuk-tarih" required>
+    </label>
+    <label class="iyuk-alan">Tebliğ türü
+      <select id="iyuk-tur">
+        {TURLER.map((t) => <option value={t.id}>{t.ad}</option>)}
+      </select>
+    </label>
+    <button type="submit" class="iyuk-dugme">Kalan süreyi hesapla</button>
+  </form>
+
+  <div id="iyuk-sonuc" class="iyuk-sonuc" hidden>
+    <p id="iyuk-metin" class="iyuk-metin"></p>
+    <div class="iyuk-cubuk" role="progressbar" aria-label="Kalan süre"
+         aria-valuemin="0" aria-valuemax="60">
+      <span id="iyuk-dolgu" class="iyuk-dolgu"></span>
+    </div>
+    <p id="iyuk-uyari" class="iyuk-uyari" hidden>
+      Yasal dava açma süresi geçmiş görünüyor; 2577 s. K. m. 11 uyarınca üst
+      makama başvuru veya olağanüstü kanun yolları değerlendirilmelidir.
+    </p>
+    <p class="iyuk-lead">
+      Somut durumun değerlendirilmesi için
+      <a href="/whatsapp/">durum tespiti talebi</a> iletebilir veya
+      <a href={`mailto:${EPOSTA}?subject=${encodeURIComponent('Kuyu idari süreç — durum tespiti')}`}>e-posta</a>
+      gönderebilirsiniz.
+    </p>
+  </div>
+</section>
+
+<script>
+  const GUN = 60;
+  const form = document.getElementById('iyuk-form');
+  const girdi = document.getElementById('iyuk-tarih') as HTMLInputElement | null;
+  const sonuc = document.getElementById('iyuk-sonuc');
+  const metin = document.getElementById('iyuk-metin');
+  const uyari = document.getElementById('iyuk-uyari');
+  const dolgu = document.getElementById('iyuk-dolgu');
+  const cubuk = document.querySelector('.iyuk-cubuk') as HTMLElement | null;
+
+  form?.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    if (!girdi?.value || !sonuc || !metin || !dolgu) return;
+    const teblig = new Date(girdi.value + 'T00:00:00');
+    if (Number.isNaN(teblig.getTime())) return;
+    const son = new Date(teblig.getTime() + GUN * 86400000);
+    const bugun = new Date();
+    bugun.setHours(0, 0, 0, 0);
+    const kalan = Math.ceil((son.getTime() - bugun.getTime()) / 86400000);
+    const bitis = son.toLocaleDateString('tr-TR');
+    if (kalan >= 0) {
+      metin.textContent = `İdare Mahkemesinde iptal (ve gerekiyorsa yürütmeyi durdurma) davası açma sürenizin dolmasına kalan süre: ${kalan} gün (son gün: ${bitis}).`;
+      uyari?.setAttribute('hidden', '');
+    } else {
+      metin.textContent = `Hesaplanan son gün: ${bitis}.`;
+      uyari?.removeAttribute('hidden');
+    }
+    const oran = Math.max(0, Math.min(100, Math.round((kalan / GUN) * 100)));
+    dolgu.style.width = `${oran}%`;
+    cubuk?.setAttribute('aria-valuenow', String(Math.max(0, kalan)));
+    sonuc.removeAttribute('hidden');
+  });
+</script>
+
+<style>
+  .iyuk {
+    margin-top: 1.6rem;
+    padding: 1.1rem 1.3rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+  }
+  .iyuk h2 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0 0 0.6rem;
+  }
+  .iyuk-not { font-size: 0.9rem; color: var(--metin-soluk); max-width: 66ch; margin: 0 0 1rem; }
+  .iyuk-form { display: flex; flex-wrap: wrap; gap: 0.8rem 1.2rem; align-items: end; }
+  .iyuk-alan { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.85rem; }
+  .iyuk-dugme { padding: 0.5rem 1rem; cursor: pointer; }
+  .iyuk-sonuc { margin-top: 1.1rem; }
+  .iyuk-metin { font-size: 0.98rem; max-width: 66ch; }
+  .iyuk-cubuk { height: 10px; background: var(--cizgi); border-radius: 999px; overflow: hidden; margin: 0.6rem 0; }
+  .iyuk-dolgu { display: block; height: 100%; width: 100%; background: var(--su-700); transition: width 200ms var(--e-akinti); }
+  .iyuk-uyari { font-size: 0.9rem; color: var(--metin); max-width: 66ch; }
+  .iyuk-lead { font-size: 0.9rem; color: var(--metin-soluk); max-width: 66ch; }
+</style>
