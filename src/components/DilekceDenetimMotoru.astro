@@ -1,0 +1,245 @@
+---
+// DİLEKÇE DENETİM MOTORU — Self-Auditing Dilekçe Denetim & Ön İnceleme (ADIM 4, v6.0).
+//
+// Kuyu Sihirbazı'ndaki taslağı CANLI denetler (saf Vanilla JS, harici
+// kütüphane/sunucu YOK):
+//   Kural A — Tarih & hak düşürücü süre (İYUK m. 7): tebliğ üzerinden 45 günü
+//             aşan dosyada kırmızı uyarı.
+//   Kural B — Hasım düzeltmesi: taslakta "DSİ Şube" geçiyorsa hasımın tüzel
+//             kişiliği haiz "DSİ Genel Müdürlüğü" olması gerektiği uyarısı.
+//   Kural C — Delil/belge durumu: açıklamada ruhsat/kullanma belgesi
+//             geçmiyorsa usul uyarısı.
+// Dinamik yer tutucular {IL}/{MERCI}/{TARIH}/{DAYANAK} seçime göre doldurulur.
+// Çıktı hüküm/hukuki görüş DEĞİLDİR. Bağlam, karar-motoru.js'ten `km-taslak`
+// CustomEvent'i ile gelir (tek yönlü; uydurma veri yok).
+import HukukDanismanlik from './HukukDanismanlik.astro';
+---
+
+<section class="dd" id="dilekce-denetim" aria-label="Dilekçe taslağı ve canlı denetim">
+  <h2>Dilekçe taslağı ve canlı denetim</h2>
+  <p class="dd-not">
+    İl, işlem ve tebliğ seçiminize göre taslak <strong>canlı</strong> oluşturulur;
+    yazdıkça aşağıdaki usul kurallarıyla denetlenir. Bilgilendirme amaçlıdır;
+    hukuki görüş değildir.
+  </p>
+
+  <label class="dd-alan">
+    <span class="dd-etiket">Dilekçe ön taslağı (düzenlenebilir)</span>
+    <textarea id="dd-taslak" class="dd-taslak" aria-label="Dilekçe ön taslağı — düzenleyebilirsiniz"
+      placeholder="İl ve işlem seçin; taslak burada oluşur."></textarea>
+  </label>
+  <p class="dd-ipucu">
+    Taslağı doğrudan düzenleyebilirsiniz; denetim her değişiklikte güncellenir.
+  </p>
+
+  <div id="dd-denetim" class="dd-denetim" aria-live="polite"></div>
+
+  <div class="dd-dugme-satiri">
+    <button type="button" class="dd-dugme" id="dd-kopyala">Taslağı Panoya Kopyala</button>
+  </div>
+
+  <script type="application/json" id="dd-veri" set:html={JSON.stringify({
+    kurallar: {
+      a: 'Dikkat: İYUK m. 7 uyarınca 60 günlük dava açma süresinin son 15 günündesiniz; yürütmeyi durdurma talepli idari dava aciliyet kesbetmektedir.',
+      aGecmis: '60 günlük dava açma süresi geçmiş görünüyor; İYUK m. 11 uyarınca üst makama başvuru veya olağanüstü kanun yolları değerlendirilmelidir.',
+      b: "İdari Yargılama Usulü Kanunu uyarınca hasım tüzel kişiliği haiz 'DSİ Genel Müdürlüğü' olarak gösterilmelidir.",
+      c: 'Açıklamalar bölümünde arama/kullanma belgesi veya ruhsat durumuna değinilmiyor; delil ve belge durumu dilekçeye eklenmelidir.',
+    },
+  })}></script>
+</section>
+
+<HukukDanismanlik konu="Dilekçe ön incelemesi" />
+
+<script>
+  const taslak = document.getElementById('dd-taslak') as HTMLTextAreaElement | null;
+  const denetim = document.getElementById('dd-denetim');
+  const kopyalaBtn = document.getElementById('dd-kopyala');
+  const veriEl = document.getElementById('dd-veri');
+  const KURAL = JSON.parse(veriEl?.textContent || '{}').kurallar || {};
+
+  let ctx: any = {};
+
+  function trTarih(iso: string) {
+    const d = new Date(iso + 'T00:00:00');
+    return Number.isNaN(d.getTime())
+      ? ''
+      : d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function gunFarki(iso: string) {
+    const d = new Date(iso + 'T00:00:00');
+    if (Number.isNaN(d.getTime())) return null;
+    const b = new Date();
+    b.setHours(0, 0, 0, 0);
+    return Math.round((b.getTime() - d.getTime()) / 86400000);
+  }
+
+  // Dinamik yer tutucular: seçilen il/merci/tarih/dayanak taslağa enjekte edilir.
+  function taslakOlustur(c: any) {
+    const talep = c.islem === 'itiraz' ? 'itiraz/dava' : 'yeniden değerlendirme';
+    const tarif = c.tarih ? c.tarih + ' tarihinde ' : '';
+    return (
+      '{TARIH}\n\n' +
+      '{MERCI}\n\n' +
+      'KONU: {ISLEM_AD} hakkında ' + talep + ' talebi.\n\n' +
+      'AÇIKLAMALAR\n' +
+      '1. Tarafıma ' + tarif + '{IL} ilinde tebliğ edilen {DAYANAK} kapsamındaki işlem, aşağıdaki nedenlerle hukuka aykırıdır.\n' +
+      '2. İşlemin sebep unsuru somut ve teknik dayanaktan yoksundur; mevcut belge/statü dikkate alınmamıştır.\n' +
+      '3. Yetkili merci ve usul yönünden inceleme yapılmasını talep ederim.\n\n' +
+      'HUKUKİ NEDENLER: {DAYANAK}\n' +
+      'DELİLLER: Tebliğ, ceza tutanağı, belge ve bilirkişi incelemesi.\n\n' +
+      'SONUÇ VE İSTEM: Yukarıda açıklanan nedenlerle işlemin iptali / yeniden değerlendirilmesi talebinin kabulünü saygılarımla arz ederim.\n\n' +
+      'Ad Soyad\nİmza'
+    )
+      .split('{TARIH}').join(c.tarih || '[Tarih]')
+      .split('{MERCI}').join(c.merci || '[Merci]')
+      .split('{ISLEM_AD}').join(c.islemAd || '')
+      .split('{IL}').join(c.il || '')
+      .split('{DAYANAK}').join(c.dayanak || '');
+  }
+
+  function kutulariCiz(kutular: any[]) {
+    if (!denetim) return;
+    denetim.replaceChildren();
+    for (const k of kutular) {
+      const div = document.createElement('div');
+      div.className = 'dd-kutu dd-' + k.tip;
+      const bas = document.createElement('strong');
+      bas.textContent = k.baslik + ': ';
+      div.appendChild(bas);
+      div.appendChild(document.createTextNode(k.metin));
+      denetim.appendChild(div);
+    }
+  }
+
+  function denetle() {
+    const metin = taslak?.value || '';
+    const kutular: any[] = [];
+
+    // Kural A — tarih & hak düşürücü süre (İYUK m. 7)
+    if (ctx.teblig) {
+      const gecen = gunFarki(ctx.teblig);
+      if (gecen != null && gecen > 45) {
+        kutular.push({
+          tip: 'kirmizi',
+          baslik: 'Hak düşürücü süre',
+          metin: gecen > 60 ? KURAL.aGecmis : KURAL.a,
+        });
+      }
+    }
+
+    // Kural B — hasım düzeltmesi (DSİ tüzel kişiliği)
+    if (/DS[İI]\s*Ş[UÜ]be/i.test(metin)) {
+      kutular.push({ tip: 'sari', baslik: 'Hasım (davalı) düzeltmesi', metin: KURAL.b });
+    }
+
+    // Kural C — delil/belge durumu. "Ruhsatsız" (konu) yanlış-pozitifini elemek
+    // için "ruhsat" ancak "sız/siz" ekiyle gelmiyorsa sayılır; ayrıca arama/
+    // kullanma belgesi ifadeleri kabul edilir.
+    if (metin.trim() && !/ruhsat(?!s[ıi]z)|kullanma belge|arama belge/i.test(metin)) {
+      kutular.push({ tip: 'sari', baslik: 'Delil / belge durumu', metin: KURAL.c });
+    }
+
+    kutulariCiz(kutular);
+  }
+
+  document.addEventListener('km-taslak', (ev) => {
+    const d = (ev as CustomEvent).detail || {};
+    if (d.temizle) {
+      ctx = {};
+      if (taslak) taslak.value = '';
+      kutulariCiz([]);
+      return;
+    }
+    ctx = d;
+    if (taslak) {
+      taslak.value = taslakOlustur(d);
+      // İmleci başa al (değer değişiminde kaydırma sıçramasın).
+      taslak.scrollTop = 0;
+    }
+    denetle();
+  });
+
+  taslak?.addEventListener('input', denetle);
+
+  kopyalaBtn?.addEventListener('click', () => {
+    if (!taslak) return;
+    const sifirla = (metin: string) => {
+      kopyalaBtn.textContent = metin;
+      setTimeout(() => { kopyalaBtn.textContent = 'Taslağı Panoya Kopyala'; }, 1800);
+    };
+    const kopyala = () => {
+      taslak.focus();
+      taslak.select();
+      try {
+        if (document.execCommand('copy')) { sifirla('Taslağı kopyalandı'); return; }
+      } catch (e) { /* execCommand desteklenmiyor — pano API denenir */ }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(taslak.value).then(
+          () => sifirla('Taslağı kopyalandı'),
+          () => sifirla('Kopyalanamadı — metni seçip Ctrl+C')
+        );
+      } else {
+        sifirla('Kopyalanamadı — metni seçip Ctrl+C');
+      }
+    };
+    kopyala();
+  });
+</script>
+
+<style>
+  .dd {
+    margin-top: 1.6rem;
+    padding: 1.1rem 1.3rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+  }
+  .dd h2 { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; margin: 0 0 0.6rem; }
+  .dd-not { font-size: 0.9rem; color: var(--metin-soluk); max-width: 70ch; margin: 0 0 1rem; }
+  .dd-alan { display: flex; flex-direction: column; gap: 0.3rem; }
+  .dd-etiket {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--su-700);
+  }
+  .dd-taslak {
+    width: 100%;
+    min-height: 240px;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    line-height: 1.6;
+    padding: 0.9rem;
+    border: 1px solid var(--cizgi);
+    background: #fff;
+    color: var(--metin);
+    white-space: pre-wrap;
+    resize: vertical;
+  }
+  .dd-ipucu { margin-top: 0.4rem; font-size: 0.8rem; color: var(--metin-soluk); }
+  .dd-denetim { margin-top: 0.9rem; display: grid; gap: 0.6rem; }
+  .dd-kutu {
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--cizgi);
+    font-size: 0.9rem;
+    max-width: 74ch;
+  }
+  .dd-kirmizi { border-left: 3px solid #b3261e; background: rgba(179, 38, 30, 0.06); }
+  .dd-kirmizi strong { color: #8a1f17; }
+  .dd-sari { border-left: 3px solid var(--kehribar); background: var(--kehribar-zemin); }
+  .dd-sari strong { color: var(--kehribar-metin); }
+  .dd-dugme-satiri { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.8rem; }
+  .dd-dugme {
+    font: inherit;
+    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    min-height: 44px;
+    background: var(--su-700);
+    color: #fff;
+    border: 0;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+</style>
