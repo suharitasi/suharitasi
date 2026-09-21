@@ -29,7 +29,7 @@ export const REZERV_AZALAN = [...HAVZA_RISK]
 
 // Son 12 ayda yağışı en çok düşen (kuraklık sinyali)
 export const EN_KURAK = HAVZA_RISK
-  .map((h) => ({ ad: h.ad, degisim: yagisDegisim(h.ad) }))
+  .map((h) => ({ no: h.no, ad: h.ad, degisim: yagisDegisim(h.ad) }))
   .filter((x) => x.degisim != null)
   .sort((a, b) => a.degisim - b.degisim)
   .slice(0, 5);

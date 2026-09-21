@@ -1,12 +1,21 @@
 ---
 // /veri/gundem/ — VERİ GÜNDEMİ (otomatik veri gazeteciliği, 13.09.2026).
 // Mevcut doğrulanmış veriden otomatik özet/hikâye. Uydurma yok.
+import { getCollection } from 'astro:content';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import OzCevap from '../../components/OzCevap.astro';
 import CtaBlok from '../../components/CtaBlok.astro';
 import HukukSerhi from '../../components/HukukSerhi.astro';
 import { EN_RISKLI, REZERV_AZALAN, EN_KURAK, KISIT_ILLER, SON_KAPATMA, GUNDEM_SAYI } from '../../data/gundem.js';
+
+// Çapraz ağ (FAZ 5, v5.2): havza sayfası yolu TEK KAYNAKTAN — içerik
+// koleksiyonunun kanonik slug'ı. Önceki sürüm ad-hoc slugify kullanıyordu ve
+// Türkçe karakterleri düşürüyordu (Batı Akdeniz → /havzalar/bat-akdeniz/ 404).
+// no → slug eşlemesi; karşılığı olmayan havza DÜZ METİN kalır (kırık link yok).
+const havzaYolu = Object.fromEntries(
+  (await getCollection('havzalar')).map((g) => [g.data.no, `/havzalar/${g.id}/`])
+);
 
 const OZ_CEVAP =
   'Su Haritası verisinden otomatik derlenen gündem: en yüksek su riskli havzalar, ' +
@@ -29,21 +38,21 @@ const sema = [
   <section class="gd-bolum">
     <h2>En yüksek su riskli havzalar</h2>
     <ol class="gd-liste">{EN_RISKLI.map((h) => (
-      <li><a href={`/havzalar/${h.ad.toLowerCase().replace(/\s*havzası$/,'').replace(/[^a-z0-9]+/g,'-')}/`}>{h.ad}</a> <span class="gd-deger">{h.puan}</span> <span class={`gd-kat gd-${h.kategori}`}>{h.kategori}</span></li>
+      <li>{havzaYolu[h.no] ? <a href={havzaYolu[h.no]}>{h.ad}</a> : h.ad} <span class="gd-deger">{h.puan}</span> <span class={`gd-kat gd-${h.kategori}`}>{h.kategori}</span></li>
     ))}</ol>
   </section>
 
   <section class="gd-bolum">
     <h2>Rezervi en hızlı azalan havzalar (GRACE)</h2>
     <ol class="gd-liste">{REZERV_AZALAN.map((h) => (
-      <li>{h.ad} <span class="gd-deger">{h.ham.graceEgim}</span> <span class="gd-not">cm/ay eğim</span></li>
+      <li>{havzaYolu[h.no] ? <a href={havzaYolu[h.no]}>{h.ad}</a> : h.ad} <span class="gd-deger">{h.ham.graceEgim}</span> <span class="gd-not">cm/ay eğim</span></li>
     ))}</ol>
   </section>
 
   <section class="gd-bolum">
     <h2>Son 12 ayda yağışı en çok düşen havzalar</h2>
     <ol class="gd-liste">{EN_KURAK.map((h) => (
-      <li>{h.ad} <span class="gd-deger">{h.degisim}%</span> <span class="gd-not">12 ay değişim</span></li>
+      <li>{havzaYolu[h.no] ? <a href={havzaYolu[h.no]}>{h.ad}</a> : h.ad} <span class="gd-deger">{h.degisim}%</span> <span class="gd-not">12 ay değişim</span></li>
     ))}</ol>
   </section>
 
