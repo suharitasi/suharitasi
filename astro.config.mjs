@@ -284,7 +284,17 @@ function llmsOlustur() {
         const kalan = sayfalar.filter((x) => !kullanilan.has(x.yol));
         if (kalan.length) metin += `## Diğer sayfalar\n\n${kalan.map(satir).join('\n')}\n\n`;
         await writeFile(join(kok, 'llms.txt'), metin, 'utf8');
-        logger.info(`llms.txt: ${sayfalar.length} sayfa`);
+        // llms-full.txt: derin tarayıcılar (Perplexity/SearchGPT/Claude) için
+        // llms.txt ile AYNI kaynaktan (dist title + meta açıklama) üretilen
+        // token-verimli tam indeks. Elle metin yok → bayatlamaz.
+        let tam = `# Su Haritası — Tam İçerik İndeksi\n\n> ${ana.aciklama}\n\n`;
+        tam += `Kaynak: ${SITE}/ · Hukuki içerik: Av. Serdar Arslan (Arslan Hukuk Bürosu).\n`;
+        tam += `Her sayfa için başlık, kalıcı URL ve öz-cevap (meta açıklama):\n\n`;
+        for (const x of sayfalar) {
+          tam += `## ${x.baslik}\n${SITE}${x.yol}\n${x.aciklama}\n\n`;
+        }
+        await writeFile(join(kok, 'llms-full.txt'), tam, 'utf8');
+        logger.info(`llms.txt: ${sayfalar.length} sayfa · llms-full.txt: ${tam.length} krk`);
       },
     },
   };
