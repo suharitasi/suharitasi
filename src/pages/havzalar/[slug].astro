@@ -5,6 +5,7 @@ import SayfaBasi from '../../components/SayfaBasi.astro';
 import OzCevap from '../../components/OzCevap.astro';
 import BarajDoluluk from '../../components/BarajDoluluk.astro';
 import GraceEgilim from '../../components/GraceEgilim.astro';
+import HavzaSuTablasiGostergesi from '../../components/HavzaSuTablasiGostergesi.astro';
 import HavzaYasBandi from '../../components/HavzaYasBandi.astro';
 import HavzaKahraman from '../../components/HavzaKahraman.astro';
 import Katman from '../../components/Katman.astro';
@@ -302,6 +303,10 @@ const semalar = sss.length
       <GraceEgilim havzaBaslik={giris.data.baslik} />
     </Katman>
 
+    <Katman baslik="Akifer su tablası göstergesi" ipucu="10 yıl · GRACE + DSİ YAS · veri-koşullu">
+      <HavzaSuTablasiGostergesi no={giris.data.no} ad={giris.data.baslik} />
+    </Katman>
+
     {hukuk && (
       <Katman baslik="Bu havzada hukuki durum" ipucu="izin rejimi · kısıtlar · rehberler" ton="kehribar">
         <section class="hukuk">
@@ -434,6 +439,8 @@ const semalar = sss.length
   <BarajDoluluk havzaBaslik={giris.data.baslik} />
 
   <GraceEgilim havzaBaslik={giris.data.baslik} />
+
+  <HavzaSuTablasiGostergesi no={giris.data.no} ad={giris.data.baslik} />
 
   {hukuk && (
     <section class="hukuk">
