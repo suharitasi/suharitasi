@@ -1,0 +1,43 @@
+{
+  "_not": "İdari işlem usul denetimi parametreleri (BİLEŞEN 1, v6.0). Her parametre MEVZUAT dayanağına bağlıdır; çıktı bir HÜKÜM değil, İYUK m. 2 kapsamında İLERİ SÜRÜLEBİLİR bir usul iddiasıdır. Ceza tutarı ve sabit eşik yazılmaz.",
+  "_emsal_notu": "emsal_idler YALNIZ data/kamu/emsal-kararlar.json içinde yayımlı kararlara işaret eder; yeni esas/karar numarası ÜRETİLMEZ (K7 uydurma yasağı). Bağ, kararın KONU ilgisini gösterir; somut olayda birebir emsal teşkil iddiası taşımaz.",
+  "_surum": "1.0",
+  "usuller": [
+    {
+      "id": "USUL-1",
+      "ad": "Yetkisiz zabıt",
+      "soru": "Tutanak, DSİ teknik personeli yerine yalnız jandarma/zabıta tarafından mı düzenlendi?",
+      "aciklama": "Tespit tutanağının DSİ teknik personeli dışında yalnız kolluk/zabıta tarafından düzenlenmesi, işlemin yetki ve maddi sebep unsurlarının denetimini güçleştirir.",
+      "dayanak": "167 s. K. m. 8 (belge ve denetim) · İYUK m. 2",
+      "iptal_gerekcesi": "İşlemin yetki unsuru yönünden eleştirisi: tutanağın mevzuatın öngördüğü teknik merci dışında düzenlenmesi, İYUK m. 2 kapsamında iptal gerekçesi olarak ileri sürülebilir.",
+      "emsal_idler": ["danistay-8d-2021-5225"]
+    },
+    {
+      "id": "USUL-2",
+      "ad": "Ölçüm eksikliği",
+      "soru": "Debi ve çekim miktarı mühürlü debimetre yerine göz kararı tahminle mi tutanağa geçirildi?",
+      "aciklama": "Çekim miktarının ölçüm cihazı yerine tahminle belirlenmesi, işlemin maddi (sebep) dayanağını tartışmalı kılar.",
+      "dayanak": "167 s. K. m. 8 (ölçüm ve belge) · İYUK m. 2",
+      "iptal_gerekcesi": "İşlemin sebep unsuru yönünden eleştirisi: miktarın ölçüm cihazıyla değil tahminle belirlenmesi, İYUK m. 2 kapsamında iptal gerekçesi olarak ileri sürülebilir.",
+      "emsal_idler": ["danistay-10d-2017-40", "danistay-8d-2022-3005"]
+    },
+    {
+      "id": "USUL-3",
+      "ad": "Savunma hakkı ihlali",
+      "soru": "Kapatma/mühürleme öncesinde 167 s. K. uyarınca tebligatla ıslah veya kapatma için süre verilmedi mi?",
+      "aciklama": "Aykırılığın doğrudan kapatma/mühürleme ile karşılanması yerine önce tebliğle giderilmesi için süre tanınması, savunma hakkı ve ölçülülük yönünden denetlenir.",
+      "dayanak": "167 s. K. m. 18 (kapatma) · İYUK m. 2",
+      "iptal_gerekcesi": "İşlemin şekil ve maksat unsurları yönünden eleştirisi: aykırılığın giderilmesi için tebliğle süre tanınmadan kapatma/mühürleme yoluna gidilmesi, İYUK m. 2 kapsamında iptal gerekçesi olarak ileri sürülebilir.",
+      "emsal_idler": []
+    },
+    {
+      "id": "USUL-4",
+      "ad": "Zımni ret süresi",
+      "soru": "İYUK m. 10 uyarınca 30 günlük yasal cevap süresi dolduğu hâlde başvuru cevapsız mı bırakıldı?",
+      "aciklama": "İdareye yapılan başvuruya 30 gün içinde cevap verilmemesi, zımni ret sayılır ve dava yolu açılır.",
+      "dayanak": "İYUK m. 10 (30 günlük cevap süresi) · İYUK m. 2",
+      "iptal_gerekcesi": "Zımni ret: İYUK m. 10 uyarınca 30 günlük süre içinde cevap verilmemesi başvuruyu zımnen reddedilmiş kılar; bu zımni işlem İYUK m. 2 kapsamında iptal davasına konu edilebilir.",
+      "emsal_idler": []
+    }
+  ]
+}

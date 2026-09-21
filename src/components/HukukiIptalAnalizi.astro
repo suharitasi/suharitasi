@@ -1,0 +1,177 @@
+---
+// HUKUKİ İPTAL ANALİZİ — İdari İşlem Usul Denetimi (BİLEŞEN 1, v6.0, 21.09.2026).
+//
+// KULLANICI 4 usul denetimi kutucuğundan dosyasına uyanları işaretler;
+// işaretlenen her sakatlık için İYUK m. 2 kapsamında İLERİ SÜRÜLEBİLİR bir
+// iptal gerekçesi gösterilir. Çıktı HÜKÜM/hukuki görüş DEĞİLDİR.
+//
+// K7 (uydurma yasağı): parametreler mevzuat dayanaklıdır. Emsal künyeleri
+// YALNIZ data/kamu/emsal-kararlar.json'da yayımlı kararlardan gelir ve
+// derleme zamanında çözülür — olmayan id build'i DÜŞÜRÜR (sessiz hata yok).
+// Yeni esas/karar numarası üretilmez. Saf istemci (Vanilla JS); sunucu/DB yok.
+import matris from '../data/idare-emsal-matrisi.json';
+import emsal from '../../data/kamu/emsal-kararlar.json';
+import HukukDanismanlik from './HukukDanismanlik.astro';
+
+const emsalById = Object.fromEntries(emsal.kararlar.map((k) => [k.id, k]));
+const usuller = matris.usuller.map((u) => ({
+  ...u,
+  emsaller: u.emsal_idler.map((id) => {
+    const k = emsalById[id];
+    if (!k) {
+      throw new Error(`HukukiIptalAnalizi: "${id}" emsal-kararlar.json'da yok (${u.id}).`);
+    }
+    return { id: k.id, merci: k.merci, esas: k.esas, karar: k.karar, yil: k.yil, konu: k.konu, dogrulama: k.dogrulama };
+  }),
+}));
+---
+
+<section class="ipa" id="iptal-denetim" aria-label="İdari işlem usul denetimi">
+  <h2>İdari işlem usul denetimi</h2>
+  <p class="ipa-not">
+    Dosyanızdaki tespit/ceza işleminde aşağıdaki usul sakatlıklarından hangileri
+    varsa işaretleyin. İşaretlediğiniz her başlık için, 2577 sayılı İYUK m. 2
+    (yetki · şekil · sebep · konu · maksat) kapsamında <strong>ileri
+    sürülebilir</strong> bir iptal gerekçesi gösterilir. Bu araç bilgilendirme
+    amaçlıdır; hukuki görüş değildir.
+  </p>
+
+  <form id="ipa-form" class="ipa-form">
+    <fieldset class="ipa-fs">
+      <legend class="ipa-legend">Dosyanızda aşağıdaki usul sakatlıklarından hangileri var?</legend>
+      <ul class="ipa-liste">
+        {usuller.map((u) => (
+          <li class="ipa-madde">
+            <label class="ipa-etiket" for={`ipa-${u.id}`}>
+              <input type="checkbox" class="ipa-kutu" id={`ipa-${u.id}`} value={u.id} />
+              <span class="ipa-ad"><span class="ipa-kod">{u.id}</span> {u.ad}</span>
+            </label>
+            <p class="ipa-soru">{u.soru}</p>
+            <p class="ipa-dayanak">Dayanak: {u.dayanak}</p>
+          </li>
+        ))}
+      </ul>
+    </fieldset>
+  </form>
+
+  <div class="ipa-sonuc" id="ipa-sonuc" hidden aria-live="polite">
+    <h3>İYUK m. 2 — iptal gerekçesi (ileri sürülebilir)</h3>
+    <p class="ipa-uyari">
+      Aşağıdakiler bir hüküm veya hukuki görüş DEĞİLDİR; işaretlediğiniz usul
+      sakatlıklarının İYUK m. 2 kapsamındaki gerekçe karşılıklarıdır. Somut
+      dosyada değerlendirme uzman incelemesi gerektirir.
+    </p>
+    <ol id="ipa-gerekceler" class="ipa-gerekceler"></ol>
+    <div id="ipa-emsaller" class="ipa-emsaller" hidden>
+      <h4>İlgili yayımlı künyeler</h4>
+      <ul id="ipa-emsal-liste" class="ipa-emsal-liste"></ul>
+      <p class="ipa-emsal-not">
+        Künyeler <a href="/emsal-kararlar/">/emsal-kararlar/</a> veritabanında
+        yayımlı kararlardan alınır; konu ilgisini gösterir, somut olayda birebir
+        emsal teşkil iddiası taşımaz. "künye" işaretli kararların nihai
+        doğrulaması sürüyor.
+      </p>
+    </div>
+  </div>
+
+  <script type="application/json" id="ipa-veri" set:html={JSON.stringify({ usuller })}></script>
+</section>
+
+<HukukDanismanlik konu="İdari işlem usul denetimi" />
+
+<script>
+  const ham = document.getElementById('ipa-veri')?.textContent || '{}';
+  const veri = JSON.parse(ham);
+  const form = document.getElementById('ipa-form');
+  const sonuc = document.getElementById('ipa-sonuc');
+  const gerekceler = document.getElementById('ipa-gerekceler');
+  const emsallerKutu = document.getElementById('ipa-emsaller');
+  const emsalListe = document.getElementById('ipa-emsal-liste');
+
+  function ciz() {
+    const secili = Array.from(document.querySelectorAll('.ipa-kutu'))
+      .filter((c) => (c as HTMLInputElement).checked)
+      .map((c) => (c as HTMLInputElement).value);
+    if (!secili.length) { sonuc?.setAttribute('hidden', ''); return; }
+    if (!gerekceler || !emsalListe) return;
+
+    gerekceler.replaceChildren();
+    emsalListe.replaceChildren();
+    let emsalVar = false;
+
+    for (const u of veri.usuller || []) {
+      if (!secili.includes(u.id)) continue;
+
+      const li = document.createElement('li');
+      const bas = document.createElement('strong');
+      bas.textContent = `${u.id} — ${u.ad}: `;
+      li.appendChild(bas);
+      li.appendChild(document.createTextNode(u.iptal_gerekcesi));
+      gerekceler.appendChild(li);
+
+      for (const e of u.emsaller || []) {
+        emsalVar = true;
+        const eli = document.createElement('li');
+        eli.textContent = `${e.merci} ${e.esas} E., ${e.karar} K. (${e.yil}) — ${e.konu} · ${e.dogrulama === 'kaynakli' ? 'kaynaklı' : 'künye'}`;
+        emsalListe.appendChild(eli);
+      }
+    }
+
+    emsallerKutu?.toggleAttribute('hidden', !emsalVar);
+    sonuc?.removeAttribute('hidden');
+  }
+
+  form?.addEventListener('change', ciz);
+</script>
+
+<style>
+  .ipa {
+    margin-top: 1.6rem;
+    padding: 1.1rem 1.3rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+  }
+  .ipa h2 { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; margin: 0 0 0.6rem; }
+  .ipa-not { font-size: 0.9rem; color: var(--metin-soluk); max-width: 70ch; margin: 0 0 1rem; }
+  .ipa-fs { border: 0; margin: 0; padding: 0; }
+  .ipa-legend {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    padding: 0;
+    margin-bottom: 0.6rem;
+  }
+  .ipa-liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+  .ipa-madde { padding: 0.8rem 0.9rem; background: var(--zemin); border: 1px solid var(--cizgi); }
+  .ipa-etiket { display: flex; align-items: flex-start; gap: 0.6rem; min-height: 44px; cursor: pointer; }
+  .ipa-kutu { width: 20px; height: 20px; margin-top: 0.15rem; flex: none; accent-color: var(--su-700); }
+  .ipa-ad { font-family: var(--serif); font-size: 1.08rem; font-weight: 500; }
+  .ipa-kod {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: var(--su-700);
+    margin-right: 0.3rem;
+  }
+  .ipa-soru { margin: 0.35rem 0 0.2rem 2.1rem; font-size: 0.92rem; max-width: 70ch; }
+  .ipa-dayanak { margin-left: 2.1rem; font-size: 0.78rem; color: var(--metin-soluk); font-family: var(--mono); }
+  .ipa-sonuc { margin-top: 1.1rem; }
+  .ipa-sonuc h3 { font-family: var(--serif); font-size: 1.12rem; font-weight: 500; margin: 0 0 0.5rem; }
+  .ipa-uyari {
+    font-size: 0.84rem;
+    color: var(--metin);
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--cizgi);
+    border-left: 3px solid var(--kehribar);
+    max-width: 70ch;
+  }
+  .ipa-gerekceler { margin: 0.9rem 0 0 1.1rem; font-size: 0.94rem; display: grid; gap: 0.5rem; }
+  .ipa-gerekceler li { max-width: 72ch; }
+  .ipa-emsaller { margin-top: 1rem; padding-top: 0.8rem; border-top: 1px solid var(--cizgi); }
+  .ipa-emsaller h4 { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--su-700); margin: 0 0 0.4rem; }
+  .ipa-emsal-liste { margin: 0 0 0 1.1rem; font-size: 0.86rem; display: grid; gap: 0.3rem; }
+  .ipa-emsal-not { margin-top: 0.5rem; font-size: 0.8rem; color: var(--metin-soluk); max-width: 72ch; }
+</style>
