@@ -112,6 +112,9 @@ export const SUREC = [
 //   sadece ana menüden kaldırılmıştır. Alt sayfalardan ve site içi linklerden
 //   erişilebilir.
 export const VERI_ROTALARI = [
+  // FAZ 1 (v5.2): "Kuyu Karar Motoru" gizli rota gibi kalıyordu; ana menüye
+  // kısa adıyla görünür bağ eklendi. Hedef rota DEĞİŞMEZ (kanonik koruma).
+  { ad: 'Kuyu Ruhsat & İtiraz Sihirbazı', yol: '/kuyu-karar-motoru/' },
   { ad: 'Su Nerede Çıkar?', yol: '/ilce-sorgu/' },
   // '/su-hukuku/' HUB (13.09.2026): 25.08'de kapanan rota, kullanıcı talebiyle
   // yeniden açıldı — bu kez rehberleri, cezaları ve mevzuatı tek omurgada
