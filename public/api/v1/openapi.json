@@ -1,0 +1,195 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Su Haritası Açık Hidroloji ve Hukuk Veri API'si",
+    "description": "Türkiye su verisi, havzaları ve su mevzuatının makine-okunur JSON uçları (v1). Bütün yanıtlar build zamanında üretilen STATİK dosyalardır; sunucu, veritabanı veya kimlik doğrulama yoktur. Yalnız doğrulanmış kaynaklardan derlenir; hukuki görüş değildir.",
+    "version": "1.0.0",
+    "termsOfService": "https://suharitasi.com/acik-veri/",
+    "contact": {
+      "name": "Su Haritası",
+      "url": "https://suharitasi.com/acik-veri/",
+      "email": "avserdararslan@hotmail.com"
+    },
+    "license": {
+      "name": "Su Haritası Açık Hidroloji ve Hukuk Veri Standardı — kaynak gösterilerek kullanım (CC BY 4.0 uyumlu)",
+      "url": "https://suharitasi.com/acik-veri/"
+    }
+  },
+  "servers": [
+    { "url": "https://suharitasi.com", "description": "Canlı (Cloudflare Pages, statik)" }
+  ],
+  "tags": [
+    { "name": "İl", "description": "İl bazında DSİ bölgesi, havza ve Resmî Gazete kısıt kayıtları." },
+    { "name": "Havza", "description": "Havza bazında içerik koleksiyonu künyesi." }
+  ],
+  "paths": {
+    "/api/v1/il/{il}.json": {
+      "get": {
+        "tags": ["İl"],
+        "operationId": "getIl",
+        "summary": "İl künyesi: DSİ bölgesi, su idaresi, havzalar, RG kısıt kayıtları, mevzuat dayanağı",
+        "description": "Verilen il için; bağlı DSİ bölge müdürlüğü/bölgeleri, su-kanalizasyon idaresi, kapsadığı havzalar, Resmî Gazete işletme sahası ve tahsise kapatma/kısıt kayıtları ile ilgili mevzuat dayanağı listesini döndürür. Kayıt yokluğu boş dizi (`[]`) veya `null` ile dürüstçe belirtilir; uydurma değer üretilmez.",
+        "parameters": [
+          {
+            "name": "il",
+            "in": "path",
+            "required": true,
+            "description": "İl slug'ı (küçük harf, aksansız; ör. `istanbul`, `afyonkarahisar`).",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "İl künyesi JSON yanıtı.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/IlYaniti" }
+              }
+            }
+          },
+          "404": { "description": "Bilinmeyen il slug'ı (statik dosya yok)." }
+        }
+      }
+    },
+    "/api/v1/havza/{havza}.json": {
+      "get": {
+        "tags": ["Havza"],
+        "operationId": "getHavza",
+        "summary": "Havza künyesi: resmî başlık, öz-cevap ve kaynak künyesi",
+        "description": "Verilen havza için içerik koleksiyonundaki doğrulanmış veriyi (başlık, özet, tarih/güncelleme, DSİ havza no, kaynak künyesi) olduğu gibi döndürür. `veri` nesnesi koleksiyon şemasına sadıktır; havzaya özgü ek alanlar (ör. `hukuk`) bulunabilir.",
+        "parameters": [
+          {
+            "name": "havza",
+            "in": "path",
+            "required": true,
+            "description": "Havza slug'ı (ör. `gediz`, `bati-akdeniz`, `konya-kapali`).",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Havza künyesi JSON yanıtı.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HavzaYaniti" }
+              }
+            }
+          },
+          "404": { "description": "Bilinmeyen havza slug'ı (statik dosya yok)." }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "IlYaniti": {
+        "type": "object",
+        "required": ["il", "slug", "sayfa", "dsiBolgeleri", "suIdaresi", "havzalar", "rgKisitKayitlari", "mevzuatDayanagi", "kaynak", "not"],
+        "properties": {
+          "il": { "type": "string", "example": "İstanbul" },
+          "slug": { "type": "string", "example": "istanbul" },
+          "sayfa": { "type": "string", "format": "uri", "description": "İlgili kanonik HTML sayfası." },
+          "dsiBolgeleri": {
+            "type": "array",
+            "description": "İlin bağlı olduğu DSİ bölge müdürlüğü/bölgeleri.",
+            "items": { "$ref": "#/components/schemas/DsiBolge" }
+          },
+          "suIdaresi": {
+            "type": "string",
+            "nullable": true,
+            "description": "Su ve kanalizasyon idaresi; açık kayıt yoksa `null`.",
+            "example": "İSKİ — İstanbul Su ve Kanalizasyon İdaresi"
+          },
+          "havzalar": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/HavzaOzet" }
+          },
+          "rgKisitKayitlari": {
+            "type": "array",
+            "description": "Resmî Gazete işletme sahası ve tahsise kapatma/kısıt kayıtları; kayıt yoksa boş dizi.",
+            "items": { "$ref": "#/components/schemas/RgKisitKaydi" }
+          },
+          "mevzuatDayanagi": {
+            "type": "array",
+            "description": "İlgili mevzuat dayanağı (sabit liste; hüküm/ceza tutarı üretilmez).",
+            "items": { "$ref": "#/components/schemas/MevzuatDayanagi" }
+          },
+          "kaynak": { "type": "string" },
+          "not": { "type": "string" }
+        }
+      },
+      "DsiBolge": {
+        "type": "object",
+        "required": ["no", "merkez"],
+        "properties": {
+          "no": { "type": "integer", "example": 14 },
+          "merkez": { "type": "string", "example": "İstanbul" }
+        }
+      },
+      "HavzaOzet": {
+        "type": "object",
+        "required": ["ad", "slug"],
+        "properties": {
+          "ad": { "type": "string", "example": "Marmara Havzası" },
+          "slug": { "type": "string", "example": "marmara" }
+        }
+      },
+      "RgKisitKaydi": {
+        "type": "object",
+        "required": ["durum", "tarih", "ilce", "kaynak_url"],
+        "properties": {
+          "durum": { "type": "string", "nullable": true, "example": "işletme sahası ilanı/değişikliği" },
+          "tarih": { "type": "string", "nullable": true, "description": "GG.AA.YYYY biçiminde Resmî Gazete tarihi.", "example": "24.03.1966" },
+          "ilce": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Kayıtta geçen ilçeler (boş olabilir)."
+          },
+          "kaynak_url": { "type": "string", "format": "uri", "nullable": true }
+        }
+      },
+      "MevzuatDayanagi": {
+        "type": "object",
+        "required": ["kanun", "madde", "konu"],
+        "properties": {
+          "kanun": { "type": "string", "example": "167 sayılı Yeraltısuları Hakkında Kanun" },
+          "madde": { "type": "integer", "example": 8 },
+          "konu": { "type": "string", "example": "Belge (arama/kullanma/ıslah-tadil) zorunluluğu" }
+        }
+      },
+      "HavzaYaniti": {
+        "type": "object",
+        "required": ["havza", "veri", "kaynak", "not"],
+        "properties": {
+          "havza": { "type": "string", "description": "Havza slug'ı (koleksiyon kimliği).", "example": "gediz" },
+          "baslik": { "type": "string", "description": "Resmî havza başlığı (varsa).", "example": "Gediz Havzası" },
+          "veri": { "$ref": "#/components/schemas/HavzaVerisi" },
+          "kaynak": { "type": "string" },
+          "not": { "type": "string" }
+        }
+      },
+      "HavzaVerisi": {
+        "type": "object",
+        "description": "İçerik koleksiyonundan gelen ham havza verisi (şemaya sadık; havzaya özgü ek alanlar bulunabilir).",
+        "additionalProperties": true,
+        "properties": {
+          "baslik": { "type": "string" },
+          "ozet": { "type": "string" },
+          "tarih": { "type": "string", "format": "date-time" },
+          "guncelleme": { "type": "string", "format": "date-time" },
+          "no": { "type": "string", "description": "DSİ havza no (iki haneli, ör. '05')." },
+          "kunye": { "$ref": "#/components/schemas/Kunye" }
+        }
+      },
+      "Kunye": {
+        "type": "object",
+        "properties": {
+          "yillikPotansiyel": { "type": "string", "description": "Kaynak bağlantılı HTML parçası." },
+          "yasRezervi": { "type": "string", "description": "Kaynak bağlantılı HTML parçası." },
+          "tahsis": { "type": "string", "description": "Kaynak bağlantılı HTML parçası; veri yoksa 'veri yok' işareti." },
+          "eylemPlani": { "type": "string", "description": "Kaynak bağlantılı HTML parçası." }
+        }
+      }
+    }
+  }
+}
