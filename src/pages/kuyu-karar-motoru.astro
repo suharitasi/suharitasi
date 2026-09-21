@@ -10,6 +10,7 @@ import CtaBlok from '../components/CtaBlok.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
 import IyukSureSayaci from '../components/IyukSureSayaci.astro';
 import HukukiIptalAnalizi from '../components/HukukiIptalAnalizi.astro';
+import DilekceDenetimMotoru from '../components/DilekceDenetimMotoru.astro';
 import { tumIller } from '../data/islem-matrisi.js';
 
 // Görünür ad tercihi (FAZ 1, v5.2): H1 ve tüm yönlendirme metinlerinde tam ad,
@@ -77,6 +78,8 @@ const sema = [
 
   <div id="km-sonuc" class="km-sonuc" aria-live="polite"></div>
 
+  <DilekceDenetimMotoru />
+
   <p class="km-uyari">
     Bu araç bilgilendirme amaçlıdır; somut bir uyuşmazlığa dair hukuki görüş veya
     tavsiye niteliği taşımaz. İtiraz/dava yolu ve süresi somut dosyaya göre
@@ -112,11 +115,7 @@ const sema = [
   .km-blok { margin-top: 1rem; }
   .km-blok h3 { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--su-700); margin-bottom: 0.4rem; }
   .km-blok ul, .km-blok ol { margin-left: 1.1rem; font-size: 0.92rem; }
-  .km-dilekce { width: 100%; min-height: 220px; font-family: var(--mono); font-size: 0.82rem; line-height: 1.6; padding: 0.9rem; border: 1px solid var(--cizgi); background: #fff; color: var(--metin); white-space: pre-wrap; resize: vertical; }
-  .km-ipucu { margin-top: 0.4rem; font-size: 0.8rem; color: var(--metin-soluk); }
-  .km-dugme-satiri { display: flex; flex-wrap: wrap; gap: 0.6rem; }
   .km-yazdir { margin-top: 0.6rem; font: inherit; font-weight: 600; padding: 0.6rem 1.2rem; min-height: 44px; background: var(--su-700); color: #fff; border: 0; border-radius: 2px; cursor: pointer; }
-  .km-yazdir-ikincil { background: transparent; color: var(--su-700); border: 1px solid var(--su-700); }
   .km-uyari { margin-top: 1.2rem; padding: 0.8rem 1.1rem; border: 1px solid var(--cizgi); border-left: 3px solid var(--kehribar); font-size: 0.88rem; color: var(--metin-soluk); max-width: 74ch; }
   .km-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
   .km-capraz a { color: var(--baglanti); text-decoration: none; }
