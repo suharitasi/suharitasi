@@ -8,6 +8,26 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ 21.09.2026 — GEO/SCHEMA TURU: DUR KALEMLERİ (brief 2026-09-21T2010Z; commit d0dabe8) ═══
+Uygulanan: ana sayfa @graph'a WebPage+BreadcrumbList düğümleri; dist/llms-full.txt
+üretimi (astro llms entegrasyonu). robots bot politikası + llms.txt değişmedi.
+DUR (kullanıcı/içerik/görsel kararı — UYGULANMADI):
+- [ ] **DUR-1 — Ana sayfa FAQPage.** Ana sayfa "Sık sorulan sorular" bloğu
+  YALNIZ soru LİNKİ listesidir (src/data/anasayfa-v2.js → SORULAR_V2); görünür
+  cevap metni yoktur. Google yapılandırılmış veri kuralı gereği görünmeyen
+  içerik FAQPage işaretlenemez. Gerekli: her soru için görünür kısa cevap
+  (içerik) → [SERDAR-HUKUK] içerik kararı + ayrı brief. Bitti-tanımı: görünür
+  cevap metinleri yayında + FAQPage şeması aynı diziden üretilir.
+- [ ] **DUR-2 — Sayfa-özel OG görselleri.** Tekil og-suharitasi.v1.png yerine
+  rehber/analiz sayfaları için başlık + risk skoru taşıyan özelleştirilmiş
+  og:image. Görsel kimlik işi → tasarım skill + kullanıcı canlı onayı ister
+  (İş kapanış kuralı; AY İLKESİ). Bitti-tanımı: hedef sayfa kümesinde og:image
+  200 + sosyal önizleme kareleri ölçülür.
+- [ ] **DUR-3 — /cdn-cgi/l/email-protection 404.** Cloudflare e-posta gizleme
+  (Email Obfuscation) artefaktı; kod ile değil PANEL ayarıyla çözülür (obfuscation
+  kapatma) ya da site-sağlık denetiminde sahte-pozitif olarak notlanır.
+  KULLANICI PANEL ADIMI. Sitemap/gerçek içerik linki değildir.
+
 ═══ 15.09.2026 — AJAN TURU: ŞEMA DENETİMİ + KUYRUĞA EKLENENLER ═══
 DENETİM (ölçüldü; değişiklik GEREKMEDİ — zaten kurulu ve canlıda doğrulandı):
 Dataset/DataCatalog/Legislation/FAQPage şemaları, /veri OpenAPI, hız sınırlama
