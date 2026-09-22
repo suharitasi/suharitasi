@@ -1,131 +1,504 @@
 ---
-// /veri/ — AÇIK VERİ KATALOĞU (13.09.2026).
-// Sitenin makine-okunur veri katmanı: AI ajanları ve geliştiriciler için
-// kanonik kaynak. Veriler build anında kaynak JSON'lardan üretilir.
+// /veri/ — SU HUKUKU & HAVZA BİLGİ BANKASI (22.09.2026 yeniden inşa).
+//
+// KURAL (kurumsal): Burası yazılımcı API dokümantasyonu DEĞİLDİR. curl, jq,
+// OpenAPI, llms.txt, "JSON ucu" ve çıplak .json bağlantıları BULUNMAZ.
+// Sayfa üç sekmeli, aranabilir bir B2B bilgi bankasıdır; veriler build anında
+// gerçek kaynak JSON'lardan derlenir (uydurma yok).
+//
+// Kaynaklar:
+//   data/il-kurum.json               → il ↔ DSİ bölge, havza, su idaresi
+//   data/havza-veri.json             → 25 havza künyesi
+//   veri/potansiyel/isletme-sahaları → 204 Resmî Gazete kısıt/işletme kaydı
+//   data/kamu/emsal-kararlar.json    → Danıştay/Yargıtay emsal kararları
+//   data/kamu/su-islemleri + hangi-kapi + su-birimleri → 20 idari işlem
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import OzCevap from '../../components/OzCevap.astro';
 import CtaBlok from '../../components/CtaBlok.astro';
 import HukukSerhi from '../../components/HukukSerhi.astro';
+import { kisitNormalize, islemJoin } from '../../data/ortak-normalize.js';
+import ilKurum from '../../../data/il-kurum.json';
+import havzaVeri from '../../../data/havza-veri.json';
+import emsalVeri from '../../../data/kamu/emsal-kararlar.json';
+import suIslemleri from '../../../data/kamu/su-islemleri.json';
+import hangiKapi from '../../../data/kamu/hangi-kapi.json';
+import suBirimleri from '../../../data/kamu/su-birimleri.json';
+import sahaAna from '../../../veri/potansiyel/isletme-sahalari.json';
+import sahaEk from '../../../veri/potansiyel/isletme-sahalari-ek.json';
 
 const OZ_CEVAP =
-  'Su Haritası verisinin makine-okunur katmanı: 25 havza, 81 il, 20 su işlemi, ' +
-  '75 mevzuat maddesi, emsal kararlar, Resmî Gazete kısıt kayıtları ve sözlük. ' +
-  'Her veri kümesi JSON olarak yayımlanır; kaynak gösterilerek yapay zeka ' +
-  'ajanları, araştırmacılar ve geliştiriciler tarafından kullanılabilir.';
+  'Su Hukuku & Havza Bilgi Bankası: 81 ilin bağlı olduğu DSİ bölge müdürlüğü, ' +
+  'il içindeki havzalar, resmî kısıt/işletme sahası kayıtları, 25 havza künyesi, ' +
+  'Danıştay-Yargıtay emsal kararları ve 20 idari işlemin mercii, dayanağı ve ' +
+  'süreleri tek aranabilir portalda. Bilgilendirme amaçlıdır; hukuki görüş değildir.';
 
 const kok = new URL('/', Astro.site).href;
 const canonical = new URL('/veri/', Astro.site).href;
 
-const kumeler = [
-  { ad: 'Havzalar', yol: '/veri/havzalar.json', kayit: '25 havza', aciklama: 'Yağış alanı, yüzey suyu potansiyeli, YAS beslenimi/işletme rezervi, NHYP bağlantısı.', guncelleme: 'Veri kaydı: DSİ 2024' },
-  { ad: 'İller', yol: '/veri/iller.json', kayit: '81 il', aciklama: 'İl → DSİ bölge müdürlüğü, havza(lar) ve su/kanalizasyon idaresi eşlemesi.', guncelleme: 'Resmî belge derlemesi' },
-  { ad: 'Su işlemleri', yol: '/veri/islemler.json', kayit: '20 işlem', aciklama: 'İşlem → yetkili kurum, mevzuat dayanağı, başvuru kanalı ve ilgili rehber.', guncelleme: 'Mevzuat atfı' },
-  { ad: 'Mevzuat maddeleri', yol: '/veri/mevzuat.json', kayit: '75 madde', aciklama: '167, YAS Tüzüğü, Su Tahsisleri ve ilgili kanunların madde metinleri (resmî).', guncelleme: 'mevzuat.gov.tr (radar izler)' },
-  { ad: 'Emsal kararlar', yol: '/veri/emsal.json', kayit: '15 karar', aciklama: 'Danıştay/Yargıtay su hukuku künyeleri ve özetleri.', guncelleme: 'Doğrulama sürecinde' },
-  { ad: 'Sözlük', yol: '/veri/sozluk.json', kayit: '126 terim', aciklama: 'Su hukuku ve yönetimi terimleri, mevzuat kaynaklarıyla.', guncelleme: 'Mevzuat taraması' },
-  { ad: 'Kısıt kayıtları', yol: '/kisit.json', kayit: '204 kayıt', aciklama: 'DSİ Resmî Gazete işletme sahası ve tahsise kapatma/kısıt ilanları (il eşlemeli).', guncelleme: 'RG taraması' },
-  { ad: 'Arama indeksi', yol: '/arama.json', kayit: '605 sayfa', aciklama: 'Tüm sayfaların başlık/açıklama indeksi (site içi arama).', guncelleme: 'Her build' },
-  { ad: 'Mevzuat sürümü', yol: '/veri/mevzuat-surum.json', kayit: '9 mevzuat', aciklama: 'İzlenen mevzuatın madde bazlı SHA-256 anlık görüntüsü (değişiklik radarı).', guncelleme: 'Radar taraması' },
-];
+// — İl ↔ bölge / havza eşlemeleri —
+const havzaAd = Object.fromEntries(
+  havzaVeri.havzalar.map((h) => [h.no, h.ad.replace(' Havzası', '')])
+);
+const ilBolge = {};
+for (const [no, b] of Object.entries(ilKurum.dsiBolgeleri)) {
+  for (const il of b.iller) ilBolge[il] = { no, merkez: b.merkez };
+}
+const ilHavza = {};
+for (const [no, h] of Object.entries(ilKurum.havzaIlleri)) {
+  for (const il of h.iller) (ilHavza[il] ??= []).push(havzaAd[no] ?? no);
+}
+
+// — Kısıt/işletme kayıtları (il başına sayı + son tarih) —
+const kisit = kisitNormalize(sahaAna.kayitlar, sahaEk.kayitlar);
+const kisitPerIl = {};
+for (const r of kisit) {
+  for (const il of r.il) {
+    const k = (kisitPerIl[il] ??= { sayi: 0, son: '' });
+    k.sayi += 1;
+    if ((r.tarih || '') > k.son) k.son = r.tarih;
+  }
+}
+
+const iller = Object.keys({ ...ilBolge, ...ilHavza, ...ilKurum.suIdareleri })
+  .sort((a, b) => a.localeCompare(b, 'tr'))
+  .map((il) => {
+    const bolge = ilBolge[il] ? `${Number(ilBolge[il].no)}. Bölge Müdürlüğü (${ilBolge[il].merkez})` : '—';
+    const havzalar = (ilHavza[il] ?? []).join(', ') || '—';
+    const suIdaresi = ilKurum.suIdareleri[il] || 'İl Özel İdaresi / belediye';
+    const k = kisitPerIl[il];
+    const kisitMetin = k
+      ? `${k.sayi} Resmî Gazete kaydı${k.son ? ` · son kayıt ${k.son}` : ''}`
+      : 'Kayıt bulunamadı (bu, kısıt olmadığının kanıtı değildir)';
+    return { il, bolge, havzalar, suIdaresi, kisitMetin, ara: `${il} ${bolge} ${havzalar} ${suIdaresi}` };
+  });
+
+const havzalar = havzaVeri.havzalar.map((h) => ({
+  no: h.no,
+  ad: h.ad.replace(' Havzası', ''),
+  rezerv: h.yasIsletmeRezervi_hm3,
+  yil: h.yasYili ?? h.yuzeysuyuYili,
+  nyp: h.nehirHavzasiYonetimPlani,
+  ara: `${h.no} ${h.ad}`,
+}));
+
+const emsal = emsalVeri.kararlar.map((k) => ({
+  ...k,
+  ara: `${k.merci} ${k.konu} ${k.esas} ${k.karar} ${k.yil} ${k.ozet} ${(k.rehberler || []).join(' ')}`,
+}));
+
+const islemler = islemJoin(suIslemleri.islemler, hangiKapi.satirlar, suBirimleri.kayitlar);
+
+// Süre/geçerlilik notu: işlemin kendi dayanak metnindeki parantez içi süre
+// ifadesinden çıkarılır (veri URETILMEZ; yoksa "—").
+function sureNotu(metin) {
+  const m = (metin || '').match(/\(([^)]*(?:süre|sene|yıl|ay|gün|geçerlilik|temdit)[^)]*)\)/i);
+  return m ? m[1] : '';
+}
 
 const sema = [
   {
-    '@type': 'DataCatalog',
-    '@id': `${canonical}#katalog`,
-    name: 'Su Haritası açık veri kataloğu',
+    '@type': 'WebPage',
+    '@id': `${canonical}#sayfa`,
     url: canonical,
+    name: 'Su Hukuku & Havza Bilgi Bankası',
     description: OZ_CEVAP,
     inLanguage: 'tr-TR',
-    publisher: { '@id': `${kok}#kurum` },
-    dataset: kumeler.map((k) => ({
-      '@type': 'Dataset',
-      name: k.ad,
-      description: k.aciklama,
-      url: new URL(k.yol, Astro.site).href,
-      distribution: { '@type': 'DataDownload', contentUrl: new URL(k.yol, Astro.site).href, encodingFormat: 'application/json' },
-      isAccessibleForFree: true,
-    })),
+    isPartOf: { '@id': `${kok}#site` },
+    about: [
+      { '@type': 'Thing', name: 'Yeraltı suyu ruhsatı' },
+      { '@type': 'Thing', name: 'Su tahsisi' },
+      { '@type': 'Thing', name: 'DSİ bölge müdürlükleri' },
+      { '@type': 'Thing', name: 'Su havzaları' },
+    ],
   },
-  { '@type': 'WebPage', '@id': `${canonical}#sayfa`, url: canonical, name: 'Açık veri', description: OZ_CEVAP, inLanguage: 'tr-TR', isPartOf: { '@id': `${kok}#site` } },
 ];
 ---
-<Sayfa baslik="Açık veri" aciklama={OZ_CEVAP} tarayiciBaslik="Su Haritası Açık Veri: JSON API (havza, il, mevzuat)" sema={sema}>
-  <SayfaBasi etiket="Veriler" baslik="Verileri indir" ozet="Sitenin makine-okunur veri katmanı; JSON uçları AI ajanları ve geliştiriciler için." ozCevap />
+<Sayfa
+  baslik="Bilgi bankası"
+  aciklama={OZ_CEVAP}
+  tarayiciBaslik="Su Hukuku & Havza Bilgi Bankası (il, havza, emsal, işlem)"
+  sema={sema}
+>
+  <SayfaBasi
+    etiket="Bilgi Bankası"
+    baslik="Su Hukuku & Havza Bilgi Bankası"
+    ozet="İl, DSİ bölgesi, havza, resmî kısıt kayıtları, emsal kararlar ve idari işlem süreleri tek aranabilir portalda."
+    ozCevap
+  />
   <OzCevap metin={OZ_CEVAP} etiket="Özet" />
 
-  <div class="vd-kaydir" tabindex="0" role="region">
-    <table class="vd-tablo">
-      <caption>Veri kümesi · kayıt · JSON ucu · güncelleme.</caption>
-      <thead><tr><th scope="col">Veri kümesi</th><th scope="col">Kayıt</th><th scope="col">JSON ucu</th><th scope="col">Güncelleme</th></tr></thead>
-      <tbody>
-        {kumeler.map((k) => (
-          <tr>
-            <th scope="row">{k.ad}<span class="vd-aciklama">{k.aciklama}</span></th>
-            <td>{k.kayit}</td>
-            <td><a href={k.yol}><code>{k.yol}</code></a></td>
-            <td>{k.guncelleme}</td>
-          </tr>
+  <div class="bb" id="bb">
+    <div class="bb-sekmeler" role="tablist" aria-label="Bilgi bankası sekmeleri">
+      <button type="button" class="bb-sekme bb-aktif" role="tab" id="bb-t-rehber"
+              aria-selected="true" aria-controls="bb-p-rehber" data-sekme="rehber">
+        İl &amp; Havza Rehberi
+      </button>
+      <button type="button" class="bb-sekme" role="tab" id="bb-t-emsal"
+              aria-selected="false" aria-controls="bb-p-emsal" tabindex="-1" data-sekme="emsal">
+        Emsal Kararlar
+      </button>
+      <button type="button" class="bb-sekme" role="tab" id="bb-t-islem"
+              aria-selected="false" aria-controls="bb-p-islem" tabindex="-1" data-sekme="islem">
+        İdari İşlemler &amp; Süreler
+      </button>
+    </div>
+
+    <!-- 1. SEKME — İL & HAVZA REHBERİ -->
+    <section class="bb-panel" id="bb-p-rehber" role="tabpanel" aria-labelledby="bb-t-rehber" data-panel="rehber">
+      <div class="bb-ara-kap">
+        <label for="bb-ara" class="bb-gizli">İl veya havza ara</label>
+        <input id="bb-ara" type="search" inputmode="search" autocomplete="off"
+               placeholder="İl veya havza yazın… (ör. Konya, Gediz, Edirne)" />
+        <span class="bb-sayac" id="bb-ara-sayac" aria-live="polite"></span>
+      </div>
+      <p class="bb-bos" id="bb-ara-bos" hidden>Eşleşen il veya havza yok. Farklı bir ad deneyin.</p>
+
+      <h3 class="bb-alt-baslik">İller <span class="bb-adet">{iller.length}</span></h3>
+      <div class="bb-liste">
+        {iller.map((s) => (
+          <details class="bb-kart" data-ara={s.ara}>
+            <summary>
+              <span class="bb-ad">{s.il}</span>
+              <span class="bb-alt">{s.bolge}</span>
+            </summary>
+            <div class="bb-govde">
+              <dl>
+                <dt>DSİ bölge müdürlüğü</dt><dd>{s.bolge}</dd>
+                <dt>Havza(lar)</dt><dd>{s.havzalar}</dd>
+                <dt>Su ve kanalizasyon idaresi</dt><dd>{s.suIdaresi}</dd>
+                <dt>Kısıt durumu</dt><dd>{s.kisitMetin}</dd>
+              </dl>
+              <a class="bb-btn" href="/kuyu-kisit-sorgu/">Kısıt kaydını sorgula →</a>
+            </div>
+          </details>
         ))}
-      </tbody>
-    </table>
+      </div>
+
+      <h3 class="bb-alt-baslik">Havzalar <span class="bb-adet">{havzalar.length}</span></h3>
+      <div class="bb-liste">
+        {havzalar.map((h) => (
+          <details class="bb-kart" data-ara={h.ara}>
+            <summary>
+              <span class="bb-ad">{h.ad} Havzası</span>
+              <span class="bb-alt">{h.no}</span>
+            </summary>
+            <div class="bb-govde">
+              <dl>
+                <dt>YAS işletme rezervi</dt>
+                <dd>{h.rezerv != null ? `${h.rezerv} hm³ (${h.yil})` : 'veri yok'}</dd>
+                <dt>Nehir havzası yönetim planı</dt><dd>{h.nyp ? 'Var' : '—'}</dd>
+              </dl>
+              <a class="bb-btn" href="/havzalar/">Havza sayfası →</a>
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- 2. SEKME — EMSAL KARARLAR -->
+    <section class="bb-panel" id="bb-p-emsal" role="tabpanel" aria-labelledby="bb-t-emsal" data-panel="emsal" hidden>
+      <div class="bb-ara-kap">
+        <label for="bb-emsal-ara" class="bb-gizli">Emsal karar ara</label>
+        <input id="bb-emsal-ara" type="search" inputmode="search" autocomplete="off"
+               placeholder="Konu, daire veya esas no ile ara… (ör. mühürleme, ceza, tahsis iptali)" />
+        <span class="bb-sayac" id="bb-emsal-sayac" aria-live="polite"></span>
+      </div>
+      <p class="bb-bos" id="bb-emsal-bos" hidden>Eşleşen karar yok.</p>
+      <p class="bb-not">
+        Aşağıdaki kararlar Danıştay ve Yargıtay'ın yayımlanmış künyelerinden
+        derlenmiştir; özetler bilgilendirme amaçlıdır, somut dosyaya göre sonuç
+        değişebilir. Tam metin için künyedeki resmî bağlantıyı kullanın.
+      </p>
+      <div class="bb-liste">
+        {emsal.map((k) => (
+          <details class="bb-kart" data-ara={k.ara}>
+            <summary>
+              <span class="bb-ad">{k.konu}</span>
+              <span class="bb-alt">{k.merci} · {k.esas} E., {k.karar} K. ({k.yil})</span>
+            </summary>
+            <div class="bb-govde">
+              <p class="bb-ozet">{k.ozet}</p>
+              {k.kaynak && (
+                <a class="bb-btn" href={k.kaynak} target="_blank" rel="noopener">Resmî kararı aç →</a>
+              )}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- 3. SEKME — İDARİ İŞLEMLER & SÜRELER -->
+    <section class="bb-panel" id="bb-p-islem" role="tabpanel" aria-labelledby="bb-t-islem" data-panel="islem" hidden>
+      <p class="bb-not">
+        <strong>İYUK m.7:</strong> İdari işlemlere karşı dava açma süresi kural
+        olarak <strong>60 gündür</strong> (tebliğden itibaren). Süre somut işleme
+        ve tebliğ biçimine göre değişebilir. Ayrıca kimi işlemlerde özel itiraz
+        süreleri (ör. 15 gün) uygulanır.
+        <a href="/kuyu-karar-motoru/">Süreyi hesaplayın →</a>
+      </p>
+      <div class="bb-tablo-kaydir" tabindex="0" role="region" aria-label="İdari işlemler tablosu">
+        <table class="bb-tablo">
+          <caption>İşlem · başvuru mercii · dayanak · süre/geçerlilik.</caption>
+          <thead>
+            <tr>
+              <th scope="col">İşlem</th>
+              <th scope="col">Başvuru mercii</th>
+              <th scope="col">Dayanak kanun maddesi</th>
+              <th scope="col">Süre / geçerlilik</th>
+              <th scope="col">İlgili rehber</th>
+            </tr>
+          </thead>
+          <tbody>
+            {islemler.map((i) => {
+              const merci = i.yetkiliKurumlar.map((k) => k.ad).join(', ') || '—';
+              const dayanak = i.mevzuatDayanagi || i.dayanak || '—';
+              const sure = sureNotu(i.dayanak) || sureNotu(i.mevzuatDayanagi) || '—';
+              return (
+                <tr>
+                  <th scope="row">{i.ad}</th>
+                  <td>{merci}</td>
+                  <td>{dayanak}</td>
+                  <td>{sure}</td>
+                  <td>{i.ilgiliRehber ? <a href={`/rehberler/${i.ilgiliRehber}/`}>Rehberi aç →</a> : '—'}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <p class="bb-kaynak">
+        Kaynak: 167 sayılı Yeraltısuları Kanunu, Su Tahsisleri Hakkında Yönetmelik,
+        YAS Tüzüğü ve ilgili yönetmelikler (mevzuat.gov.tr). Bilgilendirme
+        amaçlıdır; somut dosyada teyit gerekir.
+      </p>
+    </section>
   </div>
 
-  <section class="vd-bolum" aria-label="Kullanım">
-    <h2>Nasıl kullanılır?</h2>
-    <p>Her uç düz JSON döner; kimlik doğrulama gerekmez. Kaynak gösterin:</p>
-    <pre><code>{`curl -s ${kok}veri/mevzuat.json | jq '.[0]'
-# Kaynak: Su Haritası (suharitasi.com) — ${kok}veri/`}</code></pre>
-    <p class="vd-not">
-      Veriler kamuya açık resmî kaynaklardan derlenmiştir (DSİ, SYGM, mevzuat.gov.tr,
-      Resmî Gazete). Ticari kullanımda kaynak gösterilmesi beklenir; hukuki görüş
-      niteliği taşımaz. Ayrıntı: <a href="/hakkinda/">yöntem ve kaynak politikası</a>.
-    </p>
-  </section>
-
-  <section class="vd-bolum" aria-label="Kaynaklar ve yöntem">
-    <h2>Kaynaklar ve yöntem</h2>
-    <p>
-      Veriler kamuya açık resmî kaynaklardan derlenir: <strong>DSİ</strong> (yeraltı suyu
-      istatistikleri, bölge teşkilatı), <strong>SYGM</strong> (nehir havza yönetim planları),
-      <strong>mevzuat.gov.tr</strong>, <strong>Resmî Gazete</strong>, <strong>EPİAŞ</strong>
-      (baraj doluluk), <strong>NASA GRACE/GRACE-FO</strong>, <strong>CHIRPS</strong>,
-      <strong>Copernicus GLO-90 DEM</strong> ve <strong>OpenStreetMap</strong>.
-    </p>
-    <p class="vd-not">
-      Her kayıt künyesiyle sunulur; doğrulanamayan veri "veri yok" olarak işaretlenir.
-      Yöntem ve kaynak politikasının tamamı <a href="/hakkinda/">hakkında sayfasında</a>.
-    </p>
-  </section>
-
   <nav class="vd-capraz" aria-label="İlgili bölümler">
-    <a href="/acik-veri/">→ Açık veri ve geliştirici portalı (OpenAPI)</a>
-    <a href="/api/v1/openapi.json">→ OpenAPI 3.0 şeması</a>
-    <a href="/mevzuat/degisiklikler/">→ Mevzuat değişiklik radarı</a>
     <a href="/kuyu-kisit-sorgu/">→ Kısıt sorgu motoru</a>
+    <a href="/havzalar/">→ Havza sayfaları</a>
     <a href="/islem-matrisi/">→ İşlem → kurum matrisi</a>
-    <a href="/llms.txt">→ llms.txt (AI içindekiler)</a>
+    <a href="/emsal-kararlar/">→ Emsal kararlar arşivi</a>
+    <a href="/mevzuat/">→ Mevzuat maddeleri</a>
+    <a href="/kuyu-ruhsati/">→ İl bazında kuyu ruhsatı</a>
   </nav>
 
-  <CtaBlok konu="Kurumsal veri" baslik="Kurumsal veri / API erişimi mi gerekiyor?" metin="Kurumsal lisans, özel rapor veya veri entegrasyonu için ulaşın." />
+  <CtaBlok konu="Bilgi bankası" baslik="Somut dosyanız için uzman görüşü mü gerekiyor?" metin="İl, havza ve işlem bazında ön değerlendirme için ulaşın." />
   <HukukSerhi />
 </Sayfa>
 
+<script>
+  (() => {
+    // — Sekmeler —
+    const sekmeler = Array.from(document.querySelectorAll('.bb-sekme'));
+    const paneller = Array.from(document.querySelectorAll('.bb-panel'));
+    function sec(ad) {
+      sekmeler.forEach((s) => {
+        const on = s.dataset.sekme === ad;
+        s.classList.toggle('bb-aktif', on);
+        s.setAttribute('aria-selected', on ? 'true' : 'false');
+        s.tabIndex = on ? 0 : -1;
+      });
+      paneller.forEach((p) => { p.hidden = p.dataset.panel !== ad; });
+    }
+    sekmeler.forEach((s, i) => {
+      s.addEventListener('click', () => sec(s.dataset.sekme));
+      s.addEventListener('keydown', (e) => {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        e.preventDefault();
+        const yon = e.key === 'ArrowRight' ? 1 : -1;
+        const hedef = sekmeler[(i + yon + sekmeler.length) % sekmeler.length];
+        sec(hedef.dataset.sekme);
+        hedef.focus();
+      });
+    });
+    const hash = location.hash.replace('#', '');
+    if (['rehber', 'emsal', 'islem'].includes(hash)) sec(hash);
+
+    // — Arama (panel içinde data-ara filtreler) —
+    function araKur(girdiId, panel, sayac, bos) {
+      const girdi = document.getElementById(girdiId);
+      if (!girdi || !panel) return;
+      const ogeler = Array.from(panel.querySelectorAll('[data-ara]'));
+      const anahtar = ogeler.map((el) => (el.dataset.ara || '').toLocaleLowerCase('tr'));
+      const filtrele = () => {
+        const q = (girdi.value || '').trim().toLocaleLowerCase('tr');
+        let n = 0;
+        ogeler.forEach((el, i) => {
+          const esles = !q || anahtar[i].includes(q);
+          el.hidden = !esles;
+          if (esles) {
+            n++;
+            if (q && el.tagName === 'DETAILS') el.open = true;
+          } else if (el.tagName === 'DETAILS') {
+            el.open = false;
+          }
+        });
+        if (sayac) sayac.textContent = q ? n + ' kayıt' : '';
+        if (bos) bos.hidden = n !== 0;
+      };
+      girdi.addEventListener('input', filtrele);
+    }
+    araKur('bb-ara', document.getElementById('bb-p-rehber'),
+      document.getElementById('bb-ara-sayac'), document.getElementById('bb-ara-bos'));
+    araKur('bb-emsal-ara', document.getElementById('bb-p-emsal'),
+      document.getElementById('bb-emsal-sayac'), document.getElementById('bb-emsal-bos'));
+  })();
+</script>
+
 <style>
-  .vd-kaydir { overflow-x: auto; }
-  .vd-tablo { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 50rem; }
-  .vd-tablo caption { caption-side: top; text-align: left; font-size: 0.78rem; color: var(--metin-soluk); padding-bottom: 0.5rem; }
-  .vd-tablo th, .vd-tablo td { text-align: left; vertical-align: top; padding: 0.6rem 0.7rem; border-bottom: 1px solid var(--cizgi); }
-  .vd-tablo thead th { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--metin-soluk); background: var(--zemin); border-bottom: 2px solid var(--su-700); white-space: nowrap; }
-  .vd-tablo tbody th { font-family: var(--serif); font-size: 1rem; font-weight: 500; }
-  .vd-aciklama { display: block; margin-top: 0.15rem; font-family: var(--sans); font-size: 0.8rem; font-weight: 400; color: var(--metin-soluk); }
-  .vd-tablo code { font-family: var(--mono); font-size: 0.82rem; }
-  .vd-bolum { margin-top: 2rem; }
-  .vd-bolum h2 { font-family: var(--serif); font-weight: 500; font-size: 1.4rem; margin-bottom: 0.7rem; }
-  .vd-bolum pre { background: var(--deniz); color: #DBEAF4; padding: 1rem 1.2rem; overflow-x: auto; font-family: var(--mono); font-size: 0.82rem; line-height: 1.6; }
-  .vd-bolum pre code { color: inherit; }
-  .vd-not { margin-top: 0.8rem; font-size: 0.88rem; color: var(--metin-soluk); max-width: 72ch; }
-  .vd-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  :global(main.govde) { max-width: 78rem; }
+
+  .bb { margin-top: 1.2rem; padding-top: 100px; }
+
+  .bb-sekmeler {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    border-bottom: 2px solid var(--su-700);
+  }
+  .bb-sekme {
+    font: inherit;
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 0.65rem 1.05rem;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    color: var(--metin-soluk);
+    cursor: pointer;
+  }
+  .bb-sekme.bb-aktif { color: var(--su-700); border-bottom-color: var(--su-700); }
+  .bb-sekme:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+  .bb-panel { padding-top: 1.2rem; }
+
+  .bb-ara-kap { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-bottom: 1rem; }
+  .bb-gizli { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .bb-ara-kap input {
+    flex: 1 1 18rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--cizgi);
+    border-radius: 0.4rem;
+    background: #fff;
+    color: var(--metin);
+    font: inherit;
+  }
+  .bb-ara-kap input:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+  .bb-sayac {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--su-700);
+  }
+
+  .bb-alt-baslik {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin: 1.6rem 0 0.7rem;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.4rem;
+  }
+  .bb-adet { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; color: var(--su-700); }
+
+  .bb-liste { display: grid; gap: 0.6rem; }
+  .bb-kart {
+    border: 1px solid var(--cizgi);
+    border-radius: 0.6rem;
+    background: #fff;
+    overflow: hidden;
+  }
+  .bb-kart > summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.3rem 0.8rem;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    list-style: none;
+  }
+  .bb-kart > summary::-webkit-details-marker { display: none; }
+  .bb-kart > summary::after {
+    content: "+";
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    color: var(--su-700);
+  }
+  .bb-kart[open] > summary::after { content: "–"; }
+  .bb-ad { font-family: var(--serif); font-size: 1.12rem; color: var(--metin); }
+  .bb-alt {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+  .bb-govde { padding: 0.2rem 1rem 1rem; border-top: 1px solid var(--cizgi); }
+  .bb-govde dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.35rem 0.9rem;
+    margin: 0.8rem 0;
+    font-size: 0.86rem;
+  }
+  .bb-govde dt { color: var(--metin-soluk); }
+  .bb-ozet { margin: 0.8rem 0; font-size: 0.88rem; line-height: 1.65; color: var(--metin); }
+  .bb-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+    padding: 0.5rem 1rem;
+    background: var(--su-700);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+  .bb-btn:hover { background: var(--deniz); }
+
+  .bb-not {
+    margin: 0.4rem 0 1rem;
+    padding: 0.8rem 1rem;
+    background: #EAF3F8;
+    border-left: 4px solid var(--su-700);
+    border-radius: 0 0.4rem 0.4rem 0;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+  .bb-not a { color: var(--su-700); }
+
+  .bb-tablo-kaydir { overflow-x: auto; }
+  .bb-tablo { width: 100%; border-collapse: collapse; font-size: 0.84rem; min-width: 52rem; }
+  .bb-tablo caption { caption-side: top; text-align: left; font-size: 0.78rem; color: var(--metin-soluk); padding-bottom: 0.5rem; }
+  .bb-tablo th, .bb-tablo td { text-align: left; vertical-align: top; padding: 0.6rem 0.7rem; border-bottom: 1px solid var(--cizgi); }
+  .bb-tablo thead th {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    border-bottom: 2px solid var(--su-700);
+    white-space: nowrap;
+  }
+  .bb-tablo tbody th { font-weight: 600; }
+  .bb-kaynak { margin-top: 0.8rem; font-size: 0.82rem; color: var(--metin-soluk); max-width: 76ch; }
+  .bb-bos { margin: 0.6rem 0; color: var(--metin-soluk); }
+
+  .vd-capraz {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.2rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--cizgi);
+  }
   .vd-capraz a { color: var(--baglanti); text-decoration: none; }
   .vd-capraz a:hover { text-decoration: underline; }
 </style>
