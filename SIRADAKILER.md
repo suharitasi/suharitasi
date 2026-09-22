@@ -8,6 +8,28 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ 22.09.2026 — YARGI KARAR VERİSİ + ADAY KUYRUĞU (v6.0 ADIM 5) ═══
+YAPILDI:
+- `arac/yargi-cek.mjs` — Adalet "Karar Arama" ailesi toplayıcısı (Danıştay +
+  UYAP Emsal; Yargıtay hazır). Nazik hız, 429 geri-çekilme, reCAPTCHA'da DUR,
+  ağ engelinde atlama. Toplandı (yerel, `veri/ham/yargi/`): Danıştay 793 ·
+  UYAP Emsal 1842 künye + 8 tam metin.
+- `arac/emsal-aday-uret.mjs` — ham künyeyi `data/emsal-adaylari.json` aday
+  havuzuna aktarır (yayımlı 15'le + iç mükerrer elenir, 8. Daire öncelikli,
+  daire başına tavan, `dogrulama:"bekliyor"`, K7: özet ÜRETİLMEZ). Şu an **120
+  aday**. İdempotent (değişiklik yoksa yazmaz).
+- Cron: aylık tazeleme (03. gün 01:30) `log/yargi-cek-cron.log`.
+- Doküman: `docs/ACIK-VERI-KAYNAKLARI.md`; başvuru: `rapor/22-09-dsi-rasat-bilgi-edinme-basvurusu.md`.
+KULLANICI KARARI BEKLİYOR (DUR):
+- [ ] **Aday havuzu incelemesi** — `data/emsal-adaylari.json` (120 aday) →
+      8. Daire öncelikli; her adayın `dogrulama`'sı `bekliyor`. İnceleme
+      sonrası onaylananlar `data/kamu/emsal-kararlar.json`'a taşınır (yayın).
+- [ ] **DSİ rasat başvurusu** — CİMER'e gönderim kullanıcı imzası ister.
+- [ ] **Yargıtay** — host (212.175.130.144) bu sunucuya ağ seviyesinde filteli;
+      izinli ağdan `--kaynak yargitay` koşumu gerekir.
+- [ ] **Akifer "Kısıtlı İşletme"** — resmî havza sınıflaması yok; NHYP YAS kütle
+      durumu veya DSİ yanıtı ile doldurulur.
+
 ═══ 21.09.2026 — GEO/SCHEMA TURU: DUR KALEMLERİ (brief 2026-09-21T2010Z; commit d0dabe8) ═══
 Uygulanan: ana sayfa @graph'a WebPage+BreadcrumbList düğümleri; dist/llms-full.txt
 üretimi (astro llms entegrasyonu). robots bot politikası + llms.txt değişmedi.
