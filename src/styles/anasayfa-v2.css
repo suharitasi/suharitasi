@@ -906,6 +906,7 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
 .v2-ust-akis { display: flex; flex-direction: column; }
 @media (max-width: 1023px) {
   .v2-ust-akis > .v2-hero { order: 1; }
+  .v2-ust-akis > .v2-teknoloji { order: 2; }
   .v2-ust-akis > noscript { order: 2; }
   .v2-ust-akis > .v2-mobil-sorular { order: 3; }
   .v2-ust-akis > .v2-kanit { order: 4; }

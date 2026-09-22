@@ -74,8 +74,9 @@ const IKONLAR = {
 </section>
 
 <style>
-  .v2-teknoloji { background: var(--v2-bg); color: var(--v2-metin); }
-  .v2-teknoloji .v2-bolum-kicker { color: var(--v2-primary); }
+  .v2-teknoloji { background: var(--v0-koyu); color: var(--v0-beyaz); }
+  .v2-teknoloji .v2-bolum-kicker { color: var(--v2-kicker-koyu); }
+  .v2-teknoloji .v2-intro { color: rgba(255, 255, 255, 0.72); }
   .v2-tek-izgara {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -83,11 +84,34 @@ const IKONLAR = {
   }
   @media (max-width: 1023px) { .v2-tek-izgara { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 559px) { .v2-tek-izgara { grid-template-columns: 1fr; } }
+  .v2-teknoloji .v2-kart {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .v2-teknoloji .v2-kart h3 { color: var(--v0-beyaz); }
+  .v2-teknoloji .v2-kart p { color: rgba(255, 255, 255, 0.7); }
+  .v2-teknoloji .v2-kart .v2-kart-git { color: var(--v2-kicker-koyu); }
+  .v2-teknoloji .v2-kart-ikon {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--v2-kicker-koyu);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .v2-teknoloji a.v2-kart:hover {
+      border-color: rgba(219, 234, 244, 0.55);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4),
+                  0 4px 6px -4px rgba(0, 0, 0, 0.3);
+    }
+    .v2-teknoloji a.v2-kart:hover .v2-kart-ikon {
+      background: var(--kopuk);
+      color: var(--v0-dip);
+    }
+  }
   .v2-tek-not {
     margin-top: 1.6rem;
     font-size: 0.85rem;
     line-height: 1.6;
-    color: var(--v2-muted-fg);
+    color: rgba(255, 255, 255, 0.6);
     max-width: 74ch;
   }
 </style>
