@@ -1,0 +1,127 @@
+---
+// HUKUKİ ÖN DEĞERLENDİRME KÖPRÜSÜ (Faz 3, v7.0 — 22.09.2026).
+//
+// Dilekçe Denetim Motoru ve İdari İşlem Usul Denetimi çıktılarının HEMEN
+// ALTINA yerleşir. TBB Reklam Yasağı (Av. K. m. 55) uyumu: "kesin kazanırız /
+// iptal ettiririz" taahhüdü YOK; yalnız nesnel hukuki durum tespiti talebi.
+//
+// Parametrik kanca (spec 3.2): kullanıcı seçimleri (il, işlem, tebliğ, belge,
+// usul tespitleri) istemci tarafında JSON → base64url paketine çevrilir;
+// avukatın ekranına hazır vaka özeti düşer. Sır/kişisel veri GÖNDERİLMEZ;
+// yalnız kullanıcının bu sayfada zaten işaretlediği teknik parametreler gider.
+interface Props { konum: string }
+const { konum } = Astro.props;
+const cid = `oi-${konum}`;
+const HEDEF = 'https://arslanhukuk.tr/randevu/';
+---
+
+<section class="oi" id={cid} aria-label="Hukuki ön değerlendirme başvurusu">
+  <p class="oi-metin">
+    İdari para cezası, mühürleme ve ruhsat iptali işlemleri; <strong>2577 sayılı
+    İYUK</strong> uyarınca yetki, şekil, sebep, konu ve maksat unsurları
+    yönünden yargı denetimine tabidir. İşleminizin mevzuat ve emsal yargı
+    kararları çerçevesinde incelenmesi için <strong>Ön Değerlendirme
+    Başvurusu</strong> oluşturabilirsiniz.
+  </p>
+  <div class="oi-eylem">
+    <button type="button" class="oi-dugme" data-oi-gonder data-oi-id={cid} data-oi-konum={konum}>
+      Ön Değerlendirme Talebi Gönder
+    </button>
+    <span class="oi-durum" data-oi-durum role="status" aria-live="polite"></span>
+  </div>
+  <p class="oi-not">
+    Bu başvuru bir <strong>ön inceleme talebidir</strong>; dava açma taahhüdü
+    veya sonuç vaadi içermez. Yalnız bu sayfada seçtiğiniz teknik parametreler
+    (il, işlem türü, tebliğ tarihi, belge durumu ve işaretlediğiniz usul
+    başlıkları) güvenli bağlantıyla avukatın ön değerlendirme formuna taşınır.
+    Ad, e-posta ve olay ayrıntısını formda siz doldurursunuz.
+  </p>
+</section>
+
+<script>
+  // Tek yükleme (bileşen iki yerde render edilebilir; çift dinleyici olmasın).
+  const w = window as any;
+  if (!w.__oiKuruldu) {
+    w.__oiKuruldu = true;
+
+    const HEDEF = 'https://arslanhukuk.tr/randevu/';
+
+    const b64url = (s: string) =>
+      btoa(unescape(encodeURIComponent(s)))
+        .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+
+    const metin = (el: HTMLSelectElement | null) =>
+      el && el.selectedIndex >= 0 ? (el.options[el.selectedIndex]?.text || '').trim() : '';
+
+    function topla() {
+      const il = (document.getElementById('km-il') as HTMLSelectElement | null)?.value || '';
+      const islemEl = document.getElementById('km-islem') as HTMLSelectElement | null;
+      const tebligEl = document.getElementById('km-teblig') as HTMLInputElement | null;
+      const belgeEl = document.getElementById('km-belge') as HTMLSelectElement | null;
+      const teblig = tebligEl?.value || '';
+      let kalan: number | null = null;
+      if (teblig) {
+        const d = new Date(teblig + 'T00:00:00');
+        if (!Number.isNaN(d.getTime())) {
+          kalan = 60 - Math.floor((Date.now() - d.getTime()) / 86400000);
+        }
+      }
+      const usul = Array.from(document.querySelectorAll('.ipa-kutu:checked')).map((c) => {
+        const madde = (c as HTMLElement).closest('.ipa-madde');
+        const ad = madde?.querySelector('.ipa-ad')?.textContent?.trim();
+        return ad || (c as HTMLInputElement).value;
+      });
+      return {
+        kaynak: 'suharitasi.com',
+        uyusmazlik: metin(islemEl) || 'Belirtilmedi',
+        il: il || 'Belirtilmedi',
+        belge_durumu: metin(belgeEl) || 'Belirtilmedi',
+        teblig_tarihi: teblig || null,
+        kalan_dava_suresi_gun: kalan,
+        usul_tespitleri: usul,
+        olusturma: new Date().toISOString(),
+      };
+    }
+
+    document.addEventListener('click', (ev) => {
+      const btn = (ev.target as HTMLElement)?.closest('[data-oi-gonder]') as HTMLElement | null;
+      if (!btn) return;
+      const cid = btn.getAttribute('data-oi-id') || '';
+      const durum = document.querySelector(`#${cid} [data-oi-durum]`) as HTMLElement | null;
+      const p = topla();
+      if (!p.il || p.il === 'Belirtilmedi') {
+        durum && (durum.textContent = 'Önce yukarıdan ilinizi seçin.');
+        (document.getElementById('km-il') as HTMLElement | null)?.focus();
+        return;
+      }
+      const url = HEDEF + '?on-inceleme=' + b64url(JSON.stringify(p));
+      durum && (durum.textContent = 'Ön değerlendirme formuna yönlendiriliyorsunuz…');
+      window.open(url, '_blank', 'noopener');
+    });
+  }
+</script>
+
+<style>
+  .oi {
+    margin-top: 1.2rem;
+    padding: 1.1rem 1.3rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-left: 3px solid var(--kehribar);
+  }
+  .oi-metin { font-size: 0.95rem; max-width: 74ch; margin: 0 0 0.9rem; }
+  .oi-eylem { display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem; }
+  .oi-dugme {
+    font: inherit;
+    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    min-height: 44px;
+    background: var(--su-700);
+    color: #fff;
+    border: 0;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  .oi-durum { font-size: 0.86rem; color: var(--metin-soluk); }
+  .oi-not { margin-top: 0.8rem; font-size: 0.84rem; color: var(--metin-soluk); max-width: 74ch; }
+</style>

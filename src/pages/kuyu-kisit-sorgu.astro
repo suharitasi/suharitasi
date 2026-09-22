@@ -104,6 +104,12 @@ const sema = [
   <p class="ks-not">{KAYNAK_NOTU}</p>
   <p class="ks-ozet">Toplam <strong>{TOPLAM}</strong> kayıt · tahsise kapatma/kısıt kaydı <strong>{KISIT_TOPLAM}</strong>.</p>
 
+  <p class="ks-belge-satir">
+    <button type="button" class="ks-belge" id="ks-belge" hidden>
+      Parsel bazlı akifer ve hukuki kısıt durum belgesi (yazdır / PDF)
+    </button>
+  </p>
+
   <nav class="ks-capraz" aria-label="İlgili bölümler">
     <a href="/islem-matrisi/">→ İşlem → yetkili kurum matrisi</a>
     <a href="/kapatma-kaydi/">→ Resmî Gazete kapatma kaydı (metin araması)</a>
@@ -145,5 +151,18 @@ const sema = [
   .ks-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
   .ks-capraz a { color: var(--baglanti); text-decoration: none; }
   .ks-capraz a:hover { text-decoration: underline; }
+  .ks-belge-satir { margin-top: 0.9rem; }
+  .ks-belge {
+    font: inherit;
+    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    min-height: 44px;
+    background: var(--su-700);
+    color: #fff;
+    border: 0;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  @media print { .ks-sec, .ks-belge-satir, .ks-capraz, .ks-durum { display: none !important; } }
   @media (max-width: 560px) { .ks-bilgi dl > div { grid-template-columns: 1fr; gap: 0.1rem; } }
 </style>

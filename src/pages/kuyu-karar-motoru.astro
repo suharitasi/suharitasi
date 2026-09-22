@@ -11,6 +11,7 @@ import HukukSerhi from '../components/HukukSerhi.astro';
 import IyukSureSayaci from '../components/IyukSureSayaci.astro';
 import HukukiIptalAnalizi from '../components/HukukiIptalAnalizi.astro';
 import DilekceDenetimMotoru from '../components/DilekceDenetimMotoru.astro';
+import OnDegerlendirmeCagri from '../components/OnDegerlendirmeCagri.astro';
 import { tumIller } from '../data/islem-matrisi.js';
 
 // Görünür ad tercihi (FAZ 1, v5.2): H1 ve tüm yönlendirme metinlerinde tam ad,
@@ -80,6 +81,8 @@ const sema = [
 
   <DilekceDenetimMotoru />
 
+  <OnDegerlendirmeCagri konum="dilekce" />
+
   <p class="km-uyari">
     Bu araç bilgilendirme amaçlıdır; somut bir uyuşmazlığa dair hukuki görüş veya
     tavsiye niteliği taşımaz. İtiraz/dava yolu ve süresi somut dosyaya göre
@@ -96,6 +99,8 @@ const sema = [
   <IyukSureSayaci />
 
   <HukukiIptalAnalizi />
+
+  <OnDegerlendirmeCagri konum="iptal" />
 
   <CtaBlok konu="Kuyu cezası / kapatma" baslik="Dosyanızı avukata inceletın" metin="Süre kaybı hak kaybıdır. Evrakınızı ve tebliğ tarihinizi iletin; yol haritasını değerlendirelim." />
   <HukukSerhi />

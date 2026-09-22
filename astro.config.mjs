@@ -301,6 +301,41 @@ function llmsOlustur() {
         for (const x of sayfalar) {
           tam += `## ${x.baslik}\n${SITE}${x.yol}\n${x.aciklama}\n\n`;
         }
+
+        // V7.0 · spec 4.1 — llms-full.txt'ye (a) Danıştay 8. Daire su hukuku
+        // emsal özetleri, (b) 25 havzanın kısıt/durum künyesi eklenir. Tüm
+        // alanlar yayımlı veri kayıtlarından okunur; URETILMEZ.
+        try {
+          const emsal = JSON.parse(readFileSync(
+            new URL('./data/kamu/emsal-kararlar.json', import.meta.url), 'utf8'));
+          const d8 = (emsal.kararlar || []).filter((k) => /8\.\s*Daire/.test(k.merci || ''));
+          if (d8.length) {
+            tam += `\n## Danıştay 8. Daire — su hukuku emsal özetleri (${d8.length})\n\n`;
+            for (const k of d8) {
+              const ozet = (k.ozet || '').replace(/\s+/g, ' ').slice(0, 320);
+              tam += `- ${k.merci} ${k.esas} E., ${k.karar} K. (${k.yil}) — ${k.konu}: ${ozet}\n`;
+              if (k.kaynak) tam += `  Kaynak: ${k.kaynak}\n`;
+            }
+            tam += `\nTam liste: ${SITE}/emsal-kararlar/\n`;
+          }
+          const hv = JSON.parse(readFileSync(
+            new URL('./data/havza-veri.json', import.meta.url), 'utf8'));
+          const havzalar = hv.havzalar || [];
+          if (havzalar.length) {
+            tam += `\n## 25 havza — kısıt/rezerv künyesi (${havzalar.length})\n\n`;
+            for (const h of havzalar) {
+              const rez = h.yasIsletmeRezervi_hm3 != null
+                ? `YAS işletme rezervi ${h.yasIsletmeRezervi_hm3} hm³ (${h.yasYili})` : 'rezerv verisi yok';
+              const nyp = h.nehirHavzasiYonetimPlani
+                ? ` Yönetim planı: ${h.nehirHavzasiYonetimPlani}` : '';
+              tam += `- ${h.no} ${h.ad}: ${rez}.${nyp}\n`;
+            }
+            tam += `\nİl bazında resmî kısıt/işletme sahası kayıtları: ${SITE}/kuyu-kisit-sorgu/\n`;
+          }
+        } catch (e) {
+          logger.warn(`llms-full.txt ek bölümler atlandı: ${e?.message || e}`);
+        }
+
         await writeFile(join(kok, 'llms-full.txt'), tam, 'utf8');
         logger.info(`llms.txt: ${sayfalar.length} sayfa · llms-full.txt: ${tam.length} krk`);
       },

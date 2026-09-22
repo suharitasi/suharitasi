@@ -204,17 +204,46 @@ if (yasGeo) {
     cevap: yasGeo.cumle,
   });
 }
-const semalar = sss.length
-  ? [{
-      '@type': 'FAQPage',
-      ...(damgaISO ? { dateModified: damgaISO } : {}),
-      mainEntity: sss.map((s) => ({
-        '@type': 'Question',
-        name: s.soru,
-        acceptedAnswer: { '@type': 'Answer', text: s.cevap },
-      })),
-    }]
-  : [];
+// V7.0 · spec 4.1 — havza sayfasına Legislation + Dataset (GRACE-FO) eklenir;
+// LegalService zaten Sayfa.astro @graph'ında site geneli tanımlıdır.
+// UYDURMA YASAĞI: RG kısıt kararı numarası URETILMEZ; yalnız kanun künyesi
+// ve doğrulanmış veri kaydı referansı verilir.
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL(`/havzalar/${giris.id}/`, Astro.site).href;
+const semalar = [
+  ...(sss.length
+    ? [{
+        '@type': 'FAQPage',
+        ...(damgaISO ? { dateModified: damgaISO } : {}),
+        mainEntity: sss.map((s) => ({
+          '@type': 'Question',
+          name: s.soru,
+          acceptedAnswer: { '@type': 'Answer', text: s.cevap },
+        })),
+      }]
+    : []),
+  {
+    '@type': 'Legislation',
+    name: '167 sayılı Yeraltı Suları Hakkında Kanun',
+    legislationIdentifier: '167',
+    legislationType: 'Kanun',
+    jurisdiction: { '@type': 'Country', name: 'Türkiye' },
+    url: new URL('/mevzuat/167/', Astro.site).href,
+    inLanguage: 'tr-TR',
+  },
+  {
+    '@type': 'Dataset',
+    '@id': `${canonical}#akifer`,
+    name: `${giris.data.baslik} — uydu (GRACE-FO) yeraltı su depolaması eğilimi`,
+    description:
+      'NASA GRACE-FO yerçekimi ölçümünden türetilen aylık yeraltı su depolaması anomalisi eğilimi; havza veri kaydından okunur.',
+    variableMeasured: 'Yerçekimi uydu (GRACE-FO) yeraltı su depolaması anomalisi',
+    spatialCoverage: { '@type': 'Place', name: giris.data.baslik },
+    creator: { '@id': `${kok}#kurum` },
+    isAccessibleForFree: true,
+    inLanguage: 'tr-TR',
+  },
+];
 ---
 <Sayfa baslik={giris.data.baslik} tarayiciBaslik={tarayiciBaslik} aciklama={aciklama} sema={semalar}>
 {giris.data.kalip === 2 ? (

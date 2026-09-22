@@ -174,6 +174,38 @@ const sema = [
       acceptedAnswer: { '@type': 'Answer', text: cevap },
     })),
   },
+  // V7.0 · spec 4.1 — il sayfasına Legislation + Dataset + LegalService.
+  // UYDURMA YASAĞI: RG kısıt kararı numarası URETILMEZ; yalnız kanun künyesi
+  // ve doğrulanmış veri kaydı referansı verilir.
+  {
+    '@type': 'Legislation',
+    name: '167 sayılı Yeraltı Suları Hakkında Kanun',
+    legislationIdentifier: '167',
+    legislationType: 'Kanun',
+    jurisdiction: { '@type': 'Country', name: 'Türkiye' },
+    url: new URL('/mevzuat/167/', Astro.site).href,
+    inLanguage: 'tr-TR',
+  },
+  {
+    '@type': 'Dataset',
+    '@id': `${canonical}#akifer`,
+    name: `${p.il} — uydu (GRACE-FO) yeraltı su depolaması eğilimi`,
+    description:
+      'NASA GRACE-FO yerçekimi ölçümünden türetilen yeraltı su depolaması anomalisi eğilimi; veri kaydı il potansiyel derlemesinden okunur.',
+    variableMeasured: 'Yerçekimi uydu (GRACE-FO) yeraltı su depolaması anomalisi',
+    spatialCoverage: { '@type': 'Place', name: p.il },
+    creator: { '@id': `${kok}#kurum` },
+    isAccessibleForFree: true,
+    inLanguage: 'tr-TR',
+  },
+  {
+    '@type': 'LegalService',
+    name: 'İdari yargı mercileri ve başvuru usulleri (su hukuku)',
+    serviceType: 'İdari işlem iptali ve yürütmeyi durdurma başvurusu',
+    areaServed: { '@type': 'Country', name: 'Türkiye' },
+    provider: { '@id': `${kok}#kurum` },
+    url: canonical,
+  },
 ];
 ---
 <Sayfa baslik={baslik} tarayiciBaslik={tarayiciBaslik} aciklama={ozCevap} sema={sema}>
