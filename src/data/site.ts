@@ -53,7 +53,7 @@ export const YAZAR_SOSYAL: string[] = [
 ];
 
 // Kurumsal e-posta: kullanıcı kutuyu kurana dek yalnız künyede görünür.
-export const EPOSTA = 'avserdararslan@hotmail.com';
+export const EPOSTA = 'iletisim@suharitasi.com';
 
 /* TELEFON — yapılandırılmış veride (Sayfa.astro Organization.telephone) ve
  * /whatsapp/ hedefinde (functions/whatsapp.js) zaten kullanılan doğrulanmış

@@ -31,7 +31,7 @@ import { writeFileSync, mkdirSync, appendFileSync, existsSync, readFileSync, ren
 import { join } from 'node:path';
 
 const KOK = process.cwd();
-const UA = 'suharitasi-arastirma/1.0 (+https://suharitasi.com; iletisim: avserdararslan@hotmail.com)';
+const UA = 'suharitasi-arastirma/1.0 (+https://suharitasi.com; iletisim: iletisim@suharitasi.com)';
 const HAM = join(KOK, 'veri/ham/yargi');
 const LOG = join(KOK, 'log/yargi-cek.log');
 

@@ -448,7 +448,7 @@ AÇIK KALAN (bu turda bilinçli dokunulmayan):
   /rehberler/ruhsatsiz-kuyu-cezalari/ ölçüldü. Arşivden dönüş ancak
   [SERDAR-HUKUK] onayıyla.
 - [x] Lead-mailto birleşmesi FİİLEN KAPANDI (25.08): /su-hukuku/ kalkınca
-  canlı yüzeyde tek adres avserdararslan@hotmail.com (ölçüldü; serdar@ src'de 0).
+  canlı yüzeyde tek adres iletisim@suharitasi.com (ölçüldü; serdar@ src'de 0).
 - [~] **KARAR DOSYASI KAPATMA TURU — KULLANICI ONAYI BEKLİYOR (27.08).**
   23 kalem uygulandı, 8 kalem KULLANICI KALEMİ, 3 kalem gerekçeli açık.
   Görünür içerik ve düzen değiştiği için canlı testinize kadar AÇIK.

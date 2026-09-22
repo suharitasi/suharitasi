@@ -26,7 +26,7 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 IFRAME = "https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatTur={tur}&MevzuatNo={no}&MevzuatTertip={tertip}"
-UA = "suharitasi.com mevzuat radar (mailto:avserdararslan@hotmail.com)"
+UA = "suharitasi.com mevzuat radar (mailto:iletisim@suharitasi.com)"
 TR = timezone(timedelta(hours=3))
 
 MEVZUATLAR = [

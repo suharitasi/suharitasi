@@ -112,7 +112,7 @@ Etiketler: **[Ö]** = GSC'de ölçülmüş · **[T]** = türev/çıkarım · **[
 | Sabit WhatsApp düğmesi | 523/523 HTML (Sayfa.astro + ana sayfa + harita + 404) | Var (08.09). `/whatsapp/` → 302 → wa.me. **Tıklama sayacı ölçülmüyor.** |
 | "Sonraki adım" bloğu | Her rehber sonu | `/durumum/` + `/hangi-kurum/` + **"Bu konuda görüş alın" mailto** |
 | İletişim formu | Ana sayfa `#iletisim` | JS ile mailto'ya çevrilir; sunucu yok |
-| E-posta | `avserdararslan@hotmail.com` | Footer + künye |
+| E-posta | `iletisim@suharitasi.com` | Footer + künye |
 | Telefon | **Yok** | M7: numara doğrulanamadı → HTML'e konmadı |
 | Yazar/büro künyesi | Her sayfa | Av. Serdar Arslan · Arslan Hukuk Bürosu (arslanhukuk.tr) |
 

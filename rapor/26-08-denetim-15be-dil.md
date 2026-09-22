@@ -120,7 +120,7 @@ Hukuki içerik: Av. Serdar Arslan —Arslan Hukuk Bürosu
 Portaldaki hukuki içerik ve mevzuat analizleriAv. Serdar Arslan (Arslan Hukuk Bürosu)tarafından hazırlanmaktadır.
 Her rehber, dayandığı kanun, tüzük veya yönetmeliğinmevzuat.gov.trüzerindeki resmî tam metnine bağlantı verir.
 Sayısal veriler kamu kurumlarının açık kaynaklarından derlenir — başlıcaDSİ Resmî Su Kaynakları İstatistiklerive Tarım ve Orman Bakanlığı Su Yönetimi Genel Müdürlüğü (SYGM) havza koruma eylem planları.
-Portaldaki veri veya kaynak hatalarını bildirmek için:avserdararslan@hotmail.com
+Portaldaki veri veya kaynak hatalarını bildirmek için:iletisim@suharitasi.com
 ```
 
 **KANIT — `dist/kuyu-ruhsati/yalova/index.html` (81 il sayfasının hepsinde):**

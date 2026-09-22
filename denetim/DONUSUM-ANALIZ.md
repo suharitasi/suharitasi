@@ -267,7 +267,7 @@ Son blok iki ilgili rehberi başlık + açıklamayla sunuyor (kuyu taşıma, kuy
 cezaları). Yani **rehber→rehber devamlılığı var.** Olmayan şey: rehber→araç
 (`/durumum/`, `/hangi-kurum/`), rehber→havza ve **rehber→büro** geçişi.
 
-`mailto:avserdararslan@hotmail.com` **171 sayfada var** — ama yalnız künyede,
+`mailto:iletisim@suharitasi.com` **171 sayfada var** — ama yalnız künyede,
 sayfanın en dibinde, çağrı metni olmadan.
 
 ### 5.6 Görsel envanteri
@@ -545,7 +545,7 @@ yok** — vaka sayfaları bunu kısmen karşılıyor ama 2 tane. **[YÖNTEM]**
 
 ### F) Künyeye/büroya ulaşma yolu
 
-**Şu an nasıl işliyor [VERİ]:** `mailto:avserdararslan@hotmail.com` 171 sayfanın
+**Şu an nasıl işliyor [VERİ]:** `mailto:iletisim@suharitasi.com` 171 sayfanın
 künyesinde; `/hakkinda/` sayfası menüde ve 173 gelen linkle sitenin en çok
 linklenen sayfası. Yani **erişilebilirlik yüksek, görünürlük düşük** — bağlantı
 her sayfada var ama sayfanın en dibinde, çağrı metni olmadan.

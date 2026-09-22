@@ -121,7 +121,7 @@ SONRA(13:19Z): {"kisa": "eaa951d"}
 İlk kıyas (canlı ↔ ana ağaç build'i) iki fark sınıfı gösterdi ve ikisi de
 kök nedene indirildi:
 
-1. `avserdararslan@hotmail.com` → `[email protected]` — **Cloudflare Email
+1. `iletisim@suharitasi.com` → `[email protected]` — **Cloudflare Email
    Address Obfuscation** (kenar dönüşümü, build farkı değil; site
    genelinde ve yükseltmeden bağımsız).
 2. `/arsiv/` içinde **946 → 903** ve JSON-LD farkı — kök neden ölçüldü:
