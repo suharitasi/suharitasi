@@ -20,10 +20,13 @@ YAPILDI:
   aday**. İdempotent (değişiklik yoksa yazmaz).
 - Cron: aylık tazeleme (03. gün 01:30) `log/yargi-cek-cron.log`.
 - Doküman: `docs/ACIK-VERI-KAYNAKLARI.md`; başvuru: `rapor/22-09-dsi-rasat-bilgi-edinme-basvurusu.md`.
+YAYINA ALINDI (22.09.2026, kullanıcı onayı):
+- [x] **Aday süzgeci + yayın** — `arac/emsal-yayinla.mjs` (resmî metinden BİREBİR
+      `ozet`, içerik süzgeci). 120 adayın yalnız **11'i gerçekten su hukuku**
+      (8. Daire su kuyusu/kaynak suyu kiralama; 13. Daire 167 kaynak suyu/tahsis)
+      → yayımlandı; emsal veritabanı **15 → 26**. Kalan 109 yanlış-pozitif
+      (ÇED/mermer ocağı vb.) `reddedildi` işaretlendi. Build 1012 · kırık 0.
 KULLANICI KARARI BEKLİYOR (DUR):
-- [ ] **Aday havuzu incelemesi** — `data/emsal-adaylari.json` (120 aday) →
-      8. Daire öncelikli; her adayın `dogrulama`'sı `bekliyor`. İnceleme
-      sonrası onaylananlar `data/kamu/emsal-kararlar.json`'a taşınır (yayın).
 - [ ] **DSİ rasat başvurusu** — CİMER'e gönderim kullanıcı imzası ister.
 - [ ] **Yargıtay** — host (212.175.130.144) bu sunucuya ağ seviyesinde filteli;
       izinli ağdan `--kaynak yargitay` koşumu gerekir.
