@@ -44,7 +44,7 @@ const IKONLAR = {
   kurum: '<path d="M3 21h18"/><path d="M6 21V7l6-4 6 4v14"/><path d="M10 12h4"/><path d="M10 16h4"/>',
 };
 ---
-<section class="v2-bolum v2-teknoloji" id="teknoloji" aria-label="Teşhis altyapısı" style="display: grid !important; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 30px auto; max-width: 1200px; padding: 0 20px; z-index: 99; position: relative;">
+<section class="v2-bolum v2-teknoloji" id="teknoloji" aria-label="Teşhis altyapısı" style="display: grid !important; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 10px auto 20px auto; max-width: 1200px; padding: 0 16px; z-index: 99; position: relative;">
   <div class="v2-ic">
     <div class="v2-bolum-bas">
       <p class="v2-bolum-kicker">Teşhis altyapısı</p>
@@ -52,9 +52,9 @@ const IKONLAR = {
       <p class="v2-intro">Kamuya açık veri, uydu göstergeleri ve mevzuat kayıtları bir arada.
         Bu bloklar bilgilendirme niteliğindedir; hukuki görüş veya kesin hüküm değildir.</p>
     </div>
-    <div class="v2-tek-izgara" style="display: grid !important; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 30px auto; max-width: 1200px; padding: 0 20px; z-index: 99; position: relative;">
+    <div class="v2-tek-izgara" style="display: grid !important; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 0 auto; max-width: 1200px; padding: 0; z-index: 99; position: relative;">
       {KARTLAR.map((k) => (
-        <a class="v2-kart" href={k.hedef} style="background: rgba(15, 23, 42, 0.95); border: 1px solid #38bdf8; border-radius: 8px; padding: 16px; color: #fff;">
+        <a class="v2-kart" href={k.hedef} style="background: rgba(15, 23, 42, 0.95); border: 1px solid #38bdf8; border-radius: 8px; padding: 12px; color: #fff;">
           <span class="v2-kart-ikon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                  stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
@@ -76,7 +76,11 @@ const IKONLAR = {
 <style>
   .v2-teknoloji { background: var(--v0-koyu); color: var(--v0-beyaz); }
   .v2-teknoloji .v2-bolum-kicker { color: var(--v2-kicker-koyu); }
-  .v2-teknoloji .v2-intro { color: rgba(255, 255, 255, 0.72); }
+  .v2-teknoloji .v2-bolum-bas { margin: 8px auto 6px; }
+  .v2-teknoloji .v2-bolum-bas .v2-intro {
+    color: rgba(255, 255, 255, 0.72);
+    margin-bottom: 12px;
+  }
   .v2-tek-izgara {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -89,9 +93,22 @@ const IKONLAR = {
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: rgba(255, 255, 255, 0.9);
   }
-  .v2-teknoloji .v2-kart h3 { color: var(--v0-beyaz); }
-  .v2-teknoloji .v2-kart p { color: rgba(255, 255, 255, 0.7); }
-  .v2-teknoloji .v2-kart .v2-kart-git { color: var(--v2-kicker-koyu); }
+  .v2-teknoloji .v2-kart h3 {
+    color: var(--v0-beyaz);
+    margin-top: 0.7rem;
+    font-size: 1.15rem;
+  }
+  .v2-teknoloji .v2-kart p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.35rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+  .v2-teknoloji .v2-kart .v2-kart-git {
+    color: var(--v2-kicker-koyu);
+    padding-top: 0.6rem;
+    font-size: 0.65rem;
+  }
   .v2-teknoloji .v2-kart-ikon {
     background: rgba(255, 255, 255, 0.08);
     color: var(--v2-kicker-koyu);
@@ -108,7 +125,8 @@ const IKONLAR = {
     }
   }
   .v2-tek-not {
-    margin-top: 1.6rem;
+    margin-top: 10px;
+    margin-bottom: 15px;
     font-size: 0.85rem;
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.6);
