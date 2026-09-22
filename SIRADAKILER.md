@@ -20,11 +20,21 @@ YAPILDI (kullanıcı onayı: AY İLKESİ geçersiz kılındı; oran/onay bölüm
   /mevzuat/degisiklikler/ sayfasında; oraya ikinci tablo KONMADI (yamyamlık).
 - Ana sayfa "Açık altyapı" bandı (AjanBandi) — hero/KanitBandi sırası DEĞİŞMEDİ.
 - llms.txt/llms-full.txt + /veri/openapi.json notuna MCP satırı.
-ÖLÇÜM: build 1014 sayfa · capraz-ag kırık 0 · konsol 0 · mcp test 12/12.
+ÖLÇÜM (canlı b42ce2d): build 1014 · 8-mobil 🟢 taşma 0 · capraz-ag kırık 0 ·
+konsol 0 · mcp test 12/12 · site-saglik --hizli: 🔴1 (yalnız 14-gorsel).
+MİRAS BULGU (bu işten DEĞİL): 22.09 11:31–12:13 hero/teknoloji commit'leri
+(7f5a288 "radikal aşağı itme", 02b0732) 14-gorsel'i kırdı: G4 bölüm 7→9
+(+2'nin +1'i AjanBandi bilinçli, +1'i miras) ve G6/S1 mobil ilk-ekran
+dert-sorusu 2560px. Son yeşil koşum 06:53Z'den SONRA. Ayrıca mobil yatay
+taşma (html.scrollWidth 375→1024) aynı commit'lerden mirastı; DÜZELTİLDİ
+(commit b42ce2d, md8 🟢).
 KULLANICI KARARI BEKLİYEN (ertelendi):
 - [ ] Pazar yeri/vet + ödeme katmanı (business/ücretli karar — ertelendi).
 - [ ] /radar/, /ajan-erisimi/ ve ana sayfa bandı CANLI görsel onayı
       (İş kapanış kuralı: görsel iş "YAPILDI" değil "ONAY BEKLİYOR").
+- [ ] **DUR — 14-gorsel G4+G6:** görsel taban yenilensin mi? Yenileme S1
+      kazanımını da "kabul" sayar; bu yüzden tek taraflı YAPILMADI. Karar:
+      hero/teknoloji düzeni 22.09'da bilinçli değişti ama taban yenilenmemiş.
 
 ═══ 22.09.2026 — YARGI KARAR VERİSİ + ADAY KUYRUĞU (v6.0 ADIM 5) ═══
 YAPILDI:

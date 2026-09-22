@@ -912,7 +912,9 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
   karar, ertelendi; (c) `/veri/` sayfasına API/MCP dili eklemek — kurumsal B2B
   kuralı gereği reddedildi, ayrı `/ajan-erisimi/` sayfası açıldı.
 - **Kanıt:** `arac/test/mcp-fn.test.mjs` 12/12 · build 1014 sayfa · canlı
-  `/mcp` GET+POST · çapraz-ağ kırık 0 · tarayıcı konsol 0 · site-sağlık.
+  `/mcp` GET+POST · çapraz-ağ kırık 0 · tarayıcı konsol 0 · `site-sağlık
+  --hizli`: 8-mobil 🟢 (miras mobil taşma onarıldı, commit b42ce2d) · kalan
+  tek 🔴 14-gorsel (G4+G6; bu işten değil — SIRADAKILER "MİRAS BULGU").
 
 ---
 
