@@ -9,6 +9,7 @@ import OzCevap from '../components/OzCevap.astro';
 import CtaBlok from '../components/CtaBlok.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
 import IyukSureSayaci from '../components/IyukSureSayaci.astro';
+import IyukSureRozeti from '../components/IyukSureRozeti.astro';
 import HukukiIptalAnalizi from '../components/HukukiIptalAnalizi.astro';
 import DilekceDenetimMotoru from '../components/DilekceDenetimMotoru.astro';
 import OnDegerlendirmeCagri from '../components/OnDegerlendirmeCagri.astro';
@@ -75,7 +76,35 @@ const sema = [
         <option value="kismi">Belge var ama kapsam dışı</option>
       </select>
     </label>
+    <label>Tesis türü
+      <select id="km-tesis">
+        <option value="">— Seçin —</option>
+        <option value="osb">OSB İçi Sanayi</option>
+        <option value="bagimsiz">Bağımsız Fabrika</option>
+        <option value="enerji">Enerji-Madencilik</option>
+        <option value="jeotermal">Jeotermal</option>
+        <option value="tarim">Tarım/Hayvancılık</option>
+      </select>
+    </label>
+    <label>Aylık tüketim
+      <select id="km-tuketim">
+        <option value="">— Seçin —</option>
+        <option value="0-1000">0-1.000 m³</option>
+        <option value="1000-10000">1.000-10.000 m³</option>
+        <option value="10000+">10.000+ m³</option>
+      </select>
+    </label>
+    <label>Durum
+      <select id="km-durum">
+        <option value="">— Seçin —</option>
+        <option value="rutin">Rutin İnceleme</option>
+        <option value="ceza">Ceza Tebliği</option>
+        <option value="muhur">Mühürleme/Kapatma Tehdidi</option>
+      </select>
+    </label>
   </form>
+
+  <IyukSureRozeti hedef="km-teblig" />
 
   <div id="km-sonuc" class="km-sonuc" aria-live="polite"></div>
 

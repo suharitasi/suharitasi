@@ -52,20 +52,31 @@ const HEDEF = 'https://arslanhukuk.tr/randevu/';
 
     const metin = (el: HTMLSelectElement | null) =>
       el && el.selectedIndex >= 0 ? (el.options[el.selectedIndex]?.text || '').trim() : '';
+    // Boş seçimde ('') etiket metni basma; B2B alanları için 'Belirtilmedi' düşer.
+    const secim = (el: HTMLSelectElement | null) => (el && el.value ? metin(el) : '');
+
+    // İYUK m. 7 — tebliğden itibaren 60 gün; kalan gün (ceil, takvim günü).
+    function kalanGun(teblig: string): number | null {
+      if (!teblig) return null;
+      const d = new Date(teblig + 'T00:00:00');
+      if (Number.isNaN(d.getTime())) return null;
+      const son = new Date(d.getTime());
+      son.setDate(son.getDate() + 60);
+      const bugun = new Date();
+      bugun.setHours(0, 0, 0, 0);
+      return Math.ceil((son.getTime() - bugun.getTime()) / 86400000);
+    }
 
     function topla() {
       const il = (document.getElementById('km-il') as HTMLSelectElement | null)?.value || '';
       const islemEl = document.getElementById('km-islem') as HTMLSelectElement | null;
       const tebligEl = document.getElementById('km-teblig') as HTMLInputElement | null;
       const belgeEl = document.getElementById('km-belge') as HTMLSelectElement | null;
+      const tesisEl = document.getElementById('km-tesis') as HTMLSelectElement | null;
+      const tuketimEl = document.getElementById('km-tuketim') as HTMLSelectElement | null;
+      const durumEl = document.getElementById('km-durum') as HTMLSelectElement | null;
       const teblig = tebligEl?.value || '';
-      let kalan: number | null = null;
-      if (teblig) {
-        const d = new Date(teblig + 'T00:00:00');
-        if (!Number.isNaN(d.getTime())) {
-          kalan = 60 - Math.floor((Date.now() - d.getTime()) / 86400000);
-        }
-      }
+      const kalan = kalanGun(teblig);
       const usul = Array.from(document.querySelectorAll('.ipa-kutu:checked')).map((c) => {
         const madde = (c as HTMLElement).closest('.ipa-madde');
         const ad = madde?.querySelector('.ipa-ad')?.textContent?.trim();
@@ -76,6 +87,9 @@ const HEDEF = 'https://arslanhukuk.tr/randevu/';
         uyusmazlik: metin(islemEl) || 'Belirtilmedi',
         il: il || 'Belirtilmedi',
         belge_durumu: metin(belgeEl) || 'Belirtilmedi',
+        tesis_turu: secim(tesisEl) || 'Belirtilmedi',
+        aylik_tuketim: secim(tuketimEl) || 'Belirtilmedi',
+        hukuki_durum: secim(durumEl) || 'Belirtilmedi',
         teblig_tarihi: teblig || null,
         kalan_dava_suresi_gun: kalan,
         usul_tespitleri: usul,
@@ -94,7 +108,8 @@ const HEDEF = 'https://arslanhukuk.tr/randevu/';
         (document.getElementById('km-il') as HTMLElement | null)?.focus();
         return;
       }
-      const url = HEDEF + '?on-inceleme=' + b64url(JSON.stringify(p));
+      const url = HEDEF + '?on-inceleme=' + b64url(JSON.stringify(p))
+        + (typeof p.kalan_dava_suresi_gun === 'number' ? '&kalan_gun=' + p.kalan_dava_suresi_gun : '');
       durum && (durum.textContent = 'Ön değerlendirme formuna yönlendiriliyorsunuz…');
       window.open(url, '_blank', 'noopener');
     });

@@ -88,6 +88,7 @@
       + 'th{border-bottom:2px solid #333}dt{font-weight:600}'
       + '.kaynak{margin-top:1.6rem;font-size:.8rem;color:#555}'
       + '.uyari{margin-top:1rem;padding:.6rem .8rem;border-left:3px solid #b8860b;font-size:.85rem}'
+      + '.kurumsal-imza{margin-top:1.4rem;padding-top:.7rem;border-top:1px solid #999;font-size:.82rem;color:#333}'
       + '@media print{@page{margin:1.4cm}}</style></head><body>'
       + '<h1>Parsel Bazlı Akifer ve Hukuki Kısıt Durum Belgesi</h1>'
       + '<p>İl: <strong>' + kacir(sonIl) + '</strong> · Belge tarihi: ' + tarih + '</p>'
@@ -100,6 +101,7 @@
       + '<table><thead><tr><th>Durum</th><th>Tarih</th><th>Saha</th><th>Resmî kaynak</th></tr></thead><tbody>' + satirlar + '</tbody></table>'
       + '<p class="uyari">Bu belge, DSİ’nin Resmî Gazete’de yayımladığı kayıtları il bazında derler; "açık/kapalı/kısıtlı/yasak" biçiminde resmî bir sınıflama ÜRETMEZ. Kayıt bulunmaması kısıt olmadığının kanıtı değildir. Hukuki değerlendirme uzman incelemesi gerektirir.</p>'
       + '<p class="kaynak">Kaynak: Su Haritası Açık Hidroloji ve Hukuk Standardı (suharitasi.com) · ' + tarih + '</p>'
+      + '<p class="kurumsal-imza">İşbu hukuki risk durumu Arslan Hukuk Bürosu analitik veri modelleriyle doğrulanmıştır. DSİ idari başvuruları, cezaların iptali ve Yürütmenin Durdurulması (YD) süreçleri için resmi temsil: arslanhukuk.tr</p>'
       + '</body></html>';
     var w = window.open('', '_blank');
     if (!w) return;

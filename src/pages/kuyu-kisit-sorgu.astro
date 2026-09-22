@@ -10,6 +10,7 @@ import OzCevap from '../components/OzCevap.astro';
 import CtaBlok from '../components/CtaBlok.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
 import DsiKuralMotoru from '../components/DsiKuralMotoru.astro';
+import IyukSureRozeti from '../components/IyukSureRozeti.astro';
 import { kayitliIller, TOPLAM, KISIT_TOPLAM, KAYNAK_NOTU } from '../data/kisit-sorgu.js';
 import { tumIller, ilMatrisi } from '../data/islem-matrisi.js';
 
@@ -109,6 +110,8 @@ const sema = [
       Parsel bazlı akifer ve hukuki kısıt durum belgesi (yazdır / PDF)
     </button>
   </p>
+
+  <IyukSureRozeti kendiGirdi etiket="Ceza/tebliğ tarihi (varsa)" />
 
   <nav class="ks-capraz" aria-label="İlgili bölümler">
     <a href="/islem-matrisi/">→ İşlem → yetkili kurum matrisi</a>
