@@ -1,14 +1,14 @@
 {
  "_not": "GÖRSEL/DÜZEN TABANI — sürümlü YAPILANDIRMA (log değil). Bilinçli tasarım değişikliğinde `node arac/site-saglik.mjs --gorsel-taban-yenile --gerekce \"...\"` ile yenilenir; yenilenmeden kalem KIRMIZI kalır. Ölçüm deterministiktir: sabit viewport + DPR + reduced-motion (sahne 0'da donar).",
- "tabanTarihi": "2026-09-13T19:10:07.091Z",
- "gerekce": "13.09.2026: G4 secicisi main>section -> main section duzeltildi (10.09 article sarmalayicisi olcumu bozmustu); 08.09-13.09 arasi bilincli degisiklikler (WhatsApp dugmesi, V5 semantik DOM, hukuk kopruleri/karar matrisi/SSS) yeni tabana alindi. /harita G1 metin-gorsel ortusmesi onceden var; ayri degerlendirme kalemi.",
+ "tabanTarihi": "2026-09-22T18:17:26.569Z",
+ "gerekce": "22.09.2026 kullanici onayi (a): S1 kabul. (1) Bu is: ana sayfaya AjanBandi 'Acik altyapi' bolumu eklendi (bilincli, +1 section). (2) Miras: 22.09 11:31-12:13 hero/teknoloji commit'leri (7f5a288 'radikal asagi itme', 02b0732) mobil ilk-ekran ritmini bilincli degistirdi ve dert-sorusunu kadraj disina itti; taban 2026-09-13'ten beri yenilenmemisti. Kullanici S1 kaybini bilincli kabul etti. AYRICA (kullanici onayi a, 22.09): G6/S1 esigi bilincli olarak 812 -> 2560 yazildi; S1 kazanci KABUL edildi. Esik, soru daha da asagi itilirse (> 2560px) yeniden kirmizi verir.",
  "esikler": {
   "g1KesismePx2": 2000,
   "g2OlcekOran": 1.05,
   "g3TipografiPx": 2,
   "g4RitimPx": 2,
   "g5OrtalamaPx": 2,
-  "g6KadrajPx": 812
+  "g6KadrajPx": 2560
  },
  "olcumKosullari": {
   "viewportlar": [
@@ -38,8 +38,13 @@
    "bolumler": [
     {
      "etiket": "v2-hero",
-     "padUst": 88,
+     "padUst": 100,
      "padAlt": 56
+    },
+    {
+     "etiket": "v2-bolum.v2-teknoloji",
+     "padUst": 0,
+     "padAlt": 0
     },
     {
      "etiket": "v2-cta-ikili",
@@ -53,6 +58,11 @@
     },
     {
      "etiket": "v2-bolum.v2-hizmetler",
+     "padUst": 96,
+     "padAlt": 96
+    },
+    {
+     "etiket": "v2-bolum.v2-ajan",
      "padUst": 96,
      "padAlt": 96
     },
@@ -91,6 +101,11 @@
      "padAlt": 14.4
     },
     {
+     "etiket": "v2-bolum.v2-teknoloji",
+     "padUst": 0,
+     "padAlt": 0
+    },
+    {
      "etiket": "v2-cta-ikili",
      "padUst": 24,
      "padAlt": 24
@@ -107,6 +122,11 @@
     },
     {
      "etiket": "v2-bolum.v2-hizmetler",
+     "padUst": 96,
+     "padAlt": 96
+    },
+    {
+     "etiket": "v2-bolum.v2-ajan",
      "padUst": 96,
      "padAlt": 96
     },
@@ -131,8 +151,8 @@
    "enYuksekOlcek": 0.41,
    "mobilIlkSoru": {
     "metin": "Ruhsatsız kuyu cezası aldım, ne yapmalıyım?",
-    "ust": 675,
-    "alt": 724
+    "ust": 2510,
+    "alt": 2560
    },
    "aktifSahne": "Sondaj"
   },
@@ -241,8 +261,8 @@
     }
    ],
    "hizalamaSapma": 0,
-   "kesismeAlan": 8249,
-   "enYuksekOlcek": 0.49,
+   "kesismeAlan": 0,
+   "enYuksekOlcek": 0.65,
    "mobilIlkSoru": null,
    "aktifSahne": "(sahne yok)"
   },
@@ -266,7 +286,7 @@
    ],
    "hizalamaSapma": 0,
    "kesismeAlan": 0,
-   "enYuksekOlcek": 0.13,
+   "enYuksekOlcek": 0.17,
    "mobilIlkSoru": null,
    "aktifSahne": "(sahne yok)"
   },
@@ -828,7 +848,7 @@
   }
  },
  "oncekiTaban": {
-  "tarih": "2026-08-24T21:45:25.138Z",
-  "gerekce": "agustos-uyum merge (59c8720): ana sayfa mobil sırası S1 kuralına döndü (CTA kartları order 5), emoji CTA'lar kalktı, satış bandı/menü CTA'sı kaldırıldı, göl/nehir/ilçe-sorgu sayfa tipleri denetime girdi — bilinçli tasarım değişiklikleri; kanıt rapor/agustos-uyum.md"
+  "tarih": "2026-09-13T19:10:07.091Z",
+  "gerekce": "13.09.2026: G4 secicisi main>section -> main section duzeltildi (10.09 article sarmalayicisi olcumu bozmustu); 08.09-13.09 arasi bilincli degisiklikler (WhatsApp dugmesi, V5 semantik DOM, hukuk kopruleri/karar matrisi/SSS) yeni tabana alindi. /harita G1 metin-gorsel ortusmesi onceden var; ayri degerlendirme kalemi."
  }
 }

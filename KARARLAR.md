@@ -913,8 +913,23 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
   kuralı gereği reddedildi, ayrı `/ajan-erisimi/` sayfası açıldı.
 - **Kanıt:** `arac/test/mcp-fn.test.mjs` 12/12 · build 1014 sayfa · canlı
   `/mcp` GET+POST · çapraz-ağ kırık 0 · tarayıcı konsol 0 · `site-sağlık
-  --hizli`: 8-mobil 🟢 (miras mobil taşma onarıldı, commit b42ce2d) · kalan
-  tek 🔴 14-gorsel (G4+G6; bu işten değil — SIRADAKILER "MİRAS BULGU").
+  --hizli`: YEŞİL (kırmızı 0).
+
+### §38/EK · GÖRSEL TABAN YENİLEME + S1 KABULÜ (22.09.2026, kullanıcı kararı a)
+- **Tarih:** 2026-09-22
+- **Karar:** Ana sayfa görsel tabanı bilinçli değişiklik gerekçesiyle yenilendi.
+  G4 (bölüm sayısı) tabana alındı. G6/S1 eşiği bilinçli olarak 812→2560px
+  yazıldı: mobil ilk-ekrandaki dert-sorusunun kadraj dışına itilmesi KABUL
+  edildi. Eşik, soru daha da aşağı itilirse (>2560px) yeniden kırmızı verir —
+  yani kayıp donduruldu, ileride kötüleşme hâlâ yakalanır.
+- **Gerekçe:** (1) Bu iş ana sayfaya AjanBandi "Açık altyapı" bölümü ekledi
+  (bilinçli, +1 bölüm). (2) Miras: 22.09 11:31–12:13 hero/teknoloji commit'leri
+  (7f5a288 "radikal aşağı itme", 02b0732) mobil ritmi bilinçli değiştirdi.
+  Kullanıcı bu yönü onayladı.
+- **Reddedilen alternatif:** S1'i geri getirmek (hero/teknoloji düzenini yeniden
+  kurmak) — kullanıcı hero'nun yeni "ferah dikey ritim" yönünü seçti.
+- **Kanıt:** `izleme/gorsel-taban.json` taban 2026-09-22 · `site-sağlık --hizli`
+  YEŞİL · md8 mobil taşma 0 (bu işte onarıldı, commit b42ce2d).
 
 ---
 

@@ -32,9 +32,10 @@ KULLANICI KARARI BEKLİYEN (ertelendi):
 - [ ] Pazar yeri/vet + ödeme katmanı (business/ücretli karar — ertelendi).
 - [ ] /radar/, /ajan-erisimi/ ve ana sayfa bandı CANLI görsel onayı
       (İş kapanış kuralı: görsel iş "YAPILDI" değil "ONAY BEKLİYOR").
-- [ ] **DUR — 14-gorsel G4+G6:** görsel taban yenilensin mi? Yenileme S1
-      kazanımını da "kabul" sayar; bu yüzden tek taraflı YAPILMADI. Karar:
-      hero/teknoloji düzeni 22.09'da bilinçli değişti ama taban yenilenmemiş.
+- [ ] **DUR — 14-gorsel G4+G6 (KAPANDI, kullanıcı kararı (a), 22.09):** görsel
+      taban bilinçli değişiklik gerekçesiyle yenilendi (taban 2026-09-22). G4
+      (bölüm sayısı) tabana alındı; G6/S1 eşiği bilinçli olarak 812→2560 yazıldı
+      (S1 kaybı KABUL; soru daha da aşağı itilirse yeniden kırmızı). Sağlık YEŞİL.
 
 ═══ 22.09.2026 — YARGI KARAR VERİSİ + ADAY KUYRUĞU (v6.0 ADIM 5) ═══
 YAPILDI:
