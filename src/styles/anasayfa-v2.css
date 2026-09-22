@@ -303,24 +303,25 @@
 }
 /* H1: 72px → okunur ölçek (Ş1 "çok büyümüş" ölçümle 72px idi) */
 .v2-baslik h1 {
-  margin: 1.1rem 0 0;
+  margin: 0.6rem 0 0;
   max-width: 30ch;
   font-family: var(--serif, Georgia, serif);
   font-weight: 600;
-  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  font-size: clamp(1.9rem, 2.6vw, 2.05rem);
   line-height: 1.15;
   text-wrap: balance;
   letter-spacing: -0.01em;
 }
 .v2-alt-metin {
-  margin: 0.9rem 0 0;
+  margin: 0.6rem 0 0;
   max-width: 58ch;
-  font-size: clamp(1rem, 1.4vw, 1.125rem);
-  line-height: 1.6;
+  font-size: clamp(0.95rem, 1.3vw, 1rem);
+  line-height: 1.5;
   color: rgba(255, 255, 255, 0.85);
 }
 .v2-butonlar {
-  margin-top: 1.4rem;
+  margin-top: 0.8rem;
+  margin-bottom: 48px;
   display: flex; flex-wrap: wrap; gap: 0.75rem;
 }
 .v2-btn {
