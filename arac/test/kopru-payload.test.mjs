@@ -87,6 +87,14 @@ try {
   ok(yuk.aylik_tuketim === '10.000+ m³', 'yük aylik_tuketim', yuk.aylik_tuketim);
   ok(yuk.hukuki_durum === 'Ceza Tebliği', 'yük hukuki_durum', yuk.hukuki_durum);
   ok(yuk.kalan_dava_suresi_gun === 60, 'yük kalan_dava_suresi_gun', String(yuk.kalan_dava_suresi_gun));
+  // Kısa şema (brief §2C) — eski anahtarlarla birlikte
+  ok(typeof yuk.havza === 'string' && yuk.havza !== 'Belirtilmedi', 'kısa şema havza', yuk.havza);
+  ok(yuk.tesis === 'Jeotermal', 'kısa şema tesis', yuk.tesis);
+  ok(yuk.tuketim === '10.000+ m³', 'kısa şema tuketim', yuk.tuketim);
+  ok(yuk.durum === 'Ceza Tebliği', 'kısa şema durum', yuk.durum);
+  ok(yuk.teblig === bugunIso, 'kısa şema teblig', String(yuk.teblig));
+  ok(yuk.kalan_gun === 60, 'kısa şema kalan_gun', String(yuk.kalan_gun));
+  ok(Number.isInteger(yuk.ts) && yuk.ts > 1700000000, 'kısa şema ts (epoch sn)', String(yuk.ts));
   await s.close();
 
   // — /kuyu-kisit-sorgu — kendi girdili rozet + watermark kaynağı —
@@ -111,9 +119,10 @@ try {
   const kaynak = (await (await fetch(`${TABAN}/s/kisit-sorgu.js`)).text())
     .replace(/\\x([0-9a-fA-F]{2})/g, (_, h) => String.fromCharCode(parseInt(h, 16)))
     .replace(/\\u([0-9a-fA-F]{4})/g, (_, h) => String.fromCharCode(parseInt(h, 16)));
-  ok(kaynak.includes('İşbu hukuki risk durumu Arslan Hukuk Bürosu analitik veri modelleriyle doğrulanmıştır'),
-    'yazdırma belgesi watermark metnini taşır');
-  ok(/arslanhukuk\.tr/.test(kaynak), 'watermark resmî temsil bağlantısını taşır');
+  ok(kaynak.includes('kamuya açık hidrojeolojik veriler, uydu spektral taramaları'),
+    'yazdırma belgesi yeni filigran metnini taşır');
+  ok(kaynak.includes('yetkili hukuk masası: Arslan Hukuk Bürosu (arslanhukuk.tr)'),
+    'filigran yetkili hukuk masası bağlantısını taşır');
   await s2.close();
 
   ok(hatalar.length === 0, 'konsol/page hata yok', hatalar.join(' | '));

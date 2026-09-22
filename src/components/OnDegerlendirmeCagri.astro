@@ -67,6 +67,18 @@ const HEDEF = 'https://arslanhukuk.tr/randevu/';
       return Math.ceil((son.getTime() - bugun.getTime()) / 86400000);
     }
 
+    // İl → havza eşlemesi /veri/iller.json'dan (karar-motoru sayfası zaten çeker).
+    let ilVeri: any[] | null = null;
+    fetch('/veri/iller.json', { cache: 'force-cache' })
+      .then((r) => (r.ok ? r.json() : []))
+      .then((d) => { ilVeri = Array.isArray(d) ? d : []; })
+      .catch(() => { ilVeri = []; });
+    function havzaBul(ilAd: string): string {
+      if (!ilVeri) return '';
+      const k = ilVeri.find((x) => x && x.il === ilAd);
+      return k && Array.isArray(k.havzalar) ? k.havzalar.join(' · ') : '';
+    }
+
     function topla() {
       const il = (document.getElementById('km-il') as HTMLSelectElement | null)?.value || '';
       const islemEl = document.getElementById('km-islem') as HTMLSelectElement | null;
@@ -77,6 +89,7 @@ const HEDEF = 'https://arslanhukuk.tr/randevu/';
       const durumEl = document.getElementById('km-durum') as HTMLSelectElement | null;
       const teblig = tebligEl?.value || '';
       const kalan = kalanGun(teblig);
+      const havza = il ? havzaBul(il) : '';
       const usul = Array.from(document.querySelectorAll('.ipa-kutu:checked')).map((c) => {
         const madde = (c as HTMLElement).closest('.ipa-madde');
         const ad = madde?.querySelector('.ipa-ad')?.textContent?.trim();
@@ -94,6 +107,14 @@ const HEDEF = 'https://arslanhukuk.tr/randevu/';
         kalan_dava_suresi_gun: kalan,
         usul_tespitleri: usul,
         olusturma: new Date().toISOString(),
+        // Kısa şema (brief §2C) — mevcut anahtarlar korunur (geriye uyumlu).
+        havza: havza || 'Belirtilmedi',
+        tesis: secim(tesisEl) || 'Belirtilmedi',
+        tuketim: secim(tuketimEl) || 'Belirtilmedi',
+        durum: secim(durumEl) || 'Belirtilmedi',
+        teblig: teblig || null,
+        kalan_gun: kalan,
+        ts: Math.floor(Date.now() / 1000),
       };
     }
 
