@@ -1,0 +1,93 @@
+---
+// ANA SAYFA TEKNOLOJİ KARTLARI (22.09.2026).
+// Vitrin amaçlıdır: bilgilendirme/ön inceleme dili kullanılır; hukuki hüküm,
+// kesin ceza tespiti veya sonuç taahhüdü içermez (TBB m.55 + apilex kuralı).
+// Emoji yok; ikonlar elle çizilmiş inline SVG (paket eklenmedi).
+const KARTLAR = [
+  {
+    ikon: 'uydu',
+    ad: 'Multispektral Uydu Göstergesi',
+    metin:
+      'Sentinel-2 optik uydu bantlarından türeyen bitki örtüsü (NDVI) ve yüzey nemi göstergeleri, parsel bazlı mevsimsel anomali sinyali üretir. Radar değildir; gözlem amaçlı bir göstergedir, hukuki tespit sayılmaz.',
+    hedef: '/veri/',
+    git: 'Açık veriyi gör',
+  },
+  {
+    ikon: 'gazete',
+    ad: 'Resmî Gazete Kısıt Paneli',
+    metin:
+      'DSİ’nin Resmî Gazete’de yayımladığı işletme sahası ve tahsise kapatma/kısıt ilanlarını il bazında, resmî linkleriyle derler. Kayıt bulunmaması kısıt olmadığının kanıtı değildir.',
+    hedef: '/kuyu-kisit-sorgu/',
+    git: 'İl bazında sorgula',
+  },
+  {
+    ikon: 'saat',
+    ad: 'İYUK m.7 Süre Rozeti',
+    metin:
+      'Tebliğ tarihinden itibaren 60 günlük idari dava açma süresini hesaplar; kalan günü kırmızı rozetle gösterir. Süre ve başvuru yolu somut dosyaya göre değişebilir; teyit gerekir.',
+    hedef: '/kuyu-karar-motoru/',
+    git: 'Süreyi hesapla',
+  },
+  {
+    ikon: 'kurum',
+    ad: 'Kurumsal Su Kullanım Göstergesi',
+    metin:
+      'Tesisin yeraltı suyu kullanımına dair mevzuat başlıklarını (belge, ölçüm, tahsis) bir arada sunar; kurumsal uyum ve su ayak izi başlıklarında bilgilendirme sağlar. Bağlayıcı denetim veya sertifika değildir.',
+    hedef: '/sektor/',
+    git: 'Kurumsal başlıklar',
+  },
+];
+const IKONLAR = {
+  uydu: '<circle cx="12" cy="12" r="3"/><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><path d="m5.6 5.6 2.1 2.1"/><path d="m16.3 16.3 2.1 2.1"/><path d="m18.4 5.6-2.1 2.1"/><path d="m7.7 16.3-2.1 2.1"/>',
+  gazete: '<path d="M4 4h13v16H4z"/><path d="M17 8h3v10a2 2 0 0 1-2 2h-1"/><path d="M7 8h7"/><path d="M7 12h7"/><path d="M7 16h4"/>',
+  saat: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  kurum: '<path d="M3 21h18"/><path d="M6 21V7l6-4 6 4v14"/><path d="M10 12h4"/><path d="M10 16h4"/>',
+};
+---
+<section class="v2-bolum v2-teknoloji" id="teknoloji" aria-label="Teşhis altyapısı">
+  <div class="v2-ic">
+    <div class="v2-bolum-bas">
+      <p class="v2-bolum-kicker">Teşhis altyapısı</p>
+      <h2>Riski tebliğden önce görün</h2>
+      <p class="v2-intro">Kamuya açık veri, uydu göstergeleri ve mevzuat kayıtları bir arada.
+        Bu bloklar bilgilendirme niteliğindedir; hukuki görüş veya kesin hüküm değildir.</p>
+    </div>
+    <div class="v2-tek-izgara">
+      {KARTLAR.map((k) => (
+        <a class="v2-kart" href={k.hedef}>
+          <span class="v2-kart-ikon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
+                 set:html={IKONLAR[k.ikon]}></svg>
+          </span>
+          <h3>{k.ad}</h3>
+          <p>{k.metin}</p>
+          <span class="v2-kart-git">{k.git} →</span>
+        </a>
+      ))}
+    </div>
+    <p class="v2-tek-not">
+      Bu bölümdeki göstergeler ön inceleme içindir; kesin ceza tespiti veya dava
+      sonucu taahhüdü içermez. İYUK süreleri, mevzuat ve uydu verisi teyit gerektirir.
+    </p>
+  </div>
+</section>
+
+<style>
+  .v2-teknoloji { background: var(--v2-bg); color: var(--v2-metin); }
+  .v2-teknoloji .v2-bolum-kicker { color: var(--v2-primary); }
+  .v2-tek-izgara {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 1023px) { .v2-tek-izgara { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 559px) { .v2-tek-izgara { grid-template-columns: 1fr; } }
+  .v2-tek-not {
+    margin-top: 1.6rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--v2-muted-fg);
+    max-width: 74ch;
+  }
+</style>
