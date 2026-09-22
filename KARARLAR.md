@@ -229,6 +229,9 @@ dönük çıkarıldı; o yüzden bazı satırlarda bu işaret vardır.
   yedeği kısmen YOK (B1.1). Özellik eklemek bu iki boşluğu büyütür.
 - **Reddedilen alternatif:** Paralel yürütmek (özellik + dağıtım) — dikkat
   bölünür, iki bacak da yarım kalır.
+- **Not (22.09.2026):** Bu ilke, kullanıcı onayıyla "ajan & makine erişim
+  katmanı" işi için **ASKIYA ALINDI** — bkz. §38. İlke kural olarak yürürlükte
+  kalır; askıya alma iş-özelidir.
 
 ### 18. MARKA SIFATI: "EMİN"
 - **Tarih:** 2026-07-29 (kullanıcı kararı; öneri `rapor/tasarim-kimligi.md` B3.2)
@@ -886,6 +889,30 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
    URL Inspection, tr-TR sabit; state depo dışı; değişim/ilk gösterim/hata
    Telegram'a). Elle dizin isteği kalıcı olmadı: 11:52Z PASS → 17:17Z aynı
    taramada NEUTRAL. Title/H1 hipotezi ancak ölçüm tanımlanarak denenir (§37).
+
+---
+
+## §38 · AJAN & MAKİNE ERİŞİM KATMANI · AY İLKESİ ASKIYA ALINDI (22.09.2026, kullanıcı onaylı)
+
+- **Tarih:** 2026-09-22
+- **Karar:** §17 AY İLKESİ bu iş için askıya alındı. Eklenenler: `/mcp`
+  (MCP, JSON-RPC 2.0, salt-okunur 8 araç — havza, il, mevzuat, emsal, sözlük,
+  kısıt, işlem, su riski), `/ajan-erisimi/` doküman sayfası, `/radar/`
+  (karar & tazelik radarı) ve ana sayfaya "Açık altyapı" bandı. Mevzuat madde
+  değişiklikleri ZATEN `/mevzuat/degisiklikler/` sayfasında izlendiğinden
+  oraya İKİNCİ bir mevzuat tablosu KONMADI (yamyamlık önlendi); `/radar/`
+  karar + tazelik odağına çekildi ve mevzuat ayrıntısına bağlandı.
+- **Kullanıcı kararı (aynı gün):** "Başvuru onay oranı / dava sonucu" katmanı
+  HİÇ AÇILMAYACAK — kaynak veri yok, uydurma yasağı. Yalnız gerçek mevzuat +
+  emsal radarı kuruldu.
+- **Gerekçe:** Kullanıcı, ajan çağı dağıtımını ve biriken tescilli veriyi en
+  üst katma değer olarak belirledi; §17'nin dağıtım bacağı bu işle güçleniyor.
+- **Reddedilen alternatif:** (a) onay oranı istatistiği yayımlamak — kaynak
+  yok, uydurma olurdu; (b) pazar yeri/vet + ödeme katmanı — business/ücretli
+  karar, ertelendi; (c) `/veri/` sayfasına API/MCP dili eklemek — kurumsal B2B
+  kuralı gereği reddedildi, ayrı `/ajan-erisimi/` sayfası açıldı.
+- **Kanıt:** `arac/test/mcp-fn.test.mjs` 12/12 · build 1014 sayfa · canlı
+  `/mcp` GET+POST · çapraz-ağ kırık 0 · tarayıcı konsol 0 · site-sağlık.
 
 ---
 

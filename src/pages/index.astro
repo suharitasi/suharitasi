@@ -19,6 +19,7 @@ import Hero from '../components/anasayfa/Hero.astro';
 import MobilSorular from '../components/anasayfa/MobilSorular.astro';
 import TeknolojiKartlari from '../components/anasayfa/TeknolojiKartlari.astro';
 import KanitBandi from '../components/anasayfa/KanitBandi.astro';
+import AjanBandi from '../components/anasayfa/AjanBandi.astro';
 import Hizmetler from '../components/anasayfa/Hizmetler.astro';
 import Surec from '../components/anasayfa/Surec.astro';
 import Hakkinda from '../components/anasayfa/Hakkinda.astro';
@@ -263,6 +264,12 @@ const sahneVeri = SAHNELER.map((s) => ({
   </div>
 
   <Hizmetler />
+
+  {/* 22.09.2026 — Açık/makine-okunur altyapı bandı (JSON API + OpenAPI, MCP
+      ajan ucu, karar & mevzuat radarı). Reklam dili değil, bilgilendirme;
+      sayılar build anında veriden sayılır (AjanBandi.astro). Hero ve
+      KanitBandi sırası DEĞİŞMEDİ. */}
+  <AjanBandi />
 
   <Surec />
 

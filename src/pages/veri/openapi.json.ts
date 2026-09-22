@@ -24,7 +24,8 @@ export const GET: APIRoute = () => {
       version: '1.0.0',
       description:
         'Türkiye’nin su verisi, havzaları ve su mevzuatı — makine-okunur JSON uçları. ' +
-        'Kimlik doğrulama gerekmez. Kaynak gösterilerek kullanılabilir.',
+        'Kimlik doğrulama gerekmez. Kaynak gösterilerek kullanılabilir. ' +
+        'Ajanlar için MCP ucu: ' + SITE + '/mcp (JSON-RPC 2.0; doküman: ' + SITE + '/ajan-erisimi/).',
       license: { name: 'Kaynak gösterilerek kullanım (CC BY 4.0 uyumlu)', url: `${SITE}/gizlilik/` },
       contact: { name: 'Su Haritası', url: SITE },
     },

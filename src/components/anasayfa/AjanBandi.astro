@@ -1,0 +1,113 @@
+---
+// ANA SAYFA AJAN BANDI (22.09.2026).
+//
+// NE: Sitenin açık makine altyapısını (JSON API + OpenAPI, MCP ajan ucu,
+// karar & mevzuat radarı) tek bandda gösterir. Reklam DEĞİL, bilgilendirme
+// dilidir (BRIEF.md "reklam yok / TBB uyumu"); çağrı/taahhüt cümlesi yok.
+//
+// SAYI DİSİPLİNİ (vitrin.js ile aynı): hiçbir rakam sabit yazılmaz; mevzuat
+// maddesi ve emsal künye sayısı veriden, MCP araç sayısı functions/mcp.js'ten
+// build anında çıkarılır. Kaynak okunamazsa build DÜŞER (sessiz bayatlama yasak).
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import mevzuat from '../../../data/kamu/mevzuat-maddeleri.json';
+import emsal from '../../../data/kamu/emsal-kararlar.json';
+import havzaVeri from '../../../data/havza-veri.json';
+
+const mcpKaynak = readFileSync(join(process.cwd(), 'functions', 'mcp.js'), 'utf8');
+const aracSayi = [...mcpKaynak.matchAll(/^ {4}name: '([a-z_]+)',/gm)].length;
+if (aracSayi !== 8) throw new Error(`ajan-bandi: MCP araç sayısı beklenen 8 değil (${aracSayi}).`);
+
+const maddeler = mevzuat.maddeler.length;
+const emsaller = emsal.kararlar.length;
+const havzalar = havzaVeri.havzalar.length;
+
+const KARTLAR = [
+  {
+    ikon: 'api',
+    ad: 'Açık veri API’si',
+    metin:
+      `Havza, il, işlem ve mevzuat verisi JSON uçlarıyla ve OpenAPI şemasıyla ` +
+      `makine-okunur biçimde yayımlanır; ${maddeler} mevzuat maddesi resmî metniyle.`,
+    hedef: '/acik-veri/',
+    git: 'OpenAPI şeması',
+  },
+  {
+    ikon: 'mcp',
+    ad: 'Ajan ucu (MCP)',
+    metin:
+      `Model Context Protocol ucu, ${aracSayi} salt-okunur araçla su mevzuatı, emsal ` +
+      `karar, havza/il verisi ve kısıt kayıtlarını yapay zekâ ajanlarına açar.`,
+    hedef: '/ajan-erisimi/',
+    git: 'Ajan dokümanı',
+  },
+  {
+    ikon: 'radar',
+    ad: 'Karar & tazelik radarı',
+    metin:
+      `${emsaller} emsal künye ve mevzuat değişiklik nöbeti tek panoda; ` +
+      `türev istatistik üretilmez, kaynak gösterilir.`,
+    hedef: '/radar/',
+    git: 'Radarı gör',
+  },
+];
+
+const IKONLAR = {
+  api: '<path d="m8 6-5 6 5 6"/><path d="m16 6 5 6-5 6"/><path d="M13 4l-2 16"/>',
+  mcp: '<circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="12" cy="18" r="2.4"/><path d="M8 6h8"/><path d="M7.4 8.2 10.8 15.6"/><path d="M16.6 8.2 13.2 15.6"/>',
+  radar: '<path d="M12 12 19 5"/><path d="M21 12a9 9 0 1 1-5.3-8.2"/><path d="M16.5 15.5A6 6 0 1 1 9 6.3"/><circle cx="12" cy="12" r="1.4"/>',
+};
+---
+<section class="v2-bolum v2-ajan" id="acik-altyapi" aria-label="Açık ve makine-okunur altyapı">
+  <div class="v2-ic">
+    <div class="v2-bolum-bas">
+      <p class="v2-bolum-kicker">Açık altyapı</p>
+      <h2>Veri yalnız insanlar için değil, makineler için de okunur</h2>
+      <p class="v2-intro">
+        {havzalar} havza ve {maddeler} mevzuat maddesinin tamamı; JSON uçları,
+        OpenAPI şeması ve {aracSayi} araçlık bir MCP ucuyla yapay zekâ
+        ajanlarına ve geliştiricilere de açık. Amaç, su hukuku bilgisinin
+        kaynağı gösterilmiş biçimde dolaşmasıdır.
+      </p>
+    </div>
+    <div class="v2-ajan-izgara">
+      {KARTLAR.map((k) => (
+        <a class="v2-kart" href={k.hedef}>
+          <span class="v2-kart-ikon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
+                 set:html={IKONLAR[k.ikon]}></svg>
+          </span>
+          <h3>{k.ad}</h3>
+          <p>{k.metin}</p>
+          <span class="v2-kart-git">{k.git} →</span>
+        </a>
+      ))}
+    </div>
+    <p class="v2-ajan-not">
+      Bu bölümdeki uçlar bilgilendirme amaçlıdır; hukuki görüş değildir. Yanıtlar
+      yayımlı resmî kaynaklardan derlenir ve kaynak gösterilerek kullanılabilir.
+    </p>
+  </div>
+</section>
+
+<style>
+  .v2-ajan { background: var(--v2-bg); color: var(--v2-metin); }
+  .v2-ajan .v2-bolum-kicker { color: var(--v2-primary); }
+  .v2-ajan .v2-intro { color: var(--v2-muted-fg); }
+  .v2-ajan-izgara {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  @media (max-width: 1023px) { .v2-ajan-izgara { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 679px) { .v2-ajan-izgara { grid-template-columns: 1fr; } }
+  .v2-ajan-not {
+    margin-top: 1.4rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--v2-muted-fg);
+    max-width: 74ch;
+  }
+</style>

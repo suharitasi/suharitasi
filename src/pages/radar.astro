@@ -1,0 +1,153 @@
+---
+// /radar/ — KARAR & TAZELİK RADARI (22.09.2026).
+//
+// NEDEN: Mevzuat madde değişiklikleri ZATEN /mevzuat/degisiklikler/ sayfasında
+// izlenir; buraya ikinci bir mevzuat tablosu koymak yamyamlık olurdu. Bu sayfa
+// o boşluğu kapatır: YARGI KARARI tarafı (emsal dizini + doğrulama bekleyen
+// aday havuzu) ve veri TAZELİĞİ tek panoda; mevzuat ayrıntısı mevcut radara
+// bağlanır.
+//
+// Her sayı build anında gerçek kayıttan okunur; hiçbiri ÜRETİLMEZ (uydurma
+// yasağı). Başvuru onay oranı / dava sonucu istatistiği BİLİNÇLİ YOK (veri yok).
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import HukukSerhi from '../components/HukukSerhi.astro';
+import surum from '../../data/kamu/mevzuat-surum.json';
+import degisiklik from '../../data/kamu/mevzuat-degisiklik.json';
+import emsalVeri from '../../data/kamu/emsal-kararlar.json';
+import adayVeri from '../../data/emsal-adaylari.json';
+
+const sonKontrol = typeof surum.son_kontrol === 'string' ? surum.son_kontrol.slice(0, 10) : null;
+const izlenenMevzuat = Object.keys(surum.mevzuatlar ?? {}).length;
+const izlenenMadde = Object.values(surum.mevzuatlar ?? {}).reduce((t, m) => t + Object.keys(m).length, 0);
+const degisiklikSayi = (degisiklik.kayitlar ?? []).length;
+
+const kararlar = [...(emsalVeri.kararlar ?? [])].sort((a, b) => b.yil - a.yil);
+const yilDagilim = kararlar.reduce((d, k) => ((d[k.yil] = (d[k.yil] ?? 0) + 1), d), {});
+const yilMaks = Math.max(1, ...Object.values(yilDagilim));
+const kaynakli = kararlar.filter((k) => k.dogrulama === 'kaynakli').length;
+const kunye = kararlar.filter((k) => k.dogrulama === 'kunye').length;
+const adaySayi = (adayVeri.adaylar ?? []).length;
+
+const OZ_CEVAP =
+  'Su hukukunda iki sessiz sinyal izlenir: yargı kararları ve veri tazeliği. ' +
+  'Emsal dizini ' + kararlar.length + ' künye taşır (' + kaynakli + ' kaynaklı, ' + kunye + ' künye); ' +
+  'doğrulama bekleyen aday havuzunda ' + adaySayi + ' kayıt vardır. Mevzuat madde ' +
+  'değişiklikleri ayrı radarda izlenir. Başvuru onay oranı gibi türev istatistik ' +
+  'ÜRETİLMEZ; her kayıt kaynağına bağlıdır.';
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/radar/', Astro.site).href;
+const guncel = sonKontrol ? new Date(`${sonKontrol}T00:00:00+03:00`) : undefined;
+
+const sema = [
+  {
+    '@type': 'Dataset',
+    '@id': `${canonical}#veri`,
+    name: 'Su Haritası Karar Radarı',
+    description: 'Yayımlı yargı emsal kararları ve doğrulama bekleyen aday havuzu; veri tazelik künyesi.',
+    creator: { '@id': `${kok}#kurum` },
+    isAccessibleForFree: true,
+    inLanguage: 'tr-TR',
+    ...(sonKontrol ? { dateModified: sonKontrol } : {}),
+    variableMeasured: ['Emsal karar künyesi', 'Doğrulama bekleyen aday kaydı'],
+  },
+  {
+    '@type': 'WebPage',
+    '@id': `${canonical}#sayfa`,
+    url: canonical,
+    name: 'Karar & tazelik radarı',
+    description: OZ_CEVAP,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${kok}#site` },
+  },
+];
+---
+
+<Sayfa
+  baslik="Karar & tazelik radarı"
+  aciklama={OZ_CEVAP}
+  tarayiciBaslik="Su Hukuku Karar Radarı ve Veri Tazeliği"
+  sema={sema}
+  guncelleme={guncel}
+>
+  <SayfaBasi
+    etiket="Takip"
+    baslik="Karar & tazelik radarı"
+    ozet={`${kararlar.length} emsal künye · ${adaySayi} doğrulama bekleyen aday · ${izlenenMevzuat} mevzuat izleniyor.`}
+    tarih={guncel}
+    ozCevap
+  />
+  <OzCevap metin={OZ_CEVAP} etiket="Özet" />
+
+  <section class="rd-bolum" aria-label="Yargı kararı radarı">
+    <h2>Yargı kararı radarı</h2>
+    <p class="rd-aciklama">
+      Yayımlı emsal kararlar künye rehberlerde geçtiği hâliyle derlenir. Kaynağı
+      olan kayıtlar "kaynaklı", yalnız künye aktarılanlar "künye" işaretlidir ve
+      nihai doğrulaması sürer. Yeni künyeler aday havuzundan, resmî metin süzgecinden
+      geçtikten sonra yayına alınır.
+    </p>
+    <p class="rd-durum">
+      Yayımlı künye: <strong>{kararlar.length}</strong> ·
+      Kaynaklı: <strong>{kaynakli}</strong> ·
+      Doğrulama bekleyen aday: <strong>{adaySayi}</strong>
+    </p>
+    <h3 class="rd-alt">Karar yıllarına göre dağılım</h3>
+    <ul class="rd-cubuk" aria-label="Yıllara göre emsal karar sayısı">
+      {Object.entries(yilDagilim).sort((a, b) => Number(a[0]) - Number(b[0])).map(([yil, sayi]) => (
+        <li>
+          <span class="rd-y">{yil}</span>
+          <span class="rd-cubuk-govde"><span class="rd-dolu" style={`width:${Math.round((sayi / yilMaks) * 100)}%`}></span></span>
+          <span class="rd-s">{sayi}</span>
+        </li>
+      ))}
+    </ul>
+    <p class="rd-baglanti">Tam dizin: <a href="/emsal-kararlar/">su hukuku emsal kararları</a> · <a href="/veri/">bilgi bankası</a></p>
+  </section>
+
+  <section class="rd-bolum" aria-label="Mevzuat değişiklik nöbeti">
+    <h2>Mevzuat değişiklik nöbeti</h2>
+    <p class="rd-aciklama">
+      Resmî mevzuat metnindeki her maddenin SHA-256 özeti saklanır; özet değişirse
+      değişiklik günlüğüne kaydedilir. Ayrıntılı tablo ve değişiklik akışı mevcut radar
+      sayfasındadır.
+    </p>
+    <p class="rd-durum">
+      Son tarama: <strong>{sonKontrol ?? 'doğrulanmadı'}</strong> ·
+      İzlenen: <strong>{izlenenMevzuat}</strong> mevzuat, <strong>{izlenenMadde}</strong> madde ·
+      Tespit edilen son değişiklik kaydı: <strong>{degisiklikSayi}</strong>
+    </p>
+    <p class="rd-baglanti">Detay: <a href="/mevzuat/degisiklikler/">mevzuat değişiklik radarı</a> · <a href="/mevzuat/">madde kütüphanesi</a></p>
+  </section>
+
+  <section class="rd-bolum" aria-label="Kapsam ve sınır">
+    <h2>Kapsam ve sınır</h2>
+    <p class="rd-aciklama">
+      Bu pano <strong>yalnız doğrulanmış kaynaklardan</strong> türetilir. Başvuru
+      onay oranı veya dava sonucu dağılımı gibi türev istatistikler, güvenilir bir
+      kaynak elde edilene kadar <strong>bilinçli olarak yayımlanmaz</strong>; eksik
+      alan boş ya da "doğrulanmadı" olarak gösterilir.
+    </p>
+  </section>
+
+  <HukukSerhi />
+</Sayfa>
+
+<style>
+  .rd-bolum { margin-top: 2.4rem; }
+  .rd-bolum h2 { margin-bottom: 0.5rem; }
+  .rd-alt { margin: 1.4rem 0 0.6rem; font-size: 1rem; }
+  .rd-aciklama { max-width: 66ch; line-height: 1.6; }
+  .rd-durum { font-family: var(--mono); font-size: 0.82rem; color: var(--metin); }
+  .rd-not { color: var(--metin-soluk); }
+  .rd-cubuk { list-style: none; display: grid; gap: 0.35rem; padding: 0; margin: 0; max-width: 40rem; }
+  .rd-cubuk li { display: grid; grid-template-columns: 3.2rem 1fr 2rem; align-items: center; gap: 0.6rem; }
+  .rd-y { font-family: var(--mono); font-size: 0.8rem; color: var(--metin-soluk); }
+  .rd-cubuk-govde { background: var(--cizgi); height: 0.7rem; border-radius: 2px; overflow: hidden; }
+  .rd-dolu { display: block; height: 100%; background: var(--su-400); }
+  .rd-s { font-family: var(--mono); font-size: 0.8rem; text-align: right; }
+  .rd-baglanti { margin-top: 1rem; }
+  .rd-baglanti a { color: var(--baglanti); }
+</style>

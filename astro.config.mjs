@@ -222,6 +222,8 @@ function llmsOlustur() {
   // yani AI istemcilerine kategorisiz gidiyordu.
   const BOLUM = [
     ['acik-veri/', 'Açık veri ve geliştirici portalı (OpenAPI)'],
+    ['ajan-erisimi/', 'Ajan erişimi (MCP ucu)'],
+    ['radar/', 'Karar & tazelik radarı'],
     ['veri/', 'Açık veri kataloğu (JSON API)'],
     ['su-riski-endeksi/', 'Su riski endeksi (il/havza)'],
     ['kuyu-karar-motoru/', 'Kuyu karar motoru (süre, merci, evrak)'],
@@ -278,7 +280,9 @@ function llmsOlustur() {
         metin += `Tam URL listesi: ${SITE}/sitemap.xml\n`;
         // ADIM 3 (v6.0): OpenAPI spesifikasyonunun tam URL'i AI istemcilerine
         // açıkça bildirilir (makine-okunur veri standardı).
-        metin += `Makine-okunur API şeması (OpenAPI 3.0): ${SITE}/api/v1/openapi.json\n\n`;
+        metin += `Makine-okunur API şeması (OpenAPI 3.0): ${SITE}/api/v1/openapi.json\n`;
+        // 22.09.2026: MCP (Model Context Protocol) ucu AI istemcilerine bildirilir.
+        metin += `Ajan erişimi (MCP, JSON-RPC 2.0): ${SITE}/mcp · doküman: ${SITE}/ajan-erisimi/\n\n`;
         for (const [onek, ad] of BOLUM) {
           const grup = sayfalar.filter((x) => x.yol.startsWith(`/${onek}`));
           if (!grup.length) continue;
@@ -296,6 +300,7 @@ function llmsOlustur() {
         // ADIM 3 (v6.0): OpenAPI 3.0 tam URL + uç listesi (AI istemcileri için).
         tam += `\n## Makine-okunur API (OpenAPI 3.0)\n${SITE}/api/v1/openapi.json\n`;
         tam += `Uçlar: ${SITE}/api/v1/il/{il}.json · ${SITE}/api/v1/havza/{havza}.json\n`;
+        tam += `Ajan erişimi (MCP, JSON-RPC 2.0): ${SITE}/mcp · doküman: ${SITE}/ajan-erisimi/\n`;
         tam += `Veri standardı ve atıf: ${SITE}/acik-veri/\n\n`;
         tam += `Her sayfa için başlık, kalıcı URL ve öz-cevap (meta açıklama):\n\n`;
         for (const x of sayfalar) {

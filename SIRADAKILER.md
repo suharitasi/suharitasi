@@ -8,6 +8,24 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ 22.09.2026 — AJAN & MAKİNE ERİŞİM KATMANI (AY İLKESİ ASKIYA ALINDI; KARARLAR §38) ═══
+YAPILDI (kullanıcı onayı: AY İLKESİ geçersiz kılındı; oran/onay bölümü açılmadı):
+- `functions/mcp.js` — /mcp MCP ucu (JSON-RPC 2.0, salt-okunur, 8 araç:
+  havza/il/mevzuat/emsal/sözlük/kısıt/işlem/su-riski). GET sunucu kartı.
+  `arac/test/mcp-fn.test.mjs` 12/12 (sahte ASSETS; wrangler gerekmez).
+- `src/pages/ajan-erisimi.astro` — MCP dokümanı; araç listesi build'de
+  functions/mcp.js ile KARŞILAŞTIRILIR, uyuşmazsa build düşer (drift yasağı).
+- `src/pages/radar.astro` — Karar & tazelik radarı (emsal dizini + doğrulama
+  bekleyen aday havuzu + mevzuat nöbeti özeti). Mevzuat ayrıntısı
+  /mevzuat/degisiklikler/ sayfasında; oraya ikinci tablo KONMADI (yamyamlık).
+- Ana sayfa "Açık altyapı" bandı (AjanBandi) — hero/KanitBandi sırası DEĞİŞMEDİ.
+- llms.txt/llms-full.txt + /veri/openapi.json notuna MCP satırı.
+ÖLÇÜM: build 1014 sayfa · capraz-ag kırık 0 · konsol 0 · mcp test 12/12.
+KULLANICI KARARI BEKLİYEN (ertelendi):
+- [ ] Pazar yeri/vet + ödeme katmanı (business/ücretli karar — ertelendi).
+- [ ] /radar/, /ajan-erisimi/ ve ana sayfa bandı CANLI görsel onayı
+      (İş kapanış kuralı: görsel iş "YAPILDI" değil "ONAY BEKLİYOR").
+
 ═══ 22.09.2026 — YARGI KARAR VERİSİ + ADAY KUYRUĞU (v6.0 ADIM 5) ═══
 YAPILDI:
 - `arac/yargi-cek.mjs` — Adalet "Karar Arama" ailesi toplayıcısı (Danıştay +

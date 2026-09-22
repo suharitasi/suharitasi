@@ -1,0 +1,144 @@
+---
+// /ajan-erisimi/ — MCP UCU DOKÜMANI (22.09.2026).
+//
+// Bu sayfa /mcp ucunun insan-okur dokümanıdır. Araç listesi burada STATİK
+// değildir: build sırasında functions/mcp.js okunup araç adları çıkarılır ve
+// aşağıdaki listeyle KARŞILAŞTIRILIR; uyuşmazsa build DÜŞER (drift yasağı).
+// Böylece doküman, uygulanan koddan sessizce ayrışamaz.
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import HukukSerhi from '../components/HukukSerhi.astro';
+
+const ARACLAR = [
+  { ad: 'havza_sorgu', aciklama: 'Havza künyesi: yağış alanı, rezerv, NHYP bağlantısı.' },
+  { ad: 'il_sorgu', aciklama: 'İl → DSİ bölgesi, havzalar ve su idaresi eşlemesi.' },
+  { ad: 'mevzuat_sorgu', aciklama: 'Mevzuat maddelerini resmî metniyle arar.' },
+  { ad: 'emsal_sorgu', aciklama: 'Danıştay/Yargıtay emsal kararlarını arar.' },
+  { ad: 'sozluk_sorgu', aciklama: 'Su hukuku sözlüğünde terim arar.' },
+  { ad: 'kisit_sorgu', aciklama: 'Resmî Gazete işletme sahası/kısıt kayıtlarını arar.' },
+  { ad: 'islem_sorgu', aciklama: 'İdari su işlemleri: kurum, dayanak, başvuru kanalı.' },
+  { ad: 'su_riski_sorgu', aciklama: 'İl/havza su riski puanı ve bileşenleri.' },
+];
+
+const mcpKaynak = readFileSync(join(process.cwd(), 'functions', 'mcp.js'), 'utf8');
+const kodAraclari = [...mcpKaynak.matchAll(/^ {4}name: '([a-z_]+)',/gm)].map((m) => m[1]);
+const beklenen = ARACLAR.map((a) => a.ad);
+if (kodAraclari.length !== beklenen.length || kodAraclari.some((a, i) => a !== beklenen[i])) {
+  throw new Error(
+    `ajan-erisimi: araç listesi functions/mcp.js ile uyuşmuyor. ` +
+    `kod=[${kodAraclari.join(',')}] · sayfa=[${beklenen.join(',')}]`
+  );
+}
+
+const OZ_CEVAP =
+  'Su Haritası, yapay zekâ ajanları ve geliştiriciler için MCP (Model Context ' +
+  'Protocol) ucu sunar: https://suharitasi.com/mcp. Uç salt-okunur; mevzuat ' +
+  'maddesi, emsal karar, havza/il verisi, kısıt kaydı ve su riski araçlarını ' +
+  'JSON-RPC 2.0 ile döner. Kimlik doğrulama gerekmez; yanıtlar yayımlı resmî ' +
+  'kaynaklardan derlenir, hukuki görüş değildir.';
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/ajan-erisimi/', Astro.site).href;
+
+const sema = [
+  {
+    '@type': 'WebPage',
+    '@id': `${canonical}#sayfa`,
+    url: canonical,
+    name: 'Ajan erişimi (MCP)',
+    description: OZ_CEVAP,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${kok}#site` },
+  },
+  {
+    '@type': 'WebAPI',
+    '@id': `${canonical}#mcp`,
+    name: 'Su Haritası MCP ucu',
+    description: 'Salt-okunur su hukuku ve veri araçları (MCP, JSON-RPC 2.0).',
+    documentation: canonical,
+    provider: { '@id': `${kok}#kurum` },
+  },
+];
+---
+
+<Sayfa
+  baslik="Ajan erişimi (MCP)"
+  aciklama={OZ_CEVAP}
+  tarayiciBaslik="Ajan Erişimi: MCP Ucu"
+  sema={sema}
+>
+  <SayfaBasi
+    etiket="Ajan erişimi"
+    baslik="Yapay zekâ ajanları için su hukuku verisi"
+    ozet={`MCP ucu · ${ARACLAR.length} salt-okunur araç · JSON-RPC 2.0 · kimlik doğrulama yok.`}
+    ozCevap
+  />
+  <OzCevap metin={OZ_CEVAP} etiket="Özet" />
+
+  <section class="ae-bolum" aria-label="Uç noktası">
+    <h2>Uç noktası</h2>
+    <p>
+      <code>POST https://suharitasi.com/mcp</code> — MCP Streamable HTTP, JSON-RPC 2.0.
+      <code>GET</code> aynı yolda sunucu kartını (araç ve kaynak listesi) döner.
+      Oturum gerekmez; yanıtlar <code>application/json</code> gelir.
+    </p>
+    <pre class="ae-kod" tabindex="0" role="region" aria-label="Örnek istek ve yanıt biçimi"><code>{`curl -s https://suharitasi.com/mcp \\
+  -H 'content-type: application/json' \\
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call",
+       "params":{"name":"mevzuat_sorgu",
+                 "arguments":{"kelime":"isletme sahasi","limit":2}}}'
+
+→ {"jsonrpc":"2.0","id":1,"result":{
+     "content":[{"type":"text","text":"…"}],
+     "isError":false}}`}</code></pre>
+  </section>
+
+  <section class="ae-bolum" aria-label="Araçlar">
+    <h2>Araçlar ({ARACLAR.length})</h2>
+    <p class="ae-aciklama">
+      Araçlar yalnız yayımlı açık veriyi okur; hiçbir alan üretilmez. Kaynak
+      okunamazsa araç hata döner, uydurma yanıt vermez.
+    </p>
+    <div class="ae-kaydir" tabindex="0" role="region">
+      <table class="ae-tablo">
+        <caption>MCP araç adı ve işlevi.</caption>
+        <thead><tr><th scope="col">Araç</th><th scope="col">İşlev</th></tr></thead>
+        <tbody>
+          {ARACLAR.map((a) => (
+            <tr><th scope="row"><code>{a.ad}</code></th><td>{a.aciklama}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="ae-bolum" aria-label="Kaynaklar ve lisans">
+    <h2>Kaynaklar ve kullanım</h2>
+    <p class="ae-aciklama">
+      Uç, sitenin açık veri çıktısını sunar (25 havza, 81 il, 469 mevzuat maddesi,
+      emsal kararlar, kısıt kayıtları, su riski). Kaynak gösterilerek kullanılabilir.
+      Yanıtlar <strong>bilgilendirme amaçlıdır; hukuki görüş değildir</strong>.
+      Geliştirici dokümantasyonu ve OpenAPI şeması için{' '}
+      <a href="/acik-veri/">açık veri portalı</a>; sözlük ve küratörlü bilgi bankası
+      için <a href="/veri/">veri sayfası</a>.
+    </p>
+  </section>
+
+  <HukukSerhi />
+</Sayfa>
+
+<style>
+  .ae-bolum { margin-top: 2.4rem; }
+  .ae-bolum h2 { margin-bottom: 0.5rem; }
+  .ae-aciklama { max-width: 68ch; line-height: 1.6; }
+  .ae-bolum a { color: var(--baglanti); }
+  code { font-family: var(--mono); font-size: 0.9em; }
+  .ae-kod { overflow-x: auto; padding: 1rem; background: rgba(46, 126, 160, 0.06); border-left: 3px solid var(--su-400); font-family: var(--mono); font-size: 0.8rem; line-height: 1.5; }
+  .ae-kaydir { overflow-x: auto; margin-top: 1rem; }
+  .ae-tablo { border-collapse: collapse; width: 100%; min-width: 420px; }
+  .ae-tablo caption { text-align: left; font-size: 0.75rem; color: var(--metin-soluk); padding-bottom: 0.4rem; }
+  .ae-tablo th, .ae-tablo td { text-align: left; padding: 0.5rem 0.7rem; border-bottom: 1px solid var(--cizgi); }
+</style>
