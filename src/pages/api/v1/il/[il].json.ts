@@ -29,7 +29,9 @@ export function GET({ props }: any) {
       durum: r.durum ?? null,
       tarih: r.tarih ?? null,
       ilce: r.ilce ?? null,
-      kaynak_url: r.kaynak_url ?? r.url ?? null,
+      saha: r.saha ?? null,
+      // kisitNormalize kayıtları URL'yi `kaynak` alanında taşır; kaynak_url/url YOK.
+      kaynak_url: r.kaynak ?? r.kaynak_url ?? r.url ?? null,
     })),
     mevzuatDayanagi: [
       { kanun: '167 sayılı Yeraltısuları Hakkında Kanun', madde: 8, konu: 'Belge (arama/kullanma/ıslah-tadil) zorunluluğu' },

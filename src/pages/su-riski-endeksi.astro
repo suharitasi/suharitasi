@@ -8,11 +8,15 @@ import CtaBlok from '../components/CtaBlok.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
 import { HAVZA_RISK, IL_RISK, FORMUL, AGIRLIK, OZET, SERILER, BUTCE } from '../data/su-riski.js';
 
+// ÖZ-CEVAP ağırlıkları TEK KAYNAKTAN (AGIRLIK = havza-risk.js W) türetilir;
+// elle yazılan yüzdeler kanonik formülden sapıyordu (baraj %40 vs gerçek %25).
+const YUZDE = (x) => `%${Math.round(x * 100)}`;
 const OZ_CEVAP =
-  'İl ve havza bazında su riski: baraj doluluk (%40), GRACE yerçekimi eğilimi (%25), ' +
-  'yağış trendi (%25) ve Resmî Gazete kısıt/kapatma yoğunluğu (%10) birleştirilerek ' +
-  'şeffaf bir gösterge üretir. Sonuç Düşük/Orta/Yüksek/Kritik olarak sınıflanır. ' +
-  'Bu resmî bir sınıflama değil, Su Haritası’nın bileşik göstergesidir.';
+  `İl ve havza su riski; GRACE depolama eğilimi (${YUZDE(AGIRLIK.grace)}), baraj doluluk ` +
+  `(${YUZDE(AGIRLIK.baraj)}), YAS rezerv/beslenim (${YUZDE(AGIRLIK.yas)}), tahsis durumu ` +
+  `(${YUZDE(AGIRLIK.tahsis)}) ve yüzey suyu potansiyeli (${YUZDE(AGIRLIK.yuzeysuyu)}) ` +
+  'birleştirilerek şeffaf bir gösterge üretir. Sonuç Düşük/Orta/Yüksek sınıflanır. ' +
+  'Resmî bir sınıflama değil, Su Haritası’nın bileşik göstergesidir.';
 
 const kok = new URL('/', Astro.site).href;
 const canonical = new URL('/su-riski-endeksi/', Astro.site).href;
@@ -30,7 +34,7 @@ const sema = [
     isAccessibleForFree: true,
     inLanguage: 'tr-TR',
     url: `${kok}veri/su-riski.json`,
-    variableMeasured: ['Baraj doluluk', 'GRACE yerçekimi eğilimi', 'Yağış trendi', 'RG kısıt yoğunluğu'],
+    variableMeasured: ['GRACE depolama eğilimi', 'Baraj doluluk', 'YAS rezerv/beslenim', 'Tahsis durumu', 'Yüzey suyu potansiyeli'],
   },
   { '@type': 'WebPage', '@id': `${canonical}#sayfa`, url: canonical, name: 'Su riski endeksi', description: OZ_CEVAP, inLanguage: 'tr-TR', isPartOf: { '@id': `${kok}#site` } },
 ];
@@ -101,7 +105,7 @@ const sema = [
 
   <CtaBlok konu="Su riski" baslik="Yatırımınız için su riski raporu" metin="Seçili il/havza için derinlemesine su riski ve hukuki durum raporu talep edin." />
   <HukukSerhi />
-  <script type="application/json" id="sr-veri" set:html={JSON.stringify(veri)} />
+  <script type="application/json" id="sr-veri" set:html={JSON.stringify(veri).replace(/</g, '\\u003c')} />
   <script type="module" src="/s/su-riski.js" is:inline></script>
 </Sayfa>
 

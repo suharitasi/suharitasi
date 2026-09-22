@@ -22,7 +22,10 @@
       return;
     }
     if (veri.website) { // honeypot dolu → bot
+      // Tarayıcı/şifre yöneticisi "website" alanını doldurabilir: gerçek
+      // kullanıcıyı kilitlememek için düğme yeniden etkinleştirilir.
       if (durum) { durum.textContent = 'Teşekkürler.'; durum.className = 'hd-durum ok'; }
+      if (btn) btn.disabled = false;
       return;
     }
 

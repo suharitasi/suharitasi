@@ -19,7 +19,12 @@ const kirp = (s, n) => (typeof s === 'string' ? s.trim().slice(0, n) : '');
 const json = (govde, kod = 200) =>
   new Response(JSON.stringify(govde), {
     status: kod,
-    headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Kaynak': 'fn' },
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Kaynak': 'fn',
+      // _headers bir Function yanıtına uygulanmaz (whatsapp.js notu): güvenlik
+      // başlıkları burada elle verilir.
+      'X-Content-Type-Options': 'nosniff', 'Cross-Origin-Resource-Policy': 'same-origin',
+    },
   });
 
 import { rateLimit } from './_limit.js';
@@ -73,9 +78,9 @@ export async function onRequest(context) {
   try {
     const simdi = Date.now();
     const anahtar = `d:${trGun(simdi)}:${simdi}-${rastgele()}`;
-    const yaz = kv.put(anahtar, JSON.stringify(lead), { expirationTtl: OMUR_SN });
-    if (typeof context.waitUntil === 'function') context.waitUntil(yaz);
-    else await yaz;
+    // Yazma ONAYLANMADAN başarı dönülmez: waitUntil yazma hatasını istemciye
+    // hiç göstermez ve lead sessizce kaybolurdu (sessiz hata yasağı).
+    await kv.put(anahtar, JSON.stringify(lead), { expirationTtl: OMUR_SN });
     return json({ ok: true });
   } catch (e) {
     return json({ hata: 'kayıt başarısız' }, 500);

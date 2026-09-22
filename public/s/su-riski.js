@@ -55,7 +55,7 @@
         bar('YAS rezerv/beslenim', h.bilesenler.yas) +
         bar('Tahsis durumu', h.bilesenler.tahsis) +
         bar('Yüzey suyu', h.bilesenler.yuzeysuyu) +
-        '<p class="sr-ham">Ham: GRACE eğim ' + (h.ham.graceEgim ?? '—') + ' cm/ay · baraj doluluk %' + (h.ham.barajDoluluk ?? '—') + ' · YAS beslenim ' + (h.ham.yasBeslenim ?? '—') + ' hm³ · rezerv ' + (h.ham.yasRezerv ?? '—') + ' hm³ · yüzey potansiyeli ' + (h.ham.yuzyPotansiyel ?? '—') + ' km³</p>' +
+        '<p class="sr-ham">Ham: GRACE eğim ' + (h.ham.graceEgim ?? '—') + ' cm/yıl · baraj doluluk %' + (h.ham.barajDoluluk ?? '—') + ' · YAS beslenim ' + (h.ham.yasBeslenim ?? '—') + ' hm³ · rezerv ' + (h.ham.yasRezerv ?? '—') + ' hm³ · yüzey potansiyeli ' + (h.ham.yuzyPotansiyel ?? '—') + ' km³</p>' +
         '<div class="sr-spark"><p class="sr-spark-bas">Baraj doluluk (son 30 gün)</p>' + spark(s.baraj, '#0C5A7C') + '</div>' +
         '<div class="sr-spark"><p class="sr-spark-bas">Aylık yağış (son 36 ay, mm)</p>' + spark(s.chirps, '#2E7EA0') + '</div>' +
         '<p class="sr-butce">Su bütçesi göstergeleri: YAS beslenimi <strong>' + (b.beslenim_hm3 ?? '—') + ' hm³</strong> · işletme rezervi <strong>' + (b.rezerv_hm3 ?? '—') + ' hm³</strong> · yüzey suyu potansiyeli <strong>' + (b.yuzeyPotansiyeli_km3 ?? '—') + ' km³</strong>. (Çekim verisi resmî kaynakta derli yayımlanmadığından bütçe farkı hesaplanmaz.)</p>' +

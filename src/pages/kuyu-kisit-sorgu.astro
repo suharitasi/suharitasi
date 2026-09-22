@@ -126,7 +126,7 @@ const sema = [
   <HukukSerhi />
 </Sayfa>
 
-<script type="application/json" id="ks-iller" set:html={JSON.stringify(ilBilgi)} />
+<script type="application/json" id="ks-iller" set:html={JSON.stringify(ilBilgi).replace(/</g, '\\u003c')} />
 <script type="module" src="/s/kisit-sorgu.js" is:inline></script>
 
 <style>

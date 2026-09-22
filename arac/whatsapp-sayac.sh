@@ -11,12 +11,13 @@ KOK="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SITE="${WA_SAYAC_SITE:-https://suharitasi.com}"
 ANAHTAR="${WA_SAYAC_ANAHTAR:-}"
 if [ -z "$ANAHTAR" ] && [ -f "$KOK/.env" ]; then
-  ANAHTAR=$(grep -E '^WA_SAYAC_ANAHTAR=' "$KOK/.env" | tail -1 | cut -d= -f2- | tr -d '"' || true)
+  ANAHTAR=$(grep -E '^WA_SAYAC_ANAHTAR=' "$KOK/.env" | tail -1 | cut -d= -f2- | tr -d '"' | tr -d '\r' || true)
 fi
 [ -n "$ANAHTAR" ] || { echo "HATA: WA_SAYAC_ANAHTAR yok (.env ya da ortam)"; exit 2; }
 
 YANIT=$(mktemp); trap 'rm -f "$YANIT"' EXIT
-KOD=$(curl -sS -m 30 -o "$YANIT" -w '%{http_code}' "$SITE/whatsapp/?sayac=$ANAHTAR")
+# Anahtar BAŞLIKLA gönderilir: sorgu dizesi günlüklere düz metin düşer.
+KOD=$(curl -sS -m 30 -H "Authorization: Bearer $ANAHTAR" -o "$YANIT" -w '%{http_code}' "$SITE/whatsapp/")
 case "$KOD" in
   200)
     if [ "${1:-}" = "--ozet" ]; then

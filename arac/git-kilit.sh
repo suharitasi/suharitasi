@@ -22,6 +22,13 @@ GIT_KILIT_BEKLE="${GIT_KILIT_BEKLE:-600}"   # saniye (10 dk)
 # $1 = çağıran işin adı (log için). Başarılı: 0, zaman aşımı: 1.
 git_kilit_al() {
   local ad="${1:-bilinmeyen}"
+  # YENİDEN-GİRİŞ KORUMASI (2026-09-22): aynı süreç kilidi zaten tutuyorsa
+  # İKİNCİ bir fd ile flock denenmez. flock kilitleri açık dosya tanımı
+  # başına olduğundan, ikinci deneme KENDİ kilidiyle çakışır → 600 sn asılıp
+  # başarısız olur ve özgün fd sızar (kilit süreç sonuna dek tutulu kalır).
+  # Hata yolunda (grace hata_say → 3. ardışık hata) UYARI commit'i bu yüzden
+  # kilitleniyordu; artık elde olan kilit paylaşılır.
+  if [ -n "${GIT_KILIT_FD:-}" ]; then return 0; fi
   exec {GIT_KILIT_FD}>"$GIT_KILIT_YOL" || return 1
   if flock -w "$GIT_KILIT_BEKLE" "$GIT_KILIT_FD"; then
     echo "$ad $$ $(date -u +%FT%TZ)" >&"$GIT_KILIT_FD"

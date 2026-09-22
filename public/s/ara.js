@@ -26,14 +26,21 @@
   }
 
   function vurgula(metin, terimler) {
-    var out = kacir(metin);
-    for (var i = 0; i < terimler.length; i++) {
-      if (!terimler[i]) continue;
-      try {
-        out = out.replace(new RegExp('(' + terimler[i].replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'), '<mark>$1</mark>');
-      } catch (e) { /* yok say */ }
+    // ÖNEMLİ: kaçış (kacir) ÖNCE yapılırsa arama terimi "&amp;" gibi varlıkların
+    // içine denk gelip HTML'i bozar (ör. "&" → "&<mark>amp</mark>;").
+    // Bu yüzden ham metin terimlere göre parçalanır; her parça ayrı kaçırılır.
+    var desen = terimler.filter(Boolean)
+      .map(function (t) { return t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); })
+      .join('|');
+    if (!desen) return kacir(metin);
+    try {
+      return String(metin || '').split(new RegExp('(' + desen + ')', 'gi'))
+        .map(function (parca, i) {
+          return i % 2 ? '<mark>' + kacir(parca) + '</mark>' : kacir(parca);
+        }).join('');
+    } catch (e) {
+      return kacir(metin);
     }
-    return out;
   }
 
   function ara() {

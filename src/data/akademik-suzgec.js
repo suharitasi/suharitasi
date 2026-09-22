@@ -25,8 +25,10 @@
 // sözcük testi + Python paritesi). Rapor: rapor/08-09-karar-kapatma.md §D.
 export const SU_TERIMI = new RegExp(
   '\\b(?:yeralti|atik|icme|tatli|akar)?su(?:y[uau][a-z]*|yla|lar[a-z]*|suz[a-z]*|lu)?\\b'
-  + '|\\b(?:paleo|jeo|geo)?(?:hidro|hydro)(?!terap|karbon|carbon|jen\\b|gen\\b)[a-z]*\\b'
-  + '|\\b[a-z]*water[a-z]*\\b|\\b(?:akifer|aquifer)[a-z]*\\b|\\bkuyu[a-z]*\\b'
+  // `jen\\b` yerine `jen`: aksi hâlde "hidrojenli" sınır-dışı kalıp eşleşiyordu.
+  + '|\\b(?:paleo|jeo|geo)?(?:hidro|hydro)(?!terap|karbon|carbon|jen|gen)[a-z]*\\b'
+  // `kuyu` su kuyusu içindir; "kuyumcu/kuyumculuk" (mücevher) dışlanır.
+  + '|\\b[a-z]*water[a-z]*\\b|\\b(?:akifer|aquifer)[a-z]*\\b|\\bkuyu(?!mcu|mculuk)[a-z]*\\b'
   + '|\\bhavza[a-z]*\\b|\\bbasins?\\b|\\bsula(?:ma|nan|nmis|nabilir)[a-z]*\\b|\\birrigat[a-z]*\\b|\\bsulak\\b'
   + '|\\byagis[a-z]*\\b|\\byagmur[a-z]*\\b|\\b(?:precipitation|rainfall)[a-z]*\\b'
   + '|\\bkurak[a-z]*\\b|\\bdrought[a-z]*\\b|\\bbaraj[a-z]*\\b|\\bdams?\\b'

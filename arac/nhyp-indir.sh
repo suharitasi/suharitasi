@@ -13,8 +13,23 @@ LOG="$HEDEF/indirme-log.txt"
 mkdir -p "$HEDEF"
 : > "$LOG"
 
+# Manifest'i ÖNCE maddileştir: process substitution (<(...)) hatası `set -e`
+# altında YAYILMAZ; bozuk/eksik manifest döngüyü hiç çalıştırmaz, TOPLAM=0 ve
+# HATALI=0 ile script YEŞİL dönerdi (sessiz hata yasağı ihlali).
+LISTE="$(mktemp)"
+trap 'rm -f "$LISTE"' EXIT
+if ! python3 -c "
+import json
+for m in json.load(open('$MANIFEST')):
+    print(m['havza'], m['dosya'], m['url'], sep='\t')
+" > "$LISTE"; then
+  echo "HATA: manifest okunamadı/bozuk: $MANIFEST" >&2
+  exit 2
+fi
+
 TOPLAM=0; BASARILI=0; HATALI=0
 while IFS=$'\t' read -r havza dosya url; do
+  [ -n "$havza" ] || continue
   TOPLAM=$((TOPLAM+1))
   mkdir -p "$HEDEF/$havza"
   hedef_dosya="$HEDEF/$havza/$dosya"
@@ -32,12 +47,10 @@ while IFS=$'\t' read -r havza dosya url; do
     HATALI=$((HATALI+1))
   fi
   sleep 1
-done < <(python3 -c "
-import json,sys
-for m in json.load(open('$MANIFEST')):
-    print(m['havza'], m['dosya'], m['url'], sep='\t')
-")
+done < "$LISTE"
 
 echo "SONUÇ: toplam=$TOPLAM başarılı=$BASARILI hatalı=$HATALI"
 echo "SONUÇ: toplam=$TOPLAM başarılı=$BASARILI hatalı=$HATALI" >> "$LOG"
+# Boş manifest = sessiz yeşil koşu DEĞİL, açık arıza.
+[ "$TOPLAM" -gt 0 ] || { echo "HATA: manifest boş — indirilecek kayıt yok" >&2; exit 2; }
 [ "$HATALI" -eq 0 ] || exit 3

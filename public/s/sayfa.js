@@ -6,16 +6,10 @@
 
 const azHareket = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-/* --- Yüzen nav (40px eşik) --- */
-const ust = document.querySelector('header.ust');
-if (ust) {
-  const nobetci = document.createElement('div');
-  nobetci.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:40px;pointer-events:none;';
-  document.body.prepend(nobetci);
-  new IntersectionObserver(([giris]) => {
-    ust.classList.toggle('sv-yuzer', !giris.isIntersecting);
-  }).observe(nobetci);
-}
+/* NOT (22.09.2026): eski "yüzen nav" bloğu KALDIRILDI. `header.ust` seçicisi
+   (yalnız /stil-pilot/'ta var) ve `sv-yuzer` sınıfı (hiçbir CSS üretmiyor)
+   ölü koddur; gerçek üst çubuğun (PaylasilanMenu `#pm-bar`) kaydırma
+   davranışını kendi satır-içi script'i `kaydi` sınıfıyla yönetir. */
 
 /* --- Yazdırma: gizli kalmış içeriği aç ---
    Kâğıda/PDF'e basarken henüz görünür alana girmemiş tablolar ve kartlar

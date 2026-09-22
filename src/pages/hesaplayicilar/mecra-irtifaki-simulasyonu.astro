@@ -78,7 +78,7 @@ const sema = [
   <HukukSerhi />
 </Sayfa>
 
-<script type="application/json" id="hm-veri" set:html={JSON.stringify(AŞAMALAR)} />
+<script type="application/json" id="hm-veri" set:html={JSON.stringify(AŞAMALAR).replace(/</g, '\\u003c')} />
 <script type="module" src="/s/hesap-mecra.js" is:inline></script>
 
 <style>

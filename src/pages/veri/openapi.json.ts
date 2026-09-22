@@ -16,6 +16,10 @@ const yollar = {
   '/arama.json': 'Site içi arama indeksi (tüm sayfaların başlık/açıklama kaydı).',
 };
 
+// Dizi değil nesne dönen uçlar — şema tipi buna göre verilir (yanlış `array`
+// beyanı, makine tüketicilerinin geçerli yanıtı reddetmesine yol açıyordu).
+const NESNE = new Set(['/veri/su-riski.json', '/veri/mevzuat-surum.json']);
+
 export const GET: APIRoute = () => {
   const spec = {
     openapi: '3.1.0',
@@ -38,7 +42,10 @@ export const GET: APIRoute = () => {
             summary: aciklama,
             operationId: yol.replace(/[/.]/g, '_').replace(/^_/, ''),
             responses: {
-              '200': { description: 'Başarılı JSON yanıtı', content: { 'application/json': { schema: { type: 'array' } } } },
+              '200': {
+                description: 'Başarılı JSON yanıtı',
+                content: { 'application/json': { schema: { type: NESNE.has(yol) ? 'object' : 'array' } } },
+              },
             },
           },
         },

@@ -17,6 +17,7 @@ const OMUR_SN = 60 * 60 * 24 * 400; // ~400 gün
 const GECERLI = new Set(['telefon', 'eposta', 'whatsapp', 'iletisim-form']);
 
 import { rateLimit } from './_limit.js';
+import { sayacAnahtari, anahtarEsit } from './_auth.js';
 
 const trGun = (ms) => new Date(ms + 3 * 3600 * 1000).toISOString().slice(0, 10);
 
@@ -36,10 +37,16 @@ const bosYanit = () =>
 
 async function sayacOku(kv) {
   const olaylar = {};
-  let cursor, toplam = 0;
+  let cursor, toplam = 0, kesildi = false;
+  // SINIR: sayaç ~400 gün ve tıklama başına bir anahtar büyür. Workers'ın
+  // alt-istek/CPU tavanına dayanmamak için tarama sınırlandırılır; sınıra
+  // gelinirse sonuç `kesildi:true` ile AÇIKÇA kısmi bildirilir (sessizce
+  // yanlış toplam döndürmek yasak).
+  const SINIR = 10000;
   do {
     const s = await kv.list({ prefix: 'o:', cursor });
     for (const k of s.keys) {
+      if (toplam >= SINIR) { kesildi = true; break; }
       // anahtar biçimi: o:<gun>:<olay>:<zaman>-<rand>
       const parca = k.name.split(':');
       const gun = parca[1];
@@ -49,9 +56,10 @@ async function sayacOku(kv) {
       olaylar[olay][gun] = (olaylar[olay][gun] || 0) + 1;
       toplam++;
     }
+    if (kesildi) break;
     cursor = s.list_complete ? undefined : s.cursor;
   } while (cursor);
-  return { olaylar, toplam };
+  return { olaylar, toplam, ...(kesildi ? { kesildi: true, sinir: SINIR } : {}) };
 }
 
 // Hızlı danışma formundan gelen lead'ler (prefix 'd:'). En yeni 50 kayıt.
@@ -82,16 +90,22 @@ export async function onRequest(context) {
   try { url = new URL(request.url); } catch { return bosYanit(); }
 
   // OKUMA YOLU — yalnız gizli anahtar tanımlı VE eşleşiyorsa.
-  if (kv && env.SAYAC_ANAHTAR && url.searchParams.get('sayac') === env.SAYAC_ANAHTAR) {
+  if (kv && env.SAYAC_ANAHTAR && anahtarEsit(sayacAnahtari(request, url), env.SAYAC_ANAHTAR)) {
     try {
       const sonuc = await sayacOku(kv);
       const leads = await danismalariOku(kv);
       return new Response(JSON.stringify({ ...sonuc, ...leads, okuma: new Date().toISOString() }), {
-        headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Kaynak': 'fn' },
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Kaynak': 'fn',
+          'X-Content-Type-Options': 'nosniff', 'Cross-Origin-Resource-Policy': 'same-origin',
+        },
       });
     } catch (e) {
       return new Response(JSON.stringify({ hata: 'sayaç okunamadı', sebep: String((e && e.message) || e) }), {
-        status: 500, headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' },
+        status: 500, headers: {
+          'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store',
+          'X-Content-Type-Options': 'nosniff', 'Cross-Origin-Resource-Policy': 'same-origin',
+        },
       });
     }
   }

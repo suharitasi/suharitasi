@@ -62,7 +62,7 @@ const iller = tumIlProfilleri().map((p) => ({
     </p>
   </div>
 
-  <script type="application/json" id="dsi-veri" set:html={JSON.stringify({ iller, islemler: ISLEMLER })}></script>
+  <script type="application/json" id="dsi-veri" set:html={JSON.stringify({ iller, islemler: ISLEMLER }).replace(/</g, '\\u003c')}></script>
 </section>
 
 <script>

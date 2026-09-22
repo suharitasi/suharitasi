@@ -74,7 +74,7 @@ const usuller = matris.usuller.map((u) => ({
     </div>
   </div>
 
-  <script type="application/json" id="ipa-veri" set:html={JSON.stringify({ usuller })}></script>
+  <script type="application/json" id="ipa-veri" set:html={JSON.stringify({ usuller }).replace(/</g, '\\u003c')}></script>
 </section>
 
 <HukukDanismanlik konu="İdari işlem usul denetimi" />

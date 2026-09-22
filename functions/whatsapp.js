@@ -22,6 +22,8 @@
 // - OKUMA (B3): GET /whatsapp/?sayac=<SAYAC_ANAHTAR> → {"gunler":{"YYYY-MM-DD":n},"toplam":n}.
 //   SAYAC_ANAHTAR Pages "Variables and Secrets" (Encrypt) ile tanımlanır; yerelde
 //   .env WA_SAYAC_ANAHTAR (arac/whatsapp-sayac.sh). Anahtar yok/yanlış → normal 302.
+import { sayacAnahtari, anahtarEsit } from './_auth.js';
+
 const HEDEF = 'https://wa.me/905324497144';
 const OMUR_SN = 60 * 60 * 24 * 400; // anahtar ömrü ~400 gün (KV alt sınırı 60 sn)
 
@@ -66,15 +68,21 @@ export async function onRequest(context) {
   try { url = new URL(request.url); } catch { return yonlendir(env); }
 
   // OKUMA YOLU — yalnız gizli anahtar tanımlı VE eşleşiyorsa.
-  if (kv && env.SAYAC_ANAHTAR && url.searchParams.get('sayac') === env.SAYAC_ANAHTAR) {
+  if (kv && env.SAYAC_ANAHTAR && anahtarEsit(sayacAnahtari(request, url), env.SAYAC_ANAHTAR)) {
     try {
       const sonuc = await sayacOku(kv);
       return new Response(JSON.stringify({ ...sonuc, okuma: new Date().toISOString() }), {
-        headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Kaynak': 'fn' },
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Kaynak': 'fn',
+          'X-Content-Type-Options': 'nosniff', 'Cross-Origin-Resource-Policy': 'same-origin',
+        },
       });
     } catch (e) {
       return new Response(JSON.stringify({ hata: 'sayaç okunamadı', sebep: String(e && e.message || e) }), {
-        status: 500, headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' },
+        status: 500, headers: {
+          'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store',
+          'X-Content-Type-Options': 'nosniff', 'Cross-Origin-Resource-Policy': 'same-origin',
+        },
       });
     }
   }

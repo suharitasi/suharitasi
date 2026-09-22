@@ -4,7 +4,21 @@
 const BELIRSIZ = /belirsiz/i;
 
 /** Kısıt sorgu kayıtlarını normalize et (il/ilçe/durum/tarih/kaynak).
- *  ana + ek JSON dosyalarının `kayitlar` dizilerini alır. */
+ *  ana + ek JSON dosyalarının `kayitlar` dizilerini alır.
+ *
+ *  MÜKERRER KİMLİĞİ (22.09.2026 onarımı): eski anahtar
+ *  `kaynak_url | rg_tarih | saha_adi.slice(0,60)` idi. `ek` kayıtlarında
+ *  `saha_adi` HİÇ YOKTUR (310/310 boş), bu yüzden anahtar `URL|tarih`e
+ *  düşüyor ve aynı Resmî Gazete sayısındaki FARKLI ilanlar birleşiyordu:
+ *  362 geçerli kayıt → 204'e iniyor, Ardahan/Kars/Gümüşhane/Aksaray
+ *  tamamen kayboluyor, tahsise kapatma 20 → 7'ye düşüyordu (ölçüm).
+ *
+ *  Yeni kimlik YALNIZ YAPISAL alanlardan kurulur: url · tarih · durum ·
+ *  SIRALI il kümesi. Böylece farklı il/durum taşıyan ilanlar ayrı kalır,
+ *  aynısı mükerrer sayılır. `pasaj` BİLEREK dışarıda — 6e58fd7'de
+ *  "pasaj çıkarımı ölçülüp elendi" kararı gereği OCR metni kimlik taşımaz. */
+const ilKimlik = (iller) => [...iller].sort((a, b) => a.localeCompare(b, 'tr')).join('~');
+
 export function kisitNormalize(anaKayitlar = [], ekKayitlar = []) {
   const gorulen = new Set();
   const out = [];
@@ -13,7 +27,7 @@ export function kisitNormalize(anaKayitlar = [], ekKayitlar = []) {
     const iller = (Array.isArray(ilHam) ? ilHam : (ilHam ? [ilHam] : [])).filter((x) => x && !BELIRSIZ.test(x));
     if (!iller.length) continue;
     const saha = (k.saha_adi || '').replace(/\s+/g, ' ').trim().slice(0, 200);
-    const anahtar = `${k.kaynak_url || ''}|${k.rg_tarih || ''}|${saha.slice(0, 60)}`;
+    const anahtar = `${k.kaynak_url || ''}|${k.rg_tarih || ''}|${k.durum || ''}|${ilKimlik(iller)}`;
     if (gorulen.has(anahtar)) continue;
     gorulen.add(anahtar);
     out.push({
@@ -25,7 +39,9 @@ export function kisitNormalize(anaKayitlar = [], ekKayitlar = []) {
       saha,
     });
   }
-  out.sort((a, b) => (b.tarih || '').localeCompare(a.tarih || ''));
+  // tarih "DD.MM.YYYY" — sözlük sırası gün'e göre bozar; YYYYMMDD'ye çevir.
+  const tarihAnahtar = (t) => String(t || '').split('.').reverse().join('');
+  out.sort((a, b) => tarihAnahtar(b.tarih).localeCompare(tarihAnahtar(a.tarih)));
   return out;
 }
 

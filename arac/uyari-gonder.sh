@@ -32,7 +32,9 @@ logla() { echo "$(date -u +%FT%TZ) uyari: $*" >> "$LOG"; }
 # .env'i kaynak alma (sırlar kabuğa sızmasın): yalnız iki değişken okunur.
 oku_env() {
   [ -f "$KOK/.env" ] || return 0
-  grep -E "^$1=" "$KOK/.env" 2>/dev/null | head -1 | cut -d= -f2- | tr -d '"'"'"'\r' || true
+  # 2>/dev/null KALDIRILDI (sessiz hata yasağı): dosya zaten `[ -f ]` ile
+  # doğrulandı; gerçek okuma hatası artık görünür kalır.
+  grep -E "^$1=" "$KOK/.env" | head -1 | cut -d= -f2- | tr -d '"'"'"'\r' || true
 }
 TOKEN="${TELEGRAM_BOT_TOKEN:-$(oku_env TELEGRAM_BOT_TOKEN)}"
 CHAT="${TELEGRAM_CHAT_ID:-$(oku_env TELEGRAM_CHAT_ID)}"

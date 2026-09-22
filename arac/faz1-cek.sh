@@ -11,8 +11,10 @@ PORT="${PORT:-5401}"
 cd "$KOK"
 [ -d dist ] || { echo "dist yok — önce npm run build"; exit 1; }
 
-# Statik servis (dist), arka planda
-python3 -m http.server "$PORT" --directory dist --bind 127.0.0.1 >/dev/null &
+# Statik servis (dist), arka planda. `python3 -m http.server` YERİNE dist-sun:
+# CANLI KOŞUL İLKESİ (CLAUDE.md) — kanıt, _headers (CSP) ve _redirects uygulayan
+# sunucudan alınmalı; çıplak http.server canlıyı temsil etmez.
+node "$KOK/arac/dist-sun.mjs" "$PORT" "$KOK/dist" >/dev/null &
 SRV=$!
 # Sunucu ölürse çekim anlamsız; her çıkışta temizle
 trap 'kill "$SRV" 2>/dev/null || true' EXIT

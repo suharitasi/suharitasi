@@ -1367,17 +1367,12 @@ export function onarimYonlendirme({ redirectsYol, kural }) {
   return { yapildi: true, sebep: `${kural.kaynak} → ${kural.hedef} (${kural.kod}) yeniden eklendi` };
 }
 
-/* G1(c): sitemap'te 404 veren URL sitemap üretiminden çıkarılır (hariç listesi). */
-export function onarimSitemapHaric({ haricYol, urller }) {
-  const mevcut = existsSync(haricYol) ? JSON.parse(readFileSync(haricYol, 'utf8')) : { haric: [] };
-  const yeni = urller.filter((u) => !mevcut.haric.includes(u));
-  if (!yeni.length) return { yapildi: false, sebep: 'zaten hariç listesinde — devredildi' };
-  mevcut.haric.push(...yeni);
-  mevcut._not = 'site-saglik G1(c): sitemap\'te 404 veren URL\'ler. astro.config sitemapOlustur bunları atlar.';
-  writeFileSync(haricYol, JSON.stringify(mevcut, null, 2) + '\n');
-  return { yapildi: true, sebep: `${yeni.length} URL sitemap'ten çıkarıldı` };
-}
-
+// NOT (22.09.2026): burada ölü `onarimSitemapHaric()` fonksiyonu vardı —
+// hiçbir yerden çağrılmıyordu, `onarimlar[]` içine 'sitemap-haric' tipi hiç
+// atılmıyordu ve astro.config sitemapOlustur bir "hariç" listesi okumuyordu.
+// Yani "sitemap'ten 404 çıkarılır" iddiası KARŞILIKSIZDI; yanıltıcı ölü kod
+// kaldırıldı. Sitemap 404 kırpımı yeniden istenirse önce bir tespit kaynağı
+// (onarimlar.push tip:'sitemap-haric') + astro.config okuyucusu eklenmeli.
 
 // ============================================================================
 // E — BİLDİRİM
@@ -1972,7 +1967,7 @@ async function testModu() {
   // (vi) sentetik performans düşüşü → sistem ONARMAYA KALKMAZ (kara liste)
   {
     const sahte = [{ yol: '/', masaustu: 40, mobil: 30, esik: { masaustu: 85, mobil: 70 }, gecti: false }];
-    const onarimTipleri = ['csp', 'yonlendirme', 'kirik-link', 'sitemap-haric'];
+    const onarimTipleri = ['csp', 'yonlendirme', 'kirik-link'];
     const performansOnarimiVarMi = onarimTipleri.includes('performans');
     senaryolar.push({ no: 'vi', ad: 'sentetik performans düşüşü',
       beklenen: 'kara liste: ONARMAYA KALKMAZ, DUR + bildir',

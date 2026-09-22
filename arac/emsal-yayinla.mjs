@@ -98,6 +98,7 @@ async function main() {
   const havuz = JSON.parse(readFileSync(HAVUZ, 'utf8'));
   const adaylar = havuz.adaylar || [];
   const incelemeler = [];
+  let cekimHatasi = 0; // metni HİÇ çekilemeyen adaylar (ağ/kaynak arızası)
   console.log(`[yayinla] ${adaylar.length} aday inceleniyor (kuru=${KURU})`);
 
   for (const a of adaylar) {
@@ -105,10 +106,27 @@ async function main() {
     const rawId = String(a.id || '').split('-').slice(1).join('-');
     if (!TABAN[kaynak]) { incelemeler.push({ ...a, _ilgili: false, _not: 'kaynak tanınmadı' }); continue; }
     const metin = await metinCek(kaynak, rawId, a.konu);
-    const konuMetni = metin ? konuMetniBul(metin) : '';
+    // ÇEKİM HATASI ≠ ALAKASIZ: metin null ise kayıt "reddedildi" sayılmaz
+    // (ilgili=null); aksi hâlde kaynak/ağ kesintisi sessizce "0 ilgili" gibi
+    // görünür ve aday durumu bozulurdu (sessiz hata yasağı).
+    if (metin === null) {
+      cekimHatasi++;
+      incelemeler.push({ ...a, _ilgili: null, _cekimHata: true, _konu: null, _rehberler: [], _ozet: '' });
+      if (adaylar.indexOf(a) % 20 === 0) console.log(`  ... ${adaylar.indexOf(a)}/${adaylar.length}`);
+      continue;
+    }
+    const konuMetni = konuMetniBul(metin);
     const k = konuBul(konuMetni || metin || '');
     incelemeler.push({ ...a, _ilgili: !!(k && konuMetni), _konu: k?.konu || null, _rehberler: k?.rehberler || [], _ozet: konuMetni.slice(0, 300) });
     if (adaylar.indexOf(a) % 20 === 0) console.log(`  ... ${adaylar.indexOf(a)}/${adaylar.length}`);
+  }
+
+  if (cekimHatasi > 0) {
+    console.warn(`[yayinla] UYARI: ${cekimHatasi}/${adaylar.length} adayın metni çekilemedi (ağ/kaynak arızası olabilir)`);
+  }
+  if (adaylar.length && cekimHatasi === adaylar.length) {
+    console.error('[yayinla] HATA: hiçbir adayın metni çekilemedi — yayın YAPILMADI (toplam çekim arızası).');
+    process.exit(1);
   }
 
   const ilgili = incelemeler.filter((x) => x._ilgili);

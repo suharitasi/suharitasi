@@ -69,7 +69,7 @@ const sema = [
   <HukukSerhi />
 </Sayfa>
 
-<script type="application/json" id="hc-veri" set:html={JSON.stringify(FIILLER)} />
+<script type="application/json" id="hc-veri" set:html={JSON.stringify(FIILLER).replace(/</g, '\\u003c')} />
 <script type="module" src="/s/hesap-ceza.js" is:inline></script>
 
 <style>

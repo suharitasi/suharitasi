@@ -8,12 +8,16 @@ const OMUR_SN = 60 * 60 * 24 * 730; // ~2 yıl
 const json = (g, k = 200) =>
   new Response(JSON.stringify(g), {
     status: k,
-    headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Kaynak': 'fn' },
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Kaynak': 'fn',
+      'X-Content-Type-Options': 'nosniff', 'Cross-Origin-Resource-Policy': 'same-origin',
+    },
   });
 const kirp = (s, n) => (typeof s === 'string' ? s.trim().slice(0, n) : '');
 const gecerli = (e) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e);
 
 import { rateLimit } from './_limit.js';
+import { sayacAnahtari, anahtarEsit } from './_auth.js';
 
 export async function onRequest(context) {
   const { request, env } = context;
@@ -21,18 +25,23 @@ export async function onRequest(context) {
   let url;
   try { url = new URL(request.url); } catch { return json({ hata: 'gecersiz' }, 400); }
 
-  if (kv && env.SAYAC_ANAHTAR && url.searchParams.get('sayac') === env.SAYAC_ANAHTAR) {
+  if (kv && env.SAYAC_ANAHTAR && anahtarEsit(sayacAnahtari(request, url), env.SAYAC_ANAHTAR)) {
     const aboneler = [];
-    let cursor;
+    let cursor, kesildi = false;
+    // SINIR: her abone için bir kv.get → Workers alt-istek tavanı. Tarama
+    // sınırlandırılır ve kısmi sonuç `kesildi:true` ile bildirilir.
+    const SINIR = 5000;
     do {
       const s = await kv.list({ prefix: 'a:', cursor });
       for (const k of s.keys) {
+        if (aboneler.length >= SINIR) { kesildi = true; break; }
         try { const v = await kv.get(k.name); if (v) aboneler.push(JSON.parse(v)); } catch {}
       }
+      if (kesildi) break;
       cursor = s.list_complete ? undefined : s.cursor;
     } while (cursor);
     aboneler.sort((a, b) => (b.zaman || '').localeCompare(a.zaman || ''));
-    return json({ aboneler, toplam: aboneler.length });
+    return json({ aboneler, toplam: aboneler.length, ...(kesildi ? { kesildi: true, sinir: SINIR } : {}) });
   }
 
   if (request.method !== 'POST') return json({ hata: 'yalniz POST' }, 405);
@@ -54,8 +63,8 @@ export async function onRequest(context) {
     const simdi = Date.now();
     const anahtar = `a:${eposta}`; // aynı e-posta tek kez
     const kayit = { eposta, zaman: new Date().toISOString(), onay: true };
-    const yaz = kv.put(anahtar, JSON.stringify(kayit), { expirationTtl: OMUR_SN });
-    if (typeof context.waitUntil === 'function') context.waitUntil(yaz); else await yaz;
+    // Abone yazımı onaylanmadan başarı dönülmez (sessiz kayıp yasağı).
+    await kv.put(anahtar, JSON.stringify(kayit), { expirationTtl: OMUR_SN });
     return json({ ok: true });
   } catch { return json({ hata: 'kayit basarisiz' }, 500); }
 }

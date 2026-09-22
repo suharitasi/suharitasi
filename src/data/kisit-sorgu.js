@@ -14,7 +14,7 @@ import { kisitNormalize } from './ortak-normalize.js';
 
 // Normalizasyon + mükerrer eleme TEK KAYNAK: ortak-normalize.js
 // (aynı mantık astro.config'teki kisit-json kancasında da kullanılır).
-const KAYITLAR = kisitNormalize(ana.kayitlar, ek.kayitlar);
+export const KAYITLAR = kisitNormalize(ana.kayitlar, ek.kayitlar);
 
 /** Bir ile ait RG kayıtları (il eşlemesi doğrulanmış olanlar). */
 export function ilKayitlari(il) {

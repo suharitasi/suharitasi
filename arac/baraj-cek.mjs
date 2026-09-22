@@ -83,14 +83,23 @@ async function iste(yol, govde, ctx) {
 async function sayfaliCek(yol, ctx) {
   const hamSayfalar = [];
   const tumKayitlar = [];
+  let beklenen = null;
+  let sayfa = 0;
   for (let no = 1; no <= 50; no++) {
     const ham = await iste(yol, { page: { number: no, size: 1000 } }, ctx);
     hamSayfalar.push(ham);
     const veri = JSON.parse(ham);
     const kayitlar = veri.items ?? [];
     tumKayitlar.push(...kayitlar);
-    const toplam = veri.page?.total ?? kayitlar.length;
-    if (kayitlar.length < 1000 || tumKayitlar.length >= toplam) break;
+    beklenen = veri.page?.total ?? kayitlar.length;
+    sayfa = no;
+    if (kayitlar.length < 1000 || tumKayitlar.length >= beklenen) break;
+  }
+  // SAYFA SINIRI KIRPMASI YASAK (sessiz veri kaybı): 50 sayfa tavanına
+  // takıldıysa ve API daha fazla kayıt bildiriyorsa arşive EKSİK veri
+  // yazılmaz — hatta hata verilir (baraj-gunluk.sh hata sayacına düşer).
+  if (beklenen != null && tumKayitlar.length < beklenen) {
+    throw new Error(`${yol}: sayfalama ${sayfa} sayfada kesildi — ${tumKayitlar.length}/${beklenen} kayıt (kırpma)`);
   }
   return { hamSayfalar, tumKayitlar };
 }

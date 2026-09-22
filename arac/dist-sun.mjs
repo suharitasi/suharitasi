@@ -16,19 +16,34 @@ import { join, extname, normalize } from 'node:path';
 const PORT = Number(process.argv[2] || 5197);
 const KOK = process.argv[3] || '/home/suha/projeler/suharitasi/dist';
 
-// — _headers: yalnız `/*` bloğu (site geneli) —
-function baslikOku() {
-  const genelBaslik = {};
-  if (!existsSync(join(KOK, '_headers'))) return genelBaslik;
-  let icerde = false;
+// — _headers: `/*` + eşleşen yol blokları (Cloudflare semantiği) —
+// Önceden yalnız `/*` bloğu uygulanıyordu; `/veri/*.json` gibi yola özgü
+// bloklar (ör. Content-Disposition: attachment) yerel ölçümde GÖRÜNMÜYORDU.
+// Artık tüm bloklar okunur; eşleşenler dosya sırasına göre uygulanır (sonraki
+// blok öncekini ezer), böylece dist-sun canlıyı daha sadık temsil eder.
+function desenEsles(desen, yol) {
+  if (desen === '/*') return true;
+  const re = new RegExp('^' + desen.replace(/[.+?^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*') + '$');
+  return re.test(yol);
+}
+
+function baslikOku(yol = '/') {
+  const sonuc = {};
+  if (!existsSync(join(KOK, '_headers'))) return sonuc;
+  const bloklar = [];
+  let desen = null;
+  let blok = {};
   for (const satir of readFileSync(join(KOK, '_headers'), 'utf8').split('\n')) {
-    if (satir.startsWith('#') || satir.trim() === '') continue;
-    if (!satir.startsWith(' ') && !satir.startsWith('\t')) { icerde = satir.trim() === '/*'; continue; }
-    if (!icerde) continue;
+    if (satir.startsWith('#')) continue;
+    if (satir.trim() === '') { if (desen) { bloklar.push([desen, blok]); desen = null; blok = {}; } continue; }
+    if (!/^[ \t]/.test(satir)) { if (desen) bloklar.push([desen, blok]); desen = satir.trim(); blok = {}; continue; }
+    if (!desen) continue;
     const i = satir.indexOf(':');
-    if (i > 0) genelBaslik[satir.slice(0, i).trim()] = satir.slice(i + 1).trim();
+    if (i > 0) blok[satir.slice(0, i).trim()] = satir.slice(i + 1).trim();
   }
-  return genelBaslik;
+  if (desen) bloklar.push([desen, blok]);
+  for (const [d, b] of bloklar) if (desenEsles(d, yol)) Object.assign(sonuc, b);
+  return sonuc;
 }
 
 // — _redirects: tam-yol kuralları —
@@ -53,7 +68,7 @@ const TUR = {
 
 createServer(async (istek, cevap) => {
   const yol = decodeURIComponent(new URL(istek.url, 'http://x').pathname);
-  for (const [ad, deger] of Object.entries(baslikOku())) cevap.setHeader(ad, deger);
+  for (const [ad, deger] of Object.entries(baslikOku(yol))) cevap.setHeader(ad, deger);
 
   const y = yonlendirmeOku().get(yol);
   if (y) { cevap.writeHead(y.kod, { Location: y.hedef }); cevap.end(); return; }

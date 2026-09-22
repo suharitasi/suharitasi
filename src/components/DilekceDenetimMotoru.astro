@@ -45,7 +45,7 @@ import HukukDanismanlik from './HukukDanismanlik.astro';
       b: "İdari Yargılama Usulü Kanunu uyarınca hasım tüzel kişiliği haiz 'DSİ Genel Müdürlüğü' olarak gösterilmelidir.",
       c: 'Açıklamalar bölümünde arama/kullanma belgesi veya ruhsat durumuna değinilmiyor; delil ve belge durumu dilekçeye eklenmelidir.',
     },
-  })}></script>
+  }).replace(/</g, '\\u003c')}></script>
 </section>
 
 <HukukDanismanlik konu="Dilekçe ön incelemesi" />

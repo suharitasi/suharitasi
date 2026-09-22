@@ -13,6 +13,10 @@
 const VERI_TIP = /type=["']application\/(ld\+json|json)["']/i;
 
 export async function onRequest(context) {
+  // YALNIZ GET: HEAD yanıtının gövdesi yoktur; response.text() '' döner ve
+  // hash'ler hesaplanmadan 'unsafe-inline' silinirdi → belge yükünde tüm
+  // satır-içi script'ler bloklanırdı. GET dışı istekler olduğu gibi geçer.
+  if (context.request.method !== 'GET') return context.next();
   const response = await context.next();
   const ct = response.headers.get('content-type') || '';
   if (!ct.includes('text/html')) return response;
@@ -21,6 +25,8 @@ export async function onRequest(context) {
   try { html = await response.text(); } catch { return response; }
 
   const don = () => new Response(html, { status: response.status, headers: response.headers });
+  // Gövdesiz/304 benzeri yanıtta hash üretilemez; CSP'ye dokunmadan dön.
+  if (!html.trim()) return don();
   try {
     const hashes = [];
     const re = /<script([^>]*)>([\s\S]*?)<\/script>/gi;
