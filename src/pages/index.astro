@@ -211,9 +211,9 @@ const sahneVeri = SAHNELER.map((s) => ({
       eski sıra (sorular önce). Kural: anasayfa-v2.css sonu. */}
   <div class="v2-ust-akis">
 
-  <Hero sahneVeri={sahneVeri} />
-
-  <TeknolojiKartlari />
+  <Hero sahneVeri={sahneVeri}>
+    <TeknolojiKartlari />
+  </Hero>
 
   {/* 04.08 refactor'unun 2 CTA kartı — 24.08 uyum turunda: emoji ikonlar
       KALDIRILDI (BRIEF.md "emoji yasak"; md13 ölçümü: ihlali üreten, span'ın
