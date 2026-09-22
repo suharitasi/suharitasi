@@ -957,13 +957,16 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
 }
 
 /* 22.09.2026 — MOBİL YATAY TAŞMA ONARIMI (miras: 22.09 hero/teknoloji
-   düzenleme commit'leri 7f5a288, 02b0732). TeknolojiKartlari bölümü
-   (.v2-teknoloji) 375px'te auto-fit minmax(240px,1fr) ile 4 kolona açılıp
-   sayfayı 1024px'e genişletiyordu (ölçüm: html.scrollWidth 375→1024; bölüm
-   gizlenince 375). Bölüm flex öğesi + yatay auto-margin olduğundan içeriğe
-   göre boyutlanıyordu. Düzeltme MOBİL/TABLET kapsamıyla sınırlı: masaüstü
-   düzeni (içerik boyutlu, ortalanmış bölüm) DEĞİŞMEZ. Sağlık md8 taşma
-   hedefi 0'dır. */
+   düzenleme commit'leri 7f5a288, 02b0732; son yeşil sağlık koşumu 06:53Z'den
+   SONRA). TeknolojiKartlari iç ızgarasındaki satır-içi
+   `grid-template-columns: repeat(auto-fit, minmax(240px,1fr)) !important`,
+   bileşenin kendi responsive (2 kolon/1 kolon) medya kuralını EZİYOR; 375px'te
+   4 kolona açılıp sayfayı 1024px'e genişletiyordu (ölçüm: html.scrollWidth
+   375→1024). Kapsayıcı genişliğini breakpoint'lerde sabitleyen bu kural
+   satır-içi !important'ı geçersiz kılar; masaüstü (auto-fit) DEĞİŞMEZ. */
 @media (max-width: 1023px) {
-  .v2-teknoloji { width: 100%; }
+  .v2-teknoloji .v2-tek-izgara { grid-template-columns: 1fr 1fr !important; }
+}
+@media (max-width: 559px) {
+  .v2-teknoloji .v2-tek-izgara { grid-template-columns: 1fr !important; }
 }
