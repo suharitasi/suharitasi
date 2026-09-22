@@ -955,3 +955,15 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
 @media (max-width: 600px) {
   .v2-cta-ikili { grid-template-columns: 1fr; }
 }
+
+/* 22.09.2026 — MOBİL YATAY TAŞMA ONARIMI (miras: 22.09 hero/teknoloji
+   düzenleme commit'leri 7f5a288, 02b0732). TeknolojiKartlari bölümü
+   (.v2-teknoloji) 375px'te auto-fit minmax(240px,1fr) ile 4 kolona açılıp
+   sayfayı 1024px'e genişletiyordu (ölçüm: html.scrollWidth 375→1024; bölüm
+   gizlenince 375). Bölüm flex öğesi + yatay auto-margin olduğundan içeriğe
+   göre boyutlanıyordu. Düzeltme MOBİL/TABLET kapsamıyla sınırlı: masaüstü
+   düzeni (içerik boyutlu, ortalanmış bölüm) DEĞİŞMEZ. Sağlık md8 taşma
+   hedefi 0'dır. */
+@media (max-width: 1023px) {
+  .v2-teknoloji { width: 100%; }
+}
