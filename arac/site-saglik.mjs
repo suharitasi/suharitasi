@@ -2025,7 +2025,11 @@ async function gorselTabanYenile() {
   try { olcumler = await G.olcTumu(tarayici, TABAN, yollar); }
   finally { await tarayici.close(); }
 
-  const govde = G.tabanGovdesi(olcumler, gerekce);
+  // ONARIM (24.09.2026): yenileme eşikleri VARSAYILANA döndürüyordu; 22.09'da
+  // bilinçli olarak 812→2560 yazılan G6/S1 kadraj eşiği yenilemede kayboldu
+  // (ölçüm: yeni taban dosyasında g6KadrajPx=812). Eşikler artık önceki
+  // tabandan DEVRALINIR; yalnız ilk kurulumda (eski yoksa) varsayılan yazılır.
+  const govde = G.tabanGovdesi(olcumler, gerekce, (eski && eski.esikler) || G.ESIKLER);
   if (eski) govde.oncekiTaban = { tarih: eski.tabanTarihi, gerekce: eski.gerekce };
   writeFileSync(join(IZLEME, 'gorsel-taban.json'), JSON.stringify(govde, null, 1) + '\n', 'utf8');
   console.log(`görsel taban yenilendi: ${olcumler.length} ölçüm, ${yollar.length} sayfa`);

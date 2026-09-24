@@ -337,7 +337,7 @@ export function karsilastir(olcum, taban, esik = ESIKLER) {
 }
 
 /** Ölçümlerden taban dosyası gövdesi üretir. */
-export function tabanGovdesi(olcumler, gerekce) {
+export function tabanGovdesi(olcumler, gerekce, esikler = ESIKLER) {
   const sayfalar = {};
   for (const o of olcumler) {
     sayfalar[`${o.yol}@${o.viewport}`] = {
@@ -357,7 +357,7 @@ export function tabanGovdesi(olcumler, gerekce) {
       'Ölçüm deterministiktir: sabit viewport + DPR + reduced-motion (sahne 0\'da donar).',
     tabanTarihi: new Date().toISOString(),
     gerekce,
-    esikler: ESIKLER,
+    esikler,
     olcumKosullari: { viewportlar: VIEWPORTLAR, reducedMotion: 'reduce', animasyon: 'kapalı' },
     sayfalar,
   };
