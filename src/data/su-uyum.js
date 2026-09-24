@@ -14,7 +14,9 @@ import { ISLEMLER, tumIller } from './islem-matrisi.js';
 import { KAYITLAR } from './rg-zaman.js';
 import { ilSlug } from './il-profil.js';
 
-export const ONAYLANDI = false; // [SERDAR-HUKUK] gate — onay gelince true
+// [SERDAR-HUKUK] ONAYI VERİLDİ (24.09.2026): bayrak true → sayfa indexlenir,
+// sitemap'e girer, üretilen belgedeki "TASLAK" damgası kalkar.
+export const ONAYLANDI = true;
 
 // — HUKUKİ ÇERÇEVE: onaylanan 23 künye (metin/künye mevzuat deposundan) —
 const CERCEVE_SECIM = [

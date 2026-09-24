@@ -28,9 +28,10 @@ DURUM: Protokol Adım 1-5 uygulandı ve son kez doğrulandı. Ölçümler (yerel
   sıkıştırmasıyla hedefe çıkar. KABUL; deploy sonrası canlı yeniden ölçüm notu.
 - Optimizasyon: arşivdeki tekrarlı `data-ara` HTML'den kaldırıldı, arama
   samanlığı istemcide görünür metinden türetilir (ham 463→414 KB).
-BEKLEYEN ONAYLAR: (1) Adım 4 hukuk onayı (`su-uyum.js` ONAYLANDI=false);
-(2) Zenodo DOI + Buttondown kimlik bilgileri; (3) tüm yeni yüzeylerin canlı
-görsel/içerik onayı; (4) coğrafi harita katmanı (geometri kaynağı kararı).
+BEKLEYEN ONAYLAR: (1) Zenodo DOI + Buttondown kimlik bilgileri; (2) tüm yeni
+yüzeylerin canlı görsel/içerik onayı; (3) coğrafi harita katmanı (geometri
+kaynağı kararı). NOT: Adım 4 hukuk onayı verildi (24.09.2026, KARARLAR §45);
+`su-uyum.js` ONAYLANDI=true — sayfa index, sitemap'te, TASLAK damgası kalktı.
 YENİ İŞ (bu turdan): yok — kullanıcı yeni istek verene kadar kuyruk temiz.
 
 ═══ 24.09.2026 — HİZMET VE İSTİHBARAT VİTRİNİ (ÜRÜN PROTOKOLÜ Adım 1) ═══

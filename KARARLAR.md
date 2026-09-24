@@ -1099,6 +1099,21 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §45 · ADIM 4 HUKUK ONAY KAPISI AÇILDI (24.09.2026, kullanıcı onayı)
+
+- **Karar:** İşletmeye Özel Su Hukuku Uyum Dosyası tasarımı ve metni kullanıcı
+  tarafından onaylandı. `src/data/su-uyum.js` `ONAYLANDI=false → true`.
+- **Etkiler:** sayfa `noindex` → `index, follow` (Sayfa.astro `robots` prop'u
+  artık geçilmez); sitemap'e girer; üretilen belgedeki "TASLAK" damgası
+  kalkar; `/hizmetler/su-uyum-dosyasi/` `izleme/cekirdek-sayfalar.json`'a
+  eklendi (200 + konsol + mobil taşma nöbeti).
+- **Korunan hukuki şerh:** belgenin 13. bölümündeki bilgilendirme şerhi AYNEN
+  korunur; onay "TASLAK" damgasını kaldırır, hukuki şerhi değil.
+- **Kanıt:** build sonrası `robots=index, follow`, sitemap'te kayıt, belgede
+  TASLAK yok, `site-saglik --hizli` kırmızı 0.
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek
