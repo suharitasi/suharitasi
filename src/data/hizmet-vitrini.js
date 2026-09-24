@@ -53,8 +53,8 @@ export const VITRIN_KOLONLARI = [
     kicker: 'Tarihi Karar Arşivi',
     ad: `Yeraltı Suyu Kararları Kütüğü (${RG_YIL_ILK}–${RG_YIL_SON})`,
     metin:
-      `${RG_TOPLAM} Resmî Gazete kararını harita ve zaman cetvelinde yıl yıl ` +
-      'inceleyin; arazinizdeki kuyu ve su tahsis kısıtlarını tespit edin.',
+      `${RG_TOPLAM} Resmî Gazete kaydını zaman cetvelinde ve il dökümünde yıl ` +
+      'yıl inceleyin; arazinizdeki kuyu ve su tahsis kısıtlarını tespit edin.',
     cta: 'Kararları Haritada Gör',
     hedef: '/arsiv/resmi-gazete/',
     ikon: 'harita',

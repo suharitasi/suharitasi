@@ -1,91 +1,330 @@
 ---
-// /mevzuat/su-verimliligi-sayaci/ — YER TUTUCU (yapım aşaması).
-// Kullanıcı kararı (24.09.2026, Adım 1): hedef rota henüz yok; vitrin
-// bağlantısı kırık olmasın diye noindex tanıtım sayfası açıldı. Geri sayım
-// panosu + .ics üreteci yayına alındığında bu sayfa onunla değiştirilir.
-// Uydurma yasağı: tarih ve sayılar doğrulanmış kaynaktan okunur
-// (data/lead/persona.json + data/lead/nace-ek2.json); yeni hüküm yazılmaz.
+// /mevzuat/su-verimliligi-sayaci/ — SU VERİMLİLİĞİ GERİ SAYIM PANOSU (Adım 2).
+// Yer tutucu içerikten gerçek araca dönüştürüldü (24.09.2026). Kapsam:
+// 2029-12-27 son başvuruya canlı geri sayım; 31 Ek-2 ana faaliyeti + 90
+// detay NACE kodu; sektörel dayanak; tek tıkla .ics hatırlatıcı.
+// UYDURMA YASAĞI: yükümlülük/dayanak yalnız data/lead/persona.json'dan;
+// doğrulanmamış NACE kodları işaretlenir; yeni hukuki cümle yazılmaz.
+// Çalışma anı JS yalnız geri sayım + süzgeç (progressive; JS yoksa liste ve
+// sabit tarih görünür — DESIGN.md §17b).
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import CtaBlok from '../../components/CtaBlok.astro';
 import HukukSerhi from '../../components/HukukSerhi.astro';
-import { yonetmelik, tarihTR } from '../../data/persona.js';
-import naceEk2 from '../../../data/lead/nace-ek2.json';
+import {
+  ANA_FAALIYETLER, ANA_SAYI, DETAY_SAYI, DETAY_DOGRULANDI, DETAY_DOGRULANMADI,
+  SON_TARIH, SON_TARIH_METIN, YONETMELIK_AD, YONETMELIK_RG, SINIFLANAMAYAN_KODLAR,
+  tarihTR,
+} from '../../data/su-verimliligi.js';
 
-const SON_TARIH = yonetmelik?.dogrulanmisSureler?.yesilBelgeSonBasvuru?.tarih;
-const SON_TARIH_METIN = tarihTR(SON_TARIH);
-const SON_YIL = (SON_TARIH || '').slice(0, 4);
-const NACE_ANA = naceEk2.sayimlar.anaFaaliyet_toplam;
-const NACE_DETAY = naceEk2.sayimlar.detay_yakalanan;
+const OZ_CEVAP =
+  `${YONETMELIK_AD} Ek-2 kapsamındaki ${ANA_SAYI} ana faaliyet ve ${DETAY_SAYI} ` +
+  `NACE kodu için yeşil su verimliliği belgesi son başvuru tarihi ${SON_TARIH_METIN}. ` +
+  'Faaliyetinizi seçin; doğrulanmış dayanağı görün ve takviminize hatırlatıcı ekleyin.';
 
-if (!SON_TARIH_METIN) {
-  throw new Error('su-verimliligi-sayaci: doğrulanmış son başvuru tarihi okunamadı.');
+if (OZ_CEVAP.length > 280) {
+  throw new Error(`su-verimliligi-sayaci: öz-cevap ${OZ_CEVAP.length} karakter, sınır 280.`);
 }
 
-const ACIKLAMA =
-  `Su Verimliliği Yönetmeliği kapsamındaki ${NACE_ANA} ana faaliyet ve ` +
-  `${NACE_DETAY} NACE kodu için ${SON_TARIH_METIN} son başvuru tarihine geri ` +
-  'sayan, sektörel kontrol listesi ve .ics hatırlatıcısı sunacak araç yapım ' +
-  'aşamasındadır.';
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/mevzuat/su-verimliligi-sayaci/', Astro.site).href;
+const yonetmelikTarihMetin = YONETMELIK_RG ? tarihTR(YONETMELIK_RG) : null;
+
+const sss = [
+  {
+    soru: 'Yeşil su verimliliği belgesi için son başvuru tarihi ne zaman?',
+    cevap:
+      `${YONETMELIK_AD} kapsamında son başvuru ${SON_TARIH_METIN}. Yönetmelik ` +
+      `${yonetmelikTarihMetin || 'Aralık 2024'} tarihinde yayımlanmış olup Ek-2 ` +
+      'faaliyetleri için "en fazla beş yıl içinde" başvuru öngörülür.',
+  },
+  {
+    soru: 'Hangi faaliyetler Ek-2 kapsamında?',
+    cevap:
+      `Ek-2'de ${ANA_SAYI} ana faaliyet ve ${DETAY_SAYI} NACE kodu sayılır. Bu ` +
+      `kodlardan ${DETAY_DOGRULANDI} tanesi doğrulandı; ${DETAY_DOGRULANMADI} tanesi ` +
+      'doğrulanmadı olarak işaretlidir. Aşağıdaki listeden faaliyet kodunuzu bulabilirsiniz.',
+  },
+  {
+    soru: 'Bu araç ne yapar, ne yapmaz?',
+    cevap:
+      'Geri sayım, sektörel dayanak listesi ve takvim hatırlatıcısı sunar. Hukuki ' +
+      'görüş değildir; başvuru şartları ve güncel durum yetkili kurumdan teyit edilmelidir.',
+  },
+];
+
+const sema = [
+  {
+    '@type': 'FAQPage',
+    mainEntity: sss.map((s) => ({
+      '@type': 'Question',
+      name: s.soru,
+      acceptedAnswer: { '@type': 'Answer', text: s.cevap },
+    })),
+  },
+  {
+    '@type': 'WebPage',
+    '@id': `${canonical}#sayfa`,
+    url: canonical,
+    name: `Su Verimliliği Uyum Sayacı (${SON_TARIH.slice(0, 4)})`,
+    description: OZ_CEVAP,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${kok}#site` },
+  },
+];
 ---
 <Sayfa
-  baslik={`Su Verimliliği Uyum Sayacı (${SON_YIL})`}
-  tarayiciBaslik="Su Verimliliği Uyum Sayacı (yapım aşamasında)"
-  aciklama={ACIKLAMA}
-  robots="noindex, follow"
+  baslik={`Su Verimliliği Uyum Sayacı (${SON_TARIH.slice(0, 4)})`}
+  tarayiciBaslik="Su Verimliliği Uyum Sayacı: 2029 Son Başvuru"
+  aciklama={OZ_CEVAP}
+  sema={sema}
 >
   <SayfaBasi
-    etiket="Mevzuat · yapım aşamasında"
-    baslik={`Su Verimliliği Uyum Sayacı (${SON_YIL})`}
-    ozet={ACIKLAMA}
+    etiket="Mevzuat · geri sayım"
+    baslik={`Su Verimliliği Uyum Sayacı (${SON_TARIH.slice(0, 4)})`}
+    ozet={OZ_CEVAP}
     ozCevap
   />
+  <OzCevap metin={OZ_CEVAP} etiket="Kısa cevap" />
 
-  <p class="durum-not">
-    Bu araç yapım aşamasındadır; yayına alındığında bu sayfada çalışacaktır.
-    Amaçlanan çıktı: {NACE_ANA} ana faaliyet ve {NACE_DETAY} NACE kodu için
-    zorunlu belge takvimini göstermek, her sektör için başvuru öncesi kontrol
-    listesi sunmak ve nihai uyum tarihine ({SON_TARIH_METIN}) canlı geri sayım
-    ile takvime eklenebilen .ics hatırlatıcısı üretmek. Aşağıdaki mevcut
-    sayfalar aynı yükümlülüğü bugün açıklar.
-  </p>
-
-  <section class="durum-bolumlar" aria-label="Şimdilik ilgili sayfalar">
-    <h2>Şimdilik ilgili sayfalar</h2>
-    <ul>
-      <li><a href="/durumum/">Sektörünüze göre yükümlülük kapıları</a> — NACE Ek-2 faaliyetleri ve doğrulanmış son tarihler.</li>
-      <li><a href="/sektor/">Sektörel izin rehberleri</a> — sektör profili, işlem ve uyuşmazlık yolları.</li>
-      <li><a href="/mevzuat/">Mevzuat kütüphanesi</a> — Su Verimliliği Yönetmeliği ve ilgili maddeler.</li>
+  <section class="sv-sayac" aria-label="Son başvuruya kalan süre">
+    <p class="sv-sayac-etiket">Yeşil su verimliliği belgesi · son başvuru</p>
+    <p class="sv-geri-sayim" id="sv-sayac" data-son={SON_TARIH} hidden></p>
+    <p class="sv-tarih">
+      <time datetime={SON_TARIH}>{SON_TARIH_METIN}</time>
+    </p>
+    <ul class="sv-ozet">
+      <li><strong>{ANA_SAYI}</strong> ana faaliyet</li>
+      <li><strong>{DETAY_SAYI}</strong> NACE kodu ({DETAY_DOGRULANDI} doğrulandı)</li>
+      <li>Dayanak: {YONETMELIK_AD} md.(3) + Ek-2</li>
     </ul>
+    <p class="sv-ics-satir">
+      <a class="sv-ics" href="/mevzuat/su-verimliligi-sayaci/takvim/tum.ics" download>
+        Takvime ekle (.ics)
+      </a>
+      <span class="sv-ics-not">Tek tıkla indirilen hatırlatıcı; 30/7/1 gün kala uyarır.</span>
+    </p>
   </section>
 
+  <label class="sv-arama">
+    <span>Faaliyet ara</span>
+    <input type="search" id="sv-ara" placeholder="ör. gıda, tekstil, maden, OSB, NACE 10" autocomplete="off" />
+  </label>
+  <p class="sv-durum" id="sv-durum" aria-live="polite">
+    {ANA_SAYI} faaliyet listeleniyor.
+  </p>
+
+  <h2 class="sv-liste-baslik">Ek-2 faaliyet listesi</h2>
+  <div class="sv-liste" id="sv-liste">
+    {ANA_FAALIYETLER.map((f) => (
+      <details
+        class="sv-f"
+        data-ara={`${f.kod} ${f.kisaAd} ${f.ad} ${f.detay.map((d) => d.kod).join(' ')}`.toLocaleLowerCase('tr-TR')}
+      >
+        <summary>
+          <span class="sv-f-kod">NACE {f.kod}</span>
+          <span class="sv-f-ad">{f.kisaAd}</span>
+          <span class="sv-f-rozet">{f.detayToplam} kod</span>
+        </summary>
+        <div class="sv-f-govde">
+          {f.persona ? (
+            <p class="sv-yukumluluk">{f.persona.yukumluluk}</p>
+          ) : (
+            <p class="sv-yukumluluk">Yükümlülük metni bu faaliyet için doğrulanmış persona kaydında yok.</p>
+          )}
+
+          {f.persona && f.persona.dayanak.length > 0 && (
+            <div class="sv-dayanak">
+              <h3>Doğrulanmış dayanak</h3>
+              <ul>
+                {f.persona.dayanak.map((d) => <li>{d}</li>)}
+              </ul>
+            </div>
+          )}
+
+          {f.detay.length > 0 && (
+            <div class="sv-kodlar">
+              <h3>NACE kodları ({f.detayDogrulandi}/{f.detayToplam} doğrulandı)</h3>
+              <div class="sv-kaydir">
+                <table>
+                  <caption>NACE kodu · açıklama · doğrulama durumu</caption>
+                  <thead>
+                    <tr><th scope="col">Kod</th><th scope="col">Açıklama</th><th scope="col">Durum</th></tr>
+                  </thead>
+                  <tbody>
+                    {f.detay.map((d) => (
+                      <tr>
+                        <td class="sv-kod">{d.kod}</td>
+                        <td>{d.aciklama || '—'}</td>
+                        <td>{d.dogrulandi ? 'doğrulandı' : 'doğrulanmadı'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          <p class="sv-bag">
+            <a class="sv-ics-kucuk" href={`/mevzuat/su-verimliligi-sayaci/takvim/${f.kod}.ics`} download>
+              Bu faaliyet için takvime ekle (.ics)
+            </a>
+            {f.persona && (
+              <a href={`/durumum/${f.persona.slug}/`}>Sektör sayfası: {f.kisaAd} →</a>
+            )}
+          </p>
+        </div>
+      </details>
+    ))}
+  </div>
+
+  {SINIFLANAMAYAN_KODLAR.length > 0 && (
+    <details class="sv-f sv-sinifsiz" data-ara="sınıflandırılamayan">
+      <summary>
+        <span class="sv-f-kod">Sınıflandırılamayan</span>
+        <span class="sv-f-ad">OCR kaynaklı kodlar</span>
+        <span class="sv-f-rozet">{SINIFLANAMAYAN_KODLAR.length} kod</span>
+      </summary>
+      <div class="sv-f-govde">
+        <p class="sv-yukumluluk">
+          Kaynak OCR taramasında okunamayan/biçimi bozuk kodlar bir ana faaliyete
+          güvenle bağlanamadı. Uydurma eşleme yapılmadı; kayıt olduğu gibi gösterilir.
+        </p>
+        <div class="sv-kodlar">
+          <div class="sv-kaydir">
+            <table>
+              <caption>Ham kod · açıklama · doğrulama durumu</caption>
+              <thead>
+                <tr><th scope="col">Kod</th><th scope="col">Açıklama</th><th scope="col">Durum</th></tr>
+              </thead>
+              <tbody>
+                {SINIFLANAMAYAN_KODLAR.map((d) => (
+                  <tr>
+                    <td class="sv-kod">{d.kod}</td>
+                    <td>{d.aciklama || '—'}</td>
+                    <td>{d.guven === 'dogrulandi' ? 'doğrulandı' : 'doğrulanmadı'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </details>
+  )}
+
+  <nav class="sv-capraz" aria-label="İlgili bölümler">
+    <a href="/durumum/">→ Sektörünüze göre yükümlülük kapıları</a>
+    <a href="/sektor/">→ Sektörel izin rehberleri</a>
+    <a href="/mevzuat/">→ Mevzuat kütüphanesi</a>
+    <a href="/su-kanunu/mevzuat-kutuphanesi/">→ Resmî tam metin bağlantıları</a>
+  </nav>
+
+  <CtaBlok
+    konu="Yeşil su verimliliği belgesi"
+    baslik="İşletmenizin Ek-2 kapsamında olup olmadığını değerlendirelim"
+    metin="Faaliyet kodunuzun kapsamı, başvuru yolu ve takvimini dosyanıza göre inceleyelim."
+  />
   <HukukSerhi />
+<script type="module" src="/s/su-verimliligi.js" is:inline></script>
 </Sayfa>
 
 <style>
-  .durum-not {
-    margin: 2rem 0 0;
-    padding: 1.1rem 1.3rem;
-    background: var(--zemin-kart);
+  .sv-sayac {
+    margin: 1.6rem 0 2rem;
+    padding: 1.4rem 1.5rem;
     border: 1px solid var(--cizgi);
-    border-left: 3px solid var(--su-400);
-    font-size: 0.95rem;
-    line-height: 1.65;
-    color: var(--metin);
-  }
-  .durum-bolumlar { margin-top: 2.4rem; }
-  .durum-bolumlar h2 {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: 1.5rem;
-    margin: 0 0 0.8rem;
-  }
-  .durum-bolumlar ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
-  .durum-bolumlar li {
-    padding: 0.8rem 1rem;
-    border: 1px solid var(--cizgi);
+    border-left: 3px solid var(--su-700);
     background: var(--zemin-kart);
-    font-size: 0.92rem;
-    line-height: 1.6;
   }
-  .durum-bolumlar a { color: var(--baglanti); font-weight: 600; }
+  .sv-sayac-etiket {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    margin: 0 0 0.4rem;
+  }
+  .sv-geri-sayim {
+    margin: 0;
+    font-family: var(--mono);
+    font-variant-numeric: lining-nums tabular-nums;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    color: var(--su-700);
+    line-height: 1.1;
+  }
+  .sv-tarih { margin: 0.2rem 0 0.6rem; font-weight: 600; }
+  .sv-ozet {
+    list-style: none;
+    margin: 0.6rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
+    font-size: 0.9rem;
+    color: var(--metin-soluk);
+  }
+  .sv-ozet strong { color: var(--metin); }
+  .sv-ics-satir { margin: 1rem 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; }
+  .sv-ics, .sv-ics-kucuk {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.55rem 1.1rem;
+    background: var(--su-700);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 2px;
+  }
+  .sv-ics:hover, .sv-ics-kucuk:hover { background: var(--su-400); }
+  .sv-ics-not { font-size: 0.82rem; color: var(--metin-soluk); }
+
+  .sv-arama { display: flex; flex-direction: column; gap: 0.3rem; max-width: 30rem; margin: 0 0 0.6rem; }
+  .sv-arama span { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--metin-soluk); }
+  .sv-arama input { font: inherit; padding: 0.6rem 0.8rem; min-height: 44px; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); }
+  .sv-arama input:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+  .sv-durum { font-size: 0.88rem; color: var(--metin-soluk); margin: 0 0 1rem; }
+  .sv-liste-baslik { font-family: var(--serif); font-weight: 500; font-size: 1.4rem; margin: 0 0 0.7rem; }
+
+  .sv-liste { display: grid; gap: 0.5rem; }
+  .sv-f { border: 1px solid var(--cizgi); background: var(--zemin-kart); }
+  .sv-f summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 0.9rem;
+    padding: 0.85rem 1rem;
+    min-height: 44px;
+  }
+  .sv-f summary::-webkit-details-marker { display: none; }
+  .sv-f summary::after { content: "+"; margin-left: auto; font-family: var(--mono); color: var(--su-700); }
+  .sv-f[open] summary::after { content: "−"; }
+  .sv-f summary:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+  .sv-f-kod { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; color: var(--su-700); }
+  .sv-f-ad { font-weight: 600; }
+  .sv-f-rozet { font-family: var(--mono); font-size: 0.62rem; color: var(--metin-soluk); }
+  .sv-f-govde { padding: 0 1rem 1.1rem; border-top: 1px solid var(--cizgi); }
+  .sv-yukumluluk { margin: 0.9rem 0 0; font-size: 0.92rem; line-height: 1.6; }
+  .sv-dayanak, .sv-kodlar { margin-top: 1rem; }
+  .sv-dayanak h3, .sv-kodlar h3 { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--metin-soluk); margin: 0 0 0.5rem; }
+  .sv-dayanak ul { margin: 0; padding-left: 1.1rem; font-size: 0.86rem; line-height: 1.55; color: var(--metin-soluk); display: grid; gap: 0.3rem; }
+  .sv-kaydir { overflow-x: auto; }
+  .sv-kodlar table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 30rem; }
+  .sv-kodlar caption { caption-side: top; text-align: left; font-size: 0.72rem; color: var(--metin-soluk); padding-bottom: 0.4rem; }
+  .sv-kodlar th, .sv-kodlar td { text-align: left; vertical-align: top; padding: 0.4rem 0.55rem; border-bottom: 1px solid var(--cizgi); }
+  .sv-kodlar thead th { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--metin-soluk); border-bottom: 2px solid var(--su-700); }
+  .sv-kod { font-family: var(--mono); white-space: nowrap; }
+  .sv-bag { margin: 1.1rem 0 0; display: flex; flex-wrap: wrap; gap: 0.6rem 1.2rem; align-items: center; }
+  .sv-bag a:not(.sv-ics-kucuk) { color: var(--baglanti); }
+  .sv-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .sv-capraz a { color: var(--baglanti); text-decoration: none; }
+  .sv-capraz a:hover { text-decoration: underline; }
+  @media (max-width: 560px) {
+    .sv-f summary { gap: 0.25rem 0.6rem; }
+    .sv-f-rozet { width: 100%; }
+  }
 </style>

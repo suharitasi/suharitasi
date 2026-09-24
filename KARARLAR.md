@@ -964,6 +964,38 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §40 · ADIM 2 — SU VERİMLİLİĞİ SAYACI + RESMÎ GAZETE ZAMAN MAKİNESİ (24.09.2026, kullanıcı onaylı Adım 2)
+
+- **Karar 1 — Sayac:** `/mevzuat/su-verimliligi-sayaci/` gerçek araca
+  dönüştü: 2029-12-27 son başvuruya canlı geri sayım, 31 Ek-2 ana faaliyeti
+  + 90 detay NACE kodu (güven işaretli), 32 statik `.ics` ucu
+  (`/takvim/tum.ics` + 31 NACE). Sayılar `src/data/su-verimliligi.js`'te
+  build-time assert edilir; yükümlülük/dayanak yalnız `data/lead/persona.json`.
+- **Karar 2 — Zaman makinesi:** `/arsiv/resmi-gazete/` gerçek arşive dönüştü:
+  419 kayıt (1963–2017, 70 il), yıl cetveli + il dökümü + durum/metin süzgeci;
+  kayıtlar sunucuda render (SEO/no-JS), JS yalnız süzer, süzgeç URL'e yazılır.
+- **Karar 3 — Coğrafi harita ERTELENDİ:** depoda Türkiye il/havza polygon
+  (GeoJSON) verisi YOK; uydurma geometri üretilmedi. Coğrafi harita yerine
+  il dökümü sunuldu. Vitrin kolon 2 metni "harita" vaadinden doğrulanmış
+  "zaman cetveli + il dökümü"ne çekildi. Harita için güvenilir geometri
+  kaynağı kararı bekliyor (SIRADAKILER).
+- **Karar 4 — 419 vs 280:** arşiv ekranı ham 419 kaydı gösterir (site başlık
+  sayısıyla tutarlı); sayfada `ortak-normalize.js` ile ölçülen 280 tekil ilan
+  ayrıca not düşülür. İki sayı çelişki değil, ham/mükerrersizleştirilmiş
+  ölçümdür; ikisi de aynı kaynaktan build-time sayılır.
+- **Karar 5 — .ics determinizmi:** `DTSTAMP` yönetmelik RG tarihine sabitlendi
+  (20241227T000000Z) — her build'de dosya değişmez. RFC 5545: CRLF, 75 oktet
+  satır katlama, 30/7/1 gün VALARM.
+- **Kanıt:** build 1019 sayfa · sitemap 1014 · `site-saglik --hizli` (yerel
+  dist-sun) kırmızı 0 (18/18 sayfa 200, konsol 0, mobil taşma 0) · Playwright
+  ölçümü: Konya 24 kayıt, 2017 6 kayıt, "korkuteli" 2 kayıt + URL senkronu ·
+  W3C Nu iki sayfa 0 hata · `.ics` yapısal doğrulama (CRLF, ≤75 oktet).
+- **Core nöbet:** `/mevzuat/su-verimliligi-sayaci/` ve `/arsiv/resmi-gazete/`
+  `izleme/cekirdek-sayfalar.json`'a eklendi (200 + konsol + mobil taşma nöbeti).
+- **Açık:** kullanıcı canlı görsel/İçerik onayı; protokol Bölüm 6 Adım 3-6.
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek

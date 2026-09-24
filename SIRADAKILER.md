@@ -22,11 +22,18 @@ KULLANICI ONAYI BEKLİYOR (İş kapanış kuralı: görsel iş "YAPILDI" sayılm
       (22.09'un 812→2560 G6 eşiği kayboldu); eşik artık önceki tabandan
       devralınır (`arac/gorsel-olc.mjs` + `arac/site-saglik.mjs`).
 - [ ] KULLANICI: vitrin + 3 tanıtım sayfası CANLI görsel onayı.
-- [ ] SIRADAKİ ADIMLAR (protokol Bölüm 6; onay bekliyor): Adım 2 (#4 Su
-      Verimliliği Sayacı + .ics, #1 Resmî Gazete Zaman Makinesi) → Adım 3
-      (#9 DOI + embed widget, #5 kişisel istihbarat) → Adım 4 (#2 Uyum
-      Dosyası PDF, hukuki onaya bağlı) → Adım 5 (sleeper: BibTeX, GeoJSON
-      indir, sayfa QR) → Adım 6 doğrulama.
+- [x] Adım 2 (24.09.2026) — #4 Su Verimliliği Uyum Sayacı (31 Ek-2 faaliyeti +
+      90 NACE kodu + canlı geri sayım + 32 .ics ucu) ve #1 Resmî Gazete Zaman
+      Makinesi (419 kayıt, 1963–2017, yıl cetveli + il dökümü + süzgeç). Sayılar
+      build-time assert; kayıtlar sunucuda render. Yer tutucular gerçek araçla
+      değiştirildi. Vitrin kolon 2 metni "harita" yerine doğrulanmış "zaman
+      cetveli + il dökümü"ne çekildi (coğrafi geometri verisi depoda yok).
+- [ ] SIRADAKİ ADIMLAR (protokol Bölüm 6; onay bekliyor): Adım 3 (#9 DOI +
+      embed widget, #5 kişisel istihbarat) → Adım 4 (#2 Uyum Dosyası PDF,
+      hukuki onaya bağlı) → Adım 5 (sleeper: BibTeX, GeoJSON indir, sayfa QR)
+      → Adım 6 doğrulama.
+- [ ] HARİTA KATMANI (Adım 2'den ertelendi): coğrafi il/havza haritası için
+      güvenilir geometri (GeoJSON) gerekir; depoda yok. Karar bekliyor.
 - NOT (uyarı): protokol metni kolon 2 başlığında "(1963–2026)" yazıyor;
       veri 1963–2017 (419 kayıt). Vitrinde doğrulanmış aralık basıldı.
 

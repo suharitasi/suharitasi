@@ -1,82 +1,296 @@
 ---
-// /arsiv/resmi-gazete/ — YER TUTUCU (yapım aşaması).
-// Kullanıcı kararı (24.09.2026, Adım 1): hedef rota henüz yok; vitrin
-// bağlantısı kırık olmasın diye noindex tanıtım sayfası açıldı. Zaman
-// cetveli + harita aracı yayına alındığında bu sayfa onunla değiştirilir.
-// Uydurma yasağı: yalnız doğrulanmış aralık (1963–2017, 419 kayıt) yazılır;
-// sayılar build anında veriden sayılır ve assert edilir.
+// /arsiv/resmi-gazete/ — RESMÎ GAZETE YERALTI SUYU ARŞİVİ / ZAMAN MAKİNESİ
+// (Adım 2, 24.09.2026). Yer tutucu içerikten gerçek arşive dönüştürüldü.
+// Kapsam: 1963–2017 (419 kayıt) zaman cetveli + il dökümü + metin araması;
+// her kayıt RG tarih/sayı ve doğrudan resmî link taşır.
+// UYDURMA YASAĞI: kayıtlar ham arşivden; "açık/kapalı" sınıflaması
+// ÜRETİLMEZ. Tüm sayılar src/data/rg-zaman.js'te build-time sayılıp assert
+// edilir. Kayıtlar sunucuda render edilir (SEO/no-JS); JS yalnız süzer.
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import CtaBlok from '../../components/CtaBlok.astro';
 import HukukSerhi from '../../components/HukukSerhi.astro';
-import { SAYILAR } from '../../data/kapi.js';
+import {
+  KAYITLAR, TOPLAM, YIL_ILK, YIL_SON, YIL_DAGILIM, YIL_MAKS,
+  IL_DAGILIM, IL_SAYISI, ILCE_SAYISI, ILLI_TOPLAM, ILLI_DEGIL,
+  SAYILI_TOPLAM, TEKIL_ILAN,
+} from '../../data/rg-zaman.js';
 
-const RG_TOPLAM = SAYILAR.rgToplam;
-const RG_YIL_ILK = SAYILAR.rgYilIlk;
-const RG_YIL_SON = SAYILAR.rgYilSon;
+const OZ_CEVAP =
+  `${YIL_ILK}–${YIL_SON} arası ${TOPLAM} Resmî Gazete yeraltı suyu işletme sahası ` +
+  `kaydı; ${IL_SAYISI} il, ${ILCE_SAYISI} ilçe. Zaman cetvelinden yıl, il ` +
+  'dökümünden yer seçin; her kaydın tarih, sayı ve resmî linkini görün.';
 
-const ACIKLAMA =
-  `${RG_YIL_ILK}–${RG_YIL_SON} arası ${RG_TOPLAM} Resmî Gazete işletme sahası ` +
-  'kaydını harita ve zaman cetvelinde yıl yıl sunacak arşiv aracı yapım ' +
-  'aşamasındadır; şimdilik kısıt sorgusu ve il sayfalarına yönlendirir.';
+if (OZ_CEVAP.length > 280) {
+  throw new Error(`resmi-gazete: öz-cevap ${OZ_CEVAP.length} karakter, sınır 280.`);
+}
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/arsiv/resmi-gazete/', Astro.site).href;
+
+// Durum seçenekleri — veriden türetilir (uydurma yok).
+const durumlar = [...new Set(KAYITLAR.map((k) => k.durum))].sort((a, b) => a.localeCompare(b, 'tr'));
+
+const sss = [
+  {
+    soru: 'Bir arazide yeraltı suyu kuyu kısıtı olup olmadığını nasıl anlarım?',
+    cevap:
+      `Bu arşiv ${YIL_ILK}–${YIL_SON} arası ${TOPLAM} Resmî Gazete işletme sahası ` +
+      'kaydını zaman cetveli ve il dökümüyle taranabilir kılar. İlinizi seçin, ' +
+      'ilgili ilanları resmî linkleriyle görün.',
+  },
+  {
+    soru: 'Kayıt bulunmaması, kısıt olmadığı anlamına gelir mi?',
+    cevap:
+      'Hayır. Tarama kapsamı derlenen arşivle sınırlıdır; kayıt bulunmaması ' +
+      'kısıt olmadığının kanıtı değildir. Güncel durum DSİ/il su idaresinden teyit edilmelidir.',
+  },
+  {
+    soru: 'Kayıtlar hangi kaynaktan geliyor?',
+    cevap:
+      'DSİ Genel Müdürlüğü’nün Resmî Gazete’de yayımladığı yeraltı suyu işletme ' +
+      'sahası ilanlarından derlenmiştir; her kayıt RG tarih, gazete sayısı ve ' +
+      'doğrudan resmî bağlantı taşır.',
+  },
+];
+
+const sema = [
+  {
+    '@type': 'Dataset',
+    '@id': `${canonical}#veri`,
+    name: 'Resmî Gazete yeraltı suyu işletme sahası kayıtları',
+    description:
+      `${YIL_ILK}–${YIL_SON} arası Resmî Gazete’de yayımlanan yeraltı suyu işletme ` +
+      'sahası ilanlarından derlenen, il/ilçe eşlemeli ve resmî linkli arşiv.',
+    creator: { '@id': `${kok}#kurum` },
+    isAccessibleForFree: true,
+    inLanguage: 'tr-TR',
+    numberOfItems: TOPLAM,
+    temporalCoverage: `${YIL_ILK}/${YIL_SON}`,
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: sss.map((s) => ({
+      '@type': 'Question',
+      name: s.soru,
+      acceptedAnswer: { '@type': 'Answer', text: s.cevap },
+    })),
+  },
+  {
+    '@type': 'WebPage',
+    '@id': `${canonical}#sayfa`,
+    url: canonical,
+    name: `Yeraltı Suyu Kararları Kütüğü (${YIL_ILK}–${YIL_SON})`,
+    description: OZ_CEVAP,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${kok}#site` },
+  },
+];
 ---
 <Sayfa
-  baslik={`Yeraltı Suyu Kararları Kütüğü (${RG_YIL_ILK}–${RG_YIL_SON})`}
-  tarayiciBaslik="Yeraltı Suyu Kararları Kütüğü (yapım aşamasında)"
-  aciklama={ACIKLAMA}
-  robots="noindex, follow"
+  baslik={`Yeraltı Suyu Kararları Kütüğü (${YIL_ILK}–${YIL_SON})`}
+  tarayiciBaslik="Resmî Gazete Yeraltı Suyu Arşivi: Yıl ve İl"
+  aciklama={OZ_CEVAP}
+  sema={sema}
 >
   <SayfaBasi
-    etiket="Arşiv · yapım aşamasında"
-    baslik={`Yeraltı Suyu Kararları Kütüğü (${RG_YIL_ILK}–${RG_YIL_SON})`}
-    ozet={ACIKLAMA}
+    etiket="Arşiv · zaman cetveli"
+    baslik={`Yeraltı Suyu Kararları Kütüğü (${YIL_ILK}–${YIL_SON})`}
+    ozet={OZ_CEVAP}
     ozCevap
   />
+  <OzCevap metin={OZ_CEVAP} etiket="Kısa cevap" />
 
-  <p class="durum-not">
-    Bu arşiv aracı yapım aşamasındadır; yayına alındığında bu sayfada çalışacaktır.
-    Amaçlanan çıktı: {RG_YIL_ILK}–{RG_YIL_SON} arası yayımlanmış {RG_TOPLAM} Resmî Gazete
-    işletme sahası kaydını yıl, il ve ova bazında harita ile zaman cetvelinde
-    taramak; her ilan kartında Resmî Gazete tarihi, sayısı ve doğrudan resmî
-    bağlantıyı göstermek. Aşağıdaki mevcut araçlar aynı veriyi bugün sorgulatır.
+  <ul class="rz-ozet" aria-label="Arşiv özeti">
+    <li><strong>{TOPLAM}</strong> RG kaydı</li>
+    <li><strong>{IL_SAYISI}</strong> il</li>
+    <li><strong>{ILCE_SAYISI}</strong> ilçe</li>
+    <li><strong>{SAYILI_TOPLAM}</strong> kayıtta gazete sayısı</li>
+  </ul>
+  <p class="rz-not">
+    {TOPLAM} ham kayıt {TEKIL_ILAN} tekil ilana karşılık gelir (aynı Resmî Gazete
+    sayısındaki tekrarlar mükerrersizleştirilmiştir). {ILLI_DEGIL} kayıtta il
+    eşlemesi yoktur; bunlar yalnız tarihle görünür. Bu arşiv bir “açık/kapalı”
+    sınıflaması üretmez; yalnız resmî ilanı gösterir.
   </p>
 
-  <section class="durum-bolumlar" aria-label="Şimdilik ilgili sayfalar">
-    <h2>Şimdilik ilgili sayfalar</h2>
-    <ul>
-      <li><a href="/kuyu-kisit-sorgu/">Resmî Gazete kısıt sorgusu</a> — il bazında işletme sahası ve tahsise kapatma kayıtları, resmî bağlantılarıyla.</li>
-      <li><a href="/kuyu-ruhsati/">İl sayfaları</a> — ilinizde ruhsat süreci ve kısıt özeti.</li>
-      <li><a href="/veri/">Açık veri katmanı</a> — kaynağı gösterilmiş ham kayıtlar.</li>
-    </ul>
+  <section class="rz-bolum" aria-label="Zaman cetveli">
+    <h2 class="rz-baslik">Zaman cetveli</h2>
+    <div class="rz-cetvel-kaydir">
+      <div class="rz-cetvel" id="rz-cetvel" role="group" aria-label="Yıla göre süzgeç">
+        {YIL_DAGILIM.map((y) => (
+          <button type="button" class="rz-yil" data-yil={y.yil}
+                  title={`${y.yil}: ${y.sayi} kayıt`} aria-pressed="false">
+            <span class="rz-yil-bar" style={`height:${Math.max(4, Math.round((y.sayi / YIL_MAKS) * 100))}%`} aria-hidden="true"></span>
+            <span class="rz-yil-sayi">{y.sayi}</span>
+            <span class="rz-yil-no">{y.yil}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+    <p class="rz-cetvel-not">Bir yıla tıklayın; liste o yıla daralır. Tekrar tıklayınca süzgeç kalkar.</p>
   </section>
 
+  <section class="rz-bolum" aria-label="İl dökümü">
+    <h2 class="rz-baslik">İl dökümü</h2>
+    <div class="rz-iller" id="rz-iller" role="group" aria-label="İle göre süzgeç">
+      {IL_DAGILIM.map((i) => (
+        <button type="button" class="rz-il" data-il={i.il} aria-pressed="false">
+          {i.il} <span class="rz-il-sayi">{i.sayi}</span>
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <div class="rz-kontrol">
+    <label class="rz-alan">
+      <span>Durum</span>
+      <select id="rz-durum">
+        <option value="">Tümü</option>
+        {durumlar.map((d) => <option value={d}>{d}</option>)}
+      </select>
+    </label>
+    <label class="rz-alan rz-alan-genis">
+      <span>Metin ara</span>
+      <input type="search" id="rz-ara" placeholder="ör. Konya, Çumra, Korkuteli, kararname" autocomplete="off" />
+    </label>
+    <button type="button" class="rz-sifirla" id="rz-sifirla">Süzgeçleri sıfırla</button>
+  </div>
+
+  <p class="rz-durum" id="rz-sonuc" aria-live="polite">
+    {TOPLAM} kayıt listeleniyor.
+  </p>
+
+  <ol class="rz-liste" id="rz-liste">
+    {KAYITLAR.map((k) => {
+      const yer = [
+        k.il.length ? `İl: ${k.il.join(', ')}` : '',
+        k.ilce.length ? `İlçe: ${k.ilce.join(', ')}` : '',
+      ].filter(Boolean).join(' · ');
+      const ara = `${k.tarih} ${k.sayi ?? ''} ${k.saha} ${k.il.join(' ')} ${k.ilce.join(' ')} ${k.durum} ${k.tur}`.toLocaleLowerCase('tr-TR');
+      return (
+        <li
+          class="rz-k"
+          data-y={k.yil ?? ''}
+          data-il={k.il.join(' ')}
+          data-d={k.durum}
+          data-ara={ara}
+        >
+          <div class="rz-k-ust">
+            <span class="rz-k-tarih">{k.tarih}</span>
+            {k.sayi != null && <span class="rz-k-sayi">RG {k.sayi}</span>}
+            <span class="rz-k-durum">{k.durum}</span>
+          </div>
+          <p class="rz-k-saha">{k.saha || 'Resmî Gazete ilan pasajı (başlıksız kayıt)'}</p>
+          {yer && <p class="rz-k-yer">{yer}</p>}
+          <p class="rz-k-bag">
+            <a href={k.kaynak} target="_blank" rel="noopener">Resmî Gazete kaydı →</a>
+          </p>
+        </li>
+      );
+    })}
+  </ol>
+
+  <p class="rz-bos" id="rz-bos" hidden>Bu süzgeçlerle eşleşen kayıt bulunamadı.</p>
+
+  <nav class="rz-capraz" aria-label="İlgili bölümler">
+    <a href="/kuyu-kisit-sorgu/">→ İl bazında kısıt sorgusu</a>
+    <a href="/kapatma-kaydi/">→ Kapatma kaydı metin araması</a>
+    <a href="/kuyu-ruhsati/">→ İl sayfaları</a>
+    <a href="/veri/">→ Açık veri katmanı</a>
+  </nav>
+
+  <CtaBlok
+    konu="Yeraltı suyu kısıtı"
+    baslik="Arşivde çıkan kaydın arazinize etkisini değerlendirelim"
+    metin="İlgili ilanı ve tahsis durumunu dosyanıza göre inceleyelim."
+  />
   <HukukSerhi />
+<script type="module" src="/s/rg-zaman.js" is:inline></script>
 </Sayfa>
 
 <style>
-  .durum-not {
-    margin: 2rem 0 0;
-    padding: 1.1rem 1.3rem;
-    background: var(--zemin-kart);
-    border: 1px solid var(--cizgi);
-    border-left: 3px solid var(--su-400);
-    font-size: 0.95rem;
-    line-height: 1.65;
-    color: var(--metin);
-  }
-  .durum-bolumlar { margin-top: 2.4rem; }
-  .durum-bolumlar h2 {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: 1.5rem;
-    margin: 0 0 0.8rem;
-  }
-  .durum-bolumlar ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
-  .durum-bolumlar li {
-    padding: 0.8rem 1rem;
-    border: 1px solid var(--cizgi);
-    background: var(--zemin-kart);
+  .rz-ozet {
+    list-style: none;
+    margin: 1.6rem 0 0.6rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.6rem;
     font-size: 0.92rem;
-    line-height: 1.6;
+    color: var(--metin-soluk);
   }
-  .durum-bolumlar a { color: var(--baglanti); font-weight: 600; }
+  .rz-ozet strong { color: var(--metin); font-family: var(--mono); font-variant-numeric: lining-nums tabular-nums; }
+  .rz-not { margin: 0 0 0.5rem; padding: 0.8rem 1.1rem; border: 1px solid var(--cizgi); border-left: 3px solid var(--kehribar); font-size: 0.86rem; line-height: 1.6; color: var(--metin-soluk); max-width: 78ch; }
+
+  .rz-bolum { margin-top: 2rem; }
+  .rz-baslik { font-family: var(--serif); font-weight: 500; font-size: 1.4rem; margin: 0 0 0.7rem; }
+  .rz-cetvel-kaydir { overflow-x: auto; padding-bottom: 0.3rem; }
+  .rz-cetvel { display: flex; align-items: flex-end; gap: 2px; min-width: max-content; height: 130px; }
+  .rz-yil {
+    flex: 0 0 auto;
+    width: 2.75rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid var(--cizgi);
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
+  }
+  .rz-yil-bar { width: 70%; background: var(--su-400); min-height: 3px; transition: background-color 150ms ease; }
+  .rz-yil-sayi { font-family: var(--mono); font-size: 0.55rem; color: var(--metin-soluk); }
+  .rz-yil-no { font-family: var(--mono); font-size: 0.52rem; color: var(--metin-soluk); }
+  .rz-yil:hover .rz-yil-bar, .rz-yil[aria-pressed="true"] .rz-yil-bar { background: var(--su-700); }
+  .rz-yil:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+  .rz-yil[aria-pressed="true"] .rz-yil-no { color: var(--su-700); font-weight: 700; }
+  .rz-cetvel-not { font-size: 0.78rem; color: var(--metin-soluk); margin: 0.6rem 0 0; }
+
+  .rz-iller { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .rz-il {
+    font: inherit;
+    font-size: 0.8rem;
+    min-height: 44px;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--cizgi);
+    background: var(--zemin-kart);
+    color: var(--metin);
+    cursor: pointer;
+  }
+  .rz-il:hover { border-color: var(--su-400); }
+  .rz-il[aria-pressed="true"] { background: var(--su-700); color: #fff; border-color: var(--su-700); }
+  .rz-il:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+  .rz-il-sayi { font-family: var(--mono); font-size: 0.7rem; opacity: 0.75; }
+
+  .rz-kontrol { display: flex; flex-wrap: wrap; gap: 0.8rem 1.2rem; align-items: flex-end; margin: 1.6rem 0 0.6rem; }
+  .rz-alan { display: flex; flex-direction: column; gap: 0.3rem; }
+  .rz-alan span { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--metin-soluk); }
+  .rz-alan select, .rz-alan input { font: inherit; padding: 0.5rem 0.7rem; min-height: 44px; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); }
+  .rz-alan-genis { flex: 1 1 18rem; }
+  .rz-alan-genis input { width: 100%; }
+  .rz-alan select:focus-visible, .rz-alan input:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+  .rz-sifirla { font: inherit; min-height: 44px; padding: 0.5rem 1rem; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); cursor: pointer; }
+  .rz-sifirla:hover { border-color: var(--su-400); }
+  .rz-durum { font-size: 0.88rem; color: var(--metin-soluk); margin: 0 0 1rem; }
+
+  .rz-liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+  .rz-k { border: 1px solid var(--cizgi); background: var(--zemin-kart); padding: 0.8rem 1rem; }
+  .rz-k-ust { display: flex; flex-wrap: wrap; gap: 0.4rem 0.9rem; align-items: baseline; font-family: var(--mono); font-size: 0.72rem; color: var(--metin-soluk); }
+  .rz-k-tarih { font-variant-numeric: lining-nums tabular-nums; color: var(--metin); font-weight: 600; }
+  .rz-k-sayi { color: var(--su-700); }
+  .rz-k-durum { text-transform: none; }
+  .rz-k-saha { margin: 0.45rem 0 0; font-size: 0.92rem; line-height: 1.55; }
+  .rz-k-yer { margin: 0.3rem 0 0; font-size: 0.8rem; color: var(--metin-soluk); }
+  .rz-k-bag { margin: 0.5rem 0 0; }
+  .rz-k-bag a { color: var(--baglanti); font-size: 0.85rem; }
+  .rz-bos { margin: 1rem 0; padding: 0.8rem 1rem; border: 1px solid var(--cizgi); font-size: 0.9rem; color: var(--metin-soluk); }
+  .rz-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .rz-capraz a { color: var(--baglanti); text-decoration: none; }
+  .rz-capraz a:hover { text-decoration: underline; }
 </style>
