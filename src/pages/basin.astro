@@ -1,0 +1,220 @@
+---
+// /basin/ — BASIN KİTİ + EMBED WIDGET ÜRETECİ + DOI DURUMU (Adım 3, 24.09.2026).
+// Gazeteciler, belediyeler ve bloglar için: doğrulanmış sayılar, atıf
+// biçimleri, marka varlıkları, gömülebilir "İlinizin Su Durumu" widget'ı ve
+// açık veri bağlantıları. UYDURMA YASAĞI: DOI atanmadan DOI yazılmaz; sayılar
+// build-time veriden gelir.
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import HukukSerhi from '../components/HukukSerhi.astro';
+import { ARSIV_OZET } from '../data/vitrin.js';
+import { SAYILAR } from '../data/kapi.js';
+import { ANA_SAYI, DETAY_SAYI, SON_TARIH_METIN } from '../data/su-verimliligi.js';
+import { AKISLAR } from '../data/istihbarat.js';
+import { DOI, DOI_URL, DOI_ATANDI } from '../data/doi.js';
+import { YAZAR, SITE_ADI, SITE } from '../data/site';
+
+const OZ_CEVAP =
+  `${SITE_ADI} açık veri tabanı için basın kiti: doğrulanmış sayılar, hazır atıf ` +
+  'biçimleri, marka varlıkları ve gazetelerin sitelerine gömeceği "İlinizin Su ' +
+  'Durumu" widget\'ı. Tüm sayılar kaynağı gösterilmiş veriden gelir.';
+
+if (OZ_CEVAP.length > 280) {
+  throw new Error(`basin: öz-cevap ${OZ_CEVAP.length} karakter, sınır 280.`);
+}
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/basin/', Astro.site).href;
+const YIL = '2026';
+
+const BASLIK = `${SITE_ADI} — Türkiye Su Verisi ve Su Hukuku Açık Veri Tabanı`;
+const KUNYE_DUZ =
+  `${BASLIK}. ${YAZAR.adSade}. (${YIL}). ${'https://suharitasi.com'}` +
+  (DOI_ATANDI ? ` doi:${DOI}` : '');
+const APA =
+  `Arslan, S. (${YIL}). ${BASLIK} [Veri seti]. ${SITE}` + (DOI_ATANDI ? `. https://doi.org/${DOI}` : '.');
+const BIBTEX =
+  `@misc{suharitasi${YIL},\n` +
+  `  title  = {${BASLIK}},\n` +
+  `  author = {Arslan, Serdar},\n` +
+  `  year   = {${YIL}},\n` +
+  `  howpublished = {\\url{${SITE}}}` +
+  (DOI_ATANDI ? `,\n  doi    = {${DOI}}` : '') +
+  `,\n  note   = {Açık veri tabanı}\n}`;
+const RIS =
+  `TY  - DATA\nAU  - Arslan, Serdar\nPY  - ${YIL}\n` +
+  `TI  - ${BASLIK}\nUR  - ${SITE}\n` +
+  (DOI_ATANDI ? `DO  - ${DOI}\n` : '') +
+  `ER  -`;
+
+const figurler = [
+  { sayi: ARSIV_OZET.rgToplam, ad: 'Resmî Gazete kaydı', not: `${ARSIV_OZET.rgIlk}–${ARSIV_OZET.rgSon} · ${SAYILAR.rgIlKapsami} il` },
+  { sayi: ARSIV_OZET.kutleToplam, ad: 'yeraltı suyu kütlesi', not: `${ARSIV_OZET.havzaPlan} yayımlı havza planı` },
+  { sayi: ARSIV_OZET.graceAy, ad: 'aylık GRACE uydu kaydı', not: 'Türkiye geneli su depolaması anomalisi' },
+  { sayi: ARSIV_OZET.barajGun, ad: 'günlük baraj arşivi', not: 'doluluk anlık görüntüleri' },
+  { sayi: ANA_SAYI, ad: 'Ek-2 ana faaliyeti', not: `${DETAY_SAYI} NACE kodu · son başvuru ${SON_TARIH_METIN}` },
+  { sayi: SAYILAR.ilSayisi, ad: 'yayımlı il sayfası', not: '81 il su profili' },
+];
+
+const sss = [
+  {
+    soru: 'Veriyi haberimde kullanabilir miyim?',
+    cevap:
+      'Evet; kaynağı Su Haritası olarak belirtmeniz koşuluyla veriye atıf yapabilir, ' +
+      'haberinize gömülü widget ekleyebilirsiniz. Her kalemin kaynak künyesi sayfalarında yer alır.',
+  },
+  {
+    soru: 'Veri setinin DOI numarası var mı?',
+    cevap: DOI_ATANDI
+      ? `Evet: ${DOI}.`
+      : 'Henüz atanmadı. Zenodo yükleme metaversi hazır; DOI damgalandığında bu sayfada yayımlanacaktır.',
+  },
+  {
+    soru: 'Widget nasıl eklenir?',
+    cevap:
+      'Aşağıdan ilinizi seçin; üretilen <iframe> kodunu sayfanızın HTML’ine yapıştırın. ' +
+      'Widget, ilinizin Resmî Gazete kayıt sayısını gösterir ve Su Haritası’na bağlanır.',
+  },
+];
+
+const sema = [
+  {
+    '@type': 'FAQPage',
+    mainEntity: sss.map((s) => ({
+      '@type': 'Question',
+      name: s.soru,
+      acceptedAnswer: { '@type': 'Answer', text: s.cevap },
+    })),
+  },
+  {
+    '@type': 'WebPage',
+    '@id': `${canonical}#sayfa`,
+    url: canonical,
+    name: 'Basın kiti ve gömülü widget',
+    description: OZ_CEVAP,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${kok}#site` },
+  },
+  ...(DOI_ATANDI
+    ? [{
+        '@type': 'Dataset',
+        '@id': `${kok}#veri`,
+        name: BASLIK,
+        url: SITE,
+        identifier: DOI_URL,
+        creator: { '@id': `${kok}#yazar` },
+        isAccessibleForFree: true,
+      }]
+    : []),
+];
+---
+<Sayfa
+  baslik="Basın kiti"
+  tarayiciBaslik="Basın Kiti: Sayılar, Atıf ve Gömülü Widget"
+  aciklama={OZ_CEVAP}
+  sema={sema}
+>
+  <SayfaBasi
+    etiket="Basın · açık veri"
+    baslik="Basın kiti ve gömülü widget"
+    ozet={OZ_CEVAP}
+    ozCevap
+  />
+  <OzCevap metin={OZ_CEVAP} etiket="Kısa cevap" />
+
+  <section class="bs-bolum" aria-labelledby="bs-sayi-baslik">
+    <h2 id="bs-sayi-baslik">Doğrulanmış sayılar</h2>
+    <ul class="bs-sayilar">
+      {figurler.map((f) => (
+        <li>
+          <span class="bs-sayi">{f.sayi.toLocaleString('tr-TR')}</span>
+          <span class="bs-ad">{f.ad}</span>
+          <span class="bs-not">{f.not}</span>
+        </li>
+      ))}
+    </ul>
+    <p class="bs-kaynak">Her sayı build anında veriden hesaplanır; künyeler veri sayfalarındadır.</p>
+  </section>
+
+  <section class="bs-bolum" aria-labelledby="bs-atif-baslik">
+    <h2 id="bs-atif-baslik">Atıf biçimleri</h2>
+    <p class="bs-aciklama">
+      DOI durumu: {DOI_ATANDI ? <strong>{DOI}</strong> : <span>henüz atanmadı (Zenodo yükleme metaversi hazır)</span>}.
+    </p>
+    <div class="bs-atiflar">
+      <div class="bs-atif"><h3>Düz metin</h3><pre><code>{KUNYE_DUZ}</code></pre></div>
+      <div class="bs-atif"><h3>APA</h3><pre><code>{APA}</code></pre></div>
+      <div class="bs-atif"><h3>BibTeX</h3><pre><code>{BIBTEX}</code></pre></div>
+      <div class="bs-atif"><h3>RIS</h3><pre><code>{RIS}</code></pre></div>
+    </div>
+    <p class="bs-aciklama">
+      <a href="/CITATION.cff">CITATION.cff</a> · <a href="/veri/zenodo.json">Zenodo yükleme metaversi (/veri/zenodo.json)</a>
+    </p>
+  </section>
+
+  <section class="bs-bolum" aria-labelledby="bs-widget-baslik">
+    <h2 id="bs-widget-baslik">Gömülü widget: “İlinizin Su Durumu”</h2>
+    <p class="bs-aciklama">
+      İl seçin; üretilen kodu sayfanıza yapıştırın. Widget iframe içinde çalışır,
+      ilinizin Resmî Gazete kayıt sayısını gösterir ve Su Haritası’na bağlanır.
+    </p>
+    <label class="bs-sec">
+      <span>İl seçin</span>
+      <select id="bs-il">
+        {AKISLAR.map((a) => <option value={a.slug}>{a.il}</option>)}
+      </select>
+    </label>
+    <label class="bs-sec">
+      <span>Yapıştırılacak kod</span>
+      <textarea id="bs-kod" rows="3" readonly></textarea>
+    </label>
+    <div class="bs-onizleme-kap">
+      <p class="bs-onizleme-etiket">Canlı önizleme</p>
+      <iframe id="bs-onizleme" title="Widget önizlemesi" loading="lazy" width="360" height="220"></iframe>
+    </div>
+  </section>
+
+  <section class="bs-bolum" aria-labelledby="bs-varlik-baslik">
+    <h2 id="bs-varlik-baslik">Marka varlıkları ve açık veri</h2>
+    <ul class="bs-linkler">
+      <li><a href="/og-suharitasi.v1.png">Sosyal görsel (1200×630 PNG)</a></li>
+      <li><a href="/favicon.svg">Simge (SVG)</a></li>
+      <li><a href="/llms.txt">llms.txt (AI istemcileri için içindekiler)</a></li>
+      <li><a href="/veri/openapi.json">OpenAPI şeması</a></li>
+      <li><a href="/veri/">Veri API</a> · <a href="/acik-veri/">Açık veri</a> · <a href="/kullanilanlar/">Kullanılan kaynaklar</a></li>
+      <li><a href="/istihbarat/">İl bazında RSS istihbaratı</a></li>
+    </ul>
+    <p class="bs-aciklama">Kurumsal logo dosyası ve özel görsel talep için: <a href="/hakkinda/">iletişim</a>.</p>
+  </section>
+
+  <HukukSerhi />
+<script type="module" src="/s/basin.js" is:inline></script>
+</Sayfa>
+
+<style>
+  .bs-bolum { margin-top: 2rem; }
+  .bs-bolum h2 { font-family: var(--serif); font-weight: 500; font-size: 1.5rem; margin: 0 0 0.7rem; }
+  .bs-aciklama { font-size: 0.92rem; line-height: 1.65; color: var(--metin-soluk); max-width: 72ch; margin: 0 0 0.9rem; }
+  .bs-sayilar { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 0.6rem; }
+  .bs-sayilar li { border: 1px solid var(--cizgi); background: var(--zemin-kart); padding: 0.9rem 1rem; display: grid; gap: 0.15rem; }
+  .bs-sayi { font-family: var(--mono); font-variant-numeric: lining-nums tabular-nums; font-size: 1.5rem; color: var(--su-700); }
+  .bs-ad { font-weight: 600; font-size: 0.92rem; }
+  .bs-not { font-size: 0.8rem; color: var(--metin-soluk); }
+  .bs-kaynak { margin: 0.8rem 0 0; font-size: 0.8rem; color: var(--metin-soluk); }
+  .bs-atiflar { display: grid; gap: 0.7rem; min-width: 0; }
+  .bs-atif { border: 1px solid var(--cizgi); background: var(--zemin-kart); padding: 0.8rem 1rem; min-width: 0; }
+  .bs-atif h3 { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--metin-soluk); margin: 0 0 0.5rem; }
+  .bs-atif pre { margin: 0; max-width: 100%; overflow-x: auto; }
+  .bs-atif code { font-family: var(--mono); font-size: 0.82rem; white-space: pre; }
+  .bs-sec { display: flex; flex-direction: column; gap: 0.3rem; max-width: 34rem; margin: 0 0 0.8rem; }
+  .bs-sec span { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--metin-soluk); }
+  .bs-sec select, .bs-sec textarea { font: inherit; padding: 0.6rem 0.7rem; min-height: 44px; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); }
+  .bs-sec textarea { font-family: var(--mono); font-size: 0.78rem; resize: vertical; }
+  .bs-sec select:focus-visible, .bs-sec textarea:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+  .bs-onizleme-kap { margin-top: 0.6rem; }
+  .bs-onizleme-etiket { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--metin-soluk); margin: 0 0 0.4rem; }
+  #bs-onizleme { width: 360px; max-width: 100%; height: 220px; border: 1px solid var(--cizgi); background: #fff; }
+  .bs-linkler { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; font-size: 0.9rem; }
+  .bs-linkler a { color: var(--baglanti); }
+</style>

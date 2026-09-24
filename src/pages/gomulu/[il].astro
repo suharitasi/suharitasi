@@ -1,0 +1,65 @@
+---
+// /gomulu/<il>/ — GÖMÜLÜ "İLİNİZİN SU DURUMU" WIDGET'I (Adım 3, 24.09.2026).
+// iframe hedefi; menüsüz, minimal, noindex. Boyut 360×220 için tasarlandı.
+// UYDURMA YASAĞI: sayılar ilin Resmî Gazete kayıtlarından (rg-zaman.js);
+// "kısıt var/yok" sınıflaması ÜRETİLMEZ.
+import { AKISLAR, IL_SAYISI } from '../../data/istihbarat.js';
+import { ilMatrisi } from '../../data/islem-matrisi.js';
+
+export function getStaticPaths() {
+  return AKISLAR.map((a) => ({ params: { il: a.slug }, props: { il: a.il, slug: a.slug } }));
+}
+
+const { il, slug } = Astro.props as { il: string; slug: string };
+const akis = AKISLAR.find((a) => a.il === il)!;
+const havzalar = ilMatrisi(il).havzalar;
+const SITE = 'https://suharitasi.com';
+const sonTarihMetin = akis.sonTarih
+  ? akis.sonTarih.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })
+  : null;
+---
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, follow" />
+  <title>{il} su durumu — Su Haritası</title>
+  <link rel="canonical" href={`${SITE}/gomulu/${slug}/`} />
+  <style>
+    :root { --su: #0C5A7C; --metin: #132A3F; --soluk: #48627A; --cizgi: #C9D8E2; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0.9rem 1rem;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--metin);
+      background: #fff;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .w-ust { font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--soluk); }
+    .w-il { font-size: 1.25rem; font-weight: 700; margin: 0.15rem 0 0.5rem; }
+    .w-sayi { font-size: 1.9rem; font-weight: 700; color: var(--su); font-variant-numeric: tabular-nums; }
+    .w-ad { font-size: 0.82rem; color: var(--soluk); }
+    .w-havza { margin: 0.5rem 0 0; font-size: 0.78rem; color: var(--soluk); }
+    .w-alt { margin-top: 0.7rem; padding-top: 0.5rem; border-top: 1px solid var(--cizgi); display: flex; justify-content: space-between; gap: 0.6rem; align-items: baseline; }
+    .w-alt a { color: var(--su); text-decoration: none; font-size: 0.76rem; }
+    .w-alt a:hover { text-decoration: underline; }
+    .w-marka { font-size: 0.66rem; color: var(--soluk); }
+  </style>
+</head>
+<body>
+  <p class="w-ust">İlinizin su durumu</p>
+  <h1 class="w-il">{il}</h1>
+  <p class="w-sayi">{akis.rgSayi}</p>
+  <p class="w-ad">Resmî Gazete yeraltı suyu işletme sahası kaydı{sonTarihMetin ? ` · son: ${sonTarihMetin}` : ''}</p>
+  {havzalar.length > 0 && (
+    <p class="w-havza">Havza: {havzalar.map((h) => h.ad).join(' · ')}</p>
+  )}
+  <div class="w-alt">
+    <a href={`/istihbarat/${slug}/feed.xml`}>RSS ile izle</a>
+    <span class="w-marka">Su Haritası · {IL_SAYISI} il</span>
+  </div>
+</body>
+</html>

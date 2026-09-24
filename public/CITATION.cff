@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "Bu veri tabanını akademik çalışmanızda kullanırsanız aşağıdaki atıfı kullanın."
+title: "Su Haritası — Türkiye Su Verisi ve Su Hukuku Açık Veri Tabanı"
+type: dataset
+authors:
+  - family-names: "Arslan"
+    given-names: "Serdar"
+    affiliation: "Arslan Hukuk Bürosu"
+date-released: "2026-09-24"
+url: "https://suharitasi.com"
+abstract: >-
+  Türkiye'nin su verisi, havzaları ve su mevzuatını tek çatıda birleştiren açık
+  veri tabanı. Resmî Gazete yeraltı suyu işletme sahası kayıtları, SYGM nehir
+  havza yönetim planları yeraltı suyu kütleleri, GRACE/GRACE-FO uydu verisi,
+  günlük baraj doluluk arşivi, mevzuat maddeleri ve emsal yargı kararları;
+  her kalem kaynağı gösterilmiş biçimde yayımlanır.
+keywords:
+  - "su hukuku"
+  - "yeraltı suyu"
+  - "Resmî Gazete"
+  - "GRACE"
+  - "baraj doluluk"
+  - "su havzaları"
+  - "Türkiye"

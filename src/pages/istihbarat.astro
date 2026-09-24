@@ -1,0 +1,184 @@
+---
+// /istihbarat/ — KİŞİSEL SU İSTİHBARATI (Adım 3, 24.09.2026).
+// 81 il için ayrı RSS akışı + e-posta aboneliği. RSS = canlı (statik üretim);
+// e-posta = /takip Function'ı ile KV'ye kayıt (gönderim servisi bağlanınca
+// işlenir; sahte "gönderdik" vaadi yok). Uydurma yasağı: sayılar veriden.
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import HukukSerhi from '../components/HukukSerhi.astro';
+import { AKISLAR, IL_SAYISI, RG_ILLI_TOPLAM, KAYITLI_IL_SAYISI } from '../data/istihbarat.js';
+
+const OZ_CEVAP =
+  `İlinize ait yeni Resmî Gazete yeraltı suyu kayıtlarını ve mevzuat ` +
+  `değişikliklerini ${IL_SAYISI} il için ayrı RSS akışından izleyin; ` +
+  'e-posta aboneliğiyle bildirim kaydı bırakın. Akışlar kayıt eklendikçe güncellenir.';
+
+if (OZ_CEVAP.length > 280) {
+  throw new Error(`istihbarat: öz-cevap ${OZ_CEVAP.length} karakter, sınır 280.`);
+}
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/istihbarat/', Astro.site).href;
+
+const sss = [
+  {
+    soru: 'RSS nedir, nereden takip ederim?',
+    cevap:
+      'RSS, bir akış okuyucusuna (Feedly, Inoreader vb.) ekleyebileceğiniz standart ' +
+      'bir beslemedir. İlinizin satırındaki "RSS" bağlantısını kopyalayıp okuyucunuza ekleyin.',
+  },
+  {
+    soru: 'E-posta aboneliği çalışıyor mu?',
+    cevap:
+      'E-posta adresiniz KVKK açık rızasıyla kaydedilir. Gönderim servisi ' +
+      'bağlandığında bildirimler bu kayıtlara gönderilir; kayıt sırasında sahte ' +
+      '"gönderildi" mesajı verilmez.',
+  },
+  {
+    soru: 'Hangi kayıtlar akışa düşer?',
+    cevap:
+      'O ille eşlenmiş Resmî Gazete yeraltı suyu işletme sahası ilanları ve ' +
+      'mevzuat değişiklik kayıtları. Kayıt bulunmaması kısıt olmadığının kanıtı değildir.',
+  },
+];
+
+const sema = [
+  {
+    '@type': 'FAQPage',
+    mainEntity: sss.map((s) => ({
+      '@type': 'Question',
+      name: s.soru,
+      acceptedAnswer: { '@type': 'Answer', text: s.cevap },
+    })),
+  },
+  {
+    '@type': 'WebPage',
+    '@id': `${canonical}#sayfa`,
+    url: canonical,
+    name: 'Kişisel su istihbaratı',
+    description: OZ_CEVAP,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${kok}#site` },
+  },
+];
+---
+<Sayfa
+  baslik="Kişisel su istihbaratı"
+  tarayiciBaslik="İlinizin Su İstihbaratı: RSS ve E-posta"
+  aciklama={OZ_CEVAP}
+  sema={sema}
+>
+  <SayfaBasi
+    etiket="İstihbarat"
+    baslik="İlinizin su gündemini takip edin"
+    ozet={OZ_CEVAP}
+    ozCevap
+  />
+  <OzCevap metin={OZ_CEVAP} etiket="Kısa cevap" />
+
+  <ul class="ih-ozet" aria-label="İstihbarat özeti">
+    <li><strong>{IL_SAYISI}</strong> il için ayrı RSS</li>
+    <li><strong>{RG_ILLI_TOPLAM}</strong> il-eşlemeli Resmî Gazete kaydı</li>
+    <li><strong>{KAYITLI_IL_SAYISI}</strong> ilde kayıt var</li>
+  </ul>
+
+  <p class="ih-link">
+    <a class="ih-rss" href="/istihbarat/feed.xml">Tüm Türkiye birleşik RSS akışı</a>
+  </p>
+
+  <section class="ih-bolum" aria-labelledby="ih-eposta-baslik">
+    <h2 id="ih-eposta-baslik">E-posta aboneliği</h2>
+    <p class="ih-aciklama">
+      İl seçin, e-posta adresinizi bırakın. Gönderim servisi bağlandığında yeni
+      Resmî Gazete kayıtları ve mevzuat değişiklikleri bu adreslere iletilir.
+      Kayıt KVKK açık rızasıyla alınır; istediğiniz an çıkabilirsiniz.
+    </p>
+    <form id="takip-form" class="ih-form">
+      <label>İl
+        <select name="konu">
+          <option value="tum-turkiye">Tüm Türkiye</option>
+          {AKISLAR.map((a) => <option value={a.slug}>{a.il}</option>)}
+        </select>
+      </label>
+      <label>E-posta
+        <input type="email" name="eposta" required autocomplete="email" placeholder="ornek@eposta.com" />
+      </label>
+      <label class="ih-onay">
+        <input type="checkbox" name="onay" required />
+        <span><a href="/gizlilik/">Gizlilik ve KVKK</a> metnini okudum; e-postamın yalnız su istihbaratı bildirimi için işlenmesine onay veriyorum.</span>
+      </label>
+      <div class="ih-tuzak" aria-hidden="true">Boş bırakın <input type="text" name="website" tabindex="-1" autocomplete="off" /></div>
+      <button type="submit">Abone ol</button>
+      <p class="ih-form-durum" id="takip-durum" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section class="ih-bolum" aria-labelledby="ih-iller-baslik">
+    <h2 id="ih-iller-baslik">İl il RSS akışları</h2>
+    <p class="ih-aciklama">
+      İlinizin satırındaki RSS bağlantısını akış okuyucunuza ekleyin. Kayıt
+      sayısı o ille eşlenmiş Resmî Gazete kayıt adedidir.
+    </p>
+    <div class="ih-kaydir">
+      <table class="ih-tablo">
+        <caption>İl · Resmî Gazete kaydı · RSS akışı</caption>
+        <thead>
+          <tr><th scope="col">İl</th><th scope="col">Kayıt</th><th scope="col">RSS</th></tr>
+        </thead>
+        <tbody>
+          {AKISLAR.map((a) => (
+            <tr>
+              <th scope="row">{a.il}</th>
+              <td class="ih-sayi">{a.rgSayi}</td>
+              <td><a href={`/istihbarat/${a.slug}/feed.xml`}>RSS akışı</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <nav class="ih-capraz" aria-label="İlgili bölümler">
+    <a href="/kuyu-kisit-sorgu/">→ İl bazında kısıt sorgusu</a>
+    <a href="/arsiv/resmi-gazete/">→ Resmî Gazete zaman makinesi</a>
+    <a href="/mevzuat/degisiklikler/">→ Mevzuat değişiklik radarı</a>
+    <a href="/feed.xml">→ Site geneli RSS</a>
+  </nav>
+
+  <HukukSerhi />
+<script slot="ek-script" type="module" src="/s/takip.js" is:inline></script>
+</Sayfa>
+
+<style>
+  .ih-ozet { list-style: none; margin: 1.6rem 0 1rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem 1.6rem; font-size: 0.92rem; color: var(--metin-soluk); }
+  .ih-ozet strong { color: var(--metin); font-family: var(--mono); font-variant-numeric: lining-nums tabular-nums; }
+  .ih-link { margin: 0 0 1.4rem; }
+  .ih-rss { display: inline-flex; align-items: center; min-height: 44px; padding: 0.55rem 1.1rem; border: 1px solid var(--su-700); color: var(--su-700); text-decoration: none; font-weight: 600; }
+  .ih-rss:hover { background: var(--su-700); color: #fff; }
+  .ih-bolum { margin-top: 2rem; }
+  .ih-bolum h2 { font-family: var(--serif); font-weight: 500; font-size: 1.5rem; margin: 0 0 0.6rem; }
+  .ih-aciklama { font-size: 0.92rem; line-height: 1.65; color: var(--metin-soluk); max-width: 72ch; margin: 0 0 1rem; }
+  .ih-form { display: grid; gap: 0.8rem; max-width: 34rem; }
+  .ih-form label { display: flex; flex-direction: column; gap: 0.3rem; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--metin-soluk); }
+  .ih-form select, .ih-form input[type="email"] { font: inherit; padding: 0.6rem 0.8rem; min-height: 44px; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); text-transform: none; }
+  .ih-form select:focus-visible, .ih-form input:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+  .ih-onay { flex-direction: row !important; align-items: flex-start; gap: 0.5rem !important; font-family: var(--sans) !important; font-size: 0.82rem !important; letter-spacing: 0 !important; text-transform: none !important; color: var(--metin-soluk); }
+  .ih-onay a { color: var(--baglanti); }
+  .ih-tuzak { position: absolute; left: -9999px; }
+  .ih-form button { font: inherit; font-weight: 600; min-height: 44px; padding: 0.6rem 1.4rem; background: var(--su-700); color: #fff; border: 0; cursor: pointer; justify-self: start; }
+  .ih-form button:hover { background: var(--su-400); }
+  .ih-form button:disabled { opacity: 0.6; cursor: default; }
+  .ih-form-durum { margin: 0; font-size: 0.85rem; color: var(--metin-soluk); }
+  .ih-kaydir { overflow-x: auto; }
+  .ih-tablo { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  .ih-tablo caption { caption-side: top; text-align: left; font-size: 0.78rem; color: var(--metin-soluk); padding-bottom: 0.5rem; }
+  .ih-tablo th, .ih-tablo td { text-align: left; vertical-align: top; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--cizgi); }
+  .ih-tablo thead th { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--metin-soluk); background: var(--zemin); border-bottom: 2px solid var(--su-700); }
+  .ih-tablo tbody th { font-weight: 600; }
+  .ih-sayi { font-family: var(--mono); font-variant-numeric: lining-nums tabular-nums; }
+  .ih-tablo a { color: var(--baglanti); }
+  .ih-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.8rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .ih-capraz a { color: var(--baglanti); text-decoration: none; }
+  .ih-capraz a:hover { text-decoration: underline; }
+</style>

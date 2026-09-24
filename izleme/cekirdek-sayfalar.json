@@ -76,6 +76,14 @@
   {
    "yol": "/arsiv/resmi-gazete/",
    "not": "Resmî Gazete zaman makinesi (Adım 2, 24.09.2026) — 419 kayıt, 1963–2017; sayılar build-time src/data/rg-zaman.js'te assert edilir, kayıtlar sunucuda render edilir."
+  },
+  {
+   "yol": "/istihbarat/",
+   "not": "Kişisel su istihbaratı (Adım 3, 24.09.2026) — 81 il RSS + e-posta aboneliği; sayılar build-time src/data/istihbarat.js'te assert edilir. Akışlar /istihbarat/<il>/feed.xml."
+  },
+  {
+   "yol": "/basin/",
+   "not": "Basın kiti + embed widget üreteci (Adım 3, 24.09.2026) — doğrulanmış sayılar, atıf biçimleri; DOI atanmadan DOI yazılmaz (src/data/doi.js)."
   }
  ],
  "_muaf_notu": "Bir sayfa bir GEO/SEO kaleminden BİLİNÇLİ olarak muaf tutulabilir: sayfa girdisine \"muaf\": [\"ozCevap\"] yazılır ve GEREKÇE zorunludur. Muafiyet md7 ölçümünden düşer; ölçüm yine yapılır ve koşu kaydında 'muaf' olarak görünür — sessizce gizlenmez."

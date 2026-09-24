@@ -28,7 +28,10 @@
 # ziyaretçi IP'si Google'a gitmiyor (KVKK), ek DNS/TLS gecikmesi yok.
 # EKLENEN GÜVENLİK BAŞLIKLARI (13.09.2026): COOP + CORP (siteler arası
 # izolasyon), X-Permitted-Cross-Domain-Policies, upgrade-insecure-requests,
-# frame-src 'none', manifest-src 'self'.
+# frame-src 'none'→'self', manifest-src 'self'.
+# FRAME-SRC 'self' (Adım 3, 24.09.2026): /basin/ sayfası gömülü widget'ın
+# canlı önizlemesini aynı-köken <iframe> ile gösterir; 'none' bunu engelliyordu.
+# 'self' yalnız kendi çerçevelerimize izin verir, dış kaynak açmaz.
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
@@ -38,7 +41,15 @@
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
   X-Permitted-Cross-Domain-Policies: none
-  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://cloudflareinsights.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; frame-src 'none'; manifest-src 'self'; form-action 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://cloudflareinsights.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; frame-src 'self'; manifest-src 'self'; form-action 'self'; upgrade-insecure-requests
+
+# GÖMÜLÜ WIDGET (Adım 3, 24.09.2026): /gomulu/* üçüncü taraf sitelere
+# gömülmek için tasarlandı. /* bloğundaki frame-ancestors 'none' bunu engeller;
+# bu yol için yalnız çerçeveleme açılır (frame-ancestors *). Yanıtta kalan
+# X-Frame-Options: DENY'ye rağmen modern tarayıcıda CSP frame-ancestors
+# ÖNCELİKLİDİR (CSP2+). Widget salt statiktir; script çalıştırmaz.
+/gomulu/*
+  Content-Security-Policy: default-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; frame-ancestors *
 
 # HAM JSON GÖRÜNÜMÜ ENGELLİ (22.09.2026): veri uçlarına doğrudan gidilince
 # tarayıcı ham kod göstermesin, dosyayı indirsin. fetch() bu başlığı YOK

@@ -28,10 +28,19 @@ KULLANICI ONAYI BEKLİYOR (İş kapanış kuralı: görsel iş "YAPILDI" sayılm
       build-time assert; kayıtlar sunucuda render. Yer tutucular gerçek araçla
       değiştirildi. Vitrin kolon 2 metni "harita" yerine doğrulanmış "zaman
       cetveli + il dökümü"ne çekildi (coğrafi geometri verisi depoda yok).
-- [ ] SIRADAKİ ADIMLAR (protokol Bölüm 6; onay bekliyor): Adım 3 (#9 DOI +
-      embed widget, #5 kişisel istihbarat) → Adım 4 (#2 Uyum Dosyası PDF,
-      hukuki onaya bağlı) → Adım 5 (sleeper: BibTeX, GeoJSON indir, sayfa QR)
-      → Adım 6 doğrulama.
+- [x] Adım 3 (24.09.2026) — #5 Kişisel Su İstihbaratı: `/istihbarat/` sayfası
+      + 81 il RSS akışı (`/istihbarat/<il>/feed.xml`) + birleşik akış +
+      e-posta aboneliği (mevcut `/takip` Function'ına opsiyonel il `konu` alanı).
+      #9 Basın Kiti + Embed Widget: `/basin/` (doğrulanmış sayılar, APA/BibTeX/
+      RIS, marka, widget üreteci), `/gomulu/<il>/` 81 noindex widget,
+      `/veri/zenodo.json` Zenodo metaversi, `public/CITATION.cff`.
+      CSP: `frame-src 'self'` + `/gomulu/*` için `frame-ancestors *` (gömülme).
+- [ ] DUR — DOI ve Buttondown: Zenodo DOI damgalama ve Buttondown bülteni
+      kullanıcı hesabı/kimlik bilgisi gerektirir. DOI gelince
+      `src/data/doi.js`; Buttondown gelince `src/data/bulten.ts` tek satır.
+- [ ] SIRADAKİ ADIMLAR (protokol Bölüm 6; onay bekliyor): Adım 4 (#2 Uyum
+      Dosyası PDF, hukuki onaya bağlı) → Adım 5 (sleeper: BibTeX, GeoJSON
+      indir, sayfa QR) → Adım 6 doğrulama.
 - [ ] HARİTA KATMANI (Adım 2'den ertelendi): coğrafi il/havza haritası için
       güvenilir geometri (GeoJSON) gerekir; depoda yok. Karar bekliyor.
 - NOT (uyarı): protokol metni kolon 2 başlığında "(1963–2026)" yazıyor;

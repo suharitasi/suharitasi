@@ -80,7 +80,7 @@ export const VITRIN_KOLONLARI = [
       'Baraj düşüşleri, yeni Resmî Gazete kısıtları ve GRACE uydu rezerv ' +
       'değişimleri anında e-postanıza ve RSS akışınıza gelsin.',
     cta: 'İstihbarata Abone Ol',
-    hedef: '#istihbarat-bulteni',
+    hedef: '/istihbarat/',
     ikon: 'alarm',
     aksan: '#57BAE0',
   },

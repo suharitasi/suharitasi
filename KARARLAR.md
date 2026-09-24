@@ -996,6 +996,33 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §41 · ADIM 3 — KİŞİSEL İSTİHBARAT (#5) + BASIN KİTİ/WIDGET/DOI (#9) (24.09.2026, kullanıcı onaylı Adım 3)
+
+- **Karar 1 — İl RSS:** 81 il için ayrı RSS 2.0 akışı
+  (`/istihbarat/<il>/feed.xml`) + birleşik `/istihbarat/feed.xml`. Item'lar
+  o ilin Resmî Gazete kayıtları + ulusal mevzuat; kaynak `rg-zaman.js`.
+  Sayılar `src/data/istihbarat.js`'te build-time assert edilir.
+- **Karar 2 — E-posta:** Yeni servis açılmadı; mevcut `/takip` Cloudflare
+  Function'ı kullanıldı ve opsiyonel `konu` (il) alanı eklendi (geriye uyumlu).
+  Kayıt KV'ye düşer; GÖNDERİM YOK. Buttondown bülteni kullanıcı hesabı
+  gerektirir (DUR) — `src/data/bulten.ts` boş kaldıkça form basılmaz.
+- **Karar 3 — Widget:** `/gomulu/<il>/` 81 noindex, menüsüz widget sayfası;
+  `/basin/` üreteci iframe kodunu + canlı önizlemeyi üretir. Önizleme için
+  CSP `frame-src 'none'` → `'self'`; gömülme için `/gomulu/*` bloğu
+  `frame-ancestors *`. CSP frame-ancestors, X-Frame-Options'tan öncelikli.
+- **Karar 4 — DOI:** Zenodo DOI HENÜZ ATANMADI. `src/data/doi.js` aktivasyon
+  kancası (bugün null); `/veri/zenodo.json` yükleme metaversi ve
+  `public/CITATION.cff` üretildi. DOI alınınca tek satır + rebuild.
+  Uydurma yasağı: atanmadan DOI yazılmaz.
+- **Kanıt:** build 1102 sayfa · sitemap 1016 · 81+1 RSS (XML geçerli) ·
+  81 widget · `site-saglik --hizli` kırmızı 0 (20/20 sayfa 200, konsol 0,
+  mobil taşma 0) · W3C Nu /istihbarat/, /basin/, /gomulu/konya/ 0 hata ·
+  Playwright: widget Konya=24, noindex; form 82 seçenek.
+- **Core nöbet:** `/istihbarat/` ve `/basin/` cekirdek-sayfalar.json'a eklendi.
+- **Açık:** kullanıcı canlı onayı; protokol Bölüm 6 Adım 4-6.
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek

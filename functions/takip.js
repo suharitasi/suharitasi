@@ -56,13 +56,17 @@ export async function onRequest(context) {
   if (kirp(veri.website, 40)) return json({ ok: true }); // honeypot
   const eposta = kirp(veri.eposta, 160).toLowerCase();
   if (!gecerli(eposta)) return json({ hata: 'gecersiz e-posta' }, 400);
+  // Opsiyonel konu (il slug'ı ya da 'tum-turkiye'); yalnız slug karakterleri.
+  // Geriye uyumlu: alan yoksa kayıt eskisi gibi {eposta, zaman, onay} olur.
+  const konuHam = kirp(veri.konu, 60).toLowerCase().replace(/[^a-z0-9-]/g, '');
+  const konu = konuHam || null;
   const onay = veri.onay === true || veri.onay === 'on' || veri.onay === 'true';
   if (!onay) return json({ hata: 'KVKK onayi gerekli' }, 400);
   if (!kv) return json({ hata: 'takip deposu yapilandirilmadi' }, 503);
   try {
     const simdi = Date.now();
     const anahtar = `a:${eposta}`; // aynı e-posta tek kez
-    const kayit = { eposta, zaman: new Date().toISOString(), onay: true };
+    const kayit = { eposta, zaman: new Date().toISOString(), onay: true, ...(konu ? { konu } : {}) };
     // Abone yazımı onaylanmadan başarı dönülmez (sessiz kayıp yasağı).
     await kv.put(anahtar, JSON.stringify(kayit), { expirationTtl: OMUR_SN });
     return json({ ok: true });
