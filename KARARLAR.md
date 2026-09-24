@@ -933,6 +933,37 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §39 · HİZMET VE İSTİHBARAT VİTRİNİ + GÖRSEL TABAN EŞİK ONARIMI (24.09.2026, kullanıcı onaylı Adım 1)
+
+- **Karar 1 — Vitrin:** Ana sayfaya hero'nun hemen ardına dört kolonlu
+  "Hizmet ve İstihbarat Merkezi" eklendi (kullanıcı onayı: "Yalnız Adım 1:
+  vitrin"). Keskin tasarım anayasası: `border-radius:0`, `box-shadow:none`,
+  `backdrop-filter:none`, sınırlar 1px gap + 1px çerçeve. Mobilde vitrin
+  kanıt bandı ve dert sorusundan SONRAYA alındı (order 6) → S1 korunur.
+- **Karar 2 — Hedef rota:** Vitrin butonlarının hedefleri henüz yoktu;
+  kullanıcı kararıyla üç rota için noindex tanıtım sayfası açıldı
+  (`/hizmetler/su-uyum-dosyasi/`, `/arsiv/resmi-gazete/`,
+  `/mevzuat/su-verimliligi-sayaci/`). Dördüncü kolon `#istihbarat-bulteni`
+  çapasına, oradan gerçek `/feed.xml` akışına bağlanır. E-posta bülteni
+  KURULMADI (Buttondown boş — sessiz hata yasağı).
+- **Karar 3 — Doğrulanmış sayı:** Protokol kolon 2 başlığında "(1963–2026)"
+  yazıyordu; veri 1963–2017 (419 kayıt). Uydurma yasağı gereği vitrinde
+  doğrulanmış aralık basıldı. Sayılar `src/data/hizmet-vitrini.js`'te
+  build-time sayılıp assert edilir; hedef rota varlığı da build kapısıdır.
+- **Karar 4 — Görsel taban eşik onarımı (defect):** `--gorsel-taban-yenile`,
+  `esikler` alanını varsayılana yazdığı için 22.09'da bilinçli kaydedilen
+  G6/S1 kadraj eşiği (812→2560) yenilemede KAYBOLDU — 24.09 yenilemesi bunu
+  812'ye düşürüp 14-gorsel'i KIRMIZI yaktı. Onarım: `tabanGovdesi` artık
+  eşikleri parametre olarak alır; `site-saglik` önceki tabanın eşiklerini
+  DEVRALIR. Görsel taban (G4 ritim, vitrin nedeniyle) bu kararla yenilendi;
+  eşikler korundu.
+- **Kanıt:** build 1019 sayfa · `site-saglik --hizli` (yerel, dist-sun):
+  kırmızı 0 · 8-mobil taşma 0 · 5-konsol 0 · 14-gorsel GEÇTİ · W3C Nu
+  4/4 sayfa 0 hata · vitrin link 3/3 → 200 · mobil S1 (vitrin sonrası).
+- **Açık:** kullanıcı canlı görsel onayı; protokol Bölüm 6 Adım 2-6 kuyrukta.
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek

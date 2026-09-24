@@ -1,0 +1,91 @@
+---
+// /mevzuat/su-verimliligi-sayaci/ — YER TUTUCU (yapım aşaması).
+// Kullanıcı kararı (24.09.2026, Adım 1): hedef rota henüz yok; vitrin
+// bağlantısı kırık olmasın diye noindex tanıtım sayfası açıldı. Geri sayım
+// panosu + .ics üreteci yayına alındığında bu sayfa onunla değiştirilir.
+// Uydurma yasağı: tarih ve sayılar doğrulanmış kaynaktan okunur
+// (data/lead/persona.json + data/lead/nace-ek2.json); yeni hüküm yazılmaz.
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import HukukSerhi from '../../components/HukukSerhi.astro';
+import { yonetmelik, tarihTR } from '../../data/persona.js';
+import naceEk2 from '../../../data/lead/nace-ek2.json';
+
+const SON_TARIH = yonetmelik?.dogrulanmisSureler?.yesilBelgeSonBasvuru?.tarih;
+const SON_TARIH_METIN = tarihTR(SON_TARIH);
+const SON_YIL = (SON_TARIH || '').slice(0, 4);
+const NACE_ANA = naceEk2.sayimlar.anaFaaliyet_toplam;
+const NACE_DETAY = naceEk2.sayimlar.detay_yakalanan;
+
+if (!SON_TARIH_METIN) {
+  throw new Error('su-verimliligi-sayaci: doğrulanmış son başvuru tarihi okunamadı.');
+}
+
+const ACIKLAMA =
+  `Su Verimliliği Yönetmeliği kapsamındaki ${NACE_ANA} ana faaliyet ve ` +
+  `${NACE_DETAY} NACE kodu için ${SON_TARIH_METIN} son başvuru tarihine geri ` +
+  'sayan, sektörel kontrol listesi ve .ics hatırlatıcısı sunacak araç yapım ' +
+  'aşamasındadır.';
+---
+<Sayfa
+  baslik={`Su Verimliliği Uyum Sayacı (${SON_YIL})`}
+  tarayiciBaslik="Su Verimliliği Uyum Sayacı (yapım aşamasında)"
+  aciklama={ACIKLAMA}
+  robots="noindex, follow"
+>
+  <SayfaBasi
+    etiket="Mevzuat · yapım aşamasında"
+    baslik={`Su Verimliliği Uyum Sayacı (${SON_YIL})`}
+    ozet={ACIKLAMA}
+    ozCevap
+  />
+
+  <p class="durum-not">
+    Bu araç yapım aşamasındadır; yayına alındığında bu sayfada çalışacaktır.
+    Amaçlanan çıktı: {NACE_ANA} ana faaliyet ve {NACE_DETAY} NACE kodu için
+    zorunlu belge takvimini göstermek, her sektör için başvuru öncesi kontrol
+    listesi sunmak ve nihai uyum tarihine ({SON_TARIH_METIN}) canlı geri sayım
+    ile takvime eklenebilen .ics hatırlatıcısı üretmek. Aşağıdaki mevcut
+    sayfalar aynı yükümlülüğü bugün açıklar.
+  </p>
+
+  <section class="durum-bolumlar" aria-label="Şimdilik ilgili sayfalar">
+    <h2>Şimdilik ilgili sayfalar</h2>
+    <ul>
+      <li><a href="/durumum/">Sektörünüze göre yükümlülük kapıları</a> — NACE Ek-2 faaliyetleri ve doğrulanmış son tarihler.</li>
+      <li><a href="/sektor/">Sektörel izin rehberleri</a> — sektör profili, işlem ve uyuşmazlık yolları.</li>
+      <li><a href="/mevzuat/">Mevzuat kütüphanesi</a> — Su Verimliliği Yönetmeliği ve ilgili maddeler.</li>
+    </ul>
+  </section>
+
+  <HukukSerhi />
+</Sayfa>
+
+<style>
+  .durum-not {
+    margin: 2rem 0 0;
+    padding: 1.1rem 1.3rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-left: 3px solid var(--su-400);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--metin);
+  }
+  .durum-bolumlar { margin-top: 2.4rem; }
+  .durum-bolumlar h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin: 0 0 0.8rem;
+  }
+  .durum-bolumlar ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
+  .durum-bolumlar li {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--cizgi);
+    background: var(--zemin-kart);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+  .durum-bolumlar a { color: var(--baglanti); font-weight: 600; }
+</style>

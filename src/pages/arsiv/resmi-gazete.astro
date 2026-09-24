@@ -1,0 +1,82 @@
+---
+// /arsiv/resmi-gazete/ — YER TUTUCU (yapım aşaması).
+// Kullanıcı kararı (24.09.2026, Adım 1): hedef rota henüz yok; vitrin
+// bağlantısı kırık olmasın diye noindex tanıtım sayfası açıldı. Zaman
+// cetveli + harita aracı yayına alındığında bu sayfa onunla değiştirilir.
+// Uydurma yasağı: yalnız doğrulanmış aralık (1963–2017, 419 kayıt) yazılır;
+// sayılar build anında veriden sayılır ve assert edilir.
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import HukukSerhi from '../../components/HukukSerhi.astro';
+import { SAYILAR } from '../../data/kapi.js';
+
+const RG_TOPLAM = SAYILAR.rgToplam;
+const RG_YIL_ILK = SAYILAR.rgYilIlk;
+const RG_YIL_SON = SAYILAR.rgYilSon;
+
+const ACIKLAMA =
+  `${RG_YIL_ILK}–${RG_YIL_SON} arası ${RG_TOPLAM} Resmî Gazete işletme sahası ` +
+  'kaydını harita ve zaman cetvelinde yıl yıl sunacak arşiv aracı yapım ' +
+  'aşamasındadır; şimdilik kısıt sorgusu ve il sayfalarına yönlendirir.';
+---
+<Sayfa
+  baslik={`Yeraltı Suyu Kararları Kütüğü (${RG_YIL_ILK}–${RG_YIL_SON})`}
+  tarayiciBaslik="Yeraltı Suyu Kararları Kütüğü (yapım aşamasında)"
+  aciklama={ACIKLAMA}
+  robots="noindex, follow"
+>
+  <SayfaBasi
+    etiket="Arşiv · yapım aşamasında"
+    baslik={`Yeraltı Suyu Kararları Kütüğü (${RG_YIL_ILK}–${RG_YIL_SON})`}
+    ozet={ACIKLAMA}
+    ozCevap
+  />
+
+  <p class="durum-not">
+    Bu arşiv aracı yapım aşamasındadır; yayına alındığında bu sayfada çalışacaktır.
+    Amaçlanan çıktı: {RG_YIL_ILK}–{RG_YIL_SON} arası yayımlanmış {RG_TOPLAM} Resmî Gazete
+    işletme sahası kaydını yıl, il ve ova bazında harita ile zaman cetvelinde
+    taramak; her ilan kartında Resmî Gazete tarihi, sayısı ve doğrudan resmî
+    bağlantıyı göstermek. Aşağıdaki mevcut araçlar aynı veriyi bugün sorgulatır.
+  </p>
+
+  <section class="durum-bolumlar" aria-label="Şimdilik ilgili sayfalar">
+    <h2>Şimdilik ilgili sayfalar</h2>
+    <ul>
+      <li><a href="/kuyu-kisit-sorgu/">Resmî Gazete kısıt sorgusu</a> — il bazında işletme sahası ve tahsise kapatma kayıtları, resmî bağlantılarıyla.</li>
+      <li><a href="/kuyu-ruhsati/">İl sayfaları</a> — ilinizde ruhsat süreci ve kısıt özeti.</li>
+      <li><a href="/veri/">Açık veri katmanı</a> — kaynağı gösterilmiş ham kayıtlar.</li>
+    </ul>
+  </section>
+
+  <HukukSerhi />
+</Sayfa>
+
+<style>
+  .durum-not {
+    margin: 2rem 0 0;
+    padding: 1.1rem 1.3rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-left: 3px solid var(--su-400);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--metin);
+  }
+  .durum-bolumlar { margin-top: 2.4rem; }
+  .durum-bolumlar h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin: 0 0 0.8rem;
+  }
+  .durum-bolumlar ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
+  .durum-bolumlar li {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--cizgi);
+    background: var(--zemin-kart);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+  .durum-bolumlar a { color: var(--baglanti); font-weight: 600; }
+</style>

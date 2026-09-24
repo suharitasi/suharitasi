@@ -1,7 +1,7 @@
 {
  "_not": "GÖRSEL/DÜZEN TABANI — sürümlü YAPILANDIRMA (log değil). Bilinçli tasarım değişikliğinde `node arac/site-saglik.mjs --gorsel-taban-yenile --gerekce \"...\"` ile yenilenir; yenilenmeden kalem KIRMIZI kalır. Ölçüm deterministiktir: sabit viewport + DPR + reduced-motion (sahne 0'da donar).",
- "tabanTarihi": "2026-09-22T18:17:26.569Z",
- "gerekce": "22.09.2026 kullanici onayi (a): S1 kabul. (1) Bu is: ana sayfaya AjanBandi 'Acik altyapi' bolumu eklendi (bilincli, +1 section). (2) Miras: 22.09 11:31-12:13 hero/teknoloji commit'leri (7f5a288 'radikal asagi itme', 02b0732) mobil ilk-ekran ritmini bilincli degistirdi ve dert-sorusunu kadraj disina itti; taban 2026-09-13'ten beri yenilenmemisti. Kullanici S1 kaybini bilincli kabul etti. AYRICA (kullanici onayi a, 22.09): G6/S1 esigi bilincli olarak 812 -> 2560 yazildi; S1 kazanci KABUL edildi. Esik, soru daha da asagi itilirse (> 2560px) yeniden kirmizi verir.",
+ "tabanTarihi": "2026-09-24T12:05:36.197Z",
+ "gerekce": "24.09.2026 Adim 1: ana sayfaya Hizmet ve Istihbarat Merkezi (4 kolonlu vitrin) eklendi (kullanici onayi: Yalniz Adim 1: vitrin). Masaustunde hero-sonrasi bolum ritmi bilincli degisti; mobilde vitrin kanit bandi ve dert sorusundan sonraya alindi (S1 korunur). G6/S1 esigi 2560 DEVRALINDI.",
  "esikler": {
   "g1KesismePx2": 2000,
   "g2OlcekOran": 1.05,
@@ -40,6 +40,11 @@
      "etiket": "v2-hero",
      "padUst": 100,
      "padAlt": 56
+    },
+    {
+     "etiket": "v2-vitrin",
+     "padUst": 68,
+     "padAlt": 80
     },
     {
      "etiket": "v2-bolum.v2-teknoloji",
@@ -99,6 +104,11 @@
      "etiket": "v2-hero",
      "padUst": 57.6,
      "padAlt": 14.4
+    },
+    {
+     "etiket": "v2-vitrin",
+     "padUst": 68,
+     "padAlt": 80
     },
     {
      "etiket": "v2-bolum.v2-teknoloji",
@@ -848,7 +858,7 @@
   }
  },
  "oncekiTaban": {
-  "tarih": "2026-09-13T19:10:07.091Z",
-  "gerekce": "13.09.2026: G4 secicisi main>section -> main section duzeltildi (10.09 article sarmalayicisi olcumu bozmustu); 08.09-13.09 arasi bilincli degisiklikler (WhatsApp dugmesi, V5 semantik DOM, hukuk kopruleri/karar matrisi/SSS) yeni tabana alindi. /harita G1 metin-gorsel ortusmesi onceden var; ayri degerlendirme kalemi."
+  "tarih": "2026-09-22T18:17:26.569Z",
+  "gerekce": "22.09.2026 kullanici onayi (a): S1 kabul. (1) Bu is: ana sayfaya AjanBandi 'Acik altyapi' bolumu eklendi (bilincli, +1 section). (2) Miras: 22.09 11:31-12:13 hero/teknoloji commit'leri (7f5a288 'radikal asagi itme', 02b0732) mobil ilk-ekran ritmini bilincli degistirdi ve dert-sorusunu kadraj disina itti; taban 2026-09-13'ten beri yenilenmemisti. Kullanici S1 kaybini bilincli kabul etti. AYRICA (kullanici onayi a, 22.09): G6/S1 esigi bilincli olarak 812 -> 2560 yazildi; S1 kazanci KABUL edildi. Esik, soru daha da asagi itilirse (> 2560px) yeniden kirmizi verir."
  }
 }

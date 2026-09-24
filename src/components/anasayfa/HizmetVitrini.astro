@@ -1,0 +1,57 @@
+---
+// HİZMET VE İSTİHBARAT MERKEZİ (ana sayfa vitrini, Adım 1).
+// Dört kolon, keskin 1px grid: border-radius:0 · box-shadow:none ·
+// backdrop-filter:none (kullanıcı tasarım anayasası). Kütüphane eklenmedi;
+// ikonlar elle inline SVG. JS yok — içerik statiktir (İş sınıfı kuralı).
+// Sayılar build anında src/data/hizmet-vitrini.js'te veriden doğrulanır.
+// 4. kolon `#istihbarat-bulteni` çapasına gider; şerit gerçek /feed.xml
+// akışına bağlanır (e-posta bülteni kurulmadı — sessiz hata yasağı).
+import { VITRIN_KOLONLARI, VITRIN_IKONLARI } from '../../data/hizmet-vitrini.js';
+---
+<section class="v2-vitrin" id="hizmet-vitrin" aria-label="Hizmet ve İstihbarat Merkezi">
+  <div class="v2-vitrin-ic">
+    <div class="v2-vitrin-bas">
+      <p class="v2-vitrin-kicker">Hizmet ve İstihbarat Merkezi</p>
+      <h2>Su verisi ve su hukuku, kaynağı gösterilmiş dört araçta</h2>
+      <p class="v2-vitrin-intro">
+        Arazi, işletme ve uyuşmazlık kararlarınızı kayda dayandırın: her araç
+        Resmî Gazete, havza planı veya uydu künyesine bağlı çalışır.
+      </p>
+    </div>
+
+    <div class="v2-vitrin-izgara">
+      {VITRIN_KOLONLARI.map((k) => (
+        <a class="v2-vitrin-kart" href={k.hedef} style={`--vitrin-aksan:${k.aksan}`}>
+          <span class="v2-vitrin-ust">
+            <span class="v2-vitrin-no">{k.no}</span>
+            <span class="v2-vitrin-etiket">{k.kicker}</span>
+          </span>
+          <span class="v2-vitrin-ikon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
+                 set:html={VITRIN_IKONLARI[k.ikon]}></svg>
+          </span>
+          <h3>{k.ad}</h3>
+          <p>{k.metin}</p>
+          <span class="v2-vitrin-cta">
+            <span class="v2-vitrin-btn">{k.cta}</span>
+          </span>
+        </a>
+      ))}
+    </div>
+
+    <p class="v2-vitrin-not">
+      Vitrindeki araçlar bilgilendirme amaçlıdır; hukuki görüş veya kesin hüküm
+      değildir. Yapım aşamasındaki araçların bağlantıları tanıtım sayfasına gider.
+    </p>
+
+    <div class="v2-vitrin-bulten" id="istihbarat-bulteni">
+      <p>
+        <strong>Su istihbaratı kaynağı:</strong> Resmî Gazete kısıtları, baraj
+        doluluğu ve GRACE uydu rezervi güncellemeleri RSS akışında. E-posta
+        bülteni hazırlanıyor.
+      </p>
+      <a class="v2-vitrin-btn" href="/feed.xml">RSS akışını aç</a>
+    </div>
+  </div>
+</section>

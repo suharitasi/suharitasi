@@ -970,3 +970,175 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
 @media (max-width: 559px) {
   .v2-teknoloji .v2-tek-izgara { grid-template-columns: 1fr !important; }
 }
+
+/* =============================================
+   HİZMET VE İSTİHBARAT MERKEZİ (vitrin, 24.09.2026)
+   Keskin tasarım anayasası: border-radius:0 · box-shadow:none ·
+   backdrop-filter:none · keskin 1px çizgiler. Koyu dünya (DİP) zemini;
+   sınırlar 1px gap + 1px çerçeveyle kurulur. JS yok.
+   ============================================= */
+.v2-vitrin {
+  background: var(--v0-dip);
+  color: var(--v0-beyaz);
+  padding: 4.25rem 1.5rem 5rem;
+}
+.v2-vitrin-ic { max-width: 72rem; margin: 0 auto; }
+.v2-vitrin-bas { max-width: 48rem; }
+.v2-vitrin-kicker {
+  margin: 0 0 0.6rem;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--v2-kicker-koyu);
+}
+.v2-vitrin-bas h2 {
+  margin: 0;
+  font-family: var(--serif, Georgia, serif);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 3.2vw, 2.15rem);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+.v2-vitrin-bas .v2-vitrin-intro {
+  margin: 0.9rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.72);
+  text-wrap: pretty;
+}
+.v2-vitrin-izgara {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(219, 234, 244, 0.2);
+  border: 1px solid rgba(219, 234, 244, 0.2);
+}
+.v2-vitrin-kart {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.6rem 1.5rem 1.5rem;
+  background: var(--v0-dip);
+  color: inherit;
+  text-decoration: none;
+  border-radius: 0;
+  box-shadow: none;
+  transition: background-color 200ms var(--sh-eo);
+}
+.v2-vitrin-kart::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: var(--vitrin-aksan, #57BAE0);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 240ms var(--sh-eo);
+}
+@media (hover: hover) and (pointer: fine) {
+  .v2-vitrin-kart:hover { background: rgba(219, 234, 244, 0.06); }
+  .v2-vitrin-kart:hover::before { transform: scaleX(1); }
+  .v2-vitrin-kart:hover .v2-vitrin-btn {
+    background: var(--vitrin-aksan, #57BAE0);
+    color: var(--v0-dip);
+  }
+}
+.v2-vitrin-kart:active { background: rgba(219, 234, 244, 0.09); }
+.v2-vitrin-ust {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+.v2-vitrin-no {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--vitrin-aksan, #57BAE0);
+}
+.v2-vitrin-etiket {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+.v2-vitrin-ikon {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  margin-top: 0.35rem;
+  color: var(--vitrin-aksan, #57BAE0);
+}
+.v2-vitrin-ikon svg { width: 100%; height: 100%; }
+.v2-vitrin-kart h3 {
+  margin: 0.35rem 0 0;
+  font-family: var(--serif, Georgia, serif);
+  font-weight: 600;
+  font-size: 1.12rem;
+  line-height: 1.3;
+  color: var(--v0-beyaz);
+}
+.v2-vitrin-kart p {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.72);
+}
+.v2-vitrin-cta { margin-top: auto; padding-top: 1.1rem; }
+.v2-vitrin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--vitrin-aksan, #57BAE0);
+  border-radius: 0;
+  background: transparent;
+  color: var(--v0-beyaz);
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 150ms var(--sh-eo), color 150ms var(--sh-eo);
+}
+.v2-vitrin-not {
+  margin: 1.5rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(219, 234, 244, 0.14);
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+}
+.v2-vitrin-bulten {
+  margin-top: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  padding: 1.1rem 1.3rem;
+  border: 1px solid rgba(219, 234, 244, 0.2);
+  scroll-margin-top: 5rem;
+}
+.v2-vitrin-bulten p {
+  margin: 0;
+  max-width: 46rem;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+}
+.v2-vitrin-bulten strong { color: var(--v0-beyaz); font-weight: 600; }
+.v2-vitrin-bulten .v2-vitrin-btn { flex: 0 0 auto; }
+
+@media (max-width: 1023px) {
+  .v2-vitrin-izgara { grid-template-columns: 1fr 1fr; }
+  /* Vitrin hero'nun altında doğar ama mobilde dert sorusu ve kanıt bandından
+     SONRAYA alınır: ilk ekran (S1/md14 G6) korunur — mevcut order şemasına
+     eklenir (hero 1 · noscript 2 · sorular 3 · kanıt 4 · cta 5 · vitrin 6). */
+  .v2-ust-akis > .v2-vitrin { order: 6; }
+}
+@media (max-width: 679px) { .v2-vitrin-izgara { grid-template-columns: 1fr; } }

@@ -8,6 +8,28 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ 24.09.2026 — HİZMET VE İSTİHBARAT VİTRİNİ (ÜRÜN PROTOKOLÜ Adım 1) ═══
+KULLANICI ONAYI BEKLİYOR (İş kapanış kuralı: görsel iş "YAPILDI" sayılmaz).
+- [x] Adım 1 — Ana sayfa 4 kolonlu vitrin (hero hemen ardı; mobilde kanıt
+      bandı + dert sorusundan sonra → S1 korunur). Metin+sayı build-time
+      veriden doğrulanır (`src/data/hizmet-vitrini.js`), hedef rota varlığı
+      build kapısı. Dosyalar: `src/components/anasayfa/HizmetVitrini.astro`,
+      `src/pages/index.astro`, `src/styles/anasayfa-v2.css`.
+- [x] Adım 1 yan iş — 3 yer tutucu noindex rota açıldı (kullanıcı kararı:
+      geçici sayfa): `/hizmetler/su-uyum-dosyasi/`, `/arsiv/resmi-gazete/`,
+      `/mevzuat/su-verimliligi-sayaci/`.
+- [x] ONARIM — `--gorsel-taban-yenile` eşikleri varsayılana döndürüyordu
+      (22.09'un 812→2560 G6 eşiği kayboldu); eşik artık önceki tabandan
+      devralınır (`arac/gorsel-olc.mjs` + `arac/site-saglik.mjs`).
+- [ ] KULLANICI: vitrin + 3 tanıtım sayfası CANLI görsel onayı.
+- [ ] SIRADAKİ ADIMLAR (protokol Bölüm 6; onay bekliyor): Adım 2 (#4 Su
+      Verimliliği Sayacı + .ics, #1 Resmî Gazete Zaman Makinesi) → Adım 3
+      (#9 DOI + embed widget, #5 kişisel istihbarat) → Adım 4 (#2 Uyum
+      Dosyası PDF, hukuki onaya bağlı) → Adım 5 (sleeper: BibTeX, GeoJSON
+      indir, sayfa QR) → Adım 6 doğrulama.
+- NOT (uyarı): protokol metni kolon 2 başlığında "(1963–2026)" yazıyor;
+      veri 1963–2017 (419 kayıt). Vitrinde doğrulanmış aralık basıldı.
+
 ═══ 22.09.2026 — AJAN & MAKİNE ERİŞİM KATMANI (AY İLKESİ ASKIYA ALINDI; KARARLAR §38) ═══
 YAPILDI (kullanıcı onayı: AY İLKESİ geçersiz kılındı; oran/onay bölümü açılmadı):
 - `functions/mcp.js` — /mcp MCP ucu (JSON-RPC 2.0, salt-okunur, 8 araç:

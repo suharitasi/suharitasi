@@ -1,0 +1,76 @@
+---
+// /hizmetler/su-uyum-dosyasi/ — YER TUTUCU (yapım aşaması).
+// Kullanıcı kararı (24.09.2026, Adım 1): hedef rota henüz yok; vitrin
+// bağlantısı kırık olmasın diye noindex tanıtım sayfası açıldı. Araç
+// yayına alındığında bu sayfa gerçek uyum dosyası üreteciyle değiştirilir.
+// Uydurma yasağı: vaat edilen çıktı TANIMLANIR, üretilmiş gibi sunulmaz;
+// sayı/hüküm yazılmaz.
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import HukukSerhi from '../../components/HukukSerhi.astro';
+
+const ACIKLAMA =
+  'İl ve NACE sektörünüze göre su izinleri, yükümlülükler, yetkili merci ve ' +
+  'başvuru takvimini tek PDF uyum raporunda toplayan araç yapım aşamasındadır.';
+---
+<Sayfa
+  baslik="İşletmelere Özel Su Uyum Dosyası"
+  tarayiciBaslik="İşletmelere Özel Su Uyum Dosyası (yapım aşamasında)"
+  aciklama={ACIKLAMA}
+  robots="noindex, follow"
+>
+  <SayfaBasi
+    etiket="Hizmet · yapım aşamasında"
+    baslik="İşletmelere Özel Su Uyum Dosyası"
+    ozet={ACIKLAMA}
+    ozCevap
+  />
+
+  <p class="durum-not">
+    Bu araç yapım aşamasındadır; yayına alındığında bu sayfada çalışacaktır.
+    Amaçlanan çıktı: seçilen il ve NACE sektörü için geçerli yasal izinler,
+    yetkili merci (DSİ / su idaresi), başvuru takvimi ve kontrol listesini
+    içeren resmî bir uyum raporu (PDF). Aşağıdaki mevcut sayfalar aynı konuyu
+    bugün ele alır.
+  </p>
+
+  <section class="durum-bolumlar" aria-label="Şimdilik ilgili sayfalar">
+    <h2>Şimdilik ilgili sayfalar</h2>
+    <ul>
+      <li><a href="/sektor/">Sektörel izin ve dava rehberleri</a> — OSB/sanayi, sulama kooperatifi, jeotermal, gıda-içecek için hangi belge, hangi kurum.</li>
+      <li><a href="/durumum/">Sektörünüze göre yükümlülük kapıları</a> — NACE Ek-2 faaliyetleri ve doğrulanmış son tarihler.</li>
+      <li><a href="/hangi-kurum/">Hangi işlem, hangi kurum</a> — işlem → yetkili merci eşlemesi.</li>
+    </ul>
+  </section>
+
+  <HukukSerhi />
+</Sayfa>
+
+<style>
+  .durum-not {
+    margin: 2rem 0 0;
+    padding: 1.1rem 1.3rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-left: 3px solid var(--su-400);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--metin);
+  }
+  .durum-bolumlar { margin-top: 2.4rem; }
+  .durum-bolumlar h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin: 0 0 0.8rem;
+  }
+  .durum-bolumlar ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
+  .durum-bolumlar li {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--cizgi);
+    background: var(--zemin-kart);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+  .durum-bolumlar a { color: var(--baglanti); font-weight: 600; }
+</style>

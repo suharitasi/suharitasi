@@ -16,6 +16,7 @@ import AltBilgi from '../components/AltBilgi.astro';
 // fixed + şeffaf başlar, scroll>40 koyu, çapalar # biçiminde.
 import PaylasilanMenu from '../components/PaylasilanMenu.astro';
 import Hero from '../components/anasayfa/Hero.astro';
+import HizmetVitrini from '../components/anasayfa/HizmetVitrini.astro';
 import MobilSorular from '../components/anasayfa/MobilSorular.astro';
 import TeknolojiKartlari from '../components/anasayfa/TeknolojiKartlari.astro';
 import KanitBandi from '../components/anasayfa/KanitBandi.astro';
@@ -214,6 +215,12 @@ const sahneVeri = SAHNELER.map((s) => ({
   <div class="v2-ust-akis">
 
   <Hero sahneVeri={sahneVeri} />
+
+  {/* 24.09.2026 — Hizmet ve İstihbarat Merkezi (Adım 1). Hero'nun hemen
+      ardında; masaüstünde DOM sırası, mobilde CSS order ile kanıt bandı ve
+      dert sorusundan sonra (ilk ekran/S1 korunur). Metin+sayılar
+      src/data/hizmet-vitrini.js'te veriden build-time doğrulanır. */}
+  <HizmetVitrini />
 
   <TeknolojiKartlari />
 
