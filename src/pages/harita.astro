@@ -27,6 +27,7 @@ import yasVeri from '../../data/canli/havza-yas.json';
 import grace from '../../data/canli/grace-havza.json';
 import { SITE_ADI, YAZAR, VERI_KATALOGU } from '../data/site';
 import AcilDestekBar from '../components/AcilDestekBar.astro';
+import CfAnalitik from '../components/CfAnalitik.astro';
 
 const KOK_URL = 'https://suharitasi.com/';
 const SAYFA_URL = 'https://suharitasi.com/harita/';
@@ -325,6 +326,7 @@ const jsonLd = JSON.stringify({
     else hero.addEventListener('load', goster);
     setTimeout(goster, 2500); // emniyet
   </script>
+  <CfAnalitik />
   <AcilDestekBar />
 </body>
 </html>

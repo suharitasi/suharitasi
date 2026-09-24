@@ -12,6 +12,7 @@ import SayfaBasi from '../../components/SayfaBasi.astro';
 import { TARIH } from '../../data/guncellik.js';
 import OzCevap from '../../components/OzCevap.astro';
 import Katman from '../../components/Katman.astro';
+import GeoOnizleme from '../../components/GeoOnizleme.astro';
 import { tumNehirler, nehirOzet,
          GOLNEHIR_ERISIM, GOLNEHIR_KAPSAM_NEHIR, GOLNEHIR_LISANS, kaynakBagi } from '../../data/gol-nehir.js';
 
@@ -23,6 +24,15 @@ const { nehir } = Astro.props;
 const ozet = nehirOzet(nehir);
 const havzalar = nehir.cografya.havzalar;
 const il = nehir.cografya.il;
+// P2 (24.09.2026): "İlgili Havza Varlıkları" tablosu — bağlı havza(lar) ve
+// aynı havzadaki diğer akarsular (en çok 2). Yalnız gerçek eşlemeden türetilir;
+// havzada 2'den az kardeş varsa eldeki kadar gösterilir (uydurma yok).
+const anaHavza = havzalar[0] ?? null;
+const kardesNehirler = anaHavza
+  ? tumNehirler()
+      .filter((x) => x.slug !== nehir.slug && x.cografya.havzalar.some((h) => h.slug === anaHavza.slug))
+      .slice(0, 2)
+  : [];
 const dsiBolge = il ? (tumIlProfilleri().find((x) => x.slug === il.slug)?.dsiBolgeleri ?? []) : [];
 const kok = new URL('/', Astro.site).href;
 
@@ -116,7 +126,9 @@ const sema = [{
 <Sayfa baslik={`${nehir.ad} — Türkiye Nehirleri`} tarayiciBaslik={tarayiciBaslik} aciklama={aciklamaZengin} sema={sema}>
   <SayfaBasi etiket="Nehir" baslik={nehir.ad} tarih={TARIH.golNehir ? new Date(TARIH.golNehir) : undefined} />
 
-  <OzCevap metin={ozet} />
+  <OzCevap metin={ozet} etiket="Özet bilgi" />
+
+  <GeoOnizleme geometry={nehir.geometry} bbox={nehir.bbox} ad={nehir.ad} tur="nehir" havza={anaHavza} />
 
   <Katman baslik="Nehir profili" ipucu="koordinat · havza · veri kaynağı">
     <dl class="kunye kunye-katman">
@@ -196,13 +208,47 @@ const sema = [{
     {' '}{GOLNEHIR_ERISIM}. {GOLNEHIR_LISANS}. Bu sayfa hukuki görüş değildir.
   </p>
 
+  {/* P2 (24.09.2026): GÖVDE SSS — JSON-LD FAQPage ile AYNI `sorular`
+      dizisinden görünür semantik HTML (h3 soru + doğrudan yanıt). AI Overview
+      ve RAG istemcileri yanıtı gövdeden çekebilir; yeni metin üretilmez. */}
+  <section class="sss" aria-label="Sık sorulan sorular">
+    <h2>Sık sorulan sorular</h2>
+    {sorular.map((q) => (
+      <div class="sss-madde">
+        <h3>{q.name}</h3>
+        <p>{q.acceptedAnswer.text}</p>
+      </div>
+    ))}
+  </section>
+
+  {/* P2 (24.09.2026): İlgili Havza Varlıkları tablosu — bağlı havza + aynı
+      havzadaki diğer akarsular (statik iç link omurgası). */}
+  <section class="havza-varlik" aria-label="İlgili havza varlıkları">
+    <h2>İlgili Havza Varlıkları</h2>
+    <table>
+      <thead>
+        <tr><th scope="col">Varlık</th><th scope="col">Bağ</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>{nehir.ad}</td><td>Bu sayfa (akarsu)</td></tr>
+        {anaHavza && (
+          <tr><td>{anaHavza.ad}</td><td><a href={`/havzalar/${anaHavza.slug}/`}>Havza verisi</a></td></tr>
+        )}
+        {kardesNehirler.map((k) => (
+          <tr><td>{k.ad}</td><td><a href={`/nehirler/${k.slug}/`}>Aynı havzadaki akarsu</a></td></tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+
   {/* C6 (V5, 10.09.2026): hub çapraz link bloğu — PageRank akışını havza/il
       ve dönüşüm sayfalarına (rehberler, /nerede-su-cikar/) yönlendirir.
-      Yalnız gerçek iç bağlar (uydurma yok). */}
+      Yalnız gerçek iç bağlar (uydurma yok). P2: tek-link sınırı (slice 3)
+      KALDIRILDI — akarsuyun geçtiği tüm havzalar bağlanır. */}
   <nav class="ilgili" aria-label="İlgili içerik">
     <h2>İlgili su verisi ve mevzuat</h2>
     <div class="capraz">
-      {havzalar.slice(0, 3).map((h) => <a href={`/havzalar/${h.slug}/`}>{h.ad} verisi</a>)}
+      {havzalar.map((h) => <a href={`/havzalar/${h.slug}/`}>{h.ad} verisi</a>)}
       {il && <a href={`/kuyu-ruhsati/${il.slug}/`}>{il.ad} kuyu ruhsatı</a>}
       <a href="/nerede-su-cikar/">İlinizde su nerede çıkar</a>
       <a href="/rehberler/">Su hukuku rehberleri</a>
@@ -277,4 +323,28 @@ const sema = [{
   .capraz { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.2rem 0 0; }
   .capraz a { font-family: var(--mono); font-size: 0.8rem; color: var(--su-700); border: 1px solid var(--cizgi); padding: 0.4rem 0.7rem; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
   .capraz a:hover { background: var(--zemin-kart); }
+
+  /* P2: gövde SSS (semantik h3 soru + doğrudan yanıt). radius 0, gölge yok. */
+  .sss { margin-top: 2rem; }
+  .sss h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 500; margin-bottom: 0.8rem; }
+  .sss-madde { border-top: 1px solid var(--cizgi); padding: 0.7rem 0; }
+  .sss-madde h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .sss-madde p { color: var(--metin-soluk); }
+
+  /* P2: İlgili Havza Varlıkları tablosu. */
+  .havza-varlik { margin-top: 2rem; }
+  .havza-varlik h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 500; margin-bottom: 0.8rem; }
+  .havza-varlik table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .havza-varlik th, .havza-varlik td {
+    text-align: left; padding: 0.5rem 0.7rem;
+    border-bottom: 1px solid var(--cizgi); vertical-align: top;
+  }
+  .havza-varlik th {
+    font-family: var(--mono); font-weight: 500; font-size: 0.68rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--metin-soluk); background: var(--adacayi-krem);
+    border-bottom: 2px solid var(--su-700);
+  }
+  .havza-varlik a { color: var(--baglanti); text-decoration: none; }
+  .havza-varlik a:hover { text-decoration: underline; }
 </style>

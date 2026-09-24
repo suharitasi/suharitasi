@@ -10,3 +10,14 @@
 // NOT: GA4 çerez kullandığı için KVKK aydınlatma metni (/gizlilik/) ve açık
 // onay ZORUNLUDUR — bu bileşen onu uygular.
 export const GA4_ID = '';
+
+// CLOUDFLARE WEB ANALYTICS TOKEN (24.09.2026, P1 Faz 1).
+//
+// GA4 Admin API kotaya/403'e takıldığı için çerezsiz/hafif resmî Cloudflare
+// Web Analytics beacon'ı şablona eklendi. TOKEN BOŞ BIRAKILDI → beacon
+// yüklenmez (site davranışı değişmez). Aktif etmek için:
+//   Cloudflare paneli → Web Analytics → Add site → suharitasi.com (JS snippet)
+//   → snippet içindeki "token" değerini buraya yaz.
+// Beacon resmî ve çerezsizdir; CSP (public/_headers) zaten
+// static.cloudflareinsights.com + cloudflareinsights.com izinli.
+export const CF_ANALYTICS_TOKEN = '';

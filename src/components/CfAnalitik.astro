@@ -1,0 +1,16 @@
+---
+// CLOUDFLARE WEB ANALYTICS BEACON (24.09.2026, P1 Faz 1) — resmî, çerezsiz.
+// Token src/data/analitik.js içinde; BOŞSA hiçbir şey basılmaz (site davranışı
+// değişmez). CSP (public/_headers) static.cloudflareinsights.com +
+// cloudflareinsights.com'u zaten izinliyor. Üç şablonda da ortak kullanılır:
+// Sayfa.astro (tüm içerik sayfaları), index.astro (ana sayfa), harita.astro.
+import { CF_ANALYTICS_TOKEN } from '../data/analitik.js';
+---
+{CF_ANALYTICS_TOKEN && (
+  <script
+    is:inline
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon={JSON.stringify({ token: CF_ANALYTICS_TOKEN })}
+  ></script>
+)}

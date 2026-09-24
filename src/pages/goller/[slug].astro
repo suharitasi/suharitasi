@@ -11,6 +11,7 @@ import SayfaBasi from '../../components/SayfaBasi.astro';
 import { TARIH } from '../../data/guncellik.js';
 import OzCevap from '../../components/OzCevap.astro';
 import Katman from '../../components/Katman.astro';
+import GeoOnizleme from '../../components/GeoOnizleme.astro';
 import { tumGoller, golOzet, golTipi, golTurSerhi,
          GOLNEHIR_ERISIM, GOLNEHIR_KAPSAM_GOL, GOLNEHIR_LISANS, kaynakBagi } from '../../data/gol-nehir.js';
 
@@ -26,6 +27,12 @@ const turSerhi = golTurSerhi(gol);
 const il = gol.cografya.il;
 const dsiBolge = il ? (tumIlProfilleri().find((x) => x.slug === il.slug)?.dsiBolgeleri ?? []) : [];
 const havza = gol.cografya.havzalar[0] ?? null;
+// P2 (24.09.2026): aynı havzadaki diğer göller (en çok 2) — statik iç link.
+const kardesGoller = havza
+  ? tumGoller()
+      .filter((x) => x.slug !== gol.slug && x.cografya.havzalar.some((h) => h.slug === havza.slug))
+      .slice(0, 2)
+  : [];
 const kok = new URL('/', Astro.site).href;
 
 const sayi = (n, o) =>
@@ -46,6 +53,18 @@ const konumCevabi = `${gol.ad} ${il ? `${il.ad} ili sınırlarındadır` : 'Tür
 const alanCevabi = gol.alan_km2 != null
   ? `${gol.ad} yaklaşık ${gol.alan_km2.toLocaleString('tr-TR')} km² yüzey alanına sahiptir.`
   : `${gol.ad} için yüzey alanı verisi kaynakta yer almıyor.`;
+
+// P2 (24.09.2026): SSS soruları TEK kaynak — hem görünür gövde (semantik HTML)
+// hem JSON-LD FAQPage aynı diziden beslenir. Cevap metni veriden; yeni iddia yok.
+const sssSorular = [{
+  '@type': 'Question',
+  name: `${gol.ad} nerededir?`,
+  acceptedAnswer: { '@type': 'Answer', text: konumCevabi },
+}, {
+  '@type': 'Question',
+  name: `${gol.ad} yüzey alanı ne kadar?`,
+  acceptedAnswer: { '@type': 'Answer', text: alanCevabi },
+}];
 
 // Schema.org BodyOfWater + FAQPage — her alan veriden.
 const sema = [{
@@ -72,22 +91,16 @@ const sema = [{
   // C3 (V5): FAQPage CreativeWork'tür — publisher + license burada geçerli.
   publisher: { '@id': `${kok}#kurum` },
   license: GOLNEHIR_LISANS,
-  mainEntity: [{
-    '@type': 'Question',
-    name: `${gol.ad} nerededir?`,
-    acceptedAnswer: { '@type': 'Answer', text: konumCevabi },
-  }, {
-    '@type': 'Question',
-    name: `${gol.ad} yüzey alanı ne kadar?`,
-    acceptedAnswer: { '@type': 'Answer', text: alanCevabi },
-  }],
+  mainEntity: sssSorular,
 }];
 ---
 
 <Sayfa baslik={`${gol.ad} — Türkiye Gölleri`} tarayiciBaslik={tarayiciBaslik} aciklama={ozet} sema={sema}>
   <SayfaBasi etiket="Göl" baslik={gol.ad} tarih={TARIH.golNehir ? new Date(TARIH.golNehir) : undefined} />
 
-  <OzCevap metin={ozet} />
+  <OzCevap metin={ozet} etiket="Özet bilgi" />
+
+  <GeoOnizleme geometry={gol.geometry} bbox={gol.bbox} ad={gol.ad} tur="gol" havza={havza} />
 
   <Katman baslik="Göl profili" ipucu={`${tur.ad.toLowerCase()} · koordinat · yüzey alanı`}>
     <dl class="kunye kunye-katman">
@@ -161,6 +174,38 @@ const sema = [{
       : gol.kaynak} — kapsam: {GOLNEHIR_KAPSAM_GOL}; erişim
     {' '}{GOLNEHIR_ERISIM}. {GOLNEHIR_LISANS}. Bu sayfa hukuki görüş değildir.
   </p>
+
+  {/* P2 (24.09.2026): GÖVDE SSS — JSON-LD FAQPage ile AYNI `sssSorular`
+      dizisinden görünür semantik HTML. AI Overview/RAG gövdeden çekebilir. */}
+  <section class="sss" aria-label="Sık sorulan sorular">
+    <h2>Sık sorulan sorular</h2>
+    {sssSorular.map((q) => (
+      <div class="sss-madde">
+        <h3>{q.name}</h3>
+        <p>{q.acceptedAnswer.text}</p>
+      </div>
+    ))}
+  </section>
+
+  {/* P2 (24.09.2026): İlgili Havza Varlıkları tablosu — havza + aynı havzadaki
+      diğer göller (statik iç link omurgası). */}
+  <section class="havza-varlik" aria-label="İlgili havza varlıkları">
+    <h2>İlgili Havza Varlıkları</h2>
+    <table>
+      <thead>
+        <tr><th scope="col">Varlık</th><th scope="col">Bağ</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>{gol.ad}</td><td>Bu sayfa (göl/gölet)</td></tr>
+        {havza && (
+          <tr><td>{havza.ad}</td><td><a href={`/havzalar/${havza.slug}/`}>Havza verisi</a></td></tr>
+        )}
+        {kardesGoller.map((k) => (
+          <tr><td>{k.ad}</td><td><a href={`/goller/${k.slug}/`}>Aynı havzadaki göl</a></td></tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
 
   {/* C6 (V5, 10.09.2026): hub çapraz link bloğu — PageRank akışını il/havza
       ve dönüşüm sayfalarına (rehberler, /nerede-su-cikar/) yönlendirir.
@@ -243,4 +288,28 @@ const sema = [{
   .capraz { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.2rem 0 0; }
   .capraz a { font-family: var(--mono); font-size: 0.8rem; color: var(--su-700); border: 1px solid var(--cizgi); padding: 0.4rem 0.7rem; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
   .capraz a:hover { background: var(--zemin-kart); }
+
+  /* P2: gövde SSS (semantik h3 soru + doğrudan yanıt). radius 0, gölge yok. */
+  .sss { margin-top: 2rem; }
+  .sss h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 500; margin-bottom: 0.8rem; }
+  .sss-madde { border-top: 1px solid var(--cizgi); padding: 0.7rem 0; }
+  .sss-madde h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .sss-madde p { color: var(--metin-soluk); }
+
+  /* P2: İlgili Havza Varlıkları tablosu. */
+  .havza-varlik { margin-top: 2rem; }
+  .havza-varlik h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 500; margin-bottom: 0.8rem; }
+  .havza-varlik table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .havza-varlik th, .havza-varlik td {
+    text-align: left; padding: 0.5rem 0.7rem;
+    border-bottom: 1px solid var(--cizgi); vertical-align: top;
+  }
+  .havza-varlik th {
+    font-family: var(--mono); font-weight: 500; font-size: 0.68rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--metin-soluk); background: var(--adacayi-krem);
+    border-bottom: 2px solid var(--su-700);
+  }
+  .havza-varlik a { color: var(--baglanti); text-decoration: none; }
+  .havza-varlik a:hover { text-decoration: underline; }
 </style>

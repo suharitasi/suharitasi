@@ -11,6 +11,7 @@ import { SITE_ADI, YAZAR, EPOSTA, OG_GORSEL, KURUM_SOSYAL, YAZAR_SOSYAL } from '
 import '../styles/hareket.css';
 import AcilDestekBar from '../components/AcilDestekBar.astro';
 import Analitik from '../components/Analitik.astro';
+import CfAnalitik from '../components/CfAnalitik.astro';
 
 interface Props {
   baslik: string;
@@ -92,9 +93,16 @@ const bolumAdlari: Record<string, string> = {
   'kuyu-ruhsati': 'Kuyu ruhsatı — iller',
   goller: 'Göller',
   nehirler: 'Nehirler',
-  // 'arac' girişi 28.07 K2 taşımasıyla öldü (/arac/il-rejimi/ →
-  // /ilimde-kim-yetkili/, bölüm boşaldı) ve temizlendi; yeni /arac/ rotası
-  // doğarsa buraya yeniden eklenir.
+  // 24.09.2026 (P1 breadcrumb onarımı): index sayfası olan ama etiketi
+  // tanımsız kalan bölümler ham slug (küçük harf) olarak görünüyordu
+  // (ör. "mevzuat"); okunur etiketleri eklendi. Görünür kırıntı + şema
+  // adı aynı diziden gelir, ikisi birlikte düzelir.
+  mevzuat: 'Mevzuat',
+  veri: 'Veriler',
+  durumum: 'Durumum',
+  'hangi-kurum': 'Hangi Kurum',
+  hesaplayicilar: 'Hesaplayıcılar',
+  vaka: 'Vakalar',
 };
 // HANGİ ARA HALKA LİNK OLABİLİR — otomatik türetilir.
 // Hata kaydı (27 Tem 2026): breadcrumb her ara parçayı link yapıyordu; ama
@@ -110,7 +118,7 @@ const varOlanBolum = new Set(
   )
 );
 const parcalar = yol.split('/').filter(Boolean);
-const kirintilar = parcalar.map((p, i) => {
+const kirintilarHam = parcalar.map((p, i) => {
   const dizin = parcalar.slice(0, i + 1).join('/');
   const sonuncu = i === parcalar.length - 1;
   return {
@@ -122,7 +130,14 @@ const kirintilar = parcalar.map((p, i) => {
       : null,
   };
 });
-kirintilar.unshift({ ad: 'Ana sayfa', url: kok });
+kirintilarHam.unshift({ ad: 'Ana sayfa', url: kok });
+// BreadcrumbList ONARIMI (24.09.2026, GSC "Missing field item"): şemada
+// item'sız ListItem BIRAKILMAZ. Sayfası olmayan ara halka (ör. /mevzuat/5393/)
+// eksik/404'lü item ile yayımlanmak yerine kırıntıdan DÜŞÜRÜLÜR; kalan her
+// ListItem geçerli URL taşır, son halka sayfanın canonical'ıdır. Böylece
+// /nehirler/ ve /goller/ hub'ları yayına girince o basamak kendiliğinden
+// geri gelir (varOlanBolum türetmesi elle liste bakımı istemez).
+const kirintilar = kirintilarHam.filter((k) => k.url);
 
 const kurum = {
   // LegalService (geo-schema brief V2, 10.09.2026): portal hukuki bilgi
@@ -206,9 +221,10 @@ const semalar = [
       '@type': 'ListItem',
       position: i + 1,
       name: k.ad,
-      // Sayfası olmayan ara halka `item` TAŞIMAZ — aksi halde şema 404'e
-      // işaret eder. schema.org yalnız `name` taşıyan ListItem'a izin verir.
-      ...(k.url ? { item: k.url } : {}),
+      // Her ListItem GEÇERLİ item taşır (GSC "Missing field item" onarımı,
+      // 24.09.2026): sayfası olmayan ara halka kırıntıdan düşürüldüğü için
+      // burada item'sız ListItem ÜRETİLMEZ.
+      item: k.url,
     })),
   },
   ...sema,
@@ -696,6 +712,7 @@ const jsonLd = JSON.stringify({
       <slot />
     </article>
   </main>
+  <CfAnalitik />
   <AltBilgi />
   <AcilDestekBar />
   <Analitik />

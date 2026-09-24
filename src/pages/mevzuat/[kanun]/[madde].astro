@@ -8,6 +8,7 @@ import CtaBlok from '../../../components/CtaBlok.astro';
 import HukukSerhi from '../../../components/HukukSerhi.astro';
 import mevzuat from '../../../../data/kamu/mevzuat-maddeleri.json';
 import emsal from '../../../../data/kamu/emsal-kararlar.json';
+import { MEVZUAT_EDITORYAL } from '../../../data/mevzuat-editoryal.js';
 
 export async function getStaticPaths() {
   const slug = (s) =>
@@ -36,6 +37,10 @@ const canonical = new URL(`/mevzuat/${slugla(m.kanunKisa)}/${slugla(m.madde)}/`,
 // Kısa başlık yoksa madde künyesine düş (uydurma başlık üretilmez).
 const baslikMetni = m.baslik || m.madde;
 
+// P2 (24.09.2026): yalnız yüksek niyetli 3 madde için editoryal katman
+// (mevzuat-editoryal.js). Yoksa hiçbir şey değişmez.
+const editoryal = MEVZUAT_EDITORYAL[`${m.kanunKisa}|${m.madde}`] ?? null;
+
 // Öz cevap: maddenin kendi resmî metninden damıtılır; ≤280 (GEO bandı).
 const oz = `${m.kanun} ${m.madde}${m.baslik ? ` (${m.baslik})` : ''}: ${m.metin}`.slice(0, 270);
 // Meta açıklama: kısa maddelerde 50 karakter altına düşmesin diye sabit kuyruk.
@@ -45,7 +50,9 @@ const aciklama = (
 ).slice(0, 160);
 // <title> 60 sınırı: tam kalıp sığmazsa kısa künyeye düş (marka eki eklenmez).
 const tamBaslik = `${m.kanunKisa} ${m.madde}${m.baslik ? `: ${m.baslik}` : ''}`;
-const tarayiciBaslik = tamBaslik.length <= 60 ? tamBaslik : `${m.kanunKisa} ${m.madde}`;
+const tarayiciBaslik = (editoryal?.seoBaslik && editoryal.seoBaslik.length <= 60)
+  ? editoryal.seoBaslik
+  : (tamBaslik.length <= 60 ? tamBaslik : `${m.kanunKisa} ${m.madde}`);
 
 const sema = [
   {
@@ -83,6 +90,19 @@ const sema = [
 <Sayfa baslik={`${m.kanun} — ${m.madde}`} aciklama={aciklama} tarayiciBaslik={tarayiciBaslik} sema={sema}>
   <SayfaBasi etiket={`${m.tur} · madde`} baslik={`${m.kanun} — ${m.madde}`} ozet={baslikMetni} />
   <OzCevap metin={oz} etiket="Madde özeti" />
+
+  {editoryal && (
+    <section class="mv-bolum mv-editoryal" aria-label="Pratik karşılık">
+      <h2>{editoryal.h2}</h2>
+      <p class="mv-yorum">{editoryal.ozet}</p>
+      {editoryal.baglar?.length > 0 && (
+        <nav class="mv-capraz" aria-label="İlgili sayfalar">
+          {editoryal.baglar.map((b) => <a href={b.yol}>→ {b.ad}</a>)}
+        </nav>
+      )}
+      {editoryal.not && <p class="mv-veri-yok">{editoryal.not}</p>}
+    </section>
+  )}
 
   <section class="mv-bolum" aria-label="Resmî madde metni">
     <h2>Resmî madde metni</h2>

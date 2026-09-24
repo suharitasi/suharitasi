@@ -123,6 +123,8 @@ export const VERI_ROTALARI = [
   { ad: 'Su Hukuku Rehberleri', yol: '/rehberler/' },
   { ad: 'Canlı Harita & Katmanlar', yol: '/' },
   { ad: 'Havza & Veri Analizleri', yol: '/havza-riski/' },
+  { ad: 'Nehirler', yol: '/nehirler/' },
+  { ad: 'Göller', yol: '/goller/' },
   { ad: 'İletişim / Uzman Görüşü', yol: '/#iletisim' },
 ];
 

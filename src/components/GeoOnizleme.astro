@@ -1,0 +1,132 @@
+---
+// STATİK GEO ÖNİZLEME (24.09.2026, P2 Faz 2) — harita arama niyetini veriyle
+// karşılar. Yalnız GERÇEK GeoJSON geometrisinden (OSM) üretilen, hafif, statik
+// bir SVG çizer; HİÇBİR harita kütüphanesi yok, HİÇBİR koordinat uydurulmaz.
+// Geometri yoksa (boşsa) çizim yerine havza haritasına yönlendiren buton basar.
+// Tasarım Anayasası: radius 0, box-shadow yok, blur yok.
+interface Props {
+  geometry: any;
+  bbox: number[] | null;
+  ad: string;
+  tur: 'nehir' | 'gol';
+  havza: { ad: string; slug: string } | null;
+}
+const { geometry, bbox, ad, tur, havza } = Astro.props;
+
+// Geometri → basit nokta dizisi (LineString) veya halka (Polygon). Örnekleme
+// nokta sayısını sınırlar (hafiflik); yeni nokta üretilmez, yalnız seyreltilir.
+function noktalar(geom: any): { ring: number[][]; kapali: boolean } | null {
+  if (!geom) return null;
+  if (geom.type === 'LineString' && Array.isArray(geom.coordinates) && geom.coordinates.length > 1) {
+    return { ring: geom.coordinates, kapali: false };
+  }
+  if (geom.type === 'Polygon' && Array.isArray(geom.coordinates) && geom.coordinates[0]?.length > 2) {
+    return { ring: geom.coordinates[0], kapali: true };
+  }
+  if (geom.type === 'MultiPolygon' && Array.isArray(geom.coordinates)) {
+    // Yalnız EN BÜYÜK halka gösterilir (etiket amaçlı önizleme; birleştirme yok).
+    const enBuyuk = geom.coordinates
+      .map((p: any) => p?.[0])
+      .filter((r: any) => Array.isArray(r) && r.length > 2)
+      .sort((a: any, b: any) => b.length - a.length)[0];
+    if (enBuyuk) return { ring: enBuyuk, kapali: true };
+  }
+  return null;
+}
+
+const veri = noktalar(geometry);
+const W = 320;
+const H = 180;
+const P = 16;
+
+let yolD = '';
+if (veri && bbox && bbox.length === 4) {
+  const [minX, minY, maxX, maxY] = bbox;
+  const dx = maxX - minX || 1e-6;
+  const dy = maxY - minY || 1e-6;
+  const s = Math.min((W - 2 * P) / dx, (H - 2 * P) / dy);
+  const ox = (W - dx * s) / 2;
+  const oy = (H - dy * s) / 2;
+  const proj = ([x, y]: number[]) => [ox + (x - minX) * s, oy + (maxY - y) * s];
+  let ring = veri.ring;
+  const maxN = 160;
+  if (ring.length > maxN) {
+    const adim = Math.ceil(ring.length / maxN);
+    const seyrek = ring.filter((_, i) => i % adim === 0);
+    if (seyrek[seyrek.length - 1] !== ring[ring.length - 1]) seyrek.push(ring[ring.length - 1]);
+    ring = seyrek;
+  }
+  yolD = ring
+    .map((p, i) => {
+      const [x, y] = proj(p);
+      return `${i === 0 ? 'M' : 'L'}${x.toFixed(1)} ${y.toFixed(1)}`;
+    })
+    .join(' ');
+  if (veri.kapali) yolD += ' Z';
+}
+
+const etiket = tur === 'nehir' ? 'Yaklaşık akarsu hattı' : 'Yaklaşık su alanı';
+const havzaAd = havza?.ad ?? null;
+const havzaSlug = havza?.slug ?? null;
+---
+<figure class="geo">
+  {yolD ? (
+    <>
+      <svg viewBox={`0 0 ${W} ${H}`} role="img"
+           aria-label={`${ad} — ${etiket} (OpenStreetMap geometrisinden)`}>
+        <path d={yolD}
+              fill={veri?.kapali ? 'rgba(46, 126, 160, 0.18)' : 'none'}
+              stroke="var(--su-700)" stroke-width="2"
+              stroke-linejoin="round" stroke-linecap="round" />
+      </svg>
+      <figcaption class="geo-alt">
+        {etiket} — OpenStreetMap (ölçekli/tescil değil).{' '}
+        {havzaSlug && (
+          <a href={`/havzalar/${havzaSlug}/`}>
+            {tur === 'nehir' ? `Bu akarsuyu ${havzaAd} Haritasında gör` : `${havzaAd} haritasında gör`}
+          </a>
+        )}
+      </figcaption>
+    </>
+  ) : (
+    <div class="geo-yok">
+      <p>Bu varlık için doğrulanmış geometri yok; harita çizilmez.</p>
+      {havzaSlug && (
+        <a class="geo-buton" href={`/havzalar/${havzaSlug}/`}>
+          {havzaAd} Haritasında Gör →
+        </a>
+      )}
+    </div>
+  )}
+</figure>
+
+<style>
+  .geo {
+    margin: 0 0 1.6rem;
+    border: 1px solid var(--cizgi);
+    background: var(--zemin-kart);
+    padding: 0.6rem 0.8rem 0.5rem;
+  }
+  .geo svg { display: block; width: 100%; height: auto; }
+  .geo-alt {
+    font-size: 0.78rem;
+    color: var(--metin-soluk);
+    margin-top: 0.4rem;
+  }
+  .geo-alt a { color: var(--baglanti); text-decoration: none; }
+  .geo-alt a:hover { text-decoration: underline; }
+  .geo-yok { padding: 0.8rem; }
+  .geo-yok p { font-size: 0.9rem; color: var(--metin-soluk); margin-bottom: 0.6rem; }
+  .geo-buton {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--cizgi);
+    color: var(--su-700);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    text-decoration: none;
+  }
+  .geo-buton:hover { background: var(--zemin); }
+</style>

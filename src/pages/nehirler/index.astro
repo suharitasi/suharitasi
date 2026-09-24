@@ -1,0 +1,178 @@
+---
+// NEHİRLER DİZİNİ (/nehirler/) — 24.09.2026, P1 Faz 1.
+// Neden: 95 nehir detay sayfası vardı ama /nehirler/ kökü 404 dönüyordu;
+// hub olmadığından varlık sayfaları yalnız sitemap'ten bulunuyor, kategori
+// otoritesi ve iç link omurgası zayıftı (GSC: gökırmak/eşen çayı referringUrls
+// yalnız sitemap.xml). Bu sayfa TÜM listeyi (kapı/doorway değil) + havza
+// kırılımını sunar. İçerik yalnız tr-nehirler.json'dan türetilir; yeni veri
+// veya iddia üretilmez (uydurma yasağı).
+// Tasarım Anayasası: radius 0, box-shadow yok, blur yok; mevcut palet ve
+// tipografi (.icerik table / mono başlık dili) kullanılır. Harici kütüphane
+// veya JS YOK.
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import { tumNehirler, GOLNEHIR_ERISIM, GOLNEHIR_KAPSAM_NEHIR, GOLNEHIR_LISANS } from '../../data/gol-nehir.js';
+
+const nehirler = tumNehirler()
+  .slice()
+  .sort((a, b) => a.ad.localeCompare(b.ad, 'tr'));
+
+// Havza kırılımı — her akarsu, geçtiği havza(lar)ın altında listelenir.
+const havzaHarita = new Map();
+for (const n of nehirler) {
+  for (const h of n.cografya.havzalar) {
+    if (!havzaHarita.has(h.slug)) havzaHarita.set(h.slug, { ad: h.ad, slug: h.slug, satirlar: [] });
+    havzaHarita.get(h.slug).satirlar.push(n);
+  }
+}
+const havzalar = [...havzaHarita.values()].sort((a, b) => a.ad.localeCompare(b.ad, 'tr'));
+
+const havzaSatiri = (n) =>
+  n.cografya.havzalar.length
+    ? n.cografya.havzalar.map((h) => h.ad).join(' · ')
+    : '—';
+
+const ozet =
+  `Türkiye kapsamındaki ${nehirler.length} akarsu hattının tam dizini; alfabetik ` +
+  `sırada, geçtiği havza ve örneklenen il ile birlikte. Veri: ${GOLNEHIR_KAPSAM_NEHIR} ` +
+  `(erişim ${GOLNEHIR_ERISIM}); havza/il eşlemesi örneklenmiş hat noktalarından türetilmiştir, ` +
+  `hidrografik tescil değildir.`;
+
+const aciklama =
+  `Türkiye'deki ${nehirler.length} akarsu hattının alfabetik dizini: her akarsu, ` +
+  `geçtiği havza ve örneklenen il bilgisiyle listelenir. Kaynak OpenStreetMap, erişim ${GOLNEHIR_ERISIM}.`;
+---
+<Sayfa
+  baslik="Türkiye Nehirleri — Akarsu Dizini"
+  tarayiciBaslik="Türkiye Nehirleri — Akarsu Dizini"
+  aciklama={aciklama}
+>
+  <SayfaBasi etiket="Dizin" baslik="Türkiye Nehirleri" ozet={ozet} ozCevap />
+
+  <section class="dizin" aria-label="Alfabetik akarsu dizini">
+    <h2>Alfabetik akarsu dizini</h2>
+    <p class="dizin-not">
+      {nehirler.length} akarsu; her satır geçtiği havza(lar) ve örneklenen ili taşır.
+    </p>
+    <div class="tablo-sar">
+      <table>
+        <thead>
+          <tr><th scope="col">Akarsu</th><th scope="col">Geçtiği havza · örneklenen il</th></tr>
+        </thead>
+        <tbody>
+          {nehirler.map((n) => (
+            <tr>
+              <td><a href={`/nehirler/${n.slug}/`}>{n.ad}</a></td>
+              <td>{havzaSatiri(n)}{n.cografya.il ? ` · ${n.cografya.il.ad}` : ''}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="dizin" aria-label="Havzaya göre akarsular">
+    <h2>Havzaya göre akarsular</h2>
+    <p class="dizin-not">
+      {havzalar.length} havza; bir akarsu birden çok havzadan geçtiği için
+      listede birden fazla başlık altında görünebilir.
+    </p>
+    {havzalar.map((h) => (
+      <div class="grup">
+        <h3>{h.ad}</h3>
+        <ul class="grup-liste">
+          {h.satirlar
+            .slice()
+            .sort((a, b) => a.ad.localeCompare(b.ad, 'tr'))
+            .map((n) => (
+              <li><a href={`/nehirler/${n.slug}/`}>{n.ad}</a></li>
+            ))}
+        </ul>
+      </div>
+    ))}
+  </section>
+
+  <p class="kunye">
+    Veri künyesi: {GOLNEHIR_KAPSAM_NEHIR}; erişim {GOLNEHIR_ERISIM}. {GOLNEHIR_LISANS}.
+    Bu sayfa hukuki görüş değildir.
+  </p>
+
+  <nav class="ilgili" aria-label="İlgili bölümler">
+    <div class="capraz">
+      <a href="/goller/">Türkiye gölleri dizini</a>
+      <a href="/havzalar/">Su havzaları</a>
+      <a href="/nerede-su-cikar/">İlinizde su nerede çıkar</a>
+      <a href="/rehberler/">Su hukuku rehberleri</a>
+    </div>
+  </nav>
+</Sayfa>
+
+<style>
+  .dizin { margin-top: 2rem; }
+  .dizin h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .dizin-not { font-size: 0.9rem; color: var(--metin-soluk); margin-bottom: 0.8rem; }
+
+  .tablo-sar { width: 100%; }
+  .dizin table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .dizin th, .dizin td {
+    text-align: left;
+    padding: 0.5rem 0.7rem;
+    border-bottom: 1px solid var(--cizgi);
+    vertical-align: top;
+  }
+  .dizin th {
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    background: var(--adacayi-krem);
+    border-bottom: 2px solid var(--su-700);
+  }
+  .dizin td a { color: var(--baglanti); text-decoration: none; }
+  .dizin td a:hover { text-decoration: underline; }
+
+  .grup { margin-top: 1.2rem; }
+  .grup h3 {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--su-700);
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--cizgi);
+    margin-bottom: 0.4rem;
+  }
+  .grup-liste {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem 1.1rem;
+  }
+  .grup-liste a { color: var(--baglanti); text-decoration: none; }
+  .grup-liste a:hover { text-decoration: underline; }
+
+  .kunye { font-size: 0.8rem; color: var(--metin-soluk); margin: 1.6rem 0 0; }
+
+  .ilgili { margin-top: 1.6rem; }
+  .capraz { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .capraz a {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--su-700);
+    border: 1px solid var(--cizgi);
+    padding: 0.4rem 0.7rem;
+    text-decoration: none;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .capraz a:hover { background: var(--zemin-kart); }
+</style>

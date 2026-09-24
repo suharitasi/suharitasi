@@ -12,6 +12,7 @@ import { getCollection } from 'astro:content';
 import { personalar, yonetmelik } from '../../data/persona.js';
 import { EPOSTA, YAZAR } from '../../data/site';
 import HukukSerhi from '../../components/HukukSerhi.astro';
+import naceEk2Veri from '../../../data/lead/nace-ek2.json';
 
 export async function getStaticPaths() {
   return personalar.map((p) => ({ params: { persona: p.slug }, props: { p } }));
@@ -79,6 +80,42 @@ const benzerler = secilen
 
 const tarihli = !!p.sonTarihMetni;
 
+// P2 (24.09.2026, Task 5a): YALNIZ ince kalan bu sayfa tipine, İL/NACE'ye ÖZGÜ
+// ve TEKRARSIZ kısa giriş. Metin tamamen doğrulanmış veriden türetilir:
+//   - NACE-türevli persona  → nace-ek2.json'daki ana faaliyet (sıra+kod+kısaAd)
+//     ve o koda ait DOĞRULANMIŞ alt NACE kodları (farklı her sayfada farklı);
+//   - genel persona         → kendi yükümlülük grubu + doğrulanmış dayanağı.
+// Yeni hukuki iddia ÜRETİLMEZ; kuyu-ruhsati/hangi-kurum gibi dolu sayfalara
+// DOKUNULMAZ (duplicate riski).
+const naceAna = new Map(naceEk2Veri.anaFaaliyetler.map((a) => [a.kod, a]));
+const naceAlt = new Map();
+for (const d of naceEk2Veri.detayKodlar || []) {
+  const ana = String(d.hamKod || d.kod || '').split('.')[0];
+  if (!naceAlt.has(ana)) naceAlt.set(ana, []);
+  naceAlt.get(ana).push(d);
+}
+function sektorKapsam(per) {
+  const kod = per.nace ? String(per.nace) : null;
+  const ana = kod ? naceAna.get(kod) : null;
+  if (ana) {
+    const alt = (naceAlt.get(kod) || []).slice(0, 5)
+      .map((x) => `${x.kod} (${x.aciklama})`).join(', ');
+    const altCumle = alt
+      ? ` Bu ana faaliyetin doğrulanmış alt NACE kodlarından bazıları: ${alt}.`
+      : '';
+    return `${ana.kisaAd} (NACE ${ana.kod}), Su Verimliliği Yönetmeliği Ek-2 ` +
+      `listesinde ${ana.sira}. sırada yer alan ana faaliyetlerden biridir.${altCumle} ` +
+      `İşletmeniz bu kodlardan birinde faaliyet gösteriyorsa yeşil su verimliliği ` +
+      `belgesi yükümlülüğü kapsamında değerlendirilir; sabit son başvuru tarihi ve ` +
+      `dayanak aşağıda künyesiyle verilmiştir.`;
+  }
+  const dayanak = (per.dayanak && per.dayanak[0]) ? per.dayanak[0] : '';
+  return `${per.ad}, su hukukunda yükümlülük doğuran faaliyet gruplarından biridir. ` +
+    `Bu sayfa; sektörün yükümlülüğünü, dayanağını ve başvuru öncesi ilk adımları ` +
+    `tek yerde toplar${dayanak ? ` (dayanak: ${dayanak})` : ''}.`;
+}
+const sektorMetni = sektorKapsam(p);
+
 // Öz-cevap (≤280): yükümlülük + (varsa) sabit tarih.
 let ozCevap = p.yukumluluk;
 if (tarihli) ozCevap += ` Son başvuru: ${p.sonTarihMetni}.`;
@@ -144,6 +181,12 @@ const personaBaslik = `${p.ad}: su hukukunda durumunuz`.length <= 60
         Bunun yerine veri künyesindeki DOĞRULANMIŞ yayım tarihi basılıyor
         (`persona.json` → `yonetmelik.rgTarih`). */}
     <p class="kh-dayanak">Dayanak: {p.dayanak.join(' · ')}{yonetmelikKunyesi}</p>
+  </section>
+
+  {/* P2 (Task 5a): NACE'ye özgü, tekrarsız sektör kapsamı girişi — veriden. */}
+  <section class="kapsam" aria-label="Sektör kapsamı">
+    <h2 class="kapsam-baslik">Sektör kapsamı</h2>
+    <p>{sektorMetni}</p>
   </section>
 
   {/* Risk çerçevesi (onaylı genel dil; yaptırım [APILEX]) */}
@@ -250,6 +293,11 @@ const personaBaslik = `${p.ad}: su hukukunda durumunuz`.length <= 60
   .apilex { color: var(--metin-soluk); font-size: 0.9em; }
 
   .blok-baslik { font-family: var(--serif); font-weight: 500; font-size: 1.5rem; margin: 1.6rem 0 0.7rem; }
+
+  /* P2 (Task 5a): sektör kapsamı girişi — radius 0, gölge yok. */
+  .kapsam { margin: 1.2rem 0; }
+  .kapsam-baslik { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; margin-bottom: 0.4rem; }
+  .kapsam p { color: var(--metin-soluk); }
   .adimlar { list-style: none; display: grid; gap: 0.6rem; margin: 0 0 1.2rem; padding: 0; }
   .adim { display: flex; gap: 0.8rem; padding: 0.85rem 1rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); }
   .adim-no { font-family: var(--mono); color: var(--su-700); font-weight: 600; }

@@ -1,0 +1,192 @@
+---
+// GÖLLER DİZİNİ (/goller/) — 24.09.2026, P1 Faz 1.
+// Neden: 247 göl/gölet detay sayfası vardı ama /goller/ kökü 404 dönüyordu;
+// hub olmadığından kategori otoritesi ve iç link omurgası zayıftı. Bu sayfa
+// TÜM listeyi (kapı/doorway değil) + il ve havza kırılımlarını sunar. İçerik
+// yalnız tr-goller.json'dan türetilir; yeni veri veya iddia üretilmez.
+// Tasarım Anayasası: radius 0, box-shadow yok, blur yok; mevcut palet ve
+// tipografi. Harici kütüphane veya JS YOK.
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import { tumGoller, GOLNEHIR_ERISIM, GOLNEHIR_KAPSAM_GOL, GOLNEHIR_LISANS } from '../../data/gol-nehir.js';
+
+const goller = tumGoller()
+  .slice()
+  .sort((a, b) => a.ad.localeCompare(b.ad, 'tr'));
+
+function grupla(anahtarFn) {
+  const harita = new Map();
+  for (const g of goller) {
+    for (const anahtar of anahtarFn(g)) {
+      if (!anahtar) continue;
+      if (!harita.has(anahtar.slug)) harita.set(anahtar.slug, { ad: anahtar.ad, slug: anahtar.slug, satirlar: [] });
+      harita.get(anahtar.slug).satirlar.push(g);
+    }
+  }
+  return [...harita.values()].sort((a, b) => a.ad.localeCompare(b.ad, 'tr'));
+}
+
+const iller = grupla((g) => (g.cografya.il ? [g.cografya.il] : []));
+const havzalar = grupla((g) => g.cografya.havzalar);
+
+const havzaSatiri = (g) =>
+  g.cografya.havzalar.length ? g.cografya.havzalar.map((h) => h.ad).join(' · ') : '—';
+
+const ozet =
+  `Türkiye kapsamındaki ${goller.length} göl ve göletin tam dizini; alfabetik sırada, ` +
+  `bulunduğu il ve havza ile birlikte. Veri: ${GOLNEHIR_KAPSAM_GOL} (erişim ${GOLNEHIR_ERISIM}); ` +
+  `il/havza eşlemesi göl geometrisinin örneklenmiş noktalarından türetilmiştir, idari tescil değildir.`;
+
+const aciklama =
+  `Türkiye'deki ${goller.length} göl ve göletin alfabetik dizini: her biri bulunduğu il ve ` +
+  `havza bilgisiyle listelenir. Kaynak OpenStreetMap + Natural Earth, erişim ${GOLNEHIR_ERISIM}.`;
+---
+<Sayfa
+  baslik="Türkiye Gölleri — Göl ve Gölet Dizini"
+  tarayiciBaslik="Türkiye Gölleri — Göl ve Gölet Dizini"
+  aciklama={aciklama}
+>
+  <SayfaBasi etiket="Dizin" baslik="Türkiye Gölleri" ozet={ozet} ozCevap />
+
+  <section class="dizin" aria-label="Alfabetik göl dizini">
+    <h2>Alfabetik göl ve gölet dizini</h2>
+    <p class="dizin-not">
+      {goller.length} kayıt; her satır bulunduğu il ve havza(lar) bilgisini taşır.
+    </p>
+    <div class="tablo-sar">
+      <table>
+        <thead>
+          <tr><th scope="col">Göl / gölet</th><th scope="col">İl · havza</th></tr>
+        </thead>
+        <tbody>
+          {goller.map((g) => (
+            <tr>
+              <td><a href={`/goller/${g.slug}/`}>{g.ad}</a></td>
+              <td>{g.cografya.il ? `${g.cografya.il.ad} · ` : ''}{havzaSatiri(g)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="dizin" aria-label="İle göre göller">
+    <h2>İle göre göller</h2>
+    <p class="dizin-not">{iller.length} il; bir göl birden çok ile taşabilir.</p>
+    {iller.map((il) => (
+      <div class="grup">
+        <h3>{il.ad}</h3>
+        <ul class="grup-liste">
+          {il.satirlar
+            .slice()
+            .sort((a, b) => a.ad.localeCompare(b.ad, 'tr'))
+            .map((g) => (
+              <li><a href={`/goller/${g.slug}/`}>{g.ad}</a></li>
+            ))}
+        </ul>
+      </div>
+    ))}
+  </section>
+
+  <section class="dizin" aria-label="Havzaya göre göller">
+    <h2>Havzaya göre göller</h2>
+    <p class="dizin-not">{havzalar.length} havza; bir göl birden çok havzaya taşabilir.</p>
+    {havzalar.map((h) => (
+      <div class="grup">
+        <h3>{h.ad}</h3>
+        <ul class="grup-liste">
+          {h.satirlar
+            .slice()
+            .sort((a, b) => a.ad.localeCompare(b.ad, 'tr'))
+            .map((g) => (
+              <li><a href={`/goller/${g.slug}/`}>{g.ad}</a></li>
+            ))}
+        </ul>
+      </div>
+    ))}
+  </section>
+
+  <p class="kunye">
+    Veri künyesi: {GOLNEHIR_KAPSAM_GOL}; erişim {GOLNEHIR_ERISIM}. {GOLNEHIR_LISANS}.
+    Bu sayfa hukuki görüş değildir.
+  </p>
+
+  <nav class="ilgili" aria-label="İlgili bölümler">
+    <div class="capraz">
+      <a href="/nehirler/">Türkiye nehirleri dizini</a>
+      <a href="/havzalar/">Su havzaları</a>
+      <a href="/nerede-su-cikar/">İlinizde su nerede çıkar</a>
+      <a href="/rehberler/">Su hukuku rehberleri</a>
+    </div>
+  </nav>
+</Sayfa>
+
+<style>
+  .dizin { margin-top: 2rem; }
+  .dizin h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .dizin-not { font-size: 0.9rem; color: var(--metin-soluk); margin-bottom: 0.8rem; }
+
+  .tablo-sar { width: 100%; }
+  .dizin table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .dizin th, .dizin td {
+    text-align: left;
+    padding: 0.5rem 0.7rem;
+    border-bottom: 1px solid var(--cizgi);
+    vertical-align: top;
+  }
+  .dizin th {
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    background: var(--adacayi-krem);
+    border-bottom: 2px solid var(--su-700);
+  }
+  .dizin td a { color: var(--baglanti); text-decoration: none; }
+  .dizin td a:hover { text-decoration: underline; }
+
+  .grup { margin-top: 1.2rem; }
+  .grup h3 {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--su-700);
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--cizgi);
+    margin-bottom: 0.4rem;
+  }
+  .grup-liste {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem 1.1rem;
+  }
+  .grup-liste a { color: var(--baglanti); text-decoration: none; }
+  .grup-liste a:hover { text-decoration: underline; }
+
+  .kunye { font-size: 0.8rem; color: var(--metin-soluk); margin: 1.6rem 0 0; }
+
+  .ilgili { margin-top: 1.6rem; }
+  .capraz { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .capraz a {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--su-700);
+    border: 1px solid var(--cizgi);
+    padding: 0.4rem 0.7rem;
+    text-decoration: none;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .capraz a:hover { background: var(--zemin-kart); }
+</style>
