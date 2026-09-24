@@ -56,10 +56,12 @@ const mailKonu = 'Hızlı danışma talebi';
     <label class="hd-tam">Durumunuz <span class="hd-zorunlu">*</span>
       <textarea name="mesaj" rows="5" required placeholder="Örn. DSİ kuyu kullanma belgesi başvurumu reddetti; tebliğ tarihi ..."></textarea>
     </label>
-    {/* Honeypot — botlar doldurur, insan görmez. */}
-    <label class="hd-tuzak" aria-hidden="true">Bu alanı boş bırakın
+    {/* Honeypot — botlar doldurur, insan görmez. P3 W3C: aria-hidden bir
+        <label>'da (labelable çocuk taşıdığı için) yasaktı → <div> ile
+        a11y ağacından gizleniyor. */}
+    <div class="hd-tuzak" aria-hidden="true">Bu alanı boş bırakın
       <input type="text" name="website" tabindex="-1" autocomplete="off" />
-    </label>
+    </div>
     <label class="hd-onay">
       <input type="checkbox" name="onay" required />
       <span><a href="/gizlilik/">Gizlilik ve KVKK aydınlatma metnini</a> okudum; iletişim bilgilerimin yalnız bu talebe dönüş amacıyla işlenmesine onay veriyorum.</span>
@@ -80,9 +82,9 @@ const mailKonu = 'Hızlı danışma talebi';
   </p>
 
   <HukukSerhi />
+<script slot="ek-script" type="module" src="/s/danisma.js" is:inline></script>
 </Sayfa>
 
-<script type="module" src="/s/danisma.js" is:inline></script>
 
 <style>
   .hd-ust { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; margin: 0 0 1.4rem; }

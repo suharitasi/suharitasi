@@ -45,15 +45,9 @@ const veriler = VERI_ROTALARI;
 </nav>
 
 <noscript>
-  <style>
-    /* JS kapalı: mobil panel açık liste; bar koyu sabit. */
-    @media (max-width: 1023px) {
-      .pm-mobil-panel { display: block !important; position: static !important;
-        max-height: none !important; }
-      .pm-menu-dugme { display: none !important; }
-    }
-    .pm-bar { background: rgba(8, 32, 47, 0.92) !important; }
-  </style>
+  {/* P3 W3C onarımı: gövdede <style>, <noscript> çocuğu olamaz. Body-ok
+      <link rel="stylesheet"> kullanılır; yalnız JS kapalıyken istenir. */}
+  <link rel="stylesheet" href="/assets/noscript.css" />
 </noscript>
 
 <style>

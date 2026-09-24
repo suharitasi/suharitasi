@@ -37,11 +37,13 @@ const iller = tumIlProfilleri().map((p) => ({
   <form id="dsi-form" class="dsi-form">
     <label class="dsi-alan">İl
       <select id="dsi-il" required>
+        <option value="">— İl seçin —</option>
         {iller.map((x) => <option value={x.slug}>{x.il}</option>)}
       </select>
     </label>
     <label class="dsi-alan">İşlem
       <select id="dsi-islem" required>
+        <option value="">— İşlem seçin —</option>
         {ISLEMLER.map((x) => <option value={x.id}>{x.ad}</option>)}
       </select>
     </label>

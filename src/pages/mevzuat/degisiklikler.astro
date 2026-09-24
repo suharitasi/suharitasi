@@ -110,7 +110,7 @@ const sema = [
         <input type="checkbox" name="onay" required />
         <span><a href="/gizlilik/">Gizlilik ve KVKK</a> metnini okudum; e-postamın yalnız mevzuat değişikliği bildirimi için işlenmesine onay veriyorum.</span>
       </label>
-      <label class="mr-tuzak" aria-hidden="true">Boş bırakın <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+      <div class="mr-tuzak" aria-hidden="true">Boş bırakın <input type="text" name="website" tabindex="-1" autocomplete="off" /></div>
       <button type="submit">Takip et</button>
       <p class="mr-form-durum" id="takip-durum" aria-live="polite"></p>
     </form>
@@ -124,9 +124,9 @@ const sema = [
 
   <CtaBlok konu="Mevzuat değişikliği" baslik="Değişen hüküm dosyanızı etkiliyor mu?" metin="Mevzuat değişikliğinin somut durumunuza etkisini değerlendirelim." />
   <HukukSerhi />
+<script slot="ek-script" type="module" src="/s/takip.js" is:inline></script>
 </Sayfa>
 
-<script type="module" src="/s/takip.js" is:inline></script>
 
 <style>
   .mr-durum { font-size: 0.92rem; color: var(--metin-soluk); margin-bottom: 1.2rem; }

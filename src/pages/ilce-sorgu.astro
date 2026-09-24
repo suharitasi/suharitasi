@@ -146,52 +146,8 @@ const ozet = 'Türkiye\'de il ve ilçe bazında yeraltı su potansiyeli: YAS kü
 
   {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
   <HukukSerhi />
-</Sayfa>
-
-<style>
-  .sorgu-form { margin: 1rem 0; }
-  .sorgu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
-  .saha-etiket { display: block; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--metin-soluk); margin-bottom: 0.3rem; }
-  .il-secici { width: 100%; padding: 0.7rem 1rem; font-size: 1rem; font-family: var(--govde); border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); border-radius: 0; appearance: auto; }
-  .il-secici:focus { outline: 2px solid var(--su-500); outline-offset: 1px; }
-  .sorgu-btn { margin-top: 0.8rem; padding: 0.6rem 1.4rem; background: var(--su-700); color: #fff; border: 0; font-size: 0.9rem; font-weight: 600; font-family: var(--mono); cursor: pointer; }
-  .sorgu-btn:hover { background: var(--su-800, #08405A); }
-  .kunye { margin: 0 0 2rem; padding: 1.3rem 1.4rem 1.3rem 1.8rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); border-top: 2px solid var(--su-700); position: relative; }
-  .kunye::before { content: ""; position: absolute; left: 0.6rem; top: 1rem; bottom: 1rem; width: 6px; background: repeating-linear-gradient(180deg, rgba(46,126,160,.4) 0 1px, transparent 1px 7px), linear-gradient(90deg, rgba(46,126,160,.4) 0 1px, transparent 1px); }
-  .kunye-katman { margin: 0; padding: 0.4rem 0 0; background: transparent; border: 0; }
-  .kunye-katman::before { display: none; }
-  .kunye-satir { display: grid; grid-template-columns: minmax(8rem, 12rem) 1fr; gap: 0.4rem 1.2rem; padding: 0.5rem 0; }
-  .kunye-satir + .kunye-satir { border-top: 1px solid var(--cizgi); }
-  dt { font-family: var(--mono); font-size: 0.66rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--metin-soluk); align-self: center; }
-  dd { font-size: 0.96rem; }
-  .potansiyel-ozet { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .metrik-kart { flex: 1; min-width: 8rem; text-align: center; padding: 1rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); }
-  .metrik-deger { display: block; font-size: 2rem; font-weight: 600; color: var(--su-700); font-family: var(--serif); }
-  .metrik-etiket { display: block; font-size: 0.72rem; color: var(--metin-soluk); margin-top: 0.3rem; }
-  .kullanim-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 0.8rem; }
-  .kullanim-adim { padding: 0.9rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); }
-  .kullanim-adim strong { display: block; font-size: 0.92rem; color: var(--metin); margin-bottom: 0.3rem; }
-  .kullanim-adim p { font-size: 0.82rem; color: var(--metin-soluk); margin: 0; line-height: 1.45; }
-  .alan-metin { font-size: 0.94rem; color: var(--metin); margin: 0; line-height: 1.55; padding: 0.9rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); }
-  .hukuk-yonlendirme { padding: 0.3rem 0; }
-  .hukuk-yon-metin { font-size: 0.92rem; color: var(--metin); margin-bottom: 1rem; line-height: 1.5; }
-  .hukuk-yon-links { display: flex; flex-direction: column; gap: 0.5rem; }
-  .hukuk-link { display: block; padding: 0.6rem 1rem; text-decoration: none; font-size: 0.88rem; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); }
-  .hukuk-link:hover { background: var(--zemin-kart-hover, #f0f4f7); }
-  .hukuk-link-ana { border-left: 4px solid var(--kehribar-metin); font-weight: 600; }
-  .not { font-size: 0.88rem; color: var(--metin-soluk); margin: 0.5rem 0; }
-
-
-  @media (max-width: 560px) {
-    .sorgu-grid { grid-template-columns: 1fr; }
-    .kunye-satir { grid-template-columns: 1fr; gap: 0.1rem; }
-  }
-  .ilce-temas { margin-top: 0.8rem; font-size: 0.9rem; color: var(--metin-soluk); }
-  .ilce-temas a { color: var(--baglanti, var(--su-700)); }
-</style>
-
-<script type="application/json" id="veri-paketi" set:html={VERI}></script>
-<script>
+<script slot="ek-script" type="application/json" id="veri-paketi" set:html={VERI}></script>
+<script slot="ek-script">
 document.addEventListener('DOMContentLoaded', () => {
 
   // ── VERİ YÜKLEME ──
@@ -349,3 +305,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 </script>
+</Sayfa>
+
+<style>
+  .sorgu-form { margin: 1rem 0; }
+  .sorgu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+  .saha-etiket { display: block; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--metin-soluk); margin-bottom: 0.3rem; }
+  .il-secici { width: 100%; padding: 0.7rem 1rem; font-size: 1rem; font-family: var(--govde); border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); border-radius: 0; appearance: auto; }
+  .il-secici:focus { outline: 2px solid var(--su-500); outline-offset: 1px; }
+  .sorgu-btn { margin-top: 0.8rem; padding: 0.6rem 1.4rem; background: var(--su-700); color: #fff; border: 0; font-size: 0.9rem; font-weight: 600; font-family: var(--mono); cursor: pointer; }
+  .sorgu-btn:hover { background: var(--su-800, #08405A); }
+  .kunye { margin: 0 0 2rem; padding: 1.3rem 1.4rem 1.3rem 1.8rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); border-top: 2px solid var(--su-700); position: relative; }
+  .kunye::before { content: ""; position: absolute; left: 0.6rem; top: 1rem; bottom: 1rem; width: 6px; background: repeating-linear-gradient(180deg, rgba(46,126,160,.4) 0 1px, transparent 1px 7px), linear-gradient(90deg, rgba(46,126,160,.4) 0 1px, transparent 1px); }
+  .kunye-katman { margin: 0; padding: 0.4rem 0 0; background: transparent; border: 0; }
+  .kunye-katman::before { display: none; }
+  .kunye-satir { display: grid; grid-template-columns: minmax(8rem, 12rem) 1fr; gap: 0.4rem 1.2rem; padding: 0.5rem 0; }
+  .kunye-satir + .kunye-satir { border-top: 1px solid var(--cizgi); }
+  dt { font-family: var(--mono); font-size: 0.66rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--metin-soluk); align-self: center; }
+  dd { font-size: 0.96rem; }
+  .potansiyel-ozet { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .metrik-kart { flex: 1; min-width: 8rem; text-align: center; padding: 1rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); }
+  .metrik-deger { display: block; font-size: 2rem; font-weight: 600; color: var(--su-700); font-family: var(--serif); }
+  .metrik-etiket { display: block; font-size: 0.72rem; color: var(--metin-soluk); margin-top: 0.3rem; }
+  .kullanim-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 0.8rem; }
+  .kullanim-adim { padding: 0.9rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); }
+  .kullanim-adim strong { display: block; font-size: 0.92rem; color: var(--metin); margin-bottom: 0.3rem; }
+  .kullanim-adim p { font-size: 0.82rem; color: var(--metin-soluk); margin: 0; line-height: 1.45; }
+  .alan-metin { font-size: 0.94rem; color: var(--metin); margin: 0; line-height: 1.55; padding: 0.9rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); }
+  .hukuk-yonlendirme { padding: 0.3rem 0; }
+  .hukuk-yon-metin { font-size: 0.92rem; color: var(--metin); margin-bottom: 1rem; line-height: 1.5; }
+  .hukuk-yon-links { display: flex; flex-direction: column; gap: 0.5rem; }
+  .hukuk-link { display: block; padding: 0.6rem 1rem; text-decoration: none; font-size: 0.88rem; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); }
+  .hukuk-link:hover { background: var(--zemin-kart-hover, #f0f4f7); }
+  .hukuk-link-ana { border-left: 4px solid var(--kehribar-metin); font-weight: 600; }
+  .not { font-size: 0.88rem; color: var(--metin-soluk); margin: 0.5rem 0; }
+
+
+  @media (max-width: 560px) {
+    .sorgu-grid { grid-template-columns: 1fr; }
+    .kunye-satir { grid-template-columns: 1fr; gap: 0.1rem; }
+  }
+  .ilce-temas { margin-top: 0.8rem; font-size: 0.9rem; color: var(--metin-soluk); }
+  .ilce-temas a { color: var(--baglanti, var(--su-700)); }
+</style>
+

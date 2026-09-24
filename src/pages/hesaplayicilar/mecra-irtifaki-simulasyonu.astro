@@ -76,10 +76,10 @@ const sema = [
 
   <CtaBlok konu="Mecra irtifakı" baslik="Komşu su uyuşmazlığınız için yol haritası" metin="Parsellerinizi ve ihtiyacınızı iletin; anlaşma mı dava mı gerektiğini değerlendirelim." />
   <HukukSerhi />
+<script slot="ek-script" type="application/json" id="hm-veri" set:html={JSON.stringify(AŞAMALAR).replace(/</g, '\\u003c')} />
+<script type="module" src="/s/hesap-mecra.js" is:inline></script>
 </Sayfa>
 
-<script type="application/json" id="hm-veri" set:html={JSON.stringify(AŞAMALAR).replace(/</g, '\\u003c')} />
-<script type="module" src="/s/hesap-mecra.js" is:inline></script>
 
 <style>
   .hm-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; max-width: 44rem; }

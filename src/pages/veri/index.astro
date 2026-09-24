@@ -154,7 +154,7 @@ const sema = [
       </div>
       <p class="bb-bos" id="bb-ara-bos" hidden>Eşleşen il veya havza yok. Farklı bir ad deneyin.</p>
 
-      <h3 class="bb-alt-baslik">İller <span class="bb-adet">{iller.length}</span></h3>
+      <h2 class="bb-alt-baslik">İller <span class="bb-adet">{iller.length}</span></h2>
       <div class="bb-liste">
         {iller.map((s) => (
           <details class="bb-kart" data-ara={s.ara}>
@@ -175,7 +175,7 @@ const sema = [
         ))}
       </div>
 
-      <h3 class="bb-alt-baslik">Havzalar <span class="bb-adet">{havzalar.length}</span></h3>
+      <h2 class="bb-alt-baslik">Havzalar <span class="bb-adet">{havzalar.length}</span></h2>
       <div class="bb-liste">
         {havzalar.map((h) => (
           <details class="bb-kart" data-ara={h.ara}>
@@ -286,9 +286,7 @@ const sema = [
 
   <CtaBlok konu="Bilgi bankası" baslik="Somut dosyanız için uzman görüşü mü gerekiyor?" metin="İl, havza ve işlem bazında ön değerlendirme için ulaşın." />
   <HukukSerhi />
-</Sayfa>
-
-<script>
+<script slot="ek-script">
   (() => {
     // — Sekmeler —
     const sekmeler = Array.from(document.querySelectorAll('.bb-sekme'));
@@ -346,6 +344,8 @@ const sema = [
       document.getElementById('bb-emsal-sayac'), document.getElementById('bb-emsal-bos'));
   })();
 </script>
+</Sayfa>
+
 
 <style>
   :global(main.govde) { max-width: 78rem; }

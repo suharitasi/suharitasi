@@ -156,61 +156,7 @@ const sema = [
 
   {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
   <HukukSerhi />
-</Sayfa>
-
-<style>
-  .kk-arama { margin: 1.5rem 0 1rem; }
-  .kk-arama label { display: block; font-size: 0.95rem; margin-bottom: 0.4rem; }
-  .kk-arama input {
-    width: 100%;
-    max-width: 32rem;
-    /* Dokunma hedefi: 44px eşiği (ui-ux-pro-max Touch kuralı) */
-    min-height: 44px;
-    padding: 0.6rem 0.8rem;
-    font: inherit;
-    color: inherit;
-    background: var(--zemin-kart);
-    border: 1px solid var(--cizgi);
-    border-radius: 0.5rem;
-  }
-  .kk-arama input:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
-  .kk-durum { margin: 0.5rem 0 0; font-size: 0.95rem; color: var(--metin-soluk, inherit); }
-
-  .kk-yok {
-    margin: 1.2rem 0;
-    padding: 1rem 1.2rem;
-    background: var(--zemin-kart);
-    border: 1px solid var(--cizgi);
-    border-left: 3px solid var(--su-700);
-    border-radius: 0.5rem;
-  }
-  .kk-yok-bas { margin-top: 0; font-weight: 600; }
-  .kk-yok p:last-child { margin-bottom: 0; }
-
-  .kk-serh { font-size: 0.95rem; max-width: 70ch; }
-
-  .kk-liste { list-style: none; padding: 0; display: grid; gap: 1rem; }
-  .kk-liste > li {
-    padding: 1rem 1.2rem;
-    background: var(--zemin-kart);
-    border: 1px solid var(--cizgi);
-    border-top: 2px solid var(--su-700);
-    border-radius: 0.5rem;
-  }
-  .kk-kunye {
-    margin: 0 0 0.5rem;
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .kk-pasaj { margin: 0 0 0.6rem; }
-  .kk-git { margin: 0; font-size: 0.95rem; }
-  .kk-liste mark { background: rgba(240, 198, 116, 0.45); color: inherit; }
-  .kk-alt { font-size: 0.95rem; }
-</style>
-
-<script>
+<script slot="ek-script">
   /* Tarayıcı tarafı eşleştirme. Sunucu bağımlılığı YOK (site statik kalır).
      Türkçe küçültme (`toLocaleLowerCase('tr-TR')`) ZORUNLU: "İ"→"i",
      "I"→"ı". Varsayılan toLowerCase kullanılsa "İzmir" araması
@@ -269,3 +215,57 @@ const sema = [
     });
   }
 </script>
+</Sayfa>
+
+<style>
+  .kk-arama { margin: 1.5rem 0 1rem; }
+  .kk-arama label { display: block; font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .kk-arama input {
+    width: 100%;
+    max-width: 32rem;
+    /* Dokunma hedefi: 44px eşiği (ui-ux-pro-max Touch kuralı) */
+    min-height: 44px;
+    padding: 0.6rem 0.8rem;
+    font: inherit;
+    color: inherit;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-radius: 0.5rem;
+  }
+  .kk-arama input:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+  .kk-durum { margin: 0.5rem 0 0; font-size: 0.95rem; color: var(--metin-soluk, inherit); }
+
+  .kk-yok {
+    margin: 1.2rem 0;
+    padding: 1rem 1.2rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-left: 3px solid var(--su-700);
+    border-radius: 0.5rem;
+  }
+  .kk-yok-bas { margin-top: 0; font-weight: 600; }
+  .kk-yok p:last-child { margin-bottom: 0; }
+
+  .kk-serh { font-size: 0.95rem; max-width: 70ch; }
+
+  .kk-liste { list-style: none; padding: 0; display: grid; gap: 1rem; }
+  .kk-liste > li {
+    padding: 1rem 1.2rem;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-top: 2px solid var(--su-700);
+    border-radius: 0.5rem;
+  }
+  .kk-kunye {
+    margin: 0 0 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .kk-pasaj { margin: 0 0 0.6rem; }
+  .kk-git { margin: 0; font-size: 0.95rem; }
+  .kk-liste mark { background: rgba(240, 198, 116, 0.45); color: inherit; }
+  .kk-alt { font-size: 0.95rem; }
+</style>
+

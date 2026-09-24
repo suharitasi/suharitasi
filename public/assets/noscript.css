@@ -1,0 +1,15 @@
+/* JS KAPALI (noscript) MENÜ STİLLERİ — P3 W3C onarımı (24.09.2026).
+   Eskiden PaylasilanMenu.astro içinde <noscript><style>…</style></noscript>
+   olarak gömülüydü; gövdede <style>, <noscript> çocuğu olamaz (Nu: 1016 sayfa
+   hatası). Geçerli çözüm: noscript içinde body-ok <link rel="stylesheet">.
+   Bu dosya YALNIZ JS kapalıyken istenir (noscript içeriği script açıkken
+   render edilmez); normal işleyişte ek istek yoktur. */
+@media (max-width: 1023px) {
+  .pm-mobil-panel { display: block !important; position: static !important; max-height: none !important; }
+  .pm-menu-dugme { display: none !important; }
+}
+.pm-bar { background: rgba(8, 32, 47, 0.92) !important; }
+
+/* Ana sayfa iletişim formu JS gerektirir → JS kapalıyken gizlenir
+   (Iletisim.astro'daki <noscript><style> buraya taşındı; gövdede geçersizdi). */
+.v2-form { display: none !important; }

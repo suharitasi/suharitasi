@@ -67,10 +67,10 @@ const sema = [
 
   <CtaBlok konu="Kuyu cezası" baslik="Cezanıza itiraz süresini kaçırmayın" metin="Tebliğ tarihinizi ve fiili iletin; itiraz/dava yolunu ve süresini değerlendirelim." />
   <HukukSerhi />
+<script slot="ek-script" type="application/json" id="hc-veri" set:html={JSON.stringify(FIILLER).replace(/</g, '\\u003c')} />
+<script type="module" src="/s/hesap-ceza.js" is:inline></script>
 </Sayfa>
 
-<script type="application/json" id="hc-veri" set:html={JSON.stringify(FIILLER).replace(/</g, '\\u003c')} />
-<script type="module" src="/s/hesap-ceza.js" is:inline></script>
 
 <style>
   .hc-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; max-width: 44rem; }

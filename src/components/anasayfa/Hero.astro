@@ -81,10 +81,10 @@ const DAMLALAR = Array.from({ length: 90 }, (_, i) => {
   </div>
 
   <!-- 2) Film şeridi: 6 sahnenin BİRLEŞİK hali (poster, K1) -->
-  <div class="v2-serit" id="v2-posterler" role="tablist" aria-label="Sahneler">
+  <div class="v2-serit" id="v2-posterler" role="group" aria-label="Sahneler">
     {sahneler.map((s, i) => (
       <button type="button" class:list={['v2-serit-kare', { aktif: i === 0 }]}
-              data-sira={i} role="tab" aria-selected={i === 0 ? 'true' : 'false'}
+              data-sira={i} aria-pressed={i === 0 ? 'true' : 'false'}
               aria-label={`Sahne: ${s.label}`}>
         <img src={s.still} alt="" width="832" height="464"
              loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
@@ -184,7 +184,7 @@ const DAMLALAR = Array.from({ length: 90 }, (_, i) => {
     cizgiler.forEach((c, j) => c.classList.toggle('aktif', j === i));
     kareler.forEach((k, j) => {
       k.classList.toggle('aktif', j === i);
-      k.setAttribute('aria-selected', j === i ? 'true' : 'false');
+      k.setAttribute('aria-pressed', j === i ? 'true' : 'false');
     });
     sorular.forEach((q, j) => q.classList.toggle('aktif', j === i));
     if (kadrajAd && kareler[i]) {

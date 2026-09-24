@@ -72,12 +72,9 @@ import { EPOSTA, YAZAR } from '../../data/site';
   </div>
 </section>
 
-<noscript>
-  <style>
-    /* JS kapalı: form çalışamaz → gizlenir; soldaki doğrudan mailto kalır. */
-    .v2-form { display: none; }
-  </style>
-</noscript>
+{/* P3 W3C onarımı: JS kapalıyken form gizleme kuralı gövdede <noscript><style>
+    olamayacağı için /assets/noscript.css'e taşındı (o dosya yalnız JS kapalı
+    iken, menü noscript'i üzerinden yüklenir). */}
 
 <script>
   // Form → mailto gövdesi. Sunucu yok; alanlar encodeURIComponent ile konur.

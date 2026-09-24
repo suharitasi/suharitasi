@@ -124,10 +124,10 @@ const sema = [
 
   <CtaBlok konu="Yeraltı suyu kısıtı" baslik="İlinizde kısıt varsa ne yapmalısınız?" metin="Kısıt/işletme sahası ilanının dosyanıza etkisini ve itiraz yolunu değerlendirelim." />
   <HukukSerhi />
+<script slot="ek-script" type="application/json" id="ks-iller" set:html={JSON.stringify(ilBilgi).replace(/</g, '\\u003c')} />
+<script type="module" src="/s/kisit-sorgu.js" is:inline></script>
 </Sayfa>
 
-<script type="application/json" id="ks-iller" set:html={JSON.stringify(ilBilgi).replace(/</g, '\\u003c')} />
-<script type="module" src="/s/kisit-sorgu.js" is:inline></script>
 
 <style>
   .ks-sec { display: flex; flex-direction: column; gap: 0.3rem; max-width: 24rem; margin-bottom: 0.8rem; }

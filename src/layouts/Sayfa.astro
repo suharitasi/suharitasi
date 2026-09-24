@@ -719,6 +719,12 @@ const jsonLd = JSON.stringify({
   <script type="module" src="/s/imlec.js" is:inline></script>
   <script type="module" src="/s/sayfa.js" is:inline></script>
   <script type="module" src="/s/olcum.js" is:inline></script>
+  {/* P3 onarım (W3C): sayfa-özel script'ler için gövde-içi slot. Eskiden
+      sayfalar `<script>`'i `</Sayfa>`'dan SONRA koyuyordu → script
+      `</body></html>`'den sonra basılıp "stray start tag script" hatası
+      veriyordu (15 sayfa). Slot, script'leri gövde içinde ve mevcut sıradan
+      (olcum.js sonrası) tutar; davranış değişmez. */}
+  <slot name="ek-script" />
   {/* /s/menu.js etiketi kalkti (27.07): hedef panel sv-menu artik
       render edilmiyordu; script NO-OP idi (guard: overlay && aclar). */}
 </body>

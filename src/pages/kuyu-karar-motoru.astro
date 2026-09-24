@@ -63,6 +63,7 @@ const sema = [
     </label>
     <label>İşlem türü
       <select id="km-islem" required>
+        <option value="">— İşlem seçin —</option>
         {ISLEMLER.map((i) => <option value={i.id}>{i.ad}</option>)}
       </select>
     </label>
@@ -133,9 +134,9 @@ const sema = [
 
   <CtaBlok konu="Kuyu cezası / kapatma" baslik="Dosyanızı avukata inceletın" metin="Süre kaybı hak kaybıdır. Evrakınızı ve tebliğ tarihinizi iletin; yol haritasını değerlendirelim." />
   <HukukSerhi />
+<script slot="ek-script" type="module" src="/s/karar-motoru.js" is:inline></script>
 </Sayfa>
 
-<script type="module" src="/s/karar-motoru.js" is:inline></script>
 
 <style>
   .km-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; max-width: 48rem; }
