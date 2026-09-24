@@ -8,6 +8,31 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ 24.09.2026 — ÜRÜN PROTOKOLÜ Adım 6: DOĞRULAMA & KAPANIŞ ═══
+DURUM: Protokol Adım 1-5 uygulandı ve son kez doğrulandı. Ölçümler (yerel
+`arac/dist-sun.mjs`, commit a387cf9 + arşiv optimizasyonu):
+- build 1102 sayfa · sitemap 1016 · kırık iç link 0 (çapraz ağ YEŞİL,
+  yalnız düğüm 0, veri-koşullu eksik kenar 7).
+- `site-saglik --hizli`: kırmızı 0 · 20/20 sayfa 200 · konsol 0 · mobil
+  taşma 0 · 14-gorsel GEÇTİ · 21-dokunma 198/201 · altın örnek 23/23.
+- Playwright uçtan uca akış (375+1440): vitrin 4 kolon · sayaç 1.190 gün/32
+  faaliyet/32 .ics · RG Konya 24 / 2017 6 · istihbarat 82 kopyala + 81 takip ·
+  RSS XSLT 24 kayıt · basın widget · gömülü Konya 24 · uyum (OSB 15 bölüm,
+  TL tutar yok, TASLAK) · nehir/göl GeoJSON · 5 sayfada QR · BibTeX/RIS
+  kopyalandı. Taşma 0, konsol 0, TTFB medyan 2 ms (< 120 ms hedefi).
+- Toplu geçerlilik: 83 RSS (82 il+birleşik + site) XML hatasız & XSLT PI ·
+  32 .ics geçerli · 342 GeoJSON geçerli · W3C Nu 20 temsilci sayfa 0 hata.
+- Lighthouse: ana sayfa masaüstü 100 / mobil 90 · sayaç mobil 92 · istihbarat
+  mobil 93 (a11y+seo 100). `/arsiv/resmi-gazete/` mobil YEREL 80 (ağır arşiv;
+  yerel sunucu sıkıştırma YOK). Ham 414 KB → **gzip 28 KB**; canlı Cloudflare
+  sıkıştırmasıyla hedefe çıkar. KABUL; deploy sonrası canlı yeniden ölçüm notu.
+- Optimizasyon: arşivdeki tekrarlı `data-ara` HTML'den kaldırıldı, arama
+  samanlığı istemcide görünür metinden türetilir (ham 463→414 KB).
+BEKLEYEN ONAYLAR: (1) Adım 4 hukuk onayı (`su-uyum.js` ONAYLANDI=false);
+(2) Zenodo DOI + Buttondown kimlik bilgileri; (3) tüm yeni yüzeylerin canlı
+görsel/içerik onayı; (4) coğrafi harita katmanı (geometri kaynağı kararı).
+YENİ İŞ (bu turdan): yok — kullanıcı yeni istek verene kadar kuyruk temiz.
+
 ═══ 24.09.2026 — HİZMET VE İSTİHBARAT VİTRİNİ (ÜRÜN PROTOKOLÜ Adım 1) ═══
 KULLANICI ONAYI BEKLİYOR (İş kapanış kuralı: görsel iş "YAPILDI" sayılmaz).
 - [x] Adım 1 — Ana sayfa 4 kolonlu vitrin (hero hemen ardı; mobilde kanıt

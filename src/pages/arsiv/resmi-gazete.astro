@@ -169,14 +169,12 @@ const sema = [
         k.il.length ? `İl: ${k.il.join(', ')}` : '',
         k.ilce.length ? `İlçe: ${k.ilce.join(', ')}` : '',
       ].filter(Boolean).join(' · ');
-      const ara = `${k.tarih} ${k.sayi ?? ''} ${k.saha} ${k.il.join(' ')} ${k.ilce.join(' ')} ${k.durum} ${k.tur}`.toLocaleLowerCase('tr-TR');
       return (
         <li
           class="rz-k"
           data-y={k.yil ?? ''}
           data-il={k.il.join(' ')}
           data-d={k.durum}
-          data-ara={ara}
         >
           <div class="rz-k-ust">
             <span class="rz-k-tarih">{k.tarih}</span>

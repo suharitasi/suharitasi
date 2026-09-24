@@ -1078,6 +1078,27 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §44 · ADIM 6 — DOĞRULAMA VE PROTOKOL KAPANIŞI (24.09.2026)
+
+- **Kapsam:** Ürün protokolü Adım 1-5 uygulandı; Adım 6 tüm akış/link/sistem
+  testleriyle kapatıldı. Yeni özellik açılmadı (protokol dışı iş yok).
+- **Doğrulama özeti:** build 1102 · kırık iç link 0 · `--hizli` kırmızı 0 ·
+  Playwright uçtan uca tüm akışlar geçti · taşma 0 · konsol 0 · TTFB medyan
+  2 ms · 83 RSS + 32 .ics + 342 GeoJSON geçerli · Nu 20 sayfa 0 hata ·
+  Lighthouse ana sayfa mobil 90, sayaç 92, istihbarat 93.
+- **Bulgu + onarım:** `/arsiv/resmi-gazete/` ağır (419 kayıt). Tekrarlı
+  `data-ara` niteliği HTML'den çıkarıldı, arama metni istemcide türetildi
+  (463→414 KB; gzip 28 KB). Yerel mobil perf 70→80; kalan fark yerel sunucuda
+  sıkıştırma olmamasından (canlı Cloudflare brotli/gzip). Karar: KABUL,
+  deploy sonrası canlı yeniden ölçüm.
+- **Kapanış koşulu:** protokolün "120 ms yanıt + 0 taşma + 0 konsol + Nu 0"
+  kapısı sağlandı; kilit vuruldu.
+- **Açık kapılar (koşulu):** Adım 4 hukuk onayı (`ONAYLANDI=false`),
+  Zenodo DOI + Buttondown kimlik bilgileri, canlı görsel/içerik onayı,
+  coğrafi harita (geometri kaynağı kararı). Bunlar için DUR — kullanıcıya sor.
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek

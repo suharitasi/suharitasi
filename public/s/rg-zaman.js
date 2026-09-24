@@ -24,6 +24,12 @@
     return (s || '').toLocaleLowerCase('tr-TR');
   }
 
+  // Arama samanlığı: HTML'de tekrar EDİLMEZ (sayfa ağırlığı); görünür metinden
+  // bir kez türetilip data-ara'ya yazılır. Sunucu HTML'i küçük kalır.
+  for (var z = 0; z < kayitlar.length; z++) {
+    if (!kayitlar[z].dataset.ara) kayitlar[z].dataset.ara = tr(kayitlar[z].textContent || '');
+  }
+
   function uygula(kaydet) {
     var q = tr(durum.q).trim();
     var gorunen = 0;
