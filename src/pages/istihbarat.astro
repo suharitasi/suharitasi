@@ -83,8 +83,16 @@ const sema = [
     <li><strong>{KAYITLI_IL_SAYISI}</strong> ilde kayıt var</li>
   </ul>
 
-  <p class="ih-link">
+  <div class="ih-link">
     <a class="ih-rss" href="/istihbarat/feed.xml">Tüm Türkiye birleşik RSS akışı</a>
+    <button type="button" class="ih-kopyala" data-rss-kopyala data-url="https://suharitasi.com/istihbarat/feed.xml">
+      RSS Bağlantısını Kopyala
+    </button>
+  </div>
+  <p class="ih-rehber">
+    Bu bağlantıyı Feedly, Inoreader gibi bir RSS okuyucunuza yapıştırın; yeni
+    kayıtlar orada otomatik görünür. RSS kullanmıyorsanız aşağıdan e-posta ile
+    takip edebilirsiniz.
   </p>
 
   <section class="ih-bolum" aria-labelledby="ih-eposta-baslik">
@@ -124,14 +132,20 @@ const sema = [
       <table class="ih-tablo">
         <caption>İl · Resmî Gazete kaydı · RSS akışı</caption>
         <thead>
-          <tr><th scope="col">İl</th><th scope="col">Kayıt</th><th scope="col">RSS</th></tr>
+          <tr><th scope="col">İl</th><th scope="col">Kayıt</th><th scope="col">RSS</th><th scope="col">Takip</th></tr>
         </thead>
         <tbody>
           {AKISLAR.map((a) => (
             <tr>
               <th scope="row">{a.il}</th>
               <td class="ih-sayi">{a.rgSayi}</td>
-              <td><a href={`/istihbarat/${a.slug}/feed.xml`}>RSS akışı</a></td>
+              <td class="ih-aksiyon">
+                <a href={`/istihbarat/${a.slug}/feed.xml`}>Akış</a>
+                <button type="button" class="ih-mini" data-rss-kopyala data-url={`https://suharitasi.com/istihbarat/${a.slug}/feed.xml`}>Kopyala</button>
+              </td>
+              <td class="ih-aksiyon">
+                <button type="button" class="ih-mini" data-takip-il={a.slug} data-il={a.il}>E-posta ile takip et</button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -148,14 +162,23 @@ const sema = [
 
   <HukukSerhi />
 <script slot="ek-script" type="module" src="/s/takip.js" is:inline></script>
+<script slot="ek-script" type="module" src="/s/istihbarat.js" is:inline></script>
 </Sayfa>
 
 <style>
   .ih-ozet { list-style: none; margin: 1.6rem 0 1rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem 1.6rem; font-size: 0.92rem; color: var(--metin-soluk); }
   .ih-ozet strong { color: var(--metin); font-family: var(--mono); font-variant-numeric: lining-nums tabular-nums; }
-  .ih-link { margin: 0 0 1.4rem; }
+  .ih-link { margin: 0 0 0.6rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
   .ih-rss { display: inline-flex; align-items: center; min-height: 44px; padding: 0.55rem 1.1rem; border: 1px solid var(--su-700); color: var(--su-700); text-decoration: none; font-weight: 600; }
   .ih-rss:hover { background: var(--su-700); color: #fff; }
+  .ih-kopyala { font: inherit; font-weight: 600; min-height: 44px; padding: 0.55rem 1.1rem; border: 1px solid var(--su-700); background: var(--su-700); color: #fff; cursor: pointer; }
+  .ih-kopyala:hover { background: var(--su-400); border-color: var(--su-400); }
+  .ih-rehber { margin: 0 0 1.4rem; font-size: 0.86rem; line-height: 1.6; color: var(--metin-soluk); max-width: 72ch; }
+  .ih-aksiyon { white-space: nowrap; }
+  .ih-aksiyon a { color: var(--baglanti); margin-right: 0.5rem; }
+  .ih-mini { font: inherit; font-size: 0.74rem; min-height: 44px; padding: 0.3rem 0.7rem; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); cursor: pointer; }
+  .ih-mini:hover { border-color: var(--su-400); }
+  @media (max-width: 560px) { .ih-aksiyon { white-space: normal; } }
   .ih-bolum { margin-top: 2rem; }
   .ih-bolum h2 { font-family: var(--serif); font-weight: 500; font-size: 1.5rem; margin: 0 0 0.6rem; }
   .ih-aciklama { font-size: 0.92rem; line-height: 1.65; color: var(--metin-soluk); max-width: 72ch; margin: 0 0 1rem; }

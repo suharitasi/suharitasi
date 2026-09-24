@@ -1,0 +1,44 @@
+---
+// GEO DIŞA AKTAR (Adım 5, 24.09.2026) — nehir/göl sayfalarındaki mevcut CBS
+// geometrisini saha uzmanı için indirilebilir GeoJSON'a bağlar ve haritada
+// görüntüleme bağlantısı verir. Yeni veri ÜRETİLMEZ; mevcut geometry sunulur.
+interface Props {
+  slug: string;
+  ad: string;
+  tur: 'nehir' | 'gol';
+  merkez: [number, number];
+  kaynak: string;
+}
+const { slug, ad, tur, merkez, kaynak } = Astro.props;
+const yol = tur === 'nehir' ? 'nehirler' : 'goller';
+const [lon, lat] = merkez;
+const osm = `https://www.openstreetmap.org/#map=11/${lat.toFixed(5)}/${lon.toFixed(5)}`;
+---
+<p class="geo-aktar">
+  <a class="geo-indir" href={`/${yol}/${slug}/geojson.json`} download
+     aria-label={`${ad} GeoJSON verisini indir`}>GeoJSON indir</a>
+  <a class="geo-harita" href={osm} target="_blank" rel="noopener">OpenStreetMap'te gör</a>
+  <span class="geo-not">CBS geometrisi · kaynak: {kaynak}</span>
+</p>
+
+<style>
+  .geo-aktar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 1rem;
+    margin: 0.9rem 0 0;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--cizgi);
+    background: var(--zemin-kart);
+  }
+  .geo-indir, .geo-harita {
+    display: inline-flex; align-items: center; min-height: 44px; padding: 0.45rem 1rem;
+    font-weight: 600; text-decoration: none;
+  }
+  .geo-indir { background: var(--su-700); color: #fff; border: 1px solid var(--su-700); }
+  .geo-indir:hover { background: var(--su-400); border-color: var(--su-400); }
+  .geo-harita { border: 1px solid var(--su-700); color: var(--su-700); }
+  .geo-harita:hover { background: var(--su-700); color: #fff; }
+  .geo-not { font-family: var(--mono); font-size: 0.66rem; color: var(--metin-soluk); }
+</style>

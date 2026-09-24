@@ -12,6 +12,7 @@ import { TARIH } from '../../data/guncellik.js';
 import OzCevap from '../../components/OzCevap.astro';
 import Katman from '../../components/Katman.astro';
 import GeoOnizleme from '../../components/GeoOnizleme.astro';
+import GeoDisaAktar from '../../components/GeoDisaAktar.astro';
 import { tumGoller, golOzet, golTipi, golTurSerhi,
          GOLNEHIR_ERISIM, GOLNEHIR_KAPSAM_GOL, GOLNEHIR_LISANS, kaynakBagi } from '../../data/gol-nehir.js';
 
@@ -101,6 +102,8 @@ const sema = [{
   <OzCevap metin={ozet} etiket="Özet bilgi" />
 
   <GeoOnizleme geometry={gol.geometry} bbox={gol.bbox} ad={gol.ad} tur="gol" havza={havza} />
+
+  <GeoDisaAktar slug={gol.slug} ad={gol.ad} tur="gol" merkez={gol.merkez} kaynak={gol.kaynak} />
 
   <Katman baslik="Göl profili" ipucu={`${tur.ad.toLowerCase()} · koordinat · yüzey alanı`}>
     <dl class="kunye kunye-katman">

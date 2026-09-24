@@ -1050,6 +1050,34 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §43 · RSS/ABONELİK ONARIMI + ADIM 5 SLEEPER (24.09.2026, kullanıcı talebi)
+
+- **Karar 1 — RSS okunur görünüm:** RSS XML'lerine `<?xml-stylesheet?>` +
+  `public/rss-style.xsl` bağlandı (radius 0, 1px çizgi, serif). Tarayıcıda ham
+  XML yerine "Su İstihbarat Bülteni" sayfası. `_headers` ile `.xsl` MIME'ı
+  `text/xml`. `arac/dist-sun.mjs` MIME tablosuna `.xsl` eklendi.
+- **Kısıt/uyarı:** Chromium XSLT PI'yı deprecated işaretliyor (çalışıyor).
+  İleride kaldırılırsa alternatif gerekir — SIRADAKILER'e not düşüldü.
+- **Karar 2 — Abonelik akışı:** `public/s/istihbarat.js` ile "RSS
+  Bağlantısını Kopyala" (pano + yedek) ve her il satırında "E-posta ile takip
+  et" (form `konu` seçimini doldurup forma kaydırır). Yeni servis yok; mevcut
+  `/takip` Function'ı kullanılır.
+- **Karar 3 — Adım 5 sleeper:** (a) `CiteThisData` BibTeX + RIS + tek tık
+  kopyalama; (b) nehir/göl için `/nehirler|goller/<slug>/geojson.json` uçları
+  (mevcut OSM geometrisi, künye+lisans, `Content-Disposition: attachment`) ve
+  OSM'de gör linki; (c) `SayfaQr` bileşeni (`qrcode-generator` MIT, build-time
+  inline SVG) 5 Resmî veri sayfasına.
+- **Bağımlılık:** `qrcode-generator@2.0.4` (yalnız build-time; tarayıcıya
+  script gönderilmez).
+- **Kanıt:** build 1102 · `site-saglik --hizli` kırmızı 0 (20/20 200, konsol 0,
+  mobil taşma 0, 21-dokunma 198/201) · W3C Nu: istihbarat/nehir/göl/mevzuat/
+  uyum/arşiv/sayaç/kuyu/acik-veri + XSLT çıktısı hepsi 0 hata · Playwright:
+  Konya feed XSLT'te 24 kayıt, 82 kopyala + 81 takip düğmesi, konu=konya,
+  geojson 200, QR svg var.
+- **Açık:** kullanıcı canlı onayı; Adım 4 hukuk onayı; Adım 6 doğrulama.
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek

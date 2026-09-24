@@ -11,6 +11,7 @@ import SayfaBasi from '../../components/SayfaBasi.astro';
 import OzCevap from '../../components/OzCevap.astro';
 import HukukSerhi from '../../components/HukukSerhi.astro';
 import { ONAYLANDI, FAALIYETLER, ILLER, CERCEVE } from '../../data/su-uyum.js';
+import SayfaQr from '../../components/SayfaQr.astro';
 
 const OZ_CEVAP =
   'İlinizi ve faaliyetinizi seçin; Ek-2 kapsamı, uygulanabilir su yükümlülükleri, ' +
@@ -146,6 +147,7 @@ const sema = [
     <a href="/hangi-kurum/">→ Hangi işlem, hangi kurum</a>
   </nav>
 
+  <SayfaQr />
   <HukukSerhi />
 <script type="module" src="/s/su-uyum.js" is:inline></script>
 </Sayfa>

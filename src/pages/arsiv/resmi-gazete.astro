@@ -16,6 +16,7 @@ import {
   IL_DAGILIM, IL_SAYISI, ILCE_SAYISI, ILLI_TOPLAM, ILLI_DEGIL,
   SAYILI_TOPLAM, TEKIL_ILAN,
 } from '../../data/rg-zaman.js';
+import SayfaQr from '../../components/SayfaQr.astro';
 
 const OZ_CEVAP =
   `${YIL_ILK}–${YIL_SON} arası ${TOPLAM} Resmî Gazete yeraltı suyu işletme sahası ` +
@@ -206,6 +207,7 @@ const sema = [
     baslik="Arşivde çıkan kaydın arazinize etkisini değerlendirelim"
     metin="İlgili ilanı ve tahsis durumunu dosyanıza göre inceleyelim."
   />
+  <SayfaQr />
   <HukukSerhi />
 <script type="module" src="/s/rg-zaman.js" is:inline></script>
 </Sayfa>

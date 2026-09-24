@@ -13,6 +13,7 @@ import { TARIH } from '../../data/guncellik.js';
 import OzCevap from '../../components/OzCevap.astro';
 import Katman from '../../components/Katman.astro';
 import GeoOnizleme from '../../components/GeoOnizleme.astro';
+import GeoDisaAktar from '../../components/GeoDisaAktar.astro';
 import { tumNehirler, nehirOzet,
          GOLNEHIR_ERISIM, GOLNEHIR_KAPSAM_NEHIR, GOLNEHIR_LISANS, kaynakBagi } from '../../data/gol-nehir.js';
 
@@ -138,6 +139,8 @@ const sema = [{
   <OzCevap metin={ozet} etiket="Özet bilgi" />
 
   <GeoOnizleme geometry={nehir.geometry} bbox={nehir.bbox} ad={nehir.ad} tur="nehir" havza={anaHavza} />
+
+  <GeoDisaAktar slug={nehir.slug} ad={nehir.ad} tur="nehir" merkez={nehir.merkez} kaynak={nehir.kaynak} />
 
   <Katman baslik="Nehir profili" ipucu="koordinat · havza · veri kaynağı">
     <dl class="kunye kunye-katman">

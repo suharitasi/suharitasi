@@ -51,6 +51,11 @@
 /gomulu/*
   Content-Security-Policy: default-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; frame-ancestors *
 
+# RSS OKUNUR GÖRÜNÜM (Adım 5, 24.09.2026): XSLT tarayıcıda uygulanır; doğru
+# MIME türü olmadan bazı tarayıcılar şablonu uygulamaz ve ham XML gösterir.
+/rss-style.xsl
+  Content-Type: text/xml; charset=utf-8
+
 # HAM JSON GÖRÜNÜMÜ ENGELLİ (22.09.2026): veri uçlarına doğrudan gidilince
 # tarayıcı ham kod göstermesin, dosyayı indirsin. fetch() bu başlığı YOK
 # SAYAR — sayfa içi/ajan arka plan okumaları etkilenmez.

@@ -9,6 +9,7 @@ import HukukSerhi from '../../../components/HukukSerhi.astro';
 import mevzuat from '../../../../data/kamu/mevzuat-maddeleri.json';
 import emsal from '../../../../data/kamu/emsal-kararlar.json';
 import { MEVZUAT_EDITORYAL } from '../../../data/mevzuat-editoryal.js';
+import SayfaQr from '../../../components/SayfaQr.astro';
 
 export async function getStaticPaths() {
   const slug = (s) =>
@@ -163,6 +164,7 @@ const sema = [
   </nav>
 
   <CtaBlok konu={`${m.kanun} ${m.madde}`} baslik="Bu maddeyi somut durumunuza uygulayalım" metin="Maddenin olayınıza nasıl uygulandığını değerlendirmek için durumunuzu iletin." />
+  <SayfaQr />
   <HukukSerhi />
 </Sayfa>
 

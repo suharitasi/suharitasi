@@ -11,7 +11,8 @@
   "license": "ISC",
   "description": "suharitasi.com — Türkiye su verisi, havzaları ve su mevzuatı",
   "dependencies": {
-    "astro": "^7.2.7"
+    "astro": "^7.2.7",
+    "qrcode-generator": "^2.0.4"
   },
   "private": true,
   "type": "module",

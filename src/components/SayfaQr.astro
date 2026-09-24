@@ -1,0 +1,48 @@
+---
+// SAYFA QR KODU (Adım 5, 24.09.2026) — Resmî veri sayfalarında, avukatın çıktı
+// alıp dava dosyasına iliştirmesi için sayfanın kendi adresine giden QR kod.
+// Build-time inline SVG üretilir (harici servis/script YOK; qrcode-generator).
+interface Props {
+  url?: string;
+  etiket?: string;
+}
+const hedef = Astro.props.url ?? new URL(Astro.url.pathname, Astro.site).href;
+// qrcode-generator CJS; tip tanımı yok — any ile çağrılır.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const qr = (await import('qrcode-generator')).default(0, 'L') as any;
+qr.addData(hedef);
+qr.make();
+// qrcode-generator arka plan <rect>'ine geçersiz cx/cy ekliyor (Nu bulgusu);
+// tek noktadan temizlenir (yalnız bu iki nitelik, QR yol verisine dokunulmaz).
+const svg = String(qr.createSvgTag({ cellSize: 3, margin: 0 })).replace(/\s+cx="[^"]*"|\s+cy="[^"]*"/g, '');
+---
+<figure class="sayfa-qr">
+  <div class="sayfa-qr-kod" set:html={svg}></div>
+  <figcaption>
+    <span class="sayfa-qr-etiket">{Astro.props.etiket ?? 'Dosya için QR kod'}</span>
+    <span class="sayfa-qr-url">{hedef}</span>
+    <span class="sayfa-qr-not">
+      Telefonla okutun; sayfanın doğrulanmış adresine gider. Çıktı alıp dosyanıza
+      iliştirebilirsiniz; bağlantı sayfanın kanonik adresidir.
+    </span>
+  </figcaption>
+</figure>
+
+<style>
+  .sayfa-qr {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1rem 1.4rem;
+    margin: 2rem 0 0;
+    padding: 1rem 1.2rem;
+    border: 1px solid var(--cizgi);
+    background: var(--zemin-kart);
+  }
+  .sayfa-qr-kod { flex: 0 0 auto; width: 96px; height: 96px; border: 1px solid var(--cizgi); background: #fff; padding: 4px; }
+  .sayfa-qr-kod :global(svg) { width: 100%; height: 100%; display: block; }
+  .sayfa-qr figcaption { display: grid; gap: 0.2rem; min-width: 0; }
+  .sayfa-qr-etiket { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--su-700); }
+  .sayfa-qr-url { font-family: var(--mono); font-size: 0.74rem; color: var(--metin); word-break: break-all; }
+  .sayfa-qr-not { font-size: 0.82rem; line-height: 1.55; color: var(--metin-soluk); max-width: 46ch; }
+</style>

@@ -1,15 +1,88 @@
 ---
-// CITE-THIS-DATA — makine-okunur atıf kutusu (27.09.2026). Saf metin +
-// seçilebilir <code>; harici script YOK (CSP 'self' ile uyumlu). Basligi
-// çağıran sayfa verir; URL Astro.url.pathname'den gelir (uydurma yok).
-interface Props { baslik: string }
-const { baslik } = Astro.props;
-const atif = `Atıf: ${baslik}. Su Haritası Açık Hidroloji ve Hukuk Veri Tabanı (2026). URL: https://suharitasi.com${Astro.url.pathname}`;
+// CITE-THIS-DATA — makine-okunur atıf kutusu (27.09.2026; Adım 5 genişletmesi
+// 24.09.2026: BibTeX/RIS + tek tıkla kopyalama). Saf metin + seçilebilir
+// <code>; harici script/kütüphane YOK. URL Astro'dan gelir (uydurma yok).
+interface Props {
+  baslik: string;
+  yazar?: string;
+  yil?: string;
+  url?: string;
+}
+const { baslik, yazar = 'Arslan, Serdar', yil = '2026' } = Astro.props;
+const url = Astro.props.url ?? new URL(Astro.url.pathname, Astro.site).href;
+
+const atif = `Atıf: ${baslik}. Su Haritası Açık Hidroloji ve Hukuk Veri Tabanı (${yil}). URL: ${url}`;
+const apa = `${yazar} (${yil}). ${baslik} [Veri seti]. Su Haritası. ${url}`;
+const bibtex =
+  `@misc{suharitasi${yil},\n` +
+  `  title  = {${baslik}},\n` +
+  `  author = {${yazar}},\n` +
+  `  year   = {${yil}},\n` +
+  `  howpublished = {\\url{${url}}},\n` +
+  `  note   = {Su Haritası açık veri tabanı}\n}`;
+const ris =
+  `TY  - DATA\nAU  - ${yazar}\nPY  - ${yil}\nTI  - ${baslik}\nUR  - ${url}\nER  -`;
 ---
 <section class="cite" aria-label="Kaynak atfı">
   <p class="cite-baslik">Bu veriye nasıl atıf yapılır?</p>
-  <p class="cite-metin"><code>{atif}</code></p>
+
+  <div class="cite-blok">
+    <p class="cite-tur">Düz metin</p>
+    <p class="cite-metin"><code id="cite-duz">{atif}</code></p>
+    <button type="button" class="cite-kopyala" data-cite-kopyala="cite-duz">Kopyala</button>
+  </div>
+
+  <div class="cite-blok">
+    <p class="cite-tur">APA</p>
+    <p class="cite-metin"><code id="cite-apa">{apa}</code></p>
+    <button type="button" class="cite-kopyala" data-cite-kopyala="cite-apa">Kopyala</button>
+  </div>
+
+  <div class="cite-blok">
+    <p class="cite-tur">BibTeX</p>
+    <pre class="cite-kod"><code id="cite-bibtex">{bibtex}</code></pre>
+    <button type="button" class="cite-kopyala" data-cite-kopyala="cite-bibtex">BibTeX kopyala</button>
+  </div>
+
+  <div class="cite-blok">
+    <p class="cite-tur">RIS</p>
+    <pre class="cite-kod"><code id="cite-ris">{ris}</code></pre>
+    <button type="button" class="cite-kopyala" data-cite-kopyala="cite-ris">RIS kopyala</button>
+  </div>
 </section>
+
+<script>
+  // Tek tıkla panoya kopyalama (harici kütüphane yok; yedek execCommand).
+  function kopyala(t: string): Promise<boolean> {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(t).then(() => true).catch(() => yedek(t));
+    }
+    return Promise.resolve(yedek(t));
+  }
+  function yedek(t: string): boolean {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = t; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.left = '-9999px';
+      document.body.appendChild(ta); ta.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    } catch { return false; }
+  }
+  document.querySelectorAll<HTMLButtonElement>('[data-cite-kopyala]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const hedef = btn.getAttribute('data-cite-kopyala');
+      const el = hedef ? document.getElementById(hedef) : null;
+      if (!el) return;
+      const ilk = btn.textContent || 'Kopyala';
+      kopyala(el.textContent || '').then((ok) => {
+        btn.textContent = ok ? 'Kopyalandı' : 'Kopyalanamadı';
+        setTimeout(() => { btn.textContent = ilk; }, 1600);
+      });
+    });
+  });
+</script>
+
 <style>
   .cite {
     margin-top: 2rem;
@@ -23,8 +96,17 @@ const atif = `Atıf: ${baslik}. Su Haritası Açık Hidroloji ve Hukuk Veri Taba
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--metin-soluk);
-    margin: 0 0 0.4rem;
+    margin: 0 0 0.6rem;
   }
-  .cite-metin { margin: 0; font-size: 0.9rem; }
-  .cite code { font-family: var(--mono); font-size: 0.82rem; }
+  .cite-blok { margin-top: 0.8rem; }
+  .cite-tur { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--metin-soluk); margin: 0 0 0.25rem; }
+  .cite-metin { margin: 0 0 0.4rem; font-size: 0.9rem; }
+  .cite-metin code { font-family: var(--mono); font-size: 0.82rem; }
+  .cite-kod { margin: 0 0 0.4rem; padding: 0.55rem 0.7rem; border: 1px solid var(--cizgi); background: var(--zemin); overflow-x: auto; }
+  .cite-kod code { font-family: var(--mono); font-size: 0.78rem; white-space: pre; }
+  .cite-kopyala {
+    font: inherit; font-size: 0.74rem; min-height: 44px; padding: 0.4rem 0.8rem;
+    border: 1px solid var(--cizgi); background: var(--zemin); color: var(--metin); cursor: pointer;
+  }
+  .cite-kopyala:hover { border-color: var(--su-400); }
 </style>

@@ -17,6 +17,7 @@ import {
   SON_TARIH, SON_TARIH_METIN, YONETMELIK_AD, YONETMELIK_RG, SINIFLANAMAYAN_KODLAR,
   tarihTR,
 } from '../../data/su-verimliligi.js';
+import SayfaQr from '../../components/SayfaQr.astro';
 
 const OZ_CEVAP =
   `${YONETMELIK_AD} Ek-2 kapsamındaki ${ANA_SAYI} ana faaliyet ve ${DETAY_SAYI} ` +
@@ -226,6 +227,7 @@ const sema = [
     baslik="İşletmenizin Ek-2 kapsamında olup olmadığını değerlendirelim"
     metin="Faaliyet kodunuzun kapsamı, başvuru yolu ve takvimini dosyanıza göre inceleyelim."
   />
+  <SayfaQr />
   <HukukSerhi />
 <script type="module" src="/s/su-verimliligi.js" is:inline></script>
 </Sayfa>

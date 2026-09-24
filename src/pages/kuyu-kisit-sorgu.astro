@@ -13,6 +13,7 @@ import DsiKuralMotoru from '../components/DsiKuralMotoru.astro';
 import IyukSureRozeti from '../components/IyukSureRozeti.astro';
 import { kayitliIller, TOPLAM, KISIT_TOPLAM, KAYNAK_NOTU } from '../data/kisit-sorgu.js';
 import { tumIller, ilMatrisi } from '../data/islem-matrisi.js';
+import SayfaQr from '../components/SayfaQr.astro';
 
 const OZ_CEVAP =
   'İlinizi seçin: DSİ bölge müdürlüğünüz, havzanız ve o ile ait Resmî Gazete ' +
@@ -123,6 +124,7 @@ const sema = [
   <DsiKuralMotoru />
 
   <CtaBlok konu="Yeraltı suyu kısıtı" baslik="İlinizde kısıt varsa ne yapmalısınız?" metin="Kısıt/işletme sahası ilanının dosyanıza etkisini ve itiraz yolunu değerlendirelim." />
+  <SayfaQr />
   <HukukSerhi />
 <script slot="ek-script" type="application/json" id="ks-iller" set:html={JSON.stringify(ilBilgi).replace(/</g, '\\u003c')} />
 <script type="module" src="/s/kisit-sorgu.js" is:inline></script>

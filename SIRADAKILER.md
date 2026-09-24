@@ -46,8 +46,17 @@ KULLANICI ONAYI BEKLİYOR (İş kapanış kuralı: görsel iş "YAPILDI" sayılm
 - [ ] DUR — Adım 4 HUKUK ONAYI: `src/data/su-uyum.js` `ONAYLANDI=false`.
       Onay gelince true → sayfa index + belge "TASLAK" damgası kalkar, core'a
       eklenir. (K6 kapısı.)
-- [ ] SIRADAKİ ADIMLAR (protokol Bölüm 6; onay bekliyor): Adım 5 (sleeper:
-      BibTeX, GeoJSON indir, sayfa QR) → Adım 6 doğrulama.
+- [x] Adım 5 + RSS onarımı (24.09.2026) — `/istihbarat/`: `rss-style.xsl`
+      ile RSS okunur görünüm (ham XML yerine bülten sayfası); "RSS Bağlantısını
+      Kopyala" + rehber; her il için "E-posta ile takip et" (form il seçimine
+      bağlanır, mevcut `/takip` Function'ı). Sleeper: CiteThisData'ya
+      BibTeX/RIS + kopyala; nehir/göl için `/geojson.json` indir + OSM linki;
+      `SayfaQr` (qrcode-generator) ile 5 Resmî veri sayfasına dosya QR kodu.
+- NOT (uyarı): Chromium, `<?xml-stylesheet?>` XSLT'yi "deprecated" olarak
+      işaretliyor (çalışıyor; ileride kaldırılabilir). Kaldırılırsa RSS
+      görünümü için sunucu-taraflı HTML ya da JS alternatifi gerekir.
+- [ ] SIRADAKİ ADIM (protokol Bölüm 6; onay bekliyor): Adım 6 doğrulama +
+      kullanıcı canlı onayı.
 - [ ] HARİTA KATMANI (Adım 2'den ertelendi): coğrafi il/havza haritası için
       güvenilir geometri (GeoJSON) gerekir; depoda yok. Karar bekliyor.
 - NOT (uyarı): protokol metni kolon 2 başlığında "(1963–2026)" yazıyor;
