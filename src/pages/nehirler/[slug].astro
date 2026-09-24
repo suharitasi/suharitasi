@@ -47,11 +47,20 @@ const kolu = nehir.kolu_oldugu_akarsu || null;
 // NOT: değere EK (apostrofly) otomatik eklenmez — Türkçe ünlü uyumu addan
 // ada değişir ("Dicle'ye" vs "Fırat'a"); yanlış ek üretmemek için ek
 // gerektirmeyen soru kalıbı seçildi (niyet: "nereye dökülür/kolu").
-const tarayiciBaslik = dokulur
+// P3 (24.09.2026): niyet AYRIMI (desambiguasyon) — akarsu hidrografisi,
+// havza sayfasından net ayrışsın. Yalnız ölçülmüş yamyamlık vakası (gediz:
+// /havzalar/gediz ↔ /nehirler/gediz-nehri) için meta başlık sabitlenir;
+// diğer 94 nehir başlığı DEĞİŞMEZ (regresyon yok). NOT: istenen başlıktaki
+// "Debi" BİLEREK konmadı — sitede nehir bazlı debi verisi YOK; başlığa
+// yazmak tıklama tuzağı olurdu (NEHIRLER-SERP-TESHISI §5.2, uydurma yasağı).
+const META_BASLIK_OVERRIDE = {
+  'gediz-nehri': 'Gediz Nehri — Hidrografi, Havza ve Akarsu Yatağı',
+};
+const tarayiciBaslik = META_BASLIK_OVERRIDE[nehir.slug] ?? (dokulur
   ? `${nehir.ad} Nerede, Nereye Dökülür?`
   : (kolu
     ? `${nehir.ad} Nerede, Hangi Akarsuyun Kolu?`
-    : `${nehir.ad} Nerede? Hangi Havzadan Geçer`);
+    : `${nehir.ad} Nerede? Hangi Havzadan Geçer`));
 if (tarayiciBaslik.length > 60)
   throw new Error(`nehir "${nehir.slug}": title ${tarayiciBaslik.length} karakter (>60)`);
 

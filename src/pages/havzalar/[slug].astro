@@ -167,7 +167,13 @@ const aciklama = descParcalar.join(' ') || havzaOzCevap || giris.data.ozet;
 // Title 60 karakter bütçesine ölçülüdür (seo-audit "title-uzun" eşiği >60;
 // en uzun ad "Büyük Menderes Havzası" ile 58). Aşım build'i DÜŞÜRÜR —
 // sessizce bulguya dönüşmez (sessiz hata yasağı).
-const tarayiciBaslik = `${giris.data.baslik} Nerede? Kapsadığı İller ve Haritası`;
+// P3 (24.09.2026): niyet AYRIMI (desambiguasyon) — havza (su yönetimi/sınır)
+// nehir sayfasından ayrışsın. Yalnız ölçülmüş yamyamlık vakası (gediz) için
+// meta başlık sabitlenir; diğer 24 havza başlığı DEĞİŞMEZ (regresyon yok).
+const META_BASLIK_OVERRIDE = {
+  gediz: 'Gediz Havzası — Su Yönetimi ve Havza Sınırları',
+};
+const tarayiciBaslik = META_BASLIK_OVERRIDE[giris.id] ?? `${giris.data.baslik} Nerede? Kapsadığı İller ve Haritası`;
 if (tarayiciBaslik.length > 60)
   throw new Error(`havza "${giris.id}": title ${tarayiciBaslik.length} karakter (>60)`);
 const h1Baslik = konumCumlesi ? `${giris.data.baslik} nerede, hangi illeri kapsar?` : giris.data.baslik;
