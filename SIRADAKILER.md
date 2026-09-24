@@ -38,9 +38,16 @@ KULLANICI ONAYI BEKLİYOR (İş kapanış kuralı: görsel iş "YAPILDI" sayılm
 - [ ] DUR — DOI ve Buttondown: Zenodo DOI damgalama ve Buttondown bülteni
       kullanıcı hesabı/kimlik bilgisi gerektirir. DOI gelince
       `src/data/doi.js`; Buttondown gelince `src/data/bulten.ts` tek satır.
-- [ ] SIRADAKİ ADIMLAR (protokol Bölüm 6; onay bekliyor): Adım 4 (#2 Uyum
-      Dosyası PDF, hukuki onaya bağlı) → Adım 5 (sleeper: BibTeX, GeoJSON
-      indir, sayfa QR) → Adım 6 doğrulama.
+- [x] Adım 4 (24.09.2026) — #2 İşletmeye Özel Su Uyum Dosyası üreteci:
+      `/hizmetler/su-uyum-dosyasi/` (il + faaliyet → kaynağı gösterilmiş belge,
+      tarayıcı yazdır/PDF). K1-b (ceza tutarı yok), K2 (ilgili işlem + 20 ek),
+      K3 (ilgili emsal + 26 ek), K4 (il ölçümü yerine havza linki), K5
+      (doğrulanamadı → uzman incelemesi), K6 ([SERDAR-HUKUK] kapısı).
+- [ ] DUR — Adım 4 HUKUK ONAYI: `src/data/su-uyum.js` `ONAYLANDI=false`.
+      Onay gelince true → sayfa index + belge "TASLAK" damgası kalkar, core'a
+      eklenir. (K6 kapısı.)
+- [ ] SIRADAKİ ADIMLAR (protokol Bölüm 6; onay bekliyor): Adım 5 (sleeper:
+      BibTeX, GeoJSON indir, sayfa QR) → Adım 6 doğrulama.
 - [ ] HARİTA KATMANI (Adım 2'den ertelendi): coğrafi il/havza haritası için
       güvenilir geometri (GeoJSON) gerekir; depoda yok. Karar bekliyor.
 - NOT (uyarı): protokol metni kolon 2 başlığında "(1963–2026)" yazıyor;

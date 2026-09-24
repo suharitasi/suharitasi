@@ -1023,6 +1023,33 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §42 · ADIM 4 — İŞLETMEYE ÖZEL SU HUKUKU UYUM DOSYASI ÜRETECİ (24.09.2026, kullanıcı onaylı Adım 4)
+
+- **Karar 1 — Kapsam:** `/hizmetler/su-uyum-dosyasi/` üreteci; il (81) +
+  faaliyet (42 persona: 11 genel + 31 NACE) seçimi → 13 başlıklı, kaynağı
+  gösterilmiş belge; tarayıcı yazdır → PDF. Statik site korunur (sunucu/PDF
+  kütüphanesi eklenmedi; mevcut `kisit-sorgu` belge deseniyle aynı).
+- **Karar 2 — K1-b:** Yaptırım bloğu yalnız TÜR + 167 m.18 atfı verir; ceza
+  TUTARI yazılmaz ("resmî metin esastır").
+- **Karar 3 — K2/K3:** Başvuru envanteri ilgili alt küme (5 çekirdek işlem +
+  persona rehber eşleşmesi) + tüm 20 işlem eki; emsal ilgili + tüm 26 eki.
+- **Karar 4 — K4:** İl ölçümleri (baraj/GRACE/YAS) belgeye gömülmez; havza
+  sayfasına link verilir (künyesiz ölçüm riski doğmasın).
+- **Karar 5 — K5:** NACE Ek-2'de değilse "doğrulanamadı → uzman incelemesi";
+  kesin "kapsam dışı" hükmü verilmez.
+- **Karar 6 — K6 (onay kapısı):** `src/data/su-uyum.js` `ONAYLANDI=false` iken
+  sayfa `noindex` + belge "TASLAK" damgalı; core-sayfalara EKLENMEZ. Onay
+  gelince tek satır + core kaydı.
+- **Kanıt:** build 1102 sayfa · `site-saglik --hizli` kırmızı 0 (20/20 200,
+  konsol 0, mobil taşma 0) · W3C Nu sayfa 0 hata + üretilen belge 0 hata ·
+  Playwright: 81 il / 43 faaliyet seçeneği, Konya+OSB belgesinde 15 başlık,
+  TL tutarı yok, 12 havza linki, 24 RG linki, emsal var, TASLAK damgalı;
+  "listede yok" → doğrulanamadı/uzman incelemesi.
+- **Açık:** `[SERDAR-HUKUK]` onayı; sonrasında `ONAYLANDI=true` + core kaydı.
+  Protokol Bölüm 6 Adım 5-6.
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek

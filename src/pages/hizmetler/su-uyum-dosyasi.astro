@@ -1,76 +1,175 @@
 ---
-// /hizmetler/su-uyum-dosyasi/ — YER TUTUCU (yapım aşaması).
-// Kullanıcı kararı (24.09.2026, Adım 1): hedef rota henüz yok; vitrin
-// bağlantısı kırık olmasın diye noindex tanıtım sayfası açıldı. Araç
-// yayına alındığında bu sayfa gerçek uyum dosyası üreteciyle değiştirilir.
-// Uydurma yasağı: vaat edilen çıktı TANIMLANIR, üretilmiş gibi sunulmaz;
-// sayı/hüküm yazılmaz.
+// /hizmetler/su-uyum-dosyasi/ — İŞLETMEYE ÖZEL SU HUKUKU UYUM DOSYASI ÜRETECİ
+// (Adım 4, 24.09.2026). Yer tutucu içerikten gerçek araca dönüştürüldü.
+// İl + faaliyet seçilir; kaynağı gösterilmiş belge yazdırılır (PDF).
+// UYDURMA YASAĞI: metin yalnız src/data/su-uyum.js'teki doğrulanmış
+// kaynaklardan kurulur; ceza tutarı yazılmaz (K1-b); kapsam doğrulanamazsa
+// "doğrulanamadı → uzman incelemesi" denir (K5).
+// ONAY KAPISI (K6): ONAYLANDI=false iken sayfa noindex + belge TASLAK damgalı.
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
 import HukukSerhi from '../../components/HukukSerhi.astro';
+import { ONAYLANDI, FAALIYETLER, ILLER, CERCEVE } from '../../data/su-uyum.js';
 
-const ACIKLAMA =
-  'İl ve NACE sektörünüze göre su izinleri, yükümlülükler, yetkili merci ve ' +
-  'başvuru takvimini tek PDF uyum raporunda toplayan araç yapım aşamasındadır.';
+const OZ_CEVAP =
+  'İlinizi ve faaliyetinizi seçin; Ek-2 kapsamı, uygulanabilir su yükümlülükleri, ' +
+  'yetkili kurumlar, ilinizdeki Resmî Gazete kayıtları ve emsal kararlarla ' +
+  'desteklenmiş bir uyum dosyası oluşturun. Belge yazdırıp PDF olarak kaydedilir.';
+
+if (OZ_CEVAP.length > 280) {
+  throw new Error(`su-uyum-dosyasi: öz-cevap ${OZ_CEVAP.length} karakter, sınır 280.`);
+}
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/hizmetler/su-uyum-dosyasi/', Astro.site).href;
+
+const iller = Object.keys(ILLER).sort((a, b) => a.localeCompare(b, 'tr'));
+const genel = FAALIYETLER.filter((f) => f.kaynak === 'genel');
+const nace = FAALIYETLER.filter((f) => f.kaynak === 'nace-ek2');
+
+const sss = [
+  {
+    soru: 'Bu dosya ne içerir?',
+    cevap:
+      'İlinize ve faaliyetinize göre uygulanabilir su yükümlülükleri, dayanak mevzuat ' +
+      'maddeleri, yetkili kurumlar, ilinizdeki Resmî Gazete yeraltı suyu kayıtları, ' +
+      'yargı yolu ve ilgili emsal kararlar. Her kalem kaynağıyla birlikte verilir.',
+  },
+  {
+    soru: 'Belge resmî bir belge midir?',
+    cevap:
+      'Hayır. Bilgilendirme amaçlı bir uyum kontrol dosyasıdır; hukuki görüş değildir. ' +
+      'Resmî başvuru öncesi avukat incelemesi gerekir. Belge üzerinde bu şerh yer alır.',
+  },
+  {
+    soru: 'Faaliyetimi listede bulamazsam?',
+    cevap:
+      'Doğrulanmış bir kayıt yoksa dosya "kapsam doğrulanamadı" der ve genel işlem ' +
+      'envanterini sunar; kesin "kapsam dışı" hükmü verilmez.',
+  },
+];
+
+const sema = [
+  {
+    '@type': 'FAQPage',
+    mainEntity: sss.map((s) => ({
+      '@type': 'Question',
+      name: s.soru,
+      acceptedAnswer: { '@type': 'Answer', text: s.cevap },
+    })),
+  },
+  {
+    '@type': 'WebPage',
+    '@id': `${canonical}#sayfa`,
+    url: canonical,
+    name: 'İşletmeye özel su hukuku uyum dosyası',
+    description: OZ_CEVAP,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${kok}#site` },
+  },
+];
 ---
 <Sayfa
   baslik="İşletmelere Özel Su Uyum Dosyası"
-  tarayiciBaslik="İşletmelere Özel Su Uyum Dosyası (yapım aşamasında)"
-  aciklama={ACIKLAMA}
-  robots="noindex, follow"
+  tarayiciBaslik="Su Uyum Dosyası: İl ve Sektöre Göre PDF"
+  aciklama={OZ_CEVAP}
+  sema={sema}
+  robots={ONAYLANDI ? undefined : 'noindex, follow'}
 >
   <SayfaBasi
-    etiket="Hizmet · yapım aşamasında"
-    baslik="İşletmelere Özel Su Uyum Dosyası"
-    ozet={ACIKLAMA}
+    etiket="Hizmet · uyum dosyası"
+    baslik="İşletmeye Özel Su Hukuku Uyum Dosyası"
+    ozet={OZ_CEVAP}
     ozCevap
   />
+  <OzCevap metin={OZ_CEVAP} etiket="Kısa cevap" />
 
-  <p class="durum-not">
-    Bu araç yapım aşamasındadır; yayına alındığında bu sayfada çalışacaktır.
-    Amaçlanan çıktı: seçilen il ve NACE sektörü için geçerli yasal izinler,
-    yetkili merci (DSİ / su idaresi), başvuru takvimi ve kontrol listesini
-    içeren resmî bir uyum raporu (PDF). Aşağıdaki mevcut sayfalar aynı konuyu
-    bugün ele alır.
-  </p>
+  {!ONAYLANDI && (
+    <p class="su-taslak" role="note">
+      <strong>TASLAK — hukuki denetim onayı bekliyor.</strong> Bu araç
+      [SERDAR-HUKUK] onayı verilene kadar yayın için işaretlenmemiştir; üretilen
+      belge "TASLAK" damgası taşır ve resmî başvuru öncesi avukat incelemesi gerekir.
+    </p>
+  )}
 
-  <section class="durum-bolumlar" aria-label="Şimdilik ilgili sayfalar">
-    <h2>Şimdilik ilgili sayfalar</h2>
-    <ul>
-      <li><a href="/sektor/">Sektörel izin ve dava rehberleri</a> — OSB/sanayi, sulama kooperatifi, jeotermal, gıda-içecek için hangi belge, hangi kurum.</li>
-      <li><a href="/durumum/">Sektörünüze göre yükümlülük kapıları</a> — NACE Ek-2 faaliyetleri ve doğrulanmış son tarihler.</li>
-      <li><a href="/hangi-kurum/">Hangi işlem, hangi kurum</a> — işlem → yetkili merci eşlemesi.</li>
+  <section class="su-arac" aria-labelledby="su-arac-baslik">
+    <h2 id="su-arac-baslik">Uyum dosyanızı oluşturun</h2>
+    <div class="su-form">
+      <label class="su-alan">
+        <span>İl</span>
+        <select id="su-il">
+          {iller.map((il) => <option value={il}>{il}</option>)}
+        </select>
+      </label>
+      <label class="su-alan">
+        <span>Faaliyet alanı</span>
+        <select id="su-faaliyet">
+          <option value="yok">Listede yok (uzman incelemesi)</option>
+          <optgroup label="Genel işletme profilleri">
+            {genel.map((f) => <option value={f.slug}>{f.ad}</option>)}
+          </optgroup>
+          <optgroup label="Ek-2 NACE faaliyetleri">
+            {nace.map((f) => <option value={f.slug}>{f.ad}</option>)}
+          </optgroup>
+        </select>
+      </label>
+      <button type="button" id="su-olustur" class="su-dugme">Uyum Raporunu Oluştur (yazdır / PDF)</button>
+    </div>
+    <p class="su-durum" id="su-durum" aria-live="polite">
+      İl ve faaliyet seçin; belge yeni bir pencerede açılır ve yazdırılır. Tarayıcı
+      yazdırma penceresinde "PDF olarak kaydet" seçeneğini kullanın.
+    </p>
+  </section>
+
+  <section class="su-cerceve" aria-labelledby="su-cerceve-baslik">
+    <h2 id="su-cerceve-baslik">Belgenin dayandığı hukuki çerçeve</h2>
+    <p class="su-aciklama">
+      Aşağıdaki {CERCEVE.length} künye, dosyada atıf yapılan mevzuat maddeleridir.
+      Her madde resmî kaynağına bağlanır; belge yeni hukuki iddia üretmez.
+    </p>
+    <ul class="su-cerceve-liste">
+      {CERCEVE.map((c) => (
+        <li>
+          <span class="su-cerceve-kunye">{c.kanunKisa} · {c.madde}</span>
+          {c.baslik && <span class="su-cerceve-baslik"> — {c.baslik}</span>}
+          {c.merci && <span class="su-cerceve-merci"> · Merci: {c.merci}</span>}
+        </li>
+      ))}
     </ul>
   </section>
 
+  <nav class="su-capraz" aria-label="İlgili bölümler">
+    <a href="/durumum/">→ Sektörünüze göre yükümlülük kapıları</a>
+    <a href="/mevzuat/su-verimliligi-sayaci/">→ Su verimliliği uyum sayacı</a>
+    <a href="/kuyu-kisit-sorgu/">→ İl bazında kısıt sorgusu</a>
+    <a href="/hangi-kurum/">→ Hangi işlem, hangi kurum</a>
+  </nav>
+
   <HukukSerhi />
+<script type="module" src="/s/su-uyum.js" is:inline></script>
 </Sayfa>
 
 <style>
-  .durum-not {
-    margin: 2rem 0 0;
-    padding: 1.1rem 1.3rem;
-    background: var(--zemin-kart);
-    border: 1px solid var(--cizgi);
-    border-left: 3px solid var(--su-400);
-    font-size: 0.95rem;
-    line-height: 1.65;
-    color: var(--metin);
-  }
-  .durum-bolumlar { margin-top: 2.4rem; }
-  .durum-bolumlar h2 {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: 1.5rem;
-    margin: 0 0 0.8rem;
-  }
-  .durum-bolumlar ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
-  .durum-bolumlar li {
-    padding: 0.8rem 1rem;
-    border: 1px solid var(--cizgi);
-    background: var(--zemin-kart);
-    font-size: 0.92rem;
-    line-height: 1.6;
-  }
-  .durum-bolumlar a { color: var(--baglanti); font-weight: 600; }
+  .su-taslak { margin: 1.4rem 0 0; padding: 0.9rem 1.1rem; border: 1px solid var(--kehribar); border-left: 3px solid var(--kehribar); background: var(--zemin-kart); font-size: 0.9rem; line-height: 1.6; }
+  .su-arac { margin-top: 2rem; }
+  .su-arac h2, .su-cerceve h2 { font-family: var(--serif); font-weight: 500; font-size: 1.5rem; margin: 0 0 0.7rem; }
+  .su-form { display: grid; gap: 0.9rem; max-width: 40rem; min-width: 0; }
+  .su-alan { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+  .su-alan span { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--metin-soluk); }
+  .su-alan select { font: inherit; width: 100%; max-width: 100%; padding: 0.6rem 0.8rem; min-height: 44px; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); }
+  .su-alan select:focus-visible { outline: 2px solid var(--su-700); outline-offset: 2px; }
+  .su-dugme { font: inherit; font-weight: 600; min-height: 44px; padding: 0.7rem 1.4rem; background: var(--su-700); color: #fff; border: 0; cursor: pointer; justify-self: start; }
+  .su-dugme:hover { background: var(--su-400); }
+  .su-dugme:disabled { opacity: 0.6; cursor: default; }
+  .su-durum { margin: 1rem 0 0; font-size: 0.86rem; line-height: 1.6; color: var(--metin-soluk); max-width: 72ch; }
+  .su-cerceve { margin-top: 2.4rem; }
+  .su-aciklama { font-size: 0.92rem; line-height: 1.65; color: var(--metin-soluk); max-width: 72ch; margin: 0 0 0.9rem; }
+  .su-cerceve-liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.4rem; font-size: 0.86rem; }
+  .su-cerceve-liste li { border: 1px solid var(--cizgi); background: var(--zemin-kart); padding: 0.5rem 0.8rem; }
+  .su-cerceve-kunye { font-family: var(--mono); color: var(--su-700); }
+  .su-cerceve-merci { color: var(--metin-soluk); }
+  .su-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.8rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .su-capraz a { color: var(--baglanti); text-decoration: none; }
+  .su-capraz a:hover { text-decoration: underline; }
 </style>

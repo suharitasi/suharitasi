@@ -41,9 +41,9 @@ export const VITRIN_KOLONLARI = [
     kicker: 'B2B Hukuki Uyum',
     ad: 'İşletmelere Özel Su Uyum Dosyası',
     metin:
-      'NACE sektörünüzü ve ilinizi seçin; yasal izinleri, cezai şartları ve ' +
-      'merci listesini içeren resmî Su Uyum Raporunu tek tıkla indirin.',
-    cta: 'Uyum Raporu Al (PDF)',
+      'NACE sektörünüzü ve ilinizi seçin; yasal izinleri, yaptırım dayanaklarını ' +
+      've merci listesini içeren Su Uyum Dosyasını yazdırıp PDF olarak kaydedin.',
+    cta: 'Uyum Dosyası Oluştur',
     hedef: '/hizmetler/su-uyum-dosyasi/',
     ikon: 'dosya',
     aksan: '#57BAE0',
