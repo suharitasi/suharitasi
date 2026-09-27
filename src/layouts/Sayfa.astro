@@ -20,6 +20,11 @@ interface Props {
   // (havza-talep briefi, 25.08.2026). og:title marka ekiyle kalır.
   tarayiciBaslik?: string;
   aciklama: string;
+  /* 27.09.2026 (CTR çalışması): verilirse meta description BİREBİR bu metin
+     olur — merkezî 50-160 kırpımı atlanır. Yalnız sahibin açık talebiyle ve
+     <=165 karakter metinlerde kullanılır (Google SERP'te yine kırpılabilir).
+     Verilmezse aciklama merkezî kırpımdan geçer (B1 kuralı korunur). */
+  metaAciklamaHam?: string;
   // Sayfaya özgü ek JSON-LD nesneleri (Article, FAQPage, Person...).
   // Organization + WebSite + BreadcrumbList burada otomatik üretilir.
   sema?: Record<string, unknown>[];
@@ -43,7 +48,7 @@ interface Props {
   alternates?: { hreflang: string; href: string }[];
 }
 
-const { baslik, tarayiciBaslik, aciklama, sema = [], heroSlot, robots, guncelleme, alternates = [] } = Astro.props;
+const { baslik, tarayiciBaslik, aciklama, metaAciklamaHam, sema = [], heroSlot, robots, guncelleme, alternates = [] } = Astro.props;
 
 // GEO/SEO B1 (25.08.2026): meta description 50-160 bandına merkezî kırpım.
 // Metin sayfanın kendi aciklama'sından türetilir (yeni metin ÜRETİLMEZ);
@@ -69,13 +74,15 @@ function butunle(parca: string): string {
   // 4) Artakalan noktalama.
   return t.replace(/[\s,;:(–—-]+$/u, '');
 }
-const metaAciklama = (() => {
-  const a = (aciklama || '').trim();
-  if (a.length <= 160) return a;
-  const kes = a.lastIndexOf('. ', 159);
-  if (kes >= 100) return butunle(a.slice(0, kes)) + '.';
-  return butunle(a.slice(0, 157).replace(/\s+\S*$/u, '')) + '…';
-})();
+const metaAciklama = metaAciklamaHam
+  ? metaAciklamaHam.trim()
+  : (() => {
+      const a = (aciklama || '').trim();
+      if (a.length <= 160) return a;
+      const kes = a.lastIndexOf('. ', 159);
+      if (kes >= 100) return butunle(a.slice(0, kes)) + '.';
+      return butunle(a.slice(0, 157).replace(/\s+\S*$/u, '')) + '…';
+    })();
 const yol = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname
   : Astro.url.pathname + '/';
