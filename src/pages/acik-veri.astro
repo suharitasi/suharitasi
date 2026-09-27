@@ -1,228 +1,161 @@
 ---
-import TemelDuzen from '../layouts/TemelDuzen.astro';
-import AltBilgi from '../components/AltBilgi.astro';
-import PaylasilanMenu from '../components/PaylasilanMenu.astro';
-import AcilDestekBar from '../components/AcilDestekBar.astro';
+// /acik-veri/ — AÇIK VERİ VE GELİŞTİRİCİ PORTALI (ADIM 3, v6.0, 21.09.2026).
+//
+// Geliştirici, mühendis ve hukuk büroları için makine-okunur veri
+// dokümantasyonu: /api/v1/* uçları, OpenAPI 3.0 spesifikasyonu, veri standardı
+// lisansı ve atıf metni. Uydurma alan/örnek YOK (K7); örnekler canlı çıktıyla
+// birebir aynı alan adlarını taşır. Veriler statiktir; kimlik doğrulama yoktur.
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import CiteThisData from '../components/CiteThisData.astro';
+import CtaBlok from '../components/CtaBlok.astro';
+import HukukSerhi from '../components/HukukSerhi.astro';
+
+const OZ_CEVAP =
+  'Su Haritası makine-okunur veri katmanı: /api/v1/il/{il}.json ve ' +
+  '/api/v1/havza/{havza}.json uçları, OpenAPI 3.0 spesifikasyonu ve ' +
+  'kaynak gösterme standardı. Statik JSON; kimlik doğrulama yok. Yalnız ' +
+  'doğrulanmış kaynaklardan derlenir, hukuki görüş değildir.';
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/acik-veri/', Astro.site).href;
+const specYolu = '/api/v1/openapi.json';
+
+const uclar = [
+  {
+    yol: '/api/v1/il/{il}.json',
+    ornek: '/api/v1/il/istanbul.json',
+    ad: 'İl künyesi',
+    alanlar: ['il', 'slug', 'sayfa', 'dsiBolgeleri[]', 'suIdaresi', 'havzalar[]', 'rgKisitKayitlari[]', 'mevzuatDayanagi[]', 'kaynak', 'not'],
+  },
+  {
+    yol: '/api/v1/havza/{havza}.json',
+    ornek: '/api/v1/havza/gediz.json',
+    ad: 'Havza künyesi',
+    alanlar: ['havza', 'baslik', 'veri{} (baslik, ozet, tarih, guncelleme, no, kunye{})', 'kaynak', 'not'],
+  },
+];
+
+const sema = [
+  {
+    '@type': 'TechArticle',
+    '@id': `${canonical}#makale`,
+    headline: 'Açık veri ve geliştirici portalı',
+    url: canonical,
+    inLanguage: 'tr-TR',
+    about: { '@type': 'DataCatalog', name: 'Su Haritası açık veri kataloğu', url: `${kok}veri/` },
+    description: OZ_CEVAP,
+    isPartOf: { '@id': `${kok}#site` },
+  },
+];
 ---
 
-<TemelDuzen
-  baslik="Açık Veri API: OpenAPI ve Veri Katalogu — Su Haritası"
-  aciklama="Su Haritası makine-okunur veri katmanı: il ve havza JSON uçları, OpenAPI 3.0 şeması, Zenodo DOI tescili ve CC-BY-4.0 lisansı."
+<Sayfa
+  baslik="Açık veri portalı"
+  aciklama={OZ_CEVAP}
+  tarayiciBaslik="Açık Veri API: OpenAPI ve Veri Standardı"
+  sema={sema}
 >
-  <PaylasilanMenu />
-  
-  <main class="acik-veri-ana">
-    <div class="acik-veri-ic">
-      <header class="acik-veri-baslik">
-        <p class="acik-veri-kicker">Makine-Okunur Hidroloji ve Hukuk Katmanı</p>
-        <h1>Açık Veri ve API Altyapısı</h1>
-        <p class="acik-veri-ozet">
-          Su Haritası verileri; kamu kurumlarının resmî yayınlarından derlenmiş, uluslararası arşivlerde tescillenmiş ve araştırmacılar ile yazılım geliştiriciler için ücretsiz, doğrulanabilir JSON uçları olarak sunulmuştur.
-        </p>
-      </header>
+  <SayfaBasi
+    etiket="Açık veri"
+    baslik="Açık veri ve geliştirici portalı"
+    ozet="Geliştiriciler, mühendisler ve hukuk büroları için makine-okunur uçlar, OpenAPI 3.0 şeması ve atıf standardı."
+    ozCevap
+  />
+  <OzCevap metin={OZ_CEVAP} etiket="Özet" />
 
-      <!-- Uluslararası Tescil ve Lisans Vitrini -->
-      <div class="tescil-izgara">
-        <a href="https://doi.org/10.5281/zenodo.23002678" target="_blank" rel="noopener noreferrer" class="tescil-kutusu">
-          <span class="etiket">Akademik Tescil</span>
-          <strong>Zenodo DOI: 10.5281/zenodo.23002678</strong>
-          <span>CERN / OpenAIRE kalıcı dijital nesne tanımlayıcısı</span>
-        </a>
-        <a href="https://www.wikidata.org/wiki/Q141582057" target="_blank" rel="noopener noreferrer" class="tescil-kutusu">
-          <span class="etiket">Bilgi Grafiği</span>
-          <strong>Wikidata: Q141582057</strong>
-          <span>Semantik web ve AI ajanları küresel kimliği</span>
-        </a>
-        <div class="tescil-kutusu sabit">
-          <span class="etiket">Veri Lisansı</span>
-          <strong>Creative Commons (CC BY 4.0)</strong>
-          <span>Atıf yapmak koşuluyla ticari ve akademik kullanıma açık</span>
-        </div>
-      </div>
+  <section class="av-blok">
+    <h2>Uç noktalar</h2>
+    <p>
+      Bütün yanıtlar build zamanında üretilen <strong>statik JSON</strong>
+      dosyalarıdır; sunucu veya veritabanı yoktur, kimlik doğrulama gerekmez.
+      Tam şema tanımları için{' '}
+      <a href={specYolu}>OpenAPI 3.0 spesifikasyonu</a>{' '}
+      (<code>{specYolu}</code>).
+    </p>
+    <ul class="av-uclar">
+      {uclar.map((u) => (
+        <li class="av-uc">
+          <p class="av-uc-ust"><span class="av-uc-ad">{u.ad}</span><code>{u.yol}</code></p>
+          <p class="av-alanlar">
+            <span class="av-alan-etiket">Alanlar</span>
+            {u.alanlar.map((a, i) => (<>{i > 0 && ' · '}<code>{a}</code></>))}
+          </p>
+          <p class="av-ornek">
+            Örnek: <a href={u.ornek}><code>{u.ornek}</code></a>
+          </p>
+        </li>
+      ))}
+    </ul>
+  </section>
 
-      <section class="api-bolum">
-        <h2>Uç Noktalar (REST JSON)</h2>
-        <p class="not">Bütün yanıtlar build zamanında üretilen statik JSON dosyalarıdır; sunucu gecikmesi veya hız sınırı yoktur. Kimlik doğrulama gerektirmez.</p>
-        
-        <div class="uc-nokta-kart">
-          <div class="uc-nokta-kod"><code>GET /api/v1/il/{'{il}'}.json</code></div>
-          <p>İl bazında su idaresi, DSİ bölgesi, dahil olduğu havzalar ve Resmî Gazete kısıt künyeleri.</p>
-          <a href="/api/v1/il/istanbul.json" target="_blank" class="ornek-link">Örnek: /api/v1/il/istanbul.json →</a>
-        </div>
+  <section class="av-blok">
+    <h2>Hızlı başlangıç</h2>
+    <pre class="av-kod"><code>{`# İl künyesi (slug: küçük harf, aksansız)
+curl -s https://suharitasi.com/api/v1/il/istanbul.json
 
-        <div class="uc-nokta-kart">
-          <div class="uc-nokta-kod"><code>GET /api/v1/havza/{'{havza}'}.json</code></div>
-          <p>Havza hidrolojik alanı, yıllık su potansiyeli, YAS rezervi ve havza eylem planı kaynakları.</p>
-          <a href="/api/v1/havza/gediz.json" target="_blank" class="ornek-link">Örnek: /api/v1/havza/gediz.json →</a>
-        </div>
-      </section>
-
-      <section class="api-bolum">
-        <h2>Hızlı Başlangıç (cURL)</h2>
-        <div class="kod-blogu">
-          <pre><code># Havza verisini çekme
+# Havza künyesi
 curl -s https://suharitasi.com/api/v1/havza/gediz.json
 
-# İl kütüğünü çekme
-curl -s https://suharitasi.com/api/v1/il/istanbul.json</code></pre>
-        </div>
-      </section>
+# OpenAPI 3.0 spesifikasyonu
+curl -s https://suharitasi.com/api/v1/openapi.json`}</code></pre>
+  </section>
 
-      <section class="api-bolum">
-        <h2>Veri İlkeleri (17 Skills Standartları)</h2>
-        <ul class="ilkeler-liste">
-          <li><strong>Uydurma veri yok:</strong> Doğrulanamayan hiçbir değer üretilmez; eksik veriler dürüstçe <code>null</code> veya "veri yok" olarak işaretlenir.</li>
-          <li><strong>Hukuki hüküm değildir:</strong> Bilgilendirme ve ön araştırma amaçlıdır; idari kararlar resmi mercilerce verilir.</li>
-          <li><strong>Tek kaynak güvencesi:</strong> API yanıtları ve sitedeki görsel sayaçlar aynı doğrulanmış statik kaynaktan beslenir.</li>
-        </ul>
-      </section>
-    </div>
-  </main>
+  <section class="av-blok">
+    <h2>Veri ilkeleri</h2>
+    <ul class="av-ilkeler">
+      <li><strong>Uydurma veri yok.</strong> Doğrulanamayan değer üretilmez; eksik alan boş dizi (<code>[]</code>), <code>null</code> veya "veri yok" işaretiyle dürüstçe belirtilir.</li>
+      <li><strong>Hukuki hüküm değildir.</strong> Veri ve alanlar bilgilendirme amaçlıdır; ceza tutarı veya kesin sonuç üretilmez, yalnız mevzuat dayanağı gösterilir.</li>
+      <li><strong>Tek kaynak.</strong> Alan adları ve şema, canlı JSON çıktısıyla birebir aynıdır.</li>
+    </ul>
+  </section>
 
-  <AltBilgi />
-  <AcilDestekBar />
-</TemelDuzen>
+  <section class="av-blok">
+    <h2>Lisans ve atıf</h2>
+    <p class="av-veri-standardi">
+      <strong>Su Haritası Açık Hidroloji ve Hukuk Veri Standardı</strong> —
+      kaynak gösterilerek kullanım (CC BY 4.0 uyumlu).
+    </p>
+    <p>
+      Veriyi kullanırken aşağıdaki atıf biçimini koruyun. Ticari kullanımda
+      büro künyesine bağlantı verilmesi beklenir.
+    </p>
+    <pre class="av-kod"><code>{`Su Haritası Açık Hidroloji ve Hukuk Veri Standardı (2026).
+<sorgulanan uç URL'i>. Erişim: <tarih>.
+Arslan Hukuk Bürosu — https://suharitasi.com/acik-veri/`}</code></pre>
+  </section>
+
+  <CiteThisData baslik="Açık veri portalı" />
+
+  <nav class="av-capraz" aria-label="İlgili bölümler">
+    <a href="/veri/">→ Açık veri kataloğu (JSON listesi)</a>
+    <a href={specYolu}>→ OpenAPI 3.0 spesifikasyonu</a>
+    <a href="/gizlilik/">→ Gizlilik ve kullanım koşulları</a>
+    <a href="/hakkinda/">→ Yöntem ve kaynak politikası</a>
+  </nav>
+
+  <CtaBlok konu="Açık veri / API" baslik="Veriyi büronuz için kullanıyor musunuz?" metin="Su verisi ve mevzuat dayanağını kurumsal iş akışınıza uyarlamak için veri standardı ve entegrasyon yöntemini konuşalım." />
+  <HukukSerhi />
+</Sayfa>
 
 <style>
-  /* Menü çakışmasını önleyen güvenli üst boşluk */
-  .acik-veri-ana {
-    padding-top: 100px;
-    padding-bottom: 60px;
-    background: #f8fafc;
-    color: #0f172a;
-    min-height: 80vh;
-  }
-  .acik-veri-ic {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-  .acik-veri-kicker {
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #0284c7;
-    margin-bottom: 0.5rem;
-  }
-  h1 {
-    font-size: 2.25rem;
-    font-weight: 800;
-    margin: 0 0 1rem;
-    color: #0f172a;
-    line-height: 1.2;
-  }
-  .acik-veri-ozet {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #475569;
-    margin-bottom: 2rem;
-  }
-  .tescil-izgara {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-bottom: 3rem;
-  }
-  @media (max-width: 768px) {
-    .tescil-izgara { grid-template-columns: 1fr; }
-    .acik-veri-ana { padding-top: 85px; }
-  }
-  .tescil-kutusu {
-    display: flex;
-    flex-direction: column;
-    padding: 1.25rem;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    text-decoration: none;
-    color: inherit;
-    min-height: 44px;
-    transition: all 0.2s ease;
-  }
-  .tescil-kutusu:hover:not(.sabit) {
-    transform: translateY(-2px);
-    border-color: #0284c7;
-    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
-  }
-  .tescil-kutusu .etiket {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #0284c7;
-    margin-bottom: 0.35rem;
-  }
-  .tescil-kutusu strong {
-    font-size: 0.95rem;
-    font-family: monospace;
-    margin-bottom: 0.35rem;
-  }
-  .tescil-kutusu span:last-child {
-    font-size: 0.8rem;
-    color: #64748b;
-  }
-  .api-bolum {
-    margin-bottom: 2.5rem;
-  }
-  .api-bolum h2 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    color: #0f172a;
-  }
-  .not {
-    font-size: 0.95rem;
-    color: #64748b;
-    margin-bottom: 1.25rem;
-  }
-  .uc-nokta-kart {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 1.25rem;
-    margin-bottom: 1rem;
-  }
-  .uc-nokta-kod code {
-    font-family: monospace;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #0369a1;
-  }
-  .uc-nokta-kart p {
-    font-size: 0.9rem;
-    color: #475569;
-    margin: 0.5rem 0;
-  }
-  .ornek-link {
-    display: inline-block;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #0284c7;
-    text-decoration: none;
-    min-height: 44px;
-    line-height: 44px;
-  }
-  .kod-blogu {
-    background: #0f172a;
-    color: #f8fafc;
-    padding: 1.25rem;
-    border-radius: 8px;
-    overflow-x: auto;
-  }
-  .kod-blogu code {
-    font-family: monospace;
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-  .ilkeler-liste {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .ilkeler-liste li {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid #e2e8f0;
-    font-size: 0.95rem;
-    color: #334155;
-  }
+  .av-blok { margin-top: 1.6rem; }
+  .av-blok h2 { font-family: var(--serif); font-weight: 500; font-size: 1.4rem; margin-bottom: 0.6rem; }
+  .av-blok p { max-width: 74ch; }
+  .av-uclar { list-style: none; margin: 0.8rem 0 0; padding: 0; display: grid; gap: 0.8rem; }
+  .av-uc { padding: 0.9rem 1rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); border-top: 2px solid var(--su-700); }
+  .av-uc-ust { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 0.9rem; margin: 0 0 0.4rem; }
+  .av-uc-ad { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; }
+  .av-alanlar { font-size: 0.88rem; color: var(--metin-soluk); margin: 0.2rem 0; }
+  .av-alan-etiket { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--su-700); margin-right: 0.5rem; }
+  .av-ornek { font-size: 0.88rem; margin: 0.3rem 0 0; }
+  code { font-family: var(--mono); font-size: 0.82em; background: rgba(19, 42, 63, 0.05); padding: 0.05rem 0.3rem; }
+  .av-kod { background: var(--deniz); color: var(--kopuk); border: 1px solid var(--cizgi); padding: 0.9rem 1rem; overflow-x: auto; margin: 0.8rem 0; }
+  .av-kod code { background: none; padding: 0; color: inherit; font-size: 0.82rem; line-height: 1.7; white-space: pre; }
+  .av-ilkeler { margin: 0.8rem 0 0 1.1rem; display: grid; gap: 0.5rem; max-width: 74ch; }
+  .av-veri-standardi { padding: 0.7rem 1rem; border: 1px solid var(--cizgi); border-left: 3px solid var(--kehribar); background: var(--zemin-kart); max-width: 74ch; }
+  .av-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .av-capraz a { color: var(--baglanti); text-decoration: none; }
+  .av-capraz a:hover { text-decoration: underline; }
 </style>

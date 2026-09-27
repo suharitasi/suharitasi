@@ -72,7 +72,24 @@ const DAMLALAR = Array.from({ length: 90 }, (_, i) => {
 <section class="v2-hero" aria-label="Açılış">
   <!-- 1) Üst bant: metin DÜZ zemin üzerinde (Ş1-Ş2 çözümü) -->
   <div class="v2-baslik">
-    <p class="v2-rozet">Su Hukuku · Danışmanlık · Su Hakları</p>
+    <div class="v2-otorite-bandi" aria-label="Resmi Tescil ve Yetki Rozetleri">
+      <a href="https://doi.org/10.5281/zenodo.23002678" target="_blank" rel="noopener noreferrer" class="v2-otorite-rozet" title="CERN / OpenAIRE Kalıcı Tescil">
+        <span class="v2-rozet-nokta yesil"></span>
+        <strong>DOI:</strong> 10.5281/zenodo.23002678
+      </a>
+      <a href="https://www.wikidata.org/wiki/Q141582057" target="_blank" rel="noopener noreferrer" class="v2-otorite-rozet" title="Google & AI Bilgi Grafiği Varlığı">
+        <span class="v2-rozet-nokta mavi"></span>
+        <strong>Wikidata:</strong> Q141582057
+      </a>
+      <a href="/acik-veri/" class="v2-otorite-rozet" title="Canlı REST API Katmanı">
+        <span class="v2-rozet-nokta sari"></span>
+        <strong>Açık Veri:</strong> v1 API
+      </a>
+      <a href="/kuyu-karar-motoru/" class="v2-otorite-rozet vurgu" title="167 Sayılı Kanun Kuyu İzin Motoru">
+        <span class="v2-rozet-nokta kirmizi"></span>
+        <strong>167 Sayılı YAS:</strong> Kuyu Karar Motoru
+      </a>
+    </div>
     <h1>{HERO_H1}</h1>
     <p class="v2-alt-metin">{HERO_ALT}</p>
     <div class="v2-butonlar">
@@ -293,3 +310,56 @@ const DAMLALAR = Array.from({ length: 90 }, (_, i) => {
     }
   }
 </script>
+
+<style>
+  /* 17 Skills Marketing & CRO: Above-The-Fold Otorite Bandı */
+  .v2-otorite-bandi {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    align-items: center;
+  }
+  .v2-otorite-rozet {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.75rem;
+    min-height: 44px;
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 4px;
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 0.8rem;
+    line-height: 1;
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+  }
+  .v2-otorite-rozet:hover {
+    border-color: #57bae0;
+    background: rgba(15, 23, 42, 0.95);
+    color: #ffffff;
+  }
+  .v2-otorite-rozet.vurgu {
+    border-color: rgba(224, 87, 87, 0.4);
+    background: rgba(45, 15, 15, 0.4);
+  }
+  .v2-otorite-rozet.vurgu:hover {
+    border-color: #e05757;
+    background: rgba(45, 15, 15, 0.75);
+  }
+  .v2-otorite-rozet strong {
+    font-weight: 700;
+    color: #ffffff;
+  }
+  .v2-rozet-nokta {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .v2-rozet-nokta.yesil { background: #10b981; box-shadow: 0 0 6px #10b981; }
+  .v2-rozet-nokta.mavi { background: #0284c7; box-shadow: 0 0 6px #0284c7; }
+  .v2-rozet-nokta.sari { background: #f59e0b; box-shadow: 0 0 6px #f59e0b; }
+  .v2-rozet-nokta.kirmizi { background: #ef4444; box-shadow: 0 0 6px #ef4444; }
+</style>
