@@ -76,8 +76,8 @@ function baslat() {
     C 12.8 18.7 14.6 14.1 13.4 10.7
     C 12.2 7.1 8 1.1 8 1.1 Z`;
   el.innerHTML = `
-    <div class="sv-damla">
-      <svg viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div class="sv-damla" style="width:16px;height:20px;margin:-2px 0 0 -8px">
+      <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:16px;height:20px">
         <defs>
           <linearGradient id="sv-dg-krem" x1="0.3" y1="0" x2="0.62" y2="1">
             <stop offset="0" stop-color="#2E8FB8"/>
@@ -102,6 +102,19 @@ function baslat() {
     </div>`;
   document.body.appendChild(el);
   kok.classList.add('sv-imlec-gizli');
+
+  // GÜVENLİK AĞI (03.10.2026): enjekte edilen <style> bir sebeple
+  // uygulanmazsa SVG varsayılan 300x150 boyutuna büyüyüp ekranda devasa
+  // koyu damla/sivri üçgen olarak görünüyordu. Boyutu ÖLÇ; beklenenin çok
+  // üstündeyse imleci ve stili KALDIR (kullanıcı native imleci görür).
+  requestAnimationFrame(() => {
+    const r = el.getBoundingClientRect();
+    if (r.width > 40 || r.height > 60) {
+      el.remove();
+      stil.remove();
+      kok.classList.remove('sv-imlec-gizli');
+    }
+  });
 
   let hx = -100, hy = -100; // hedef
   let x = -100, y = -100;   // mevcut (lerp)

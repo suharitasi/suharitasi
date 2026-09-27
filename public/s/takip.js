@@ -8,6 +8,18 @@
   var durum = document.getElementById('takip-durum');
   if (!form) return;
 
+  // Durum satırı sayfa AÇILIŞINDA boş olmalı; "Kaydedildi…" gibi başarı
+  // bildirimi yalnız GERÇEK bir gönderimden sonra çıkar. bfcache'ten geri
+  // dönüşte (pageshow) ve çift çağrıda da sıfırlanır (03.10.2026).
+  function durumSifirla() {
+    if (durum && !form.dataset.gonderildi) {
+      durum.textContent = '';
+      durum.className = 'ih-form-durum';
+    }
+  }
+  durumSifirla();
+  addEventListener('pageshow', durumSifirla);
+
   var CHECK =
     '<svg class="ih-check" viewBox="0 0 24 24" aria-hidden="true">' +
     '<path d="M4 12.5l5 5L20 6.5"/></svg>';
@@ -24,6 +36,7 @@
 
   form.addEventListener('submit', function (ev) {
     ev.preventDefault();
+    form.dataset.gonderildi = '1';
     var btn = form.querySelector('button[type="submit"]');
     if (durum) { durum.className = 'ih-form-durum'; durum.textContent = 'Kaydediliyor…'; }
     if (btn) btn.disabled = true;
