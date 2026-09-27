@@ -38,6 +38,8 @@ export function GET({ props }: any) {
       { kanun: '167 sayılı Yeraltısuları Hakkında Kanun', madde: 18, konu: 'İdari para cezası ve kuyu kapatma' },
       { kanun: '2577 sayılı İYUK', madde: 7, konu: 'İdari dava açma süresi (60 gün)' },
     ],
+    doi: '10.5281/zenodo.23002678',
+    entity: 'https://www.wikidata.org/wiki/Q141582057',
     kaynak: 'Su Haritası Açık Hidroloji ve Hukuk İndeksi (2026)',
     not: 'Yalnız doğrulanmış kaynaklardan derlenmiştir; hukuki görüş değildir.',
   };
