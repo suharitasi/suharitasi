@@ -51,6 +51,12 @@ const sema = [
 ];
 ---
 <Sayfa baslik={SIHIRBAZ_AD} aciklama={OZ_CEVAP} tarayiciBaslik={SIHIRBAZ_AD} sema={sema}>
+  {/* Yerleşim guard'ı (27.09.2026): navbar `sticky` (≈4,15rem). Form/label'lar
+      çubuğun altından ferah başlasın diye içerik bloğuna navbar yüksekliği
+      kadar güvenli üst boşluk verilir (hero bindirmesi bu sayfada istenmez —
+      üstte form var). Sayfa-scope: global `main.govde` negatif marjına
+      DOKUNULMAZ (1100 sayfa etkilenmesin). */}
+  <div class="km-ust">
   <SayfaBasi etiket="Kuyu sorunu" baslik={SIHIRBAZ_AD} ozet="İl + işlem + tebliğ tarihi → süre, yetkili merci, evrak listesi ve düzenlenebilir dilekçe taslağı." ozCevap />
   <OzCevap metin={OZ_CEVAP} etiket="Özet" />
 
@@ -134,12 +140,16 @@ const sema = [
 
   <CtaBlok konu="Kuyu cezası / kapatma" baslik="Dosyanızı avukata inceletın" metin="Süre kaybı hak kaybıdır. Evrakınızı ve tebliğ tarihinizi iletin; yol haritasını değerlendirelim." />
   <HukukSerhi />
+  </div>
 <script slot="ek-script" type="module" src="/s/karar-motoru.js" is:inline></script>
 </Sayfa>
 
 
 <style>
   .km-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; max-width: 48rem; }
+  /* Yerleşim guard'ı: navbar yüksekliği + nefes payı (sticky çubuk formu
+     gölgelemesin). Sayfa-scope. */
+  .km-ust { padding-top: clamp(1.6rem, 5vh, 3rem); scroll-margin-top: 5.5rem; }
   .km-form label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.9rem; }
   .km-form select, .km-form input { font: inherit; padding: 0.6rem 0.7rem; min-height: 44px; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); width: 100%; }
   .km-sonuc { margin-top: 1.5rem; }

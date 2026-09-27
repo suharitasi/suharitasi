@@ -1,27 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 84" fill="none" role="img" aria-label="Su Haritası">
   <defs>
+    <!-- Koyu lacivert navbar üzerinde okunacak AÇIK palet (27.09.2026):
+         beyaz gövde + parlak camgöbeği mavi + altın. Eski koyu lacivert
+         (#071927/#0F2840/#1E3E62) navbar zemininde görünmez oluyordu. -->
     <linearGradient id="suAkiferGlow" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#38BDF8"/>
-      <stop offset="50%" stop-color="#0284C7"/>
-      <stop offset="100%" stop-color="#0369A1"/>
+      <stop offset="50%" stop-color="#0EA5E9"/>
+      <stop offset="100%" stop-color="#7DD3FC"/>
     </linearGradient>
     <linearGradient id="titanyumGovde" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#071927"/>
-      <stop offset="60%" stop-color="#0F2840"/>
-      <stop offset="100%" stop-color="#1E3E62"/>
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="55%" stop-color="#EAF6FF"/>
+      <stop offset="100%" stop-color="#BFE3FF"/>
     </linearGradient>
     <linearGradient id="hukukAltin" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#C5A059"/>
-      <stop offset="100%" stop-color="#E5C583"/>
+      <stop offset="0%" stop-color="#E5C583"/>
+      <stop offset="100%" stop-color="#F1DCA8"/>
     </linearGradient>
   </defs>
 
   <g transform="translate(10, 8)">
     <g transform="translate(0, 4)">
-      <circle cx="28" cy="28" r="26" stroke="#0F2840" stroke-width="1.8" fill="#071927"/>
-      <path d="M 6 22 C 14 20, 22 25, 28 22 C 34 19, 42 24, 50 22" stroke="#1E3E62" stroke-width="1.2" fill="none"/>
-      <path d="M 4 32 C 12 30, 20 35, 28 32 C 36 29, 44 34, 52 32" stroke="#1E3E62" stroke-width="1.2" fill="none"/>
-      <path d="M 8 42 C 16 40, 22 44, 28 42 C 34 40, 40 43, 48 42" stroke="#0284C7" stroke-width="1" stroke-dasharray="2 2" fill="none" opacity="0.6"/>
+      <circle cx="28" cy="28" r="26" stroke="#38BDF8" stroke-width="1.8" fill="rgba(255,255,255,0.04)"/>
+      <path d="M 6 22 C 14 20, 22 25, 28 22 C 34 19, 42 24, 50 22" stroke="#7DD3FC" stroke-width="1.2" fill="none" opacity="0.85"/>
+      <path d="M 4 32 C 12 30, 20 35, 28 32 C 36 29, 44 34, 52 32" stroke="#7DD3FC" stroke-width="1.2" fill="none" opacity="0.85"/>
+      <path d="M 8 42 C 16 40, 22 44, 28 42 C 34 40, 40 43, 48 42" stroke="#38BDF8" stroke-width="1" stroke-dasharray="2 2" fill="none" opacity="0.7"/>
       <line x1="28" y1="4" x2="28" y2="48" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round"/>
       <line x1="28" y1="6" x2="28" y2="46" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round"/>
       <circle cx="28" cy="32" r="5" fill="url(#suAkiferGlow)"/>
@@ -35,16 +38,16 @@
     <g transform="translate(74, 6)">
       <path d="M 28 8 C 12 8, 4 14, 4 23 C 4 33, 26 31, 26 38 C 26 43, 18 45, 8 43 L 6 50 C 14 52, 34 52, 34 38 C 34 27, 12 28, 12 22 C 12 17, 18 15, 26 15 Z" fill="url(#titanyumGovde)"/>
       <path d="M 44 8 L 52 8 L 52 35 C 52 43, 58 46, 65 46 C 72 46, 78 43, 78 35 L 78 8 L 86 8 L 86 35 C 86 48, 76 53, 65 53 C 54 53, 44 48, 44 35 Z" fill="url(#titanyumGovde)"/>
-      <path d="M 54 36 C 54 42, 59 44, 65 44 C 71 44, 76 42, 76 36 L 76 28 C 72 30, 68 27, 65 29 C 62 27, 58 30, 54 28 Z" fill="url(#suAkiferGlow)" opacity="0.9"/>
+      <path d="M 54 36 C 54 42, 59 44, 65 44 C 71 44, 76 42, 76 36 L 76 28 C 72 30, 68 27, 65 29 C 62 27, 58 30, 54 28 Z" fill="url(#suAkiferGlow)" opacity="0.95"/>
       <text x="104" y="47" font-family="system-ui, -apple-system, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="900" fill="url(#titanyumGovde)" letter-spacing="2">HARİTASI</text>
-      <circle cx="152" cy="18" r="2" fill="#0284C7"/>
+      <circle cx="152" cy="18" r="2" fill="#38BDF8"/>
 
       <g transform="translate(2, 60)">
-        <text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="800" fill="#0284C7" letter-spacing="3.2">YERALTI SU REZERVİ</text>
-        <circle cx="132" cy="-3" r="1.5" fill="url(#hukukAltin)"/>
-        <text x="142" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="800" fill="#0F2840" letter-spacing="3.2">SONDAJ ANALİZİ</text>
-        <circle cx="258" cy="-3" r="1.5" fill="url(#hukukAltin)"/>
-        <text x="268" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="800" fill="#C5A059" letter-spacing="3.2">SU HUKUKU &amp; RUHSAT</text>
+        <text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="800" fill="#FFFFFF" letter-spacing="3.2">YERALTI SU REZERVİ</text>
+        <circle cx="122" cy="-3" r="1.5" fill="url(#hukukAltin)"/>
+        <text x="132" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="800" fill="#38BDF8" letter-spacing="3.2">SONDAJ</text>
+        <circle cx="196" cy="-3" r="1.5" fill="url(#hukukAltin)"/>
+        <text x="206" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="800" fill="#E5C583" letter-spacing="3.2">SU HUKUKU</text>
       </g>
     </g>
   </g>

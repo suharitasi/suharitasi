@@ -90,6 +90,10 @@ const { hedef = '', kendiGirdi = false, etiket = 'Ceza/tebliğ tarihi' } = Astro
     border-left: 4px solid #7a1811;
     max-width: 74ch;
   }
+  /* HATA ONARIMI (27.09.2026): `hidden` niteliği UA'da display:none verir ama
+     yazar kuralı `display:inline-block` onu EZİYOR ve boş kırmızı kutu
+     görünüyordu. Rozet yalnız tarih seçilip metin dolduğunda görünür. */
+  .isr-rozet[hidden] { display: none; }
   .isr-rozet.isr-acil {
     background: #7a1811;
     box-shadow: 0 0 0 2px rgba(179, 38, 30, 0.35);

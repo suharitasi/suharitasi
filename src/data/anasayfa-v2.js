@@ -114,18 +114,20 @@ export const SUREC = [
 export const VERI_ROTALARI = [
   // FAZ 1 (v5.2): "Kuyu Karar Motoru" gizli rota gibi kalıyordu; ana menüye
   // kısa adıyla görünür bağ eklendi. Hedef rota DEĞİŞMEZ (kanonik koruma).
-  { ad: 'Kuyu Ruhsat & İtiraz Sihirbazı', yol: '/kuyu-karar-motoru/' },
+  // 27.09.2026: görünür adlar TEK SATIRA sığacak kadar kısaltıldı (navbar
+  // sarmalanınca çubuk 108px'e çıkıp içeriği örtüyordu). Rotalar AYNI.
+  { ad: 'Kuyu Ruhsat & İtiraz', yol: '/kuyu-karar-motoru/' },
   { ad: 'Su Nerede Çıkar?', yol: '/ilce-sorgu/' },
   // '/su-hukuku/' HUB (13.09.2026): 25.08'de kapanan rota, kullanıcı talebiyle
   // yeniden açıldı — bu kez rehberleri, cezaları ve mevzuatı tek omurgada
   // toplayan, filtrelenebilir karar matrisi taşıyan giriş sayfası olarak.
   { ad: 'Su Hukuku', yol: '/su-hukuku/' },
-  { ad: 'Su Hukuku Rehberleri', yol: '/rehberler/' },
-  { ad: 'Canlı Harita & Katmanlar', yol: '/' },
-  { ad: 'Havza & Veri Analizleri', yol: '/havza-riski/' },
+  { ad: 'Rehberler', yol: '/rehberler/' },
+  { ad: 'Harita & Katmanlar', yol: '/' },
+  { ad: 'Havza & Veri', yol: '/havza-riski/' },
   { ad: 'Nehirler', yol: '/nehirler/' },
   { ad: 'Göller', yol: '/goller/' },
-  { ad: 'İletişim / Uzman Görüşü', yol: '/#iletisim' },
+  { ad: 'İletişim', yol: '/#iletisim' },
 ];
 
 // Build-time assert (sessiz hata yasağı): zorunlu alanlar + yerel yol biçimi.
