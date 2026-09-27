@@ -193,6 +193,32 @@ const sema = [
   .ih-form button:hover { background: var(--su-400); }
   .ih-form button:disabled { opacity: 0.6; cursor: default; }
   .ih-form-durum { margin: 0; font-size: 0.85rem; color: var(--metin-soluk); }
+
+  /* transitions-dev (27.09.2026): t-check (başarı) + t-shake (hata).
+     Mürekkep/işaret tekniği: path stroke-dashoffset 26→0, --e-suzul ile
+     çizilir; hata durumunda form kısa bir yatay sarsıntı alır. Hepsi
+     prefers-reduced-motion'da kapanır (aşağıda). */
+  .ih-check { width: 1.05em; height: 1.05em; vertical-align: -0.18em; margin-right: 0.35rem; }
+  .ih-check path {
+    fill: none; stroke: currentColor; stroke-width: 2.6;
+    stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: 26; stroke-dashoffset: 26;
+  }
+  .ih-ok { color: var(--su-700); }
+  .ih-ok .ih-check path { animation: ih-ciz 420ms var(--e-suzul, ease) forwards; }
+  @keyframes ih-ciz { to { stroke-dashoffset: 0; } }
+  .ih-hata { color: #b3261e; }
+  .ih-salla { animation: ih-salla 320ms var(--e-kabar, ease); }
+  @keyframes ih-salla {
+    10%, 90% { transform: translateX(-2px); }
+    20%, 80% { transform: translateX(4px); }
+    30%, 50%, 70% { transform: translateX(-6px); }
+    40%, 60% { transform: translateX(6px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ih-ok .ih-check path { animation: none; stroke-dashoffset: 0; }
+    .ih-salla { animation: none; }
+  }
   .ih-kaydir { overflow-x: auto; }
   .ih-tablo { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
   .ih-tablo caption { caption-side: top; text-align: left; font-size: 0.78rem; color: var(--metin-soluk); padding-bottom: 0.5rem; }

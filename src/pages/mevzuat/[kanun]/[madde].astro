@@ -10,6 +10,8 @@ import mevzuat from '../../../../data/kamu/mevzuat-maddeleri.json';
 import emsal from '../../../../data/kamu/emsal-kararlar.json';
 import { MEVZUAT_EDITORYAL } from '../../../data/mevzuat-editoryal.js';
 import SayfaQr from '../../../components/SayfaQr.astro';
+// eeat-audit (27.09.2026): yazar kutusu mevzuat madde sayfalarına bağlandı.
+import YazarKutusu from '../../../components/YazarKutusu.astro';
 
 export async function getStaticPaths() {
   const slug = (s) =>
@@ -165,6 +167,7 @@ const sema = [
 
   <CtaBlok konu={`${m.kanun} ${m.madde}`} baslik="Bu maddeyi somut durumunuza uygulayalım" metin="Maddenin olayınıza nasıl uygulandığını değerlendirmek için durumunuzu iletin." />
   <SayfaQr />
+  <YazarKutusu />
   <HukukSerhi />
 </Sayfa>
 

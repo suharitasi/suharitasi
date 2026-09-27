@@ -74,12 +74,32 @@ const enYeniTarih = _tarihler.length ? new Date(Math.max(..._tarihler)) : undefi
     </section>
   ))}
 
+  {/* content-strategy (27.09.2026): hub→spoke — rehber okuyucusunu coğrafi
+      varlık ailelerine (nehir/göl) yönlendirir; bu sayfalar GSC'de en yüksek
+      gösterimli ve düşük CTR'lı kümeyi taşır. */}
+  <nav class="rh-capraz" aria-label="İlgili varlık sayfaları">
+    <a href="/nehirler/">→ Türkiye nehirleri (nereye dökülür, hangi havza)</a>
+    <a href="/goller/">→ Türkiye gölleri</a>
+    <a href="/havzalar/">→ 25 su havzası</a>
+  </nav>
+
   {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
   <HukukSerhi />
 </Sayfa>
 
 <style>
   .kume + .kume { margin-top: 2.8rem; }
+
+  /* content-strategy: hub→spoke çapraz bağ; 44px dokunma hedefi. */
+  .rh-capraz {
+    display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem;
+    margin-top: 2.4rem; padding-top: 1rem; border-top: 1px solid var(--cizgi);
+  }
+  .rh-capraz a {
+    color: var(--baglanti); text-decoration: none;
+    display: inline-flex; align-items: center; min-height: 44px;
+  }
+  .rh-capraz a:hover { text-decoration: underline; }
 
   /* Küme kicker'ı: tür ailesinin sesi (süreç=yeşil kara, uyuşmazlık=plato) */
   .kume-kicker {

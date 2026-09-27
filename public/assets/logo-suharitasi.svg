@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 72" fill="none" role="img" aria-label="Su Haritası">
+  <title>Su Haritası</title>
+
+  <!-- Amblem: su dalgası halkası (favicon diliyle aynı; terazi motifi DEĞİL) -->
+  <g transform="translate(4,4)">
+    <circle cx="32" cy="32" r="28" stroke="#0C5A7C" stroke-width="1.5" fill="none"/>
+    <circle cx="32" cy="32" r="22" stroke="#C0883A" stroke-width="0.8" fill="none" stroke-dasharray="3 3"/>
+    <path d="M 14 26 C 20 23, 26 28, 32 25 S 44 23, 50 26"
+          stroke="#4FC3D0" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M 14 34 C 21 37, 27 31, 34 34 S 45 37, 50 34"
+          stroke="#4FC3D0" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <path d="M 14 42 C 20 39, 26 44, 33 41 S 44 39, 50 42"
+          stroke="#4FC3D0" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.45"/>
+  </g>
+
+  <!-- Metin: SU HARİTASI (büyük) + TÜRKİYE SU VERİSİ (küçük) -->
+  <g transform="translate(78,14)">
+    <text x="0" y="18" font-family="Georgia, 'Times New Roman', serif" font-size="20"
+          font-weight="bold" fill="#0A2740" letter-spacing="2">SU HARİTASI</text>
+    <text x="0" y="38" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9"
+          font-weight="600" fill="#0C5A7C" letter-spacing="4">TÜRKİYE SU VERİSİ</text>
+    <line x1="0" y1="46" x2="200" y2="46" stroke="#C0883A" stroke-width="0.6"/>
+  </g>
+</svg>

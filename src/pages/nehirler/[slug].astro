@@ -14,6 +14,9 @@ import OzCevap from '../../components/OzCevap.astro';
 import Katman from '../../components/Katman.astro';
 import GeoOnizleme from '../../components/GeoOnizleme.astro';
 import GeoDisaAktar from '../../components/GeoDisaAktar.astro';
+// eeat-audit (27.09.2026): yazar kutusu içerik sayfalarına bağlandı —
+// künye sayfa düzeyinde görünür (yalnız SSS + veri vardı).
+import YazarKutusu from '../../components/YazarKutusu.astro';
 import { tumNehirler, nehirOzet,
          GOLNEHIR_ERISIM, GOLNEHIR_KAPSAM_NEHIR, GOLNEHIR_LISANS, kaynakBagi } from '../../data/gol-nehir.js';
 
@@ -266,6 +269,8 @@ const sema = [{
       <a href="/rehberler/">Su hukuku rehberleri</a>
     </div>
   </nav>
+
+  <YazarKutusu />
 </Sayfa>
 
 <style>

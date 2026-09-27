@@ -58,6 +58,14 @@ const sayi = (n: number) => n.toLocaleString('tr-TR');
     })}
   </ul>
 
+  {/* site-architecture (27.09.2026): kannibalizasyon ayrımı — bu sayfa
+      "havzalar haritası/listesi" (hub, künye) niyetini taşır; risk sıralaması
+      ayrı spoke sayfadadır. Net çapa metniyle spoke'a tek yönlü bağ. */}
+  <nav class="hz-capraz" aria-label="İlgili havza sayfaları">
+    <a href="/havza-riski/">→ Havza su riski sıralaması (bileşik skor, 25 havza)</a>
+    <a href="/nerede-su-cikar/">→ İl bazında su potansiyeli</a>
+  </nav>
+
   {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
   <HukukSerhi />
 </Sayfa>
@@ -157,4 +165,15 @@ const sayi = (n: number) => n.toLocaleString('tr-TR');
     .sv-liste a { transition: none; }
     .sv-liste a:hover { transform: none; }
   }
+
+  /* site-architecture: hub→spoke çapraz bağ — 44px dokunma hedefi. */
+  .hz-capraz {
+    display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem;
+    margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--cizgi);
+  }
+  .hz-capraz a {
+    color: var(--baglanti); text-decoration: none;
+    display: inline-flex; align-items: center; min-height: 44px;
+  }
+  .hz-capraz a:hover { text-decoration: underline; }
 </style>

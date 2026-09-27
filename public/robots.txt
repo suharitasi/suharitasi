@@ -57,6 +57,13 @@ Allow: /
 User-agent: FacebookBot
 Allow: /
 
+# --- Eğitim/ajan tarayıcıları: BİLİNÇLİ ALLOW (yeniden değerlendirildi,
+# 27.09.2026 geo-crawlers). Amazonbot, Applebot-Extended, Meta-ExternalAgent,
+# FacebookBot: bot-özel kural YAZILMAZ = genel "Allow: /" geçerlidir.
+# Gerekçe: AI-ARAMA görünürlüğü (GEO hedefi) toplu eğitim verisi kaybından
+# önceliklidir; kutupsal vakalar (CCBot/Bytespider) aşağıda bloklu kalır.
+# Karar kullanıcıya aittir ve burada makine-okunur biçimde beyan edilir.
+
 # --- Saldırgan tarayıcı (geo-crawlers Tier-3: "BLOCK for most Western
 # businesses" — agresif tarama davranışı, arama görünürlüğüne katkısı yok).
 # CLAUDE.md "Kopyalanma direnci" m.3 ile uyumlu: bu bir ARAMA/AI-ARAMA botu

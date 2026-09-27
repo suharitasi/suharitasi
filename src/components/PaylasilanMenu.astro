@@ -14,8 +14,12 @@ const veriler = VERI_ROTALARI;
 ---
 <header class:list={['pm-bar', anaSayfa ? 'pm-ana' : (yuzer ? 'pm-yuzer' : 'pm-icerik')]} id="pm-bar">
 <div class="pm-ic">
-  <a class="pm-marka" href="/">
-    <img src="/assets/logo-lockup.svg" alt="Arslan Hukuk Bürosu" class="pm-logo" width="360" height="72" />
+  {/* CRO/marka (27.09.2026): header artık SİTENİN markasını taşır ("Su
+      Haritası"); Arslan Hukuk künyesi footer'da "güvencesiyle" satırında
+      KORUNUR (kullanıcı kararı). Eski logo-lockup.svg Arslan Hukuk markasıydı
+      — alt metni ile görselin çelişmemesi için Su Haritası kelime-markası. */}
+  <a class="pm-marka" href="/" aria-label="Su Haritası — ana sayfa">
+    <img src="/assets/logo-suharitasi.svg" alt="Su Haritası" class="pm-logo" width="360" height="72" />
   </a>
 
   <nav class="pm-nav" aria-label="Site menüsü">
@@ -28,11 +32,13 @@ const veriler = VERI_ROTALARI;
   <button type="button" class="pm-menu-dugme" id="pm-menu-dugme"
           aria-expanded="false" aria-controls="pm-mobil-panel"
           aria-label="Menüyü aç">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+    {/* transitions-dev "icon swap": üç çizgi açılınca X'e morph eder
+        (aria-expanded=true). Azaltılmış harekette morph yok, yalnız swap. */}
+    <svg class="pm-ikon" width="22" height="22" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-      <line x1="3" y1="6" x2="21" y2="6"></line>
-      <line x1="3" y1="12" x2="21" y2="12"></line>
-      <line x1="3" y1="18" x2="21" y2="18"></line>
+      <line class="pm-cizgi pm-cizgi-1" x1="3" y1="6" x2="21" y2="6"></line>
+      <line class="pm-cizgi pm-cizgi-2" x1="3" y1="12" x2="21" y2="12"></line>
+      <line class="pm-cizgi pm-cizgi-3" x1="3" y1="18" x2="21" y2="18"></line>
     </svg>
   </button>
 </div>
@@ -95,6 +101,9 @@ const veriler = VERI_ROTALARI;
     font-size: 1.125rem; font-weight: 600; letter-spacing: -0.02em;
     white-space: nowrap;
     display: flex; align-items: center;
+    /* CRO: WCAG 2.5.8 — dokunma hedefi ≥44px (logo 2rem olsa da tıklama
+       alanı büyütülür; görsel yükseklik korunur). */
+    min-height: 44px; padding: 0.2rem 0;
   }
   .pm-logo {
     display: block; height: 2rem; width: auto; max-width: 10rem;
@@ -113,6 +122,8 @@ const veriler = VERI_ROTALARI;
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none; background: none; border: 0; cursor: pointer;
     padding: 0.35rem 0.1rem;
+    /* CRO (WCAG 2.5.8): menü hedefleri 44px dokunma yüksekliğine çıkarıldı. */
+    min-height: 44px; display: inline-flex; align-items: center;
     transition: color 150ms var(--pm-eo);
   }
   @media (hover: hover) and (pointer: fine) {
@@ -140,6 +151,19 @@ const veriler = VERI_ROTALARI;
   }
   .pm-menu-dugme:active { transform: scale(0.94); }
 
+  /* transitions-dev icon swap (27.09.2026): hamburger → X. Morph yalnız
+     genişlik/animation pahası yok; transform-box:fill-box her çizgiyi kendi
+     merkezinde döndürür. reduced-motion'da geçiş kapatılır (aşağıda). */
+  .pm-cizgi {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform 240ms var(--e-kabar, ease),
+                opacity 180ms var(--e-kabar, ease);
+  }
+  .pm-menu-dugme[aria-expanded="true"] .pm-cizgi-1 { transform: translateY(6px) rotate(45deg); }
+  .pm-menu-dugme[aria-expanded="true"] .pm-cizgi-2 { opacity: 0; }
+  .pm-menu-dugme[aria-expanded="true"] .pm-cizgi-3 { transform: translateY(-6px) rotate(-45deg); }
+
   .pm-mobil-panel {
     display: none; position: fixed; top: 3.6rem; left: 0; right: 0;
     z-index: 59; max-height: calc(100dvh - 3.6rem); overflow-y: auto;
@@ -149,7 +173,8 @@ const veriler = VERI_ROTALARI;
   }
   .pm-mobil-panel ul { list-style: none; margin: 0; padding: 0; }
   .pm-mobil-panel > ul > li > a, .pm-mobil-baslik {
-    display: block; padding: 0.65rem 0; margin: 0;
+    display: flex; align-items: center; min-height: 44px;
+    padding: 0.65rem 0; margin: 0;
     color: #fff; font-family: var(--sans, system-ui, sans-serif);
     font-size: 1rem; font-weight: 500; text-decoration: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -157,7 +182,8 @@ const veriler = VERI_ROTALARI;
   .pm-mobil-baslik { color: rgba(255, 255, 255, 0.6); font-size: 0.78rem;
     letter-spacing: 0.14em; text-transform: uppercase; }
   .pm-mobil-alt a {
-    display: block; padding: 0.5rem 0 0.5rem 0.9rem;
+    display: flex; align-items: center; min-height: 44px;
+    padding: 0.5rem 0 0.5rem 0.9rem;
     color: rgba(255, 255, 255, 0.85); font-size: 0.92rem;
     text-decoration: none;
   }
@@ -179,6 +205,7 @@ const veriler = VERI_ROTALARI;
     .pm-bar, .pm-menu-dugme, .pm-mobil-panel.acik {
       transition-property: color, background-color, border-color, opacity;
     }
+    .pm-cizgi { transition: none; }
   }
 
   @media print { .pm-bar, .pm-mobil-panel { display: none !important; } }

@@ -283,6 +283,15 @@ function llmsOlustur() {
         metin += `Makine-okunur API şeması (OpenAPI 3.0): ${SITE}/api/v1/openapi.json\n`;
         // 22.09.2026: MCP (Model Context Protocol) ucu AI istemcilerine bildirilir.
         metin += `Ajan erişimi (MCP, JSON-RPC 2.0): ${SITE}/mcp · doküman: ${SITE}/ajan-erisimi/\n\n`;
+        // geo-crawlers (27.09.2026): kanonik veri uçları tek yerde, açıkça —
+        // AI istemcileri veriyi HTML yerine JSON uçlarından çekmeye
+        // yönlendirilir (kaynak-künyeli, tek gerçek kaynak).
+        metin += `## Kanonik veri uçları\n\n`;
+        metin += `- İl künyesi (JSON şablonu): ${SITE}/api/v1/il/{il}.json\n`;
+        metin += `- Havza künyesi (JSON şablonu): ${SITE}/api/v1/havza/{havza}.json\n`;
+        metin += `- Açık veri kataloğu: ${SITE}/veri/\n`;
+        metin += `- Resmî Gazete arşivi (Dataset · CC BY 4.0): ${SITE}/arsiv/resmi-gazete/\n`;
+        metin += `- Site geneli RSS: ${SITE}/feed.xml\n\n`;
         for (const [onek, ad] of BOLUM) {
           const grup = sayfalar.filter((x) => x.yol.startsWith(`/${onek}`));
           if (!grup.length) continue;

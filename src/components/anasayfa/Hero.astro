@@ -107,14 +107,13 @@ const DAMLALAR = Array.from({ length: 90 }, (_, i) => {
       <div class="v2-videolar" id="v2-videolar">
         <img class="v2-kadraj-poster" id="v2-kadraj-poster" src={sahneler[0].still}
              alt="" width="832" height="464" decoding="async" />
-        {sahneler.map((s, i) => (
-          i === 0 ? (
-            <video muted playsinline loop preload="metadata" src={s.clip}
-                   data-sahne={s.id} width="832" height="464"></video>
-          ) : (
-            <video muted playsinline loop preload="none" data-src={s.clip}
-                   data-sahne={s.id} width="832" height="464"></video>
-          )
+        {/* emil-design-eng + apple-design (27.09.2026): TÜM sahneler
+            preload="none" — sayfa açılışında video ağı/bandı tüketilmez;
+            yalnız motor bir sahneyi etkinleştirdiğinde yüklenir. İlk video da
+            dahil (eski `preload="metadata"` kalıntısı kaldırıldı). */}
+        {sahneler.map((s) => (
+          <video muted playsinline loop preload="none" data-src={s.clip}
+                 data-sahne={s.id} width="832" height="464"></video>
         ))}
       </div>
       <figcaption class="v2-kadraj-etiket">
@@ -156,10 +155,22 @@ const DAMLALAR = Array.from({ length: 90 }, (_, i) => {
   const kadrajAd = document.getElementById('v2-kadraj-ad');
   const acilisPoster = document.getElementById('v2-kadraj-poster');
 
-  const SAHNE_SURE = 5000;   // ATMOSFER (K-1)
-  const GECIS = 1400;        // ATMOSFER (K-1)
-  const FAZ_A = 3800;        // ATMOSFER (K-1)
+  /* Süreler TEK KAYNAK: DESIGN.md §3 + hareket.css token'ları. Kodda sabit
+     yalnız son çare yedeğidir; CSS önce okunur (token uygulanmış sayılır). */
+  const kokStil = getComputedStyle(document.documentElement);
+  const tokenMs = (ad, varsayilan) => {
+    const v = parseFloat(kokStil.getPropertyValue(ad));
+    return Number.isFinite(v) ? v : varsayilan;
+  };
+
+  const SAHNE_SURE = tokenMs('--sahne-sure', 5000);  // ATMOSFER (K-1)
+  const GECIS = tokenMs('--sahne-gecis', 1400);      // ATMOSFER (K-1)
+  const FAZ_A = tokenMs('--sahne-faz-a', 3800);      // ATMOSFER (K-1)
   const ON_YUKLE = 1000;
+
+  // Duraklatma zamanlayıcıları: kare değişiminde eskiler temizlenir ki
+  // hızlı tıklamada eski video yanlışlıkla duraklatılmasın (kesintisizlik).
+  const duraklatTimer = new Map();
 
   function yukle(v) {
     if (!v.getAttribute('src') && v.dataset.src) {
@@ -172,13 +183,18 @@ const DAMLALAR = Array.from({ length: 90 }, (_, i) => {
     videolar.forEach((v, j) => {
       if (j === i) {
         yukle(v);
+        if (duraklatTimer.has(v)) { clearTimeout(duraklatTimer.get(v)); duraklatTimer.delete(v); }
         v.currentTime = 0;
         v.play().catch(() => {});
         v.classList.add('aktif');
       } else {
         v.classList.remove('aktif');
-        // Geçiş bitince durdur (kaynak tasarrufu); süre = GECIS.
-        setTimeout(() => { if (!v.classList.contains('aktif')) v.pause(); }, GECIS);
+        // Geçiş bitince durdur (kaynak tasarrufu); süre = GECIS token'ı.
+        if (duraklatTimer.has(v)) clearTimeout(duraklatTimer.get(v));
+        duraklatTimer.set(v, setTimeout(() => {
+          if (!v.classList.contains('aktif')) v.pause();
+          duraklatTimer.delete(v);
+        }, GECIS));
       }
     });
     cizgiler.forEach((c, j) => c.classList.toggle('aktif', j === i));
@@ -192,34 +208,88 @@ const DAMLALAR = Array.from({ length: 90 }, (_, i) => {
     }
   }
 
+  /* SAHNE MOTORU (apple-design + emil-design-eng, 27.09.2026):
+     setInterval → rAF zamanlayıcı. Kazanımlar:
+       (1) sekme gizlenince VE hero görünmezken durur (pil/CPU tasarrufu),
+       (2) kareye tıklama zamanı KESİNTİSİZ yeniden başlatır — bekleyen
+           ön-yükleme/duraklatma zamanlayıcıları temizlenir,
+       (3) süreler CSS token'ından okunur (kodda sabit kalmaz),
+       (4) görsel geçiş CSS cross-fade kalır: .aktif sınıfı mevcut opaklıktan
+           devam eder → tıklama anında sıçrama yok (interruptible). */
   if (!AZALT && videolar.length) {
     let sira = 0;
-    let sayac = null;
+    let baslangic = 0;
+    let rafKimlik = 0;
+    let calisiyor = false;
+    let baslayabilir = false;   // FAZ A tamamlanmadan döngü kurulmaz
+    let gorunur = true;         // IntersectionObserver gelmeden varsayılan
+    let onYukleTimer = 0;
 
-    function dongu() {
-      clearInterval(sayac);
-      sayac = setInterval(() => {
-        // Sıradakini ~1sn önce yükle
-        setTimeout(() => yukle(videolar[(sira + 1) % videolar.length]),
-                   SAHNE_SURE - GECIS - ON_YUKLE);
+    function tik(t) {
+      if (!calisiyor) return;
+      const gecen = t - baslangic;
+      if (gecen >= SAHNE_SURE) {
         sira = (sira + 1) % videolar.length;
+        baslangic = t;
         etkinlestir(sira);
-      }, SAHNE_SURE);
+      } else if (gecen >= SAHNE_SURE - GECIS - ON_YUKLE) {
+        // Sıradakini ~1sn önce ısıt (yalnız bir kez; yukle() idempotent).
+        yukle(videolar[(sira + 1) % videolar.length]);
+      }
+      rafKimlik = requestAnimationFrame(tik);
     }
 
-    setTimeout(() => {
-      if (acilisPoster) acilisPoster.classList.add('gizli');
-      etkinlestir(0);
-      dongu();
-      // İlk turda 2. videoyu da vaktinde hazırla
-      setTimeout(() => yukle(videolar[1 % videolar.length]), SAHNE_SURE - ON_YUKLE);
-    }, FAZ_A);
+    function donguBaslat() {
+      if (calisiyor || !baslayabilir || !gorunur || document.hidden) return;
+      calisiyor = true;
+      baslangic = performance.now();
+      rafKimlik = requestAnimationFrame(tik);
+    }
 
-    kareler.forEach((k) => k.addEventListener('click', () => {
-      sira = Number(k.dataset.sira) || 0;
+    function donguDurdur() {
+      calisiyor = false;
+      cancelAnimationFrame(rafKimlik);
+    }
+
+    function kareSec(i) {
+      sira = Number.isFinite(i) ? i : 0;
+      clearTimeout(onYukleTimer);
       if (acilisPoster) acilisPoster.classList.add('gizli');
       etkinlestir(sira);
-      dongu();
+      if (calisiyor) baslangic = performance.now();  // kesintisiz devam
+      else donguBaslat();
+    }
+
+    kareler.forEach((k) => k.addEventListener('click', () => {
+      kareSec(Number(k.dataset.sira) || 0);
     }));
+
+    // FAZ A: ilk sahne gecikmeli başlar; ikinci video vaktinde ısıtılır.
+    setTimeout(() => {
+      baslayabilir = true;
+      kareSec(0);
+      onYukleTimer = setTimeout(() => yukle(videolar[1 % videolar.length]),
+                                SAHNE_SURE - ON_YUKLE);
+    }, FAZ_A);
+
+    // Hayat döngüsü: gizli sekme ve görünmez hero motoru durdurur.
+    addEventListener('visibilitychange', () => {
+      if (document.hidden) donguDurdur();
+      else donguBaslat();
+    });
+    addEventListener('pagehide', donguDurdur);
+
+    if ('IntersectionObserver' in window) {
+      gorunur = false;
+      const gozcu = new IntersectionObserver((girisler) => {
+        for (const g of girisler) {
+          gorunur = g.isIntersecting;
+          if (gorunur && !document.hidden) donguBaslat();
+          else donguDurdur();
+        }
+      }, { threshold: 0.25 });
+      const heroKok = document.querySelector('.v2-hero');
+      if (heroKok) gozcu.observe(heroKok);
+    }
   }
 </script>

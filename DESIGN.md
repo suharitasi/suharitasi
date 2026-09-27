@@ -132,6 +132,18 @@ bunlardan birini kullanır, başkası yasak:
 Süre ölçeği: 120ms mikro · 240ms standart · 420ms panel · 700ms+ yalnız
 deneyim sınıfı.
 
+**Sahne (hero kadraj) zaman sözlüğü** — animation-vocabulary, 27.09.2026.
+Efekt adı: kadraj geçişi = **Cross-fade** (opaklık) + hafif **Scale**
+(Ken Burns); chevron = **Bounce/Nudge** (3 tekrar, sonsuz DEĞİL). Üç süre
+`hareket.css` `:root` içinde token'dır ve `Hero.astro` motoru bunları okur
+(çıplak sabit yasak):
+
+| Token | Değer | Anlam |
+|---|---|---|
+| `--sahne-sure` | `5000ms` | ATMOSFER K-1: sahnenin ekranda kalma süresi |
+| `--sahne-gecis` | `1400ms` | ATMOSFER K-1: cross-fade geçiş süresi |
+| `--sahne-faz-a` | `3800ms` | ATMOSFER K-1: açılış videosuna kadar bekleme |
+
 ## 4. IŞIK KIRILMASI — vurgu dili
 
 Başlık vurgu kelimesi düz boya DEĞİL, su yüzeyinden kırılan ışık:

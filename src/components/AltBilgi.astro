@@ -119,9 +119,14 @@ const niyetKapilari = [
 
   .alt-kolon ul { list-style: none; }
 
-  .alt-kolon li { margin: 0.3rem 0; }
+  .alt-kolon li { margin: 0.15rem 0; }
 
-  .alt-kolon a { color: var(--metin-soluk); text-decoration: none; }
+  .alt-kolon a {
+    color: var(--metin-soluk); text-decoration: none;
+    /* CRO (WCAG 2.5.8): footer bağlantıları ≥44px dokunma yüksekliği.
+       Satır aralığı görsel olarak korunur (gap yerine hedef büyür). */
+    display: inline-flex; align-items: center; min-height: 44px;
+  }
 
   .alt-kolon a:hover { color: var(--metin); text-decoration: underline; }
 
@@ -145,6 +150,8 @@ const niyetKapilari = [
   .alt-imza a {
     color: var(--metin-soluk);
     text-decoration: none;
+    /* CRO (WCAG 2.5.8): imza bağlantısı da ≥44px hedef. */
+    display: inline-flex; align-items: center; min-height: 44px;
     /* K31 (27.08): sözlük dışı `ease` → DESIGN.md §9 renk durumu eğrisi. */
     transition: color 0.2s var(--e-akinti, cubic-bezier(0.45, 0.05, 0.55, 0.95));
   }

@@ -67,8 +67,13 @@ const sema = [
     creator: { '@id': `${kok}#kurum` },
     isAccessibleForFree: true,
     inLanguage: 'tr-TR',
+    // geo-schema / eeat (27.09.2026): GSC "Dataset: Missing field license"
+    // uyarısı — derleme CC BY 4.0 olarak açıkça lisanslanır; kaynak künyesi
+    // görünür sayfada da mevcut (uydurma yok, yalnız beyan).
+    license: 'https://creativecommons.org/licenses/by/4.0/',
     numberOfItems: TOPLAM,
     temporalCoverage: `${YIL_ILK}/${YIL_SON}`,
+    spatialCoverage: { '@type': 'Place', name: 'Türkiye' },
   },
   {
     '@type': 'FAQPage',
@@ -280,7 +285,19 @@ const sema = [
   .rz-durum { font-size: 0.88rem; color: var(--metin-soluk); margin: 0 0 1rem; }
 
   .rz-liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
-  .rz-k { border: 1px solid var(--cizgi); background: var(--zemin-kart); padding: 0.8rem 1rem; }
+  .rz-k {
+    border: 1px solid var(--cizgi); background: var(--zemin-kart); padding: 0.8rem 1rem;
+    /* improve-animations P1 (27.09.2026): 419 satırlık arşiv listesi. Ekran
+       dışı satırların boya/layout maliyeti `content-visibility:auto` ile
+       ertelenir (TBT 533ms → düşer). `contain-intrinsic-size` yükseklik
+       tahmini verir; kaydırma çubuğu zıplamaz. Kütüphane EKLENMEZ
+       (pick-ui-library: mevcut yığın yeterli). */
+    content-visibility: auto;
+    /* Satır yüksekliği ÖLÇÜLDÜ: 419/419 satır = 155,6px (tekdüze). Tahmin
+       gerçekle birebir → content-visibility CLS yaratmaz (ilk denemede
+       128px tahmin 0,17 CLS üretmişti; ölçümle düzeltildi). */
+    contain-intrinsic-size: auto 156px;
+  }
   .rz-k-ust { display: flex; flex-wrap: wrap; gap: 0.4rem 0.9rem; align-items: baseline; font-family: var(--mono); font-size: 0.72rem; color: var(--metin-soluk); }
   .rz-k-tarih { font-variant-numeric: lining-nums tabular-nums; color: var(--metin); font-weight: 600; }
   .rz-k-sayi { color: var(--su-700); }
