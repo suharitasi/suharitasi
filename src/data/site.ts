@@ -45,6 +45,8 @@ export const YAZAR = {
  *   3. X (Twitter)  4. YouTube  5. Wikidata kaydı
  */
 export const KURUM_SOSYAL: string[] = [
+  "https://www.wikidata.org/wiki/Q141582057",
+  "https://doi.org/10.5281/zenodo.23002678",
   // ör: 'https://www.linkedin.com/company/suharitasi',
 ];
 
