@@ -1,0 +1,129 @@
+---
+// /kuyu-karar-motoru/ — KUYU RUHSAT & İTİRAZ SİHİRBAZI (13.09.2026).
+// İl + işlem + tebliğ tarihi → kişiselleştirilmiş yol haritası, son tarih
+// takvimi, yetkili merci, evrak listesi ve dilekçe ön taslağı.
+// Bilgilendirme amaçlıdır; somut dosyada hukuki görüş uzman değerlendirmesi ister.
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import CtaBlok from '../components/CtaBlok.astro';
+import HukukSerhi from '../components/HukukSerhi.astro';
+import IyukSureSayaci from '../components/IyukSureSayaci.astro';
+import HukukiIptalAnalizi from '../components/HukukiIptalAnalizi.astro';
+import DilekceDenetimMotoru from '../components/DilekceDenetimMotoru.astro';
+import OnDegerlendirmeCagri from '../components/OnDegerlendirmeCagri.astro';
+import { tumIller } from '../data/islem-matrisi.js';
+
+// Görünür ad tercihi (FAZ 1, v5.2): H1 ve tüm yönlendirme metinlerinde tam ad,
+// menüde/bağlantı etiketlerinde kısa ad kullanılır. URL DEĞİŞMEZ (kanonik koruma).
+const SIHIRBAZ_AD = 'DSİ Kuyu Ruhsatı & İdari Ceza İtiraz Sihirbazı';
+
+const OZ_CEVAP =
+  'İlinizi, işlemi ve tebliğ tarihinizi seçin: kuyu ruhsatı, ceza itirazı veya kapatma ' +
+  'tebliği için zorunlu itiraz/dava sürelerini (15 gün sulh ceza · 60 gün idare ' +
+  'mahkemesi), yetkili mercii, gerekli evrak listesini ve dilekçe ön taslağını görün. ' +
+  'Bu araç bilgilendirme amaçlıdır; hukuki görüş değildir.';
+
+const kok = new URL('/', Astro.site).href;
+const canonical = new URL('/kuyu-karar-motoru/', Astro.site).href;
+
+const ISLEMLER = [
+  { id: 'ruhsatsiz', ad: 'Ruhsatsız kuyu açma / belgesiz kullanım' },
+  { id: 'tahsis', ad: 'Tahsis / izin aşımı' },
+  { id: 'kapatma', ad: 'Kuyu kapatma tebliği' },
+  { id: 'itiraz', ad: 'İdari para cezasına itiraz' },
+];
+
+const sema = [
+  {
+    '@type': 'HowTo',
+    name: SIHIRBAZ_AD,
+    description: OZ_CEVAP,
+    inLanguage: 'tr-TR',
+    step: [
+      { '@type': 'HowToStep', position: 1, name: 'İl ve işlemi seçin', text: 'Yetkili DSİ bölgesi ve işlem türü belirlenir.' },
+      { '@type': 'HowToStep', position: 2, name: 'Tebliğ tarihini girin', text: '15 gün (sulh ceza) ve 60 gün (idare mahkemesi) son tarihler hesaplanır.' },
+      { '@type': 'HowToStep', position: 3, name: 'Evrak listesini ve dilekçe taslağını alın', text: 'Gerekli belgeler ve başvuru taslağı üretilir.' },
+    ],
+  },
+  { '@type': 'WebPage', '@id': `${canonical}#sayfa`, url: canonical, name: SIHIRBAZ_AD, description: OZ_CEVAP, inLanguage: 'tr-TR', isPartOf: { '@id': `${kok}#site` } },
+];
+---
+<Sayfa baslik={SIHIRBAZ_AD} aciklama={OZ_CEVAP} tarayiciBaslik={SIHIRBAZ_AD} sema={sema}>
+  <SayfaBasi etiket="Kuyu sorunu" baslik={SIHIRBAZ_AD} ozet="İl + işlem + tebliğ tarihi → süre, yetkili merci, evrak listesi ve düzenlenebilir dilekçe taslağı." ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Özet" />
+
+  <form id="km-form" class="km-form">
+    <label>İl
+      <select id="km-il" required>
+        <option value="">— İl seçin —</option>
+        {tumIller().map((il) => <option value={il}>{il}</option>)}
+      </select>
+    </label>
+    <label>İşlem türü
+      <select id="km-islem" required>
+        {ISLEMLER.map((i) => <option value={i.id}>{i.ad}</option>)}
+      </select>
+    </label>
+    <label>Tebliğ tarihi
+      <input type="date" id="km-teblig" />
+    </label>
+    <label>Belge durumu (varsa)
+      <select id="km-belge">
+        <option value="yok">Belge yok / bilmiyorum</option>
+        <option value="var">Arama/kullanma belgesi var</option>
+        <option value="kismi">Belge var ama kapsam dışı</option>
+      </select>
+    </label>
+  </form>
+
+  <div id="km-sonuc" class="km-sonuc" aria-live="polite"></div>
+
+  <DilekceDenetimMotoru />
+
+  <OnDegerlendirmeCagri konum="dilekce" />
+
+  <p class="km-uyari">
+    Bu araç bilgilendirme amaçlıdır; somut bir uyuşmazlığa dair hukuki görüş veya
+    tavsiye niteliği taşımaz. İtiraz/dava yolu ve süresi somut dosyaya göre
+    değişebilir; <strong>uzman değerlendirmesi gerekir</strong>.
+  </p>
+
+  <nav class="km-capraz" aria-label="İlgili bölümler">
+    <a href="/rehberler/ruhsatsiz-kuyu-cezalari/">→ Ruhsatsız kuyu cezaları</a>
+    <a href="/rehberler/kuyu-belgesi-iptal-davalari/">→ Belge iptal davaları</a>
+    <a href="/mevzuat/167/madde-18/">→ 167 m.18 tam metni</a>
+    <a href="/emsal-kararlar/">→ Emsal kararlar</a>
+  </nav>
+
+  <IyukSureSayaci />
+
+  <HukukiIptalAnalizi />
+
+  <OnDegerlendirmeCagri konum="iptal" />
+
+  <CtaBlok konu="Kuyu cezası / kapatma" baslik="Dosyanızı avukata inceletın" metin="Süre kaybı hak kaybıdır. Evrakınızı ve tebliğ tarihinizi iletin; yol haritasını değerlendirelim." />
+  <HukukSerhi />
+</Sayfa>
+
+<script type="module" src="/s/karar-motoru.js" is:inline></script>
+
+<style>
+  .km-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; max-width: 48rem; }
+  .km-form label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.9rem; }
+  .km-form select, .km-form input { font: inherit; padding: 0.6rem 0.7rem; min-height: 44px; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); width: 100%; }
+  .km-sonuc { margin-top: 1.5rem; }
+  .km-kart { padding: 1.2rem 1.4rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); border-top: 3px solid var(--su-700); }
+  .km-kart h2 { font-family: var(--serif); font-size: 1.4rem; font-weight: 500; margin-bottom: 0.7rem; }
+  .km-sure { padding: 0.8rem 1rem; margin: 0.6rem 0; border-left: 3px solid #b3261e; background: rgba(179,38,30,0.06); }
+  .km-sure strong { color: #8a1f17; }
+  .km-blok { margin-top: 1rem; }
+  .km-blok h3 { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--su-700); margin-bottom: 0.4rem; }
+  .km-blok ul, .km-blok ol { margin-left: 1.1rem; font-size: 0.92rem; }
+  .km-yazdir { margin-top: 0.6rem; font: inherit; font-weight: 600; padding: 0.6rem 1.2rem; min-height: 44px; background: var(--su-700); color: #fff; border: 0; border-radius: 2px; cursor: pointer; }
+  .km-uyari { margin-top: 1.2rem; padding: 0.8rem 1.1rem; border: 1px solid var(--cizgi); border-left: 3px solid var(--kehribar); font-size: 0.88rem; color: var(--metin-soluk); max-width: 74ch; }
+  .km-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .km-capraz a { color: var(--baglanti); text-decoration: none; }
+  @media (max-width: 560px) { .km-form { grid-template-columns: 1fr; } }
+  @media print { .km-form, .km-uyari, .km-capraz, .adb, .pm-bar { display: none !important; } }
+</style>
