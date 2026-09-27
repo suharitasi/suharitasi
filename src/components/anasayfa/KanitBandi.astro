@@ -1,36 +1,36 @@
 ---
-// KANIT BANDI (vitrin briefi FAZ 2) — sitenin arkasındaki veri hacmini ana
-// sayfada ÖLÇÜLEBİLİR üç rakamla gösterir.
-//
-// SEÇİM KRİTERİ ÖLÇÜLEBİLİRDİR (brief): (a) başka kaynakta toplu bulunmayan,
-// (b) kayıt sayısı en yüksek, (c) ticari omurgaya doğrudan bağlı — üçünü
-// birden sağlayan ilk 3 varlık. Seçim ve ELENENLERİN gerekçesi tek yerde:
-// src/data/vitrin.js "ANA SAYFA KANIT BANDI" yorumu. Rakamlar build'de sayılır.
-//
-// KONUM KURALI: bant MobilSorular'dan SONRA, Hizmetler'den ÖNCE girer.
-// Nedeni ölçüm: hero ile mobil soru listesi arasına girseydi S1 kazanımı
-// (375'te dert-adlandıran sorunun kadraj içinde kalması) bozulurdu.
-//
-// TASARIM: mevcut v2 bölüm iskeleti (v2-bolum / v2-ic / v2-bolum-kicker) ve
-// hizmet kartı ailesiyle aynı; yeni renk/font/desen İCAT EDİLMEZ.
-// SAYI SUNUMU TEK BİLEŞENDE (B3.3, 28.07.2026): rakam + birim + bağlam
-// artık CanliSayi.astro'da. Buradan taşınan üç şey: lining figür kararı
-// (Cormorant'ın eski-stil rakamları "472"yi "47²" gibi gösteriyordu —
-// ölçüm: src/components/CanliSayi.astro başlığı), sayım animasyonu ve
-// kart iskeleti. Rakamın KENDİSİ hâlâ burada, veriden sayılı.
+// KANIT BANDI — Akademik ve Uluslararası Otorite Tescili (Zenodo + Wikidata + Açık API v1)
 import { KANIT_BANDI } from '../../data/vitrin.js';
 import CanliSayi from '../CanliSayi.astro';
 import CanliSayiMotor from '../CanliSayiMotor.astro';
 ---
-{/* Aydınlık bölüm: Hizmetler ile aynı zemin — ritim dark(hero+sorular) →
-    light(kanıt+hizmetler) → dark(süreç) olarak korunur. */}
-<section class="v2-bolum v2-kanit" id="veri" aria-label="Veri dayanağı">
+<section class="v2-bolum v2-kanit" id="veri" aria-label="Veri dayanağı ve tescil">
   <div class="v2-ic">
     <div class="v2-bolum-bas">
-      <p class="v2-bolum-kicker">Veri dayanağı</p>
+      <p class="v2-bolum-kicker">Akademik Tescil & Açık Veri Altyapısı</p>
       <h2>Cevaplar neye dayanıyor?</h2>
-      <p class="v2-intro">Sitedeki her sayı resmî kaynaklardan derlendi ve her
-        yayında veriden yeniden hesaplanıyor.</p>
+      <p class="v2-intro">Sitedeki tüm hidrolojik ve hukuki envanter resmî kurum kaynaklarından derlenmiş, uluslararası indekslerde kalıcı DOI ile tescillenmiş ve makinece okunabilir açık API olarak yayımlanmıştır.</p>
+    </div>
+
+    <!-- Uluslararası Tescil ve Bilgi Grafiği Rozetleri -->
+    <div class="tescil-vitrini" aria-label="Akademik ve kurumsal tescil kanıtları">
+      <a href="https://doi.org/10.5281/zenodo.23002678" target="_blank" rel="noopener noreferrer" class="tescil-kart" title="CERN / Zenodo Kalıcı Araştırma Kaydı">
+        <span class="tescil-etiket">Akademik DOI</span>
+        <span class="tescil-deger">10.5281/zenodo.23002678</span>
+        <span class="tescil-aciklama">CERN / OpenAIRE kalıcı arşiv tescili</span>
+      </a>
+
+      <a href="https://www.wikidata.org/wiki/Q141582057" target="_blank" rel="noopener noreferrer" class="tescil-kart" title="Wikidata Bilgi Grafiği Varlık Kaydı">
+        <span class="tescil-etiket">Knowledge Graph Entity</span>
+        <span class="tescil-deger">Wikidata Q141582057</span>
+        <span class="tescil-aciklama">Google & AI Motorları Küresel Veri Kimliği</span>
+      </a>
+
+      <a href="/api/v1/havza/gediz.json" target="_blank" class="tescil-kart" title="Makinece Okunabilir Açık Veri API">
+        <span class="tescil-etiket">Açık Veri API (v1)</span>
+        <span class="tescil-deger">REST / JSON (CC BY 4.0)</span>
+        <span class="tescil-aciklama">Canlı Havza & İl JSON Uç Noktaları</span>
+      </a>
     </div>
 
     <ul class="v2-kanit-izgara">
@@ -41,40 +41,73 @@ import CanliSayiMotor from '../CanliSayiMotor.astro';
     <CanliSayiMotor />
 
     <p class="v2-kanit-alt">
-      Kaynak künyeleri, kapsam ve erişim biçimi:{' '}
-      <a href="/arsiv/">veri arşivi</a>.
+      Kaynak künyeleri, lisans ve API belgeleri: <a href="/arsiv/">Veri Arşivi</a> · <a href="/api/v1/havza/sakarya.json">Örnek API Yanıtı</a>
     </p>
   </div>
 </section>
 
 <style>
+  .tescil-vitrini {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin: 2rem 0;
+  }
+  @media (max-width: 900px) {
+    .tescil-vitrini {
+      grid-template-columns: 1fr;
+    }
+  }
+  .tescil-kart {
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    min-height: 44px;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .tescil-kart:hover {
+    transform: translateY(-2px);
+    border-color: var(--v2-primary, #0c4a6e);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+  .tescil-etiket {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--v2-primary, #0c4a6e);
+  }
+  .tescil-deger {
+    font-size: 1.05rem;
+    font-weight: 600;
+    font-family: monospace;
+    margin: 0.35rem 0;
+  }
+  .tescil-aciklama {
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
   .v2-kanit-izgara {
     list-style: none;
-    margin: 0;
+    margin: 2.5rem 0 0;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
   }
-
   @media (max-width: 1023px) { .v2-kanit-izgara { grid-template-columns: 1fr; } }
-
-  /* Kart iskeleti + rakam/birim/bağlam tipografisi CanliSayi.astro'ya
-     TAŞINDI (B3.3). Burada yalnız ızgara ve bölüm zemini kalır — kopya
-     kural iki yerde sapma demektir (28.07 md4 dersi). */
-
   .v2-kanit-alt { margin: 1.4rem 0 0; font-size: 0.95rem; }
-
-  /* Satır-içi link: aydınlık bölümlerin mevcut idiomu (.v2-kart-git ile aynı
-     token). Ölçüm hatası kaydı (28.07): renk verilmeyince tarayıcı varsayılanı
-     rgb(0,0,238) kalıyordu ve --v2-bg üstünde 1,92:1 ile AA'yı düşürüyordu. */
   .v2-kanit-alt a {
     color: var(--v2-primary);
     text-underline-offset: 0.2em;
+    display: inline-inline;
+    min-height: 44px;
   }
-
-  /* Bölüm zemini: Hizmetler ile aynı (var olan token, yeni renk yok) */
-  .v2-kanit { background: var(--v2-bg); color: var(--v2-metin); }
+  .v2-kanit { background: var(--v2-bg); color: var(--v2-metin); content-visibility: auto; contain-intrinsic-size: 600px; }
   .v2-kanit .v2-bolum-kicker { color: var(--v2-primary); }
-  .v2-kanit-izgara { margin-top: 3rem; }
 </style>
