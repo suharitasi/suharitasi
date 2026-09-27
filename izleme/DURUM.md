@@ -1,6 +1,6 @@
 # Su Kanunu İzleme — DURUM
 
-Son koşu (UTC): **2026-09-26T16-15-01Z**
+Son koşu (UTC): **2026-09-27T05-45-01Z**
 
 Özet: 12 hedef · ✳ olay: 1 · 🔴 hata: 0
 
@@ -23,6 +23,7 @@ Son koşu (UTC): **2026-09-26T16-15-01Z**
 
 ## Son 10 olay
 
+- 2026-09-27T05-45-01Z | tbmm-kanun-teklifleri | içerik değişti (~4 satır) → arsiv/tbmm-kanun-teklifleri/2026-09-27T05-45-01Z/
 - 2026-09-26T16-15-01Z | tbmm-kanun-teklifleri | içerik değişti (~4 satır) → arsiv/tbmm-kanun-teklifleri/2026-09-26T16-15-01Z/
 - 2026-09-26T05-45-01Z | tbmm-kanun-teklifleri | içerik değişti (~6 satır) → arsiv/tbmm-kanun-teklifleri/2026-09-26T05-45-01Z/
 - 2026-09-26T05-45-01Z | tarimorman-anasayfa | içerik değişti (~4 satır) → arsiv/tarimorman-anasayfa/2026-09-26T05-45-01Z/
@@ -32,7 +33,6 @@ Son koşu (UTC): **2026-09-26T16-15-01Z**
 - 2026-09-24T16-15-01Z | tbmm-kanun-teklifleri | içerik değişti (~6 satır) → arsiv/tbmm-kanun-teklifleri/2026-09-24T16-15-01Z/
 - 2026-09-24T16-15-01Z | tbmm-cevre-komisyonu | içerik değişti (~4 satır) → arsiv/tbmm-cevre-komisyonu/2026-09-24T16-15-01Z/
 - 2026-09-24T16-15-01Z | tbmm-tarim-orman-komisyonu | içerik değişti (~4 satır) → arsiv/tbmm-tarim-orman-komisyonu/2026-09-24T16-15-01Z/
-- 2026-09-24T16-15-01Z | tbmm-komisyon-gundemleri | içerik değişti (~4 satır) → arsiv/tbmm-komisyon-gundemleri/2026-09-24T16-15-01Z/
 _(henüz olay yok)_
 
 ---
