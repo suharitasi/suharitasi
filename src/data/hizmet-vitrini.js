@@ -1,8 +1,4 @@
 // ANA SAYFA HİZMET VİTRİNİ — "Hizmet ve İstihbarat Merkezi" (Adım 1).
-// Dört kolonun metni + hedefi TEK KAYNAK. KURAL (DESIGN.md §5, kapi.js deseni):
-// metindeki her sayı burada, build anında veriden SAYILIR ve assert edilir.
-// Uydurma yasağı: kolon metnindeki rakam, aşağıdaki kaynakla çelişirse build
-// DÜŞER; sayı değişince metin ancak bilinçli kararla güncellenir.
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { SAYILAR } from './kapi.js';
@@ -12,14 +8,14 @@ import personaVeri from '../../data/lead/persona.json';
 // — Doğrulanmış değerler (tek kaynak) —
 const RG_TOPLAM = SAYILAR.rgToplam;        // 419 (109 başlık + 310 pasaj)
 const RG_YIL_ILK = SAYILAR.rgYilIlk;       // 1963
-const RG_YIL_SON = SAYILAR.rgYilSon;       // 2017 (arşivin bugünkü son yılı)
+const RG_YIL_SON = SAYILAR.rgYilSon;       // 2017
 const NACE_ANA = naceEk2.sayimlar.anaFaaliyet_toplam;        // 31
 const NACE_DETAY = naceEk2.sayimlar.detay_yakalanan;         // 90
 const YONETMELIK_TARIH =
   personaVeri.yonetmelik?.dogrulanmisSureler?.yesilBelgeSonBasvuru?.tarih; // 2029-12-27
 const YONETMELIK_YIL = (YONETMELIK_TARIH || '').slice(0, 4); // 2029
 
-// — Kolon ikonları (elle inline SVG; paket yok) —
+// — Kolon ikonları —
 export const VITRIN_IKONLARI = {
   dosya:
     '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>' +
@@ -30,9 +26,8 @@ export const VITRIN_IKONLARI = {
   takvim:
     '<path d="M3 6h18v15H3z"/><path d="M3 10h18"/><path d="M8 3v4"/>' +
     '<path d="M16 3v4"/><path d="M12 14v3l2 1"/>',
-  alarm:
-    '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>' +
-    '<path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',
+  motor:
+    '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
 };
 
 export const VITRIN_KOLONLARI = [
@@ -74,19 +69,19 @@ export const VITRIN_KOLONLARI = [
   },
   {
     no: '04',
-    kicker: 'Bölgesel Su Alarmı',
-    ad: 'Kişiselleştirilmiş Su Alarmı',
+    kicker: '167 Sayılı YAS Denetimi',
+    ad: 'Kuyu Ruhsatı & Kısıt Karar Motoru',
     metin:
-      'Baraj düşüşleri, yeni Resmî Gazete kısıtları ve GRACE uydu rezerv ' +
-      'değişimleri anında e-postanıza ve RSS akışınıza gelsin.',
-    cta: 'İstihbarata Abone Ol',
-    hedef: '/istihbarat/',
-    ikon: 'alarm',
-    aksan: '#57BAE0',
+      'Havzanızın yeraltı suyu tahsis kısıtını, DSİ kuyu açma izin rejimini ve ' +
+      'ruhsatsız kuyu idari para cezası riskini mevzuata göre anında hesaplayın.',
+    cta: 'Kuyu Karar Motorunu Başlat',
+    hedef: '/kuyu-karar-motoru/',
+    ikon: 'motor',
+    aksan: '#0C4A6E',
   },
 ];
 
-// — Build-time assert: yapı + sayı disiplini (sessiz hata yasağı) —
+// — Build-time assert —
 if (VITRIN_KOLONLARI.length !== 4) {
   throw new Error(`hizmet-vitrini: 4 kolon bekleniyor, ${VITRIN_KOLONLARI.length} bulundu.`);
 }
@@ -99,13 +94,8 @@ for (const k of VITRIN_KOLONLARI) {
     throw new Error(`hizmet-vitrini: "${k.ad}" hedefi yerel yol ya da çapa değil (${k.hedef}).`);
   if (!VITRIN_IKONLARI[k.ikon])
     throw new Error(`hizmet-vitrini: "${k.ad}" ikonu tanımsız (${k.ikon}).`);
-  // SÜREKLİLİK: yerel hedefin kaynak sayfası GERÇEKTEN var mı? Sayfa silinir/
-  // adı değişirse vitrin kırık link basmasın diye build DÜŞER (kırık link
-  // nöbeti kalıcı kontrol maddesi). Çapa (#...) hedefleri bu denetim dışıdır.
   if (k.hedef.startsWith('/')) {
     const rel = k.hedef.replace(/^\//, '').replace(/\/$/, '');
-    // Astro build cwd = proje kökü; yol mutlak kurulur (chunk'ta import.meta.url
-    // dist'e kaydığı için o kullanılmaz).
     const kaynak = join(process.cwd(), 'src', 'pages', `${rel}.astro`);
     if (!existsSync(kaynak))
       throw new Error(`hizmet-vitrini: "${k.ad}" hedefi için kaynak sayfa yok (${kaynak}).`);
@@ -128,8 +118,7 @@ if (!YONETMELIK_TARIH) {
   for (const [ad, deger, hedefMetin] of beklenen) {
     if (!hedefMetin.includes(deger)) {
       throw new Error(
-        `hizmet-vitrini: "${ad}" (${deger}) ilgili kolon metninde yok — ` +
-        'veri değişti, metin bilinçli kararla güncellenmeli.'
+        `hizmet-vitrini: "${ad}" (${deger}) ilgili kolon metninde yok.`
       );
     }
   }
