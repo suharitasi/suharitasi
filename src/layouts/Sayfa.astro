@@ -226,11 +226,13 @@ const semalar = [
     '@type': 'BreadcrumbList',
     itemListElement: kirintilar.map((k, i) => ({
       '@type': 'ListItem',
+      // @id + item MUTLAK URL (GSC "Missing field item" kalıcı onarımı,
+      // 28.09.2026): sayfası olmayan ara halka yukarıda düşürüldüğü için
+      // `k.url` burada her zaman tanımlı ve mutlaktır; yine de ikisi de
+      // basılır ki tek bir ListItem bile itemsız/@idsiz kalmasın.
+      '@id': `${k.url}#breadcrumb-${i + 1}`,
       position: i + 1,
       name: k.ad,
-      // Her ListItem GEÇERLİ item taşır (GSC "Missing field item" onarımı,
-      // 24.09.2026): sayfası olmayan ara halka kırıntıdan düşürüldüğü için
-      // burada item'sız ListItem ÜRETİLMEZ.
       item: k.url,
     })),
   },

@@ -31,6 +31,20 @@ mesajı `[FREEZE-İSTİSNA]` ile işaretlenir ve nedeni buraya yazılır.
   (yeni) + `src/pages/index.astro` (yerleşim). Geri alınabilir (tek revert).
   Not: Bu, klasik "acil" tanımının dışındadır; sahibin açık talimatıyla
   ve geri-alınabilirlik + doğrulama kanıtıyla kayda geçirilmiştir.
+- **2026-09-28 — [FREEZE-İSTİSNA: GSC-CTR]**
+  GSC/schema denetiminde tespit edilen 4 yapısal sorun çözüldü:
+  (1) Breadcrumb JSON-LD'ye her ListItem'a mutlak `@id` eklendi — 1102 sayfa,
+  3.015 ListItem'da `item`/`@id` eksik **0** (yerel validator). (2)
+  `src/components/NehirSnippet.astro` (yeni): nehir sayfaları için veriden
+  türetilen ÖzCevap + kompakt hidrografik tablo + havza köprüsü; uzunluk/debi/
+  su kalitesi verisi OLMADIĞI için uydurulmadı (uydurma yasağı). (3) Gediz/
+  Kızılırmak/Sakarya havza↔nehir ayrımı: başlık desenleri + nehir→havza
+  "Hidrojeoloji Raporu" köprüsü. (4) Nehir/havza title desenleri (veri-koşullu).
+  Kapsam: `func` yok; yalnız şablon + bileşen + veri-koşullu meta. Geri
+  alınabilir. Doğrulama: build 1102/1102, Playwright 1366+390 (taşma yok,
+  0 konsol), schema MCP. Not: GSC'deki breadcrumb ERROR'ı **bayat crawl**
+  (lastCrawl 14 Eyl; düzeltme 24 Eyl + bu iş) — canlı JSON-LD temiz; bir
+  sonraki Google crawl'ında temizlenecek.
 
 ## Bitiş
 Pencere sonunda bu dosya `KARARLAR.md`'ye kapanış kaydı düşülerek arşivlenir

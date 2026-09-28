@@ -110,8 +110,8 @@ const jsonLd = JSON.stringify({
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Ana sayfa', item: KOK_URL },
-        { '@type': 'ListItem', position: 2, name: 'Harita', item: SAYFA_URL },
+        { '@type': 'ListItem', '@id': `${KOK_URL}#breadcrumb-1`, position: 1, name: 'Ana sayfa', item: KOK_URL },
+        { '@type': 'ListItem', '@id': `${SAYFA_URL}#breadcrumb-2`, position: 2, name: 'Harita', item: SAYFA_URL },
       ],
     },
     {

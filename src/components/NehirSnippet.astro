@@ -1,0 +1,137 @@
+---
+// DİNAMİK FEATURED-SNIPPET / ÖZCEVAP — NEHİR (28.09.2026).
+//
+// AMAÇ: GSC'de yüksek gösterim + düşük CTR ile "1. sayfa eşiğinde" bekleyen
+// nehir/akarsu sayfaları için H1'in hemen altına, veriden TÜRETİLEN
+// (statik/jenerik metin DEĞİL) cevap + kompakt hidrografik tablo koymak.
+//
+// UYDURMA YASAĞI (bağlayıcı): uzunluk, ortalama debi ve su kalitesi sınıfı
+// bu veri kümesinde (OpenStreetMap akarsu hattı) YOKTUR — üretilmez. Yalnız
+// veride bulunan alanlar basılır; eksik alan açıkça "yoktur" diye yazılır.
+// Cümleler yalnız `kolu_oldugu_akarsu` / `dokuldugu_yer` doluysa kurulur.
+import OzCevap from './OzCevap.astro';
+
+interface Props {
+  nehir: any;
+  havza?: any | null;
+  // Veri hiçbir topoloji cümlesi kurmaya yetmiyorsa gösterilecek özet.
+  ozet?: string;
+}
+const { nehir, havza = null, ozet = '' } = Astro.props;
+
+// Latin dışı (ör. Arapça/Farsça) ebeveyn adı başlık/cevaba girmez — kaynak
+// sınır ötesi olabilir ve Türkçe okunuş bozulur (veri kalitesi şerhi).
+const LATIN = /^[A-Za-zÇĞİÖŞÜçğıöşü0-9\s'’.\-()]+$/;
+const kolu = nehir.kolu_oldugu_akarsu && LATIN.test(nehir.kolu_oldugu_akarsu)
+  ? nehir.kolu_oldugu_akarsu : null;
+const dokuldugu = nehir.dokuldugu_yer && LATIN.test(nehir.dokuldugu_yer)
+  ? nehir.dokuldugu_yer : null;
+const il = nehir.cografya?.il ?? null;
+const havzalar = nehir.cografya?.havzalar ?? [];
+
+// 1. cümle: doğrudan soruya cevap (yalnız veri varsa).
+let cevap = ozet;
+if (kolu) {
+  cevap = `${nehir.ad}, ${kolu} akarsuyunun koludur` +
+    `${il ? ` ve hattı ${il.ad} ili sınırlarından geçer` : ''}.`;
+} else if (dokuldugu) {
+  cevap = `${nehir.ad}${il ? `, ${il.ad} ili sınırlarından geçer` : ''}; ` +
+    `${dokuldugu} bölgesine dökülür.`;
+}
+
+const havzaMetni = havzalar
+  .map((h: any) => (h.no ? `${h.ad} (DSİ ${h.no})` : h.ad))
+  .join(' · ');
+
+const satirlar = [
+  dokuldugu && { ad: 'Döküldüğü yer', deger: dokuldugu },
+  kolu && { ad: 'Kolu olduğu akarsu', deger: kolu },
+  havzaMetni && { ad: 'Geçtiği havza', deger: havzaMetni },
+  il && { ad: 'Örneklenen il', deger: il.ad },
+  nehir.kaynak && { ad: 'Veri kaynağı', deger: nehir.kaynak },
+].filter(Boolean) as { ad: string; deger: string }[];
+---
+
+<div class="nh-snippet">
+  <OzCevap metin={cevap} etiket="Kısa cevap" />
+
+  {satirlar.length > 0 && (
+    <table class="nh-tablo">
+      <caption>Kompakt hidrografik veri</caption>
+      <tbody>
+        {satirlar.map((s) => (
+          <tr><th scope="row">{s.ad}</th><td>{s.deger}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  )}
+
+  <p class="nh-not">
+    Uzunluk, ortalama debi ve su kalitesi sınıfı bu veri kümesinde (OpenStreetMap
+    akarsu hattı) yoktur; uydurulmaz. Havza/il eşlemesi geometrik örneklemedir,
+    hidrografik tescil değildir.
+  </p>
+
+  {havza && (
+    <p class="nh-kopru">
+      Bu akarsuyun yeraltı su rezervi ve kuyu kısıtları için →
+      <a href={`/havzalar/${havza.slug}/`}>{havza.ad} Havzası Hidrojeoloji Raporu</a>.
+    </p>
+  )}
+</div>
+
+<style>
+  .nh-snippet { margin: 0 0 1.4rem; }
+  .nh-tablo {
+    width: 100%;
+    max-width: 42rem;
+    border-collapse: collapse;
+    margin: 0.2rem 0 0.4rem;
+    font-size: 0.9rem;
+  }
+  .nh-tablo caption {
+    caption-side: top;
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    padding-bottom: 0.35rem;
+  }
+  .nh-tablo th,
+  .nh-tablo td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.42rem 0.6rem;
+    border-bottom: 1px solid var(--cizgi);
+  }
+  .nh-tablo th {
+    width: 34%;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+  .nh-not {
+    margin: 0.35rem 0 0;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--metin-soluk);
+    max-width: 66ch;
+  }
+  .nh-kopru {
+    margin: 0.7rem 0 0;
+    padding: 0.6rem 0.8rem;
+    border-left: 3px solid var(--su-400);
+    background: rgba(46, 126, 160, 0.06);
+    font-size: 0.9rem;
+    max-width: 66ch;
+  }
+  .nh-kopru a { color: var(--baglanti, var(--su-700)); font-weight: 600; }
+  @media (max-width: 560px) {
+    .nh-tablo th { width: 40%; }
+  }
+</style>

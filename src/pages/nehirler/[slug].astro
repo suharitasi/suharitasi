@@ -10,7 +10,7 @@ import Sayfa from '../../layouts/Sayfa.astro';
 import { tumIlProfilleri } from '../../data/il-profil.js';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import { TARIH } from '../../data/guncellik.js';
-import OzCevap from '../../components/OzCevap.astro';
+import NehirSnippet from '../../components/NehirSnippet.astro';
 import Katman from '../../components/Katman.astro';
 import GeoOnizleme from '../../components/GeoOnizleme.astro';
 import GeoDisaAktar from '../../components/GeoDisaAktar.astro';
@@ -57,16 +57,19 @@ const kolu = nehir.kolu_oldugu_akarsu || null;
 // diğer 94 nehir başlığı DEĞİŞMEZ (regresyon yok). NOT: istenen başlıktaki
 // "Debi" BİLEREK konmadı — sitede nehir bazlı debi verisi YOK; başlığa
 // yazmak tıklama tuzağı olurdu (NEHIRLER-SERP-TESHISI §5.2, uydurma yasağı).
-const META_BASLIK_OVERRIDE = {
-  'gediz-nehri': 'Gediz Nehri — Hidrografi, Havza ve Akarsu Yatağı',
-};
-const tarayiciBaslik = META_BASLIK_OVERRIDE[nehir.slug] ?? (dokulur
-  ? `${nehir.ad} Nerede, Nereye Dökülür?`
-  : (kolu
-    ? `${nehir.ad} Nerede, Hangi Akarsuyun Kolu?`
-    : `${nehir.ad} Nerede? Hangi Havzadan Geçer`));
-if (tarayiciBaslik.length > 60)
-  throw new Error(`nehir "${nehir.slug}": title ${tarayiciBaslik.length} karakter (>60)`);
+// 28.09.2026 (GSC-CTR, FREEZE-İSTİSNA): mobil SERP tıklaması için soru
+// formatlı title deseni. VERİ-KOŞULLU: "Hangi Nehrin Kolu?" ifadesi YALNIZ
+// `kolu_oldugu_akarsu` doluysa kullanılır — Eşen/Kelkit/Bakırçay/Zap/Köprüçay
+// için bu alan veride YOKTUR; yanlış öncül kurmak tıklama tuzağı olurdu
+// (uydurma yasağı). Latin dışı ebeveyn adı (ör. Arapça) başlığa girmez.
+const LATIN_BASLIK = /^[A-Za-zÇĞİÖŞÜçğıöşü0-9\s'’.\-()]+$/;
+const koluLatin = (kolu && LATIN_BASLIK.test(kolu)) ? kolu : null;
+const tarayiciBaslik = koluLatin
+  ? `${nehir.ad} Hangi Nehrin Kolu? Nereye Dökülür ve Akış Haritası | Su Haritası`
+  : `${nehir.ad} Nerede, Nereye Dökülür? Akış ve Havza Haritası | Su Haritası`;
+// Uzunluk tavanı 100 (soru-deseni bilinçli uzun); aşım build'i DÜŞÜRÜR.
+if (tarayiciBaslik.length > 100)
+  throw new Error(`nehir "${nehir.slug}": title ${tarayiciBaslik.length} karakter (>100)`);
 
 // C5 (V5): FAQ soruları ölçülen sorgu kalıplarına ("nerede", "hangi havzadan
 // geçer") ayrıştırılır; her cevap veriden. "kolu/kapalı havza" sorusu VERİSİZ
@@ -139,7 +142,7 @@ const sema = [{
 <Sayfa baslik={`${nehir.ad} — Türkiye Nehirleri`} tarayiciBaslik={tarayiciBaslik} aciklama={aciklamaZengin} sema={sema}>
   <SayfaBasi etiket="Nehir" baslik={nehir.ad} tarih={TARIH.golNehir ? new Date(TARIH.golNehir) : undefined} />
 
-  <OzCevap metin={ozet} etiket="Özet bilgi" />
+  <NehirSnippet nehir={nehir} havza={anaHavza} ozet={ozet} />
 
   <GeoOnizleme geometry={nehir.geometry} bbox={nehir.bbox} ad={nehir.ad} tur="nehir" havza={anaHavza} />
 

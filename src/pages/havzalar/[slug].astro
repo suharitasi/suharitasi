@@ -164,18 +164,16 @@ for (const c of cumleler) {
 }
 const aciklama = descParcalar.join(' ') || havzaOzCevap || giris.data.ozet;
 
-// Title 60 karakter bütçesine ölçülüdür (seo-audit "title-uzun" eşiği >60;
-// en uzun ad "Büyük Menderes Havzası" ile 58). Aşım build'i DÜŞÜRÜR —
-// sessizce bulguya dönüşmez (sessiz hata yasağı).
-// P3 (24.09.2026): niyet AYRIMI (desambiguasyon) — havza (su yönetimi/sınır)
-// nehir sayfasından ayrışsın. Yalnız ölçülmüş yamyamlık vakası (gediz) için
-// meta başlık sabitlenir; diğer 24 havza başlığı DEĞİŞMEZ (regresyon yok).
-const META_BASLIK_OVERRIDE = {
-  gediz: 'Gediz Havzası — Su Yönetimi ve Havza Sınırları',
-};
-const tarayiciBaslik = META_BASLIK_OVERRIDE[giris.id] ?? `${giris.data.baslik} Nerede? Kapsadığı İller ve Haritası`;
-if (tarayiciBaslik.length > 60)
-  throw new Error(`havza "${giris.id}": title ${tarayiciBaslik.length} karakter (>60)`);
+// 28.09.2026 (GSC-CTR, FREEZE-İSTİSNA): havza title deseni — YAS/kuyu/rezerv
+// niyeti; nehir sayfasından (akış/kol/dökülür) anlamsal olarak ayrışır
+// (de-cannibalization). Yıl build anında hesaplanır.
+const YIL = new Date().getFullYear();
+const havzaAd = /Havzası\s*$/.test(giris.data.baslik)
+  ? giris.data.baslik
+  : `${giris.data.baslik} Havzası`;
+const tarayiciBaslik = `${havzaAd} Su Rezervi ve DSİ Kuyu İzinleri (${YIL}) | Su Haritası`;
+if (tarayiciBaslik.length > 100)
+  throw new Error(`havza "${giris.id}": title ${tarayiciBaslik.length} karakter (>100)`);
 const h1Baslik = konumCumlesi ? `${giris.data.baslik} nerede, hangi illeri kapsar?` : giris.data.baslik;
 
 // — FAQPage JSON-LD: YAS potansiyeli öz-cevabı (AI-arama alıntısı). Tek
