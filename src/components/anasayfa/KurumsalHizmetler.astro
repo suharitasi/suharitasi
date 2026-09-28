@@ -1,0 +1,214 @@
+---
+// KURUMSAL HİZMETLER BANDI (03.10.2026) — B2B konumlandırma.
+//
+// AMAÇ: Sitede dağınık duran dört kurumsal yeteneği (açık API, LegalTech
+// karar motoru, tescilli veri seti, mevzuat/istihbarat akışı) TEK ve GÖRÜNÜR
+// bir bantta toplamak. Yatırımcı, tarım işletmesi, değerleme ve hukuk
+// ekiplerinin ilk ekranda fark etmesi hedeflenir.
+//
+// CODE-FREEZE: yeni JS kütüphanesi / harici CSS YOK. Yalnız mevcut tasarım
+// sistemi (#0F172A slate kart, #38BDF8 bordür, zarif köşe) yeniden kullanılır.
+// Hukuki Sınır: metinler HİZMET TANIMIDIR; hüküm/ceza tutarı/vaat içermez.
+const HIZMETLER = [
+  {
+    ikon: 'api',
+    ad: 'Kurumsal Havza & Akifer API',
+    metin:
+      'Yatırımlar, tarım işletmeleri ve değerleme şirketleri için anlık DSİ ' +
+      'uyumlu yeraltı su tablası ve hidrojeolojik veri API’si.',
+    hedef: '/acik-veri/',
+    cta: 'API dokümantasyonu',
+  },
+  {
+    ikon: 'karar',
+    ad: 'LegalTech Kuyu Karar Motoru',
+    metin:
+      '167 sayılı YAS kapsamında idari yaptırımlara ve ruhsat süreçlerine ' +
+      'karşı teknik/mevzuat karar destek mekanizması.',
+    hedef: '/kuyu-karar-motoru/',
+    cta: 'Karar motorunu aç',
+  },
+  {
+    ikon: 'veri',
+    ad: 'Tescilli Bilimsel Veri Seti',
+    metin:
+      'Bilirkişi ve resmi raporlara dayanak oluşturan, DOI (CERN / Zenodo) ile ' +
+      'tescilli ve atıf yapılabilir açık hidrolojik veri tabanı.',
+    hedef: '/veri/',
+    cta: 'Veri setini gör',
+  },
+  {
+    ikon: 'akis',
+    ad: 'Havza Mevzuat & İstihbarat Akışı',
+    metin:
+      'Resmî Gazete ve DSİ duyurularını parsel/havza bazında filtreleyen ' +
+      'kurumsal RSS ve veri akışı.',
+    hedef: '/istihbarat/',
+    cta: 'Akışları gör',
+  },
+];
+
+// Elle çizilmiş inline SVG (paket yok). viewBox 24; çizgi ikonlar.
+const IKONLAR = {
+  api:
+    '<path d="M9 7 4 12l5 5"/><path d="m15 7 5 5-5 5"/><path d="M13 4l-2 16"/>',
+  karar:
+    '<path d="M12 3v18"/><path d="M5 7h14"/><path d="M7 7l-3 6h6z"/><path d="M17 7l-3 6h6z"/><path d="M8 21h8"/>',
+  veri:
+    '<ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/>',
+  akis:
+    '<path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.6"/>',
+};
+---
+
+<section class="v2-kurumsal" id="kurumsal" aria-label="Kurumsal hizmetler">
+  <div class="v2-ic">
+    <div class="v2-bolum-bas">
+      <p class="v2-kur-kicker">Kurumsal Hizmetler</p>
+      <h2>Kurumlar için veri, API ve karar altyapısı</h2>
+      <p class="v2-kur-intro">
+        Yatırım, tarım, değerleme ve hukuk ekipleri için DSİ uyumlu
+        hidrojeolojik veri, açık API, tescilli veri seti ve mevzuat akışı tek
+        çatıda. Tüm veri kaynağı künyeli; makine-okunur uç noktalar CC BY 4.0.
+      </p>
+    </div>
+
+    <div class="v2-kur-izgara">
+      {HIZMETLER.map((k) => (
+        <a class="v2-kur-kart" href={k.hedef}>
+          <span class="v2-kur-ikon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
+                 set:html={IKONLAR[k.ikon as keyof typeof IKONLAR]}></svg>
+          </span>
+          <h3>{k.ad}</h3>
+          <p>{k.metin}</p>
+          <span class="v2-kur-git">{k.cta} →</span>
+        </a>
+      ))}
+    </div>
+
+    <div class="v2-kur-cta">
+      <a class="v2-kur-dugme" href="/acik-veri/">API Dokümantasyonu</a>
+      <a class="v2-kur-dugme v2-kur-dugme-ikincil" href="/#iletisim">Kurumsal İletişim</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Bant zemini: mevcut koyu deneyim tonu (DESIGN.md). Yeni renk İCAT EDİLMEDİ. */
+  .v2-kurumsal {
+    background: var(--v0-koyu, #08202f);
+    color: var(--v0-beyaz, #fff);
+    padding: clamp(3rem, 7vw, 5rem) clamp(1rem, 4vw, 2rem);
+  }
+  .v2-kur-kicker {
+    margin: 0 0 0.75rem;
+    font-family: var(--mono, monospace);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--v2-kicker-koyu, oklch(0.78 0.11 200));
+  }
+  .v2-kur-intro {
+    margin: 0 0 2rem;
+    max-width: 62ch;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.65;
+  }
+  .v2-kur-izgara {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+  @media (max-width: 1023px) { .v2-kur-izgara { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 559px) { .v2-kur-izgara { grid-template-columns: 1fr; } }
+
+  /* Mevcut tasarım sistemi: #0F172A slate kart + #38BDF8 bordür (zarif kart). */
+  .v2-kur-kart {
+    display: flex;
+    flex-direction: column;
+    min-height: 44px;
+    padding: 1.35rem 1.25rem;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(56, 189, 248, 0.55);
+    border-radius: 10px;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 200ms var(--e-suzul, cubic-bezier(0.22, 1, 0.36, 1)),
+                border-color 200ms var(--e-suzul, ease),
+                box-shadow 200ms var(--e-suzul, ease);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .v2-kur-kart:hover {
+      transform: translateY(-2px);
+      border-color: #38bdf8;
+      box-shadow: 0 10px 22px -10px rgba(2, 6, 23, 0.7);
+    }
+  }
+  .v2-kur-ikon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-bottom: 0.9rem;
+    border-radius: 8px;
+    background: rgba(56, 189, 248, 0.13);
+    color: #7dd3fc;
+  }
+  .v2-kur-ikon svg { width: 1.5rem; height: 1.5rem; }
+  .v2-kur-kart h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #fff;
+  }
+  .v2-kur-kart p {
+    margin: 0.5rem 0 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.72);
+  }
+  .v2-kur-git {
+    margin-top: auto;
+    padding-top: 0.9rem;
+    font-family: var(--mono, monospace);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    color: #7dd3fc;
+  }
+
+  .v2-kur-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.6rem;
+  }
+  .v2-kur-dugme {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.7rem 1.4rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    background: #38bdf8;
+    color: #04121f;
+    transition: background-color 180ms var(--e-akinti, ease);
+  }
+  .v2-kur-dugme:hover { background: #7dd3fc; }
+  .v2-kur-dugme-ikincil {
+    background: transparent;
+    color: #e2f4ff;
+    border: 1px solid rgba(125, 211, 252, 0.6);
+  }
+  .v2-kur-dugme-ikincil:hover { background: rgba(56, 189, 248, 0.12); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .v2-kur-kart, .v2-kur-dugme { transition: none; }
+    .v2-kur-kart:hover { transform: none; }
+  }
+</style>

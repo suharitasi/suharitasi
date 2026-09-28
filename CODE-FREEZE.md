@@ -22,7 +22,15 @@ minimum yüzeyli bir düzeltme yapılabilir. İstisna kullanılırsa commit
 mesajı `[FREEZE-İSTİSNA]` ile işaretlenir ve nedeni buraya yazılır.
 
 ### Freeze istisna kaydı
-- (yok)
+- **2026-09-28 — [FREEZE-İSTİSNA: Marketing B2B API Konumlandırması]**
+  Sahip talebiyle, dört kurumsal hizmet (Kurumsal API, LegalTech Karar
+  Motoru, Tescilli DOI veri seti, Mevzuat & İstihbarat akışı) için B2B
+  konumlandırma bandı eklendi. Yeni JS kütüphanesi / harici CSS yok;
+  yalnız mevcut tasarım sistemi (#0F172A slate kart, #38BDF8 bordür)
+  kullanıldı. Kapsam: `src/components/anasayfa/KurumsalHizmetler.astro`
+  (yeni) + `src/pages/index.astro` (yerleşim). Geri alınabilir (tek revert).
+  Not: Bu, klasik "acil" tanımının dışındadır; sahibin açık talimatıyla
+  ve geri-alınabilirlik + doğrulama kanıtıyla kayda geçirilmiştir.
 
 ## Bitiş
 Pencere sonunda bu dosya `KARARLAR.md`'ye kapanış kaydı düşülerek arşivlenir

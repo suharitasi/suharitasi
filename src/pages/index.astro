@@ -17,6 +17,7 @@ import AltBilgi from '../components/AltBilgi.astro';
 import PaylasilanMenu from '../components/PaylasilanMenu.astro';
 import Hero from '../components/anasayfa/Hero.astro';
 import HizmetVitrini from '../components/anasayfa/HizmetVitrini.astro';
+import KurumsalHizmetler from '../components/anasayfa/KurumsalHizmetler.astro';
 import MobilSorular from '../components/anasayfa/MobilSorular.astro';
 import TeknolojiKartlari from '../components/anasayfa/TeknolojiKartlari.astro';
 import KanitBandi from '../components/anasayfa/KanitBandi.astro';
@@ -221,6 +222,11 @@ const sahneVeri = SAHNELER.map((s) => ({
       dert sorusundan sonra (ilk ekran/S1 korunur). Metin+sayılar
       src/data/hizmet-vitrini.js'te veriden build-time doğrulanır. */}
   <HizmetVitrini />
+
+  {/* 03.10.2026 — Kurumsal B2B bandı (API / Karar Motoru / DOI veri seti /
+      Mevzuat akışı). Hizmet vitrininin hemen ardında; B2B alıcı ilk ekranda
+      görsün. Yeni JS/CSS bağımlılığı yok (code-freeze istisnası). */}
+  <KurumsalHizmetler />
 
   <TeknolojiKartlari />
 
