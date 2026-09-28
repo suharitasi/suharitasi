@@ -1,0 +1,335 @@
+---
+// PARSEL BAZLI HİDROJEOLOJİK ÖN DEĞERLENDİRME — teknik talep formu
+// (03.10.2026). /nerede-su-cikar/ ve /havzalar/ sayfalarında kullanılır.
+//
+// HUKUKİ SINIR (bağlayıcı, guardrail 1): bu bileşen YALNIZ teknik
+// hidrojeoloji/mühendislik verisine dayalı ön analiz talebi toplar.
+// Dilekçe, avukatlık veya hukuki danışmanlık vaadi İÇERMEZ; metinler
+// nesneldir ve bunu açıkça beyan eder.
+//
+// VERİ AKIŞI: istemci → POST /api/talep (Cloudflare Pages Function,
+// functions/api/talep.js) → KV (WA_SAYAC). Ağ/503 hatasında veri kaybolmaz:
+// alanlar korunur ve doğrudan e-posta (mailto) geri düşüşü sunulur.
+import { tumIller } from '../data/islem-matrisi.js';
+import { EPOSTA } from '../data/site';
+
+interface Props {
+  // Sayfa bağlamı (olay kaydı/ayrımı için). Id çakışmasını önler.
+  konum?: string;
+}
+const { konum = 'genel' } = Astro.props;
+const cid = `pt-${konum}`;
+const iller = tumIller();
+---
+
+<section class="pt" id={cid} aria-labelledby={`${cid}-baslik`}>
+  <p class="pt-kicker">Teknik ön değerlendirme</p>
+  <h2 class="pt-baslik" id={`${cid}-baslik`}>Parsel Bazlı Hidrojeolojik Ön Değerlendirme</h2>
+  <p class="pt-alt">
+    Arazinizin akifer derinliği, YAS rezervi ve teknik sondaj uygunluğu
+    verileri için talep oluşturun.
+  </p>
+
+  <form class="pt-form" id={`${cid}-form`} data-eposta={EPOSTA} novalidate>
+    <div class="pt-izgara">
+      <label class="pt-alan" for={`${cid}-il`}>
+        <span class="pt-etiket">İl <span class="pt-yildiz" aria-hidden="true">*</span></span>
+        <select id={`${cid}-il`} name="il" required>
+          <option value="">İl seçin</option>
+          {iller.map((il) => <option value={il}>{il}</option>)}
+        </select>
+      </label>
+
+      <label class="pt-alan" for={`${cid}-ilce`}>
+        <span class="pt-etiket">İlçe <span class="pt-yildiz" aria-hidden="true">*</span></span>
+        <input type="text" id={`${cid}-ilce`} name="ilce" required
+               autocomplete="address-level2" placeholder="ör. Çumra" />
+      </label>
+    </div>
+
+    <label class="pt-alan" for={`${cid}-ada`}>
+      <span class="pt-etiket">Ada / Parsel <span class="pt-ops">(opsiyonel)</span></span>
+      <input type="text" id={`${cid}-ada`} name="adaParsel" autocomplete="off" placeholder="ör. 104 / 12" />
+    </label>
+
+    <label class="pt-alan" for={`${cid}-tel`}>
+      <span class="pt-etiket">Telefon <span class="pt-yildiz" aria-hidden="true">*</span></span>
+      <input type="tel" id={`${cid}-tel`} name="telefon" required inputmode="numeric"
+             autocomplete="tel" maxlength="17" placeholder="05XX XXX XX XX"
+             aria-describedby={`${cid}-tel-not`} />
+      <span class="pt-ipucu" id={`${cid}-tel-not`}>10 haneli cep veya sabit hat numarası.</span>
+    </label>
+
+    <label class="pt-onay" for={`${cid}-kvkk`}>
+      <input type="checkbox" id={`${cid}-kvkk`} name="onay" required />
+      <span>İletişim verilerimin teknik analiz bilgilendirmesi amacıyla işlenmesini onaylıyorum.</span>
+    </label>
+
+    {/* Honeypot — botlar doldurur; insan görmez. */}
+    <div class="pt-tuzak" aria-hidden="true">
+      Boş bırakın <input type="text" name="website" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <button type="submit" class="pt-dugme" id={`${cid}-dugme`}>Teknik Ön Analiz Talebi İlet</button>
+
+    <p class="pt-durum" id={`${cid}-durum`} role="status" aria-live="polite"></p>
+
+    <p class="pt-hukuk">
+      Bu form yalnız teknik hidrojeoloji/mühendislik verisine dayalı ön analiz
+      talebi toplar; hukuki danışmanlık, dilekçe veya avukatlık hizmeti talebi
+      değildir. Talebiniz KVKK açık rızanızla yalnız iletişim amacıyla işlenir.
+    </p>
+  </form>
+</section>
+
+<script>
+  // Tek yükleme (bileşen birden çok yerde render edilse bile).
+  const w = window as any;
+  if (!w.__parselTalepKuruldu) {
+    w.__parselTalepKuruldu = true;
+
+    const haneler = (s: string) => {
+      let d = String(s || '').replace(/\D/g, '');
+      if (d.startsWith('90')) d = d.slice(2);
+      if (d.startsWith('0')) d = d.slice(1);
+      return d;
+    };
+    const telGecerli = (s: string) => /^5\d{9}$/.test(haneler(s));
+    const maskele = (s: string) => {
+      const d = haneler(s).slice(0, 10);
+      const p = d.match(/^(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})$/);
+      if (!p) return s;
+      return ['0' + p[1], p[2], p[3], p[4]].filter(Boolean).join(' ').trimEnd();
+    };
+
+    document.querySelectorAll<HTMLFormElement>('.pt-form').forEach((form) => {
+      const tel = form.querySelector<HTMLInputElement>('input[type="tel"]');
+      const durum = form.querySelector<HTMLElement>('.pt-durum');
+      const dugme = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const eposta = form.dataset.eposta || '';
+
+      // Açılışta durum boş (toast yok); alanlar asla temizlenmez.
+      if (durum) { durum.textContent = ''; durum.className = 'pt-durum'; }
+
+      if (tel) {
+        tel.addEventListener('input', () => {
+          tel.value = maskele(tel.value);
+          tel.setCustomValidity(
+            tel.value && !telGecerli(tel.value)
+              ? 'Geçerli bir telefon numarası girin (10 hane).'
+              : ''
+          );
+        });
+        tel.addEventListener('blur', () => {
+          tel.value = tel.value ? maskele(tel.value) : '';
+        });
+      }
+
+      function hataGoster(mesaj: string, mailto: string) {
+        if (!durum) return;
+        durum.className = 'pt-durum pt-hata';
+        durum.textContent = mesaj + ' ';
+        if (mailto) {
+          const a = document.createElement('a');
+          a.href = mailto;
+          a.textContent = 'E-posta ile iletin';
+          a.className = 'pt-mailto';
+          durum.appendChild(a);
+          durum.appendChild(document.createTextNode('.'));
+        }
+        if (dugme) dugme.disabled = false;
+      }
+
+      form.addEventListener('submit', async (ev) => {
+        ev.preventDefault();
+        const il = (form.querySelector<HTMLSelectElement>('select[name="il"]')?.value || '').trim();
+        const ilce = (form.querySelector<HTMLInputElement>('input[name="ilce"]')?.value || '').trim();
+        const adaEl = form.querySelector<HTMLInputElement>('input[name="adaParsel"]');
+        const ada = (adaEl?.value || '').trim();
+        const onayEl = form.querySelector<HTMLInputElement>('input[name="onay"]');
+        const onay = !!onayEl?.checked;
+
+        if (tel) {
+          tel.setCustomValidity(
+            tel.value && !telGecerli(tel.value)
+              ? 'Geçerli bir telefon numarası girin (10 hane).'
+              : ''
+          );
+        }
+        if (!form.reportValidity()) return;
+
+        const konu = 'Parsel hidrojeolojik ön değerlendirme talebi';
+        const govde =
+          'İl: ' + il + '\nİlçe: ' + ilce + '\nAda/Parsel: ' + (ada || '-') +
+          '\nTelefon: ' + (tel?.value || '') + '\n';
+        const mailto = 'mailto:' + eposta + '?subject=' + encodeURIComponent(konu) +
+          '&body=' + encodeURIComponent(govde);
+
+        if (durum) { durum.className = 'pt-durum'; durum.textContent = 'Gönderiliyor…'; }
+        if (dugme) dugme.disabled = true;
+
+        try {
+          const yanit = await fetch('/api/talep', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              il, ilce, adaParsel: ada, telefon: tel?.value || '',
+              onay, website: '', sayfa: location.pathname, konum: form.id,
+            }),
+          });
+          const j = await yanit.json().catch(() => ({} as any));
+          if (yanit.ok && j && j.ok) {
+            if (durum) {
+              durum.className = 'pt-durum pt-ok';
+              durum.textContent = 'Talebiniz alındı. Teknik veriler için sizinle iletişime geçilecektir.';
+            }
+            if (dugme) { dugme.disabled = true; dugme.textContent = 'Talep alındı'; }
+          } else {
+            hataGoster((j && j.hata) ? j.hata : 'Talep şu an iletilemedi.', mailto);
+          }
+        } catch {
+          hataGoster('Bağlantı kurulamadı; talep gönderilemedi.', mailto);
+        }
+      });
+    });
+  }
+</script>
+
+<style>
+  .pt {
+    --pt-zemin: #0F172A;
+    --pt-kart: #1E293B;
+    --pt-cizgi: #334155;
+    --pt-metin: #F1F5F9;
+    --pt-soluk: #94A3B8;
+    --pt-vurgu: #38BDF8;
+    max-width: 36rem;          /* max-w-xl */
+    margin: 2.2rem auto 0;
+    padding: clamp(1.1rem, 4vw, 1.8rem);
+    background: var(--pt-zemin);
+    border: 1px solid var(--pt-kart);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.28);
+    color: var(--pt-metin);
+  }
+
+  .pt-kicker {
+    margin: 0;
+    font-family: var(--mono, monospace);
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pt-vurgu);
+  }
+  .pt-baslik {
+    margin: 0.35rem 0 0.4rem;
+    font-family: var(--serif, Georgia, serif);
+    font-size: clamp(1.35rem, 3.4vw, 1.7rem);
+    font-weight: 600;
+    line-height: 1.2;
+    color: #FFFFFF;
+  }
+  .pt-alt {
+    margin: 0 0 1.2rem;
+    font-size: 0.94rem;
+    line-height: 1.6;
+    color: var(--pt-soluk);
+    max-width: 60ch;
+  }
+
+  .pt-form { display: block; margin: 0; }
+  .pt-izgara {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9rem;
+  }
+  @media (max-width: 520px) { .pt-izgara { grid-template-columns: 1fr; } }
+
+  .pt-alan { display: block; margin-bottom: 0.9rem; }
+  .pt-etiket {
+    display: block;
+    margin-bottom: 0.32rem;
+    font-family: var(--mono, monospace);
+    font-size: 0.64rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #CBD5E1;
+  }
+  .pt-yildiz { color: var(--pt-vurgu); }
+  .pt-ops { color: var(--pt-soluk); text-transform: none; letter-spacing: 0; }
+
+  .pt select,
+  .pt input[type="text"],
+  .pt input[type="tel"] {
+    width: 100%;
+    min-height: 48px;
+    padding: 0.6rem 0.75rem;
+    font: inherit;
+    color: var(--pt-metin);
+    background: var(--pt-kart);
+    border: 1px solid var(--pt-cizgi);
+    border-radius: 10px;
+  }
+  .pt select { appearance: none; }
+  .pt select:focus-visible,
+  .pt input:focus-visible {
+    outline: 2px solid var(--pt-vurgu);
+    outline-offset: 1px;
+    border-color: var(--pt-vurgu);
+  }
+  .pt-ipucu { display: block; margin-top: 0.3rem; font-size: 0.76rem; color: var(--pt-soluk); }
+
+  .pt-onay {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    /* WCAG 2.5.8: onay satırının TAMAMI dokunma hedefidir (>=44px). */
+    min-height: 44px;
+    padding: 0.4rem 0;
+    margin: 0.2rem 0 1rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--pt-soluk);
+    cursor: pointer;
+  }
+  .pt-onay input { width: 1.5rem; height: 1.5rem; margin-top: 0.05rem; flex: 0 0 auto; accent-color: var(--pt-vurgu); }
+
+  .pt-tuzak { position: absolute; left: -9999px; }
+
+  .pt-dugme {
+    font: inherit;
+    font-weight: 700;
+    width: 100%;
+    min-height: 48px;
+    padding: 0.7rem 1.2rem;
+    color: #04121F;
+    background: var(--pt-vurgu);
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 180ms var(--e-akinti, ease), transform 120ms var(--e-akinti, ease);
+  }
+  .pt-dugme:hover { background: #7DD3FC; }
+  .pt-dugme:active { transform: scale(0.99); }
+  .pt-dugme:disabled { opacity: 0.6; cursor: default; }
+
+  .pt-durum { margin: 0.8rem 0 0; min-height: 1.2rem; font-size: 0.88rem; color: var(--pt-soluk); }
+  .pt-durum.pt-ok { color: #4ADE80; }
+  .pt-durum.pt-hata { color: #FCA5A5; }
+  .pt-mailto { color: var(--pt-vurgu); text-decoration: underline; }
+
+  .pt-hukuk {
+    margin: 1rem 0 0;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--pt-kart, #1E293B);
+    font-size: 0.76rem;
+    line-height: 1.55;
+    color: var(--pt-soluk);
+    max-width: 66ch;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pt-dugme { transition: none; }
+    .pt-dugme:active { transform: none; }
+  }
+</style>

@@ -5,6 +5,7 @@ import SayfaBasi from '../../components/SayfaBasi.astro';
 import havzaVeri from '../../../data/havza-veri.json';
 import { TARIH } from '../../data/guncellik.js';
 import HukukSerhi from '../../components/HukukSerhi.astro';
+import ParselTalep from '../../components/ParselTalep.astro';
 
 // DSİ havza numarasına göre sırala; numarasızlar sona, ada göre
 const girisler = (await getCollection('havzalar')).sort((a, b) => {
@@ -59,6 +60,8 @@ const sayi = (n: number) => n.toLocaleString('tr-TR');
       );
     })}
   </ul>
+
+  <ParselTalep konum="havzalar" />
 
   {/* site-architecture (27.09.2026): kannibalizasyon ayrımı — bu sayfa
       "havzalar haritası/listesi" (hub, künye) niyetini taşır; risk sıralaması

@@ -24,6 +24,7 @@ import { sssListesi } from '../data/kapi-sss.js';
 import HukukSerhi from '../components/HukukSerhi.astro';
 import HukukKopru from '../components/HukukKopru.astro';
 import HukukDanismanlik from '../components/HukukDanismanlik.astro';
+import ParselTalep from '../components/ParselTalep.astro';
 
 const canonical = new URL('/nerede-su-cikar/', Astro.site).href;
 
@@ -184,6 +185,8 @@ const sema = [
   {/* Yüksek niyetli hukuki rehber köprüsü (13.09.2026): bu kapı "su nerede
       çıkar" cevabını verir; "buldum, izin/ruhsat/ceza ne olacak?" sorusunu
       rehberlere ve iletişime bağlar. */}
+  <ParselTalep konum="nerede-su-cikar" />
+
   <HukukKopru
     baslik="Suyu buldum, şimdi izin ve ihtilaf ne olacak?"
     aciklama="Kuyu açma, belge, ceza ve komşu su uyuşmazlıklarında izlenecek adımlar için su hukuku rehberleri."
