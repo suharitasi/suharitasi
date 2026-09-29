@@ -162,7 +162,7 @@
       '<p class="soluk">Veri künyeleri: Sitemde yayımlı kaynaklar (NHYP, Resmî Gazete, il-kurum eşlemesi). Her RG kaydının bağlantısı Bölüm 7\'dedir.</p>' +
 
       '<h2>13. Hukuki Şerh ve İletişim</h2>' +
-      '<p>Bu dosya bilgilendirme amaçlıdır; somut bir uyuşmazlığa dair hukuki görüş veya tavsiye niteliği taşımaz. Resmî başvuru öncesi Av. Serdar Arslan (Arslan Hukuk Bürosu) incelemesi tavsiye edilir. · iletisim@suharitasi.com</p>' +
+      '<p>Bu dosya bilgilendirme amaçlıdır; somut bir uyuşmazlığa dair hukuki görüş veya tavsiye niteliği taşımaz. Resmî başvuru öncesi Av. Serdar Arslan (Arslan Hukuk Bürosu) incelemesi tavsiye edilir. · hukuk@arslanhukuk.tr</p>' +
 
       '<h2>Ek A — Tüm Başvuru İşlemleri (20)</h2>' +
       '<table><thead><tr><th>İşlem</th><th>Dayanak</th><th>Yetkili kurum</th><th>Başvuru kanalı</th></tr></thead><tbody>' + islemEk + '</tbody></table>' +
