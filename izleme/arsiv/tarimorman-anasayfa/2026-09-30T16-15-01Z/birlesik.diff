@@ -1,0 +1,126 @@
+--- onceki
++++ 2026-09-30T16-15-01Z
+@@ -3,7 +3,6 @@
+ Daha yüksek erişilebilirlik modunu kapat
+ -->
+ -->
+-×
+ ANA SAYFA
+ BAKAN
+ BAKANIMIZ
+@@ -48,8 +47,7 @@
+ COĞRAFİ BİLGİ SİSTEMLERİ
+ BİTKİSEL ÜRETİM
+ BİTKİ SAĞLIĞI HİZMETLERİ
+-http://www.tarim.gov.tr/Konular/Avrupa-Birligi-ve-Dis-Iliskiler
+-'>AVRUPA BİRLİĞİ VE DIŞ İLİŞKİLER
++http://www.tarim.gov.tr/Konular/Avrupa-Birligi-ve-Dis-Iliskiler</a>" class="dropdown-item bakanlik-navbar__dropdown-link">AVRUPA BİRLİĞİ VE DIŞ İLİŞKİLER
+ ARAZİ TOPLULAŞTIRMA
+ TARIM TEKNOLOJİLERİ VE MEKANİZASYON
+ KORUNAN ALANLAR ÜCRET TARİFESİ
+@@ -152,7 +150,9 @@
+ İLETİŞİM
+ BAKANLIK MERKEZ
+ BİLGİ EDİNME
+--->
++‹
++MENÜ
++×
+ T.C. TARIM VE ORMAN BAKANLIĞI
+ BAKAN YUMAKLI: “TÜRKİYE, 2005'TEN BU YANA DÜNYA UN İHRACATINDA BİRİNCİLİĞİNİ KORUYOR”
+ BAKAN YUMAKLI 2028'DE TAMAMLANMASI HEDEFLENEN EDİRNE ÇÖMLEKKÖY BARAJI'NDA İNCELEMEDE BULUNDU
+@@ -169,6 +169,9 @@
+ SU
+ Duyurular
+ Tümü
++30.09.2026
++Gübre Analizinde Yetkilendirilen Laboratuvarlar ve Referans Kuruluşları Listesi ...
++BUGEM
+ 29.09.2026
+ 16. Uluslararası Tarım Orman ve İnsan Fotoğraf Yarışmasında Finale Kalan Fotoğra ...
+ EYDB
+@@ -196,11 +199,11 @@
+ 07.09.2026
+ Organize Tarım Bölgelerinde Ön Tahsis ve Arsa Tahsisi Yapılacak Parsellere İlişk ...
+ TRGM
+-07.09.2026
+-Ünvan Değişikliği Sözlü Sınav Sonuçları
+-PERGEM
+ İhale İlanları
+ Tümü
++30.09.2026
++2. Bölge Müdürlüğü Balıkesir Ayvalık Adaları TP İşletmecilik İhale İlanı
++DKMP
+ 29.09.2026
+ “TUCSAP 1.2 TOB Dijital Modeli Uzaktan Algılama Faaliyetleri Kapsamında GPU Taba ...
+ btgm
+@@ -228,10 +231,7 @@
+ 26.08.2026
+ 9. Bölge Müdürlüğü Ankara Çamkoru Tabiat Parkı İhale İşletmecilik İhale İlanları ...
+ DKMP
+-18.08.2026
+-15. Bölge Müdürlüğü Sivas Balıklıgöl Tabiat Parkı İşletmecilik İhale İlanı
+-15. Bölge Müdürlüğü
+-Rakamlarla Bakanlığımız
++Desteklemeler
+ Tümü
+ 24.06.2026
+ SERTİFİKALI TOHUM KULLANIM DESTEĞİ
+@@ -275,18 +275,28 @@
+ Dijital Tarım Kütüphanesi
+ Kırsal Kalkınma Yatırım Progra ...
+ EĞİTİM - YAYIN PLATFORMLARIMIZ
+-Rakamlarla Bakanlığımız
+-Kırsal Kalkınma Hibe Desteği 2025 (Milyar ₺)
++Desteklemeler
++-->
++KIRSAL KALKINMA HİBE DESTEĞİ 2025
+ 14,48
+-Korunan Alanlar (Milyon ha)
++Milyar ₺
++KORUNAN ALANLAR
+ 3,8
+-Orman Alanı 2025 (Milyon ha)
++Milyon ha
++ORMAN ALANI 2025
+ 23,37
+-Su Depolama Hacmi 2026 (Milyar m3)
++Milyon ha
++SU DEPOLAMA HACMİ 2026
+ 184
+-Tarımsal Destekler 2026 (Milyar ₺)
++Milyar m3
++TARIMSAL DESTEKLER 2026
+ 167,6
++Milyar ₺
+ BİRİM HABERLERİ
++NARENCİYE ÜRETİM MALİYETLERİNİN BELİRLENMESİNE YÖNELİK TOPLANTI GERÇEKLEŞTİRİLDİ
++Devamı
++30.09.2026
++TRGM
+ AVRUPA KOMİSYONU (DG SANTE) "ULUSAL KALINTI İZLEME PLANI" DENETİMİ AÇILIŞ TOPLANTISI GERÇEKLEŞTİRİLDİ
+ Devamı
+ 29.09.2026
+@@ -303,10 +313,6 @@
+ Devamı
+ 28.09.2026
+ TRGM
+-Tarım Sahada 9️⃣2️⃣. Buluşma 🤝
+-Devamı
+-25.09.2026
+-TRGM
+ Kamu Spotları
+ Tanıtım Videoları
+ TV Programları
+@@ -333,9 +339,9 @@
+ Kamu Spotları
+ SUYU VE GIDAYI KORU
+ Kamu Spotları
+-KAHVERENGİ_KOKARCA
++KAHVERENGİ KOKARCA
+ Kamu Spotları
+-ÇİFTÇİ_KAYIT_SİSTEMİ (ÇKS)
++ÇİFTÇİ KAYIT SİSTEMİ - (ÇKS)
+ Kamu Spotları
+ YANGINDA TEKNOLOJİ KULLANIMI
+ Kamu Spotları
