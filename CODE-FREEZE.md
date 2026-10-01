@@ -73,6 +73,17 @@ mesajı `[FREEZE-İSTİSNA]` ile işaretlenir ve nedeni buraya yazılır.
   tek bileşen · 25 havza sayfası. Kanıt: build 1102 · dist kızılırmak'ta
   düz-metin creator **0**, Organization span mevcut. Geri alınabilir.
 
+- **2026-09-29 — [FREEZE-İSTİSNA: proje geneli creator taraması]**
+  Akifer düzeltmesinin ardından tüm proje tarandı (kaynak: `src/` · `data/` ·
+  `functions/` · `arac/`; çıktı: `dist/`): JSON-LD, mikrodata ve veri
+  dosyalarında `creator`'ın string/dizi/`@id` kaldığı yer **0**. Son istisna
+  `src/pages/basin.astro` (`#yazar` Person `@id` referansı; teknik olarak
+  geçerli) birlik sağlamak için inline Organization nesnesine çevrildi.
+  `src/pages/veri/zenodo.json.ts` içindeki `creators` **Zenodo API şeması**
+  (name/affiliation) olduğundan DEĞİŞTİRİLMEDİ. Kanıt: build 1102 · dist'te
+  `creator` biçimleri yalnız `{` (114) · string/dizi/`@id` **0** · mikrodata
+  düz-metin **0** · `itemprop="creator" itemscope` 106 dosya.
+
 ## Bitiş
 Pencere sonunda bu dosya `KARARLAR.md`'ye kapanış kaydı düşülerek arşivlenir
 veya silinir; freeze kaldırılana kadar yeni iş `SIRADAKILER.md`'ye yazılır,
