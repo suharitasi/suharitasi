@@ -68,7 +68,10 @@ const aciklama = veriVar
     <div class="akifer-ic" itemprop="dataset" itemscope itemtype="https://schema.org/Dataset">
       <meta itemprop="name" content={`${kayit.ad} akifer su tablası eğilimi`} />
       <meta itemprop="description" content={aciklama} />
-      <meta itemprop="creator" content="Su Haritası — Arslan Hukuk Bürosu" />
+      <span itemprop="creator" itemscope itemtype="https://schema.org/Organization">
+        <meta itemprop="name" content="Su Haritası" />
+        <meta itemprop="url" content="https://suharitasi.com" />
+      </span>
       {veriVar && <meta itemprop="temporalCoverage" content={kayit.aralik?.replace(' – ', '/')} />}
       {veriVar && (
         <div itemprop="variableMeasured" itemscope itemtype="https://schema.org/PropertyValue">

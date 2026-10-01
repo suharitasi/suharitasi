@@ -62,6 +62,17 @@ mesajı `[FREEZE-İSTİSNA]` ile işaretlenir ve nedeni buraya yazılır.
   (tek revert). Not: klasik "acil" kapsamı dışındadır; sahibin açık
   talimatıyla kayda geçirildi.
 
+- **2026-09-29 — [FREEZE-İSTİSNA: havza akifer Dataset.creator (mikrodata)]**
+  GSC doğrulaması, `/havzalar/kizilirmak/` sayfasındaki "Kızılırmak Havzası
+  akifer su tablası eğilimi" Dataset'inde `creator`'ı hâlâ geçersiz buldu.
+  Kaynak `src/components/HavzaSuTablasiGostergesi.astro` — bu blok
+  **mikrodata**dır (JSON-LD değil) ve düz metin `creator`
+  (`"Su Haritası — Arslan Hukuk Bürosu"`) taşıyordu. İç içe Organization
+  mikrodata'ya çevrildi (`itemprop="creator" itemscope itemtype=
+  "https://schema.org/Organization"` + `itemprop="name"/"url"`). Kapsam:
+  tek bileşen · 25 havza sayfası. Kanıt: build 1102 · dist kızılırmak'ta
+  düz-metin creator **0**, Organization span mevcut. Geri alınabilir.
+
 ## Bitiş
 Pencere sonunda bu dosya `KARARLAR.md`'ye kapanış kaydı düşülerek arşivlenir
 veya silinir; freeze kaldırılana kadar yeni iş `SIRADAKILER.md`'ye yazılır,
