@@ -46,6 +46,22 @@ mesajı `[FREEZE-İSTİSNA]` ile işaretlenir ve nedeni buraya yazılır.
   (lastCrawl 14 Eyl; düzeltme 24 Eyl + bu iş) — canlı JSON-LD temiz; bir
   sonraki Google crawl'ında temizlenecek.
 
+- **2026-09-29 — [FREEZE-İSTİSNA: Dataset.creator geçersiz nesne türü]**
+  Sahip talimatıyla GSC uyarısı giderildi. `Dataset.creator`, `#kurum`
+  düğümüne `@id` referansı yerine satır içi `Organization` nesnesi oldu:
+  `{"@type":"Organization","name":"Su Haritası","url":"https://suharitasi.com"}`.
+  Gerekçe: `#kurum` düğümünün `@type`'ı `["Organization","LegalService"]`
+  (dizi); Google `creator` hedefinde bunu geçersiz nesne türü sayıyordu.
+  Kapsam: 10 şablon, yalnız `creator` satırı (14 referans) — `src/pages/`
+  radar · kuyu-ruhsati/[il] · kuyu-kisit-sorgu · veri/gundem ·
+  veri/hikaye/baraj-doluluk · mevzuat/degisiklikler · havzalar/[slug] ·
+  su-riski-endeksi · arsiv/resmi-gazete · harita. `basin.astro`'daki
+  `#yazar` (Person) referansı geçerli olduğu için DEĞİŞTİRİLMEDİ. Kanıt:
+  `npm run build` 1102 sayfa · dist'te `#kurum` creator **0**, yeni nesne
+  **114** dosyada · radar JSON-LD yerel validator geçti · geri alınabilir
+  (tek revert). Not: klasik "acil" kapsamı dışındadır; sahibin açık
+  talimatıyla kayda geçirildi.
+
 ## Bitiş
 Pencere sonunda bu dosya `KARARLAR.md`'ye kapanış kaydı düşülerek arşivlenir
 veya silinir; freeze kaldırılana kadar yeni iş `SIRADAKILER.md`'ye yazılır,

@@ -27,7 +27,7 @@ const kok = new URL('/', Astro.site).href;
 const canonical = new URL('/veri/gundem/', Astro.site).href;
 
 const sema = [
-  { '@type': 'Dataset', name: 'Su Haritası veri gündemi', description: OZ_CEVAP, creator: { '@id': `${kok}#kurum` }, isAccessibleForFree: true, inLanguage: 'tr-TR', url: canonical },
+  { '@type': 'Dataset', name: 'Su Haritası veri gündemi', description: OZ_CEVAP, creator: { '@type': 'Organization', name: 'Su Haritası', url: 'https://suharitasi.com' }, isAccessibleForFree: true, inLanguage: 'tr-TR', url: canonical },
   { '@type': 'WebPage', '@id': `${canonical}#sayfa`, url: canonical, name: 'Veri gündemi', description: OZ_CEVAP, inLanguage: 'tr-TR', isPartOf: { '@id': `${kok}#site` } },
 ];
 ---

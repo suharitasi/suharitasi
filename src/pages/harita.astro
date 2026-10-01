@@ -94,7 +94,7 @@ const jsonLd = JSON.stringify({
       name: SITE_ADI,
       url: KOK_URL,
       inLanguage: 'tr-TR',
-      publisher: { '@id': `${KOK_URL}#kurum` },
+      publisher: { '@type': 'Organization', name: 'Su Haritası', url: 'https://suharitasi.com' },
     },
     {
       '@type': 'WebPage',
@@ -126,11 +126,11 @@ const jsonLd = JSON.stringify({
         'miktarı değildir; havza ortalamaları yarım-derece grid yaklaşığıdır.',
       inLanguage: 'tr-TR',
       isAccessibleForFree: true,
-      creator: { '@id': `${KOK_URL}#kurum` },
+      creator: { '@type': 'Organization', name: 'Su Haritası', url: 'https://suharitasi.com' },
       // K6 (27.08): WebSite düğümü DataCatalog değildir — gerçek katalog düğümüne bağlandı.
       includedInDataCatalog: { '@id': `${KOK_URL}#veri-katalogu` },
       // Publisher: bu derlenmiş veri kümesini yayımlayan kurum = portalın kendisi.
-      publisher: { '@id': `${KOK_URL}#kurum` },
+      publisher: { '@type': 'Organization', name: 'Su Haritası', url: 'https://suharitasi.com' },
       spatialCoverage: { '@type': 'Place', name: 'Türkiye' },
       temporalCoverage: `${graceIlk}/${graceSon}`,
       variableMeasured: [

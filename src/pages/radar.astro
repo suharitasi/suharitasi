@@ -47,7 +47,7 @@ const sema = [
     '@id': `${canonical}#veri`,
     name: 'Su Haritası Karar Radarı',
     description: 'Yayımlı yargı emsal kararları ve doğrulama bekleyen aday havuzu; veri tazelik künyesi.',
-    creator: { '@id': `${kok}#kurum` },
+    creator: { '@type': 'Organization', name: 'Su Haritası', url: 'https://suharitasi.com' },
     isAccessibleForFree: true,
     inLanguage: 'tr-TR',
     ...(sonKontrol ? { dateModified: sonKontrol } : {}),

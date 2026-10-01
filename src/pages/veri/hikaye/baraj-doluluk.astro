@@ -39,7 +39,7 @@ const OZ_CEVAP =
   `%${ulusalSon}. En dolu havza ${enDolu[0]?.ad} (%${yuvarla(enDolu[0]?.son)}), en düşük ${enBos[0]?.ad} (%${yuvarla(enBos[0]?.son)}). ` +
   `Veri EPİAŞ Şeffaflık Platformu’ndan günlük derlenir; bu sayfa otomatik hesaplanır.`;
 ---
-<Sayfa baslik="Baraj doluluk verisi: havza görünümü" aciklama={OZ_CEVAP} tarayiciBaslik="Baraj Doluluk 2026: Havza Bazında Görünüm" sema={[{ '@type': 'Dataset', name: 'Baraj doluluk havza görünümü', description: OZ_CEVAP, creator: { '@id': `${new URL('/', Astro.site).href}#kurum` }, isAccessibleForFree: true, inLanguage: 'tr-TR' }]}>
+<Sayfa baslik="Baraj doluluk verisi: havza görünümü" aciklama={OZ_CEVAP} tarayiciBaslik="Baraj Doluluk 2026: Havza Bazında Görünüm" sema={[{ '@type': 'Dataset', name: 'Baraj doluluk havza görünümü', description: OZ_CEVAP, creator: { '@type': 'Organization', name: 'Su Haritası', url: 'https://suharitasi.com' }, isAccessibleForFree: true, inLanguage: 'tr-TR' }]}>
   <SayfaBasi etiket="Veri hikâyesi" baslik="Baraj doluluk verisi: havza görünümü" ozet={`EPİAŞ günlük verisi · son ölçüm ${sonGun} · otomatik hesaplandı.`} ozCevap />
   <OzCevap metin={OZ_CEVAP} etiket="Özet" />
 

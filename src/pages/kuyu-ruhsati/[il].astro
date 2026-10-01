@@ -163,7 +163,7 @@ const sema = [
     // Sayfa.astro'daki graph'ta (`${kok}#yazar`). Burada yalniz REFERANS
     // verilir; ikinci, celisen url'li Person dugumu uretilmez.
     author: { '@id': `${kok}#yazar` },
-    publisher: { '@id': `${kok}#kurum` },
+    publisher: { '@type': 'Organization', name: 'Su Haritası', url: 'https://suharitasi.com' },
   },
   {
     '@type': 'FAQPage',
@@ -194,7 +194,7 @@ const sema = [
       'NASA GRACE-FO yerçekimi ölçümünden türetilen yeraltı su depolaması anomalisi eğilimi; veri kaydı il potansiyel derlemesinden okunur.',
     variableMeasured: 'Yerçekimi uydu (GRACE-FO) yeraltı su depolaması anomalisi',
     spatialCoverage: { '@type': 'Place', name: p.il },
-    creator: { '@id': `${kok}#kurum` },
+    creator: { '@type': 'Organization', name: 'Su Haritası', url: 'https://suharitasi.com' },
     isAccessibleForFree: true,
     inLanguage: 'tr-TR',
   },
@@ -203,7 +203,7 @@ const sema = [
     name: 'İdari yargı mercileri ve başvuru usulleri (su hukuku)',
     serviceType: 'İdari işlem iptali ve yürütmeyi durdurma başvurusu',
     areaServed: { '@type': 'Country', name: 'Türkiye' },
-    provider: { '@id': `${kok}#kurum` },
+    provider: { '@type': 'Organization', name: 'Su Haritası', url: 'https://suharitasi.com' },
     url: canonical,
   },
 ];
