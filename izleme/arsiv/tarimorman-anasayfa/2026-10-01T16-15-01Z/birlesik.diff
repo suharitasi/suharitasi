@@ -1,0 +1,53 @@
+--- onceki
++++ 2026-10-01T16-15-01Z
+@@ -55,6 +55,7 @@
+ İSTATİSTİK BÜLTENLERİ TAKVİMİ - 2026
+ İSTATİSTİK BÜLTENLERİ TAKVİMİ - 2025
+ İSTATİSTİK BÜLTENLERİ - 2026
++TARIMSAL AMAÇLI ÖRGÜTLER,2025
+ YAKIT BİYOETANOLÜ İSTATİSTİKLERİ, II. ÇEYREK: NİSAN-HAZİRAN 2026
+ DEVLET DESTEKLİ TARIM SİGORTASI UYGULAMALARI, I. DÖNEM: OCAK-HAZİRAN 2026
+ HAYVAN VARLIĞI İSTATİSTİKLERİ, HAZİRAN 2026
+@@ -154,12 +155,12 @@
+ MENÜ
+ ×
+ T.C. TARIM VE ORMAN BAKANLIĞI
++BAKANI YUMAKLI: “KAYNAKLARIMIZI KORUMAYA, YÖNETMEYE VE YARINLARA TAŞIMAYA DEVAM EDECEĞİZ”
+ BAKAN YUMAKLI: “TÜRKİYE, 2005'TEN BU YANA DÜNYA UN İHRACATINDA BİRİNCİLİĞİNİ KORUYOR”
+ BAKAN YUMAKLI 2028'DE TAMAMLANMASI HEDEFLENEN EDİRNE ÇÖMLEKKÖY BARAJI'NDA İNCELEMEDE BULUNDU
+ BAKAN YUMAKLI: "GIDA ARZ GÜVENLİĞİ İÇİN TARIM DİPLOMASİSİ ŞART"
+ BAKAN YUMAKLI: “GEKİS İLE HER BÜYÜKBAŞ HAYVANIMIZIN DİJİTAL BİR KİMLİĞİ OLACAK”
+ BAKAN YUMAKLI: “BU SENE 3 MİLYON 850 BİN TONLUK BİR ÜZÜM ÜRETİMİ GERÇEKLEŞMİŞ OLACAK”
+-BAKAN YUMAKLI: “YETİŞTİRİCİMİZDEN TEK KURUŞ AŞI ÜCRETİ ALMAYACAĞIZ"
+ Haber Arşivi
+ ÇİFTÇİ
+ TÜKETİCİ
+@@ -169,6 +170,9 @@
+ SU
+ Duyurular
+ Tümü
++01.10.2026
++“Tarımsal Amaçlı Örgütler, 2025” İstatistik Bülteni
++TRGM
+ 30.09.2026
+ Gübre Analizinde Yetkilendirilen Laboratuvarlar ve Referans Kuruluşları Listesi ...
+ BUGEM
+@@ -196,9 +200,6 @@
+ 07.09.2026
+ Organize Tarım Bölgelerinde Ön Tahsis ve Arsa Tahsisi Yapılacak Parsellere İlişk ...
+ TRGM
+-07.09.2026
+-Ünvan Değişikliği Sözlü Sınav Sonuçları
+-PERGEM
+ İhale İlanları
+ Tümü
+ 30.09.2026
+@@ -364,7 +365,7 @@
+ Takmak Orman Yangın İlk Müdahale Ekip Binası Açılış Töreni
+ TV Programları
+ Büyükbaş Hayvan Güvenli Elektronik Küpe Takma Programı
+-E-Hizmetler
++E-HİZMETLER
+ satis@tarimorman.gov.tr
+ sales@tarimorman.gov.tr
+ abuse@tarimorman.gov.tr
