@@ -151,10 +151,12 @@ const aciklama = veriVar
     border: 1px solid currentColor;
     color: var(--metin-soluk);
   }
-  [data-kategori="Kritik Düşüş"] { color: #C62828; }
-  [data-kategori="Dengeli"] { color: #E65100; }
-  [data-kategori="Yükseliş"] { color: #2E7D32; }
-  [data-kategori="Kısıtlı İşletme"] { color: #875518; }
+  /* 0,62rem metin — K53 metin türevleri (04.10.2026): grafik RENK'i yukarıda
+     aynen duruyor, okunabilir metin için kontrastı ≥7:1 olan türev kullanılır. */
+  [data-kategori="Kritik Düşüş"] { color: var(--risk-kirmizi-metin); }
+  [data-kategori="Dengeli"] { color: var(--risk-turuncu-metin); }
+  [data-kategori="Yükseliş"] { color: var(--risk-yesil-metin); }
+  [data-kategori="Kısıtlı İşletme"] { color: var(--risk-kahve-metin); }
   .akifer-grafik { margin: 0; }
   .akifer-grafik svg { display: block; background: var(--zemin); border: 1px solid var(--cizgi); }
   .akifer-aralik { font-family: var(--mono); font-size: 0.68rem; color: var(--metin-soluk); margin-top: 0.35rem; }

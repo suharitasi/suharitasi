@@ -8,6 +8,28 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ 04.10.2026 — SON KALEMLER: D2 KONTRAST · MEVZUAT · API LOG PANELİ (KARARLAR §53) ═══
+Rapor: `rapor/04-10-son-kalemler.md` · brief:
+`cikti/brief/2026-10-04T1715-son-kalemler.md` (brief-denetci TEMİZ).
+TAMAMLANAN (kanıtlar raporda):
+- [x] D2: risk METİN renkleri `--risk-*-metin` token'larıyla min 7,34:1
+      (grafik renkleri kimlik olarak korundu).
+- [x] `/mevzuat/` 686.930 → 231.214 bayt; tam metin araması tembel
+      `/veri/mevzuat-arama.json` ile korundu; `data-madde` 0.
+- [x] CSP `form-action`'a `https://buttondown.com` eklendi (bülten hesabı
+      bağlanınca etkin; izin listesi eşlendi).
+- [x] YENİ: API erişim günlüğü (`functions/_log.js`, yalnız /api/v1/* ve
+      /mcp POST; IP+uç+durum+zaman; 30 gün TTL) + `/api/loglar` okuma +
+      gizli/noindex `/yonetim/api-loglari/` paneli (nabız şeridi, top IP,
+      429, günlük hacim). Test: loglar-fn 16/16.
+DUR (kullanıcı/panel/hukuk kararı):
+- [ ] **DUR-1 [SERDAR-HUKUK]:** `/gizlilik/` aydınlatmaya "API erişim
+      günlüğü (IP, uç, durum kodu; 30 gün)" satırı. Metin bu işte
+      değiştirilmedi; panel kendi içinde açıkça yazar.
+- [ ] **DUR-2:** Cloudflare `SAYAC_ANAHTAR` secret eşleşmesi — gelene kadar
+      günlük yazımı no-op, panel "yapılandırılmadı" gösterir.
+- [ ] **DUR-3:** Panelin canlı görsel onayı (İş kapanış kuralı).
+
 ═══ 04.10.2026 — TAM KAPSAMLI DENETİM VE ONARIM (KARARLAR §52) ═══
 Rapor: `rapor/04-10-tam-denetim.md` · brief:
 `cikti/brief/2026-10-04T1630-tam-denetim.md` (brief-denetci TEMİZ).

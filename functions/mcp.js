@@ -16,6 +16,7 @@
 // verilir — _headers bir Function yanıtına uygulanmaz (whatsapp.js notu).
 import { rateLimit } from './_limit.js';
 import { jsonOku } from './_util.js';
+import { erisimKaydet } from './_log.js';
 
 const PROTOKOL = '2025-06-18';
 const SUNUCU = { name: 'su-haritasi', version: '1.0.0' };
@@ -353,12 +354,17 @@ export async function onRequest(context) {
   if (yontem === 'GET') return jsonGovde(kart());
   if (yontem !== 'POST') return jsonGovde(hata(null, -32600, 'yalnız GET/POST'), 405);
 
+  // Günlük yalnız POST yolunda tutulur (04.10.2026): makine istemcilerinin
+  // gerçek çağrı trafiği; GET sunucu kartı günlüklenmez.
+  const UCM = '/mcp';
+  const don = (yanit) => { erisimKaydet(context, UCM, yanit.status); return yanit; };
+
   const rl = await rateLimit(request, env, 'mcp', 60, 60);
-  if (!rl.ok) return jsonGovde(hata(null, -32000, 'çok fazla istek'), 429);
+  if (!rl.ok) return don(jsonGovde(hata(null, -32000, 'çok fazla istek'), 429));
 
   const okuma = await jsonOku(request, 50000);
   if (okuma.hata) {
-    return jsonGovde(hata(null, -32700, okuma.hata), okuma.hata === 'gövde çok büyük' ? 413 : 400);
+    return don(jsonGovde(hata(null, -32700, okuma.hata), okuma.hata === 'gövde çok büyük' ? 413 : 400));
   }
   const govde = okuma.veri;
 
@@ -366,7 +372,7 @@ export async function onRequest(context) {
   // TOPLU İSTEK SINIRI (04.10.2026 denetimi): on binlerce alt çağrı içeren
   // tek istek CPU/kota sömürüsüne açıktı; toplu istek en çok 20 öğe kabul eder.
   if (toplu && govde.length > 20) {
-    return jsonGovde(hata(null, -32600, 'toplu istek sınırı: en çok 20'), 413);
+    return don(jsonGovde(hata(null, -32600, 'toplu istek sınırı: en çok 20'), 413));
   }
   const istekler = toplu ? govde : [govde];
   const yanitlar = [];
@@ -379,6 +385,6 @@ export async function onRequest(context) {
     }
     if (y !== null) yanitlar.push(y);
   }
-  if (!yanitlar.length) return new Response(null, { status: 202, headers: cors() });
-  return jsonGovde(toplu ? yanitlar : yanitlar[0]);
+  if (!yanitlar.length) return don(new Response(null, { status: 202, headers: cors() }));
+  return don(jsonGovde(toplu ? yanitlar : yanitlar[0]));
 }

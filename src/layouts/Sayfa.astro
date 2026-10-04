@@ -324,6 +324,21 @@ const jsonLd = JSON.stringify({
     --nötr-cubuk: #e0e0e0;      /* gösterge çubuğu boş zemini — tek kullanım (havza-riski) */
     --mavi-soluk: #93AFC4;      /* koyu zeminde soluk mono etiket (en yakın --akuamarin, Δ67) */
 
+    /* — K53 (04.10.2026 · D2 KONTRAST ONARIMI): RİSK METİN TÜREVLERİ —
+       Grafik renkleri (#C62828 / #E65100 / #2E7D32 / #875518) SVG çizgi ve
+       dolguda KİMLİK olarak AYNEN kalır; 0,62–0,66rem metin kullanımı WCAG
+       AA'nın altındaydı. Ölçüm (#DFE9F0 zemin): kırmızı 4,56 · turuncu 3,08
+       · yeşil 4,16 · kahve 5,10. Metin için aynı ailelerin koyu uçları —
+       --kehribar-metin deseni; YENİ HUE İCAT EDİLMEDİ. Yeni ölçüm
+       (#DFE9F0 / #E9F0F4 / #FFFFFF): kırmızı 7,34/7,85/9,04 · turuncu
+       7,61/8,14/9,37 · yeşil 7,40/7,91/9,11 · kahve 8,21/8,78/10,11 · nötr
+       8,53/9,12/10,51 — hepsi DESIGN.md §18.2 hedefi ≥7,0 üstünde. */
+    --risk-kirmizi-metin: #8E1B1B;
+    --risk-turuncu-metin: #7C2D12;
+    --risk-yesil-metin: #14532D;
+    --risk-kahve-metin: #5D3A0F;
+    --risk-notr-metin: #2F4152;
+
     /* K4 (27.08.2026): B2B MODERN PALET KALDIRILDI. 04.08 satış/B2B
        dalgasının kalıntısıydı; o dalga KARARLAR §25 ile kaldırılmış, palet
        gözden kaçmıştı. Ölçüm: repo genelinde `var(--b2b-…)` kullanımı 0 —

@@ -1239,6 +1239,29 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §53 · SON KALEMLER: D2 KONTRAST · MEVZUAT · API LOG PANELİ (04.10.2026)
+
+- **Karar:** Sahip talimatıyla (1) risk METİN renkleri WCAG üstüne çıkarıldı,
+  (2) `/mevzuat/` gövdesi optimize edildi, (3) API erişim günlüğü + gizli
+  yönetim paneli kuruldu. Rapor: `rapor/04-10-son-kalemler.md`.
+- **D2 metin türevleri (K53 tokenları):** grafik renkleri AYNEN korundu; metin
+  için `--risk-*-metin` (`#8E1B1B` / `#7C2D12` / `#14532D` / `#5D3A0F` /
+  `#2F4152`) — min 7,34:1 (`#DFE9F0`), hedef ≥7 karşılandı.
+- **Mevzuat:** `data-madde` (449 KB DOM kopyası) kaldırıldı; tam metin araması
+  tembel `/veri/mevzuat-arama.json`'dan. HTML 686.930 → 231.214 bayt.
+- **CSP:** `form-action`'a tek tam kaynak `https://buttondown.com` (bülten;
+  hesap bağlanınca etkin) — `_headers` + csp-izinli-kaynaklar eşlendi.
+- **API günlüğü:** yalnız makine uçları (`/api/v1/*`, `/mcp` POST); IP+uç+
+  durum+zaman; KV `h:` ters-zamanlı; TTL 30 gün; form/PII uçları kapsam dışı.
+  Okuma `/api/loglar` Bearer; panel `/yonetim/api-loglari/` noindex/gizli,
+  anahtar yalnız sessionStorage'da. Test: loglar-fn 16/16.
+- **Kanıt:** build 1109 page(s) EXIT 0 · min kontrast 7,34 · data-madde 0 ·
+  sitemap/llms'te panel yok · yerel sağlık kırmızı 0 · testler 16/15/12.
+- **AÇIK:** DUR-1 `/gizlilik/` aydınlatma satırı [SERDAR-HUKUK]; DUR-2
+  `SAYAC_ANAHTAR` panel eşleşmesi; DUR-3 canlı görsel onay.
+
+---
+
 ## §52 · TAM KAPSAMLI DENETİM VE ONARIM (04.10.2026)
 
 - **Karar:** Sahip talimatıyla tüm depo (API/Functions, Python motorları,

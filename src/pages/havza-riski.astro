@@ -12,6 +12,14 @@ import { tumHavzaRiskleri, riskSemasi, gostergeAraligi, W as AGIRLIK } from '../
 import { VERI_KATALOGU } from '../data/site';
 import { TARIH } from '../data/guncellik.js';
 
+// K53 (04.10.2026 · D2): seviye ETİKETİ 0,66rem metindir → kontrastı ≥7:1
+// olan token türevi; çubuğun grafik rengi (r.renk) kimlik olarak korunur.
+const SEVIYE_METIN = {
+  yuksek: 'var(--risk-kirmizi-metin)',
+  orta: 'var(--risk-turuncu-metin)',
+  dusuk: 'var(--risk-yesil-metin)',
+};
+
 const riskler = tumHavzaRiskleri();
 const aralik = gostergeAraligi();
 const barajliHavza = riskler.filter((r) => r.detay.baraj.veriVar).length;
@@ -59,7 +67,7 @@ const sema = [{
             <span class="risk-dolgu" style={`width:${r.puan ?? 0}%;background:${r.renk}`}></span>
           </span>
           <span class="risk-puan">{r.puan ?? '—'}</span>
-          <span class="risk-seviye" style={`color:${r.renk}`}>{r.seviye === 'yuksek' ? 'YÜKSEK' : r.seviye === 'orta' ? 'ORTA' : r.seviye === 'dusuk' ? 'DÜŞÜK' : 'HESAPLANAMADI'}</span>
+          <span class="risk-seviye" style={`color:${SEVIYE_METIN[r.seviye] ?? 'var(--risk-notr-metin)'}`}>{r.seviye === 'yuksek' ? 'YÜKSEK' : r.seviye === 'orta' ? 'ORTA' : r.seviye === 'dusuk' ? 'DÜŞÜK' : 'HESAPLANAMADI'}</span>
         </a>
       ))}
     </div>

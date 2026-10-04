@@ -2,6 +2,9 @@
 // Rate-limit: IP+UA başına 60 istek/dk (_limit.js, KV). CORS açık (public API).
 // Veri kaynağı: sitenin kendi statik /veri/havzalar.json ucu (tek gerçek kaynak).
 import { rateLimit } from '../../_limit.js';
+import { erisimKaydet } from '../../_log.js';
+
+const UC = '/api/v1/havzalar';
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -28,7 +31,10 @@ export async function onRequest(context) {
   if (request.method !== 'GET' && request.method !== 'HEAD') return json({ hata: 'yalnız GET' }, 405);
 
   const rl = await rateLimit(request, env, 'v1-havzalar', 60, 60);
-  if (!rl.ok) return json({ hata: 'Hız sınırı aşıldı (60/dk). Başlıklar: Retry-After.' }, 429, { 'Retry-After': '60' });
+  if (!rl.ok) {
+    erisimKaydet(context, UC, 429);
+    return json({ hata: 'Hız sınırı aşıldı (60/dk). Başlıklar: Retry-After.' }, 429, { 'Retry-After': '60' });
+  }
 
   let veri;
   try {
@@ -36,8 +42,11 @@ export async function onRequest(context) {
     const r = await fetch(new URL('/veri/havzalar.json', url.origin), { cf: { cacheTtl: 300 } });
     veri = await r.json();
   } catch {
+    erisimKaydet(context, UC, 503);
     return json({ hata: 'kaynak veri geçici olarak okunamadı' }, 503);
   }
   const kayit = Array.isArray(veri) ? { havzalar: veri, kayit_sayisi: veri.length } : veri;
-  return json({ api: 'v1', uc: 'havzalar', kalan_kota: rl.kalan, ...kayit });
+  const yanit = json({ api: 'v1', uc: 'havzalar', kalan_kota: rl.kalan, ...kayit });
+  erisimKaydet(context, UC, yanit.status);
+  return yanit;
 }

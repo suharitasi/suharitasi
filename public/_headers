@@ -18,11 +18,13 @@
 # yapılmaz. Panel adımları: rapor/dagitim-durumu.md §5.
 # FORM-ACTION (K36, 2026-08-27) — `form-action 'self'` EKLENDİ. CSP3'te bu
 # direktif `default-src`'den TÜREMEZ; yokken enjekte edilmiş bir form her
-# yere gönderim yapabilirdi. Sitede sunucuya gönderim yapan form yok (tek
-# etkileşim `mailto:` bağlantısı), pratik etki bugün sıfır — ama yüzeyi
-# kapatır. `unsafe-inline` KALDIRILMADI: Astro'nun sayfa-içi <style> ve
-# <script type="module"> üretimi buna dayanıyor; nonce/hash'e geçiş build
-# mimarisi kararıdır (K36'nın ikinci yarısı, ayrı iş).
+# yere gönderim yapabilirdi. `unsafe-inline` KALDIRILMADI: Astro'nun sayfa-içi
+# <style> ve <script type="module"> üretimi buna dayanıyor; nonce/hash'e geçiş
+# build mimarisi kararıdır (K36'nın ikinci yarısı, ayrı iş).
+# BÜLTEN (04.10.2026): `form-action`'a TEK tam kaynak eklendi —
+# https://buttondown.com. Bulten.astro formu hesap bağlanınca bu adrese POST
+# eder (BUTTONDOWN_KULLANICI boşken form render EDİLMEZ; izin atıl durur).
+# Genişletme sınırı DAR: başka dış form hedefi eklenmez.
 # SELF-HOST FONT (13.09.2026): Google Fonts bağımlılığı kaldırıldı — fontlar
 # /fonts/ altında (arac/font-indir.py). Böylece CSP'den dış konak çıktı,
 # ziyaretçi IP'si Google'a gitmiyor (KVKK), ek DNS/TLS gecikmesi yok.
@@ -55,7 +57,7 @@
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
   X-Permitted-Cross-Domain-Policies: none
-  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://cloudflareinsights.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; frame-src 'self'; manifest-src 'self'; form-action 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://cloudflareinsights.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; frame-src 'self'; manifest-src 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests
 
 # GÖMÜLÜ WIDGET (Adım 3, 24.09.2026): /gomulu/* üçüncü taraf sitelere
 # gömülmek için tasarlandı. /* bloğundaki frame-ancestors 'none' bunu engeller;
@@ -84,3 +86,10 @@
 
 /api/*.json
   Content-Disposition: attachment
+
+# YÖNETİM PANELİ (04.10.2026): gizli/noindex; hiçbir menüden bağlantı yok.
+# X-Robots-Tag meta etiketinden bağımsız ikinci savunmadır; içerik önbelleğe
+# alınmaz (anahtar/log verisi tarayıcı ara belleğinde durmasın).
+/yonetim/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store

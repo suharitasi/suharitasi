@@ -1,0 +1,382 @@
+---
+// /yonetim/api-loglari/ — API erişim günlüğü paneli (04.10.2026).
+//
+// GİZLİ: menüde bağlantısı YOK, robots noindex, _headers X-Robots-Tag.
+// GÜVENLİK: okuma anahtarı pakete gömülmez; kullanıcı girer, yalnız
+// sessionStorage'da tutulur ve /api/loglar'a Authorization: Bearer ile
+// gönderilir (çerez yazılmaz). Tüm veri textContent ile basılır (XSS yüzeyi
+// yok). Veri: yalnız makine uçları (/api/v1/*, /mcp) — form/PII uçları
+// günlüklenmez; kayıtlar 30 gün sonra otomatik silinir.
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+---
+<Sayfa
+  baslik="API erişim günlüğü"
+  aciklama="Yalnız yönetici: API uçlarının teknik erişim günlüğü."
+  tarayiciBaslik="API erişim günlüğü (yönetici)"
+  robots="noindex, nofollow"
+>
+  <SayfaBasi
+    etiket="Yönetim"
+    baslik="API erişim günlüğü"
+    ozet="Makine uçlarının teknik trafiği: istek, hız sınırı ve durum kodları. Form ve kişisel veri uçları günlüklenmez; kayıtlar 30 gün sonra silinir."
+  />
+
+  <form class="apl-anahtar" id="apl-form" autocomplete="off">
+    <label for="apl-anahtar">Okuma anahtarı</label>
+    <div class="apl-satir">
+      <input
+        id="apl-anahtar"
+        type="password"
+        name="anahtar"
+        placeholder="SAYAC_ANAHTAR"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button type="submit">Günlüğü getir</button>
+      <label class="apl-otomatik">
+        <input type="checkbox" id="apl-otomatik" />
+        60 sn'de bir yenile
+      </label>
+    </div>
+    <p class="apl-durum" id="apl-durum" role="status" aria-live="polite">
+      Anahtar yalnız bu sekmede tutulur; sunucuya çerez yazılmaz.
+    </p>
+  </form>
+
+  <div id="apl-sonuc" hidden>
+    <p class="apl-ozet-not" id="apl-ozet-not"></p>
+
+    <div class="apl-kpilar" id="apl-kpilar"></div>
+
+    <section class="apl-bolum" aria-labelledby="apl-nabiz-baslik">
+      <h2 id="apl-nabiz-baslik">Son 60 dakika</h2>
+      <p class="apl-alt">Dakika başına istek. Kayıt yoksa çubuk çizilmez.</p>
+      <div class="apl-nabiz" id="apl-nabiz"></div>
+      <p class="apl-nabiz-eksen" id="apl-nabiz-eksen"></p>
+    </section>
+
+    <div class="apl-ikili">
+      <section class="apl-bolum" aria-labelledby="apl-ip-baslik">
+        <h2 id="apl-ip-baslik">En çok istek atan IP'ler</h2>
+        <div class="apl-kaydir">
+          <table class="apl-tablo" id="apl-ip-tablo">
+            <thead>
+              <tr><th>IP</th><th>İstek</th><th>429</th><th>Son görülme</th><th>Uçlar</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="apl-bolum" aria-labelledby="apl-uc-baslik">
+        <h2 id="apl-uc-baslik">Uç noktalar</h2>
+        <div class="apl-kaydir">
+          <table class="apl-tablo" id="apl-uc-tablo">
+            <thead>
+              <tr><th>Uç</th><th>İstek</th><th>429</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <section class="apl-bolum" aria-labelledby="apl-gun-baslik">
+      <h2 id="apl-gun-baslik">Günlük hacim (son 14 gün)</h2>
+      <div class="apl-gunler" id="apl-gunler"></div>
+    </section>
+
+    <section class="apl-bolum" aria-labelledby="apl-son-baslik">
+      <h2 id="apl-son-baslik">Son istekler</h2>
+      <div class="apl-kaydir">
+        <table class="apl-tablo" id="apl-son-tablo">
+          <thead>
+            <tr><th>Zaman</th><th>IP</th><th>Uç</th><th>Durum</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</Sayfa>
+
+<script is:inline>
+  (function () {
+    'use strict';
+    var K = 'sh_sayac_anahtar';
+    var form = document.getElementById('apl-form');
+    var girdi = document.getElementById('apl-anahtar');
+    var durum = document.getElementById('apl-durum');
+    var sonuc = document.getElementById('apl-sonuc');
+    var otomatik = document.getElementById('apl-otomatik');
+    var zamanlayici = null;
+
+    function anahtar() {
+      try { return sessionStorage.getItem(K) || ''; } catch (e) { return ''; }
+    }
+    function el(tag, sinif, metin) {
+      var e = document.createElement(tag);
+      if (sinif) e.className = sinif;
+      if (metin != null) e.textContent = metin;
+      return e;
+    }
+    function trZaman(iso) {
+      try {
+        return new Date(iso).toLocaleString('tr-TR',
+          { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'Europe/Istanbul' });
+      } catch (e) { return iso || ''; }
+    }
+    function sayi(n) { return (n || 0).toLocaleString('tr-TR'); }
+
+    function kpilar(ozet) {
+      var kap = document.getElementById('apl-kpilar');
+      kap.textContent = '';
+      var kartlar = [
+        ['Sayılan kayıt', sayi(ozet.sayilan), ozet.kesildi ? 'Tarama sınırına gelindi: kısmi' : 'Son 30 gün'],
+        ['Bugün', sayi(ozet.bugun), 'TR saatiyle'],
+        ['Son 1 saat', sayi(ozet.son_saat), 'Tüm uçlar'],
+        ['429 (limit aşımı)', sayi(ozet.red_429), 'Sayılan kayıtlar içinde'],
+      ];
+      kartlar.forEach(function (k) {
+        var d = el('div', 'apl-kpi');
+        d.appendChild(el('span', 'apl-kpi-etiket', k[0]));
+        d.appendChild(el('b', null, k[1]));
+        d.appendChild(el('span', 'apl-kpi-alt', k[2]));
+        if (k[0].indexOf('429') === 0 && ozet.red_429 > 0) d.setAttribute('data-alarm', '1');
+        kap.appendChild(d);
+      });
+    }
+
+    function nabiz(dakikalar) {
+      var kap = document.getElementById('apl-nabiz');
+      var eksen = document.getElementById('apl-nabiz-eksen');
+      kap.textContent = '';
+      if (!dakikalar.length) {
+        kap.appendChild(el('p', 'apl-bos', 'Son 60 dakikada istek yok.'));
+        eksen.textContent = '';
+        return;
+      }
+      var enCok = 1;
+      dakikalar.forEach(function (d) { if (d.adet > enCok) enCok = d.adet; });
+      dakikalar.forEach(function (d) {
+        var i = el('i');
+        i.style.height = Math.max(3, Math.round((d.adet / enCok) * 100)) + '%';
+        i.title = d.dk + ' · ' + d.adet + ' istek';
+        i.setAttribute('aria-label', d.dk + ': ' + d.adet + ' istek');
+        kap.appendChild(i);
+      });
+      eksen.textContent = dakikalar[0].dk + ' – ' + dakikalar[dakikalar.length - 1].dk + ' (TR) · tepe ' + enCok + ' istek/dk';
+    }
+
+    function tabloGovde(id, satirlar) {
+      var tb = document.getElementById(id).querySelector('tbody');
+      tb.textContent = '';
+      satirlar.forEach(function (hucreler) {
+        var tr = document.createElement('tr');
+        hucreler.forEach(function (h, i) {
+          var td = el('td', i === 0 ? null : 'apl-sayi', h);
+          if (/^4\d\d$/.test(h)) td.setAttribute('data-durum', '429');
+          tr.appendChild(td);
+        });
+        tb.appendChild(tr);
+      });
+    }
+
+    function gunler(gunlerDizi) {
+      var kap = document.getElementById('apl-gunler');
+      kap.textContent = '';
+      if (!gunlerDizi.length) {
+        kap.appendChild(el('p', 'apl-bos', 'Kayıt yok.'));
+        return;
+      }
+      var enCok = 1;
+      gunlerDizi.forEach(function (g) { if (g.toplam > enCok) enCok = g.toplam; });
+      gunlerDizi.slice().reverse().forEach(function (g) {
+        var satir = el('div', 'apl-gun');
+        satir.appendChild(el('span', 'apl-gun-etiket', g.gun));
+        var ray = el('span', 'apl-gun-ray');
+        var dolgu = el('i');
+        dolgu.style.width = Math.round((g.toplam / enCok) * 100) + '%';
+        ray.appendChild(dolgu);
+        satir.appendChild(ray);
+        satir.appendChild(el('span', 'apl-gun-deger', sayi(g.toplam) + (g.red429 ? ' · 429×' + sayi(g.red429) : '')));
+        kap.appendChild(satir);
+      });
+    }
+
+    function ciz(veri) {
+      var ozet = veri.ozet || {};
+      document.getElementById('apl-ozet-not').textContent = ozet.kesildi
+        ? 'Not: tarama sınırı (' + (veri.sinir || 500) + ' kayıt) doldu; aşağıdaki sayılar kısmi.'
+        : '';
+      kpilar(ozet);
+      nabiz(veri.dakikalar || []);
+      tabloGovde('apl-ip-tablo', (veri.ipler || []).map(function (x) {
+        var uclar = Object.keys(x.ucler || {}).map(function (u) { return u + '×' + x.ucler[u]; }).join(', ');
+        return [x.ip, sayi(x.adet), x.red429 ? sayi(x.red429) : '—', trZaman(x.son), uclar];
+      }));
+      tabloGovde('apl-uc-tablo', Object.keys(veri.ucler || {}).sort().map(function (u) {
+        return [u, sayi(veri.ucler[u].toplam), veri.ucler[u].red429 ? sayi(veri.ucler[u].red429) : '—'];
+      }));
+      gunler(veri.gunler || []);
+      tabloGovde('apl-son-tablo', (veri.son || []).map(function (k) {
+        return [trZaman(k.t), k.i || 'bilinmiyor', k.u || '', String(k.s)];
+      }));
+      sonuc.hidden = false;
+    }
+
+    function yukle() {
+      var a = anahtar();
+      if (!a) { durum.textContent = 'Okuma anahtarı gerekli.'; return; }
+      durum.textContent = 'Yükleniyor…';
+      fetch('/api/loglar', { headers: { Authorization: 'Bearer ' + a }, cache: 'no-store' })
+        .then(function (r) {
+          return r.json().then(function (g) { return { kod: r.status, govde: g }; });
+        })
+        .then(function (x) {
+          if (x.kod !== 200) {
+            durum.textContent = (x.govde && x.govde.hata)
+              ? 'Okunamadı: ' + x.govde.hata
+              : 'Okunamadı: HTTP ' + x.kod;
+            sonuc.hidden = true;
+            return;
+          }
+          ciz(x.govde);
+          durum.textContent = 'Güncellendi · ' + new Date().toLocaleTimeString('tr-TR');
+        })
+        .catch(function () { durum.textContent = 'Bağlantı hatası; tekrar deneyin.'; });
+    }
+
+    function zamanla() {
+      if (zamanlayici) { clearInterval(zamanlayici); zamanlayici = null; }
+      if (otomatik.checked && anahtar()) zamanlayici = setInterval(yukle, 60000);
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      try { sessionStorage.setItem(K, girdi.value.trim()); } catch (err) { /* özel mod */ }
+      zamanla();
+      yukle();
+    });
+    otomatik.addEventListener('change', zamanla);
+
+    if (anahtar()) { yukle(); zamanla(); } else { girdi.focus(); }
+  })();
+</script>
+
+<style>
+  .apl-kabuk { max-width: 68rem; }
+
+  .apl-anahtar {
+    border: 1px solid var(--cizgi);
+    background: var(--zemin-kart);
+    padding: 1rem 1.1rem;
+    margin: 0 0 1.6rem;
+  }
+  .apl-anahtar > label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    margin-bottom: 0.45rem;
+  }
+  .apl-satir { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+  .apl-satir input[type='password'] {
+    font: inherit;
+    min-height: 44px;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid var(--cizgi);
+    background: var(--zemin);
+    color: var(--metin);
+    min-width: 16rem;
+  }
+  .apl-satir button {
+    font: inherit;
+    font-weight: 600;
+    min-height: 44px;
+    padding: 0.5rem 1.1rem;
+    border: 1px solid var(--su-700);
+    background: var(--su-700);
+    color: #fff;
+    cursor: pointer;
+  }
+  .apl-satir button:hover { background: var(--deniz); border-color: var(--deniz); }
+  .apl-otomatik { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.84rem; color: var(--metin-soluk); }
+  .apl-durum { margin: 0.6rem 0 0; font-family: var(--mono); font-size: 0.72rem; color: var(--metin-soluk); }
+
+  .apl-ozet-not { margin: 0 0 0.6rem; font-size: 0.84rem; color: var(--risk-turuncu-metin); }
+
+  .apl-kpilar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--cizgi);
+    border: 1px solid var(--cizgi);
+    margin-bottom: 1.8rem;
+  }
+  .apl-kpi { background: var(--zemin-kart); padding: 0.9rem 1rem; }
+  .apl-kpi[data-alarm='1'] b { color: var(--risk-kirmizi-metin); }
+  .apl-kpi-etiket {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+  }
+  .apl-kpi b { display: block; font-family: var(--mono); font-size: 1.6rem; font-weight: 600; margin: 0.2rem 0 0.1rem; }
+  .apl-kpi-alt { font-size: 0.72rem; color: var(--metin-soluk); }
+
+  .apl-bolum { margin-bottom: 2rem; }
+  .apl-bolum h2 { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; margin-bottom: 0.2rem; }
+  .apl-alt { font-size: 0.8rem; color: var(--metin-soluk); margin: 0 0 0.7rem; }
+  .apl-bos { font-size: 0.85rem; color: var(--metin-soluk); font-style: italic; margin: 0.3rem 0 0; }
+
+  /* Tek ifade öğesi: 60 dakikalık nabız şeridi (hidrograf dili). */
+  .apl-nabiz {
+    display: flex;
+    align-items: flex-end;
+    gap: 1px;
+    height: 56px;
+    padding: 0.4rem 0.4rem 0;
+    background: var(--zemin-kart);
+    border: 1px solid var(--cizgi);
+    border-bottom: 2px solid var(--su-400);
+  }
+  .apl-nabiz i { flex: 1 1 0; min-width: 2px; background: var(--su-700); display: block; }
+  .apl-nabiz-eksen { margin: 0.35rem 0 0; font-family: var(--mono); font-size: 0.68rem; color: var(--metin-soluk); }
+
+  .apl-ikili { display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.6rem; }
+  .apl-kaydir { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .apl-tablo { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+  .apl-tablo th {
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    padding: 0.4rem 0.6rem;
+    border-bottom: 1px solid var(--cizgi);
+    white-space: nowrap;
+  }
+  .apl-tablo td { padding: 0.42rem 0.6rem; border-bottom: 1px solid var(--cizgi); vertical-align: top; }
+  .apl-tablo .apl-sayi { font-family: var(--mono); white-space: nowrap; }
+  .apl-tablo td[data-durum='429'] { color: var(--risk-kirmizi-metin); font-weight: 600; }
+
+  .apl-gunler { display: grid; gap: 0.35rem; }
+  .apl-gun { display: grid; grid-template-columns: 6.5rem 1fr 8rem; align-items: center; gap: 0.7rem; }
+  .apl-gun-etiket { font-family: var(--mono); font-size: 0.72rem; color: var(--metin-soluk); }
+  .apl-gun-ray { display: block; height: 12px; background: var(--cizgi); }
+  .apl-gun-ray i { display: block; height: 100%; background: var(--su-400); }
+  .apl-gun-deger { font-family: var(--mono); font-size: 0.72rem; color: var(--metin-soluk); text-align: right; }
+
+  @media (max-width: 860px) {
+    .apl-kpilar { grid-template-columns: repeat(2, 1fr); }
+    .apl-ikili { grid-template-columns: 1fr; gap: 1.2rem; }
+    .apl-gun { grid-template-columns: 5.5rem 1fr 7rem; }
+  }
+</style>

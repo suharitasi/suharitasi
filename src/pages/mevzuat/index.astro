@@ -73,7 +73,10 @@ const sema = [
       <h2>{g.kanun} <span class="mv-tur">{g.tur}</span></h2>
       <ul class="mv-liste">
         {g.liste.map((m) => (
-          <li data-madde={`${m.kanun} ${m.madde} ${m.baslik} ${m.metin}`}>
+          /* Tam metin kopyası (data-madde) 04.10.2026'da KALDIRILDI: 449 KB'lık
+             DOM şişmesiydi. Süzgeç tam metni /veri/mevzuat-arama.json'dan
+             tembel çeker; sıra aynı olduğundan eşleme indeksle yapılır. */
+          <li>
             <a href={`/mevzuat/${slug(m.kanunKisa)}/${slug(m.madde)}/`}>
               <span class="mv-madde">{m.madde}</span>
               <span class="mv-baslik">{m.baslik}</span>
