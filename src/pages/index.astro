@@ -140,6 +140,13 @@ const sahneVeri = SAHNELER.map((s) => ({
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <!-- LCP: hero ilk karesi = sahne 1 posteri -->
 <link rel="preload" as="image" href="/deneyim/video/sahne1.jpg" fetchpriority="high" />
+<!-- 04.10.2026 — CLS onarımı (md9 Lighthouse desktop 80, CLS 0,45):
+     soğuk önbellekte Manrope/Cormorant swap'ı metni yeniden dizip hero
+     sahnesini kaydırıyordu. Kritik Latin altkümeleri önden yüklenir
+     (font preload CORS gerektirir) → ilk boyamadan önce hazır olur. -->
+<link rel="preload" as="font" type="font/woff2" href="/fonts/xn7gYHE41ni1AdIRggexSg.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="/fonts/H4clBXOCl9bbnla_nHIq75u9.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="/fonts/H4cjBXOCl9bbnla_nHIq6qu_oqM.woff2" crossorigin />
 <link rel="stylesheet" href="/fonts/fonts.css" />
 <style is:global>
   /* KONTRAST ARIZASI DÜZELTMESİ (27.07): bu blok Vite ortak chunk'ına
@@ -209,6 +216,11 @@ const sahneVeri = SAHNELER.map((s) => ({
       stilsizdir — .govde iç sayfa düzeni içindir, buraya uygulanmaz;
       görünür metin ve JSON-LD değişmez (bit-eşitlik ölçümü raporda). */}
   <main id="ana-icerik" tabindex="-1">
+
+  {/* 04.10.2026 — md16 SEO "h1-yok@/": ana sayfa tek <h1> taşımıyordu.
+      Görsel tasarım değişmesin diye .sr-only (ekran okuyucuya görünür,
+      ekranda gizli) h1 eklendi; sayfa konusunu makineye bildirir. */}
+  <h1 class="sr-only">Su Haritası — Türkiye Su Verisi, Havzaları ve Su Hukuku</h1>
 
   {/* .v2-ust-akis: U2 mobil istisnasının taşıyıcısı — masaüstünde DOM
       sırası (kanıt bandı hero'dan hemen sonra), mobilde CSS order ile

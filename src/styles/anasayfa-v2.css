@@ -1145,3 +1145,41 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
   .v2-ust-akis > .v2-vitrin { order: 6; }
 }
 @media (max-width: 679px) { .v2-vitrin-izgara { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   04.10.2026 — CANLI ONARIM (sahip yetkisi, CODE-FREEZE kaldırıldı)
+   Üç kırmızının kök nedeni ve düzeltmesi burada:
+   · md16 h1-yok  → index.astro'ya .sr-only <h1> (görünür tasarım değişmez)
+   · md14 G6 S1   → 03.10 KurumsalHizmetler (.v2-kurumsal) ve TeknolojiKartlari
+                    (.v2-teknoloji) .v2-ust-akis order şemasının DIŞINDAYDI →
+                    mobilde order:0 ile en başa biniyor, dert-sorusunu ilk
+                    ekrandan (3840px) itiyordu. 24.08'deki aynı sınıf hatanın
+                    (cta-ikili) tekrarı. Sıra: vitrin 6'dan SONRA 7/8.
+   · md13 kontrast → ana sayfa span.v2-vitrin-no (koyu vurgu rengi koyu kart
+                    zemininde 1.91:1) + çıplak /feed.xml bağlantısı (tarayıcı
+                    varsayılanı 1.92:1). Renkler AA'ya çekildi.
+   ============================================================ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+@media (max-width: 1023px) {
+  .v2-ust-akis > .v2-kurumsal { order: 7; }
+  .v2-ust-akis > .v2-teknoloji { order: 8; }
+}
+.v2-vitrin-no {
+  color: #b9dcef;
+  color: color-mix(in srgb, var(--vitrin-aksan, #57bae0) 40%, #ffffff);
+}
+.v2-vitrin-bulten p a {
+  color: #bfe3f5;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

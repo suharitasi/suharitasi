@@ -11,6 +11,14 @@
 
   function guncelle() {
     var slug = sec.value;
+    // 04.10.2026 onarımı (md5 konsol): varsayılan/boş il seçiminde önizleme
+    // '/gomulu//' → kök sayfaya düşüyor, frame-ancestors 'none' onu çerçevelemeyi
+    // engelliyor ve konsola hata basıyordu. Boş slug'da önizleme YÜKLENMEZ.
+    if (!slug) {
+      if (kod) kod.value = '';
+      if (onizleme) onizleme.removeAttribute('src');
+      return;
+    }
     kod.value =
       '<iframe src="' + TABAN + '/gomulu/' + slug + '/" width="360" height="220" ' +
       'style="border:1px solid #cccccc" title="İlinizin su durumu — Su Haritası" ' +
