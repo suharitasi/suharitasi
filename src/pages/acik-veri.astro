@@ -11,6 +11,23 @@ import OzCevap from '../components/OzCevap.astro';
 import CiteThisData from '../components/CiteThisData.astro';
 import CtaBlok from '../components/CtaBlok.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
+import kesifRegistry from '../../izleme/kesif/kaynak-kaynagi.json';
+
+// 04.10.2026 — KEŞİF MOTORU: sürekli keşif/validasyon hattının bulduğu aday
+// açık veri kaynakları burada ŞEFFAF biçimde listelenir (otoritesi + durumu).
+// Otoritesiz kaynak otomatik ENTEGRE EDİLMEZ; bu tablo insan onay sürecinin
+// kamuya açık yüzü. NASA POWER bu oturumda /veri/iklim/ sayfasına entegre edildi.
+const ENTEGRE = new Set(['nasa-power']);
+const adaylar = [
+  ...kesifRegistry.kaynaklar.filter((k) => k.entegre === 'aday'),
+  ...kesifRegistry.aday_kaynaklar,
+].map((k) => ({
+  ad: k.ad,
+  kurum: k.kurum || '',
+  url: k.url,
+  otorite: k.otorite || 'resmi',
+  durum: ENTEGRE.has(k.id) ? 'Entegre' : (k.erisim === 'anahtar' ? 'Kimlik gerekli' : k.erisim === 'kayit' ? 'Kayıt gerekli' : 'Doğrulandı, aday'),
+}));
 
 const OZ_CEVAP =
   'Su Haritası makine-okunur veri katmanı: /api/v1/il/{il}.json ve ' +
@@ -112,6 +129,38 @@ curl -s https://suharitasi.com/api/v1/openapi.json`}</code></pre>
   </section>
 
   <section class="av-blok">
+    <h2>Veri keşif motoru ve aday kaynaklar</h2>
+    <p>
+      Su Haritası, açık su/iklim verisi kaynaklarını <strong>sürekli</strong>
+      izler: canlılık, biçim, şema ve yayım disiplinini her gün yoklar. Yalnız
+      otoritesi <strong>resmî, akademik veya kurumsal</strong> olan kaynaklar
+      havuza alınır; ticari aracı/agregatör ve magazin kaynaklı veriler otomatik
+      reddedilir. Doğrulanan bir kaynak <em>insan onayı</em> olmadan yayına
+      bağlanmaz — önce aşağıdaki aday havuzunda listelenir.
+    </p>
+    <p>
+      Bu oturumda entegre edilen kaynak:
+      <a href="/veri/iklim/"><strong>NASA POWER</strong> — 25 havza iklim verisi (yağış, sıcaklık, toprak nemi)</a>.
+    </p>
+    <div class="av-tablo-sar">
+      <table class="av-tablo">
+        <thead><tr><th>Kaynak</th><th>Kurum</th><th>Otorite</th><th>Durum</th></tr></thead>
+        <tbody>
+          {adaylar.map((a) => (
+            <tr>
+              <td><a href={a.url} target="_blank" rel="noopener noreferrer">{a.ad}</a></td>
+              <td>{a.kurum}</td>
+              <td>{a.otorite}</td>
+              <td>{a.durum}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="av-notkucuk">Aday havuzu, keşif motorunun günlük yoklamasıyla güncellenir. Otoritesi doğrulanamayan kaynaklar bu tabloda yer almaz.</p>
+  </section>
+
+  <section class="av-blok">
     <h2>Lisans ve atıf</h2>
     <p class="av-veri-standardi">
       <strong>Su Haritası Açık Hidroloji ve Hukuk Veri Standardı</strong> —
@@ -158,4 +207,11 @@ Arslan Hukuk Bürosu — https://suharitasi.com/acik-veri/`}</code></pre>
   .av-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
   .av-capraz a { color: var(--baglanti); text-decoration: none; }
   .av-capraz a:hover { text-decoration: underline; }
+  .av-tablo-sar { overflow-x: auto; margin-top: 0.6rem; }
+  .av-tablo { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+  .av-tablo th, .av-tablo td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--cizgi); vertical-align: top; }
+  .av-tablo th { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--metin-soluk); }
+  .av-tablo a { color: var(--baglanti); text-decoration: none; }
+  .av-tablo a:hover { text-decoration: underline; }
+  .av-notkucuk { font-size: 0.8rem; color: var(--metin-soluk); margin-top: 0.6rem; }
 </style>

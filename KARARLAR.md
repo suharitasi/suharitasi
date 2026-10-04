@@ -1156,6 +1156,27 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §48 · YAYINA ALIM: KIRMIZI ONARIMLAR + NASA POWER + ZENODO DOI + HARİTA (04.10.2026)
+
+- **5 KIRMIZI kökten çözüldü** (md5 konsol /basin/ iframe; md13 kontrast
+  vitrin-no+feed bağlantısı → a11y 100; md14 G6 S1 order hatası + rebaseline;
+  md9 Lighthouse desktop 80→100 font-preload ile CLS 0; md16 h1-yok → sr-only h1).
+- **NASA POWER entegre edildi:** `arac/kesif/nasa-power-cek.mjs` 25 havza için
+  gerçek iklim verisi çeker (kamu malı, anahtarsız) → `data/canli/nasa-power.json`
+  → `/veri/iklim/` sayfası (Dataset JSON-LD + DOI + SVG choropleth harita).
+  Otorite filtresinin ilk somut entegrasyonu; aday kaynaklar `/acik-veri/`de
+  şeffaf listelenir.
+- **Zenodo DOI bağlandı:** `10.5281/zenodo.23002678` GERÇEK ve çözülür
+  (27.09.2026 kaydı). `src/data/doi.js` DOI=null yanlışını düzeltti; basın kiti,
+  BibTeX/RIS, zenodo.json ve Dataset şeması artık DOI taşıyor.
+- **Harita katmanı:** 25 havza choropleth (DSİ geometrisi + NASA POWER yağışı),
+  `/veri/iklim/`de sunucu tarafında üretilir. `/harita/` brute-hero tasarımı
+  (h1 yokluğu bilinçli) KORUNDU; ayrı bir statik katman eklendi.
+- **Kanıt:** build 1103 sayfa · yerel Lighthouse masaüstü PERF 100/A11Y 100 ·
+  `--hizli` konsol 0 hata · zenodo.json doi alanı dolu · iklim Dataset DOI'li.
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek

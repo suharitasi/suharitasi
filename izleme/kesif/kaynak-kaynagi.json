@@ -325,7 +325,7 @@
       "periyot": "gunluk",
       "tip": "json",
       "erisim": "acik",
-      "entegre": "aday",
+      "entegre": "mevcut",
       "parametreler": [
         "yagis",
         "toprak_nemi",
@@ -333,8 +333,8 @@
         "buharlasma",
         "kuraklik_gostergesi"
       ],
-      "kanit": "https://power.larc.nasa.gov/docs/services/api/ (HEAD 200, 2026-10-04)",
-      "not": "Anahtarsız REST/JSON, nokta & bölge. CHIRPS/ERA5'i bağımsız doğrular; tarımsal kuraklık için potansiyel."
+      "kanit": "arac/kesif/nasa-power-cek.mjs · data/canli/nasa-power.json · /veri/iklim/ (Dataset JSON-LD)",
+      "not": "ENTEGRE (04.10.2026): 25 havza bbox merkezi iklim verisi (yağış/sıcaklık/toprak nemi). Kamu malı, anahtarsız. /veri/iklim/ sayfası + Dataset şeması + choropleth harita."
     },
     {
       "id": "nasa-gesdisc-gldas",
