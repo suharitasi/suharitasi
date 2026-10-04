@@ -1,6 +1,6 @@
 # Su Verisi — Geriye Dönük Eksik-Denetim Raporu
 
-Üretim (UTC): **2026-10-04T12:28:04Z**
+Üretim (UTC): **2026-10-04T12:32:54Z**
 
 Kaynak kataloğu: **33** · kapsanan: **15** · eksik/açık: **3** · açık yayımı yok: **2** · aday: **13** · kayıt dışı kurumsal host: **8**
 

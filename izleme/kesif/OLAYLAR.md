@@ -1,5 +1,7 @@
 # Kaynak Keşif — OLAYLAR (en yeni üstte)
 
+- 2026-10-04T12:32:54Z | grace-mascon | yeni-veri | Last-Modified Sun, 04 Oct 2026 08:09:24 GMT → Sun, 04 Oct 2026 12:32:55 GMT
+- 2026-10-04T12:32:54Z | wri-aqueduct | yeni-veri | Last-Modified Sun, 04 Oct 2026 11:30:02 GMT → Sun, 04 Oct 2026 12:30:15 GMT
 - 2026-10-04T12:28:04Z | global-dam-watch | yeni-veri | içerik özeti değişti (Last-Modified yok)
 - 2026-10-04T12:28:04Z | igrac-ggmn | yeni-veri | içerik özeti değişti (Last-Modified yok)
 - 2026-10-04T12:24:30Z | esa-cci-toprak | erisilemiyor | HTTP 503

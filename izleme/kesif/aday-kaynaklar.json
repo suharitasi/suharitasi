@@ -73,7 +73,7 @@
    "tip": "download",
    "oneri": "ENTEGRASYON (insan onayı)",
    "ilk_gorulme": "2026-10-04T12:18:01Z",
-   "son_durum": "saglikli",
+   "son_durum": "yeni-veri",
    "parametreler": [
     "su_stresi",
     "sel_riski",
@@ -276,5 +276,5 @@
    "not": ""
   }
  },
- "guncelleme": "2026-10-04T12:28:04Z"
+ "guncelleme": "2026-10-04T12:32:54Z"
 }
