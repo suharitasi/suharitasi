@@ -11,7 +11,10 @@
 import { SAYILAR } from './kapi.js';
 import havzaVeri from '../../data/havza-veri.json';
 
-export const HERO_H1 = "Türkiye'nin su verisi ve su hukuku tek haritada";
+// 04.10.2026 (Faz 4 vitrin, sahip talimatı): H1 özellik değil FAYDA odaklı.
+// Kanıt cümlesi HERO_ALT'ta kalır (dört sayı bekçisi korunur); H1 kısa ve
+// harekete geçiricidir. İddia yok: "kanıt" = sayfa altındaki kaynaklı veri.
+export const HERO_H1 = 'Su riskini önceden görün, kararlarınızı kanıta dayandırın';
 
 // Meta description (≤160 karakter; hero alt satırından ayrıdır ki title/desc
 // ölçüleri sınırda kalmasın). SEO denetimi title/desc uzunluğunu ölçer.

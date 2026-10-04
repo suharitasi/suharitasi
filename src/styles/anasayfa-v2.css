@@ -1173,6 +1173,8 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
 @media (max-width: 1023px) {
   .v2-ust-akis > .v2-kurumsal { order: 7; }
   .v2-ust-akis > .v2-teknoloji { order: 8; }
+  /* 04.10.2026: Değer teklifi kartları en sonda (S1 dert sorusu ilk ekranda). */
+  .v2-ust-akis > .v2-deger { order: 9; }
 }
 .v2-vitrin-no {
   color: #b9dcef;

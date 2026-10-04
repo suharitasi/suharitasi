@@ -90,6 +90,17 @@ const DAMLALAR = Array.from({ length: 90 }, (_, i) => {
         <span><strong>Kuyu İzin & Ruhsat Sihirbazı</strong> <small style="opacity:0.75; font-size:0.72rem;">(167 Sayılı Kanun)</small></span>
       </a>
     </div>
+
+    {/* 04.10.2026 (Faz 4, CRO): hero'nun ÖZGÜN tasarımındaki H1 + alt kanıt
+        satırı + çift CTA geri getirildi (bileşen zaten import ediyordu ama
+        render etmiyordu; başlık sr-only'de kalmıştı). Fayda odaklı H1 +
+        doğrulanmış sayı kanıtı + birincil/ikincil eylem hiyerarşisi. */}
+    <h1 class="v2-hook">{HERO_H1}</h1>
+    <p class="v2-hook-alt">{HERO_ALT}</p>
+    <div class="v2-hook-cta">
+      <a class="v2-hook-birincil" href="/veri/">Verileri keşfet</a>
+      <a class="v2-hook-ikincil" href="/api-dokumantasyonu/">Geliştiriciler için API</a>
+    </div>
   </div>
 
   <!-- 2) Film şeridi: 6 sahnenin BİRLEŞİK hali (poster, K1) -->
@@ -307,6 +318,55 @@ const DAMLALAR = Array.from({ length: 90 }, (_, i) => {
 </script>
 
 <style>
+  /* 04.10.2026 (Faz 4, CRO): fayda H1 + kanıt satırı + çift CTA. */
+  .v2-hook {
+    margin: 0.4rem 0 0;
+    font-family: var(--serif, Georgia, serif);
+    font-weight: 500;
+    font-size: clamp(1.75rem, 3.6vw, 2.7rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: #f4f8fb;
+    max-width: 22ch;
+    text-wrap: balance;
+  }
+  .v2-hook-alt {
+    margin: 0.7rem 0 0;
+    max-width: 62ch;
+    font-size: clamp(0.95rem, 1.3vw, 1.06rem);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .v2-hook-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.3rem;
+  }
+  .v2-hook-birincil,
+  .v2-hook-ikincil {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0.72rem 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 180ms var(--e-akinti, ease), border-color 180ms var(--e-akinti, ease);
+  }
+  .v2-hook-birincil { background: #38bdf8; color: #04121f; }
+  .v2-hook-birincil:hover { background: #7dd3fc; }
+  .v2-hook-ikincil {
+    background: transparent;
+    color: #e2f4ff;
+    border: 1px solid rgba(125, 211, 252, 0.6);
+  }
+  .v2-hook-ikincil:hover { background: rgba(56, 189, 248, 0.12); }
+  @media (prefers-reduced-motion: reduce) {
+    .v2-hook-birincil, .v2-hook-ikincil { transition: none; }
+  }
+
   /* 17 Skills Marketing & CRO: Above-The-Fold Otorite Bandı */
   .v2-otorite-bandi {
     display: flex;

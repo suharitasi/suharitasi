@@ -17,6 +17,7 @@ import AltBilgi from '../components/AltBilgi.astro';
 import PaylasilanMenu from '../components/PaylasilanMenu.astro';
 import Hero from '../components/anasayfa/Hero.astro';
 import HizmetVitrini from '../components/anasayfa/HizmetVitrini.astro';
+import DegerTeklifi from '../components/anasayfa/DegerTeklifi.astro';
 import KurumsalHizmetler from '../components/anasayfa/KurumsalHizmetler.astro';
 import MobilSorular from '../components/anasayfa/MobilSorular.astro';
 import TeknolojiKartlari from '../components/anasayfa/TeknolojiKartlari.astro';
@@ -217,10 +218,8 @@ const sahneVeri = SAHNELER.map((s) => ({
       görünür metin ve JSON-LD değişmez (bit-eşitlik ölçümü raporda). */}
   <main id="ana-icerik" tabindex="-1">
 
-  {/* 04.10.2026 — md16 SEO "h1-yok@/": ana sayfa tek <h1> taşımıyordu.
-      Görsel tasarım değişmesin diye .sr-only (ekran okuyucuya görünür,
-      ekranda gizli) h1 eklendi; sayfa konusunu makineye bildirir. */}
-  <h1 class="sr-only">Su Haritası — Türkiye Su Verisi, Havzaları ve Su Hukuku</h1>
+  {/* 04.10.2026 (Faz 4): H1 artık Hero içinde GÖRÜNÜR (fayda odaklı). Burada
+      ikinci bir h1 yok; md16 h1 kontrolü Hero'daki tek h1 ile karşılanır. */}
 
   {/* .v2-ust-akis: U2 mobil istisnasının taşıyıcısı — masaüstünde DOM
       sırası (kanıt bandı hero'dan hemen sonra), mobilde CSS order ile
@@ -234,6 +233,10 @@ const sahneVeri = SAHNELER.map((s) => ({
       dert sorusundan sonra (ilk ekran/S1 korunur). Metin+sayılar
       src/data/hizmet-vitrini.js'te veriden build-time doğrulanır. */}
   <HizmetVitrini />
+
+  {/* 04.10.2026 — Değer teklifi (3 kart: projeksiyon / alarm / otorite).
+      Mobilde .v2-deger order:9 (diğer bölümlerden sonra) — S1 korunur. */}
+  <DegerTeklifi />
 
   {/* 03.10.2026 — Kurumsal B2B bandı (API / Karar Motoru / DOI veri seti /
       Mevzuat akışı). Hizmet vitrininin hemen ardında; B2B alıcı ilk ekranda

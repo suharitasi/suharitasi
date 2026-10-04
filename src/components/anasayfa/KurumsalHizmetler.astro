@@ -48,6 +48,24 @@ const HIZMETLER = [
   },
 ];
 
+// TERMINAL ÖRNEĞİ (04.10.2026, CRO/neuromarketing): ürünün KULLANIMA HAZIR
+// olduğu hissini veren, kopyala-çalıştır hızlı başlangıç. Değerler CANLI
+// API'den doğrulandı (25 havza, api:v1); uydurma sayı yok. Sayı disiplini:
+// 25 = havza-veri.json havza sayısı (build'de aşağıda assert edilir).
+import havzaVeri from '../../../data/havza-veri.json';
+const HAVZA_SAYISI = havzaVeri.havzalar.length;
+const TERMINAL =
+  `<span class="v2-kur-yorum"># Kimlik doğrulama yok · tek istek · saniyeler içinde entegrasyon</span>\n` +
+  `<span class="v2-kur-im">$</span> curl -s https://suharitasi.com/api/v1/havzalar | jq '{api, kayit_sayisi}'\n` +
+  `<span class="v2-kur-cikti">{ "api": "v1", "kayit_sayisi": ${HAVZA_SAYISI} }</span>\n` +
+  `<span class="v2-kur-im">$</span> curl -s https://suharitasi.com/api/v1/kuraklik | jq '.havzalar | keys | length'\n` +
+  `<span class="v2-kur-cikti">${HAVZA_SAYISI}</span>`;
+
+// Ölçülen sayı ile etiketin çelişmemesi için tek kaynak bekçisi.
+if (HAVZA_SAYISI !== 25) {
+  throw new Error(`KurumsalHizmetler: terminal örneği 25 havza varsayıyor, veri ${HAVZA_SAYISI} (güncelle).`);
+}
+
 // Elle çizilmiş inline SVG (paket yok). viewBox 24; çizgi ikonlar.
 const IKONLAR = {
   api:
@@ -67,9 +85,10 @@ const IKONLAR = {
       <p class="v2-kur-kicker">Kurumsal Hizmetler</p>
       <h2>Kurumlar için veri, API ve karar altyapısı</h2>
       <p class="v2-kur-intro">
-        Yatırım, tarım, değerleme ve hukuk ekipleri için DSİ uyumlu
+        Zaman kazanın: haftalarca veri toplamak yerine <strong>tek istekle</strong>
+        üretime geçin. Yatırım, tarım, değerleme ve hukuk ekipleri için DSİ uyumlu
         hidrojeolojik veri, açık API, tescilli veri seti ve mevzuat akışı tek
-        çatıda. Tüm veri kaynağı künyeli; makine-okunur uç noktalar CC BY 4.0.
+        çatıda. Kimlik doğrulama yok; makine-okunur uçlar CC BY 4.0.
       </p>
     </div>
 
@@ -89,8 +108,25 @@ const IKONLAR = {
     </div>
 
     <div class="v2-kur-cta">
-      <a class="v2-kur-dugme" href="/acik-veri/">API Dokümantasyonu</a>
+      <a class="v2-kur-dugme" href="/api-dokumantasyonu/">API Dokümantasyonu</a>
       <a class="v2-kur-dugme v2-kur-dugme-ikincil" href="/#iletisim">Kurumsal İletişim</a>
+    </div>
+
+    {/* Terminal örneği + güven etiketleri (Faz 4, CRO). */}
+    <div class="v2-kur-kanit">
+      <div class="v2-kur-terminal" role="img" aria-label="API hızlı başlangıç: iki curl isteği ve JSON yanıtları">
+        <div class="v2-kur-terminal-ust" aria-hidden="true">
+          <span class="v2-kur-nokta"></span><span class="v2-kur-nokta"></span><span class="v2-kur-nokta"></span>
+          <span class="v2-kur-terminal-ad">hızlı başlangıç</span>
+        </div>
+        <pre class="v2-kur-kod"><code set:html={TERMINAL}></code></pre>
+      </div>
+      <ul class="v2-kur-guven" aria-label="Güven ve uyumluluk etiketleri">
+        <li><strong>Zenodo DOI</strong><span>10.5281/zenodo.23002678</span></li>
+        <li><strong>Schema.org Dataset</strong><span>Google Dataset Search'e uygun işaretleme</span></li>
+        <li><strong>CC BY 4.0</strong><span>Açık veri lisansı</span></li>
+        <li><strong>OpenAPI 3.1</strong><span>Makine-okunur şema</span></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -206,6 +242,64 @@ const IKONLAR = {
     border: 1px solid rgba(125, 211, 252, 0.6);
   }
   .v2-kur-dugme-ikincil:hover { background: rgba(56, 189, 248, 0.12); }
+
+  /* Terminal + güven etiketleri (04.10.2026, CRO). */
+  .v2-kur-kanit {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+    align-items: start;
+  }
+  @media (max-width: 859px) { .v2-kur-kanit { grid-template-columns: 1fr; } }
+  .v2-kur-terminal {
+    background: #040c16;
+    border: 1px solid rgba(125, 211, 252, 0.28);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .v2-kur-terminal-ust {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 0.8rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .v2-kur-nokta { width: 9px; height: 9px; border-radius: 50%; background: #334155; }
+  .v2-kur-terminal-ad {
+    margin-left: 0.5rem;
+    font-family: var(--mono, monospace);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .v2-kur-kod {
+    margin: 0;
+    padding: 0.9rem 1rem;
+    overflow-x: auto;
+    font-family: var(--mono, monospace);
+    font-size: 0.74rem;
+    line-height: 1.8;
+    color: #dbeafe;
+    white-space: pre;
+  }
+  .v2-kur-yorum { color: #94a3b8; }
+  .v2-kur-im { color: #4ade80; }
+  .v2-kur-cikti { color: #7dd3fc; }
+  .v2-kur-guven { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+  .v2-kur-guven li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.7rem 0.9rem;
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(125, 211, 252, 0.25);
+    border-radius: 8px;
+  }
+  .v2-kur-guven strong { font-size: 0.85rem; color: #fff; }
+  .v2-kur-guven span { font-size: 0.78rem; color: rgba(255, 255, 255, 0.75); }
 
   @media (prefers-reduced-motion: reduce) {
     .v2-kur-kart, .v2-kur-dugme { transition: none; }
