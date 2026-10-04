@@ -1239,6 +1239,31 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §52 · TAM KAPSAMLI DENETİM VE ONARIM (04.10.2026)
+
+- **Karar:** Sahip talimatıyla tüm depo (API/Functions, Python motorları,
+  ön yüz, shell/cron/altyapı) bağımsız denetimlerle tarandı; doğrulanan
+  açıklar aynı gün onarıldı. Rapor: `rapor/04-10-tam-denetim.md`.
+- **Acil:** cron'un exec edemediği 3 betik (`ekosistem/keşif/mevzuat-radar`,
+  mod 100644) ilk koşudan ~24 dk önce `chmod +x` ile kurtarıldı (78df474).
+- **Veri bütünlüğü:** WhatsApp sayacı ile parsel talebi `t:` öneki
+  çakışması → talep `p:` + okuma yolu (`/olay` + `temas-sayac --parsel`);
+  ortak atomik JSON yazıcı (`arac/yaz_atomik.py`); alarm durumu yalnız
+  başarılı gönderimde güncellenir; grace push arızası artık exit≠0.
+- **Güvenlik:** sorgu dizesi anahtar taşıması kaldırıldı; gövde boyut sınırı
+  + kontrol karakteri arındırması (`functions/_util.js`); MCP toplu istek
+  sınırı; TLS doğrulaması mevzuat/font hattında açıldı (canlı 200 kanıtlı).
+- **Ön yüz:** 31 sayfada çift öz-cevap kaldırıldı; `/en/` lang=en; tablo
+  taşmaları; 3 ölü dosya + 22 ölü CSS sınıfı silindi.
+- **Kanıt:** build 1108 · whatsapp-fn 15/15 · mcp-fn 12/12 · yerel
+  site-saglik --hizli kırmızı 0 · dist çift doc-abstract 0 · crontab yedekli.
+- **Bilinçli kabul:** KV sayaç yarışı (kaba abuse freni tasarımı) ve DaaS
+  CORS `*` (public veri API'si) değiştirilmedi; gerekçeler raporda.
+- **AÇIK OPERATÖR:** `SAYAC_ANAHTAR` panel eşleşmesi (KV köprüsü) hâlâ
+  kullanıcı adımı; DUR listesi rapor §6.
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek

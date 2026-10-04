@@ -8,6 +8,34 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ 04.10.2026 — TAM KAPSAMLI DENETİM VE ONARIM (KARARLAR §52) ═══
+Rapor: `rapor/04-10-tam-denetim.md` · brief:
+`cikti/brief/2026-10-04T1630-tam-denetim.md` (brief-denetci TEMİZ).
+TAMAMLANAN (ayrıntı + kanıt raporda):
+- [x] Acil: cron exec izinleri (ekosistem/keşif/mevzuat-radar) — ilk koşu
+      kurtarıldı.
+- [x] KV önek çakışması (whatsapp `t:` ↔ talep) + parsel okuma yolu
+      (`/olay` parseller + `temas-sayac.sh --parsel`) + falsifikasyon testi.
+- [x] Sorgu-dizesi anahtar sızıntısı kaldırıldı; gövde sınırı + kontrol
+      karakteri arındırması; MCP toplu istek sınırı; rate-limit fail-open.
+- [x] Atomik JSON yazıcı (yaz_atomik.py) 6 üretim noktasına bağlandı;
+      alarm durumu başarısız gönderimde kilitlenmiyor.
+- [x] Push/commit teyidi (grace, mevzuat-radar, ekosistem) + yargı aylık
+      sarmalayıcı + crontab kaydı.
+- [x] TLS doğrulaması (mevzuat×2, font-indir) — canlı 200 kanıtlı.
+- [x] Ön yüz: 31 çift öz-cevap, /en lang, tablo taşması, console.log,
+      3 ölü dosya + 22 ölü CSS sınıfı; ölçüm: build 1108, yerel sağlık
+      kırmızı 0, dist çift doc-abstract 0.
+DUR (kullanıcı/panel kararı):
+- [ ] Palet/kontrast D2 (risk renkleri 0,62rem, ~3,08:1) — görsel kimlik.
+- [ ] `SAYAC_ANAHTAR` panel eşleşmesi → KV okuma köprüsü canlanır (Modül 3,
+      /olay, /takip). Kod hazır.
+- [ ] `/mevzuat/` 649 KB gövde optimizasyonu (data-madde ikinci kopya) —
+      ölçüm sonrası ayrı UX kararı.
+- [ ] Bülten açılırsa `form-action 'self'` CSP kararı (raporda §6/4).
+KALAN İŞ (2. dalga; rapor §7): diğer atomik yazımlar, log tavanları,
+ölü Python betik arşivi, rg-nobetci şema denetimi.
+
 ═══ 24.09.2026 — ÜRÜN PROTOKOLÜ Adım 6: DOĞRULAMA & KAPANIŞ ═══
 DURUM: Protokol Adım 1-5 uygulandı ve son kez doğrulandı. Ölçümler (yerel
 `arac/dist-sun.mjs`, commit a387cf9 + arşiv optimizasyonu):
