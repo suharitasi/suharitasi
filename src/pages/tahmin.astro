@@ -23,10 +23,10 @@ const azalan = graceVar
   .slice(0, 6);
 
 const OZ_CEVAP =
-  `İstatistiksel projeksiyon (ölçüm değil): ${graceVar.length} havza için GRACE uydu ` +
-  `verisinden 6 aylık su depolama eğilimi, ${barajVar.length} havza için baraj ` +
-  `doluluğunda 60 günlük kısa vadeli momentum. Yöntem mevsimsel ayrıştırma + OLS ` +
-  `trend + Mann-Kendall; her değer tahmin aralığıyla birlikte verilir.`;
+  `Bu sayfa ölçüm değil, istatistiksel tahmindir: ${graceVar.length} havza için ` +
+  `uydu ölçümlerine dayalı 6 aylık su değişimi, ${barajVar.length} havza için son ` +
+  `60 günün hızına göre baraj doluluğunun 30 gün sonraki tahmini. Her değer olası ` +
+  `alt–üst bantla verilir; gerçekleşme garanti edilmez.`;
 
 const sema = [
   {
@@ -56,14 +56,14 @@ const isaret = (v: number) => (v > 0 ? '+' : '');
   metaAciklamaHam="25 havzanın 6 aylık su depolama ve baraj doluluğu projeksiyonu; her değer olası bant ve kaynağıyla. Ölçüm değil, istatistiksel tahmindir."
   sema={sema}
 >
-  <SayfaBasi etiket="Tahminsel analitik" baslik="Havza su projeksiyonu: 6 aylık istatistiksel tahmin" ozet={`${tahmin.havza_sayisi} havza · GRACE + baraj · yöntem: mevsimsel ayrıştırma + OLS trend + Mann-Kendall (terimlerin sade karşılığı aşağıda).`} />
+  <SayfaBasi etiket="Tahminsel analitik" baslik="Havza su projeksiyonu: 6 aylık istatistiksel tahmin" ozet={`${tahmin.havza_sayisi} havza · uydu su ölçümü + baraj doluluğu · her sayı geçmiş veriden hesaplanan tahmindir; sade karşılıklar sayfada.`} />
   <OzCevap metin={OZ_CEVAP} etiket="Özet" />
 
   <p class="th-uyari" role="note">
     <strong>Bu sayfa ölçüm değil, istatistiksel tahmindir.</strong> Değerler geçmiş
     gözlemlere dayanan model çıktısıdır ve gerçekleşmesi garanti edilmez. Her satır
     tahmin aralığıyla (80/95%) verilir; resmî bir tahmin veya uyarı değildir.
-    Kaynak veriler: NASA GRACE (aylık), EPİAŞ baraj doluluğu (günlük).
+    Kaynak veriler: NASA'nın yerçekimi uydu ölçümleri (aylık), EPİAŞ baraj dolulukları (günlük).
   </p>
 
   <section class="th-terimler" aria-labelledby="th-terim-baslik">
@@ -75,11 +75,11 @@ const isaret = (v: number) => (v > 0 ? '+' : '');
       </div>
       <div>
         <dt>OLS trend (cm/ay · puan/gün)</dt>
-        <dd>Geçmiş değerlere en uygun düz çizgi. "Ayda kaç cm" ya da "günde kaç puan" değiştiğini söyler; negatif = azalış.</dd>
+        <dd>Geçmiş değerlere en uygun düz çizgi. "Ayda kaç cm" ya da "günde kaç puan" değiştiğini söyler; negatif = azalış. Tablodaki "Aylık değişim" ve "Günlük değişim" sütunları bu çizginin eğimidir.</dd>
       </div>
       <div>
         <dt>Mann-Kendall (MK)</dt>
-        <dd>Bu eğilimin tesadüfi dalgalanma değil gerçek bir yön olduğunu sınayan istatistiksel test. "Anlamlı: evet", tesadüf olma olasılığının düşük olduğu anlamına gelir.</dd>
+        <dd>Bu eğilimin tesadüfi dalgalanma değil gerçek bir yön olduğunu sınayan istatistiksel test. "Anlamlı: evet", tesadüf olma olasılığının düşük olduğu anlamına gelir. Tablodaki "Kesin değişim mi?" sütunu bu testin sonucudur.</dd>
       </div>
       <div>
         <dt>Tahmin aralığı (80% / 95%)</dt>
@@ -89,15 +89,15 @@ const isaret = (v: number) => (v > 0 ? '+' : '');
   </section>
 
   <section class="th-bolum">
-    <h2>En hızlı azalan 6 havza — su depolama eğilimi (GRACE)</h2>
-    <p class="th-not">Mevsimsellikten arındırılmış aylık eğilim (cm/ay). Negatif = depolama azalıyor. MK = Mann-Kendall anlamlılığı (p&lt;0,05). Yani: havzanın toplam suyu son aylarda azalıyor mu, artıyor mu — bu değişim tesadüf mü?</p>
+    <h2>Suyu en hızlı azalan 6 havza — uydu ölçümü</h2>
+    <p class="th-not">Aylık değişim (cm): eksi değer suyun azaldığını gösterir. "Kesin değişim mi?" sütunu, bu değişimin tesadüfi dalgalanma değil gerçek bir yön olup olmadığını söyler. Yani: havzanın toplam suyu son aylarda azalıyor mu, artıyor mu?</p>
     <table class="th-tablo">
       <thead><tr>
         <th>Havza</th>
-        <th>Son ölçüm<span class="th-meal">en güncel aylık değer</span></th>
-        <th>Eğilim (cm/ay)<span class="th-meal">su seviyesi ayda kaç cm değişiyor</span></th>
+        <th>Son değer<span class="th-meal">en güncel aylık ölçüm (cm)</span></th>
+        <th>Aylık değişim<span class="th-meal">su seviyesi ayda kaç cm değişiyor</span></th>
         <th>6 ay sonra (tahmin)<span class="th-meal">beklenen değer, olası bantla</span></th>
-        <th>Anlamlı<span class="th-meal">bu eğilim tesadüf mü?</span></th>
+        <th>Kesin değişim mi?<span class="th-meal">bu değişim tesadüf mü, gerçek yön mü?</span></th>
       </tr></thead>
       <tbody>
         {azalan.map((k: any) => (
@@ -114,15 +114,15 @@ const isaret = (v: number) => (v > 0 ? '+' : '');
   </section>
 
   <section class="th-bolum">
-    <h2>Baraj doluluğu — 60 günlük kısa vadeli momentum</h2>
-    <p class="th-not">Günlük eğilim (yüzde puan/gün) ve 30. gün tahmini. Örneklem kısa olduğundan güven düşüktür; aralık geniştir. Yani: baraj bugünkü hızla değişirse bir ay sonra doluluk hangi banda oturur?</p>
+    <h2>Baraj doluluğu — 30 gün sonrası için tahmin</h2>
+    <p class="th-not">Son 60 günün günlük değişimine bakılarak 30. gün için tahmin (yüzde puan). Örneklem kısa olduğundan güven düşüktür; bant geniştir. Yani: baraj bugünkü hızla değişirse bir ay sonra doluluk hangi aralıkta olur?</p>
     <table class="th-tablo">
       <thead><tr>
         <th>Havza</th>
-        <th>Son (%)<span class="th-meal">bugünkü ortalama doluluk</span></th>
-        <th>Eğilim (puan/gün)<span class="th-meal">doluluk günde kaç puan değişiyor</span></th>
-        <th>30. gün (tahmin)<span class="th-meal">bir ay sonra beklenen doluluk</span></th>
-        <th>80% aralık<span class="th-meal">olası alt–üst sınır</span></th>
+        <th>Bugün (%)<span class="th-meal">son ölçülen ortalama doluluk</span></th>
+        <th>Günlük değişim<span class="th-meal">doluluk günde kaç puan değişiyor</span></th>
+        <th>30 gün sonra (tahmin)<span class="th-meal">bir ay sonra beklenen doluluk</span></th>
+        <th>Olası bant (%80)<span class="th-meal">alt–üst sınır; değerin bu aralıkta kalması beklenir</span></th>
       </tr></thead>
       <tbody>
         {barajVar.sort((a: any, b: any) => a.baraj.egilim_gunluk_puan - b.baraj.egilim_gunluk_puan).map((k: any) => {
@@ -142,7 +142,7 @@ const isaret = (v: number) => (v > 0 ? '+' : '');
   </section>
 
   <p class="th-kaynak">
-    Yöntem: mevsimsel ayrıştırma + en-küçük-kareler trend + Mann-Kendall testi (numpy, sunucu dışı cron).
+    Bu sayılar nasıl üretiliyor: geçmiş aylık değerlerden mevsim etkisi ayıklanır, en uygun düz çizgi çıkarılır ve değişimin tesadüf olup olmadığı test edilir (teknik adlar: mevsimsel ayrıştırma, en-küçük-kareler trendi, Mann-Kendall testi; numpy, sunucu dışı cron).
     Ham projeksiyon verisi: <a href="/veri/kuraklik.json">/veri/kuraklik.json</a> · üretim {tahmin.uretim}.
     Model tanımı ve varsayımlar için <a href="/api-dokumantasyonu/">API dokümantasyonu</a>.
   </p>

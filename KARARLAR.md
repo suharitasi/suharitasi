@@ -1239,6 +1239,25 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §56 · /tahmin/ SADE DİL TURU 2 — TABLO BAŞLIKLARI (04.10.2026)
+
+- **Belirti:** §54'te eklenen üst sözlük + tablo-altı karşılıklara rağmen
+  tablo başlıklarında ham terimler kalmıştı: "Eğilim (cm/ay)", "Anlamlı"
+  (MK/p<0,05 notu), "60 günlük momentum", "80% aralık"; ÖZ-CEVAP/uyarı
+  metninde GRACE + OLS + Mann-Kendall.
+- **Karar:** görünür tablo başlıkları lise düzeyi Türkçe — "Aylık değişim",
+  "Kesin değişim mi?", "Günlük değişim", "Olası bant (%80)", "30 gün sonra
+  (tahmin)"; notlar sadeleştirildi; kaynak satırı "NASA'nın yerçekimi uydu
+  ölçümleri". Teknik adlar yalnız sözlükte (karşılık) ve dipnottaki parantez
+  içinde korundu; JSON-LD `measurementTechnique` DEĞİŞMEDİ (makine katmanı).
+- **Kapsam:** tek dosya (`src/pages/tahmin.astro`); veri/yayın zinciri/
+  mimari/görsel kimlik değişmedi (KÜÇÜK İŞ).
+- **Kanıt:** build EXIT 0 · 1190 sayfa · görünür metinde p<0,05 / "Eğilim
+  (cm/ay)" / "momentum" 0 · tarayıcı öz-denetimi: konsol 0, iç link 53/53
+  sağlam (`cikti/denetim/tahmin.png`) · canlı onay bekliyor.
+
+---
+
 ## §55 · GROWTH SEO + ŞEMA + HUKUKİ ENTEGRASYON + PROGRAMATİK ROTA (04.10.2026)
 
 - **SEO/CTA:** `/`, `/harita/`, `/tahmin/` başlık+meta CTA'lı ve anahtar

@@ -26,11 +26,13 @@ TAMAMLANAN:
 DUR (kullanıcı/panel/izleme):
 - [ ] **DUR-1 yamyamlık izlemesi:** `/yeralti-suyu/[il]` ↔
       `/kuyu-ruhsati/[il]` GSC'de 2-4 hafta; çakışma çıkarsa birleştirme.
-- [ ] **DUR-2 panel secret:** `arac/sayac-anahtar-esle.sh --ayarla` ile
-      değeri gir; env değişikliği YENİ DAĞITIM ister; sonra panel veri basar.
+- [x] **DUR-2 panel secret (KAPANDI 04.10 18:49):** `--ayarla` yapıldı;
+      canlı teşhis `/api/loglar` 200 + `/whatsapp/` 200; dışarıdan jetsiz 401.
 - [ ] **DUR-3:** USBS/Ulusal Su Bilgi Sistemi hedefi (veri kanalı
       doğrulanırsa ayrı içerik işi).
 - [ ] **DUR-4:** GA4 Admin API etkinleştirme + bu turun canlı görsel onayı.
+- [ ] **§56 /tahmin/ sade dil turu 2:** tablo başlıkları Türkçeleştirildi
+      (KARARLAR §56) — KULLANICI ONAYI BEKLİYOR (canlı test).
 - [ ] **İZLEME:** başlık/şema etkisi 2-4 hafta sonra `gsc_ctr_opportunities`
       ile yeniden ölçülür (/harita/, /tahmin/, yeralti-suyu ailesi).
 
@@ -54,7 +56,7 @@ YENİ FIRSAT (ayrı BÜYÜK İŞ; içerik kararı bekler):
 - [ ] **GA4 Admin API etkinleştirme (panel):** oturum/ziyaretçi akışı
       ancak o zaman ölçülür; şu an GSC arama verisi tek kaynak.
 DUR:
-- [ ] `SAYAC_ANAHTAR` panel eşleşmesi (`.env` ile `/api/loglar` 401).
+- [x] `SAYAC_ANAHTAR` panel eşleşmesi — KAPANDI (04.10 18:49, `/api/loglar` 200).
 - [ ] Bu turun içerik/görsel canlı onayı (İş kapanış kuralı).
 
 ═══ 04.10.2026 — SON KALEMLER: D2 KONTRAST · MEVZUAT · API LOG PANELİ (KARARLAR §53) ═══
