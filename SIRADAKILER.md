@@ -26,6 +26,10 @@ TAMAMLANAN:
 - [x] /su-hukuku H1; tekrar eden H2/H3 benzersizleştirme.
 - [x] RG homonim il onarımı + baraj as-of ortalaması; altın örnek 23/23.
 - [x] Build EXIT 0 · 1190 sayfa · oz-denetim 0/102 · canlı doğrulama.
+- [x] `--tam` sarıları: 2 sayfa a11y 96→100 onarıldı (aria-label + link
+      altçizgisi). Kuyruk: **title-uzun×123** (havzalar/il/rehber başlıkları
+      >60 krk) — GSC etkisi nedeniyle ayrı SEO işi; 17-dış-baglanti zaman
+      aşımları geçici.
 - [ ] KULLANICI ONAYI BEKLİYOR: canlı görsel/içerik testi (İş kapanış kuralı).
 
 ═══ 04.10.2026 — MASTER BRİF v3 UYGULANDI (KARARLAR §57; sahip: kapı askı) ═══

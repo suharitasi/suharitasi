@@ -1257,6 +1257,12 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
   kuralına geçti (farklı tarihli seriler ortalanmaz). Altın örnek 23/23.
 - **Kanıt:** build EXIT 0 · 1190 sayfa · jargon 0 · oz-denetim 0/102 ·
   commit `80f925d` · rapor `rapor/04-10-tam-donusum-taramasi.md`.
+- **Ek (planlı `--tam` sarıları):** 2 sayfada a11y 96 → onarıldı
+  (GeoDisaAktar aria-label görünür metinle hizalandı; GeoOnizleme figcaption
+  linkine altçizgi) → yerel Lighthouse **100/100**. `title-uzun×123`
+  (havzalar/il/rehber başlıkları >60 krk) ESKİ backlog — GSC etkisi nedeniyle
+  toplu başlık değişimi ayrı SEO işi olarak kuyruğa alındı; 17-dış-baglanti
+  7 zaman aşımı geçici (ölü 0).
 - **Kuyruk:** ölü hero seti (~1,7 MB, erişim günlüğü kontrolü), sahne
   poster AVIF (onay), 420px ızgara + kart hairline turu, baraj çift anahtar.
 
