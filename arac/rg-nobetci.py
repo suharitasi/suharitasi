@@ -41,6 +41,7 @@ DURUM = KOK / "izleme/state/rg-nobetci-durum.json"
 # (26.08 --tam koşumunda md23 kırmızısıyla ÖLÇÜLDÜ, ModuleNotFoundError).
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from cikis_kaydi import kur as _cikis_kur, dosya_bildir as _cikis_dosya
+from yaz_atomik import json_yaz  # atomik yazım (04.10.2026 denetimi)
 _cikis_kur("rg-nobetci", str(KOK / "log/rg-nobetci.log"))
 UA = "suharitasi.com veri derleme (mailto:iletisim@suharitasi.com)"
 UC = "https://www.resmigazete.gov.tr/Home/Filter"
@@ -251,19 +252,19 @@ def main():
         onceki["son_kosum"] = kosum_zamani
         onceki["kayit_sayisi"] = len(onceki["kayitlar"])
         onceki["kaynaksiz_kayit"] = 0
-        CIKTI.write_text(json.dumps(onceki, ensure_ascii=False, indent=1) + "\n")
+        json_yaz(CIKTI, onceki, ensure_ascii=False, indent=1)
         # Yeni kayıt insan değerlendirmesi bekler (C5 №10) — dışarı bildir;
         # dosyanın kendisi bir sonraki su-izleme koşumunda commit edilir.
         ozet = "\n".join(f"• {b['rg_tarih']} | {b['baslik'][:90]}" for b in eklenecek[:5])
         uyari_gonder(f"rg-nobetci: {len(eklenecek)} YENİ işletme sahası kaydı",
                      ozet + "\nisletme-sahalari-yeni.json güncellendi — değerlendirme bekliyor.")
     DURUM.parent.mkdir(parents=True, exist_ok=True)
-    DURUM.write_text(json.dumps({
+    json_yaz(DURUM, {
         "son_kosum": kosum_zamani,
         "taranan_satir": len(bulunan),
         "yeni_kayit": len(eklenecek),
         "sorgu_hatasi": len(hatalar),
-    }, ensure_ascii=False, indent=1) + "\n")
+    }, ensure_ascii=False, indent=1)
     _cikis_dosya(str(DURUM), DURUM.stat().st_size)
     print(f"\nyazıldı: {DURUM}"
           + (f" · {CIKTI} (+{len(eklenecek)})" if eklenecek

@@ -120,7 +120,13 @@ def yaz_atomik(p: Path, icerik: str) -> None:
 def json_oku(p: Path, varsayilan):
     try:
         return json.loads(p.read_text(encoding="utf-8"))
-    except Exception:
+    except FileNotFoundError:
+        return varsayilan
+    except Exception as e:
+        # SESSİZ SIFIRLAMA YASAĞI (04.10.2026 denetimi): bozuk durum dosyası
+        # sessizce varsayılana düşerse değişiklik/format sinyalleri kaybolur.
+        print(f"[kesif] UYARI: {p} okunamadı ({e}) — varsayılan kullanıldı; "
+              f"durum sinyali kaybolabilir", file=sys.stderr)
         return varsayilan
 
 
@@ -231,7 +237,10 @@ def telegram(konu: str, govde: str, imza: str) -> bool:
         durum[imza] = simdi
         yaz_atomik(IMZA_DOSYA, json.dumps(durum, ensure_ascii=False))
         return True
-    except Exception:
+    except Exception as e:
+        # SESSİZ YUTMA YASAĞI (04.10.2026 denetimi): uyarı kanalı çökerse
+        # kritik kaynak sinyali kaybolur; en azından stderr'e düşer.
+        print(f"[kesif] UYARI: Telegram gönderilemedi ({e}) — uyarı dışarı ulaşmadı", file=sys.stderr)
         return False
 
 
@@ -332,14 +341,16 @@ def bildirim(kritik, aday_yeni) -> None:
     if kritik:
         govde = "\n".join(f"• {r['id']} ({r['entegre']}): {r['durum']} — {r['aciklama']}" for r in kritik[:12])
         imza = "kesif-kritik:" + ",".join(sorted(r["id"] + r["durum"] for r in kritik))
-        telegram(f"kaynak keşif: {len(kritik)} kaynak sorunlu", govde, imza)
+        if not telegram(f"kaynak keşif: {len(kritik)} kaynak sorunlu", govde, imza):
+            print(f"[kesif] UYARI: {len(kritik)} kritik kaynak uyarısı GÖNDERİLEMEDİ", file=sys.stderr)
     if aday_yeni:
         liste = "\n".join(f"• {r['ad']} ({r['otorite']}) — {r['url']}" for r in aday_yeni[:20])
         govde = ("Keşif motoru aşağıdaki nitelikli açık veri kaynağını/kaynaklarını buldu ve "
                  "İNSAN ONAY KUYRUĞUNA aldı (otomatik entegre/yayın YOK):\n\n" + liste +
                  "\n\nOnay dosyası: izleme/kesif/aday-kaynaklar.json")
         imza = "kesif-aday:" + ",".join(sorted(r["id"] for r in aday_yeni))
-        telegram(f"kaynak keşif: {len(aday_yeni)} YENİ ADAY", govde, imza)
+        if not telegram(f"kaynak keşif: {len(aday_yeni)} YENİ ADAY", govde, imza):
+            print(f"[kesif] UYARI: {len(aday_yeni)} yeni aday bildirimi GÖNDERİLEMEDİ", file=sys.stderr)
 
 
 def rapor_yaz(satirlar, olaylar, zaman) -> None:

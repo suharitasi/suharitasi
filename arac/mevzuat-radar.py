@@ -25,6 +25,9 @@ import urllib.request
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from yaz_atomik import json_yaz  # atomik yazım (04.10.2026 denetimi)
+
 IFRAME = "https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatTur={tur}&MevzuatNo={no}&MevzuatTertip={tertip}"
 UA = "suharitasi.com mevzuat radar (mailto:iletisim@suharitasi.com)"
 TR = timezone(timedelta(hours=3))
@@ -119,11 +122,11 @@ def main():
         print(f"  ✓ {mz['kisa']}: {len(md)} madde" + (f" · değişiklik var" if any(d['kanun']==mz['kisa'] for d in degisiklikler) else ""))
 
     if not args.kuru:
-        surum_yolu.write_text(json.dumps(yeni, ensure_ascii=False, indent=1), encoding="utf-8")
+        json_yaz(surum_yolu, yeni, ensure_ascii=False, indent=1)
         log = json.loads(log_yolu.read_text(encoding="utf-8")) if log_yolu.exists() else {"_not": "Mevzuat değişiklik günlüğü. Resmî metnin SHA-256 farkından türetilir; uydurma yok.", "kayitlar": []}
         log["son_kontrol"] = simdi
         log["kayitlar"] = (degisiklikler + log.get("kayitlar", []))[:500]
-        log_yolu.write_text(json.dumps(log, ensure_ascii=False, indent=1), encoding="utf-8")
+        json_yaz(log_yolu, log, ensure_ascii=False, indent=1)
         print(f"Anlık görüntü: {surum_yolu}")
         print(f"Değişiklik kaydı: {len(degisiklikler)} yeni")
     else:
