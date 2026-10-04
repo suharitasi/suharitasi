@@ -32,6 +32,15 @@
 # FRAME-SRC 'self' (Adım 3, 24.09.2026): /basin/ sayfası gömülü widget'ın
 # canlı önizlemesini aynı-köken <iframe> ile gösterir; 'none' bunu engelliyordu.
 # 'self' yalnız kendi çerçevelerimize izin verir, dış kaynak açmaz.
+# FRAME-ANCESTORS DÜZELTMESİ (04.10.2026): Cloudflare Pages `_headers` aynı
+# başlığı EKLER (override etmez). Bu yüzden /gomulu/* için yazılan
+# `frame-ancestors *` ile /* bloğundaki `frame-ancestors 'none'` BİRLİKTE
+# gönderiliyordu; CSP politikaları AND ile birleştiğinden 'none' kazanıyor,
+# widget hem /basin/ önizlemesinde hem üçüncü taraf sitelerde çerçevelenemiyordu
+# (canlı /basin/ konsol hatası: "Framing ... frame-ancestors 'none'").
+# ÇÖZÜM: global CSP'den `frame-ancestors` KALDIRILDI; tıklama-hırsızlığı
+# koruması global `X-Frame-Options: DENY` ile sürer (CSP frame-ancestors yoksa
+# XFO geçerlidir). Yalnız /gomulu/* kendi `frame-ancestors *` politikasını taşır.
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
@@ -41,7 +50,7 @@
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
   X-Permitted-Cross-Domain-Policies: none
-  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://cloudflareinsights.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; frame-src 'self'; manifest-src 'self'; form-action 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://cloudflareinsights.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-src 'self'; manifest-src 'self'; form-action 'self'; upgrade-insecure-requests
 
 # GÖMÜLÜ WIDGET (Adım 3, 24.09.2026): /gomulu/* üçüncü taraf sitelere
 # gömülmek için tasarlandı. /* bloğundaki frame-ancestors 'none' bunu engeller;
