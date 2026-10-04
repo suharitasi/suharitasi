@@ -18,15 +18,23 @@ KOD=0
 timeout 300 "$PY" "$KOK/arac/tahmin/tahmin-uret.py" || KOD=$?
 timeout 300 "$PY" "$KOK/arac/alarm-tetikle.py" || KOD=$?
 
-# Rapor yalnız ayın 1'inde üretilir (idempotent; aynı gün içinde tekrar yazsa das aynı içerik).
+# Rapor yalnız ayın 1'inde üretilir (idempotent; aynı gün içinde tekrar yazsa da aynı içerik).
 if [ "$(date -u +%d)" = "01" ]; then
   timeout 300 "$PY" "$KOK/arac/rapor/aylik-rapor-uret.py" || KOD=$?
 fi
 
 [ "$KOD" -ne 0 ] && uyar "ekosistem hattı: koşum hata verdi (exit $KOD)" "Log: log/ekosistem.log"
 
-[ -f "$KOK/data/tahmin/kuraklik-projeksiyonu.json" ] && git add -- data/tahmin || true
-[ -d "$KOK/src/content/raporlar" ] && git add -- src/content/raporlar || true
+# Yalnız kendi ürünlerimiz add edilir (A2: dizin süpürme yasak);
+# rapor dizini yalnız ayın 1'inde, o gün üretilen rapor için taranır.
+if [ -f "$KOK/data/tahmin/kuraklik-projeksiyonu.json" ]; then
+  git add -- data/tahmin/kuraklik-projeksiyonu.json \
+    || { echo "[$(date -u +%FT%TZ)] git add BAŞARISIZ: data/tahmin" >&2; exit 1; }
+fi
+if [ "$(date -u +%d)" = "01" ] && [ -d "$KOK/src/content/raporlar" ]; then
+  git add -- src/content/raporlar \
+    || { echo "[$(date -u +%FT%TZ)] git add BAŞARISIZ: src/content/raporlar" >&2; exit 1; }
+fi
 
 PUSH_HATA=0
 if ! git diff --cached --quiet; then
@@ -34,8 +42,12 @@ if ! git diff --cached --quiet; then
     echo "[$(date -u +%FT%TZ)] git kilidi alınamadı — commit ERTELENDİ" >&2
     exit 4
   fi
+  # COMMIT TEYİDİ (04.10.2026 denetimi): HEAD önce/sonra karşılaştırılır.
+  ONCE=$(git rev-parse HEAD)
   git commit -q -m "Ekosistem: tahmin/alarm/rapor güncellemesi $(date -u +%FT%TZ) (otomatik)" \
     || { echo "[$(date -u +%FT%TZ)] git commit BAŞARISIZ" >&2; exit 1; }
+  SONRA=$(git rev-parse HEAD)
+  [ "$ONCE" = "$SONRA" ] && { echo "[$(date -u +%FT%TZ)] commit atlandı: HEAD değişmedi" >&2; exit 1; }
   if git_pull_rebase; then
     git push -q || { echo "[$(date -u +%FT%TZ)] git push BAŞARISIZ (commit yerelde)" >&2; PUSH_HATA=1; }
   else

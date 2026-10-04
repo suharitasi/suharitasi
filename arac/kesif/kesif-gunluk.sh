@@ -39,7 +39,9 @@ for f in \
   "$KESIF/kaynak-kaynagi.json" "$KESIF/aday-kaynaklar.json" \
   "$KESIF/DURUM.md" "$KESIF/OLAYLAR.md" \
   "$KESIF/eksik-denetim.json" "$KESIF/EKSIK-RAPOR.md"; do
-  [ -f "$f" ] && git add -- "$f" || true
+  if [ -f "$f" ]; then
+    git add -- "$f" || { echo "[$(date -u +%FT%TZ)] git add BAŞARISIZ: $f" >> "$LOG"; exit 1; }
+  fi
 done
 
 PUSH_HATA=0

@@ -20,7 +20,9 @@ python3 "$KOK/arac/mevzuat-radar.py" || KOD=$?
 [ "$KOD" -ne 0 ] && uyar "mevzuat radarı: koşum hata verdi (exit $KOD)" "Log: log/mevzuat-radar.log"
 
 for f in data/kamu/mevzuat-surum.json data/kamu/mevzuat-degisiklik.json; do
-  [ -f "$f" ] && git add -- "$f" || true
+  if [ -f "$f" ]; then
+    git add -- "$f" || { echo "[$(date -u +%FT%TZ)] git add BAŞARISIZ: $f" >&2; exit 1; }
+  fi
 done
 
 PUSH_HATA=0
@@ -29,8 +31,13 @@ if ! git diff --cached --quiet; then
     echo "[$(date -u +%FT%TZ)] git kilidi alınamadı — commit ERTELENDİ" >&2
     exit 4
   fi
+  # COMMIT TEYİDİ (04.10.2026 denetimi): HEAD önce/sonra karşılaştırılır —
+  # commit atılmadıysa akış başarı saymaz (baraj/su-izleme deseni).
+  ONCE=$(git rev-parse HEAD)
   git commit -q -m "Mevzuat radarı: $(date -u +%FT%TZ) günlük madde farkı (otomatik)" \
     || { echo "[$(date -u +%FT%TZ)] git commit BAŞARISIZ" >&2; exit 1; }
+  SONRA=$(git rev-parse HEAD)
+  [ "$ONCE" = "$SONRA" ] && { echo "[$(date -u +%FT%TZ)] commit atlandı: HEAD değişmedi" >&2; exit 1; }
   if git_pull_rebase; then
     git push -q || { echo "[$(date -u +%FT%TZ)] git push BAŞARISIZ (commit yerelde)" >&2; PUSH_HATA=1; }
   else

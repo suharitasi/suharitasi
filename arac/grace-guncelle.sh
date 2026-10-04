@@ -106,6 +106,7 @@ for f in data/canli/grace-turkiye.json data/canli/grace-havza.json; do
   [ -f "$f" ] && git add "$f"
 done
 
+PUSH_HATA=0
 if ! git diff --cached --quiet; then
   # ORTAK GIT KİLİDİ (2026-07-23): kilit alınamazsa İŞ ERTELENİR — dosyalar
   # diskte durur, sonraki koşuda commit edilir (sessiz kayıp yasak).
@@ -124,7 +125,10 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>" \
   SONRA=$(git rev-parse HEAD)
   [ "$ONCE" = "$SONRA" ] && hata_say "commit atlandı: HEAD değişmedi"
   if git_pull_rebase; then
-    git push -q || logla "git push BAŞARISIZ (commit yerelde, sonraki koşuda denenir)"
+    # SESSİZ HATA YASAĞI (04.10.2026 denetimi): push arızası yalnız log'da
+    # kalmıyor; PUSH_HATA ile exit≠0 dönülür ve Telegram'a düşer (CLAUDE.md:
+    # "Push başarısızlığı loglanır ve exit 0 dönülmez").
+    git push -q || { logla "git push BAŞARISIZ (commit yerelde, sonraki koşuda denenir)"; PUSH_HATA=1; }
   else
     # Ayırt edici log: "kirli ağaç" ile "rebase çatışması" farklı arızalardır.
     if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
@@ -133,6 +137,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>" \
     else
       logla "pull --rebase çatışması - commit yerelde, sonraki koşuda denenir"
     fi
+    PUSH_HATA=1
   fi
   # Bekleyen-commit sayacı: çatışma kronikleşirse commit'ler sessizce birikmesin.
   if git rev-parse --abbrev-ref --symbolic-full-name @{u} > /dev/null; then
@@ -153,13 +158,21 @@ printf '{"ardisikHata": 0}\n' > "$DURUM"
 cikis_kaydi_dosya "$DURUM" "$(stat -c %s "$DURUM")"
 logla "arşiv doğrulandı, sayaç sıfırlandı"
 
-# 6) Deploy hook — SON adım, asla çökertmez (baraj ile aynı kural)
-HOOK=""
-if [ -f .env ]; then
-  HOOK=$(grep -E '^CF_DEPLOY_HOOK=.+' .env | cut -d= -f2- || true)
+# 6) Deploy hook — yalnız push başarılıysa; asla çökertmez (baraj ile aynı kural)
+if [ "$PUSH_HATA" -eq 0 ]; then
+  HOOK=""
+  if [ -f .env ]; then
+    HOOK=$(grep -E '^CF_DEPLOY_HOOK=.+' .env | cut -d= -f2- || true)
+  fi
+  if [ -n "${HOOK:-}" ]; then
+    HKOD=$(curl -s -m 30 -o /dev/null -w "%{http_code}" -X POST "$HOOK" 2>>"$LOGP") || HKOD="AG-HATASI"
+    logla "deploy hook: $HKOD"
+  fi
 fi
-if [ -n "${HOOK:-}" ]; then
-  HKOD=$(curl -s -m 30 -o /dev/null -w "%{http_code}" -X POST "$HOOK" 2>>"$LOGP") || HKOD="AG-HATASI"
-  logla "deploy hook: $HKOD"
+
+if [ "$PUSH_HATA" -eq 1 ]; then
+  "$KOK/arac/uyari-gonder.sh" "veri hattı grace: pull/push ARIZASI — commit yerelde" \
+    "Sonraki koşuda yeniden denenecek. Log: data/arsiv/grace/" || true
+  exit 1
 fi
 exit 0
