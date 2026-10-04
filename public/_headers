@@ -38,9 +38,14 @@
 # gönderiliyordu; CSP politikaları AND ile birleştiğinden 'none' kazanıyor,
 # widget hem /basin/ önizlemesinde hem üçüncü taraf sitelerde çerçevelenemiyordu
 # (canlı /basin/ konsol hatası: "Framing ... frame-ancestors 'none'").
-# ÇÖZÜM: global CSP'den `frame-ancestors` KALDIRILDI; tıklama-hırsızlığı
-# koruması global `X-Frame-Options: DENY` ile sürer (CSP frame-ancestors yoksa
-# XFO geçerlidir). Yalnız /gomulu/* kendi `frame-ancestors *` politikasını taşır.
+# ÇÖZÜM: global CSP `frame-ancestors 'none'` → `'self'`. Böylece (1) direktif
+# yerinde kalır (md19 güvenlik kontrolü), (2) /basin/ aynı-köken önizlemesi
+# çalışır ('self' ∩ /gomulu/* 'frame-ancestors *' = 'self' → aynı-köken SERBEST),
+# (3) site dış sitelerce çerçevelenemez (tıklama-hırsızlığı korunur).
+# SINIR (kayda geçti): Cloudflare `_headers` override etmediği için /gomulu/*
+# widget'ı da fiilen 'self' ile sınırlıdır — üçüncü taraf sitelerde gömme
+# ŞU AN ÇALIŞMAZ. Dış gömme istenirse global frame-ancestors kaldırılmalı ve
+# md19 kontrolü buna göre güncellenmelidir (ayrı, bilinçli karar).
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
@@ -50,7 +55,7 @@
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
   X-Permitted-Cross-Domain-Policies: none
-  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://cloudflareinsights.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-src 'self'; manifest-src 'self'; form-action 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://cloudflareinsights.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; frame-src 'self'; manifest-src 'self'; form-action 'self'; upgrade-insecure-requests
 
 # GÖMÜLÜ WIDGET (Adım 3, 24.09.2026): /gomulu/* üçüncü taraf sitelere
 # gömülmek için tasarlandı. /* bloğundaki frame-ancestors 'none' bunu engeller;
