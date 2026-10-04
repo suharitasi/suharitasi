@@ -1,7 +1,7 @@
 {
  "_not": "GÖRSEL/DÜZEN TABANI — sürümlü YAPILANDIRMA (log değil). Bilinçli tasarım değişikliğinde `node arac/site-saglik.mjs --gorsel-taban-yenile --gerekce \"...\"` ile yenilenir; yenilenmeden kalem KIRMIZI kalır. Ölçüm deterministiktir: sabit viewport + DPR + reduced-motion (sahne 0'da donar).",
- "tabanTarihi": "2026-10-04T13:23:05.228Z",
- "gerekce": "24.09→04.10 bilinçli değişiklikler: HizmetVitrini, KurumsalHizmetler B2B bandı, sr-only h1, font preload, G6/S1 order onarımı + kontrast. G6 (S1 kadraj) artık düzeldi; G4/G3 yeni bölüm/tipografi tabana işlenir.",
+ "tabanTarihi": "2026-10-04T15:34:33.511Z",
+ "gerekce": "Faz 4 vitrin (04.10.2026, sahip talimatı): fayda H1 + çift CTA hero'ya, DaaS terminal bloğu KurumsalHizmetler'e, 3'lü değer kartları bölümü eklendi. S1 korundu; G3/G4 bilinçli.",
  "esikler": {
   "g1KesismePx2": 2000,
   "g2OlcekOran": 1.05,
@@ -31,8 +31,8 @@
  "sayfalar": {
   "/@md": {
    "tipografi": {
-    "h1Px": 32.64,
-    "h1SatirYuk": 57.12,
+    "h1Px": 43.2,
+    "h1SatirYuk": 48.38,
     "altPx": null
    },
    "bolumler": [
@@ -45,6 +45,11 @@
      "etiket": "v2-vitrin",
      "padUst": 68,
      "padAlt": 80
+    },
+    {
+     "etiket": "v2-deger",
+     "padUst": 64,
+     "padAlt": 64
     },
     {
      "etiket": "v2-kurumsal",
@@ -100,8 +105,8 @@
   },
   "/@mobil": {
    "tipografi": {
-    "h1Px": 32.64,
-    "h1SatirYuk": 57.12,
+    "h1Px": 28,
+    "h1SatirYuk": 31.36,
     "altPx": null
    },
    "bolumler": [
@@ -114,6 +119,11 @@
      "etiket": "v2-vitrin",
      "padUst": 68,
      "padAlt": 80
+    },
+    {
+     "etiket": "v2-deger",
+     "padUst": 40,
+     "padAlt": 40
     },
     {
      "etiket": "v2-kurumsal",
@@ -171,8 +181,8 @@
    "enYuksekOlcek": 0.41,
    "mobilIlkSoru": {
     "metin": "Ruhsatsız kuyu cezası aldım, ne yapmalıyım?",
-    "ust": 615,
-    "alt": 664
+    "ust": 989,
+    "alt": 1038
    },
    "aktifSahne": "Sondaj"
   },
@@ -878,7 +888,7 @@
   }
  },
  "oncekiTaban": {
-  "tarih": "2026-09-24T12:05:36.197Z",
-  "gerekce": "24.09.2026 Adim 1: ana sayfaya Hizmet ve Istihbarat Merkezi (4 kolonlu vitrin) eklendi (kullanici onayi: Yalniz Adim 1: vitrin). Masaustunde hero-sonrasi bolum ritmi bilincli degisti; mobilde vitrin kanit bandi ve dert sorusundan sonraya alindi (S1 korunur). G6/S1 esigi 2560 DEVRALINDI."
+  "tarih": "2026-10-04T13:23:05.228Z",
+  "gerekce": "24.09→04.10 bilinçli değişiklikler: HizmetVitrini, KurumsalHizmetler B2B bandı, sr-only h1, font preload, G6/S1 order onarımı + kontrast. G6 (S1 kadraj) artık düzeldi; G4/G3 yeni bölüm/tipografi tabana işlenir."
  }
 }
