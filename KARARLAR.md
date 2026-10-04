@@ -1219,6 +1219,26 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §51 · FAZ 4 VİTRİN: CRO/PAZARLAMA DÖNÜŞÜMÜ (04.10.2026)
+
+- **Karar:** Ana sayfa, mevcut tasarım sistemi ve bölüm yapısı BOZULMADAN
+  satış/değer odaklı güçlendirildi. Yeni rota/menü eklenmedi.
+- **Hero:** Hero'nun ÖZGÜN ama render edilmeyen H1 + kanıt satırı + CTA düzeni
+  geri getirildi. H1 fayda odaklı ("Su riskini önceden görün…"), alt satır
+  HERO_ALT (dört sayı bekçisi korunur), çift CTA (Verileri keşfet /
+  Geliştiriciler için API). sr-only h1 kaldırıldı (tek görünür h1).
+- **DaaS bandı:** "Zaman kazanın / tek istek" time-to-value metni + koyu
+  terminal mockup (curl örnekleri CANLI API'den doğrulanmış; 25 havza bekçisi)
+  + güven etiketleri (Zenodo DOI, Schema.org Dataset, CC BY 4.0, OpenAPI 3.1).
+- **Değer teklifi:** 3 kart, acı→çözüm (projeksiyon / alarm / atıf yapılabilir
+  veri). Mobilde order:9 — S1 dert sorusu ilk ekranda korunur.
+- **Uydurma yasağı:** "ML", "yaklaşırken uyarı" gibi gerçek dışı iddia YOK;
+  istatistiksel projeksiyon ve eşik-aşımı alarmı olarak dürüst yazıldı.
+- **Kanıt:** yerel Lighthouse PERF 0.99 / A11Y 100 / SEO 100 / CLS 0 · yatay
+  taşma 0 · konsol 0 · canlı `--hizli` YEŞİL · görsel taban yenilendi.
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek
