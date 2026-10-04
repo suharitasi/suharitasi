@@ -1,12 +1,12 @@
 {
  "_not": "Geriye dönük eksik-veri denetimi. UYDURMA YOK: 'veri-yok' kayıtları açık yayımı doğrulanmamış boşluklardır; değer üretilmez.",
- "guncelleme": "2026-10-04T12:32:54Z",
+ "guncelleme": "2026-10-04T21:00:02Z",
  "ozet": {
   "kaynak": 33,
-  "kapsanan": 15,
+  "kapsanan": 16,
   "eksik_acik": 3,
   "veri_yok": 2,
-  "aday": 13,
+  "aday": 12,
   "kayit_disi_host": 8
  },
  "eksik_acik": [
@@ -65,18 +65,6 @@
   }
  ],
  "aday": [
-  {
-   "id": "nasa-power",
-   "ad": "NASA POWER — İklim/Agroklimatik API",
-   "otorite": "resmi",
-   "parametreler": [
-    "yagis",
-    "toprak_nemi",
-    "sicaklik",
-    "buharlasma",
-    "kuraklik_gostergesi"
-   ]
-  },
   {
    "id": "nasa-gesdisc-gldas",
    "ad": "NASA GES DISC — GLDAS Karasal Su Bütçesi",

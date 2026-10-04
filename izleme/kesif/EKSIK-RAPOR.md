@@ -1,8 +1,8 @@
 # Su Verisi — Geriye Dönük Eksik-Denetim Raporu
 
-Üretim (UTC): **2026-10-04T12:32:54Z**
+Üretim (UTC): **2026-10-04T21:00:02Z**
 
-Kaynak kataloğu: **33** · kapsanan: **15** · eksik/açık: **3** · açık yayımı yok: **2** · aday: **13** · kayıt dışı kurumsal host: **8**
+Kaynak kataloğu: **33** · kapsanan: **16** · eksik/açık: **3** · açık yayımı yok: **2** · aday: **12** · kayıt dışı kurumsal host: **8**
 
 ## 1. Entegre edilebilir boşluklar (kaynak açık, henüz bağlanmadı)
 
@@ -22,7 +22,6 @@ Kaynak kataloğu: **33** · kapsanan: **15** · eksik/açık: **3** · açık ya
 
 ## 3. Aday kaynak kuyruğu (insan onayı bekliyor)
 
-- **NASA POWER — İklim/Agroklimatik API** (resmi) — yagis, toprak_nemi, sicaklik, buharlasma, kuraklik_gostergesi
 - **NASA GES DISC — GLDAS Karasal Su Bütçesi** (resmi) — toprak_nemi, kar_su_esdegeri, yer_alti_su
 - **SPEI Global Kuraklık Monitörü** (akademik) — tarimsal_kuraklik_endeksi, spei
 - **GRDC — Küresel Akım/Deşarj Veri Merkezi** (resmi) — akim, desarj
