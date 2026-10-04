@@ -1,0 +1,203 @@
+{
+ "_not": "Geriye dönük eksik-veri denetimi. UYDURMA YOK: 'veri-yok' kayıtları açık yayımı doğrulanmamış boşluklardır; değer üretilmez.",
+ "guncelleme": "2026-10-04T12:28:04Z",
+ "ozet": {
+  "kaynak": 33,
+  "kapsanan": 15,
+  "eksik_acik": 3,
+  "veri_yok": 2,
+  "aday": 13,
+  "kayit_disi_host": 8
+ },
+ "eksik_acik": [
+  {
+   "id": "nhyp-planlar",
+   "ad": "Nehir Havza Yönetim Planları (NHYP)",
+   "parametreler": [
+    "kutle_bazli_tedbir",
+    "su_kutlesi_kunye",
+    "kirletici_analizi"
+   ],
+   "url": "https://www.tarimorman.gov.tr/SYGM/Sayfalar/Detay.aspx?SayfaId=49",
+   "not": "12/25 havza yayımlı (doğrulandı 2026-07-27); kalan 13'ün 6'sı hazırlıkta, 7'si izsiz. Yayımlanmayan cadde veri uydurulmaz."
+  },
+  {
+   "id": "mgm",
+   "ad": "Meteoroloji Genel Müdürlüğü — Gözlem/Tahmin",
+   "parametreler": [
+    "yagis_gozlem",
+    "sicaklik",
+    "kuraklik_analizi"
+   ],
+   "url": "https://www.mgm.gov.tr",
+   "not": "MGM açık toplu veri API'si yayımlamıyor (doğrulanmadı); yalnız HTML gözlem. Bilgi edinme adayı."
+  },
+  {
+   "id": "tuik-su",
+   "ad": "TÜİK Su ve Atıksu İstatistikleri",
+   "parametreler": [
+    "belediye_su_cekim",
+    "atiksu",
+    "kisi_basi_su"
+   ],
+   "url": "https://data.tuik.gov.tr",
+   "not": "Ulusal kırılım var; il kırılımı headless tarayıcı gerektirir. Veri yok değil, erişim yöntemi belirsiz."
+  }
+ ],
+ "veri_yok": [
+  {
+   "id": "dsi-akim-gozlem",
+   "ad": "DSİ Anlık Akım Gözlem (debi)",
+   "parametreler": [
+    "anlik_debi",
+    "akim_gozlem"
+   ],
+   "not": "'Anlık debi düşüşleri' talebi: DSİ açık makine-okunur yayımlamıyor. Bilgi edinme dilekçesi adayı. UYDURULMAZ."
+  },
+  {
+   "id": "yeralti-kalite",
+   "ad": "Yeraltı Suyu Kalite/Kirlilik Ölçümleri",
+   "parametreler": [
+    "yeralti_su_kalitesi",
+    "kirlilik"
+   ],
+   "not": "NHYP YAS künyelerinde kısmi; konsolide açık veri YOK. UYDURULMAZ."
+  }
+ ],
+ "aday": [
+  {
+   "id": "nasa-power",
+   "ad": "NASA POWER — İklim/Agroklimatik API",
+   "otorite": "resmi",
+   "parametreler": [
+    "yagis",
+    "toprak_nemi",
+    "sicaklik",
+    "buharlasma",
+    "kuraklik_gostergesi"
+   ]
+  },
+  {
+   "id": "nasa-gesdisc-gldas",
+   "ad": "NASA GES DISC — GLDAS Karasal Su Bütçesi",
+   "otorite": "resmi",
+   "parametreler": [
+    "toprak_nemi",
+    "kar_su_esdegeri",
+    "yer_alti_su"
+   ]
+  },
+  {
+   "id": "spei-kuraklik",
+   "ad": "SPEI Global Kuraklık Monitörü",
+   "otorite": "akademik",
+   "parametreler": [
+    "tarimsal_kuraklik_endeksi",
+    "spei"
+   ]
+  },
+  {
+   "id": "grdc-akim",
+   "ad": "GRDC — Küresel Akım/Deşarj Veri Merkezi",
+   "otorite": "resmi",
+   "parametreler": [
+    "akim",
+    "desarj"
+   ]
+  },
+  {
+   "id": "wri-aqueduct",
+   "ad": "WRI Aqueduct — Su Riski Atlası",
+   "otorite": "kurumsal",
+   "parametreler": [
+    "su_stresi",
+    "sel_riski",
+    "kuraklik_riski",
+    "su_kalitesi_riski"
+   ]
+  },
+  {
+   "id": "fao-aquastat",
+   "ad": "FAO AQUASTAT — Ülke Su İstatistikleri",
+   "otorite": "resmi",
+   "parametreler": [
+    "cekilen_su",
+    "sulama",
+    "su_kaynaklari"
+   ]
+  },
+  {
+   "id": "jrc-global-surface-water",
+   "ad": "JRC Global Surface Water",
+   "otorite": "resmi",
+   "parametreler": [
+    "yuzey_suyu_degisimi",
+    "su_kalici_alani"
+   ]
+  },
+  {
+   "id": "hydrosheds",
+   "ad": "HydroSHEDS / HydroATLAS",
+   "otorite": "kurumsal",
+   "parametreler": [
+    "hidrografik_ag",
+    "havza_ozellikleri",
+    "akim_yonu"
+   ]
+  },
+  {
+   "id": "esa-cci-toprak",
+   "ad": "ESA CCI Soil Moisture",
+   "otorite": "resmi",
+   "parametreler": [
+    "toprak_nemi"
+   ]
+  },
+  {
+   "id": "global-dam-watch",
+   "ad": "Global Dam Watch Veritabanı",
+   "otorite": "akademik",
+   "parametreler": [
+    "baraj_envanteri",
+    "rezervuar_hacmi"
+   ]
+  },
+  {
+   "id": "igrac-ggmn",
+   "ad": "IGRAC Küresel Yeraltı Suyu İzleme Ağı (GGMN)",
+   "otorite": "kurumsal",
+   "parametreler": [
+    "yeralti_su_seviyesi",
+    "kuyu_gozlem"
+   ]
+  },
+  {
+   "id": "eea-su",
+   "ad": "Avrupa Çevre Ajansı — Su Verisi (WISE)",
+   "otorite": "resmi",
+   "parametreler": [
+    "su_kalitesi",
+    "su_kutlesi_durumu"
+   ]
+  },
+  {
+   "id": "open-meteo",
+   "ad": "Open-Meteo (ticari aracı API)",
+   "otorite": "belirsiz",
+   "parametreler": [
+    "yagis",
+    "sicaklik"
+   ]
+  }
+ ],
+ "kayit_disi_host": [
+  "dergipark.gov.tr",
+  "dergipark.org.tr",
+  "doi.org",
+  "earth.gsfc.nasa.gov",
+  "emsal.uyap.gov.tr",
+  "karararama.yargitay.gov.tr",
+  "search.trdizin.gov.tr",
+  "www.trdizin.gov.tr"
+ ]
+}

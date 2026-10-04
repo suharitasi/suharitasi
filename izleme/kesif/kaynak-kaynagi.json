@@ -1,0 +1,706 @@
+{
+  "_not": "Su verisi kaynak kataloğu — keşif/validasyon motorunun tek kaynağı. Kayıtlar KAYNAKLAR.md, KESIF-POTANSIYEL.md ve arac/ altındaki fiili üreticilerden damıtılmıştır. UYDURMA YASAĞI: her kaydın kanıt alanı bir dosya/satır ya da doğrulanmış URL olmalıdır. entegre='aday' olan kayıtlar OTOMATİK yayınlanmaz; aday-kaynaklar.json insan onay kuyruğuna düşer.",
+  "surum": 1,
+  "guncelleme": "2026-10-04",
+  "otorite_tanimlari": {
+    "resmi": "Devlet/kamu kurumu veya resmî uluslararası örgüt (T1)",
+    "akademik": "Üniversite/araştırma kurumu, hakemli veri seti, DOI'li veri deposu (T2)",
+    "kurumsal": "Kâr amacı gütmeyen/uluslararası kuruluş, alanında otorite (T2)",
+    "belirsiz": "Otoritesi doğrulanamayan ticari aracı/agregatör — OTOMATİK RED (kuyruğa yalnız uyarıyla)",
+    "red": "Magazin/sosyal medya/içerik çiftliği — RED, kuyruğa girmez"
+  },
+  "kaynaklar": [
+    {
+      "id": "epias-baraj",
+      "ad": "EPİAŞ Şeffaflık — Baraj Doluluk/Üretim",
+      "kurum": "EPİAŞ (Enerji Piyasaları İşletme A.Ş.)",
+      "url": "https://seffaflik.epias.com.tr/",
+      "katman": "ulusal",
+      "otorite": "resmi",
+      "lisans": "Kurumsal açık (şeffaflık platformu)",
+      "periyot": "gunluk",
+      "tip": "json",
+      "erisim": "anahtar",
+      "entegre": "mevcut",
+      "parametreler": [
+        "baraj_doluluk",
+        "hidroelektrik_uretim",
+        "gunluk_hacim"
+      ],
+      "kanit": "arac/baraj-cek.mjs · data/canli/baraj.json · cron 15:05 UTC",
+      "not": "CAS/TGT kimlik doğrulamalı. .env: EPIAS_USER/EPIAS_PASS. Günlük commit+publish.",
+      "yoklama": "muaf",
+      "muaf_neden": "Kimlik doğrulamalı API (CAS/TGT); baraj-gunluk.sh zaten derin izliyor. Kamu kök yoklaması API durumunu göstermez."
+    },
+    {
+      "id": "grace-mascon",
+      "ad": "NASA GRACE/GRACE-FO Mascon — Kara Su Eşdeğeri Kalınlığı",
+      "kurum": "NASA JPL / UT CSR",
+      "url": "https://podaac.jpl.nasa.gov/dataset/TELLUS_GRAC-GRFO_MASCON_CRI_GRID_RL06.3_V4",
+      "katman": "uluslararasi",
+      "otorite": "resmi",
+      "lisans": "Kamu malı (NASA)",
+      "periyot": "aylik",
+      "tip": "download",
+      "erisim": "acik",
+      "entegre": "mevcut",
+      "parametreler": [
+        "yercekimi_su_esdegeri",
+        "yer_alti_su_egilimi",
+        "toprak_nemi"
+      ],
+      "kanit": "arac/grace-guncelle.sh · data/canli/grace-havza.json · data/arsiv/grace",
+      "not": "NetCDF indirme; haftalık Pzt 02:40 UTC. Havza ölçeğine indirgenir."
+    },
+    {
+      "id": "chirps-yagis",
+      "ad": "CHIRPS v2.0 — Günlük Yağış",
+      "kurum": "UCSB Climate Hazards Center",
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_daily/netcdf/p25",
+      "katman": "uluslararasi",
+      "otorite": "akademik",
+      "lisans": "CC BY 4.0",
+      "periyot": "gunluk",
+      "tip": "download",
+      "erisim": "acik",
+      "entegre": "mevcut",
+      "parametreler": [
+        "yagis"
+      ],
+      "kanit": "arac/chirps-cek.py · data/canli/chirps.json",
+      "not": "0.05° (~5,5 km), 1981→bugün. data/arsiv/chirps git dışında."
+    },
+    {
+      "id": "era5-toprak",
+      "ad": "ERA5-Land Aylık Toprak Nemi (Copernicus CDS)",
+      "kurum": "ECMWF / Copernicus Climate Data Store",
+      "url": "https://cds.climate.copernicus.eu",
+      "katman": "uluslararasi",
+      "otorite": "resmi",
+      "lisans": "Copernicus lisansı (ücretsiz, atıflı)",
+      "periyot": "aylik",
+      "tip": "download",
+      "erisim": "anahtar",
+      "entegre": "mevcut",
+      "parametreler": [
+        "toprak_nemi",
+        "buharlasma"
+      ],
+      "kanit": "arac/era5-toprak.py · data/canli/era5-toprak.json",
+      "not": "cdsapi anahtarı (~/.cdsapirc). 4 toprak katmanı, 0.1°.",
+      "yoklama": "muaf",
+      "muaf_neden": "Copernicus CDS kimlik gerektirir (~/.cdsapirc); kamu kök yoklaması anlamsız."
+    },
+    {
+      "id": "osm-hidro",
+      "ad": "OpenStreetMap — Nehir/Göl (Overpass API)",
+      "kurum": "OpenStreetMap katkıcıları / Overpass",
+      "url": "https://overpass-api.de/api/status",
+      "katman": "uluslararasi",
+      "otorite": "kurumsal",
+      "lisans": "ODbL 1.0",
+      "periyot": "yillik",
+      "tip": "api",
+      "erisim": "acik",
+      "entegre": "mevcut",
+      "parametreler": [
+        "nehir_geometri",
+        "gol_geometri"
+      ],
+      "kanit": "arac/fetch_hydro.py · src/data/tr-nehirler.json · tr-goller.json",
+      "not": "Vektör geometri; son çekim 04.08.2026."
+    },
+    {
+      "id": "mevzuat-gov",
+      "ad": "mevzuat.gov.tr — Kanun/Tüzük/Yönetmelik",
+      "kurum": "Cumhurbaşkanlığı Mevzuat Bilgi Sistemi",
+      "url": "https://www.mevzuat.gov.tr",
+      "katman": "ulusal",
+      "otorite": "resmi",
+      "lisans": "Kamu malı",
+      "periyot": "haftalik",
+      "tip": "html",
+      "erisim": "acik",
+      "entegre": "mevcut",
+      "parametreler": [
+        "mevzuat_metni",
+        "madde_sha256"
+      ],
+      "kanit": "arac/mevzuat-radar.py · data/kamu/mevzuat-surum.json",
+      "not": "Madde bazlı SHA-256 farkı. Cron Çar 05:20 UTC."
+    },
+    {
+      "id": "resmigazete",
+      "ad": "Resmî Gazete Günlük Fihrist",
+      "kurum": "Resmî Gazete / Cumhurbaşkanlığı",
+      "url": "https://www.resmigazete.gov.tr/fihrist",
+      "katman": "ulusal",
+      "otorite": "resmi",
+      "lisans": "Kamu malı",
+      "periyot": "gunluk",
+      "tip": "html",
+      "erisim": "acik",
+      "entegre": "izleme",
+      "parametreler": [
+        "yasal_degisiklik"
+      ],
+      "kanit": "izleme/su-izleme.sh M1 · izleme/hedefler.conf",
+      "not": "Günde 2 kez fihrist + mükerrer yoklaması; kelime eşleşmesi."
+    },
+    {
+      "id": "tbmm-kanun-teklifleri",
+      "ad": "TBMM Kanun Teklifleri",
+      "kurum": "TBMM",
+      "url": "https://tbmm.gov.tr/yasama/kanun-teklifleri",
+      "katman": "ulusal",
+      "otorite": "resmi",
+      "lisans": "Kamu malı",
+      "periyot": "gunluk",
+      "tip": "html",
+      "erisim": "acik",
+      "entegre": "izleme",
+      "parametreler": [
+        "kanun_teklifi"
+      ],
+      "kanit": "izleme/hedefler.conf tbmm-kanun-teklifleri",
+      "not": "Fark motoru; normalize metin SHA-256."
+    },
+    {
+      "id": "dsi-duyuru",
+      "ad": "DSİ Duyuru Listesi",
+      "kurum": "Devlet Su İşleri Genel Müdürlüğü",
+      "url": "https://dsi.gov.tr/duyuru/duyuruListe",
+      "katman": "ulusal",
+      "otorite": "resmi",
+      "lisans": "Kamu malı",
+      "periyot": "gunluk",
+      "tip": "html",
+      "erisim": "acik",
+      "entegre": "izleme",
+      "parametreler": [
+        "kurumsal_duyuru"
+      ],
+      "kanit": "izleme/hedefler.conf dsi-duyuru-listesi",
+      "not": "Fark motoru M3."
+    },
+    {
+      "id": "tarimorman-sygm",
+      "ad": "Tarım ve Orman Bakanlığı — Su Yönetimi Genel Müdürlüğü",
+      "kurum": "T.C. Tarım ve Orman Bakanlığı",
+      "url": "https://www.tarimorman.gov.tr/SYGM",
+      "katman": "ulusal",
+      "otorite": "resmi",
+      "lisans": "Kamu malı",
+      "periyot": "haftalik",
+      "tip": "html",
+      "erisim": "acik",
+      "entegre": "izleme",
+      "parametreler": [
+        "havza_yonetim_plani",
+        "politika"
+      ],
+      "kanit": "izleme/hedefler.conf tarimorman-sygm",
+      "not": "NHYP belge ağacı bu alanın altında."
+    },
+    {
+      "id": "suverimliligi",
+      "ad": "Su Verimliliği Portalı",
+      "kurum": "Tarım ve Orman Bakanlığı",
+      "url": "https://www.suverimliligi.gov.tr/",
+      "katman": "ulusal",
+      "otorite": "resmi",
+      "lisans": "Kamu malı",
+      "periyot": "haftalik",
+      "tip": "html",
+      "erisim": "acik",
+      "entegre": "izleme",
+      "parametreler": [
+        "verimlilik_politikasi"
+      ],
+      "kanit": "izleme/hedefler.conf suverimliligi",
+      "not": "Fark motoru."
+    },
+    {
+      "id": "susurasi",
+      "ad": "Türkiye Su Şûrası",
+      "kurum": "Tarım ve Orman Bakanlığı",
+      "url": "https://susurasi.tarimorman.gov.tr/",
+      "katman": "ulusal",
+      "otorite": "resmi",
+      "lisans": "Kamu malı",
+      "periyot": "haftalik",
+      "tip": "html",
+      "erisim": "acik",
+      "entegre": "izleme",
+      "parametreler": [
+        "politika"
+      ],
+      "kanit": "izleme/hedefler.conf susurasi",
+      "not": "Fark motoru."
+    },
+    {
+      "id": "nhyp-planlar",
+      "ad": "Nehir Havza Yönetim Planları (NHYP)",
+      "kurum": "Tarım ve Orman Bakanlığı — SYGM",
+      "url": "https://www.tarimorman.gov.tr/SYGM/Sayfalar/Detay.aspx?SayfaId=49",
+      "katman": "ulusal",
+      "otorite": "resmi",
+      "lisans": "Kamu malı (belge)",
+      "periyot": "yillik",
+      "tip": "download",
+      "erisim": "acik",
+      "entegre": "eksik",
+      "parametreler": [
+        "kutle_bazli_tedbir",
+        "su_kutlesi_kunye",
+        "kirletici_analizi"
+      ],
+      "kanit": "veri/ham/nhyp (12/25 havza) · arac/nhyp-cikar.py · arac/nhyp-yayin-nobetci.py",
+      "not": "12/25 havza yayımlı (doğrulandı 2026-07-27); kalan 13'ün 6'sı hazırlıkta, 7'si izsiz. Yayımlanmayan cadde veri uydurulmaz."
+    },
+    {
+      "id": "dsi-yas",
+      "ad": "DSİ Yeraltı Suyu Kuyu/Verim Verileri",
+      "kurum": "Devlet Su İşleri Genel Müdürlüğü",
+      "url": "https://www.dsi.gov.tr",
+      "katman": "ulusal",
+      "otorite": "resmi",
+      "lisans": "Kurumsal",
+      "periyot": "bilinmiyor",
+      "tip": "html",
+      "erisim": "acik",
+      "entegre": "mevcut",
+      "parametreler": [
+        "kuyu_kunye",
+        "verim"
+      ],
+      "kanit": "data/arsiv/dsi-yas · data/canli/havza-yas.json",
+      "not": "Konsolide açık liste yok; kısmi. Tamamı için bilgi edinme adayı."
+    },
+    {
+      "id": "mta-katalog",
+      "ad": "MTA Jeoloji/Hidrojeoloji Katalogu",
+      "kurum": "Maden Tetkik ve Arama Genel Müdürlüğü",
+      "url": "https://eticaret.mta.gov.tr",
+      "katman": "ulusal",
+      "otorite": "resmi",
+      "lisans": "Kurumsal",
+      "periyot": "yillik",
+      "tip": "html",
+      "erisim": "acik",
+      "entegre": "mevcut",
+      "parametreler": [
+        "akifer_jeoloji",
+        "formasyon"
+      ],
+      "kanit": "arac/mta-katalog.py · veri/potansiyel/mta-katalog.json",
+      "not": "Hidrojeolojik ön değerlendirme için jeoloji katmanı."
+    },
+    {
+      "id": "yargi-emsal",
+      "ad": "Danıştay/UYAP Karar Arama",
+      "kurum": "Danıştay / UYAP",
+      "url": "https://karararama.danistay.gov.tr",
+      "katman": "ulusal",
+      "otorite": "resmi",
+      "lisans": "Kamu malı",
+      "periyot": "aylik",
+      "tip": "api",
+      "erisim": "acik",
+      "entegre": "mevcut",
+      "parametreler": [
+        "yargi_karari"
+      ],
+      "kanit": "arac/yargi-cek.mjs · data/kamu/emsal-kararlar.json",
+      "not": "Aylık nazik çekim; su hukuku emsalleri."
+    },
+    {
+      "id": "nasa-power",
+      "ad": "NASA POWER — İklim/Agroklimatik API",
+      "kurum": "NASA Langley / GMAO",
+      "url": "https://power.larc.nasa.gov/",
+      "katman": "uluslararasi",
+      "otorite": "resmi",
+      "lisans": "Kamu malı (NASA)",
+      "periyot": "gunluk",
+      "tip": "json",
+      "erisim": "acik",
+      "entegre": "aday",
+      "parametreler": [
+        "yagis",
+        "toprak_nemi",
+        "sicaklik",
+        "buharlasma",
+        "kuraklik_gostergesi"
+      ],
+      "kanit": "https://power.larc.nasa.gov/docs/services/api/ (HEAD 200, 2026-10-04)",
+      "not": "Anahtarsız REST/JSON, nokta & bölge. CHIRPS/ERA5'i bağımsız doğrular; tarımsal kuraklık için potansiyel."
+    },
+    {
+      "id": "nasa-gesdisc-gldas",
+      "ad": "NASA GES DISC — GLDAS Karasal Su Bütçesi",
+      "kurum": "NASA GSFC",
+      "url": "https://disc.gsfc.nasa.gov/datasets?keywords=GLDAS",
+      "katman": "uluslararasi",
+      "otorite": "resmi",
+      "lisans": "Kamu malı (NASA)",
+      "periyot": "aylik",
+      "tip": "download",
+      "erisim": "anahtar",
+      "entegre": "aday",
+      "parametreler": [
+        "toprak_nemi",
+        "kar_su_esdegeri",
+        "yer_alti_su"
+      ],
+      "kanit": "https://disc.gsfc.nasa.gov (HEAD 200)",
+      "not": "Earthdata hesabı gerektirir; GRACE yanında ikinci bağımsız gözlem."
+    },
+    {
+      "id": "spei-kuraklik",
+      "ad": "SPEI Global Kuraklık Monitörü",
+      "kurum": "CSIC / Izaña Atmosfer Araştırma Merkezi",
+      "url": "https://spei.csic.es",
+      "katman": "uluslararasi",
+      "otorite": "akademik",
+      "lisans": "Akademik atıflı",
+      "periyot": "aylik",
+      "tip": "download",
+      "erisim": "acik",
+      "entegre": "aday",
+      "parametreler": [
+        "tarimsal_kuraklik_endeksi",
+        "spei"
+      ],
+      "kanit": "https://spei.csic.es (HEAD 200, 2026-10-04)",
+      "not": "Standartlaştırılmış Yağış-Evapotranspirasyon İndeksi; 'havza bazlı tarımsal kuraklık' boşluğuna doğrudan aday."
+    },
+    {
+      "id": "grdc-akim",
+      "ad": "GRDC — Küresel Akım/Deşarj Veri Merkezi",
+      "kurum": "BfG / WMO",
+      "url": "https://grdc.bafg.de/",
+      "katman": "uluslararasi",
+      "otorite": "resmi",
+      "lisans": "Ücretsiz (kayıt) / araştırma amaçlı",
+      "periyot": "aylik",
+      "tip": "download",
+      "erisim": "kayit",
+      "entegre": "aday",
+      "parametreler": [
+        "akim",
+        "desarj"
+      ],
+      "kanit": "https://grdc.bafg.de (HEAD 200, 2026-10-04)",
+      "not": "'Anlık debi' talebine en yakın resmî uluslararası kaynak; TR istasyon kapsaması sınırlı, doğrulanmalı."
+    },
+    {
+      "id": "wri-aqueduct",
+      "ad": "WRI Aqueduct — Su Riski Atlası",
+      "kurum": "World Resources Institute",
+      "url": "https://www.wri.org/aqueduct",
+      "katman": "uluslararasi",
+      "otorite": "kurumsal",
+      "lisans": "CC BY 4.0",
+      "periyot": "yillik",
+      "tip": "download",
+      "erisim": "acik",
+      "entegre": "aday",
+      "parametreler": [
+        "su_stresi",
+        "sel_riski",
+        "kuraklik_riski",
+        "su_kalitesi_riski"
+      ],
+      "kanit": "https://www.wri.org/aqueduct (HEAD 200)",
+      "not": "Havza su-risk endeksiyle çapraz doğrulama."
+    },
+    {
+      "id": "fao-aquastat",
+      "ad": "FAO AQUASTAT — Ülke Su İstatistikleri",
+      "kurum": "FAO (BM)",
+      "url": "https://www.fao.org/aquastat",
+      "katman": "uluslararasi",
+      "otorite": "resmi",
+      "lisans": "CC BY-NC-SA 3.0 IGO",
+      "periyot": "yillik",
+      "tip": "download",
+      "erisim": "acik",
+      "entegre": "aday",
+      "parametreler": [
+        "cekilen_su",
+        "sulama",
+        "su_kaynaklari"
+      ],
+      "kanit": "https://www.fao.org/aquastat (HEAD 200)",
+      "not": "Ülke ölçeği, yıllık; DSİ 2024 envanteriyle çapraz kontrol."
+    },
+    {
+      "id": "jrc-global-surface-water",
+      "ad": "JRC Global Surface Water",
+      "kurum": "Avrupa Komisyonu Ortak Araştırma Merkezi",
+      "url": "https://global-surface-water.appspot.com",
+      "katman": "uluslararasi",
+      "otorite": "resmi",
+      "lisans": "CC BY 4.0",
+      "periyot": "yillik",
+      "tip": "download",
+      "erisim": "acik",
+      "entegre": "aday",
+      "parametreler": [
+        "yuzey_suyu_degisimi",
+        "su_kalici_alani"
+      ],
+      "kanit": "https://global-surface-water.appspot.com (Landsat 1984-2021)",
+      "not": "Uydu tabanlı yüzey suyu değişim haritası; harita katmanı potansiyeli."
+    },
+    {
+      "id": "hydrosheds",
+      "ad": "HydroSHEDS / HydroATLAS",
+      "kurum": "WWF / USGS",
+      "url": "https://www.hydrosheds.org",
+      "katman": "uluslararasi",
+      "otorite": "kurumsal",
+      "lisans": "CC BY 4.0 (kısmi kısıtlı)",
+      "periyot": "statik",
+      "tip": "download",
+      "erisim": "acik",
+      "entegre": "aday",
+      "parametreler": [
+        "hidrografik_ag",
+        "havza_ozellikleri",
+        "akim_yonu"
+      ],
+      "kanit": "https://www.hydrosheds.org (ayna: data.hydrosheds.org)",
+      "not": "DSİ havza sınırlarını bağımsız doğrulama; boşluk doldurma."
+    },
+    {
+      "id": "esa-cci-toprak",
+      "ad": "ESA CCI Soil Moisture",
+      "kurum": "Avrupa Uzay Ajansı / TU Wien",
+      "url": "https://esa-soilmoisture-cci.org",
+      "katman": "uluslararasi",
+      "otorite": "resmi",
+      "lisans": "CC BY 4.0",
+      "periyot": "gunluk",
+      "tip": "download",
+      "erisim": "acik",
+      "entegre": "aday",
+      "parametreler": [
+        "toprak_nemi"
+      ],
+      "kanit": "https://esa-soilmoisture-cci.org",
+      "not": "Uydu tabanlı toprak nemi; ERA5-Land ile çapraz doğrulama."
+    },
+    {
+      "id": "global-dam-watch",
+      "ad": "Global Dam Watch Veritabanı",
+      "kurum": "McGill Üniversitesi / UNEP-DHI",
+      "url": "https://www.globaldamwatch.org",
+      "katman": "uluslararasi",
+      "otorite": "akademik",
+      "lisans": "Akademik atıflı",
+      "periyot": "statik",
+      "tip": "download",
+      "erisim": "acik",
+      "entegre": "aday",
+      "parametreler": [
+        "baraj_envanteri",
+        "rezervuar_hacmi"
+      ],
+      "kanit": "https://www.globaldamwatch.org",
+      "not": "EPİAŞ baraj listesini bağımsız tamamlar; TR kapsaması doğrulanmalı."
+    },
+    {
+      "id": "igrac-ggmn",
+      "ad": "IGRAC Küresel Yeraltı Suyu İzleme Ağı (GGMN)",
+      "kurum": "Uluslararası Yeraltı Suyu Kaynakları Merkezi",
+      "url": "https://ggis.un-igrac.org",
+      "katman": "uluslararasi",
+      "otorite": "kurumsal",
+      "lisans": "Açık, atıflı",
+      "periyot": "aylik",
+      "tip": "download",
+      "erisim": "kayit",
+      "entegre": "aday",
+      "parametreler": [
+        "yeralti_su_seviyesi",
+        "kuyu_gozlem"
+      ],
+      "kanit": "https://ggis.un-igrac.org",
+      "not": "Yeraltı suyu seviyesi boşluğuna aday; TR istasyon kapsaması sınırlı."
+    },
+    {
+      "id": "eea-su",
+      "ad": "Avrupa Çevre Ajansı — Su Verisi (WISE)",
+      "kurum": "European Environment Agency",
+      "url": "https://water.europa.eu",
+      "katman": "uluslararasi",
+      "otorite": "resmi",
+      "lisans": "CC BY 4.0",
+      "periyot": "yillik",
+      "tip": "download",
+      "erisim": "acik",
+      "entegre": "aday",
+      "parametreler": [
+        "su_kalitesi",
+        "su_kutlesi_durumu"
+      ],
+      "kanit": "https://water.europa.eu",
+      "not": "TR AB aday ülkesi; kapsam sınırlı olabilir. Su kalitesi metodolojisi referansı."
+    },
+    {
+      "id": "mgm",
+      "ad": "Meteoroloji Genel Müdürlüğü — Gözlem/Tahmin",
+      "kurum": "Meteoroloji Genel Müdürlüğü",
+      "url": "https://www.mgm.gov.tr",
+      "katman": "ulusal",
+      "otorite": "resmi",
+      "lisans": "Kurumsal",
+      "periyot": "gunluk",
+      "tip": "html",
+      "erisim": "acik",
+      "entegre": "eksik",
+      "parametreler": [
+        "yagis_gozlem",
+        "sicaklik",
+        "kuraklik_analizi"
+      ],
+      "kanit": "https://www.mgm.gov.tr (HEAD 200) — resmî açık API ucu DOĞRULANMADI",
+      "not": "MGM açık toplu veri API'si yayımlamıyor (doğrulanmadı); yalnız HTML gözlem. Bilgi edinme adayı."
+    },
+    {
+      "id": "tuik-su",
+      "ad": "TÜİK Su ve Atıksu İstatistikleri",
+      "kurum": "Türkiye İstatistik Kurumu",
+      "url": "https://data.tuik.gov.tr",
+      "katman": "ulusal",
+      "otorite": "resmi",
+      "lisans": "Kamu malı",
+      "periyot": "yillik",
+      "tip": "json",
+      "erisim": "acik",
+      "entegre": "eksik",
+      "parametreler": [
+        "belediye_su_cekim",
+        "atiksu",
+        "kisi_basi_su"
+      ],
+      "kanit": "KESIF-POTANSIYEL.md §0.5 — il kırılımlı xls varlığı doğrulanamadı; veriportali SPA",
+      "not": "Ulusal kırılım var; il kırılımı headless tarayıcı gerektirir. Veri yok değil, erişim yöntemi belirsiz."
+    },
+    {
+      "id": "dsi-akim-gozlem",
+      "ad": "DSİ Anlık Akım Gözlem (debi)",
+      "kurum": "Devlet Su İşleri Genel Müdürlüğü",
+      "url": "https://www.dsi.gov.tr",
+      "katman": "ulusal",
+      "otorite": "resmi",
+      "lisans": "Kurumsal",
+      "periyot": "gunluk",
+      "tip": "html",
+      "erisim": "acik",
+      "entegre": "veri-yok",
+      "parametreler": [
+        "anlik_debi",
+        "akim_gozlem"
+      ],
+      "kanit": "KESIF-POTANSIYEL.md §0.6 — açık konsolide liste/API bulunamadı",
+      "not": "'Anlık debi düşüşleri' talebi: DSİ açık makine-okunur yayımlamıyor. Bilgi edinme dilekçesi adayı. UYDURULMAZ."
+    },
+    {
+      "id": "yeralti-kalite",
+      "ad": "Yeraltı Suyu Kalite/Kirlilik Ölçümleri",
+      "kurum": "DSİ / Tarım ve Orman Bakanlığı",
+      "url": "https://www.tarimorman.gov.tr/SYGM",
+      "katman": "ulusal",
+      "otorite": "resmi",
+      "lisans": "Kurumsal",
+      "periyot": "bilinmiyor",
+      "tip": "html",
+      "erisim": "acik",
+      "entegre": "veri-yok",
+      "parametreler": [
+        "yeralti_su_kalitesi",
+        "kirlilik"
+      ],
+      "kanit": "KESIF-POTANSIYEL.md — açık kaynak bulunamadı (NHYP 12/25'te kütle künyesi kısmi)",
+      "not": "NHYP YAS künyelerinde kısmi; konsolide açık veri YOK. UYDURULMAZ."
+    },
+    {
+      "id": "open-meteo",
+      "ad": "Open-Meteo (ticari aracı API)",
+      "kurum": "Open-Meteo (özel)",
+      "url": "https://open-meteo.com",
+      "katman": "uluslararasi",
+      "otorite": "belirsiz",
+      "lisans": "CC BY 4.0 (kendi beyanı)",
+      "periyot": "gunluk",
+      "tip": "json",
+      "erisim": "acik",
+      "entegre": "aday",
+      "parametreler": [
+        "yagis",
+        "sicaklik"
+      ],
+      "kanit": "https://open-meteo.com",
+      "not": "Birincil model verisi ECMWF/NOAA ama aracı ticari; otorite='belirsiz' → OTOMATİK ENTEGRE EDİLMEZ, yalnız kuyruğa uyarıyla girer. Test/negatif kontrol vakası."
+    }
+  ],
+  "aday_kaynaklar": [
+    {
+      "id": "copernicus-cds-api",
+      "ad": "Copernicus CDS API (ERA5/GLDAS ailesi)",
+      "kurum": "ECMWF / Copernicus",
+      "url": "https://cds.climate.copernicus.eu/api",
+      "katman": "uluslararasi",
+      "otorite": "resmi",
+      "tip": "json"
+    },
+    {
+      "id": "copernicus-dataspace",
+      "ad": "Copernicus Data Space Ecosystem (Sentinel uydu)",
+      "kurum": "ESA / Avrupa Komisyonu",
+      "url": "https://dataspace.copernicus.eu",
+      "katman": "uluslararasi",
+      "otorite": "resmi",
+      "tip": "api"
+    },
+    {
+      "id": "usgs-nwis",
+      "ad": "USGS NWIS Water Services (akım/kalite)",
+      "kurum": "USGS (ABD)",
+      "url": "https://waterservices.usgs.gov",
+      "katman": "uluslararasi",
+      "otorite": "resmi",
+      "tip": "json"
+    },
+    {
+      "id": "gleam",
+      "ad": "GLEAM — Küresel Buharlaşma/Toprak Nemi",
+      "kurum": "Ghent Üniversitesi",
+      "url": "https://www.gleam.eu",
+      "katman": "uluslararasi",
+      "otorite": "akademik",
+      "tip": "download"
+    },
+    {
+      "id": "wmo-hydro",
+      "ad": "WMO — Dünya Meteoroloji Örgütü",
+      "kurum": "WMO",
+      "url": "https://www.wmo.int",
+      "katman": "uluslararasi",
+      "otorite": "resmi",
+      "tip": "api"
+    },
+    {
+      "id": "geodata-havza",
+      "ad": "Türkiye Açık Veri Portalı (resmî)",
+      "kurum": "Cumhurbaşkanlığı Dijital Dönüşüm Ofisi",
+      "url": "https://data.gov.tr",
+      "katman": "ulusal",
+      "otorite": "resmi",
+      "tip": "json"
+    }
+  ]
+}

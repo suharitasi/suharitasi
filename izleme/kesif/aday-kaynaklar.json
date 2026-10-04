@@ -1,0 +1,280 @@
+{
+ "_not": "İnsan onay kuyruğu; motor otomatik entegre ETMEZ.",
+ "adaylar": {
+  "nasa-power": {
+   "ad": "NASA POWER — İklim/Agroklimatik API",
+   "kurum": "NASA Langley / GMAO",
+   "url": "https://power.larc.nasa.gov/",
+   "otorite": "resmi",
+   "tip": "json",
+   "oneri": "ENTEGRASYON (insan onayı)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "saglikli",
+   "parametreler": [
+    "yagis",
+    "toprak_nemi",
+    "sicaklik",
+    "buharlasma",
+    "kuraklik_gostergesi"
+   ],
+   "not": "Anahtarsız REST/JSON, nokta & bölge. CHIRPS/ERA5'i bağımsız doğrular; tarımsal kuraklık için potansiyel."
+  },
+  "nasa-gesdisc-gldas": {
+   "ad": "NASA GES DISC — GLDAS Karasal Su Bütçesi",
+   "kurum": "NASA GSFC",
+   "url": "https://disc.gsfc.nasa.gov/datasets?keywords=GLDAS",
+   "otorite": "resmi",
+   "tip": "download",
+   "oneri": "ENTEGRASYON (insan onayı)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "saglikli",
+   "parametreler": [
+    "toprak_nemi",
+    "kar_su_esdegeri",
+    "yer_alti_su"
+   ],
+   "not": "Earthdata hesabı gerektirir; GRACE yanında ikinci bağımsız gözlem."
+  },
+  "spei-kuraklik": {
+   "ad": "SPEI Global Kuraklık Monitörü",
+   "kurum": "CSIC / Izaña Atmosfer Araştırma Merkezi",
+   "url": "https://spei.csic.es",
+   "otorite": "akademik",
+   "tip": "download",
+   "oneri": "ENTEGRASYON (insan onayı)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "saglikli",
+   "parametreler": [
+    "tarimsal_kuraklik_endeksi",
+    "spei"
+   ],
+   "not": "Standartlaştırılmış Yağış-Evapotranspirasyon İndeksi; 'havza bazlı tarımsal kuraklık' boşluğuna doğrudan aday."
+  },
+  "grdc-akim": {
+   "ad": "GRDC — Küresel Akım/Deşarj Veri Merkezi",
+   "kurum": "BfG / WMO",
+   "url": "https://grdc.bafg.de/",
+   "otorite": "resmi",
+   "tip": "download",
+   "oneri": "ENTEGRASYON (insan onayı)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "saglikli",
+   "parametreler": [
+    "akim",
+    "desarj"
+   ],
+   "not": "'Anlık debi' talebine en yakın resmî uluslararası kaynak; TR istasyon kapsaması sınırlı, doğrulanmalı."
+  },
+  "wri-aqueduct": {
+   "ad": "WRI Aqueduct — Su Riski Atlası",
+   "kurum": "World Resources Institute",
+   "url": "https://www.wri.org/aqueduct",
+   "otorite": "kurumsal",
+   "tip": "download",
+   "oneri": "ENTEGRASYON (insan onayı)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "saglikli",
+   "parametreler": [
+    "su_stresi",
+    "sel_riski",
+    "kuraklik_riski",
+    "su_kalitesi_riski"
+   ],
+   "not": "Havza su-risk endeksiyle çapraz doğrulama."
+  },
+  "fao-aquastat": {
+   "ad": "FAO AQUASTAT — Ülke Su İstatistikleri",
+   "kurum": "FAO (BM)",
+   "url": "https://www.fao.org/aquastat",
+   "otorite": "resmi",
+   "tip": "download",
+   "oneri": "ENTEGRASYON (insan onayı)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "saglikli",
+   "parametreler": [
+    "cekilen_su",
+    "sulama",
+    "su_kaynaklari"
+   ],
+   "not": "Ülke ölçeği, yıllık; DSİ 2024 envanteriyle çapraz kontrol."
+  },
+  "jrc-global-surface-water": {
+   "ad": "JRC Global Surface Water",
+   "kurum": "Avrupa Komisyonu Ortak Araştırma Merkezi",
+   "url": "https://global-surface-water.appspot.com",
+   "otorite": "resmi",
+   "tip": "download",
+   "oneri": "ENTEGRASYON (insan onayı)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "saglikli",
+   "parametreler": [
+    "yuzey_suyu_degisimi",
+    "su_kalici_alani"
+   ],
+   "not": "Uydu tabanlı yüzey suyu değişim haritası; harita katmanı potansiyeli."
+  },
+  "hydrosheds": {
+   "ad": "HydroSHEDS / HydroATLAS",
+   "kurum": "WWF / USGS",
+   "url": "https://www.hydrosheds.org",
+   "otorite": "kurumsal",
+   "tip": "download",
+   "oneri": "ENTEGRASYON (insan onayı)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "saglikli",
+   "parametreler": [
+    "hidrografik_ag",
+    "havza_ozellikleri",
+    "akim_yonu"
+   ],
+   "not": "DSİ havza sınırlarını bağımsız doğrulama; boşluk doldurma."
+  },
+  "esa-cci-toprak": {
+   "ad": "ESA CCI Soil Moisture",
+   "kurum": "Avrupa Uzay Ajansı / TU Wien",
+   "url": "https://esa-soilmoisture-cci.org",
+   "otorite": "resmi",
+   "tip": "download",
+   "oneri": "ENTEGRASYON (insan onayı)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "erisilemiyor",
+   "parametreler": [
+    "toprak_nemi"
+   ],
+   "not": "Uydu tabanlı toprak nemi; ERA5-Land ile çapraz doğrulama."
+  },
+  "global-dam-watch": {
+   "ad": "Global Dam Watch Veritabanı",
+   "kurum": "McGill Üniversitesi / UNEP-DHI",
+   "url": "https://www.globaldamwatch.org",
+   "otorite": "akademik",
+   "tip": "download",
+   "oneri": "ENTEGRASYON (insan onayı)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "yeni-veri",
+   "parametreler": [
+    "baraj_envanteri",
+    "rezervuar_hacmi"
+   ],
+   "not": "EPİAŞ baraj listesini bağımsız tamamlar; TR kapsaması doğrulanmalı."
+  },
+  "igrac-ggmn": {
+   "ad": "IGRAC Küresel Yeraltı Suyu İzleme Ağı (GGMN)",
+   "kurum": "Uluslararası Yeraltı Suyu Kaynakları Merkezi",
+   "url": "https://ggis.un-igrac.org",
+   "otorite": "kurumsal",
+   "tip": "download",
+   "oneri": "ENTEGRASYON (insan onayı)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "yeni-veri",
+   "parametreler": [
+    "yeralti_su_seviyesi",
+    "kuyu_gozlem"
+   ],
+   "not": "Yeraltı suyu seviyesi boşluğuna aday; TR istasyon kapsaması sınırlı."
+  },
+  "eea-su": {
+   "ad": "Avrupa Çevre Ajansı — Su Verisi (WISE)",
+   "kurum": "European Environment Agency",
+   "url": "https://water.europa.eu",
+   "otorite": "resmi",
+   "tip": "download",
+   "oneri": "ENTEGRASYON (insan onayı)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "saglikli",
+   "parametreler": [
+    "su_kalitesi",
+    "su_kutlesi_durumu"
+   ],
+   "not": "TR AB aday ülkesi; kapsam sınırlı olabilir. Su kalitesi metodolojisi referansı."
+  },
+  "open-meteo": {
+   "ad": "Open-Meteo (ticari aracı API)",
+   "kurum": "Open-Meteo (özel)",
+   "url": "https://open-meteo.com",
+   "otorite": "belirsiz",
+   "tip": "json",
+   "oneri": "RED (otorite belirsiz)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "saglikli",
+   "parametreler": [
+    "yagis",
+    "sicaklik"
+   ],
+   "not": "Birincil model verisi ECMWF/NOAA ama aracı ticari; otorite='belirsiz' → OTOMATİK ENTEGRE EDİLMEZ, yalnız kuyruğa uyarıyla girer. Test/negatif kontrol vakası."
+  },
+  "copernicus-cds-api": {
+   "ad": "Copernicus CDS API (ERA5/GLDAS ailesi)",
+   "kurum": "ECMWF / Copernicus",
+   "url": "https://cds.climate.copernicus.eu/api",
+   "otorite": "resmi",
+   "tip": "json",
+   "oneri": "ENTEGRASYON (insan onayı)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "saglikli",
+   "parametreler": [],
+   "not": ""
+  },
+  "copernicus-dataspace": {
+   "ad": "Copernicus Data Space Ecosystem (Sentinel uydu)",
+   "kurum": "ESA / Avrupa Komisyonu",
+   "url": "https://dataspace.copernicus.eu",
+   "otorite": "resmi",
+   "tip": "api",
+   "oneri": "ENTEGRASYON (insan onayı)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "saglikli",
+   "parametreler": [],
+   "not": ""
+  },
+  "usgs-nwis": {
+   "ad": "USGS NWIS Water Services (akım/kalite)",
+   "kurum": "USGS (ABD)",
+   "url": "https://waterservices.usgs.gov",
+   "otorite": "resmi",
+   "tip": "json",
+   "oneri": "ENTEGRASYON (insan onayı)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "saglikli",
+   "parametreler": [],
+   "not": ""
+  },
+  "gleam": {
+   "ad": "GLEAM — Küresel Buharlaşma/Toprak Nemi",
+   "kurum": "Ghent Üniversitesi",
+   "url": "https://www.gleam.eu",
+   "otorite": "akademik",
+   "tip": "download",
+   "oneri": "ENTEGRASYON (insan onayı)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "saglikli",
+   "parametreler": [],
+   "not": ""
+  },
+  "wmo-hydro": {
+   "ad": "WMO — Dünya Meteoroloji Örgütü",
+   "kurum": "WMO",
+   "url": "https://www.wmo.int",
+   "otorite": "resmi",
+   "tip": "api",
+   "oneri": "ENTEGRASYON (insan onayı)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "saglikli",
+   "parametreler": [],
+   "not": ""
+  },
+  "geodata-havza": {
+   "ad": "Türkiye Açık Veri Portalı (resmî)",
+   "kurum": "Cumhurbaşkanlığı Dijital Dönüşüm Ofisi",
+   "url": "https://data.gov.tr",
+   "otorite": "resmi",
+   "tip": "json",
+   "oneri": "ENTEGRASYON (insan onayı)",
+   "ilk_gorulme": "2026-10-04T12:18:01Z",
+   "son_durum": "erisilemiyor",
+   "parametreler": [],
+   "not": ""
+  }
+ },
+ "guncelleme": "2026-10-04T12:28:04Z"
+}
