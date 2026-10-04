@@ -1814,3 +1814,22 @@ DÖNÜŞÜM SEANSI (26 Tem 2026) — dal `donusum-2026-07-26`, worktree
 - [ ] **KULLANICI KARARI — log erişimi.** `suha` `adm`/`systemd-journal`
       grubunda olsaydı OOM kaydı okunur, teşhis korelasyonla değil kanıtla
       kapanırdı. Bir sonraki donmada bu fark yine kritik olacak.
+
+## Sürekli Keşif ve Validasyon Motoru (04.10.2026) — freeze sonrası kalemler
+
+- [x] **Kod commit — TAMAMLANDI (04.10.2026, freeze kaldırıldı):** motor kodu
+      main'e alındı. (Aşağıdaki liste tarihseldir.) `arac/kesif/kesif-motoru.py`,
+      `arac/kesif/kesif-gunluk.sh`, `arac/mevzuat-radar.sh`,
+      `arac/test/test_kesif_motoru.py`, `saglik-bekcisi.sh` (keşif canlılık
+      kalemi e), `.gitignore` (izleme/kesif/state|log yoksayımı),
+      `izleme/kaynak-takvimi.md`, `KARARLAR.md` §46, bu dosya.
+- [ ] **İnsan onayı — aday kaynaklar:** `izleme/kesif/aday-kaynaklar.json`'da
+      16 nitelikli aday var (NASA POWER, SPEI kuraklık, GRDC akım,
+      WRI Aqueduct, IGRAC-GGMN, HydroSHEDS, JRC, ESA CCI, ...). Onaylanan
+      kaynak için veri çekici + (gerekiyorsa) sayfa/şema entegrasyonu AYRI iş
+      olarak planlanır; motor otomatik entegre ETMEZ (otorite koruması).
+- [ ] **Eksik veri — bilgi edinme adayı:** DSİ anlık debi (deşarj) ve yeraltı
+      suyu kalite/kirlilik konsolide listesi açık yayımlanmıyor
+      (`EKSIK-RAPOR.md` §2). Dilekçe/veri talebi; uydurulmaz.
+- [ ] **MGM açık veri erişimi:** bu sunucudan `mgm.gov.tr` DNS çözülemiyor
+      (`EKSIK-RAPOR.md` §1). Ağ/erişim engeli araştırması.

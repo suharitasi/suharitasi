@@ -76,6 +76,19 @@ else
   ekle "izleme/DURUM.md YOK — su-izleme hiç koşmamış olabilir"
 fi
 
+# (e) kaynak keşif canlılığı (04.10.2026): izleme/kesif/DURUM.md her koşuda
+#     yeniden yazılır (günlük 21:00 UTC). EŞİK 26s = günlük koşum aralığı + pay
+#     (baraj/commit kalemleriyle aynı mantık): 21:00→ertesi 07:00 boşluğu 10s,
+#     hem günlük koşumu hem ilk kurulum günü yanlış alarmı güvenle kapsar.
+if [ -f izleme/kesif/DURUM.md ]; then
+  KS=$(( (NOW - $(date -u -r izleme/kesif/DURUM.md +%s)) / 3600 ))
+  if [ "$KS" -gt 26 ]; then
+    ekle "kaynak keşif ${KS} saattir koşmadı (DURUM.md bayat, >26s) — keşif cron'u durmuş olabilir"
+  fi
+else
+  ekle "izleme/kesif/DURUM.md YOK — keşif hattı hiç koşmamış olabilir"
+fi
+
 # (d2) HAFTALIK NÖBETÇİLER — rg-nobetci + nhyp-nobetci (M13, 29.07.2026).
 #      NEDEN BEKÇİDE: bu ikisi md20 (kapsam kalemleri) içinde de ölçülüyor,
 #      ama md20 SAĞLIK SİSTEMİNİN İÇİNDE koşar. Sağlık koşusu durursa md20

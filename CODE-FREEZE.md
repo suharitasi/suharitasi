@@ -1,6 +1,6 @@
 # CODE FREEZE — 1 hafta
 
-**Durum:** AKTİF
+**Durum:** KALDIRILDI (2026-10-04, sahip talimatı — bkz. KAPANIŞ)
 **Başlangıç:** 2026-09-28
 **Bitiş:** 2026-10-05 (aynı saat)
 **Kapsam:** `suharitasi.com` deposu — `main` dalı ve Cloudflare Pages dağıtımı.
@@ -83,6 +83,13 @@ mesajı `[FREEZE-İSTİSNA]` ile işaretlenir ve nedeni buraya yazılır.
   (name/affiliation) olduğundan DEĞİŞTİRİLMEDİ. Kanıt: build 1102 · dist'te
   `creator` biçimleri yalnız `{` (114) · string/dizi/`@id` **0** · mikrodata
   düz-metin **0** · `itemprop="creator" itemscope` 106 dosya.
+
+## KAPANIŞ (2026-10-04 — sahip talimatıyla KALDIRILDI)
+Freeze, takvim bitişinden (05.10) bir gün önce, sahip talimatıyla kaldırıldı.
+Gerekçe: Parsel Talep formu canlıda yeterince gözlemlendi; sahip yayına alım
+operasyonunu (keşif motoru entegrasyonu, veri bağlama, KIRMIZI onarımlar)
+doğrudan `main` üzerinde icra etme yetkisi verdi. Kapanış kaydı: KARARLAR §47.
+Bu dosya arşiv niteliğindedir; yeni iş artık SIRADAKILER'de beklemeden akar.
 
 ## Bitiş
 Pencere sonunda bu dosya `KARARLAR.md`'ye kapanış kaydı düşülerek arşivlenir

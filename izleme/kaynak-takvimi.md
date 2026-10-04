@@ -27,6 +27,8 @@ BIST timer'ları `Europe/Istanbul` (UTC+3) tanımlıdır; aşağıdaki tabloda
 | **16:15** | `izleme/su-izleme.sh` *(16:00'dan taşındı)* | ölçülmedi | ölçülmedi | ağ-bağımlı |
 | 19:30 | `arac/site-saglik.mjs --tam` | 452 sn | 1.917 MB | ölçüldü |
 | **20:10 (ayın 1'i)** | `site-saglik.mjs --tam --dis-link-tam` **(YENİ)** | **~27 dk** | ~1.917 MB | 29.07 ölçümü: 1.039 link × ≥0,7 sn + koşumun kalanı; 25 dk'lık denemede bitmedi |
+| **05:20 Çar** | `arac/mevzuat-radar.sh` *(sarmalayıcı; doğrudan .py yerine, 04.10.2026)* | ~30 sn | düşük | `.py` yazıyordu ama commit etmiyordu → kirli ağaç; sarmalayıcı yalnız `data/kamu/mevzuat-*.json` commit eder |
+| **21:00** | `arac/kesif/kesif-gunluk.sh` **(YENİ, 04.10.2026)** | ~40 sn / ~39 hedef | düşük | Ölçüm: 19:30 `--tam` ~19:38 biter; ayın 1'i 20:10 tam dış-link ~27 dk; indexnow :25 yalnız çift saat → 21:00 boş. Kaynak yoklama + otorite filtresi + aday kuyruğu + Telegram |
 
 `--hizli` (deploy sonrası, zamanlanmamış): 68 sn / 1.074 MB.
 `arac/altin-ornek.mjs` (md23): 0,31 sn / 43 MB — sağlık koşumunun içinde.

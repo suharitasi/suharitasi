@@ -1114,6 +1114,48 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §46 · SÜREKLİ KEŞİF VE VALİDASYON MOTORU (04.10.2026, sahip talimatı)
+
+- **Karar:** Su verisi kaynakları için makine-okunur katalog
+  (`izleme/kesif/kaynak-kaynagi.json`, 33 kayıt) ve günlük motor
+  (`arac/kesif/kesif-motoru.py`, cron 21:00 UTC) kuruldu. Kaynaklar
+  canlılık/biçim/şema/rate-limit ekseninde yoklanır; değişim sınıflanır.
+- **Otorite filtresi:** resmi/akademik/kurumsal geçer; 'belirsiz' (ticari
+  aracı, ör. Open-Meteo) yalnız insan onay kuyruğuna uyarıyla girer; 'red'
+  (sosyal medya/magazin) hiç kaydedilmez. Otoritesiz veri OTOMATİK ENTEGRE
+  EDİLMEZ — Dataset otoritesi korunur.
+- **Uydurma yasağı:** motor veri ÜRETMEZ; yalnız gözlem/sınıflama.
+  `EKSIK-RAPOR.md` boşlukları dürüstçe ayırır: NHYP 13/25, DSİ anlık debi,
+  yeraltı kalitesi → "veri-yok / bilgi edinme"; değer uydurulmaz.
+- **Telegram:** kritik kaynak arızası ve yeni nitelikli aday keşfi,
+  `arac/uyari-gonder.sh` ile dışarı bildirilir (imza tekrarı 24 saat bastırır).
+- **BULUNAN GERÇEK HATA (gözden kaçan veri):** `arac/mevzuat-radar.py`
+  yazdığı `data/kamu/mevzuat-*.json`'u hiçbir hat commit etmiyordu
+  (30.09'dan beri kirli ağaç; madde farkı origin'e gitmiyordu).
+  `arac/mevzuat-radar.sh` sarmalayıcısı eklendi, cron satırı çevrildi,
+  birikmiş fark commit edildi (2cbd71d).
+- **CODE-FREEZE:** uyum için motor KAYNAK KODU main'e gönderilmedi; yalnız
+  operasyonel veri/rapor ürünleri push edildi (inert; site çıktısı değişmez).
+  Kod freeze sonrası commit edilecek (SIRADAKILER.md).
+- **Kanıt:** 25 birim testi geçti; `kos` idempotent (A==B); commit b22ca77 +
+  deploy hook HTTP 200; aday kuyruğu 16 kayıt; Telegram msg 8770.
+
+---
+
+## §47 · CODE-FREEZE KALDIRILDI + KEŞİF MOTORU CANLIYA ALINDI (04.10.2026)
+
+- **Karar:** Sahip talimatıyla CODE-FREEZE, takvim bitişinden bir gün önce
+  kaldırıldı. §46'daki "freeze sonrası commit" kalemleri iptal; keşif motoru
+  kaynak kodu doğrudan `main`'e alındı.
+- **Kapsam:** `arac/kesif/*` · `arac/mevzuat-radar.sh` ·
+  `arac/test/test_kesif_motoru.py` · `saglik-bekcisi.sh` (kalem e) ·
+  `.gitignore` · `izleme/kaynak-takvimi.md` + registry/kuyruk/raporlar.
+- **Kanıt:** commit + push + deploy hook 200; `npm run build` hatasız.
+- **Not:** AY İLKESİ'nin DAYANIKLILIK bacağı kapsamındadır (yeni tüketici
+  özelliği değil).
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek

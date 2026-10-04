@@ -69,3 +69,10 @@ izleme/state/.rg-ca-demeti.tmp
 /UYARI-SAGLIK.md
 # F1b (08.09.2026): elle koşumda GSC_CIKTI_DIZIN verilmezse state depo içine düşer — askı
 /rapor/gsc-haftalik/indeks-durum.json
+
+# Kaynak keşif hattı (arac/kesif) — üretilen durum/log her koşuda değişir; churn olmasın
+/izleme/kesif/state/
+/izleme/kesif/log/
+
+# Keşif oturumu yedeği (04.10.2026) — depoya girmez
+/BACKUP-KESIF-*/
