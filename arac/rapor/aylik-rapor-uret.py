@@ -13,10 +13,13 @@ Kullanım: python3 arac/rapor/aylik-rapor-uret.py [--donem 2026-10] [--kuru]
 from __future__ import annotations
 import argparse
 import json
+import sys
 from datetime import date, datetime, timezone
 from pathlib import Path
 
 KOK = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(KOK / "arac"))
+from yaz_atomik import metin_yaz  # noqa: E402 — atomik yazım (04.10.2026 denetimi)
 AYLAR = ["", "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz",
          "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"]
 
@@ -191,8 +194,7 @@ def main() -> int:
     if a.kuru:
         print(f"[kuru] {donem} raporu ({len(icerik)} bayt), yazılmadı")
         return 0
-    hedef.parent.mkdir(parents=True, exist_ok=True)
-    hedef.write_text(icerik, encoding="utf-8")
+    metin_yaz(hedef, icerik)
     print(f"yazıldı: {hedef}")
 
 

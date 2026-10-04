@@ -21,8 +21,8 @@ URL = ("https://fonts.googleapis.com/css2"
 
 
 def ctx():
-    c = ssl.create_default_context(); c.check_hostname = False; c.verify_mode = ssl.CERT_NONE
-    return c
+    # TLS doğrulaması açık (04.10.2026 denetimi): Google zinciri doğrulanıyor.
+    return ssl.create_default_context()
 
 
 def cek(url: str, binary: bool = False):

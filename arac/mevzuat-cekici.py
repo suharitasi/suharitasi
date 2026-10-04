@@ -54,10 +54,11 @@ MADDE_PAT = re.compile(r"(?mi)^\s*(Geçici\s+Madde|Ek\s+Madde|Madde)\s+(\d+)\s*[
 
 
 def _ctx() -> ssl.SSLContext:
-    c = ssl.create_default_context()
-    c.check_hostname = False
-    c.verify_mode = ssl.CERT_NONE
-    return c
+    # TLS DOĞRULAMASI AÇIK (04.10.2026 denetimi): eski CERT_NONE MITM'e açıktı.
+    # Canlı ölçüm: mevzuat.gov.tr zinciri doğrulanıyor (doğrulanmış bağlamla
+    # HTTP 200). Zincir ileride bozulursa hat YÜKSEK SESLE düşer (sessiz hata
+    # yasağı) — sessizce doğrulamasız devam etmek yasak.
+    return ssl.create_default_context()
 
 
 def cek(url: str) -> str:

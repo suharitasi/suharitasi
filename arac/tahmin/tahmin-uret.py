@@ -22,12 +22,15 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
 
 KOK = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(KOK / "arac"))
+from yaz_atomik import json_yaz  # noqa: E402 — atomik yazım (04.10.2026 denetimi)
 OUT = KOK / "data" / "tahmin" / "kuraklik-projeksiyonu.json"
 UFUK_AY = 6
 
@@ -161,7 +164,7 @@ def main() -> int:
         print(f"[kuru] {len(havzalar)} havza, yazılmadı")
         return 0
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(cikti, ensure_ascii=False, indent=1), encoding="utf-8")
+    json_yaz(OUT, cikti, ensure_ascii=False, indent=1)
     print(f"yazıldı: {OUT} · {len(havzalar)} havza")
     return 0
 

@@ -90,7 +90,12 @@ def telegram(env: dict, konu: str, govde: str):
 
 
 def eposta_gonder(env: dict, kime: str, konu: str, govde: str) -> bool:
-    host = env.get("SMTP_HOST"); port = int(env.get("SMTP_PORT") or 0)
+    host = env.get("SMTP_HOST")
+    # Bozuk/tırnaklı SMTP_PORT koşuyu ValueError ile düşürmesin (04.10 denetimi).
+    try:
+        port = int((env.get("SMTP_PORT") or "0").strip())
+    except (TypeError, ValueError):
+        port = 0
     user = env.get("SMTP_USER"); pw = env.get("SMTP_PASS"); gonderen = env.get("FROM_EMAIL") or user
     if not (host and port and user and pw and gonderen):
         return False
@@ -176,7 +181,13 @@ def main() -> int:
             continue
         ok = eposta_gonder(env, ab["eposta"], konu, govde)
         logla(f"e-posta {'gönderildi' if ok else 'GÖNDERİLEMEDİ (SMTP yok/hata)'}: {ab.get('eposta')}")
-        durum[ab.get("eposta", "") + "|" + imza] = simdi
+        if ok:
+            durum[ab.get("eposta", "") + "|" + imza] = simdi
+        else:
+            # K1 (04.10.2026 denetimi): başarısız gönderim durumu GÜNCELLEMEZ;
+            # aksi hâlde 12 saatlik ama-penceresi alarmı sessizce bastırırdı
+            # (sessiz hata yasağı). Sonraki koşuda yeniden denenir.
+            logla("durum güncellenmedi — sonraki koşuda yeniden denenecek")
 
     if not a.kuru:
         telegram(env, f"{len(tetik)} su alarmı tetiklendi", "\n".join(ozet))

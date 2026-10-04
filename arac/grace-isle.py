@@ -18,8 +18,12 @@ Bağımlılık: python3-gdal (sistemde mevcut) + numpy. pip kurulumu YOK.
 """
 import json, sys, math, os
 from datetime import date, timedelta
+from pathlib import Path
 import numpy as np
 from osgeo import gdal
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from yaz_atomik import json_yaz
 
 gdal.UseExceptions()
 
@@ -109,13 +113,13 @@ KUNYE_ORTAK = {
 # ── Ülke geneli ─────────────────────────────────────────────────────────
 w_tr = np.where(kara, np.cos(np.radians(enlemler))[:, None], 0.0)
 tr_seri, tr_hucre = seri_cikar(w_tr)
-json.dump({
+json_yaz(f'{KOK}/data/canli/grace-turkiye.json', {
     'kunye': {**KUNYE_ORTAK,
               'kapsam': f'Türkiye kara hücreleri, kutu {LAT0}-{LAT1}K {LON0}-{LON1}D ({tr_hucre} hücre)',
               'islemeTarihi': date.today().isoformat(),
               'aySayisi': len(tr_seri)},
     'seri': tr_seri,
-}, open(f'{KOK}/data/canli/grace-turkiye.json', 'w'), ensure_ascii=False, indent=1)
+}, ensure_ascii=False, indent=1)
 
 # ── Havzalar ────────────────────────────────────────────────────────────
 havzalar = {}
@@ -131,13 +135,13 @@ for f in geo['features']:
     havzalar[ad] = {'no': no, 'hucreSayisi': hucre, 'seri': seri}
     print(f'  {ad}: {hucre} hücre, {len(seri)} ay', file=sys.stderr)
 
-json.dump({
+json_yaz(f'{KOK}/data/canli/grace-havza.json', {
     'kunye': {**KUNYE_ORTAK,
               'islemeTarihi': date.today().isoformat(),
               'havzaSayisi': len(havzalar),
               'atlanan': atlanan},
     'havzalar': havzalar,
-}, open(f'{KOK}/data/canli/grace-havza.json', 'w'), ensure_ascii=False, indent=1)
+}, ensure_ascii=False, indent=1)
 
 print(f'TAMAM: {len(havzalar)} havza + ülke serisi ({len(tr_seri)} ay) yazıldı', file=sys.stderr)
 if atlanan:
