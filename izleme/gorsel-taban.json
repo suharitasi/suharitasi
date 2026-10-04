@@ -1,7 +1,7 @@
 {
  "_not": "GÖRSEL/DÜZEN TABANI — sürümlü YAPILANDIRMA (log değil). Bilinçli tasarım değişikliğinde `node arac/site-saglik.mjs --gorsel-taban-yenile --gerekce \"...\"` ile yenilenir; yenilenmeden kalem KIRMIZI kalır. Ölçüm deterministiktir: sabit viewport + DPR + reduced-motion (sahne 0'da donar).",
- "tabanTarihi": "2026-09-24T12:05:36.197Z",
- "gerekce": "24.09.2026 Adim 1: ana sayfaya Hizmet ve Istihbarat Merkezi (4 kolonlu vitrin) eklendi (kullanici onayi: Yalniz Adim 1: vitrin). Masaustunde hero-sonrasi bolum ritmi bilincli degisti; mobilde vitrin kanit bandi ve dert sorusundan sonraya alindi (S1 korunur). G6/S1 esigi 2560 DEVRALINDI.",
+ "tabanTarihi": "2026-10-04T13:23:05.228Z",
+ "gerekce": "24.09→04.10 bilinçli değişiklikler: HizmetVitrini, KurumsalHizmetler B2B bandı, sr-only h1, font preload, G6/S1 order onarımı + kontrast. G6 (S1 kadraj) artık düzeldi; G4/G3 yeni bölüm/tipografi tabana işlenir.",
  "esikler": {
   "g1KesismePx2": 2000,
   "g2OlcekOran": 1.05,
@@ -31,9 +31,9 @@
  "sayfalar": {
   "/@md": {
    "tipografi": {
-    "h1Px": 41.6,
-    "h1SatirYuk": 47.84,
-    "altPx": 18
+    "h1Px": 32.64,
+    "h1SatirYuk": 57.12,
+    "altPx": null
    },
    "bolumler": [
     {
@@ -44,6 +44,11 @@
     {
      "etiket": "v2-vitrin",
      "padUst": 68,
+     "padAlt": 80
+    },
+    {
+     "etiket": "v2-kurumsal",
+     "padUst": 80,
      "padAlt": 80
     },
     {
@@ -95,9 +100,9 @@
   },
   "/@mobil": {
    "tipografi": {
-    "h1Px": 30.4,
-    "h1SatirYuk": 34.96,
-    "altPx": 16
+    "h1Px": 32.64,
+    "h1SatirYuk": 57.12,
+    "altPx": null
    },
    "bolumler": [
     {
@@ -109,6 +114,11 @@
      "etiket": "v2-vitrin",
      "padUst": 68,
      "padAlt": 80
+    },
+    {
+     "etiket": "v2-kurumsal",
+     "padUst": 48,
+     "padAlt": 48
     },
     {
      "etiket": "v2-bolum.v2-teknoloji",
@@ -161,8 +171,8 @@
    "enYuksekOlcek": 0.41,
    "mobilIlkSoru": {
     "metin": "Ruhsatsız kuyu cezası aldım, ne yapmalıyım?",
-    "ust": 2510,
-    "alt": 2560
+    "ust": 615,
+    "alt": 664
    },
    "aktifSahne": "Sondaj"
   },
@@ -173,6 +183,11 @@
     "altPx": null
    },
    "bolumler": [
+    {
+     "etiket": "pt",
+     "padUst": 28.8,
+     "padAlt": 28.8
+    },
     {
      "etiket": "hukuk-kopru",
      "padUst": 25.6,
@@ -186,7 +201,7 @@
    ],
    "hizalamaSapma": 0,
    "kesismeAlan": 0,
-   "enYuksekOlcek": null,
+   "enYuksekOlcek": 0.7,
    "mobilIlkSoru": null,
    "aktifSahne": "(sahne yok)"
   },
@@ -197,6 +212,11 @@
     "altPx": null
    },
    "bolumler": [
+    {
+     "etiket": "pt",
+     "padUst": 17.6,
+     "padAlt": 17.6
+    },
     {
      "etiket": "hukuk-kopru",
      "padUst": 25.6,
@@ -229,7 +249,7 @@
    ],
    "hizalamaSapma": 0,
    "kesismeAlan": 0,
-   "enYuksekOlcek": null,
+   "enYuksekOlcek": 0.7,
    "mobilIlkSoru": null,
    "aktifSahne": "(sahne yok)"
   },
@@ -272,7 +292,7 @@
    ],
    "hizalamaSapma": 0,
    "kesismeAlan": 0,
-   "enYuksekOlcek": 0.65,
+   "enYuksekOlcek": 0.7,
    "mobilIlkSoru": null,
    "aktifSahne": "(sahne yok)"
   },
@@ -360,7 +380,7 @@
    ],
    "hizalamaSapma": 0,
    "kesismeAlan": 0,
-   "enYuksekOlcek": null,
+   "enYuksekOlcek": 0.7,
    "mobilIlkSoru": null,
    "aktifSahne": "(sahne yok)"
   },
@@ -468,7 +488,7 @@
    ],
    "hizalamaSapma": 0,
    "kesismeAlan": 0,
-   "enYuksekOlcek": null,
+   "enYuksekOlcek": 0.7,
    "mobilIlkSoru": null,
    "aktifSahne": "(sahne yok)"
   },
@@ -576,7 +596,7 @@
    ],
    "hizalamaSapma": 0,
    "kesismeAlan": 0,
-   "enYuksekOlcek": null,
+   "enYuksekOlcek": 0.7,
    "mobilIlkSoru": null,
    "aktifSahne": "(sahne yok)"
   },
@@ -664,7 +684,7 @@
    ],
    "hizalamaSapma": 0,
    "kesismeAlan": 0,
-   "enYuksekOlcek": null,
+   "enYuksekOlcek": 0.7,
    "mobilIlkSoru": null,
    "aktifSahne": "(sahne yok)"
   },
@@ -707,7 +727,7 @@
    ],
    "hizalamaSapma": 0,
    "kesismeAlan": 0,
-   "enYuksekOlcek": null,
+   "enYuksekOlcek": 0.7,
    "mobilIlkSoru": null,
    "aktifSahne": "(sahne yok)"
   },
@@ -755,7 +775,7 @@
    ],
    "hizalamaSapma": 0,
    "kesismeAlan": 0,
-   "enYuksekOlcek": null,
+   "enYuksekOlcek": 0.7,
    "mobilIlkSoru": null,
    "aktifSahne": "(sahne yok)"
   },
@@ -818,7 +838,7 @@
    ],
    "hizalamaSapma": 0,
    "kesismeAlan": 0,
-   "enYuksekOlcek": null,
+   "enYuksekOlcek": 0.7,
    "mobilIlkSoru": null,
    "aktifSahne": "(sahne yok)"
   },
@@ -858,7 +878,7 @@
   }
  },
  "oncekiTaban": {
-  "tarih": "2026-09-22T18:17:26.569Z",
-  "gerekce": "22.09.2026 kullanici onayi (a): S1 kabul. (1) Bu is: ana sayfaya AjanBandi 'Acik altyapi' bolumu eklendi (bilincli, +1 section). (2) Miras: 22.09 11:31-12:13 hero/teknoloji commit'leri (7f5a288 'radikal asagi itme', 02b0732) mobil ilk-ekran ritmini bilincli degistirdi ve dert-sorusunu kadraj disina itti; taban 2026-09-13'ten beri yenilenmemisti. Kullanici S1 kaybini bilincli kabul etti. AYRICA (kullanici onayi a, 22.09): G6/S1 esigi bilincli olarak 812 -> 2560 yazildi; S1 kazanci KABUL edildi. Esik, soru daha da asagi itilirse (> 2560px) yeniden kirmizi verir."
+  "tarih": "2026-09-24T12:05:36.197Z",
+  "gerekce": "24.09.2026 Adim 1: ana sayfaya Hizmet ve Istihbarat Merkezi (4 kolonlu vitrin) eklendi (kullanici onayi: Yalniz Adim 1: vitrin). Masaustunde hero-sonrasi bolum ritmi bilincli degisti; mobilde vitrin kanit bandi ve dert sorusundan sonraya alindi (S1 korunur). G6/S1 esigi 2560 DEVRALINDI."
  }
 }
