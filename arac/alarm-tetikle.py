@@ -51,7 +51,10 @@ def logla(m):
 
 
 def aboneleri_cek(anahtar: str) -> list:
-    req = urllib.request.Request(OKUMA_UC, headers={"Authorization": f"Bearer {anahtar}"})
+    req = urllib.request.Request(OKUMA_UC, headers={
+        "Authorization": f"Bearer {anahtar}",
+        "User-Agent": "suharitasi.com alarm-tetikleyici/1.0 (mailto:iletisim@suharitasi.com)",
+    })
     with urllib.request.urlopen(req, timeout=30) as r:
         return json.loads(r.read().decode("utf-8")).get("aboneler", [])
 
@@ -120,6 +123,14 @@ def main() -> int:
 
     try:
         aboneler = aboneleri_cek(anahtar)
+    except urllib.error.HTTPError as e:
+        if e.code in (403, 405):
+            logla("abonelik okuma YETKİSİZ (HTTP %d) — Cloudflare Pages projesinde "
+                  "'SAYAC_ANAHTAR' secret'ı .env WA_SAYAC_ANAHTAR ile eşleşmiyor/eksik; "
+                  "panelden ayarlanınca köprü çalışır." % e.code)
+            return 0
+        logla(f"abonelik okuma hatası: {e}")
+        return 1
     except Exception as e:
         logla(f"abonelik okuma hatası: {e}")
         return 1

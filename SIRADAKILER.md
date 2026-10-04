@@ -1822,6 +1822,21 @@ DÖNÜŞÜM SEANSI (26 Tem 2026) — dal `donusum-2026-07-26`, worktree
       grubunda olsaydı OOM kaydı okunur, teşhis korelasyonla değil kanıtla
       kapanırdı. Bir sonraki donmada bu fark yine kritik olacak.
 
+## Faz 4 Ekosistem (04.10.2026) — açık kalemler
+
+- [ ] **[OPERATÖR] Cloudflare Pages `SAYAC_ANAHTAR` secret.** Panel → Settings →
+  Environment variables: `SAYAC_ANAHTAR` = `.env` içindeki `WA_SAYAC_ANAHTAR`.
+  Ayarlanınca alarm abone okuma köprüsü (Modül 3) + `/olay` sayacı + `/takip`
+  okuma çalışır. Kod hazır; yalnız bu config eksik.
+- [ ] **[KULLANICI] LLM ile rapor cilası (opsiyonel).** Modül 4 şu an deterministik
+  (halüsinasyon yok). Serbest LLM metni isteniyorsa bir API anahtarı gerekir;
+  "uydurma yasağı" gereği yalnız HESAPLANMIŞ sayıları cümleye dökecek şekilde
+  sınırlanmalı (ayrı brief).
+- [ ] **[KULLANICI] Alarm gönderim kanalı.** SMTP .env'de var; gönderim
+  `arac/alarm-tetikle.py` üzerinden. Buttondown kullanılacaksa anahtar gerekir.
+- [ ] **[VERİ] SPEI kuraklık endeksi.** Tahmin modeli GRACE+baraj ile çalışıyor;
+  SPEI entegre edilirse kuraklık projeksiyonu güçlenir (aday havuzunda, onay bekliyor).
+
 ## Sürekli Keşif ve Validasyon Motoru (04.10.2026) — freeze sonrası kalemler
 
 - [x] **Kod commit — TAMAMLANDI (04.10.2026, freeze kaldırıldı):** motor kodu

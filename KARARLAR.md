@@ -1195,6 +1195,30 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §50 · FAZ 4 EKOSİSTEM: TAHMİN + DaaS + ALARM + OTONOM RAPOR (04.10.2026)
+
+- **Modül 1 (tahminsel analitik):** `arac/tahmin/tahmin-uret.py` — numpy,
+  mevsimsel ayrıştırma + OLS trend + Mann-Kendall; 0,25 sn / 37 MB (VPS dostu).
+  Çıktı `data/tahmin/…` **tur="tahmin"**; `/tahmin/` + `/veri/kuraklik.json`.
+  Schema.org'da `measurementTechnique` ile ÖLÇÜM'den ayrılır (bilimsel ilke).
+- **Modül 2 (DaaS):** `functions/api/v1/{havzalar,kuraklik}.js` — CORS açık,
+  KV sabit-pencere rate-limit 60/dk (`_limit.js`). `/api-dokumantasyonu/` +
+  OpenAPI genişletme + menü (Tahmin, API). Kanıt: 65 istek → 60×200, 5×429.
+- **Modül 3 (alarm):** `functions/api/alarm.js` (KV 'al:' kayıt + Auth'lu okuma)
+  + `arac/alarm-tetikle.py` (eşik denetimi, SMTP+Telegram, 12s yorgunluk
+  koruması) + `/alarm/` formu.
+- **Modül 4 (otonom rapor):** `arac/rapor/aylik-rapor-uret.py` **DETERMİNİSTİK**
+  (LLM YOK → halüsinasyon riski 0) → `src/content/raporlar/*.md` → `/veri/raporlar/`.
+- **Cron:** `arac/ekosistem-gunluk.sh` 16:45 UTC (tahmin+alarm; ayın 1'i rapor).
+- **AÇIK OPERATÖR AKSİYONU:** Cloudflare Pages projesinde `SAYAC_ANAHTAR`
+  secret'ı `.env WA_SAYAC_ANAHTAR` değeriyle EŞLEŞMİYOR/eksik → KV okuma
+  köprüsü (alarm abone listesi, `/olay`, `/takip`) yetkisiz döner. Panelden
+  ayarlanınca Modül 3 uçtan uca çalışır (kod hazır). Bu, `/olay` sayacını da düzeltir.
+- **Not:** LLM adımı (Modül 4) BİLEREK yok — `DEEPSEEK_API_KEY` yok ve proje
+  "uydurma yasağı" LLM serbest metnini riskli kılar; rapor şablondan üretilir.
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek
