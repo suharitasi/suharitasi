@@ -143,7 +143,9 @@ def main() -> int:
 
     for ab in aboneler:
         h = ab.get("havza", "")
-        if h not in doluluk:
+        # Test/rezerve adresleri atla (RFC 2606: example.com/.test/.invalid).
+        ep = str(ab.get("eposta", "")).lower()
+        if h not in doluluk or ep.endswith(("@example.com", ".test", ".invalid", ".localhost")):
             continue
         guncel = doluluk[h]
         kosul = (ab.get("yon") == "alt" and guncel <= ab.get("esik", 0)) or \
