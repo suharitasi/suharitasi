@@ -1177,6 +1177,24 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §49 · CSP frame-ancestors: 'none' → 'self' (04.10.2026)
+
+- **Bulgu:** Cloudflare Pages `_headers` aynı başlığı EKLER (override etmez).
+  Global `frame-ancestors 'none'` ile `/gomulu/*` `frame-ancestors *` birlikte
+  gönderiliyor; CSP politikaları AND ile birleştiği için 'none' kazanıyordu.
+  Sonuç: `/basin/` aynı-köken widget önizlemesi VE üçüncü taraf gömme
+  çalışmıyordu (canlı konsol hatası — md5 kırmızısı).
+- **Karar:** global `frame-ancestors 'self'`. Direktif yerinde kalır (md19
+  güvenlik kontrolü), `/basin/` önizleme çalışır, site dış çerçeveleme engellenir.
+- **SINIR / AÇIK KARAR:** `_headers` override desteklemediği için `/gomulu/*`
+  üçüncü taraf gömme de fiilen 'self'e iner — dış sitelerde gömme ŞU AN ÇALIŞMAZ.
+  Gerçek dış gömme isteniyorsa global `frame-ancestors` kaldırılmalı ve md19
+  kontrolü buna göre güncellenmelidir (kullanıcı kararı; SIRADAKILER'de açık).
+- **Kanıt:** canlı `/basin/` 0 konsol hatası · `node arac/site-saglik.mjs --hizli`
+  → GENEL YEŞİL (kırmızı 0).
+
+---
+
 ## Bu dosyaya kayıt ekleme kuralı
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek

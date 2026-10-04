@@ -83,8 +83,15 @@ KULLANICI ONAYI BEKLİYOR (İş kapanış kuralı: görsel iş "YAPILDI" sayılm
       görünümü için sunucu-taraflı HTML ya da JS alternatifi gerekir.
 - [ ] SIRADAKİ ADIM (protokol Bölüm 6; onay bekliyor): Adım 6 doğrulama +
       kullanıcı canlı onayı.
-- [ ] HARİTA KATMANI (Adım 2'den ertelendi): coğrafi il/havza haritası için
-      güvenilir geometri (GeoJSON) gerekir; depoda yok. Karar bekliyor.
+- [x] HARİTA KATMANI (04.10.2026 TAMAMLANDI): "depoda geometri yok" kaydı
+      BAYATTI — `data/havzalar/havzalar-web.geojson` (DSİ 25 havza) mevcut.
+      `/veri/iklim/` sayfasına statik choropleth harita eklendi (NASA POWER
+      yağışı + DSİ geometrisi, sunucu tarafı SVG; JS yok). `/harita/` brute-hero
+      tasarımı (h1 yokluğu bilinçli) KORUNDU.
+- [ ] [YENİ — kullanıcı kararı] /gomulu/* üçüncü taraf gömme: CSP
+      `frame-ancestors` `_headers` override desteklemediği için widget fiilen
+      'self'e iner (dış sitede gömülemez). Gerçek dış gömme isteniyorsa global
+      `frame-ancestors` kaldırılıp md19 kontrolü güncellenmeli (KARARLAR §49).
 - NOT (uyarı): protokol metni kolon 2 başlığında "(1963–2026)" yazıyor;
       veri 1963–2017 (419 kayıt). Vitrinde doğrulanmış aralık basıldı.
 
