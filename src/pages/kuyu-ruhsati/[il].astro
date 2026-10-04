@@ -213,6 +213,12 @@ const sema = [
 
   <OzCevap metin={ozCevap} />
 
+  {/* 04.10.2026 (§55): programatik il veri sayfasına iç bağ — yeni rota
+      yetim kalmasın; niyet ayrımı korunur (bu sayfa ruhsat, o sayfa veri). */}
+  <nav class="capraz" aria-label="İlin yeraltı suyu verisi">
+    <a href={`/yeralti-suyu/${p.slug}/`}>&rarr; {p.il} yeraltı suyu haritası ve havza verileri</a>
+  </nav>
+
   <section class="il-blok">
     <h2>Bu ilde yetkili merci hangisi?</h2>
     <dl class="il-kunye">

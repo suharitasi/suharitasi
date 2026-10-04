@@ -82,6 +82,11 @@
     var html = '<!doctype html><html lang="tr"><head><meta charset="utf-8">'
       + '<title>Akifer ve hukuki kısıt durum belgesi — ' + kacir(sonIl) + '</title>'
       + '<style>body{font:14px/1.5 system-ui,sans-serif;color:#1a1a1a;margin:2.2rem;max-width:52rem}'
+      // Filigran (04.10.2026 §55): PDF/yazdırma çıktısında marka.
+      + 'body::before{content:"suharitasi.com Tarafından Üretilmiştir";position:fixed;top:50%;left:50%;'
+      + 'transform:translate(-50%,-50%) rotate(-32deg);font:600 1.6rem/1 ui-monospace,monospace;'
+      + 'color:rgba(26,26,26,.10);letter-spacing:.06em;white-space:nowrap;pointer-events:none;z-index:9999;'
+      + '-webkit-print-color-adjust:exact;print-color-adjust:exact}'
       + 'h1{font-size:1.5rem;margin:0 0 .3rem}h2{font-size:1rem;margin:1.4rem 0 .4rem}'
       + 'table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:.4rem}'
       + 'th,td{text-align:left;vertical-align:top;padding:.4rem .5rem;border-bottom:1px solid #ccc}'

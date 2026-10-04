@@ -23,6 +23,10 @@ const KRITIK_ESIK = -1.5;
 // Havza no → sayfa slug'ı: kırık slug build'i düşürür, sessizce kaybolmaz.
 const havzaSayfalari = await getCollection('havzalar');
 const slugNo = new Map(havzaSayfalari.map((h) => [h.data.no, h.id]));
+// Hukuki durum (04.10.2026 §55): karttaki "hukuki statü" satırı YALNIZ
+// havza sayfasında doğrulanmış `hukuk` bloğu VARSA "yayımlandı" der;
+// yoksa dürüstçe "doğrulanmadı" yazar (uydurma yasak).
+const hukukVar = new Map(havzaSayfalari.map((h) => [h.data.no, !!h.data.hukuk]));
 
 const tr = (n, ond = 2) =>
   n.toLocaleString('tr-TR', { minimumFractionDigits: ond, maximumFractionDigits: ond });
@@ -49,6 +53,7 @@ const kartlar = havzaVeri.havzalar.map((h) => {
     yon: egilim.yon,
     kritik: egilim.egim <= KRITIK_ESIK,
     spark,
+    hukuk: hukukVar.get(h.no) ?? false,
   };
 }).sort((a, b) => a.egim - b.egim);
 
@@ -88,9 +93,17 @@ const [ky, ka, kg] = yasVeri.kaynak.havzaPotansiyelRezerv.indirmeTarihi.split('-
             {k.spark.duz ? 'aynı değer' : yonYazi[k.yon]}
             <span class="kart-egim">{k.egim > 0 ? '+' : ''}{tr(k.egim)} cm/yıl</span>
           </span>
+          <span class={`kart-hukuk${k.hukuk ? '' : ' yok'}`}>
+            {k.hukuk ? 'Hukuki çerçeve: yayımlandı' : 'Hukuki kısıt: doğrulanmadı'}
+          </span>
         </a>
       ))}
     </div>
+
+    <p class="panel-hukuk-not">
+      Kartlardaki hukuki satır, ilgili havza sayfasındaki “Bu havzada hukuki
+      durum” bloğunun durumunu gösterir; doğrulanmamış kısıt bilgisi yazılmaz.
+    </p>
 
     <p class="panel-kunye">
       Kaynak: DSİ Resmî Su Kaynakları İstatistikleri {kartlar[0].potYil}{' '}
@@ -276,6 +289,19 @@ const [ky, ka, kg] = yasVeri.kaynak.havzaPotansiyelRezerv.indirmeTarihi.split('-
     font-weight: 400;
     color: var(--pk-soluk);
   }
+
+  /* Hukuki statü satırı (04.10.2026 §55): fiziksel verinin altında; kart
+     hâlâ tek linktir, satır bilgi verir. "doğrulanmadı" soluk ama okunur —
+     DESIGN.md §18 "belirsizlik dili soluklaştırılmaz" kuralı. */
+  .kart-hukuk {
+    display: block;
+    margin-top: 0.32rem;
+    font-family: var(--pk-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.02em;
+    color: var(--pk-kehribar-m);
+  }
+  .kart-hukuk.yok { color: var(--pk-soluk); }
 
   .panel-kunye {
     margin-top: 1.4rem;

@@ -49,7 +49,13 @@ const sema = [
 ];
 const isaret = (v: number) => (v > 0 ? '+' : '');
 ---
-<Sayfa baslik="Tahminsel analitik: havza su projeksiyonu" aciklama={OZ_CEVAP} tarayiciBaslik="Su Projeksiyonu: 6 Aylık Tahmin (Tahminsel)" sema={sema}>
+<Sayfa
+  baslik="Tahminsel analitik: havza su projeksiyonu"
+  aciklama={OZ_CEVAP}
+  tarayiciBaslik="Kuraklık Tahmini ve Havza Su Projeksiyonu | 6 Aylık"
+  metaAciklamaHam="25 havzanın 6 aylık su depolama ve baraj doluluğu projeksiyonu; her değer olası bant ve kaynağıyla. Ölçüm değil, istatistiksel tahmindir."
+  sema={sema}
+>
   <SayfaBasi etiket="Tahminsel analitik" baslik="Havza su projeksiyonu: 6 aylık istatistiksel tahmin" ozet={`${tahmin.havza_sayisi} havza · GRACE + baraj · yöntem: mevsimsel ayrıştırma + OLS trend + Mann-Kendall (terimlerin sade karşılığı aşağıda).`} />
   <OzCevap metin={OZ_CEVAP} etiket="Özet" />
 

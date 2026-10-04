@@ -56,6 +56,16 @@ if (ozCevap.length > 280) {
   throw new Error(`/harita/ öz-cevap ${ozCevap.length} karakter — sınır 280.`);
 }
 
+// CTR meta (04.10.2026 §55): öz-cevap 280 sınırında, meta 160 sınırına ayrı
+// metin gerekir. İddialar yalnız sayfanın GERÇEK içeriği: 25 havza künyesi +
+// GRACE eğilimi; baraj doluluğu bu sayfada yok → metne yazılmaz.
+const metaAciklama =
+  "25 su havzasının yüzey suyu potansiyeli, yeraltı suyu rezervi ve uyduyla " +
+  'ölçülen son 5 yıl eğilimi; en hızlı azalan havzadan başlayan harita paneli.';
+if (metaAciklama.length > 160) {
+  throw new Error(`/harita/ meta ${metaAciklama.length} karakter — sınır 160.`);
+}
+
 /* JSON-LD — ŞEMA SEÇİMİ VE GEREKÇESİ
    · WebPage: sayfanın kendisi (ad, açıklama, dil, birincil görsel, site
      ilişkisi). Her sayfada olması gereken taban tip.
@@ -106,6 +116,24 @@ const jsonLd = JSON.stringify({
       isPartOf: { '@id': `${KOK_URL}#site` },
       primaryImageOfPage: { '@type': 'ImageObject', url: `${KOK_URL}hedef-hero.v2.webp` },
       mainEntity: { '@id': `${SAYFA_URL}#veri` },
+    },
+    {
+      // 04.10.2026 (§55): harita modülü etkileşimli bir web uygulamasıdır.
+      // Yıldız/aggregateRating YOK — sahte değerlendirme üretilmez.
+      '@type': 'SoftwareApplication',
+      '@id': `${SAYFA_URL}#uygulama`,
+      name: 'Su Haritası — Türkiye havza veri paneli',
+      applicationCategory: 'WebApplication',
+      operatingSystem: 'Web',
+      url: SAYFA_URL,
+      inLanguage: 'tr-TR',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'TRY' },
+      featureList: [
+        '25 havza künyesi (yüzey suyu potansiyeli, YAS işletme rezervi)',
+        'GRACE uydu ölçümüyle son 5 yıl su depolaması eğilimi',
+        'Havza hukuki durum köprüsü',
+      ],
+      publisher: { '@id': `${KOK_URL}#kurum` },
     },
     {
       '@type': 'BreadcrumbList',
@@ -165,14 +193,14 @@ const jsonLd = JSON.stringify({
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Harita — Su Haritası</title>
-<meta name="description" content={ozCevap} />
+<title>Türkiye Su Havzaları Haritası: 25 Havza, Canlı Veri | DSİ</title>
+<meta name="description" content={metaAciklama} />
 <meta name="robots" content="index, follow" />
 <meta name="googlebot" content="index, follow" />
 <meta name="bingbot" content="index, follow" />
 <link rel="canonical" href="https://suharitasi.com/harita/" />
-<meta property="og:title" content="Harita — Su Haritası" />
-<meta property="og:description" content={ozCevap} />
+<meta property="og:title" content="Türkiye Su Havzaları Haritası: 25 Havza, Canlı Veri — Su Haritası" />
+<meta property="og:description" content={metaAciklama} />
 <meta property="og:url" content="https://suharitasi.com/harita/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Su Haritası" />

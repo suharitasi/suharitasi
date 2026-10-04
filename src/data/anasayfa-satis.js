@@ -18,9 +18,13 @@ export const HERO_H1 = 'Su riskini önceden görün, kararlarınızı kanıta da
 
 // Meta description (≤160 karakter; hero alt satırından ayrıdır ki title/desc
 // ölçüleri sınırda kalmasın). SEO denetimi title/desc uzunluğunu ölçer.
+// 04.10.2026 (KARARLAR §55, sahip talimatı — growth turu): CTR hedefiyle
+// CTA'lı meta geri geldi. Sayılar ve kaynak iddiası AYNI veri envanterinden;
+// "Ulusal Su Bilgi Sistemi" veri kaynağı olarak YAZILMAZ (USBS entegrasyonu
+// yok; NHYP = Nehir Havza Yönetim Planı) — uydurma yasağı.
 export const META_ACIKLAMA =
-  "25 su havzası, 81 il, 469 mevzuat maddesi ve günlük baraj verisi — kaynağı " +
-  'gösterilmiş tek haritada. Kuyu, ruhsat, tahsis ve dava süreçleri.';
+  "Türkiye'nin 25 su havzası, yeraltı suyu verileri ve günlük baraj durumu tek " +
+  'haritada. İlinizi seçin; kuraklık eğilimini resmî kaynaklardan sorgulayın.';
 
 // 26.08.2026 kullanıcı talimatı (hero düzeltmesi): çağrı dili kaldırıldı,
 // yerine veri-envanteri cümlesi. Dört sayı yazılmadan önce veriden

@@ -1,0 +1,140 @@
+---
+// ANA SAYFA KURAKLIK ALARMI (04.10.2026 · KARARLAR §55).
+//
+// NE: Trend "kuraklık" aramalarına manşet yanıtı — GRACE uydu ölçümüne göre
+// suyu en hızlı azalan havzalar + 6 aylık istatistiksel projeksiyon. Veri:
+// data/tahmin/kuraklik-projeksiyonu.json (günlük cron üretir) +
+// data/canli/grace-turkiye.json. Hiçbir sayı sabit yazılmaz; eksik alan
+// build'i DÜŞÜRÜR (sessiz bayatlama yasak).
+//
+// ETİKET DİSİPLİNİ: "bugün" = ölçüm; "6 ay sonra" = TAHMİN (ayrı etiketli).
+// "anlamlı değil" MK testi geçmeyen eğilimde yazılır — uydurma yok.
+//
+// YERLEŞİM: .v2-ust-akis DIŞINDA çağrılır (index.astro); içeride mobil
+// CSS order listesi olduğundan bu bant oraya konmaz (S1 kuralı).
+import { getCollection } from 'astro:content';
+import tahmin from '../../../data/tahmin/kuraklik-projeksiyonu.json';
+import graceTr from '../../../data/canli/grace-turkiye.json';
+
+const sayfalar = await getCollection('havzalar');
+const slugMap = new Map(
+  sayfalar.map((h) => [h.data.baslik.replace(/\s*Havzası\s*$/, ''), h.id])
+);
+
+const azalan = Object.entries(tahmin.havzalar as Record<string, any>)
+  .map(([ad, v]) => ({ ad, g: v.grace }))
+  .filter((k) => k.g && typeof k.g.egilim_aylik_cm === 'number')
+  .sort((a, b) => a.g.egilim_aylik_cm - b.g.egilim_aylik_cm)
+  .slice(0, 4)
+  .map((k) => {
+    const slug = slugMap.get(k.ad);
+    if (!slug) throw new Error(`KuraklikAlarmi: "${k.ad}" için havza sayfası yok.`);
+    const alti = k.g.projeksiyon?.[5]?.deger;
+    if (alti == null || k.g.son_deger == null)
+      throw new Error(`KuraklikAlarmi: "${k.ad}" projeksiyon/son değer boş.`);
+    return {
+      ad: k.ad,
+      slug,
+      son: k.g.son_deger,
+      egim: k.g.egilim_aylik_cm,
+      alti,
+      mk: !!k.g.mk_anlamli,
+    };
+  });
+if (azalan.length !== 4) throw new Error('KuraklikAlarmi: 4 azalan havza bulunamadı.');
+
+const aylar = Object.keys(graceTr.seri as Record<string, number>).sort();
+const sonAy = aylar[aylar.length - 1];
+const trAnomali = (graceTr.seri as Record<string, number>)[sonAy];
+const uretim = String(tahmin.uretim ?? '').slice(0, 10);
+if (!uretim || trAnomali == null) throw new Error('KuraklikAlarmi: üretim/TR anomali boş.');
+
+const sayi = (n: number) =>
+  n.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+---
+<section class="alarm" aria-labelledby="alarm-baslik">
+  <div class="alarm-ic">
+    <div class="alarm-ust">
+      <p class="alarm-kicker">Güncel veri · her gün otomatik güncellenir</p>
+      <h2 id="alarm-baslik">Türkiye Kuraklık Alarmı</h2>
+      <p class="alarm-ozet">
+        GRACE uydu ölçümüne göre suyu en hızlı azalan havzalar ve 6 aylık
+        istatistiksel projeksiyonları. Değerler 2004–2009 ortalamasına göre
+        <strong>değişimdir</strong>; “6 ay sonra” değeri tahmindir, garanti değildir.
+      </p>
+    </div>
+
+    <ul class="alarm-liste">
+      {azalan.map((k) => (
+        <li>
+          <a href={`/havzalar/${k.slug}/`}>
+            <span class="alarm-ad">{k.ad}</span>
+            <span class="alarm-sayi"><strong>{sayi(k.son)}</strong> cm bugün</span>
+            <span class="alarm-ok" aria-hidden="true">→</span>
+            <span class="alarm-sayi tahmin"><strong>{sayi(k.alti)}</strong> cm · 6 ay sonra (tahmin)</span>
+            <span class="alarm-egim">
+              {k.egim > 0 ? '+' : ''}{sayi(k.egim)} cm/ay{k.mk ? '' : ' · eğilim anlamlı değil'}
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <p class="alarm-alt">
+      Türkiye geneli GRACE anomalisi: <strong>{sayi(trAnomali)} cm</strong> ({sonAy}) ·
+      projeksiyon üretimi {uretim} · <a href="/tahmin/">Yöntem ve 25 havza →</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  /* Kendi yerel tokenları (HavzaPaneli deseni): ana sayfa :root'una bağımlı
+     değil — bant başka yerde de güvenle render edilir. */
+  .alarm {
+    --al-zemin: #E9F0F4;
+    --al-kart: #DFE9F0;
+    --al-metin: #132A3F;
+    --al-soluk: #3C5266;
+    --al-derin: #0C5A7C;
+    --al-cizgi: rgba(19, 42, 63, 0.14);
+    --al-mono: "IBM Plex Mono", ui-monospace, monospace;
+    background: var(--al-zemin);
+    color: var(--al-metin);
+    padding: clamp(2rem, 5vh, 3rem) clamp(1.25rem, 4vw, 2rem);
+  }
+  .alarm-ic { max-width: 62rem; margin: 0 auto; }
+  .alarm-kicker {
+    font-family: var(--al-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--al-soluk);
+    margin-bottom: 0.35rem;
+  }
+  .alarm h2 { font-family: var(--serif, Georgia, serif); font-weight: 500; font-size: 1.6rem; margin-bottom: 0.5rem; }
+  .alarm-ozet { font-size: 0.9rem; line-height: 1.6; color: var(--al-soluk); max-width: 72ch; margin-bottom: 1.2rem; }
+  .alarm-liste { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--al-cizgi); }
+  .alarm-liste li { border-bottom: 1px solid var(--al-cizgi); }
+  .alarm-liste a {
+    display: grid;
+    grid-template-columns: minmax(8rem, 1fr) auto auto auto;
+    align-items: baseline;
+    gap: 0.4rem 1rem;
+    padding: 0.7rem 0.2rem;
+    text-decoration: none;
+    color: inherit;
+  }
+  .alarm-liste a:hover .alarm-ad { text-decoration: underline; }
+  .alarm-ad { font-family: var(--serif, Georgia, serif); font-size: 1.08rem; }
+  .alarm-sayi { font-family: var(--al-mono); font-size: 0.78rem; color: var(--al-soluk); white-space: nowrap; }
+  .alarm-sayi strong { color: var(--al-metin); }
+  .alarm-ok { color: var(--al-derin); font-family: var(--al-mono); }
+  .alarm-egim { grid-column: 1 / -1; font-family: var(--al-mono); font-size: 0.68rem; color: var(--al-soluk); }
+  .alarm-alt { margin-top: 1rem; font-family: var(--al-mono); font-size: 0.72rem; color: var(--al-soluk); }
+  .alarm-alt a { color: var(--al-derin); }
+  @media (max-width: 860px) {
+    .alarm-liste a { grid-template-columns: 1fr; gap: 0.15rem; }
+    .alarm-ok { display: none; }
+    .alarm-egim { grid-column: auto; }
+  }
+</style>

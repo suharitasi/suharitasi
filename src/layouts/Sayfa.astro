@@ -709,6 +709,31 @@ const jsonLd = JSON.stringify({
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* ——— YAZDIRMA FİLİGRANI (04.10.2026 · KARARLAR §55) ———
+     Kullanıcı talimatı: PDF/yazdırma çıktısında marka otoritesi. Yalnız
+     @media print — ekran görünümü DEĞİŞMEZ. Sabit konum Chrome'da her
+     sayfada tekrarlanır; .10 alfa metni okunur bırakır, okumayı engellemez.
+     Elle yazdırma (Ctrl+P) ve same-page print() akışlarının tamamını kapsar. */
+  @media print {
+    body::before {
+      content: "suharitasi.com Tarafından Üretilmiştir";
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-32deg);
+      font-family: var(--mono, ui-monospace, monospace);
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      color: rgba(19, 42, 63, 0.1);
+      pointer-events: none;
+      z-index: 9999;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
 </style>
 </head>
 <body>

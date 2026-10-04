@@ -178,7 +178,12 @@
       'table{width:100%;border-collapse:collapse;font-size:10.5pt;margin:.3rem 0}' +
       'th,td{text-align:left;vertical-align:top;border:1px solid #bbb;padding:.3rem .4rem}' +
       'th{background:#eef3f6}ul{margin:.3rem 0;padding-left:1.1rem}li{margin:.15rem 0}' +
-      'a{color:#0C5A7C}@page{margin:1.4cm}';
+      'a{color:#0C5A7C}@page{margin:1.4cm}' +
+      // Filigran (04.10.2026 §55): belge her zaman yazdırma amaçlıdır.
+      'body::before{content:"suharitasi.com Tarafından Üretilmiştir";position:fixed;top:50%;left:50%;' +
+      'transform:translate(-50%,-50%) rotate(-32deg);font:600 1.7rem/1 ui-monospace,monospace;' +
+      'color:rgba(19,42,63,.10);letter-spacing:.06em;white-space:nowrap;pointer-events:none;z-index:9999;' +
+      '-webkit-print-color-adjust:exact;print-color-adjust:exact}';
   }
 
   dugme.addEventListener('click', function () {
