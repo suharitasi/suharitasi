@@ -14,14 +14,14 @@ const OZ_CEVAP =
 
 const canonical = new URL('/en/', Astro.site).href;
 ---
-<Sayfa baslik="Su Haritası — English summary" aciklama={OZ_CEVAP} tarayiciBaslik="Su Haritası — Türkiye Water Data & Law" robots="index, follow" alternates={[
+<Sayfa baslik="Su Haritası — English summary" aciklama={OZ_CEVAP} tarayiciBaslik="Su Haritası — Türkiye Water Data & Law" robots="index, follow" dil="en" alternates={[
   { hreflang: 'tr', href: `${SITE}/` },
   { hreflang: 'en', href: canonical },
   { hreflang: 'x-default', href: `${SITE}/` },
 ]} sema={[
   { '@type': 'WebPage', '@id': `${canonical}#sayfa`, url: canonical, name: 'Su Haritası — English summary', description: OZ_CEVAP, inLanguage: 'en' },
 ]}>
-  <SayfaBasi etiket="English" baslik="Türkiye water data & law, in one map" ozet="An independent, source-cited portal." ozCevap />
+  <SayfaBasi etiket="English" baslik="Türkiye water data & law, in one map" ozet="An independent, source-cited portal." />
   <OzCevap metin={OZ_CEVAP} etiket="Summary" />
 
   <div class="en-icerik">

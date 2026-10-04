@@ -40,7 +40,7 @@ const OZ_CEVAP =
   `Veri EPİAŞ Şeffaflık Platformu’ndan günlük derlenir; bu sayfa otomatik hesaplanır.`;
 ---
 <Sayfa baslik="Baraj doluluk verisi: havza görünümü" aciklama={OZ_CEVAP} tarayiciBaslik="Baraj Doluluk 2026: Havza Bazında Görünüm" sema={[{ '@type': 'Dataset', name: 'Baraj doluluk havza görünümü', description: OZ_CEVAP, creator: { '@type': 'Organization', name: 'Su Haritası', url: 'https://suharitasi.com' }, isAccessibleForFree: true, inLanguage: 'tr-TR' }]}>
-  <SayfaBasi etiket="Veri hikâyesi" baslik="Baraj doluluk verisi: havza görünümü" ozet={`EPİAŞ günlük verisi · son ölçüm ${sonGun} · otomatik hesaplandı.`} ozCevap />
+  <SayfaBasi etiket="Veri hikâyesi" baslik="Baraj doluluk verisi: havza görünümü" ozet={`EPİAŞ günlük verisi · son ölçüm ${sonGun} · otomatik hesaplandı.`} />
   <OzCevap metin={OZ_CEVAP} etiket="Özet" />
 
   <p class="hy-not">Bu analiz, EPİAŞ Şeffaflık Platformu’ndan günlük derlenen baraj doluluk verisinden <strong>otomatik</strong> hesaplanır. Hiçbir sayı elle yazılmamıştır; kaynak: <code>data/canli/baraj.json</code>.</p>

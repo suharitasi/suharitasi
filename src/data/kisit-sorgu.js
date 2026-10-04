@@ -21,10 +21,7 @@ export function ilKayitlari(il) {
   return KAYITLAR.filter((r) => r.il.includes(il));
 }
 
-/** Kısıt (tahsise kapatma) kayıtları. */
-export function kisitKayitlari(il) {
-  return ilKayitlari(il).filter((r) => /kapatma|kısıt|kisit/i.test(r.durum));
-}
+// ÖLÜ KOD SİLİNDİ (04.10.2026 denetimi): kisitKayitlari — 0 çağrı (ölçüldü).
 
 /** Kayıt bulunan illerin alfabetik listesi. */
 export function kayitliIller() {

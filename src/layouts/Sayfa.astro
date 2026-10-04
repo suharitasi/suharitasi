@@ -46,9 +46,12 @@ interface Props {
   guncelleme?: Date;
   // hreflang alternatifleri (uluslararası atıf). Verilirse <head>'e basılır.
   alternates?: { hreflang: string; href: string }[];
+  /* Sayfa dili (04.10.2026 denetimi): İngilizce içerik (/en/) `<html lang="tr">`
+     ile yayımlanıyordu; ekran okuyucu/çeviri için hatalıydı. Varsayılan tr. */
+  dil?: 'tr' | 'en';
 }
 
-const { baslik, tarayiciBaslik, aciklama, metaAciklamaHam, sema = [], heroSlot, robots, guncelleme, alternates = [] } = Astro.props;
+const { baslik, tarayiciBaslik, aciklama, metaAciklamaHam, sema = [], heroSlot, robots, guncelleme, alternates = [], dil = 'tr' } = Astro.props;
 
 // GEO/SEO B1 (25.08.2026): meta description 50-160 bandına merkezî kırpım.
 // Metin sayfanın kendi aciklama'sından türetilir (yeni metin ÜRETİLMEZ);
@@ -247,7 +250,7 @@ const jsonLd = JSON.stringify({
 }).replace(/</g, '\\u003c');
 ---
 <!DOCTYPE html>
-<html lang="tr" data-sv-ton="krem">
+<html lang={dil} data-sv-ton="krem">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -267,7 +270,7 @@ const jsonLd = JSON.stringify({
 <meta property="og:url" content={canonical} />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content={SITE_ADI} />
-<meta property="og:locale" content="tr_TR" />
+<meta property="og:locale" content={dil === 'en' ? 'en_US' : 'tr_TR'} />
 <meta property="og:image" content={ogGorselTam} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -642,8 +645,14 @@ const jsonLd = JSON.stringify({
     font-style: normal;
   }
 
+  /* Mobil taşma onarımı (04.10.2026 denetimi): 4-5 kolonlu markdown tabloları
+     375px'te yatay taşıyordu (sarımsız 458 tablo ailesi). display:block +
+     overflow-x tablo düzenini korur, kapsayıcıya sığmayan kısmı kaydırır. */
   .icerik table {
-    width: 100%;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
     border-collapse: collapse;
     margin: 1.4rem 0;
     font-size: 0.95rem;

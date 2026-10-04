@@ -13,14 +13,8 @@ import ilKurum from '../../data/il-kurum.json';
 import havzaVeri from '../../data/havza-veri.json';
 import { islemJoin } from './ortak-normalize.js';
 
-const kurumById = Object.fromEntries((suBirimleri.kayitlar ?? []).map((k) => [k.id, k]));
-
-/** Yetkili kurum id'sini okunur kurum nesnesine çevirir. */
-export function kurumCoz(id) {
-  const k = kurumById[id];
-  if (!k) return { id, ad: id, kisaltma: null, url: null };
-  return { id, ad: k.ad_resmi, kisaltma: k.kisaltma, url: k.kaynak_url ?? null, tur: k.tur };
-}
+// ÖLÜ KOD SİLİNDİ (04.10.2026 denetimi): kurumCoz + kurumById — repo genelinde
+// 0 çağrı (ölçüldü). Gerekirse git geçmişinden döner.
 
 // 20 işlem: birleştirme TEK KAYNAK: ortak-normalize.js (astro.config'teki
 // veri-api kancası da aynı fonksiyonu kullanır).

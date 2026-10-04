@@ -245,16 +245,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // ANLIK DEGER OKUMA — asla global state/cache
     const ilSlug = ilSel.value;
     const icSlug = icSel.value;
-    console.log('[Sorgu] Sorgulanan İl slug:', ilSlug, '| Sorgulanan İlçe slug:', icSlug);
     if (!ilSlug || !icSlug) { alert('Lütfen hem il hem de ilçe seçiniz.'); return; }
 
     const d = getData(ilSlug, icSlug);
     if (!d) { alert('Seçilen il/ilçe için veri bulunamadı.'); return; }
-
-    // VERiFiCATiON LOG: her ilce icin farkli ham veri
-    console.log('[VERi]', d.ilAd, '/', d.ilceAd,
-      '| duz:', d.duz_oran?.toFixed(3), 'vadi:', d.vadi_oran?.toFixed(3),
-      '| kutle:', d.kutle);
 
     const duz = d.duz_oran, vadi = d.vadi_oran, egim = d.ort_egim;
 
@@ -294,7 +288,6 @@ document.addEventListener('DOMContentLoaded', () => {
     sonuc.scrollIntoView({ behavior:'smooth', block:'start' });
 
     try { const u = new URL(window.location); u.searchParams.set('il',ilSlug); u.searchParams.set('ilce',icSlug); history.pushState({},'',u); } catch(e){}
-    console.log('[Analiz] Tamamlandi');
   }
 
   // ── EVENT: Analiz Et butonu ──

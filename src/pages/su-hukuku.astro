@@ -14,7 +14,6 @@ import { getCollection } from 'astro:content';
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
-import KararMatrisi from '../components/KararMatrisi.astro';
 import HukukDanismanlik from '../components/HukukDanismanlik.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
 import { personalar } from '../data/persona.js';
@@ -84,7 +83,7 @@ const sema = [
   tarayiciBaslik="Su Hukuku Rehberi: İzin, Ceza ve Dava Yolları"
   sema={sema}
 >
-  <SayfaBasi etiket="Hukuk omurgası" baslik="Su hukuku" ozet="Yeraltı suyu, kuyu ruhsatı, sondaj, tahsis, jeotermal ve kamulaştırma: izin, ceza ve uyuşmazlık rehberlerinin tek girişi." ozCevap />
+  <SayfaBasi etiket="Hukuk omurgası" baslik="Su hukuku" ozet="Yeraltı suyu, kuyu ruhsatı, sondaj, tahsis, jeotermal ve kamulaştırma: izin, ceza ve uyuşmazlık rehberlerinin tek girişi." />
   <OzCevap metin={OZ_CEVAP} etiket="Kanun özeti" />
 
   {/* MASTER KARAR MATRİSİ — tüm rehberlerin senaryoları tek tabloda. */}
