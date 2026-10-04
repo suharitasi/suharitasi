@@ -7,7 +7,7 @@
   "surum": 2
  },
  "ufuk_ay": 6,
- "uretim": "2026-10-04T14:49:21Z",
+ "uretim": "2026-10-04T16:45:01Z",
  "havza_sayisi": 25,
  "havzalar": {
   "Meriç-Ergene": {
@@ -135,33 +135,33 @@
    },
    "baraj": {
     "birim": "% ortalama doluluk",
-    "son_gozlem": "2026-10-03",
+    "son_gozlem": "2026-10-04",
     "son_deger": 15.73,
-    "seri_uzunluk": 80,
-    "egilim_gunluk_puan": -0.92,
-    "mk_z": -12.66,
+    "seri_uzunluk": 81,
+    "egilim_gunluk_puan": -0.912,
+    "mk_z": -12.69,
     "mk_p": 0.0,
     "mk_anlamli": true,
     "ufuk_gun": 60,
-    "guven": "kısa vadeli (örneklem ~80 gün)",
+    "guven": "kısa vadeli (örneklem ~81 gün)",
     "projeksiyon": [
      {
       "gun": 7,
-      "deger": 0.35,
-      "alt80": -8.4,
-      "ust80": 9.1
+      "deger": -0.03,
+      "alt80": -9.46,
+      "ust80": 9.41
      },
      {
       "gun": 30,
-      "deger": -20.82,
-      "alt80": -38.93,
-      "ust80": -2.71
+      "deger": -20.99,
+      "alt80": -40.53,
+      "ust80": -1.46
      },
      {
       "gun": 60,
-      "deger": -48.43,
-      "alt80": -74.05,
-      "ust80": -22.82
+      "deger": -48.34,
+      "alt80": -75.96,
+      "ust80": -20.72
      }
     ]
    }
@@ -229,33 +229,33 @@
    },
    "baraj": {
     "birim": "% ortalama doluluk",
-    "son_gozlem": "2026-10-03",
+    "son_gozlem": "2026-10-04",
     "son_deger": 30.12,
-    "seri_uzunluk": 80,
-    "egilim_gunluk_puan": -0.383,
-    "mk_z": -8.59,
+    "seri_uzunluk": 81,
+    "egilim_gunluk_puan": -0.388,
+    "mk_z": -8.74,
     "mk_p": 0.0,
     "mk_anlamli": true,
     "ufuk_gun": 60,
-    "guven": "kısa vadeli (örneklem ~80 gün)",
+    "guven": "kısa vadeli (örneklem ~81 gün)",
     "projeksiyon": [
      {
       "gun": 7,
-      "deger": 33.41,
-      "alt80": 15.14,
-      "ust80": 51.68
+      "deger": 32.72,
+      "alt80": 14.45,
+      "ust80": 51.0
      },
      {
       "gun": 30,
-      "deger": 24.6,
-      "alt80": -13.23,
-      "ust80": 62.42
+      "deger": 23.79,
+      "alt80": -14.04,
+      "ust80": 61.62
      },
      {
       "gun": 60,
-      "deger": 13.1,
-      "alt80": -40.4,
-      "ust80": 66.59
+      "deger": 12.14,
+      "alt80": -41.36,
+      "ust80": 65.64
      }
     ]
    }
@@ -323,33 +323,33 @@
    },
    "baraj": {
     "birim": "% ortalama doluluk",
-    "son_gozlem": "2026-10-03",
+    "son_gozlem": "2026-10-04",
     "son_deger": 9.78,
-    "seri_uzunluk": 80,
-    "egilim_gunluk_puan": -0.821,
-    "mk_z": -12.88,
+    "seri_uzunluk": 81,
+    "egilim_gunluk_puan": -0.813,
+    "mk_z": -12.95,
     "mk_p": 0.0,
     "mk_anlamli": true,
     "ufuk_gun": 60,
-    "guven": "kısa vadeli (örneklem ~80 gün)",
+    "guven": "kısa vadeli (örneklem ~81 gün)",
     "projeksiyon": [
      {
       "gun": 7,
-      "deger": -3.49,
-      "alt80": -11.84,
-      "ust80": 4.87
+      "deger": -3.85,
+      "alt80": -12.72,
+      "ust80": 5.02
      },
      {
       "gun": 30,
-      "deger": -22.36,
-      "alt80": -39.67,
-      "ust80": -5.06
+      "deger": -22.55,
+      "alt80": -40.91,
+      "ust80": -4.2
      },
      {
       "gun": 60,
-      "deger": -46.99,
-      "alt80": -71.46,
-      "ust80": -22.52
+      "deger": -46.95,
+      "alt80": -72.91,
+      "ust80": -21.0
      }
     ]
    }
@@ -417,33 +417,33 @@
    },
    "baraj": {
     "birim": "% ortalama doluluk",
-    "son_gozlem": "2026-10-03",
+    "son_gozlem": "2026-10-04",
     "son_deger": 43.19,
-    "seri_uzunluk": 80,
-    "egilim_gunluk_puan": -0.28,
-    "mk_z": -12.81,
+    "seri_uzunluk": 81,
+    "egilim_gunluk_puan": -0.275,
+    "mk_z": -12.88,
     "mk_p": 0.0,
     "mk_anlamli": true,
     "ufuk_gun": 60,
-    "guven": "kısa vadeli (örneklem ~80 gün)",
+    "guven": "kısa vadeli (örneklem ~81 gün)",
     "projeksiyon": [
      {
       "gun": 7,
-      "deger": 35.84,
-      "alt80": 23.67,
-      "ust80": 48.0
+      "deger": 35.87,
+      "alt80": 23.6,
+      "ust80": 48.14
      },
      {
       "gun": 30,
-      "deger": 29.39,
-      "alt80": 4.2,
-      "ust80": 54.57
+      "deger": 29.54,
+      "alt80": 4.13,
+      "ust80": 54.94
      },
      {
       "gun": 60,
-      "deger": 20.98,
-      "alt80": -14.64,
-      "ust80": 56.6
+      "deger": 21.28,
+      "alt80": -14.65,
+      "ust80": 57.21
      }
     ]
    }
@@ -573,33 +573,33 @@
    },
    "baraj": {
     "birim": "% ortalama doluluk",
-    "son_gozlem": "2026-10-03",
+    "son_gozlem": "2026-10-04",
     "son_deger": 43.65,
-    "seri_uzunluk": 80,
-    "egilim_gunluk_puan": -0.48,
-    "mk_z": -9.92,
+    "seri_uzunluk": 81,
+    "egilim_gunluk_puan": -0.47,
+    "mk_z": -9.87,
     "mk_p": 0.0,
     "mk_anlamli": true,
     "ufuk_gun": 60,
-    "guven": "kısa vadeli (örneklem ~80 gün)",
+    "guven": "kısa vadeli (örneklem ~81 gün)",
     "projeksiyon": [
      {
       "gun": 7,
-      "deger": 30.18,
-      "alt80": 13.38,
-      "ust80": 46.97
+      "deger": 30.28,
+      "alt80": 13.13,
+      "ust80": 47.42
      },
      {
       "gun": 30,
-      "deger": 19.14,
-      "alt80": -15.63,
-      "ust80": 53.91
+      "deger": 19.46,
+      "alt80": -16.03,
+      "ust80": 54.96
      },
      {
       "gun": 60,
-      "deger": 4.75,
-      "alt80": -44.42,
-      "ust80": 53.92
+      "deger": 5.36,
+      "alt80": -44.84,
+      "ust80": 55.56
      }
     ]
    }
@@ -667,33 +667,33 @@
    },
    "baraj": {
     "birim": "% ortalama doluluk",
-    "son_gozlem": "2026-10-03",
+    "son_gozlem": "2026-10-04",
     "son_deger": 28.21,
-    "seri_uzunluk": 80,
-    "egilim_gunluk_puan": -0.611,
-    "mk_z": -11.45,
+    "seri_uzunluk": 81,
+    "egilim_gunluk_puan": -0.603,
+    "mk_z": -11.48,
     "mk_p": 0.0,
     "mk_anlamli": true,
     "ufuk_gun": 60,
-    "guven": "kısa vadeli (örneklem ~80 gün)",
+    "guven": "kısa vadeli (örneklem ~81 gün)",
     "projeksiyon": [
      {
       "gun": 7,
-      "deger": 14.89,
-      "alt80": -0.49,
-      "ust80": 30.27
+      "deger": 14.81,
+      "alt80": -0.89,
+      "ust80": 30.5
      },
      {
       "gun": 30,
-      "deger": 0.83,
-      "alt80": -31.01,
-      "ust80": 32.66
+      "deger": 0.94,
+      "alt80": -31.55,
+      "ust80": 33.44
      },
      {
       "gun": 60,
-      "deger": -17.52,
-      "alt80": -62.54,
-      "ust80": 27.5
+      "deger": -17.14,
+      "alt80": -63.09,
+      "ust80": 28.81
      }
     ]
    }
@@ -761,33 +761,33 @@
    },
    "baraj": {
     "birim": "% ortalama doluluk",
-    "son_gozlem": "2026-10-03",
+    "son_gozlem": "2026-10-04",
     "son_deger": 65.09,
-    "seri_uzunluk": 80,
-    "egilim_gunluk_puan": -0.046,
-    "mk_z": -1.35,
-    "mk_p": 0.1769,
+    "seri_uzunluk": 81,
+    "egilim_gunluk_puan": -0.053,
+    "mk_z": -1.63,
+    "mk_p": 0.1028,
     "mk_anlamli": false,
     "ufuk_gun": 60,
-    "guven": "kısa vadeli (örneklem ~80 gün)",
+    "guven": "kısa vadeli (örneklem ~81 gün)",
     "projeksiyon": [
      {
       "gun": 7,
-      "deger": 73.03,
-      "alt80": 60.52,
-      "ust80": 85.53
+      "deger": 72.53,
+      "alt80": 59.74,
+      "ust80": 85.33
      },
      {
       "gun": 30,
-      "deger": 71.98,
-      "alt80": 46.09,
-      "ust80": 97.86
+      "deger": 71.31,
+      "alt80": 44.82,
+      "ust80": 97.8
      },
      {
       "gun": 60,
-      "deger": 70.6,
-      "alt80": 33.99,
-      "ust80": 107.22
+      "deger": 69.72,
+      "alt80": 32.25,
+      "ust80": 107.18
      }
     ]
    }
@@ -979,33 +979,33 @@
    },
    "baraj": {
     "birim": "% ortalama doluluk",
-    "son_gozlem": "2026-10-03",
+    "son_gozlem": "2026-10-04",
     "son_deger": 43.95,
-    "seri_uzunluk": 80,
-    "egilim_gunluk_puan": -0.119,
-    "mk_z": -7.87,
+    "seri_uzunluk": 81,
+    "egilim_gunluk_puan": -0.116,
+    "mk_z": -7.86,
     "mk_p": 0.0,
     "mk_anlamli": true,
     "ufuk_gun": 60,
-    "guven": "kısa vadeli (örneklem ~80 gün)",
+    "guven": "kısa vadeli (örneklem ~81 gün)",
     "projeksiyon": [
      {
       "gun": 7,
-      "deger": 39.69,
-      "alt80": 32.14,
-      "ust80": 47.23
+      "deger": 39.76,
+      "alt80": 32.15,
+      "ust80": 47.37
      },
      {
       "gun": 30,
-      "deger": 36.95,
-      "alt80": 21.34,
-      "ust80": 52.56
+      "deger": 37.1,
+      "alt80": 21.35,
+      "ust80": 52.85
      },
      {
       "gun": 60,
-      "deger": 33.39,
-      "alt80": 11.31,
-      "ust80": 55.46
+      "deger": 33.63,
+      "alt80": 11.36,
+      "ust80": 55.91
      }
     ]
    }
@@ -1073,33 +1073,33 @@
    },
    "baraj": {
     "birim": "% ortalama doluluk",
-    "son_gozlem": "2026-10-03",
+    "son_gozlem": "2026-10-04",
     "son_deger": 28.67,
-    "seri_uzunluk": 80,
-    "egilim_gunluk_puan": -0.481,
-    "mk_z": -12.46,
+    "seri_uzunluk": 81,
+    "egilim_gunluk_puan": -0.475,
+    "mk_z": -12.44,
     "mk_p": 0.0,
     "mk_anlamli": true,
     "ufuk_gun": 60,
-    "guven": "kısa vadeli (örneklem ~80 gün)",
+    "guven": "kısa vadeli (örneklem ~81 gün)",
     "projeksiyon": [
      {
       "gun": 7,
-      "deger": 19.48,
-      "alt80": 13.06,
-      "ust80": 25.9
+      "deger": 19.34,
+      "alt80": 12.55,
+      "ust80": 26.14
      },
      {
       "gun": 30,
       "deger": 8.41,
-      "alt80": -4.87,
-      "ust80": 21.7
+      "alt80": -5.66,
+      "ust80": 22.48
      },
      {
       "gun": 60,
-      "deger": -6.02,
-      "alt80": -24.81,
-      "ust80": 12.78
+      "deger": -5.85,
+      "alt80": -25.75,
+      "ust80": 14.05
      }
     ]
    }
@@ -1167,33 +1167,33 @@
    },
    "baraj": {
     "birim": "% ortalama doluluk",
-    "son_gozlem": "2026-10-03",
+    "son_gozlem": "2026-10-04",
     "son_deger": 70.91,
-    "seri_uzunluk": 80,
+    "seri_uzunluk": 81,
     "egilim_gunluk_puan": -0.175,
-    "mk_z": -10.14,
+    "mk_z": -10.24,
     "mk_p": 0.0,
     "mk_anlamli": true,
     "ufuk_gun": 60,
-    "guven": "kısa vadeli (örneklem ~80 gün)",
+    "guven": "kısa vadeli (örneklem ~81 gün)",
     "projeksiyon": [
      {
       "gun": 7,
-      "deger": 69.59,
-      "alt80": 63.87,
-      "ust80": 75.31
+      "deger": 69.43,
+      "alt80": 63.75,
+      "ust80": 75.12
      },
      {
       "gun": 30,
-      "deger": 65.57,
-      "alt80": 53.73,
-      "ust80": 77.41
+      "deger": 65.42,
+      "alt80": 53.65,
+      "ust80": 77.18
      },
      {
       "gun": 60,
-      "deger": 60.33,
-      "alt80": 43.59,
-      "ust80": 77.07
+      "deger": 60.18,
+      "alt80": 43.54,
+      "ust80": 76.82
      }
     ]
    }
@@ -1261,33 +1261,33 @@
    },
    "baraj": {
     "birim": "% ortalama doluluk",
-    "son_gozlem": "2026-10-03",
+    "son_gozlem": "2026-10-04",
     "son_deger": 57.91,
-    "seri_uzunluk": 80,
-    "egilim_gunluk_puan": -0.084,
-    "mk_z": -9.13,
+    "seri_uzunluk": 81,
+    "egilim_gunluk_puan": -0.085,
+    "mk_z": -9.28,
     "mk_p": 0.0,
     "mk_anlamli": true,
     "ufuk_gun": 60,
-    "guven": "kısa vadeli (örneklem ~80 gün)",
+    "guven": "kısa vadeli (örneklem ~81 gün)",
     "projeksiyon": [
      {
       "gun": 7,
-      "deger": 58.89,
-      "alt80": 54.81,
-      "ust80": 62.98
+      "deger": 58.73,
+      "alt80": 54.63,
+      "ust80": 62.82
      },
      {
       "gun": 30,
-      "deger": 56.97,
-      "alt80": 48.51,
-      "ust80": 65.42
+      "deger": 56.77,
+      "alt80": 48.29,
+      "ust80": 65.25
      },
      {
       "gun": 60,
-      "deger": 54.45,
-      "alt80": 42.5,
-      "ust80": 66.4
+      "deger": 54.21,
+      "alt80": 42.22,
+      "ust80": 66.2
      }
     ]
    }
@@ -1417,33 +1417,33 @@
    },
    "baraj": {
     "birim": "% ortalama doluluk",
-    "son_gozlem": "2026-10-03",
+    "son_gozlem": "2026-10-04",
     "son_deger": 44.32,
-    "seri_uzunluk": 80,
-    "egilim_gunluk_puan": -0.524,
-    "mk_z": -12.93,
+    "seri_uzunluk": 81,
+    "egilim_gunluk_puan": -0.527,
+    "mk_z": -13.01,
     "mk_p": 0.0,
     "mk_anlamli": true,
     "ufuk_gun": 60,
-    "guven": "kısa vadeli (örneklem ~80 gün)",
+    "guven": "kısa vadeli (örneklem ~81 gün)",
     "projeksiyon": [
      {
       "gun": 7,
-      "deger": 43.62,
-      "alt80": 38.86,
-      "ust80": 48.37
+      "deger": 42.96,
+      "alt80": 38.15,
+      "ust80": 47.77
      },
      {
       "gun": 30,
-      "deger": 31.56,
-      "alt80": 21.71,
-      "ust80": 41.4
+      "deger": 30.85,
+      "alt80": 20.89,
+      "ust80": 40.81
      },
      {
       "gun": 60,
-      "deger": 15.82,
-      "alt80": 1.9,
-      "ust80": 29.75
+      "deger": 15.05,
+      "alt80": 0.96,
+      "ust80": 29.14
      }
     ]
    }
@@ -1511,33 +1511,33 @@
    },
    "baraj": {
     "birim": "% ortalama doluluk",
-    "son_gozlem": "2026-10-03",
+    "son_gozlem": "2026-10-04",
     "son_deger": 58.23,
-    "seri_uzunluk": 80,
-    "egilim_gunluk_puan": -0.256,
-    "mk_z": -7.86,
+    "seri_uzunluk": 81,
+    "egilim_gunluk_puan": -0.252,
+    "mk_z": -7.89,
     "mk_p": 0.0,
     "mk_anlamli": true,
     "ufuk_gun": 60,
-    "guven": "kısa vadeli (örneklem ~80 gün)",
+    "guven": "kısa vadeli (örneklem ~81 gün)",
     "projeksiyon": [
      {
       "gun": 7,
       "deger": 52.01,
-      "alt80": 38.61,
-      "ust80": 65.41
+      "alt80": 38.58,
+      "ust80": 65.44
      },
      {
       "gun": 30,
-      "deger": 46.12,
-      "alt80": 18.38,
-      "ust80": 73.86
+      "deger": 46.22,
+      "alt80": 18.42,
+      "ust80": 74.01
      },
      {
       "gun": 60,
-      "deger": 38.44,
-      "alt80": -0.79,
-      "ust80": 77.66
+      "deger": 38.66,
+      "alt80": -0.65,
+      "ust80": 77.97
      }
     ]
    }
@@ -1605,33 +1605,33 @@
    },
    "baraj": {
     "birim": "% ortalama doluluk",
-    "son_gozlem": "2026-10-03",
+    "son_gozlem": "2026-10-04",
     "son_deger": 65.05,
-    "seri_uzunluk": 80,
-    "egilim_gunluk_puan": -0.389,
-    "mk_z": -12.8,
+    "seri_uzunluk": 81,
+    "egilim_gunluk_puan": -0.388,
+    "mk_z": -12.87,
     "mk_p": 0.0,
     "mk_anlamli": true,
     "ufuk_gun": 60,
-    "guven": "kısa vadeli (örneklem ~80 gün)",
+    "guven": "kısa vadeli (örneklem ~81 gün)",
     "projeksiyon": [
      {
       "gun": 7,
-      "deger": 61.57,
-      "alt80": 58.78,
-      "ust80": 64.37
+      "deger": 61.25,
+      "alt80": 58.44,
+      "ust80": 64.06
      },
      {
       "gun": 30,
-      "deger": 52.63,
-      "alt80": 46.84,
-      "ust80": 58.42
+      "deger": 52.32,
+      "alt80": 46.5,
+      "ust80": 58.15
      },
      {
       "gun": 60,
-      "deger": 40.96,
-      "alt80": 32.77,
-      "ust80": 49.14
+      "deger": 40.68,
+      "alt80": 32.45,
+      "ust80": 48.92
      }
     ]
    }
@@ -1699,33 +1699,33 @@
    },
    "baraj": {
     "birim": "% ortalama doluluk",
-    "son_gozlem": "2026-10-03",
+    "son_gozlem": "2026-10-04",
     "son_deger": 65.84,
-    "seri_uzunluk": 80,
-    "egilim_gunluk_puan": -0.172,
-    "mk_z": -9.44,
+    "seri_uzunluk": 81,
+    "egilim_gunluk_puan": -0.17,
+    "mk_z": -9.48,
     "mk_p": 0.0,
     "mk_anlamli": true,
     "ufuk_gun": 60,
-    "guven": "kısa vadeli (örneklem ~80 gün)",
+    "guven": "kısa vadeli (örneklem ~81 gün)",
     "projeksiyon": [
      {
       "gun": 7,
-      "deger": 62.37,
-      "alt80": 55.45,
-      "ust80": 69.3
+      "deger": 62.33,
+      "alt80": 55.39,
+      "ust80": 69.28
      },
      {
       "gun": 30,
-      "deger": 58.41,
-      "alt80": 44.07,
-      "ust80": 72.75
+      "deger": 58.42,
+      "alt80": 44.05,
+      "ust80": 72.79
      },
      {
       "gun": 60,
-      "deger": 53.23,
-      "alt80": 32.95,
-      "ust80": 73.52
+      "deger": 53.31,
+      "alt80": 32.99,
+      "ust80": 73.64
      }
     ]
    }
@@ -1855,33 +1855,33 @@
    },
    "baraj": {
     "birim": "% ortalama doluluk",
-    "son_gozlem": "2026-10-03",
+    "son_gozlem": "2026-10-04",
     "son_deger": 35.77,
-    "seri_uzunluk": 80,
-    "egilim_gunluk_puan": -0.579,
-    "mk_z": -11.94,
+    "seri_uzunluk": 81,
+    "egilim_gunluk_puan": -0.575,
+    "mk_z": -12.01,
     "mk_p": 0.0,
     "mk_anlamli": true,
     "ufuk_gun": 60,
-    "guven": "kısa vadeli (örneklem ~80 gün)",
+    "guven": "kısa vadeli (örneklem ~81 gün)",
     "projeksiyon": [
      {
       "gun": 7,
-      "deger": 28.68,
-      "alt80": 18.25,
-      "ust80": 39.12
+      "deger": 28.3,
+      "alt80": 17.85,
+      "ust80": 38.76
      },
      {
       "gun": 30,
-      "deger": 15.38,
-      "alt80": -6.23,
-      "ust80": 36.99
+      "deger": 15.07,
+      "alt80": -6.58,
+      "ust80": 36.72
      },
      {
       "gun": 60,
-      "deger": -1.98,
-      "alt80": -32.54,
-      "ust80": 28.58
+      "deger": -2.19,
+      "alt80": -32.81,
+      "ust80": 28.43
      }
     ]
    }
@@ -2073,33 +2073,33 @@
    },
    "baraj": {
     "birim": "% ortalama doluluk",
-    "son_gozlem": "2026-10-03",
+    "son_gozlem": "2026-10-04",
     "son_deger": 52.67,
-    "seri_uzunluk": 80,
-    "egilim_gunluk_puan": -0.306,
-    "mk_z": -12.8,
+    "seri_uzunluk": 81,
+    "egilim_gunluk_puan": -0.303,
+    "mk_z": -12.87,
     "mk_p": 0.0,
     "mk_anlamli": true,
     "ufuk_gun": 60,
-    "guven": "kısa vadeli (örneklem ~80 gün)",
+    "guven": "kısa vadeli (örneklem ~81 gün)",
     "projeksiyon": [
      {
       "gun": 7,
-      "deger": 47.84,
-      "alt80": 44.32,
+      "deger": 47.7,
+      "alt80": 44.03,
       "ust80": 51.36
      },
      {
       "gun": 30,
-      "deger": 40.8,
-      "alt80": 33.52,
-      "ust80": 48.08
+      "deger": 40.72,
+      "alt80": 33.13,
+      "ust80": 48.31
      },
      {
       "gun": 60,
       "deger": 31.61,
-      "alt80": 21.32,
-      "ust80": 41.91
+      "alt80": 20.88,
+      "ust80": 42.35
      }
     ]
    }
