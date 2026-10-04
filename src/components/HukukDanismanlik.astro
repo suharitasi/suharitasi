@@ -48,6 +48,12 @@ const mailKonu = `${konu} — hukuki değerlendirme talebi`;
         <span class="hd-deger">Mesaj gönderin</span>
       </a>
     </li>
+    <li>
+      <a class="hd-kanal" href="/hizli-danisma/" data-olay="iletisim-form">
+        <span class="hd-etiket">Hızlı danışma</span>
+        <span class="hd-deger">Formu doldurun</span>
+      </a>
+    </li>
   </ul>
   <p class="hd-kunye">
     Hukuki içerik {YAZAR.buro} tarafından hazırlanır ·{' '}
@@ -90,7 +96,7 @@ const mailKonu = `${konu} — hukuki değerlendirme talebi`;
   .hd-kanallar {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 0.7rem;
     margin: 1.1rem 0 0;
     padding: 0;
@@ -139,7 +145,11 @@ const mailKonu = `${konu} — hukuki değerlendirme talebi`;
 
   .hd-kunye a { color: var(--baglanti); }
 
-  @media (max-width: 620px) {
+  @media (max-width: 900px) {
+    .hd-kanallar { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
     .hd-kanallar { grid-template-columns: 1fr; }
   }
 

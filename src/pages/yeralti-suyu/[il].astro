@@ -15,6 +15,7 @@ import OzCevap from '../../components/OzCevap.astro';
 import CtaBlok from '../../components/CtaBlok.astro';
 import HukukSerhi from '../../components/HukukSerhi.astro';
 import { yayinlananIller } from '../../data/il-profil.js';
+import { ilKayitlari } from '../../data/kisit-sorgu.js';
 
 export async function getStaticPaths() {
   return yayinlananIller().map((p) => ({ params: { il: p.slug }, props: { profil: p } }));
@@ -29,6 +30,14 @@ const yonYazi = { azalma: 'azalma', toparlanma: 'toparlanma', sabit: 'belirgin e
 const bolgeMetni = profil.dsiBolgeleri.length
   ? profil.dsiBolgeleri.map((b: any) => `${b.merkez} (${b.no}. Bölge)`).join(', ')
   : null;
+
+// §57 Yerel Su ve Kuyu Rehberi: 2. soru yalnız doğrulanmış RG kayıtlarından
+// (uydurma yasağı: kayıt yoksa "yok" denir, kısıt uydurulmaz).
+const rg = ilKayitlari(profil.il);
+const rgSon = rg[0] ?? null;
+const rgOzet = rg.length
+  ? `${rg.length} doğrulanmış Resmî Gazete kaydı; en günceli ${rgSon.tarih} tarihli (${rgSon.durum}).`
+  : 'Bu il için doğrulanmış Resmî Gazete ilanı kaydı yok; kayıt bulunmaması kısıt olmadığının kanıtı değildir.';
 const adlar = profil.havzalar.map((h: any) => h.ad.replace(/\s*Havzası\s*$/, ''));
 const havzaMetni = adlar.length === 0
   ? 'kayıtlı havza eşleşmesi bulunmayan'
@@ -59,7 +68,7 @@ if (OZ_CEVAP.length > 280) throw new Error(`yeralti-suyu/${profil.slug}: öz-cev
 // GERÇEKTEN gösterilen veri (havza sayısı + güncel eğilim + doluluk).
 const META =
   `${profil.il} yeraltı suyu haritası ve güncel durumu: ${profil.havzalar.length} havza künyesi, ` +
-  `GRACE eğilimi${profil.havzalar.some((h: any) => h.baraj) ? ', baraj doluluğu' : ''} ve kuyu ruhsatı bağlantıları.`;
+  `uydu ölçümü${profil.havzalar.some((h: any) => h.baraj) ? ', baraj doluluğu' : ''} ve kuyu ruhsatı bağlantıları.`;
 if (META.length > 160) throw new Error(`yeralti-suyu/${profil.slug}: meta ${META.length} karakter.`);
 
 const canonical = new URL(`/yeralti-suyu/${profil.slug}/`, Astro.site).href;
@@ -98,9 +107,36 @@ const sema = [
   <SayfaBasi
     etiket="İl verisi"
     baslik={`${profil.il} yeraltı suyu haritası ve güncel durumu`}
-    ozet={`${havzaMetni} · DSİ künyeleri, GRACE eğilimi${profil.havzalar.some((h: any) => h.baraj) ? ' ve baraj doluluğu' : ''}.`}
+    ozet={`${havzaMetni} · DSİ künyeleri, uydu su ölçümü${profil.havzalar.some((h: any) => h.baraj) ? ' ve baraj doluluğu' : ''}.`}
   />
   <OzCevap metin={OZ_CEVAP} etiket="Özet" />
+
+  <section class="ys-bolum ys-rehber" aria-labelledby="ys-rehber-baslik">
+    <h2 id="ys-rehber-baslik">{profil.il} Yerel Su ve Kuyu Rehberi</h2>
+    <dl class="ys-sorular">
+      <div>
+        <dt>1. Hangi DSİ bölge müdürlüğüne bağlı?</dt>
+        <dd>{bolgeMetni ?? 'Doğrulanmış DSİ bölge eşleşmesi bulunamadı.'}</dd>
+      </div>
+      <div>
+        <dt>2. Resmî kısıtlar ve Resmî Gazete yasakları neler?</dt>
+        <dd>{rgOzet} <a href="/kuyu-kisit-sorgu/">Kısıt sorgu aracında görün →</a></dd>
+      </div>
+      <div>
+        <dt>3. Hangi yerel idare yetkili?</dt>
+        <dd>{profil.suIdaresi ? `${profil.suIdaresi} (içme suyu ve kanalizasyon altyapısı)` : 'Açık su idaresi kaydı yok; il özel idaresinden/belediyeden teyit alınmalıdır.'}</dd>
+      </div>
+      <div>
+        <dt>4. Kuyu ruhsatı/izin süreci kaç gün sürer?</dt>
+        <dd>
+          Mevzuatta doğrulanmış sabit bir işlem süresi yok; süre DSİ bölge
+          müdürlüğünün işlem sırasına bağlıdır — kesin süre DSİ'den teyit edilmelidir.
+          İdari işleme karşı dava açma süresi 60 gündür (İYUK m. 7).
+          {' '}<a href={`/kuyu-ruhsati/${profil.slug}/`}>Belge adımları ve başvuru akışı →</a>
+        </dd>
+      </div>
+    </dl>
+  </section>
 
   <section class="ys-bolum">
     <h2>{profil.il} hangi havzalarda?</h2>
@@ -112,7 +148,7 @@ const sema = [
               <th>Havza</th>
               <th>Yağış alanı<span class="ys-meal">km²</span></th>
               <th>Yüzey suyu<span class="ys-meal">km³/yıl · DSİ {profil.veriKunyesi.havzaVeriKaynak.match(/\d{4}/)?.[0] ?? '2024'}</span></th>
-              <th>GRACE eğilimi<span class="ys-meal">son 5 yıl · cm/yıl</span></th>
+              <th>Uydu ölçümü<span class="ys-meal">son 5 yıl · cm/yıl</span></th>
               <th>Baraj doluluğu<span class="ys-meal">son ölçüm · ortalama</span></th>
             </tr>
           </thead>
@@ -141,10 +177,10 @@ const sema = [
       <p class="ys-veri-yok">Bu il için doğrulanmış havza künyesi bulunmuyor; veri uydurulmaz.</p>
     )}
     <p class="ys-not">
-      Sayılar DSİ 2024 resmî istatistikleri, NASA GRACE/GRACE-FO ve EPİAŞ
-      Şeffaflık Platformu’ndan derlenmiştir; eksik alanlar “veri yok” basar.
-      GRACE değerleri 2004–2009 ortalamasına göre <strong>değişimdir</strong>
-      (mutlak miktar değil).
+      Sayılar DSİ 2024 resmî istatistikleri, NASA'nın yerçekimi uydu ölçümleri
+      (GRACE/GRACE-FO) ve EPİAŞ Şeffaflık Platformu’ndan derlenmiştir; eksik
+      alanlar “veri yok” basar. Uydu değerleri 2004–2009 ortalamasına göre
+      <strong>değişimdir</strong> (mutlak miktar değil).
     </p>
   </section>
 
@@ -187,6 +223,14 @@ const sema = [
   .ys-veri-yok { font-size: 0.9rem; color: var(--metin-soluk); }
   .ys-hukuk { border-top: 1px solid var(--cizgi); padding-top: 1.2rem; }
   .ys-hukuk p { max-width: 76ch; }
+  /* §57 Yerel Su ve Kuyu Rehberi — 4 soru bloğu */
+  .ys-rehber { border: 1px solid var(--cizgi); background: var(--zemin-kart); padding: 1.1rem 1.3rem; }
+  .ys-sorular { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem 1.6rem; margin: 0.6rem 0 0; }
+  .ys-sorular dt { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--metin-soluk); margin-bottom: 0.25rem; }
+  .ys-sorular dd { margin: 0; font-size: 0.88rem; line-height: 1.5; }
+  .ys-sorular a { color: var(--baglanti); text-decoration: none; }
+  .ys-sorular a:hover { text-decoration: underline; }
+  @media (max-width: 720px) { .ys-sorular { grid-template-columns: 1fr; } }
   .ys-baglar { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; margin-top: 0.8rem; }
   .ys-baglar a { color: var(--baglanti); text-decoration: none; }
   .ys-baglar a:hover { text-decoration: underline; }

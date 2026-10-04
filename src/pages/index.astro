@@ -246,21 +246,21 @@ const sahneVeri = SAHNELER.map((s) => ({
 
   <TeknolojiKartlari />
 
-  {/* 04.08 refactor'unun 2 CTA kartı — 24.08 uyum turunda: emoji ikonlar
-      KALDIRILDI (BRIEF.md "emoji yasak"; md13 ölçümü: ihlali üreten, span'ın
-      renk kuralı olmayışıydı — varsayılan link mavisi 1.92:1), satış bandı
-      kaldırıldı (M1), mobil sırası S1 kuralına bağlandı (M2). */}
-  <section class="v2-cta-ikili" aria-label="Hizli erisim">
+  {/* 04.10.2026 §57 (master brief v3): 2 CTA kartı → 3 sorgu aracı kartı.
+      Hero (Sondaj sahnesi, H1) ve .v2-ust-akis S1 sırası KORUNUR; kartlar
+      hero-sonrası hızlı erişim katmanıdır. */}
+  <section class="v2-cta-uclu" aria-label="Hızlı erişim">
     <a href="/ilce-sorgu/" class="v2-cta-kart v2-cta-sol">
-      <span class="v2-cta-baslik">Su Nerede Çıkar?</span>
-      <span class="v2-cta-alt">İl/ilçe seçin, su potansiyeli ve yetkili kurum bilgisi alın</span>
+      <span class="v2-cta-baslik">Arsamda / Tarlamda Su Çıkar mı?</span>
+      <span class="v2-cta-alt">İl/ilçe seçin; yeraltı su potansiyelini ve yetkili kurumu görün</span>
     </a>
-    {/* 25.08: /su-hukuku/ rota kapanışı (arsiv/su-hukuku-rota/NOT.md) —
-        kart /rehberler/ dizinine bağlandı; metin hedef sayfanın kendi
-        meta-description'ından türetildi. */}
-    <a href="/rehberler/" class="v2-cta-kart v2-cta-sag">
-      <span class="v2-cta-baslik">Su Hukuku Rehberleri</span>
-      <span class="v2-cta-alt">Kuyu ruhsatı, su tahsisi, ruhsatsız kuyu cezaları ve iptal davaları</span>
+    <a href="/kuyu-kisit-sorgu/" class="v2-cta-kart v2-cta-orta">
+      <span class="v2-cta-baslik">Bu Bölgede Kuyu Açmak / Sondaj Yaptırmak Yasak mı?</span>
+      <span class="v2-cta-alt">Resmî Gazete işletme sahası ve tahsise kapatma kayıtlarını il bazında sorgulayın</span>
+    </a>
+    <a href="/tahmin/" class="v2-cta-kart v2-cta-sag">
+      <span class="v2-cta-baslik">Arazimin Su Seviyesi Azalıyor mu?</span>
+      <span class="v2-cta-alt">Uydu ölçümü ve baraj doluluğuna göre 6 aylık su projeksiyonu</span>
     </a>
   </section>
 

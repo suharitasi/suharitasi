@@ -748,15 +748,15 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
      listesinin DIŞINDAydı → order 0 ile kadrajın başına biniyor, S1
      dert-sorusunu 1383px'e itiyordu (md14 G6 kırmızısının kökü).
      S1 sıra kuralı korunur: sorular ve kanıt banttan SONRA. */
-  .v2-ust-akis > .v2-cta-ikili { order: 5; }
+  .v2-ust-akis > .v2-cta-uclu { order: 5; }
 }
 
 /* =============================================
-   ANA CTA İKİLİ KART (04.08.2026 refactor)
+   ANA CTA ÜÇLÜ KART (04.10.2026 §57 — master brief v3)
    ============================================= */
-.v2-cta-ikili {
+.v2-cta-uclu {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.2rem;
   padding: 1.5rem clamp(1.5rem, 4vw, 4rem);
   max-width: 72rem;
@@ -773,6 +773,10 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
   background: linear-gradient(135deg, rgba(79,195,208,0.18) 0%, rgba(12,58,76,0.9) 100%);
   border: 1px solid rgba(79,195,208,0.3);
 }
+.v2-cta-orta {
+  background: linear-gradient(135deg, rgba(87,186,224,0.16) 0%, rgba(10,39,64,0.92) 100%);
+  border: 1px solid rgba(87,186,224,0.28);
+}
 .v2-cta-sag {
   background: linear-gradient(135deg, rgba(192,136,58,0.18) 0%, rgba(108,66,18,0.9) 100%);
   border: 1px solid rgba(192,136,58,0.3);
@@ -786,8 +790,8 @@ a.v2-kart:active { transform: translateY(0) scale(0.99); }
   font-family: var(--sans, "Manrope", system-ui, sans-serif);
   font-size: 0.82rem; color: rgba(255,255,255,0.7); line-height: 1.4;
 }
-@media (max-width: 600px) {
-  .v2-cta-ikili { grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+  .v2-cta-uclu { grid-template-columns: 1fr; }
 }
 
 /* 22.09.2026 — MOBİL YATAY TAŞMA ONARIMI (miras: 22.09 hero/teknoloji

@@ -66,38 +66,16 @@ const isaret = (v: number) => (v > 0 ? '+' : '');
     Kaynak veriler: NASA'nın yerçekimi uydu ölçümleri (aylık), EPİAŞ baraj dolulukları (günlük).
   </p>
 
-  <section class="th-terimler" aria-labelledby="th-terim-baslik">
-    <h2 id="th-terim-baslik">Terimlerin sade karşılığı</h2>
-    <dl>
-      <div>
-        <dt>GRACE (cm)</dt>
-        <dd>NASA'nın yerçekimi uydusu; yeraltı suyu + yüzey suyu + toprak nemi + karın toplamındaki aylık değişimi ölçer. Değer, 2004–2009 ortalamasına göre <strong>değişimdir</strong>; toplam su miktarı değildir.</dd>
-      </div>
-      <div>
-        <dt>OLS trend (cm/ay · puan/gün)</dt>
-        <dd>Geçmiş değerlere en uygun düz çizgi. "Ayda kaç cm" ya da "günde kaç puan" değiştiğini söyler; negatif = azalış. Tablodaki "Aylık değişim" ve "Günlük değişim" sütunları bu çizginin eğimidir.</dd>
-      </div>
-      <div>
-        <dt>Mann-Kendall (MK)</dt>
-        <dd>Bu eğilimin tesadüfi dalgalanma değil gerçek bir yön olduğunu sınayan istatistiksel test. "Anlamlı: evet", tesadüf olma olasılığının düşük olduğu anlamına gelir. Tablodaki "Kesin değişim mi?" sütunu bu testin sonucudur.</dd>
-      </div>
-      <div>
-        <dt>Tahmin aralığı (80% / 95%)</dt>
-        <dd>Modelin öngördüğü olası alt–üst bant. Değerin bu bantta kalması beklenir; gerçekleşme garanti edilmez.</dd>
-      </div>
-    </dl>
-  </section>
-
   <section class="th-bolum">
-    <h2>Suyu en hızlı azalan 6 havza — uydu ölçümü</h2>
-    <p class="th-not">Aylık değişim (cm): eksi değer suyun azaldığını gösterir. "Kesin değişim mi?" sütunu, bu değişimin tesadüfi dalgalanma değil gerçek bir yön olup olmadığını söyler. Yani: havzanın toplam suyu son aylarda azalıyor mu, artıyor mu?</p>
+    <h2>6 Aylık Su Projeksiyonu — suyu en hızlı azalan 6 havza</h2>
+    <p class="th-not">Aylık değişim (cm): eksi değer suyun azaldığını gösterir. "Güvenilir Trend mi? (Tesadüf Değil)" sütunu, bu değişimin tesadüfi dalgalanma değil gerçek bir yön olup olmadığını söyler. Yani: havzanın toplam suyu son aylarda azalıyor mu, artıyor mu?</p>
     <table class="th-tablo">
       <thead><tr>
         <th>Havza</th>
         <th>Son değer<span class="th-meal">en güncel aylık ölçüm (cm)</span></th>
-        <th>Aylık değişim<span class="th-meal">su seviyesi ayda kaç cm değişiyor</span></th>
+        <th>Aylık Su Seviyesi Değişimi<span class="th-meal">su seviyesi ayda kaç cm değişiyor</span></th>
         <th>6 ay sonra (tahmin)<span class="th-meal">beklenen değer, olası bantla</span></th>
-        <th>Kesin değişim mi?<span class="th-meal">bu değişim tesadüf mü, gerçek yön mü?</span></th>
+        <th>Güvenilir Trend mi? (Tesadüf Değil)<span class="th-meal">bu değişim tesadüf mü, gerçek yön mü?</span></th>
       </tr></thead>
       <tbody>
         {azalan.map((k: any) => (
@@ -142,10 +120,27 @@ const isaret = (v: number) => (v > 0 ? '+' : '');
   </section>
 
   <p class="th-kaynak">
-    Bu sayılar nasıl üretiliyor: geçmiş aylık değerlerden mevsim etkisi ayıklanır, en uygun düz çizgi çıkarılır ve değişimin tesadüf olup olmadığı test edilir (teknik adlar: mevsimsel ayrıştırma, en-küçük-kareler trendi, Mann-Kendall testi; numpy, sunucu dışı cron).
+    Bu sayılar nasıl üretiliyor: geçmiş aylık değerlerden mevsim etkisi ayıklanır,
+    en uygun düz çizgi çıkarılır ve değişimin tesadüf olup olmadığı test edilir;
+    ayrıntılı yöntem aşağıdaki kapalı bölümdedir.
     Ham projeksiyon verisi: <a href="/veri/kuraklik.json">/veri/kuraklik.json</a> · üretim {tahmin.uretim}.
-    Model tanımı ve varsayımlar için <a href="/api-dokumantasyonu/">API dokümantasyonu</a>.
   </p>
+
+  <details class="th-detay">
+    <summary>Akademik ve Teknik Yöntem Detayları</summary>
+    <div class="th-detay-ic">
+      <p>
+        Yöntem: mevsimsel ayrıştırma + en-küçük-kareler (OLS) trend + Mann-Kendall
+        testi (numpy, sunucu dışı cron). Mann-Kendall anlamlılık eşiği p&lt;0,05.
+        GRACE değeri NASA GRACE/GRACE-FO mascon verisidir; 2004–2009 ortalamasına
+        göre <strong>değişimdir</strong> (mutlak su miktarı değil).
+      </p>
+      <p>
+        Model tanımı ve varsayımlar:
+        <a href="/api-dokumantasyonu/">API dokümantasyonu</a> · OpenAPI 3.1 şeması.
+      </p>
+    </div>
+  </details>
 
   <nav class="th-capraz" aria-label="İlgili bölümler">
     <a href="/veri/iklim/">→ Havza iklim verisi (NASA POWER)</a>
@@ -163,21 +158,20 @@ const isaret = (v: number) => (v > 0 ? '+' : '');
   .th-bolum h2 { font-family: var(--serif); font-weight: 500; font-size: 1.35rem; margin-bottom: 0.5rem; }
   .th-not { font-size: 0.82rem; color: var(--metin-soluk); margin: 0 0 0.6rem; max-width: 76ch; }
 
-  /* Sade karşılıklar (04.10.2026 UX turu): teknik veri SİLİNMEDEN yanına
-     son kullanıcının okuyacağı meal. Başlık altı .th-meal, tablo başlığının
-     mono-büyük-harf dilini bozmadan normal-case sans ile ayrışır. */
-  .th-terimler { margin-bottom: 1.9rem; }
-  .th-terimler h2 { font-family: var(--serif); font-weight: 500; font-size: 1.2rem; margin-bottom: 0.5rem; }
-  .th-terimler dl { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem 1.6rem; margin: 0; }
-  .th-terimler dt { font-family: var(--mono); font-size: 0.72rem; color: var(--metin); margin-bottom: 0.08rem; }
-  .th-terimler dd { margin: 0; font-size: 0.82rem; line-height: 1.55; color: var(--metin-soluk); }
+  /* Sade dil turu 3 (04.10.2026 §57): üst sözlük kaldırıldı; teknik adlar
+     yalnız sayfa sonundaki kapalı <details> içinde yaşar. */
+  .th-detay { margin-top: 1rem; border: 1px solid var(--cizgi); background: var(--zemin-kart); }
+  .th-detay summary { cursor: pointer; padding: 0.7rem 1rem; font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--metin-soluk); }
+  .th-detay summary:focus-visible { outline: 2px solid var(--baglanti); outline-offset: 2px; }
+  .th-detay-ic { padding: 0 1rem 0.9rem; font-size: 0.84rem; color: var(--metin-soluk); max-width: 76ch; }
+  .th-detay-ic a { color: var(--baglanti); text-decoration: none; }
   .th-meal {
     display: block; margin-top: 0.18rem;
     font-family: var(--sans, system-ui, sans-serif);
     font-size: 0.66rem; font-weight: 400; letter-spacing: 0; text-transform: none;
     color: var(--metin-soluk); white-space: normal;
   }
-  @media (max-width: 720px) { .th-terimler dl { grid-template-columns: 1fr; } }
+  @media (max-width: 720px) { .th-detay summary { padding: 0.6rem 0.8rem; } }
   /* Mobil taşma onarımı (04.10.2026): 5 kolonlu tablo sarımsızdı. */
   .th-tablo { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; border-collapse: collapse; font-size: 0.86rem; }
   .th-tablo th, .th-tablo td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--cizgi); }
