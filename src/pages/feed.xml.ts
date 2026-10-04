@@ -28,7 +28,7 @@ export const GET: APIRoute = async () => {
   items.push({
     title: 'Veri gündemi: en riskli havzalar, kuraklık ve kapatma ilanları',
     link: `${SITE}/veri/gundem/`,
-    desc: 'Baraj doluluk, GRACE eğilimi ve Resmî Gazete verisinden otomatik derlenen gündem.',
+    desc: 'Baraj doluluk, uydu su ölçümü eğilimi ve Resmî Gazete verisinden otomatik derlenen gündem.',
     date: new Date(),
   });
   items.sort((a, b) => b.date - a.date);

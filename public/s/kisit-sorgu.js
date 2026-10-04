@@ -101,7 +101,7 @@
       + '<div><dt>DSİ bölge müdürlüğü</dt><dd>' + kacir(bolge) + '</dd></div>'
       + '<div><dt>Havza</dt><dd>' + kacir(havza) + '</dd></div>'
       + '<div><dt>Su ve kanalizasyon idaresi</dt><dd>' + kacir(b.suIdaresi || 'açık kayıt yok') + '</dd></div>'
-      + '<div><dt>Akifer eğilimi</dt><dd>Uydu (NASA GRACE-FO) yeraltı su depolaması anomalisi ilgili havza sayfasında yayımlıdır; bu belge resmî sınıflama ÜRETMEZ.</dd></div></dl>'
+      + '<div><dt>Akifer eğilimi</dt><dd>Uydu (NASA yerçekimi ölçümü) yeraltı su depolaması anomalisi ilgili havza sayfasında yayımlıdır; bu belge resmî sınıflama ÜRETMEZ.</dd></div></dl>'
       + '<h2>Resmî Gazete işletme sahası / tahsise kapatma kayıtları (' + sonKayitlar.length + ')</h2>'
       + '<table><thead><tr><th>Durum</th><th>Tarih</th><th>Saha</th><th>Resmî kaynak</th></tr></thead><tbody>' + satirlar + '</tbody></table>'
       + '<p class="uyari">Bu belge, DSİ’nin Resmî Gazete’de yayımladığı kayıtları il bazında derler; "açık/kapalı/kısıtlı/yasak" biçiminde resmî bir sınıflama ÜRETMEZ. Kayıt bulunmaması kısıt olmadığının kanıtı değildir. Hukuki değerlendirme uzman incelemesi gerektirir.</p>'

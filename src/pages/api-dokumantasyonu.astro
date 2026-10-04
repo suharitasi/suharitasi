@@ -74,9 +74,9 @@ curl -s https://suharitasi.com/veri/openapi.json`}</code></pre>
     <p>
       <code>/api/v1/havzalar</code> derlenmiş <strong>gözlem/künye</strong> verisidir.
       <code>/api/v1/kuraklik</code> ise <strong>istatistiksel projeksiyondur</strong>
-      (<code>tur: "tahmin"</code>): mevsimsel ayrıştırma + OLS trend + Mann-Kendall
-      (sade karşılığı: mevsimlik dalgalanmayı ayırıp düz bir eğilim çizgisi
-      çıkarma ve bu eğilimin tesadüf olup olmadığını sınama),
+      (<code>tur: "tahmin"</code>): mevsimlik dalgalanma ayıklanır, düz bir eğilim
+      çizgisi çıkarılır ve eğilimin tesadüf olup olmadığı test edilir
+      (teknik adlar: mevsimsel ayrıştırma, OLS trend, Mann-Kendall),
       tahmin aralıklarıyla. Tahmin uçları, Google Dataset/TechArticle şemasında
       <code>measurementTechnique</code> ile işaretlenir ve ölçüm verisiyle
       <strong>karıştırılmaz</strong>.
@@ -117,7 +117,7 @@ curl -s https://suharitasi.com/veri/openapi.json`}</code></pre>
   .ap-bilim { color: #b45309; }
   .ap-tablo-sar { overflow-x: auto; }
   .ap-tablo { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
-  .ap-tablo th, .ap-tablo td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--cizgi); }
+  .ap-tablo th, .ap-tablo td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--cizgi); }
   .ap-tablo th { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--metin-soluk); }
   .ap-kod { background: var(--zemin-kart); border: 1px solid var(--cizgi); padding: 0.8rem 1rem; overflow-x: auto; font-family: var(--mono); font-size: 0.8rem; }
   .ap-liste { list-style: none; padding: 0; display: grid; gap: 0.4rem; max-width: 76ch; }

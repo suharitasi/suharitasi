@@ -43,7 +43,7 @@ const sema = [
   </section>
 
   <section class="gd-bolum">
-    <h2>Rezervi en hızlı azalan havzalar (GRACE)</h2>
+    <h2>Rezervi en hızlı azalan havzalar (uydu ölçümü)</h2>
     <ol class="gd-liste">{REZERV_AZALAN.map((h) => (
       <li>{havzaYolu[h.no] ? <a href={havzaYolu[h.no]}>{h.ad}</a> : h.ad} <span class="gd-deger">{h.ham.graceEgim}</span> <span class="gd-not">cm/yıl eğim</span></li>
     ))}</ol>
@@ -70,7 +70,7 @@ const sema = [
     ))}</ul>
   </section>
 
-  <p class="gd-not-kaynak">Tüm veriler resmî kaynaklardan derlenmiştir (DSİ, EPİAŞ, GRACE, CHIRPS, Resmî Gazete). Yöntem: <a href="/hakkinda/">kaynak politikası</a> · API: <a href="/veri/">açık veri</a>.</p>
+  <p class="gd-not-kaynak">Tüm veriler resmî kaynaklardan derlenmiştir (DSİ, EPİAŞ, NASA uydu ölçümü, CHIRPS, Resmî Gazete). Yöntem: <a href="/hakkinda/">kaynak politikası</a> · API: <a href="/veri/">açık veri</a>.</p>
 
   <nav class="gd-capraz" aria-label="İlgili bölümler">
     <a href="/veri/hikaye/baraj-doluluk/">→ Veri hikâyesi: baraj doluluk havza görünümü</a>

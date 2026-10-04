@@ -115,7 +115,7 @@ const [ky, ka, kg] = k.havzaPotansiyelRezerv.indirmeTarihi.split('-');
       )}
       {yon && spark && (
         <div class={`kahraman-grace ${yon.sinif}`}>
-          <span class="kahraman-etiket">Su depolaması · GRACE uydusu · son 5 yıl</span>
+          <span class="kahraman-etiket">Su depolaması · uydu ölçümü · son 5 yıl</span>
           <span class="kahraman-egilim">
             <span class="kahraman-ok" aria-hidden="true">{yon.s}</span>
             {yon.t}
@@ -130,7 +130,7 @@ const [ky, ka, kg] = k.havzaPotansiyelRezerv.indirmeTarihi.split('-');
             viewBox="0 0 100 30"
             preserveAspectRatio="none"
             role="img"
-            aria-label={`GRACE su depolaması anomalisi, ${spark.aralik}, ${spark.aySayisi} aylık seri; son ölçüm ${spark.sonEtiket}`}
+            aria-label={`Uydu su depolaması anomalisi, ${spark.aralik}, ${spark.aySayisi} aylık seri; son ölçüm ${spark.sonEtiket}`}
           >
             <line class="spark-sifir" x1="0" y1={spark.sifirY} x2="100" y2={spark.sifirY} />
             <polyline class="spark-cizgi" points={spark.cizgi} />
@@ -142,7 +142,7 @@ const [ky, ka, kg] = k.havzaPotansiyelRezerv.indirmeTarihi.split('-');
     </div>
     <p class="kahraman-kunye">
       Kaynak: DSİ Resmî Su Kaynakları İstatistikleri ({kg}.{ka}.{ky}) ·
-      NASA GRACE/GRACE-FO, {spark ? `${spark.aySayisi} gerçek aylık ölçüm` : 'uydu ölçümü'} —
+      NASA yerçekimi uydu ölçümleri, {spark ? `${spark.aySayisi} gerçek aylık ölçüm` : 'uydu ölçümü'} —
       değişim verisidir, mutlak miktar değildir.
     </p>
   </section>

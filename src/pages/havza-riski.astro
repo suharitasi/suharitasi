@@ -30,10 +30,10 @@ const gostergeIfade = aralik.enAz === aralik.enCok
   ? `${aralik.enAz} göstergeden`
   : `havzaya göre ${aralik.enAz}-${aralik.enCok} göstergeden`;
 
-const ozet = `Türkiye'nin 25 su havzası için ${gostergeIfade} (GRACE uydu verisi, baraj doluluk, `
+const ozet = `Türkiye'nin 25 su havzası için ${gostergeIfade} (uydu su ölçümü, baraj doluluk, `
   + 'YAS rezervi, yüzey suyu potansiyeli) hesaplanan bileşik su riski haritası. '
   + 'Verisi olmayan gösterge puana katılmaz. Havzalar en yüksek riskten düşüğe '
-  + 'sıralanmıştır. Veriler DSİ 2024, NASA GRACE ve EPİAŞ\'tan derlenmiştir.';
+  + 'sıralanmıştır. Veriler DSİ 2024, NASA yerçekimi uydu ölçümleri ve EPİAŞ\'tan derlenmiştir.';
 
 const sema = [{
   '@type': 'ItemList',
@@ -76,8 +76,8 @@ const sema = [{
   <Katman baslik="Risk Göstergeleri" ipucu={`${Object.keys(AGIRLIK).length} tanımlı bileşen · ${gostergeIfade} hesaplanır`} ton="murekkep">
     <div class="gosterge-grid">
       <div class="gosterge-kart">
-        <strong>GRACE Eğilimi (%30)</strong>
-        <p>NASA GRACE/GRACE-FO uydu verisinden son 5 yıllık toplam su depolaması değişimi. Negatif eğim = su kaybı = yüksek risk.</p>
+        <strong>Uydu Su Ölçümü Eğilimi (%30)</strong>
+        <p>NASA'nın yerçekimi uydu ölçümlerinden son 5 yıllık toplam su depolaması değişimi. Negatif eğim = su kaybı = yüksek risk.</p>
       </div>
       <div class="gosterge-kart">
         <strong>Baraj Doluluk (%25)</strong>

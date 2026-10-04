@@ -155,8 +155,8 @@ export const ARSIV_SETLERI = [
     yol: '/nerede-su-cikar/',
   },
   {
-    ad: 'GRACE / GRACE-FO su depolaması anomalisi',
-    kaynak: graceTurkiye.kunye.kaynak,
+    ad: 'Uydu su depolaması anomalisi',
+    kaynak: graceTurkiye.kunye.kaynak.replace('GRACE/GRACE-FO', 'yerçekimi uydu ölçümleri'),
     kapsam: `${graceIlk} – ${graceSon}`,
     sayim: `${graceAy} aylık kayıt (Türkiye geneli) · ${graceHavzaSayisi} havza kırılımı`,
     erisim: 'Havza kırılımı havza sayfalarında eğilim grafiği olarak görüntülenir; ülke geneli seri yalnız görüntüleme (indirme yok).',

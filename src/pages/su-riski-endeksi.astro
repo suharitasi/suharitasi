@@ -12,7 +12,7 @@ import { HAVZA_RISK, IL_RISK, FORMUL, AGIRLIK, OZET, SERILER, BUTCE } from '../d
 // elle yazılan yüzdeler kanonik formülden sapıyordu (baraj %40 vs gerçek %25).
 const YUZDE = (x) => `%${Math.round(x * 100)}`;
 const OZ_CEVAP =
-  `İl ve havza su riski; GRACE depolama eğilimi (${YUZDE(AGIRLIK.grace)}), baraj doluluk ` +
+  `İl ve havza su riski; uydu su ölçümü eğilimi (${YUZDE(AGIRLIK.grace)}), baraj doluluk ` +
   `(${YUZDE(AGIRLIK.baraj)}), YAS rezerv/beslenim (${YUZDE(AGIRLIK.yas)}), tahsis durumu ` +
   `(${YUZDE(AGIRLIK.tahsis)}) ve yüzey suyu potansiyeli (${YUZDE(AGIRLIK.yuzeysuyu)}) ` +
   'birleştirilerek şeffaf bir gösterge üretir. Sonuç Düşük/Orta/Yüksek sınıflanır. ' +
@@ -57,7 +57,7 @@ const sema = [
     <div class="sr-kaydir" tabindex="0" role="region">
       <table class="sr-tablo">
         <caption>Havza · skor · kategori · bileşenler (yüksek=risk).</caption>
-        <thead><tr><th scope="col">Havza</th><th scope="col">Skor</th><th scope="col">Kategori</th><th scope="col">GRACE</th><th scope="col">Baraj</th><th scope="col">YAS</th><th scope="col">Tahsis</th><th scope="col">Yüzey</th></tr></thead>
+        <thead><tr><th scope="col">Havza</th><th scope="col">Skor</th><th scope="col">Kategori</th><th scope="col">Uydu</th><th scope="col">Baraj</th><th scope="col">YAS</th><th scope="col">Tahsis</th><th scope="col">Yüzey</th></tr></thead>
         <tbody>
           {HAVZA_RISK.map((h) => (
             <tr data-havza={h.ad}>
@@ -110,7 +110,7 @@ const sema = [
 </Sayfa>
 
 <style>
-  .sr-formul { font-size: 0.9rem; color: var(--metin-soluk); max-width: 80ch; margin-bottom: 0.5rem; }
+  .sr-formul { font-size: 0.9rem; color: var(--metin-soluk); max-width: 68ch; margin-bottom: 0.5rem; }
   .sr-ozet { font-size: 0.95rem; margin-bottom: 1.2rem; }
   .sr-sec { display: flex; flex-direction: column; gap: 0.3rem; max-width: 26rem; margin-bottom: 0.9rem; }
   .sr-sec span { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--metin-soluk); }
@@ -125,12 +125,12 @@ const sema = [
   .sr-bar-dolgu.k { background: #b3261e; }
   .sr-spark { margin-top: 0.6rem; }
   .sr-spark svg { width: 100%; max-width: 22rem; height: 48px; display: block; }
-  .sr-bolum { margin-bottom: 2rem; }
+  .sr-bolum { margin-bottom: clamp(2.6rem, 6vh, 3.4rem); }
   .sr-bolum h2 { font-family: var(--serif); font-weight: 500; font-size: 1.4rem; margin-bottom: 0.7rem; }
   .sr-kaydir { overflow-x: auto; }
   .sr-tablo { width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 48rem; }
   .sr-tablo caption { caption-side: top; text-align: left; font-size: 0.78rem; color: var(--metin-soluk); padding-bottom: 0.5rem; }
-  .sr-tablo th, .sr-tablo td { text-align: left; vertical-align: top; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--cizgi); }
+  .sr-tablo th, .sr-tablo td { text-align: left; vertical-align: top; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--cizgi); }
   .sr-tablo thead th { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--metin-soluk); background: var(--zemin); border-bottom: 2px solid var(--su-700); white-space: nowrap; }
   .sr-tablo tbody th { font-family: var(--serif); font-size: 0.95rem; font-weight: 500; }
   .sr-skor { font-family: var(--mono); font-weight: 600; }

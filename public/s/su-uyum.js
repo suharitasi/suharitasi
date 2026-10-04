@@ -128,7 +128,7 @@
       '</tbody></table>' +
 
       '<h2>3. İlde Uygulanacak İdari Çerçeve</h2>' +
-      '<p>DSİ bölge müdürlüğü: <strong>' + esc(dsi) + '</strong>. Havza(lar): ' + havzalar + '. Su ve kanalizasyon idaresi: <strong>' + esc(iv.suIdaresi || 'açık kayıt yok') + '</strong>. İl ölçümleri (baraj doluluk, GRACE, yeraltı suyu kütlesi) için ilgili havza sayfasına bakınız.</p>' +
+      '<p>DSİ bölge müdürlüğü: <strong>' + esc(dsi) + '</strong>. Havza(lar): ' + havzalar + '. Su ve kanalizasyon idaresi: <strong>' + esc(iv.suIdaresi || 'açık kayıt yok') + '</strong>. İl ölçümleri (baraj doluluk, uydu su ölçümü, yeraltı suyu kütlesi) için ilgili havza sayfasına bakınız.</p>' +
 
       '<h2>4. Uygulanabilir Yasal Yükümlülükler</h2>' + yukumlulukBlok +
 

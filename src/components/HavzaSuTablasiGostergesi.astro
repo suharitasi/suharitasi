@@ -59,7 +59,7 @@ const dsiYas = kayit?.dsi_yas;
 const aciklama = veriVar
   ? `${kayit!.ad} için son 10 yıl (${kayit!.aralik}) su depolama eğilimi: `
     + `${kayit!.kategori} (${kayit!.egilim_cm_yil > 0 ? '+' : ''}${sayi(kayit!.egilim_cm_yil)} cm/yıl, `
-    + `${kayit!.ay_sayisi} gerçek aylık GRACE ölçümü). DEĞİŞİM verisidir; mutlak su miktarı değildir.`
+    + `${kayit!.ay_sayisi} gerçek aylık uydu ölçümü). DEĞİŞİM verisidir; mutlak su miktarı değildir.`
   : (kayit?.durum ?? 'Bölge Akifer Rasat Kaydı Bulunmuyor (DSİ Etüdü Gerekir)');
 ---
 
@@ -98,7 +98,7 @@ const aciklama = veriVar
               <circle cx={sonX.toFixed(1)} cy={sonY.toFixed(1)} r="2.4" fill={renk} />
             </svg>
             <figcaption class="akifer-aralik">
-              {kayit.aralik} · aylık GRACE TWS anomalisi ({kayit.ay_sayisi} ölçüm)
+              {kayit.aralik} · aylık uydu su-depolama anomalisi ({kayit.ay_sayisi} ölçüm)
             </figcaption>
           </figure>
 
@@ -114,8 +114,8 @@ const aciklama = veriVar
           </dl>
 
           <p class="akifer-not">
-            Kaynak: NASA/DLR GRACE-FO mascon TWS anomalisi (değişim verisidir, mutlak
-            miktar değildir) · DSİ Resmî Su Kaynakları İstatistikleri Tablo 1.3.
+            Kaynak: NASA/DLR yerçekimi uydu ölçümleri (mascon); değer su-depolama
+            değişimidir, mutlak miktar değildir · DSİ Resmî Su Kaynakları İstatistikleri Tablo 1.3.
             Havza düzeyinde resmî "kısıtlı işletme" sınıflaması yayımlı olmadığından
             üretilmemiştir. Bu araç bilgilendirme amaçlıdır; hukuki görüş değildir.
           </p>

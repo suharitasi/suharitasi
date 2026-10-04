@@ -35,16 +35,20 @@ function barajOzeti(havzaBaslik) {
   const ad = havzaBaslik.replace(/\s*Havzası\s*$/, '');
   const h = baraj.havzalar?.[ad];
   if (!h) return null;
-  let son = null;
-  const degerler = [];
+  // VERİ DÜRÜSTLÜĞÜ (04.10.2026 §59): farklı tarihli son günler ORTALANMAZ.
+  // Tek bir "as-of" gün seçilir: en güncel doluluk bildiren gün; yalnız o
+  // günü bildiren barajlar ortalamaya girer (bayat seri taze veriye karışmaz).
+  const gunluk = new Map();
   for (const b of Object.values(h.barajlar)) {
-    const gunler = Object.keys(b.seri).sort();
-    if (!gunler.length) continue;
-    const g = gunler[gunler.length - 1];
-    if (!son || g > son) son = g;
-    if (b.seri[g].doluluk != null) degerler.push(b.seri[g].doluluk);
+    for (const [gun, v] of Object.entries(b.seri)) {
+      if (v.doluluk == null) continue;
+      if (!gunluk.has(gun)) gunluk.set(gun, []);
+      gunluk.get(gun).push(v.doluluk);
+    }
   }
-  if (!degerler.length) return null;
+  const son = [...gunluk.keys()].sort().at(-1);
+  if (!son) return null;
+  const degerler = gunluk.get(son);
   return {
     barajSayisi: degerler.length,
     ortalamaDoluluk: degerler.reduce((t, v) => t + v, 0) / degerler.length,
@@ -114,7 +118,7 @@ export function tumIlProfilleri() {
       veriKunyesi: {
         ilKurumDerleme: ilKurum.derlemeTarihi,
         havzaVeriKaynak: 'DSİ 2024 Resmî Su Kaynakları İstatistikleri',
-        graceKaynak: 'NASA GRACE/GRACE-FO (GSFC mascon)',
+        graceKaynak: 'NASA yerçekimi uydu ölçümleri (GSFC mascon)',
         barajKaynak: 'EPİAŞ Şeffaflık Platformu',
       },
     };

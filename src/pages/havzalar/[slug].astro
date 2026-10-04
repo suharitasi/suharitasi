@@ -139,8 +139,8 @@ const gSonuc = gkayit ? graceEgilim(gkayit.seri) : null;
 if (gSonuc) {
   cumleler.push(
     gSonuc.yon === 'sabit'
-      ? `GRACE uydu ölçümüne göre son 5 yılda toplam su depolaması belirgin değişim göstermemektedir (değişim verisidir, mutlak miktar değildir).`
-      : `GRACE uydu ölçümüne göre son 5 yılda toplam su depolaması ${gSonuc.yon} eğilimindedir (değişim verisidir, mutlak miktar değildir).`
+      ? `Uydu su ölçümüne göre son 5 yılda toplam su depolaması belirgin değişim göstermemektedir (değişim verisidir, mutlak miktar değildir).`
+      : `Uydu su ölçümüne göre son 5 yılda toplam su depolaması ${gSonuc.yon} eğilimindedir (değişim verisidir, mutlak miktar değildir).`
   );
 }
 if (konumCumlesi) cumleler.unshift(konumCumlesi);
@@ -332,11 +332,11 @@ const semalar = [
       <BarajDoluluk havzaBaslik={giris.data.baslik} />
     </Katman>
 
-    <Katman baslik="Su depolaması eğilimi" ipucu="GRACE uydu ölçümü · tam şerh">
+    <Katman baslik="Su depolaması eğilimi" ipucu="uydu su ölçümü · tam şerh">
       <GraceEgilim havzaBaslik={giris.data.baslik} />
     </Katman>
 
-    <Katman baslik="Akifer su tablası göstergesi" ipucu="10 yıl · GRACE + DSİ YAS · veri-koşullu">
+    <Katman baslik="Akifer su tablası göstergesi" ipucu="10 yıl · uydu ölçümü + DSİ YAS · veri-koşullu">
       <HavzaSuTablasiGostergesi no={giris.data.no} ad={giris.data.baslik} />
     </Katman>
 
@@ -729,12 +729,12 @@ const semalar = [
     text-transform: uppercase;
     color: var(--metin-soluk);
     text-align: left;
-    padding: 0.45rem 0.9rem 0.45rem 0;
+    padding: 0.6rem 0.9rem 0.6rem 0;
     border-bottom: 1px solid var(--cizgi);
   }
 
   .il-kurum td {
-    padding: 0.5rem 0.9rem 0.5rem 0;
+    padding: 0.6rem 0.9rem 0.6rem 0;
     border-bottom: 1px solid var(--cizgi);
     vertical-align: top;
   }

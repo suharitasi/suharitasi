@@ -18,7 +18,7 @@ const katSinif = (seviye) => ({ dusuk: 'Düşük', orta: 'Orta', yuksek: 'Yükse
 
 export const AGIRLIK = HAVZA_W;
 export const FORMUL =
-  'Tek formül (havza-risk.js): %30 GRACE depolama eğilimi + %25 baraj doluluk + ' +
+  'Tek formül (havza-risk.js): %30 uydu su ölçümü eğilimi + %25 baraj doluluk + ' +
   '%20 YAS rezerv/beslenim + %15 tahsis durumu + %10 yüzey suyu potansiyeli. ' +
   'Verisi olmayan gösterge puana katılmaz; ağırlıklar katkı verenler arasında normalize edilir. ' +
   'Kategori: <35 Düşük · 35-59 Orta · ≥60 Yüksek.';

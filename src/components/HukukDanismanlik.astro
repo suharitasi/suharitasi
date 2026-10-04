@@ -22,7 +22,7 @@ const mailKonu = `${konu} — hukuki değerlendirme talebi`;
 ---
 <section class="hukuk-danismanlik" aria-label="Hukuki danışmanlık ve iletişim">
   <p class="hd-kicker">Hukuki danışmanlık ve iletişim</p>
-  <h2>Somut durumunuz için hukuki değerlendirme</h2>
+  <h2>Somut durumunuz için hukuki değerlendirme{konu ? ` — ${konu}` : ''}</h2>
   <p class="hd-metin">
     Bu sayfa genel bilgilendirme amaçlıdır; somut bir uyuşmazlığa dair hukuki
     görüş veya tavsiye niteliği taşımaz. Durumunuzun hukuki olarak
