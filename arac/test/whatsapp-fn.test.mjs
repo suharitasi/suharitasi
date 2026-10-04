@@ -3,6 +3,10 @@
 // Wrangler kurulmadan, Workers çalışma zamanı taklit edilmeden: yalnız modülün
 // dışa aktardığı onRequest(context) sözleşmesi sınanır. Canlı kanıt ayrıca
 // deploy sonrası `curl -sI https://suharitasi.com/whatsapp/` (x-kaynak: fn).
+//
+// 04.10.2026 denetimi: okuma anahtarı artık YALNIZ Bearer/X-Sayac-Anahtar
+// başlığıyla taşınır (sorgu dizesi kaldırıldı); `t:` altındaki boş değerli
+// kayıt tıklamadır, JSON değerli eski parsel kaydı sayıma GİRMEZ.
 import assert from 'node:assert/strict';
 import { onRequest } from '../../functions/whatsapp.js';
 
@@ -66,22 +70,36 @@ const kaydet = (ad, ok, ek = '') => { sonuc.push([ad, ok, ek]); console.log(`${o
 // 7) Okuma yolu: anahtar doğruysa JSON (gün → sayı), yanlışsa 302, anahtar tanımsızsa 302
 {
   const keys = ['t:2026-09-08:1-a', 't:2026-09-08:2-b', 't:2026-09-09:3-c'].map((name) => ({ name }));
-  const kv = { put: async () => {}, list: async () => ({ keys, list_complete: true }) };
+  const kv = { put: async () => {}, get: async () => '', list: async () => ({ keys, list_complete: true }) };
   const env = { WA_SAYAC: kv, SAYAC_ANAHTAR: 'gizli123' };
-  const dogru = await onRequest(ctx(env, {}, 'GET', URL_ + '?sayac=gizli123'));
+  const dogru = await onRequest(ctx(env, { authorization: 'Bearer gizli123' }, 'GET'));
   const govde = await dogru.json();
   kaydet('okuma: doğru anahtar → JSON', dogru.status === 200 && govde.toplam === 3 && govde.gunler['2026-09-08'] === 2 && govde.gunler['2026-09-09'] === 1, JSON.stringify(govde.gunler));
-  const yanlis = await onRequest(ctx(env, {}, 'GET', URL_ + '?sayac=yanlis'));
+  const yanlis = await onRequest(ctx(env, { authorization: 'Bearer yanlis' }, 'GET'));
   kaydet('okuma: yanlış anahtar → 302', yanlis.status === 302);
-  const tanimsiz = await onRequest(ctx({ WA_SAYAC: kv }, {}, 'GET', URL_ + '?sayac=gizli123'));
+  const sorgu = await onRequest(ctx(env, {}, 'GET', URL_ + '?sayac=gizli123'));
+  kaydet('okuma: sorgu dizesi anahtarı ARTIK ÇALIŞMAZ → 302', sorgu.status === 302);
+  const tanimsiz = await onRequest(ctx({ WA_SAYAC: kv }, { authorization: 'Bearer gizli123' }, 'GET'));
   kaydet('okuma: SAYAC_ANAHTAR tanımsız → 302 (sızıntı yok)', tanimsiz.status === 302);
   // list sayfalama: cursor ile ikinci sayfa
   let cagri = 0;
-  const kv2 = { put: async () => {}, list: async ({ cursor }) => (++cagri === 1
+  const kv2 = { put: async () => {}, get: async () => '', list: async ({ cursor }) => (++cagri === 1
     ? { keys: keys.slice(0, 2), list_complete: false, cursor: 'c2' }
     : { keys: keys.slice(2), list_complete: true }) };
-  const s2 = await (await onRequest(ctx({ WA_SAYAC: kv2, SAYAC_ANAHTAR: 'k' }, {}, 'GET', URL_ + '?sayac=k'))).json();
+  const s2 = await (await onRequest(ctx({ WA_SAYAC: kv2, SAYAC_ANAHTAR: 'k' }, { authorization: 'Bearer k' }, 'GET'))).json();
   kaydet('okuma: list sayfalama (cursor)', s2.toplam === 3 && cagri === 2);
+}
+// 7b) ÖNEK AYRIMI: aynı 't:' önekli JSON değerli eski parsel kaydı sayıma GİRMEZ
+{
+  const keys = [{ name: 't:2026-09-08:1-a' }, { name: 't:2026-09-08:2-b' }];
+  const kv = {
+    put: async () => {},
+    list: async () => ({ keys, list_complete: true }),
+    get: async (k) => (k === 't:2026-09-08:2-b' ? JSON.stringify({ tur: 'parsel-hidrojeolojik-on-talep' }) : ''),
+  };
+  const r = await onRequest(ctx({ WA_SAYAC: kv, SAYAC_ANAHTAR: 'k' }, { authorization: 'Bearer k' }, 'GET'));
+  const g = await r.json();
+  kaydet('okuma: boş olmayan t: değeri (eski parsel) sayılmaz', g.toplam === 1, `toplam=${g.toplam}`);
 }
 // 8) WA_HEDEF ezmesi
 {

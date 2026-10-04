@@ -1,8 +1,14 @@
-// functions/takip.js — MEVZUAT DEĞİŞİKLİK TAKİP aboneliği (13.09.2026).
+// functions/takip.js — MEVZUAT DEĞİŞİKLİK TAKİP aboneliği (13.09.2026;
+// 04.10.2026 denetimiyle sertleştirildi).
 // POST /takip {eposta} → KV'ye (WA_SAYAC, 'a:' öneki) abone yazar.
 // E-posta GÖNDERMEZ (harici servis yok); aboneler birikir, gönderim servisi
 // bağlandığında kullanılır. KVKK: yalnız e-posta + açık rıza; IP/UA saklanmaz.
-// Okuma: GET /takip?sayac=<SAYAC_ANAHTAR> → {aboneler:[...], toplam:n}
+// Okuma: GET /takip (Auth: Bearer SAYAC_ANAHTAR) → {aboneler:[...], toplam:n}
+// Gövde sınırı 2 KB; e-posta/kontrol karakterleri arındırılır.
+import { rateLimit } from './_limit.js';
+import { sayacAnahtari, anahtarEsit } from './_auth.js';
+import { temizKirp as kirp, jsonOku } from './_util.js';
+
 const OMUR_SN = 60 * 60 * 24 * 730; // ~2 yıl
 
 const json = (g, k = 200) =>
@@ -13,11 +19,7 @@ const json = (g, k = 200) =>
       'X-Content-Type-Options': 'nosniff', 'Cross-Origin-Resource-Policy': 'same-origin',
     },
   });
-const kirp = (s, n) => (typeof s === 'string' ? s.trim().slice(0, n) : '');
 const gecerli = (e) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e);
-
-import { rateLimit } from './_limit.js';
-import { sayacAnahtari, anahtarEsit } from './_auth.js';
 
 export async function onRequest(context) {
   const { request, env } = context;
@@ -25,7 +27,7 @@ export async function onRequest(context) {
   let url;
   try { url = new URL(request.url); } catch { return json({ hata: 'gecersiz' }, 400); }
 
-  if (kv && env.SAYAC_ANAHTAR && anahtarEsit(sayacAnahtari(request, url), env.SAYAC_ANAHTAR)) {
+  if (kv && env.SAYAC_ANAHTAR && anahtarEsit(sayacAnahtari(request), env.SAYAC_ANAHTAR)) {
     const aboneler = [];
     let cursor, kesildi = false;
     // SINIR: her abone için bir kv.get → Workers alt-istek tavanı. Tarama
@@ -35,7 +37,7 @@ export async function onRequest(context) {
       const s = await kv.list({ prefix: 'a:', cursor });
       for (const k of s.keys) {
         if (aboneler.length >= SINIR) { kesildi = true; break; }
-        try { const v = await kv.get(k.name); if (v) aboneler.push(JSON.parse(v)); } catch {}
+        try { const v = await kv.get(k.name); if (v) aboneler.push(JSON.parse(v)); } catch { /* bozuk kayıt atlanır */ }
       }
       if (kesildi) break;
       cursor = s.list_complete ? undefined : s.cursor;
@@ -51,9 +53,14 @@ export async function onRequest(context) {
   // RATE LIMIT: 5 abonelik isteği / saat.
   const rl = await rateLimit(request, env, 'takip', 5, 3600);
   if (!rl.ok) return json({ hata: 'Cok fazla istek. Lutfen sonra tekrar deneyin.' }, 429);
-  let veri;
-  try { veri = await request.json(); } catch { return json({ hata: 'gecersiz govde' }, 400); }
+
+  const okuma = await jsonOku(request, 2000);
+  if (okuma.hata) {
+    return json({ hata: okuma.hata }, okuma.hata === 'gövde çok büyük' ? 413 : 400);
+  }
+  const veri = okuma.veri && typeof okuma.veri === 'object' ? okuma.veri : {};
   if (kirp(veri.website, 40)) return json({ ok: true }); // honeypot
+
   const eposta = kirp(veri.eposta, 160).toLowerCase();
   if (!gecerli(eposta)) return json({ hata: 'gecersiz e-posta' }, 400);
   // Opsiyonel konu (il slug'ı ya da 'tum-turkiye'); yalnız slug karakterleri.

@@ -1,13 +1,16 @@
-// functions/api/alarm.js — Kullanıcıya özel dinamik alarm aboneliği (Modül 3).
+// functions/api/alarm.js — Kullanıcıya özel dinamik alarm aboneliği (Modül 3;
+// 04.10.2026 denetimiyle sertleştirildi).
 //
 // POST /api/alarm {eposta, havza, esik, yon, onay} → KV'ye ('al:' öneki) yazar.
-// GET  /api/alarm?sayac=<ANAHTAR> → abone listesi (VPS tetikleyicisi okur).
-//   Okuma Auth: Bearer başlığı öncelikli (sorgu yedek) — _auth.js.
+// GET  /api/alarm?sayac... YOK: okuma yalnız Authorization: Bearer SAYAC_ANAHTAR
+//   (sorgu dizesi taşıması 04.10.2026'da kaldırıldı — günlüklere sızıyordu).
 // Rate-limit: IP+UA 5 istek/10 dk. KVKK: yalnız e-posta+havza+eşik+açık rıza;
 // IP/UA SAKLANMAZ. Eşik aşıldığında gönderim VPS tetikleyicisi (arac/alarm-
 // tetikle.py) tarafından yapılır (SMTP + Telegram); bu uç yalnız KAYIT tutar.
+// Gövde sınırı 2 KB; metin alanları kontrol karakterlerinden arınır.
 import { rateLimit } from '../_limit.js';
 import { sayacAnahtari, anahtarEsit } from '../_auth.js';
+import { temizKirp as kirp, jsonOku } from '../_util.js';
 
 const OMUR_SN = 60 * 60 * 24 * 730; // ~2 yıl
 
@@ -19,7 +22,6 @@ const json = (g, k = 200) =>
       'X-Content-Type-Options': 'nosniff', 'Cross-Origin-Resource-Policy': 'same-origin',
     },
   });
-const kirp = (s, n) => (typeof s === 'string' ? s.trim().slice(0, n) : '');
 const gecerliEposta = (e) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e);
 
 export async function onRequest(context) {
@@ -29,7 +31,7 @@ export async function onRequest(context) {
   try { url = new URL(request.url); } catch { return json({ hata: 'gecersiz' }, 400); }
 
   // — OKUMA (VPS tetikleyicisi): yalnız anahtarla —
-  if (kv && env.SAYAC_ANAHTAR && anahtarEsit(sayacAnahtari(request, url), env.SAYAC_ANAHTAR)) {
+  if (kv && env.SAYAC_ANAHTAR && anahtarEsit(sayacAnahtari(request), env.SAYAC_ANAHTAR)) {
     const aboneler = [];
     let cursor, kesildi = false;
     const SINIR = 5000;
@@ -54,8 +56,11 @@ export async function onRequest(context) {
 
   if (!kv) return json({ hata: 'abonelik servisi geçici olarak devre dışı' }, 503);
 
-  let veri;
-  try { veri = await request.json(); } catch { return json({ hata: 'gecersiz govde' }, 400); }
+  const okuma = await jsonOku(request, 2000);
+  if (okuma.hata) {
+    return json({ hata: okuma.hata }, okuma.hata === 'gövde çok büyük' ? 413 : 400);
+  }
+  const veri = okuma.veri && typeof okuma.veri === 'object' ? okuma.veri : {};
   if (kirp(veri.website, 50)) return json({ ok: true }); // honeypot
 
   const eposta = kirp(veri.eposta, 120);

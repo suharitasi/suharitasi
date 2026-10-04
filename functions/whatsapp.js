@@ -52,6 +52,10 @@ async function sayacOku(kv) {
   do {
     const s = await kv.list({ prefix: 't:', cursor }); // sayfa başına en çok 1.000 anahtar
     for (const k of s.keys) {
+      // ÖNEK AYRIMI (04.10.2026 denetimi): 27.09–04.10 arası api/talep.js aynı
+      // 't:' önekine JSON yazıyordu. Tıklama kayıtları BOŞ değerlidir; boş
+      // olmayan değer eski parsel kaydıdır → WhatsApp sayımına katılmaz.
+      try { const v = await kv.get(k.name); if (v) continue; } catch { /* okunamayan kayıt eski davranışla sayılır */ }
       const g = k.name.slice(2, 12);
       gunler[g] = (gunler[g] || 0) + 1;
       toplam++;
@@ -68,7 +72,7 @@ export async function onRequest(context) {
   try { url = new URL(request.url); } catch { return yonlendir(env); }
 
   // OKUMA YOLU — yalnız gizli anahtar tanımlı VE eşleşiyorsa.
-  if (kv && env.SAYAC_ANAHTAR && anahtarEsit(sayacAnahtari(request, url), env.SAYAC_ANAHTAR)) {
+  if (kv && env.SAYAC_ANAHTAR && anahtarEsit(sayacAnahtari(request), env.SAYAC_ANAHTAR)) {
     try {
       const sonuc = await sayacOku(kv);
       return new Response(JSON.stringify({ ...sonuc, okuma: new Date().toISOString() }), {

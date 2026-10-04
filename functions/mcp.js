@@ -15,6 +15,7 @@
 // 60 istek/dk (KV yoksa sınır uygulanmaz, fail-open). HSTS/CORS burada
 // verilir — _headers bir Function yanıtına uygulanmaz (whatsapp.js notu).
 import { rateLimit } from './_limit.js';
+import { jsonOku } from './_util.js';
 
 const PROTOKOL = '2025-06-18';
 const SUNUCU = { name: 'su-haritasi', version: '1.0.0' };
@@ -44,11 +45,6 @@ const KAYNAK_ACIKLAMA = {
 
 // Isolate ömrü boyunca yayımlı JSON önbelleği (soğuk başlangıçta bir kez okunur).
 const onbellek = new Map();
-
-function kisalt(v, n = 700) {
-  const s = typeof v === 'string' ? v : JSON.stringify(v);
-  return s.length > n ? s.slice(0, n) + '…' : s;
-}
 
 function norm(s) {
   return String(s ?? '').toLocaleLowerCase('tr').trim();
@@ -256,6 +252,7 @@ function cors(headers = {}) {
     'Cache-Control': 'no-store',
     'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
     'X-Kaynak': 'fn',
+    'X-Content-Type-Options': 'nosniff',
     ...headers,
   };
 }
@@ -359,14 +356,18 @@ export async function onRequest(context) {
   const rl = await rateLimit(request, env, 'mcp', 60, 60);
   if (!rl.ok) return jsonGovde(hata(null, -32000, 'çok fazla istek'), 429);
 
-  let govde;
-  try {
-    govde = await request.json();
-  } catch {
-    return jsonGovde(hata(null, -32700, 'JSON çözümlenemedi'), 400);
+  const okuma = await jsonOku(request, 50000);
+  if (okuma.hata) {
+    return jsonGovde(hata(null, -32700, okuma.hata), okuma.hata === 'gövde çok büyük' ? 413 : 400);
   }
+  const govde = okuma.veri;
 
   const toplu = Array.isArray(govde);
+  // TOPLU İSTEK SINIRI (04.10.2026 denetimi): on binlerce alt çağrı içeren
+  // tek istek CPU/kota sömürüsüne açıktı; toplu istek en çok 20 öğe kabul eder.
+  if (toplu && govde.length > 20) {
+    return jsonGovde(hata(null, -32600, 'toplu istek sınırı: en çok 20'), 413);
+  }
   const istekler = toplu ? govde : [govde];
   const yanitlar = [];
   for (const istek of istekler) {

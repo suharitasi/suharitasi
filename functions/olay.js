@@ -83,6 +83,53 @@ async function danismalariOku(kv) {
   return { danismalar: kayitlar, danismaToplam: anahtarlar.length };
 }
 
+// Parsel talepleri (prefix 'p:'; 04.10.2026 önek ayrımı). En yeni 50 kayıt.
+// Eski sürüm api/talep.js aynı 't:' önekini kullandığından geriye dönük kayıp
+// olmasın diye 't:' altındaki JSON değerli kayıtlar da taranır (WhatsApp
+// tıklama kayıtları BOŞ değerlidir; JSON.parse onları eler). Eski tarama en
+// çok 200 anahtar; sınır aşılırsa `parselKesildi:true` ile açıkça bildirilir.
+async function parselleriOku(kv) {
+  const kayitlar = [];
+  const anahtarlar = [];
+  let cursor;
+  do {
+    const s = await kv.list({ prefix: 'p:', cursor });
+    for (const k of s.keys) anahtarlar.push(k.name);
+    cursor = s.list_complete ? undefined : s.cursor;
+  } while (cursor);
+  anahtarlar.sort().reverse();
+  for (const a of anahtarlar.slice(0, 50)) {
+    try {
+      const v = await kv.get(a);
+      if (v) kayitlar.push(JSON.parse(v));
+    } catch { /* bozuk kayıt atlanır */ }
+  }
+  let kesildi = false;
+  let tarandi = 0;
+  const eski = [];
+  cursor = undefined;
+  do {
+    const s = await kv.list({ prefix: 't:', cursor });
+    for (const k of s.keys) {
+      if (tarandi >= 200) { kesildi = true; break; }
+      tarandi++;
+      eski.push(k.name);
+    }
+    if (kesildi) break;
+    cursor = s.list_complete ? undefined : s.cursor;
+  } while (cursor);
+  for (const a of eski.sort().reverse().slice(0, 50)) {
+    try {
+      const v = await kv.get(a);
+      if (!v) continue;
+      const kayit = JSON.parse(v);
+      if (kayit && kayit.tur === 'parsel-hidrojeolojik-on-talep') kayitlar.push(kayit);
+    } catch { /* boş değer (WhatsApp tıklaması) */ }
+  }
+  kayitlar.sort((a, b) => (b.zaman || '').localeCompare(a.zaman || ''));
+  return { parseller: kayitlar.slice(0, 50), parselToplam: anahtarlar.length, ...(kesildi ? { parselKesildi: true } : {}) };
+}
+
 export async function onRequest(context) {
   const { request, env } = context;
   const kv = env && env.WA_SAYAC;
@@ -90,11 +137,12 @@ export async function onRequest(context) {
   try { url = new URL(request.url); } catch { return bosYanit(); }
 
   // OKUMA YOLU — yalnız gizli anahtar tanımlı VE eşleşiyorsa.
-  if (kv && env.SAYAC_ANAHTAR && anahtarEsit(sayacAnahtari(request, url), env.SAYAC_ANAHTAR)) {
+  if (kv && env.SAYAC_ANAHTAR && anahtarEsit(sayacAnahtari(request), env.SAYAC_ANAHTAR)) {
     try {
       const sonuc = await sayacOku(kv);
       const leads = await danismalariOku(kv);
-      return new Response(JSON.stringify({ ...sonuc, ...leads, okuma: new Date().toISOString() }), {
+      const parseller = await parselleriOku(kv);
+      return new Response(JSON.stringify({ ...sonuc, ...leads, ...parseller, okuma: new Date().toISOString() }), {
         headers: {
           'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Kaynak': 'fn',
           'X-Content-Type-Options': 'nosniff', 'Cross-Origin-Resource-Policy': 'same-origin',

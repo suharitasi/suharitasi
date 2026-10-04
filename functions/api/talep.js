@@ -1,22 +1,29 @@
 // functions/api/talep.js — PARSEL BAZLI HİDROJEOLOJİK ÖN DEĞERLENDİRME talebi.
 //
 // İŞ: POST /api/talep → gövdedeki TEKNİK talebi KV'ye (WA_SAYAC) yazar.
-// - Harici e-posta servisi YOK; talep KV'de birikir (okuma: mevcut
-//   `arac/danisma-oku.sh` deseni, `t:` öneki).
+// - Harici e-posta servisi YOK; talep KV'de birikir. Okuma yolu (04.10.2026):
+//   GET /olay (SAYAC_ANAHTAR) yanıtındaki `parseller` alanı ya da
+//   `arac/temas-sayac.sh --parsel`. Önek: `p:`.
+// - ÖNEK DÜZELTMESİ (04.10.2026 denetimi): eski uygulama WhatsApp tıklama
+//   sayacıyla AYNI `t:` önekini kullanıyordu → tıklama sayısı form
+//   gönderimleriyle şişiyordu. Talep artık `p:` yazar.
 // - HUKUKİ SINIR (bağlayıcı): bu uç yalnız TEKNİK veri talebi toplar.
 //   Dilekçe/avukatlık/hukuki danışmanlık metni veya vaadi taşımaz.
 // - KVKK: yalnız kullanıcının açık rızasıyla (onay) alınan alanlar yazılır;
 //   IP/UA SAKLANMAZ. Honeypot doluysa istek sessizce yutulur.
 // - KV bağı yoksa 503 döner → istemci mailto'ya düşer (veri kaybolmaz).
+// - Gövde sınırı 10 KB; tüm metin alanları kontrol karakterlerinden arınır.
 //
 // ZORUNLU: il, ilce, telefon, onay. OPSİYONEL: adaParsel, sayfa.
+import { rateLimit } from '../_limit.js';
+import { temizKirp as kirp, jsonOku } from '../_util.js';
+
 const OMUR_SN = 60 * 60 * 24 * 365; // ~1 yıl (talep kapanınca silinir)
 
 const trGun = (ms) => new Date(ms + 3 * 3600 * 1000).toISOString().slice(0, 10);
 const rastgele = () => {
   try { return crypto.randomUUID().slice(0, 8); } catch { return Math.random().toString(36).slice(2, 10); }
 };
-const kirp = (s, n) => (typeof s === 'string' ? s.trim().slice(0, n) : '');
 
 const json = (govde, kod = 200) =>
   new Response(JSON.stringify(govde), {
@@ -39,8 +46,6 @@ function telNormalize(ham) {
   return '0' + d;
 }
 
-import { rateLimit } from '../_limit.js';
-
 export async function onRequest(context) {
   const { request, env } = context;
   if (request.method !== 'POST') return json({ hata: 'yalnız POST' }, 405);
@@ -55,8 +60,11 @@ export async function onRequest(context) {
   const rl = await rateLimit(request, env, 'talep', 5, 600);
   if (!rl.ok) return json({ hata: 'Çok fazla istek. Lütfen biraz sonra tekrar deneyin.' }, 429);
 
-  let veri;
-  try { veri = await request.json(); } catch { return json({ hata: 'geçersiz gövde' }, 400); }
+  const okuma = await jsonOku(request, 10000);
+  if (okuma.hata) {
+    return json({ hata: okuma.hata }, okuma.hata === 'gövde çok büyük' ? 413 : 400);
+  }
+  const veri = okuma.veri && typeof okuma.veri === 'object' ? okuma.veri : {};
 
   // Honeypot — botlar doldurur; sessiz başarı dön.
   if (kirp(veri.website, 50)) return json({ ok: true });
@@ -82,7 +90,7 @@ export async function onRequest(context) {
 
   try {
     const simdi = Date.now();
-    const anahtar = `t:${trGun(simdi)}:${simdi}-${rastgele()}`;
+    const anahtar = `p:${trGun(simdi)}:${simdi}-${rastgele()}`;
     // Yazma ONAYLANMADAN başarı dönülmez (sessiz kayıp yasağı).
     await kv.put(anahtar, JSON.stringify(talep), { expirationTtl: OMUR_SN });
     return json({ ok: true });

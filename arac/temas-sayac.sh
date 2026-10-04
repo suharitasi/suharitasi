@@ -36,6 +36,14 @@ print('Hızlı danışma lead — toplam '+str(d.get('danismaToplam',0))+' (en y
 for x in ds[:20]:
     print(' -', x.get('zaman','?')[:19], '|', x.get('ad','?'), '|', x.get('telefon','?'), '|', x.get('il',''), '|', x.get('konu',''))
 "
+    elif [ "${1:-}" = "--parsel" ]; then
+      python3 -c "
+import json
+d=json.load(open('$YANIT')); ps=d.get('parseller',[])
+print('Parsel ön değerlendirme talebi — toplam '+str(d.get('parselToplam',0))+' (en yeni '+str(len(ps))+' gösteriliyor):' + (' [TARAMA KESİLDİ]' if d.get('parselKesildi') else ''))
+for x in ps[:20]:
+    print(' -', x.get('zaman','?')[:19], '|', x.get('il','?'), '|', x.get('ilce','?'), '|', x.get('adaParsel',''), '|', x.get('telefon','?'))
+"
     else
       cat "$YANIT"; echo
     fi ;;

@@ -8,13 +8,21 @@
 export async function rateLimit(request, env, endpoint, limit, pencereSn = 60) {
   const kv = env && env.WA_SAYAC;
   if (!kv) return { ok: true, kalan: limit };
-  let hash = 'yok';
+  // IP: Cloudflare edge'de cf-connecting-ip her zaman vardır ve istemci
+  // tarafından sahtelenemez. x-forwarded-for yalnız yerel/kenar-dışı koşumda
+  // (ör. birim sınaması) yedektir — üretimde cf-connecting-ip kazanır.
+  let hash;
   try {
     const ip = request.headers.get('cf-connecting-ip') || request.headers.get('x-forwarded-for') || '';
     const ua = request.headers.get('user-agent') || '';
     const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(ip + '|' + ua));
     hash = [...new Uint8Array(buf)].slice(0, 8).map((b) => b.toString(16).padStart(2, '0')).join('');
-  } catch { /* hash üretilemezse 'yok' ile devam */ }
+  } catch {
+    // Hash üretilemezse ORTAK bir 'yok' kovasına düşmek TÜM kullanıcıları
+    // birlikte kilitlerdi (fail-closed DoS). Sınır atlanır (fail-open):
+    // KV yokluğuyla aynı sözleşme.
+    return { ok: true, kalan: limit };
+  }
   const pencere = Math.floor(Date.now() / (pencereSn * 1000));
   const key = `r:${endpoint}:${pencere}:${hash}`;
   let n = 0;
