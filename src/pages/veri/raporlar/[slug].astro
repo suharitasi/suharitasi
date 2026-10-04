@@ -1,11 +1,11 @@
 ---
 /* /raporlar/<donem>/ — otonom aylık rapor detayı (Modül 4). */
 import { getCollection, render } from 'astro:content';
-import Sayfa from '../../layouts/Sayfa.astro';
-import SayfaBasi from '../../components/SayfaBasi.astro';
-import OzCevap from '../../components/OzCevap.astro';
-import CtaBlok from '../../components/CtaBlok.astro';
-import HukukSerhi from '../../components/HukukSerhi.astro';
+import Sayfa from '../../../layouts/Sayfa.astro';
+import SayfaBasi from '../../../components/SayfaBasi.astro';
+import OzCevap from '../../../components/OzCevap.astro';
+import CtaBlok from '../../../components/CtaBlok.astro';
+import HukukSerhi from '../../../components/HukukSerhi.astro';
 
 export async function getStaticPaths() {
   const raporlar = await getCollection('raporlar');

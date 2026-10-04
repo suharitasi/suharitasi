@@ -1,11 +1,11 @@
 ---
 /* /raporlar/ — Otonom aylık hidroloji/kuraklık raporları listesi (Modül 4). */
 import { getCollection } from 'astro:content';
-import Sayfa from '../../layouts/Sayfa.astro';
-import SayfaBasi from '../../components/SayfaBasi.astro';
-import OzCevap from '../../components/OzCevap.astro';
-import CtaBlok from '../../components/CtaBlok.astro';
-import HukukSerhi from '../../components/HukukSerhi.astro';
+import Sayfa from '../../../layouts/Sayfa.astro';
+import SayfaBasi from '../../../components/SayfaBasi.astro';
+import OzCevap from '../../../components/OzCevap.astro';
+import CtaBlok from '../../../components/CtaBlok.astro';
+import HukukSerhi from '../../../components/HukukSerhi.astro';
 
 const raporlar = (await getCollection('raporlar')).sort((a, b) => b.data.tarih.valueOf() - a.data.tarih.valueOf());
 
