@@ -1,7 +1,7 @@
 {
  "_not": "GÖRSEL/DÜZEN TABANI — sürümlü YAPILANDIRMA (log değil). Bilinçli tasarım değişikliğinde `node arac/site-saglik.mjs --gorsel-taban-yenile --gerekce \"...\"` ile yenilenir; yenilenmeden kalem KIRMIZI kalır. Ölçüm deterministiktir: sabit viewport + DPR + reduced-motion (sahne 0'da donar).",
- "tabanTarihi": "2026-10-04T17:52:25.468Z",
- "gerekce": "04.10.2026 §55: ana sayfa Kuraklık Alarmı bandı + HavzaPaneli hukuki statü satırı + /tahmin sade terim sözlüğü — bilinçli içerik/yerleşim değişikliği",
+ "tabanTarihi": "2026-10-04T19:10:18.158Z",
+ "gerekce": "master v3 §57: ana sayfa 3 CTA karti + /tahmin sade dil turu 3 (sozluk kaldirildi, details akordeon) + il rehberi 4 soru + hukuk danismanlik hizli danisma kanali",
  "esikler": {
   "g1KesismePx2": 2000,
   "g2OlcekOran": 1.05,
@@ -62,7 +62,7 @@
      "padAlt": 0
     },
     {
-     "etiket": "v2-cta-ikili",
+     "etiket": "v2-cta-uclu",
      "padUst": 24,
      "padAlt": 24
     },
@@ -141,7 +141,7 @@
      "padAlt": 0
     },
     {
-     "etiket": "v2-cta-ikili",
+     "etiket": "v2-cta-uclu",
      "padUst": 24,
      "padAlt": 24
     },
@@ -898,7 +898,7 @@
   }
  },
  "oncekiTaban": {
-  "tarih": "2026-10-04T15:34:33.511Z",
-  "gerekce": "Faz 4 vitrin (04.10.2026, sahip talimatı): fayda H1 + çift CTA hero'ya, DaaS terminal bloğu KurumsalHizmetler'e, 3'lü değer kartları bölümü eklendi. S1 korundu; G3/G4 bilinçli."
+  "tarih": "2026-10-04T17:52:25.468Z",
+  "gerekce": "04.10.2026 §55: ana sayfa Kuraklık Alarmı bandı + HavzaPaneli hukuki statü satırı + /tahmin sade terim sözlüğü — bilinçli içerik/yerleşim değişikliği"
  }
 }

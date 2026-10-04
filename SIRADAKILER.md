@@ -8,6 +8,23 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ 04.10.2026 — MASTER BRİF v3 UYGULANDI (KARARLAR §57; sahip: kapı askı) ═══
+Rapor: `rapor/04-10-master-v3-on-denetim.md` · brief:
+`cikti/brief/2026-10-04T1904-master-v3.md` + `-duzeltilmis.md`.
+TAMAMLANAN:
+- [x] Ana sayfa 3 CTA kartı (ilce-sorgu / kuyu-kisit-sorgu / tahmin).
+- [x] `/tahmin/` sade dil turu 3: sözlük kaldırıldı; başlıklar sade; teknik
+      adlar kapalı `<details>` "Akademik ve Teknik Yöntem Detayları" içinde.
+- [x] 81 il "Yerel Su ve Kuyu Rehberi" 4 soru (DSİ / RG kısıtları / yerel
+      idare / süre: doğrulanmış sabit gün yok → DSİ teyidi + İYUK 60 gün).
+- [x] Hukuk danışmanlık "Hızlı danışma" kanalı (5 sayfa); TBB sınırı korundu.
+- [x] API dört uç canlı 200; dokümantasyon uyumlu (değişiklik yok).
+- [x] Görsel taban gerekçeli yenilendi (19:10Z); canlı `ba8ade7`; --hizli YEŞİL.
+DUR:
+- [ ] Canlı görsel/içerik onayı (İş kapanış kuralı).
+- [ ] GA4 Admin API kapalı → dönüşüm etkisi ölçülemez; GSC CTR 2-4 hafta
+      sonra yeniden ölçülür.
+
 ═══ 04.10.2026 — GROWTH SEO + ŞEMA + PROGRAMATİK ROTA (KARARLAR §55) ═══
 Rapor: `rapor/04-10-growth-seo.md` · brief:
 `cikti/brief/2026-10-04T1745-growth-seo.md` (brief-denetci TEMİZ).

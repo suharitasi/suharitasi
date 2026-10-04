@@ -1239,6 +1239,34 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §57 · MASTER BRİF v3 (ULUSAL DÖNÜŞÜM) UYGULAMASI (04.10.2026)
+
+- **Sahip talimatı:** "Karar gerektiren bir şey yok; emirlerimi uygula, soru
+  sorma" — AY İLKESİ kuyruk kapısı bu kapsam için sahip onayıyla aşıldı;
+  brief denetimi + düşman geçişi + kanıt rejimi KORUNDU.
+- **P1 ana sayfa:** 2 CTA kartı → 3 sorgu kartı; tam metinler:
+  "Arsamda / Tarlamda Su Çıkar mı?"→/ilce-sorgu/, "Bu Bölgede Kuyu Açmak /
+  Sondaj Yaptırmak Yasak mı?"→/kuyu-kisit-sorgu/, "Arazimin Su Seviyesi
+  Azalıyor mu?"→/tahmin/. Hero (Sondaj sahnesi + H1), S1 sırası ve Kuraklık
+  Alarmı korundu; brief'in "harita önizlemesi" premisi mevcut tasarımla
+  örtüşmediğinden hero sökülmedi (rapor §4 sapma notu).
+- **P2 /tahmin/:** üst sözlük kaldırıldı; başlıklar "Aylık Su Seviyesi
+  Değişimi" + "Güvenilir Trend mi? (Tesadüf Değil)"; teknik adlar (GRACE,
+  OLS, Mann-Kendall, p<0,05) sayfa sonunda KAPALI `<details>` içinde.
+- **P3 il sayfaları:** 81 sayfaya "Yerel Su ve Kuyu Rehberi" 4 soru bloğu;
+  işlem süresi sorusu doğrulanmış sabit süre yok → "DSİ teyidi + İYUK m.7
+  60 gün" (uydurma yasağı); tabloda "GRACE eğilimi" → "Uydu ölçümü".
+- **P4 hukuk:** HukukDanismanlik bileşenine "Hızlı danışma"
+  (/hizli-danisma/) kanalı eklendi (5 sayfa); TBB sınırı korundu;
+  /kuyu-karar-motoru/ CtaBlok'u zaten mevcuttu.
+- **P5 API:** değişiklik yok; dört uç canlı 200; dokümantasyon uyumlu.
+- **Kanıt:** brief-denetci (3 ENGEL+1 UYARI → düzeltilmiş, kapalı) · build
+  EXIT 0 · 1190 sayfa · tarayıcı öz-denetimi konsol 0 / 88 link 0 kırık ·
+  canlı `ba8ade7` · görsel taban gerekçeli yenilendi (19:10Z) · site-saglik
+  --hizli 0/0/13 YEŞİL. Rapor: `rapor/04-10-master-v3-on-denetim.md`.
+
+---
+
 ## §56 · /tahmin/ SADE DİL TURU 2 — TABLO BAŞLIKLARI (04.10.2026)
 
 - **Belirti:** §54'te eklenen üst sözlük + tablo-altı karşılıklara rağmen
