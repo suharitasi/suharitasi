@@ -99,9 +99,13 @@ whatsapp-fn 15/15 · mcp-fn 12/12.
 1. **DUR-1 (hukuk):** `/gizlilik/` aydınlatma metnine "API erişim günlüğü
    (IP, uç, durum kodu; 30 gün)" satırı eklenmesi — [SERDAR-HUKUK] kalemi.
    Panel bunu kendi metninde açıkça yazar; hukuki metin bu işte değişmedi.
-2. **DUR-2 (panel):** Cloudflare `SAYAC_ANAHTAR` secret eşleşmesi. O gelene
-   kadar: yazım no-op, `/api/loglar` 503, panel "günlük deposu
-   yapılandırılmadı" gösterir (uydurma yok).
+2. **DUR-2 (panel):** Cloudflare `SAYAC_ANAHTAR` secret eşleşmesi.
+   **Canlı ölçüm (04.10.2026, dağıtım sonrası):** anahtarsız
+   `GET /api/loglar` → **401 yetkisiz**; kod sırası gereği bu, `WA_SAYAC`
+   bağlamasının ve `SAYAC_ANAHTAR`'ın üretimde TANIMLI olduğunu kanıtlar →
+   **günlük yazımı AKTİF**. Panel için paneldeki secret değeri girilmeli;
+   `.env`'deki `WA_SAYAC_ANAHTAR` bu değerle eşleşmiyor (bilinen kalem).
+   Anahtar girilene kadar panel "Okunamadı: yetkisiz" gösterir (uydurma yok).
 3. **DUR-3:** Panelin canlı görsel onayı (İş kapanış kuralı).
 
 ## 6. BİLİNEN SINIRLAR

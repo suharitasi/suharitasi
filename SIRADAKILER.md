@@ -26,8 +26,9 @@ DUR (kullanıcı/panel/hukuk kararı):
 - [ ] **DUR-1 [SERDAR-HUKUK]:** `/gizlilik/` aydınlatmaya "API erişim
       günlüğü (IP, uç, durum kodu; 30 gün)" satırı. Metin bu işte
       değiştirilmedi; panel kendi içinde açıkça yazar.
-- [ ] **DUR-2:** Cloudflare `SAYAC_ANAHTAR` secret eşleşmesi — gelene kadar
-      günlük yazımı no-op, panel "yapılandırılmadı" gösterir.
+- [ ] **DUR-2:** Cloudflare `SAYAC_ANAHTAR` secret eşleşmesi — canlı ölçüm:
+      anahtarsız `/api/loglar` 401 (WA_SAYAC + secret TANIMLI; günlük YAZIMI
+      AKTİF). Panel için paneldeki secret girilmeli; `.env` değeri eşleşmiyor.
 - [ ] **DUR-3:** Panelin canlı görsel onayı (İş kapanış kuralı).
 
 ═══ 04.10.2026 — TAM KAPSAMLI DENETİM VE ONARIM (KARARLAR §52) ═══
