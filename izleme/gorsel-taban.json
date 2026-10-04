@@ -1,7 +1,7 @@
 {
  "_not": "GÖRSEL/DÜZEN TABANI — sürümlü YAPILANDIRMA (log değil). Bilinçli tasarım değişikliğinde `node arac/site-saglik.mjs --gorsel-taban-yenile --gerekce \"...\"` ile yenilenir; yenilenmeden kalem KIRMIZI kalır. Ölçüm deterministiktir: sabit viewport + DPR + reduced-motion (sahne 0'da donar).",
- "tabanTarihi": "2026-10-04T15:34:33.511Z",
- "gerekce": "Faz 4 vitrin (04.10.2026, sahip talimatı): fayda H1 + çift CTA hero'ya, DaaS terminal bloğu KurumsalHizmetler'e, 3'lü değer kartları bölümü eklendi. S1 korundu; G3/G4 bilinçli.",
+ "tabanTarihi": "2026-10-04T17:52:25.468Z",
+ "gerekce": "04.10.2026 §55: ana sayfa Kuraklık Alarmı bandı + HavzaPaneli hukuki statü satırı + /tahmin sade terim sözlüğü — bilinçli içerik/yerleşim değişikliği",
  "esikler": {
   "g1KesismePx2": 2000,
   "g2OlcekOran": 1.05,
@@ -70,6 +70,11 @@
      "etiket": "v2-bolum.v2-kanit",
      "padUst": 96,
      "padAlt": 96
+    },
+    {
+     "etiket": "alarm",
+     "padUst": 45,
+     "padAlt": 45
     },
     {
      "etiket": "v2-bolum.v2-hizmetler",
@@ -149,6 +154,11 @@
      "etiket": "v2-mobil-sorular",
      "padUst": 32,
      "padAlt": 32
+    },
+    {
+     "etiket": "alarm",
+     "padUst": 40.6,
+     "padAlt": 40.6
     },
     {
      "etiket": "v2-bolum.v2-hizmetler",
@@ -888,7 +898,7 @@
   }
  },
  "oncekiTaban": {
-  "tarih": "2026-10-04T13:23:05.228Z",
-  "gerekce": "24.09→04.10 bilinçli değişiklikler: HizmetVitrini, KurumsalHizmetler B2B bandı, sr-only h1, font preload, G6/S1 order onarımı + kontrast. G6 (S1 kadraj) artık düzeldi; G4/G3 yeni bölüm/tipografi tabana işlenir."
+  "tarih": "2026-10-04T15:34:33.511Z",
+  "gerekce": "Faz 4 vitrin (04.10.2026, sahip talimatı): fayda H1 + çift CTA hero'ya, DaaS terminal bloğu KurumsalHizmetler'e, 3'lü değer kartları bölümü eklendi. S1 korundu; G3/G4 bilinçli."
  }
 }

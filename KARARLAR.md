@@ -1239,6 +1239,34 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §55 · GROWTH SEO + ŞEMA + HUKUKİ ENTEGRASYON + PROGRAMATİK ROTA (04.10.2026)
+
+- **SEO/CTA:** `/`, `/harita/`, `/tahmin/` başlık+meta CTA'lı ve anahtar
+  harmanlı; kaynak iddiaları yalnız gerçek kaynaklar. "Ulusal Su Bilgi
+  Sistemi" VERİ KAYNAĞI olarak yazılmadı (USBS entegrasyonu yok; NHYP ≠
+  USBS — uydurma yasağı).
+- **Şema:** `/harita/` + `/ilce-sorgu/` → `SoftwareApplication`;
+  `aggregateRating`/yıldız REDDEDİLDİ (sahte rich result yasağı). Mevcut
+  FAQPage (12 aile) + Dataset korundu.
+- **Hukuk+veri:** HavzaPaneli kartlarına hukuki statü satırı — 1 havzada
+  "yayımlandı", 24'ünde "doğrulanmadı" (dürüstlük); yeni hukuki iddia yok.
+- **Filigran:** global `@media print` + `/harita/` + `su-uyum.js` +
+  `kisit-sorgu.js`: "suharitasi.com Tarafından Üretilmiştir". Görsel/CSV
+  export yok → uydurulmadı.
+- **Programatik rota:** `/yeralti-suyu/[il]/` — `yayinlananIller()` eşiğiyle
+  **81 sayfa**; il-özel öz/meta (280/160 build bekçili); sitemap 1023→1104;
+  kuyu-ruhsati'ten iç bağ. Yamyamlık izlemesi DUR-1.
+- **Gündem:** ana sayfaya "Türkiye Kuraklık Alarmı" bandı (GRACE; ölçüm ve
+  6 ay tahmini ayrı etiketli; `.v2-ust-akis` dışında — S1 korunur).
+- **Onarım:** `arac/sayac-anahtar-esle.sh` (teşhis+atomik eşleme). Canlı
+  teşhis: 401/302 → panel değeri hâlâ farklı; env değişikliği yeniden
+  dağıtım ister. GA4 403 build hattına bağımlı değil (0 çağrı; MCP
+  degraded_not_broken) — graceful zaten mimaride.
+- **Kanıt:** build EXIT 0 · 1190 sayfa · canlı `--hizli` 0/0/13 YEŞİL ·
+  gerekçeli görsel taban yenilemesi (17:52Z) · schema MCP doğrulaması.
+
+---
+
 ## §54 · UX SADELEŞTİRME + KVKK GÜNCELLEMESİ + GSC ANALİZİ (04.10.2026)
 
 - **UX:** `/tahmin/` teknik terimlerinin (GRACE, OLS, Mann-Kendall, aralık)

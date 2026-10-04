@@ -8,6 +8,32 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ 04.10.2026 — GROWTH SEO + ŞEMA + PROGRAMATİK ROTA (KARARLAR §55) ═══
+Rapor: `rapor/04-10-growth-seo.md` · brief:
+`cikti/brief/2026-10-04T1745-growth-seo.md` (brief-denetci TEMİZ).
+TAMAMLANAN:
+- [x] `/`, `/harita/`, `/tahmin/` CTA başlık+meta (USBS kaynak yazılmadı).
+- [x] `SoftwareApplication` → /harita/ + /ilce-sorgu/; yıldız REDDEDİLDİ;
+      FAQPage (12 aile) + Dataset korundu.
+- [x] HavzaPaneli 25 kartta hukuki statü satırı (1 yayımlandı / 24 dürüst
+      "doğrulanmadı").
+- [x] Filigran: global print + /harita/ + su-uyum + kısit-sorgu.
+- [x] Ana sayfa "Türkiye Kuraklık Alarmı" bandı (.v2-ust-akis dışında).
+- [x] YENİ `/yeralti-suyu/[il]/` 81 sayfa; sitemap 1023→1104; iç bağ.
+- [x] `arac/sayac-anahtar-esle.sh` (teşhis + atomik eşleme).
+- [x] GA4 403: build bağımlılığı 0 — graceful mimaride kanıtlandı.
+- [x] Canlı `--hizli` 0/0/13 YEŞİL · görsel taban 17:52Z gerekçeli yenilendi.
+DUR (kullanıcı/panel/izleme):
+- [ ] **DUR-1 yamyamlık izlemesi:** `/yeralti-suyu/[il]` ↔
+      `/kuyu-ruhsati/[il]` GSC'de 2-4 hafta; çakışma çıkarsa birleştirme.
+- [ ] **DUR-2 panel secret:** `arac/sayac-anahtar-esle.sh --ayarla` ile
+      değeri gir; env değişikliği YENİ DAĞITIM ister; sonra panel veri basar.
+- [ ] **DUR-3:** USBS/Ulusal Su Bilgi Sistemi hedefi (veri kanalı
+      doğrulanırsa ayrı içerik işi).
+- [ ] **DUR-4:** GA4 Admin API etkinleştirme + bu turun canlı görsel onayı.
+- [ ] **İZLEME:** başlık/şema etkisi 2-4 hafta sonra `gsc_ctr_opportunities`
+      ile yeniden ölçülür (/harita/, /tahmin/, yeralti-suyu ailesi).
+
 ═══ 04.10.2026 — UX SADELEŞTİRME + KVKK + GSC ANALİZİ (KARARLAR §54) ═══
 Rapor: `rapor/04-10-ux-mcp.md` · brief:
 `cikti/brief/2026-10-04T1735-ux-kvkk-mcp.md` (brief-denetci TEMİZ).
