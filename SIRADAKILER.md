@@ -8,6 +8,29 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ 04.10.2026 — UX SADELEŞTİRME + KVKK + GSC ANALİZİ (KARARLAR §54) ═══
+Rapor: `rapor/04-10-ux-mcp.md` · brief:
+`cikti/brief/2026-10-04T1735-ux-kvkk-mcp.md` (brief-denetci TEMİZ).
+TAMAMLANAN:
+- [x] `/tahmin/`: 8 tablo-altı sade karşılık + 4 terimlik sade sözlük +
+      2 "Yani:" cümlesi; `/api-dokumantasyonu/` yöntem parantezi. Teknik veri
+      ve JSON-LD `measurementTechnique` DEĞİŞMEDİ.
+- [x] `/gizlilik/`: sahibin verdiği erişim günlüğü ibaresi birebir eklendi;
+      ÖZ-CEVAP + saklama süresi (30 gün) hizalandı → eski DUR-1 KAPANDI.
+- [x] GSC analizi (28g): 329 tık (+%83,8), 25.984 gösterim (+%128,6),
+      poz. 8,93 (iyileşme); sitemap 0 hata; ana sayfa + /mevzuat/ PASS.
+YENİ FIRSAT (ayrı BÜYÜK İŞ; içerik kararı bekler):
+- [ ] **NEHİR CTR (DUR-1):** `/nehirler/gokirmak/` 5.449 gösterim / %0,02
+      CTR (tahmini +108 tık); eşen (+81), kelkit (+26), hezil (+13).
+      Öneri: title'ı soru kalıbına ("X nerede? Hangi akarsuyun kolu?"),
+      öz-cevap ilk cümlesine konum/kol, iç bağ güçlendirme. Şablon işi
+      olduğundan ayrı brief + kullanıcı kararı gerekir.
+- [ ] **GA4 Admin API etkinleştirme (panel):** oturum/ziyaretçi akışı
+      ancak o zaman ölçülür; şu an GSC arama verisi tek kaynak.
+DUR:
+- [ ] `SAYAC_ANAHTAR` panel eşleşmesi (`.env` ile `/api/loglar` 401).
+- [ ] Bu turun içerik/görsel canlı onayı (İş kapanış kuralı).
+
 ═══ 04.10.2026 — SON KALEMLER: D2 KONTRAST · MEVZUAT · API LOG PANELİ (KARARLAR §53) ═══
 Rapor: `rapor/04-10-son-kalemler.md` · brief:
 `cikti/brief/2026-10-04T1715-son-kalemler.md` (brief-denetci TEMİZ).
@@ -23,9 +46,10 @@ TAMAMLANAN (kanıtlar raporda):
       gizli/noindex `/yonetim/api-loglari/` paneli (nabız şeridi, top IP,
       429, günlük hacim). Test: loglar-fn 16/16.
 DUR (kullanıcı/panel/hukuk kararı):
-- [ ] **DUR-1 [SERDAR-HUKUK]:** `/gizlilik/` aydınlatmaya "API erişim
-      günlüğü (IP, uç, durum kodu; 30 gün)" satırı. Metin bu işte
-      değiştirilmedi; panel kendi içinde açıkça yazar.
+- [x] **DUR-1 KAPANDI (04.10.2026, sahip talimatı — §54):** `/gizlilik/`
+      aydınlatmaya "ziyaretçi erişim günlükleri (IP adresi, erişilen uç nokta
+      ve HTTP durum kodları) 30 gün süreyle kayıt altına alınmaktadır" ibaresi
+      birebir eklendi; ÖZ-CEVAP + saklama süresi hizalandı.
 - [ ] **DUR-2:** Cloudflare `SAYAC_ANAHTAR` secret eşleşmesi — canlı ölçüm:
       anahtarsız `/api/loglar` 401 (WA_SAYAC + secret TANIMLI; günlük YAZIMI
       AKTİF). Panel için paneldeki secret girilmeli; `.env` değeri eşleşmiyor.

@@ -1239,6 +1239,27 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §54 · UX SADELEŞTİRME + KVKK GÜNCELLEMESİ + GSC ANALİZİ (04.10.2026)
+
+- **UX:** `/tahmin/` teknik terimlerinin (GRACE, OLS, Mann-Kendall, aralık)
+  yanına 8 tablo-altı sade karşılık + 4 terimlik "sade karşılık" bloğu +
+  "Yani:" cümleleri; `/api-dokumantasyonu/` yöntem parantezi. Teknik veri ve
+  `measurementTechnique` DEĞİŞMEDİ (akademik içerik korunur).
+- **KVKK:** `/gizlilik/` metnine sahibin verdiği erişim günlüğü ibaresi
+  birebir eklendi; ÖZ-CEVAP ve saklama süresi (30 gün) hizalandı. Bu tür
+  ibare [SERDAR-HUKUK] kalemi olarak sahip talimatıyla işlendi; ajan hüküm
+  yazmadı.
+- **GSC (28g, 09-04→10-01):** 329 tık (+%83,8) · 25.984 gösterim (+%128,6) ·
+  CTR %1,27 · poz. 8,93 (iyileşme). Sitemap 0 hata/0 uyarı; ana sayfa ve
+  /mevzuat/ denetimleri PASS. En büyük fırsat: `/nehirler/gokirmak/`
+  (5.449 gösterim, CTR %0,02, tahmini +108 tık) ve eşen/kelkit ailesi —
+  soru kalıplı title + öz-cevap işi ayrı BÜYÜK İŞ olarak kuyruğa alındı.
+- **GA4:** Admin API kapalı (403) → oturum akışı ölçülemedi; DUR.
+- **Kanıt:** build EXIT 0 · grep sayımları · yerel sağlık kırmızı 0 ·
+  rapor `rapor/04-10-ux-mcp.md`.
+
+---
+
 ## §53 · SON KALEMLER: D2 KONTRAST · MEVZUAT · API LOG PANELİ (04.10.2026)
 
 - **Karar:** Sahip talimatıyla (1) risk METİN renkleri WCAG üstüne çıkarıldı,

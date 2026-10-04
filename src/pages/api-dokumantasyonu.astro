@@ -74,7 +74,9 @@ curl -s https://suharitasi.com/veri/openapi.json`}</code></pre>
     <p>
       <code>/api/v1/havzalar</code> derlenmiş <strong>gözlem/künye</strong> verisidir.
       <code>/api/v1/kuraklik</code> ise <strong>istatistiksel projeksiyondur</strong>
-      (<code>tur: "tahmin"</code>): mevsimsel ayrıştırma + OLS trend + Mann-Kendall,
+      (<code>tur: "tahmin"</code>): mevsimsel ayrıştırma + OLS trend + Mann-Kendall
+      (sade karşılığı: mevsimlik dalgalanmayı ayırıp düz bir eğilim çizgisi
+      çıkarma ve bu eğilimin tesadüf olup olmadığını sınama),
       tahmin aralıklarıyla. Tahmin uçları, Google Dataset/TechArticle şemasında
       <code>measurementTechnique</code> ile işaretlenir ve ölçüm verisiyle
       <strong>karıştırılmaz</strong>.

@@ -50,7 +50,7 @@ const sema = [
 const isaret = (v: number) => (v > 0 ? '+' : '');
 ---
 <Sayfa baslik="Tahminsel analitik: havza su projeksiyonu" aciklama={OZ_CEVAP} tarayiciBaslik="Su Projeksiyonu: 6 Aylık Tahmin (Tahminsel)" sema={sema}>
-  <SayfaBasi etiket="Tahminsel analitik" baslik="Havza su projeksiyonu: 6 aylık istatistiksel tahmin" ozet={`${tahmin.havza_sayisi} havza · GRACE + baraj · yöntem: mevsimsel ayrıştırma + OLS trend + Mann-Kendall.`} />
+  <SayfaBasi etiket="Tahminsel analitik" baslik="Havza su projeksiyonu: 6 aylık istatistiksel tahmin" ozet={`${tahmin.havza_sayisi} havza · GRACE + baraj · yöntem: mevsimsel ayrıştırma + OLS trend + Mann-Kendall (terimlerin sade karşılığı aşağıda).`} />
   <OzCevap metin={OZ_CEVAP} etiket="Özet" />
 
   <p class="th-uyari" role="note">
@@ -60,11 +60,39 @@ const isaret = (v: number) => (v > 0 ? '+' : '');
     Kaynak veriler: NASA GRACE (aylık), EPİAŞ baraj doluluğu (günlük).
   </p>
 
+  <section class="th-terimler" aria-labelledby="th-terim-baslik">
+    <h2 id="th-terim-baslik">Terimlerin sade karşılığı</h2>
+    <dl>
+      <div>
+        <dt>GRACE (cm)</dt>
+        <dd>NASA'nın yerçekimi uydusu; yeraltı suyu + yüzey suyu + toprak nemi + karın toplamındaki aylık değişimi ölçer. Değer, 2004–2009 ortalamasına göre <strong>değişimdir</strong>; toplam su miktarı değildir.</dd>
+      </div>
+      <div>
+        <dt>OLS trend (cm/ay · puan/gün)</dt>
+        <dd>Geçmiş değerlere en uygun düz çizgi. "Ayda kaç cm" ya da "günde kaç puan" değiştiğini söyler; negatif = azalış.</dd>
+      </div>
+      <div>
+        <dt>Mann-Kendall (MK)</dt>
+        <dd>Bu eğilimin tesadüfi dalgalanma değil gerçek bir yön olduğunu sınayan istatistiksel test. "Anlamlı: evet", tesadüf olma olasılığının düşük olduğu anlamına gelir.</dd>
+      </div>
+      <div>
+        <dt>Tahmin aralığı (80% / 95%)</dt>
+        <dd>Modelin öngördüğü olası alt–üst bant. Değerin bu bantta kalması beklenir; gerçekleşme garanti edilmez.</dd>
+      </div>
+    </dl>
+  </section>
+
   <section class="th-bolum">
     <h2>En hızlı azalan 6 havza — su depolama eğilimi (GRACE)</h2>
-    <p class="th-not">Mevsimsellikten arındırılmış aylık eğilim (cm/ay). Negatif = depolama azalıyor. MK = Mann-Kendall anlamlılığı (p&lt;0,05).</p>
+    <p class="th-not">Mevsimsellikten arındırılmış aylık eğilim (cm/ay). Negatif = depolama azalıyor. MK = Mann-Kendall anlamlılığı (p&lt;0,05). Yani: havzanın toplam suyu son aylarda azalıyor mu, artıyor mu — bu değişim tesadüf mü?</p>
     <table class="th-tablo">
-      <thead><tr><th>Havza</th><th>Son ölçüm</th><th>Eğilim (cm/ay)</th><th>6 ay sonra (tahmin)</th><th>Anlamlı</th></tr></thead>
+      <thead><tr>
+        <th>Havza</th>
+        <th>Son ölçüm<span class="th-meal">en güncel aylık değer</span></th>
+        <th>Eğilim (cm/ay)<span class="th-meal">su seviyesi ayda kaç cm değişiyor</span></th>
+        <th>6 ay sonra (tahmin)<span class="th-meal">beklenen değer, olası bantla</span></th>
+        <th>Anlamlı<span class="th-meal">bu eğilim tesadüf mü?</span></th>
+      </tr></thead>
       <tbody>
         {azalan.map((k: any) => (
           <tr>
@@ -81,9 +109,15 @@ const isaret = (v: number) => (v > 0 ? '+' : '');
 
   <section class="th-bolum">
     <h2>Baraj doluluğu — 60 günlük kısa vadeli momentum</h2>
-    <p class="th-not">Günlük eğilim (yüzde puan/gün) ve 30. gün tahmini. Örneklem kısa olduğundan güven düşüktür; aralık geniştir.</p>
+    <p class="th-not">Günlük eğilim (yüzde puan/gün) ve 30. gün tahmini. Örneklem kısa olduğundan güven düşüktür; aralık geniştir. Yani: baraj bugünkü hızla değişirse bir ay sonra doluluk hangi banda oturur?</p>
     <table class="th-tablo">
-      <thead><tr><th>Havza</th><th>Son (%)</th><th>Eğilim (puan/gün)</th><th>30. gün (tahmin)</th><th>80% aralık</th></tr></thead>
+      <thead><tr>
+        <th>Havza</th>
+        <th>Son (%)<span class="th-meal">bugünkü ortalama doluluk</span></th>
+        <th>Eğilim (puan/gün)<span class="th-meal">doluluk günde kaç puan değişiyor</span></th>
+        <th>30. gün (tahmin)<span class="th-meal">bir ay sonra beklenen doluluk</span></th>
+        <th>80% aralık<span class="th-meal">olası alt–üst sınır</span></th>
+      </tr></thead>
       <tbody>
         {barajVar.sort((a: any, b: any) => a.baraj.egilim_gunluk_puan - b.baraj.egilim_gunluk_puan).map((k: any) => {
           const t30 = k.baraj.projeksiyon.find((p: any) => p.gun === 30) ?? k.baraj.projeksiyon[0];
@@ -122,6 +156,22 @@ const isaret = (v: number) => (v > 0 ? '+' : '');
   .th-bolum { margin-bottom: 1.9rem; }
   .th-bolum h2 { font-family: var(--serif); font-weight: 500; font-size: 1.35rem; margin-bottom: 0.5rem; }
   .th-not { font-size: 0.82rem; color: var(--metin-soluk); margin: 0 0 0.6rem; max-width: 76ch; }
+
+  /* Sade karşılıklar (04.10.2026 UX turu): teknik veri SİLİNMEDEN yanına
+     son kullanıcının okuyacağı meal. Başlık altı .th-meal, tablo başlığının
+     mono-büyük-harf dilini bozmadan normal-case sans ile ayrışır. */
+  .th-terimler { margin-bottom: 1.9rem; }
+  .th-terimler h2 { font-family: var(--serif); font-weight: 500; font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .th-terimler dl { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem 1.6rem; margin: 0; }
+  .th-terimler dt { font-family: var(--mono); font-size: 0.72rem; color: var(--metin); margin-bottom: 0.08rem; }
+  .th-terimler dd { margin: 0; font-size: 0.82rem; line-height: 1.55; color: var(--metin-soluk); }
+  .th-meal {
+    display: block; margin-top: 0.18rem;
+    font-family: var(--sans, system-ui, sans-serif);
+    font-size: 0.66rem; font-weight: 400; letter-spacing: 0; text-transform: none;
+    color: var(--metin-soluk); white-space: normal;
+  }
+  @media (max-width: 720px) { .th-terimler dl { grid-template-columns: 1fr; } }
   /* Mobil taşma onarımı (04.10.2026): 5 kolonlu tablo sarımsızdı. */
   .th-tablo { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; border-collapse: collapse; font-size: 0.86rem; }
   .th-tablo th, .th-tablo td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--cizgi); }

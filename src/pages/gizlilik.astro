@@ -9,10 +9,10 @@ import HukukSerhi from '../components/HukukSerhi.astro';
 import { EPOSTA, YAZAR } from '../data/site';
 
 const OZ_CEVAP =
-  'Su Haritası çerez kullanmaz ve ziyaretçi davranışını reklam amaçlı izlemez. ' +
-  'Yalnızca sizin gönderdiğiniz bilgiler (ad, telefon, e-posta, mesaj) işlenir; ' +
-  'bu bilgiler talebe dönüş amacıyla Cloudflare altyapısında saklanır ve amaç ' +
-  'sona erince silinir. Haklarınız için ' + EPOSTA + ' adresine başvurabilirsiniz.';
+  'Su Haritası çerez kullanmaz ve reklam amaçlı izleme yapmaz. Yalnızca sizin ' +
+  'gönderdiğiniz iletişim bilgileri talebe dönüş için işlenir; sistem güvenliği ' +
+  'amacıyla 30 günlük teknik erişim günlükleri (IP, uç, durum kodu) tutulur. ' +
+  'Başvuru: ' + EPOSTA + '.';
 ---
 <Sayfa baslik="Gizlilik ve KVKK" aciklama={OZ_CEVAP} tarayiciBaslik="Gizlilik ve KVKK Aydınlatma Metni" sema={[{ '@type': 'WebPage', name: 'Gizlilik ve KVKK aydınlatma metni', description: OZ_CEVAP, inLanguage: 'tr-TR' }]}>
   <SayfaBasi etiket="Gizlilik" baslik="Gizlilik ve KVKK aydınlatma metni" ozet="Hangi bilgi, neden, nerede ve ne kadar süre işlenir." />
@@ -28,13 +28,14 @@ const OZ_CEVAP =
       <li><strong>Mevzuat değişiklik aboneliği:</strong> e-posta adresi.</li>
       <li><strong>Çerez yok:</strong> site tarayıcınıza çerez yerleştirmez ve reklam izleme (tracking) yapmaz.</li>
       <li><strong>Çerezsiz ölçüm:</strong> iletişim bağlantılarına (telefon/e-posta/WhatsApp) yapılan tıklamalar, IP adresi veya kullanıcı kimliği saklanmadan, yalnızca gün ve sayfa bazında sayılır.</li>
+      <li>Sistem güvenliği ve API kötüye kullanımının önlenmesi amacıyla, ziyaretçi erişim günlükleri (IP adresi, erişilen uç nokta ve HTTP durum kodları) 30 gün süreyle kayıt altına alınmaktadır.</li>
     </ul>
 
     <h2>3. İşleme amacı ve hukuki sebep</h2>
     <p>Bilgiler yalnızca <strong>talebinize dönüş yapmak</strong> ve (abonelikte) <strong>mevzuat değişikliği bildirimi göndermek</strong> amacıyla işlenir. Hukuki sebep: KVKK m.5/2 (açık rıza) ve talebe dönüş için gereklilik.</p>
 
     <h2>4. Nerede ve ne kadar süre saklanır?</h2>
-    <p>Bilgiler Cloudflare altyapısında (Cloudflare KV) saklanır; sunucumuzda ayrı bir kopya tutulmaz. Saklama süresi: danışma talepleri için <strong>~180 gün</strong>, abonelikler için <strong>~2 yıl</strong>; süre sonunda otomatik silinir. Reklam veya profilleme amaçlı üçüncü taraf paylaşımı yapılmaz.</p>
+    <p>Bilgiler Cloudflare altyapısında (Cloudflare KV) saklanır; sunucumuzda ayrı bir kopya tutulmaz. Saklama süresi: danışma talepleri için <strong>~180 gün</strong>, abonelikler için <strong>~2 yıl</strong>, teknik erişim günlükleri için <strong>30 gün</strong>; süre sonunda otomatik silinir. Reklam veya profilleme amaçlı üçüncü taraf paylaşımı yapılmaz.</p>
 
     <h2>5. KVKK m.11 kapsamındaki haklarınız</h2>
     <p>Kişisel verilerinizin işlenip işlenmediğini öğrenme, işlenmişse bilgi talep etme, düzeltilmesini veya silinmesini isteme ve işlemeye itiraz etme haklarına sahipsiniz. Talebiniz için <a href={`mailto:${EPOSTA}`}>{EPOSTA}</a> adresine yazmanız yeterlidir; talepler en kısa sürede yanıtlanır.</p>
