@@ -38,5 +38,6 @@ export async function onRequest(context) {
   } catch {
     return json({ hata: 'kaynak veri geçici olarak okunamadı' }, 503);
   }
-  return json({ api: 'v1', uc: 'havzalar', kalan_kota: rl.kalan, ...veri });
+  const kayit = Array.isArray(veri) ? { havzalar: veri, kayit_sayisi: veri.length } : veri;
+  return json({ api: 'v1', uc: 'havzalar', kalan_kota: rl.kalan, ...kayit });
 }

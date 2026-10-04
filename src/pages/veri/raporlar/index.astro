@@ -27,7 +27,7 @@ const OZ_CEVAP =
   <ul class="rp-liste">
     {raporlar.map((r) => (
       <li>
-        <a href={`/raporlar/${r.id}/`}>
+        <a href={`/veri/raporlar/${r.id}/`}>
           <span class="rp-tarih">{r.data.tarih.toISOString().slice(0, 10)}</span>
           <span class="rp-baslik">{r.data.baslik}</span>
           <span class="rp-ozet">{r.data.ozet}</span>
