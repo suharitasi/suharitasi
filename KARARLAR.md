@@ -1239,6 +1239,27 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §58 · OTONOM SKILL MİMARİSİ (04.10.2026)
+
+- **Karar:** 10 maddelik otonom skill mimarisi yerel altyapı olarak kuruldu:
+  `ui-hig`, `donusum-hunisi`, `programatik-seo`, `build-guvenlik`,
+  `hukuk-uyum`, `schema-botu`, `performans`, `cbs-veri`, `surtunme-avi`,
+  `skill-mimarisi`. Yer: `.agents/skills/` (CLAUDE.md gereği repoya commit
+  EDİLMEZ — yerel araç); 3 deterministik script (jargon, uyari, sema tarama).
+- **Gerekçe:** denetim yeteneklerinin görev anında kendiliğinden tetiklenmesi;
+  hazır user-scope skill'ler (apple-design, cro, geo-schema…) + Google SEO
+  MCP + proje araçları (site-saglik, altin-ornek, brief-denetci) üzerine
+  suharitasi-özel yönlendirme katmanı. Çift üretim yasak: yeni skill'den önce
+  mevcut envanter aranır.
+- **İlk somut bulgu:** `jargon-tara.sh` açık metinde 198 dist dosyasında
+  jargon buldu (havza/harita/veri/basin/en şablonları + dipnot GRACE atıfları;
+  `/tahmin/` temiz). Jargon temizliği SIRADAKILER'e ilk görev olarak yazıldı.
+- **Kanıt:** frontmatter 10/10 OK · sema taraması (FAQPage 509,
+  aggregateRating 0) · uyari taraması 0 bulgu · rapor
+  `rapor/04-10-otonom-skill-mimarisi.md`.
+
+---
+
 ## §57 · MASTER BRİF v3 (ULUSAL DÖNÜŞÜM) UYGULAMASI (04.10.2026)
 
 - **Sahip talimatı:** "Karar gerektiren bir şey yok; emirlerimi uygula, soru

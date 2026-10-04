@@ -8,6 +8,16 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ 04.10.2026 — OTONOM SKILL MİMARİSİ (KARARLAR §58) ═══
+Rapor: `rapor/04-10-otonom-skill-mimarisi.md` · yerel: `.agents/skills/`
+(commit dışı) · 10 skill + 3 tarama scripti kuruldu ve doğrulandı.
+İLK GÖREVLER:
+- [ ] **Jargon temizliği:** `jargon-tara.sh` 198 dosyada açık-metin jargon
+      buldu (havzalar/harita/veri/basin/en şablonları + GRACE dipnotları;
+      /tahmin/ temiz). Şablon düzeyinde sadeleştir; dipnot kaynak atfı kararı
+      (korunacak mı?) → hedef 0. Skill: `suharitasi-donusum-hunisi`.
+- [ ] Yeni skill'lerin ilk gerçek kullanımda tetikleme kontrolü.
+
 ═══ 04.10.2026 — MASTER BRİF v3 UYGULANDI (KARARLAR §57; sahip: kapı askı) ═══
 Rapor: `rapor/04-10-master-v3-on-denetim.md` · brief:
 `cikti/brief/2026-10-04T1904-master-v3.md` + `-duzeltilmis.md`.
