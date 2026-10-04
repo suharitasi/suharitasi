@@ -1,0 +1,51 @@
+---
+/* /raporlar/<donem>/ — otonom aylık rapor detayı (Modül 4). */
+import { getCollection, render } from 'astro:content';
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import CtaBlok from '../../components/CtaBlok.astro';
+import HukukSerhi from '../../components/HukukSerhi.astro';
+
+export async function getStaticPaths() {
+  const raporlar = await getCollection('raporlar');
+  return raporlar.map((r) => ({ params: { slug: r.id }, props: { rapor: r } }));
+}
+
+const { rapor } = Astro.props;
+const { Content } = await render(rapor);
+const canonical = new URL(`/raporlar/${rapor.id}/`, Astro.site).href;
+const sema = [
+  {
+    '@type': 'Article',
+    headline: rapor.data.baslik,
+    description: rapor.data.ozet,
+    datePublished: rapor.data.tarih.toISOString(),
+    dateModified: rapor.data.tarih.toISOString(),
+    inLanguage: 'tr-TR',
+    author: { '@type': 'Organization', name: 'Su Haritası Otonom Sistemi', url: 'https://suharitasi.com' },
+    publisher: { '@type': 'Organization', name: 'Su Haritası', url: 'https://suharitasi.com' },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+    keywords: rapor.data.etiketler,
+  },
+];
+---
+<Sayfa baslik={rapor.data.baslik} aciklama={rapor.data.ozet} sema={sema}>
+  <SayfaBasi etiket="Otonom rapor" baslik={rapor.data.baslik} ozet={rapor.data.ozet} tarih={rapor.data.tarih} />
+  <OzCevap metin={rapor.data.ozet} etiket="Özet" />
+  <div class="icerik">
+    <Content />
+  </div>
+  <nav class="rp-capraz" aria-label="İlgili bölümler">
+    <a href="/raporlar/">← Tüm raporlar</a>
+    <a href="/tahmin/">→ Tahminsel analitik</a>
+    <a href="/api-dokumantasyonu/">→ Açık veri API</a>
+  </nav>
+  <CtaBlok konu="Rapor" baslik="Kurumunuz için özel hidroloji raporu" metin="Seçili havza veya il için aylık rapor talep edin." />
+  <HukukSerhi />
+</Sayfa>
+
+<style>
+  .rp-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .rp-capraz a { color: var(--baglanti); text-decoration: none; }
+</style>

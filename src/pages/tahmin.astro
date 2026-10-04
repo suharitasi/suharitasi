@@ -1,0 +1,133 @@
+---
+/* /tahmin/ — Tahminsel analitik: havza su depolama ve baraj projeksiyonu.
+   BİLİMSEL İLKE: bu sayfa ÖLÇÜM değil, İSTATİSTİKSEL TAHMİN sunar. Her sayı
+   data/tahmin/kuraklik-projeksiyonu.json'dan gelir (tur="tahmin"); ölçülen
+   verilerle karıştırılmaz. Yöntem: mevsimsel ayrıştırma + OLS trend + MK testi. */
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import CtaBlok from '../components/CtaBlok.astro';
+import HukukSerhi from '../components/HukukSerhi.astro';
+import tahmin from '../../data/tahmin/kuraklik-projeksiyonu.json';
+
+const kayitlar = Object.entries(tahmin.havzalar).map(([ad, v]: [string, any]) => ({
+  ad,
+  grace: v.grace,
+  baraj: v.baraj,
+}));
+const graceVar = kayitlar.filter((k: any) => k.grace);
+const barajVar = kayitlar.filter((k: any) => k.baraj);
+const azalan = graceVar
+  .filter((k: any) => k.grace.egilim_aylik_cm < 0)
+  .sort((a: any, b: any) => a.grace.egilim_aylik_cm - b.grace.egilim_aylik_cm)
+  .slice(0, 6);
+
+const OZ_CEVAP =
+  `İstatistiksel projeksiyon (ölçüm değil): ${graceVar.length} havza için GRACE uydu ` +
+  `verisinden 6 aylık su depolama eğilimi, ${barajVar.length} havza için baraj ` +
+  `doluluğunda 60 günlük kısa vadeli momentum. Yöntem mevsimsel ayrıştırma + OLS ` +
+  `trend + Mann-Kendall; her değer tahmin aralığıyla birlikte verilir.`;
+
+const sema = [
+  {
+    '@type': 'Dataset',
+    name: 'Türkiye su havzaları — istatistiksel su/kuraklık projeksiyonu (tahmin)',
+    description: OZ_CEVAP,
+    creator: { '@type': 'Organization', name: 'Su Haritası', url: 'https://suharitasi.com' },
+    publisher: { '@type': 'Organization', name: 'Su Haritası', url: 'https://suharitasi.com' },
+    measurementTechnique: 'Statistical forecast: seasonal decomposition + ordinary least squares trend + Mann-Kendall test',
+    isBasedOn: ['https://podaac.jpl.nasa.gov/GRACE', 'https://seffaflik.epias.com.tr'],
+    variableMeasured: ['Karasal su depolama anomalisi (cm)', 'Baraj ortalama doluluk (%)'],
+    temporalCoverage: '2002-04/2026-09',
+    isAccessibleForFree: true,
+    inLanguage: 'tr-TR',
+    spatialCoverage: { '@type': 'Place', name: 'Türkiye' },
+    // ÖLÇÜM DEĞİL — schema düzeyinde de ayrılır:
+    additionalType: 'https://schema.org/Dataset',
+    keywords: ['tahmin', 'forecast', 'kuraklık', 'projeksiyon', 'GRACE'],
+  },
+];
+const isaret = (v: number) => (v > 0 ? '+' : '');
+---
+<Sayfa baslik="Tahminsel analitik: havza su projeksiyonu" aciklama={OZ_CEVAP} tarayiciBaslik="Su Projeksiyonu: 6 Aylık Tahmin (Tahminsel)" sema={sema}>
+  <SayfaBasi etiket="Tahminsel analitik" baslik="Havza su projeksiyonu: 6 aylık istatistiksel tahmin" ozet={`${tahmin.havza_sayisi} havza · GRACE + baraj · yöntem: mevsimsel ayrıştırma + OLS trend + Mann-Kendall.`} ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Özet" />
+
+  <p class="th-uyari" role="note">
+    <strong>Bu sayfa ölçüm değil, istatistiksel tahmindir.</strong> Değerler geçmiş
+    gözlemlere dayanan model çıktısıdır ve gerçekleşmesi garanti edilmez. Her satır
+    tahmin aralığıyla (80/95%) verilir; resmî bir tahmin veya uyarı değildir.
+    Kaynak veriler: NASA GRACE (aylık), EPİAŞ baraj doluluğu (günlük).
+  </p>
+
+  <section class="th-bolum">
+    <h2>En hızlı azalan 6 havza — su depolama eğilimi (GRACE)</h2>
+    <p class="th-not">Mevsimsellikten arındırılmış aylık eğilim (cm/ay). Negatif = depolama azalıyor. MK = Mann-Kendall anlamlılığı (p&lt;0,05).</p>
+    <table class="th-tablo">
+      <thead><tr><th>Havza</th><th>Son ölçüm</th><th>Eğilim (cm/ay)</th><th>6 ay sonra (tahmin)</th><th>Anlamlı</th></tr></thead>
+      <tbody>
+        {azalan.map((k: any) => (
+          <tr>
+            <td><a href={`/havzalar/${k.ad.toLowerCase().replace(/ı/g, 'i').replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ş/g, 's').replace(/ö/g, 'o').replace(/ç/g, 'c').replace(/ /g, '-').replace('-kapali', '-kapali')}/`}>{k.ad}</a></td>
+            <td>{k.grace.son_deger}</td>
+            <td>{isaret(k.grace.egilim_aylik_cm)}{k.grace.egilim_aylik_cm}</td>
+            <td>{k.grace.projeksiyon[5]?.deger} <span class="th-aralik">[{k.grace.projeksiyon[5]?.alt95} … {k.grace.projeksiyon[5]?.ust95}]</span></td>
+            <td>{k.grace.mk_anlamli ? 'evet' : 'hayır'}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="th-bolum">
+    <h2>Baraj doluluğu — 60 günlük kısa vadeli momentum</h2>
+    <p class="th-not">Günlük eğilim (yüzde puan/gün) ve 30. gün tahmini. Örneklem kısa olduğundan güven düşüktür; aralık geniştir.</p>
+    <table class="th-tablo">
+      <thead><tr><th>Havza</th><th>Son (%)</th><th>Eğilim (puan/gün)</th><th>30. gün (tahmin)</th><th>80% aralık</th></tr></thead>
+      <tbody>
+        {barajVar.sort((a: any, b: any) => a.baraj.egilim_gunluk_puan - b.baraj.egilim_gunluk_puan).map((k: any) => {
+          const t30 = k.baraj.projeksiyon.find((p: any) => p.gun === 30) ?? k.baraj.projeksiyon[0];
+          return (
+            <tr>
+              <td>{k.ad}</td>
+              <td>{k.baraj.son_deger}</td>
+              <td>{isaret(k.baraj.egilim_gunluk_puan)}{k.baraj.egilim_gunluk_puan}</td>
+              <td>{t30.deger}</td>
+              <td class="th-aralik">[{t30.alt80} … {t30.ust80}]</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </section>
+
+  <p class="th-kaynak">
+    Yöntem: mevsimsel ayrıştırma + en-küçük-kareler trend + Mann-Kendall testi (numpy, sunucu dışı cron).
+    Ham projeksiyon verisi: <a href="/veri/kuraklik.json">/veri/kuraklik.json</a> · üretim {tahmin.uretim}.
+    Model tanımı ve varsayımlar için <a href="/api-dokumantasyonu/">API dokümantasyonu</a>.
+  </p>
+
+  <nav class="th-capraz" aria-label="İlgili bölümler">
+    <a href="/veri/iklim/">→ Havza iklim verisi (NASA POWER)</a>
+    <a href="/veri/">→ Açık veri &amp; bilgi bankası</a>
+    <a href="/su-riski-endeksi/">→ Su riski endeksi</a>
+  </nav>
+
+  <CtaBlok konu="Tahmin" baslik="Kurumunuz için havza projeksiyonu" metin="Seçili havza için aylık su depolama ve kuraklık projeksiyon raporu talep edin." />
+  <HukukSerhi />
+</Sayfa>
+
+<style>
+  .th-uyari { font-size: 0.9rem; color: var(--metin-soluk); max-width: 76ch; margin-bottom: 1.6rem; padding: 0.8rem 1rem; border-left: 3px solid #b45309; background: var(--zemin-kart); }
+  .th-bolum { margin-bottom: 1.9rem; }
+  .th-bolum h2 { font-family: var(--serif); font-weight: 500; font-size: 1.35rem; margin-bottom: 0.5rem; }
+  .th-not { font-size: 0.82rem; color: var(--metin-soluk); margin: 0 0 0.6rem; max-width: 76ch; }
+  .th-tablo { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+  .th-tablo th, .th-tablo td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--cizgi); }
+  .th-tablo th { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--metin-soluk); }
+  .th-tablo td:nth-child(n+2) { font-family: var(--mono); }
+  .th-aralik { color: var(--metin-soluk); font-size: 0.78rem; }
+  .th-kaynak { margin-top: 1rem; font-size: 0.84rem; color: var(--metin-soluk); max-width: 76ch; }
+  .th-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .th-capraz a { color: var(--baglanti); text-decoration: none; }
+</style>

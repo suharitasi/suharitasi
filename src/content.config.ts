@@ -188,4 +188,21 @@ const vakalar = defineCollection({
   }),
 });
 
-export const collections = { rehberler, havzalar, 'su-kanunu': suKanunu, vakalar };
+// OTONOM RAPORLAR (Modül 4, 04.10.2026): aylık hidroloji/kuraklık raporları
+// arac/rapor/aylik-rapor-uret.py tarafından ÜRETİLİR (deterministik; LLM
+// yok — uydurma yasağı). Yazar: "Su Haritası Otonom Sistemi".
+const raporlar = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/raporlar' }),
+  schema: z.object({
+    baslik: z.string(),
+    ozet: z.string().max(400),
+    tarih: z.coerce.date(),
+    donem: z.string(),
+    yazar: z.string().default('Su Haritası Otonom Sistemi'),
+    etiketler: z.array(z.string()).default([]),
+    // Üretildiği veri kaynaklarının son gözlem tarihleri (şeffaflık).
+    veriAraligi: z.string().optional(),
+  }),
+});
+
+export const collections = { rehberler, havzalar, 'su-kanunu': suKanunu, vakalar, raporlar };

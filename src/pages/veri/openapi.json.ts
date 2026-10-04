@@ -14,11 +14,14 @@ const yollar = {
   '/veri/mevzuat-surum.json': 'İzlenen mevzuatın madde bazlı SHA-256 anlık görüntüsü (değişiklik radarı).',
   '/kisit.json': 'Resmî Gazete işletme sahası ve tahsise kapatma/kısıt kayıtları (il eşlemeli).',
   '/arama.json': 'Site içi arama indeksi (tüm sayfaların başlık/açıklama kaydı).',
+  '/veri/kuraklik.json': 'İstatistiksel su/kuraklık PROJEKSİYONU (tahmin; tur="tahmin", ölçüm değildir).',
+  '/api/v1/havzalar': 'DaaS (v1): 25 su havzası künyesi. CORS açık; IP+UA başına 60 istek/dk.',
+  '/api/v1/kuraklik': 'DaaS (v1): su/kuraklık projeksiyonu (TAHMİN). CORS açık; 60 istek/dk.',
 };
 
 // Dizi değil nesne dönen uçlar — şema tipi buna göre verilir (yanlış `array`
 // beyanı, makine tüketicilerinin geçerli yanıtı reddetmesine yol açıyordu).
-const NESNE = new Set(['/veri/su-riski.json', '/veri/mevzuat-surum.json']);
+const NESNE = new Set(['/veri/su-riski.json', '/veri/mevzuat-surum.json', '/veri/kuraklik.json', '/api/v1/havzalar', '/api/v1/kuraklik']);
 
 export const GET: APIRoute = () => {
   const spec = {

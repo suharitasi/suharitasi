@@ -1,0 +1,61 @@
+---
+/* /raporlar/ — Otonom aylık hidroloji/kuraklık raporları listesi (Modül 4). */
+import { getCollection } from 'astro:content';
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import CtaBlok from '../../components/CtaBlok.astro';
+import HukukSerhi from '../../components/HukukSerhi.astro';
+
+const raporlar = (await getCollection('raporlar')).sort((a, b) => b.data.tarih.valueOf() - a.data.tarih.valueOf());
+
+const OZ_CEVAP =
+  'Su Haritası otonom veri hattının aylık hidroloji ve kuraklık raporları: baraj ' +
+  'doluluğu, GRACE su depolama eğilimi, NASA POWER iklim görünümü ve istatistiksel ' +
+  'projeksiyonlar. Raporlar veriden otomatik üretilir; hiçbir sayı elle yazılmaz.';
+---
+<Sayfa baslik="Aylık hidroloji ve kuraklık raporları" aciklama={OZ_CEVAP} tarayiciBaslik="Aylık Türkiye Hidroloji ve Kuraklık Raporları">
+  <SayfaBasi etiket="Otonom raporlar" baslik="Aylık Türkiye hidroloji ve kuraklık raporları" ozet="Veriden otomatik üretilir · yazar: Su Haritası Otonom Sistemi." ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Özet" />
+
+  <p class="rp-not">
+    Her rapor, keşif/veri hattının ölçtüğü son verilerden <strong>deterministik</strong>
+    olarak üretilir (dil modeli kullanılmaz; uydurma yok). Ölçüm ve tahmin bölümleri
+    metinde ayrı etiketlenir.
+  </p>
+
+  <ul class="rp-liste">
+    {raporlar.map((r) => (
+      <li>
+        <a href={`/raporlar/${r.id}/`}>
+          <span class="rp-tarih">{r.data.tarih.toISOString().slice(0, 10)}</span>
+          <span class="rp-baslik">{r.data.baslik}</span>
+          <span class="rp-ozet">{r.data.ozet}</span>
+        </a>
+      </li>
+    ))}
+    {raporlar.length === 0 && <li class="rp-bos">Henüz rapor üretilmedi.</li>}
+  </ul>
+
+  <nav class="rp-capraz" aria-label="İlgili bölümler">
+    <a href="/tahmin/">→ Tahminsel analitik</a>
+    <a href="/api-dokumantasyonu/">→ Açık veri API</a>
+    <a href="/veri/">→ Veri &amp; bilgi bankası</a>
+  </nav>
+
+  <CtaBlok konu="Raporlar" baslik="Kurumunuz için özel rapor" metin="Seçili havza veya il için aylık hidroloji ve kuraklık raporu talep edin." />
+  <HukukSerhi />
+</Sayfa>
+
+<style>
+  .rp-not { font-size: 0.9rem; color: var(--metin-soluk); max-width: 76ch; margin-bottom: 1.6rem; }
+  .rp-liste { list-style: none; padding: 0; display: grid; gap: 0.9rem; }
+  .rp-liste a { display: grid; gap: 0.25rem; padding: 1rem 1.2rem; background: var(--zemin-kart); border: 1px solid var(--cizgi); border-left: 3px solid var(--su-400); text-decoration: none; color: var(--metin); transition: border-color 200ms ease; }
+  .rp-liste a:hover { border-left-color: var(--su-700); }
+  .rp-tarih { font-family: var(--mono); font-size: 0.72rem; color: var(--metin-soluk); }
+  .rp-baslik { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; }
+  .rp-ozet { font-size: 0.88rem; color: var(--metin-soluk); }
+  .rp-bos { color: var(--metin-soluk); }
+  .rp-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .rp-capraz a { color: var(--baglanti); text-decoration: none; }
+</style>

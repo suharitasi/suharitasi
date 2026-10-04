@@ -1,0 +1,126 @@
+---
+/* /api-dokumantasyonu/ — Halka açık DaaS API dokümantasyonu (Modül 2). */
+import Sayfa from '../layouts/Sayfa.astro';
+import SayfaBasi from '../components/SayfaBasi.astro';
+import OzCevap from '../components/OzCevap.astro';
+import CiteThisData from '../components/CiteThisData.astro';
+import CtaBlok from '../components/CtaBlok.astro';
+import HukukSerhi from '../components/HukukSerhi.astro';
+
+const OZ_CEVAP =
+  'Su Haritası Açık Veri API (v1): Türkiye su havzaları, kuraklık projeksiyonu ve ' +
+  'mevzuat verisine CORS açık JSON uçlarıyla erişim. Kimlik doğrulama yok; IP+UA ' +
+  'başına dakikada 60 istek sınırı vardır. Ölçüm ve tahmin uçları ayrıdır.';
+
+const SITE = 'https://suharitasi.com';
+
+const uclar = [
+  { yol: '/api/v1/havzalar', veri: '/veri/havzalar.json', ad: 'Havza künyeleri', tur: 'Ölçüm/derleme', limit: '60/dk' },
+  { yol: '/api/v1/kuraklik', veri: '/veri/kuraklik.json', ad: 'Su/kuraklık projeksiyonu', tur: 'TAHMİN (ölçüm değil)', limit: '60/dk' },
+  { yol: '/api/v1/il/{il}.json', veri: `${SITE}/api/v1/il/istanbul.json`, ad: 'İl künyesi', tur: 'Derleme', limit: '—' },
+  { yol: '/api/v1/havza/{havza}.json', veri: `${SITE}/api/v1/havza/gediz.json`, ad: 'Tek havza künyesi', tur: 'Derleme', limit: '—' },
+];
+
+const sema = [
+  {
+    '@type': 'TechArticle',
+    headline: 'Su Haritası Açık Veri API dokümantasyonu (v1)',
+    description: OZ_CEVAP,
+    inLanguage: 'tr-TR',
+    about: { '@type': 'DataCatalog', name: 'Su Haritası açık veri kataloğu', url: `${SITE}/veri/` },
+  },
+];
+---
+<Sayfa baslik="API dokümantasyonu" aciklama={OZ_CEVAP} tarayiciBaslik="Açık Veri API (v1) — Dokümantasyon" sema={sema}>
+  <SayfaBasi etiket="Geliştirici" baslik="Açık veri API (v1) — dokümantasyon" ozet="CORS açık JSON uçları · rate-limit 60/dk · ölçüm ve tahmin ayrı." ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Özet" />
+
+  <p class="ap-not">
+    Bu API, sitenin makine-okunur veri havuzunu dış geliştiricilere ve akademisyenlere
+    açar. <strong>Kimlik doğrulama gerekmez.</strong> Adil kullanım için IP+UA başına
+    <strong>dakikada 60 istek</strong> sınırı uygulanır; sınır aşımında <code>429</code>
+    ve <code>Retry-After</code> döner. Tüm yanıtlar <code>Access-Control-Allow-Origin: *</code>
+    taşır.
+  </p>
+
+  <section class="ap-blok">
+    <h2>Uç noktalar</h2>
+    <div class="ap-tablo-sar">
+      <table class="ap-tablo">
+        <thead><tr><th>Uç</th><th>Ad</th><th>Tür</th><th>Limit</th></tr></thead>
+        <tbody>
+          {uclar.map((u) => (
+            <tr><td><code>{u.yol}</code></td><td>{u.ad}</td><td>{u.tur}</td><td>{u.limit}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="ap-blok">
+    <h2>Hızlı başlangıç</h2>
+    <pre class="ap-kod"><code>{`# Havza künyeleri (JSON)
+curl -s https://suharitasi.com/api/v1/havzalar | jq '.kalan_kota'
+
+# Kuraklık projeksiyonu (TAHMİN — ölçüm değil)
+curl -s https://suharitasi.com/api/v1/kuraklik | jq '.havzalar | keys'
+
+# OpenAPI 3.1 şeması (makine-okunur)
+curl -s https://suharitasi.com/veri/openapi.json`}</code></pre>
+  </section>
+
+  <section class="ap-blok">
+    <h2><span class="ap-bilim">Bilimsel ayrım:</span> ölçüm ve tahmin</h2>
+    <p>
+      <code>/api/v1/havzalar</code> derlenmiş <strong>gözlem/künye</strong> verisidir.
+      <code>/api/v1/kuraklik</code> ise <strong>istatistiksel projeksiyondur</strong>
+      (<code>tur: "tahmin"</code>): mevsimsel ayrıştırma + OLS trend + Mann-Kendall,
+      tahmin aralıklarıyla. Tahmin uçları, Google Dataset/TechArticle şemasında
+      <code>measurementTechnique</code> ile işaretlenir ve ölçüm verisiyle
+      <strong>karıştırılmaz</strong>.
+    </p>
+  </section>
+
+  <section class="ap-blok">
+    <h2>Rate-limit ve dayanıklılık</h2>
+    <ul class="ap-liste">
+      <li><strong>Sabit pencere sayacı</strong> (Cloudflare KV): IP+UA SHA-256 ile kısaltılır — ham IP saklanmaz.</li>
+      <li>Sınır aşımı: <code>429</code> + <code>Retry-After: 60</code>. KV erişilemezse <strong>fail-open</strong> (sınır uygulanmaz).</li>
+      <li>Yanıtlar CDN'de kısa süre önbelleklenir (<code>max-age=300</code>); veri günü başına bir kez üretilir.</li>
+    </ul>
+  </section>
+
+  <section class="ap-blok">
+    <h2>Lisans ve atıf</h2>
+    <p>Kaynak gösterilerek kullanım (CC BY 4.0 uyumlu). Tahmin çıktıları “Su Haritası tahmini” olarak etiketlenmelidir; ölçüm olarak sunulamaz.</p>
+  </section>
+
+  <CiteThisData baslik="Açık veri API (v1)" />
+
+  <nav class="ap-capraz" aria-label="İlgili bölümler">
+    <a href="/veri/openapi.json">→ OpenAPI 3.1 şeması</a>
+    <a href="/tahmin/">→ Tahminsel analitik sayfası</a>
+    <a href="/acik-veri/">→ Açık veri portalı</a>
+    <a href="/veri/">→ Veri &amp; bilgi bankası</a>
+  </nav>
+
+  <CtaBlok konu="API" baslik="Kurumsal API erişimi" metin="Yüksek kota, özel veri seti ve SLA için kurumsal erişim talep edin." />
+  <HukukSerhi />
+</Sayfa>
+
+<style>
+  .ap-not { font-size: 0.9rem; color: var(--metin-soluk); max-width: 76ch; margin-bottom: 1.4rem; }
+  .ap-blok { margin-bottom: 1.8rem; }
+  .ap-blok h2 { font-family: var(--serif); font-weight: 500; font-size: 1.35rem; margin-bottom: 0.6rem; }
+  .ap-bilim { color: #b45309; }
+  .ap-tablo-sar { overflow-x: auto; }
+  .ap-tablo { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+  .ap-tablo th, .ap-tablo td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--cizgi); }
+  .ap-tablo th { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--metin-soluk); }
+  .ap-kod { background: var(--zemin-kart); border: 1px solid var(--cizgi); padding: 0.8rem 1rem; overflow-x: auto; font-family: var(--mono); font-size: 0.8rem; }
+  .ap-liste { list-style: none; padding: 0; display: grid; gap: 0.4rem; max-width: 76ch; }
+  .ap-liste li { padding-left: 1rem; position: relative; font-size: 0.9rem; }
+  .ap-liste li::before { content: '·'; position: absolute; left: 0; color: var(--su-400); }
+  .ap-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .ap-capraz a { color: var(--baglanti); text-decoration: none; }
+</style>

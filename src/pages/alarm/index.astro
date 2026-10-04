@@ -1,0 +1,109 @@
+---
+/* /alarm/ — Kullanıcıya özel dinamik alarm aboneliği (Modül 3).
+   Form POST /api/alarm (Cloudflare Function → KV). Eşik aşımında sunucu
+   tetikleyicisi (arac/alarm-tetikle.py) e-posta + Telegram gönderir. */
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import OzCevap from '../../components/OzCevap.astro';
+import HukukSerhi from '../../components/HukukSerhi.astro';
+import baraj from '../../../data/canli/baraj.json';
+
+const havzalar = Object.keys(baraj.havzalar)
+  .map((a) => a.replace(' Havzası', '').trim())
+  .sort((a, b) => a.localeCompare(b, 'tr'));
+
+const OZ_CEVAP =
+  'Su Haritası alarm aboneliği: seçtiğiniz havzanın baraj doluluğu belirlediğiniz ' +
+  'eşiği aştığında (ör. %40 altına düşerse) otomatik e-posta alırsınız. Eşikler ' +
+  'EPİAŞ günlük verisine karşı sunucu tarafında denetlenir; IP saklanmaz.';
+---
+<Sayfa baslik="Su alarmı aboneliği" aciklama={OZ_CEVAP} tarayiciBaslik="Havza Su Alarmı Kur — Otomatik Bildirim">
+  <SayfaBasi etiket="Alarm" baslik="Havza su alarmı kur" ozet="Baraj doluluğu eşiği aşılınca otomatik e-posta." ozCevap />
+  <OzCevap metin={OZ_CEVAP} etiket="Özet" />
+
+  <form id="alarm-form" class="al-form" novalidate>
+    <label class="al-alan">
+      <span>E-posta</span>
+      <input type="email" name="eposta" required autocomplete="email" placeholder="ornek@kurum.com" />
+    </label>
+    <label class="al-alan">
+      <span>Havza</span>
+      <select name="havza" required>
+        {havzalar.map((h) => <option value={h}>{h}</option>)}
+      </select>
+    </label>
+    <div class="al-satir">
+      <label class="al-alan">
+        <span>Koşul</span>
+        <select name="yon">
+          <option value="alt">Altına düşerse</option>
+          <option value="ust">Üstüne çıkarsa</option>
+        </select>
+      </label>
+      <label class="al-alan">
+        <span>Eşik (%)</span>
+        <input type="number" name="esik" min="0" max="100" step="1" value="40" required />
+      </label>
+    </div>
+    <label class="al-onay">
+      <input type="checkbox" name="onay" required />
+      <span>E-postamın yalnız bu alarm için işlenmesine (KVKK) onay veriyorum.</span>
+    </label>
+    <div class="al-tuzak" aria-hidden="true">
+      <label>Website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+    </div>
+    <button type="submit" class="al-btn">Alarm kur</button>
+    <p id="al-durum" class="al-durum" role="status" aria-live="polite"></p>
+  </form>
+
+  <p class="al-not">
+    Eşikler, EPİAŞ günlük baraj verisine karşı sunucuda denetlenir. Alarmlar
+    bilgilendirme amaçlıdır; yatırım veya hukuki tavsiye değildir. IP adresi
+    saklanmaz; yalnız e-posta, havza ve eşik tutulur (yaklaşık 2 yıl).
+  </p>
+
+  <nav class="al-capraz" aria-label="İlgili bölümler">
+    <a href="/veri/iklim/">→ Havza iklim verisi</a>
+    <a href="/tahmin/">→ Tahminsel analitik</a>
+    <a href="/api-dokumantasyonu/">→ Açık veri API</a>
+  </nav>
+  <HukukSerhi />
+</Sayfa>
+<style>
+  .al-form { display: grid; gap: 1rem; max-width: 34rem; margin-bottom: 1.4rem; }
+  .al-alan { display: flex; flex-direction: column; gap: 0.35rem; }
+  .al-alan > span { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--metin-soluk); }
+  .al-alan input, .al-alan select { padding: 0.6rem 0.7rem; border: 1px solid var(--cizgi); background: var(--zemin-kart); color: var(--metin); font-size: 0.95rem; }
+  .al-satir { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .al-onay { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.85rem; }
+  .al-tuzak { position: absolute; left: -9999px; }
+  .al-btn { justify-self: start; padding: 0.7rem 1.4rem; background: var(--su-700); color: #fff; border: 0; cursor: pointer; font-size: 0.95rem; }
+  .al-btn:disabled { opacity: 0.6; cursor: default; }
+  .al-durum { font-size: 0.9rem; min-height: 1.2em; }
+  .al-not { font-size: 0.85rem; color: var(--metin-soluk); max-width: 76ch; }
+  .al-capraz { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--cizgi); }
+  .al-capraz a { color: var(--baglanti); text-decoration: none; }
+</style>
+<script>
+  const form = document.getElementById('alarm-form') as HTMLFormElement | null;
+  const durum = document.getElementById('al-durum');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { if (durum) durum.textContent = 'Lütfen zorunlu alanları doldurun.'; return; }
+    const btn = form.querySelector('button') as HTMLButtonElement;
+    btn.disabled = true;
+    if (durum) durum.textContent = 'Gönderiliyor…';
+    const fd = new FormData(form);
+    const govde = {
+      eposta: fd.get('eposta'), havza: fd.get('havza'), yon: fd.get('yon'),
+      esik: Number(fd.get('esik')), onay: fd.get('onay') === 'on', website: fd.get('website'),
+    };
+    try {
+      const r = await fetch('/api/alarm', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(govde) });
+      const j = await r.json();
+      if (r.ok && j.ok) { if (durum) durum.textContent = 'Alarmınız kuruldu. Eşik aşıldığında e-posta alacaksınız.'; form.reset(); }
+      else if (durum) durum.textContent = 'Hata: ' + (j.hata || 'tekrar deneyin');
+    } catch { if (durum) durum.textContent = 'Bağlantı hatası; sonra tekrar deneyin.'; }
+    finally { btn.disabled = false; }
+  });
+</script>

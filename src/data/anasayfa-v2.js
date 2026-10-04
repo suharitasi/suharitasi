@@ -127,6 +127,9 @@ export const VERI_ROTALARI = [
   { ad: 'Havza & Veri', yol: '/havza-riski/' },
   { ad: 'Nehirler', yol: '/nehirler/' },
   { ad: 'Göller', yol: '/goller/' },
+  // FAZ 4 (04.10.2026): tahminsel analitik + açık veri API yüzeyleri.
+  { ad: 'Tahmin', yol: '/tahmin/' },
+  { ad: 'API', yol: '/api-dokumantasyonu/' },
   { ad: 'İletişim', yol: '/#iletisim' },
 ];
 
