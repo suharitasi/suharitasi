@@ -123,13 +123,13 @@ const sema = [
         </div>
         {s.persona && <p class="sk-yukumluluk">{s.persona.yukumluluk}</p>}
         <div class="sk-blok">
-          <h3>İzin adımları</h3>
+          <h3>{s.ad} — izin adımları</h3>
           <ol class="sk-adimlar">
             {s.adimlar.map((a) => <li>{a}</li>)}
           </ol>
         </div>
         <div class="sk-blok">
-          <h3>Risk analiz matrisi</h3>
+          <h3>{s.ad} — risk analiz matrisi</h3>
           <ul class="sk-riskler">
             {s.riskler.map((r) => (
               <li><span class={`sk-risk sk-${r.s}`}>{r.s}</span> {r.r}</li>

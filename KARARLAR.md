@@ -1239,6 +1239,29 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §59 · 10 SKİLL EŞ ZAMANLI TAM SİTE TARAMASI VE DÖNÜŞÜM (04.10.2026)
+
+- **Protokol:** 5 bağımsız salt-okunur denetim ajanı paralel; uygulama tek
+  elden (çakışma önleme); sonra build + öz-denetim + sağlık kapısı.
+- **Jargon:** görünür metinde 198 dosya → **0** (binlerce sayfayı üreten
+  şablonlar düzeyinde; `jargon-tara.sh` kapısı). İstisnalar bilinçli:
+  JSON-LD, kod yorumu, kapalı `<details>`, `/api-dokumantasyonu/` (Developer
+  Hub; script allowlist).
+- **HIG boşluk:** tablo padding'leri `0.6rem 0.75rem` (14 dosya); Katman
+  ritmi clamp; su-riski bölüm arası/formül ölçüsü; liste-ızgara boşlukları.
+- **Başlık/şema:** `/su-hukuku/` H1 genişletildi; HukukDanismanlik + iki
+  sayfadaki tekrar eden H2/H3 benzersizleştirildi. `/harita/` H1 yokluğu
+  KULLANICI KARARI (28.07) gereği korundu. Şema: FAQPage 509, aggregateRating 0.
+- **Veri:** RG "Orta Gediz" kaydındaki homonim il sızması düzeltildi
+  (`[Kütahya, Manisa, Çankırı] → [Manisa, İzmir]`); `barajOzeti` as-of gün
+  kuralına geçti (farklı tarihli seriler ortalanmaz). Altın örnek 23/23.
+- **Kanıt:** build EXIT 0 · 1190 sayfa · jargon 0 · oz-denetim 0/102 ·
+  commit `80f925d` · rapor `rapor/04-10-tam-donusum-taramasi.md`.
+- **Kuyruk:** ölü hero seti (~1,7 MB, erişim günlüğü kontrolü), sahne
+  poster AVIF (onay), 420px ızgara + kart hairline turu, baraj çift anahtar.
+
+---
+
 ## §58 · OTONOM SKILL MİMARİSİ (04.10.2026)
 
 - **Karar:** 10 maddelik otonom skill mimarisi yerel altyapı olarak kuruldu:

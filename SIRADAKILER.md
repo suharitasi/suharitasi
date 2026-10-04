@@ -12,11 +12,21 @@ BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 Rapor: `rapor/04-10-otonom-skill-mimarisi.md` · yerel: `.agents/skills/`
 (commit dışı) · 10 skill + 3 tarama scripti kuruldu ve doğrulandı.
 İLK GÖREVLER:
-- [ ] **Jargon temizliği:** `jargon-tara.sh` 198 dosyada açık-metin jargon
-      buldu (havzalar/harita/veri/basin/en şablonları + GRACE dipnotları;
-      /tahmin/ temiz). Şablon düzeyinde sadeleştir; dipnot kaynak atfı kararı
-      (korunacak mı?) → hedef 0. Skill: `suharitasi-donusum-hunisi`.
+- [x] **Jargon temizliği (KAPANDI 04.10/§59):** görünür metinde 198 dosya → 0
+      (`jargon-tara.sh`; Developer Hub allowlist). Kalan kuyruk: ölü hero
+      seti silme (erişim günlüğü kontrolü), sahne poster AVIF (onay),
+      420px ızgara + kart hairline turu, baraj çift anahtar.
 - [ ] Yeni skill'lerin ilk gerçek kullanımda tetikleme kontrolü.
+
+═══ 04.10.2026 — 10 SKİLL TAM SİTE TARAMASI (§59) ═══
+Rapor: `rapor/04-10-tam-donusum-taramasi.md` · commit `80f925d`.
+TAMAMLANAN:
+- [x] Jargon 198→0 (şablon düzeyi, binlerce sayfa).
+- [x] HIG boşluk turu: 14 tablo + Katman/su-riski/liste ritimleri.
+- [x] /su-hukuku H1; tekrar eden H2/H3 benzersizleştirme.
+- [x] RG homonim il onarımı + baraj as-of ortalaması; altın örnek 23/23.
+- [x] Build EXIT 0 · 1190 sayfa · oz-denetim 0/102 · canlı doğrulama.
+- [ ] KULLANICI ONAYI BEKLİYOR: canlı görsel/içerik testi (İş kapanış kuralı).
 
 ═══ 04.10.2026 — MASTER BRİF v3 UYGULANDI (KARARLAR §57; sahip: kapı askı) ═══
 Rapor: `rapor/04-10-master-v3-on-denetim.md` · brief:
