@@ -12,6 +12,11 @@ import CiteThisData from '../components/CiteThisData.astro';
 import CtaBlok from '../components/CtaBlok.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
 import kesifRegistry from '../../izleme/kesif/kaynak-kaynagi.json';
+import { tazelikTablosu } from '../../arac/veri-tazelik.mjs';
+
+// P6-B veri tazelik panosu — as-of yalnız veri künyesinden (uydurma yok).
+const tazelik = tazelikTablosu();
+const trTarih = (iso: string) => { const [y, a, g] = iso.split('-'); return `${g}.${a}.${y}`; };
 
 // 04.10.2026 — KEŞİF MOTORU: sürekli keşif/validasyon hattının bulduğu aday
 // açık veri kaynakları burada ŞEFFAF biçimde listelenir (otoritesi + durumu).
@@ -125,6 +130,29 @@ curl -s https://suharitasi.com/api/v1/openapi.json`}</code></pre>
       <li><strong>Hukuki hüküm değildir.</strong> Veri ve alanlar bilgilendirme amaçlıdır; ceza tutarı veya kesin sonuç üretilmez, yalnız mevzuat dayanağı gösterilir.</li>
       <li><strong>Tek kaynak.</strong> Alan adları ve şema, canlı JSON çıktısıyla birebir aynıdır.</li>
     </ul>
+  </section>
+
+  <section class="av-blok">
+    <h2>Veri tazeliği</h2>
+    <p>Her veri kümesinin <strong>as-of</strong> tarihi, tazeleyen iş ve durumu. Tarihler yalnız veri künyesinden okunur; statik derlemeler eşik denetimine girmez.</p>
+    <div class="av-tablo-sar" tabindex="0" role="region" aria-label="Veri tazeliği tablosu">
+      <table class="av-tablo">
+        <caption>Veri kümesi · kaynak · as-of · tazeleyen iş · durum</caption>
+        <thead><tr><th scope="col">Veri kümesi</th><th scope="col">Kaynak</th><th scope="col">As-of</th><th scope="col">Tazeleyen iş</th><th scope="col">Durum</th></tr></thead>
+        <tbody>
+          {tazelik.map((t) => (
+            <tr>
+              <td>{t.ad}</td>
+              <td>{t.kaynak}</td>
+              <td>{t.asOf ? trTarih(t.asOf) : 'bilinmiyor'}</td>
+              <td>{t.job}</td>
+              <td>{t.durum === 'guncel' ? 'Güncel' : t.durum === 'gecikmis' ? `Gecikmiş (${t.yasGun} gün)` : t.durum === 'bilinmiyor' ? 'Bilinmiyor' : 'Statik/manuel'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p>Makine-okunur kopya: <a href="/veri/veri-tazelik.json">/veri/veri-tazelik.json</a></p>
   </section>
 
   <section class="av-blok">

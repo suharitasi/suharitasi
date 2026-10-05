@@ -53,12 +53,14 @@ Her parça brief + uygula + ölçüm + commit ile yürür:
       bekçiye bağlı, negatif test kanıtlı), depo sadeleştirme (tek-seferlik
       arşivi, BACKUP'lar arsiv/, _redirects notu). KULLANICI: CTA canlı onayı.
       Rapor: `rapor/05-10-p5-hijyen.md`.
-- [~] **P6 DAĞITIM:** **GA4 ÖLÇÜM TARAFI TAMAM (05.10, §67):** G-NRJZLX0CPR
-      canlı, onay kapılı; 4 senaryo kanıtlı (onay öncesi 0 istek). KALAN
-      KULLANICI 2 ADIM: GCP'de Admin+Data API etkinleştir; GA4'te
-      `gsc-okuyucu@suharitasi-gsc.iam.gserviceaccount.com` = Görüntüleyici;
-      sonrası `ga4_list_properties` doğrulaması bende. Ayrıca: veri tazelik
-      panosu; bülten + sameAs.
+- [x] **P6-B VERİ TAZELİK PANOSU — TAMAM (05.10, §68):** `arac/veri-tazelik.mjs`
+      (11 küme; as-of künyeden), `/acik-veri/` tablosu, `/veri/veri-tazelik.json`
+      ucu, bekçi (j) — temiz 0 sorun, kırmızı yol simülasyonla kanıtlı. Bonus:
+      build KOK düzeltmesi + bekçi bellek dedupe. Rapor:
+      `rapor/05-10-p6b-veri-tazelik.md`.
+- [ ] **P6 KALAN:** bülten (Buttondown hesap) + sameAs profilleri (LinkedIn/GBP/
+      Wikidata — kullanıcı varlıkları) · GA4 okuma: SA görünürlük teyidi
+      (alttaki kullanıcı adımı sonrası `ga4_list_properties` yeniden ölçülür).
 KULLANICI KALEMLERİ: GA4 Admin API (panel) · rozet ifade teyidi [SERDAR-HUKUK].
 
 ═══ 04.10.2026 — OTONOM SKILL MİMARİSİ (KARARLAR §58) ═══

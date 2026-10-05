@@ -1239,6 +1239,23 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §68 · P6-B VERİ TAZELİK PANOSU + BEKÇİ BELLEK DEDUPE (05.10.2026)
+
+- **Tek kaynak:** `arac/veri-tazelik.mjs` — 11 küme; as-of yalnız veri
+  künyesinden (uydurma yasağı); takvimler crontab birebir. `--kontrol`
+  otomatik sınıfı denetler (eşik aşımı/bilinmeyen → exit 1; statikler muaf).
+- **Yüzeyler:** `/acik-veri/` "Veri tazeliği" tablosu (build-time) +
+  `/veri/veri-tazelik.json` makine-okunur uç + `saglik-bekcisi.sh` (j) maddesi.
+- **Kanıt:** temiz koşum 0 sorun; `VT_SAHTE_GUN` ile kırmızı yol 7/11 (exit 1);
+  dist'te 7 Güncel + 4 Statik; bekçi `sağlık OK`.
+- **İç düzeltmeler:** (1) build KOK çözümü (import.meta.url yeniden yazımı —
+  işaret doğrulamalı env→cwd→modül sırası); (2) bekçi bellek olayı DEDUPE
+  (`izleme/state/bekci-bellek-son.txt`; aynı 24s olayı artık spam değil).
+- Rapor: `rapor/05-10-p6b-veri-tazelik.md`. Kalan: bülten + sameAs (kullanıcı
+  varlıkları) · GA4 okuma property teyidi.
+
+---
+
 ## §67 · P6-A GA4 ÖLÇÜM AKTİVASYONU: ONAY KAPILI ÖLÇÜM + GİZLİLİK UYUMU (05.10.2026)
 
 - **Karar (sahip talimatı):** GA4 ölçümü etkinleştirildi — `GA4_ID=G-NRJZLX0CPR`.

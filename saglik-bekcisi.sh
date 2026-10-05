@@ -211,7 +211,17 @@ if [ -f "$BLOG" ]; then
     fi
   done < <(tail -300 "$BLOG" || true)
   if [ "$TEPE_SAYI" -gt 0 ]; then
-    ekle "🔴 bellek tükenmesi olayı — son 24 saatte ${TEPE_SAYI} ölçümde available<500MB veya swap>2000MB; en sonu ${TEPE_SATIR}. Sunucu bu anlarda cevapsız kalmış olabilir (takas yığılması)."
+    # DEDUPE (P6-B, 05.10.2026): aynı olay 24s pencerede kalırken her koşumda
+    # yeniden bildiriliyordu (09:20 swap artığı gün boyu tekrarlandı). Yalnız
+    # SON bildirilenden DAHA YENİ bir olay varsa haber ver; durum dosyası:
+    # izleme/state/bekci-bellek-son.txt (en son BİLDİRİLEN olayın damgası).
+    TEPE_ZAMAN=$(printf '%s' "$TEPE_SATIR" | awk '{print $1}')
+    BSTATE="$KOK/izleme/state/bekci-bellek-son.txt"
+    SON_BILDIRILEN=$(cat "$BSTATE" 2>/dev/null || echo "")
+    if [ -n "$TEPE_ZAMAN" ] && { [ -z "$SON_BILDIRILEN" ] || [[ "$TEPE_ZAMAN" > "$SON_BILDIRILEN" ]]; }; then
+      ekle "🔴 bellek tükenmesi olayı — son 24 saatte ${TEPE_SAYI} ölçümde available<500MB veya swap>2000MB; en sonu ${TEPE_SATIR}. Sunucu bu anlarda cevapsız kalmış olabilir (takas yığılması)."
+      printf '%s' "$TEPE_ZAMAN" > "$BSTATE"
+    fi
   fi
 fi
 
@@ -284,6 +294,14 @@ if [ -d "$KOK/dist" ]; then
   if [ "$hk_rc" -ne 0 ]; then
     ekle "🔴 hukuk-dili taraması bulgu verdi (exit $hk_rc) — 'bash arac/hukuk-tarama.sh dist'"
   fi
+fi
+
+# (j) VERİ TAZELİĞİ (P6-B, 05.10.2026): otomatik kümelerin as-of yaşı eşiği
+#     aşarsa 🔴 (sessiz bayatlık sınıfı; CHIRPS dersi). Kaynak: arac/veri-tazelik.mjs.
+vt_rc=0
+vt_cikti=$(SUHARITASI_KOK="$KOK" node "$KOK/arac/veri-tazelik.mjs" --kontrol 2>&1) || vt_rc=$?
+if [ "$vt_rc" -ne 0 ]; then
+  ekle "🔴 veri tazeliği: $(printf '%s' "$vt_cikti" | tail -1) — 'node arac/veri-tazelik.mjs --kontrol'"
 fi
 
 if [ -n "$SORUN" ]; then
