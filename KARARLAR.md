@@ -1239,6 +1239,23 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §66 · P5 HUKUK & HİJYEN: NÖTR CTA DİLİ + GENİŞ TARAMA + DEPO SADELEŞTİRME (05.10.2026)
+
+- **CTA dili:** "Hemen ara" → **"Telefon"** (3 kaynak; dist 1109 → **0**,
+  "Telefon" 1109 dosya). "Zaman kazanın" nötrleştirildi. `tel:`/`data-olay`
+  değişmedi; yeni hukuki metin yok.
+- **Tarama:** `arac/hukuk-tarama.sh` — tüm dist vaat-dili + hukuk ailelerinde
+  disclaimer; **1190 sayfa · 0 bulgu**; negatif test `1/0` kanıtlı. Günlük
+  bekçiye (i) maddesi olarak bağlandı (site-saglik çekirdeği bilinçli
+  dokunulmadı; gerekçe raporda).
+- **Hijyen:** 12 tek-seferlik script → `arac/tek-seferlik/`; `BACKUP-AJAN` +
+  `BACKUP-KESIF` → `arsiv/`; `.gitignore` tek kural `BACKUP-*/`; kökte yalnız
+  `astro.config.mjs`; `_redirects` www notu güncellendi (kural kuruldu).
+- **Not:** Bekçi bu koşumda bizden bağımsız geçici swap uyarısı verdi
+  (ağır medya/LH turları; 09:20 swap 2,095 GB > eşik; şu an 1,4 GB) — kayda geçti.
+
+---
+
 ## §65 · P4 PERFORMANS: /HARİTA SRCSET + CACHE + MEDYA TURU (05.10.2026)
 
 - **/harita hero:** 736w (59 KB) + 1100w (104 KB) türevleri; `srcset/sizes` +

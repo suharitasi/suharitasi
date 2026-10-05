@@ -48,8 +48,11 @@ Her parça brief + uygula + ölçüm + commit ile yürür:
       `_astro` immutable (canlı doğrulandı), poster WebP, video −%45
       (SSIM≥0,976), ölü set arşive. Yerel LH medyan 92 (hedef ≥94 tutmadı —
       dürüst not); canlı teyit 19:30 `--tam` md9. KULLANICI: görsel onay.
-- [ ] **P5 HUKUK & HİJYEN (S):** "Hemen ara"→"Telefon" + tarama genişletme;
-      rozet ifadesi [SERDAR-HUKUK]; depo hijyeni; ölü hero seti (CF günlüğü).
+- [x] **P5 HUKUK & HİJYEN (S) — TAMAM (05.10, §66):** "Hemen ara"→"Telefon"
+      (1109→0), vaat-dili nötrleştirme, geniş tarayıcı (1190 sayfa·0 bulgu;
+      bekçiye bağlı, negatif test kanıtlı), depo sadeleştirme (tek-seferlik
+      arşivi, BACKUP'lar arsiv/, _redirects notu). KULLANICI: CTA canlı onayı.
+      Rapor: `rapor/05-10-p5-hijyen.md`.
 - [ ] **P6 DAĞITIM:** GA4 aç; veri tazelik panosu; bülten + sameAs.
       **GA4 KULLANICI 2 ADIM (panel):** (1) console.cloud.google.com → proje
       205139338529 → "Google Analytics Admin API" + "Google Analytics Data API"

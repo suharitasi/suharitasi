@@ -5,7 +5,9 @@
 # redirects ❌", okundu 25.08.2026; ilk denemede buraya yazıldı, canlıda
 # etkisiz ölçüldü ve kaldırıldı). Çözüm Cloudflare panelinde Redirect Rule
 # ("Redirect from WWW to Root" şablonu) — kullanıcı adımı, rapor/havza-talep.md §7.
-# Kurulana kadar md24 SARI verir (301 gelince yeşile döner).
+# KURULDU (26.08.2026): panel kuralı devrede; md24 www YEŞİL (301 → apex
+# canlıda ölçüldü; P5 notu 05.10.2026). Kaldırılırsa md24 yeniden SARI verir —
+# gerekçe: Pages alan-düzeyi yönlendirmeyi desteklemiyor (yukarıdaki kaynak).
 
 # Cloudflare Pages yönlendirmeleri.
 # /deneyim/ ROTA KAPANIŞI (23.07): 6 sahne akışı ana sayfaya taşındı,

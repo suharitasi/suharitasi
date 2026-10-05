@@ -75,4 +75,4 @@ izleme/state/.rg-ca-demeti.tmp
 /izleme/kesif/log/
 
 # Keşif oturumu yedeği (04.10.2026) — depoya girmez
-/BACKUP-KESIF-*/
+BACKUP-*/

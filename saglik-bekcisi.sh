@@ -275,6 +275,17 @@ if [ "$SYSD" = "failed" ]; then
   ekle "🔴 restic-yedek.service BAŞARISIZ (off-site bacak düşmüş olabilir) — journalctl -u restic-yedek"
 fi
 
+# (i) HUKUK DİLİ TARAMASI (P5, 05.10.2026): tüm dist'te yasak vaat dili +
+#     hukuk ailelerinde disclaimer (arac/hukuk-tarama.sh). site-saglik.mjs
+#     çekirdeği yerine bekçi deseni seçildi (risk/gerekçe: rapor/05-10-p5-hijyen.md).
+if [ -d "$KOK/dist" ]; then
+  hk_rc=0
+  bash "$KOK/arac/hukuk-tarama.sh" "$KOK/dist" >> "$LOGP" 2>&1 || hk_rc=$?
+  if [ "$hk_rc" -ne 0 ]; then
+    ekle "🔴 hukuk-dili taraması bulgu verdi (exit $hk_rc) — 'bash arac/hukuk-tarama.sh dist'"
+  fi
+fi
+
 if [ -n "$SORUN" ]; then
   printf '# SAĞLIK BEKÇİSİ UYARISI\n\n%s\n\n%s' "$(date -u)" "$SORUN" > "$UYARI"
   printf '%s' "$SORUN" | while IFS= read -r s; do
