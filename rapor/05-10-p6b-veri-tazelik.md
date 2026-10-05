@@ -23,7 +23,9 @@ Kaynak: denetim katma değer #2 — "CHIRPS tipi sessiz bayatlık bir daha sakla
   kanıtlı (gerçek tarih değiştirilmedi).
 - **Build/dist:** EXIT 0 · 1190 sayfa; `/acik-veri/` tablosunda **7 Güncel +
   4 Statik/manuel + 0 Gecikmiş**; endpoint JSON gerçek tarihlerle.
-- **Canlı:** (deploy sonrası kayıt commit'inde) sayfa + endpoint + `--hizli`.
+- **Canlı (commit `ae542e9`):** `surum.json` ✓ · `/acik-veri/` tablosu canlıda
+  (7 Güncel + 4 Statik) · `/veri/veri-tazelik.json` 200 (11 satır; chirps
+  `2026-10-05 · guncel`) · `site-saglik --hizli` **YEŞİL**.
 
 ## 3) Bu turda çıkan iç düzeltmeler (ölçüm disiplini)
 

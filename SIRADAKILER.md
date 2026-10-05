@@ -58,9 +58,15 @@ Her parça brief + uygula + ölçüm + commit ile yürür:
       ucu, bekçi (j) — temiz 0 sorun, kırmızı yol simülasyonla kanıtlı. Bonus:
       build KOK düzeltmesi + bekçi bellek dedupe. Rapor:
       `rapor/05-10-p6b-veri-tazelik.md`.
-- [ ] **P6 KALAN:** bülten (Buttondown hesap) + sameAs profilleri (LinkedIn/GBP/
-      Wikidata — kullanıcı varlıkları) · GA4 okuma: SA görünürlük teyidi
-      (alttaki kullanıcı adımı sonrası `ga4_list_properties` yeniden ölçülür).
+- [ ] **GA4 OKUMA (yarım — kullanıcı adımı netleşti):** API'ler + SA çalışıyor:
+      `ga4_list_properties` ve `run_report` **pozitif kontrol ✓** (arslanhukuk.tr
+      property'sinde sorgu çalıştı). ANCAK SA yalnız `arslanhukuk.tr`'yi görüyor;
+      `G-NRJZLX0CPR`'nin property'si SA'ya görünmüyor. KULLANICI: o property'de
+      (Yönetici → Mülk erişim yönetimi) `gsc-okuyucu@suharitasi-gsc.iam.gserviceaccount.com`
+      = **Görüntüleyici** (property hangi GA hesabındaysa orada). Sonrası otonom:
+      dönüşüm/oturum raporu + site tarafı doğrulaması.
+- [ ] **P6 KALAN:** bülten (Buttondown hesabı) · sameAs profilleri (LinkedIn/GBP/
+      Wikidata — kullanıcı varlıkları).
 KULLANICI KALEMLERİ: GA4 Admin API (panel) · rozet ifade teyidi [SERDAR-HUKUK].
 
 ═══ 04.10.2026 — OTONOM SKILL MİMARİSİ (KARARLAR §58) ═══
