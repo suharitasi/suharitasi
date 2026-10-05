@@ -8,6 +8,22 @@ temas, analitik) + DAYANIKLILIK (yedek, altın örnek, kurtarma, dış izleme).
 Yeni özellik talebi reddedilmez, buraya yazılır ve iki bacak hizaya gelmeden
 BAŞLATILMAZ. Bakım/onarım bu kuralın dışındadır.
 
+═══ 05.10.2026 — ÖDÜL ÜSTÜ TAM DENETİM (rapor/05-10-odul-ustu-denetim.md) ═══
+Puan: 8,0/10 · hedef 9,2-9,5. 3 bağımsız salt-okunur ajan + GSC + canlı kontrol.
+Her parça brief + uygula + ölçüm + commit ile yürür:
+- [ ] **P1 DAYANIKLILIK (K):** off-site restic onarımı + OnFailure→Telegram;
+      restic-master sahte-başarı + çift cron; 6 bakım scripti sözleşmeye bağlama;
+      disk temizliği (%78).
+- [ ] **P2 NEHİR SICRAMASI (S):** 95 nehir + 26 havza title ≤60; soru H2 +
+      iç-bağ ağı; IndexNow; 2-4 hafta GSC ölçümü (hedef +200-300 tık/28g).
+- [ ] **P3 DAMGA & TAZELİK (K/S):** CHIRPS cron; dateModified 518 URL;
+      mevzuat-radar hata yayını; emsal 03.11 doğrulaması; /api/loglar limiter.
+- [ ] **P4 PERFORMANS (S):** /harita srcset; _astro immutable; medya turu.
+- [ ] **P5 HUKUK & HİJYEN (S):** "Hemen ara"→"Telefon" + tarama genişletme;
+      rozet ifadesi [SERDAR-HUKUK]; depo hijyeni; ölü hero seti (CF günlüğü).
+- [ ] **P6 DAĞITIM:** GA4 aç; veri tazelik panosu; bülten + sameAs.
+KULLANICI KALEMLERİ: GA4 Admin API (panel) · rozet ifade teyidi [SERDAR-HUKUK].
+
 ═══ 04.10.2026 — OTONOM SKILL MİMARİSİ (KARARLAR §58) ═══
 Rapor: `rapor/04-10-otonom-skill-mimarisi.md` · yerel: `.agents/skills/`
 (commit dışı) · 10 skill + 3 tarama scripti kuruldu ve doğrulandı.
