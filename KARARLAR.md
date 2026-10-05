@@ -1239,6 +1239,29 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §62 · SAHİP ONAYLARI: DİSK TEMİZLİĞİ + ÖLÜ SERVİS + ROZET + GA4 ADIMI (05.10.2026)
+
+- **Disk (onaylandı, uygulandı):** `cikti/denetim` 294M→2,7M (izlenen 15
+  rapor korundu) · `cikti/dist-once*` ~220M silindi · `denetim/kare` 54M
+  (124 izlenen PNG) `git rm` ile kaldırıldı (git geçmişinde durur).
+  `df /`: %78 → %77.
+- **Ölü servisler (onaylandı, uygulandı):** `postfix.service` kapatıldı
+  (MTA, `/etc/postfix/main.cf` yok, kullanılmıyor); `dailyaidecheck.timer`
+  P1'de kapatılmıştı — kalıcı. `systemctl --failed` artık BOŞ.
+- **Rozet teyidi ([SERDAR-HUKUK] onayı — sahip talimatı):** abartılı ifadeler
+  kanıta çekildi: "CERN Tescilli Bilimsel Veri" → **"Zenodo DOI'li Bilimsel
+  Veri (CERN altyapısı)"**; "Google & AI Onaylı Varlık" → **"Wikidata'da
+  Kayıtlı Varlık (Q141582057)"**; KanitBandi açıklamaları hizalandı.
+- **GA4:** servis hesabıyla API etkinleştirme denemesi yapıldı → **403**
+  (SA'nın serviceusage yetkisi yok). Panel adımları SIRADAKILER'de iki madde;
+  sonrası otonom (ölçüm kimliği `analitik.js`). Güvenlik: rol yalnız
+  Görüntüleyici; anahtar 600; repoda sır yok.
+- **P2 SERP yetki devri:** kapanış kuralı + ölçüm protokolü
+  `izleme/state/p2-serp-taban.json` (19.10 ve 02.11 ölçümü; nihai SERP onayı
+  kullanıcıda).
+
+---
+
 ## §61 · P2 NEHİR SIÇRAMASI: TITLE ≤60 + İÇ-BAĞ AĞI (05.10.2026)
 
 - **Karar:** 95 nehir + 26 havza + 4 tek sayfa başlığı uzunluk-farkında

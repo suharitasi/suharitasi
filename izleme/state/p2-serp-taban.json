@@ -1,0 +1,22 @@
+{
+  "_not": "P2 nehir title/iç-bağ turunun (commit bee9e31, 05.10.2026) SERP etkisi için TABAN. Ölçüm: 19.10.2026 ve 02.11.2026'da gsc_ctr_opportunities + gsc_quick_wins yeniden çekilir ve bu dosyayla karşılaştırılır. Kaynak: GSC sc-domain:suharitasi.com.",
+  "taban_tarihi": "2026-10-05",
+  "pencere": "2026-09-05/2026-10-02",
+  "site": { "clicks": 332, "impressions": 25843, "ctr": 0.0128, "position": 8.82 },
+  "hedef_sayfalar": [
+    { "sayfa": "/nehirler/gokirmak/", "gosterim": 5558, "ctr": 0.00018, "poz": 9.45, "tahmini_ek_tik": 110 },
+    { "sayfa": "/nehirler/esen-cayi/", "gosterim": 2313, "ctr": 0.00043, "poz": 7.73, "tahmini_ek_tik": 78 },
+    { "sayfa": "/nehirler/kelkit-cayi/", "gosterim": 557, "ctr": 0.0018, "poz": 6.87, "tahmini_ek_tik": 24 },
+    { "sayfa": "/nehirler/hezil-cayi/", "gosterim": 640, "ctr": 0, "poz": 9.58, "tahmini_ek_tik": 13 },
+    { "sayfa": "/nehirler/bakircay/", "gosterim": 461, "ctr": 0, "poz": 9.79, "tahmini_ek_tik": 9 },
+    { "sayfa": "/nehirler/harsit-cayi/", "gosterim": 306, "ctr": 0.0033, "poz": 8.6, "tahmini_ek_tik": 7 }
+  ],
+  "quick_win_sorgular": [
+    { "sorgu": "gökırmak hangi akarsuyun kolu", "gosterim": 1367, "tik": 0, "poz": 9.12 },
+    { "sorgu": "gökırmak nerede", "gosterim": 1008, "tik": 0, "poz": 9.41 },
+    { "sorgu": "eşen akarsuyu nerede", "gosterim": 967, "tik": 0, "poz": 7.55 },
+    { "sorgu": "zap suyu nerede", "gosterim": 673, "tik": 1, "poz": 10.68 }
+  ],
+  "kapanis_kurali": "19.10.2026 ölçümünde: (a) hedef sayfalardan en az 3'ünde pozisyon iyileşmesi >= 1 VE/VEYA nehir ailesi göreli CTR artışı >= %25 ise iş 'etki ölçüldü: hedef bandında' notuyla kapanır; (b) etki yoksa kök neden (AIO/sıralama) analizi ayrı kuyruk işi olur ve P2 dürüst 'etki yok' notuyla kapanır. İki durumda da nihai SERP onayı kullanıcıdadır (İş kapanış kuralı).",
+  "olcum_komutu": "google-seo MCP: gsc_ctr_opportunities + gsc_quick_wins (28g, sc-domain:suharitasi.com) → bu dosyayla karşılaştır; GSC afişi: rapor/05-10-p2-nehir-ctr.md D1 bölümü."
+}
