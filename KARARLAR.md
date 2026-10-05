@@ -1239,6 +1239,19 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §61 · P2 NEHİR SIÇRAMASI: TITLE ≤60 + İÇ-BAĞ AĞI (05.10.2026)
+
+- **Karar:** 95 nehir + 26 havza + 4 tek sayfa başlığı uzunluk-farkında
+  zincire çevrildi; title-uzun **123 → 0**; nehir kardeş bağı 2 → 8.
+  Rapor: rapor/05-10-p2-nehir-ctr.md.
+- **Kalıcı kapı:** nehir/havza/rapor şablonlarında title >60 → build DÜŞER
+  (gelecekte uzun başlık sızamaz; süreklilik ilkesi).
+- **Değişmeyenler:** FAQPage 509 · og:title 1107 · H1'ler · JSON-LD ·
+  1190 sayfa/sitemap 1104.
+- **Ölçüm planı:** GSC quick-wins/CTR 2-4 hafta sonra; "artacak" beyanı yok.
+
+---
+
 ## §60 · P1 DAYANIKLILIK: OFF-SITE YEDEK KURTARMA + SYSTEMD→TELEGRAM KÖPRÜSÜ (05.10.2026)
 
 - **Karar:** Ödül üstü denetimin (rapor/05-10-odul-ustu-denetim.md) K1/K2

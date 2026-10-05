@@ -166,14 +166,19 @@ const aciklama = descParcalar.join(' ') || havzaOzCevap || giris.data.ozet;
 
 // 28.09.2026 (GSC-CTR, FREEZE-İSTİSNA): havza title deseni — YAS/kuyu/rezerv
 // niyeti; nehir sayfasından (akış/kol/dökülür) anlamsal olarak ayrışır
-// (de-cannibalization). Yıl build anında hesaplanır.
-const YIL = new Date().getFullYear();
+// (de-cannibalization). 05.10.2026 (P2): UZUNLUK-FARKINDA zincir — yıl
+// parantezi title'dan çıktı (sayfa içeriğinde kalır); ≤60 krk ilk aday
+// seçilir; sığmazsa build DÜŞER (kalıcı kapı).
 const havzaAd = /Havzası\s*$/.test(giris.data.baslik)
   ? giris.data.baslik
   : `${giris.data.baslik} Havzası`;
-const tarayiciBaslik = `${havzaAd} Su Rezervi ve DSİ Kuyu İzinleri (${YIL}) | Su Haritası`;
-if (tarayiciBaslik.length > 100)
-  throw new Error(`havza "${giris.id}": title ${tarayiciBaslik.length} karakter (>100)`);
+const SUF = ' | Su Haritası';
+const tarayiciBaslik = [
+  `${havzaAd} Su Rezervi ve DSİ İzinleri`,
+  `${havzaAd} Su Rezervi`,
+].map((t) => t + SUF).find((t) => t.length <= 60) ?? `${havzaAd}${SUF}`;
+if (tarayiciBaslik.length > 60)
+  throw new Error(`havza "${giris.id}": title ${tarayiciBaslik.length} karakter (>60)`);
 const h1Baslik = konumCumlesi ? `${giris.data.baslik} nerede, hangi illeri kapsar?` : giris.data.baslik;
 
 // — FAQPage JSON-LD: YAS potansiyeli öz-cevabı (AI-arama alıntısı). Tek

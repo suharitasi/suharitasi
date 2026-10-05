@@ -29,13 +29,15 @@ const ozet = nehirOzet(nehir);
 const havzalar = nehir.cografya.havzalar;
 const il = nehir.cografya.il;
 // P2 (24.09.2026): "İlgili Havza Varlıkları" tablosu — bağlı havza(lar) ve
-// aynı havzadaki diğer akarsular (en çok 2). Yalnız gerçek eşlemeden türetilir;
-// havzada 2'den az kardeş varsa eldeki kadar gösterilir (uydurma yok).
+// aynı havzadaki diğer akarsular. Yalnız gerçek eşlemeden türetilir; havzada
+// daha az kardeş varsa eldeki kadar gösterilir (uydurma yok).
+// 05.10.2026 (P2/T2): kardeş bağı 2 → 8; GSC quick-wins'te nehir ailesinin
+// iç-bağ omurgası yoğunlaştırılır (statik link, görsel değişiklik yok).
 const anaHavza = havzalar[0] ?? null;
 const kardesNehirler = anaHavza
   ? tumNehirler()
       .filter((x) => x.slug !== nehir.slug && x.cografya.havzalar.some((h) => h.slug === anaHavza.slug))
-      .slice(0, 2)
+      .slice(0, 8)
   : [];
 const dsiBolge = il ? (tumIlProfilleri().find((x) => x.slug === il.slug)?.dsiBolgeleri ?? []) : [];
 const kok = new URL('/', Astro.site).href;
@@ -58,18 +60,24 @@ const kolu = nehir.kolu_oldugu_akarsu || null;
 // "Debi" BİLEREK konmadı — sitede nehir bazlı debi verisi YOK; başlığa
 // yazmak tıklama tuzağı olurdu (NEHIRLER-SERP-TESHISI §5.2, uydurma yasağı).
 // 28.09.2026 (GSC-CTR, FREEZE-İSTİSNA): mobil SERP tıklaması için soru
-// formatlı title deseni. VERİ-KOŞULLU: "Hangi Nehrin Kolu?" ifadesi YALNIZ
+// formatlı title deseni. VERİ-KOŞULLU: "Hangi Akarsuyun Kolu?" ifadesi YALNIZ
 // `kolu_oldugu_akarsu` doluysa kullanılır — Eşen/Kelkit/Bakırçay/Zap/Köprüçay
 // için bu alan veride YOKTUR; yanlış öncül kurmak tıklama tuzağı olurdu
 // (uydurma yasağı). Latin dışı ebeveyn adı (ör. Arapça) başlığa girmez.
+// 05.10.2026 (P2): SERP kırpılmasını önlemek için UZUNLUK-FARKINDA zincir —
+// ≤60 krk olan İLK aday seçilir; hiçbiri sığmazsa build DÜŞER (kalıcı kapı).
 const LATIN_BASLIK = /^[A-Za-zÇĞİÖŞÜçğıöşü0-9\s'’.\-()]+$/;
 const koluLatin = (kolu && LATIN_BASLIK.test(kolu)) ? kolu : null;
-const tarayiciBaslik = koluLatin
-  ? `${nehir.ad} Hangi Nehrin Kolu? Nereye Dökülür ve Akış Haritası | Su Haritası`
-  : `${nehir.ad} Nerede, Nereye Dökülür? Akış ve Havza Haritası | Su Haritası`;
-// Uzunluk tavanı 100 (soru-deseni bilinçli uzun); aşım build'i DÜŞÜRÜR.
-if (tarayiciBaslik.length > 100)
-  throw new Error(`nehir "${nehir.slug}": title ${tarayiciBaslik.length} karakter (>100)`);
+const SUF = ' | Su Haritası';
+const titleAdaylari = (koluLatin
+  ? [`${nehir.ad} Hangi Akarsuyun Kolu, Nereye Dökülür?`,
+     `${nehir.ad} Hangi Akarsuyun Kolu?`]
+  : [`${nehir.ad} Nerede ve Nereye Dökülür?`,
+     `${nehir.ad} Nerede, Nereye Dökülür?`]
+).concat([`${nehir.ad} Nerede?`]).map((t) => t + SUF);
+const tarayiciBaslik = titleAdaylari.find((t) => t.length <= 60) ?? `${nehir.ad}${SUF}`;
+if (tarayiciBaslik.length > 60)
+  throw new Error(`nehir "${nehir.slug}": title ${tarayiciBaslik.length} karakter (>60)`);
 
 // C5 (V5): FAQ soruları ölçülen sorgu kalıplarına ("nerede", "hangi havzadan
 // geçer") ayrıştırılır; her cevap veriden. "kolu/kapalı havza" sorusu VERİSİZ

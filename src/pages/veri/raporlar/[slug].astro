@@ -29,8 +29,20 @@ const sema = [
     keywords: rapor.data.etiketler,
   },
 ];
+// 05.10.2026 (P2): SERP kırpılmasını önle — dönem etiketi korunur, gövde
+// kısalır; ≤60 krk ilk aday seçilir (kalıcı kapı: >60 build'i düşürür).
+const ayEtiketi = (rapor.data.baslik.match(/—\s*([^—]+)$/)?.[1] ?? '').trim();
+const tarayiciAdaylari = [
+  `Hidroloji ve Kuraklık Raporu — ${ayEtiketi} | Su Haritası`,
+  `Hidroloji Raporu — ${ayEtiketi} | Su Haritası`,
+];
+const tarayiciBaslik = (ayEtiketi
+  ? tarayiciAdaylari.find((t) => t.length <= 60)
+  : null) ?? `${rapor.data.baslik} | Su Haritası`;
+if (tarayiciBaslik.length > 60)
+  throw new Error(`rapor "${rapor.id}": title ${tarayiciBaslik.length} karakter (>60)`);
 ---
-<Sayfa baslik={rapor.data.baslik} aciklama={rapor.data.ozet} sema={sema}>
+<Sayfa baslik={rapor.data.baslik} tarayiciBaslik={tarayiciBaslik} aciklama={rapor.data.ozet} sema={sema}>
   <SayfaBasi etiket="Otonom rapor" baslik={rapor.data.baslik} ozet={rapor.data.ozet} tarih={rapor.data.tarih} />
   <OzCevap metin={rapor.data.ozet} etiket="Özet" />
   <div class="icerik">

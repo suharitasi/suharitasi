@@ -18,8 +18,11 @@ Her parça brief + uygula + ölçüm + commit ile yürür:
       kapatıldı; bekçi (h) maddesi. Rapor: `rapor/05-10-p1-dayaniklilik.md`.
       KULLANICI: disk silme onayı (liste) · postfix kararı · dailyaidecheck
       kapalı teyidi · ufw 23 izni genel (IP'ye daraltma opsiyonel).
-- [ ] **P2 NEHİR SICRAMASI (S):** 95 nehir + 26 havza title ≤60; soru H2 +
-      iç-bağ ağı; IndexNow; 2-4 hafta GSC ölçümü (hedef +200-300 tık/28g).
+- [x] **P2 NEHİR SICRAMASI (S) — TAMAM (05.10):** title-uzun 123 → 0
+      (nehir/havza uzunluk-farkında zincir + kalıcı build kapısı); Gökırmak
+      iç-bağı 4→9 link/8 kaynak; FAQ/og/H1 korundu. Rapor:
+      `rapor/05-10-p2-nehir-ctr.md`. KULLANICI: canlı SERP onayı; GSC ölçümü
+      2-4 hafta (D1 planı).
 - [ ] **P3 DAMGA & TAZELİK (K/S):** CHIRPS cron; dateModified 518 URL;
       mevzuat-radar hata yayını; emsal 03.11 doğrulaması; /api/loglar limiter.
 - [ ] **P4 PERFORMANS (S):** /harita srcset; _astro immutable; medya turu.
