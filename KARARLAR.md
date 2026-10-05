@@ -1239,6 +1239,21 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §69 · P6-C KİMLİK BAĞLARI (sameAs) TAMAMLAMA + BÜLTEN/GA4 DURUMU (05.10.2026)
+
+- **sameAs:** tek kaynak `site.ts` → `KURUM_SOSYAL` (Wikidata Q141582057 +
+  Zenodo DOI) ana sayfa ve `/harita/` özel şemalarına bağlandı; layout zaten
+  yayıyordu. Kanıt: 3 yüzeyde dist grep birebir. LinkedIn/GBP/X/YouTube
+  kullanıcı varlığı — doğrulanmadan EKLENMEZ.
+- **Bülten:** form/CSP/README hazır; aktivasyon `BUTTONDOWN_KULLANICI` tek
+  satırına bağlı (kullanıcı hesabı). Boşken form render edilmez (sessiz
+  başarısızlık yasağı korunur).
+- **GA4 okuma:** API+SA çalışıyor; suharitasi property'si bu kayıt anında
+  listede görünmedi (propagasyon) — yeniden ölçüm kayıtta. Rapor:
+  `rapor/05-10-p6c-kimlik-bulten.md`.
+
+---
+
 ## §68 · P6-B VERİ TAZELİK PANOSU + BEKÇİ BELLEK DEDUPE (05.10.2026)
 
 - **Tek kaynak:** `arac/veri-tazelik.mjs` — 11 küme; as-of yalnız veri

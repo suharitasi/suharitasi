@@ -25,7 +25,7 @@ import '../styles/hareket.css';
 import havzaVeri from '../../data/havza-veri.json';
 import yasVeri from '../../data/canli/havza-yas.json';
 import grace from '../../data/canli/grace-havza.json';
-import { SITE_ADI, YAZAR, VERI_KATALOGU } from '../data/site';
+import { SITE_ADI, YAZAR, VERI_KATALOGU, KURUM_SOSYAL } from '../data/site';
 import AcilDestekBar from '../components/AcilDestekBar.astro';
 import CfAnalitik from '../components/CfAnalitik.astro';
 import Analitik from '../components/Analitik.astro';
@@ -96,6 +96,7 @@ const jsonLd = JSON.stringify({
       description:
         "Türkiye'nin su verisi, havzaları ve su mevzuatını tek haritada birleştiren bağımsız bilgi portalı.",
       areaServed: { '@type': 'Country', name: 'Türkiye' },
+      sameAs: KURUM_SOSYAL,
       telephone: '+90 532 449 71 44',
       founder: { '@type': 'Person', name: YAZAR.adSade, jobTitle: YAZAR.unvan },
     },

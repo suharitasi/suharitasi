@@ -28,7 +28,7 @@ import Hizmetler from '../components/anasayfa/Hizmetler.astro';
 import Surec from '../components/anasayfa/Surec.astro';
 import Hakkinda from '../components/anasayfa/Hakkinda.astro';
 import Iletisim from '../components/anasayfa/Iletisim.astro';
-import { YAZAR, EPOSTA } from '../data/site';
+import { YAZAR, EPOSTA, KURUM_SOSYAL } from '../data/site';
 import '../styles/anasayfa-v2.css';
 
 // U1 (satis-uygula 28.07): eski öz-cevap alt metni ve beş-sayılı envanter
@@ -95,6 +95,7 @@ const sahneVeri = SAHNELER.map((s) => ({
       "name": "Su Haritası",
       "url": "https://suharitasi.com",
       "areaServed": { "@type": "Country", "name": "Türkiye" },
+      "sameAs": KURUM_SOSYAL,
       "email": EPOSTA,
       "telephone": "+90 532 449 71 44",
       "description": "Türkiye'nin su verisi, havzaları ve su mevzuatını tek haritada birleştiren bağımsız bilgi portalı.",

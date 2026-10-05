@@ -58,16 +58,19 @@ Her parça brief + uygula + ölçüm + commit ile yürür:
       ucu, bekçi (j) — temiz 0 sorun, kırmızı yol simülasyonla kanıtlı. Bonus:
       build KOK düzeltmesi + bekçi bellek dedupe. Rapor:
       `rapor/05-10-p6b-veri-tazelik.md`.
-- [ ] **GA4 OKUMA (yarım — kullanıcı adımı netleşti):** API'ler + SA çalışıyor:
-      `ga4_list_properties` ve `run_report` **pozitif kontrol ✓** (arslanhukuk.tr
-      property'sinde sorgu çalıştı). ANCAK SA yalnız `arslanhukuk.tr`'yi görüyor;
-      `G-NRJZLX0CPR`'nin property'si SA'ya görünmüyor. KULLANICI: o property'de
-      (Yönetici → Mülk erişim yönetimi) `gsc-okuyucu@suharitasi-gsc.iam.gserviceaccount.com`
-      = **Görüntüleyici** (property hangi GA hesabındaysa orada). Sonrası otonom:
-      dönüşüm/oturum raporu + site tarafı doğrulaması.
-- [ ] **P6 KALAN:** bülten (Buttondown hesabı) · sameAs profilleri (LinkedIn/GBP/
-      Wikidata — kullanıcı varlıkları).
-KULLANICI KALEMLERİ: GA4 Admin API (panel) · rozet ifade teyidi [SERDAR-HUKUK].
+- [ ] **GA4 OKUMA (propagasyon ölçümü):** API'ler + SA **pozitif kontrol ✓**
+      (`run_report` arslanhukuk.tr'de çalıştı). Kullanıcı doğru mülke
+      (G-NRJZLX0CPR) Görüntüleyici ekledi; `ga4_list_properties` bu kayıt
+      anında hâlâ yalnız arslanhukuk.tr gösteriyor → yeniden ölçülecek;
+      görünmezse property'nin hangi GA hesabında olduğu netleştirilecek
+      (kullanıcı 1 satır). Sonrası otonom: oturum/dönüşüm özeti.
+- [x] **P6-C KİMLİK BAĞLARI (sameAs) — TAMAM (05.10, §69):** ana sayfa +
+      /harita/ özel şemalarına `KURUM_SOSYAL` (Wikidata + Zenodo) bağlandı;
+      3 yüzey dist grep birebir. LinkedIn/GBP adresleri kullanıcı varlığı.
+      Rapor: `rapor/05-10-p6c-kimlik-bulten.md`.
+- [ ] **BÜLTEN (KULLANICI):** Buttondown hesabı + kullanıcı adı → tek satır
+      `src/data/bulten.ts`; sonrası otonom (build + doğrulama).
+KULLANICI KALEMLERİ: Buttondown kullanıcı adı · GA4 mülk görünürlük teyidi.
 
 ═══ 04.10.2026 — OTONOM SKILL MİMARİSİ (KARARLAR §58) ═══
 Rapor: `rapor/04-10-otonom-skill-mimarisi.md` · yerel: `.agents/skills/`
