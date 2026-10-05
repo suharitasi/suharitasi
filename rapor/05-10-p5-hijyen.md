@@ -41,8 +41,9 @@ Kaynak: `rapor/05-10-odul-ustu-denetim.md` S4 + S10 + katma değer #6.
 - Bekçi notu: bu koşumda **bizden bağımsız** geçici swap uyarısı üretti
   (09:20 `swap=2095MB > eşik` — ağır Lighthouse/Chrome turları; şu an
   `1,4Gi`). P5 ile ilgisi yok; şeffaflık için kayıtta.
-- CANLI: `surum.json` + ana sayfada "Hemen ara" 0 / "Telefon" var — kayıt
-  commit'inde doğrulanır.
+- **CANLI (commit `8402d5e`):** `surum.json` yeni SHA · ana sayfa ve
+  `/mevzuat/167/madde-8/` (CtaBlok) canlıda "Hemen ara" **0** / "Telefon"
+  mevcut · `site-saglik --hizli` **YEŞİL**.
 
 ## KULLANICI ONAYI BEKLİYOR
 Görünür CTA metni değişti — canlı görsel/içerik onayı kullanıcıda
