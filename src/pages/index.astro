@@ -39,6 +39,7 @@ import '../styles/anasayfa-v2.css';
 import { HERO_ALT, META_ACIKLAMA } from '../data/anasayfa-satis.js';
 import AcilDestekBar from '../components/AcilDestekBar.astro';
 import CfAnalitik from '../components/CfAnalitik.astro';
+import Analitik from '../components/Analitik.astro';
 
 // Sahne kaynakları (poster + klip) — eski sayfadan AYNEN (video/poster
 // dosyalarına DOKUNULMADI, M6).
@@ -315,6 +316,7 @@ const sahneVeri = SAHNELER.map((s) => ({
   </main>
 
   <CfAnalitik />
+  <Analitik />
   <div class="v2-altkap"><AltBilgi /></div>
 
   <AcilDestekBar />

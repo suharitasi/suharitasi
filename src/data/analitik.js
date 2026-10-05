@@ -1,15 +1,11 @@
-// GA4 ÖLÇÜM KİMLİĞİ (13.09.2026).
+// GA4 ÖLÇÜM KİMLİĞİ (13.09.2026; ETKİNLEŞTİRİLDİ 05.10.2026, P6-A).
 //
-// BOŞ BIRAKILDI → site çerezsiz kalır, GA4 yüklenmez. GA4 aktif etmek için
-// Google Analytics'te bir property oluşturup ölçüm kimliğini (G-XXXXXXX)
-// buraya yaz. O andan itibaren:
-//   - KVKK onay banner'ı görünür (src/components/Analitik.astro),
-//   - kullanıcı onay verirse GA4 + olaylar yüklenir,
-//   - olcum.js zaten window.dataLayer'a 'temas' olayı itiyor; GA4 bunu alır.
-//
-// NOT: GA4 çerez kullandığı için KVKK aydınlatma metni (/gizlilik/) ve açık
-// onay ZORUNLUDUR — bu bileşen onu uygular.
-export const GA4_ID = '';
+// AKTİF: GA4_ID dolu → onay banner'ı görünür; kullanıcı ONAY VERİRSE GA4 +
+// olaylar yüklenir (Analitik.astro; onay öncesi sıfır istek — ölçüldü).
+//   - KVKK onay banner'ı (src/components/Analitik.astro) zorunlu kapıdır,
+//   - anonymize_ip açık; reklam sinyalleri (ad_storage) kapalı,
+//   - /gizlilik/ metni bu gerçekle uyumlandı (P6-A).
+export const GA4_ID = 'G-NRJZLX0CPR';
 
 // CLOUDFLARE WEB ANALYTICS TOKEN (24.09.2026, P1 Faz 1).
 //

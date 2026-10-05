@@ -1,5 +1,5 @@
 {
-  "_not": "G1(a) otomatik CSP onarımının SINIRI. Onarım YALNIZ buradaki değerleri ekleyebilir. Gereken kaynak burada yoksa onarım YAPILMAZ, kullanıcıya devredilir. | 28.07 B4.2: Cloudflare Web Analytics konaklari eklendi (script-src static.cloudflareinsights.com, connect-src cloudflareinsights.com). Gerekce: beacon canlida YOK olarak olculdu (22 istek, 0 analitik); panel acilirsa CSP sessizce engellerdi. Izin ATIL — panel acilmadan istek yapilmaz. | 27.08 K36: form-action 'self' eklendi — CSP3'te default-src'den turemez; sitede sunucuya gonderim yapan form yok, izin DAR tutuldu. | 04.10.2026: form-action'a https://buttondown.com eklendi (bülten formu hesap bağlanınca POST eder; kaynak DAR tutuldu, _headers ile eşleşir).",
+  "_not": "G1(a) otomatik CSP onarımının SINIRI. Onarım YALNIZ buradaki değerleri ekleyebilir. Gereken kaynak burada yoksa onarım YAPILMAZ, kullanıcıya devredilir. | 28.07 B4.2: Cloudflare Web Analytics konaklari eklendi (script-src static.cloudflareinsights.com, connect-src cloudflareinsights.com). Gerekce: beacon canlida YOK olarak olculdu (22 istek, 0 analitik); panel acilirsa CSP sessizce engellerdi. Izin ATIL — panel acilmadan istek yapilmaz. | 27.08 K36: form-action 'self' eklendi — CSP3'te default-src'den turemez; sitede sunucuya gonderim yapan form yok, izin DAR tutuldu. | 04.10.2026: form-action'a https://buttondown.com eklendi (bülten formu hesap bağlanınca POST eder; kaynak DAR tutuldu, _headers ile eşleşir). | 05.10.2026 P6-A: GA4 onay kapılı ölçüm etkinleştirildi (GA4_ID=G-NRJZLX0CPR); script-src'e www.googletagmanager.com, connect-src'e google-analytics/analytics.google.com eklendi. GA yalnız çerez onayı SONRASI yüklenir (Analitik.astro); reklam sinyalleri kapalı, anonymize_ip açık. Sinir DAR: yalnız GA'nın zorunlu konakları — başka konak eklenmez.",
   "izinli": {
     "media-src": [
       "'self'",
@@ -23,11 +23,15 @@
     "script-src": [
       "'self'",
       "'unsafe-inline'",
-      "https://static.cloudflareinsights.com"
+      "https://static.cloudflareinsights.com",
+      "https://www.googletagmanager.com"
     ],
     "connect-src": [
       "'self'",
-      "https://cloudflareinsights.com"
+      "https://cloudflareinsights.com",
+      "https://www.google-analytics.com",
+      "https://*.google-analytics.com",
+      "https://*.analytics.google.com"
     ],
     "worker-src": [
       "'self'",
@@ -44,6 +48,9 @@
     "fonts.gstatic.com",
     "static.cloudflareinsights.com",
     "cloudflareinsights.com",
-    "buttondown.com"
+    "buttondown.com",
+    "googletagmanager.com",
+    "google-analytics.com",
+    "analytics.google.com"
   ]
 }

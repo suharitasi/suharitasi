@@ -16,6 +16,12 @@
 # Genişleme sınırı DAR: yalnız iki Cloudflare konağı, yalnız iki
 # direktif. Panel açılmadığı sürece bu izin ATIL durur — hiçbir istek
 # yapılmaz. Panel adımları: rapor/dagitim-durumu.md §5.
+# GA4 ÖLÇÜM İZNİ (P6-A, 05.10.2026) — sahip talimatı: GA4_ID=G-NRJZLX0CPR
+# etkinleştirildi. script-src'e googletagmanager.com, connect-src'e
+# google-analytics/analytics.google.com eklendi. GA yalnız ÇEREZ ONAYI
+# SONRASI yüklenir (Analitik.astro); onay öncesi sıfır istek — tarayıcı
+# testiyle ölçüldü. Sınır DAR: yalnız GA'nın zorunlu konakları; reklam
+# sinyalleri kapalı, anonymize_ip açık. İzin listesi: izleme/csp-izinli-kaynaklar.json.
 # FORM-ACTION (K36, 2026-08-27) — `form-action 'self'` EKLENDİ. CSP3'te bu
 # direktif `default-src`'den TÜREMEZ; yokken enjekte edilmiş bir form her
 # yere gönderim yapabilirdi. `unsafe-inline` KALDIRILMADI: Astro'nun sayfa-içi
@@ -57,7 +63,7 @@
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
   X-Permitted-Cross-Domain-Policies: none
-  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://cloudflareinsights.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; frame-src 'self'; manifest-src 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://www.googletagmanager.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://cloudflareinsights.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; frame-src 'self'; manifest-src 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests
 
 # GÖMÜLÜ WIDGET (Adım 3, 24.09.2026): /gomulu/* üçüncü taraf sitelere
 # gömülmek için tasarlandı. /* bloğundaki frame-ancestors 'none' bunu engeller;

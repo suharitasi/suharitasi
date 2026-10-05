@@ -1239,6 +1239,27 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §67 · P6-A GA4 ÖLÇÜM AKTİVASYONU: ONAY KAPILI ÖLÇÜM + GİZLİLİK UYUMU (05.10.2026)
+
+- **Karar (sahip talimatı):** GA4 ölçümü etkinleştirildi — `GA4_ID=G-NRJZLX0CPR`.
+  GA yalnız çerez onayı SONRASI yüklenir; onay öncesi sıfır istek (ölçüldü).
+  `anonymize_ip` açık, reklam sinyalleri kapalı.
+- **Analitik bağlama:** ana sayfa + /harita/'ya eklendi (layout dışı sayfalar;
+  gomulu widget ve pilotlar bilinçli istisna). Ölçüm yüklemesi artık en yüksek
+  trafikli iki yüzeyde de aktif.
+- **CSP:** script-src'e googletagmanager, connect-src'e google-analytics/
+  analytics.google.com eklendi; `_headers` ↔ `csp-izinli-kaynaklar.json` eş.
+- **KVKK:** `/gizlilik/` "çerez yok" iddiası gerçekle uyumlandı (onay kapılı
+  ölçüm + §7 tercih değiştirme); metin [SERDAR-HUKUK] incelemesine açık.
+- **Kanıt (4 senaryo):** onay öncesi 0 istek + banner · kabul → gtag 200 +
+  collect 204 ×2 + konsol 0 CSP ihlali · reddet → belge-bazlı 0 GA kaynağı ·
+  dönen ziyaretçi → otomatik yükleme. Rapor: `rapor/05-10-p6a-ga4.md`.
+- **KULLANICI ADIMI (okuma):** GCP proje 205139338529 → Admin+Data API
+  etkinleştir; GA4 mülkünde SA'ya (`gsc-okuyucu@suharitasi-gsc.iam.gserviceaccount.com`)
+  Görüntüleyici ver. Sonrası `ga4_list_properties` doğrulaması otomatik.
+
+---
+
 ## §66 · P5 HUKUK & HİJYEN: NÖTR CTA DİLİ + GENİŞ TARAMA + DEPO SADELEŞTİRME (05.10.2026)
 
 - **CTA dili:** "Hemen ara" → **"Telefon"** (3 kaynak; dist 1109 → **0**,

@@ -2,6 +2,9 @@
 // /gizlilik/ — KVKK AYDINLATMA METNİ VE GİZLİLİK (13.09.2026).
 // Metin, sitenin GERÇEK veri işleme pratiğini tarif eder (hangi alan, nereye,
 // ne kadar süre). Hukuki metin [SERDAR-HUKUK] onayına tabidir.
+// 05.10.2026 (P6-A): onay kapılı GA4 etkinleştirildi (GA4_ID=G-NRJZLX0CPR);
+// "çerez yok" ifadesi gerçekle uyumlandı — sahip talimatıyla; [SERDAR-HUKUK]
+// incelemesine açıktır.
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
@@ -9,10 +12,11 @@ import HukukSerhi from '../components/HukukSerhi.astro';
 import { EPOSTA, YAZAR } from '../data/site';
 
 const OZ_CEVAP =
-  'Su Haritası çerez kullanmaz ve reklam amaçlı izleme yapmaz. Yalnızca sizin ' +
-  'gönderdiğiniz iletişim bilgileri talebe dönüş için işlenir; sistem güvenliği ' +
-  'amacıyla 30 günlük teknik erişim günlükleri (IP, uç, durum kodu) tutulur. ' +
-  'Başvuru: ' + EPOSTA + '.';
+  'Su Haritası reklam amaçlı izleme yapmaz; ölçüm çerezi yalnızca siz onay ' +
+  'verirseniz kullanılır (Google Analytics, IP anonimleştirme açık). ' +
+  'Gönderdiğiniz iletişim bilgileri talebe dönüş için işlenir; sistem ' +
+  'güvenliği için 30 günlük teknik erişim günlükleri (IP, uç, durum kodu) ' +
+  'tutulur. Başvuru: ' + EPOSTA + '.';
 ---
 <Sayfa baslik="Gizlilik ve KVKK" aciklama={OZ_CEVAP} tarayiciBaslik="Gizlilik ve KVKK Aydınlatma Metni" sema={[{ '@type': 'WebPage', name: 'Gizlilik ve KVKK aydınlatma metni', description: OZ_CEVAP, inLanguage: 'tr-TR' }]}>
   <SayfaBasi etiket="Gizlilik" baslik="Gizlilik ve KVKK aydınlatma metni" ozet="Hangi bilgi, neden, nerede ve ne kadar süre işlenir." />
@@ -26,22 +30,26 @@ const OZ_CEVAP =
     <ul>
       <li><strong>Hızlı danışma formu:</strong> ad soyad, telefon, (varsa) il, konu ve mesaj metni.</li>
       <li><strong>Mevzuat değişiklik aboneliği:</strong> e-posta adresi.</li>
-      <li><strong>Çerez yok:</strong> site tarayıcınıza çerez yerleştirmez ve reklam izleme (tracking) yapmaz.</li>
+      <li><strong>Onay kapılı ölçüm çerezi:</strong> site siz onay vermeden hiçbir ölçüm betiği yüklemez ve çerez kullanmaz. &quot;Kabul et&quot; derseniz Google Analytics çerezleri (ör. _ga) kullanılır; &quot;Reddet&quot; derseniz ölçüm yapılmaz. Reklam izleme her durumda yapılmaz.</li>
+      <li><strong>Google Analytics (yalnız onay verirseniz):</strong> sayfa görüntüleme ve tıklama olayları Google LLC'ye aktarılır; IP anonimleştirme açıktır ve reklam sinyalleri kapalıdır. Tercihiniz tarayıcınızda (localStorage) saklanır.</li>
       <li><strong>Çerezsiz ölçüm:</strong> iletişim bağlantılarına (telefon/e-posta/WhatsApp) yapılan tıklamalar, IP adresi veya kullanıcı kimliği saklanmadan, yalnızca gün ve sayfa bazında sayılır.</li>
       <li>Sistem güvenliği ve API kötüye kullanımının önlenmesi amacıyla, ziyaretçi erişim günlükleri (IP adresi, erişilen uç nokta ve HTTP durum kodları) 30 gün süreyle kayıt altına alınmaktadır.</li>
     </ul>
 
     <h2>3. İşleme amacı ve hukuki sebep</h2>
-    <p>Bilgiler yalnızca <strong>talebinize dönüş yapmak</strong> ve (abonelikte) <strong>mevzuat değişikliği bildirimi göndermek</strong> amacıyla işlenir. Hukuki sebep: KVKK m.5/2 (açık rıza) ve talebe dönüş için gereklilik.</p>
+    <p>Bilgiler yalnızca <strong>talebinize dönüş yapmak</strong> ve (abonelikte) <strong>mevzuat değişikliği bildirimi göndermek</strong> amacıyla işlenir. Hukuki sebep: KVKK m.5/2 (açık rıza) ve talebe dönüş için gereklilik. Ölçüm çerezi yalnız açık rızanıza (banner'da &quot;Kabul et&quot;) dayanır.</p>
 
     <h2>4. Nerede ve ne kadar süre saklanır?</h2>
-    <p>Bilgiler Cloudflare altyapısında (Cloudflare KV) saklanır; sunucumuzda ayrı bir kopya tutulmaz. Saklama süresi: danışma talepleri için <strong>~180 gün</strong>, abonelikler için <strong>~2 yıl</strong>, teknik erişim günlükleri için <strong>30 gün</strong>; süre sonunda otomatik silinir. Reklam veya profilleme amaçlı üçüncü taraf paylaşımı yapılmaz.</p>
+    <p>Bilgiler Cloudflare altyapısında (Cloudflare KV) saklanır; sunucumuzda ayrı bir kopya tutulmaz. Saklama süresi: danışma talepleri için <strong>~180 gün</strong>, abonelikler için <strong>~2 yıl</strong>, teknik erişim günlükleri için <strong>30 gün</strong>; süre sonunda otomatik silinir. Reklam veya profilleme amaçlı üçüncü taraf paylaşımı yapılmaz; onay verdiğiniz ölçüm verisi yalnız Google Analytics (Google LLC) üzerinde işlenir.</p>
 
     <h2>5. KVKK m.11 kapsamındaki haklarınız</h2>
     <p>Kişisel verilerinizin işlenip işlenmediğini öğrenme, işlenmişse bilgi talep etme, düzeltilmesini veya silinmesini isteme ve işlemeye itiraz etme haklarına sahipsiniz. Talebiniz için <a href={`mailto:${EPOSTA}`}>{EPOSTA}</a> adresine yazmanız yeterlidir; talepler en kısa sürede yanıtlanır.</p>
 
     <h2>6. Onay</h2>
     <p>Danışma formundaki onay kutusunu işaretlediğinizde, iletişim bilgilerinizin yalnız yukarıdaki amaçla işlenmesine açık rıza vermiş olursunuz. Onay vermeden form gönderilmez.</p>
+
+    <h2>7. Çerez tercihini değiştirme</h2>
+    <p>Ölçüm çerezi tercihiniz tarayıcınızda (localStorage) saklanır. Değiştirmek için tarayıcınızın site verilerini temizleyin; seçim banner'ı yeniden görünür ve yeni tercihinizi verebilirsiniz.</p>
 
     <p class="gz-not">Bu metin, portalın fiilî veri işleme pratiğini yansıtır. Ayrıntılı hukuki değerlendirme için bir hukukçuya danışabilirsiniz.</p>
   </div>

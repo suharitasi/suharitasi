@@ -53,14 +53,12 @@ Her parça brief + uygula + ölçüm + commit ile yürür:
       bekçiye bağlı, negatif test kanıtlı), depo sadeleştirme (tek-seferlik
       arşivi, BACKUP'lar arsiv/, _redirects notu). KULLANICI: CTA canlı onayı.
       Rapor: `rapor/05-10-p5-hijyen.md`.
-- [ ] **P6 DAĞITIM:** GA4 aç; veri tazelik panosu; bülten + sameAs.
-      **GA4 KULLANICI 2 ADIM (panel):** (1) console.cloud.google.com → proje
-      205139338529 → "Google Analytics Admin API" + "Google Analytics Data API"
-      etkinleştir; (2) GA4 → Yönetici → Mülk erişim yönetimi →
-      `gsc-okuyucu@suharitasi-gsc.iam.gserviceaccount.com` = **Görüntüleyici**
-      (Editor DEĞİL). Sonrası OTONOM: `ga4_list_properties` → ölçüm kimliği
-      `src/data/analitik.js` `GA4_ID`ye yazılır (KVKK onay banner'ı hazır) →
-      build + doğrulama. Güvenlik: SA anahtarı 600, repoda değil; en az yetki.
+- [~] **P6 DAĞITIM:** **GA4 ÖLÇÜM TARAFI TAMAM (05.10, §67):** G-NRJZLX0CPR
+      canlı, onay kapılı; 4 senaryo kanıtlı (onay öncesi 0 istek). KALAN
+      KULLANICI 2 ADIM: GCP'de Admin+Data API etkinleştir; GA4'te
+      `gsc-okuyucu@suharitasi-gsc.iam.gserviceaccount.com` = Görüntüleyici;
+      sonrası `ga4_list_properties` doğrulaması bende. Ayrıca: veri tazelik
+      panosu; bülten + sameAs.
 KULLANICI KALEMLERİ: GA4 Admin API (panel) · rozet ifade teyidi [SERDAR-HUKUK].
 
 ═══ 04.10.2026 — OTONOM SKILL MİMARİSİ (KARARLAR §58) ═══
