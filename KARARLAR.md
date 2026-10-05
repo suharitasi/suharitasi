@@ -1254,6 +1254,13 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 - **Kanıt (4 senaryo):** onay öncesi 0 istek + banner · kabul → gtag 200 +
   collect 204 ×2 + konsol 0 CSP ihlali · reddet → belge-bazlı 0 GA kaynağı ·
   dönen ziyaretçi → otomatik yükleme. Rapor: `rapor/05-10-p6a-ga4.md`.
+- **Ölçümün yakaladığı düzeltmeler:** (1) banner `hidden`'ını ezen
+  `display:flex` kusuru — Kabul/Reddet sonrası banner görsel olarak
+  KAPANMIYORDU; `[hidden]{display:none}` ile düzeltildi (canlı kanıt:
+  taze=flex, red=none); (2) "Gizlilik" linki 44px dokunma hedefi;
+  (3) görsel-kimlik ölçümü onay banner'ını hariç tutar (`gorsel-olc.mjs`
+  addInitScript; reduced-motion istisnasıyla aynı sınıf) + gerekçeli taban
+  yenilemesi. Sonuç: `kesismeAlan=0`, `--hizli` YEŞİL.
 - **KULLANICI ADIMI (okuma):** GCP proje 205139338529 → Admin+Data API
   etkinleştir; GA4 mülkünde SA'ya (`gsc-okuyucu@suharitasi-gsc.iam.gserviceaccount.com`)
   Görüntüleyici ver. Sonrası `ga4_list_properties` doğrulaması otomatik.

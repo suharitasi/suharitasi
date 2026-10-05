@@ -1,7 +1,7 @@
 {
  "_not": "GÖRSEL/DÜZEN TABANI — sürümlü YAPILANDIRMA (log değil). Bilinçli tasarım değişikliğinde `node arac/site-saglik.mjs --gorsel-taban-yenile --gerekce \"...\"` ile yenilenir; yenilenmeden kalem KIRMIZI kalır. Ölçüm deterministiktir: sabit viewport + DPR + reduced-motion (sahne 0'da donar).",
- "tabanTarihi": "2026-10-04T19:34:48.372Z",
- "gerekce": "10 skill tam tarama §59: jargon 198->0, tablo/whitespace turu, su-hukuku H1, RG/baraj veri onarimi",
+ "tabanTarihi": "2026-10-05T10:25:28.511Z",
+ "gerekce": "P6-A duzeltme sonrasi: banner [hidden] artik display:none; gorsel-kimlik olcumu banner-haric sabit durumda sifir kesisme ile yenilendi (05.10.2026)",
  "esikler": {
   "g1KesismePx2": 2000,
   "g2OlcekOran": 1.05,
@@ -312,7 +312,7 @@
    ],
    "hizalamaSapma": 0,
    "kesismeAlan": 0,
-   "enYuksekOlcek": 0.7,
+   "enYuksekOlcek": 1,
    "mobilIlkSoru": null,
    "aktifSahne": "(sahne yok)"
   },
@@ -336,7 +336,7 @@
    ],
    "hizalamaSapma": 0,
    "kesismeAlan": 0,
-   "enYuksekOlcek": 0.17,
+   "enYuksekOlcek": 1,
    "mobilIlkSoru": null,
    "aktifSahne": "(sahne yok)"
   },
@@ -898,7 +898,7 @@
   }
  },
  "oncekiTaban": {
-  "tarih": "2026-10-04T19:10:18.158Z",
-  "gerekce": "master v3 §57: ana sayfa 3 CTA karti + /tahmin sade dil turu 3 (sozluk kaldirildi, details akordeon) + il rehberi 4 soru + hukuk danismanlik hizli danisma kanali"
+  "tarih": "2026-10-05T10:19:46.844Z",
+  "gerekce": "P6-A: gorsel-kimlik olcumu onay banner'ini haric tutar (gecici hukuk katmani; reduced-motion istisnasi ile ayni sinif). Banner gizli 'onay karari verilmis' sabit durum olculur."
  }
 }
