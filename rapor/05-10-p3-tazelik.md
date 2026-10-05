@@ -63,6 +63,10 @@ Kaynak bulgular: `rapor/05-10-odul-ustu-denetim.md` K3 + S3 + S5 + S7.
 chirps 116 ay + indirme logu · cron diff temiz · dateModified sayımları ·
 sitemap 1072/1104 · radar kuru koşum · loglar 16/16 · build EXIT 0 · 1190 sayfa.
 
+**Canlı doğrulama (commit `017d25f`):** `surum.json` yeni SHA · rozetler yeni
+metinle canlı · `/mevzuat/167/madde-8/` → `"dateModified":"2026-10-04"` canlı ·
+`site-saglik --hizli` **GENEL YEŞİL** (0 kırmızı · 0 sarı).
+
 ## Kullanıcı kalemleri
 
 - Canlı doğrulama (bu commit'in deploy'u) — İş kapanış kuralı.

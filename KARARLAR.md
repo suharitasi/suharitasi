@@ -1239,6 +1239,24 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §63 · P3 DAMGA & TAZELİK: CHIRPS + dateModified + RADAR DÜRÜSTLÜĞÜ + LOGLAR (05.10.2026)
+
+- **CHIRPS:** veri `2026-06` → **`2026-08`** (116 ay; resmî kaynaktan yeniden
+  indirildi). Aylık tazeleme `arac/chirps-guncelle.sh` + cron `40 4 5 * *`;
+  tazelik kapısı: son ay < (bu ay−2) ise UYARI + exit≠0 + Telegram.
+- **dateModified:** `guncellik.js`e `mevzuat`/`rgArsiv`/`emsal` kaynakları;
+  mevzuat (470), yeralti-suyu (81), emsal, RG arşivi, tahmin +
+  `/mevzuat/degisiklikler/`. **Sitemap lastmod 586 → 1.072/1.104** (kalan 32
+  tarihsiz yüzeyde dürüst boşluk korundu; build-günü damga yasak).
+- **Mevzuat radarı:** kısmi hatada `hata_sayisi`+`erisilemeyenler` yazılır,
+  exit≠0 (sarmalayıcı Telegram); sayfa hata>0 iken uyarı satırı gösterir.
+- **/api/loglar:** hız sınırı yetki denemesinden ÖNCE; test **16/16**.
+- **Canlı doğrulama:** `surum.json=017d25f` · rozetler yeni metinle canlı ·
+  mevzuat dateModified canlı · `site-saglik --hizli` **YEŞİL**. Rapor:
+  `rapor/05-10-p3-tazelik.md`.
+
+---
+
 ## §62 · SAHİP ONAYLARI: DİSK TEMİZLİĞİ + ÖLÜ SERVİS + ROZET + GA4 ADIMI (05.10.2026)
 
 - **Disk (onaylandı, uygulandı):** `cikti/denetim` 294M→2,7M (izlenen 15
