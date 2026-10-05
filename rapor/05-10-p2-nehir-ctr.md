@@ -49,7 +49,9 @@ yoksa kök neden analizi (AIO / sıralama) yapılır ve dürüstçe raporlanır.
 ## DUR / kullanıcı
 
 - **KULLANICI ONAYI BEKLİYOR:** canlı SERP görünümü (İş kapanış kuralı).
-- IndexNow: değişen URL'ler deploy sonrası `--url-dosya` ile bildirilir.
+- IndexNow: 125 URL bildirildi (HTTP 200) — `cikti/indexnow-p2-urls.txt`.
+- Canlı doğrulama: `surum.json=bee9e31`; örnek başlıklar canlıda yeni;
+  `site-saglik --hizli` **GENEL YEŞİL** (0 kırmızı · 0 sarı).
 
 ## Öz-eleştiri ("daha iyisi olabilir miydi")
 
