@@ -53,6 +53,12 @@ import { GA4_ID } from '../data/analitik.js';
     padding: 0.8rem clamp(1rem, 4vw, 2rem);
     background: var(--deniz, #0A2740); color: #fff; font-size: 0.86rem;
   }
+  /* P6-A KRİTİK DÜZELTME (05.10.2026): yukarıdaki author `display:flex`,
+     `hidden` niteliğinin UA `display:none`'unu EZİYOR — banner Kabul/Reddet
+     sonrası görsel olarak KAPANMIYORDU (ölçüm: G1 kesisme 259.152 px²).
+     Bu kural gizlemeyi garanti eder; görsel-ölçüm de (onay-banner hariç
+     koşulu) ancak bununla temiz sonuç verir. */
+  .kvkk-banner[hidden] { display: none; }
   .kvkk-banner p { margin: 0; max-width: 70ch; }
   .kvkk-eylem { display: flex; align-items: center; gap: 0.6rem; }
   .kvkk-btn { font: inherit; font-weight: 600; padding: 0.5rem 1rem; min-height: 44px; background: var(--akuamarin, #57BAE0); color: var(--deniz, #0A2740); border: 0; border-radius: 2px; cursor: pointer; }
