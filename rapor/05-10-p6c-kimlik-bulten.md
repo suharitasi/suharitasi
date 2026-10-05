@@ -26,13 +26,19 @@ Kaynak: kuyruk P6 kalanı.
 ## 3) GA4 okuma — durum
 
 - Admin+Data API + SA çalışıyor (pozitif kontrol: arslanhukuk.tr sorgusu).
-- Kullanıcı doğru mülke (G-NRJZLX0CPR) Görüntüleyici eklediğini bildirdi; bu
-  raporun yazıldığı anda `ga4_list_properties` hâlâ YALNIZ arslanhukuk.tr
-  gösteriyor (propagasyon olasılığı) — yeniden ölçüm sonucu kayıt commit'inde.
+- Kullanıcı doğru mülke (G-NRJZLX0CPR) Görüntüleyici eklediğini bildirdi;
+  **11:17 UTC ölçümü** hâlâ YALNIZ arslanhukuk.tr gösteriyor. Olası nedenler:
+  (a) Google erişim yayılımı gecikmesi (dakikalar–nadiren saatler),
+  (b) property'nin farklı bir GA **hesabında** olması ve o hesapta grant'ın
+  henüz görünmemesi. KULLANICI KONTROL LİSTESİ: (1) GA4 → ilgili mülk →
+  Yönetici → Mülk erişim yönetimi'nde SA satırı **görünüyor mu**;
+  (2) sol üstte mülkün bağlı olduğu **hesap adı** ne? (3) 10 dk sonra bana
+  "hazır" de — yeniden ölçerim.
 
 ## Kanıtlar
-Build EXIT 0 · 1190 sayfa · dist sameAs grep'leri (3 yüzey) · CANLI: deploy
-sonrası curl + `--hizli` (kayıt commit'inde) · GA4 list çıktısı.
+Build EXIT 0 · 1190 sayfa · dist sameAs grep'leri (3 yüzey) · **CANLI
+(`973e347`):** ana sayfa + /harita/ sameAs birebir · `--hizli` **YEŞİL** ·
+GA4 list çıktısı (11:17 — yalnız arslanhukuk.tr).
 
 ## Öz-eleştiri ("daha iyisi olabilirdi")
 - sameAs'e X/YouTube eklenmesi kullanıcı profili açılana dek bekler; sıralama
