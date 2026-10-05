@@ -99,6 +99,8 @@ def main():
     simdi = datetime.now(TR).strftime("%Y-%m-%dT%H:%M:%S%z")
     yeni = {"son_kontrol": simdi, "mevzuatlar": {}}
     degisiklikler = []
+    hata = 0
+    erisilemeyenler = []
 
     for mz in MEVZUATLAR:
         url = IFRAME.format(tur=mz["mtur"], no=mz["no"], tertip=mz["tertip"])
@@ -106,6 +108,8 @@ def main():
             md = maddeler(metne(cek(url)))
         except Exception as e:
             print(f"[HATA] {mz['kisa']}: {e}", file=sys.stderr)
+            hata += 1
+            erisilemeyenler.append(mz["kisa"])
             yeni["mevzuatlar"][mz["kisa"]] = eski.get("mevzuatlar", {}).get(mz["kisa"], {})
             continue
         onceki = eski.get("mevzuatlar", {}).get(mz["kisa"], {})
@@ -121,6 +125,10 @@ def main():
         yeni["mevzuatlar"][mz["kisa"]] = md
         print(f"  ✓ {mz['kisa']}: {len(md)} madde" + (f" · değişiklik var" if any(d['kanun']==mz['kisa'] for d in degisiklikler) else ""))
 
+    yeni["hata_sayisi"] = hata
+    yeni["erisilemeyenler"] = erisilemeyenler
+    if hata:
+        print(f"[UYARI] {hata} mevzuat erişilemedi: {', '.join(erisilemeyenler)} — önceki kayıt korundu.", file=sys.stderr)
     if not args.kuru:
         json_yaz(surum_yolu, yeni, ensure_ascii=False, indent=1)
         log = json.loads(log_yolu.read_text(encoding="utf-8")) if log_yolu.exists() else {"_not": "Mevzuat değişiklik günlüğü. Resmî metnin SHA-256 farkından türetilir; uydurma yok.", "kayitlar": []}
@@ -131,7 +139,7 @@ def main():
         print(f"Değişiklik kaydı: {len(degisiklikler)} yeni")
     else:
         print(f"[kuru] değişiklik: {len(degisiklikler)}")
-    return 0
+    return 1 if hata else 0
 
 
 if __name__ == "__main__":

@@ -6,6 +6,7 @@
 // Doğrulama durumu dürüstçe gösterilir: 'kaynakli' (ikincil kaynak bağlantısı
 // var) / 'kunye' (yalnız künye, nihai doğrulama sürüyor).
 import Sayfa from '../layouts/Sayfa.astro';
+import { TARIH } from '../data/guncellik.js';
 import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
@@ -64,6 +65,7 @@ const sema = [
     name: 'Su hukuku emsal kararları',
     description: OZ_CEVAP,
     inLanguage: 'tr-TR',
+    ...(TARIH.emsal ? { dateModified: TARIH.emsal } : {}),
     isPartOf: { '@id': `${kok}#site` },
   },
 ];

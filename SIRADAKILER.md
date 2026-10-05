@@ -23,12 +23,28 @@ Her parça brief + uygula + ölçüm + commit ile yürür:
       iç-bağı 4→9 link/8 kaynak; FAQ/og/H1 korundu. Rapor:
       `rapor/05-10-p2-nehir-ctr.md`. KULLANICI: canlı SERP onayı; GSC ölçümü
       2-4 hafta (D1 planı).
-- [ ] **P3 DAMGA & TAZELİK (K/S):** CHIRPS cron; dateModified 518 URL;
-      mevzuat-radar hata yayını; emsal 03.11 doğrulaması; /api/loglar limiter.
+- [~] **P3 DAMGA & TAZELİK (K/S) — UYGULANDI (05.10); canlı doğrulama P4
+      commit'iyle:** CHIRPS tazeleme + aylık cron (ayın 5'i 04:40 UTC);
+      mevzuat/yeralti-suyu/emsal/RG/tahmin dateModified; mevzuat-radar hata
+      görünürlüğü ("N kaynak erişilemedi"); /api/loglar limiter sırası;
+      loglar testi 16/16. Rapor: `rapor/05-10-p3-tazelik.md`.
+      KALAN: emsal ilk otomatik koşu doğrulaması — 03.11.2026.
+- [ ] **P2 SERP ÖLÇÜMÜ (19.10.2026):** `izleme/state/p2-serp-taban.json`
+      tabanına göre `gsc_ctr_opportunities` + `gsc_quick_wins` yeniden çekilir;
+      kapanış kuralı taban dosyasında yazılı (>=3 sayfada poz iyileşmesi
+      ve/veya aile CTR +%25 → kapan; yoksa kök-neden işi). Nihai SERP onayı
+      kullanıcıda (yetki devri: ajan ölçer, kullanıcı onaylar).
 - [ ] **P4 PERFORMANS (S):** /harita srcset; _astro immutable; medya turu.
 - [ ] **P5 HUKUK & HİJYEN (S):** "Hemen ara"→"Telefon" + tarama genişletme;
       rozet ifadesi [SERDAR-HUKUK]; depo hijyeni; ölü hero seti (CF günlüğü).
 - [ ] **P6 DAĞITIM:** GA4 aç; veri tazelik panosu; bülten + sameAs.
+      **GA4 KULLANICI 2 ADIM (panel):** (1) console.cloud.google.com → proje
+      205139338529 → "Google Analytics Admin API" + "Google Analytics Data API"
+      etkinleştir; (2) GA4 → Yönetici → Mülk erişim yönetimi →
+      `gsc-okuyucu@suharitasi-gsc.iam.gserviceaccount.com` = **Görüntüleyici**
+      (Editor DEĞİL). Sonrası OTONOM: `ga4_list_properties` → ölçüm kimliği
+      `src/data/analitik.js` `GA4_ID`ye yazılır (KVKK onay banner'ı hazır) →
+      build + doğrulama. Güvenlik: SA anahtarı 600, repoda değil; en az yetki.
 KULLANICI KALEMLERİ: GA4 Admin API (panel) · rozet ifade teyidi [SERDAR-HUKUK].
 
 ═══ 04.10.2026 — OTONOM SKILL MİMARİSİ (KARARLAR §58) ═══

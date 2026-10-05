@@ -2,6 +2,7 @@
 // /mevzuat/[kanun]/[madde]/ — bağımsız madde sayfası (13.09.2026).
 // Metin birebir; ilgili rehberlere ve emsal kararlara çapraz bağlı.
 import Sayfa from '../../../layouts/Sayfa.astro';
+import { TARIH } from '../../../data/guncellik.js';
 import SayfaBasi from '../../../components/SayfaBasi.astro';
 import OzCevap from '../../../components/OzCevap.astro';
 import CtaBlok from '../../../components/CtaBlok.astro';
@@ -85,6 +86,7 @@ const sema = [
     name: `${m.kanun} ${m.madde}`,
     description: aciklama,
     inLanguage: 'tr-TR',
+    ...(TARIH.mevzuat ? { dateModified: TARIH.mevzuat } : {}),
     isPartOf: { '@id': `${kok}#site` },
     about: { '@id': `${canonical}#madde` },
   },

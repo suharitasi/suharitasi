@@ -11,6 +11,9 @@ import HukukSerhi from '../../components/HukukSerhi.astro';
 import surum from '../../../data/kamu/mevzuat-surum.json';
 import log from '../../../data/kamu/mevzuat-degisiklik.json';
 
+// P3 (05.10.2026): kısmi tarama hatası artık görünür — "9/9 kontrol" sanısı yok.
+const HATA_SAYISI = Number((surum as any).hata_sayisi ?? 0);
+
 const OZ_CEVAP =
   'Su hukuku mevzuatı yaşayan bir metindir. Bu radar, 167 sayılı Kanun, Yeraltı ' +
   'Suları Tüzüğü, Su Tahsisleri Yönetmeliği ve ilgili kanunların resmî metnini ' +
@@ -55,7 +58,7 @@ const sema = [
     temporalCoverage: '2026/..',
     numberOfItems: kayitlar.length,
   },
-  { '@type': 'WebPage', '@id': `${canonical}#sayfa`, url: canonical, name: 'Mevzuat değişiklik radarı', description: OZ_CEVAP, inLanguage: 'tr-TR', isPartOf: { '@id': `${kok}#site` } },
+  { '@type': 'WebPage', '@id': `${canonical}#sayfa`, url: canonical, name: 'Mevzuat değişiklik radarı', description: OZ_CEVAP, inLanguage: 'tr-TR', ...(surum.son_kontrol ? { dateModified: String(surum.son_kontrol).slice(0, 10) } : {}), isPartOf: { '@id': `${kok}#site` } },
 ];
 ---
 <Sayfa baslik="Mevzuat değişiklik radarı" aciklama={OZ_CEVAP} tarayiciBaslik="Mevzuat Değişiklik Radarı: Su Hukuku Canlı Takip" sema={sema}>
@@ -63,6 +66,9 @@ const sema = [
   <OzCevap metin={OZ_CEVAP} etiket="Kanun özeti" />
 
   <p class="mr-durum">Son kontrol: <strong>{trTarih(surum.son_kontrol)}</strong> · izlenen <strong>{izlenen.length}</strong> mevzuat · <strong>{toplamMadde}</strong> madde.</p>
+  {HATA_SAYISI > 0 && (
+    <p class="mr-durum" role="status">Uyarı: son taramada <strong>{HATA_SAYISI}</strong> kaynak erişilemedi ({(surum as any).erisilemeyenler?.join(', ')}); bu mevzuatlar için önceki kayıt korundu.</p>
+  )}
 
   <section class="mr-bolum" aria-label="İzlenen mevzuat">
     <h2>İzlenen mevzuat</h2>

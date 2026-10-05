@@ -10,6 +10,7 @@
 // dolu) sayfa alır; eşiği geçmeyen il ÜRETİLMEZ (kuyu-ruhsati deseni).
 // Hukuki satır mevcut rehbere KÖPRÜ verir; yeni hukuki iddia yazılmaz.
 import Sayfa from '../../layouts/Sayfa.astro';
+import { TARIH } from '../../data/guncellik.js';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import OzCevap from '../../components/OzCevap.astro';
 import CtaBlok from '../../components/CtaBlok.astro';
@@ -80,6 +81,7 @@ const sema = [
     name: `${profil.il} yeraltı suyu haritası ve havza verileri`,
     description: META,
     inLanguage: 'tr-TR',
+    ...(TARIH.potansiyel ? { dateModified: TARIH.potansiyel } : {}),
     isPartOf: { '@id': `${new URL('/', Astro.site).href}#site` },
   },
   ...(profil.havzalar.length

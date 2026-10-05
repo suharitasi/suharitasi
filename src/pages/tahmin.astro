@@ -4,6 +4,9 @@
    data/tahmin/kuraklik-projeksiyonu.json'dan gelir (tur="tahmin"); ölçülen
    verilerle karıştırılmaz. Yöntem: mevsimsel ayrıştırma + OLS trend + MK testi. */
 import Sayfa from '../layouts/Sayfa.astro';
+import { TARIH, enYeni } from '../data/guncellik.js';
+// P3 (05.10.2026): şema tazelik damgası — tahminin iki girdisi GRACE + baraj.
+const TAHMIN_VERI_TARIHI = enYeni(TARIH.grace, TARIH.baraj);
 import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
 import CtaBlok from '../components/CtaBlok.astro';
@@ -41,6 +44,7 @@ const sema = [
     temporalCoverage: '2002-04/2026-09',
     isAccessibleForFree: true,
     inLanguage: 'tr-TR',
+    ...(TAHMIN_VERI_TARIHI ? { dateModified: TAHMIN_VERI_TARIHI } : {}),
     spatialCoverage: { '@type': 'Place', name: 'Türkiye' },
     // ÖLÇÜM DEĞİL — schema düzeyinde de ayrılır:
     additionalType: 'https://schema.org/Dataset',

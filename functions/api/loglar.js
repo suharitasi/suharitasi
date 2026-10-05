@@ -41,12 +41,13 @@ export async function onRequest(context) {
   if (!kv || !env.SAYAC_ANAHTAR) {
     return json({ hata: 'günlük deposu yapılandırılmadı (WA_SAYAC / SAYAC_ANAHTAR)' }, 503);
   }
-  // Yetki kontrolü önce (ucuz); kaba kuvvete karşı ardından hız sınırı.
+  // P3 (05.10.2026): hız sınırı yetki kontrolünden ÖNCE — anahtar denemesi
+  // sınırsız kaba kuvvet yüzeyi olmasın (diğer uçların deseniyle aynı).
+  const rl = await rateLimit(request, env, 'loglar', 30, 60);
+  if (!rl.ok) return json({ hata: 'çok fazla istek' }, 429);
   if (!anahtarEsit(sayacAnahtari(request), env.SAYAC_ANAHTAR)) {
     return json({ hata: 'yetkisiz' }, 401);
   }
-  const rl = await rateLimit(request, env, 'loglar', 30, 60);
-  if (!rl.ok) return json({ hata: 'çok fazla istek' }, 429);
 
   // — En yeni kayıtlar: ters-zamanlı anahtar sayesinde ilk sayfalar yenidir.
   const kayitlar = [];

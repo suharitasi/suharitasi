@@ -7,6 +7,7 @@
 // ÜRETİLMEZ. Tüm sayılar src/data/rg-zaman.js'te build-time sayılıp assert
 // edilir. Kayıtlar sunucuda render edilir (SEO/no-JS); JS yalnız süzer.
 import Sayfa from '../../layouts/Sayfa.astro';
+import { TARIH } from '../../data/guncellik.js';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import OzCevap from '../../components/OzCevap.astro';
 import CtaBlok from '../../components/CtaBlok.astro';
@@ -71,6 +72,7 @@ const sema = [
     // uyarısı — derleme CC BY 4.0 olarak açıkça lisanslanır; kaynak künyesi
     // görünür sayfada da mevcut (uydurma yok, yalnız beyan).
     license: 'https://creativecommons.org/licenses/by/4.0/',
+    ...(TARIH.rgArsiv ? { dateModified: TARIH.rgArsiv } : {}),
     numberOfItems: TOPLAM,
     temporalCoverage: `${YIL_ILK}/${YIL_SON}`,
     spatialCoverage: { '@type': 'Place', name: 'Türkiye' },

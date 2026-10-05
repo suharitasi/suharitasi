@@ -40,6 +40,12 @@ const havzaVeri = oku('data/havza-veri.json');
 const persona = oku('data/lead/persona.json');
 const ilceMorfoloji = oku('veri/potansiyel/ilce-morfoloji.json');
 const rgDurum = oku('izleme/state/rg-nobetci-durum.json');
+const mevzuatSurum = oku('data/kamu/mevzuat-surum.json');
+const emsalKararlar = oku('data/kamu/emsal-kararlar.json');
+const RG_ARSIV_DOSYALAR = [
+  'veri/potansiyel/isletme-sahalari.json',
+  'veri/potansiyel/isletme-sahalari-ek.json',
+];
 
 /** İl sayfalarının dayandığı potansiyel derlemeleri (il-profil.js kümesi). */
 const POTANSIYEL_DOSYALAR = [
@@ -78,4 +84,14 @@ export const TARIH = {
   ilceMorfoloji: iso(ilceMorfoloji?.kunye?.uretim_tarihi),
   /** RG işletme-sahası arşivinin son nöbetçi taraması (gün). */
   rgTarama: iso((rgDurum?.son_kosum ?? '').slice(0, 10)),
+  /** Mevzuat radarının son başarılı kontrol günü (P3, 05.10.2026). */
+  mevzuat: iso(String(mevzuatSurum?.son_kontrol ?? '').slice(0, 10)),
+  /** RG işletme-sahası arşivinin derleme (veri) tarihi — en yeni dosya. */
+  rgArsiv: enYeni(
+    ...RG_ARSIV_DOSYALAR.map((y) => {
+      try { return oku(y)?.uretim_tarihi; } catch { return null; }
+    }),
+  ),
+  /** Emsal karar veritabanının oluşturma tarihi (P3, 05.10.2026). */
+  emsal: iso(emsalKararlar?.olusturma),
 };
