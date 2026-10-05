@@ -93,3 +93,13 @@
 /yonetim/*
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-store
+
+# HASH'Lİ VARLIK ÖNBELLEĞİ (P4, 05.10.2026): Astro `_astro/*` dosya adları
+# içerik hash'i taşır — içerik değişince ad değişir; bu yüzden uzun ömürlü
+# `immutable` güvenlidir (canlıda curl ile doğrulanır; deploy sonrası).
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fontlar sürümlü dosyalar (arac/font-indir.py ile üretildi); otuz gün.
+/fonts/*
+  Cache-Control: public, max-age=2592000

@@ -54,7 +54,7 @@ const SAHNELER = [
 const sahneVeri = SAHNELER.map((s) => ({
   id: s.id,
   label: s.label,
-  still: `${V}/sahne${s.n}.jpg`,
+  still: `${V}/sahne${s.n}.webp`,
   clip: `${V}/sahne${s.n}.mp4`,
   accent: s.accent,
 }));
@@ -141,7 +141,7 @@ const sahneVeri = SAHNELER.map((s) => ({
 }).replace(/</g, '\\u003c')} />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <!-- LCP: hero ilk karesi = sahne 1 posteri -->
-<link rel="preload" as="image" href="/deneyim/video/sahne1.jpg" fetchpriority="high" />
+<link rel="preload" as="image" href="/deneyim/video/sahne1.webp" fetchpriority="high" />
 <!-- 04.10.2026 — CLS onarımı (md9 Lighthouse desktop 80, CLS 0,45):
      soğuk önbellekte Manrope/Cormorant swap'ı metni yeniden dizip hero
      sahnesini kaydırıyordu. Kritik Latin altkümeleri önden yüklenir
