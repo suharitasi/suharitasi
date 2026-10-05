@@ -58,13 +58,11 @@ Her parça brief + uygula + ölçüm + commit ile yürür:
       ucu, bekçi (j) — temiz 0 sorun, kırmızı yol simülasyonla kanıtlı. Bonus:
       build KOK düzeltmesi + bekçi bellek dedupe. Rapor:
       `rapor/05-10-p6b-veri-tazelik.md`.
-- [ ] **GA4 OKUMA (grant SA'ya ULAŞMAMIŞ — ham kanıt 11:26):** SA token'la
-      `accountSummaries`+`accounts` yalnız `Arslan Hukuk Bürosu → arslanhukuk.tr`
-      döndürüyor. Muhtemel: grant GCP IAM'e verildi (veri erişimi vermez) veya
-      yanlış mülk/hesap/e-posta. DOĞRU YOL: GA4 → o mülk → **Mülk erişim
-      yönetimi** → SA = Görüntüleyici. KULLANICI: sayısal Property ID + hesap
-      adı verirse `properties/<id>` 403/200 kanıtıyla teyit ederim; sonrası
-      otonom oturum/dönüşüm özeti.
+- [x] **GA4 OKUMA — KAPANDI (05.10, §70):** property `486437917` (SA ✓).
+      `G-NRJZLX0CPR` bu mülkün **"arslanhukuk.tr" akışının** kimliği (ham
+      `dataStreams` kanıtı); suharitasi verisi aynı mülkte, rapor ayrımı
+      `hostName` ile; 7g + realtime sorguları çalışıyor (standart rapor 24-48s
+      gecikmeli). Opsiyonel gelecek: ayrı suharitasi akışı.
 - [x] **P6-C KİMLİK BAĞLARI (sameAs) — TAMAM (05.10, §69):** ana sayfa +
       /harita/ özel şemalarına `KURUM_SOSYAL` (Wikidata + Zenodo) bağlandı;
       3 yüzey dist grep birebir. LinkedIn/GBP adresleri kullanıcı varlığı.

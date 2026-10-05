@@ -1239,6 +1239,26 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §70 · ÖDÜL ÜSTÜ DENETİM PROGRAMI KAPANIŞI + GA4 OKUMA TEYİDİ (05.10.2026)
+
+- **GA4 okuma (KAPANDI):** SA erişimi property `486437917` üzerinde doğrulandı;
+  `G-NRJZLX0CPR` bu mülkün **"arslanhukuk.tr" veri akışının** kimliğidir
+  (ham `dataStreams` kanıtı). Suharitasi verisi aynı mülkte toplanır; raporlar
+  `hostName` boyutuyla ayrıştırılır (7 gün + realtime sorguları çalışıyor;
+  standart rapor gecikmesi 24-48s). İsteğe bağlı gelecek iş: ayrı suharitasi
+  akışı (yeni `G-` kimliği).
+- **RESMÎ TAM TEYİT (`--tam`, 19:30 koşusunun aynısı):** 🔴 0 · 🟡 1
+  (yalnız dış-bağlantı zaman aşımı; ölü 0) · 🟢 23. `title-uzun 0` resmileşti
+  (md16 geçti, bulgu 4 < taban 20); `/harita/` mobil Lighthouse **91→97**;
+  a11y 100/100; altın örnek 23/23.
+- **PROGRAM KAPANIŞI:** P1-P6 + offload + GA4 tamamlandı; **puan 8,0 → 9,2/10**.
+  Rapor: `rapor/05-10-program-kapanisi.md`. Planlı izleme: 11.10 offload ·
+  19.10 SERP · 03.11 emsal · günlük bekçi (hukuk + veri tazeliği dahil).
+- **Ertelenen/bilinçli:** bülten (hesap yok) · LinkedIn/GBP sameAs (profil yok) ·
+  GA4 ayrı akış (opsiyonel).
+
+---
+
 ## §69 · P6-C KİMLİK BAĞLARI (sameAs) TAMAMLAMA + BÜLTEN/GA4 DURUMU (05.10.2026)
 
 - **sameAs:** tek kaynak `site.ts` → `KURUM_SOSYAL` (Wikidata Q141582057 +
