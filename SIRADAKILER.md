@@ -58,19 +58,21 @@ Her parça brief + uygula + ölçüm + commit ile yürür:
       ucu, bekçi (j) — temiz 0 sorun, kırmızı yol simülasyonla kanıtlı. Bonus:
       build KOK düzeltmesi + bekçi bellek dedupe. Rapor:
       `rapor/05-10-p6b-veri-tazelik.md`.
-- [ ] **GA4 OKUMA (propagasyon ölçümü):** API'ler + SA **pozitif kontrol ✓**
-      (`run_report` arslanhukuk.tr'de çalıştı). Kullanıcı doğru mülke
-      (G-NRJZLX0CPR) Görüntüleyici ekledi; `ga4_list_properties` bu kayıt
-      anında hâlâ yalnız arslanhukuk.tr gösteriyor → yeniden ölçülecek;
-      görünmezse property'nin hangi GA hesabında olduğu netleştirilecek
-      (kullanıcı 1 satır). Sonrası otonom: oturum/dönüşüm özeti.
+- [ ] **GA4 OKUMA (grant SA'ya ULAŞMAMIŞ — ham kanıt 11:26):** SA token'la
+      `accountSummaries`+`accounts` yalnız `Arslan Hukuk Bürosu → arslanhukuk.tr`
+      döndürüyor. Muhtemel: grant GCP IAM'e verildi (veri erişimi vermez) veya
+      yanlış mülk/hesap/e-posta. DOĞRU YOL: GA4 → o mülk → **Mülk erişim
+      yönetimi** → SA = Görüntüleyici. KULLANICI: sayısal Property ID + hesap
+      adı verirse `properties/<id>` 403/200 kanıtıyla teyit ederim; sonrası
+      otonom oturum/dönüşüm özeti.
 - [x] **P6-C KİMLİK BAĞLARI (sameAs) — TAMAM (05.10, §69):** ana sayfa +
       /harita/ özel şemalarına `KURUM_SOSYAL` (Wikidata + Zenodo) bağlandı;
       3 yüzey dist grep birebir. LinkedIn/GBP adresleri kullanıcı varlığı.
       Rapor: `rapor/05-10-p6c-kimlik-bulten.md`.
-- [ ] **BÜLTEN (KULLANICI):** Buttondown hesabı + kullanıcı adı → tek satır
-      `src/data/bulten.ts`; sonrası otonom (build + doğrulama).
-KULLANICI KALEMLERİ: Buttondown kullanıcı adı · GA4 mülk görünürlük teyidi.
+- [~] **BÜLTEN — ERTELENDİ (kullanıcı kararı, 05.10):** Buttondown hesabı yok;
+      şimdilik atlandı. Form/CSP/README hazır — hesap açılınca tek satır
+      `src/data/bulten.ts` ile canlanır (boşken form render EDİLMEZ).
+KULLANICI KALEMLERİ: GA4 mülk grant teyidi (sayısal Property ID + hesap adı).
 
 ═══ 04.10.2026 — OTONOM SKILL MİMARİSİ (KARARLAR §58) ═══
 Rapor: `rapor/04-10-otonom-skill-mimarisi.md` · yerel: `.agents/skills/`

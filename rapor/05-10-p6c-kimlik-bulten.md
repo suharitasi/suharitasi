@@ -26,14 +26,19 @@ Kaynak: kuyruk P6 kalanı.
 ## 3) GA4 okuma — durum
 
 - Admin+Data API + SA çalışıyor (pozitif kontrol: arslanhukuk.tr sorgusu).
-- Kullanıcı doğru mülke (G-NRJZLX0CPR) Görüntüleyici eklediğini bildirdi;
-  **11:17 UTC ölçümü** hâlâ YALNIZ arslanhukuk.tr gösteriyor. Olası nedenler:
-  (a) Google erişim yayılımı gecikmesi (dakikalar–nadiren saatler),
-  (b) property'nin farklı bir GA **hesabında** olması ve o hesapta grant'ın
-  henüz görünmemesi. KULLANICI KONTROL LİSTESİ: (1) GA4 → ilgili mülk →
-  Yönetici → Mülk erişim yönetimi'nde SA satırı **görünüyor mu**;
-  (2) sol üstte mülkün bağlı olduğu **hesap adı** ne? (3) 10 dk sonra bana
-  "hazır" de — yeniden ölçerim.
+- Kullanıcı doğru mülke (G-NRJZLX0CPR) Görüntüleyici eklediğini bildirdi.
+- **HAM KANIT (11:26 UTC, MCP baypas, SA token):** `accountSummaries` ve
+  `accounts` uçları birebir şunu döndürüyor — tek hesap
+  `accounts/352815414 «Arslan Hukuk Bürosu»` + tek mülk
+  `properties/486437917 «arslanhukuk.tr»`. **Suharitasi mülkü SA'ya görünmüyor.**
+- EN OLASI NEDEN: grant, Google Cloud **IAM**'de verilmiş olabilir (GA4 veri
+  erişimi VERMEZ) veya GA profilinde yanlış mülk/hesap seçilmiş ya da e-posta
+  birebir değil. Doğru yol (4 adım): GA4 → **o mülk** → Yönetici → **Mülk
+  erişim yönetimi** → "+" → `gsc-okuyucu@suharitasi-gsc.iam.gserviceaccount.com`
+  → Rol **Görüntüleyici** → Ekle. (GCP konsolu DEĞİL.)
+- İSTENEN EK BİLGİ: G-NRJZLX0CPR'yi taşıyan mülkün **sayısal Property ID'si**
+  + sol üstteki **hesap adı** — gelince doğrudan `properties/<id>` ile 403/200
+  ayrımını kanıtlar, doğru yere grant yapıldığını teyit ederim.
 
 ## Kanıtlar
 Build EXIT 0 · 1190 sayfa · dist sameAs grep'leri (3 yüzey) · **CANLI
