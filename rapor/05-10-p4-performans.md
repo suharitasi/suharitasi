@@ -44,8 +44,16 @@ Kapı ≥0,97; altında kalan olsaydı orijinal korunacaktı — kalmadı.
 ## 6) Kanıtlar
 - Build **EXIT 0 · 1190 sayfa**; dist grep'leri (srcset/imagesrcset/sizes,
   `_headers` blokları, `.jpg` referansı 0, video toplam 4,36 MB).
-- CANLI: `surum.json` + `curl -I /_astro/*.css` cache-control + `/harita/`
-  mobil PSI (taban 91) + `site-saglik --hizli` — kayıt commit'inde.
+- **CANLI (commit `8a26946`):** `surum.json` yeni SHA · `/_astro/api-loglari.*.css`
+  → `cache-control: public, max-age=31536000, immutable` (Cloudflare `_headers`'ı
+  uyguladı, curl kanıtlı) · `hedef-hero-736.webp` 200 · `sahne2.mp4` canlı
+  **1,05 MB** (2,08'den) · `site-saglik --hizli` **YEŞİL**.
+- **Lighthouse (yerel `dist-sun`, 3 tur medyan; PSI günlük kotası 429):**
+  PERF **93/92/90 → medyan 92** · LCP 3,2 sn · CLS 0 · TBT 0; **LCP elemanı
+  artık `hedef-hero-736.webp`** (srcset sahada çalışıyor). DÜRÜST NOT:
+  brifteki "≥94" hedefi yerel medyanda TUTMADI (92); bayt kazancı gerçek
+  (289→59 KB · video −%45). Canlı CDN'li sonuç 19:30 `--tam` md9 ile teyit
+  edilecek; ek tur adayı: kritik CSS/font yolu.
 
 ## KULLANICI ONAYI BEKLİYOR
 Görsel yüzey değişti (video/poster/hero türevleri) — nihai görsel onay kullanıcıda

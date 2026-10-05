@@ -44,7 +44,10 @@ Her parça brief + uygula + ölçüm + commit ile yürür:
       kapanış kuralı taban dosyasında yazılı (>=3 sayfada poz iyileşmesi
       ve/veya aile CTR +%25 → kapan; yoksa kök-neden işi). Nihai SERP onayı
       kullanıcıda (yetki devri: ajan ölçer, kullanıcı onaylar).
-- [ ] **P4 PERFORMANS (S):** /harita srcset; _astro immutable; medya turu.
+- [x] **P4 PERFORMANS (S) — TAMAM (05.10, §65):** /harita srcset (736/1100),
+      `_astro` immutable (canlı doğrulandı), poster WebP, video −%45
+      (SSIM≥0,976), ölü set arşive. Yerel LH medyan 92 (hedef ≥94 tutmadı —
+      dürüst not); canlı teyit 19:30 `--tam` md9. KULLANICI: görsel onay.
 - [ ] **P5 HUKUK & HİJYEN (S):** "Hemen ara"→"Telefon" + tarama genişletme;
       rozet ifadesi [SERDAR-HUKUK]; depo hijyeni; ölü hero seti (CF günlüğü).
 - [ ] **P6 DAĞITIM:** GA4 aç; veri tazelik panosu; bülten + sameAs.

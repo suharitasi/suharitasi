@@ -1239,6 +1239,22 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §65 · P4 PERFORMANS: /HARİTA SRCSET + CACHE + MEDYA TURU (05.10.2026)
+
+- **/harita hero:** 736w (59 KB) + 1100w (104 KB) türevleri; `srcset/sizes` +
+  preload `imagesrcset`; canlı LCP elemanı 736w (ölçüldü). Kaynak 289 KB.
+- **Cache:** `_headers` → `/_astro/*` yıllık `immutable` (canlı curl
+  doğruladı), `/fonts/*` 30 gün.
+- **Medya:** posterler WebP (−%33); videolar 7,95→4,36 MB (−%45), SSIM
+  0,9755–0,9827 (kapı ≥0,97), süre/fps/kare birebir; ölü set
+  `arsiv/hedef-olu-set-2708`e taşındı (dist dışı; kalıcı silme kullanıcıda).
+- **Ölçüm:** yerel LH 3 tur medyan **92** (93/92/90; hedef ≥94 TUTMADI —
+  dürüst kayıt), LCP elemanı 736w, PSI kotası 429. Canlı teyit: 19:30
+  `--tam` md9. Rapor: `rapor/05-10-p4-performans.md`.
+  Görsel onay kullanıcıda (İş kapanış kuralı).
+
+---
+
 ## §64 · STORAGE BOX PAROLA OLAYI + SSH GÜVENLİĞİ + OFFLOAD OTOMASYONU (05.10.2026)
 
 - **Parola:** SA anahtarı sağlam çıktı (parola sıfırlaması bozmadı) — düz
