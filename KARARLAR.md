@@ -1239,6 +1239,24 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §64 · STORAGE BOX PAROLA OLAYI + SSH GÜVENLİĞİ + OFFLOAD OTOMASYONU (05.10.2026)
+
+- **Parola:** SA anahtarı sağlam çıktı (parola sıfırlaması bozmadı) — düz
+  metin parola HİÇ kullanılmadı, hiçbir dosyaya/loga yazılmadı. Sahibe not:
+  sohbete yazıldığı için panelden bir kez daha döndürülmesi önerilir.
+- **Offload:** `arac/offload-storagebox.sh` + `offload-storagebox.timer`
+  (Pazar 09:40 TR). Kural: `rsync -avc --remove-source-files` → aktarım öncesi
+  yerel sha256 manifesti → uzak `sha256sum` doğrulaması → uyuşmazlıkta Telegram
+  KRİTİK + exit≠0. Kapsam: /var/log gz >14g · log arşivleri >30g · cikti
+  (git-ignore'lu) >30g. Kanıt: 205+3=208 dosya uzakta; 3 dummy sha256 birebir;
+  yerel silindi. Rapor: `rapor/05-10-offload-storagebox.md`.
+- **Bulunan+düzeltilen bug:** doğrulama döngüsünde `ssh` stdin yiyordu (1/205);
+  `ssh -n` döngüye, rsync'e DEĞİL (rc=12) — ölçümle sabitlendi.
+- **Zincir:** restic off-site erişimi anahtarla doğrulandı; yedek yapılandırması
+  değişmedi.
+
+---
+
 ## §63 · P3 DAMGA & TAZELİK: CHIRPS + dateModified + RADAR DÜRÜSTLÜĞÜ + LOGLAR (05.10.2026)
 
 - **CHIRPS:** veri `2026-06` → **`2026-08`** (116 ay; resmî kaynaktan yeniden

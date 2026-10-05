@@ -29,6 +29,14 @@ Her parça brief + uygula + ölçüm + commit ile yürür:
       görünürlüğü ("N kaynak erişilemedi"); /api/loglar limiter sırası;
       loglar testi 16/16. Rapor: `rapor/05-10-p3-tazelik.md`.
       KALAN: emsal ilk otomatik koşu doğrulaması — 03.11.2026.
+- [x] **OFFLOAD + SSH GÜVENLİĞİ (05.10, §64):** Storage Box anahtar auth
+      doğrulandı (düz metin parola KULLANILMADI/yazılmadı); "taşı ve sil"
+      otomasyonu (`rsync -avc --remove-source-files` + uzak sha256 kapısı)
+      kuruldu — Pazar 09:40 TR timer + OnFailure köprüsü. Kanıt: 208 uzak
+      dosya (205+3) + 3 dummy sha256 birebir + yerel silinme.
+      Rapor: `rapor/05-10-offload-storagebox.md`.
+      KULLANICI: sohbete yazılan Storage Box parolasını panelden bir kez daha
+      döndür (anahtar auth etkilenmez; sızma riski kabulü).
 - [ ] **P2 SERP ÖLÇÜMÜ (19.10.2026):** `izleme/state/p2-serp-taban.json`
       tabanına göre `gsc_ctr_opportunities` + `gsc_quick_wins` yeniden çekilir;
       kapanış kuralı taban dosyasında yazılı (>=3 sayfada poz iyileşmesi
