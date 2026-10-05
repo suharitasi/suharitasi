@@ -265,6 +265,16 @@ else
   ekle "🔴 yedek durum dosyası YOK ($YDURUM) — yedek hiç koşmamış ya da hedef silinmiş"
 fi
 
+# (h) SYSTEMD YEDEK BİRİMİ (P1, 05.10.2026): ufw sertleştirmesi sonrası
+#     restic-yedek.service off-site bacağı sessizce düştü; bekçi yalnız
+#     yedek-al.sh durum dosyasına bakıyordu. Root yedek zinciri (yerel +
+#     off-site + budama) systemd üzerinden koşar; birim durumu ARTIK
+#     buradan izlenir (kaldırma: bu blok silinir, gerekçe P1 raporunda).
+SYSD=$(systemctl is-failed restic-yedek.service 2>/dev/null || true)
+if [ "$SYSD" = "failed" ]; then
+  ekle "🔴 restic-yedek.service BAŞARISIZ (off-site bacak düşmüş olabilir) — journalctl -u restic-yedek"
+fi
+
 if [ -n "$SORUN" ]; then
   printf '# SAĞLIK BEKÇİSİ UYARISI\n\n%s\n\n%s' "$(date -u)" "$SORUN" > "$UYARI"
   printf '%s' "$SORUN" | while IFS= read -r s; do

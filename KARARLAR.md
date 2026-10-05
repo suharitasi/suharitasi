@@ -1239,6 +1239,32 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 
 ---
 
+## §60 · P1 DAYANIKLILIK: OFF-SITE YEDEK KURTARMA + SYSTEMD→TELEGRAM KÖPRÜSÜ (05.10.2026)
+
+- **Karar:** Ödül üstü denetimin (rapor/05-10-odul-ustu-denetim.md) K1/K2
+  bulguları onarıldı. Rapor: rapor/05-10-p1-dayaniklilik.md.
+- **Kök neden (ölçüldü):** 04.10 20:41'deki ufw sertleştirmesi
+  (`default deny outgoing`) restic off-site SFTP portunu (23/tcp) izin
+  listesine almamış; yedek 04.10 19:42'den sonraki ilk koşuda (05.10 01:06)
+  sessizce düştü. Kanıt: /var/log/ufw.log + auth journal (suha, pts/0).
+- **Onarım:** `ufw allow out 23/tcp`; restic-yedek.service yeniden koştu —
+  off-site snapshot `884c32fa`, yerel `restic check` temiz, geri-dönüş
+  tatbikatı sha256 bitesit (git-kilit.sh).
+- **Köprü:** `telegram-bildir@.service` + `restic-yedek.service.d/onfailure.conf`
+  (`OnFailure=telegram-bildir@%N.service`); uçtan uca test message_id 8782.
+- **K2:** `restic-master-backup.sh` sahte-başarı kaldırıldı (artık systemd
+  tetikleyici); crontab 113/114 çift satırı silindi (yedek:
+  izleme/crontab-onceki-20261005-p1.txt).
+- **Bekçi:** saglik-bekcisi.sh (h) maddesi `restic-yedek.service` durumunu izler.
+- **AIDE:** baseline promote edildi; sessiz (postfix ölü) + ~53 dk/gün koşan
+  `dailyaidecheck.timer` KAPATILDI (geri açma: `systemctl enable --now
+  dailyaidecheck.timer`); haftalık `aide-check.sh --config` Telegram kanallı.
+- **Kullanıcı kalemleri:** disk %78 temizlik listesi (silme onayı bekler);
+  postfix@-.service kararı; ufw 23 izninin Storage Box IP'sine daraltılması
+  isteğe bağlı (hostname çözümü kırılgan olduğu için şimdilik genel).
+
+---
+
 ## §59 · 10 SKİLL EŞ ZAMANLI TAM SİTE TARAMASI VE DÖNÜŞÜM (04.10.2026)
 
 - **Protokol:** 5 bağımsız salt-okunur denetim ajanı paralel; uygulama tek
