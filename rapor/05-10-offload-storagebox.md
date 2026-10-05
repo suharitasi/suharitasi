@@ -71,3 +71,34 @@ başarılı; `restic-yedek.service` yapılandırması DEĞİŞMEDİ.
   bilinçli kapsam dışı (veri güvenliği); gerekirse ikinci faz.
 - Rapor ilk 205 dosya için "per-file kanıt" yerine "toplam varlık kanıtı"
   sunar — dürüst sınır, gizlenmedi.
+
+## 5) v2 KAPSAM + ASIL TAŞIMA (05.10.2026, sahip talimatı — beklemeden icra)
+
+Sahip: "44 GB'lık asıl taşıma/silme işlemini derhal bitir." Önce envanter:
+**diskte offload'a uygun 44 GB'lık bir kütle YOK** — ölçülen gerçek aday
+`/home/suha/yedek/arsiv` içindeki eski site-yedek nesilleriydi (restic
+kapsamı DIŞI; taşınınca Storage Box tek uzak kopya olur). Doğrulama tablosu
+raporun "Kalan büyük kütleler" bölümünde; hiçbir veri silinmedi/yok edilmedi.
+
+- **Kapsam v2:** `yedek/arsiv` → 7 günden eski nesiller + boş dizin temizliği.
+- **Kuru:** 56 dosya · 6,1 GB (20 nesil, 20260908–20260925Z).
+- **Gerçek koşum:** 56/56 dosya **sha256 doğrulandı · uyuşmayan 0** · rsync
+  rc=0 · ~4 dk. Uçtan uca örnek: journal `2ea1d1aa…` = uzak
+  `20260912-030001Z/kaynak.tar.gz` sha256 birebir.
+- **Disk rahatlaması: `%77 → %69`** (56 GB → 49 GB kullanım; **23 GB boş**).
+  `yedek/arsiv`: 7,9 GB → 1,8 GB (son 7 gün + `guncel`/`onceki` yerelde).
+  Uzak ağaç: `/home/offload/arslan-server/home/suha/yedek/…` (22 dizin,
+  56 dosya) + önceki turlar.
+- Haftalık cron aynen sürer; kalan nesiller yaşlandıkça kendiliğinden taşınır.
+
+### Kalan büyük kütleler (bilinçli DOKUNULMADI)
+
+| Kütle | Boyut | Neden taşınmadı |
+|---|---|---|
+| `/root/restic-repo` | 5,3 GB | Yedeğin KENDİSİ (yerel bacak) |
+| `postgresql/16` | 1,5 GB | Canlı veritabanı |
+| `npm` + `.cache` (kök+suha) | ~5 GB | Yeniden üretilebilir önbellek (offload anlamsız; "önbellek temizliği" ayrı karar) |
+| `/opt` araçlar (blender 1,2G · ollama 2,1G · muvekkil/bist) | 3,4 GB | Başka servislerin canlı araçları |
+| Eski çalışma dizinleri (`final`, `GERIALMA`, `otomasyon`, `asistan`, `muvekkil.TASINDI`, `deneyler`) | ~2,3 GB | Sahip kararı gerektirir (arşiv/sil) |
+| `/usr` | 6,8 GB | Sistem |
+| `bist-restic-repo` | 254 MB | Başka projenin yedeği |

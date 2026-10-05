@@ -12,6 +12,9 @@
 #   (1) /var/log/**/*.gz      — 14 günden eski sistem log arşivleri
 #   (2) $KOK/log/*.log.[1-9]  — 30 günden eski depo log döndürme arşivleri
 #   (3) $KOK/cikti/**         — 30 günden eski VE git'te İZLENMEYEN çıktılar
+#   (4) /home/suha/yedek/arsiv — 7 günden eski site yedek nesilleri (P4-OPS,
+#       05.10.2026 sahip talimatı "asıl taşıma"; restic kapsamı DIŞI olduğundan
+#       Storage Box uzak kopyası kritik — bu yüzden sha256 kapısı zorunlu)
 # Kapsam DIŞI (bilinçli): data/, veri/, izleme/, .git, yedek/ (restic kapsamı).
 # Uzak ağaç: /home/offload/arslan-server/<mutlak-yol>  (rsync -R ile).
 # Kuru koşum: --kuru (yalnız listeler; hiçbir şey taşımaz/silmez).
@@ -55,6 +58,9 @@ if [ -d "$KOK/cikti" ]; then
     if ! git -C "$KOK" check-ignore -q -- "$f"; then continue; fi
     printf '%s\0' "$f" >> "$LISTE"
   done < <(find "$KOK/cikti" -type f -mtime +30 -print0 2>/dev/null || true)
+fi
+if [ -d /home/suha/yedek/arsiv ]; then
+  find /home/suha/yedek/arsiv -type f -mtime +7 -print0 >> "$LISTE" 2>/dev/null || true
 fi
 
 ADET=$(tr -cd '\0' < "$LISTE" | wc -c)
@@ -106,5 +112,7 @@ if [ "$UYUSMAZ" -gt 0 ] || [ "$RSYNC_HATA" -ne 0 ]; then
   uyar "Offload doğrulama SORUNU: $UYUSMAZ uyuşmayan / rsync rc=$RSYNC_HATA" "Log: $LOG · kayıt: $JOURNAL"
   exit 1
 fi
+# Başarı sonrası: boşalan yedek nesil dizinleri temizlenir (yalnız BOŞ dizin).
+find /home/suha/yedek/arsiv -mindepth 1 -type d -empty -delete 2>/dev/null || true
 logla "offload tamam — $DOGRU dosya taşındı ve sha256 ile doğrulandı"
 exit 0

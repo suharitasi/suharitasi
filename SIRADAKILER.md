@@ -35,6 +35,8 @@ Her parça brief + uygula + ölçüm + commit ile yürür:
       kuruldu — Pazar 09:40 TR timer + OnFailure köprüsü. Kanıt: 208 uzak
       dosya (205+3) + 3 dummy sha256 birebir + yerel silinme.
       Rapor: `rapor/05-10-offload-storagebox.md`.
+      **v2 (05.10, sahip talimatı):** `yedek/arsiv` >7g kapsama alındı — 56
+      dosya/6,1 GB taşındı, 56/56 sha256 doğrulandı; **df %77→%69**.
       KULLANICI: sohbete yazılan Storage Box parolasını panelden bir kez daha
       döndür (anahtar auth etkilenmez; sızma riski kabulü).
 - [ ] **P2 SERP ÖLÇÜMÜ (19.10.2026):** `izleme/state/p2-serp-taban.json`

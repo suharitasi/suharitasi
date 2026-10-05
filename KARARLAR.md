@@ -1254,6 +1254,10 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
   `ssh -n` döngüye, rsync'e DEĞİL (rc=12) — ölçümle sabitlendi.
 - **Zincir:** restic off-site erişimi anahtarla doğrulandı; yedek yapılandırması
   değişmedi.
+- **v2 + asıl taşıma (05.10, sahip talimatı):** `yedek/arsiv` (>7 gün) kapsama
+  alındı; **56 dosya / 6,1 GB taşındı, 56/56 sha256 doğrulandı**; disk
+  **%77 → %69** (23 GB boş). Diskte offload'a uygun 44 GB'lık kütle YOK —
+  envanter raporun §5'inde; kalan kütleler bilinçli dokunulmadı.
 
 ---
 
