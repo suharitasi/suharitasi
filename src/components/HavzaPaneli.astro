@@ -14,11 +14,13 @@ import havzaVeri from '../../data/havza-veri.json';
 import yasVeri from '../../data/canli/havza-yas.json';
 import grace from '../../data/canli/grace-havza.json';
 import { graceEgilim } from '../data/grace-hesap.js';
+import { ESIK_KRITIK } from '../data/egilim-sinif.js';
 import { graceSpark } from '../data/grace-spark.js';
 
 // Kritik eşik: GRACE son-5-yıl eğimi ≤ -1,5 cm/yıl (dağılımın doğal
 // kırılması -1,54/-1,46; kullanıcı onayı 2026-07-21 — seçenek A).
-const KRITIK_ESIK = -1.5;
+// 07.10.2026: eşik tek kaynaktan (egilim-sinif.js) — akifer göstergesiyle aynı kural.
+const KRITIK_ESIK = ESIK_KRITIK;
 
 // Havza no → sayfa slug'ı: kırık slug build'i düşürür, sessizce kaybolmaz.
 const havzaSayfalari = await getCollection('havzalar');
@@ -51,7 +53,7 @@ const kartlar = havzaVeri.havzalar.map((h) => {
     rezerv,
     egim: egilim.egim,
     yon: egilim.yon,
-    kritik: egilim.egim <= KRITIK_ESIK,
+    kritik: egilim.kritik,
     spark,
     hukuk: hukukVar.get(h.no) ?? false,
   };

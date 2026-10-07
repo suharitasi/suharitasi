@@ -139,8 +139,8 @@ const gSonuc = gkayit ? graceEgilim(gkayit.seri) : null;
 if (gSonuc) {
   cumleler.push(
     gSonuc.yon === 'sabit'
-      ? `Uydu su ölçümüne göre son 5 yılda toplam su depolaması belirgin değişim göstermemektedir (değişim verisidir, mutlak miktar değildir).`
-      : `Uydu su ölçümüne göre son 5 yılda toplam su depolaması ${gSonuc.yon} eğilimindedir (değişim verisidir, mutlak miktar değildir).`
+      ? `Uydu su ölçümüne göre 5 yıllık pencerede toplam su depolaması belirgin değişim göstermemektedir (değişim verisidir, mutlak miktar değildir).`
+      : `Uydu su ölçümüne göre 5 yıllık pencerede toplam su depolaması ${gSonuc.yon} eğilimindedir (değişim verisidir, mutlak miktar değildir).`
   );
 }
 if (konumCumlesi) cumleler.unshift(konumCumlesi);
@@ -237,7 +237,10 @@ const semalar = [
     legislationIdentifier: '167',
     legislationType: 'Kanun',
     jurisdiction: { '@type': 'Country', name: 'Türkiye' },
-    url: new URL('/mevzuat/167/', Astro.site).href,
+    // 07.10.2026: /mevzuat/167/ diye bir sayfa yok (404 — 106 sayfadan bağlanıyordu); kanunun
+    // sitedeki girişi mevzuat motoru, resmî metni sameAs ile.
+    url: new URL('/mevzuat/', Astro.site).href,
+    sameAs: 'https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=167&MevzuatTur=1&MevzuatTertip=4',
     inLanguage: 'tr-TR',
   },
   {

@@ -21,13 +21,18 @@ import CiteThisData from '../../components/CiteThisData.astro';
 import HavzaSuTablasiGostergesi from '../../components/HavzaSuTablasiGostergesi.astro';
 import { ilPotansiyel } from '../../data/potansiyel.js';
 import { OG_GORSEL } from '../../data/site';
-import { TARIH } from '../../data/guncellik.js';
+import { TARIH, enYeni } from '../../data/guncellik.js';
 
 export async function getStaticPaths() {
   return yayinlananIller().map((p) => ({ params: { il: p.slug }, props: { profil: p } }));
 }
 
 const { profil: p } = Astro.props;
+
+// Sayfa tarihi = sayfada basılan verilerin EN YENİ künye tarihi (sahip kararı EK-2/2:
+// sayfa tarihi ile veri tarihi tutarlı). Önceden yalnız potansiyel derlemesi (27.07)
+// yazılıyordu; aynı sayfa günlük baraj verisini (bugün) gösteriyordu.
+const damgaISO = enYeni(TARIH.potansiyel, TARIH.baraj, TARIH.grace, TARIH.havzaVeri, TARIH.rgArsiv, TARIH.golNehir);
 
 // SU POTANSİYELİ bloğu — 81 ilde (pilot onayı 2026-07-27, kapı kalktı).
 const potansiyel = ilPotansiyel(p.il);
@@ -78,7 +83,7 @@ if (anaHavza && bolgeMetni) {
 if (p.suIdaresi) cumleler.push(`İçme suyu ve kanalizasyonda yetkili idare: ${p.suIdaresi}.`);
 const azalanlar = p.havzalar.filter((h) => h.egilim?.yon === 'azalma');
 if (azalanlar.length)
-  cumleler.push(`Uydu ölçümüne göre havzada su depolaması son 5 yılda azalma eğilimindedir.`);
+  cumleler.push(`Uydu ölçümüne göre havzada su depolaması son 5 yıllık pencerede azalma eğilimindedir.`);
 // 280 sınırı (CLAUDE.md içerik ilkesi): aşılıyorsa sondan cümle düşürülür —
 // düşen bilgi sayfa gövdesinde zaten var; öz-cevap YENİ metin üretmez.
 while (cumleler.length > 1 && cumleler.join(' ').length > 280) cumleler.pop();
@@ -117,7 +122,7 @@ const sss = [];
       const yon = h.egilim.yon === 'sabit'
         ? 'belirgin değişim göstermiyor'
         : `${h.egilim.yon} eğiliminde`;
-      durum.push(`${h.ad}: uydu ölçümüne göre son 5 yılda toplam su depolaması ${yon} `
+      durum.push(`${h.ad}: uydu ölçümüne göre 5 yıllık pencerede toplam su depolaması ${yon} `
         + `(${h.egilim.egim > 0 ? '+' : ''}${sayi(h.egilim.egim, 2)} cm/yıl, `
         + `${h.egilim.aySayisi} gerçek aylık ölçümden; değişim verisidir, mutlak miktar değildir).`);
     }
@@ -155,7 +160,7 @@ const sema = [
     description: ozCevap,
     // Damga (kalanlar paketi 25.08.2026): il potansiyel derlemelerinin
     // veri kaydındaki en yeni uretim_tarihi — build saati değil.
-    ...(TARIH.potansiyel ? { dateModified: TARIH.potansiyel } : {}),
+    ...(damgaISO ? { dateModified: damgaISO } : {}),
     inLanguage: 'tr-TR',
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
     image: new URL(OG_GORSEL, Astro.site).href,
@@ -167,7 +172,7 @@ const sema = [
   },
   {
     '@type': 'FAQPage',
-    ...(TARIH.potansiyel ? { dateModified: TARIH.potansiyel } : {}),
+    ...(damgaISO ? { dateModified: damgaISO } : {}),
     mainEntity: sss.map(([soru, cevap]) => ({
       '@type': 'Question',
       name: soru,
@@ -183,7 +188,10 @@ const sema = [
     legislationIdentifier: '167',
     legislationType: 'Kanun',
     jurisdiction: { '@type': 'Country', name: 'Türkiye' },
-    url: new URL('/mevzuat/167/', Astro.site).href,
+    // 07.10.2026: /mevzuat/167/ diye bir sayfa yok (404 — 106 sayfadan bağlanıyordu); kanunun
+    // sitedeki girişi mevzuat motoru, resmî metni sameAs ile.
+    url: new URL('/mevzuat/', Astro.site).href,
+    sameAs: 'https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=167&MevzuatTur=1&MevzuatTertip=4',
     inLanguage: 'tr-TR',
   },
   {
@@ -209,7 +217,7 @@ const sema = [
 ];
 ---
 <Sayfa baslik={baslik} tarayiciBaslik={tarayiciBaslik} aciklama={ozCevap} sema={sema}>
-  <SayfaBasi etiket="İl rejimi" baslik={baslik} tarih={TARIH.potansiyel ? new Date(TARIH.potansiyel) : undefined} yazarli />
+  <SayfaBasi etiket="İl rejimi" baslik={baslik} tarih={damgaISO ? new Date(damgaISO) : undefined} yazarli />
 
   <OzCevap metin={ozCevap} />
 
@@ -255,7 +263,7 @@ const sema = [
           <>
             {h.egilim && (
               <li>
-                {h.ad}: uydu ölçümüne göre son 5 yılda toplam su depolaması
+                {h.ad}: uydu ölçümüne göre 5 yıllık pencerede toplam su depolaması
                 {h.egilim.yon === 'sabit'
                   ? ' belirgin değişim göstermiyor'
                   : ` ${h.egilim.yon} eğiliminde`}
@@ -280,10 +288,12 @@ const sema = [
   {/* Topolojik akifer göstergesi (ADIM 2, v6.0): ilin kapsadığı her havza için
       veri-koşullu; serisi olmayan havzada deterministik fallback basılır. */}
   <section class="il-blok">
-    <h2>Akifer su tablası göstergesi (10 yıl)</h2>
+    <h2>Akifer su tablası göstergesi (120 aylık uydu penceresi)</h2>
     <p>
       İlin kapsadığı havzalar için uydu su-depolama eğilimi ve DSİ YAS
-      işletme rezervi. Değişim verisidir; mutlak miktar değildir.
+      işletme rezervi. Değişim verisidir; mutlak miktar değildir. Yukarıdaki
+      5 yıllık pencereden farklı, daha uzun bir ölçüm penceresidir; aynı havza
+      iki pencerede farklı eğilim gösterebilir.
     </p>
     {p.havzalar.map((h) => <HavzaSuTablasiGostergesi no={h.no} ad={h.ad} />)}
   </section>

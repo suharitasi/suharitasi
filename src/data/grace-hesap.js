@@ -4,6 +4,10 @@
 // son 5 yılın YALNIZ gerçek aylarından en küçük kareler eğimi (cm/yıl);
 // 24 gerçek aydan azsa eğim hesaplanmaz (null) — uydurma yasağı.
 
+import { egilimSinifi } from './egilim-sinif.js';
+
+export const PENCERE_YIL = 5;
+
 /** @param {Record<string, number>} seri  "YYYY-MM" → cm anomali */
 export function graceEgilim(seri) {
   const aylar = Object.keys(seri).sort();
@@ -25,9 +29,14 @@ export function graceEgilim(seri) {
     payda += (x[i] - xo) ** 2;
   }
   const egim = pay / payda;
+  const sinif = egilimSinifi(egim);
   return {
     egim,
-    yon: egim <= -0.5 ? 'azalma' : egim >= 0.5 ? 'toparlanma' : 'sabit',
+    yon: sinif.yon,
+    sinif: sinif.kod,
+    etiket: sinif.etiket,
+    kritik: sinif.kritik,
+    pencereYil: PENCERE_YIL,
     aySayisi: n,
     aralik: `${son5[0]} – ${sonAy}`,
     sonAy,

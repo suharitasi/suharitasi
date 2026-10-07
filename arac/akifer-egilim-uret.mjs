@@ -24,9 +24,10 @@
    KULLANIM:  node arac/akifer-egilim-uret.mjs
    ========================================================================== */
 import { readFileSync, writeFileSync } from 'node:fs';
+import { egilimSinifi, ESIK_YON, ESIK_KRITIK } from '../src/data/egilim-sinif.js';
 
 const AY = 120;                                   // son 10 yıl (aylık)
-const ESIK = 0.5;                                 // cm/yıl — grace-hesap.js ile aynı
+const ESIK = ESIK_YON;                            // cm/yıl — egilim-sinif.js (tek kural)
 const FALLBACK = 'Bölge Akifer Rasat Kaydı Bulunmuyor (DSİ Etüdü Gerekir)';
 
 const grace = JSON.parse(readFileSync('data/canli/grace-havza.json', 'utf8'));
@@ -54,7 +55,8 @@ function egim(seri, ayAdet = AY) {
   };
 }
 
-const kategori = (e) => (e <= -ESIK ? 'Kritik Düşüş' : e >= ESIK ? 'Yükseliş' : 'Dengeli');
+// 07.10.2026: sınıf adı tek kuraldan (egilim-sinif.js): ≤−1,5 Kritik düşüş · ≤−0,5 Düşüş · |e|<0,5 Dengeli · ≥0,5 Yükseliş
+const kategori = (e) => egilimSinifi(e).etiket;
 
 const havzalar = havzaVeri.havzalar.map((h) => {
   const gm = grace.havzalar?.[h.ad];
@@ -66,6 +68,8 @@ const havzalar = havzaVeri.havzalar.map((h) => {
     ad: h.ad,
     durum: veriVar ? 'veri var' : FALLBACK,
     kategori: veriVar ? kategori(s.egim) : null,
+    kategori_kod: veriVar ? egilimSinifi(s.egim).kod : null,
+    pencere_yil: AY / 12,
     egilim_cm_yil: veriVar ? Math.round(s.egim * 100) / 100 : null,
     aralik: s?.aralik ?? null,
     ay_sayisi: s?.aySayisi ?? 0,
@@ -96,14 +100,15 @@ const out = {
       ?? 'DSİ Resmî Su Kaynakları İstatistikleri, Tablo 1.3',
   },
   _yontem:
-    `Son ${AY} ayın (10 yıl) en küçük kareler eğimi (cm/yıl); kategori eşiği ±${ESIK} cm/yıl `
-    + '(src/data/grace-hesap.js ile aynı). 24 gerçek aydan azsa eğim hesaplanmaz.',
+    `Son ${AY} ayın (10 yıl) en küçük kareler eğimi (cm/yıl); sınıflama tek kuraldan `
+    + `(src/data/egilim-sinif.js: ≤${ESIK_KRITIK} Kritik düşüş · ≤−${ESIK} Düşüş · |e|<${ESIK} Dengeli · ≥${ESIK} Yükseliş). `
+    + '24 gerçek aydan azsa eğim hesaplanmaz.',
   _dur:
     '"Kısıtlı İşletme" sınıflaması ÜRETİLMEDİ: havza düzeyinde resmî kısıt/işletme '
     + 'sınıflaması kamuya açık yayımlı değildir (src/data/kisit-sorgu.js kararı). '
     + 'DUR: kullanıcı onaylı bir kaynak (NHYP YAS kütle durumu veya RG işletme '
     + 'sahası) verilirse bu alan doldurulur.',
-  uretim: '2026-09-21',
+  uretim: new Date().toISOString().slice(0, 10),
   havzalar,
 };
 
