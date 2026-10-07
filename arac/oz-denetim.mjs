@@ -4,10 +4,11 @@
      node arac/oz-denetim.mjs [yol1 yol2 ...]   (varsayılan: / /havzalar/ /rehberler/kuyu-ruhsati/) */
 import { chromium } from '/home/suha/projeler/suharitasi/node_modules/playwright-core/index.mjs';
 import { mkdirSync } from 'node:fs';
+import { tarayiciYoluZorunlu } from './tarayici-yolu.mjs';
 
 const TABAN = process.env.TABAN || 'http://localhost:5197';
 const CIKTI = '/home/suha/projeler/suharitasi/cikti/denetim';
-const EXE = '/home/suha/.cache/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell';
+const EXE = tarayiciYoluZorunlu('chromium-headless-shell');
 const yollar = process.argv.slice(2).length ? process.argv.slice(2) : ['/', '/havzalar/', '/rehberler/kuyu-ruhsati/'];
 
 mkdirSync(CIKTI, { recursive: true });
