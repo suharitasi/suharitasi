@@ -6,8 +6,10 @@
 Çıktı: data/kamu/mevzuat-maddeleri.json (metin resmîden; zenginleştirme korunur).
 """
 from __future__ import annotations
-import glob, json, re
+import glob, json, re, sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 KOK = Path(__file__).resolve().parent.parent
 
@@ -56,6 +58,15 @@ def main() -> int:
         return (kanun_sira.get(m["kanunKisa"], 99), {"Madde": 0, "Ek": 1, "Geçici": 2}[etiket], no)
 
     hepsi.sort(key=anahtar)
+    # Başlık kuyruğu düzeltmesi (07.10.2026): kaynak sırasındaki her mevzuat için
+    # sonraki maddeye ait başlık, önceki maddenin gövdesinden ayrılıp yerine yazılır.
+    from mevzuat_baslik import basliklari_duzelt
+    toplam_ist = {}
+    for kisa in kanun_sira:
+        ist = basliklari_duzelt([m for m in hepsi if m["kanunKisa"] == kisa])
+        for k, v in ist.items():
+            toplam_ist[k] = toplam_ist.get(k, 0) + v
+    print("başlık düzeltme:", toplam_ist)
     out = {
         "_not": "Mevzuat maddeleri motoru. metin mevzuat.gov.tr resmî kaynağından BİREBİR "
                 "(arac/mevzuat-cekici.py); uydurulmaz. merci/sure/yorum yalnız doğrulanmış rehber bilgisinden.",

@@ -25,6 +25,8 @@ import sys
 import urllib.request
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 IFRAME = "https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatTur={tur}&MevzuatNo={no}&MevzuatTertip={tertip}"
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36"
 
@@ -132,6 +134,15 @@ def ayrıstır(metin: str):
         # bir sonraki GERÇEK madde başlangıcına kadar kes (mükerrerleri de sınır say)
         son = esles[i + 1].start() if i + 1 < len(esles) else len(metin)
         maddeler.append({"etiket": etiket, "numara": numara, "govde": temizle(metin[bas:son])})
+    # Başlık kuyruğu (07.10.2026): kaynakta madde başlığı "Madde N" satırından
+    # önce gelir; önceki maddenin gövdesine düşen başlık ayrılıp sonraki
+    # maddeye `baslik` olarak verilir (arac/mevzuat_baslik.py).
+    from mevzuat_baslik import kuyruk_ayir
+    for i, m in enumerate(maddeler):
+        govde, baslik = kuyruk_ayir(m["govde"])
+        m["govde"] = govde
+        if baslik and i + 1 < len(maddeler) and not maddeler[i + 1].get("baslik"):
+            maddeler[i + 1]["baslik"] = baslik
     return maddeler
 
 
@@ -173,6 +184,7 @@ def main() -> int:
                     "etiket": m["etiket"],
                     "numara": m["numara"],
                     "metin": m["govde"],
+                    **({"baslik": m["baslik"]} if m.get("baslik") else {}),
                 }
                 for m in maddeler
             ],
