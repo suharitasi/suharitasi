@@ -93,6 +93,7 @@ export const TARIH = {
    *  469 sayfa her taramada IndexNow'a yeniden bildiriliyordu). */
   mevzuat: enYeni(
     mevzuatMaddeleri?.olusturma,
+    mevzuatMaddeleri?.duzeltme,
     ...(mevzuatDegisiklik?.kayitlar ?? []).map((k) => String(k?.tarih ?? '').slice(0, 10)),
   ),
   /** Radarın son kontrol günü — yalnız "en son ne zaman kontrol edildi" metni için. */

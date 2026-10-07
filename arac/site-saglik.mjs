@@ -29,8 +29,11 @@ const VARSAYILAN_KOK = '/home/suha/projeler/suharitasi';
 // Tarayıcı yolu artık sabit değil (07.10.2026): arac/tarayici-yolu.mjs sırayla
 // SAGLIK_CHROME → playwright-core → önbellek tarar; yoksa ilgili kalemler KIRMIZI
 // raporlanır, koşum ÇÖKMEZ (06-07.10 üç koşumluk çöküşün dersi).
-import { tarayiciYolu, tarayiciYoluZorunlu } from './tarayici-yolu.mjs';
-let EXE = tarayiciYolu('chromium').yol;
+import { tarayiciYoluZorunlu } from './tarayici-yolu.mjs';
+// Tek çözümleme noktası: playwright-core'un beklediği sürüm öncelikli (uyumsuz
+// sürüm seçilmesin); çağrı anında çözülür, bulunamazsa açıklayıcı hata.
+let pwModul = null;
+const chromeYolu = () => tarayiciYoluZorunlu('chromium', pwModul ? { pw: pwModul } : {});
 
 // ————————————————————————————— argümanlar —————————————————————————————
 const argv = process.argv.slice(2);
@@ -447,9 +450,9 @@ async function md25_deployYasi() {
 // — Playwright gerektiren kontroller tek tarayıcı oturumunda toplanır —
 async function tarayiciKontrolleri() {
   const pw = (await import(join(KOK, 'node_modules/playwright-core/index.js'))).default;
-  EXE = tarayiciYoluZorunlu('chromium', { pw });
+  pwModul = pw;
   const tarayici = await pw.chromium.launch({
-    executablePath: tarayiciYoluZorunlu('chromium'),
+    executablePath: chromeYolu(),
     args: ['--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'],
   });
   try {
@@ -1207,7 +1210,7 @@ async function md9_lighthouse() {
       // (12 puan) aşıyorsa tek atış yeterli, aksi halde 2 atış daha ve
       // MEDYAN alınır. Doğruluk aynı, maliyet çok daha düşük.
       const olc = async () => {
-        const chrome = await launch({ chromePath: tarayiciYoluZorunlu('chromium'), chromeFlags: ['--headless=new', '--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'] });
+        const chrome = await launch({ chromePath: chromeYolu(), chromeFlags: ['--headless=new', '--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'] });
         try {
           const r = await lighthouse(TABAN + yol, { port: chrome.port, onlyCategories: ['performance', 'accessibility'], output: 'json', logLevel: 'error', ...ayar });
           return {
@@ -1881,7 +1884,7 @@ async function testModu() {
         ? s.replace(/\s*media-src[^;]*;/, " media-src 'none';")
         : s
     ).join('\n'));
-    const tarayici = await pw.chromium.launch({ executablePath: tarayiciYoluZorunlu('chromium'), args: ['--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'] });
+    const tarayici = await pw.chromium.launch({ executablePath: chromeYolu(), args: ['--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'] });
     /* SEÇİCİ TEK KAYNAKTAN (M3, 29.07.2026). Buraya `#world .sw-scene
        video` SABİT yazılmıştı; 27.07 ana sayfa revizyonunda o DOM kalktı
        (yeni yapı: `#v2-videolar video`). Seçici hiçbir şey bulamıyordu →
@@ -1939,7 +1942,7 @@ async function testModu() {
     const hedef = join(sanalDist, 'index.html');
     const yedek = readFileSync(hedef, 'utf8');
     writeFileSync(hedef, yedek.replace(/(<script type="application\/ld\+json"[^>]*>)/, '$1{bozuk,'));
-    const tarayici = await pw.chromium.launch({ executablePath: tarayiciYoluZorunlu('chromium'), args: ['--no-sandbox'] });
+    const tarayici = await pw.chromium.launch({ executablePath: chromeYolu(), args: ['--no-sandbox'] });
     const ctx = await tarayici.newContext({ javaScriptEnabled: false });
     const s = await ctx.newPage();
     await s.goto(`${taban}/`, { waitUntil: 'load' });
@@ -2036,7 +2039,7 @@ async function gorselTabanYenile() {
     : json(join(IZLEME, 'cekirdek-sayfalar.json')).sayfalar.map((x) => x.yol);
   const pw = (await import(join(KOK, 'node_modules/playwright-core/index.js'))).default;
   const tarayici = await pw.chromium.launch({
-    executablePath: tarayiciYoluZorunlu('chromium'), args: ['--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'],
+    executablePath: chromeYolu(), args: ['--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'],
   });
   let olcumler;
   try { olcumler = await G.olcTumu(tarayici, TABAN, yollar); }

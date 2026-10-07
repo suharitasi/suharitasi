@@ -11,6 +11,11 @@ test('pasajIlleri: anahtar ifadeye yakın il kalır, uzak il düşer, OCR boşlu
   assert.deepEqual(pasajIlleri('Kon­ya ovası yeraltı suyu işletme sahası', ['Konya']), ['Konya']);
 });
 
+test('pasajIlleri: ilçe adı yakınsa il kalır; hiçbir il/ilçe yakın değilse aday liste korunur (yargı yok)', () => {
+  assert.deepEqual(pasajIlleri('… ALANYA OVALARI YERALTISUYU İŞLETME SAHASI İLANI …', ['Antalya'], { Alanya: ['Antalya'] }), ['Antalya']);
+  assert.deepEqual(pasajIlleri('x'.repeat(500) + ' yeraltısuyu işletme sahaları ilanı ' + 'y'.repeat(500) + ' Afyonkarahisar', ['Afyonkarahisar']), ['Afyonkarahisar']);
+});
+
 test('pasajIlleri: anahtar ifade yoksa aday liste olduğu gibi korunur (yargı yok)', () => {
   assert.deepEqual(pasajIlleri('Herhangi bir kararname metni, Konya ve Ankara', ['Konya', 'Ankara']), ['Konya', 'Ankara']);
   assert.deepEqual(pasajIlleri('', ['Konya']), ['Konya']);
@@ -25,7 +30,22 @@ test('kisitNormalize: başlık (saha_adi) kayıtları kuraldan etkilenmez; pasaj
   assert.deepEqual(k.find((r) => r.kaynak === 'u2').il, ['Konya']);
 });
 
-test('gerçek veri: hiçbir başlık kaydı düşmez; pasaj il atamaları azalır ama Konya kayıtları kalır', () => {
+test('gerçek veri: "İŞLETME SAHASI İLANI" içeren hiçbir pasaj kaydı il\'siz kalmaz; il eşlemeli kayıt sayısı değişmez; başlık kayıtları düşmez', () => {
+  const ek = JSON.parse(readFileSync(new URL('../../veri/potansiyel/isletme-sahalari-ek.json', import.meta.url), 'utf8')).kayitlar;
+  const sik = (s) => String(s ?? '').toLocaleLowerCase('tr-TR').replace(/[\s\u00AD\-–—.,;:()«»"'’]+/g, '');
+  let ilOnce = 0, ilSonra = 0;
+  for (const k of ek) {
+    const il = (Array.isArray(k.il) ? k.il : []).filter((x) => x && !/belirsiz/i.test(x));
+    const y = pasajIlleri(k.pasaj, il, k.ilceler);
+    if (il.length) ilOnce++;
+    if (y.length) ilSonra++;
+    if (il.length && /işletmesaha/.test(sik(k.pasaj))) assert.ok(y.length > 0, `ilan kaydı il'siz kaldı: ${k.rg_tarih} ${il.join('/')}`);
+    for (const i of y) assert.ok(il.includes(i), 'kural il eklemez, yalnız süzer');
+  }
+  assert.equal(ilSonra, ilOnce, 'il eşlemeli pasaj kaydı sayısı korunur (liste boşalmaz)');
+});
+
+test('gerçek veri (eski): başlık kayıtları düşmez; Konya kayıtları kalır', () => {
   const ana = JSON.parse(readFileSync(new URL('../../veri/potansiyel/isletme-sahalari.json', import.meta.url), 'utf8')).kayitlar;
   const ek = JSON.parse(readFileSync(new URL('../../veri/potansiyel/isletme-sahalari-ek.json', import.meta.url), 'utf8')).kayitlar;
   const k = kisitNormalize(ana, ek);

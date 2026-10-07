@@ -102,7 +102,7 @@ export function ilPotansiyel(ilAdi) {
   // İl yakınlık kuralı (EK-2/2): pasajda il adı anahtar ifadeye yakın değilse
   // kayıt bu ilin sayfasına girmez (ortak-normalize.js — kisit-sorgu ile aynı kural).
   const rgEkKayitlari = isletmeEk.kayitlar
-    .filter((k) => Array.isArray(k.il) && pasajIlleri(k.pasaj, k.il).includes(ilAdi))
+    .filter((k) => Array.isArray(k.il) && pasajIlleri(k.pasaj, k.il, k.ilceler).includes(ilAdi))
     .map((k) => ({
       tur: 'pasaj', metin: k.pasaj, durum: k.durum,
       tarih: k.rg_tarih, url: k.kaynak_url,

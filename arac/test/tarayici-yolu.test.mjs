@@ -34,7 +34,7 @@ test('önbellek taraması: en yeni sürüm numarası, yalnız var olan yürütü
   assert.equal(tarayiciYolu('chromium', { env, pw }).kaynak, 'playwright-core');
 });
 
-test('bu sunucuda gerçek Chromium bulunur (sağlık sistemi koşabilir)', () => {
+test('bu sunucuda gerçek Chromium bulunur (sağlık sistemi koşabilir)', { skip: !process.env.SAGLIK_TEST_GERCEK && 'SAGLIK_TEST_GERCEK=1 ile açılır (ortam bağımlı)' }, () => {
   const s = tarayiciYolu('chromium');
   assert.ok(s.yol, `Chromium yok: ${s.adaylar.join(', ')}`);
 });

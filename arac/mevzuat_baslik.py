@@ -11,9 +11,11 @@ import re
 
 _SON_NOKTA = re.compile(r"[.;!?)\]\"”’»]\s*$")
 _BASLANGIC = re.compile(r"^(\(?[IVX]+\s*[-–—]\s*)?[A-ZÇĞİÖŞÜ(“\"]")
+_ROMA = re.compile(r"^\(?[IVX]+\s*[-–—]\s*")
 _MADDE_ITEM = re.compile(r"^\(?\d+\)")
 _DEGISIKLIK_REF = re.compile(r"md\.\)|\d{1,2}/\d{1,2}/\d{4}")
-_BOLUM = re.compile(r"\b(BÖLÜM|KISIM)\b")
+_BOLUM = re.compile(r"\b(BÖLÜM|K[Iİ]S[Iİl]M|USULÜ|HÜKÜMLER)\b")
+_BUYUK_HARFLI = re.compile(r"^[A-ZÇĞİÖŞÜ]{2,}\s+[A-ZÇĞİÖŞÜlI]{2,}")
 _DIPNOT = re.compile(r"\s*\[\d+\]\s*$")
 _SINIRLAR = (". ", ") ", "] ", ".” ", '." ', ".» ")
 
@@ -29,36 +31,50 @@ def _rakam_orani(s: str) -> float:
     return sum(c.isdigit() for c in harf) / len(harf)
 
 
+def _tek_tur(metin: str) -> tuple[str, str | None, bool]:
+    """Bir tur kuyruk ayırma. Dönüş: (govde, baslik|None, degisti)."""
+    t = (metin or "").rstrip()
+    idx = _son_cumle_siniri(t)
+    if idx < 0:
+        return t, None, False
+    kuyruk = t[idx + 2:].strip()
+    if not kuyruk or re.search(r"[.;!?]$", kuyruk):
+        return t, None, False
+    if not _BASLANGIC.match(kuyruk) or _MADDE_ITEM.match(kuyruk):
+        return t, None, False
+    if _DEGISIKLIK_REF.search(kuyruk) or _rakam_orani(kuyruk) > 0.4:
+        return t, None, False
+    govde = t[: idx + 1].rstrip()
+    # Bölüm/kısım başlığı ya da roma rakamlı üst başlık ya da BÜYÜK HARFLİ bölüm
+    # artığı: gövdeden ayrılır ama madde başlığı olarak ATANMAZ (hangi parçanın
+    # madde başlığı olduğu metinden güvenle çıkarılamaz).
+    if _BOLUM.search(kuyruk) or _ROMA.match(kuyruk) or _BUYUK_HARFLI.match(kuyruk):
+        return (govde, None, True) if len(kuyruk) <= 160 else (t, None, False)
+    if len(kuyruk) > 90:
+        return t, None, False
+    baslik = _DIPNOT.sub("", kuyruk).strip().rstrip(":").strip()
+    return govde, (baslik or None), True
+
+
 def kuyruk_ayir(metin: str) -> tuple[str, str | None]:
     """(govde, baslik|None): govde = kuyruğu alınmış metin.
 
     Kuyruk, son cümle sınırından sonra kalan ve başlık gibi görünen kısa
-    parçadır: 1-90 karakter, cümle sonu noktalaması yok, büyük harf/roma
-    rakamı ile başlar, madde bendi değil, değişiklik künyesi değil, rakam
-    ağırlıklı değil. BÖLÜM/KISIM içeren kuyruk (bölüm başlığı + madde başlığı
-    birleşik) 160 karaktere kadar gövdeden ayrılır ama başlık olarak
-    ATANMAZ — hangi parçanın madde başlığı olduğu metinden çıkarılamaz.
+    parçadır: 1-90 karakter, cümle sonu noktalaması yok, büyük harfle başlar,
+    madde bendi değil, değişiklik künyesi değil, rakam ağırlıklı değil.
+    Ayırma en çok üç tur yinelenir: madde başlığının önünde bölüm/kısım
+    başlığı da yapışıksa ikisi de gövdeden düşer; başlık yalnız ilk (en
+    dıştaki) turdan, o da madde başlığı ise atanır.
     """
-    t = (metin or "").rstrip()
-    idx = _son_cumle_siniri(t)
-    if idx < 0:
-        return t, None
-    kuyruk = t[idx + 2:].strip()
-    if not kuyruk:
-        return t, None
-    if re.search(r"[.;!?]$", kuyruk):
-        return t, None
-    if not _BASLANGIC.match(kuyruk) or _MADDE_ITEM.match(kuyruk):
-        return t, None
-    if _DEGISIKLIK_REF.search(kuyruk) or _rakam_orani(kuyruk) > 0.4:
-        return t, None
-    govde = t[: idx + 1].rstrip()
-    if _BOLUM.search(kuyruk):
-        return (govde, None) if len(kuyruk) <= 160 else (t, None)
-    if len(kuyruk) > 90:
-        return t, None
-    baslik = _DIPNOT.sub("", kuyruk.rstrip(":").strip()).strip()
-    return govde, (baslik or None)
+    govde, baslik, degisti = _tek_tur(metin)
+    tur = 0
+    while degisti and tur < 2:
+        yeni_govde, _, degisti = _tek_tur(govde)
+        if not degisti:
+            break
+        govde = yeni_govde
+        tur += 1
+    return govde, baslik
 
 
 def basliklari_duzelt(maddeler: list[dict]) -> dict:

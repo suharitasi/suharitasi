@@ -22,6 +22,7 @@ const SON_NOKTA = /[.;!?)\]"”’»]\s*$/;
 const MULGA_YALNIZ = /^\(\s*(?:Ek:[^()]*;\s*)?Mülga[^()]*\)(?:\s*\(\s*Mülga[^()]*\))?\s*$/i;
 const TABLO_KIRI = /\d{1,2}\/\d{1,2}\/\d{4}\s+\d{3,5}\s+\d/;
 const SAYILI_KUYRUK = /\b\d{3,4}\s+SAYILI\s*$/;
+const BOLUM_ARTIGI = /\b(BÖLÜM|KISIM|KISlM)\b[^.]*\]?\s*$/;
 
 /** Metni kelime sınırında, en çok `enCok` karaktere kırpar; kırpıldıysa "…" ekler. */
 export function kelimeSinirindaKes(metin, enCok) {
@@ -36,7 +37,7 @@ export function metinDurumu(metin) {
   const t = String(metin ?? '').trim();
   const bos = t.length === 0;
   const mulgaYalniz = !bos && MULGA_YALNIZ.test(t);
-  const kirli = !bos && (TABLO_KIRI.test(t) || SAYILI_KUYRUK.test(t));
+  const kirli = !bos && (TABLO_KIRI.test(t) || SAYILI_KUYRUK.test(t) || BOLUM_ARTIGI.test(t));
   const kesik = !bos && !mulgaYalniz && !SON_NOKTA.test(t);
   return { bos, mulgaYalniz, kesik, kirli };
 }
@@ -49,14 +50,18 @@ export function maddeIndekslenir(m) {
   return !(d.bos || d.mulgaYalniz || d.kesik || d.kirli);
 }
 
-/** <title>: kanun adını içeren ilk ≤60 karakterlik aday. Editoryal seoBaslik öncelikli. */
+/** <title>: kanun adını içeren ilk ≤60 karakterlik aday. Sıra: editoryal seoBaslik →
+ *  RESMÎ tam ad (+ madde başlığı) → resmî tam ad → kısa ad (+ başlık) → kısa ad.
+ *  Kısa adlar (KANUN_KISA_AD) yalnız tam ad sığmadığında devreye girer. */
 export function maddeTarayiciBaslik(m, editoryal = null) {
   if (editoryal?.seoBaslik && editoryal.seoBaslik.length <= TITLE_SINIR) return editoryal.seoBaslik;
   const kisa = KANUN_KISA_AD[m.kanunKisa] ?? m.kanun ?? m.kanunKisa;
+  const tam = m.kanun ?? kisa;
   const adaylar = [
+    m.baslik ? `${tam} ${m.madde}: ${m.baslik}` : null,
+    `${tam} ${m.madde}`,
     m.baslik ? `${kisa} ${m.madde}: ${m.baslik}` : null,
     `${kisa} ${m.madde}`,
-    `${m.kanun} ${m.madde}`,
     `${m.kanunKisa} ${m.madde}`,
   ].filter(Boolean);
   return adaylar.find((a) => a.length <= TITLE_SINIR) ?? `${m.kanunKisa} ${m.madde}`;

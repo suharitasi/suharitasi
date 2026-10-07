@@ -30,7 +30,7 @@ def main() -> int:
             cekilen.append({
                 "id": f"{slug(d['kanunKisa'])}-{slug(m['etiket'])}-{m['numara']}",
                 "kanunKisa": d["kanunKisa"], "kanun": d["kanun"], "tur": d["tur"],
-                "madde": madde, "baslik": "", "metin": m["metin"], "kaynakUrl": d["kaynakUrl"],
+                "madde": madde, "baslik": m.get("baslik", ""), "metin": m["metin"], "kaynakUrl": d["kaynakUrl"],
                 "merci": None, "sure": None, "yorum": None, "rehberler": [], "emsaller": [],
             })
 
@@ -71,6 +71,9 @@ def main() -> int:
         "_not": "Mevzuat maddeleri motoru. metin mevzuat.gov.tr resmî kaynağından BİREBİR "
                 "(arac/mevzuat-cekici.py); uydurulmaz. merci/sure/yorum yalnız doğrulanmış rehber bilgisinden.",
         "surum": 3, "olusturma": "2026-09-13", "kaynak": "mevzuat.gov.tr",
+        # duzeltme: metin/başlık düzeltmesinin koşum günü — sayfa damgası (guncellik.js)
+        # veri tarihi olarak bunu da okur (içerik değişti, tarih değişsin).
+        "duzeltme": __import__("datetime").date.today().isoformat(),
         "maddeSayisi": len(hepsi), "maddeler": hepsi,
     }
     json.dump(out, open(KOK / "data/kamu/mevzuat-maddeleri.json", "w"), ensure_ascii=False, indent=2)

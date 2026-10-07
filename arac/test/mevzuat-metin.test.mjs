@@ -39,9 +39,9 @@ test('maddeIndekslenir: gövdeli tam metin açık, yer tutucu/kesik kapalı', ()
 
 test('maddeTarayiciBaslik: kanun adını içerir, 60 karakteri aşmaz, başlık varsa ekler', () => {
   const t1 = maddeTarayiciBaslik(ornek);
-  assert.equal(t1, '167 Sayılı Yeraltı Suları Kanunu Madde 1');
+  assert.equal(t1, '167 Sayılı Yeraltı Suları Hakkında Kanun Madde 1');
   const t2 = maddeTarayiciBaslik({ ...ornek, madde: 'Madde 2', baslik: 'Terimler' });
-  assert.equal(t2, '167 Sayılı Yeraltı Suları Kanunu Madde 2: Terimler');
+  assert.equal(t2, '167 Sayılı Yeraltı Suları Hakkında Kanun Madde 2: Terimler');
   const uzun = maddeTarayiciBaslik({ ...ornek, kanunKisa: '5686', kanun: '5686 Sayılı Jeotermal Kaynaklar ve Doğal Mineralli Sular Kanunu', madde: 'Madde 22', baslik: 'Ruhsat sahibinin yükümlülükleri ve idari para cezaları' });
   assert.ok(uzun.length <= TITLE_SINIR, uzun);
   assert.match(uzun, /Jeotermal/);
@@ -53,7 +53,11 @@ test('maddeOzCevap ≤280 ve kelime ortasında kesilmez', () => {
   const oz = maddeOzCevap(uzunMetin);
   assert.ok(oz.length <= OZ_CEVAP_SINIR);
   assert.ok(oz.endsWith('…'));
-  assert.ok(!/\S…$/.test(oz.slice(0, -1) + ' ') || true);
+  assert.ok(!/\s…$/.test(oz), 'kırpım boşlukla bitmez');
+  const tam = maddeAciklama(uzunMetin);
+  const govde = oz.slice(0, -1);
+  assert.ok(tam.startsWith(govde), 'öz-cevap tam metnin önekidir');
+  assert.ok(/[\s,;:(–—-]/.test(tam.charAt(govde.length)), 'kesim kelime sınırında (sonraki karakter ayraç)');
   assert.ok(maddeAciklama(ornek).startsWith('167 Sayılı Yeraltı Suları Hakkında Kanun Madde 1: Yeraltı'));
 });
 

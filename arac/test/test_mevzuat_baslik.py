@@ -31,6 +31,27 @@ class KuyrukAyir(unittest.TestCase):
         t = "Şunlar sayılır: (1) birinci bent"
         self.assertEqual(kuyruk_ayir(t), (t, None))
 
+    def test_dipnot_ve_iki_nokta_birlikte(self):
+        self.assertEqual(kuyruk_ayir("... korunur. Komşu hakkı: [2]"), ("... korunur.", "Komşu hakkı"))
+
+    def test_roma_rakamli_ust_baslik_atanmaz(self):
+        g, b = kuyruk_ayir("(Mülga: 2/7/2018 – KHK-703/69 md.) II – Vazife ve salahiyetle")
+        self.assertEqual(g, "(Mülga: 2/7/2018 – KHK-703/69 md.)")
+        self.assertIsNone(b)
+
+    def test_buyuk_harfli_bolum_artigi_atanmaz(self):
+        g, b = kuyruk_ayir("... geçerlidir. KAPALI TEKLİF USULÜ Tekliflerin hazırlanması")
+        self.assertEqual(g, "... geçerlidir.")
+        self.assertIsNone(b)
+        g2, b2 = kuyruk_ayir("... sayılır. ALTINCI KISlM Son Hükümler Yerel yönetimler")
+        self.assertEqual(g2, "... sayılır.")
+        self.assertIsNone(b2)
+
+    def test_iki_katmanli_kuyruk(self):
+        g, b = kuyruk_ayir("... ekler. Kuruluş. İKİNCİ BÖLÜM Belediyenin Kuruluşu ve Sınırları Kuruluş")
+        self.assertEqual(g, "... ekler. Kuruluş.")
+        self.assertIsNone(b)
+
     def test_tam_cumle_dokunulmaz(self):
         t = "Bu kanun yayımı tarihinde yürürlüğe girer."
         self.assertEqual(kuyruk_ayir(t), (t, None))
