@@ -12,6 +12,7 @@ import '../styles/hareket.css';
 import AcilDestekBar from '../components/AcilDestekBar.astro';
 import Analitik from '../components/Analitik.astro';
 import CfAnalitik from '../components/CfAnalitik.astro';
+import { hukukiYonlendirmeGoster } from '../data/hukuki-yonlendirme.js';
 
 interface Props {
   baslik: string;
@@ -89,6 +90,9 @@ const metaAciklama = metaAciklamaHam
 const yol = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname
   : Astro.url.pathname + '/';
+// Sahip kararı EK-2/3 (08.10.2026): acil destek barı sayfa ailesine göre; gövde
+// alt payı yalnız bar render edilen sayfada (body.adb-var).
+const acilBarVar = hukukiYonlendirmeGoster(yol);
 const canonical = new URL(yol, Astro.site).href;
 const ogGorselTam = new URL(OG_GORSEL, Astro.site).href;
 const kok = new URL('/', Astro.site).href;
@@ -221,7 +225,7 @@ const semalar = [
     url: canonical,
     name: baslik,
     description: metaAciklama,
-    inLanguage: 'tr-TR',
+    inLanguage: dil === 'en' ? 'en' : 'tr-TR',
     isPartOf: { '@id': `${kok}#site` },
     ...(guncelleme && { dateModified: guncelleme.toISOString().slice(0, 10) }),
   },
@@ -736,7 +740,7 @@ const jsonLd = JSON.stringify({
   }
 </style>
 </head>
-<body>
+<body class:list={[acilBarVar && 'adb-var']}>
   {/* K23 (27.08): "içeriğe atla" bağlantısı — WCAG 2.4.1 (A). Sitede hiç
       yoktu; 523 sayfa etkileniyordu. Odaklanınca görünür, aksi hâlde
       görünmez (kaydırma çubuğu ve düzen etkilenmesin diye konumlandırma

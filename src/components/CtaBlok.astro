@@ -4,6 +4,7 @@
 // Sahte vaat yok: "acil durumunuz varsa hemen danışın" der, sonuç garantisi
 // vermez. Ölçüm: data-olay tetikleyicileri (/olay sayacı).
 import { TELEFON, EPOSTA } from '../data/site';
+import { hukukiYonlendirmeGoster } from '../data/hukuki-yonlendirme.js';
 
 interface Props {
   konu?: string;
@@ -17,7 +18,10 @@ const {
   metin = 'Süre kaybı hak kaybıdır. Belge reddi, idari para cezası, kuyu kapatma veya komşu su uyuşmazlığında erken adım sonucu değiştirir.',
 } = Astro.props;
 const mailKonu = `${konu} — acil hukuki destek`;
+// Sahip kararı EK-2/3 (08.10.2026): blok yalnız izin verilen sayfa ailelerinde render edilir.
+const goster = hukukiYonlendirmeGoster(Astro.url.pathname);
 ---
+{goster && (
 <aside class="cta" aria-label="Acil hukuki destek">
   <div class="cta-ic">
     <p class="cta-kicker">Acil hukuki destek</p>
@@ -44,6 +48,7 @@ const mailKonu = `${konu} — acil hukuki destek`;
     <p class="cta-not">Bu sayfa bilgilendirme amaçlıdır; somut uyuşmazlıkta hukuki görüş için bir hukukçuya danışın.</p>
   </div>
 </aside>
+)}
 
 <style>
   .cta {
