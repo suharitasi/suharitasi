@@ -52,7 +52,10 @@ const kaydet = (ad, ok, ek = '') => {
   const yaz = (ip, uc, durum) => {
     bekle.length = 0;
     erisimKaydet(ctx(env, { 'cf-connecting-ip': ip }), uc, durum);
-    return Promise.allSettled(bekle);
+    // Aynı milisaniyede yazılan iki kayıt anahtar sırasını rastgele ekle belirler;
+    // test sırayı ölçtüğü için kayıtlar farklı ms'ye düşürülür (07.10.2026: koşumdan
+    // koşuma 14/16 ↔ 16/16 dalgalanması buradan geliyordu).
+    return Promise.allSettled(bekle).then((r) => new Promise((c) => setTimeout(() => c(r), 2)));
   };
   await yaz('1.2.3.4', '/api/v1/havzalar', 200);
   await yaz('1.2.3.4', '/api/v1/havzalar', 429);

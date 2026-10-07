@@ -7,7 +7,8 @@ import { mkdirSync } from 'node:fs';
 import { tarayiciYoluZorunlu } from './tarayici-yolu.mjs';
 
 const TABAN = process.env.TABAN || 'http://localhost:5197';
-const CIKTI = '/home/suha/projeler/suharitasi/cikti/denetim';
+// CIKTI env ile ezilebilir (07.10.2026): worktree/prova koşumu canlı depoya yazmasın.
+const CIKTI = process.env.CIKTI || '/home/suha/projeler/suharitasi/cikti/denetim';
 const EXE = tarayiciYoluZorunlu('chromium-headless-shell');
 const yollar = process.argv.slice(2).length ? process.argv.slice(2) : ['/', '/havzalar/', '/rehberler/kuyu-ruhsati/'];
 
