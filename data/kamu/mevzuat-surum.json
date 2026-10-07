@@ -1,5 +1,5 @@
 {
- "son_kontrol": "2026-10-04T15:26:31+0300",
+ "son_kontrol": "2026-10-07T08:20:01+0300",
  "mevzuatlar": {
   "167": {
    "Madde 1": "783d78d8141b613e84f4e388c0eae0b89c278449106699e1d91920758bfe21eb",
@@ -488,5 +488,7 @@
    "Madde 59": "3800e00daed4a11793f519c537636c42fc15a999edaa16a937d6453c86d78d2b",
    "Madde 60": "079189bff8b721a1dde5729fffb69d81715ba9fc6780a24d83b9a68608d7ffdf"
   }
- }
+ },
+ "hata_sayisi": 0,
+ "erisilemeyenler": []
 }
