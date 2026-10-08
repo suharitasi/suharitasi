@@ -34,7 +34,8 @@ def main() -> int:
                 "merci": None, "sure": None, "yorum": None, "rehberler": [], "emsaller": [],
             })
 
-    mevcut = json.load(open(KOK / "data/kamu/mevzuat-maddeleri.json", encoding="utf-8"))["maddeler"]
+    mevcut_dosya = json.load(open(KOK / "data/kamu/mevzuat-maddeleri.json", encoding="utf-8"))
+    mevcut = mevcut_dosya["maddeler"]
     by_key = {(m["kanunKisa"], m["madde"]): m for m in mevcut}
     for c in cekilen:
         s = by_key.get((c["kanunKisa"], c["madde"]))
@@ -71,9 +72,15 @@ def main() -> int:
         "_not": "Mevzuat maddeleri motoru. metin mevzuat.gov.tr resmî kaynağından BİREBİR "
                 "(arac/mevzuat-cekici.py); uydurulmaz. merci/sure/yorum yalnız doğrulanmış rehber bilgisinden.",
         "surum": 3, "olusturma": "2026-09-13", "kaynak": "mevzuat.gov.tr",
-        # duzeltme: metin/başlık düzeltmesinin koşum günü — sayfa damgası (guncellik.js)
-        # veri tarihi olarak bunu da okur (içerik değişti, tarih değişsin).
-        "duzeltme": __import__("datetime").date.today().isoformat(),
+        # duzeltme: madde içeriği (metin/başlık) mevcut dosyadan FARKLIYSA koşum
+        # günü; aynıysa eski değer taşınır — içerik değişmeden damga ilerlemez
+        # (sayfa dateModified/lastmod bunu okur; 2. inceleme Y2).
+        "duzeltme": (
+            __import__("datetime").date.today().isoformat()
+            if [(m["kanunKisa"], m["madde"], m["metin"], m.get("baslik", "")) for m in hepsi]
+            != [(m["kanunKisa"], m["madde"], m["metin"], m.get("baslik", "")) for m in mevcut]
+            else mevcut_dosya.get("duzeltme")
+        ),
         "maddeSayisi": len(hepsi), "maddeler": hepsi,
     }
     json.dump(out, open(KOK / "data/kamu/mevzuat-maddeleri.json", "w"), ensure_ascii=False, indent=2)

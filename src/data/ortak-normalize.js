@@ -22,12 +22,12 @@ const ilKimlik = (iller) => [...iller].sort((a, b) => a.localeCompare(b, 'tr')).
 /** PASAJ KAYITLARINDA İL YAKINLIK KURALI (07.10.2026 denetimi, sahip kararı EK-2/2).
  *  OCR pasajı (ek kayıt) aynı RG sayfasındaki komşu kararnameleri de taşır; il
  *  alanı pasajda geçen HER il adıyla doldurulmuştu (ör. Afganistan vize
- *  kararnamesi pasajı Konya/Mersin/Niğde'ye yazılmıştı). Kural: il adı, anahtar
- *  ifadenin (yeraltı suyu / işletme sahası / tahsise kapatma / kısıt) ±PENCERE
- *  karakter yakınında geçiyorsa kalır; anahtar ifade pasajda hiç yoksa aday
- *  liste olduğu gibi korunur (yargı yok); hiçbir il yakın değilse liste boşalır
- *  ve kayıt il eşlemesinden düşer (sayfaya girmez; raporda listelenir).
- *  Veri dosyasına dokunulmaz; yalnız okuma mantığı. */
+ *  kararnamesi pasajı Konya/Mersin/Niğde'ye yazılmıştı). Kural: il adı ya da
+ *  kaydın o ile bağladığı ilçe adı, anahtar ifadenin (yeraltı suyu / işletme
+ *  sahası / tahsise kapatma / kısıt) ±PENCERE sıkıştırılmış karakter yakınında
+ *  geçiyorsa il kalır; anahtar ifade yoksa ya da hiçbir il/ilçe yakın değilse
+ *  aday liste olduğu gibi korunur (yargı yok). Veri dosyasına dokunulmaz;
+ *  yalnız okuma mantığı (ayrıntı: pasajIlleri). */
 export const PASAJ_ANAHTAR = /yeralt[ıi]su|işletmesaha|isletmesaha|tahsisekapat|k[ıi]s[ıi]t/giu;
 const PENCERE = 130;
 // OCR pasajlarında harfler boşlukla ayrılmış ("K o n y a") ya da satır sonu

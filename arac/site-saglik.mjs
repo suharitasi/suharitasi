@@ -1857,6 +1857,7 @@ async function testModu() {
   };
 
   const pw = (await import(join(KOK, 'node_modules/playwright-core/index.js'))).default;
+  pwModul = pw;
 
   // (i) CSP'den media-src kaldır → md.4 🔴 + G1(a) onarımı (SANALDA) → geçer
   {
@@ -2038,6 +2039,7 @@ async function gorselTabanYenile() {
     ? [...new Set(Object.keys(eski.sayfalar).map((k) => k.split('@')[0]))]
     : json(join(IZLEME, 'cekirdek-sayfalar.json')).sayfalar.map((x) => x.yol);
   const pw = (await import(join(KOK, 'node_modules/playwright-core/index.js'))).default;
+  pwModul = pw;
   const tarayici = await pw.chromium.launch({
     executablePath: chromeYolu(), args: ['--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'],
   });
