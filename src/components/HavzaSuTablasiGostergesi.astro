@@ -8,6 +8,7 @@
 // K7: serisi olmayan havzada grafik ÜRETİLMEZ; deterministik fallback metni
 // gösterilir. "Kısıtlı İşletme" sınıflaması veri olmadığından basılmaz.
 import matris from '../data/akifer-egilim-matrisi.json';
+import { egilimSinifi } from '../data/egilim-sinif.js';
 
 interface Props {
   // Havza no (DSİ 01…25). Verilmezse bileşen hiç render edilmez.
@@ -18,15 +19,20 @@ const { no, ad } = Astro.props;
 
 const kayit = no ? matris.havzalar.find((h) => h.no === no) : null;
 const veriVar = !!(kayit && kayit.kategori && kayit.seri);
+// 07.10.2026 (EK-2/2): sınıf adı JSON'daki metinden değil TEK kuraldan (egilim-sinif.js)
+// — harita paneli ve 5 yıllık metinle aynı eşikler; pencere etiketi açık.
+const sinif = veriVar ? egilimSinifi(kayit!.egilim_cm_yil) : null;
+const kategoriEtiket = sinif?.etiket ?? kayit?.kategori ?? '';
+const pencereEtiketi = veriVar ? `${kayit!.ay_sayisi} aylık ölçüm penceresi (${kayit!.aralik})` : '';
 
 // Renkler mevcut risk sözlüğünden (havza-risk.js seviye renkleri); yeni değer yok.
 const RENK: Record<string, string> = {
-  'Kritik Düşüş': '#C62828',
-  'Dengeli': '#E65100',
-  'Yükseliş': '#2E7D32',
-  'Kısıtlı İşletme': '#875518',
+  'kritik-dusus': '#C62828',
+  'dusus': '#C62828',
+  'dengeli': '#E65100',
+  'yukselis': '#2E7D32',
 };
-const renk = veriVar ? (RENK[kayit!.kategori!] ?? '#3C5266') : '#3C5266';
+const renk = sinif ? (RENK[sinif.kod] ?? '#3C5266') : '#3C5266';
 
 // — Satır-içi SVG sparkline (build-time) —
 const W = 320, H = 56, PAD = 3;
@@ -57,8 +63,8 @@ const sayi = (n: number | null | undefined, o = 2) =>
 
 const dsiYas = kayit?.dsi_yas;
 const aciklama = veriVar
-  ? `${kayit!.ad} için son 10 yıl (${kayit!.aralik}) su depolama eğilimi: `
-    + `${kayit!.kategori} (${kayit!.egilim_cm_yil > 0 ? '+' : ''}${sayi(kayit!.egilim_cm_yil)} cm/yıl, `
+  ? `${kayit!.ad} için ${pencereEtiketi} su depolama eğilimi: `
+    + `${kategoriEtiket} (${kayit!.egilim_cm_yil > 0 ? '+' : ''}${sayi(kayit!.egilim_cm_yil)} cm/yıl, `
     + `${kayit!.ay_sayisi} gerçek aylık uydu ölçümü). DEĞİŞİM verisidir; mutlak su miktarı değildir.`
   : (kayit?.durum ?? 'Bölge Akifer Rasat Kaydı Bulunmuyor (DSİ Etüdü Gerekir)');
 ---
@@ -85,7 +91,7 @@ const aciklama = veriVar
         <>
           <p class="akifer-ust">
             <span class="akifer-etiket">{ad ?? kayit.ad}</span>
-            <span class="akifer-kat" data-kategori={kayit.kategori}>{kayit.kategori}</span>
+            <span class="akifer-kat" data-kategori={sinif?.kod}>{kategoriEtiket}</span>
           </p>
 
           <figure class="akifer-grafik">
@@ -103,7 +109,7 @@ const aciklama = veriVar
           </figure>
 
           <dl class="akifer-kunye">
-            <div><dt>Eğilim</dt><dd><strong data-kategori={kayit.kategori}>{kayit.kategori}</strong> · {kayit.egilim_cm_yil > 0 ? '+' : ''}{sayi(kayit.egilim_cm_yil)} cm/yıl</dd></div>
+            <div><dt>Eğilim ({kayit.ay_sayisi} aylık pencere)</dt><dd><strong data-kategori={sinif?.kod}>{kategoriEtiket}</strong> · {kayit.egilim_cm_yil > 0 ? '+' : ''}{sayi(kayit.egilim_cm_yil)} cm/yıl</dd></div>
             {dsiYas && dsiYas.rezerv_hm3 != null && (
               <div><dt>DSİ YAS işletme rezervi</dt><dd>{sayi(dsiYas.rezerv_hm3, 1)} hm³/yıl ({dsiYas.yil})</dd></div>
             )}
@@ -153,10 +159,9 @@ const aciklama = veriVar
   }
   /* 0,62rem metin — K53 metin türevleri (04.10.2026): grafik RENK'i yukarıda
      aynen duruyor, okunabilir metin için kontrastı ≥7:1 olan türev kullanılır. */
-  [data-kategori="Kritik Düşüş"] { color: var(--risk-kirmizi-metin); }
-  [data-kategori="Dengeli"] { color: var(--risk-turuncu-metin); }
-  [data-kategori="Yükseliş"] { color: var(--risk-yesil-metin); }
-  [data-kategori="Kısıtlı İşletme"] { color: var(--risk-kahve-metin); }
+  [data-kategori="kritik-dusus"], [data-kategori="dusus"] { color: var(--risk-kirmizi-metin); }
+  [data-kategori="dengeli"] { color: var(--risk-turuncu-metin); }
+  [data-kategori="yukselis"] { color: var(--risk-yesil-metin); }
   .akifer-grafik { margin: 0; }
   .akifer-grafik svg { display: block; background: var(--zemin); border: 1px solid var(--cizgi); }
   .akifer-aralik { font-family: var(--mono); font-size: 0.68rem; color: var(--metin-soluk); margin-top: 0.35rem; }

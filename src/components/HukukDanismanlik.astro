@@ -11,6 +11,7 @@
 // kaynak). WhatsApp hedefi site genelindeki /whatsapp/ yoludur (düğmeyle
 // aynı). Yeni kanal/numara uydurulmaz.
 import { EPOSTA, TELEFON, YAZAR } from '../data/site';
+import { hukukiYonlendirmeGoster } from '../data/hukuki-yonlendirme.js';
 
 interface Props {
   // E-posta konu satırına giren sayfa konusu (ör. rehber başlığı).
@@ -19,7 +20,10 @@ interface Props {
 
 const { konu = 'Su hukuku' } = Astro.props;
 const mailKonu = `${konu} — hukuki değerlendirme talebi`;
+// Sahip kararı EK-2/3 (08.10.2026): blok yalnız izin verilen sayfa ailelerinde render edilir.
+const goster = hukukiYonlendirmeGoster(Astro.url.pathname);
 ---
+{goster && (
 <section class="hukuk-danismanlik" aria-label="Hukuki danışmanlık ve iletişim">
   <p class="hd-kicker">Hukuki danışmanlık ve iletişim</p>
   <h2>Somut durumunuz için hukuki değerlendirme{konu ? ` — ${konu}` : ''}</h2>
@@ -60,6 +64,7 @@ const mailKonu = `${konu} — hukuki değerlendirme talebi`;
     <a href={YAZAR.buroUrl} target="_blank" rel="noopener">{YAZAR.buro}</a>
   </p>
 </section>
+)}
 
 <style>
   .hukuk-danismanlik {

@@ -10,7 +10,8 @@ import { chromium } from '/home/suha/projeler/suharitasi/node_modules/playwright
 
 const PORT = 5391;
 const TABAN = `http://127.0.0.1:${PORT}`;
-const EXE = '/home/suha/.cache/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell';
+import { tarayiciYolu } from '../tarayici-yolu.mjs';
+const EXE = tarayiciYolu('chromium-headless-shell').yol ?? '';
 
 if (!existsSync(EXE)) {
   console.error(`FAIL: headless chromium yok: ${EXE}`);

@@ -10,12 +10,13 @@
    Kullanım: node arac/kapi-denetim.mjs [taban] [ciktiDizini] */
 import { chromium } from '/home/suha/projeler/suharitasi/node_modules/playwright-core/index.mjs';
 import { mkdirSync, writeFileSync } from 'node:fs';
+import { tarayiciYoluZorunlu } from './tarayici-yolu.mjs';
 import { join } from 'node:path';
 
 const TABAN = (process.argv[2] || 'http://127.0.0.1:5197').replace(/\/$/, '');
 const CIKTI = process.argv[3] || '/home/suha/projeler/suharitasi-kapi/cikti/denetim/kapi';
 const YOL = '/nerede-su-cikar/';
-const EXE = '/home/suha/.cache/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-linux64/chrome-headless-shell';
+const EXE = tarayiciYoluZorunlu('chromium-headless-shell');
 
 mkdirSync(CIKTI, { recursive: true });
 

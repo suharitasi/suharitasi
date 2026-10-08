@@ -15,6 +15,7 @@ import zengin from '../../veri/potansiyel/zenginlestirme.json';
 import morfoloji from '../../veri/potansiyel/morfoloji.json';
 import { sayiIle } from './rg-sayi.js';
 import { akademikBasilir } from './akademik-suzgec.js';
+import { pasajIlleri } from './ortak-normalize.js';
 
 // Faz D (08.09.2026): OpenAlex başlıklarında HTML varlık kalıntısı (58 başlıkta
 // &amp;#039; / &#039; / &quot; / &lt; …) sayfada harfiyen basılıyordu — çözülür.
@@ -98,8 +99,10 @@ export function ilPotansiyel(ilAdi) {
       tarih: k.rg_tarih, url: k.kaynak_url,
       ...sayiIle(k),
     }));
+  // İl yakınlık kuralı (EK-2/2): pasajda il adı anahtar ifadeye yakın değilse
+  // kayıt bu ilin sayfasına girmez (ortak-normalize.js — kisit-sorgu ile aynı kural).
   const rgEkKayitlari = isletmeEk.kayitlar
-    .filter((k) => Array.isArray(k.il) && k.il.includes(ilAdi))
+    .filter((k) => Array.isArray(k.il) && pasajIlleri(k.pasaj, k.il, k.ilceler).includes(ilAdi))
     .map((k) => ({
       tur: 'pasaj', metin: k.pasaj, durum: k.durum,
       tarih: k.rg_tarih, url: k.kaynak_url,

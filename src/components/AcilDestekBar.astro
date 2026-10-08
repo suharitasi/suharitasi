@@ -7,7 +7,11 @@
 // Ölçüm: tüm bağlantılar data-olay taşır (/olay sayacı).
 // Çakışma: bu bar sabit alt şerittir; eski tekil WhatsApp düğmesi kaldırıldı.
 import { TELEFON } from '../data/site';
+import { hukukiYonlendirmeGoster } from '../data/hukuki-yonlendirme.js';
+// Sahip kararı EK-2/3 (08.10.2026): bar yalnız izin verilen sayfa ailelerinde render edilir.
+const goster = hukukiYonlendirmeGoster(Astro.url.pathname);
 ---
+{goster && (
 <div class="adb" role="region" aria-label="Acil hukuki destek">
   <p class="adb-metin">Acil hukuki destek</p>
   <div class="adb-eylem">
@@ -25,10 +29,12 @@ import { TELEFON } from '../data/site';
     </a>
   </div>
 </div>
+)}
 
 <style>
-  /* Sabit bar içeriği örtmesin: her sayfada gövdeye alt pay. */
-  :global(body) { padding-bottom: 68px; }
+  /* Sabit bar içeriği örtmesin: bar render edilen sayfalarda gövdeye alt pay
+     (body.adb-var sınıfı — bar gizli sayfada boş pay kalmasın). */
+  :global(body.adb-var) { padding-bottom: 68px; }
 
   .adb {
     position: fixed;

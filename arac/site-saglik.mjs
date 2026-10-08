@@ -26,7 +26,14 @@ import { execFileSync, spawn } from 'node:child_process';
 import os from 'node:os';
 
 const VARSAYILAN_KOK = '/home/suha/projeler/suharitasi';
-const EXE = '/home/suha/.cache/ms-playwright/chromium-1228/chrome-linux64/chrome';
+// Tarayıcı yolu artık sabit değil (07.10.2026): arac/tarayici-yolu.mjs sırayla
+// SAGLIK_CHROME → playwright-core → önbellek tarar; yoksa ilgili kalemler KIRMIZI
+// raporlanır, koşum ÇÖKMEZ (06-07.10 üç koşumluk çöküşün dersi).
+import { tarayiciYoluZorunlu } from './tarayici-yolu.mjs';
+// Tek çözümleme noktası: playwright-core'un beklediği sürüm öncelikli (uyumsuz
+// sürüm seçilmesin); çağrı anında çözülür, bulunamazsa açıklayıcı hata.
+let pwModul = null;
+const chromeYolu = () => tarayiciYoluZorunlu('chromium', pwModul ? { pw: pwModul } : {});
 
 // ————————————————————————————— argümanlar —————————————————————————————
 const argv = process.argv.slice(2);
@@ -143,6 +150,18 @@ function kilitBirak() {
   kilitAlindi = false;
 }
 process.on('exit', kilitBirak);
+// Yakalanmamış hata (ör. chrome-launcher'ın dinleyicisiz 'error' olayı) koşumu
+// sessizce bitirmesin: sonuçlar KIRMIZI kalemle kaydedilip bitir() çağrılır
+// (06-07.10.2026 çöküşlerinde SITE-DURUM yazılmamış, bildirim gitmemişti).
+process.on('uncaughtException', async (e) => {
+  try {
+    kaydet('yakalanmamis-hata', 'kirmizi', `süreç çökmek üzereydi: ${e?.message ?? e}`, { yigin: String(e?.stack ?? '').split('\n')[1] ?? '' }, ['tam', 'hizli']);
+    await bitir();
+  } catch (e2) {
+    console.error('bitir() başarısız:', e2?.message ?? e2);
+  }
+  process.exit(1);
+});
 
 async function getir(url, opts = {}) {
   const kontrol = new AbortController();
@@ -431,8 +450,9 @@ async function md25_deployYasi() {
 // — Playwright gerektiren kontroller tek tarayıcı oturumunda toplanır —
 async function tarayiciKontrolleri() {
   const pw = (await import(join(KOK, 'node_modules/playwright-core/index.js'))).default;
+  pwModul = pw;
   const tarayici = await pw.chromium.launch({
-    executablePath: EXE,
+    executablePath: chromeYolu(),
     args: ['--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'],
   });
   try {
@@ -1190,7 +1210,7 @@ async function md9_lighthouse() {
       // (12 puan) aşıyorsa tek atış yeterli, aksi halde 2 atış daha ve
       // MEDYAN alınır. Doğruluk aynı, maliyet çok daha düşük.
       const olc = async () => {
-        const chrome = await launch({ chromePath: EXE, chromeFlags: ['--headless=new', '--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'] });
+        const chrome = await launch({ chromePath: chromeYolu(), chromeFlags: ['--headless=new', '--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'] });
         try {
           const r = await lighthouse(TABAN + yol, { port: chrome.port, onlyCategories: ['performance', 'accessibility'], output: 'json', logLevel: 'error', ...ayar });
           return {
@@ -1837,6 +1857,7 @@ async function testModu() {
   };
 
   const pw = (await import(join(KOK, 'node_modules/playwright-core/index.js'))).default;
+  pwModul = pw;
 
   // (i) CSP'den media-src kaldır → md.4 🔴 + G1(a) onarımı (SANALDA) → geçer
   {
@@ -1864,7 +1885,7 @@ async function testModu() {
         ? s.replace(/\s*media-src[^;]*;/, " media-src 'none';")
         : s
     ).join('\n'));
-    const tarayici = await pw.chromium.launch({ executablePath: EXE, args: ['--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'] });
+    const tarayici = await pw.chromium.launch({ executablePath: chromeYolu(), args: ['--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'] });
     /* SEÇİCİ TEK KAYNAKTAN (M3, 29.07.2026). Buraya `#world .sw-scene
        video` SABİT yazılmıştı; 27.07 ana sayfa revizyonunda o DOM kalktı
        (yeni yapı: `#v2-videolar video`). Seçici hiçbir şey bulamıyordu →
@@ -1922,7 +1943,7 @@ async function testModu() {
     const hedef = join(sanalDist, 'index.html');
     const yedek = readFileSync(hedef, 'utf8');
     writeFileSync(hedef, yedek.replace(/(<script type="application\/ld\+json"[^>]*>)/, '$1{bozuk,'));
-    const tarayici = await pw.chromium.launch({ executablePath: EXE, args: ['--no-sandbox'] });
+    const tarayici = await pw.chromium.launch({ executablePath: chromeYolu(), args: ['--no-sandbox'] });
     const ctx = await tarayici.newContext({ javaScriptEnabled: false });
     const s = await ctx.newPage();
     await s.goto(`${taban}/`, { waitUntil: 'load' });
@@ -2018,8 +2039,9 @@ async function gorselTabanYenile() {
     ? [...new Set(Object.keys(eski.sayfalar).map((k) => k.split('@')[0]))]
     : json(join(IZLEME, 'cekirdek-sayfalar.json')).sayfalar.map((x) => x.yol);
   const pw = (await import(join(KOK, 'node_modules/playwright-core/index.js'))).default;
+  pwModul = pw;
   const tarayici = await pw.chromium.launch({
-    executablePath: EXE, args: ['--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'],
+    executablePath: chromeYolu(), args: ['--no-sandbox', '--use-gl=angle', '--enable-unsafe-swiftshader'],
   });
   let olcumler;
   try { olcumler = await G.olcTumu(tarayici, TABAN, yollar); }

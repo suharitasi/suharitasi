@@ -41,6 +41,8 @@ const persona = oku('data/lead/persona.json');
 const ilceMorfoloji = oku('veri/potansiyel/ilce-morfoloji.json');
 const rgDurum = oku('izleme/state/rg-nobetci-durum.json');
 const mevzuatSurum = oku('data/kamu/mevzuat-surum.json');
+const mevzuatMaddeleri = oku('data/kamu/mevzuat-maddeleri.json');
+const mevzuatDegisiklik = oku('data/kamu/mevzuat-degisiklik.json');
 const emsalKararlar = oku('data/kamu/emsal-kararlar.json');
 const RG_ARSIV_DOSYALAR = [
   'veri/potansiyel/isletme-sahalari.json',
@@ -84,8 +86,18 @@ export const TARIH = {
   ilceMorfoloji: iso(ilceMorfoloji?.kunye?.uretim_tarihi),
   /** RG işletme-sahası arşivinin son nöbetçi taraması (gün). */
   rgTarama: iso((rgDurum?.son_kosum ?? '').slice(0, 10)),
-  /** Mevzuat radarının son başarılı kontrol günü (P3, 05.10.2026). */
-  mevzuat: iso(String(mevzuatSurum?.son_kontrol ?? '').slice(0, 10)),
+  /** Mevzuat metninin VERİ tarihi (07.10.2026 denetimi): madde verisinin oluşturma
+   *  günü ile radarın kaydettiği son gerçek madde değişikliği ("degisti/eklendi/
+   *  kaldirildi") arasındaki en yenisi. Radarın her kontrol günü (son_kontrol)
+   *  damga DEĞİLDİR — içerik değişmeden lastmod ilerliyordu (sahte tazelik;
+   *  469 sayfa her taramada IndexNow'a yeniden bildiriliyordu). */
+  mevzuat: enYeni(
+    mevzuatMaddeleri?.olusturma,
+    mevzuatMaddeleri?.duzeltme,
+    ...(mevzuatDegisiklik?.kayitlar ?? []).map((k) => String(k?.tarih ?? '').slice(0, 10)),
+  ),
+  /** Radarın son kontrol günü — yalnız "en son ne zaman kontrol edildi" metni için. */
+  mevzuatKontrol: iso(String(mevzuatSurum?.son_kontrol ?? '').slice(0, 10)),
   /** RG işletme-sahası arşivinin derleme (veri) tarihi — en yeni dosya. */
   rgArsiv: enYeni(
     ...RG_ARSIV_DOSYALAR.map((y) => {

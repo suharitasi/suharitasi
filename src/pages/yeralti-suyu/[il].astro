@@ -10,7 +10,7 @@
 // dolu) sayfa alır; eşiği geçmeyen il ÜRETİLMEZ (kuyu-ruhsati deseni).
 // Hukuki satır mevcut rehbere KÖPRÜ verir; yeni hukuki iddia yazılmaz.
 import Sayfa from '../../layouts/Sayfa.astro';
-import { TARIH } from '../../data/guncellik.js';
+import { TARIH, enYeni } from '../../data/guncellik.js';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import OzCevap from '../../components/OzCevap.astro';
 import CtaBlok from '../../components/CtaBlok.astro';
@@ -23,6 +23,8 @@ export async function getStaticPaths() {
 }
 
 const { profil } = Astro.props;
+// Sayfa tarihi = basılan verilerin en yeni künye tarihi (EK-2/2; kuyu-ruhsati ile aynı kural).
+const damgaISO = enYeni(TARIH.potansiyel, TARIH.baraj, TARIH.grace, TARIH.havzaVeri, TARIH.rgArsiv);
 
 const tr = (n: number | null, ond = 2) =>
   n == null ? 'veri yok' : n.toLocaleString('tr-TR', { minimumFractionDigits: ond, maximumFractionDigits: ond });
@@ -48,8 +50,8 @@ const havzaMetni = adlar.length === 0
 
 const azalan = profil.havzalar.filter((h: any) => h.egilim?.yon === 'azalma');
 const egilimCumlesi = azalan.length
-  ? `Uydu ölçümüne göre ${azalan.length} havzada su depolaması son 5 yılda azalıyor.`
-  : 'Uydu ölçümüne göre son 5 yılda belirgin azalma eğilimi öne çıkmıyor.';
+  ? `Uydu ölçümüne göre ${azalan.length} havzada su depolaması 5 yıllık pencerede azalıyor.`
+  : 'Uydu ölçümüne göre 5 yıllık pencerede belirgin azalma eğilimi öne çıkmıyor.';
 
 // Öz-cevap 280 sınırı: çok havzalı illerde ad listesi kısaltılır (B4 deseni).
 const havzaKisa = adlar.length === 0
@@ -81,7 +83,7 @@ const sema = [
     name: `${profil.il} yeraltı suyu haritası ve havza verileri`,
     description: META,
     inLanguage: 'tr-TR',
-    ...(TARIH.potansiyel ? { dateModified: TARIH.potansiyel } : {}),
+    ...(damgaISO ? { dateModified: damgaISO } : {}),
     isPartOf: { '@id': `${new URL('/', Astro.site).href}#site` },
   },
   ...(profil.havzalar.length
@@ -150,7 +152,7 @@ const sema = [
               <th>Havza</th>
               <th>Yağış alanı<span class="ys-meal">km²</span></th>
               <th>Yüzey suyu<span class="ys-meal">km³/yıl · DSİ {profil.veriKunyesi.havzaVeriKaynak.match(/\d{4}/)?.[0] ?? '2024'}</span></th>
-              <th>Uydu ölçümü<span class="ys-meal">son 5 yıl · cm/yıl</span></th>
+              <th>Uydu ölçümü<span class="ys-meal">5 yıllık pencere · cm/yıl</span></th>
               <th>Baraj doluluğu<span class="ys-meal">son ölçüm · ortalama</span></th>
             </tr>
           </thead>

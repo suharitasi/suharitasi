@@ -13,6 +13,10 @@ import { MEVZUAT_EDITORYAL } from '../../../data/mevzuat-editoryal.js';
 import SayfaQr from '../../../components/SayfaQr.astro';
 // eeat-audit (27.09.2026): yazar kutusu mevzuat madde sayfalarına bağlandı.
 import YazarKutusu from '../../../components/YazarKutusu.astro';
+// 07.10.2026 denetimi (sahip kararı EK-2/1): başlık/açıklama/öz-cevap ve dizin
+// kararı tek yardımcıdan (src/data/mevzuat-metin.js) — kelime ortası kırpım yok,
+// gövdesiz/kesik sayfa veri-koşullu noindex (metin tamamlanınca kendiliğinden açılır).
+import { maddeTarayiciBaslik, maddeAciklama, maddeOzCevap, maddeIndekslenir, metinDurumu } from '../../../data/mevzuat-metin.js';
 
 export async function getStaticPaths() {
   const slug = (s) =>
@@ -45,18 +49,17 @@ const baslikMetni = m.baslik || m.madde;
 // (mevzuat-editoryal.js). Yoksa hiçbir şey değişmez.
 const editoryal = MEVZUAT_EDITORYAL[`${m.kanunKisa}|${m.madde}`] ?? null;
 
-// Öz cevap: maddenin kendi resmî metninden damıtılır; ≤280 (GEO bandı).
-const oz = `${m.kanun} ${m.madde}${m.baslik ? ` (${m.baslik})` : ''}: ${m.metin}`.slice(0, 270);
-// Meta açıklama: kısa maddelerde 50 karakter altına düşmesin diye sabit kuyruk.
-const aciklama = (
-  `${m.kanun} ${m.madde}${m.baslik ? `: ${m.baslik}` : ''}. ${m.metin.slice(0, 130)} ` +
-  '— resmî madde metni, yetkili merci ve ilgili rehberler Su Haritası mevzuat motorunda.'
-).slice(0, 160);
-// <title> 60 sınırı: tam kalıp sığmazsa kısa künyeye düş (marka eki eklenmez).
-const tamBaslik = `${m.kanunKisa} ${m.madde}${m.baslik ? `: ${m.baslik}` : ''}`;
-const tarayiciBaslik = (editoryal?.seoBaslik && editoryal.seoBaslik.length <= 60)
-  ? editoryal.seoBaslik
-  : (tamBaslik.length <= 60 ? tamBaslik : `${m.kanunKisa} ${m.madde}`);
+// Öz cevap: maddenin kendi resmî metninden, kelime sınırında ≤280 (GEO bandı).
+const oz = maddeOzCevap(m);
+// Meta açıklama HAM metni: kırpımı Sayfa.astro'nun merkezî cümle/kelime sınırı kuralı yapar.
+const aciklama = maddeAciklama(m);
+// <title> ≤60: kanun adını içeren ilk sığan aday (editoryal seoBaslik öncelikli).
+const tarayiciBaslik = maddeTarayiciBaslik(m, editoryal);
+// Dizin kararı: gövdesi olmayan (boş / yalnız mülga notu), kesik ya da yürürlük
+// tablosu artığı taşıyan madde noindex alır; sitemap ve llms üreticileri bu
+// işareti okuyup sayfayı atlar (adres değişmez, sayfa silinmez).
+const indekslenir = maddeIndekslenir(m);
+const durum = metinDurumu(m.metin);
 
 const sema = [
   {
@@ -72,8 +75,8 @@ const sema = [
   },
   {
     '@type': 'Article',
-    headline: `${m.kanun} ${m.madde}: ${m.baslik}`,
-    description: aciklama,
+    headline: `${m.kanun} ${m.madde}${m.baslik ? `: ${m.baslik}` : ''}`,
+    description: oz,
     inLanguage: 'tr-TR',
     about: { '@id': `${canonical}#madde` },
     author: { '@id': `${kok}#yazar` },
@@ -84,7 +87,7 @@ const sema = [
     '@id': `${canonical}#sayfa`,
     url: canonical,
     name: `${m.kanun} ${m.madde}`,
-    description: aciklama,
+    description: oz,
     inLanguage: 'tr-TR',
     ...(TARIH.mevzuat ? { dateModified: TARIH.mevzuat } : {}),
     isPartOf: { '@id': `${kok}#site` },
@@ -92,7 +95,7 @@ const sema = [
   },
 ];
 ---
-<Sayfa baslik={`${m.kanun} — ${m.madde}`} aciklama={aciklama} tarayiciBaslik={tarayiciBaslik} sema={sema}>
+<Sayfa baslik={`${m.kanun} — ${m.madde}`} aciklama={aciklama} tarayiciBaslik={tarayiciBaslik} sema={sema} robots={indekslenir ? undefined : 'noindex, follow'}>
   <SayfaBasi etiket={`${m.tur} · madde`} baslik={`${m.kanun} — ${m.madde}`} ozet={baslikMetni} />
   <OzCevap metin={oz} etiket="Madde özeti" />
 
@@ -119,24 +122,28 @@ const sema = [
     Metin resmî kaynaktan birebir aktarılmıştır; yürürlükteki güncel metin için resmî kaynak esastır.
   </p>
 
-  <section class="mv-bolum" aria-label="Yetkili merci ve süreler">
-    <h2>Yetkili merci ve süreler</h2>
-    {(m.merci || m.sure) ? (
+  {/* Sahip kararı EK-2/1a (08.10.2026): içeriği olmayan bölüm hiç gösterilmez;
+      merci/süre/yorum notu yalnız doğrulanmış veri varsa basılır. */}
+  {(m.merci || m.sure) && (
+    <section class="mv-bolum" aria-label="Yetkili merci ve süreler">
+      <h2>Yetkili merci ve süreler</h2>
       <dl class="mv-dl">
         <div><dt>Yetkili merci</dt><dd>{m.merci ?? '—'}</dd></div>
         <div><dt>Süre / hak düşürücü</dt><dd>{m.sure ?? '—'}</dd></div>
       </dl>
-    ) : (
-      <p class="mv-veri-yok">Bu madde için doğrulanmış merci/süre notu henüz eklenmemiştir; resmî metin esastır.</p>
-    )}
-  </section>
+    </section>
+  )}
 
-  <section class="mv-bolum" aria-label="Gerekçe ve yorum">
-    <h2>Gerekçe / yorum</h2>
-    {m.yorum
-      ? <p class="mv-yorum">{m.yorum}</p>
-      : <p class="mv-veri-yok">Bu madde için doğrulanmış yorum notu henüz eklenmemiştir. İlgili rehberler aşağıdadır.</p>}
-  </section>
+  {m.yorum && (
+    <section class="mv-bolum" aria-label="Gerekçe ve yorum">
+      <h2>Gerekçe / yorum</h2>
+      <p class="mv-yorum">{m.yorum}</p>
+    </section>
+  )}
+
+  {(durum.kesik || durum.kirli) && (
+    <p class="mv-veri-yok">Bu maddenin aktarılan metni eksik ya da kaynak tablosu artığı içeriyor; tam metin için resmî kaynak esastır.</p>
+  )}
 
   {m.rehberler.length > 0 && (
     <section class="mv-bolum" aria-label="Bu maddeyi kullanan rehberler">
