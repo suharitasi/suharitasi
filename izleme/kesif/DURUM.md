@@ -1,15 +1,15 @@
 # Sürekli Keşif — DURUM
 
-Son koşu (UTC): **2026-10-07T21:00:01Z**
+Son koşu (UTC): **2026-10-08T21:00:02Z**
 
-Toplam hedef: 39 · erisilemiyor: 4 · muaf: 2 · saglikli: 29 · yeni-veri: 4
+Toplam hedef: 39 · erisilemiyor: 5 · muaf: 2 · saglikli: 27 · yeni-veri: 5
 
 ## Kaynak durumları
 
 | Kaynak | Otorite | Entegre | Durum | Not |
 |---|---|---|---|---|
 | epias-baraj | resmi | mevcut | ⚪ muaf | Kimlik doğrulamalı API (CAS/TGT); baraj-gunluk.sh zaten derin izliyor. Kamu kök yoklaması API durumunu göstermez. |
-| grace-mascon | resmi | mevcut | 🔴 erisilemiyor | ağ hatası: URLError |
+| grace-mascon | resmi | mevcut | 🟢 saglikli | değişiklik yok |
 | chirps-yagis | akademik | mevcut | 🟢 saglikli | değişiklik yok |
 | era5-toprak | resmi | mevcut | ⚪ muaf | Copernicus CDS kimlik gerektirir (~/.cdsapirc); kamu kök yoklaması anlamsız. |
 | osm-hidro | kurumsal | mevcut | 🟢 saglikli | değişiklik yok |
@@ -20,15 +20,15 @@ Toplam hedef: 39 · erisilemiyor: 4 · muaf: 2 · saglikli: 29 · yeni-veri: 4
 | tarimorman-sygm | resmi | izleme | 🟢 saglikli | değişiklik yok |
 | suverimliligi | resmi | izleme | 🟢 saglikli | değişiklik yok |
 | susurasi | resmi | izleme | 🟢 saglikli | değişiklik yok |
-| nhyp-planlar | resmi | eksik | ✳ yeni-veri | Last-Modified Tue, 06 Oct 2026 21:00:12 GMT → Wed, 07 Oct 2026 21:00:44 GMT |
+| nhyp-planlar | resmi | eksik | ✳ yeni-veri | Last-Modified Wed, 07 Oct 2026 21:00:44 GMT → Thu, 08 Oct 2026 21:01:12 GMT |
 | dsi-yas | resmi | mevcut | 🟢 saglikli | değişiklik yok |
 | mta-katalog | resmi | mevcut | 🟢 saglikli | değişiklik yok |
 | yargi-emsal | resmi | mevcut | 🟢 saglikli | değişiklik yok |
 | nasa-power | resmi | mevcut | 🟢 saglikli | değişiklik yok |
-| nasa-gesdisc-gldas | resmi | aday | 🟢 saglikli | değişiklik yok |
+| nasa-gesdisc-gldas | resmi | aday | 🔴 erisilemiyor | ağ hatası: URLError |
 | spei-kuraklik | akademik | aday | 🟢 saglikli | değişiklik yok |
-| grdc-akim | resmi | aday | 🟢 saglikli | değişiklik yok |
-| wri-aqueduct | kurumsal | aday | ✳ yeni-veri | Last-Modified Tue, 06 Oct 2026 21:00:35 GMT → Wed, 07 Oct 2026 21:01:15 GMT |
+| grdc-akim | resmi | aday | ✳ yeni-veri | Last-Modified Mon, 05 Oct 2026 13:56:03 GMT → Thu, 08 Oct 2026 05:56:03 GMT |
+| wri-aqueduct | kurumsal | aday | ✳ yeni-veri | Last-Modified Wed, 07 Oct 2026 21:01:15 GMT → Thu, 08 Oct 2026 19:02:37 GMT |
 | fao-aquastat | resmi | aday | 🟢 saglikli | değişiklik yok |
 | jrc-global-surface-water | resmi | aday | 🟢 saglikli | değişiklik yok |
 | hydrosheds | kurumsal | aday | 🟢 saglikli | değişiklik yok |
@@ -44,7 +44,7 @@ Toplam hedef: 39 · erisilemiyor: 4 · muaf: 2 · saglikli: 29 · yeni-veri: 4
 | copernicus-cds-api | resmi | aday | 🟢 saglikli | değişiklik yok |
 | copernicus-dataspace | resmi | aday | 🟢 saglikli | değişiklik yok |
 | usgs-nwis | resmi | aday | 🟢 saglikli | değişiklik yok |
-| gleam | akademik | aday | 🟢 saglikli | değişiklik yok |
+| gleam | akademik | aday | 🔴 erisilemiyor | ağ hatası: URLError |
 | wmo-hydro | resmi | aday | 🟢 saglikli | değişiklik yok |
 | geodata-havza | resmi | aday | 🔴 erisilemiyor | ağ hatası: URLError |
 

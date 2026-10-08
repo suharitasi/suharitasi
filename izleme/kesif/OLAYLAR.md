@@ -1,5 +1,9 @@
 # Kaynak Keşif — OLAYLAR (en yeni üstte)
 
+- 2026-10-08T21:00:02Z | grace-mascon | duzeldi | önceki: erisilemiyor
+- 2026-10-08T21:00:02Z | nasa-gesdisc-gldas | erisilemiyor | ağ hatası: URLError
+- 2026-10-08T21:00:02Z | grdc-akim | yeni-veri | Last-Modified Mon, 05 Oct 2026 13:56:03 GMT → Thu, 08 Oct 2026 05:56:03 GMT
+- 2026-10-08T21:00:02Z | gleam | erisilemiyor | ağ hatası: URLError
 - 2026-10-07T21:00:01Z | grace-mascon | erisilemiyor | ağ hatası: URLError
 - 2026-10-05T21:00:01Z | grace-mascon | yeni-veri | Last-Modified Sun, 04 Oct 2026 12:32:55 GMT → Mon, 05 Oct 2026 12:39:57 GMT
 - 2026-10-05T21:00:01Z | grdc-akim | yeni-veri | Last-Modified Thu, 17 Sep 2026 13:56:04 GMT → Mon, 05 Oct 2026 13:56:03 GMT
