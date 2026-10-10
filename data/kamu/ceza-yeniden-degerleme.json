@@ -1,5 +1,5 @@
 {
- "_not": "167 sayılı Kanun m.18 idari para cezalarının yeniden değerlemesi — HUKUKİ ONAY BEKLİYOR (DURAK 1 A-a). Tek kaynak: hesaplayıcı, rehber, madde sayfası, su hukuku tablosu, sihirbaz ve API bu dosyadan beslenir.",
+ "_not": "167 sayılı Kanun m.18 idari para cezalarının yeniden değerlemesi — son hukuki kontrol 10.10.2026 (KARARLAR §73). Tek kaynak: hesaplayıcı, rehber, madde sayfası, su hukuku tablosu, sihirbaz ve API bu dosyadan beslenir.",
  "son_dogrulama": "2026-10-10",
  "dayanak": {
   "kanun": "167 s. Kanun m.18 (Değişik: 23/1/2008-5728/270 md.)",
@@ -10,7 +10,7 @@
   "yeniden_degerleme_metni": "İdarî para cezaları her takvim yılı başından geçerli olmak üzere o yıl için 4.1.1961 tarihli ve 213 sayılı Vergi Usul Kanununun mükerrer 298 inci maddesi hükümleri uyarınca tespit ve ilân edilen yeniden değerleme oranında artırılarak uygulanır. Bu suretle idarî para cezasının hesabında bir Türk Lirasının küsuru dikkate alınmaz. Bu fıkra hükmü, nispi nitelikteki idarî para cezaları açısından uygulanmaz.",
   "yeniden_degerleme_url": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=5326&MevzuatTur=1&MevzuatTertip=5"
  },
- "yontem": "Her yıl başında bir önceki yıl için ilan edilen VUK yeniden değerleme oranı uygulanır; her yılın sonucunda 1 TL küsuru atılır (5326 m.17/7, 2. cümle). Başlangıç: 2008 kanun tutarları. Bu okuma (Y yılı başında Y-1 için ilan edilen oran) avukat onayına sunulmuştur.",
+ "yontem": "Her yıl başında bir önceki yıl için ilan edilen VUK yeniden değerleme oranı uygulanır; her yılın sonucunda 1 TL küsuru atılır (5326 m.17/7, 2. cümle). Başlangıç: 2008 kanun tutarları.",
  "kanun_metnindeki": {
   "a": [
    1000,

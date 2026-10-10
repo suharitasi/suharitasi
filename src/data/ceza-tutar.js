@@ -1,4 +1,4 @@
-// 167 s. KANUN m.18 İDARİ PARA CEZASI — TEK KAYNAK (DURAK 1 A-a, 10.10.2026; HUKUKİ ONAY BEKLİYOR).
+// 167 s. KANUN m.18 İDARİ PARA CEZASI — TEK KAYNAK (DURAK 1 A-a, 10.10.2026; son hukuki kontrol 10.10.2026, KARARLAR §73).
 // Veri: data/kamu/ceza-yeniden-degerleme.json (2008–2025 VUK yeniden değerleme tebliğleri, Resmî Gazete'den
 // tek tek okundu). Hesaplayıcı, rehber, madde sayfası, su hukuku tablosu, sihirbaz ve API buradan beslenir.
 // cwd tabanlı okuma: hem Astro sayfalarında hem astro.config.mjs kancasında çalışır.

@@ -1,4 +1,4 @@
-// SÜRE HESABI — TEK MODÜL (DURAK 1 A-b, 10.10.2026; hukuki onay bekliyor).
+// SÜRE HESABI — TEK MODÜL (DURAK 1 A-b, 10.10.2026; son hukuki kontrol 10.10.2026, KARARLAR §73).
 // Kurallar data/kamu/sure-tablosu.json'dan parametre olarak gelir (tarayıcıda sayfadaki JSON'dan).
 // Sayfalar bu dosyayı /s/sure-hesap.js adresinden (src/pages/s/sure-hesap.js.ts) alır; Astro bileşenleri doğrudan içe aktarır.
 const iki = (n) => String(n).padStart(2, '0');

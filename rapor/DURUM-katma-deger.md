@@ -22,6 +22,8 @@ CLAUDE.md · BRIEF.md · DESIGN.md · KARARLAR.md · CODE-FREEZE.md · ODUL-USTU
 
 ## KALEM KALEM DURUM TABLOSU (tek kaynak; her işten sonra güncellenir — son: 10.10.2026 Opus 5.5)
 
+10.10.2026 14:50 (İstanbul): KARARLAR §73 ile önizleme dalı main'e birleşti (merge d57309e, önceki main e6fb26e; geri alma: `git revert -m 1 d57309e`). "onay bekliyor" satırları sahibin hukuki onayıyla "yapıldı". Canlı doğrulama: 32/32 örnek adres, 7/7 ceza yüzeyi, iki site haritası. Bundan sonra önizleme yok; her kalem sınandıktan sonra doğrudan main'e gider.
+
 Durum: **yapıldı** (kanıtlı) · **sürüyor** · **onay bekliyor** (hukuki ya da DURAK onayı; önizlemede işaretli) · **yapılamadı** (neden) · **başlanmadı**. Ana site: main'e geçti mi (önizleme = yalnız dal).
 
 | Kalem | Durum | Ana site | Not |
@@ -34,24 +36,24 @@ Durum: **yapıldı** (kanıtlı) · **sürüyor** · **onay bekliyor** (hukuki y
 | 0.6 Tek kaynak haritası | sürüyor | — | RG sayısı tek kaynakta; baraj/uydu/il sayıları 2.1'de |
 | 0.7 HUKUK-SORULARI | yapıldı | — (rapor) | DURAK 1 kararları alındı |
 | 0.8 Görsel inceleme | yapıldı | — (rapor) | cikti/denetim/katma-deger-0 |
-| 1.1 Tahmin katmanı | yapıldı | hayır (önizleme) | baraj 0–100, eğilim/mevsim ayrı, ölçüm tarihleri, tazelik |
-| 1.2 /veri/gundem/ | yapıldı | hayır (önizleme) | yağış ulusal değer + not; en yeni kapatma 2017 |
-| 1.3 Risk endeksi veri güveni | yapıldı | hayır (önizleme) | k/5 sütunu + yöntem notu |
-| 1.4 İklim örneklemesi + Gediz notu | yapıldı | hayır (önizleme) | NASA POWER çok noktalı; Gediz tablo revizyonu notu |
-| 1.5 Formlar ve beyanlar | onay bekliyor | hayır | tek sunucu formu, gizlilik tablosu, onay kutuları |
-| 1.6 Abonelikler | yapıldı | hayır (önizleme) | e-posta formları kapalı, RSS kaldı; KV sayısı sunucudan bakılamadı |
-| 1.7 Üretim kalıntıları | yapıldı | hayır (önizleme) | dist'te iç not 0 |
-| 1.8 Yazım/biçim | yapıldı | hayır (önizleme) | NACE OCR; emsal "…" notu; 3 bulgu doğrulanmadı |
-| 1.9 Sentetik veri | yapıldı | hayır (önizleme) | ilçe ±%15 kaldırıldı |
-| 1.10 Vaat ile içerik | yapıldı | hayır (önizleme) | başlık/özet eşitlemeleri |
-| 1.11 Hatalı göl/nehir kayıtları | yapıldı | hayır (önizleme) | adsız/yabancı çekildi, Aras birleşti, il ekleri, 301 |
+| 1.1 Tahmin katmanı | yapıldı | EVET (d57309e) | baraj 0–100, eğilim/mevsim ayrı, ölçüm tarihleri, tazelik |
+| 1.2 /veri/gundem/ | yapıldı | EVET (d57309e) | yağış ulusal değer + not; en yeni kapatma 2017 |
+| 1.3 Risk endeksi veri güveni | yapıldı | EVET (d57309e) | k/5 sütunu + yöntem notu |
+| 1.4 İklim örneklemesi + Gediz notu | yapıldı | EVET (d57309e) | NASA POWER çok noktalı; Gediz tablo revizyonu notu |
+| 1.5 Formlar ve beyanlar | yapıldı | EVET (d57309e) | tek sunucu formu, gizlilik tablosu, onay kutuları |
+| 1.6 Abonelikler | yapıldı | EVET (d57309e) | e-posta formları kapalı, RSS kaldı; KV sayısı sunucudan bakılamadı |
+| 1.7 Üretim kalıntıları | yapıldı | EVET (d57309e) | dist'te iç not 0 |
+| 1.8 Yazım/biçim | yapıldı | EVET (d57309e) | NACE OCR; emsal "…" notu; 3 bulgu doğrulanmadı |
+| 1.9 Sentetik veri | yapıldı | EVET (d57309e) | ilçe ±%15 kaldırıldı |
+| 1.10 Vaat ile içerik | yapıldı | EVET (d57309e) | başlık/özet eşitlemeleri |
+| 1.11 Hatalı göl/nehir kayıtları | yapıldı | EVET (d57309e) | adsız/yabancı çekildi, Aras birleşti, il ekleri, 301 |
 | 1.12 Wikidata ibaresi | uygulanmaz | — | kayıt var |
-| 1.13 Takip sayfaları | onay bekliyor | hayır | Su Kanunu takibi TBMM/Bakanlık belgeleriyle |
-| 2.1 Tek kaynak + tutarsızlık denetimi | sürüyor | hayır | RG ve ceza tutarı tek kaynakta; baraj/uydu/il sırada |
-| 2.2 Mevzuat maddeleri dizin ölçütü | sürüyor | hayır | ölçüt kodda (src/data/mevzuat-dizin.js), liste rapor/olcum/mevzuat-dizin-listesi.md: dizinlenebilir madde 401 → 161; madde sayfasına başlıkta madde adı, önceki/sonraki, anan rehber ve kararlar, resmî metin son kontrol tarihi, metindeki değişiklik işaretleri eklendi; yönlendirme blokları mevzuat/veri ailelerinde 0 (denetlendi); "neden önemli" notları yazılmadı (hukuki, onaya) |
-| 2.3 İl aileleri birleştirme | yapıldı | hayır (önizleme) | /yeralti-suyu/{il}/ özgün içeriği (havza özet tablosu, harita/ilçe/tahmin bağları) /kuyu-ruhsati/{il}/#yeralti-suyu'ya taşındı; 81 adres 301 (162 kural, liste rapor/olcum/yonlendirmeler-asama2.md); /kuyu-ruhsati/ dizinine il seçici (betiksiz de çalışır) ve içerik özeti; "60 gün" eksik süre cümlesi taşınmadı (A-b) |
-| 2.4 Göl/nehir dizin eşiği | yapıldı | hayır (önizleme) | eşik kodda (gol-nehir.js); göl 243 → 9 açık (EPİAŞ doluluğu ad + havza eşleşmesiyle 9 göl sayfasına eklendi), nehir 91 → 33 açık; liste rapor/olcum/gol-nehir-dizin-listesi.md; Van/Tuz gibi bilinen göller koruma statüsü verisi gelene dek (4.9) kapalı |
-| 2.5 Sektör sayfaları → /durumum/ | yapıldı | hayır | 31 NACE sayfası /durumum/ üzerinde çapalı tek tabloda (#nace-KOD); eski adresler satırına 301 (62 kural, liste rapor/olcum/yonlendirmeler-asama2.md); 11 sektör sayfası kaldı (4.9'da doldurulacak); bütün iç bağlar tek yardımcıdan (persona.yol) |
+| 1.13 Takip sayfaları | yapıldı | EVET (d57309e) | Su Kanunu takibi TBMM/Bakanlık belgeleriyle |
+| 2.1 Tek kaynak + tutarsızlık denetimi | sürüyor | tamamlanan alt işler EVET (d57309e) | RG ve ceza tutarı tek kaynakta; baraj/uydu/il sırada |
+| 2.2 Mevzuat maddeleri dizin ölçütü | sürüyor | tamamlanan alt işler EVET (d57309e) | ölçüt kodda (src/data/mevzuat-dizin.js), liste rapor/olcum/mevzuat-dizin-listesi.md: dizinlenebilir madde 401 → 161; madde sayfasına başlıkta madde adı, önceki/sonraki, anan rehber ve kararlar, resmî metin son kontrol tarihi, metindeki değişiklik işaretleri eklendi; yönlendirme blokları mevzuat/veri ailelerinde 0 (denetlendi); "neden önemli" notları yazılmadı (hukuki, onaya) |
+| 2.3 İl aileleri birleştirme | yapıldı | EVET (d57309e) | /yeralti-suyu/{il}/ özgün içeriği (havza özet tablosu, harita/ilçe/tahmin bağları) /kuyu-ruhsati/{il}/#yeralti-suyu'ya taşındı; 81 adres 301 (162 kural, liste rapor/olcum/yonlendirmeler-asama2.md); /kuyu-ruhsati/ dizinine il seçici (betiksiz de çalışır) ve içerik özeti; "60 gün" eksik süre cümlesi taşınmadı (A-b) |
+| 2.4 Göl/nehir dizin eşiği | yapıldı | EVET (d57309e) | eşik kodda (gol-nehir.js); göl 243 → 9 açık (EPİAŞ doluluğu ad + havza eşleşmesiyle 9 göl sayfasına eklendi), nehir 91 → 33 açık; liste rapor/olcum/gol-nehir-dizin-listesi.md; Van/Tuz gibi bilinen göller koruma statüsü verisi gelene dek (4.9) kapalı |
+| 2.5 Sektör sayfaları → /durumum/ | yapıldı | EVET (d57309e) | 31 NACE sayfası /durumum/ üzerinde çapalı tek tabloda (#nace-KOD); eski adresler satırına 301 (62 kural, liste rapor/olcum/yonlendirmeler-asama2.md); 11 sektör sayfası kaldı (4.9'da doldurulacak); bütün iç bağlar tek yardımcıdan (persona.yol) |
 | 2.6 Örtüşen sayfalar | başlanmadı | hayır |  |
 | 2.7 Sözlük | başlanmadı | hayır |  |
 | 2.8 /en/ | başlanmadı | hayır |  |
@@ -61,35 +63,35 @@ Durum: **yapıldı** (kanıtlı) · **sürüyor** · **onay bekliyor** (hukuki y
 | 2.12 Önceki denetimden bekleyenler | başlanmadı | hayır |  |
 | 2.13 Havza sayfaları | başlanmadı | hayır |  |
 | 3.1 Ana sayfa | başlanmadı | hayır |  |
-| 3.2 Menü ≤ 6, araçlara tek ad | onay bekliyor (DURAK 3) | hayır | 6 madde, tek satır (ölçüldü) |
+| 3.2 Menü ≤ 6, araçlara tek ad | yapıldı | EVET (d57309e) | 6 madde, tek satır (ölçüldü) |
 | 3.3 Dil | başlanmadı | hayır |  |
-| 3.4 Güven işaretleri, /hakkinda/, /gizlilik/ | sürüyor | hayır | baro/sicil, sayfa tarihi yapıldı; politika metinleri onaya |
-| 3.5 Başvuru yolu | sürüyor | hayır | WhatsApp hazır mesaj, form sonrası ekran yapıldı; dosya yükleme sırada |
-| 3.6 İl sayfaları | sürüyor | hayır | işletme sahası listesi tek kaynaktan (yapıldı); DSİ adres/telefon sırada |
+| 3.4 Güven işaretleri, /hakkinda/, /gizlilik/ | sürüyor | tamamlanan alt işler EVET (d57309e) | baro/sicil, sayfa tarihi yapıldı; politika metinleri onaya |
+| 3.5 Başvuru yolu | sürüyor | tamamlanan alt işler EVET (d57309e) | WhatsApp hazır mesaj, form sonrası ekran yapıldı; dosya yükleme sırada |
+| 3.6 İl sayfaları | sürüyor | tamamlanan alt işler EVET (d57309e) | işletme sahası listesi tek kaynaktan (yapıldı); DSİ adres/telefon sırada |
 | 3.7 Tarihler | başlanmadı | hayır |  |
 | 3.8 Zenodo düzeltme metni | yapıldı | — (gönderim sahipte) | rapor/ZENODO-metinleri.md |
 | 4.1–4.3, 4.5–4.10 Yeni değer | başlanmadı | hayır | 4.1/4.2 A-a/A-b tablolarına bağlı |
-| 4.4 Emsal karar başına sayfa | onay bekliyor | hayır | 20 doğrulanan karar için sayfa: künye, karar tarihi, resmî metinden birebir uyuşmazlık·gerekçe·sonuç alıntısı (20/20 birebirlik testi), ilgili madde ve rehber; dizinde arama ve konu süzgeci sınandı |
-| A-a Ceza tutarı yeniden değerleme | onay bekliyor | hayır | 18/18 tebliğ RG'den; 2026: a 30.138–151.192, b 15.029–60.408 TL; 7 yüzey + API tek kaynaktan (ölçüldü); eksik yılda derleme durur |
-| A-b Süreler, 5326 m.27, 28 hücre | onay bekliyor | hayır | süre tablosu + tek hesap modülü (5 yüzey); 28 hücreden 18 resmî metinle dolduruldu, 13 doğrulanamadı (arama sürüyor); sihirbaza m.27/8 dalı; sayaçtaki 60-gün hatası düzeltildi |
-| A-c Tahsis sırası | onay bekliyor | hayır | rehber düzeltildi; m.7 ve Tüzük m.15 sayfaları rehbere bağlandı |
-| A-d Emsal | onay bekliyor | hayır | dizinde ve tüm dış yüzeylerde (veri/emsal.json, MCP, llms-full, uyum dosyası, iptal analizi, ana sayfa bandı) yalnız resmî sunucuda doğrulanan 20; 1 künye çelişkisi + 5 Yargıtay ayrı noindex sayfada; 3 rehber özeti karar metniyle çelişiyor (HUKUK-SORULARI) |
+| 4.4 Emsal karar başına sayfa | yapıldı | EVET (d57309e) | 20 doğrulanan karar için sayfa: künye, karar tarihi, resmî metinden birebir uyuşmazlık·gerekçe·sonuç alıntısı (20/20 birebirlik testi), ilgili madde ve rehber; dizinde arama ve konu süzgeci sınandı |
+| A-a Ceza tutarı yeniden değerleme | yapıldı | EVET (d57309e) | 18/18 tebliğ RG'den; 2026: a 30.138–151.192, b 15.029–60.408 TL; 7 yüzey + API tek kaynaktan (ölçüldü); eksik yılda derleme durur |
+| A-b Süreler, 5326 m.27, 28 hücre | yapıldı | EVET (d57309e) | süre tablosu + tek hesap modülü (5 yüzey); 28 hücreden 18 resmî metinle dolduruldu, 13 doğrulanamadı (arama sürüyor); sihirbaza m.27/8 dalı; sayaçtaki 60-gün hatası düzeltildi |
+| A-c Tahsis sırası | yapıldı | EVET (d57309e) | rehber düzeltildi; m.7 ve Tüzük m.15 sayfaları rehbere bağlandı |
+| A-d Emsal | yapıldı | EVET (d57309e) | dizinde ve tüm dış yüzeylerde (veri/emsal.json, MCP, llms-full, uyum dosyası, iptal analizi, ana sayfa bandı) yalnız resmî sunucuda doğrulanan 20; 1 künye çelişkisi + 5 Yargıtay ayrı noindex sayfada; 3 rehber özeti karar metniyle çelişiyor (HUKUK-SORULARI) |
 | A-e Avukat ifadeleri listesi | onay bekliyor | — | 17 ifade, güncel sayfa sayısı ve ikişer seçenek HUKUK-SORULARI'nda; hiçbiri değiştirilmedi; sihirbaz ön değerlendirme cümlesinde yargı yolu bulgusu |
-| A-f Lisans/form beyanları, sihirbaz KVKK kutusu | sürüyor | hayır | form beyanları + onay kutusu onaya; lisans beyanı sırada |
-| B Kapatma kayıtları il eşlemesi | yapıldı | hayır (önizleme) | Ergene ×3 notla; il sayıları tek kaynak (ölçüldü) |
-| C Büro bilgileri | sürüyor | hayır | baro/sicil, adres yok, e-posta tek; veri sorumlusu metni onaya |
-| D Araç adları | yapıldı | hayır (önizleme) | eski ad 0, yeni adlar ~1.100 sayfada |
+| A-f Lisans/form beyanları, sihirbaz KVKK kutusu | sürüyor | tamamlanan alt işler EVET (d57309e) | form beyanları + onay kutusu onaya; lisans beyanı sırada |
+| B Kapatma kayıtları il eşlemesi | yapıldı | EVET (d57309e) | Ergene ×3 notla; il sayıları tek kaynak (ölçüldü) |
+| C Büro bilgileri | sürüyor | tamamlanan alt işler EVET (d57309e) | baro/sicil, adres yok, e-posta tek; veri sorumlusu metni onaya |
+| D Araç adları | yapıldı | EVET (d57309e) | eski ad 0, yeni adlar ~1.100 sayfada |
 | E LICENSE/README, Zenodo metinleri, temiz arşiv | sürüyor | — (depo/Zenodo) | LICENSE+README, TR/EN talep metni, arşiv betiği hazır; depo gizlenince dağıtım doğrulaması |
 | "İlk görüşme ücretsizdir" kaldır | yapıldı | EVET (e6fb26e, canlıda doğrulandı) |  |
 | S-a 68 noindex mevzuat metni | başlanmadı | hayır | 2.2 ile |
 | S-f il künye süzgeci | başlanmadı | hayır |  |
 | S-g belgelerin güncellenmesi | başlanmadı | — |  |
-| S-m eski Türkçe slug göl adresleri | yapıldı | hayır (önizleme) | middleware 301 |
+| S-m eski Türkçe slug göl adresleri | yapıldı | EVET (d57309e) | middleware 301 |
 | S-n GRACE kaynak dosyası | sürüyor | — | 2026-04..08 dosyası yok (404) |
 | S-o sağlık öz-testi | başlanmadı | — |  |
 | S-p 5686 kısa ad | başlanmadı | hayır |  |
 | S-q mevzuat düzeltme tarihi politikası | başlanmadı | hayır |  |
-| S-r RG il türetimi hataları | yapıldı | hayır (önizleme) | B ile |
+| S-r RG il türetimi hataları | yapıldı | EVET (d57309e) | B ile |
 | Kabul ölçütleri 1–10 | sürüyor | — | son raporda geçti/geçmedi |
 
 ## Aşama 0 — keşif bulguları (10.10.2026 07:00–07:30Z; kanıtlar rapor/olcum, cikti/denetim/katma-deger-0)
