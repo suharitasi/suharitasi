@@ -39,7 +39,8 @@ Her parça brief + uygula + ölçüm + commit ile yürür:
       dosya/6,1 GB taşındı, 56/56 sha256 doğrulandı; **df %77→%69**.
       KULLANICI: sohbete yazılan Storage Box parolasını panelden bir kez daha
       döndür (anahtar auth etkilenmez; sızma riski kabulü).
-- [ ] **P2 SERP ÖLÇÜMÜ (19.10.2026):** `izleme/state/p2-serp-taban.json`
+- [ ] **P2 SERP ÖLÇÜMÜ (19.10.2026):** (K-2 notu: **10.10.2026 brifiyle yapı değişti; ölçüm bu tarihten önce ve sonra ayrı okunur** (öncesi tabanı: `rapor/olcum/serp-onceki-20261010.json`, 28 gün, 10.10.2026 07:22Z).)
+       `izleme/state/p2-serp-taban.json`
       tabanına göre `gsc_ctr_opportunities` + `gsc_quick_wins` yeniden çekilir;
       kapanış kuralı taban dosyasında yazılı (>=3 sayfada poz iyileşmesi
       ve/veya aile CTR +%25 → kapan; yoksa kök-neden işi). Nihai SERP onayı
@@ -129,7 +130,7 @@ TAMAMLANAN:
 - [x] GA4 403: build bağımlılığı 0 — graceful mimaride kanıtlandı.
 - [x] Canlı `--hizli` 0/0/13 YEŞİL · görsel taban 17:52Z gerekçeli yenilendi.
 DUR (kullanıcı/panel/izleme):
-- [ ] **DUR-1 yamyamlık izlemesi:** `/yeralti-suyu/[il]` ↔
+- [ ] **DUR-1 yamyamlık izlemesi:** (10.10.2026 brifiyle yapı değişti; ölçüm bu tarihten önce ve sonra ayrı okunur) `/yeralti-suyu/[il]` ↔
       `/kuyu-ruhsati/[il]` GSC'de 2-4 hafta; çakışma çıkarsa birleştirme.
 - [x] **DUR-2 panel secret (KAPANDI 04.10 18:49):** `--ayarla` yapıldı;
       canlı teşhis `/api/loglar` 200 + `/whatsapp/` 200; dışarıdan jetsiz 401.
