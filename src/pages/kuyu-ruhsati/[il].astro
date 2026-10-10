@@ -83,7 +83,7 @@ if (anaHavza && bolgeMetni) {
 if (p.suIdaresi) cumleler.push(`İçme suyu ve kanalizasyonda yetkili idare: ${p.suIdaresi}.`);
 const azalanlar = p.havzalar.filter((h) => h.egilim?.yon === 'azalma');
 if (azalanlar.length)
-  cumleler.push(`Uydu ölçümüne göre havzada su depolaması son 5 yıllık pencerede azalma eğilimindedir.`);
+  cumleler.push(`Uydu ölçümüne göre havzada su depolaması son 5 yıllık pencerede (${azalanlar[0].egilim.aralik}) azalma eğilimindedir.`);
 // 280 sınırı (CLAUDE.md içerik ilkesi): aşılıyorsa sondan cümle düşürülür —
 // düşen bilgi sayfa gövdesinde zaten var; öz-cevap YENİ metin üretmez.
 while (cumleler.length > 1 && cumleler.join(' ').length > 280) cumleler.pop();
@@ -122,7 +122,7 @@ const sss = [];
       const yon = h.egilim.yon === 'sabit'
         ? 'belirgin değişim göstermiyor'
         : `${h.egilim.yon} eğiliminde`;
-      durum.push(`${h.ad}: uydu ölçümüne göre 5 yıllık pencerede toplam su depolaması ${yon} `
+      durum.push(`${h.ad}: uydu ölçümüne göre 5 yıllık pencerede (${h.egilim.aralik}) toplam su depolaması ${yon} `
         + `(${h.egilim.egim > 0 ? '+' : ''}${sayi(h.egilim.egim, 2)} cm/yıl, `
         + `${h.egilim.aySayisi} gerçek aylık ölçümden; değişim verisidir, mutlak miktar değildir).`);
     }
@@ -263,7 +263,7 @@ const sema = [
           <>
             {h.egilim && (
               <li>
-                {h.ad}: uydu ölçümüne göre 5 yıllık pencerede toplam su depolaması
+                {h.ad}: uydu ölçümüne göre 5 yıllık pencerede ({h.egilim.aralik}) toplam su depolaması
                 {h.egilim.yon === 'sabit'
                   ? ' belirgin değişim göstermiyor'
                   : ` ${h.egilim.yon} eğiliminde`}
@@ -293,7 +293,8 @@ const sema = [
       İlin kapsadığı havzalar için uydu su-depolama eğilimi ve DSİ YAS
       işletme rezervi. Değişim verisidir; mutlak miktar değildir. Yukarıdaki
       5 yıllık pencereden farklı, daha uzun bir ölçüm penceresidir; aynı havza
-      iki pencerede farklı eğilim gösterebilir.
+      iki pencerede farklı eğilim gösterebilir. İki pencerenin de son ölçüm ayı
+      aşağıdaki aralıkta yazılıdır; kaynak (NASA GSFC) ayları gecikmeli yayımlar.
     </p>
     {p.havzalar.map((h) => <HavzaSuTablasiGostergesi no={h.no} ad={h.ad} />)}
   </section>

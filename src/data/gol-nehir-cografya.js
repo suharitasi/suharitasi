@@ -90,6 +90,17 @@ export function cografyaEsle(geometry) {
     const h = havzaBul(n);
     if (h && !havzaSet.has(h.slug)) havzaSet.set(h.slug, h);
   }
-  const iller = [...ilSet.values()];
+  let iller = [...ilSet.values()];
+  // 10.10.2026 (brif 1.11, Gölcük/Isparta vakası): birincil il, örnek noktaların
+  // sırasına değil, geometrinin AĞIRLIK MERKEZİNİN düştüğü ile göre seçilir;
+  // sınıra yakın küçük göllerde ilk örnek nokta komşu ile düşebiliyordu.
+  if (noktalar.length) {
+    const mx = noktalar.reduce((s, n) => s + n[0], 0) / noktalar.length;
+    const my = noktalar.reduce((s, n) => s + n[1], 0) / noktalar.length;
+    const merkezIl = ilBul([mx, my]);
+    if (merkezIl) {
+      iller = [{ ad: merkezIl.ad, slug: merkezIl.slug }, ...iller.filter((i) => i.slug !== merkezIl.slug)];
+    }
+  }
   return { turkiyede: iller.length > 0, il: iller[0] ?? null, iller, havzalar: [...havzaSet.values()] };
 }

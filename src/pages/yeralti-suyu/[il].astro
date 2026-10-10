@@ -49,6 +49,10 @@ const havzaMetni = adlar.length === 0
     : `${adlar.slice(0, -1).join(', ')} ve ${adlar.at(-1)} havzaları`;
 
 const azalan = profil.havzalar.filter((h: any) => h.egilim?.yon === 'azalma');
+// 10.10.2026 (brif 1.1): pencere etiketi ölçülen aralıkla birlikte yazılır
+// (son ölçüm ayı kaynak gecikmesiyle geride olabilir; "güncel" denmez).
+const grAralik: string = profil.havzalar.find((h: any) => h.egilim?.aralik)?.egilim?.aralik ?? '';
+// Öz-cevap 280 sınırı: aralık burada değil, tabloda ve gövdede yazılır.
 const egilimCumlesi = azalan.length
   ? `Uydu ölçümüne göre ${azalan.length} havzada su depolaması 5 yıllık pencerede azalıyor.`
   : 'Uydu ölçümüne göre 5 yıllık pencerede belirgin azalma eğilimi öne çıkmıyor.';
@@ -152,7 +156,7 @@ const sema = [
               <th>Havza</th>
               <th>Yağış alanı<span class="ys-meal">km²</span></th>
               <th>Yüzey suyu<span class="ys-meal">km³/yıl · DSİ {profil.veriKunyesi.havzaVeriKaynak.match(/\d{4}/)?.[0] ?? '2024'}</span></th>
-              <th>Uydu ölçümü<span class="ys-meal">5 yıllık pencere · cm/yıl</span></th>
+              <th>Uydu ölçümü<span class="ys-meal">5 yıllık pencere{grAralik ? ` (${grAralik})` : ''} · cm/yıl</span></th>
               <th>Baraj doluluğu<span class="ys-meal">son ölçüm · ortalama</span></th>
             </tr>
           </thead>

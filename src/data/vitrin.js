@@ -109,7 +109,7 @@ const oz = zengin.ozet;
    Elenenler ve gerekçesi (kayda geçsin diye burada):
      · akademik künye (1.979) — (a) DÜŞER: OpenAlex'te toplu sorgulanabilir.
      · MTA katalog (356)      — (a) DÜŞER: MTA e-ticaret katalogunda toplu.
-     · GRACE serisi (254 ay)  — (a) ve (c) DÜŞER: NASA yayını + ruhsata dolaylı.
+     · GRACE serisi (254 ay, 2002-04 – 2026-03)  — (a) ve (c) DÜŞER: NASA yayını + ruhsata dolaylı.
      · morfoloji (81 il)      — (c) DÜŞER: türev gösterge, işleme dolaylı bağlı.
    Üç şartı da sağlayan ilk üç, kayıt sayısına göre: kütleler > RG > kurum. */
 export const KANIT_BANDI = [

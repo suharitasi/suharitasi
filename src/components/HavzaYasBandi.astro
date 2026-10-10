@@ -49,6 +49,20 @@ function seriHazirla(seri: Record<string, number>) {
     })
     .join(' ');
   const degisim = ilk === 0 ? null : ((son - ilk) / ilk) * 100;
+  // 10.10.2026 (brif 1.4): tek yıllık SIÇRAMA tespiti — toplam değişimin ≥ %80'i
+  // ardışık iki yıl arasında oluşuyor ve sonrası düzse (ör. Gediz 2014→2015
+  // 555→1155,9, sonra sabit) bu bir ölçüm serisi değil, tablo değerinin yeniden
+  // belirlenmesidir; sayfada açık not basılır. Yalnız aritmetik; gerekçe uydurulmaz.
+  let sicrama: { yil: number; onceki: number; sonraki: number; pay: number } | null = null;
+  if (dolu.length >= 3 && son !== ilk) {
+    let enBuyuk = 0, idx = -1;
+    for (let i = 1; i < degerler.length; i++) {
+      const fark = Math.abs(degerler[i] - degerler[i - 1]);
+      if (fark > enBuyuk) { enBuyuk = fark; idx = i; }
+    }
+    const pay = enBuyuk / Math.abs(son - ilk);
+    if (idx > 0 && pay >= 0.8) sicrama = { yil: dolu[idx], onceki: degerler[idx - 1], sonraki: degerler[idx], pay };
+  }
   return {
     sonYil: dolu[dolu.length - 1],
     ilkYil: dolu[0],
@@ -56,6 +70,7 @@ function seriHazirla(seri: Record<string, number>) {
     degisim,
     duz,
     noktalar,
+    sicrama,
   };
 }
 
@@ -111,6 +126,16 @@ function degisimEtiket(s: ReturnType<typeof seriHazirla>) {
           </svg>
           <span class="yas-trend">{degisimEtiket(rez)}</span>
         </div>
+      )}
+      {(pot?.sicrama || rez?.sicrama) && (
+        <p class="yas-sicrama-not">
+          Bu değişimin yüzde {Math.round(((pot?.sicrama ?? rez?.sicrama)!.pay) * 100)} kadarı tek adımda,
+          {' '}{(pot?.sicrama ?? rez?.sicrama)!.yil - 1}→{(pot?.sicrama ?? rez?.sicrama)!.yil} yılları arasında
+          oluşur ({tr((pot?.sicrama ?? rez?.sicrama)!.onceki)}→{tr((pot?.sicrama ?? rez?.sicrama)!.sonraki)} hm³/yıl);
+          sonraki yıllarda DSİ tablosundaki değer aynı kalır. Bu, yıllık bir ölçüm artışı değil,
+          DSİ Tablo 1.3'te potansiyel/rezerv değerinin o yıl yeniden belirlenmesidir;
+          tabloda gerekçe yayımlanmamıştır (doğrulanamadı).
+        </p>
       )}
       {tahsis && (
         <div class="yas-metrik yas-ulusal">
@@ -190,6 +215,7 @@ function degisimEtiket(s: ReturnType<typeof seriHazirla>) {
     flex-direction: column;
     gap: 0.28rem;
   }
+  .yas-sicrama-not { grid-column: 1 / -1; margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--metin-soluk); max-width: 80ch; }
   .yas-etiket {
     font-family: var(--mono);
     font-size: 0.62rem;

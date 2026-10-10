@@ -82,3 +82,7 @@
 # /kullanilanlar/ içeriği /veri/ altına taşındı; eski URL 301 ile yönlendirilir.
 /kullanilanlar/  /veri/  301
 /kullanilanlar   /veri/  301
+
+# 10.10.2026 (brif 1.11): Aras üç OSM parçası tek kayda birleşti (gol-nehir.js BIRLESTIR)
+/nehirler/aras/ /nehirler/aras-nehri/ 301
+/nehirler/aras-2/ /nehirler/aras-nehri/ 301

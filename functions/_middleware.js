@@ -17,6 +17,19 @@ export async function onRequest(context) {
   // hash'ler hesaplanmadan 'unsafe-inline' silinirdi → belge yükünde tüm
   // satır-içi script'ler bloklanırdı. GET dışı istekler olduğu gibi geçer.
   if (context.request.method !== 'GET') return context.next();
+  // 10.10.2026 (S raporu m / brif 1.11): Ağustos öncesi Türkçe harfli göl/nehir
+  // adresleri (/goller/çavdır-baraj-gölü/) hâlâ arama sonuçlarında; bu adresler
+  // ASCII slug'a 301 ile yönlendirilir. Yalnız bu iki dizin, yalnız yol farklıysa.
+  try {
+    const u = new URL(context.request.url);
+    if (/^\/(goller|nehirler)\//.test(u.pathname)) {
+      const ham = decodeURIComponent(u.pathname);
+      const ascii = ham.replace(/İ/g, 'i').toLowerCase()
+        .replace(/ç/g, 'c').replace(/ğ/g, 'g').replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ş/g, 's').replace(/ü/g, 'u')
+        .replace(/[^a-z0-9/\-]/g, '-').replace(/-{2,}/g, '-');
+      if (ascii !== ham) return Response.redirect(`${u.origin}${ascii}${u.search}`, 301);
+    }
+  } catch { /* adres çözülemezse olduğu gibi devam */ }
   const response = await context.next();
   const ct = response.headers.get('content-type') || '';
   if (!ct.includes('text/html')) return response;

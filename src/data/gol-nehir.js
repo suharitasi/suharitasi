@@ -136,7 +136,32 @@ function gorunenAd(ham) {
   const icinde = [], elenen = [];
   const adlar = new Set();
   let adsiz = 0;
+  // 10.10.2026 (brif 1.11): OSM'de aynı akarsuyun ardışık PARÇALARI ayrı kayıt
+  // gelir (Aras: "Aras Nehri" 41,3–41,9°D · "Aras" 41,9–42,7°D · "Aras / Արաքս"
+  // 43,7–44,4°D — bitişik kutular, tek nehir). Parçalar hedef kayda
+  // MultiLineString olarak eklenir; kaynak dosyaya dokunulmaz, ad uydurulmaz
+  // (hedef ad kaynakta zaten yazan "Aras Nehri"). Eski adresler _redirects'te.
+  const BIRLESTIR = onek === 'nehir' ? { 'Aras Nehri': ['Aras', 'Aras / Արաքս'] } : {};
+  const parcaAdlari = new Set(Object.values(BIRLESTIR).flat());
+  const birlesen = [];
+  const hazir = [];
   for (const f of features) {
+    if (parcaAdlari.has(f.properties.ad)) { birlesen.push(f); continue; }
+    hazir.push(f);
+  }
+  const satirlar = (g) => g.type === 'LineString' ? [g.coordinates] : g.type === 'MultiLineString' ? g.coordinates : [];
+  for (const f of hazir) {
+    const parcalar = BIRLESTIR[f.properties.ad];
+    if (!parcalar) continue;
+    const ekler = birlesen.filter((b) => parcalar.includes(b.properties.ad));
+    if (!ekler.length) continue;
+    const koordinatlar = [...satirlar(f.geometry), ...ekler.flatMap((b) => satirlar(b.geometry))];
+    const tum = koordinatlar.flat();
+    f.geometry = { type: 'MultiLineString', coordinates: koordinatlar };
+    f.bbox = [Math.min(...tum.map((c) => c[0])), Math.min(...tum.map((c) => c[1])), Math.max(...tum.map((c) => c[0])), Math.max(...tum.map((c) => c[1]))];
+    f.properties = { ...f.properties, birlesen_parcalar: ekler.map((b) => b.properties.ad) };
+  }
+  for (const f of hazir) {
     const p = f.properties;
     const b = f.bbox || [0, 0, 0, 0];
     const cografya = cografyaEsle(f.geometry);
@@ -168,6 +193,7 @@ function gorunenAd(ham) {
       tip_celiski: onek === 'gol' ? tipCeliskisi(p.ad, tipKaynakta) : null,
       bbox: b, merkez: [(b[0] + b[2]) / 2, (b[1] + b[3]) / 2],
       geometry: f.geometry, cografya,
+      birlesen_parcalar: p.birlesen_parcalar ?? null,
       // V6 (10.09.2026): akarsu topolojisi artık JSON'dan okunur (scripts/
       // build_river_topology.py türetip yazar; JS tarafı hesaplamaz). Alan
       // yoksa null — özet/şema yalan cümle BASMAZ (uydurma yasağı).
@@ -179,10 +205,13 @@ function gorunenAd(ham) {
   }
   // Aynı görünen adı taşıyan birden çok kayıt (Gölcük, Acıgöl, Göksu…): başlığa il
   // ya da havza eklenir — slug (adres) DEĞİŞMEZ, yalnız `ad` ayrışır (brif 1.11).
+  // Kök ad üzerinden sayılır: "Göksu", "Göksu Çayı", "Göksu Nehri" ve "Gölcük",
+  // "Gölcük Gölü" de aynı kökü taşır — hepsine il eklenir (brif 1.11: Gölcük, Acıgöl, Göksu).
+  const kok = (ad) => String(ad).replace(/\s+(Gölü|Nehri|Çayı|Deresi|Irmağı|Suyu|Gölleri)$/u, '').trim();
   const adSayac = new Map();
-  for (const k of icinde) adSayac.set(k.ad, (adSayac.get(k.ad) ?? 0) + 1);
+  for (const k of icinde) adSayac.set(kok(k.ad), (adSayac.get(kok(k.ad)) ?? 0) + 1);
   for (const k of icinde) {
-    if ((adSayac.get(k.ad) ?? 0) > 1) {
+    if ((adSayac.get(kok(k.ad)) ?? 0) > 1) {
       const ayrac = k.cografya.il?.ad ?? k.cografya.havzalar?.[0]?.ad ?? null;
       if (ayrac) k.ad = `${k.ad} (${ayrac})`;
     }
