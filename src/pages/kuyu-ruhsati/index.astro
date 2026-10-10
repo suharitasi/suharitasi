@@ -26,6 +26,26 @@ const aciklama =
     ozCevap
   />
 
+  <form class="il-secici" id="il-secici" action="/kuyu-ruhsati/" method="get">
+    <label for="il-sec">İlinizi seçin</label>
+    <select id="il-sec" name="il" required>
+      <option value="">— İl —</option>
+      {iller.map((p) => <option value={p.slug}>{p.il}</option>)}
+    </select>
+    <button type="submit">İl sayfasına git</button>
+  </form>
+
+  <section class="il-icerik" aria-label="İl sayfasında neler var">
+    <h2>Her il sayfasında</h2>
+    <ul>
+      <li>Kuyu belgeleri için başvurulan DSİ bölge müdürlüğü ve ilin su ve kanalizasyon idaresi</li>
+      <li>İlin havzaları: yağış alanı ve yüzey suyu potansiyeli (DSİ 2024), uydu su-depolama eğilimi, baraj doluluğu</li>
+      <li>Resmî Gazete'de ilan edilmiş yeraltı suyu işletme sahası kayıtları ve resmî plandaki yeraltı suyu kütleleri</li>
+      <li>Belge süreci, ilgili rehberler, aynı DSİ bölgesindeki diğer iller</li>
+    </ul>
+    <p class="il-not">Eski "il yeraltı suyu haritası" sayfaları (/yeralti-suyu/…) bu sayfalarla birleşti; eski adresler buraya yönlenir.</p>
+  </section>
+
   <p class="arac-baglanti">
     <a href="/ilimde-kim-yetkili/">"İlimde kim yetkili?" aracı</a> ile ilinizi seçip yetkili kurum
     özetini görün; genel süreç için{' '}
@@ -40,11 +60,28 @@ const aciklama =
     ))}
   </ul>
 
+  <script>
+    const f = document.getElementById('il-secici') as HTMLFormElement | null;
+    f?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const s = (document.getElementById('il-sec') as HTMLSelectElement | null)?.value;
+      if (s) location.href = `/kuyu-ruhsati/${s}/`;
+    });
+  </script>
+
   {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
   <HukukSerhi />
 </Sayfa>
 
 <style>
+  .il-secici { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin: 0 0 1.4rem; }
+  .il-secici label { font-weight: 600; }
+  .il-secici select, .il-secici button { min-height: 44px; font: inherit; padding: 0.3rem 0.7rem; }
+  .il-secici button { background: var(--su-700); color: #fff; border: 0; cursor: pointer; }
+  .il-icerik { margin: 0 0 1.4rem; }
+  .il-icerik h2 { font-size: 1.15rem; margin: 0 0 0.4rem; }
+  .il-icerik ul { margin: 0 0 0.5rem; padding-left: 1.2rem; }
+  .il-not { font-size: 0.85rem; color: var(--metin-soluk); }
   .arac-baglanti { margin-bottom: 1.6rem; }
 
   .il-listesi {

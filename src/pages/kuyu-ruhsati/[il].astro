@@ -221,10 +221,13 @@ const sema = [
 
   <OzCevap metin={ozCevap} />
 
-  {/* 04.10.2026 (§55): programatik il veri sayfasına iç bağ — yeni rota
-      yetim kalmasın; niyet ayrımı korunur (bu sayfa ruhsat, o sayfa veri). */}
+  {/* 10.10.2026 (brif 2.3): /yeralti-suyu/{il}/ bu sayfaya birleşti (301); havza özet tablosu
+      "Havzada su durumu nedir?" bölümünde (#yeralti-suyu), veri bağlantıları burada. */}
   <nav class="capraz" aria-label="İlin yeraltı suyu verisi">
-    <a href={`/yeralti-suyu/${p.slug}/`}>&rarr; {p.il} yeraltı suyu haritası ve havza verileri</a>
+    <a href="#yeralti-suyu">&rarr; {p.il} yeraltı suyu ve havza durumu</a>
+    <a href="/harita/">&rarr; Türkiye havza haritası</a>
+    <a href="/ilce-sorgu/">&rarr; İl/ilçe yeraltı suyu sorgusu</a>
+    <a href="/tahmin/">&rarr; 6 aylık kuraklık projeksiyonu</a>
   </nav>
 
   <section class="il-blok">
@@ -256,32 +259,43 @@ const sema = [
   </section>
 
   {p.havzalar.some((h) => h.egilim || h.baraj) && (
-    <section class="il-blok">
+    <section class="il-blok" id="yeralti-suyu">
       <h2>Havzada su durumu nedir?</h2>
-      <ul class="durum-listesi">
-        {p.havzalar.map((h) => (
-          <>
-            {h.egilim && (
-              <li>
-                {h.ad}: uydu ölçümüne göre 5 yıllık pencerede ({h.egilim.aralik}) toplam su depolaması
-                {h.egilim.yon === 'sabit'
-                  ? ' belirgin değişim göstermiyor'
-                  : ` ${h.egilim.yon} eğiliminde`}
-                {' '}({h.egilim.egim > 0 ? '+' : ''}{sayi(h.egilim.egim, 2)} cm/yıl,
-                {' '}{h.egilim.aySayisi} gerçek aylık ölçümden; değişim verisidir,
-                mutlak miktar değildir).
-              </li>
-            )}
-            {h.baraj && (
-              <li>
-                {h.ad}: enerji rezervuarlarında ortalama aktif doluluk
-                %{sayi(h.baraj.ortalamaDoluluk, 1)}
-                {' '}({h.baraj.barajSayisi} baraj, {trTarih(h.baraj.tarih)} kaydı).
-              </li>
-            )}
-          </>
-        ))}
-      </ul>
+      <div class="durum-kaydir">
+        <table class="durum-tablo">
+          <caption>{p.il} ilinin havzalarında uydu su-depolama eğilimi ve baraj doluluğu</caption>
+          <thead>
+            <tr>
+              <th scope="col">Havza</th>
+              <th scope="col">Uydu ölçümü<span class="durum-meal">5 yıllık pencere · cm/yıl</span></th>
+              <th scope="col">Baraj doluluğu<span class="durum-meal">enerji rezervuarları · ortalama aktif</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            {p.havzalar.map((h) => (
+              <tr>
+                <th scope="row">{havzaSlug(h.ad) ? <a href={`/havzalar/${havzaSlug(h.ad)}/`}>{h.ad}</a> : h.ad}</th>
+                <td>
+                  {h.egilim
+                    ? <>{h.egilim.egim > 0 ? '+' : ''}{sayi(h.egilim.egim, 2)} <span class="veri-yok">({h.egilim.yon === 'sabit' ? 'belirgin değişim yok' : h.egilim.yon}; {h.egilim.aralik}, {h.egilim.aySayisi} aylık ölçüm)</span></>
+                    : <span class="veri-yok">veri yok</span>}
+                </td>
+                <td>
+                  {h.baraj
+                    ? <>%{sayi(h.baraj.ortalamaDoluluk, 1)} <span class="veri-yok">({h.baraj.barajSayisi} baraj, {trTarih(h.baraj.tarih)} kaydı)</span></>
+                    : <span class="veri-yok">veri yok</span>}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="durum-not">
+        Uydu değerleri NASA'nın yerçekimi uydu ölçümlerinden, 2004–2009 ortalamasına göre
+        <strong>değişimdir</strong> (mutlak miktar değil). Baraj doluluğu EPİAŞ Şeffaflık Platformu'ndaki
+        enerji rezervuarlarının ortalamasıdır. Yağış alanı ve yüzey suyu potansiyeli yukarıdaki merci
+        bölümünde, DSİ 2024 istatistiklerinden.
+      </p>
     </section>
   )}
 
@@ -367,6 +381,13 @@ const sema = [
 </Sayfa>
 
 <style>
+  .durum-kaydir { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .durum-tablo { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .durum-tablo caption { text-align: left; font-size: 0.82rem; color: var(--metin-soluk); padding-bottom: 0.4rem; }
+  .durum-tablo th, .durum-tablo td { text-align: left; padding: 0.55rem 0.7rem; border-bottom: 1px solid var(--cizgi); vertical-align: top; }
+  .durum-tablo thead th { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--metin-soluk); }
+  .durum-meal { display: block; font-size: 0.66rem; text-transform: none; letter-spacing: 0; font-weight: 400; }
+  .durum-not { margin-top: 0.7rem; font-size: 0.82rem; color: var(--metin-soluk); max-width: 76ch; }
   .il-blok { margin-top: clamp(2.2rem, 5vh, 3.4rem); }
 
   .il-blok h2 {

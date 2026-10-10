@@ -48,7 +48,7 @@ Durum: **yapıldı** (kanıtlı) · **sürüyor** · **onay bekliyor** (hukuki y
 | 1.13 Takip sayfaları | onay bekliyor | hayır | Su Kanunu takibi TBMM/Bakanlık belgeleriyle |
 | 2.1 Tek kaynak + tutarsızlık denetimi | sürüyor | hayır | RG ve ceza tutarı tek kaynakta; baraj/uydu/il sırada |
 | 2.2 Mevzuat maddeleri dizin ölçütü | sürüyor | hayır | ölçüt kodda (src/data/mevzuat-dizin.js), liste rapor/olcum/mevzuat-dizin-listesi.md: dizinlenebilir madde 401 → 161; madde sayfasına başlıkta madde adı, önceki/sonraki, anan rehber ve kararlar, resmî metin son kontrol tarihi, metindeki değişiklik işaretleri eklendi; yönlendirme blokları mevzuat/veri ailelerinde 0 (denetlendi); "neden önemli" notları yazılmadı (hukuki, onaya) |
-| 2.3 İl aileleri birleştirme | başlanmadı | hayır |  |
+| 2.3 İl aileleri birleştirme | yapıldı | hayır (önizleme) | /yeralti-suyu/{il}/ özgün içeriği (havza özet tablosu, harita/ilçe/tahmin bağları) /kuyu-ruhsati/{il}/#yeralti-suyu'ya taşındı; 81 adres 301 (162 kural, liste rapor/olcum/yonlendirmeler-asama2.md); /kuyu-ruhsati/ dizinine il seçici (betiksiz de çalışır) ve içerik özeti; "60 gün" eksik süre cümlesi taşınmadı (A-b) |
 | 2.4 Göl/nehir dizin eşiği | başlanmadı | hayır |  |
 | 2.5 Sektör sayfaları → /durumum/ | başlanmadı | hayır |  |
 | 2.6 Örtüşen sayfalar | başlanmadı | hayır |  |

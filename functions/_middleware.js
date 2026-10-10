@@ -29,6 +29,11 @@ export async function onRequest(context) {
         .replace(/[^a-z0-9/\-]/g, '-').replace(/-{2,}/g, '-');
       if (ascii !== ham) return Response.redirect(`${u.origin}${ascii}${u.search}`, 301);
     }
+    // 10.10.2026 (brif 2.3): /kuyu-ruhsati/ il seçicisi betiksiz tarayıcıda ?il=<slug> ile döner;
+    // geçerli biçimdeki slug il sayfasına 302 ile gönderilir (sayfa yoksa olağan 404).
+    if (u.pathname === '/kuyu-ruhsati/' && /^[a-z-]{3,20}$/.test(u.searchParams.get('il') || '')) {
+      return Response.redirect(`${u.origin}/kuyu-ruhsati/${u.searchParams.get('il')}/`, 302);
+    }
   } catch { /* adres çözülemezse olduğu gibi devam */ }
   const response = await context.next();
   const ct = response.headers.get('content-type') || '';
