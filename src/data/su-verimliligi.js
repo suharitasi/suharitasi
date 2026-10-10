@@ -7,6 +7,11 @@
 import naceEk2 from '../../data/lead/nace-ek2.json';
 import { personalar, yonetmelik, tarihTR } from './persona.js';
 
+// 10.10.2026 (brif 1.8): Ek-2 OCR karşılaştırmasında eklenen güven değerleri.
+// 'ocr-tamamlandi' = resmî ekin taramasından satır satır okunup tamamlandı →
+// doğrulanmış sayılır; 'ocr-okunamadi' / 'ocr-kismi' / 'dogrulanmadi' sayılmaz.
+const DOGRULANMIS_GUVEN = new Set(['dogrulandi', 'ocr-tamamlandi']);
+
 export const SON_TARIH = yonetmelik?.dogrulanmisSureler?.yesilBelgeSonBasvuru?.tarih; // 2029-12-27
 export const SON_TARIH_METIN = tarihTR(SON_TARIH);
 export const YONETMELIK_AD = yonetmelik?.ad || 'Su Verimliliği Yönetmeliği';
@@ -64,7 +69,7 @@ export const ANA_FAALIYETLER = naceEk2.anaFaaliyetler.map((a) => {
   const detay = (detayByAna.get(kod) || [])
     .slice()
     .sort((x, y) => x.kod.localeCompare(y.kod, 'tr'))
-    .map((d) => ({ ...d, dogrulandi: d.guven === 'dogrulandi' }));
+    .map((d) => ({ ...d, dogrulandi: DOGRULANMIS_GUVEN.has(d.guven) }));
   return {
     kod,
     ad: a.ad,
@@ -82,7 +87,7 @@ export const ANA_FAALIYETLER = naceEk2.anaFaaliyetler.map((a) => {
 // — Sayaç özetleri (hepsi veriden) —
 export const ANA_SAYI = ANA_FAALIYETLER.length;
 export const DETAY_SAYI = naceEk2.detayKodlar.length;
-export const DETAY_DOGRULANDI = naceEk2.detayKodlar.filter((d) => d.guven === 'dogrulandi').length;
+export const DETAY_DOGRULANDI = naceEk2.detayKodlar.filter((d) => DOGRULANMIS_GUVEN.has(d.guven)).length;
 export const DETAY_DOGRULANMADI = DETAY_SAYI - DETAY_DOGRULANDI;
 export const PERSONALI_ANA = ANA_FAALIYETLER.filter((f) => f.persona).length;
 

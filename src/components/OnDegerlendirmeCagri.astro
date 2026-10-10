@@ -9,6 +9,9 @@
 // usul tespitleri) istemci tarafında JSON → base64url paketine çevrilir;
 // avukatın ekranına hazır vaka özeti düşer. Sır/kişisel veri GÖNDERİLMEZ;
 // yalnız kullanıcının bu sayfada zaten işaretlediği teknik parametreler gider.
+import OnayBekliyor from './OnayBekliyor.astro';
+// 10.10.2026 (brif 1.5): düğmenin önüne açık onay kutusu kondu; işaretlenmeden
+// yönlendirme yapılmaz. Bu sitede kayıt oluşmaz; yalnız teknik parametreler gider.
 interface Props { konum: string }
 const { konum } = Astro.props;
 const cid = `oi-${konum}`;
@@ -23,6 +26,15 @@ const HEDEF = 'https://arslanhukuk.tr/randevu/';
     kararları çerçevesinde incelenmesi için <strong>Ön Değerlendirme
     Başvurusu</strong> oluşturabilirsiniz.
   </p>
+  <label class="oi-onay">
+    <input type="checkbox" data-oi-onay />
+    <span>Bu sayfada seçtiğim teknik parametrelerin (il, işlem türü, tebliğ
+      tarihi, belge durumu, usul başlıkları) arslanhukuk.tr randevu formuna
+      bağlantı içinde aktarılmasına onay veriyorum. Ad, e-posta ve olay
+      ayrıntısı bu sitede kaydedilmez; o formda ayrıca sorulur
+      (<a href="/gizlilik/">Gizlilik ve KVKK</a>).</span>
+  </label>
+  <OnayBekliyor kaynak="Ön değerlendirme onay kutusu metni (brif 1.5)" />
   <div class="oi-eylem">
     <button type="button" class="oi-dugme" data-oi-gonder data-oi-id={cid} data-oi-konum={konum}>
       Ön Değerlendirme Talebi Gönder
@@ -123,6 +135,12 @@ const HEDEF = 'https://arslanhukuk.tr/randevu/';
       if (!btn) return;
       const cid = btn.getAttribute('data-oi-id') || '';
       const durum = document.querySelector(`#${cid} [data-oi-durum]`) as HTMLElement | null;
+      const onay = document.querySelector(`#${cid} [data-oi-onay]`) as HTMLInputElement | null;
+      if (onay && !onay.checked) {
+        durum && (durum.textContent = 'Devam etmek için onay kutusunu işaretleyin.');
+        onay.focus();
+        return;
+      }
       const p = topla();
       if (!p.il || p.il === 'Belirtilmedi') {
         durum && (durum.textContent = 'Önce yukarıdan ilinizi seçin.');
@@ -146,6 +164,8 @@ const HEDEF = 'https://arslanhukuk.tr/randevu/';
     border-left: 3px solid var(--kehribar);
   }
   .oi-metin { font-size: 0.95rem; max-width: 74ch; margin: 0 0 0.9rem; }
+  .oi-onay { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.86rem; max-width: 74ch; margin: 0 0 0.8rem; }
+  .oi-onay input { margin-top: 0.25rem; }
   .oi-eylem { display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem; }
   .oi-dugme {
     font: inherit;

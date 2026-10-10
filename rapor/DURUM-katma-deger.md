@@ -16,7 +16,8 @@ CLAUDE.md · BRIEF.md · DESIGN.md · KARARLAR.md · CODE-FREEZE.md · ODUL-USTU
 8. §14 model ayrımı ↔ tek ajan → **A** (bağımsız inceleme ayrı alt ajanla).
 
 ## Aşama durumu
-- Aşama 0 keşif: BAŞLADI 10.10.2026.
+- Aşama 0 keşif: BİTTİ 10.10.2026 (bulgular aşağıda).
+- Aşama 1 güven onarımı: SÜRÜYOR 10.10.2026 (DURAK 1 yanıtı beklenirken hukuki onay gerektirmeyen işler; hukuki metinler önizlemede "AVUKAT ONAYI BEKLİYOR" işaretiyle).
 
 ## Aşama 0 — keşif bulguları (10.10.2026 07:00–07:30Z; kanıtlar rapor/olcum, cikti/denetim/katma-deger-0)
 - Brif denetçisi: ilk tur 3 ENGEL + 2 UYARI (T1: depo dışı/üretim yolları; T6 canlı koşul anılmamış) → netleştirme eki (silme yok) → `cikti/brief/20261010T070746Z-katma-deger-duzeltilmis.md` **TEMİZ**. Düşman geçişi ve amaç özeti RAPOR'un ilk bölümünde.
@@ -36,3 +37,18 @@ CLAUDE.md · BRIEF.md · DESIGN.md · KARARLAR.md · CODE-FREEZE.md · ODUL-USTU
 - 2.2 Ölçüt taslağı (anahtar sözcük yok + yürürlük/yürütme maddesi): aday 265 madde (5393: 76, 2886: 87, 6200: 61, 2942: 22, 5686: 8, 831: 6, 167: 3, YAS: 2) + yürürlük/yürütme 3. Liste DURAK 2'de elden geçirilecek (6200 DSİ Kanunu maddeleri su ile bağlı sayılmalı — anahtar listesi genişletilecek).
 - K-2 SERP tabanı: `rapor/olcum/serp-onceki-20261010.json` (gsc_ctr_opportunities + gsc_quick_wins, 28 gün) alındı; SIRADAKILER notu DURAK 1 sonrası düşülecek.
 - S raporu B sınıfı kalemlerden brifte geçmeyenler (bu işe eklendi): a) 68 noindex mevzuat sayfasının eksik metni · f) il sayfası akademik künye il süzgeci · g) belgelerin güncellenmesi (DEVIR/CLAUDE/BRIEF/KAYNAKLAR) · m) eski Türkçe-slug göl adresleri yönlendirme · n) GRACE kaynak dosya adı keşfi · o) sağlık öz-testi/bekçi canlı HTML · p) 5686 kısa ad · q) mevzuat düzeltme tarihi politikası · r) RG il türetimi hataları (brif 4-A ile birleşir).
+
+## Aşama 1 — yapılanlar (10.10.2026; dal katma-deger-20261010)
+- 1.1 Tahmin: baraj projeksiyonu son gözleme bağlandı, 0–100 kırpması ve "sınıra dayandı" notu; uydu tablosunda eğilim/mevsim payı ayrı sütun, "Son ölçüm Mart 2026" etiketi; GRACE tazelik as-of'u işleme günü yerine verinin son ayı (2026-03) → `veri-tazelik.mjs` artık **GECİKMİŞ 223 gün** diyor (dürüst durum; kaynak NASA GSFC 2026-04..08 dosyası yok, 404). Pencere etiketleri (254/120 ay, 5 yıl): yeralti-suyu/[il], kuyu-ruhsati/[il], harita'da **henüz etiketlenmedi** (sıradaki).
+- 1.2 Kapatma başlığı düzeltildi (RG kayıtları). CHIRPS havza kırılımı yok → gündem sayfası ulusal değer + sınırlılık notu; havza hesabı netCDF4 kurulumu gerektirir (ertelendi, ücretsiz; sahibe soru değil, sıradaki).
+- 1.3 Risk endeksi: "Veri güveni k/5" sütunu + ağırlıkların editoryal olduğu notu.
+- 1.5 Formlar: ana sayfa iletişim formu mailto'dan çıkarıldı → aynı `/danisma` sunucu işlevine (KV, 180 gün), KVKK onay kutusu + tuzak alan; `danisma.js` çok-form; sunucu `eposta` isteğe bağlı alan aldı. /hizli-danisma "talep kapanınca silinir" → "en geç 180 gün"; /gizlilik form envanteri (danışma, ön analiz 365 g, mevzuat aboneliği 730 g, alarm 730 g, olay sayacı 400 g, erişim günlüğü 30 g) tablo + onay bölümü; "Ön Değerlendirme Talebi Gönder" düğmesine onay kutusu (işaretlenmeden yönlendirme yok). /istihbarat ve /mevzuat/degisiklikler e-posta formları kaldırıldı (RSS kaldı; "gönderim servisi bağlandığında" vaadi silindi). **Hepsi önizlemede AVUKAT ONAYI BEKLİYOR**: /, /gizlilik/, /hizli-danisma/, /kuyu-karar-motoru/ (ön değerlendirme kutusu).
+- 1.7 Kalıntılar: dist'te Apilex 0 (vitrin.js kaynak etiketi dahil), "doğrulama sürecindedir" 0, "tam metin veri setinde yok" 0, "(brief)" 0, "talan. 1" 0, "Gönderim servisi bağlandığında" 0; "XXX" 2 (telefon yer tutucusu 05XX, kabul).
+- 1.8 Yazım/NACE: Ek-2 OCR satır satır karşılaştırma; `su-verimliligi.js` doğrulama sayacı 'ocr-tamamlandi' değerini doğrulanmış sayar (84/90; 6 doğrulanmadı); "ve i saklanması" artığı düzeltildi.
+- 1.9 ilçe sorgu: sentetik ±%15 kaldırıldı, gerçek il verisi.
+- 1.10 Vaat-içerik eşitlemeleri (nerede-su-cikar meta, nehir "nereye dökülür" koşullu, "tek ekranda" ×3, HavzaPaneli etiketi, alarm kapsamı, AjanBandi, iklim örnekleme notu).
+- 1.11 Göl/nehir: adsız/yabancı alfabe/jenerik kayıtlar yayından çekildi (göl 247→244, nehir 95→94), aynı adlar "(İl)" ile ayrıştı, geçtiği iller listesi (örneklem notuyla). Kalan: Aras ×3 birleştirme, eski Türkçe-slug yönlendirme (S-m).
+- 1.13 Su Kanunu: taslak-takibi **resmî belgelerle yeniden yazıldı** — TBMM 2/3671 Su Kanunu Teklifi (A. T. Özkan, havale 05.05.2026, esas komisyon Tarım-Orman-Köyişleri), 2/3307 (D. Bekin, 06.10.2025), yazılı soru önergesi 14.04.2026 (S. Çorabatır: "Su Kanunu neden hâlâ yasalaşmamıştır?"), Bakanlık Haber 6900 (25.12.2025); basın kaynağı "268 kurum / 19 madde" **doğrulanamadı** diye işaretli; "Son kontrol: 10 Ekim 2026" görünür; Apilex dayanağı kaldırıldı (tahsis belgesi paragrafı veri seti sayımına indirildi: 469 maddede "tahsis belgesi" 0). /su-kanunu/ gövdesine 3 başlık. Mevzuat radarı **çalışıyor**: cron Çar 05:20 UTC, son koşu 07.10.2026 exit 0, 9 mevzuat 469 madde, 0 değişiklik (`log/mevzuat-radar.log`). Not: ana depodaki `izleme/su-izleme.sh` sabah koşuları 09.10 ve 10.10'da exit 1 — "RG-gunluk: fihrist çekilemedi" (sunucu DNS'i resmigazete.gov.tr'yi çözemiyor, 0.x bulgusu ile aynı kök); dokunulmadı, sahibe bilgi.
+- Hukuki düzeltmeler (onay bekliyor): kuyu-tasima yeniden değerleme paragrafı (5326 m.17/7, Tebliğ 585); su-tahsisi rehberi "bağlayıcı sıra yoktur" cümlesi Yönetmelik m.7 ile düzeltildi (m.7 + Tüzük m.15 iki sıra tablo). Rehber koleksiyonuna `onayBekliyor/onayKaynak` alanı eklendi.
+- Kanıt: build 1184 sayfa; `npm test` 12/12 + 13 node testi OK; Playwright öz denetim 9 sayfa konsol 0 / kırık iç bağlantı 0 (`cikti/denetim/katma-deger-2/`).
+

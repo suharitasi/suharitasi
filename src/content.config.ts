@@ -15,6 +15,10 @@ const rehberler = defineCollection({
     guncelleme: z.coerce.date().optional(),
     // true ise sayfa sonuna 81 il / yetkili kurum tablosu eklenir (data/il-kurum.json)
     ilKurumTablosu: z.boolean().optional(),
+    // 10.10.2026 (brif, Çerçeve 'Hukuki içerik'): true ise önizlemede 'AVUKAT ONAYI
+    // BEKLİYOR' işareti basılır; onayKaynak dayanılan resmî metni yazar.
+    onayBekliyor: z.boolean().optional(),
+    onayKaynak: z.string().optional(),
     // Sayfa sonundaki "İlgili rehberler" bloğu; slug listesi (2-3 önerilir).
     // Slug'lar derleme sırasında doğrulanır: olmayan slug build'i düşürür.
     ilgili: z.array(z.string()).default([]),

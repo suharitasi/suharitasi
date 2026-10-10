@@ -7,6 +7,7 @@
 // incelemesine açıktır.
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
+import OnayBekliyor from '../components/OnayBekliyor.astro';
 import OzCevap from '../components/OzCevap.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
 import { EPOSTA, YAZAR } from '../data/site';
@@ -22,31 +23,49 @@ const OZ_CEVAP =
   <SayfaBasi etiket="Gizlilik" baslik="Gizlilik ve KVKK aydınlatma metni" ozet="Hangi bilgi, neden, nerede ve ne kadar süre işlenir." />
   <OzCevap metin={OZ_CEVAP} etiket="Özet" />
 
+  <OnayBekliyor kaynak="Gizlilik ve KVKK metni: form tablosu, saklama süreleri, onay bölümü (brif 1.5)" />
   <div class="gz-icerik">
     <h2>1. Veri sorumlusu</h2>
     <p>Bu portal <strong>Su Haritası</strong> (suharitasi.com) tarafından işletilir. Hukuki içerik {YAZAR.ad} ({YAZAR.buro}) tarafından hazırlanır. İletişim: <a href={`mailto:${EPOSTA}`}>{EPOSTA}</a>.</p>
 
     <h2>2. Hangi bilgiler işlenir?</h2>
     <ul>
-      <li><strong>Hızlı danışma formu:</strong> ad soyad, telefon, (varsa) il, konu ve mesaj metni.</li>
-      <li><strong>Mevzuat değişiklik aboneliği:</strong> e-posta adresi.</li>
+      <li><strong>Danışma formları</strong> (<a href="/hizli-danisma/">hızlı danışma</a> ve ana sayfadaki iletişim formu; ikisi aynı sunucu işlevine gider): ad soyad, telefon, (varsa) e-posta, il, konu, mesaj metni ve formun gönderildiği sayfa yolu.</li>
+      <li><strong>Ön analiz talep formu</strong> (parsel / il sorgu sayfalarındaki "ön analiz" düğmesi): il, ilçe, telefon, (varsa) ada-parsel ve gönderildiği sayfa yolu.</li>
+      <li><strong>Havza alarm aboneliği</strong>: e-posta, seçilen havza, eşik ve yön.</li>
+      <li><strong>Mevzuat değişiklik aboneliği</strong>: e-posta ve (varsa) seçilen konu.</li>
+      <li><strong>Hukuki ön değerlendirme düğmesi</strong> ("Ön Değerlendirme Talebi Gönder"): bu sitede kayıt oluşturmaz; yalnız sayfada seçtiğiniz teknik parametreler (il, işlem türü, tebliğ tarihi, belge durumu, usul başlıkları) bağlantı içinde arslanhukuk.tr randevu formuna taşınır. Ad, e-posta ve olay ayrıntısını o formda siz doldurursunuz.</li>
       <li><strong>Onay kapılı ölçüm çerezi:</strong> site siz onay vermeden hiçbir ölçüm betiği yüklemez ve çerez kullanmaz. &quot;Kabul et&quot; derseniz Google Analytics çerezleri (ör. _ga) kullanılır; &quot;Reddet&quot; derseniz ölçüm yapılmaz. Reklam izleme her durumda yapılmaz.</li>
       <li><strong>Google Analytics (yalnız onay verirseniz):</strong> sayfa görüntüleme ve tıklama olayları Google LLC'ye aktarılır; IP anonimleştirme açıktır ve reklam sinyalleri kapalıdır. Tercihiniz tarayıcınızda (localStorage) saklanır.</li>
-      <li><strong>Çerezsiz ölçüm:</strong> iletişim bağlantılarına (telefon/e-posta/WhatsApp) yapılan tıklamalar, IP adresi veya kullanıcı kimliği saklanmadan, yalnızca gün ve sayfa bazında sayılır.</li>
-      <li>Sistem güvenliği ve API kötüye kullanımının önlenmesi amacıyla, ziyaretçi erişim günlükleri (IP adresi, erişilen uç nokta ve HTTP durum kodları) 30 gün süreyle kayıt altına alınmaktadır.</li>
+      <li><strong>Çerezsiz olay sayacı:</strong> iletişim bağlantılarına (telefon/e-posta/WhatsApp) ve formlara yapılan tıklamalar, IP adresi veya kullanıcı kimliği saklanmadan, yalnızca gün, olay adı ve sayfa yolu bazında sayılır.</li>
+      <li>Sistem güvenliği ve kötüye kullanımın önlenmesi amacıyla, ziyaretçi erişim günlükleri (IP adresi, erişilen adres ve HTTP durum kodları) 30 gün süreyle kayıt altına alınmaktadır.</li>
     </ul>
 
     <h2>3. İşleme amacı ve hukuki sebep</h2>
     <p>Bilgiler yalnızca <strong>talebinize dönüş yapmak</strong> ve (abonelikte) <strong>mevzuat değişikliği bildirimi göndermek</strong> amacıyla işlenir. Hukuki sebep: KVKK m.5/2 (açık rıza) ve talebe dönüş için gereklilik. Ölçüm çerezi yalnız açık rızanıza (banner'da &quot;Kabul et&quot;) dayanır.</p>
 
     <h2>4. Nerede ve ne kadar süre saklanır?</h2>
-    <p>Bilgiler Cloudflare altyapısında (Cloudflare KV) saklanır; sunucumuzda ayrı bir kopya tutulmaz. Saklama süresi: danışma talepleri için <strong>~180 gün</strong>, abonelikler için <strong>~2 yıl</strong>, teknik erişim günlükleri için <strong>30 gün</strong>; süre sonunda otomatik silinir. Reklam veya profilleme amaçlı üçüncü taraf paylaşımı yapılmaz; onay verdiğiniz ölçüm verisi yalnız Google Analytics (Google LLC) üzerinde işlenir.</p>
+    <p>Bilgiler Cloudflare altyapısında (Cloudflare KV) saklanır; sunucumuzda ayrı bir kopya tutulmaz. Her kayıt yazılırken bir ömür verilir; süre dolunca kendiliğinden silinir. Süreler yazılımın ayarıdır (son kontrol 10.10.2026):</p>
+    <div class="gz-tablo-sar">
+      <table class="gz-tablo">
+        <thead><tr><th>Kayıt</th><th>Saklama süresi</th></tr></thead>
+        <tbody>
+          <tr><td>Danışma formları (hızlı danışma, ana sayfa iletişim)</td><td>180 gün</td></tr>
+          <tr><td>Ön analiz talep formu</td><td>365 gün</td></tr>
+          <tr><td>Mevzuat değişiklik aboneliği</td><td>730 gün (yaklaşık 2 yıl)</td></tr>
+          <tr><td>Havza alarm aboneliği</td><td>730 gün (yaklaşık 2 yıl)</td></tr>
+          <tr><td>Çerezsiz olay sayacı (kişisel veri içermez)</td><td>400 gün</td></tr>
+          <tr><td>Teknik erişim günlükleri</td><td>30 gün</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Reklam veya profilleme amaçlı üçüncü taraf paylaşımı yapılmaz; onay verdiğiniz ölçüm çerezi dışında veri başka bir kuruluşa aktarılmaz.</p>
 
     <h2>5. KVKK m.11 kapsamındaki haklarınız</h2>
     <p>Kişisel verilerinizin işlenip işlenmediğini öğrenme, işlenmişse bilgi talep etme, düzeltilmesini veya silinmesini isteme ve işlemeye itiraz etme haklarına sahipsiniz. Talebiniz için <a href={`mailto:${EPOSTA}`}>{EPOSTA}</a> adresine yazmanız yeterlidir; talepler en kısa sürede yanıtlanır.</p>
 
     <h2>6. Onay</h2>
-    <p>Danışma formundaki onay kutusunu işaretlediğinizde, iletişim bilgilerinizin yalnız yukarıdaki amaçla işlenmesine açık rıza vermiş olursunuz. Onay vermeden form gönderilmez.</p>
+    <p>Danışma, iletişim, ön analiz ve abonelik formlarındaki onay kutusunu işaretlediğinizde, verdiğiniz bilgilerin yalnız yukarıdaki amaçla işlenmesine açık rıza vermiş olursunuz. Onay vermeden hiçbir form gönderilmez; onay kutusu olmayan form yoktur.</p>
 
     <h2>7. Çerez tercihini değiştirme</h2>
     <p>Ölçüm çerezi tercihiniz tarayıcınızda (localStorage) saklanır. Değiştirmek için tarayıcınızın site verilerini temizleyin; seçim banner'ı yeniden görünür ve yeni tercihinizi verebilirsiniz.</p>
@@ -58,6 +77,10 @@ const OZ_CEVAP =
 </Sayfa>
 
 <style>
+  .gz-tablo-sar { overflow-x: auto; margin: 0.6rem 0 1rem; }
+  .gz-tablo { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+  .gz-tablo th, .gz-tablo td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--cizgi); }
+  .gz-tablo th { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--metin-soluk); }
   .gz-icerik { max-width: 74ch; }
   .gz-icerik h2 { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; margin: 1.6rem 0 0.5rem; }
   .gz-icerik p { margin: 0.6rem 0; }

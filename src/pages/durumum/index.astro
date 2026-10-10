@@ -16,7 +16,7 @@ import HukukSerhi from '../../components/HukukSerhi.astro';
 const _naceTarih = [...new Set(personalar.filter((p) => p.nace).map((p) => p.sonTarihMetni).filter(Boolean))];
 const ozCevap =
   'Sektörünüzü seçin; yükümlülüğünüzü, son başvuru tarihini ve ilk adımları ' +
-  'tek ekranda görün. Yeşil su verimliliği belgesi yükümlüsü sektörler için ' +
+  'bir arada görün. Yeşil su verimliliği belgesi yükümlüsü sektörler için ' +
   (_naceTarih.length === 1 ? `son başvuru ${_naceTarih[0]}. ` : '') +
   'Listede yoksanız doğrudan ulaşın.';
 

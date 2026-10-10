@@ -188,7 +188,7 @@ export const ARSIV_SETLERI = [
   },
   {
     ad: 'Kurum × işlem yetki matrisi',
-    kaynak: 'Mevzuat metinleri (Apilex araştırma çıktısı) + kurum kuruluş düzenlemeleri',
+    kaynak: 'Mevzuat metinleri (ikincil araştırma çıktısı; resmî doğrulama bekliyor) + kurum kuruluş düzenlemeleri',
     kapsam: `${islemSayisi} su işlemi`,
     sayim: `${kurumSayisi} kurum kaydı`,
     erisim: 'Tamamı "Hangi kurum?" sayfasında tablo olarak görüntülenir.',

@@ -7,6 +7,7 @@ import IlKurumTablosu from '../../components/IlKurumTablosu.astro';
 import YazarKutusu from '../../components/YazarKutusu.astro';
 import IlgiliRehberler from '../../components/IlgiliRehberler.astro';
 import Katman from '../../components/Katman.astro';
+import OnayBekliyor from '../../components/OnayBekliyor.astro';
 import { OG_GORSEL } from '../../data/site';
 import SonrakiAdim from '../../components/SonrakiAdim.astro';
 import RehberKapanis from '../../components/RehberKapanis.astro';
@@ -280,6 +281,7 @@ if (kalip2) {
     <KararMatrisi satirlar={giris.data.karar} />
   )}
   <div class="icerik">
+    {giris.data.onayBekliyor && <OnayBekliyor kaynak={giris.data.onayKaynak || ''} />}
     <Content />
   </div>
   {giris.data.ilKurumTablosu && <IlKurumTablosu />}
