@@ -1,0 +1,11 @@
+[Unit]
+Description=suharitasi: gunluk hukuki cumle raporu ve Telegram bildirimi (KARARLAR §73/5)
+OnFailure=suharitasi-hukuki-cumle-hata.service
+
+[Service]
+Type=oneshot
+User=suha
+Group=suha
+WorkingDirectory=/home/suha/projeler/suharitasi-katma-deger
+ExecStart=/home/suha/projeler/suharitasi-katma-deger/arac/hukuki-cumle-zamanli.sh
+TimeoutStartSec=600

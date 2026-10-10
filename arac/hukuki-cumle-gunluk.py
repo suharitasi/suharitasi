@@ -9,12 +9,13 @@ import re, subprocess, sys, datetime, html, json
 
 gun = next((a for a in sys.argv[1:] if re.match(r'\d{4}-\d{2}-\d{2}$', a)), datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=3))).strftime('%Y-%m-%d'))
 taban = sys.argv[sys.argv.index('--taban') + 1] if '--taban' in sys.argv else None
+dizin = sys.argv[sys.argv.index('--cikti-dizin') + 1] if '--cikti-dizin' in sys.argv else 'rapor/hukuki-cumleler'
 git = lambda *a, kontrol=True: subprocess.run(['git', *a], capture_output=True, text=True, check=kontrol).stdout
 git('fetch', '-q', 'origin')
 commitler = git('log', 'origin/main', '--first-parent', '--format=%H', f'--since={gun}T00:00:00+03:00', f'--until={gun}T23:59:59+03:00').split()
 if not commitler and not taban:
-    open(f'rapor/hukuki-cumleler/{gun}.md', 'w').write(f'# {gun} — canlıya giren hukuki cümleler\n\nBu gün ana dala giren commit yok.\n')
-    print(f'{gun}: ana dala giren commit yok'); sys.exit(0)
+    open(f'{dizin}/{gun}.md', 'w').write(f'# {gun} — canlıya giren hukuki cümleler\n\nBu gün ana dala giren commit yok.\n')
+    print(f'{gun}: ana dala giren commit yok'); print(f'CUMLE_SAYISI=0 YOL={dizin}/{gun}.md'); sys.exit(0)
 eski = taban or (commitler[-1] + '^')
 yeni = commitler[0] if commitler else 'origin/main'
 
@@ -85,6 +86,7 @@ for s in dict.fromkeys(k[0] for k in kayit):
         bul = ', '.join(dict.fromkeys(m.group(0) for m in DAY.finditer(c)))
         md += f'- {c} — *{tur + "; " if tur else ""}dayanak: {bul or dy or "cümlede yazılı değil"}*\n'
     md += '\n'
-yol = f'rapor/hukuki-cumleler/{gun}.md'
+yol = f'{dizin}/{gun}.md'
 open(yol, 'w', encoding='utf-8').write(md)
 print(f'{gun}: {len(kayit)} cümle, {len(dosyalar)} dosya → {yol}')
+print(f'CUMLE_SAYISI={sum(1 for l in md.splitlines() if l.startswith("- "))} YOL={yol}')

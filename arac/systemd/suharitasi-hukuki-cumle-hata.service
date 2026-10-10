@@ -1,0 +1,8 @@
+[Unit]
+Description=suharitasi: hukuki cumle raporu basarisiz bildirimi
+
+[Service]
+Type=oneshot
+User=suha
+Group=suha
+ExecStart=/home/suha/projeler/suharitasi/arac/uyari-gonder.sh "gunluk hukuki cumle raporu basarisiz" "journalctl -u suharitasi-hukuki-cumle.service"

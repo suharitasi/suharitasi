@@ -1,0 +1,10 @@
+[Unit]
+Description=suharitasi: her gun 22:00 (Istanbul) hukuki cumle raporu
+
+[Timer]
+OnCalendar=*-*-* 22:00:00 Europe/Istanbul
+Persistent=true
+Unit=suharitasi-hukuki-cumle.service
+
+[Install]
+WantedBy=timers.target
