@@ -42,6 +42,30 @@
       "beklenenBaslik": {
         "x-kaynak": "fn"
       }
+    },
+    {
+      "kaynak": "/yeralti-suyu/konya/",
+      "hedef": "/kuyu-ruhsati/konya/",
+      "kod": 301,
+      "gerekce": "2.3 il aileleri birleşti (10.10.2026, KARARLAR §73)"
+    },
+    {
+      "kaynak": "/yeralti-suyu/izmir",
+      "hedef": "/kuyu-ruhsati/izmir/",
+      "kod": 301,
+      "gerekce": "2.3 eğik çizgisiz hâli"
+    },
+    {
+      "kaynak": "/durumum/gida-urunleri-imalati-nace-10/",
+      "hedef": "/durumum/#nace-10",
+      "kod": 301,
+      "gerekce": "2.5 NACE sayfaları tek tabloda (10.10.2026)"
+    },
+    {
+      "kaynak": "/durumum/tarimsal-ve-hayvansal-uretim-nace-01/",
+      "hedef": "/durumum/#nace-01",
+      "kod": 301,
+      "gerekce": "2.5 NACE sayfaları tek tabloda (10.10.2026)"
     }
   ]
 }

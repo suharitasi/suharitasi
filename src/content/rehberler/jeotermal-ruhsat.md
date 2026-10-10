@@ -36,7 +36,7 @@ karar:
     merci: "İdari yargı"
     sure: "Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)"
     ceza: "—"
-    emsal: "Danıştay 8.D. 2018/6147 E., 2024/72 K. · 2021/5225 E., 2023/6171 K. (künye doğrulandı; özet karar metniyle çelişiyor, avukat incelemesinde)"
+    emsal: "Danıştay 8.D. 2025/5198 E., 2025/10204 K. (cezada yetki) · 2021/5225 E., 2023/6171 K. (suyun niteliği)"
 ---
 
 Jeotermal kaynaklar ve doğal mineralli sular Devletin hüküm ve
@@ -100,12 +100,9 @@ işletme ruhsatına zamanında başvuru hayatidir.
 
 Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
-- Danıştay 8. Daire 2018/6147 E., 2024/72 K. — geçiş rejimi: 167
-  kapsamındaki kullanım belgesi 5686 rejimine otomatik intibak
-  ettirilemez. ([künye resmî kaynakta doğrulandı](/emsal-kararlar/danistay-8-daire-2018-6147-2024-72/); bu özet karar metniyle çelişiyor, avukat incelemesinde)
-- Danıştay 8. Daire 2021/5225 E., 2023/6171 K. — yetki: 5686 rejiminde
-  yetkisiz idarenin 167 mantığıyla idari para cezası tesis etmesi yetki
-  yönünden sakattır. ([künye resmî kaynakta doğrulandı](/emsal-kararlar/danistay-8-daire-2021-5225-2023-6171/); bu özet karar metniyle çelişiyor, avukat incelemesinde)
+- Danıştay 8. Daire 2018/6147 E., 2024/72 K. — DSİ'nin, kuyularda üretilen suyun büyük oranda deniz suyundan oluşması nedeniyle yeraltısuyu kullanma belgelerini iptal ettiği bir olayda, kuyulara taksir, intibak ve işletme ruhsatı verilmesi talebinin 5686 sayılı Kanun'un geçici 1. ve 2. maddeleri kapsamında bulunmadığı gibi 6. maddesinin 6. fıkrası kapsamına da girmediği belirtilerek, belgeli iki kuyu yönünden verilen iptal kararına yönelik istinaf isteminin reddi bozulmuştur. ([karar sayfası ve resmî metin](/emsal-kararlar/danistay-8-daire-2018-6147-2024-72/), erişim 10.10.2026)
+- Danıştay 8. Daire 2021/5225 E., 2023/6171 K. — suyun jeotermal kaynak olup olmadığına ilişkin belirleme gerekli testler yapılmadan ve davanın tarafı olmayan kişinin yaptırdığı testlere dayanılarak yapıldığı için karar bozulmuş; suyun niteliği belirlendikten sonra idari para cezasının yetkili makamca verilip verilmediğinin de dikkate alınması istenmiştir. ([karar sayfası ve resmî metin](/emsal-kararlar/danistay-8-daire-2021-5225-2023-6171/), erişim 10.10.2026)
+- Danıştay 8. Daire 2025/5198 E., 2025/10204 K. — 5686 sayılı Kanun'un 11/4 maddesine dayanılarak "yeraltı suyu kullanım belgesi" olmadığı gerekçesiyle verilen idari para cezasında davalı idarenin yetkisi bulunmadığı ve işlemin yetki unsuru yönünden sakat olduğu; 5686 uyarınca verilecek cezanın o Kanun'da yer almayan yeraltı suyu kullanım belgesine dayandırılamayacağı belirtilerek ceza kısmı bozulmuş, kuyunun mühürlenmesine ilişkin kısım onanmıştır. ([karar sayfası ve resmî metin](/emsal-kararlar/danistay-8-daire-2025-5198-2025-10204/), erişim 10.10.2026)
 
 Bu iki karar birlikte, 5686 uyuşmazlıklarında hem geçiş rejiminin hem
 yetki unsurunun belirleyici olduğunu gösterir.

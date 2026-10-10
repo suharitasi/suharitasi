@@ -180,7 +180,7 @@ const sema = [
       <p class="hub-aciklama">Faaliyet kolunuza göre yükümlülük ve ilgili rehber eşleşmesi.</p>
       <nav class="hub-capraz">
         {personaBag.slice(0, 24).map((p) => (
-          <a href={`/durumum/${p.slug}/`}>→ {p.ad}</a>
+          <a href={p.yol}>→ {p.ad}</a>
         ))}
       </nav>
     </section>

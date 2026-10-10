@@ -1,23 +1,7 @@
 ---
-/* AVUKAT ONAYI BEKLİYOR işareti (10.10.2026 brifi, Çerçeve "Hukuki içerik").
-   Hukuki metin içeren ve henüz avukat onayı almamış sayfalar bu bileşeni taşır.
-   Yalnız ÖNİZLEME derlemelerinde görünür: Cloudflare Pages `CF_PAGES_BRANCH`
-   main dışındayken ya da yerelde `ONAY_BANNER=1` ile. main derlemesinde bileşen
-   hiçbir şey basmaz — ama onaysız metin zaten main'e girmez (brif kuralı).
-   `kaynak`: dayanılan resmî metin(ler) — ekranda okunur. */
+/* Eski "AVUKAT ONAYI BEKLİYOR" işareti (10.10.2026 brifi). KARARLAR §73 (10.10.2026): önizleme
+   kaldırıldı, sahibin hukuki onayıyla bütün metinler canlıda; işaret artık hiçbir derlemede
+   basılmaz. Çağrılar kodda dayanak notu olarak kalır (kaynak/not okunmaz); canlıdaki karşılığı
+   "Son hukuki kontrol" satırıdır (HukukiKontrol.astro, Sayfa.astro). */
 interface Props { kaynak?: string; not?: string }
-const { kaynak = '', not = '' } = Astro.props;
-const dal = process.env.CF_PAGES_BRANCH || '';
-const goster = (dal && dal !== 'main') || process.env.ONAY_BANNER === '1';
 ---
-{goster && (
-  <div class="onay-bekliyor" role="note" aria-label="Avukat onayı bekliyor">
-    <strong>AVUKAT ONAYI BEKLİYOR</strong> — bu sayfadaki hukuki metin taslaktır; yayına ancak avukat onayıyla girer.
-    {kaynak && <span class="onay-kaynak">Dayanak: {kaynak}</span>}
-    {not && <span class="onay-not">{not}</span>}
-  </div>
-)}
-<style>
-  .onay-bekliyor { margin: 0 0 1.2rem; padding: 0.7rem 1rem; border: 2px dashed #875518; background: #fff6dd; color: #4a300c; font-size: 0.88rem; line-height: 1.5; }
-  .onay-kaynak, .onay-not { display: block; margin-top: 0.3rem; font-size: 0.82rem; }
-</style>

@@ -42,8 +42,11 @@ export const personalar = veri.personalar.map((p, i) => {
   const sonTarihMetni = p.sonTarihDurum === 'dogrulandi' ? tarihTR(p.sonTarih) : null;
   if (p.sonTarihDurum === 'dogrulandi' && !sonTarihMetni)
     throw new Error(`persona "${p.ad}": sonTarihDurum=dogrulandi ama sonTarih geçersiz (${p.sonTarih}).`);
-  return { ...p, slug, sonTarihMetni };
+  // brif 2.5 (10.10.2026): NACE Ek-2 faaliyetleri ayrı sayfa değil, /durumum/ tablosunda bir satır.
+  const yol = p.kaynak === 'nace-ek2' ? `/durumum/#nace-${p.nace}` : `/durumum/${slug}/`;
+  return { ...p, slug, sonTarihMetni, yol };
 });
+export const sayfaliPersonalar = personalar.filter((p) => p.kaynak !== 'nace-ek2');
 
 export const yonetmelik = veri.yonetmelik;
 export const naceEk2 = veri.naceEk2;

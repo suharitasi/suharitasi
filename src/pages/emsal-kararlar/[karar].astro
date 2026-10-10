@@ -105,7 +105,7 @@ const BOLUMLER = a ? [
       <p><strong>Karar metninde anılan maddeler</strong> (sitede metni bulunanlar): {anilanMaddeler.map((m, i) => (<>{i > 0 && ' · '}<a href={m.yol}>{m.ad}</a></>))}</p>
     )}
     {k.rehberler.length > 0 && (
-      <p><strong>Bu kararı anan rehberler:</strong> {k.rehberler.map((r, i) => (<>{i > 0 && ' · '}<a href={`/rehberler/${r}/`}>{rehberAd[r] ?? r}</a></>))}</p>
+      <p><strong>İlgili rehberler:</strong> {k.rehberler.map((r, i) => (<>{i > 0 && ' · '}<a href={`/rehberler/${r}/`}>{rehberAd[r] ?? r}</a></>))}</p>
     )}
   </section>
 

@@ -27,7 +27,7 @@ karar:
     merci: "Mahallî mülkî amir"
     sure: "Para cezasına tebliğden itibaren 15 gün, sulh ceza (5326 m.27/1); kapatma aynı işlemdeyse idari yargı, 60 gün (5326 m.27/8)"
     ceza: "167 m.18/b: {{CEZA_18B}}; ayrıca kuyu kapatma"
-    emsal: "Danıştay 8.D. 2023/663 E., 2023/829 K. — izin aşımını DSİ tespit eder (künye doğrulandı; özet karar metniyle çelişiyor, avukat incelemesinde)"
+    emsal: "Danıştay 8.D. 2023/663 E., 2023/829 K. — temyiz süre aşımından reddedildi; ilk derece gerekçesi: izin aşımını DSİ tespit eder"
   - senaryo: "Kesilen cezaya veya kapatma kararına karşı yargı yolu"
     merci: "İdari yargı (iptal davası)"
     sure: "Ceza: 15 gün sulh ceza (5326 m.27/1); kapatma: 60 gün idare mahkemesi (2577 m.7); aynı işlemdeyse ikisi idari yargıda (5326 m.27/8)"
@@ -93,10 +93,7 @@ Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma du
   kullanan tarafa belediye su idaresince "kaçak su bedeli" yüklenemez;
   kuyu suyu 167 sayılı rejime tabidir, belediye yalnızca atık su bedeli
   talep edebilir. (ikincil kaynak; resmî doğrulama bekliyor)
-- Danıştay 8. Daire 2023/663 E., 2023/829 K. — izin kapsamını aşan
-  yeraltı/kaynak suyu kullanımı DSİ tarafından tespit edilebilir; yerel
-  idare bu suyu abonelik ve tarife konusu yapamaz; fazla kullanım
-  önlenip DSİ'ye bildirilir. ([künye resmî kaynakta doğrulandı](/emsal-kararlar/danistay-8-daire-2023-663-2023-829/); bu özet karar metniyle çelişiyor, avukat incelemesinde)
+- Danıştay 8. Daire 2023/663 E., 2023/829 K. — Danıştay temyiz istemini süre aşımı nedeniyle reddetmiştir; esasa ilişkin gerekçe ilk derece mahkemesinindir: yeraltı ve kaynak sularının izinsiz ya da verilen izin kapsamını aşan kullanımının Devlet Su İşleri tarafından tespit edilebileceği, bu kullanımı ücretlendirme ve abone yapma yetkisi bulunmayan idarenin kuyu suyu aboneliği tarifesi belirleyemeyeceği gerekçesiyle belediye meclisi kararı iptal edilmiş, istinaf başvurusu reddedilmiştir. ([karar sayfası ve resmî metin](/emsal-kararlar/danistay-8-daire-2023-663-2023-829/), erişim 10.10.2026)
 - Danıştay 2022/3005 E., 2022/3470 K. (resmî sunucuda İdare Dava Daireleri Kurulu kararı; künye çelişkisi, doğrulanamadı) — 167'nin arama belgesi
   mekanizması yeraltı suyu rejiminin çekirdeğidir.
 

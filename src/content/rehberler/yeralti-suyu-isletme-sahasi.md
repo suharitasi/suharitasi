@@ -36,7 +36,7 @@ karar:
     merci: "İdare → idari yargı"
     sure: "Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)"
     ceza: "—"
-    emsal: "Danıştay 8.D. 2018/6147 E., 2024/72 K. — statü otomatik yok sayılamaz (künye doğrulandı; özet karar metniyle çelişiyor, avukat incelemesinde)"
+    emsal: "Doğrudan karar yok; bkz. Danıştay 8.D. 2018/6147 E., 2024/72 K. (5686 geçiş hükümleri)"
 ---
 
 Bir bölge "yeraltı suyu işletme sahası" ilan edildiğinde, o sahadaki
@@ -63,14 +63,14 @@ uygunsuzluk zabıtla tespit edilebilir.
 
 İlan öncesi açılmış kuyuların ve mevcut belge sahiplerinin kazanılmış
 hakları konusunda kaynak araştırmanın veri tabanında **doğrudan karar
-bulunmamaktadır**. En yakın içtihat, Danıştay 8. Daire'nin 2018/6147
-E., 2024/72 K. sayılı kararıdır: 167 kapsamındaki yeraltı suyu kullanım
-belgesi 5686 sayılı (jeotermal) rejime otomatik intibak ettirilemez;
-mevcut belgeye sahip iki kuyu yönünden işletme ruhsatı talebinin reddi
-hukuka aykırı, belgesiz kuyu yönünden ret hukuka uygun bulunmuştur ([künye resmî kaynakta doğrulandı](/emsal-kararlar/danistay-8-daire-2018-6147-2024-72/); bu aktarım karar metniyle çelişiyor, avukat incelemesinde).
-Karar doğrudan işletme sahası ilanına ilişkin değildir; ancak mevcut
-belge sahiplerinin statüsünün idarece otomatik yok sayılamayacağını
-gösterir.
+bulunmamaktadır**. Danıştay 8. Daire'nin 2018/6147 E., 2024/72 K. sayılı
+kararı bu soruya doğrudan cevap vermez: kararda, DSİ'nin kuyulardaki suyun
+büyük oranda deniz suyu olması nedeniyle kullanma belgelerini iptal ettiği
+bir olayda, taksir, intibak ve işletme ruhsatı talebinin 5686 sayılı
+Kanun'un geçici 1. ve 2. maddeleri ile 6. maddesinin 6. fıkrası kapsamına
+girmediği belirtilmiş ve belgeli iki kuyu yönünden verilen iptal kararının
+istinafta onanması bozulmuştur
+([karar sayfası ve resmî metin](/emsal-kararlar/danistay-8-daire-2018-6147-2024-72/), erişim 10.10.2026).
 
 Bu nedenle kesin bir genel sonuç verilemez; somut dosyada belge tarihi
 ile saha ilan tarihi birlikte değerlendirilir.
@@ -100,10 +100,7 @@ Bu rehberde andığımız hükümlerin birebir metni bağımsız mevzuat sayfala
 
 Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
-- Danıştay 8. Daire 2018/6147 E., 2024/72 K. — 167 kapsamındaki
-  yeraltı suyu kullanım belgesi 5686 rejimine otomatik intibak
-  ettirilemez; mevcut belgeye sahip kuyular yönünden ret hukuka aykırı,
-  belgesiz kuyu yönünden ret hukuka uygundur. ([künye resmî kaynakta doğrulandı](/emsal-kararlar/danistay-8-daire-2018-6147-2024-72/); bu özet karar metniyle çelişiyor, avukat incelemesinde)
+- Danıştay 8. Daire 2018/6147 E., 2024/72 K. — DSİ'nin, kuyularda üretilen suyun büyük oranda deniz suyundan oluşması nedeniyle yeraltısuyu kullanma belgelerini iptal ettiği bir olayda, kuyulara taksir, intibak ve işletme ruhsatı verilmesi talebinin 5686 sayılı Kanun'un geçici 1. ve 2. maddeleri kapsamında bulunmadığı gibi 6. maddesinin 6. fıkrası kapsamına da girmediği belirtilerek, belgeli iki kuyu yönünden verilen iptal kararına yönelik istinaf isteminin reddi bozulmuştur. ([karar sayfası ve resmî metin](/emsal-kararlar/danistay-8-daire-2018-6147-2024-72/), erişim 10.10.2026)
 
 İlan öncesi açılmış kuyuların kazanılmış hakları hakkında doğrudan
 içtihat bulunamadı (doğrulanmış karar yok).

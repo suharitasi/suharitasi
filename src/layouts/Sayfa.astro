@@ -13,6 +13,8 @@ import AcilDestekBar from '../components/AcilDestekBar.astro';
 import Analitik from '../components/Analitik.astro';
 import CfAnalitik from '../components/CfAnalitik.astro';
 import { hukukiYonlendirmeGoster } from '../data/hukuki-yonlendirme.js';
+import { hukukiSayfa } from '../data/hukuki-kontrol.js';
+import HukukiKontrol from '../components/HukukiKontrol.astro';
 
 interface Props {
   baslik: string;
@@ -773,6 +775,7 @@ const jsonLd = JSON.stringify({
         kolay işaretler. <article> blok elemandır; görsel düzen değişmez. */}
     <article>
       <slot />
+      {hukukiSayfa(yol) && <HukukiKontrol />}
     </article>
   </main>
   <CfAnalitik />

@@ -17,7 +17,8 @@ CLAUDE.md · BRIEF.md · DESIGN.md · KARARLAR.md · CODE-FREEZE.md · ODUL-USTU
 
 ## Aşama durumu
 - Aşama 0 keşif: BİTTİ 10.10.2026 (bulgular aşağıda).
-- Aşama 1 güven onarımı: SÜRÜYOR 10.10.2026 (DURAK 1 yanıtı beklenirken hukuki onay gerektirmeyen işler; hukuki metinler önizlemede "AVUKAT ONAYI BEKLİYOR" işaretiyle).
+- Aşama 1 güven onarımı: SÜRÜYOR 10.10.2026.
+- **KARARLAR §73 (10.10.2026 13:52):** önizleme kaldırıldı; tamamlanmış her iş canlıya, "onay bekliyor" olanlar sahibin hukuki onayıyla. Bundan sonra her kalem kendi sınamasından geçip doğrudan canlıya gider. Geçici "kapatılan adresler" site haritası /sitemap-kapatilan.xml — kaldırma tarihi 21.11.2026.
 
 ## KALEM KALEM DURUM TABLOSU (tek kaynak; her işten sonra güncellenir — son: 10.10.2026 Opus 5.5)
 
@@ -50,7 +51,7 @@ Durum: **yapıldı** (kanıtlı) · **sürüyor** · **onay bekliyor** (hukuki y
 | 2.2 Mevzuat maddeleri dizin ölçütü | sürüyor | hayır | ölçüt kodda (src/data/mevzuat-dizin.js), liste rapor/olcum/mevzuat-dizin-listesi.md: dizinlenebilir madde 401 → 161; madde sayfasına başlıkta madde adı, önceki/sonraki, anan rehber ve kararlar, resmî metin son kontrol tarihi, metindeki değişiklik işaretleri eklendi; yönlendirme blokları mevzuat/veri ailelerinde 0 (denetlendi); "neden önemli" notları yazılmadı (hukuki, onaya) |
 | 2.3 İl aileleri birleştirme | yapıldı | hayır (önizleme) | /yeralti-suyu/{il}/ özgün içeriği (havza özet tablosu, harita/ilçe/tahmin bağları) /kuyu-ruhsati/{il}/#yeralti-suyu'ya taşındı; 81 adres 301 (162 kural, liste rapor/olcum/yonlendirmeler-asama2.md); /kuyu-ruhsati/ dizinine il seçici (betiksiz de çalışır) ve içerik özeti; "60 gün" eksik süre cümlesi taşınmadı (A-b) |
 | 2.4 Göl/nehir dizin eşiği | yapıldı | hayır (önizleme) | eşik kodda (gol-nehir.js); göl 243 → 9 açık (EPİAŞ doluluğu ad + havza eşleşmesiyle 9 göl sayfasına eklendi), nehir 91 → 33 açık; liste rapor/olcum/gol-nehir-dizin-listesi.md; Van/Tuz gibi bilinen göller koruma statüsü verisi gelene dek (4.9) kapalı |
-| 2.5 Sektör sayfaları → /durumum/ | başlanmadı | hayır |  |
+| 2.5 Sektör sayfaları → /durumum/ | yapıldı | hayır | 31 NACE sayfası /durumum/ üzerinde çapalı tek tabloda (#nace-KOD); eski adresler satırına 301 (62 kural, liste rapor/olcum/yonlendirmeler-asama2.md); 11 sektör sayfası kaldı (4.9'da doldurulacak); bütün iç bağlar tek yardımcıdan (persona.yol) |
 | 2.6 Örtüşen sayfalar | başlanmadı | hayır |  |
 | 2.7 Sözlük | başlanmadı | hayır |  |
 | 2.8 /en/ | başlanmadı | hayır |  |

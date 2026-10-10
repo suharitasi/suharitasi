@@ -1681,3 +1681,14 @@ Birebir metin: `rapor/BRIF-katma-deger.md` → "DURAK 1 kararları". Özet (çel
 - **E Depo/Zenodo:** lisans "tüm hakları saklı" (LICENSE + kısa README); görünürlüğe dokunulmaz; Zenodo için TR/EN kısıtlama talep metni ve iç belgesiz temiz arşiv hazırlanır, Zenodo'da hiçbir şey yayımlanmaz/değiştirilmez; depo gizlendikten sonraki ilk dağıtımda Cloudflare doğrulanır.
 - **F:** brif kalan her kalemde sürer; durum dosyasındaki kalem kalem tablo kesintisiz; sonraki durak ≤ 25 satır.
 - **Kanıt:** sohbet 10.10.2026 (DURAK 1 YANITI).
+
+## §73 · ÖNİZLEME KALDIRILDI, HER ŞEY CANLIYA (10.10.2026, Av. Serdar Arslan) — §71/§72'deki DURAK onayı ve "hukuki onay" kurallarının yerine geçer
+- **1.** Önizleme dalındaki tamamlanmış her iş canlıya alınır; durum tablosunda "onay bekliyor" olanlar da dahil — bu talimat sahibin hukuki onayıdır. Canlıda "AVUKAT ONAYI BEKLİYOR" işaretleri kalkar; hukuki metin içeren her sayfaya "son hukuki kontrol: 10.10.2026" yazılır. "Sürüyor" durumundaki yarım işler bitince alınır, yarım hâliyle alınmaz.
+- **2.** Canlıya almadan önce: derleme, bütün testler, iç bağlantı ve konsol hatası denetimi, izleme denetimi; main'e otomatik yazan işlerle çakışma ortak git kilidiyle çözülür. Sonra canlıda 30 örnek adres ve ceza tutarının geçtiği her yüzey (hesaplayıcı, sihirbaz, rehber, madde sayfası, su hukuku tablosu, API) doğrulanır; sorun çıkarsa geri alınır ve sahibe yazılır.
+- **3.** Canlıya alınmamış iş kalmadığı doğrulanınca önizleme dalı ve Cloudflare'deki önizleme dağıtımları silinir.
+- **4.** Bundan sonra önizleme yok: her kalem kendi sınamasından geçer ve doğrudan canlıya gider; duraklarda onay beklenmez. Yalnız geri alınamaz işlerde (veri silme, ücretli servis, DNS) durulur ve sorulur. Görsel işlerde (ana sayfa, menü) ekran görüntüleri canlıya alındıktan sonra rapora konur.
+- **5.** Hukuki metinler de doğrudan canlıya gider: yalnız resmî kaynağa dayanır, kaynağı ve erişim tarihi yanında durur. Her gün 22:00'de (İstanbul) o gün canlıya giren her hukuki cümle sayfa, cümle ve dayanak olarak sohbete yazılır.
+- **6.** Sayfa kapatma, birleştirme ve yönlendirmelerde (Aşama 2) önce adres listesi dosyaya yazılır, sonra uygulanır. Kapatılan adresler birkaç hafta geçici, ayrı bir site haritasında tutulur; bu iş canlıya girince sahibe "site haritasını Search Console'a gönder" diye yazılır.
+- **7.** Sıra: önce bu canlıya alma; sonra MCARD görsel taşıma brifi; o bitince Su Haritası (katma değer) brifinin kalanı sonuna kadar.
+- **8.** Canlıya alma bitince sohbete en çok 15 satır: ne canlıya girdi, doğrulama sonucu, önizleme silindi mi.
+- **Kanıt:** sohbet 10.10.2026 13:52 (İstanbul), "KARAR — Av. Serdar Arslan, 10.10.2026: Önizleme kaldırılıyor, her şey canlıya."

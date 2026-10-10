@@ -7,7 +7,7 @@
 //     "İstanbul" konumu sitede DOĞRULANAMADI → konum bloğu KONMADI.
 //     (İkisi de rapora/kuyruğa yazıldı.)
 import { EPOSTA, YAZAR } from '../../data/site';
-import OnayBekliyor from '../OnayBekliyor.astro';
+import HukukiKontrol from '../HukukiKontrol.astro';
 ---
 <section class="v2-bolum v2-iletisim" id="iletisim" aria-label="İletişim">
   <div class="v2-ic">
@@ -46,7 +46,7 @@ import OnayBekliyor from '../OnayBekliyor.astro';
           (hızlı danışma formuyla aynı yol); yalnız size dönüş için kullanılır ve
           en geç 180 gün sonra kendiliğinden silinir. Ayrıntı:
           <a href="/gizlilik/">Gizlilik ve KVKK</a>.</p>
-        <OnayBekliyor kaynak="İletişim formu beyanı ve onay metni (brif 1.5)" />
+        <HukukiKontrol />
       </div>
       </div>
       {/* v0 alan adları/etiketleri/placeholder'ları; gönderim MAILTO kalır
