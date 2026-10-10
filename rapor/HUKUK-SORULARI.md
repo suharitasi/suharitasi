@@ -1,0 +1,73 @@
+# HUKUK SORULARI — avukatın kararına sunulan hukuki noktalar (10.10.2026)
+
+Kural: burada yazan her hukuki cümle resmî metne dayanır ve kaynağı + erişim tarihiyle durur. Hafızadan tutar/süre yazılmadı; bulunamayan "doğrulanamadı" diye işaretlidir. Kararlar avukatındır; panel yalnız seçenek sunar.
+
+Resmî metin kopyaları (erişim 10.10.2026, mevzuat.gov.tr PDF): 167 (Yeraltı Suları Hakkında Kanun), 5326 (Kabahatler), 2577 (İYUK), 2942 (Kamulaştırma), 5686 (Jeotermal). Resmî Gazete 27.11.2025 sayı 33090: VUK Genel Tebliği Sıra No 585.
+
+## a) Ceza tutarı — "1.000–5.000 TL / 500–2.000 TL"
+- **Geçtiği yerler:** /rehberler/ruhsatsiz-kuyu-cezalari/, /su-hukuku/ tablosu (2 satır), /kuyu-karar-motoru/ ve /hesaplayicilar/kuyu-cezasi-hesaplama/ (JS: `public/s/hesap-ceza.js`, `karar-motoru.js`), il sayfaları (81; "ceza desteği" bloğu), mevzuat 167 m.18 sayfası.
+- **Kanun metni (167 m.18, Değişik 23/1/2008-5728/270):** (a) belge almadan 8. maddedeki işleri yapanlar ile kasten yanlış bilgi verenler **bin TL'den beşbin TL'ye kadar** idarî para cezası; ayrıca DSİ mahzur görürse kuyu kapatılır, masrafı açtırandan alınır. (b) 10 ve 11. maddelere aykırı hareket edenler, şartlara riayet etmeyenler, form bilgisi vermeyenler, 8. madde son fıkra mecburiyetine uymayanlar **beşyüz TL'den ikibin TL'ye kadar**; ayrıca kuyu kapatılır. Cezayı **mahallî mülkî amir** verir.
+- **Yeniden değerleme:** 5326 sayılı Kabahatler Kanunu m.17/7: "İdarî para cezaları her takvim yılı başından geçerli olmak üzere o yıl için 4.1.1961 tarihli ve 213 sayılı VUK mükerrer 298. maddesi hükümleri uyarınca tespit ve ilân edilen yeniden değerleme oranında artırılarak uygulanır. Bu suretle idarî para cezasının hesabında bir Türk Lirasının küsuru dikkate alınmaz." → **Evet, tabidir** (nispi cezalar hariç).
+- **2026 yılı oranı:** VUK Genel Tebliği (Sıra No: 585), RG 27.11.2025/33090: "yeniden değerleme oranı 2025 yılı için % 25,49 olarak tespit edilmiştir" (2026'da uygulanır).
+- **2026'da uygulanan tutar:** 2008'den bu yana her yılın oranıyla birikimli artış gerekir; GİB'in yıl-yıl oran tablosu (gib.gov.tr) betikle okunamayan bir sayfa, 2009–2024 tebliğleri tek tek Resmî Gazete'den çekilmedi → **tutar DOĞRULANAMADI (hesaplanmadı)**. DSİ ya da kaymakamlıkların yıllık ceza tablosu yayımladığı resmî bir kaynak bulunamadı.
+- **Seçenekler:** (1) Sitede yalnız kanun metnindeki tutar + "her yıl yeniden değerleme oranında artırılarak uygulanır (5326 m.17/7); 2026 oranı %25,49 (585 No'lu Tebliğ)" notu; "uygulanan tutar DSİ bölge müdürlüğünden teyit edilir" cümlesi. (2) Ben 2009–2025 tebliğlerini Resmî Gazete'den tek tek çekip birikimli tutarı hesaplarım, her yılın tebliğ künyesiyle sunarım; siz onaylarsanız iki sütunlu sayfa (4.2) bu hesapla yayına girer. (3) İkisi: önce (1) yayınlanır, (2) hazırlanınca eklenir. **Önerim: 3.**
+
+## b) Süre ve merci
+- **Sihirbaz/hesaplayıcı JS'inde hesaplanan süreler:** yalnız iki sabit: "15 gün (sulh ceza)" ve "60 gün (idare mahkemesi)" — tebliğ tarihine eklenerek son gün üretiliyor (`public/s/karar-motoru.js:67`, `hesap-ceza.js:34-40`). Dayanak sayfada yazmıyor.
+  - 15 gün: 5326 m.27/1 — "İdarî para cezası … kararına karşı, kararın tebliği veya tefhimi tarihinden itibaren en geç onbeş gün içinde, sulh ceza mahkemesine başvurulabilir. Bu süre içinde başvurunun yapılmamış olması halinde idarî yaptırım kararı kesinleşir." (m.27/2: mücbir sebepte kalkmasından itibaren 7 gün.) Not: 2014'te sulh ceza mahkemeleri kaldırıldı; görev sulh ceza hâkimliğindedir — bu dönüşümün dayanağı (6545 sayılı Kanun) **doğrulanamadı**, avukat teyidi.
+  - 60 gün: 2577 m.7/1 — "Dava açma süresi, özel kanunlarında ayrı süre gösterilmeyen hallerde Danıştayda ve idare mahkemelerinde altmış … gündür"; m.7/2-a: idari uyuşmazlıklarda yazılı bildirimin yapıldığı tarihi izleyen günden başlar. m.11: dava açılmadan önce üst makama (yoksa işlemi yapan makama) başvuru dava süresini durdurur.
+  - **Açık soru (avukat):** 167 m.18 cezası için başvuru yolu sulh ceza (Kabahatler) mı, kapatma kararı için idari yargı mı? Sihirbaz ikisini aynı tebliğ tarihinden sayıyor; kapatma kararı ile para cezası ayrı işlemler olabilir. Seçenek: ekranda "para cezasına 15 gün — sulh ceza hâkimliği (5326 m.27); kuyu kapatma/belge iptali işlemine 60 gün — idare mahkemesi (2577 m.7)" ayrımı + "tebliğ tarihini izleyen günden" notu.
+- **/su-hukuku/ tablosu:** 35 satırın 28'inde "Doğrulanmış süre yok" (brif doğru; liste aşağıda). Resmî metinden bulunabilenler:
+  | Satır | Resmî metinden öneri | Kaynak |
+  |---|---|---|
+  | Kamulaştırma — usulüne uygun kamulaştırma | tebligattan itibaren **30 gün** içinde idari yargıda iptal / adli yargıda düzeltim davası | 2942 m.14 |
+  | Kamulaştırma — kamulaştırmasız el atma | 2942 Geçici m.6 (uzlaşma/dava usulü) metni incelenmeli; süre bu turda çıkarılamadı | 2942 Geç. m.6 — **doğrulanamadı** |
+  | Ecrimisil | 2886 m.75 (ecrimisil) ve itiraz: Hazine Taşınmazlarının İdaresi Hakkında Yönetmelik — **doğrulanamadı** (yönetmelik çekilmedi) | — |
+  | Jeotermal — geçiş rejimi/yetki | genel kural 2577 m.7: 60 gün | 2577 m.7 |
+  | Kaynak hakkı (asliye hukuk) | özel hak davası; TMK'da hak düşürücü süre yok (el atmanın önlenmesi) — **avukat teyidi** | — |
+  | Kaynak suyu kiralama (idari işlem) satırları (3) | 2577 m.7: 60 gün; ihale işlemlerinde 2886 m.? — **doğrulanamadı** | 2577 m.7 |
+  | Kuyu belgesi ret/iptal (4 satır) | başvuruya 1 ay içinde cevap (167 m.13); zımni ret/ret işlemine 60 gün (2577 m.7, m.10: 60 gün cevap verilmezse istek reddedilmiş sayılır) | 167 m.13; 2577 m.7, m.10 |
+  | Kuyu ruhsatı — ıslah/tadil; kuyu taşıma (3 satır) | başvuruya 1 ay içinde cevap (167 m.13) | 167 m.13 |
+  | Ruhsatsız kuyu cezaları (2 satır) | para cezasına 15 gün sulh ceza (5326 m.27); kapatma işlemine 60 gün (2577 m.7) | 5326 m.27; 2577 m.7 |
+  | Cezaya/kapatmaya karşı yargı yolu | aynı | aynı |
+  | Su tahsisi (4 satır) | Yönetmelikte başvuruya cevap süresi var mı — m.9–12 metni incelenecek; **bu turda doğrulanamadı** | — |
+  | İşletme sahası ilanı (4 satır) | süre niteliğinde hüküm yok; "süre yok" doğru | — |
+  Not: 2577 m.10 metni bu dosyada henüz alıntılanmadı; yayın öncesi birebir aktarılır.
+
+## c) Su tahsisi öncelik sırası
+- Rehber (`src/content/rehberler/su-tahsisi-oncelik-sirasi.md`): "Yönetmelik metinlerinde sayısal bağlayıcı bir sıra yoktur; sıralama Tüzük m.15'ten gelir" — **YANLIŞ**: Su Tahsisleri Hakkında Yönetmelik m.7/1 açık bir öncelik sırası koyar: a) içme ve kullanma suyu, b) çevresel su ihtiyacı, c) tarımsal sulama ve su ürünleri, ç) enerji üretimi ve sınai, d) ticari, turizm, rekreasyon, madencilik, taşıma, ulaşım ile sair (sitedeki madde sayfası resmî metni taşıyor).
+- YAS Tüzüğü m.15 ise yeraltı suyunda "faydalı ihtiyaç" hesabı için 6'lı sıra verir: içme, temizlik, belediye hizmetleri, hayvan sulaması, zirai sulama, maden ve sanayi suyu, sportif ve benzeri tesisler.
+- **Seçenek:** rehber iki sırayı ayrı başlıkta anlatır: "yüzey/tahsis genel kuralı: Yönetmelik m.7 (5'li)" ve "yeraltı suyu faydalı ihtiyaç: Tüzük m.15 (6'lı)"; "bağlayıcı sıra yoktur" cümlesi kaldırılır. Hukuki onaya tabi.
+
+## d) Emsal kararlar (`data/kamu/emsal-kararlar.json`, 26 kayıt)
+- Resmî sunucuda (karararama.danistay.gov.tr getDokuman) **11 künye doğrulandı** (esas ve karar numarası belge metninde): 8.D. 2025/5198-2025/10204; 2024/2630-2025/6289; 2024/532-2025/6286; 2024/2635-2025/6285; 2024/2079-2025/6287; 2024/4487-2025/6288; 13.D. 2025/44-2025/778; 2020/1104-2023/4576; 2021/2712-2023/4291; 2020/1499-2023/2585; (ve 2022/1487-2023/870 erişim hatası — yeniden denenecek).
+- **8 kayıt** ikincil kaynak sayfasına bağlı (bağlantı genel bir sayfaya düşüyor, künye metinde yok): 8.D. 2018/6147-2024/72; 2023/663-2023/829; 2021/5225-2023/6171; 13.D. 2015/4133-2021/4015; 8.D. 2018/2016-2020/4396; 13.D. 2013/263-2018/2731; Yargıtay 14.HD 2013/5715-2013/7588; 7.HD 2011/3727-2012/3244 → resmî doğrulama **yapılamadı** (Danıştay arama arayüzü JS; Yargıtay sunucusu bu ağdan erişilemiyor).
+- **7 kayıt** kaynaksız ("kunye"): Yargıtay 7.HD 2024/1239-2024/2246; 2023/5423-2024/4816; 2023/4572-2023/5915; Danıştay 13.D. 2020/1093-2023/2584; 8.D. 2022/3005-2022/3470; 10.D. 2017/40-2021/4632; 13.D. 2012/253-2018/3787 → **doğrulanamadı**.
+- Brif bulguları: "2020/1093 E. 2023/2584 K." ile "2020/1104 E. 2023/4576 K." iki ayrı kayıt (doğru; ilkinde `not: Künye çelişkisi` var); "kaynaklı/künye" etiketlerinin tanımı sayfada yok (veride var); karar tarihi alanı veride yok (doğru); "Danıştay" öneki 11 kayıtta eksik ("8. Daire", "13. Daire") (doğru); 9 özet kesik/kısa (doğru); 167 m.18 için rehberlerde farklı emsal (ruhsatsiz-kuyu-cezalari: 8.D. 2022/3005 ve 2023/663; kuyu-ruhsati: Yargıtay 7.HD 2011/3727) (doğru); idari yaptırıma hukuk dairesi kararı (7.HD 2011/3727 "ruhsatsız kuyu cezaları" rehberinde) (doğru); işletme sahası rehberinin tek emsali 8.D. 2018/6147 (jeotermal/belge geçişi) — konuyla doğrudan ilgili değil (doğru).
+- **Seçenekler:** (1) 4.4'te emsal sayfaları açılırken yalnız resmî sunucuda doğrulanan 11 (+1) karar dizine açık; kalan 15 "doğrulanamadı" sekmesinde, dizine kapalı; rehberlerden kaynaksız künye bağlantıları kaldırılır (metin kalır, "doğrulanamadı" etiketiyle). (2) Avukat künyeleri UYAP/arşivden kendisi teyit eder, teyit ettiklerini "hukuki onay" ile açarız. **Önerim: 1 + 2 birlikte.**
+
+## e) Avukatın bakacağı ifadeler (geçtiği dosya / sayfa sayısı; değiştirme kararı avukatta)
+| İfade | Kaynak dosya | Sayfa | Sade seçenek |
+|---|---|---|---|
+| "İlk görüşme ücretsizdir" | anasayfa/Iletisim.astro | 1 | kaldır ya da "ilk görüşmede ücret alınmaz" yerine koşulları sizin yazdığınız metin |
+| "uzmanlık", "deneyim" | anasayfa/Hakkinda.astro (+3) | 4 / 3 | "uzmanlık" TBB reklam yasağı açısından hassas; "çalışma alanı" |
+| "temsil" | 4 dosya | 21 | "vekillik" ya da bağlama göre "başvuru hazırlığı" |
+| "tek çatı altında", "yanınızdayız" | anasayfa/Hizmetler.astro | 1 | sade: "aynı büroda" / kaldır |
+| "Suyun hukukunu bilen bir avukatla çalışın" | anasayfa/Hakkinda.astro | 1 | "su hukuku alanında çalışan büro" |
+| "güvencesiyle" | PaylasilanMenu.astro, AltBilgi.astro | 1107 | "Arslan Hukuk Bürosu" (güvence sözü kaldırılır) |
+| "Acil hukuki destek" bloğu | CtaBlok.astro, AcilDestekBar.astro | 1109 | "Hukuki destek" / "İletişim"; 1.5 ile birlikte tek form |
+| "{İl}'de kuyu ruhsatı / ceza desteği", "erken adım hak kaybını önler" | kuyu-ruhsati/[il].astro | 81 | "{İl} için kuyu ruhsatı rehberi"; süre cümlesi dayanaklı yazılır (b) |
+| "erken adım sonucu değiştirir", "Süre kaybı hak kaybıdır" | CtaBlok.astro, kuyu-karar-motoru.astro | 10–11 | "Süreler kısadır: 15/60 gün (dayanak …)" |
+| "uzman değerlendirmesi" | kuyu-karar-motoru, hesaplayicilar | 3 | "avukat değerlendirmesi" |
+| "| DSİ" (başlık) | harita.astro, 2 rehber | 4 | DSİ kurum adının markayla yan yana geçmesi karışıklık yaratır; "DSİ verisiyle" |
+| "independent" | en/index.astro | 4 | "law-firm run" / kaldır |
+| /vaka/meysu/ gerçek şirket adı | src/content (vaka) | 1 | kamuya açık yargı kararı ise künyeyle; değilse anonimleştir |
+| Sihirbazın "dilekçe taslağı" ve "iptal gerekçesi" üretmesi | HukukiIptalAnalizi.astro, idare-emsal-matrisi.json, kuyu-karar-motoru.astro | 2 | hukuki metin üreten araç → "AVUKAT ONAYI BEKLİYOR"; seçenek: taslak yerine "avukata iletilecek bilgi özeti" üretsin |
+
+## f) Diğer
+- **İstanbul / İSKİ:** il sayfası "Kuyu belgeleri için başvuru mercii: DSİ 14. Bölge Müdürlüğü (İstanbul). Su ve kanalizasyon idaresi: İSKİ" — İSKİ'nin yeraltı suyu kuyularındaki rolü (2560 sayılı Kanun kapsamında kuyu izni/denetimi) yazılmıyor; resmî metin bu turda çekilmedi → **doğrulanamadı**; seçenek: 3.6'da büyükşehir su idaresi rolü resmî metinle (2560 m.?) yazılır, onaya sunulur.
+- **Lisans beyanı:** sitede "kaynak gösterilerek kullanım (CC BY 4.0 uyumlu)" cümlesi (1 yer, /acik-veri/ veya /basin/); veri setleri DSİ, SYGM, EPİAŞ ("kaynak gösterilmek suretiyle çoğaltılabilir" — EPİAŞ beyanı), Resmî Gazete, MTA, CHIRPS (CC BY 4.0), OSM (ODbL), Natural Earth (kamu malı), NASA (kamu malı) türevi. **CC BY 4.0 ancak kendi türetimlerimize uygulanabilir; OSM türevi ODbL (paylaşım aynı lisansla) gerektirir** — brif doğru. Düzeltilmiş beyan 2.11 tablosuyla hazırlanır (hukuki onay).
+- **Form saklama ve KVKK metni:** gerçek durum — /danisma 180 gün, /api/talep 365 gün, /takip 730 gün, /api/alarm 730 gün, /olay 400 gün (sayaç, e-posta yok); gizlilik metni yalnız "~180 gün" diyor; ana sayfa "form bir sunucuya veri göndermez" (form yalnız mailto + olay sayacı: kısmen doğru); alarm ve parsel formları gizlilik metninde yok; sihirbaz talep düğmesinde KVKK onayı yok (doğrulandı). Düzeltilmiş beyan metni 1.5 tablosundan üretilir (hukuki onay).
+
+## Kullanıcıdan istenen bilgiler (3.4, 3.5)
+Baro ve sicil no · büro açık adresi · kısa özgeçmiş · yayınlar · dönüş süresi ve ücret metni · WhatsApp numarası · veri sorumlusu kimliği/adresi (gizlilik) · Zenodo için yazar adı ve ORCID.
