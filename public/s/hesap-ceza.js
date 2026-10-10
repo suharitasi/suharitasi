@@ -1,5 +1,6 @@
 // hesap-ceza.js — 167 m.18 ceza + süre hesaplayıcı (13.09.2026).
-// Aralıklar kanuni metinden; uydurma güncelleme yok. İtiraz süreleri iki yol.
+// Aralıklar tek kaynaktan (sayfadaki #hc-veri ← src/data/ceza-tutar.js): kanun metni + yılın uygulanan tutarı
+// (DURAK 1 A-a, 10.10.2026; hukuki onay bekliyor). İtiraz süreleri iki yol.
 (function () {
   'use strict';
   var fiil = document.getElementById('hc-fiil');
@@ -44,7 +45,8 @@
       '<h2>' + f.ad + '</h2>' +
       '<dl>' +
       '<div><dt>Kanuni dayanak</dt><dd>' + f.madde + '</dd></div>' +
-      '<div><dt>İdari para cezası</dt><dd class="hc-ceza">' + tr(f.alt) + ' – ' + tr(f.ust) + ' TL</dd></div>' +
+      '<div><dt>İdari para cezası (' + f.yil + ' yılında uygulanan)</dt><dd class="hc-ceza">' + tr(f.gAlt) + ' – ' + tr(f.gUst) + ' TL</dd></div>' +
+      '<div><dt>Kanun metnindeki tutar</dt><dd>' + tr(f.alt) + ' – ' + tr(f.ust) + ' TL · son doğrulama ' + String(f.dogrulama).split('-').reverse().join('.') + '</dd></div>' +
       '<div><dt>Ek sonuç</dt><dd>' + f.ek + '</dd></div>' +
       '<div><dt>Yetkili merci</dt><dd>Mahallî mülkî amir (valilik / kaymakamlık)</dd></div>' +
       '</dl>' +

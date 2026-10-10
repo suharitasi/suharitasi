@@ -4762,7 +4762,7 @@
       "kaynakUrl": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=167&MevzuatTur=1&MevzuatTertip=4",
       "merci": "Mahallî mülkî amir (valilik/kaymakamlık)",
       "sure": "—",
-      "yorum": "m.18/a 1.000–5.000 TL, m.18/b 500–2.000 TL; ceza yanında kuyu kapatma.",
+      "yorum": "m.18/a {{CEZA_18A}}; m.18/b {{CEZA_18B}} (son doğrulama {{CEZA_SON_DOGRULAMA}}); ceza yanında kuyu kapatma.",
       "rehberler": [
         "ruhsatsiz-kuyu-cezalari",
         "kuyu-belgesi-iptal-davalari"

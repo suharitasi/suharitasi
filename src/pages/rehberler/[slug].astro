@@ -8,6 +8,7 @@ import YazarKutusu from '../../components/YazarKutusu.astro';
 import IlgiliRehberler from '../../components/IlgiliRehberler.astro';
 import Katman from '../../components/Katman.astro';
 import OnayBekliyor from '../../components/OnayBekliyor.astro';
+import CezaTutarTablosu from '../../components/CezaTutarTablosu.astro';
 import { OG_GORSEL } from '../../data/site';
 import SonrakiAdim from '../../components/SonrakiAdim.astro';
 import RehberKapanis from '../../components/RehberKapanis.astro';
@@ -283,6 +284,7 @@ if (kalip2) {
   <div class="icerik">
     {giris.data.onayBekliyor && <OnayBekliyor kaynak={giris.data.onayKaynak || ''} />}
     <Content />
+    {giris.data.cezaTablosu && <CezaTutarTablosu />}
   </div>
   {giris.data.ilKurumTablosu && <IlKurumTablosu />}
   <CtaBlok konu={giris.data.baslik} />

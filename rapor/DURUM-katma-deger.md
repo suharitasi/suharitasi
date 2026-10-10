@@ -21,74 +21,74 @@ CLAUDE.md · BRIEF.md · DESIGN.md · KARARLAR.md · CODE-FREEZE.md · ODUL-USTU
 
 ## KALEM KALEM DURUM TABLOSU (tek kaynak; her işten sonra güncellenir — son: 10.10.2026 Opus 5.5)
 
-Durum: **yapıldı** (kanıtlı) · **kısmen** · **sürüyor** · **sırada** · **onay bekliyor** (hukuki onay; önizlemede "AVUKAT ONAYI BEKLİYOR") · **sahipte** (karar/işlem sahibin) · **yapılamadı** (neden).
+Durum: **yapıldı** (kanıtlı) · **sürüyor** · **onay bekliyor** (hukuki ya da DURAK onayı; önizlemede işaretli) · **yapılamadı** (neden) · **başlanmadı**. Ana site: main'e geçti mi (önizleme = yalnız dal).
 
-| Kalem | Durum | Kanıt / not |
-|---|---|---|
-| 0.1 Kural dosyaları + S raporu ek kalemleri | yapıldı | DURUM "Okunan kural dosyaları"; S ek kalemleri a,f,g,m,n,o,p,q,r bu tabloda |
-| 0.2 Bulgu doğrulama (doğru/yanlış/kısmen) | yapıldı | RAPOR "bulgu doğrulama tablosu" |
-| 0.3 Sır taraması, Zenodo, README/lisans önerisi | yapıldı | gitleaks: depoya ait sır 0; Zenodo v1.0.0 = 49ccbcd, 225 iç belge; README/LICENSE → E kararı |
-| 0.4 Wikidata Q141582057 | yapıldı | API 200, kayıt duruyor |
-| 0.5 Envanter | yapıldı | DURUM Aşama 0 bulguları |
-| 0.6 Tek kaynak haritası | kısmen | ilk tur yapıldı; RG sayısı tek kaynağa indi (rg-kaynak.js); baraj/uydu/il kayıt sayıları 2.1'de |
-| 0.7 HUKUK-SORULARI | yapıldı | rapor/HUKUK-SORULARI.md; DURAK 1 kararları alındı |
-| 0.8 Görsel inceleme | yapıldı | cikti/denetim/katma-deger-0 (7 sayfa × masaüstü/telefon) |
-| 1.1 Tahmin katmanı | yapıldı | baraj 0–100 kırpma, eğilim/mevsim ayrı, "son ölçüm" etiketleri, GRACE tazelik as-of veri ayı, pencere aralıkları |
-| 1.2 /veri/gundem/ | yapıldı | yağış kırılımı yoksa ulusal değer + not; en yeni kapatma kaydı 2017 (yeniden ayrıştırma) |
-| 1.3 Risk endeksi veri güveni | yapıldı | k/5 sütunu + yöntem notu |
-| 1.4 İklim örneklemesi + Gediz | yapıldı | NASA POWER çok noktalı; Gediz tek adımlı tablo revizyonu notu (HavzaYasBandi) |
-| 1.5 Formlar ve beyanlar | onay bekliyor | tek sunucu formu yapıldı; gizlilik/form metinleri onaya |
-| 1.6 Abonelikler | yapıldı | e-posta formları kapalı, RSS kaldı; KV adres sayısı sunucudan bakılamadı (sahip panelden) |
-| 1.7 Üretim kalıntıları | yapıldı | dist'te Apilex/iç not 0 (arama kalıpları RAPOR'da) |
-| 1.8 Yazım/biçim | yapıldı | NACE OCR karşılaştırması; "…" emsal anonimleştirme notu; Hakkari'da/QR/Aşi doğrulanmadı |
-| 1.9 Sentetik veri | yapıldı | ilçe ±%15 kaldırıldı; tarama: başka sentetik değer yok (Hero damla animasyonu süs) |
-| 1.10 Vaat ile içerik | yapıldı | başlık/özet eşitlemeleri (kısıt sorgu, vaka, ilimde kim yetkili, nerede su çıkar, nehir, alarm, ajan bandı) |
-| 1.11 Hatalı göl/nehir kayıtları | yapıldı | adsız/yabancı/jenerik çekildi, Aras birleşti, Göksu/Gölcük il eki, geçtiği iller, Türkçe slug 301 |
-| 1.12 Wikidata ibaresi | uygulanmaz | kayıt var |
-| 1.13 Takip sayfaları | onay bekliyor | taslak-takibi TBMM/Bakanlık belgeleriyle; radar çalışıyor (log) |
-| 2.1 Tek kaynak + tutarsızlık denetimi | sürüyor | RG yapıldı (tekil ilan); baraj ortalaması, uydu eğilimi, il kayıt sayıları, izleme denetimi sırada |
-| 2.2 Mevzuat maddeleri dizin ölçütü | sırada | aday liste var (265+3); DURAK 2'de |
-| 2.3 İl aileleri birleştirme (yeralti-suyu → kuyu-ruhsati) | sırada | |
-| 2.4 Göl/nehir dizin eşiği | sırada | |
-| 2.5 Sektör (31 NACE → /durumum/) | sırada | |
-| 2.6 Örtüşen sayfalar | sırada | |
-| 2.7 Sözlük | sırada | |
-| 2.8 /en/ | sırada | |
-| 2.9 Teknik (JSON-LD, site haritası, llms, 404, manifest, /harita/ H1) | sırada | |
-| 2.10 API ve geliştirici | sırada | |
-| 2.11 Kaynak ve lisans tablosu | sırada | lisans beyanı metni onaya (A-f) |
-| 2.12 Önceki denetimden bekleyenler | sırada | |
-| 2.13 Havza sayfaları | sırada | |
-| 3.1 Ana sayfa | sırada | |
-| 3.2 Menü ≤ 6, araçlara tek ad | yapıldı (DURAK 3 onayına) | 6 madde (Tebliğ Aldım · Tarlamda Su Çıkar mı? · Su Hukuku · Harita · Veri · İletişim); src/data/arac-adlari.js tek kaynak; 1280/1440 px tek satır, taşma 0 (ölçüldü) |
-| 3.3 Dil | sırada | |
-| 3.4 Güven işaretleri, /hakkinda/, /gizlilik/ kimlik | kısmen | baro/sicil /hakkinda/ + Person JSON-LD (memberOf, identifier); adres sitede ve yapılandırılmış veride yok (tarandı); sayfa tarihi; düzeltme politikası + araç kullanımı taslağı (onay bekliyor); CERN/DOI/Wikidata vurgusu sırada |
-| 3.5 Başvuru yolu | kısmen | WhatsApp zaten doğrudan sohbet (wa.me, canlı ölçüldü); il/konu hazır mesajı eklendi (functions/whatsapp.js + test); form sonrası ekran yalnız "Talebiniz alındı. İletişim: hukuk@arslanhukuk.tr"; belge/fotoğraf yükleme sırada |
-| 3.6 İl sayfaları | sırada | işletme sahası listesi tek kaynaktan (yapıldı) |
-| 3.7 Tarihler | sırada | |
-| 3.8 Zenodo düzeltme metni | yapıldı (gönderim sahipte) | rapor/ZENODO-metinleri.md §1; /veri/zenodo.json eski DOI ve hukuki tarih notu çıkarıldı |
-| 4.1–4.10 Yeni değer | sırada | 4.1/4.2 A-a/A-b tablolarına bağlı |
-| A-a Ceza tutarı yeniden değerleme tablosu | sırada | 2009–2025 tebliğleri resmî kaynaktan |
-| A-b Süreler, 5326 m.27, 28 hücre | sırada | |
-| A-c Tahsis sırası | onay bekliyor | rehber düzeltildi; madde sayfaları ↔ rehber bağı sırada |
-| A-d Emsal (11 dizinde) | sırada | |
-| A-e Avukat ifadeleri listesi | sırada | sonraki durakta |
-| A-f Lisans/form beyanları, sihirbaz KVKK kutusu | kısmen | form beyanları + onay kutusu yapıldı (onay bekliyor); lisans beyanı sırada |
-| B Kapatma kayıtları il eşlemesi | yapıldı | rapor/rg-il-eslemesi-20261010.md; Ergene ×3 notla; il sayıları tek kaynak (ölçüldü) |
-| C Büro bilgileri | kısmen | baro/sicil yayında (önizleme); adres yok (tarandı); e-posta: sitedeki 3.815 adresin tamamı hukuk@arslanhukuk.tr, /basin/ farkı Cloudflare e-posta gizlemesi (çözüldü: aynı adres); form sonrası ekran; veri sorumlusu metni (onay bekliyor); düzeltme/araç beyanı taslağı (onay bekliyor); Zenodo metni hazır |
-| D Araç adları | yapıldı | dist'te eski ad 0 (12 kalıp), yeni adlar ~1.100 sayfada; adresler değişmedi (yönlendirme gerekmedi); menü "Su Nerede Çıkar?" /ilce-sorgu/ yerine /nerede-su-cikar/ |
-| E LICENSE/README, Zenodo talep metni, temiz arşiv | kısmen | LICENSE (tüm hakları saklı, TR/EN) + README; Zenodo TR/EN talep metni; arac/zenodo-temiz-arsiv.py (izinli liste, iç belge 0 — ölçüldü); son arşiv emsal düzeltmesinden sonra üretilecek; depo gizlendikten sonraki ilk dağıtım doğrulaması bekliyor |
-| "İlk görüşme ücretsizdir" kaldır | yapıldı | main e6fb26e, canlı 09:05:42Z doğrulandı |
-| S-a 68 noindex mevzuat metni | sırada | 2.2 ile |
-| S-f il künye süzgeci | sırada | |
-| S-g belgelerin güncellenmesi | sırada | |
-| S-m eski Türkçe slug göl adresleri | yapıldı | middleware 301 |
-| S-n GRACE kaynak dosya adı | kısmen | 2026-04..08 GSFC dosyası yok (404); keşif sürecek |
-| S-o sağlık öz-testi | sırada | |
-| S-p 5686 kısa ad | sırada | |
-| S-q mevzuat düzeltme tarihi politikası | sırada | |
-| S-r RG il türetimi hataları | yapıldı | B ile birlikte |
-| Kabul 1–10 | sürüyor | son raporda geçti/geçmedi |
+| Kalem | Durum | Ana site | Not |
+|---|---|---|---|
+| 0.1 Kural dosyaları + S raporu ek kalemleri | yapıldı | — (rapor) | S ek kalemleri a,f,g,m,n,o,p,q,r tabloda |
+| 0.2 Bulgu doğrulama | yapıldı | — (rapor) | RAPOR bulgu doğrulama tablosu |
+| 0.3 Sır taraması, Zenodo, README/lisans | yapıldı | — (rapor) | depoya ait sır 0; Zenodo v1.0.0 = 49ccbcd, 225 iç belge |
+| 0.4 Wikidata Q141582057 | yapıldı | — (rapor) | kayıt duruyor |
+| 0.5 Envanter | yapıldı | — (rapor) | aile bazında sayılar DURUM'da |
+| 0.6 Tek kaynak haritası | sürüyor | — | RG sayısı tek kaynakta; baraj/uydu/il sayıları 2.1'de |
+| 0.7 HUKUK-SORULARI | yapıldı | — (rapor) | DURAK 1 kararları alındı |
+| 0.8 Görsel inceleme | yapıldı | — (rapor) | cikti/denetim/katma-deger-0 |
+| 1.1 Tahmin katmanı | yapıldı | hayır (önizleme) | baraj 0–100, eğilim/mevsim ayrı, ölçüm tarihleri, tazelik |
+| 1.2 /veri/gundem/ | yapıldı | hayır (önizleme) | yağış ulusal değer + not; en yeni kapatma 2017 |
+| 1.3 Risk endeksi veri güveni | yapıldı | hayır (önizleme) | k/5 sütunu + yöntem notu |
+| 1.4 İklim örneklemesi + Gediz notu | yapıldı | hayır (önizleme) | NASA POWER çok noktalı; Gediz tablo revizyonu notu |
+| 1.5 Formlar ve beyanlar | onay bekliyor | hayır | tek sunucu formu, gizlilik tablosu, onay kutuları |
+| 1.6 Abonelikler | yapıldı | hayır (önizleme) | e-posta formları kapalı, RSS kaldı; KV sayısı sunucudan bakılamadı |
+| 1.7 Üretim kalıntıları | yapıldı | hayır (önizleme) | dist'te iç not 0 |
+| 1.8 Yazım/biçim | yapıldı | hayır (önizleme) | NACE OCR; emsal "…" notu; 3 bulgu doğrulanmadı |
+| 1.9 Sentetik veri | yapıldı | hayır (önizleme) | ilçe ±%15 kaldırıldı |
+| 1.10 Vaat ile içerik | yapıldı | hayır (önizleme) | başlık/özet eşitlemeleri |
+| 1.11 Hatalı göl/nehir kayıtları | yapıldı | hayır (önizleme) | adsız/yabancı çekildi, Aras birleşti, il ekleri, 301 |
+| 1.12 Wikidata ibaresi | uygulanmaz | — | kayıt var |
+| 1.13 Takip sayfaları | onay bekliyor | hayır | Su Kanunu takibi TBMM/Bakanlık belgeleriyle |
+| 2.1 Tek kaynak + tutarsızlık denetimi | sürüyor | hayır | RG ve ceza tutarı tek kaynakta; baraj/uydu/il sırada |
+| 2.2 Mevzuat maddeleri dizin ölçütü | başlanmadı | hayır | aday liste var; DURAK 2 |
+| 2.3 İl aileleri birleştirme | başlanmadı | hayır |  |
+| 2.4 Göl/nehir dizin eşiği | başlanmadı | hayır |  |
+| 2.5 Sektör sayfaları → /durumum/ | başlanmadı | hayır |  |
+| 2.6 Örtüşen sayfalar | başlanmadı | hayır |  |
+| 2.7 Sözlük | başlanmadı | hayır |  |
+| 2.8 /en/ | başlanmadı | hayır |  |
+| 2.9 Teknik (JSON-LD, site haritası, llms, 404…) | başlanmadı | hayır | /harita/ menü bağlantısı 3.2 ile eklendi |
+| 2.10 API ve geliştirici | başlanmadı | hayır |  |
+| 2.11 Kaynak ve lisans tablosu | başlanmadı | hayır | lisans beyanı onaya gelecek (A-f) |
+| 2.12 Önceki denetimden bekleyenler | başlanmadı | hayır |  |
+| 2.13 Havza sayfaları | başlanmadı | hayır |  |
+| 3.1 Ana sayfa | başlanmadı | hayır |  |
+| 3.2 Menü ≤ 6, araçlara tek ad | onay bekliyor (DURAK 3) | hayır | 6 madde, tek satır (ölçüldü) |
+| 3.3 Dil | başlanmadı | hayır |  |
+| 3.4 Güven işaretleri, /hakkinda/, /gizlilik/ | sürüyor | hayır | baro/sicil, sayfa tarihi yapıldı; politika metinleri onaya |
+| 3.5 Başvuru yolu | sürüyor | hayır | WhatsApp hazır mesaj, form sonrası ekran yapıldı; dosya yükleme sırada |
+| 3.6 İl sayfaları | sürüyor | hayır | işletme sahası listesi tek kaynaktan (yapıldı); DSİ adres/telefon sırada |
+| 3.7 Tarihler | başlanmadı | hayır |  |
+| 3.8 Zenodo düzeltme metni | yapıldı | — (gönderim sahipte) | rapor/ZENODO-metinleri.md |
+| 4.1–4.10 Yeni değer | başlanmadı | hayır | 4.1/4.2 A-a/A-b tablolarına bağlı |
+| A-a Ceza tutarı yeniden değerleme | onay bekliyor | hayır | 18/18 tebliğ RG'den; 2026: a 30.138–151.192, b 15.029–60.408 TL; 7 yüzey + API tek kaynaktan (ölçüldü); eksik yılda derleme durur |
+| A-b Süreler, 5326 m.27, 28 hücre | sürüyor | hayır | m.27/8 hükmü bulundu; tablo sırada |
+| A-c Tahsis sırası | onay bekliyor | hayır | rehber düzeltildi; madde sayfası ↔ rehber bağı sırada |
+| A-d Emsal (11 dizinde) | başlanmadı | hayır |  |
+| A-e Avukat ifadeleri listesi | başlanmadı | — | sonraki durakta sohbete |
+| A-f Lisans/form beyanları, sihirbaz KVKK kutusu | sürüyor | hayır | form beyanları + onay kutusu onaya; lisans beyanı sırada |
+| B Kapatma kayıtları il eşlemesi | yapıldı | hayır (önizleme) | Ergene ×3 notla; il sayıları tek kaynak (ölçüldü) |
+| C Büro bilgileri | sürüyor | hayır | baro/sicil, adres yok, e-posta tek; veri sorumlusu metni onaya |
+| D Araç adları | yapıldı | hayır (önizleme) | eski ad 0, yeni adlar ~1.100 sayfada |
+| E LICENSE/README, Zenodo metinleri, temiz arşiv | sürüyor | — (depo/Zenodo) | LICENSE+README, TR/EN talep metni, arşiv betiği hazır; depo gizlenince dağıtım doğrulaması |
+| "İlk görüşme ücretsizdir" kaldır | yapıldı | EVET (e6fb26e, canlıda doğrulandı) |  |
+| S-a 68 noindex mevzuat metni | başlanmadı | hayır | 2.2 ile |
+| S-f il künye süzgeci | başlanmadı | hayır |  |
+| S-g belgelerin güncellenmesi | başlanmadı | — |  |
+| S-m eski Türkçe slug göl adresleri | yapıldı | hayır (önizleme) | middleware 301 |
+| S-n GRACE kaynak dosyası | sürüyor | — | 2026-04..08 dosyası yok (404) |
+| S-o sağlık öz-testi | başlanmadı | — |  |
+| S-p 5686 kısa ad | başlanmadı | hayır |  |
+| S-q mevzuat düzeltme tarihi politikası | başlanmadı | hayır |  |
+| S-r RG il türetimi hataları | yapıldı | hayır (önizleme) | B ile |
+| Kabul ölçütleri 1–10 | sürüyor | — | son raporda geçti/geçmedi |
 
 ## Aşama 0 — keşif bulguları (10.10.2026 07:00–07:30Z; kanıtlar rapor/olcum, cikti/denetim/katma-deger-0)
 - Brif denetçisi: ilk tur 3 ENGEL + 2 UYARI (T1: depo dışı/üretim yolları; T6 canlı koşul anılmamış) → netleştirme eki (silme yok) → `cikti/brief/20261010T070746Z-katma-deger-duzeltilmis.md` **TEMİZ**. Düşman geçişi ve amaç özeti RAPOR'un ilk bölümünde.

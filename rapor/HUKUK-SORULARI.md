@@ -71,3 +71,46 @@ Resmî metin kopyaları (erişim 10.10.2026, mevzuat.gov.tr PDF): 167 (Yeraltı 
 
 ## Kullanıcıdan istenen bilgiler (3.4, 3.5)
 Baro ve sicil no · büro açık adresi · kısa özgeçmiş · yayınlar · dönüş süresi ve ücret metni · WhatsApp numarası · veri sorumlusu kimliği/adresi (gizlilik) · Zenodo için yazar adı ve ORCID.
+
+## DURAK 1 sonrası — a) Ceza tutarı: sonuç (HUKUKİ ONAYA)
+
+Kaynaklar (erişim 10.10.2026): 167 s. Kanun m.18 (değişik: 5728 s. Kanun m.270; 5728 RG 08.02.2008 sayı 26781, m.579 "yayımı tarihinde yürürlüğe girer"); 5326 s. Kanun m.17/7 (mevzuat.gov.tr metni); 2008–2025 VUK Genel Tebliğleri (her biri Resmî Gazete'den tek tek okundu).
+
+5326 m.17/7 (birebir): "İdarî para cezaları her takvim yılı başından geçerli olmak üzere o yıl için 4.1.1961 tarihli ve 213 sayılı Vergi Usul Kanununun mükerrer 298 inci maddesi hükümleri uyarınca tespit ve ilân edilen yeniden değerleme oranında artırılarak uygulanır. Bu suretle idarî para cezasının hesabında bir Türk Lirasının küsuru dikkate alınmaz. Bu fıkra hükmü, nispi nitelikteki idarî para cezaları açısından uygulanmaz."
+
+Yöntem (onayınıza sunulan okuma): Y yılı başında, Y−1 yılı için ilan edilen oran uygulanır; her yıl 1 TL küsuru atılır; başlangıç 2008 kanun tutarları. Eksik yıl yok (18/18).
+
+| Uygulama yılı | Oran (yılı) | Tebliğ · RG | m.18/a (TL) | m.18/b (TL) |
+|---|---|---|---|---|
+| 2008 | kanun metni | 5728 · 08.02.2008/26781 | 1.000–5.000 | 500–2.000 |
+| 2009 | %12 (2008) | Sıra No 387 · 20.11.2008/27060 | 1.120–5.600 | 560–2.240 |
+| 2010 | %2.2 (2009) | Sıra No 392 · 14.11.2009/27406 | 1.144–5.723 | 572–2.289 |
+| 2011 | %7.7 (2010) | Sıra No 401 · 12.11.2010/27757 | 1.232–6.163 | 616–2.465 |
+| 2012 | %10.26 (2011) | Sıra No 410 · 17.11.2011/28115 | 1.358–6.795 | 679–2.717 |
+| 2013 | %7.80 (2012) | Sıra No 419 · 10.11.2012/28463 | 1.463–7.325 | 731–2.928 |
+| 2014 | %3.93 (2013) | Sıra No 430 · 19.11.2013/28826 | 1.520–7.612 | 759–3.043 |
+| 2015 | %10.11 (2014) | Sıra No 441 · 15.11.2014/29176 | 1.673–8.381 | 835–3.350 |
+| 2016 | %5.58 (2015) | Sıra No 457 · 10.11.2015/29528 | 1.766–8.848 | 881–3.536 |
+| 2017 | %3.83 (2016) | Sıra No 474 · 11.11.2016/29885 | 1.833–9.186 | 914–3.671 |
+| 2018 | %14.47 (2017) | Sıra No 484 · 11.11.2017/30237 | 2.098–10.515 | 1.046–4.202 |
+| 2019 | %23.73 (2018) | Sıra No 503 · 30.11.2018/30611 | 2.595–13.010 | 1.294–5.199 |
+| 2020 | %22.58 (2019) | Sıra No 512 · 23.12.2019/30987 | 3.180–15.947 | 1.586–6.372 |
+| 2021 | %9.11 (2020) | Sıra No 521 · 28.11.2020/31318 | 3.469–17.399 | 1.730–6.952 |
+| 2022 | %36.20 (2021) | Sıra No 533 · 27.11.2021/31672 | 4.724–23.697 | 2.356–9.468 |
+| 2023 | %122.93 (2022) | Sıra No 542 · 24.11.2022/32023 | 10.531–52.827 | 5.252–21.107 |
+| 2024 | %58.46 (2023) | Sıra No 554 · 25.11.2023/32380 | 16.687–83.709 | 8.322–33.446 |
+| 2025 | %43.93 (2024) | Sıra No 574 · 27.11.2024/32735 | 24.017–120.482 | 11.977–48.138 |
+| 2026 | %25.49 (2025) | Sıra No 585 · 27.11.2025/33090 | 30.138–151.192 | 15.029–60.408 |
+
+Doğrulanamayan / onayınıza bırakılan: (1) "o yıl için ilan edilen oran" ifadesinin "bir önceki yıl için ilan edilen oran" diye uygulanması — yerleşik uygulama olduğu varsayıldı, resmî bir yorum metni aranmadı; (2) 5326'da yıla özgü istisna yok (metin tarandı); başka kanunlarda belirli bir yıl için idari para cezası artışını sınırlayan hüküm olup olmadığı taranmadı — doğrulanmadı; (3) 5728'in Şubat 2008 yürürlüğüne rağmen 2009 başında 2008 oranının tamamının uygulanması.
+
+Yayın yüzeyleri (hepsi tek dosyadan: data/kamu/ceza-yeniden-degerleme.json → src/data/ceza-tutar.js; önizlemede "AVUKAT ONAYI BEKLİYOR"): /hesaplayicilar/kuyu-cezasi-hesaplama/ (sayfa + sonuç ekranı), /rehberler/ruhsatsiz-kuyu-cezalari/ (öz cevap, SSS, karar tablosu, yıl yıl tablo), /mevzuat/167/madde-18/ (yorum + tablo), /su-hukuku/ (karar matrisi), /kuyu-karar-motoru/ (sihirbaz sonucu), /rehberler/kuyu-tasima/, /veri/mevzuat.json (API yorum alanı). Bir yılın tebliği eksik olursa derleme durur (güncel tutar yayımlanmaz). Önceki taslaktaki "2026 yılı için %25,49" ifadesi yanlıştı (tebliğ bu oranı 2025 yılı için ilan eder) — düzeltildi.
+
+## DURAK 1 sonrası — b) Süreler: 5326 m.27 bulgusu (HUKUKİ ONAYA)
+
+5326 m.27/1 (birebir): "İdarî para cezası ve mülkiyetin kamuya geçirilmesine ilişkin idarî yaptırım kararına karşı, kararın tebliği veya tefhimi tarihinden itibaren en geç onbeş gün içinde, sulh ceza mahkemesine başvurulabilir. …"
+
+5326 m.27/8 (birebir; Ek: 6/12/2006-5560/34 md.): "İdarî yaptırım kararının verildiği işlem kapsamında aynı kişi ile ilgili olarak idarî yargının görev alanına giren kararların da verilmiş olması halinde; idarî yaptırım kararına ilişkin hukuka aykırılık iddiaları bu işlemin iptali talebiyle birlikte idarî yargı merciinde görülür." (Kaynak: mevzuat.gov.tr 5326, erişim 10.10.2026.)
+
+Sihirbaz için önerilen ayrı dal: "Aynı kararda idari para cezası ile kuyu kapatma/belge iptali birlikte mi verildi?" → Evet ise: para cezasına ilişkin iddialar da iptal davasıyla birlikte idare mahkemesinde (dava süresi: 2577 m.7 — 60 gün; süre hesabı kuralları resmî metinden ayrıca eklenecek). Hayır ise: para cezası → sulh ceza hakimliği 15 gün (5326 m.27/1); kapatma/iptal → idare mahkemesi 60 gün. Kuyu kapatmanın "idarî yargının görev alanına giren karar" sayılması avukat değerlendirmesine bırakıldı.
+

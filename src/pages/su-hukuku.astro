@@ -11,6 +11,7 @@
 // İşlem listesi data/kamu/su-islemleri.json'dan (dayanaklı) okunur. Bu
 // sayfa yeni hukuki iddia üretmez; yalnız toplar ve bağlar.
 import { getCollection } from 'astro:content';
+import OnayBekliyor from '../components/OnayBekliyor.astro';
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
@@ -88,6 +89,7 @@ const sema = [
 
   {/* MASTER KARAR MATRİSİ — tüm rehberlerin senaryoları tek tabloda. */}
   <section class="hub-matris" aria-label="Karar matrisi — tüm konular">
+    <OnayBekliyor kaynak="Ceza hücreleri: 167 m.18 + 5326 m.17/7 + VUK Genel Tebliğleri 387–585 (DURAK 1 A-a, 10.10.2026)" />
     <p class="hub-kicker">Karar matrisi</p>
     <h2>Hangi durumda hangi merci, süre ve ceza?</h2>
     <p class="hub-aciklama">

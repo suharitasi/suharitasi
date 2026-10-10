@@ -11,6 +11,8 @@ import mevzuat from '../../../../data/kamu/mevzuat-maddeleri.json';
 import emsal from '../../../../data/kamu/emsal-kararlar.json';
 import { MEVZUAT_EDITORYAL } from '../../../data/mevzuat-editoryal.js';
 import SayfaQr from '../../../components/SayfaQr.astro';
+import CezaTutarTablosu from '../../../components/CezaTutarTablosu.astro';
+import { cezaYerlestir } from '../../../data/ceza-tutar.js';
 // eeat-audit (27.09.2026): yazar kutusu mevzuat madde sayfalarına bağlandı.
 import YazarKutusu from '../../../components/YazarKutusu.astro';
 // 07.10.2026 denetimi (sahip kararı EK-2/1): başlık/açıklama/öz-cevap ve dizin
@@ -137,9 +139,12 @@ const sema = [
   {m.yorum && (
     <section class="mv-bolum" aria-label="Gerekçe ve yorum">
       <h2>Gerekçe / yorum</h2>
-      <p class="mv-yorum">{m.yorum}</p>
+      <p class="mv-yorum">{cezaYerlestir(m.yorum)}</p>
     </section>
   )}
+
+  {/* DURAK 1 A-a: 167 m.18 sayfasında kanun metni + yılın uygulanan tutarı, yıl yıl tablo (onay bekliyor). */}
+  {m.id === '167-madde-18' && <CezaTutarTablosu />}
 
   {(durum.kesik || durum.kirli) && (
     <p class="mv-veri-yok">Bu maddenin aktarılan metni eksik ya da kaynak tablosu artığı içeriyor; tam metin için resmî kaynak esastır.</p>

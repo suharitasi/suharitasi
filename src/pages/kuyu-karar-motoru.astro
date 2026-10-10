@@ -4,6 +4,8 @@
 // takvimi, yetkili merci, evrak listesi ve dilekçe ön taslağı.
 // Bilgilendirme amaçlıdır; somut dosyada hukuki görüş uzman değerlendirmesi ister.
 import { ARAC } from '../data/arac-adlari.js';
+import { cezaAraligi } from '../data/ceza-tutar.js';
+import OnayBekliyor from '../components/OnayBekliyor.astro';
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
@@ -60,6 +62,7 @@ const sema = [
   <div class="km-ust">
   <SayfaBasi etiket="Kuyu sorunu" baslik={SIHIRBAZ_AD} ozet="İl + işlem + tebliğ tarihi → süre, yetkili merci, evrak listesi ve düzenlenebilir dilekçe taslağı." />
   <OzCevap metin={OZ_CEVAP} etiket="Özet" />
+  <OnayBekliyor kaynak="Ceza aralıkları: 167 m.18 + 5326 m.17/7 + VUK Genel Tebliğleri 387–585 (DURAK 1 A-a, 10.10.2026)" />
 
   <form id="km-form" class="km-form">
     <label>İl
@@ -142,6 +145,7 @@ const sema = [
   <CtaBlok konu="Kuyu cezası / kapatma" baslik="Dosyanızı avukata inceletin" metin="Süre kaybı hak kaybıdır. Evrakınızı ve tebliğ tarihinizi iletin; yol haritasını değerlendirelim." />
   <HukukSerhi />
   </div>
+<script slot="ek-script" type="application/json" id="km-ceza" set:html={JSON.stringify({ a: cezaAraligi('a'), b: cezaAraligi('b') }).replace(/</g, '\\u003c')} />
 <script slot="ek-script" type="module" src="/s/karar-motoru.js" is:inline></script>
 </Sayfa>
 

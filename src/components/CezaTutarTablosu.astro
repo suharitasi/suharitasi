@@ -1,0 +1,59 @@
+---
+// 167 m.18 idari para cezası — yıl yıl yeniden değerleme tablosu (DURAK 1 A-a; hukuki onay bekliyor).
+// Tek kaynak: src/data/ceza-tutar.js → data/kamu/ceza-yeniden-degerleme.json.
+import OnayBekliyor from './OnayBekliyor.astro';
+import { CEZA_KANUN, CEZA_GUNCEL, CEZA_YIL, CEZA_YILLAR, CEZA_DAYANAK, CEZA_SON_DOGRULAMA, CEZA_YONTEM } from '../data/ceza-tutar.js';
+interface Props { baslikDuzeyi?: 'h2' | 'h3'; acik?: boolean }
+const { baslikDuzeyi = 'h2', acik = false } = Astro.props;
+const B = baslikDuzeyi;
+const tl = (n: number) => Number(n).toLocaleString('tr-TR');
+const tarih = (s: string) => s.split('-').reverse().join('.');
+---
+<section class="ctt" aria-label="167 m.18 idari para cezası tutarları">
+  <OnayBekliyor kaynak={`167 s. Kanun m.18 (5728 m.270); 5326 s. Kanun m.17/7; VUK Genel Tebliğleri Sıra No ${CEZA_YILLAR[1].teblig_sira_no}–${CEZA_YILLAR.at(-1).teblig_sira_no} (Resmî Gazete) — son doğrulama ${tarih(CEZA_SON_DOGRULAMA)}`} />
+  <B class="ctt-baslik">167 m.18 idari para cezası: kanun metni ve {CEZA_YIL} yılında uygulanan tutar</B>
+  <div class="ctt-ozet">
+    <div><span class="ctt-etiket">m.18/a — belgesiz kuyu, kasten yanlış bilgi</span>
+      <span>Kanun metni: <strong>{tl(CEZA_KANUN.a[0])}–{tl(CEZA_KANUN.a[1])} TL</strong></span>
+      <span>{CEZA_YIL} yılında uygulanan: <strong>{tl(CEZA_GUNCEL.a[0])}–{tl(CEZA_GUNCEL.a[1])} TL</strong></span></div>
+    <div><span class="ctt-etiket">m.18/b — m.10-11 ve belge şartlarına aykırılık</span>
+      <span>Kanun metni: <strong>{tl(CEZA_KANUN.b[0])}–{tl(CEZA_KANUN.b[1])} TL</strong></span>
+      <span>{CEZA_YIL} yılında uygulanan: <strong>{tl(CEZA_GUNCEL.b[0])}–{tl(CEZA_GUNCEL.b[1])} TL</strong></span></div>
+  </div>
+  <p class="ctt-not">Dayanak: <a href={CEZA_DAYANAK.yeniden_degerleme_url} rel="noopener">5326 s. Kabahatler Kanunu m.17/7</a> —
+    “İdarî para cezaları her takvim yılı başından geçerli olmak üzere o yıl için … tespit ve ilân edilen yeniden değerleme
+    oranında artırılarak uygulanır. Bu suretle idarî para cezasının hesabında bir Türk Lirasının küsuru dikkate alınmaz.”
+    Kanun tutarları: <a href={CEZA_DAYANAK.kanun_url} rel="noopener">167 s. Kanun m.18</a> (değişik: 5728 s. Kanun m.270,
+    <a href={CEZA_DAYANAK.degistiren_url} rel="noopener">RG 08.02.2008/26781</a>, yayımı tarihinde yürürlük).
+    Yöntem: {CEZA_YONTEM} Son doğrulama: {tarih(CEZA_SON_DOGRULAMA)}.</p>
+  <details class="ctt-detay" open={acik}>
+    <summary>Yıl yıl hesap (tebliğ, Resmî Gazete tarihi ve oran)</summary>
+    <div class="ctt-kaydir" tabindex="0" role="region" aria-label="Yıl yıl yeniden değerleme tablosu">
+      <table>
+        <thead><tr><th scope="col">Uygulama yılı</th><th scope="col">Oran (yılı)</th><th scope="col">VUK Genel Tebliği</th><th scope="col">m.18/a (TL)</th><th scope="col">m.18/b (TL)</th></tr></thead>
+        <tbody>
+          {CEZA_YILLAR.map((s: any) => (
+            <tr>
+              <th scope="row">{s.uygulama_yili}</th>
+              <td>{s.oran ? `%${s.oran} (${s.oran_yili})` : 'kanun metni'}</td>
+              <td>{s.teblig_sira_no ? <a href={s.kaynak} rel="noopener">Sıra No {s.teblig_sira_no} · RG {s.rg_tarih}/{s.rg_sayi}</a> : '5728, RG 08.02.2008/26781'}</td>
+              <td>{tl(s.tutarlar.a_alt)}–{tl(s.tutarlar.a_ust)}</td>
+              <td>{tl(s.tutarlar.b_alt)}–{tl(s.tutarlar.b_ust)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </details>
+</section>
+<style>
+  .ctt { margin: 1.4rem 0; padding: 1rem 1.2rem; border: 1px solid var(--cizgi); background: var(--zemin-kart); }
+  .ctt-baslik { font-size: 1.15rem; margin: 0 0 0.7rem; }
+  .ctt-ozet { display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); margin-bottom: 0.8rem; }
+  .ctt-ozet > div { display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.92rem; }
+  .ctt-etiket { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--metin-soluk); }
+  .ctt-not { font-size: 0.84rem; color: var(--metin-soluk); max-width: 80ch; }
+  .ctt-kaydir { overflow-x: auto; }
+  .ctt table { border-collapse: collapse; width: 100%; font-size: 0.86rem; margin-top: 0.6rem; }
+  .ctt th, .ctt td { text-align: left; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--cizgi); white-space: nowrap; }
+</style>

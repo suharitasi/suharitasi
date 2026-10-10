@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { join, relative } from 'node:path';
 // Normalizasyon TEK KAYNAK: src/data/ortak-normalize.js (src/data modülleriyle aynı).
 import { kisitNormalize, islemJoin } from './src/data/ortak-normalize.js';
+import { cezaYerlestir } from './src/data/ceza-tutar.js';
 
 const SITE = 'https://suharitasi.com';
 
@@ -149,7 +150,7 @@ function veriApiOlustur() {
         const mv = oku('data/kamu/mevzuat-maddeleri.json');
         await yaz('mevzuat.json', mv.maddeler.map((m) => ({
           kanunKisa: m.kanunKisa, kanun: m.kanun, tur: m.tur, madde: m.madde, metin: m.metin,
-          kaynak: m.kaynakUrl, merci: m.merci || null, sure: m.sure || null, yorum: m.yorum || null,
+          kaynak: m.kaynakUrl, merci: m.merci || null, sure: m.sure || null, yorum: m.yorum ? cezaYerlestir(m.yorum) : null,
         })));
         await yaz('emsal.json', oku('data/kamu/emsal-kararlar.json').kararlar);
         await yaz('sozluk.json', oku('data/kamu/su-terim-havuzu.json').terimler);

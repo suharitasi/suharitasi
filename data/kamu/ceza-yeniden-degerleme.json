@@ -1,0 +1,306 @@
+{
+ "_not": "167 sayılı Kanun m.18 idari para cezalarının yeniden değerlemesi — HUKUKİ ONAY BEKLİYOR (DURAK 1 A-a). Tek kaynak: hesaplayıcı, rehber, madde sayfası, su hukuku tablosu, sihirbaz ve API bu dosyadan beslenir.",
+ "son_dogrulama": "2026-10-10",
+ "dayanak": {
+  "kanun": "167 s. Kanun m.18 (Değişik: 23/1/2008-5728/270 md.)",
+  "kanun_url": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=167&MevzuatTur=1&MevzuatTertip=4",
+  "degistiren": "5728 s. Kanun m.270, RG 08.02.2008 sayı 26781; yürürlük m.579 (yayımı tarihinde)",
+  "degistiren_url": "https://www.resmigazete.gov.tr/eskiler/2008/02/20080208-1.htm",
+  "yeniden_degerleme": "5326 s. Kabahatler Kanunu m.17/7",
+  "yeniden_degerleme_metni": "İdarî para cezaları her takvim yılı başından geçerli olmak üzere o yıl için 4.1.1961 tarihli ve 213 sayılı Vergi Usul Kanununun mükerrer 298 inci maddesi hükümleri uyarınca tespit ve ilân edilen yeniden değerleme oranında artırılarak uygulanır. Bu suretle idarî para cezasının hesabında bir Türk Lirasının küsuru dikkate alınmaz. Bu fıkra hükmü, nispi nitelikteki idarî para cezaları açısından uygulanmaz.",
+  "yeniden_degerleme_url": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=5326&MevzuatTur=1&MevzuatTertip=5"
+ },
+ "yontem": "Her yıl başında bir önceki yıl için ilan edilen VUK yeniden değerleme oranı uygulanır; her yılın sonucunda 1 TL küsuru atılır (5326 m.17/7, 2. cümle). Başlangıç: 2008 kanun tutarları. Bu okuma (Y yılı başında Y-1 için ilan edilen oran) avukat onayına sunulmuştur.",
+ "kanun_metnindeki": {
+  "a": [
+   1000,
+   5000
+  ],
+  "b": [
+   500,
+   2000
+  ]
+ },
+ "yillar": [
+  {
+   "uygulama_yili": 2008,
+   "tutarlar": {
+    "a_alt": 1000,
+    "a_ust": 5000,
+    "b_alt": 500,
+    "b_ust": 2000
+   },
+   "not": "167 m.18 (5728 m.270), RG 08.02.2008/26781, yayımı tarihinde yürürlük (5728 m.579)"
+  },
+  {
+   "uygulama_yili": 2009,
+   "oran_yili": 2008,
+   "oran": "12",
+   "teblig_sira_no": 387,
+   "rg_tarih": "20.11.2008",
+   "rg_sayi": 27060,
+   "kaynak": "https://www.resmigazete.gov.tr/eskiler/2008/11/20081120-9.htm",
+   "tutarlar": {
+    "a_alt": 1120,
+    "a_ust": 5600,
+    "b_alt": 560,
+    "b_ust": 2240
+   }
+  },
+  {
+   "uygulama_yili": 2010,
+   "oran_yili": 2009,
+   "oran": "2,2",
+   "teblig_sira_no": 392,
+   "rg_tarih": "14.11.2009",
+   "rg_sayi": 27406,
+   "kaynak": "https://www.resmigazete.gov.tr/eskiler/2009/11/20091114-8.htm",
+   "tutarlar": {
+    "a_alt": 1144,
+    "a_ust": 5723,
+    "b_alt": 572,
+    "b_ust": 2289
+   }
+  },
+  {
+   "uygulama_yili": 2011,
+   "oran_yili": 2010,
+   "oran": "7,7",
+   "teblig_sira_no": 401,
+   "rg_tarih": "12.11.2010",
+   "rg_sayi": 27757,
+   "kaynak": "https://www.resmigazete.gov.tr/eskiler/2010/11/20101112-12.htm",
+   "tutarlar": {
+    "a_alt": 1232,
+    "a_ust": 6163,
+    "b_alt": 616,
+    "b_ust": 2465
+   }
+  },
+  {
+   "uygulama_yili": 2012,
+   "oran_yili": 2011,
+   "oran": "10,26",
+   "teblig_sira_no": 410,
+   "rg_tarih": "17.11.2011",
+   "rg_sayi": 28115,
+   "kaynak": "https://www.resmigazete.gov.tr/eskiler/2011/11/20111117-11.htm",
+   "tutarlar": {
+    "a_alt": 1358,
+    "a_ust": 6795,
+    "b_alt": 679,
+    "b_ust": 2717
+   }
+  },
+  {
+   "uygulama_yili": 2013,
+   "oran_yili": 2012,
+   "oran": "7,80",
+   "teblig_sira_no": 419,
+   "rg_tarih": "10.11.2012",
+   "rg_sayi": 28463,
+   "kaynak": "https://www.resmigazete.gov.tr/eskiler/2012/11/20121110-10.htm",
+   "tutarlar": {
+    "a_alt": 1463,
+    "a_ust": 7325,
+    "b_alt": 731,
+    "b_ust": 2928
+   }
+  },
+  {
+   "uygulama_yili": 2014,
+   "oran_yili": 2013,
+   "oran": "3,93",
+   "teblig_sira_no": 430,
+   "rg_tarih": "19.11.2013",
+   "rg_sayi": 28826,
+   "kaynak": "https://www.resmigazete.gov.tr/eskiler/2013/11/20131119-13.htm",
+   "tutarlar": {
+    "a_alt": 1520,
+    "a_ust": 7612,
+    "b_alt": 759,
+    "b_ust": 3043
+   }
+  },
+  {
+   "uygulama_yili": 2015,
+   "oran_yili": 2014,
+   "oran": "10,11",
+   "teblig_sira_no": 441,
+   "rg_tarih": "15.11.2014",
+   "rg_sayi": 29176,
+   "kaynak": "https://www.resmigazete.gov.tr/eskiler/2014/11/20141115-10.htm",
+   "tutarlar": {
+    "a_alt": 1673,
+    "a_ust": 8381,
+    "b_alt": 835,
+    "b_ust": 3350
+   }
+  },
+  {
+   "uygulama_yili": 2016,
+   "oran_yili": 2015,
+   "oran": "5,58",
+   "teblig_sira_no": 457,
+   "rg_tarih": "10.11.2015",
+   "rg_sayi": 29528,
+   "kaynak": "https://www.resmigazete.gov.tr/eskiler/2015/11/20151110-4.htm",
+   "tutarlar": {
+    "a_alt": 1766,
+    "a_ust": 8848,
+    "b_alt": 881,
+    "b_ust": 3536
+   }
+  },
+  {
+   "uygulama_yili": 2017,
+   "oran_yili": 2016,
+   "oran": "3,83",
+   "teblig_sira_no": 474,
+   "rg_tarih": "11.11.2016",
+   "rg_sayi": 29885,
+   "kaynak": "https://www.resmigazete.gov.tr/eskiler/2016/11/20161111-15.htm",
+   "tutarlar": {
+    "a_alt": 1833,
+    "a_ust": 9186,
+    "b_alt": 914,
+    "b_ust": 3671
+   }
+  },
+  {
+   "uygulama_yili": 2018,
+   "oran_yili": 2017,
+   "oran": "14,47",
+   "teblig_sira_no": 484,
+   "rg_tarih": "11.11.2017",
+   "rg_sayi": 30237,
+   "kaynak": "https://www.resmigazete.gov.tr/eskiler/2017/11/20171111-5.htm",
+   "tutarlar": {
+    "a_alt": 2098,
+    "a_ust": 10515,
+    "b_alt": 1046,
+    "b_ust": 4202
+   }
+  },
+  {
+   "uygulama_yili": 2019,
+   "oran_yili": 2018,
+   "oran": "23,73",
+   "teblig_sira_no": 503,
+   "rg_tarih": "30.11.2018",
+   "rg_sayi": 30611,
+   "kaynak": "https://www.resmigazete.gov.tr/eskiler/2018/11/20181130-4.htm",
+   "tutarlar": {
+    "a_alt": 2595,
+    "a_ust": 13010,
+    "b_alt": 1294,
+    "b_ust": 5199
+   }
+  },
+  {
+   "uygulama_yili": 2020,
+   "oran_yili": 2019,
+   "oran": "22,58",
+   "teblig_sira_no": 512,
+   "rg_tarih": "23.12.2019",
+   "rg_sayi": 30987,
+   "kaynak": "https://www.resmigazete.gov.tr/eskiler/2019/12/20191223-8.htm",
+   "tutarlar": {
+    "a_alt": 3180,
+    "a_ust": 15947,
+    "b_alt": 1586,
+    "b_ust": 6372
+   }
+  },
+  {
+   "uygulama_yili": 2021,
+   "oran_yili": 2020,
+   "oran": "9,11",
+   "teblig_sira_no": 521,
+   "rg_tarih": "28.11.2020",
+   "rg_sayi": 31318,
+   "kaynak": "https://www.resmigazete.gov.tr/eskiler/2020/11/20201128-11.htm",
+   "tutarlar": {
+    "a_alt": 3469,
+    "a_ust": 17399,
+    "b_alt": 1730,
+    "b_ust": 6952
+   }
+  },
+  {
+   "uygulama_yili": 2022,
+   "oran_yili": 2021,
+   "oran": "36,20",
+   "teblig_sira_no": 533,
+   "rg_tarih": "27.11.2021",
+   "rg_sayi": 31672,
+   "kaynak": "https://www.resmigazete.gov.tr/eskiler/2021/11/20211127-6.htm",
+   "tutarlar": {
+    "a_alt": 4724,
+    "a_ust": 23697,
+    "b_alt": 2356,
+    "b_ust": 9468
+   }
+  },
+  {
+   "uygulama_yili": 2023,
+   "oran_yili": 2022,
+   "oran": "122,93",
+   "teblig_sira_no": 542,
+   "rg_tarih": "24.11.2022",
+   "rg_sayi": 32023,
+   "kaynak": "https://www.resmigazete.gov.tr/eskiler/2022/11/20221124-4.htm",
+   "tutarlar": {
+    "a_alt": 10531,
+    "a_ust": 52827,
+    "b_alt": 5252,
+    "b_ust": 21107
+   }
+  },
+  {
+   "uygulama_yili": 2024,
+   "oran_yili": 2023,
+   "oran": "58,46",
+   "teblig_sira_no": 554,
+   "rg_tarih": "25.11.2023",
+   "rg_sayi": 32380,
+   "kaynak": "https://www.resmigazete.gov.tr/eskiler/2023/11/20231125-27.htm",
+   "tutarlar": {
+    "a_alt": 16687,
+    "a_ust": 83709,
+    "b_alt": 8322,
+    "b_ust": 33446
+   }
+  },
+  {
+   "uygulama_yili": 2025,
+   "oran_yili": 2024,
+   "oran": "43,93",
+   "teblig_sira_no": 574,
+   "rg_tarih": "27.11.2024",
+   "rg_sayi": 32735,
+   "kaynak": "https://www.resmigazete.gov.tr/eskiler/2024/11/20241127-4.htm",
+   "tutarlar": {
+    "a_alt": 24017,
+    "a_ust": 120482,
+    "b_alt": 11977,
+    "b_ust": 48138
+   }
+  },
+  {
+   "uygulama_yili": 2026,
+   "oran_yili": 2025,
+   "oran": "25,49",
+   "teblig_sira_no": 585,
+   "rg_tarih": "27.11.2025",
+   "rg_sayi": 33090,
+   "kaynak": "https://www.resmigazete.gov.tr/eskiler/2025/11/20251127-4.htm",
+   "tutarlar": {
+    "a_alt": 30138,
+    "a_ust": 151192,
+    "b_alt": 15029,
+    "b_ust": 60408
+   }
+  }
+ ]
+}

@@ -1,5 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+// DURAK 1 A-a (10.10.2026): ön-bilgideki {{CEZA_…}} yer tutucuları tek kaynaktan doldurulur.
+import { cezaYerlestir } from './data/ceza-tutar.js';
 
 const rehberler = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/rehberler' }),
@@ -15,6 +17,8 @@ const rehberler = defineCollection({
     guncelleme: z.coerce.date().optional(),
     // true ise sayfa sonuna 81 il / yetkili kurum tablosu eklenir (data/il-kurum.json)
     ilKurumTablosu: z.boolean().optional(),
+    // true ise gövdeden sonra 167 m.18 yıl yıl yeniden değerleme tablosu (CezaTutarTablosu) basılır.
+    cezaTablosu: z.boolean().optional(),
     // 10.10.2026 (brif, Çerçeve 'Hukuki içerik'): true ise önizlemede 'AVUKAT ONAYI
     // BEKLİYOR' işareti basılır; onayKaynak dayanılan resmî metni yazar.
     onayBekliyor: z.boolean().optional(),
@@ -36,7 +40,7 @@ const rehberler = defineCollection({
     // ~280 karakterlik damıtılmış öz cevap. YALNIZ bu sayfanın doğrulanmış
     // içeriğinden damıtılır; yeni iddia/künye eklenmez. Meta description'ın
     // da kaynağıdır. Uzunluk build'de sınırlanır (aşırıysa hata).
-    ozCevap: z.string().min(120).max(340),
+    ozCevap: z.string().min(120).max(340).transform(cezaYerlestir),
     // Arama niyetine göre <title> metni (marka eki eklenmez; ≤60 karakter).
     // Verilmezse baslik kullanılır. YALNIZ mevcut başlığın niyet-odaklı
     // yeniden ifadesidir; yeni hukuki iddia içermez (uydurma yasağı).
@@ -45,7 +49,7 @@ const rehberler = defineCollection({
     // Her madde YALNIZ sayfanın kendi doğrulanmış gövdesinden/öz-cevabından
     // damıtılır; görünür bölüm olmadan şema yayınlanmaz (Google kuralı).
     sss: z
-      .array(z.object({ soru: z.string().min(8), cevap: z.string().min(20) }))
+      .array(z.object({ soru: z.string().min(8), cevap: z.string().min(20).transform(cezaYerlestir) }))
       .min(2)
       .max(6)
       .optional(),
@@ -60,7 +64,7 @@ const rehberler = defineCollection({
           merci: z.string().min(2).max(140),
           sure: z.string().min(2).max(140),
           // "—" (doğrudan mali yükümlülük yok) meşru bir hücre değeridir.
-          ceza: z.string().min(1).max(180),
+          ceza: z.string().min(1).max(180).transform(cezaYerlestir),
           emsal: z.string().min(2).max(240),
         }),
       )
@@ -163,7 +167,7 @@ const vakalar = defineCollection({
       .max(3)
       .optional(),
     // "Cevap önce" öz cevap — YALNIZ doğrulanmış olgudan; iddia/yorum yok.
-    ozCevap: z.string().min(120).max(340),
+    ozCevap: z.string().min(120).max(340).transform(cezaYerlestir),
     // Arama niyetine göre <title> (marka eki eklenmez; ≤60 kr).
     seoBaslik: z.string().max(60).optional(),
     // Olay akışı — her olay bir KAP bildirimine bağlı (künye zorunlu, url).

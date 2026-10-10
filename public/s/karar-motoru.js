@@ -11,14 +11,18 @@
   fetch('/veri/iller.json', { cache: 'force-cache' }).then(function (r) { return r.ok ? r.json() : []; })
     .then(function (d) { ilVeri = d; ciz(); }).catch(function () { ilVeri = []; ciz(); });
 
+  // DURAK 1 A-a (10.10.2026): ceza aralıkları sayfadaki #km-ceza'dan (tek kaynak: src/data/ceza-tutar.js).
+  var CEZA = { a: '1.000–5.000 TL (kanun metni)', b: '500–2.000 TL (kanun metni)' };
+  try { var _c = JSON.parse(document.getElementById('km-ceza').textContent); if (_c && _c.a && _c.b) CEZA = _c; } catch (e) { /* kanun metni kalır */ }
+
   var DATA = {
     ruhsatsiz: {
-      dayanak: '167 s.K. m.18/a', ceza: '1.000–5.000 TL idari para cezası + kuyu kapatma',
+      dayanak: '167 s.K. m.18/a', ceza: 'İdari para cezası ' + CEZA.a + ' + kuyu kapatma',
       merci: 'Cezayı mahallî mülkî amir (valilik/kaymakamlık) verir.',
       evrak: ['Tebliğ / ceza tutanağı (tebliğ tarihi görünür)', 'Tapu veya parsel/kroki bilgisi', 'Kuyu/sondaj teknik bilgileri (yer, derinlik, çap)', 'Varsa arama/kullanma belgesi', 'Ölçüm sistemi durumu', 'Kimlik ve iletişim bilgileri'],
     },
     tahsis: {
-      dayanak: '167 s.K. m.10-11, m.18/b', ceza: '500–2.000 TL idari para cezası + kuyu kapatma',
+      dayanak: '167 s.K. m.10-11, m.18/b', ceza: 'İdari para cezası ' + CEZA.b + ' + kuyu kapatma',
       merci: 'DSİ tespiti; cezayı mahallî mülkî amir verir.',
       evrak: ['Kullanma/ıslah-tadil belgesi', 'Ölçüm kayıtları (çekim miktarı)', 'DSİ yazışmaları / tebliğ', 'Tahsis belgesi veya başvuru', 'Kuyu teknik dosyası'],
     },
