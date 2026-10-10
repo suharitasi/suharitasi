@@ -1652,3 +1652,15 @@ yapılmadı; bir ay sonra hipotezin çürük olduğu ölçüldü (pozisyon title
 Bir karar "kalıcı" ise (geri dönülürse iş yeniden yapılır, ya da 3 ay sonra
 biri "neden böyle?" diye soracaksa) buraya yazılır. Geçici tercihler ve tek
 seferlik işler GUNLUK.md'ye, açık işler SIRADAKILER.md'ye gider.
+
+## §71 · KATMA DEĞER BRİFİ (10.10.2026, sahibin kararları) — AY İLKESİ KAPANDI · §9 ve §5 DEĞİŞTİ
+- **Tarih:** 2026-10-10 (brif: `rapor/BRIF-katma-deger.md`; dal `katma-deger-20261010`).
+- **Karar 1 — AY İLKESİ (§17) KAPANDI:** sahibin K-1 kararıyla "yeni özellik açılmaz" ilkesi kaldırıldı; brifteki bütün kalemler (Aşama 4 yeni değer dahil) uygulanır. CLAUDE.md'deki bölüm bu kayda işaret eder.
+- **Karar 2 — §9 "/harita/ sayfasında H1 yoktur" DEĞİŞTİ:** sahip (10.10.2026, "3-A") ana başlık eklenmesine karar verdi; /harita/ sayfasına görünür H1 ve menü bağlantısı eklenir (brif 2.9).
+- **Karar 3 — §5 "il eşlemesi durduruldu" DEĞİŞTİ:** sahip (10.10.2026, "4-A tam") kapatma kayıtlarının ve işletme sahası ilanlarının illerle eşlenmesine karar verdi. Kural: il adı kaynak metninde açıkça geçmeyen kayıtlar tahminle DEĞİL, resmî kaynaktan doğrulanarak eşlenir; doğrulanamayanların listesi sahibe sunulur, eşlenmez.
+- **Karar 4 — yayın düzeni bu iş için:** main'e geçiş DURAK onaylarıyla (CLAUDE.md "ön onay sorulmaz" ve §7 "merge = yayın" bu iş süresince bu düzene tabidir); hukuki metin içeren sayfa "hukuki onay" olmadan main'e girmez.
+- **Karar 5 — §10/§11 esnetildi:** sunucu tarafı formlar (Cloudflare Functions + KV) ve çift onaylı abonelik bu işte kabul; dosya yükleme için depolama hesabı gerekirse sahibe sorulur.
+- **Karar 6 — §4:** iklim verisinde havza alan-ortalaması (rasterden hesap) ölçülmüş veriden türetim sayılır, uydurma değildir; yöntem sayfada yazılır. §4'ün il-YAS kütlesi kararı aynen sürer.
+- **Karar 7 — EN sürüm (ODUL-USTU "Retler"):** /en/ çeviri ve /en/data/ bu brifle açıldı.
+- **Karar 8 — §14 model ayrımı:** bu iş tek ajanla yürür; bağımsız inceleme ayrı alt ajanla yapılır.
+- **Kanıt:** sohbet 10.10.2026 ("1-A … 8-A. Başla."); `rapor/DURUM-katma-deger.md`.
