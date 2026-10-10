@@ -1,8 +1,9 @@
 ---
 /* /veri/iklim/ — NASA POWER iklim verisi: 25 havza görünümü (04.10.2026).
    Kaynak NASA POWER (power.larc.nasa.gov, Langley/GMAO), KAMU MALI, anahtarsız.
-   Değerler 1981-2010 klimatolojisidir; havza temsil noktası = poligon bbox
-   merkezi. UYDURMA YOK: tüm sayılar data/canli/nasa-power.json'dan gelir. */
+   Değerler 1981-2010 klimatolojisidir; havza değeri = havza içi ızgara noktalarının
+   (en çok 9) basit ortalaması (10.10.2026; önceden tek bbox-merkez noktasıydı).
+   UYDURMA YOK: tüm sayılar data/canli/nasa-power.json'dan gelir. */
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import OzCevap from '../../components/OzCevap.astro';
@@ -113,8 +114,10 @@ const sema = [
   <p class="ik-not">
     Bu tablo, <strong>NASA POWER</strong> (power.larc.nasa.gov — NASA Langley/GMAO,
     kamu malı) uydu/model-temelli klimatoloji verisinden <strong>otomatik</strong>
-    derlenir. Havza başına bir temsil noktası (havza sınırı merkezi) kullanılır;
-    değerler 1981-2010 ortalamasıdır. Hiçbir sayı elle yazılmamıştır; kaynak:
+    derlenir. Havza değeri, havza sınırı içine düşen düzenli ızgara noktalarının
+    (en çok 9; nokta sayısı havzaya göre değişir) basit ortalamasıdır — alan
+    ağırlıklı ortalama değildir, bu bir sınırdır; önceki sürümde tek merkez noktası
+    kullanılıyordu. Değerler 1981-2010 ortalamasıdır. Hiçbir sayı elle yazılmamıştır; kaynak:
     <code>data/canli/nasa-power.json</code>.
   </p>
 

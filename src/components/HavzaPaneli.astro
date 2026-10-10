@@ -96,7 +96,7 @@ const [ky, ka, kg] = yasVeri.kaynak.havzaPotansiyelRezerv.indirmeTarihi.split('-
             <span class="kart-egim">{k.egim > 0 ? '+' : ''}{tr(k.egim)} cm/yıl</span>
           </span>
           <span class={`kart-hukuk${k.hukuk ? '' : ' yok'}`}>
-            {k.hukuk ? 'Hukuki çerçeve: yayımlandı' : 'Hukuki kısıt: doğrulanmadı'}
+            {k.hukuk ? 'Hukuki çerçeve: yayımlandı' : 'Hukuki çerçeve: bu havza için henüz yayımlanmadı'}
           </span>
         </a>
       ))}

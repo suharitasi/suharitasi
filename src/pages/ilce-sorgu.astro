@@ -1,6 +1,11 @@
 ---
-// IL/ILCE SU POTANSİYELİ VE LOKASYON ANALİZİ — /ilce-sorgu/
-// Client-side render: slug-tabanli veri indeksi, sifir reload.
+// İL / İLÇE YERALTI SUYU VERİSİ — /ilce-sorgu/
+// 10.10.2026 (brif 1.9): il verisine ±%15 "deterministik varyasyon" eklenerek
+// üretilen ilçe arazi değerleri (sentetik) KALDIRILDI. Artık yalnız gerçek,
+// kaynaklı veri gösterilir: ildeki yeraltı suyu kütleleri (NHYP), Resmî Gazete
+// işletme sahası / kapatma kayıtları ve il için açık erişim yayın künyeleri.
+// İlçe seçimi konumu netleştirmek içindir; ilçe düzeyinde ayrı veri yoktur ve
+// bu açıkça yazılır. Client-side render: slug tabanlı indeks.
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
 import { TARIH } from '../data/guncellik.js';
@@ -11,7 +16,6 @@ import { ilPotansiyel } from '../data/potansiyel.js';
 import ilKurum from '../../data/il-kurum.json';
 import { EPOSTA, YAZAR } from '../data/site';
 import ilceDizin from '../../veri/potansiyel/ilce-il-dizini.json' assert { type: 'json' };
-import ilceMorf from '../../veri/potansiyel/ilce-morfoloji.json' assert { type: 'json' };
 import HukukSerhi from '../components/HukukSerhi.astro';
 
 const profiller = tumIlProfilleri();
@@ -23,66 +27,47 @@ for (const [ilceAd, iller] of Object.entries(ilcelerRaw))
   for (const il of (iller || [])) (ilIlceler[il] ??= []).push(ilceAd);
 for (const il of Object.keys(ilIlceler)) ilIlceler[il].sort((a, b) => a.localeCompare(b, 'tr'));
 
-const ilProfilData = {};
-for (const p of profiller)
-  ilProfilData[p.il] = { dsi: (p.dsiBolgeleri||[]).map(b => `DSİ ${Number(b.no)}. Bolge Mudurlugu (${b.merkez})`).join(' · ') };
-
-const ilPotansiyelData = {};
-for (const il of ilAdlari) {
-  const pt = ilPotansiyel(il);
-  ilPotansiyelData[il] = {
-    kutle: pt?.kutleler?.length || 0,
-    rg: (pt?.rgKayitlari?.length || 0) + (pt?.rgEkKayitlari?.length || 0),
-    osm: pt?.osm ? 1 : 0,
-  };
-}
-
 const suIdareleri = ilKurum.suIdareleri || {};
-
-// ILCE DUZEYiNDE morfoloji: ilce-morfoloji.json'dan (duz_oran, vadi_oran yuzde)
-const ilceMorfData = ilceMorf.ilceler || {};
 
 function slugla(ad) {
   if (!ad) return '';
   return String(ad).trim().toLowerCase().replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s').replace(/ı/g,'i').replace(/ö/g,'o').replace(/ç/g,'c').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 }
+const kirp = (s, n) => (s ? String(s).replace(/\s+/g, ' ').trim().slice(0, n) : '');
 
-// Slug-tabanli ilce duzeyinde indeks:
-// IL_INDEX[ilSlug] = { ad, ilceler: [ { ad, slug, duz_oran, vadi_oran, ort_egim } ], potansiyel, profil, suIdare }
+// IL_INDEX[ilSlug] = { ad, slug, ilceler:[{ad,slug}], kutleler:[…], rg:[…], akademik:[…], akademikNot, dsi, suIdare }
 const IL_INDEX = {};
-for (const il of ilAdlari) {
-  const ilSlug = slugla(il);
-  const ilceler = (ilIlceler[il]||[]).map(ic => {
-    const m = ilceMorfData[ic] || {};
-    return {
-      ad: ic, slug: slugla(ic),
-      duz_oran: m.duz_oran != null ? m.duz_oran / 100 : 0,
-      vadi_oran: m.vadi_oran != null ? m.vadi_oran / 100 : 0,
-      ort_egim: m.ort_egim ?? null,
-    };
-  });
-  IL_INDEX[ilSlug] = {
-    ad: il, ilceler,
-    potansiyel: ilPotansiyelData[il] || {},
-    profil: ilProfilData[il] || {},
+for (const p of profiller) {
+  const il = p.il;
+  const pt = ilPotansiyel(il) || {};
+  const rg = [...(pt.rgKayitlari || []), ...(pt.rgEkKayitlari || [])]
+    .map((k) => ({ metin: kirp(k.metin, 140), durum: k.durum || '', tarih: k.tarih || '', url: k.url || '' }));
+  IL_INDEX[slugla(il)] = {
+    ad: il, slug: slugla(il),
+    ilceler: (ilIlceler[il] || []).map((ic) => ({ ad: ic, slug: slugla(ic) })),
+    kutleler: (pt.kutleler || []).map((k) => ({ ad: k.ad, kod: k.kod, havza: k.havza, miktar: k.miktar, kimyasal: k.kimyasal, cokIlli: k.cokIlli })),
+    rg,
+    akademik: (pt.akademik || []).slice(0, 12).map((a) => ({ baslik: kirp(a.baslik, 160), yil: a.yil ?? null, doi: a.doi || a.url || '' })),
+    akademikNot: pt.akademikEksikNedeni || '',
+    dsi: (p.dsiBolgeleri || []).map((b) => `DSİ ${Number(b.no)}. Bölge Müdürlüğü (${b.merkez})`).join(' · '),
     suIdare: suIdareleri[il] || '',
   };
 }
-
-const IL_LISTESI = ilAdlari.map(il => ({ ad: il, slug: slugla(il) }));
+const IL_LISTESI = ilAdlari.map((il) => ({ ad: il, slug: slugla(il) }));
 const VERI = JSON.stringify(IL_INDEX);
+const TOPLAM_KUTLE = Object.values(IL_INDEX).reduce((t, v) => t + v.kutleler.length, 0);
+const TOPLAM_RG = Object.values(IL_INDEX).reduce((t, v) => t + v.rg.length, 0);
 
-const ozet = 'Türkiye\'de il ve ilçe bazında yeraltı su potansiyeli: YAS kütlesi ve Resmî Gazete işletme sahası sayıları, yetkili DSİ bölgesi ile su idaresi, ilçe arazi morfolojisi.';
+const ozet = `Türkiye'de il bazında yeraltı suyu verisi: ${TOPLAM_KUTLE} il–kütle eşlemesi (NHYP yeraltı suyu kütleleri, miktar ve kimyasal durumuyla), ${TOPLAM_RG} Resmî Gazete işletme sahası / kapatma kaydı ve il için açık erişim yayın künyeleri; yetkili DSİ bölgesi ve su idaresi. İlçe düzeyinde ayrı veri yoktur.`;
 ---
 
-{/* B1 (25.08): <title> 60 karakter sınırına, sayfanın kendi H1'inden türetildi. */}
-<Sayfa baslik="İl/İlçe Yeraltı Su Potansiyeli" aciklama={ozet}
-  guncelleme={TARIH.ilceMorfoloji ? new Date(TARIH.ilceMorfoloji) : undefined}
+{/* B1 (25.08): <title> 60 karakter sınırı. 10.10.2026: başlık içerikle eşitlendi (sentetik ilçe "potansiyeli" yok). */}
+<Sayfa baslik="İl Bazında Yeraltı Suyu Verisi" aciklama={ozet}
+  guncelleme={TARIH.potansiyel ? new Date(TARIH.potansiyel) : undefined}
   sema={[
     {
-      // 04.10.2026 (§55): anlık sorgu aracı = web uygulaması. Yıldız YOK.
       '@type': 'SoftwareApplication',
-      name: 'İl/İlçe Yeraltı Su Potansiyeli Sorgu Aracı',
+      name: 'İl Bazında Yeraltı Suyu Verisi Sorgu Aracı',
       applicationCategory: 'WebApplication',
       operatingSystem: 'Web',
       url: new URL('/ilce-sorgu/', Astro.site).href,
@@ -92,10 +77,10 @@ const ozet = 'Türkiye\'de il ve ilçe bazında yeraltı su potansiyeli: YAS kü
     },
   ]}
 >
-  <SayfaBasi etiket="Araç" baslik="İl/İlçe Yeraltı Su Potansiyeli" tarih={TARIH.ilceMorfoloji ? new Date(TARIH.ilceMorfoloji) : undefined} />
+  <SayfaBasi etiket="Araç" baslik="İl Bazında Yeraltı Suyu Verisi" tarih={TARIH.potansiyel ? new Date(TARIH.potansiyel) : undefined} />
   <OzCevap metin={ozet} />
 
-  <Katman baslik="Konum Seçimi" ipucu="il seçimi zorunlu · ilçe opsiyonel">
+  <Katman baslik="Konum Seçimi" ipucu="il seçimi zorunlu · ilçe konumu netleştirir">
     <form id="sorgu-form" class="sorgu-form">
       <div class="sorgu-grid">
         <div>
@@ -106,214 +91,99 @@ const ozet = 'Türkiye\'de il ve ilçe bazında yeraltı su potansiyeli: YAS kü
           </select>
         </div>
         <div>
-          <label for="ilce-sec" class="saha-etiket">İlçe</label>
+          <label for="ilce-sec" class="saha-etiket">İlçe (isteğe bağlı)</label>
           <select id="ilce-sec" class="il-secici" disabled>
             <option value="">— Önce il seçin —</option>
           </select>
         </div>
       </div>
-      <button type="button" id="sorgu-btn" class="sorgu-btn">Analiz Et</button>
+      <button type="button" id="sorgu-btn" class="sorgu-btn">Göster</button>
     </form>
     <p class="not" style="margin-top:0.4rem" id="ilce-sayisi"></p>
   </Katman>
 
   <div id="analiz-sonuc" style="display:none">
-    <Katman baslik="Potansiyeli Yüksek Alanlar" ipucu="ilçe düz arazi ve vadi tabanı oranından">
-      <p class="alan-metin" id="potansiyel-alanlar"></p>
-      <p class="not" style="margin-top:0.8rem">Bu liste yalnız ilçe düz arazi ve vadi tabanı oranlarından türetilmiştir; bu oranlar il düzeyindeki Copernicus GLO-90 DEM verisinden ilçe adına bağlı deterministik varyasyonla üretilmiştir, gerçek ilçe ölçümü DEĞİLDİR. Saha etudu veya hidrojeolojik rapor YERINE GECMEZ.</p>
-    </Katman>
+    <p class="not" id="ilce-notu"></p>
     <Katman baslik="Yetkili Kurum" ipucu="DSİ bölge · su idaresi"><dl class="kunye kunye-katman"><div class="kunye-satir"><dt>DSİ Bölge(ler)</dt><dd id="dsi-bolge"></dd></div><div class="kunye-satir"><dt>Su idaresi</dt><dd id="su-idaresi"></dd></div></dl></Katman>
-    <Katman baslik="Arazi Yapısı" ipucu="il düzeyi Copernicus GLO-90 DEM'den türetilmiş — ilçe ölçümü değildir"><dl class="kunye kunye-katman"><div class="kunye-satir"><dt>Düz arazi (&lt;%2 eğim)</dt><dd id="morf-duz"></dd></div><div class="kunye-satir"><dt>Vadi tabanı</dt><dd id="morf-vadi"></dd></div><div class="kunye-satir"><dt>Ortalama eğim</dt><dd id="morf-egim"></dd></div></dl></Katman>
-    <Katman baslik="Su Potansiyeli Verileri" ipucu="NHYP · DSİ · Resmî Gazete · OSM"><div class="potansiyel-ozet" id="potansiyel-kartlar"></div></Katman>
+    <Katman baslik="Yeraltı Suyu Kütleleri" ipucu="NHYP · il ile eşleşen kütleler · miktar ve kimyasal durum"><div id="kutle-liste"></div></Katman>
+    <Katman baslik="Resmî Gazete İşletme Sahası ve Kapatma Kayıtları" ipucu="il ile eşlenmiş kayıtlar · resmî bağlantı"><div id="rg-liste"></div></Katman>
+    <Katman baslik="Açık Erişim Yayınlar" ipucu="OpenAlex · il ve su konulu künyeler"><div id="akademik-liste"></div></Katman>
     <Katman baslik="Su Hukuku ve Ruhsat Süreçleri" ipucu="kuyu ruhsatı · DSİ kısıtları · idari yaptırım" ton="kehribar">
       <div class="hukuk-yonlendirme">
         <p class="hukuk-yon-metin" id="hukuk-yon-metin"></p>
-        <div class="hukuk-yon-links"><a href="/rehberler/kuyu-ruhsati/" class="hukuk-link hukuk-link-ana">Kuyu Ruhsatı Başvuru Süreci</a><a href="/rehberler/ruhsatsiz-kuyu-cezalari/" class="hukuk-link">Ruhsatsız Kuyu Cezaları</a></div>
+        <div class="hukuk-yon-links"><a href="/rehberler/kuyu-ruhsati/" class="hukuk-link hukuk-link-ana">Kuyu Ruhsatı Başvuru Süreci</a><a href="/rehberler/ruhsatsiz-kuyu-cezalari/" class="hukuk-link">Ruhsatsız Kuyu Cezaları</a><a id="il-sayfa-link" href="/kuyu-ruhsati/" class="hukuk-link">İl sayfası</a></div>
       </div>
     </Katman>
-
-    {/* 24.08: B2B satış banner'ı KALDIRILDI (PayTR mağazası kapandı);
-        yerine mevcut mailto CTA deseni (SonrakiAdim ile aynı metin) — fiyat,
-        ödeme ve yeni vaat YOK. */}
     <p class="ilce-temas">
-      <a href={`mailto:${EPOSTA}?subject=${encodeURIComponent('Su hukuku — ilçe sorgusu üzerinden')}`}>Bu konuda görüş alın</a>
+      <a href={`mailto:${EPOSTA}?subject=${encodeURIComponent('Su hukuku — il sorgusu üzerinden')}`}>Bu konuda görüş alın</a>
       <span> — hukuki içerik {YAZAR.buro} tarafından hazırlanır ({EPOSTA}).</span>
     </p>
   </div>
-
   <div id="analiz-bos">
-    <Katman baslik="Nasıl Kullanılır?" ipucu="3 adımda su potansiyeli analizi">
+    <Katman baslik="Nasıl Kullanılır?" ipucu="2 adımda il verisi">
       <div class="kullanim-grid">
-        <div class="kullanim-adim"><strong>1. İl seçin</strong><p>81 ilden birini seçerek il düzeyinde arazi morfolojisi ve su potansiyeli analizini görüntüleyin.</p></div>
-        <div class="kullanim-adim"><strong>2. İlçe seçin</strong><p>İlçe seçimiyle daha yerel analiz alın. Potansiyeli yüksek alanlar gösterilir.</p></div>
-        <div class="kullanim-adim"><strong>3. Analiz Et</strong><p>Düğmeye tıklayın; sonuç sayfa yenilenmeden anında karşınıza gelsin.</p></div>
+        <div class="kullanim-adim"><strong>1. İl seçin</strong><p>81 ilden birini seçin; ildeki yeraltı suyu kütleleri, Resmî Gazete kayıtları ve yayınlar listelenir.</p></div>
+        <div class="kullanim-adim"><strong>2. İlçe (isteğe bağlı)</strong><p>İlçe seçimi konumu netleştirir; ilçe düzeyinde ayrı veri yoktur, il verisi gösterilir.</p></div>
       </div>
     </Katman>
   </div>
-
   <Katman baslik="Kapsam ve Uyarı" ton="murekkep" ipucu="veri kaynakları · sınırlar">
     <p class="not">Bu araç resmî kaynaklardan derlenen açık verileri sunar; hukuki görüş, yatırım tavsiyesi veya saha etüdü raporu NİTELİĞİ TAŞIMAZ.</p>
-    <p class="not">Veri kaynakları: SYGM NHYP (YAS kütleleri), DSİ bölge dizini, Resmî Gazete işletme sahaları, OSM (ODbL) su noktaları, Copernicus GLO-90 DEM (arazi morfolojisi). Tüm veri TEMSİLÎDİR.</p>
-    <p class="not">İlçe düzeyindeki düz arazi ve vadi tabanı oranları ölçüm DEĞİLDİR: il düzeyindeki Copernicus GLO-90 DEM verisinden ilçe adına bağlı deterministik varyasyonla (±%15) türetilmiştir. Ortalama eğim 948 ilçenin tamamında hesaplanmamıştır.</p>
+    <p class="not">Veri kaynakları: SYGM NHYP (yeraltı suyu kütleleri; il eşlemesi kütle çokgeni ile il sınırının kesişiminden), DSİ bölge dizini, Resmî Gazete işletme sahası ve kapatma ilanları, OpenAlex (açık erişim yayın künyeleri).</p>
+    <p class="not">10.10.2026: önceki sürümdeki ilçe "düz arazi / vadi tabanı" oranları il verisinden türetilmiş sentetik değerlerdi; kaldırıldı. Burada yalnız kaynağı gösterilen gerçek veri vardır.</p>
   </Katman>
-
-  {/* 27.08 denetimi K9: hukuki şerh (kullanıcı onaylı) */}
   <HukukSerhi />
 <script slot="ek-script" type="application/json" id="veri-paketi" set:html={VERI}></script>
 <script slot="ek-script">
 document.addEventListener('DOMContentLoaded', () => {
-
-  // ── VERİ YÜKLEME ──
   const ve = document.getElementById('veri-paketi');
-  if (!ve) { console.error('[ilce-sorgu] veri-paketi bulunamadi'); return; }
+  if (!ve) return;
   let IDX;
   try { IDX = JSON.parse(ve.textContent); } catch (e) { console.error('[ilce-sorgu] JSON parse hatasi:', e); return; }
-
-  // ── DOM REFERANSLARI ──
   const G = (id) => document.getElementById(id);
-  const ilSel = G('il-sec');
-  const icSel = G('ilce-sec');
-  const btn   = G('sorgu-btn');
-  const frm   = G('sorgu-form');
-  const sonuc = G('analiz-sonuc');
-  const bos   = G('analiz-bos');
-  const sayiP = G('ilce-sayisi');
-
-  if (!ilSel || !icSel || !btn || !sonuc || !bos) {
-    console.error('[ilce-sorgu] DOM eksik:', { il:!!ilSel, ic:!!icSel, btn:!!btn, sonuc:!!sonuc, bos:!!bos });
-    return;
-  }
-
-  const fmt = (n, o) => n?.toLocaleString?.('tr-TR', { minimumFractionDigits: o, maximumFractionDigits: o }) ?? String(n);
-
-  // ── YARDIMCI: tum cikti alanlarini temizle ──
-  const CIKTI_ALANLARI = ['potansiyel-alanlar','dsi-bolge','su-idaresi','morf-duz','morf-vadi','morf-egim','potansiyel-kartlar','hukuk-yon-metin'];
-  function tumunuTemizle() {
-    for (const id of CIKTI_ALANLARI) { const el = G(id); if (el) el.textContent = el.innerHTML = ''; }
-    sonuc.style.display = 'none';
-    bos.style.display = '';
-  }
-
-  // ── getData(ilSlug, ilceSlug) → direk ilce slug lookup ──
-  function getData(ilSlug, icSlug) {
-    const ilKayit = IDX[ilSlug];
-    if (!ilKayit) { console.warn('[getData] il bulunamadi:', ilSlug); return null; }
-    const icKayit = ilKayit.ilceler.find(c => c.slug === icSlug);
-    if (!icKayit) { console.warn('[getData] ilce bulunamadi:', icSlug, 'ilceler:', ilKayit.ilceler.map(c=>c.slug).slice(0,5)); return null; }
-    // ilce duzeyinde morfoloji dogrudan icKayit icinde
-    return {
-      ilAd: ilKayit.ad,
-      ilceAd: icKayit.ad,
-      duz_oran: icKayit.duz_oran || 0,
-      vadi_oran: icKayit.vadi_oran || 0,
-      ort_egim: icKayit.ort_egim ?? null,
-      kutle: ilKayit.potansiyel.kutle || 0,
-      rg: ilKayit.potansiyel.rg || 0,
-      osm: ilKayit.potansiyel.osm || 0,
-      dsi: ilKayit.profil.dsi || '',
-      suIdare: ilKayit.suIdare || '',
-    };
-  }
-
-  // ── FORM SUBMİT ENGELLEME ──
+  const ilSel = G('il-sec'), icSel = G('ilce-sec'), btn = G('sorgu-btn'), frm = G('sorgu-form');
+  const sonuc = G('analiz-sonuc'), bos = G('analiz-bos'), sayiP = G('ilce-sayisi');
+  if (!ilSel || !icSel || !btn || !sonuc || !bos) return;
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+  const setT = (id, v) => { const e = G(id); if (e) e.textContent = v; };
+  const setH = (id, v) => { const e = G(id); if (e) e.innerHTML = v; };
+  function temizle() { ['ilce-notu','dsi-bolge','su-idaresi','kutle-liste','rg-liste','akademik-liste','hukuk-yon-metin'].forEach((id) => { const e = G(id); if (e) e.innerHTML = ''; }); sonuc.style.display = 'none'; bos.style.display = ''; }
   frm.addEventListener('submit', (e) => { e.preventDefault(); return false; });
-
-  // ── IL DEĞİŞİMİ → ilce'yi flush, sonuclari gizle ──
   ilSel.addEventListener('change', () => {
-    const ilSlug = ilSel.value;
-    tumunuTemizle();
-    icSel.innerHTML = '';
-    icSel.disabled = true;
-
-    if (!ilSlug || !IDX[ilSlug]) {
-      icSel.appendChild(new Option('— Önce il seçin —', ''));
-      if (sayiP) sayiP.textContent = '';
-      try { const u = new URL(window.location); u.searchParams.delete('il'); u.searchParams.delete('ilce'); history.replaceState(null,'',u); } catch(e){}
-      return;
-    }
-
-    const kayit = IDX[ilSlug];
-    icSel.appendChild(new Option('— İlçe seçiniz —', ''));
-    try {
-      for (const ic of kayit.ilceler) {
-        const o = document.createElement('option');
-        o.value = ic.slug;
-        o.textContent = ic.ad;
-        icSel.appendChild(o);
-      }
-      icSel.disabled = false;
-      if (sayiP && kayit.ilceler.length)
-        sayiP.textContent = kayit.ad + ' ilinde ' + kayit.ilceler.length + ' ilçe bulunmaktadır. İlçe seçip "Analiz Et"e tıklayın.';
-    } catch (e) {
-      console.error('[ilce-sorgu] ilce doldurma hatasi:', e);
-      icSel.innerHTML = '';
-      icSel.appendChild(new Option('— Hata —', ''));
-    }
-
-    try { const u = new URL(window.location); u.searchParams.set('il', ilSlug); u.searchParams.delete('ilce'); history.replaceState(null,'',u); } catch(e){}
+    const ilSlug = ilSel.value; temizle(); icSel.innerHTML = ''; icSel.disabled = true;
+    if (!ilSlug || !IDX[ilSlug]) { icSel.appendChild(new Option('— Önce il seçin —', '')); if (sayiP) sayiP.textContent = ''; return; }
+    const k = IDX[ilSlug];
+    icSel.appendChild(new Option('— İlçe (isteğe bağlı) —', ''));
+    for (const ic of k.ilceler) icSel.appendChild(new Option(ic.ad, ic.slug));
+    icSel.disabled = false;
+    if (sayiP) sayiP.textContent = k.ad + ' ilinde ' + k.ilceler.length + ' ilçe. "Göster"e tıklayın ya da ilçe seçin.';
+    try { const u = new URL(window.location); u.searchParams.set('il', ilSlug); u.searchParams.delete('ilce'); history.replaceState(null, '', u); } catch (e) {}
   });
-
-  // ── ANALİZ ET ──
-  function analizEt() {
-    // ANLIK DEGER OKUMA — asla global state/cache
-    const ilSlug = ilSel.value;
-    const icSlug = icSel.value;
-    if (!ilSlug || !icSlug) { alert('Lütfen hem il hem de ilçe seçiniz.'); return; }
-
-    const d = getData(ilSlug, icSlug);
-    if (!d) { alert('Seçilen il/ilçe için veri bulunamadı.'); return; }
-
-    const duz = d.duz_oran, vadi = d.vadi_oran, egim = d.ort_egim;
-
-    // Tum ciktilari once temizle, sonra yaz
-    tumunuTemizle();
-
-    const setT = (id,v) => { const e=G(id); if(e) e.textContent = v; };
-    const setH = (id,v) => { const e=G(id); if(e) e.innerHTML = v; };
-
-    const yk = [];
-    if (duz>.3) yk.push('düzlük alanlar');
-    if (vadi>.15) yk.push('dere yatakları');
-    if (egim != null && egim<5) yk.push('eğimin %5\'in altında olduğu alçak araziler');
-    setT('potansiyel-alanlar', yk.length
-      ? d.ilceAd+' ilçesinde düz arazi ve vadi tabanı oranı en yüksek kesimler: '+yk.join(', ')+'.'
-      : d.ilceAd+' ilçesinde düz arazi ve vadi tabanı oranları eşiklerin altında — belirgin kesim yok.');
-
-    setT('dsi-bolge', d.dsi||'veri yok');
-    setT('su-idaresi', d.suIdare||'Il Ozel Idaresi / belediye');
-    setT('morf-duz', fmt(duz*100,1)+'%');
-    setT('morf-vadi', fmt(vadi*100,1)+'%');
-    setT('morf-egim', egim == null ? 'veri yok' : fmt(egim,1)+'°');
-
-    let kh = '';
-    if (d.kutle>0) kh += '<div class="metrik-kart"><span class="metrik-deger">'+d.kutle+'</span><span class="metrik-etiket">YAS kutlesi</span></div>';
-    if (d.rg>0) kh += '<div class="metrik-kart"><span class="metrik-deger">'+d.rg+'</span><span class="metrik-etiket">RG isletme sahasi</span></div>';
-    if (d.osm>0) kh += '<div class="metrik-kart"><span class="metrik-deger">'+fmt(d.osm,0)+'</span><span class="metrik-etiket">OSM su kaynagi</span></div>';
-    setH('potansiyel-kartlar', kh || '<p class="not">Bu il icin henuz NHYP/RG/OSM verisi islenmemistir.</p>');
-
-    const lok = d.ilAd+' / '+d.ilceAd;
-    setH('hukuk-yon-metin','<strong>'+lok+'</strong> bölgesinde kuyu açma ruhsatı, DSİ mesafe kısıtlamaları, idari yaptırım süreçleri ve ceza itiraz haklarınız hakkında detaylı bilgi için aşağıdaki rehberleri inceleyin:');
-
-
-    bos.style.display = 'none';
-    sonuc.style.display = 'block';
-    sonuc.classList.remove('hidden');
-    sonuc.scrollIntoView({ behavior:'smooth', block:'start' });
-
-    try { const u = new URL(window.location); u.searchParams.set('il',ilSlug); u.searchParams.set('ilce',icSlug); history.pushState({},'',u); } catch(e){}
+  function goster() {
+    const ilSlug = ilSel.value, icSlug = icSel.value;
+    const k = IDX[ilSlug]; if (!k) { alert('Lütfen il seçiniz.'); return; }
+    const ic = k.ilceler.find((c) => c.slug === icSlug);
+    temizle();
+    setT('ilce-notu', ic ? (ic.ad + ' ilçesi için ayrı veri yoktur; ' + k.ad + ' ili verisi gösteriliyor.') : (k.ad + ' ili verisi.'));
+    setT('dsi-bolge', k.dsi || 'veri yok'); setT('su-idaresi', k.suIdare || 'İl özel idaresi / belediye (büyükşehir dışı)');
+    setH('kutle-liste', k.kutleler.length ? '<ul class="veri-liste">' + k.kutleler.map((x) => '<li><strong>' + esc(x.ad) + '</strong> <span class="kod">' + esc(x.kod) + '</span> · ' + esc(x.havza || '') + ' · miktar: ' + esc(x.miktar || 'veri yok') + ' · kimyasal: ' + esc(x.kimyasal || 'veri yok') + (x.cokIlli ? ' · çok illi kütle (' + esc(x.cokIlli.join(', ')) + ')' : '') + '</li>').join('') + '</ul>' : '<p class="not">Bu il ile eşleşen yeraltı suyu kütlesi kaydı yok (NHYP il eşlemesi).</p>');
+    setH('rg-liste', k.rg.length ? '<ul class="veri-liste">' + k.rg.map((r) => '<li>' + (r.tarih ? '<span class="kod">' + esc(r.tarih) + '</span> · ' : '') + esc(r.metin) + (r.durum ? ' · <em>' + esc(r.durum) + '</em>' : '') + (r.url ? ' · <a href="' + esc(r.url) + '" rel="noopener" target="_blank">Resmî Gazete</a>' : '') + '</li>').join('') + '</ul>' : '<p class="not">Bu il ile eşlenmiş Resmî Gazete işletme sahası / kapatma kaydı yok.</p>');
+    setH('akademik-liste', k.akademik.length ? '<ul class="veri-liste">' + k.akademik.map((a) => '<li>' + esc(a.baslik) + (a.yil ? ' (' + esc(a.yil) + ')' : '') + (a.doi ? ' · <a href="' + esc(a.doi) + '" rel="noopener" target="_blank">yayın</a>' : '') + '</li>').join('') + '</ul>' : '<p class="not">' + esc(k.akademikNot || 'Bu il için su konulu açık erişim yayın künyesi bulunamadı.') + '</p>');
+    setH('hukuk-yon-metin', '<strong>' + esc(k.ad + (ic ? ' / ' + ic.ad : '')) + '</strong> için kuyu ruhsatı, DSİ kısıtları ve idari yaptırım süreçleri hakkında rehberler ve il sayfası:');
+    const l = G('il-sayfa-link'); if (l) { l.href = '/kuyu-ruhsati/' + k.slug + '/'; l.textContent = k.ad + ' kuyu ruhsatı sayfası'; }
+    bos.style.display = 'none'; sonuc.style.display = 'block'; sonuc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    try { const u = new URL(window.location); u.searchParams.set('il', ilSlug); if (icSlug) u.searchParams.set('ilce', icSlug); else u.searchParams.delete('ilce'); history.pushState({}, '', u); } catch (e) {}
   }
-
-  // ── EVENT: Analiz Et butonu ──
-  btn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); analizEt(); return false; });
-
-  // ── EVENT: ilce secimi → otomatik analiz ──
-  icSel.addEventListener('change', () => { if (icSel.value && ilSel.value) analizEt(); });
-
+  btn.addEventListener('click', (e) => { e.preventDefault(); goster(); });
+  icSel.addEventListener('change', () => { if (ilSel.value) goster(); });
+  try { const u = new URL(window.location); const il = u.searchParams.get('il'); if (il && IDX[il]) { ilSel.value = il; ilSel.dispatchEvent(new Event('change')); const ic = u.searchParams.get('ilce'); if (ic) icSel.value = ic; goster(); } } catch (e) {}
 });
 </script>
 </Sayfa>
-
 <style>
+  .veri-liste { margin: 0; padding-left: 1.1rem; font-size: 0.9rem; line-height: 1.55; }
+  .veri-liste li { margin: 0.35rem 0; }
+  .kod { font-family: var(--mono); font-size: 0.72rem; color: var(--metin-soluk); }
   .sorgu-form { margin: 1rem 0; }
   .sorgu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
   .saha-etiket { display: block; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--metin-soluk); margin-bottom: 0.3rem; }

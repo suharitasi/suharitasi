@@ -106,6 +106,7 @@ export function golTurSerhi(gol) {
   return null;
 }
 
+const JENERIK_ADLAR = new Set(['baraj gölü', 'gölet', 'göl', 'baraj', 'gölü', 'nehir', 'çay', 'dere', 'ırmak']);
 function insaEt(features, onek) {
   const seen = new Set();
 /** K11 (27.08.2026): OSM `name` alanı sınır sularında ÇOK DİLLİ gelir
@@ -139,7 +140,18 @@ function gorunenAd(ham) {
     const p = f.properties;
     const b = f.bbox || [0, 0, 0, 0];
     const cografya = cografyaEsle(f.geometry);
-    if (!cografya.turkiyede) { elenen.push({ ad: p.ad, kaynak: p.kaynak }); continue; }
+    if (!cografya.turkiyede) { elenen.push({ ad: p.ad, kaynak: p.kaynak, neden: 'Türkiye dışı' }); continue; }
+    // 10.10.2026 (brif 1.11): adı olmayan, Latin harf içermeyen (Arap/Kiril/Yunan/Ermeni
+    // yazımlı sınır suları) ve yalnız jenerik ad taşıyan ("Baraj Gölü", "Gölet") ya da
+    // göl olmayan ("… Springs") kayıtlar YAYINDAN ÇEKİLİR — ad uydurulmaz, kaynak dosyaya
+    // dokunulmaz; elenenler /kullanilanlar şerhinde sayılır.
+    const gorunen = gorunenAd(p.ad);
+    const latinVar = /[A-Za-zÇĞİIÖŞÜçğıiöşü]/u.test(String(gorunen ?? ''));
+    const jenerik = JENERIK_ADLAR.has(String(gorunen ?? '').trim().toLocaleLowerCase('tr'));
+    if (!String(p.ad ?? '').trim()) { elenen.push({ ad: p.ad, kaynak: p.kaynak, neden: 'adsız kayıt' }); continue; }
+    if (!latinVar) { elenen.push({ ad: p.ad, kaynak: p.kaynak, neden: 'Türkçe/Latin ad yok (yabancı alfabe)' }); continue; }
+    if (jenerik) { elenen.push({ ad: p.ad, kaynak: p.kaynak, neden: 'yalnız jenerik ad; tesis belirlenemedi' }); continue; }
+    if (/\bsprings?\b/i.test(String(gorunen))) { elenen.push({ ad: p.ad, kaynak: p.kaynak, neden: 'kaynak/pınar kaydı, göl değil (OSM İngilizce etiket)' }); continue; }
     let slug = golNehirSlug(p.ad);
     if (slug === 'isimsiz') slug = `${onek}-${++adsiz}`;
     if (seen.has(slug)) { let i = 2; while (seen.has(`${slug}-${i}`)) i++; slug = `${slug}-${i}`; }
@@ -165,6 +177,16 @@ function gorunenAd(ham) {
       } : {}),
     });
   }
+  // Aynı görünen adı taşıyan birden çok kayıt (Gölcük, Acıgöl, Göksu…): başlığa il
+  // ya da havza eklenir — slug (adres) DEĞİŞMEZ, yalnız `ad` ayrışır (brif 1.11).
+  const adSayac = new Map();
+  for (const k of icinde) adSayac.set(k.ad, (adSayac.get(k.ad) ?? 0) + 1);
+  for (const k of icinde) {
+    if ((adSayac.get(k.ad) ?? 0) > 1) {
+      const ayrac = k.cografya.il?.ad ?? k.cografya.havzalar?.[0]?.ad ?? null;
+      if (ayrac) k.ad = `${k.ad} (${ayrac})`;
+    }
+  }
   return { icinde, elenen };
 }
 
@@ -183,7 +205,8 @@ export function elenenNehirler() { return nehirVeri().elenen; }
 /** Göl için özet metin (öz-cevap + meta description) — her parça VERİDEN. */
 export function golOzet(gol) {
   const tur = golTipi(gol);
-  const yer = gol.cografya.il ? `${gol.cografya.il.ad} ili sınırlarında ` : '';
+  const gIller = gol.cografya.iller ?? (gol.cografya.il ? [gol.cografya.il] : []);
+  const yer = gIller.length ? `${gIller.map((x) => x.ad).join(', ')} ${gIller.length > 1 ? 'illeri' : 'ili'} sınırlarında ` : '';
   const gövde = `${gol.ad}, ${yer}${tur.cekim}`;
   const alan = gol.alan_km2 != null
     ? `; yaklaşık ${gol.alan_km2.toLocaleString('tr-TR')} km² yüzey alanına sahiptir`
@@ -207,7 +230,8 @@ export function nehirOzet(nehir) {
       ? `${h[0].ad.replace(/\s*Havzası\s*$/, '')} Havzası'ndan geçen bir akarsudur`
       : `${h.map((x) => x.ad.replace(/\s*Havzası\s*$/, '')).join(', ')} havzalarından geçen bir akarsudur`;
   const il = nehir.cografya.il;
-  const ilMetni = il ? `; hattı ${il.ad} ili sınırlarından geçer` : '';
+  const nIller = nehir.cografya?.iller ?? (il ? [il] : []);
+  const ilMetni = nIller.length ? `; hattı ${nIller.map((x) => x.ad).join(', ')} ${nIller.length > 1 ? 'illerinden' : 'ili sınırlarından'} geçer` : '';
   // V6 (10.09.2026): topoloji cümlesi YALNIZ veride türetilmişse eklenir.
   // kolu → "… akarsuyunun önemli kollarından biridir"; dokuldugu (doğal göl)
   // → "… bölgesine dökülmektedir". Alan null ise cümle ÜRETİLMEZ.

@@ -25,6 +25,15 @@ const azalan = graceVar
   .sort((a: any, b: any) => a.grace.egilim_aylik_cm - b.grace.egilim_aylik_cm)
   .slice(0, 6);
 
+const AY_ADI = ['', 'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+const ayMetni = (ym: string) => { const [y, m] = String(ym || '').split('-'); return m ? `${AY_ADI[Number(m)]} ${y}` : ym; };
+const graceSonOlcum = graceVar[0]?.grace?.son_gozlem ?? '';
+const graceUfukAy = graceVar[0]?.grace?.projeksiyon?.[5]?.ay ?? '';
+const uretimAy = String(tahmin.uretim || '').slice(0, 7);
+const ufukGecmiste = graceUfukAy && uretimAy && graceUfukAy < uretimAy;
+const barajSonGozlem = barajVar[0]?.baraj?.son_gozlem ?? '';
+const barajPencere = barajVar[0]?.baraj?.pencere_gun ?? 60;
+const kirpilanVar = barajVar.some((k: any) => (k.baraj.projeksiyon.find((p: any) => p.gun === 30) ?? {}).kirpildi);
 const OZ_CEVAP =
   `Bu sayfa ölçüm değil, istatistiksel tahmindir: ${graceVar.length} havza için ` +
   `uydu ölçümlerine dayalı 6 aylık su değişimi (son uydu ölçümü ${ayMetni(graceSonOlcum)}), ${barajVar.length} havza için son ` +
@@ -52,15 +61,6 @@ const sema = [
   },
 ];
 const isaret = (v: number) => (v > 0 ? '+' : '');
-const AY_ADI = ['', 'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
-const ayMetni = (ym: string) => { const [y, m] = String(ym || '').split('-'); return m ? `${AY_ADI[Number(m)]} ${y}` : ym; };
-const graceSonOlcum = graceVar[0]?.grace?.son_gozlem ?? '';
-const graceUfukAy = graceVar[0]?.grace?.projeksiyon?.[5]?.ay ?? '';
-const uretimAy = String(tahmin.uretim || '').slice(0, 7);
-const ufukGecmiste = graceUfukAy && uretimAy && graceUfukAy < uretimAy;
-const barajSonGozlem = barajVar[0]?.baraj?.son_gozlem ?? '';
-const barajPencere = barajVar[0]?.baraj?.pencere_gun ?? 60;
-const kirpilanVar = barajVar.some((k: any) => (k.baraj.projeksiyon.find((p: any) => p.gun === 30) ?? {}).kirpildi);
 ---
 <Sayfa
   baslik="Tahminsel analitik: havza su projeksiyonu"

@@ -262,8 +262,8 @@
   {
    "sira": 7,
    "hamKod": "24.20",
-   "aciklama": "ımalatı",
-   "guven": "dogrulandi",
+   "aciklama": "NACE 24.20 — açıklama kaynak taramasında (Ek-2 OCR) okunamadı",
+   "guven": "ocr-okunamadi",
    "kod": "24.20"
   },
   {
@@ -290,7 +290,7 @@
   {
    "sira": 18,
    "hamKod": "10.20",
-   "aciklama": "saklanması",
+   "aciklama": "Balık, kabuklu deniz hayvanları ve yumuşakçaların işlenmesi ve saklanması",
    "guven": "dogrulandi",
    "kod": "10.20"
   },
@@ -304,8 +304,8 @@
   {
    "sira": 21,
    "hamKod": "10.39",
-   "aciklama": "Başka yerde sınıflandırılmamış meyve ve sebzelerin işlenmesi ve",
-   "guven": "dogrulandi",
+   "aciklama": "Başka yerde sınıflandırılmamış meyve ve sebzelerin işlenmesi ve i saklanması",
+   "guven": "ocr-tamamlandi",
    "kod": "10.39"
   },
   {
@@ -348,7 +348,7 @@
    "hamKod": "1041",
    "aciklama": "Sıvı ve katı yağ imalatı",
    "guven": "dogrulanmadi",
-   "kod": null
+   "kod": "10.41"
   },
   {
    "sira": 30,
@@ -418,7 +418,7 @@
    "hamKod": "1107",
    "aciklama": "Alkolsüz içeceklerin imalatı; maden sularının ve diğer şişelenmiş suların",
    "guven": "dogrulanmadi",
-   "kod": null
+   "kod": "11.07"
   },
   {
    "sira": 42,
@@ -451,9 +451,9 @@
   {
    "sira": 48,
    "hamKod": "1395",
-   "aciklama": "Dokusuz kumaşların ve dokusuz kumaştan yapılan ürünlerin imalatı,",
-   "guven": "dogrulanmadi",
-   "kod": null
+   "aciklama": "Dokusuz kumaşların ve dokusuz kumaştan yapılan ürünlerin imalatı, giyim eşyası hariç",
+   "guven": "ocr-tamamlandi",
+   "kod": "13.95"
   },
   {
    "sira": 50,
@@ -486,8 +486,8 @@
   {
    "sira": 59,
    "hamKod": "16.29",
-   "aciklama": "talan. 1",
-   "guven": "dogrulandi",
+   "aciklama": "NACE 16.29 — açıklama kaynak taramasında (Ek-2 OCR) okunamadı",
+   "guven": "ocr-okunamadi",
    "kod": "16.29"
   },
   {
@@ -655,8 +655,8 @@
    "sira": 95,
    "hamKod": "2399",
    "aciklama": "Başka yerde sınıflandırılmamış metalik olmayan diğer mineral ürünlerin",
-   "guven": "dogrulanmadi",
-   "kod": null
+   "guven": "ocr-kismi",
+   "kod": "23.99"
   },
   {
    "sira": 96,
@@ -670,7 +670,7 @@
    "hamKod": "2431",
    "aciklama": "Barların soğuk çekilmesi",
    "guven": "dogrulanmadi",
-   "kod": null
+   "kod": "24.31"
   },
   {
    "sira": 99,
@@ -717,21 +717,21 @@
   {
    "sira": 108,
    "hamKod": "2591",
-   "aciklama": "Merkezi ısıtma radyatörleri (elektrikli radyatörler hariç) ve sıcak su",
-   "guven": "dogrulanmadi",
-   "kod": null
+   "aciklama": "Merkezi ısıtma radyatörleri (elektrikli radyatörler hariç) ve sıcak su kazanları (boylerleri) imalatı",
+   "guven": "ocr-tamamlandi",
+   "kod": "25.91"
   },
   {
    "sira": 109,
    "hamKod": "75 30",
-   "aciklama": "Buhar jeneratörü imalatı, merkezi ısıtma sıcak su kazanları (boylerleri)",
-   "guven": "dogrulanmadi",
-   "kod": null
+   "aciklama": "Buhar jeneratörü imalatı, merkezi ısıtma sıcak su kazanları (boylerleri) hariç",
+   "guven": "ocr-tamamlandi",
+   "kod": "25.30"
   },
   {
    "sira": 110,
    "hamKod": "25.50",
-   "aciklama": "metalürjisi",
+   "aciklama": "Metallerin dövülmesi, preslenmesi, baskılanması ve yuvarlanması; toz metalürjisi",
    "guven": "dogrulandi",
    "kod": "25.50"
   },
@@ -868,5 +868,6 @@
    "guven": "dogrulandi",
    "kod": "29.32"
   }
- ]
+ ],
+ "duzeltme_notu": "10.10.2026: Ek-2 OCR ile satır satır karşılaştırıldı (brif 1.8); 10.20 ve 25.50 tamamlandı, 16.29 ve 24.20 kaynakta okunamadı diye işaretlendi, satır sonu kesilen açıklamalar devam satırıyla tamamlandı ya da \"ocr-kismi\" işaretlendi; eksik \"kod\" alanları hamKod rakamlarından türetildi."
 }
