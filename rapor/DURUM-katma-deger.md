@@ -73,7 +73,7 @@ Durum: **yapıldı** (kanıtlı) · **sürüyor** · **onay bekliyor** (hukuki y
 | A-b Süreler, 5326 m.27, 28 hücre | onay bekliyor | hayır | süre tablosu + tek hesap modülü (5 yüzey); 28 hücreden 18 resmî metinle dolduruldu, 13 doğrulanamadı (arama sürüyor); sihirbaza m.27/8 dalı; sayaçtaki 60-gün hatası düzeltildi |
 | A-c Tahsis sırası | onay bekliyor | hayır | rehber düzeltildi; m.7 ve Tüzük m.15 sayfaları rehbere bağlandı |
 | A-d Emsal | onay bekliyor | hayır | dizinde ve tüm dış yüzeylerde (veri/emsal.json, MCP, llms-full, uyum dosyası, iptal analizi, ana sayfa bandı) yalnız resmî sunucuda doğrulanan 20; 1 künye çelişkisi + 5 Yargıtay ayrı noindex sayfada; 3 rehber özeti karar metniyle çelişiyor (HUKUK-SORULARI) |
-| A-e Avukat ifadeleri listesi | başlanmadı | — | sonraki durakta sohbete |
+| A-e Avukat ifadeleri listesi | onay bekliyor | — | 17 ifade, güncel sayfa sayısı ve ikişer seçenek HUKUK-SORULARI'nda; hiçbiri değiştirilmedi; sihirbaz ön değerlendirme cümlesinde yargı yolu bulgusu |
 | A-f Lisans/form beyanları, sihirbaz KVKK kutusu | sürüyor | hayır | form beyanları + onay kutusu onaya; lisans beyanı sırada |
 | B Kapatma kayıtları il eşlemesi | yapıldı | hayır (önizleme) | Ergene ×3 notla; il sayıları tek kaynak (ölçüldü) |
 | C Büro bilgileri | sürüyor | hayır | baro/sicil, adres yok, e-posta tek; veri sorumlusu metni onaya |

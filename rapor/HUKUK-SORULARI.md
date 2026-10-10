@@ -205,3 +205,27 @@ Kişisel veri notu: Bir resmî karar metninde (8. D. 2018/6147) anonimleştirilm
 Tebliğ Aldım sihirbazının altındaki "Dilekçe taslağı ve canlı denetim" bileşeni süreyi kendi başına hesaplıyordu: her dosyayı 60 gün sayıyor, para cezası yolunu (5326 m.27/1, 15 gün) ve tatil uzamasını (2577 m.8) bilmiyor, süre geçtikten sonra "İYUK m. 11 uyarınca üst makama başvuru veya olağanüstü kanun yolları değerlendirilmelidir" diyordu. 2577 m.11/1 başvuruyu "idari dava açma süresi içinde" arar; süre sayacındaki aynı hata önceki turda düzeltilmişti. Dalda: bileşen artık sihirbazın tek süre modülünün hesapladığı son günleri kullanıyor; son 15 günde ve süre geçince yalnız yol adı + son gün + kalan gün yazıyor; m.11 ve "olağanüstü kanun yolları" cümlesi kaldırıldı (tarayıcıda 5 senaryo sınandı). Onayınıza:
 - Aynı bileşendeki "hasım tüzel kişiliği haiz 'DSİ Genel Müdürlüğü' olarak gösterilmelidir" uyarısı ve dilekçe ön taslağındaki hazır cümleler ("İşlemin sebep unsuru somut ve teknik dayanaktan yoksundur; mevcut belge/statü dikkate alınmamıştır.") resmî bir metne bağlı değil; değiştirilmedi.
 - Süre rozetindeki "Olağanüstü yollar değerlendirilmelidir." cümlesi e) listesinde; değiştirilmedi.
+
+## e) Avukat ifadeleri — durak listesi (sayım: 10.10.2026 dal derlemesi, 1.203 sayfa, görünür metin; mevzuat metinleri hariç). Hiçbiri değiştirilmedi.
+
+| # | İfade (nerede) | Sayfa | Seçenek 1 | Seçenek 2 |
+|---|---|---|---|---|
+| 1 | "İlk görüşme ücretsizdir" (ana sayfa iletişim) | 0 (10.10'da kaldırıldı, canlıda) | kaldırılmış kalsın | koşullarını sizin yazdığınız metin |
+| 2 | "en kısa sürede size dönelim" (ana sayfa iletişim) | 1 | "Mesajınıza dönüş yapılır." (süre yok) | kaldır |
+| 3 | "Arslan Hukuk Bürosu güvencesiyle" (alt bilgi) | 1.120 | "Arslan Hukuk Bürosu tarafından hazırlanır" | "Arslan Hukuk Bürosu" |
+| 4 | "Acil hukuki destek" (alt çubuk + çağrı kutusu başlığı) | 274 | "Hukuki destek" | "İletişim" |
+| 5 | "Acil durumunuz mu var? Süre kaybı hak kaybıdır. … erken adım sonucu değiştirir." (rehber çağrı kutusu) | 10–11 | "Süreler kısadır: para cezasına başvuru 15 gün, iptal davası 60 gün." (tek süre tablosundan, dayanaklı) | "Sorunuz için iletişim bilgileri aşağıda." |
+| 6 | "… erken adım hak kaybını önler" (il kuyu ruhsatı sayfaları) | 81 | 5'teki süre cümlesi | "{İl} için kuyu ruhsatı rehberi" (vaatsiz) |
+| 7 | "Somut durumunuz için hukuki değerlendirme" (danışmanlık kutusu) | 14 | olduğu gibi kalsın (vaat yok) | "İletişim" |
+| 8 | "… itiraz/dava yolunu ve süresini değerlendirelim" (hesaplayıcı çağrıları) | 7 | "… tebliğ tarihinizi ve fiili iletin." | olduğu gibi |
+| 9 | "Su hukuku ve yeraltı suyu mevzuatında uzmanlık · DSİ ve idari kurum süreçlerinde deneyim" (ana sayfa) | 1 | "Çalışma alanı: su hukuku ve yeraltı suyu mevzuatı" | kaldır |
+| 10 | "idari yargıda temsil" (ana sayfa hizmet kartı) | 1 | "idari yargıda vekillik" | olduğu gibi |
+| 11 | "tek çatı altında … su hukukunun tüm alanlarında yanınızdayız" (ana sayfa) | 1 | "Su hukukunun bu alanlarında çalışıyoruz." | kaldır |
+| 12 | "Suyun hukukunu bilen bir avukatla çalışın" (ana sayfa başlık) | 1 | "Su hukuku alanında çalışan büro" | kaldır |
+| 13 | "uzman değerlendirmesi" (hesaplayıcılar) | 3 | "avukat değerlendirmesi" | "hukukçu değerlendirmesi" |
+| 14 | "{İl} için parsel bazlı ön değerlendirme … teknik ön değerlendirme talebi oluşturun" (il yeraltı suyu sayfaları) ve "Ön Değerlendirme Başvurusu" (sihirbaz) | 84 + 1 | "{İl} için bilgi talebi" | olduğu gibi |
+| 15 | "Hızlı danışma" (alt çubuk düğmesi) | 1.122 | "Form" | "Yazılı danışma" |
+| 16 | "Olağanüstü yollar değerlendirilmelidir." (süre rozeti, süre geçince görünür) | 2 | "Süre dolmuş görünüyor; somut dosya avukatla değerlendirilmeli." | kaldır |
+| 17 | "an independent, source-cited portal" (/en/) | 1 | "run by Arslan Law Office" | "independent" kelimesi kalksın |
+
+Ayrıca (ifade değil, hukuki doğruluk): sihirbazdaki "Ön Değerlendirme" kutusunun ilk cümlesi (1 sayfa: /kuyu-karar-motoru/) "İdari para cezası, mühürleme ve ruhsat iptali işlemleri; 2577 sayılı İYUK uyarınca … yargı denetimine tabidir" diyor. 5326 m.27/1'e göre idari para cezasına karşı başvuru yeri sulh ceza hakimliğidir; idari yargı yalnız m.27/8 durumunda (aynı işlemde idari yargıya giren karar da varsa). Önerilen düzeltme: "Mühürleme ve ruhsat iptali gibi işlemlere karşı idari yargı yolu açıktır (2577 m.2); idari para cezasına karşı başvuru yeri kural olarak sulh ceza hakimliğidir (5326 m.27/1), aynı işlemde idari yargıya giren karar da varsa idare mahkemesidir (5326 m.27/8)." Değiştirilmedi; onayınıza.
