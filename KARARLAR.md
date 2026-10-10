@@ -1664,3 +1664,20 @@ seferlik işler GUNLUK.md'ye, açık işler SIRADAKILER.md'ye gider.
 - **Karar 7 — EN sürüm (ODUL-USTU "Retler"):** /en/ çeviri ve /en/data/ bu brifle açıldı.
 - **Karar 8 — §14 model ayrımı:** bu iş tek ajanla yürür; bağımsız inceleme ayrı alt ajanla yapılır.
 - **Kanıt:** sohbet 10.10.2026 ("1-A … 8-A. Başla."); `rapor/DURUM-katma-deger.md`.
+
+## §72 · DURAK 1 KARARLARI (10.10.2026, Av. Serdar Arslan) — katma değer brifi
+
+Birebir metin: `rapor/BRIF-katma-deger.md` → "DURAK 1 kararları". Özet (çelişkide birebir metin geçerlidir):
+- **Hemen uygulanan:** ana sayfa iletişim bölümündeki "İlk görüşme ücretsizdir" cümlesi kaldırıldı; main e6fb26e (10.10.2026).
+- **A-a Ceza:** her yerde kanun metnindeki tutar + 2026'da uygulanan tutar; 2009–2025 yeniden değerleme tebliğleri tek tek resmî kaynaktan, yıl yıl tablo (tebliğ no, RG tarihi, oran) ve yuvarlama kuralı resmî metinden; bir yıl eksikse 2026 tutarı yayımlanmaz ("doğrulanamadı" + eksik yıl). Hesaplayıcı, rehber, madde sayfası, su hukuku tablosu, sihirbaz, API tek tablodan; "son doğrulama" tarihi görünür. Hukuki onayla.
+- **A-b Süreler:** idari para cezası (sulh ceza, 15 gün) ile kuyu kapatma/belge iptali (idare mahkemesi, 60 gün) ekranda ayrı; aynı kararla verilme hâli 5326 m.27'nin tüm fıkralarından kontrol edilip sihirbaza ayrı dal önerilir; 28 boş hücreden resmî metinle doldurulan 11'i onaya, kalan 17 aranmaya devam, bulunamayan "doğrulanamadı". Gün hesabı kuralları yalnız resmî dayanakla.
+- **A-c Tahsis sırası:** "bağlayıcı sıra yok" cümlesi kalkar; Yön. m.7 (genel sular) ve Tüzük m.15 (yeraltı suyu) ayrı başlıkla; madde sayfaları ↔ rehber bağlı. Hukuki onayla.
+- **A-d Emsal:** dizinde yalnız Danıştay sunucusunda doğrulanan 11 karar; 8 ikincil + 7 kaynaksız "doğrulanamadı" sekmesinde, dizine kapalı, doğrulama sürer; doğrulanmamış atıflar kaldırılır ya da işaretlenir; karar sayfası yalnız 11'e.
+- **A-e Avukat ifadeleri:** şimdilik değişmez; sonraki durakta liste (ifade, sayfa sayısı, ≤2 seçenek).
+- **A-f Lisans/form beyanları:** düzeltilmiş metinler onaya; gizlilik metni her formu gerçek süresiyle sayar; sihirbaz gönderiminde zorunlu KVKK onay kutusu.
+- **B Kapatma kayıtları:** Ergene 1974 ve 1979 kararnamelerine il atanmaz ("Ergene havzası — il belirtilmemiş; sınır kararnamenin ekli haritasında" + RG künyesi ve bağlantısı); diğerleri kaynak metinde il adıyla doğrulanırsa eşlenir; il sayfası sayıları tek kaynaktan.
+- **C Büro bilgileri (brif 3.4, 3.5, 3.8 değişti):** İstanbul 2 No'lu Barosu, sicil 1560 (/hakkinda/ + Person/LegalService); adres hiçbir yerde yayımlanmaz; özgeçmiş/yayın, dönüş süresi ve ücret metni iptal (form sonrası ekran yalnız "talebiniz alındı" + hukuk@arslanhukuk.tr); veri sorumlusu metni belirlendi (onaya tabi); bütün e-posta adresleri hukuk@arslanhukuk.tr; telefon numarası değişmez, WhatsApp doğrudan sohbete; düzeltme politikası ve araç kullanımı beyanı taslağı onaya; Zenodo yazar "Serdar Arslan", tür veri seti — kaydı sahip günceller.
+- **D Araç adları:** "Kuyu Karar Motoru" → "Tebliğ Aldım: Süre ve İtiraz Yolu"; "Ceza Hesaplayıcısı" → "Kuyu Cezası ve Süreler"; "Su Nerede Çıkar?" → "Tarlamda Su Çıkar mı?" (her yerde; adres değişirse 301).
+- **E Depo/Zenodo:** lisans "tüm hakları saklı" (LICENSE + kısa README); görünürlüğe dokunulmaz; Zenodo için TR/EN kısıtlama talep metni ve iç belgesiz temiz arşiv hazırlanır, Zenodo'da hiçbir şey yayımlanmaz/değiştirilmez; depo gizlendikten sonraki ilk dağıtımda Cloudflare doğrulanır.
+- **F:** brif kalan her kalemde sürer; durum dosyasındaki kalem kalem tablo kesintisiz; sonraki durak ≤ 25 satır.
+- **Kanıt:** sohbet 10.10.2026 (DURAK 1 YANITI).

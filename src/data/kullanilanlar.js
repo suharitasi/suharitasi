@@ -43,7 +43,7 @@ const yasKutlesi = Object.values(kutleler.havzalar)
 const havzaPlani = Object.keys(kutleler.havzalar).length;
 
 const rgBaslik = oku('veri/potansiyel/isletme-sahalari.json').kayitlar;
-const rgEk = oku('veri/potansiyel/isletme-sahalari-ek.json').kayitlar;
+const rgEk = oku('veri/potansiyel/isletme-sahalari-v2.json').kayitlar; // 10.10.2026: yeniden ayrıştırılmış ilan kayıtları
 const rgKaydi = rgBaslik.length + rgEk.length;
 const rgSayiliKayit = [...rgBaslik, ...rgEk].filter((k) => k.rg_sayi).length;
 

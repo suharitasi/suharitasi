@@ -15,7 +15,7 @@ import HukukSerhi from '../../components/HukukSerhi.astro';
 import {
   KAYITLAR, TOPLAM, YIL_ILK, YIL_SON, YIL_DAGILIM, YIL_MAKS,
   IL_DAGILIM, IL_SAYISI, ILCE_SAYISI, ILLI_TOPLAM, ILLI_DEGIL,
-  SAYILI_TOPLAM, TEKIL_ILAN,
+  SAYILI_TOPLAM, TEKIL_ILAN, TEKIL_ILSIZ,
 } from '../../data/rg-zaman.js';
 import SayfaQr from '../../components/SayfaQr.astro';
 
@@ -116,10 +116,12 @@ const sema = [
     <li><strong>{SAYILI_TOPLAM}</strong> kayıtta gazete sayısı</li>
   </ul>
   <p class="rz-not">
-    {TOPLAM} ham kayıt {TEKIL_ILAN} tekil ilana karşılık gelir (aynı Resmî Gazete
-    sayısındaki tekrarlar mükerrersizleştirilmiştir). {ILLI_DEGIL} kayıtta il
-    eşlemesi yoktur; bunlar yalnız tarihle görünür. Bu arşiv bir “açık/kapalı”
-    sınıflaması üretmez; yalnız resmî ilanı gösterir.
+    {TOPLAM} ham kayıt (fihrist başlığı + ilan metni) {TEKIL_ILAN} tekil ilana karşılık gelir:
+    aynı Resmî Gazete sayısı ve aynı durum tek ilan sayılır; il sayıları tekil ilandan gelir.
+    İl, ilan metnindeki il adından ya da ilçe adının resmî ilçe–il dizinindeki karşılığından
+    alınır, tahmin edilmez. {ILLI_DEGIL} ham kaydın ({TEKIL_ILSIZ} tekil ilan) metninde il adı
+    geçmez; bunlar notuyla gösterilir. Bu arşiv bir “açık/kapalı” sınıflaması üretmez; yalnız
+    resmî ilanı gösterir.
   </p>
 
   <section class="rz-bolum" aria-label="Zaman cetveli">
@@ -189,6 +191,7 @@ const sema = [
           </div>
           <p class="rz-k-saha">{k.saha || 'Resmî Gazete ilan pasajı (başlıksız kayıt)'}</p>
           {yer && <p class="rz-k-yer">{yer}</p>}
+          {!k.il.length && <p class="rz-k-yer">{k.ilNotu || 'İl belirtilmemiş: ilan metninde il ya da ilçe adı yok (doğrulanamadı)'}</p>}
           <p class="rz-k-bag">
             <a href={k.kaynak} target="_blank" rel="noopener">Resmî Gazete kaydı →</a>
           </p>

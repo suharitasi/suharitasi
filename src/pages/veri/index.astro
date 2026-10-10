@@ -24,8 +24,7 @@ import emsalVeri from '../../../data/kamu/emsal-kararlar.json';
 import suIslemleri from '../../../data/kamu/su-islemleri.json';
 import hangiKapi from '../../../data/kamu/hangi-kapi.json';
 import suBirimleri from '../../../data/kamu/su-birimleri.json';
-import sahaAna from '../../../veri/potansiyel/isletme-sahalari.json';
-import sahaEk from '../../../veri/potansiyel/isletme-sahalari-ek.json';
+import { RG_BASLIK as sahaBaslikKayitlar, RG_ILAN as sahaEkKayitlar } from '../../data/rg-kaynak.js';
 
 const OZ_CEVAP =
   'Su Hukuku & Havza Bilgi Bankası: 81 ilin bağlı olduğu DSİ bölge müdürlüğü, ' +
@@ -50,7 +49,7 @@ for (const [no, h] of Object.entries(ilKurum.havzaIlleri)) {
 }
 
 // — Kısıt/işletme kayıtları (il başına sayı + son tarih) —
-const kisit = kisitNormalize(sahaAna.kayitlar, sahaEk.kayitlar);
+const kisit = kisitNormalize(sahaBaslikKayitlar, sahaEkKayitlar);
 const kisitPerIl = {};
 for (const r of kisit) {
   for (const il of r.il) {

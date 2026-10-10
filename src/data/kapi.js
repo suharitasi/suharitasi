@@ -10,7 +10,7 @@
 import yasKutleleri from '../../veri/potansiyel/yas-kutleleri.json';
 import kutleIl from '../../veri/potansiyel/kutle-il.json';
 import isletme from '../../veri/potansiyel/isletme-sahalari.json';
-import isletmeEk from '../../veri/potansiyel/isletme-sahalari-ek.json';
+import { RG_ILAN } from './rg-kaynak.js';
 import zengin from '../../veri/potansiyel/zenginlestirme.json';
 import morfoloji from '../../veri/potansiyel/morfoloji.json';
 import { yayinlananIller } from './il-profil.js';
@@ -35,9 +35,9 @@ const kutleIlKapsami = say(
 );
 
 // — 2. katman: Resmî Gazete işletme sahaları —
-const rgKayitlar = [...isletme.kayitlar, ...isletmeEk.kayitlar];
+const rgKayitlar = [...isletme.kayitlar, ...RG_ILAN];
 const rgBaslik = say(isletme.kayitlar.length, 'RG başlık kaydı');
-const rgPasaj = say(isletmeEk.kayitlar.length, 'RG pasaj kaydı');
+const rgPasaj = say(RG_ILAN.length, 'RG ilan kaydı');
 const rgToplam = rgBaslik + rgPasaj;
 // Tarih biçimi GG.AA.YYYY — dizge sıralaması YANLIŞ yıl verir (Faz 0 hatası),
 // bu yüzden yıl ayrıştırılıp sayısal karşılaştırılır.
@@ -88,7 +88,7 @@ const ilSayisi = say(iller.length, 'il sayfası');
 // (R3-Line5 komut-kipi kapanışı son cümlede zaten var; ek yapılmadı.)
 export const OZ_CEVAP =
   'Nerede su çıkar? Cevap il il, resmî veriyle: 12 havza planından 472 ' +
-  "yeraltı suyu kütlesi, 347'si il sınırına eşlendi. 1963'ten bu yana 419 " +
+  "yeraltı suyu kütlesi, 347'si il sınırına eşlendi. 1963'ten bu yana 289 " +
   'Resmî Gazete kaydı tarandı. İlinizi seçin.';
 {
   const beklenen = [
@@ -96,7 +96,10 @@ export const OZ_CEVAP =
     ['kütle', 472, kutleToplam],
     ['eşleşme', 347, kutleEslesti],
     ['ilk RG yılı', 1963, rgYilIlk],
-    ['RG kaydı', 419, rgToplam],
+    // 10.10.2026: 419 → 289 bilinçli güncelleme — ilan kayıtları kaynaktan yeniden ayrıştırıldı:
+    // ilgisiz ilanlardan toplanan pencereler ayıklandı, kaçan çoğul/"işletme alanı" kararnameleri
+    // eklendi (109 fihrist başlığı + 180 ilan metni; rapor/rg-il-eslemesi-20261010.md). Söz aynı.
+    ['RG kaydı', 289, rgToplam],
   ];
   for (const [ad, cumledeki, sayilan] of beklenen) {
     if (cumledeki !== sayilan) {

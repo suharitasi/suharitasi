@@ -6,7 +6,7 @@ import naceEk2 from '../../data/lead/nace-ek2.json';
 import personaVeri from '../../data/lead/persona.json';
 
 // — Doğrulanmış değerler (tek kaynak) —
-const RG_TOPLAM = SAYILAR.rgToplam;        // 419 (109 başlık + 310 pasaj)
+const RG_TOPLAM = SAYILAR.rgToplam;        // 289 (109 başlık + 180 ilan; 10.10.2026)
 const RG_YIL_ILK = SAYILAR.rgYilIlk;       // 1963
 const RG_YIL_SON = SAYILAR.rgYilSon;       // 2017
 const NACE_ANA = naceEk2.sayimlar.anaFaaliyet_toplam;        // 31

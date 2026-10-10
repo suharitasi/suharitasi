@@ -109,3 +109,47 @@ RAPOR
 rapor/RAPOR-katma-deger.md: okunan kural dosyaları; bulgu doğrulama tablosu; kalem kalem durum; kanıtlar; yapılamayanlar ve nedeni; sınanmayanlar; sudo ile yapılan her iş; görev dışı yapılan her iş (dış servise istek dahil); kullanıcıdan bekleyenler. Her DURAK'ta sohbete en çok 25 satır, sade Türkçe.
 
 BİTİNCE DUR. Başka işe başlama.
+
+---
+
+## DURAK 1 kararları (Av. Serdar Arslan, 10.10.2026 — sohbetten birebir)
+
+Ön not (aynı mesajın ilk satırı): "İlk görüşme ücretsizdir kısmı hemen kalksın" — main'e e6fb26e ile alındı (10.10.2026).
+
+DURAK 1 YANITI — Av. Serdar Arslan, 10.10.2026
+Bu yanıtı rapor/BRIF-katma-deger.md'ye "DURAK 1 kararları" başlığıyla ve KARARLAR.md'ye tarihli kayıt olarak işle. Ana brifin geri kalanı aynen geçerli; burada yazmayan her kalemde brif uygulanır. Çelişki görürsen dur ve sor.
+
+A. HUKUKİ SORULAR (rapor/HUKUK-SORULARI.md)
+a) Ceza tutarı: 3. seçenek. Her yerde iki bilgi birlikte: kanun metnindeki tutar ve 2026'da uygulanan tutar. 2009–2025 yeniden değerleme tebliğlerini resmî kaynaktan tek tek çek; birikimli hesabı yıl yıl tablo hâlinde, her yılın tebliğ numarası, Resmî Gazete tarihi ve oranıyla göster. Hesabın yuvarlama kuralını tebliğ ya da kanun metninden al ve yaz. Herhangi bir yılın tebliği bulunamazsa 2026 tutarını yayımlama; "doğrulanamadı" yaz, hangi yılın eksik olduğunu bildir. Hesaplayıcı, rehber, madde sayfası, su hukuku tablosu, sihirbaz ve API aynı tablodan beslensin; sayfalarda "son doğrulama" tarihi görünsün. Yayın hukuki onayla.
+b) Süreler: Evet, ekranda ayrılsın: idari para cezası (sulh ceza, tebliğden itibaren 15 gün) ve kuyu kapatma ile belge iptali (idare mahkemesi, 60 gün). Ayrıca, idari para cezası ile kapatma ya da iptal aynı kararla verildiğinde yargı yolunun değişip değişmediğini 5326 sayılı Kanun m.27'nin bütün fıkralarından ve ilgili diğer resmî metinlerden kontrol et; bulduğun hükmü maddesiyle HUKUK-SORULARI'na yaz ve sihirbaza bu durum için ayrı bir dal öner. 28 boş hücreden resmî metinle doldurabildiğin 11'i hukuki onaya gelsin; kalan 17 için aramaya devam et, bulunamayan "doğrulanamadı" kalır, boş bırakılmaz. Hesap günleri, tatil ve tebliğ tarihi kuralları (tebliğ tarihi sayılmaz, son gün tatile denk gelirse uzama gibi) yalnız resmî metne dayanıyorsa uygulanır; dayanağı yazılır.
+c) Tahsis sırası: rehberdeki "Yönetmelikte bağlayıcı sıra yok" cümlesi kalksın. Su Tahsisleri Yönetmeliği m.7 ile Yeraltı Suları Tüzüğü m.15 sıraları ayrı başlıkla, kapsamlarıyla (genel sular / yeraltı suyu) verilsin; madde sayfaları ve rehber birbirine bağlansın. Hukuki onayla.
+d) Emsal: yalnız resmî Danıştay sunucusunda doğrulanan 11 karar dizinde. İkincil kaynağa bağlı 8 ve kaynaksız 7 karar "doğrulanamadı" sekmesinde, dizine kapalı; her biri için doğrulama denemesini sürdür, doğrulananı listeye getir. Rehber ve madde sayfalarında doğrulanmamış karara atıf varsa kaldır ya da "doğrulanamadı" işaretiyle göster. Karar başına sayfa (brif 4.4) yalnız doğrulanan 11 için.
+e) Avukat ifadeleri: şimdilik DEĞİŞTİRME. Bir sonraki durakta sohbete kısa liste getir: her ifade, kaç sayfada geçtiği ve en çok iki sade seçenek. "İlk görüşme ücretsizdir" ve "en kısa sürede size dönelim" de bu listeye girer.
+f) Lisans beyanı ve form beyanları: düzeltilmiş metinleri hukuki onaya getir. Gizlilik metni her formu ayrı ayrı ve gerçek saklama süresiyle saysın (danışma 180, parsel talebi 365, takip ve alarm 730 gün; diğerlerini de ekle). Sihirbazdaki gönderim düğmesine zorunlu KVKK onay kutusu eklensin; metni onaya tabi.
+
+B. KAPATMA KAYITLARI
+Ergene 1974 ve 1979 kararnameleri: il atanmasın. "Ergene havzası — il belirtilmemiş; sınır kararnamenin ekli haritasında" diye gösterilsin, kararnamenin Resmî Gazete künyesi ve bağlantısıyla. Diğer 4 kayıt kaynak metinde il adıyla doğrulandıysa eşle; doğrulanamayan çıkarsa aynı biçimde göster ve listesini bana getir. İl sayfalarındaki kayıt sayıları bu eşlemeden ve tek kaynaktan gelsin.
+
+C. KİŞİSEL VE BÜRO BİLGİLERİ (brif 3.4, 3.5 ve 3.8 bu bölümle değişti)
+- Baro ve sicil: İstanbul 2 No'lu Barosu, sicil no 1560. /hakkinda/ sayfasında ve Person/LegalService yapılandırılmış verisinde yer alsın.
+- Adres: hiçbir yerde YAYIMLANMAZ. İletişim yalnız hukuk@arslanhukuk.tr. Sitede ya da yapılandırılmış veride adres varsa kaldır; adres alanı boş bırakılır, yer tutucu konmaz.
+- Özgeçmiş ve yayınlar: istenmiyor; brifteki bu kalem iptal. /hakkinda/ sayfasında özgeçmiş bölümü açılmaz.
+- Dönüş süresi ve ücret: hiçbir yerde metin yazılmaz; brifteki bu kalem iptal. Formların gönderim sonrası ekranı yalnız "talebiniz alındı" bilgisini ve iletişim adresini verir; süre ya da ücret vaadi içermez.
+- Veri sorumlusu (gizlilik metni): "Av. Serdar Arslan (Arslan Hukuk Bürosu), İstanbul 2 No'lu Barosu, sicil no 1560; iletişim: hukuk@arslanhukuk.tr". Metin hukuki onaya tabi.
+- E-posta: sitedeki bütün iletişim adreslerini tara; hepsi tam olarak hukuk@arslanhukuk.tr olmalı (/basin/ sayfasında farklı çözümlenen bir adres görülmüştü, doğrula).
+- Telefon ve WhatsApp: sitede bugün kullanılan numara aynen kalır; numarayı değiştirme. WhatsApp bağlantısı doğrudan sohbete gitsin (brif 3.5); "Acil hukuki destek" bloğunun metni e) kararını bekler.
+- Düzeltme politikası ve araç kullanımı beyanı: kişisel bilgi gerektirmez; taslakları hazırla, hukuki onaya getir.
+- Zenodo: yazar "Serdar Arslan", ORCID yok, tür "veri seti". Düzeltme metnini hazırla; kaydı ben güncelleyeceğim.
+
+D. ARAÇ ADLARI
+Onaylandı: "Kuyu Karar Motoru" → "Tebliğ Aldım: Süre ve İtiraz Yolu"; "Ceza Hesaplayıcısı" → "Kuyu Cezası ve Süreler"; "Su Nerede Çıkar?" → "Tarlamda Su Çıkar mı?". Menü, başlık, açıklama, alt bilgi, llms.txt, yapılandırılmış veri ve iç bağlantılarda eski adların tamamını değiştir; adresler değişiyorsa eskileri kalıcı yönlendir.
+
+E. DEPO VE ZENODO
+- Depo lisansı: tüm hakları saklı. LICENSE dosyasını buna göre yaz; README kısa olsun (proje adı, sahibi, iletişim). Depoyu gizlemeyi ben yapacağım; görünürlüğe dokunma.
+- Zenodo v1.0.0 arşivindeki 225 iç belge için: (1) Zenodo destek ekibine gönderilecek, arşiv dosyalarının kısıtlanmasını ya da kaldırılmasını isteyen kısa talep metnini Türkçe ve İngilizce hazırla; (2) iç belgeler hariç temiz bir veri arşivi hazırla ve yeni sürüm olarak yayımlanmaya hazır beklet. Zenodo'da hiçbir şey yayımlama ya da değiştirme; gönderim bende.
+- Depo gizlendikten sonra Cloudflare dağıtımının çalıştığını bir sonraki dağıtımda doğrula ve raporla.
+
+F. DEVAM
+- Yanıtladığım bu konular dışında brif aynen sürer; hukuki onay gerektirmeyen her işe devam et.
+- Model Fable 5.1'den Opus 5.5'e geçti; durum dosyasındaki kalem kalem tablo kesintisiz devam etsin, atlanan kalem olmasın. Her durakta tablonun güncel özetini ver.
+- Bir sonraki durakta sohbete en çok 25 satır: yapılanlar, hukuki onayıma gelen sayfalar (her biri tek satır: ne, hangi kaynağa dayanıyor), e) listesi, doğrulanamayanlar.

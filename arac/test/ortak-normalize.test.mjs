@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { pasajIlleri, kisitNormalize } from '../../src/data/ortak-normalize.js';
+import { pasajIlleri, kisitNormalize, rgGruplari } from '../../src/data/ortak-normalize.js';
 
 test('pasajIlleri: anahtar ifadeye yakın il kalır, uzak il düşer, OCR boşluklu ad eşleşir', () => {
   const pasaj = 'Hükümetimiz ile Afganistan Krallığı arasında vize anlaşması kararnamesi (Mersin, Niğde). '
@@ -52,4 +52,23 @@ test('gerçek veri (eski): başlık kayıtları düşmez; Konya kayıtları kal�
   const basliklar = ana.filter((r) => Array.isArray(r.il) && r.il.length).length;
   assert.ok(k.filter((r) => r.saha).length >= basliklar - 5, 'başlık kayıtları korunmalı');
   assert.ok(k.some((r) => r.il.includes('Konya') && /Cihanbeyli|Ereğli|Çumra/i.test(r.saha)));
+});
+
+test('rgGruplari: aynı gazete sayısı + aynı durum tek tekil ilandır; iller birleşir; il\'siz grup notunu taşır (10.10.2026)', () => {
+  const baslik = [{ saha_adi: 'Niğde ve Afyonda Bazı Yerlerin …', il: ['Niğde'], il_kaynagi: 'RG fihrist başlığı', durum: 'işletme sahası ilanı/değişikliği', rg_tarih: '26.09.1968', kaynak_url: 'u1' }];
+  const ilan = [
+    { pasaj: 'Niğde - Gölcük ovası, Afyon - Büyük Sincanlı Ovası …', il: ['Afyonkarahisar', 'Niğde'], il_kaynagi: 'ilan metni', durum: 'işletme sahası ilanı/değişikliği', rg_tarih: '26.09.1968', kaynak_url: 'u1' },
+    { pasaj: 'Ergene Havzası …', il: [], il_kaynagi: 'doğrulanamadı', il_notu: 'Ergene havzası — il belirtilmemiş; sınır kararnamenin ekli haritasında', durum: 'işletme sahası ilanı/değişikliği', rg_tarih: '08.05.1974', kaynak_url: 'u2' },
+    { pasaj: '… kuyu açılması yasaklanmıştır', il: ['Niğde'], il_kaynagi: 'ilan metni', durum: 'tahsise kapatma/kısıt', rg_tarih: '26.09.1968', kaynak_url: 'u1' },
+  ];
+  const g = rgGruplari(baslik, ilan);
+  assert.equal(g.length, 3, 'u1 işletme + u1 kısıt + u2');
+  const u1 = g.find((x) => x.kaynak === 'u1' && /işletme/.test(x.durum));
+  assert.deepEqual(u1.il, ['Afyonkarahisar', 'Niğde']);
+  assert.equal(u1.kayit, 2);
+  assert.equal(u1.saha, 'Niğde ve Afyonda Bazı Yerlerin …');
+  const u2 = g.find((x) => x.kaynak === 'u2');
+  assert.deepEqual(u2.il, []);
+  assert.match(u2.ilNotu, /Ergene havzası — il belirtilmemiş/);
+  assert.equal(kisitNormalize(baslik, ilan).length, 2, 'kisit.json il\'siz grubu içermez');
 });

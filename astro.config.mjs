@@ -101,9 +101,9 @@ function kisitJsonOlustur() {
         const kok = fileURLToPath(dir);
         const proje = fileURLToPath(new URL('.', import.meta.url));
         const oku = (p) => JSON.parse(readFileSync(join(proje, p), 'utf8'));
-        const ana = oku('veri/potansiyel/isletme-sahalari.json');
-        const ek = oku('veri/potansiyel/isletme-sahalari-ek.json');
-        const kayitlar = kisitNormalize(ana.kayitlar, ek.kayitlar);
+        // 10.10.2026: başlık + ilan kayıtları kaynak metinden yeniden ayrıştırılmış v2 dosyasından (rg-kaynak.js ile aynı).
+        const v2 = oku('veri/potansiyel/isletme-sahalari-v2.json');
+        const kayitlar = kisitNormalize(v2.basliklar, v2.kayitlar);
         await writeFile(join(kok, 'kisit.json'), JSON.stringify(kayitlar), 'utf8');
         logger.info(`kisit.json: ${kayitlar.length} RG kaydı`);
       },

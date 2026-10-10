@@ -40,8 +40,8 @@ const IL_INDEX = {};
 for (const p of profiller) {
   const il = p.il;
   const pt = ilPotansiyel(il) || {};
-  const rg = [...(pt.rgKayitlari || []), ...(pt.rgEkKayitlari || [])]
-    .map((k) => ({ metin: kirp(k.metin, 140), durum: k.durum || '', tarih: k.tarih || '', url: k.url || '' }));
+  const rg = (pt.rgKayitlari || [])
+    .map((k) => ({ metin: kirp(k.saha || k.pasaj || 'Resmî Gazete ilanı', 140), durum: k.durum || '', tarih: k.tarih || '', url: k.url || '' }));
   IL_INDEX[slugla(il)] = {
     ad: il, slug: slugla(il),
     ilceler: (ilIlceler[il] || []).map((ic) => ({ ad: ic, slug: slugla(ic) })),
