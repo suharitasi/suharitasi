@@ -5,7 +5,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "test": "node --test arac/test/mevzuat-metin.test.mjs arac/test/hukuki-yonlendirme.test.mjs arac/test/egilim-sinif.test.mjs arac/test/ortak-normalize.test.mjs arac/test/tarayici-yolu.test.mjs arac/test/emsal-alinti.test.mjs && node arac/test/whatsapp-fn.test.mjs && node arac/test/loglar-fn.test.mjs && node arac/test/mcp-fn.test.mjs && node arac/test/akademik-suzgec.test.mjs && python3 -I arac/test/test_mevzuat_baslik.py"
+    "test": "node --test arac/test/mevzuat-metin.test.mjs arac/test/hukuki-yonlendirme.test.mjs arac/test/egilim-sinif.test.mjs arac/test/ortak-normalize.test.mjs arac/test/tarayici-yolu.test.mjs arac/test/emsal-alinti.test.mjs arac/test/mevzuat-dizin.test.mjs && node arac/test/whatsapp-fn.test.mjs && node arac/test/loglar-fn.test.mjs && node arac/test/mcp-fn.test.mjs && node arac/test/akademik-suzgec.test.mjs && python3 -I arac/test/test_mevzuat_baslik.py"
   },
   "keywords": [],
   "author": "",

@@ -1,0 +1,729 @@
+{
+ "etiket": "once-asama2",
+ "toplam_sayfa": 1203,
+ "dizinlenebilir": 1048,
+ "site_haritasi": 1048,
+ "yonlendirme": 41,
+ "aileler": {
+  "(ana sayfa)": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "acik-veri": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "ajan-erisimi": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "alarm": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "api-dokumantasyonu": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "ara": {
+   "sayfa": 1,
+   "dizinlenebilir": 0,
+   "site_haritasi": 0,
+   "yonlendirme": 0
+  },
+  "arac/*": {
+   "sayfa": 0,
+   "dizinlenebilir": 0,
+   "site_haritasi": 0,
+   "yonlendirme": 2
+  },
+  "arsiv": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "arsiv/*": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "basin": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "deneyim": {
+   "sayfa": 0,
+   "dizinlenebilir": 0,
+   "site_haritasi": 0,
+   "yonlendirme": 2
+  },
+  "durumum": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "durumum/*": {
+   "sayfa": 42,
+   "dizinlenebilir": 42,
+   "site_haritasi": 42,
+   "yonlendirme": 0
+  },
+  "emsal-kararlar": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "emsal-kararlar/*": {
+   "sayfa": 21,
+   "dizinlenebilir": 20,
+   "site_haritasi": 20,
+   "yonlendirme": 0
+  },
+  "en": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "gizlilik": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "goller": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "goller/*": {
+   "sayfa": 243,
+   "dizinlenebilir": 243,
+   "site_haritasi": 243,
+   "yonlendirme": 0
+  },
+  "gomulu/*": {
+   "sayfa": 81,
+   "dizinlenebilir": 0,
+   "site_haritasi": 0,
+   "yonlendirme": 0
+  },
+  "hakkinda": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "hangi-kurum": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "harita": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "harita-pilot": {
+   "sayfa": 1,
+   "dizinlenebilir": 0,
+   "site_haritasi": 0,
+   "yonlendirme": 0
+  },
+  "havza-riski": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "havzalar": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "havzalar/*": {
+   "sayfa": 25,
+   "dizinlenebilir": 25,
+   "site_haritasi": 25,
+   "yonlendirme": 0
+  },
+  "hesaplayicilar": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "hesaplayicilar/*": {
+   "sayfa": 2,
+   "dizinlenebilir": 2,
+   "site_haritasi": 2,
+   "yonlendirme": 0
+  },
+  "hizli-danisma": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "hizmetler/*": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "ilce-sorgu": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "ilimde-kim-yetkili": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "islem-matrisi": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "istihbarat": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "kapatma-kaydi": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "kullanilanlar": {
+   "sayfa": 1,
+   "dizinlenebilir": 0,
+   "site_haritasi": 0,
+   "yonlendirme": 2
+  },
+  "kuyu-karar-motoru": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "kuyu-kisit-sorgu": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "kuyu-ruhsati": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "kuyu-ruhsati/*": {
+   "sayfa": 81,
+   "dizinlenebilir": 81,
+   "site_haritasi": 81,
+   "yonlendirme": 0
+  },
+  "mevzuat": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "mevzuat/*": {
+   "sayfa": 2,
+   "dizinlenebilir": 2,
+   "site_haritasi": 2,
+   "yonlendirme": 0
+  },
+  "mevzuat/167": {
+   "sayfa": 25,
+   "dizinlenebilir": 24,
+   "site_haritasi": 24,
+   "yonlendirme": 0
+  },
+  "mevzuat/2886": {
+   "sayfa": 101,
+   "dizinlenebilir": 99,
+   "site_haritasi": 99,
+   "yonlendirme": 0
+  },
+  "mevzuat/2942": {
+   "sayfa": 67,
+   "dizinlenebilir": 62,
+   "site_haritasi": 62,
+   "yonlendirme": 0
+  },
+  "mevzuat/5393": {
+   "sayfa": 102,
+   "dizinlenebilir": 98,
+   "site_haritasi": 98,
+   "yonlendirme": 0
+  },
+  "mevzuat/5686": {
+   "sayfa": 26,
+   "dizinlenebilir": 24,
+   "site_haritasi": 24,
+   "yonlendirme": 0
+  },
+  "mevzuat/6200": {
+   "sayfa": 92,
+   "dizinlenebilir": 42,
+   "site_haritasi": 42,
+   "yonlendirme": 0
+  },
+  "mevzuat/831": {
+   "sayfa": 18,
+   "dizinlenebilir": 15,
+   "site_haritasi": 15,
+   "yonlendirme": 0
+  },
+  "mevzuat/su-tahsisleri-yon": {
+   "sayfa": 20,
+   "dizinlenebilir": 19,
+   "site_haritasi": 19,
+   "yonlendirme": 0
+  },
+  "mevzuat/yas-tuzugu": {
+   "sayfa": 18,
+   "dizinlenebilir": 18,
+   "site_haritasi": 18,
+   "yonlendirme": 0
+  },
+  "nehirler": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "nehirler/*": {
+   "sayfa": 91,
+   "dizinlenebilir": 91,
+   "site_haritasi": 91,
+   "yonlendirme": 2
+  },
+  "nerede-su-cikar": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "radar": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "rapor-indir": {
+   "sayfa": 0,
+   "dizinlenebilir": 0,
+   "site_haritasi": 0,
+   "yonlendirme": 2
+  },
+  "rapor-satin-al": {
+   "sayfa": 0,
+   "dizinlenebilir": 0,
+   "site_haritasi": 0,
+   "yonlendirme": 2
+  },
+  "rapor/*": {
+   "sayfa": 0,
+   "dizinlenebilir": 0,
+   "site_haritasi": 0,
+   "yonlendirme": 25
+  },
+  "raporlar": {
+   "sayfa": 0,
+   "dizinlenebilir": 0,
+   "site_haritasi": 0,
+   "yonlendirme": 2
+  },
+  "rehberler": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "rehberler/*": {
+   "sayfa": 10,
+   "dizinlenebilir": 10,
+   "site_haritasi": 10,
+   "yonlendirme": 0
+  },
+  "sektor": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "sozluk": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "stil-pilot": {
+   "sayfa": 1,
+   "dizinlenebilir": 0,
+   "site_haritasi": 0,
+   "yonlendirme": 0
+  },
+  "su-hukuku": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "su-kanunu": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "su-kanunu/*": {
+   "sayfa": 2,
+   "dizinlenebilir": 2,
+   "site_haritasi": 2,
+   "yonlendirme": 0
+  },
+  "su-riski-endeksi": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "tahmin": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "vaka": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "vaka/*": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "veri": {
+   "sayfa": 1,
+   "dizinlenebilir": 1,
+   "site_haritasi": 1,
+   "yonlendirme": 0
+  },
+  "veri/*": {
+   "sayfa": 5,
+   "dizinlenebilir": 5,
+   "site_haritasi": 5,
+   "yonlendirme": 0
+  },
+  "whatsapp": {
+   "sayfa": 0,
+   "dizinlenebilir": 0,
+   "site_haritasi": 0,
+   "yonlendirme": 2
+  },
+  "yeralti-suyu/*": {
+   "sayfa": 81,
+   "dizinlenebilir": 81,
+   "site_haritasi": 81,
+   "yonlendirme": 0
+  },
+  "yonetim/*": {
+   "sayfa": 1,
+   "dizinlenebilir": 0,
+   "site_haritasi": 0,
+   "yonlendirme": 0
+  }
+ },
+ "ornek": {
+  "/": {
+   "durum": 200,
+   "title": "Türkiye Su Havzaları ve Yeraltı Suyu Haritası | Sorgulayın",
+   "h1": "Su riskini önceden görün, kararlarınızı kanıta dayandırın",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/",
+   "kelime": 1656
+  },
+  "/harita/": {
+   "durum": 200,
+   "title": "Türkiye Su Havzaları Haritası: 25 Havza, Canlı Veri | DSİ",
+   "h1": "",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/harita/",
+   "kelime": 811
+  },
+  "/mevzuat/": {
+   "durum": 200,
+   "title": "Su Hukuku Mevzuatı: Madde Madde (167, YAS, 2942…)",
+   "h1": "Su hukuku mevzuat maddeleri",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/mevzuat/",
+   "kelime": 2196
+  },
+  "/mevzuat/5393/madde-39/": {
+   "durum": 200,
+   "title": "5393 Sayılı Belediye Kanunu Madde 39",
+   "h1": "5393 Sayılı Belediye Kanunu — Madde 39",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/mevzuat/5393/madde-39/",
+   "kelime": 378
+  },
+  "/mevzuat/5393/madde-81/": {
+   "durum": 200,
+   "title": "5393 Sayılı Belediye Kanunu Madde 81",
+   "h1": "5393 Sayılı Belediye Kanunu — Madde 81",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/mevzuat/5393/madde-81/",
+   "kelime": 222
+  },
+  "/mevzuat/2886/madde-77/": {
+   "durum": 200,
+   "title": "2886 Sayılı Devlet İhale Kanunu Madde 77",
+   "h1": "2886 Sayılı Devlet İhale Kanunu — Madde 77",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/mevzuat/2886/madde-77/",
+   "kelime": 171
+  },
+  "/mevzuat/2886/madde-80/": {
+   "durum": 200,
+   "title": "2886 Sayılı Devlet İhale Kanunu Madde 80",
+   "h1": "2886 Sayılı Devlet İhale Kanunu — Madde 80",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/mevzuat/2886/madde-80/",
+   "kelime": 206
+  },
+  "/mevzuat/167/madde-18/": {
+   "durum": 200,
+   "title": "167 Sayılı Yeraltı Suları Hakkında Kanun Madde 18",
+   "h1": "167 Sayılı Yeraltı Suları Hakkında Kanun — Madde 18",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/mevzuat/167/madde-18/",
+   "kelime": 1040
+  },
+  "/mevzuat/167/madde-4/": {
+   "durum": 200,
+   "title": "167 Sayılı Yeraltı Suları Hakkında Kanun Madde 4",
+   "h1": "167 Sayılı Yeraltı Suları Hakkında Kanun — Madde 4",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/mevzuat/167/madde-4/",
+   "kelime": 360
+  },
+  "/kuyu-ruhsati/": {
+   "durum": 200,
+   "title": "Kuyu ruhsatı — il rejimi sayfaları — Su Haritası",
+   "h1": "Kuyu ruhsatında iliniz",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/kuyu-ruhsati/",
+   "kelime": 184
+  },
+  "/kuyu-ruhsati/konya/": {
+   "durum": 200,
+   "title": "Konya Kuyu Ruhsatı — Yetkili Merci ve Başvuru",
+   "h1": "Kuyu ruhsatı — Konya",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/kuyu-ruhsati/konya/",
+   "kelime": 3721
+  },
+  "/yeralti-suyu/konya/": {
+   "durum": 200,
+   "title": "Konya Yeraltı Suyu Haritası ve Havza Verileri",
+   "h1": "Konya yeraltı suyu haritası ve güncel durumu",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/yeralti-suyu/konya/",
+   "kelime": 447
+  },
+  "/yeralti-suyu/izmir/": {
+   "durum": 200,
+   "title": "İzmir Yeraltı Suyu Haritası ve Havza Verileri",
+   "h1": "İzmir yeraltı suyu haritası ve güncel durumu",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/yeralti-suyu/izmir/",
+   "kelime": 436
+  },
+  "/goller/van-golu/": {
+   "durum": 200,
+   "title": "Van Gölü Nerede? Konumu, Haritası ve Özellikleri",
+   "h1": "Van Gölü",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/goller/van-golu/",
+   "kelime": 312
+  },
+  "/goller/hatap-baraj-golu/": {
+   "durum": 200,
+   "title": "Hatap Baraj Gölü Nerede? Konumu, Haritası ve Özellikleri",
+   "h1": "Hatap Baraj Gölü",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/goller/hatap-baraj-golu/",
+   "kelime": 307
+  },
+  "/nehirler/": {
+   "durum": 200,
+   "title": "Türkiye Nehirleri — Akarsu Dizini",
+   "h1": "Türkiye Nehirleri",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/nehirler/",
+   "kelime": 836
+  },
+  "/sektor/": {
+   "durum": 200,
+   "title": "Sektöre Göre Su İzni ve Dava Yolları",
+   "h1": "Sektörünüze göre su izni ve dava yolları",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/sektor/",
+   "kelime": 636
+  },
+  "/durumum/": {
+   "durum": 200,
+   "title": "Su hukukunda durumunuz ne? — Su Haritası",
+   "h1": "Su hukukunda durumunuz ne?",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/durumum/",
+   "kelime": 1532
+  },
+  "/islem-matrisi/": {
+   "durum": 200,
+   "title": "Su İşlemleri ve Yetkili Kurum Matrisi (81 İl)",
+   "h1": "Hangi işlem, hangi kurum?",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/islem-matrisi/",
+   "kelime": 2414
+  },
+  "/hangi-kurum/": {
+   "durum": 200,
+   "title": "Su işimde hangi kuruma gideceğim? — Su Haritası",
+   "h1": "Su işimde hangi kuruma gideceğim?",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/hangi-kurum/",
+   "kelime": 1940
+  },
+  "/ilimde-kim-yetkili/": {
+   "durum": 200,
+   "title": "İlimde su işinden kim yetkili? — Su Haritası",
+   "h1": "İlimde su işinden kim yetkili?",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/ilimde-kim-yetkili/",
+   "kelime": 248
+  },
+  "/kapatma-kaydi/": {
+   "durum": 200,
+   "title": "Tahsise kapatma kaydı var mı? — Su Haritası",
+   "h1": "Tahsise kapatma kaydı var mı?",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/kapatma-kaydi/",
+   "kelime": 3521
+  },
+  "/kuyu-kisit-sorgu/": {
+   "durum": 200,
+   "title": "Yeraltı Suyu Kısıt İlanları: İl Bazında İşletme Sahası Kayıtları",
+   "h1": "İlinizdeki kısıt ve işletme sahası ilanları",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/kuyu-kisit-sorgu/",
+   "kelime": 655
+  },
+  "/nerede-su-cikar/": {
+   "durum": 200,
+   "title": "Tarlamda Su Çıkar mı? İl Bazında Yeraltı Suyu Verisi | Su Haritası",
+   "h1": "Tarlamda Su Çıkar mı?",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/nerede-su-cikar/",
+   "kelime": 1115
+  },
+  "/ilce-sorgu/": {
+   "durum": 200,
+   "title": "İl Bazında Yeraltı Suyu Verisi — Su Haritası",
+   "h1": "İl Bazında Yeraltı Suyu Verisi",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/ilce-sorgu/",
+   "kelime": 397
+  },
+  "/hesaplayicilar/": {
+   "durum": 200,
+   "title": "Su Hukuku Hesaplayıcıları: Ceza ve Mecra İrtifakı",
+   "h1": "Ne kadar, ne zaman?",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/hesaplayicilar/",
+   "kelime": 174
+  },
+  "/hesaplayicilar/mecra-irtifaki-simulasyonu/": {
+   "durum": 200,
+   "title": "Mecra İrtifakı (Su Geçirme) Süreç Simülatörü",
+   "h1": "Mecra irtifakı (su geçirme) simülatörü",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/hesaplayicilar/mecra-irtifaki-simulasyonu/",
+   "kelime": 217
+  },
+  "/sozluk/": {
+   "durum": 200,
+   "title": "Su Hukuku Sözlüğü: Terimler ve Mevzuat Kaynakları",
+   "h1": "Su hukuku sözlüğü",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/sozluk/",
+   "kelime": 1265
+  },
+  "/en/": {
+   "durum": 200,
+   "title": "Su Haritası — Türkiye Water Data & Law",
+   "h1": "Türkiye water data & law, in one map",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/en/",
+   "kelime": 281
+  },
+  "/havzalar/konya-kapali/": {
+   "durum": 200,
+   "title": "Konya Kapalı Havzası Su Rezervi | Su Haritası",
+   "h1": "Konya Kapalı Havzası nerede, hangi illeri kapsar?",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/havzalar/konya-kapali/",
+   "kelime": 993
+  },
+  "/durumum/gida-urunleri-imalati-nace-10/": {
+   "durum": 200,
+   "title": "Gıda ürünleri imalatı (NACE 10): su hukukunda durumunuz",
+   "h1": "Gıda ürünleri imalatı (NACE 10): su hukukunda durumunuz",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/durumum/gida-urunleri-imalati-nace-10/",
+   "kelime": 384
+  },
+  "/durumum/maden-isletmecisi/": {
+   "durum": 200,
+   "title": "Maden işletmecisi: su hukukunda durumunuz",
+   "h1": "Maden işletmecisi: su hukukunda durumunuz",
+   "robots": "index, follow",
+   "canonical": "https://suharitasi.com/durumum/maden-isletmecisi/",
+   "kelime": 283
+  }
+ }
+}

@@ -47,7 +47,7 @@ Durum: **yapıldı** (kanıtlı) · **sürüyor** · **onay bekliyor** (hukuki y
 | 1.12 Wikidata ibaresi | uygulanmaz | — | kayıt var |
 | 1.13 Takip sayfaları | onay bekliyor | hayır | Su Kanunu takibi TBMM/Bakanlık belgeleriyle |
 | 2.1 Tek kaynak + tutarsızlık denetimi | sürüyor | hayır | RG ve ceza tutarı tek kaynakta; baraj/uydu/il sırada |
-| 2.2 Mevzuat maddeleri dizin ölçütü | başlanmadı | hayır | aday liste var; DURAK 2 |
+| 2.2 Mevzuat maddeleri dizin ölçütü | sürüyor | hayır | ölçüt kodda (src/data/mevzuat-dizin.js), liste rapor/olcum/mevzuat-dizin-listesi.md: dizinlenebilir madde 401 → 161; madde sayfasına başlıkta madde adı, önceki/sonraki, anan rehber ve kararlar, resmî metin son kontrol tarihi, metindeki değişiklik işaretleri eklendi; yönlendirme blokları mevzuat/veri ailelerinde 0 (denetlendi); "neden önemli" notları yazılmadı (hukuki, onaya) |
 | 2.3 İl aileleri birleştirme | başlanmadı | hayır |  |
 | 2.4 Göl/nehir dizin eşiği | başlanmadı | hayır |  |
 | 2.5 Sektör sayfaları → /durumum/ | başlanmadı | hayır |  |
