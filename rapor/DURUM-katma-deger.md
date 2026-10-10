@@ -19,7 +19,7 @@ CLAUDE.md · BRIEF.md · DESIGN.md · KARARLAR.md · CODE-FREEZE.md · ODUL-USTU
 - Aşama 0 keşif: BİTTİ 10.10.2026 (bulgular aşağıda).
 - Aşama 1 güven onarımı: SÜRÜYOR 10.10.2026.
 - **KARARLAR §73 (10.10.2026 13:52):** önizleme kaldırıldı; tamamlanmış her iş canlıya, "onay bekliyor" olanlar sahibin hukuki onayıyla. Bundan sonra her kalem kendi sınamasından geçip doğrudan canlıya gider. Geçici "kapatılan adresler" site haritası /sitemap-kapatilan.xml — kaldırma tarihi 21.11.2026.
-- **Günlük hukuki cümle bildirimi (10.10.2026):** sistem zamanlayıcısı `suharitasi-hukuki-cumle.timer` her gün 22:00 Europe/Istanbul `arac/hukuki-cumle-zamanli.sh` çalıştırır; dosya ~/denetim/suharitasi/hukuki-cumleler/<tarih>.md, cümle varsa Telegram'a "Bugün N hukuki cümle canlıya girdi, dosya: <yol>"; hata olursa uyari-gonder.sh. Birim kopyaları arac/systemd/. Betik bu worktree'den çalışır; worktree kaldırılırsa birim yolu taşınmalı. Geri alma: `sudo systemctl disable --now suharitasi-hukuki-cumle.timer`.
+- **Günlük hukuki cümle bildirimi (10.10.2026):** sistem zamanlayıcısı `suharitasi-hukuki-cumle.timer` her gün 22:00 Europe/Istanbul `arac/hukuki-cumle-zamanli.sh` çalıştırır; dosya ~/denetim/suharitasi/hukuki-cumleler/<tarih>.md, cümle varsa Telegram'a "Bugün N hukuki cümle canlıya girdi, dosya: <yol>"; hata olursa uyari-gonder.sh. Birim kopyaları arac/systemd/. Betik ve birim ana dizinden (/home/suha/projeler/suharitasi) çalışır (10.10.2026, üç iş brifi İş 1). Geri alma: `sudo systemctl disable --now suharitasi-hukuki-cumle.timer`.
 
 ## KALEM KALEM DURUM TABLOSU (tek kaynak; her işten sonra güncellenir — son: 10.10.2026 Opus 5.5)
 

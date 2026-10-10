@@ -4,7 +4,7 @@
 # hukuki cümlelerin dosyasını ~/denetim/suharitasi/hukuki-cumleler/ altına yazar; cümle varsa
 # Telegram'a tek satır bildirim gönderir, yoksa göndermez. --kuru: dosyayı üretir, göndermez.
 set -euo pipefail
-KOK=/home/suha/projeler/suharitasi-katma-deger
+KOK=/home/suha/projeler/suharitasi
 ENV=/home/suha/projeler/suharitasi/.env
 CIKTI=/home/suha/denetim/suharitasi/hukuki-cumleler
 cd "$KOK"
