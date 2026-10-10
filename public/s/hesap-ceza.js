@@ -1,6 +1,9 @@
 // hesap-ceza.js — 167 m.18 ceza + süre hesaplayıcı (13.09.2026).
 // Aralıklar tek kaynaktan (sayfadaki #hc-veri ← src/data/ceza-tutar.js): kanun metni + yılın uygulanan tutarı
 // (DURAK 1 A-a, 10.10.2026; hukuki onay bekliyor). İtiraz süreleri iki yol.
+import { sonGun, kalanGun } from '/s/sure-hesap.js';
+var SURE = null;
+try { SURE = JSON.parse(document.getElementById('sure-kurallar').textContent); } catch (e) { SURE = null; }
 (function () {
   'use strict';
   var fiil = document.getElementById('hc-fiil');
@@ -15,30 +18,28 @@
   FIILLER.forEach(function (f) { byId[f.id] = f; });
 
   function tr(n) { return n.toLocaleString('tr-TR'); }
-  function gunEkle(iso, gun) {
-    var d = new Date(iso + 'T00:00:00');
-    if (isNaN(d)) return null;
-    d.setDate(d.getDate() + gun);
-    return d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
-  }
 
   function ciz() {
     var f = byId[fiil.value];
     if (!f) { sonuc.innerHTML = ''; return; }
     var sure = '';
-    if (teblig && teblig.value) {
-      var s15 = gunEkle(teblig.value, 15);
-      var s60 = gunEkle(teblig.value, 60);
+    if (teblig && teblig.value && SURE) {
+      var notlar = [];
+      var satir = function (id) {
+        var y = SURE.yollar[id]; var r = sonGun(teblig.value, id, SURE); if (!r) return '';
+        r.notlar.forEach(function (n) { if (notlar.indexOf(n) < 0) notlar.push(n); });
+        var k = kalanGun(r.son);
+        return '<li><strong>' + y.ad + '</strong> — ' + y.merci + ': <strong>' +
+          r.son.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }) + '</strong> (' +
+          (k >= 0 ? k + ' gün kaldı' : 'süre geçmiş olabilir') + ') · ' + y.dayanak + '</li>';
+      };
       sure = '<div class="hc-sure">' +
         'Tebliğ tarihi <strong>' + new Date(teblig.value + 'T00:00:00').toLocaleDateString('tr-TR') + '</strong> ise:' +
-        '<ul>' +
-        '<li>Sulh ceza hakimliğine başvuru (5326 s. Kabahatler K. m.27): <strong>' + s15 + '</strong> (15 gün)</li>' +
-        '<li>İdare mahkemesinde iptal davası (İYUK): <strong>' + s60 + '</strong> (60 gün)</li>' +
-        '</ul>' +
-        '<p class="hc-not">Hangi yolun geçerli olduğu somut dosyaya göre değişir; uzman değerlendirmesi gerekir.</p>' +
+        '<ul>' + satir('kabahat') + satir('idari') + satir('birlikte') + '</ul>' +
+        '<ul class="hc-not">' + notlar.map(function (n) { return '<li>' + n + '</li>'; }).join('') + '</ul>' +
         '</div>';
     } else {
-      sure = '<div class="hc-sure">Tebliğ tarihinizi girin: 15 gün (sulh ceza) ve 60 gün (idare mahkemesi) son tarihleri hesaplanır. İtiraz yolu somut dosyaya göre değişir.</div>';
+      sure = '<div class="hc-sure">Tebliğ tarihinizi girin: para cezasına başvuru (sulh ceza, 15 gün) ve iptal davası (idare mahkemesi, 60 gün) son günleri ayrı ayrı hesaplanır.</div>';
     }
     sonuc.innerHTML =
       '<div class="hc-kart">' +

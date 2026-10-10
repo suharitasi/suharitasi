@@ -5,6 +5,7 @@
 import { ARAC } from '../../data/arac-adlari.js';
 import CezaTutarTablosu from '../../components/CezaTutarTablosu.astro';
 import { CEZA_KANUN, CEZA_GUNCEL, CEZA_YIL, CEZA_SON_DOGRULAMA } from '../../data/ceza-tutar.js';
+import sureKurallari from '../../../data/kamu/sure-tablosu.json';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import OzCevap from '../../components/OzCevap.astro';
@@ -74,6 +75,7 @@ const sema = [
 
   <CtaBlok konu="Kuyu cezası" baslik="Cezanıza itiraz süresini kaçırmayın" metin="Tebliğ tarihinizi ve fiili iletin; itiraz/dava yolunu ve süresini değerlendirelim." />
   <HukukSerhi />
+<script slot="ek-script" type="application/json" id="sure-kurallar" set:html={JSON.stringify(sureKurallari).replace(/</g, '\\u003c')} />
 <script slot="ek-script" type="application/json" id="hc-veri" set:html={JSON.stringify(FIILLER).replace(/</g, '\\u003c')} />
 <script type="module" src="/s/hesap-ceza.js" is:inline></script>
 </Sayfa>

@@ -2,7 +2,9 @@
 baslik: "Kuyu belgesi ret ve iptal davaları: DSİ işlemlerine karşı yargı yolu"
 ozet: "DSİ'nin arama veya kullanma belgesi başvurusunu reddetmesi ya da mevcut belgeyi iptal etmesi halinde iptal davasının eksenleri: sebep unsuru, kazanılmış hak, idari yetki ve teknik değerlendirme zorunluluğu."
 tarih: 2026-07-14
-guncelleme: 2026-07-25
+guncelleme: 2026-10-10
+onayBekliyor: true
+onayKaynak: "Karar tablosu süre hücreleri: 2577 m.7, m.8, m.10; 167 m.13; 2942 m.14; 5326 m.27/1, m.27/8 (resmî metinler, erişim 10.10.2026)"
 kume: uyusmazlik
 ozCevap: "DSİ'nin belge başvurusunu reddi veya mevcut belgeyi iptali idari işlemdir ve iptal davasına konu olur. Danıştay içtihadında işlemin sebebi somut kurulmalıdır: mevcut belgeye dayalı statü yok sayılamaz, işlemi yetkili idare tesis etmeli, teknik değerlendirme yapılmalıdır (167 s.K. m.13 ve m.18)."
 seoBaslik: "Kuyu Belgesi İptal Davası: DSİ İşlemine İtiraz"
@@ -22,17 +24,17 @@ karar:
     emsal: "Danıştay 8.D. 2018/6147 E., 2024/72 K. — sebep somut kurulmalı"
   - senaryo: "Mevcut belgenin iptali / rejim geçişi"
     merci: "İşlemi tesis eden idare → idari yargı"
-    sure: "Doğrulanmış süre yok"
+    sure: "Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)"
     ceza: "—"
     emsal: "Danıştay 8.D. 2018/6147 E., 2024/72 K. — 167 belgesi 5686'ya otomatik intibak etmez"
   - senaryo: "Yetkisiz idarece tesis edilen işlem"
     merci: "İdari yargı"
-    sure: "Doğrulanmış süre yok"
+    sure: "Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)"
     ceza: "—"
     emsal: "Danıştay 8.D. 2021/5225 E., 2023/6171 K. — yetkisiz işlem sakat"
   - senaryo: "Sondajın çevredeki kaynaklara etkisi"
     merci: "İdare → idari yargı"
-    sure: "Doğrulanmış süre yok"
+    sure: "Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)"
     ceza: "—"
     emsal: "Danıştay 10.D. 2017/40 E., 2021/4632 K. — teknik değerlendirme şart"
 ---

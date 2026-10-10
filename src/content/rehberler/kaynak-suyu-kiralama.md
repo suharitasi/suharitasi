@@ -2,7 +2,9 @@
 baslik: "Kaynak suyu kiralama: yetki, ihale zorunluluğu ve sözleşme"
 ozet: "Kaynak sularının kim tarafından, hangi usulle kiraya verilebileceği: 167 sayılı Kanun m.4, 5393 sayılı Belediye Kanunu m.15 ve 831 sayılı Sular Hakkında Kanun çerçevesi; 2886 sayılı Devlet İhale Kanunu'na uygun ihale zorunluluğu."
 tarih: 2026-07-14
-guncelleme: 2026-07-25
+guncelleme: 2026-10-10
+onayBekliyor: true
+onayKaynak: "Karar tablosu süre hücreleri: 2577 m.7, m.8, m.10; 167 m.13; 2942 m.14; 5326 m.27/1, m.27/8 (resmî metinler, erişim 10.10.2026)"
 kume: surec
 ozCevap: "Kaynak suyu kiralamada iki soru belirleyici: kim yetkili ve hangi usul. Kullanım fazlası ile Devletin yerlerindeki sular il özel idaresince (167 s.K. m.4), kaynak suyunu belediye işletir/işlettirir (5393 m.15) — tümü 2886'ya göre ihaleyle yapılır. İhalesiz kiralama hukuka aykırıdır."
 seoBaslik: "Kaynak Suyu Kiralama: İhale, Yetki ve Sözleşme"
@@ -17,17 +19,17 @@ ilgili: [kaynak-hakki-komsu-su, su-tahsisi-oncelik-sirasi, jeotermal-ruhsat]
 karar:
   - senaryo: "Kaynağı kiraya verme (yetki sorunu)"
     merci: "İl özel idaresi / belediye"
-    sure: "Doğrulanmış süre yok (şartname ve sözleşme)"
+    sure: "Doğrulanamadı (resmî metinde süre bulunamadı)"
     ceza: "—"
     emsal: "Danıştay 13.D. 2013/263 E., 2018/2731 K. — ihalesiz kiralama hukuka aykırı"
   - senaryo: "İhalesiz kiralama"
     merci: "İdare → idari yargı"
-    sure: "Doğrulanmış süre yok"
+    sure: "Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)"
     ceza: "—"
     emsal: "Danıştay 13.D. 2015/4133 E., 2021/4015 K. — 167, kiralamayı 2886'ya bağlar"
   - senaryo: "Özel mülkiyetteki kaynağın kiralanabilirliği"
     merci: "İdare → idari yargı"
-    sure: "Doğrulanmış süre yok"
+    sure: "Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)"
     ceza: "—"
     emsal: "Danıştay 8.D. 2018/2016 E., 2020/4396 K. — açık düzenleme yok"
 ---

@@ -2,8 +2,10 @@
 baslik: "Kuyu ruhsatı: yeraltı suyu arama, kullanma ve ıslah-tadil belgeleri"
 ozet: "167 sayılı Yeraltı Suları Hakkında Kanun uyarınca kuyu açmadan önce alınması zorunlu arama belgesi, suyu kullanmak için gereken kullanma belgesi ve mevcut kuyuya müdahale için ıslah-tadil belgesi: kimden, hangi belgelerle, hangi sürede alınır."
 tarih: 2026-07-14
-guncelleme: 2026-07-26
+guncelleme: 2026-10-10
 ilKurumTablosu: true
+onayBekliyor: true
+onayKaynak: "Karar tablosu süre hücreleri: 2577 m.7, m.8, m.10; 167 m.13; 2942 m.14; 5326 m.27/1, m.27/8 (resmî metinler, erişim 10.10.2026)"
 kume: surec
 kalip: 2
 cozer:
@@ -33,7 +35,7 @@ karar:
     emsal: "167 m.10"
   - senaryo: "Mevcut kuyuda teknik müdahale (ıslah-tadil)"
     merci: "DSİ"
-    sure: "Doğrulanmış süre yok"
+    sure: "Başvuruya bir ay içinde cevap (167 m.13); ret işlemine karşı 60 gün, idare mahkemesi (2577 m.7)"
     ceza: "Belgeler harç ve damga resminden muaf (167 m.12)"
     emsal: "167 m.11"
 ---

@@ -6,6 +6,7 @@
 import { ARAC } from '../data/arac-adlari.js';
 import { cezaAraligi } from '../data/ceza-tutar.js';
 import OnayBekliyor from '../components/OnayBekliyor.astro';
+import sureKurallari from '../../data/kamu/sure-tablosu.json';
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
@@ -80,6 +81,15 @@ const sema = [
     <label>Tebliğ tarihi
       <input type="date" id="km-teblig" />
     </label>
+    {/* DURAK 1 A-b (10.10.2026): önerilen ayrı dal — 5326 m.27/8 (onay bekliyor). */}
+    <label>Tebliğ edilen kararda neler var?
+      <select id="km-karar-turu">
+        <option value="">— Bilmiyorum / hepsini göster —</option>
+        <option value="kabahat">Yalnız idari para cezası</option>
+        <option value="idari">Yalnız kuyu kapatma ya da belge reddi/iptali</option>
+        <option value="birlikte">Para cezası ve kuyu kapatma aynı kararda</option>
+      </select>
+    </label>
     <label>Belge durumu (varsa)
       <select id="km-belge">
         <option value="yok">Belge yok / bilmiyorum</option>
@@ -145,6 +155,7 @@ const sema = [
   <CtaBlok konu="Kuyu cezası / kapatma" baslik="Dosyanızı avukata inceletin" metin="Süre kaybı hak kaybıdır. Evrakınızı ve tebliğ tarihinizi iletin; yol haritasını değerlendirelim." />
   <HukukSerhi />
   </div>
+<script slot="ek-script" type="application/json" id="sure-kurallar" set:html={JSON.stringify(sureKurallari).replace(/</g, '\\u003c')} />
 <script slot="ek-script" type="application/json" id="km-ceza" set:html={JSON.stringify({ a: cezaAraligi('a'), b: cezaAraligi('b') }).replace(/</g, '\\u003c')} />
 <script slot="ek-script" type="module" src="/s/karar-motoru.js" is:inline></script>
 </Sayfa>

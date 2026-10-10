@@ -2,7 +2,9 @@
 baslik: "Yeraltı suyu işletme sahası ilanının hukuki sonuçları"
 ozet: "Bir bölgenin 'yeraltı suyu işletme sahası' ilan edilmesi ne anlama gelir: Yeraltı Suları Tüzüğü m.2 uyarınca Resmî Gazete ilanı, kuyu derinliği sınırları, DSİ'nin sürekli kontrol yetkisi ve mevcut belge sahiplerinin durumu."
 tarih: 2026-07-14
-guncelleme: 2026-08-25
+guncelleme: 2026-10-10
+onayBekliyor: true
+onayKaynak: "Karar tablosu süre hücreleri: 2577 m.7, m.8, m.10; 167 m.13; 2942 m.14; 5326 m.27/1, m.27/8 (resmî metinler, erişim 10.10.2026)"
 kume: surec
 ozCevap: "Bir bölge 'yeraltı suyu işletme sahası' ilan edilince kamusal denetim ağırlaşır. Sınırlar DSİ'ce tespit edilip Resmî Gazete'de ilan olunur (YAS Tüzüğü m.2); belgeli kuyu derinliğini DSİ bölge bölge belirler (m.4) ve kontrol süreklidir (m.11-12). Mevcut belge sahibinin statüsü otomatik yok sayılamaz."
 seoBaslik: "Yeraltı Suyu İşletme Sahası İlanı: Hukuki Sonuçlar"
@@ -17,22 +19,22 @@ ilgili: [kuyu-ruhsati, ruhsatsiz-kuyu-cezalari, su-tahsisi-oncelik-sirasi, kuyu-
 karar:
   - senaryo: "İşletme sahası ilanı"
     merci: "DSİ (tespit) → Resmî Gazete ilanı"
-    sure: "Doğrulanmış süre yok"
+    sure: "Doğrulanamadı (resmî metinde süre bulunamadı)"
     ceza: "—"
     emsal: "Yeraltı Suları Tüzüğü m.2"
   - senaryo: "Belgeli kuyu derinliği sınırı"
     merci: "DSİ"
-    sure: "Doğrulanmış süre yok (sonradan değiştirilebilir)"
+    sure: "Doğrulanamadı (resmî metinde süre bulunamadı)"
     ceza: "—"
     emsal: "Yeraltı Suları Tüzüğü m.4"
   - senaryo: "Sürekli denetim ve uygunsuzluk tespiti"
     merci: "DSİ"
-    sure: "Doğrulanmış süre yok"
+    sure: "Doğrulanamadı (resmî metinde süre bulunamadı)"
     ceza: "Zabıtla tespit; emniyetli miktar yeniden ayarlanabilir"
     emsal: "Yeraltı Suları Tüzüğü m.11-12"
   - senaryo: "Mevcut belge sahibinin kazanılmış hakkı"
     merci: "İdare → idari yargı"
-    sure: "Doğrulanmış süre yok"
+    sure: "Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)"
     ceza: "—"
     emsal: "Danıştay 8.D. 2018/6147 E., 2024/72 K. — statü otomatik yok sayılamaz"
 ---

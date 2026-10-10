@@ -114,3 +114,47 @@ Yayın yüzeyleri (hepsi tek dosyadan: data/kamu/ceza-yeniden-degerleme.json →
 
 Sihirbaz için önerilen ayrı dal: "Aynı kararda idari para cezası ile kuyu kapatma/belge iptali birlikte mi verildi?" → Evet ise: para cezasına ilişkin iddialar da iptal davasıyla birlikte idare mahkemesinde (dava süresi: 2577 m.7 — 60 gün; süre hesabı kuralları resmî metinden ayrıca eklenecek). Hayır ise: para cezası → sulh ceza hakimliği 15 gün (5326 m.27/1); kapatma/iptal → idare mahkemesi 60 gün. Kuyu kapatmanın "idarî yargının görev alanına giren karar" sayılması avukat değerlendirmesine bırakıldı.
 
+
+## DURAK 1 sonrası — b) Süre tablosu ve 28 hücre: sonuç (HUKUKİ ONAYA)
+
+Tek kaynak: data/kamu/sure-tablosu.json (yollar, birebir madde metinleri, tatil ve ara verme kuralları) + src/data/sure-hesap.js (hesap). Kullanan: hesaplayıcı, sihirbaz (yeni dal: "kararda neler var?"), süre sayacı, süre rozeti, ön değerlendirme bağlantısı. Hepsi önizlemede "AVUKAT ONAYI BEKLİYOR".
+
+Hesap kuralları ve dayanakları: 60 gün — 2577 m.7/1, m.7/2-a; tebliği izleyen gün başlar, tatil günleri dahil, son gün tatile rastlarsa izleyen çalışma gününe uzar, ara vermeye rastlarsa ara verme bitiminden 7 gün uzar (2577 m.8; ara verme 20 Temmuz–31 Ağustos, 2577 m.61/1 — tek idare mahkemeli yerlerde uygulanmaz, bu yüzden ayrı not). Tatil: Pazar ve 2429 m.2 sabit günleri (1 Ocak, 23 Nisan, 1 Mayıs, 19 Mayıs, 15 Temmuz, 30 Ağustos, 29 Ekim). Dini bayramlar hesaba katılmadı (tarihleri resmî kaynaktan bu turda çekilemedi; Diyanet sayfası sorgu formuyla çalışıyor) — not düşülüyor. Cumartesi ve arefe (2429: 13.00'ten itibaren) tatil sayılmadı — gösterilen tarih erken olabilir, geç olamaz. 15 gün — 5326 m.27/1; 5326'da süre hesabı kuralı yok ve CMK'ya genel atıf bulunamadı → tebliğ tarihine 15 gün eklenir, tatil uzaması uygulanmaz, "doğrulanamadı" notu gösterilir. Aynı işlemde para cezası + kapatma → 5326 m.27/8 (idari yargı, 60 gün).
+
+Doldurulan hücreler (18):
+- [baraj-kamulastirmasi] Usulüne uygun kamulaştırma → Tebligat ya da gazete ilanından itibaren 30 gün: idari yargıda iptal, adli yargıda düzeltim (2942 m.14)
+- [baraj-kamulastirmasi] İmar kısıtlılığı → İmar planı yürürlüğünden itibaren beş yıl (2942 Ek m.1)
+- [jeotermal-ruhsat] Geçiş rejimi ve yetki uyuşmazlığı → Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)
+- [kaynak-suyu-kiralama] İhalesiz kiralama → Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)
+- [kaynak-suyu-kiralama] Özel mülkiyetteki kaynağın kiralanabilirliği → Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)
+- [kuyu-belgesi-iptal-davalari] Belge başvurusunun reddi → Başvuruya bir ay içinde cevap zorunlu (167 m.13)
+- [kuyu-belgesi-iptal-davalari] Mevcut belgenin iptali / rejim geçişi → Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)
+- [kuyu-belgesi-iptal-davalari] Yetkisiz idarece tesis edilen işlem → Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)
+- [kuyu-belgesi-iptal-davalari] Sondajın çevredeki kaynaklara etkisi → Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)
+- [kuyu-ruhsati] Bulunan suyu kullanma → Arama belgesine dayanarak bir ay içinde müracaat (167 m.10)
+- [kuyu-ruhsati] Mevcut kuyuda teknik müdahale (ıslah-tadil) → Başvuruya bir ay içinde cevap (167 m.13); ret işlemine karşı 60 gün, idare mahkemesi (2577 m.7)
+- [kuyu-tasima] Kuruyan/çöken kuyu (onarılabilir) → Başvuruya bir ay içinde cevap (167 m.13); ret işlemine karşı 60 gün, idare mahkemesi (2577 m.7)
+- [kuyu-tasima] Kuyu taşıma (yeni noktada sondaj) → Başvuruya bir ay içinde cevap (167 m.13); ret işlemine karşı 60 gün, idare mahkemesi (2577 m.7)
+- [ruhsatsiz-kuyu-cezalari] Belgesiz kuyu açma veya kasten yanlış bilgi verme → Para cezasına tebliğden itibaren 15 gün, sulh ceza (5326 m.27/1); kapatma aynı işlemdeyse idari yargı, 60 gün (5326 m.27/8)
+- [ruhsatsiz-kuyu-cezalari] Belge şartlarına aykırı su kullanma (m.10-11 ihlali) → Para cezasına tebliğden itibaren 15 gün, sulh ceza (5326 m.27/1); kapatma aynı işlemdeyse idari yargı, 60 gün (5326 m.27/8)
+- [ruhsatsiz-kuyu-cezalari] Kesilen cezaya veya kapatma kararına karşı yargı yolu → Ceza: 15 gün sulh ceza (5326 m.27/1); kapatma: 60 gün idare mahkemesi (2577 m.7); aynı işlemdeyse ikisi idari yargıda (5326 m.27/8)
+- [su-tahsisi-oncelik-sirasi] Su tahsisi talebi → 30 gün içinde cevap verilmezse istek reddedilmiş sayılır; 60 gün içinde idare mahkemesi (2577 m.10/2, m.7)
+- [yeralti-suyu-isletme-sahasi] Mevcut belge sahibinin kazanılmış hakkı → Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)
+
+Doğrulanamadı kalan hücreler (13; arama sürüyor):
+- [baraj-kamulastirmasi] Kamulaştırmasız el atma (taşınmaz su altında)
+- [baraj-kamulastirmasi] Ecrimisil (fiilî kullanım bedeli)
+- [kaynak-hakki-komsu-su] Araziden çıkan kaynağa el atma
+- [kaynak-hakki-komsu-su] Başkasının arazisindeki kaynak hakkı
+- [kaynak-hakki-komsu-su] Suyu yetmeyen komşunun yararlanması
+- [kaynak-suyu-kiralama] Kaynağı kiraya verme (yetki sorunu)
+- [kuyu-tasima] Kirlenen kuyu
+- [su-tahsisi-oncelik-sirasi] Talebin değerlendirilmesi
+- [su-tahsisi-oncelik-sirasi] Kullanım öncelik sırası
+- [su-tahsisi-oncelik-sirasi] Yürürlükten önceki eski tahsisler
+- [yeralti-suyu-isletme-sahasi] İşletme sahası ilanı
+- [yeralti-suyu-isletme-sahasi] Belgeli kuyu derinliği sınırı
+- [yeralti-suyu-isletme-sahasi] Sürekli denetim ve uygunsuzluk tespiti
+
+Ayrıca düzeltilen hata: süre sayacı "İdari para cezası" türünde de 60 gün (idare mahkemesi) hesaplıyordu; artık sulh ceza, 15 gün. Sayacın "süre geçtiyse 2577 m.11 uyarınca üst makama başvuru" önerisi kaldırıldı (m.11 başvurusu ancak "idari dava açma süresi içinde" yapılabilir — 2577 m.11/1 metni); yerine nötr cümle (onaya).
+

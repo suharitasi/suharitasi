@@ -1,9 +1,15 @@
-// karar-motoru.js — Kuyu Karar Motoru (13.09.2026).
+// karar-motoru.js — Tebliğ Aldım: Süre ve İtiraz Yolu (13.09.2026; ad DURAK 1 D).
 // İl + işlem + tebliğ tarihi → süre takvimi, merci, evrak listesi, dilekçe taslağı.
+// DURAK 1 A-b (10.10.2026): süreler tek tablodan (#sure-kurallar ← data/kamu/sure-tablosu.json),
+// hesap tek modülden (/s/sure-hesap.js ← src/data/sure-hesap.js). Hukuki onay bekliyor.
+import { sonGun, kalanGun } from '/s/sure-hesap.js';
+var SURE = null;
+try { SURE = JSON.parse(document.getElementById('sure-kurallar').textContent); } catch (e) { SURE = null; }
 (function () {
   'use strict';
   var ilEl = document.getElementById('km-il'), isEl = document.getElementById('km-islem'),
       teEl = document.getElementById('km-teblig'), beEl = document.getElementById('km-belge'),
+      ktEl = document.getElementById('km-karar-turu'),
       sonuc = document.getElementById('km-sonuc');
   if (!ilEl || !sonuc) return;
 
@@ -38,9 +44,7 @@
     },
   };
 
-  function gunEkle(iso, gun) { var d = new Date(iso + 'T00:00:00'); if (isNaN(d)) return null; d.setDate(d.getDate() + gun); return d; }
   function tr(d) { return d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }); }
-  function kalan(d) { var b = new Date(); b.setHours(0, 0, 0, 0); return Math.round((d - b) / 86400000); }
   function kacir(s) { return (s || '').replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   function ilBilgi(il) { if (!ilVeri) return null; return ilVeri.find(function (x) { return x.il === il; }) || null; }
@@ -59,16 +63,23 @@
     var teblig = teEl.value;
 
     var sureHtml = '';
-    if (teblig) {
-      var s15 = gunEkle(teblig, 15), s60 = gunEkle(teblig, 60);
-      var k15 = kalan(s15), k60 = kalan(s60);
+    var dal = ktEl ? ktEl.value : '';
+    if (teblig && SURE) {
+      var yollar = dal ? [dal] : ['kabahat', 'idari', 'birlikte'];
+      var notlar = [];
+      var satirlar = yollar.map(function (id) {
+        var y = SURE.yollar[id]; var r = sonGun(teblig, id, SURE); if (!r) return '';
+        r.notlar.forEach(function (n) { if (notlar.indexOf(n) < 0) notlar.push(n); });
+        var k = kalanGun(r.son);
+        return '<li><strong>' + kacir(y.ad) + '</strong> — ' + kacir(y.merci) + ': son gün <strong>' + tr(r.son) + '</strong> (' +
+          (k >= 0 ? k + ' gün kaldı' : 'süre geçmiş olabilir') + ') · ' + kacir(y.dayanak) + '</li>';
+      }).join('');
       sureHtml =
-        '<div class="km-sure"><strong>Zorunlu süreler</strong><br>' +
-        'Sulh ceza hakimliğine başvuru (5326 s.K. m.27): <strong>' + tr(s15) + '</strong> (' + (k15 >= 0 ? k15 + ' gün kaldı' : 'süre geçmiş olabilir') + ')<br>' +
-        'İdare mahkemesinde iptal davası (İYUK): <strong>' + tr(s60) + '</strong> (' + (k60 >= 0 ? k60 + ' gün kaldı' : 'süre geçmiş olabilir') + ')' +
-        '<br><span class="km-not">Hangi yolun geçerli olduğu somut dosyaya göre değişir.</span></div>';
+        '<div class="km-sure"><strong>Zorunlu süreler</strong><ul>' + satirlar + '</ul>' +
+        (dal ? '' : '<span class="km-not">Kararda yalnız para cezası, yalnız kapatma/iptal ya da ikisi birlikte olabilir; yukarıdan seçerek tek yolu görebilirsiniz.</span>') +
+        '<ul class="km-not">' + notlar.map(function (n) { return '<li>' + kacir(n) + '</li>'; }).join('') + '</ul></div>';
     } else {
-      sureHtml = '<div class="km-sure">Tebliğ tarihini girin: 15 gün (sulh ceza) ve 60 gün (idare mahkemesi) son tarihleri hesaplanır.</div>';
+      sureHtml = '<div class="km-sure">Tebliğ tarihini girin: para cezasına başvuru (sulh ceza, 15 gün) ve iptal davası (idare mahkemesi, 60 gün) son günleri hesaplanır.</div>';
     }
 
     var evrak = '<div class="km-blok"><h3>Gerekli evrak listesi</h3><ul>' + d.evrak.map(function (e) { return '<li>' + kacir(e) + '</li>'; }).join('') + '</ul></div>';
@@ -101,5 +112,5 @@
 
   function islemAdi(id) { return { ruhsatsiz: 'Ruhsatsız kuyu açma', tahsis: 'Tahsis/izin aşımı', kapatma: 'Kuyu kapatma tebliği', itiraz: 'İdari para cezasına itiraz' }[id] || id; }
 
-  [ilEl, isEl, teEl, beEl].forEach(function (e) { if (e) e.addEventListener('change', ciz); });
+  [ilEl, isEl, teEl, beEl, ktEl].forEach(function (e) { if (e) e.addEventListener('change', ciz); });
 })();

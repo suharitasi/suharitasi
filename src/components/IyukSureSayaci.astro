@@ -4,26 +4,34 @@
 // amaçlıdır; hukuki görüş değildir. TBB m.55: hizmet vaadi yok; yalnız
 // durum tespiti kanalına bağlanır.
 import { EPOSTA } from '../data/site';
+import OnayBekliyor from './OnayBekliyor.astro';
+import kurallar from '../../data/kamu/sure-tablosu.json';
 
+// DURAK 1 A-b (10.10.2026): tür → yol eşlemesi tek süre tablosundan (data/kamu/sure-tablosu.json).
+// Para cezası sulh ceza hakimliğine 15 gün (5326 m.27/1); kapatma/ret idare mahkemesine 60 gün (2577 m.7);
+// ikisi aynı kararda ise idari yargı (5326 m.27/8). Önceki sürüm para cezasına da 60 gün hesaplıyordu.
 const TURLER = [
-  { id: 'ceza', ad: 'İdari para cezası (167 s.K. m.18)' },
-  { id: 'kapatma', ad: 'Kuyu kapatma tebliği' },
-  { id: 'red', ad: 'Ruhsat / belge başvurusunun reddi' },
+  { id: 'kabahat', ad: 'İdari para cezası (167 s.K. m.18)' },
+  { id: 'idari', ad: 'Kuyu kapatma tebliği' },
+  { id: 'idari-red', ad: 'Ruhsat / belge başvurusunun reddi' },
+  { id: 'birlikte', ad: 'Para cezası ve kuyu kapatma aynı kararda' },
 ];
+const Y = kurallar.yollar;
 ---
-<section class="iyuk" aria-label="İdari dava açma süresi hesaplayıcı">
-  <h2>İdari süre: 60 günlük dava açma süresi</h2>
-  <p class="iyuk-not">
-    2577 sayılı İYUK m. 7 uyarınca idari işlemlere karşı dava açma süresi
-    kural olarak <strong>60 gündür</strong> (tebliğ tarihinden itibaren).
-    Özel kanunlarda farklı süre öngörülmüş olabilir; teyit edilmelidir.
-    Bu araç bilgilendirme amaçlıdır; hukuki görüş değildir.
-  </p>
+<section class="iyuk" aria-label="Dava ve başvuru süresi hesaplayıcı">
+  <h2>Süre hesaplayıcı: başvuru ve dava süreleri</h2>
+  <OnayBekliyor kaynak={`${Y.kabahat.dayanak}; ${Y.idari.dayanak}; ${Y.birlikte.dayanak}; tatil: ${kurallar.tatil.dayanak} — son doğrulama ${kurallar.son_dogrulama.split('-').reverse().join('.')}`} />
+  <ul class="iyuk-not">
+    <li><strong>{Y.kabahat.ad}:</strong> {Y.kabahat.merci}, {Y.kabahat.gun} gün ({Y.kabahat.dayanak}).</li>
+    <li><strong>{Y.idari.ad}:</strong> {Y.idari.merci}, {Y.idari.gun} gün ({Y.idari.dayanak}).</li>
+    <li><strong>{Y.birlikte.ad}:</strong> {Y.birlikte.merci} ({Y.birlikte.dayanak}).</li>
+    <li>Bu araç bilgilendirme amaçlıdır; hukuki görüş değildir.</li>
+  </ul>
   <form id="iyuk-form" class="iyuk-form">
     <label class="iyuk-alan">Tebliğ tarihi
       <input type="date" id="iyuk-tarih" required>
     </label>
-    <label class="iyuk-alan">Tebliğ türü
+    <label class="iyuk-alan">Tebliğ edilen karar
       <select id="iyuk-tur">
         {TURLER.map((t) => <option value={t.id}>{t.ad}</option>)}
       </select>
@@ -37,9 +45,10 @@ const TURLER = [
          aria-valuemin="0" aria-valuemax="60">
       <span id="iyuk-dolgu" class="iyuk-dolgu"></span>
     </div>
+    <ul id="iyuk-notlar" class="iyuk-lead"></ul>
     <p id="iyuk-uyari" class="iyuk-uyari" hidden>
-      Yasal dava açma süresi geçmiş görünüyor; 2577 s. K. m. 11 uyarınca üst
-      makama başvuru veya olağanüstü kanun yolları değerlendirilmelidir.
+      Hesaplanan son gün geçmiş görünüyor. Süreyi etkileyebilecek durumlar (ör. tebliğin
+      usulüne uygun olup olmadığı, mücbir sebep) ancak somut dosyada değerlendirilebilir.
     </p>
     <p class="iyuk-lead">
       Somut durumun değerlendirilmesi için
@@ -51,11 +60,15 @@ const TURLER = [
 </section>
 
 <script>
-  const GUN = 60;
+  import { sonGun, kalanGun } from '../data/sure-hesap.js';
+  import kurallar from '../../data/kamu/sure-tablosu.json';
+  const YOL: Record<string, string> = { kabahat: 'kabahat', idari: 'idari', 'idari-red': 'idari', birlikte: 'birlikte' };
   const form = document.getElementById('iyuk-form');
   const girdi = document.getElementById('iyuk-tarih') as HTMLInputElement | null;
+  const tur = document.getElementById('iyuk-tur') as HTMLSelectElement | null;
   const sonuc = document.getElementById('iyuk-sonuc');
   const metin = document.getElementById('iyuk-metin');
+  const notlar = document.getElementById('iyuk-notlar');
   const uyari = document.getElementById('iyuk-uyari');
   const dolgu = document.getElementById('iyuk-dolgu');
   const cubuk = document.querySelector('.iyuk-cubuk') as HTMLElement | null;
@@ -63,22 +76,26 @@ const TURLER = [
   form?.addEventListener('submit', (ev) => {
     ev.preventDefault();
     if (!girdi?.value || !sonuc || !metin || !dolgu) return;
-    const teblig = new Date(girdi.value + 'T00:00:00');
-    if (Number.isNaN(teblig.getTime())) return;
-    const son = new Date(teblig.getTime() + GUN * 86400000);
-    const bugun = new Date();
-    bugun.setHours(0, 0, 0, 0);
-    const kalan = Math.ceil((son.getTime() - bugun.getTime()) / 86400000);
-    const bitis = son.toLocaleDateString('tr-TR');
+    const yolId = YOL[tur?.value || 'idari'] || 'idari';
+    const yol = (kurallar as any).yollar[yolId];
+    const r = sonGun(girdi.value, yolId, kurallar);
+    if (!r) return;
+    const kalan = kalanGun(r.son);
+    const bitis = r.son.toLocaleDateString('tr-TR');
     if (kalan >= 0) {
-      metin.textContent = `İdare Mahkemesinde iptal (ve gerekiyorsa yürütmeyi durdurma) davası açma sürenizin dolmasına kalan süre: ${kalan} gün (son gün: ${bitis}).`;
+      metin.textContent = `${yol.merci} — ${yol.ad}: son gün ${bitis} (${kalan} gün kaldı). Dayanak: ${yol.dayanak}.`;
       uyari?.setAttribute('hidden', '');
     } else {
-      metin.textContent = `Hesaplanan son gün: ${bitis}.`;
+      metin.textContent = `${yol.merci} — ${yol.ad}: hesaplanan son gün ${bitis}. Dayanak: ${yol.dayanak}.`;
       uyari?.removeAttribute('hidden');
     }
-    const oran = Math.max(0, Math.min(100, Math.round((kalan / GUN) * 100)));
+    if (notlar) {
+      notlar.textContent = '';
+      for (const n of r.notlar) { const li = document.createElement('li'); li.textContent = n; notlar.appendChild(li); }
+    }
+    const oran = Math.max(0, Math.min(100, Math.round((kalan / yol.gun) * 100)));
     dolgu.style.width = `${oran}%`;
+    cubuk?.setAttribute('aria-valuemax', String(yol.gun));
     cubuk?.setAttribute('aria-valuenow', String(Math.max(0, kalan)));
     sonuc.removeAttribute('hidden');
   });

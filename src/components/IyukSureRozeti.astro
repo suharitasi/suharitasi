@@ -27,17 +27,14 @@ const { hedef = '', kendiGirdi = false, etiket = 'Ceza/tebliğ tarihi' } = Astro
 </div>
 
 <script>
-  const GUN = 60;
+  // DURAK 1 A-b (10.10.2026): 60 gün ve süre hesabı (2577 m.8: izleyen gün, tatil uzaması) tek modülden.
+  import { sonGun, kalanGun as kalan } from '../data/sure-hesap.js';
+  import kurallar from '../../data/kamu/sure-tablosu.json';
 
   function kalanGun(teblig: string): { kalan: number; son: Date } | null {
     if (!teblig) return null;
-    const d = new Date(teblig + 'T00:00:00');
-    if (Number.isNaN(d.getTime())) return null;
-    const son = new Date(d.getTime());
-    son.setDate(son.getDate() + GUN);
-    const bugun = new Date();
-    bugun.setHours(0, 0, 0, 0);
-    return { kalan: Math.ceil((son.getTime() - bugun.getTime()) / 86400000), son };
+    const r = sonGun(teblig, 'idari', kurallar);
+    return r ? { kalan: kalan(r.son), son: r.son } : null;
   }
 
   function kur(kap: HTMLElement) {
@@ -58,7 +55,7 @@ const { hedef = '', kendiGirdi = false, etiket = 'Ceza/tebliğ tarihi' } = Astro
       }
       const bitis = k.son.toLocaleDateString('tr-TR');
       if (k.kalan >= 0) {
-        rozet.textContent = `İdari dava açma süreniz (İYUK m.7): ${k.kalan} gün kaldı · son gün ${bitis}.`;
+        rozet.textContent = `İdari dava açma süreniz (İYUK m.7; kuyu kapatma/belge işlemi): ${k.kalan} gün kaldı · son gün ${bitis}. İdari para cezasına başvuru ayrıdır: sulh ceza, 15 gün (5326 m.27/1).`;
         if (k.kalan <= 15) rozet.classList.add('isr-acil');
       } else {
         rozet.textContent = `60 günlük idari dava açma süresi dolmuş görünüyor (son gün ${bitis}). Olağanüstü yollar değerlendirilmelidir.`;

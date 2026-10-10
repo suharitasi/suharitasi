@@ -1,0 +1,60 @@
+{
+ "_not": "Süre tablosu — TEK KAYNAK (DURAK 1 A-b, 10.10.2026; HUKUKİ ONAY BEKLİYOR). Hesaplayıcı, sihirbaz, İYUK sayaçları ve ön değerlendirme bu dosyadan beslenir.",
+ "son_dogrulama": "2026-10-10",
+ "yollar": {
+  "kabahat": {
+   "ad": "İdari para cezasına başvuru",
+   "merci": "Sulh ceza hakimliği",
+   "gun": 15,
+   "kural": "ekle",
+   "dayanak": "5326 s. Kabahatler Kanunu m.27/1",
+   "url": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=5326&MevzuatTur=1&MevzuatTertip=5",
+   "metin": "İdarî para cezası ve mülkiyetin kamuya geçirilmesine ilişkin idarî yaptırım kararına karşı, kararın tebliği veya tefhimi tarihinden itibaren en geç onbeş gün içinde, sulh ceza mahkemesine başvurulabilir. Bu süre içinde başvurunun yapılmamış olması halinde idarî yaptırım kararı kesinleşir.",
+   "hesap_notu": "5326'da bu sürenin hesabı (tebliğ gününün sayılıp sayılmadığı, son gün tatile rastlarsa uzama) düzenlenmemiştir; gösterilen tarih tebliğ tarihine 15 gün eklenerek bulunmuştur (doğrulanamadı — avukat teyidi)."
+  },
+  "idari": {
+   "ad": "Kuyu kapatma / belge reddi ya da iptali — iptal davası",
+   "merci": "İdare mahkemesi",
+   "gun": 60,
+   "kural": "2577m8",
+   "dayanak": "2577 s. İYUK m.7/1, m.7/2-a; süre hesabı m.8",
+   "url": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=2577&MevzuatTur=1&MevzuatTertip=5",
+   "metin": "Dava açma süresi, özel kanunlarında ayrı süre gösterilmeyen hallerde Danıştayda ve idare mahkemelerinde altmış … gündür. Bu süreler; a) İdari uyuşmazlıklarda; yazılı bildirimin yapıldığı … tarihi izleyen günden başlar.",
+   "hesap_metin": "Süreler, tebliğ, yayın veya ilan tarihini izleyen günden itibaren işlemeye başlar. Tatil günleri sürelere dahildir. Şu kadarki, sürenin son günü tatil gününe rastlarsa, süre tatil gününü izleyen çalışma gününün bitimine kadar uzar. Bu Kanunda yazılı sürelerin bitmesi çalışmaya ara verme zamanına rastlarsa bu süreler, ara vermenin sona erdiği günü izleyen tarihten itibaren yedi gün uzamış sayılır. (2577 m.8)"
+  },
+  "birlikte": {
+   "ad": "Para cezası ile kuyu kapatma/iptal aynı işlemde",
+   "merci": "İdare mahkemesi (iptal davasıyla birlikte)",
+   "gun": 60,
+   "kural": "2577m8",
+   "dayanak": "5326 m.27/8; dava süresi 2577 m.7",
+   "url": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=5326&MevzuatTur=1&MevzuatTertip=5",
+   "metin": "İdarî yaptırım kararının verildiği işlem kapsamında aynı kişi ile ilgili olarak idarî yargının görev alanına giren kararların da verilmiş olması halinde; idarî yaptırım kararına ilişkin hukuka aykırılık iddiaları bu işlemin iptali talebiyle birlikte idarî yargı merciinde görülür."
+  }
+ },
+ "tatil": {
+  "sabit": [
+   "01-01",
+   "04-23",
+   "05-01",
+   "05-19",
+   "07-15",
+   "08-30",
+   "10-29"
+  ],
+  "hafta": "Pazar",
+  "dayanak": "2429 s. Ulusal Bayram ve Genel Tatiller Hakkında Kanun m.2, m.3",
+  "url": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=2429&MevzuatTur=1&MevzuatTertip=5",
+  "notlar": [
+   "Ramazan ve Kurban bayramları da genel tatildir (2429 m.2-B); tarihleri her yıl değiştiği için hesaba katılmamıştır — son gün bir dini bayrama rastlıyorsa süre bayramı izleyen ilk çalışma gününe uzar (2577 m.8/2).",
+   "Cumartesi ve arefe günleri 2429'a göre 13.00'ten itibaren tatildir; hesap bu günleri tatil saymaz (gösterilen tarih daha erken olabilir, kullanıcı aleyhine sonuç vermez)."
+  ]
+ },
+ "ara_verme": {
+  "bas": "07-20",
+  "son": "08-31",
+  "uzama_gun": 7,
+  "dayanak": "2577 m.61/1 ve m.8/3",
+  "not": "Bölge idare mahkemesinin bulunduğu il merkezi dışında kalan ve tek idare mahkemesi bulunan yerler ara vermeden yararlanamaz (2577 m.61/1); uzama bu yüzden ayrıca gösterilir."
+ }
+}

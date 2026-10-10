@@ -69,7 +69,7 @@ Durum: **yapıldı** (kanıtlı) · **sürüyor** · **onay bekliyor** (hukuki y
 | 3.8 Zenodo düzeltme metni | yapıldı | — (gönderim sahipte) | rapor/ZENODO-metinleri.md |
 | 4.1–4.10 Yeni değer | başlanmadı | hayır | 4.1/4.2 A-a/A-b tablolarına bağlı |
 | A-a Ceza tutarı yeniden değerleme | onay bekliyor | hayır | 18/18 tebliğ RG'den; 2026: a 30.138–151.192, b 15.029–60.408 TL; 7 yüzey + API tek kaynaktan (ölçüldü); eksik yılda derleme durur |
-| A-b Süreler, 5326 m.27, 28 hücre | sürüyor | hayır | m.27/8 hükmü bulundu; tablo sırada |
+| A-b Süreler, 5326 m.27, 28 hücre | onay bekliyor | hayır | süre tablosu + tek hesap modülü (5 yüzey); 28 hücreden 18 resmî metinle dolduruldu, 13 doğrulanamadı (arama sürüyor); sihirbaza m.27/8 dalı; sayaçtaki 60-gün hatası düzeltildi |
 | A-c Tahsis sırası | onay bekliyor | hayır | rehber düzeltildi; madde sayfası ↔ rehber bağı sırada |
 | A-d Emsal (11 dizinde) | başlanmadı | hayır |  |
 | A-e Avukat ifadeleri listesi | başlanmadı | — | sonraki durakta sohbete |

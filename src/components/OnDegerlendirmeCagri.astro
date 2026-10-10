@@ -51,6 +51,8 @@ const HEDEF = 'https://arslanhukuk.tr/randevu/';
 </section>
 
 <script>
+  import { sonGun, kalanGun as kalanGunHesap } from '../data/sure-hesap.js';
+  import sureKurallari from '../../data/kamu/sure-tablosu.json';
   // Tek yükleme (bileşen iki yerde render edilebilir; çift dinleyici olmasın).
   const w = window as any;
   if (!w.__oiKuruldu) {
@@ -68,15 +70,11 @@ const HEDEF = 'https://arslanhukuk.tr/randevu/';
     const secim = (el: HTMLSelectElement | null) => (el && el.value ? metin(el) : '');
 
     // İYUK m. 7 — tebliğden itibaren 60 gün; kalan gün (ceil, takvim günü).
+    // DURAK 1 A-b: 60 gün, 2577 m.8 hesabıyla (tatil uzaması) tek modülden.
     function kalanGun(teblig: string): number | null {
       if (!teblig) return null;
-      const d = new Date(teblig + 'T00:00:00');
-      if (Number.isNaN(d.getTime())) return null;
-      const son = new Date(d.getTime());
-      son.setDate(son.getDate() + 60);
-      const bugun = new Date();
-      bugun.setHours(0, 0, 0, 0);
-      return Math.ceil((son.getTime() - bugun.getTime()) / 86400000);
+      const r = sonGun(teblig, 'idari', sureKurallari);
+      return r ? kalanGunHesap(r.son) : null;
     }
 
     // İl → havza eşlemesi /veri/iller.json'dan (karar-motoru sayfası zaten çeker).

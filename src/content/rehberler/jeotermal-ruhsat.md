@@ -2,7 +2,9 @@
 baslik: "Jeotermal ruhsat: arama, işletme ve uyuşmazlıklar"
 ozet: "5686 sayılı Kanun kapsamında jeotermal kaynak ve doğal mineralli su ruhsatları: arama ruhsatında öncelik hakkı, işletme ruhsatına zamanında başvuru zorunluluğu, 30 yıllık işletme süresi ve iptal-ihale mekanizması."
 tarih: 2026-07-14
-guncelleme: 2026-07-25
+guncelleme: 2026-10-10
+onayBekliyor: true
+onayKaynak: "Karar tablosu süre hücreleri: 2577 m.7, m.8, m.10; 167 m.13; 2942 m.14; 5326 m.27/1, m.27/8 (resmî metinler, erişim 10.10.2026)"
 kume: surec
 ozCevap: "Jeotermal kaynaklar Devletin hüküm ve tasarrufundadır; faaliyet 5686 s.K. ile ruhsata bağlıdır. Arama ruhsatında öncelik hakkı esastır, süre üç yıldır (m.5). İşletme ruhsatı için arama süresinin son günü akşamına kadar başvuru şarttır, aksi halde hak kaybı doğar; işletme süresi otuz yıldır (m.6)."
 seoBaslik: "Jeotermal Ruhsat: Arama, İşletme ve Uyuşmazlık"
@@ -32,7 +34,7 @@ karar:
     emsal: "5686 s.K. m.6"
   - senaryo: "Geçiş rejimi ve yetki uyuşmazlığı"
     merci: "İdari yargı"
-    sure: "Doğrulanmış süre yok"
+    sure: "Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)"
     ceza: "—"
     emsal: "Danıştay 8.D. 2018/6147 E., 2024/72 K. · 2021/5225 E., 2023/6171 K."
 ---
