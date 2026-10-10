@@ -36,7 +36,7 @@ karar:
     merci: "İdari yargı"
     sure: "Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)"
     ceza: "—"
-    emsal: "Danıştay 8.D. 2018/6147 E., 2024/72 K. · 2021/5225 E., 2023/6171 K."
+    emsal: "Danıştay 8.D. 2018/6147 E., 2024/72 K. · 2021/5225 E., 2023/6171 K. (künye doğrulandı; özet karar metniyle çelişiyor, avukat incelemesinde)"
 ---
 
 Jeotermal kaynaklar ve doğal mineralli sular Devletin hüküm ve
@@ -102,10 +102,10 @@ Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma du
 
 - Danıştay 8. Daire 2018/6147 E., 2024/72 K. — geçiş rejimi: 167
   kapsamındaki kullanım belgesi 5686 rejimine otomatik intibak
-  ettirilemez. (ikincil kaynak; resmî doğrulama bekliyor)
+  ettirilemez. ([künye resmî kaynakta doğrulandı](/emsal-kararlar/danistay-8-daire-2018-6147-2024-72/); bu özet karar metniyle çelişiyor, avukat incelemesinde)
 - Danıştay 8. Daire 2021/5225 E., 2023/6171 K. — yetki: 5686 rejiminde
   yetkisiz idarenin 167 mantığıyla idari para cezası tesis etmesi yetki
-  yönünden sakattır. (ikincil kaynak; resmî doğrulama bekliyor)
+  yönünden sakattır. ([künye resmî kaynakta doğrulandı](/emsal-kararlar/danistay-8-daire-2021-5225-2023-6171/); bu özet karar metniyle çelişiyor, avukat incelemesinde)
 
 Bu iki karar birlikte, 5686 uyuşmazlıklarında hem geçiş rejiminin hem
 yetki unsurunun belirleyici olduğunu gösterir.

@@ -6,6 +6,7 @@ import { join, relative } from 'node:path';
 // Normalizasyon TEK KAYNAK: src/data/ortak-normalize.js (src/data modülleriyle aynı).
 import { kisitNormalize, islemJoin } from './src/data/ortak-normalize.js';
 import { cezaYerlestir } from './src/data/ceza-tutar.js';
+import { EMSAL_YAYIN } from './src/data/emsal.js';
 
 const SITE = 'https://suharitasi.com';
 
@@ -152,7 +153,7 @@ function veriApiOlustur() {
           kanunKisa: m.kanunKisa, kanun: m.kanun, tur: m.tur, madde: m.madde, metin: m.metin,
           kaynak: m.kaynakUrl, merci: m.merci || null, sure: m.sure || null, yorum: m.yorum ? cezaYerlestir(m.yorum) : null,
         })));
-        await yaz('emsal.json', oku('data/kamu/emsal-kararlar.json').kararlar);
+        await yaz('emsal.json', EMSAL_YAYIN('https://suharitasi.com'));
         await yaz('sozluk.json', oku('data/kamu/su-terim-havuzu.json').terimler);
         await yaz('mevzuat-surum.json', oku('data/kamu/mevzuat-surum.json'));
         logger.info('veri API: havzalar · iller · islemler · mevzuat · emsal · sozluk');
@@ -321,15 +322,12 @@ function llmsOlustur() {
         // emsal özetleri, (b) 25 havzanın kısıt/durum künyesi eklenir. Tüm
         // alanlar yayımlı veri kayıtlarından okunur; URETILMEZ.
         try {
-          const emsal = JSON.parse(readFileSync(
-            new URL('./data/kamu/emsal-kararlar.json', import.meta.url), 'utf8'));
-          const d8 = (emsal.kararlar || []).filter((k) => /8\.\s*Daire/.test(k.merci || ''));
+          const d8 = EMSAL_YAYIN(SITE).filter((k) => k.merci === 'Danıştay 8. Daire');
           if (d8.length) {
-            tam += `\n## Danıştay 8. Daire — su hukuku emsal özetleri (${d8.length})\n\n`;
+            tam += `\n## Danıştay 8. Daire — su hukuku emsal künyeleri (${d8.length}; resmî karar arama sunucusunda doğrulanmış)\n\n`;
             for (const k of d8) {
-              const ozet = (k.ozet || '').replace(/\s+/g, ' ').slice(0, 320);
-              tam += `- ${k.merci} ${k.esas} E., ${k.karar} K. (${k.yil}) — ${k.konu}: ${ozet}\n`;
-              if (k.kaynak) tam += `  Kaynak: ${k.kaynak}\n`;
+              tam += `- ${k.merci} ${k.esas} E., ${k.karar} K. (karar tarihi ${k.karar_tarihi}) — ${k.konu}. Dava konusu (karar metninden alıntı): ${k.ozet}\n`;
+              tam += `  Karar sayfası: ${k.sayfa} · Resmî metin: ${k.kaynak}\n`;
             }
             tam += `\nTam liste: ${SITE}/emsal-kararlar/\n`;
           }

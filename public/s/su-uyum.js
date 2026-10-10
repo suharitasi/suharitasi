@@ -92,8 +92,9 @@
     // Bölüm 11 — emsal
     function emsalSatir(e) {
       return '<li><strong>' + esc((e.merci || '') + ', E.' + e.esas + ', K.' + e.karar) + '</strong> — ' +
-        esc(e.konu) + '. <span class="soluk">' + esc(e.ozet) + '</span>' +
-        (e.kaynak ? ' <a href="' + esc(e.kaynak) + '">karar metni</a>' : '') + '</li>';
+        esc(e.konu) + '. <span class="soluk">Dava konusu (karar metninden): ' + esc(e.ozet) + '</span>' +
+        (e.sayfa ? ' <a href="' + esc(e.sayfa) + '">karar sayfası</a>' : '') +
+        (e.kaynak ? ' · <a href="' + esc(e.kaynak) + '">resmî karar metni</a>' : '') + '</li>';
     }
     var emsalIlgili = ilgiliEmsal.length ? '<ul>' + ilgiliEmsal.map(emsalSatir).join('') + '</ul>'
       : '<p>Seçilen faaliyetle doğrudan eşleşen emsal bulunamadı; aşağıdaki ek listede tüm kararlar yer alır.</p>';
@@ -166,7 +167,7 @@
 
       '<h2>Ek A — Tüm Başvuru İşlemleri (20)</h2>' +
       '<table><thead><tr><th>İşlem</th><th>Dayanak</th><th>Yetkili kurum</th><th>Başvuru kanalı</th></tr></thead><tbody>' + islemEk + '</tbody></table>' +
-      '<h2>Ek B — Tüm Emsal Kararlar (26)</h2>' + emsalEk +
+      '<h2>Ek B — Tüm Emsal Kararlar (' + veri.EMSALLER.length + ')</h2>' + emsalEk +
       '<p class="soluk dipnot">Belge, Su Haritası açık veri tabanından üretilmiştir. Kaynak sürümü belge tarihindeki yayınla eşleşir.</p>' +
       '</body></html>';
   }

@@ -8,7 +8,7 @@ import OzCevap from '../../../components/OzCevap.astro';
 import CtaBlok from '../../../components/CtaBlok.astro';
 import HukukSerhi from '../../../components/HukukSerhi.astro';
 import mevzuat from '../../../../data/kamu/mevzuat-maddeleri.json';
-import { emsalById as EMSAL_ID, dogrulandiMi } from '../../../data/emsal.js';
+import { emsalById as EMSAL_ID, dogrulandiMi, emsalYol, tamMerci } from '../../../data/emsal.js';
 import { MEVZUAT_EDITORYAL } from '../../../data/mevzuat-editoryal.js';
 import SayfaQr from '../../../components/SayfaQr.astro';
 import CezaTutarTablosu from '../../../components/CezaTutarTablosu.astro';
@@ -167,7 +167,7 @@ const sema = [
         {ilgiliEmsaller.map((k) => (
           <li>
             {dogrulandiMi(k)
-              ? <a href={k.resmi_dogrulama.url} target="_blank" rel="noopener">{k.merci} {k.esas} E., {k.karar} K. ({k.resmi_dogrulama.karar_tarihi})</a>
+              ? <><a href={emsalYol(k)}>{tamMerci(k)} {k.esas} E., {k.karar} K.</a> ({k.resmi_dogrulama.karar_tarihi}; <a href={k.resmi_dogrulama.url} target="_blank" rel="noopener">resmî metin</a>)</>
               : <><a href="/emsal-kararlar/dogrulanamadi/">{k.merci} {k.esas} E., {k.karar} K.</a> <em>(resmî kaynaktan doğrulanamadı)</em></>}
             <span> — {k.konu}</span>
           </li>

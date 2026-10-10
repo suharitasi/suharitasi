@@ -21,17 +21,17 @@ karar:
     merci: "İl özel idaresi / belediye"
     sure: "Doğrulanamadı (resmî metinde süre bulunamadı)"
     ceza: "—"
-    emsal: "Danıştay 13.D. 2013/263 E., 2018/2731 K. — ihalesiz kiralama hukuka aykırı"
+    emsal: "Danıştay 13.D. 2013/263 E., 2018/2731 K. — ihalesiz kiralama hukuka aykırı (künye doğrulandı; özet avukat incelemesinde)"
   - senaryo: "İhalesiz kiralama"
     merci: "İdare → idari yargı"
     sure: "Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)"
     ceza: "—"
-    emsal: "Danıştay 13.D. 2015/4133 E., 2021/4015 K. — 167, kiralamayı 2886'ya bağlar"
+    emsal: "Danıştay 13.D. 2015/4133 E., 2021/4015 K. — 167, kiralamayı 2886'ya bağlar (künye doğrulandı; özet avukat incelemesinde)"
   - senaryo: "Özel mülkiyetteki kaynağın kiralanabilirliği"
     merci: "İdare → idari yargı"
     sure: "Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)"
     ceza: "—"
-    emsal: "Danıştay 8.D. 2018/2016 E., 2020/4396 K. — açık düzenleme yok"
+    emsal: "Danıştay 8.D. 2018/2016 E., 2020/4396 K. — açık düzenleme yok (künye doğrulandı; özet avukat incelemesinde)"
 ---
 
 Kaynak suyu kiralamak isteyen yatırımcının da kaynağını kiraya vermek
@@ -111,19 +111,19 @@ Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma du
 
 - Danıştay 13. Daire 2013/263 E., 2018/2731 K. — kaynak suyu kiralama
   işinde 2886'ya uygun ihale yapılmadan, yalnızca ölçüm ve kullanım
-  bedeli tespitiyle kiralama hukuka aykırıdır. (ikincil kaynak; resmî doğrulama bekliyor)
+  bedeli tespitiyle kiralama hukuka aykırıdır. ([künye resmî kaynakta doğrulandı](/emsal-kararlar/danistay-13-daire-2013-263-2018-2731/); özetin karar metnine uygunluğu avukat onayında)
 - Danıştay 13. Daire 2015/4133 E., 2021/4015 K. — 167, kaynak suyu
   kiralamasını 2886'ya bağlar; idare yasal dayanak olmaksızın düzenleme
-  yapamaz. (ikincil kaynak; resmî doğrulama bekliyor)
+  yapamaz. ([künye resmî kaynakta doğrulandı](/emsal-kararlar/danistay-13-daire-2015-4133-2021-4015/); özetin karar metnine uygunluğu avukat onayında)
 - Danıştay 13. Daire 2020/1093 E., 2023/2584 K. — su kaynağının
   kiralanmasına ilişkin encümen kararı ve 2886'ya dayalı sözleşmeden
-  doğan uyuşmazlıkta aynı eksen. (Bu karar ilk üretimde 2020/1104 E.,
-  2023/4576 K. olarak künyelenmişti; çelişki doğrulanacaktır.)
+  doğan uyuşmazlıkta aynı eksen. ([künye resmî kaynakta doğrulandı](/emsal-kararlar/danistay-13-daire-2020-1093-2023-2584/); 2020/1104 E.,
+  2023/4576 K. künyesi [ayrı bir karardır](/emsal-kararlar/danistay-13-daire-2020-1104-2023-4576/) ve o da doğrulandı; özetin karar metnine uygunluğu avukat onayında)
 - Danıştay 13. Daire 2012/253 E., 2018/3787 K. — belediye adına kaynak
   suyu işletme ruhsatı bulunan taşınmazdan çıkan kaynağın il özel
   idarelerince kiraya verilmesi sınırlıdır; kaynağın hukuki niteliğine
-  ve taşınmazın durumuna göre değerlendirme yapılır.
+  ve taşınmazın durumuna göre değerlendirme yapılır. ([künye resmî kaynakta doğrulandı](/emsal-kararlar/danistay-13-daire-2012-253-2018-3787/); özetin karar metnine uygunluğu avukat onayında)
 - Danıştay 8. Daire 2018/2016 E., 2020/4396 K. — özel mülkiyete konu
   arazilerden çıkan ve sadece kendi ihtiyacı için kullanılan kaynak
-  sularının kiralanabileceğine dair açık düzenleme yoktur. (ikincil kaynak; resmî doğrulama bekliyor)
+  sularının kiralanabileceğine dair açık düzenleme yoktur. ([künye resmî kaynakta doğrulandı](/emsal-kararlar/danistay-8-daire-2018-2016-2020-4396/); özetin karar metnine uygunluğu avukat onayında)
 

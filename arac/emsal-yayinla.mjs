@@ -117,7 +117,9 @@ async function main() {
     }
     const konuMetni = konuMetniBul(metin);
     const k = konuBul(konuMetni || metin || '');
-    incelemeler.push({ ...a, _ilgili: !!(k && konuMetni), _konu: k?.konu || null, _rehberler: k?.rehberler || [], _ozet: konuMetni.slice(0, 300) });
+    const tarihler = [...metin.matchAll(/(\d{2})\/(\d{2})\/(\d{4}) tarihinde[^.]{0,80}karar verildi/g)];
+    const kt = tarihler.length ? tarihler[tarihler.length - 1].slice(1, 4).join('.') : null;
+    incelemeler.push({ ...a, _ilgili: !!(k && konuMetni), _konu: k?.konu || null, _rehberler: k?.rehberler || [], _ozet: konuMetni.slice(0, 300), _kararTarihi: kt });
     if (adaylar.indexOf(a) % 20 === 0) console.log(`  ... ${adaylar.indexOf(a)}/${adaylar.length}`);
   }
 
@@ -147,6 +149,12 @@ async function main() {
       merci: x.merci, esas: x.esas, karar: x.karar, yil: x.yil,
       konu: x._konu, ozet: x._ozet, rehberler: x._rehberler,
       kaynak: x.kaynak_url, dogrulama: 'kaynakli',
+      // DURAK 1 A-d (10.10.2026): resmî sunucudan çekilen metinde karar tarihi okunduysa "dogrulandi".
+      // Karar sayfası alıntısı için ardından: python3 arac/emsal-alinti-uret.py (SECIM'e kayıt eklenir).
+      resmi_dogrulama: x._kararTarihi
+        ? { durum: 'dogrulandi', tarih: new Date().toISOString().slice(0, 10), sunucu: new URL(TABAN[String(x.id).split('-')[0]]).host,
+            url: x.kaynak_url, karar_tarihi: x._kararTarihi, yontem: 'emsal-yayinla.mjs: resmî metin çekildi, karar tarihi metinden okundu' }
+        : { durum: 'dogrulanamadi', tarih: new Date().toISOString().slice(0, 10), not: 'resmî metinde karar tarihi okunamadı' },
     });
     varMi.add(`${x.esas}|${x.karar}`); eklenen++;
   }

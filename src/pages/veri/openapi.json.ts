@@ -8,7 +8,7 @@ const yollar = {
   '/veri/iller.json': '81 il → DSİ bölge müdürlüğü, havza(lar) ve su/kanalizasyon idaresi eşlemesi.',
   '/veri/islemler.json': '20 su işlemi → yetkili kurum, mevzuat dayanağı, başvuru kanalı.',
   '/veri/mevzuat.json': '469 mevzuat maddesi (167, YAS Tüzüğü, Su Tahsisleri ve ilgili kanunlar) — resmî metin.',
-  '/veri/emsal.json': 'Danıştay/Yargıtay su hukuku emsal kararları (künye + özet).',
+  '/veri/emsal.json': 'Resmî karar arama sunucusunda doğrulanmış su hukuku emsal kararları (künye, karar tarihi, karar metninden dava konusu alıntısı, resmî metin bağlantısı).',
   '/veri/sozluk.json': '126 su hukuku/yönetimi terimi ve mevzuat kaynağı.',
   '/veri/su-riski.json': 'İl/havza Su Riski Endeksi: puan, kategori, bileşenler, zaman serileri, su bütçesi.',
   '/veri/mevzuat-surum.json': 'İzlenen mevzuatın madde bazlı SHA-256 anlık görüntüsü (değişiklik radarı).',

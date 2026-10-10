@@ -36,7 +36,7 @@ karar:
     merci: "İdare → idari yargı"
     sure: "Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)"
     ceza: "—"
-    emsal: "Danıştay 8.D. 2018/6147 E., 2024/72 K. — statü otomatik yok sayılamaz"
+    emsal: "Danıştay 8.D. 2018/6147 E., 2024/72 K. — statü otomatik yok sayılamaz (künye doğrulandı; özet karar metniyle çelişiyor, avukat incelemesinde)"
 ---
 
 Bir bölge "yeraltı suyu işletme sahası" ilan edildiğinde, o sahadaki
@@ -67,7 +67,7 @@ bulunmamaktadır**. En yakın içtihat, Danıştay 8. Daire'nin 2018/6147
 E., 2024/72 K. sayılı kararıdır: 167 kapsamındaki yeraltı suyu kullanım
 belgesi 5686 sayılı (jeotermal) rejime otomatik intibak ettirilemez;
 mevcut belgeye sahip iki kuyu yönünden işletme ruhsatı talebinin reddi
-hukuka aykırı, belgesiz kuyu yönünden ret hukuka uygun bulunmuştur.
+hukuka aykırı, belgesiz kuyu yönünden ret hukuka uygun bulunmuştur ([künye resmî kaynakta doğrulandı](/emsal-kararlar/danistay-8-daire-2018-6147-2024-72/); bu aktarım karar metniyle çelişiyor, avukat incelemesinde).
 Karar doğrudan işletme sahası ilanına ilişkin değildir; ancak mevcut
 belge sahiplerinin statüsünün idarece otomatik yok sayılamayacağını
 gösterir.
@@ -103,7 +103,7 @@ Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma du
 - Danıştay 8. Daire 2018/6147 E., 2024/72 K. — 167 kapsamındaki
   yeraltı suyu kullanım belgesi 5686 rejimine otomatik intibak
   ettirilemez; mevcut belgeye sahip kuyular yönünden ret hukuka aykırı,
-  belgesiz kuyu yönünden ret hukuka uygundur. (ikincil kaynak; resmî doğrulama bekliyor)
+  belgesiz kuyu yönünden ret hukuka uygundur. ([künye resmî kaynakta doğrulandı](/emsal-kararlar/danistay-8-daire-2018-6147-2024-72/); bu özet karar metniyle çelişiyor, avukat incelemesinde)
 
 İlan öncesi açılmış kuyuların kazanılmış hakları hakkında doğrudan
 içtihat bulunamadı (doğrulanmış karar yok).

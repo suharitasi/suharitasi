@@ -11,7 +11,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import mevzuat from '../../../data/kamu/mevzuat-maddeleri.json';
-import emsal from '../../../data/kamu/emsal-kararlar.json';
+import { EMSAL_DOGRULANAN } from '../../data/emsal.js';
 import havzaVeri from '../../../data/havza-veri.json';
 
 const mcpKaynak = readFileSync(join(process.cwd(), 'functions', 'mcp.js'), 'utf8');
@@ -19,7 +19,7 @@ const aracSayi = [...mcpKaynak.matchAll(/^ {4}name: '([a-z_]+)',/gm)].length;
 if (aracSayi !== 8) throw new Error(`ajan-bandi: MCP araç sayısı beklenen 8 değil (${aracSayi}).`);
 
 const maddeler = mevzuat.maddeler.length;
-const emsaller = emsal.kararlar.length;
+const emsaller = EMSAL_DOGRULANAN.length;
 const havzalar = havzaVeri.havzalar.length;
 
 const KARTLAR = [

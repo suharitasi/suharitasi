@@ -11,29 +11,18 @@ import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
 import CtaBlok from '../components/CtaBlok.astro';
-import { EMSAL_DOGRULANAN, EMSAL_DOGRULANAMAYAN, EMSAL_SERH, EMSAL_DOGRULAMA_TARIHI } from '../data/emsal.js';
-import mevzuat from '../../data/kamu/mevzuat-maddeleri.json';
+import {
+  EMSAL_DOGRULANAN, EMSAL_DOGRULANAMAYAN, EMSAL_SERH, EMSAL_DOGRULAMA_TARIHI, MADDE_BY_EMSAL,
+  emsalYol, emsalAlinti, alintiMetni, tamMerci, mahkemeAdi, kararTarihiIso,
+} from '../data/emsal.js';
 
-// İki yönlü bağ: hangi emsal hangi maddelere bağlı (madde.emsaller ters çevrilir).
-const maddeSlug = (s) =>
-  s.toLowerCase().replace(/ı/g, 'i').replace(/İ/g, 'i').replace(/ş/g, 's')
-    .replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ö/g, 'o').replace(/ç/g, 'c')
-    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-const maddeByEmsal = {};
-for (const m of mevzuat.maddeler) {
-  for (const eid of m.emsaller) {
-    (maddeByEmsal[eid] = maddeByEmsal[eid] ?? []).push({
-      ad: `${m.kanunKisa} ${m.madde}`,
-      yol: `/mevzuat/${maddeSlug(m.kanunKisa)}/${maddeSlug(m.madde)}/`,
-    });
-  }
-}
+const maddeByEmsal = MADDE_BY_EMSAL;
+const mahkemeler = [...new Set(EMSAL_DOGRULANAN.map(mahkemeAdi))].join(' ve ');
 
 const OZ_CEVAP =
-  'Türkiye\'de su hukukuna yön veren Danıştay ve Yargıtay kararlarından derlenmiş ' +
-  'emsal dizini: yeraltı suyu belgeleri, izin aşımı, kaynak suyu kiralama ve jeotermal ' +
-  'geçiş rejimi. Listedeki her künye resmî karar arama sunucusunda doğrulanmıştır ' +
-  've karar metnine bağlanır.';
+  `Su hukukuna ilişkin ${mahkemeler} kararlarından derlenmiş emsal dizini: yeraltı suyu belgeleri, ` +
+  'izin ve tarife uyuşmazlıkları, kaynak suyu kiralama ve jeotermal geçiş rejimi. Listedeki her künye ' +
+  'resmî karar arama sunucusunda doğrulanmıştır ve karar metnine bağlanır.';
 
 const kok = new URL('/', Astro.site).href;
 const canonical = new URL('/emsal-kararlar/', Astro.site).href;
@@ -51,11 +40,11 @@ const sema = [
       position: i + 1,
       item: {
         '@type': 'CreativeWork',
-        name: `${k.merci} ${k.esas} E., ${k.karar} K.`,
+        name: `${tamMerci(k)} ${k.esas} E., ${k.karar} K.`,
         about: k.konu,
-        description: k.ozet,
+        url: new URL(emsalYol(k), Astro.site).href,
         sameAs: k.resmi_dogrulama.url,
-        dateCreated: k.resmi_dogrulama.karar_tarihi.split('.').reverse().join('-'),
+        dateCreated: kararTarihiIso(k),
       },
     })),
   },
@@ -77,7 +66,7 @@ const sema = [
   tarayiciBaslik="Su Hukuku Emsal Kararları: Danıştay ve Yargıtay"
   sema={sema}
 >
-  <SayfaBasi etiket="Emsal kararlar" baslik="Su hukuku emsal kararları" ozet="Danıştay ve Yargıtay'ın su hukukuna yön veren kararlarından derlenmiş dizin; her künye ilgili rehbere bağlı." />
+  <SayfaBasi etiket="Emsal kararlar" baslik="Su hukuku emsal kararları" ozet={`${mahkemeler} kararlarından derlenmiş dizin; her künyenin kendi sayfası, resmî metin bağlantısı ve ilgili rehberi var.`} />
   <OzCevap metin={OZ_CEVAP} etiket="Kanun özeti" />
 
   <p class="em-serh">{EMSAL_SERH}</p>
@@ -88,7 +77,7 @@ const sema = [
 
   <label class="em-arama">
     <span>Karar ara</span>
-    <input type="search" id="em-filtre" placeholder="ör. 5686, kiralama, TMK 756, Danıştay…" autocomplete="off" />
+    <input type="search" id="em-filtre" placeholder="ör. 5686, kiralama, ihale, jeotermal…" autocomplete="off" />
   </label>
   <label class="em-konu">
     <span>Uyuşmazlık konusu seç (emsal eşleştirici)</span>
@@ -101,13 +90,13 @@ const sema = [
 
   <div class="em-kaydir" tabindex="0" role="region">
     <table id="em-tablo">
-      <caption>Merci · esas/karar no · konu · özet · ilgili rehber · kaynak.</caption>
+      <caption>Merci · esas/karar no · konu · dava konusu (karar metninden alıntı) · ilgili rehber · resmî metin.</caption>
       <thead>
         <tr>
           <th scope="col">Merci</th>
           <th scope="col">Esas / Karar</th>
           <th scope="col">Konu</th>
-          <th scope="col">Özet</th>
+          <th scope="col">Dava konusu (karar metninden)</th>
           <th scope="col">İlgili rehber</th>
           <th scope="col">İlgili maddeler</th>
           <th scope="col">Doğrulama</th>
@@ -115,14 +104,11 @@ const sema = [
       </thead>
       <tbody>
         {kararlar.map((k) => (
-          <tr data-karar={k.id}>
-            <th scope="row">{k.merci}</th>
-            <td class="em-kunye">{k.esas} E.<br />{k.karar} K.<br /><span class="em-yil">karar tarihi {k.resmi_dogrulama.karar_tarihi}</span></td>
+          <tr data-karar={k.id} data-konu={k.konu}>
+            <th scope="row">{tamMerci(k)}</th>
+            <td class="em-kunye"><a href={emsalYol(k)}>{k.esas} E.<br />{k.karar} K.</a><br /><span class="em-yil">karar tarihi {k.resmi_dogrulama.karar_tarihi}</span></td>
             <td>{k.konu}</td>
-            <td>
-              {k.ozet}
-              {k.not && <span class="em-not"> {k.not}</span>}
-            </td>
+            <td>{alintiMetni(emsalAlinti(k)?.uyusmazlik)}</td>
             <td>{k.rehberler.map((r, i) => (<>{i > 0 && ' · '}<a href={`/rehberler/${r}/`}>{r}</a></>))}</td>
             <td>{(maddeByEmsal[k.id] ?? []).map((m, i) => (<>{i > 0 && ' · '}<a href={m.yol}>{m.ad}</a></>))}{!(maddeByEmsal[k.id] ?? []).length && <span class="em-kunye-bekliyor">—</span>}</td>
             <td>
@@ -133,9 +119,10 @@ const sema = [
         ))}
       </tbody>
     </table>
-    <p class="em-anonim">Özetlerdeki "…" işaretleri Danıştay'ın yayımladığı karar metnindeki
+    <p class="em-anonim">"Dava konusu" sütunu karar metnindeki dava konusu istem cümlesinin birebir
+      alıntısıdır. "…" ve "..." işaretleri Danıştay'ın yayımladığı karar metnindeki
       anonimleştirmelerdir (kişi, yer ve tutar bilgisi kaynakta gizlenmiştir); bu sitenin
-      kesmesi değildir. Tam metin için "Kaynak" bağlantısını kullanın.</p>
+      kesmesi değildir. Gerekçe ve hüküm alıntısı için künyeye, tam metin için "resmî metin" bağlantısına tıklayın.</p>
   </div>
   <p class="em-bos" id="em-bos" hidden>Bu süzgeçle eşleşen karar bulunamadı.</p>
 

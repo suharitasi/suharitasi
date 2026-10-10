@@ -11,6 +11,7 @@
 // Yeni esas/karar numarası üretilmez. Saf istemci (Vanilla JS); sunucu/DB yok.
 import matris from '../data/idare-emsal-matrisi.json';
 import emsal from '../../data/kamu/emsal-kararlar.json';
+import { dogrulandiMi, emsalYol, tamMerci } from '../data/emsal.js';
 import HukukDanismanlik from './HukukDanismanlik.astro';
 
 const emsalById = Object.fromEntries(emsal.kararlar.map((k) => [k.id, k]));
@@ -21,8 +22,10 @@ const usuller = matris.usuller.map((u) => ({
     if (!k) {
       throw new Error(`HukukiIptalAnalizi: "${id}" emsal-kararlar.json'da yok (${u.id}).`);
     }
-    return { id: k.id, merci: k.merci, esas: k.esas, karar: k.karar, yil: k.yil, konu: k.konu, dogrulama: k.dogrulama };
-  }),
+    return k;
+  }).filter(dogrulandiMi).map((k) => ({
+    id: k.id, merci: tamMerci(k), esas: k.esas, karar: k.karar, yil: k.yil, konu: k.konu, yol: emsalYol(k),
+  })),
 }));
 ---
 
@@ -68,8 +71,8 @@ const usuller = matris.usuller.map((u) => ({
       <p class="ipa-emsal-not">
         Künyeler <a href="/emsal-kararlar/">/emsal-kararlar/</a> veritabanında
         yayımlı kararlardan alınır; konu ilgisini gösterir, somut olayda birebir
-        emsal teşkil iddiası taşımaz. "künye" işaretli kararların nihai
-        doğrulaması sürüyor.
+        emsal teşkil iddiası taşımaz. Yalnız resmî karar arama sunucusunda
+        doğrulanan künyeler gösterilir.
       </p>
     </div>
   </div>
@@ -112,7 +115,11 @@ const usuller = matris.usuller.map((u) => ({
       for (const e of u.emsaller || []) {
         emsalVar = true;
         const eli = document.createElement('li');
-        eli.textContent = `${e.merci} ${e.esas} E., ${e.karar} K. (${e.yil}) — ${e.konu} · ${e.dogrulama === 'kaynakli' ? 'kaynaklı' : 'künye'}`;
+        const ea = document.createElement('a');
+        ea.href = e.yol;
+        ea.textContent = `${e.merci} ${e.esas} E., ${e.karar} K. (${e.yil})`;
+        eli.appendChild(ea);
+        eli.appendChild(document.createTextNode(` — ${e.konu}`));
         emsalListe.appendChild(eli);
       }
     }

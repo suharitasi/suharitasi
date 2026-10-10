@@ -23,7 +23,7 @@
     var gorunen = 0;
     for (var i = 0; i < satirlar.length; i++) {
       var tr = satirlar[i];
-      var esles = (!q || norm(tr.textContent).indexOf(q) !== -1) && (!kq || norm(tr.textContent).indexOf(kq) !== -1);
+      var esles = (!q || norm(tr.textContent).indexOf(q) !== -1) && (!kq || norm(tr.getAttribute('data-konu')) === kq);
       tr.hidden = !esles;
       if (esles) gorunen++;
     }

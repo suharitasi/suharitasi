@@ -21,22 +21,22 @@ karar:
     merci: "DSİ (başvuru) → idari yargı (iptal davası)"
     sure: "Başvuruya bir ay içinde cevap zorunlu (167 m.13)"
     ceza: "—"
-    emsal: "Danıştay 8.D. 2018/6147 E., 2024/72 K. — sebep somut kurulmalı"
+    emsal: "Danıştay 8.D. 2018/6147 E., 2024/72 K. — sebep somut kurulmalı (künye doğrulandı; özet karar metniyle çelişiyor, avukat incelemesinde)"
   - senaryo: "Mevcut belgenin iptali / rejim geçişi"
     merci: "İşlemi tesis eden idare → idari yargı"
     sure: "Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)"
     ceza: "—"
-    emsal: "Danıştay 8.D. 2018/6147 E., 2024/72 K. — 167 belgesi 5686'ya otomatik intibak etmez"
+    emsal: "Danıştay 8.D. 2018/6147 E., 2024/72 K. — 167 belgesi 5686'ya otomatik intibak etmez (künye doğrulandı; özet karar metniyle çelişiyor, avukat incelemesinde)"
   - senaryo: "Yetkisiz idarece tesis edilen işlem"
     merci: "İdari yargı"
     sure: "Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)"
     ceza: "—"
-    emsal: "Danıştay 8.D. 2021/5225 E., 2023/6171 K. — yetkisiz işlem sakat"
+    emsal: "Danıştay 8.D. 2021/5225 E., 2023/6171 K. — yetkisiz işlem sakat (künye doğrulandı; özet karar metniyle çelişiyor, avukat incelemesinde)"
   - senaryo: "Sondajın çevredeki kaynaklara etkisi"
     merci: "İdare → idari yargı"
     sure: "Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)"
     ceza: "—"
-    emsal: "Danıştay 10.D. 2017/40 E., 2021/4632 K. — teknik değerlendirme şart"
+    emsal: "Danıştay 10.D. 2017/40 E., 2021/4632 K. — teknik değerlendirme şart (künye doğrulandı; özet avukat incelemesinde)"
 ---
 
 DSİ'nin belge başvurusunu reddetmesi veya mevcut belgeyi iptal etmesi
@@ -94,14 +94,14 @@ Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma du
 
 - Danıştay 8. Daire 2018/6147 E., 2024/72 K. — mevcut belgeye dayalı
   statü idarece dikkate alınmalıdır; 167 belgesi 5686 rejimine otomatik
-  intibak ettirilemez. (ikincil kaynak; resmî doğrulama bekliyor)
+  intibak ettirilemez. ([künye resmî kaynakta doğrulandı](/emsal-kararlar/danistay-8-daire-2018-6147-2024-72/); bu özet karar metniyle çelişiyor, avukat incelemesinde)
 - Danıştay 8. Daire 2023/663 E., 2023/829 K. — izin aşımı tespiti
-  DSİ'nindir; yerel idare tarife/abonelik konusu yapamaz. (ikincil kaynak; resmî doğrulama bekliyor)
+  DSİ'nindir; yerel idare tarife/abonelik konusu yapamaz. ([künye resmî kaynakta doğrulandı](/emsal-kararlar/danistay-8-daire-2023-663-2023-829/); bu özet karar metniyle çelişiyor, avukat incelemesinde)
 - Danıştay 8. Daire 2021/5225 E., 2023/6171 K. — yetkisiz idarece
   tesis edilen işlem iptal edilebilir; 5686 rejiminde yetkisiz idarenin
   167 mantığıyla idari para cezası tesis etmesi yetki yönünden
-  sakattır. (ikincil kaynak; resmî doğrulama bekliyor)
+  sakattır. ([künye resmî kaynakta doğrulandı](/emsal-kararlar/danistay-8-daire-2021-5225-2023-6171/); bu özet karar metniyle çelişiyor, avukat incelemesinde)
 - Danıştay 10. Daire 2017/40 E., 2021/4632 K. — sondaj kuyusunun
   çevredeki kaynak sularına etkisi bakımından teknik değerlendirme
-  yapılmalıdır; yalnızca soyut gerekçeyle işlem tesis edilemez.
+  yapılmalıdır; yalnızca soyut gerekçeyle işlem tesis edilemez. ([künye resmî kaynakta doğrulandı](/emsal-kararlar/danistay-10-daire-2017-40-2021-4632/); özetin karar metnine uygunluğu avukat onayında)
 

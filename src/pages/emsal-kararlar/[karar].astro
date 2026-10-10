@@ -1,0 +1,127 @@
+---
+// /emsal-kararlar/[karar]/ — KARAR BAŞINA SAYFA (brif 4.4; DURAK 1 A-d, 10.10.2026).
+// Yalnız resmî karar arama sunucusunda doğrulanan künyeler için üretilir. Özet yazılmaz:
+// "uyuşmazlık · gerekçe · sonuç" üçlüsü resmî karar metninden birebir alıntıdır
+// (data/kamu/emsal-alinti.json, arac/emsal-alinti-uret.py). Hangi bölümden alındığı yazılır.
+import { getCollection } from 'astro:content';
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import HukukSerhi from '../../components/HukukSerhi.astro';
+import OnayBekliyor from '../../components/OnayBekliyor.astro';
+import {
+  EMSAL_DOGRULANAN, EMSAL_SERH, emsalSlug, emsalYol, emsalAlinti, alintiMetni, kunyeKisa,
+  mahkemeAdi, daireAdi, kararTarihiIso, MADDE_BY_EMSAL, EMSAL_ALINTI_ERISIM,
+} from '../../data/emsal.js';
+
+export function getStaticPaths() {
+  return EMSAL_DOGRULANAN.map((k) => ({ params: { karar: emsalSlug(k) }, props: { k } }));
+}
+
+const { k } = Astro.props;
+const a = emsalAlinti(k);
+const rehberAd = Object.fromEntries((await getCollection('rehberler')).map((r) => [r.id, r.data.baslik]));
+const kunye = kunyeKisa(k);
+const rd = k.resmi_dogrulama;
+const dogrulamaTarihi = rd.tarih.split('-').reverse().join('.');
+const bagliMaddeler = MADDE_BY_EMSAL[k.id] ?? [];
+const anilanMaddeler = (a?.anilanMaddeler ?? []).filter((m) => !bagliMaddeler.some((b) => b.yol === m.yol));
+
+const canonical = new URL(emsalYol(k), Astro.site).href;
+const kok = new URL('/', Astro.site).href;
+const aciklama = `${kunye} (karar tarihi ${rd.karar_tarihi}): künye, dava konusu, gerekçe ve hüküm — resmî karar metninden birebir alıntı ve resmî metne bağlantı.`;
+const sema = [
+  {
+    '@type': 'WebPage',
+    '@id': `${canonical}#sayfa`,
+    url: canonical,
+    name: kunye,
+    description: aciklama,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${kok}#site` },
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Emsal kararlar', item: new URL('/emsal-kararlar/', Astro.site).href },
+        { '@type': 'ListItem', position: 2, name: kunye, item: canonical },
+      ],
+    },
+    about: {
+      '@type': 'CreativeWork',
+      name: kunye,
+      dateCreated: kararTarihiIso(k),
+      sameAs: rd.url,
+      creator: { '@type': 'GovernmentOrganization', name: `${mahkemeAdi(k)} ${daireAdi(k)}` },
+      inLanguage: 'tr-TR',
+    },
+  },
+];
+const BOLUMLER = a ? [
+  { id: 'uyusmazlik', ad: 'Uyuşmazlık', bolum: a.uyusmazlikBolum, parcalar: a.uyusmazlik },
+  { id: 'gerekce', ad: 'Gerekçe', bolum: a.gerekceBolum, parcalar: a.gerekce },
+  { id: 'sonuc', ad: 'Sonuç', bolum: a.sonucBolum, parcalar: a.sonuc },
+] : [];
+---
+<Sayfa baslik={kunye} tarayiciBaslik={`${kunye} | Emsal karar`} aciklama={aciklama} sema={sema}>
+  <SayfaBasi etiket="Emsal karar" baslik={kunye} ozet={`Karar tarihi ${rd.karar_tarihi}. Konu: ${k.konu}.`} />
+  <OnayBekliyor kaynak={`${rd.sunucu}, ${kunye} karar metni (erişim ${EMSAL_ALINTI_ERISIM})`} />
+
+  <p class="ek-geri"><a href="/emsal-kararlar/">← Tüm doğrulanmış emsal kararlar</a></p>
+
+  <section class="ek-kunye" aria-labelledby="ek-kunye-b">
+    <h2 id="ek-kunye-b">Künye</h2>
+    <dl>
+      <dt>Mahkeme</dt><dd>{mahkemeAdi(k)}</dd>
+      <dt>Daire</dt><dd>{daireAdi(k)}</dd>
+      <dt>Esas no</dt><dd>{k.esas}</dd>
+      <dt>Karar no</dt><dd>{k.karar}</dd>
+      <dt>Karar tarihi</dt><dd><time datetime={kararTarihiIso(k)}>{rd.karar_tarihi}</time></dd>
+      <dt>Resmî metin</dt><dd><a href={rd.url} target="_blank" rel="noopener">{rd.sunucu}</a></dd>
+    </dl>
+    <p class="ek-dogrulandi">Resmî kaynaktan doğrulandı ({dogrulamaTarihi}): künye, resmî karar arama sunucusunda ({rd.sunucu}) esas ve karar numarasıyla aranmış; esas no, karar no ve karar tarihi karar metninde görülmüştür.</p>
+  </section>
+
+  {a ? (
+    <section class="ek-alinti" aria-labelledby="ek-alinti-b">
+      <h2 id="ek-alinti-b">Karar metninden üç alıntı</h2>
+      <p class="ek-not">Aşağıdaki üç parça bu sitenin özeti değildir; resmî karar metninden birebir alınmıştır. "[…]" işareti atlanan kısmı, "…" ve "..." işaretleri Danıştay'ın kendi anonimleştirmesini gösterir. Seçim bu siteye aittir; kararın tamamı için resmî metne bakın (erişim {EMSAL_ALINTI_ERISIM}).</p>
+      {BOLUMLER.map((b) => (
+        <div class="ek-parca" id={`ek-${b.id}`}>
+          <h3>{b.ad}</h3>
+          <blockquote cite={rd.url}>{b.parcalar.map((x) => <p>{alintiMetni([x])}</p>)}</blockquote>
+          <p class="ek-bolum">Alındığı yer: {b.bolum}.</p>
+        </div>
+      ))}
+    </section>
+  ) : (
+    <p class="ek-not">Bu karar için karar metninden alıntı henüz seçilmedi; resmî metne yukarıdaki bağlantıdan ulaşılabilir.</p>
+  )}
+
+  <section class="ek-ilgili" aria-labelledby="ek-ilgili-b">
+    <h2 id="ek-ilgili-b">İlgili madde ve rehberler</h2>
+    {bagliMaddeler.length > 0 && (
+      <p><strong>Bu karara bağlanan madde sayfaları:</strong> {bagliMaddeler.map((m, i) => (<>{i > 0 && ' · '}<a href={m.yol}>{m.ad}</a></>))}</p>
+    )}
+    {anilanMaddeler.length > 0 && (
+      <p><strong>Karar metninde anılan maddeler</strong> (sitede metni bulunanlar): {anilanMaddeler.map((m, i) => (<>{i > 0 && ' · '}<a href={m.yol}>{m.ad}</a></>))}</p>
+    )}
+    {k.rehberler.length > 0 && (
+      <p><strong>Bu kararı anan rehberler:</strong> {k.rehberler.map((r, i) => (<>{i > 0 && ' · '}<a href={`/rehberler/${r}/`}>{rehberAd[r] ?? r}</a></>))}</p>
+    )}
+  </section>
+
+  <p class="ek-not">{EMSAL_SERH}</p>
+  <HukukSerhi />
+</Sayfa>
+<style>
+  .ek-geri { margin: 0 0 1rem; }
+  .ek-kunye dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1rem; margin: 0 0 0.8rem; }
+  .ek-kunye dt { font-weight: 600; }
+  .ek-kunye dd { margin: 0; overflow-wrap: anywhere; }
+  .ek-dogrulandi { font-size: 0.9rem; padding: 0.6rem 0.8rem; border-left: 3px solid var(--vurgu, #1d6b4f); background: var(--zemin-ikincil, #f3f6f4); }
+  .ek-parca { margin: 0 0 1.4rem; }
+  .ek-parca h3 { margin: 0 0 0.4rem; font-size: 1.05rem; }
+  .ek-parca blockquote { margin: 0; padding: 0.2rem 0 0.2rem 1rem; border-left: 3px solid var(--cizgi, #ccc); }
+  .ek-parca blockquote p { margin: 0.3rem 0; line-height: 1.6; }
+  .ek-bolum, .ek-not { font-size: 0.86rem; color: var(--metin-soluk); }
+  @media (max-width: 520px) { .ek-kunye dl { grid-template-columns: 1fr; } .ek-kunye dt { margin-top: 0.4rem; } }
+</style>

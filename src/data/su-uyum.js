@@ -6,7 +6,7 @@
 // ONAY KAPISI (K6): ONAYLANDI=false iken üretilen belge "TASLAK" damgalıdır ve
 // sayfa noindex'tir. [SERDAR-HUKUK] onayı sonrası tek satır açılır.
 import maddeler from '../../data/kamu/mevzuat-maddeleri.json';
-import emsalVeri from '../../data/kamu/emsal-kararlar.json';
+import { EMSAL_YAYIN } from './emsal.js';
 import ilKurum from '../../data/il-kurum.json';
 import havzaVeri from '../../data/havza-veri.json';
 import { personalar } from './persona.js';
@@ -78,18 +78,9 @@ export const CEKIRDEK_ISLEM = [
   'su-verimliligi-belgesi',
 ];
 
-// — EMSALLER (26) —
-export const EMSALLER = emsalVeri.kararlar.map((e) => ({
-  id: e.id,
-  merci: e.merci,
-  esas: e.esas,
-  karar: e.karar,
-  yil: e.yil,
-  konu: e.konu,
-  ozet: e.ozet,
-  kaynak: e.kaynak,
-  rehberler: e.rehberler || [],
-}));
+// — EMSALLER — yalnız resmî karar arama sunucusunda doğrulanan künyeler (DURAK 1 A-d, 10.10.2026);
+// ozet alanı karar metnindeki dava konusu isteminin birebir alıntısıdır (src/data/emsal.js).
+export const EMSALLER = EMSAL_YAYIN('https://suharitasi.com');
 
 // — İL ÇERÇEVESİ (81 il) —
 const havzaSlugSet = new Set(havzaVeri.havzalar.map((h) => ilSlug(h.ad.replace(/\s*Havzası\s*$/, ''))));
@@ -132,7 +123,7 @@ for (const il of tumIller()) {
 {
   if (FAALIYETLER.length !== 42) throw new Error(`su-uyum: 42 faaliyet beklenirken ${FAALIYETLER.length} bulundu.`);
   if (ISLEMLER_UYUM.length !== 20) throw new Error(`su-uyum: 20 işlem beklenirken ${ISLEMLER_UYUM.length} bulundu.`);
-  if (EMSALLER.length !== 26) throw new Error(`su-uyum: 26 emsal beklenirken ${EMSALLER.length} bulundu.`);
+  if (!EMSALLER.length) throw new Error('su-uyum: doğrulanmış emsal künyesi bulunamadı.');
   if (CERCEVE.length !== CERCEVE_SECIM.length) throw new Error('su-uyum: çerçeve künyesi eksik.');
   const ilSayisi = Object.keys(ILLER).length;
   if (ilSayisi !== 81) throw new Error(`su-uyum: 81 il beklenirken ${ilSayisi} bulundu.`);

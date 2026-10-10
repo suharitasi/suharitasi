@@ -67,11 +67,12 @@ Durum: **yapıldı** (kanıtlı) · **sürüyor** · **onay bekliyor** (hukuki y
 | 3.6 İl sayfaları | sürüyor | hayır | işletme sahası listesi tek kaynaktan (yapıldı); DSİ adres/telefon sırada |
 | 3.7 Tarihler | başlanmadı | hayır |  |
 | 3.8 Zenodo düzeltme metni | yapıldı | — (gönderim sahipte) | rapor/ZENODO-metinleri.md |
-| 4.1–4.10 Yeni değer | başlanmadı | hayır | 4.1/4.2 A-a/A-b tablolarına bağlı |
+| 4.1–4.3, 4.5–4.10 Yeni değer | başlanmadı | hayır | 4.1/4.2 A-a/A-b tablolarına bağlı |
+| 4.4 Emsal karar başına sayfa | onay bekliyor | hayır | 20 doğrulanan karar için sayfa: künye, karar tarihi, resmî metinden birebir uyuşmazlık·gerekçe·sonuç alıntısı (20/20 birebirlik testi), ilgili madde ve rehber; dizinde arama ve konu süzgeci sınandı |
 | A-a Ceza tutarı yeniden değerleme | onay bekliyor | hayır | 18/18 tebliğ RG'den; 2026: a 30.138–151.192, b 15.029–60.408 TL; 7 yüzey + API tek kaynaktan (ölçüldü); eksik yılda derleme durur |
 | A-b Süreler, 5326 m.27, 28 hücre | onay bekliyor | hayır | süre tablosu + tek hesap modülü (5 yüzey); 28 hücreden 18 resmî metinle dolduruldu, 13 doğrulanamadı (arama sürüyor); sihirbaza m.27/8 dalı; sayaçtaki 60-gün hatası düzeltildi |
 | A-c Tahsis sırası | onay bekliyor | hayır | rehber düzeltildi; m.7 ve Tüzük m.15 sayfaları rehbere bağlandı |
-| A-d Emsal | sürüyor | hayır | dizinde resmî sunucuda doğrulanan 20 (11 + 9 yeni); 1 künye çelişkisi + 5 Yargıtay (sunucuya erişilemedi) dizine kapalı ayrı sayfada; atıflar işaretlendi; karar sayfaları (4.4) sırada |
+| A-d Emsal | onay bekliyor | hayır | dizinde ve tüm dış yüzeylerde (veri/emsal.json, MCP, llms-full, uyum dosyası, iptal analizi, ana sayfa bandı) yalnız resmî sunucuda doğrulanan 20; 1 künye çelişkisi + 5 Yargıtay ayrı noindex sayfada; 3 rehber özeti karar metniyle çelişiyor (HUKUK-SORULARI) |
 | A-e Avukat ifadeleri listesi | başlanmadı | — | sonraki durakta sohbete |
 | A-f Lisans/form beyanları, sihirbaz KVKK kutusu | sürüyor | hayır | form beyanları + onay kutusu onaya; lisans beyanı sırada |
 | B Kapatma kayıtları il eşlemesi | yapıldı | hayır (önizleme) | Ergene ×3 notla; il sayıları tek kaynak (ölçüldü) |
