@@ -2,6 +2,7 @@
 // /hesaplayicilar/kuyu-cezasi-hesaplama/ — 167 m.18 ceza + süre hesaplayıcı.
 // Aralıklar kanuni metinden (167 m.18) birebir; "güncel/enflasyon güncellemesi"
 // UYDURULMAZ. İtiraz süreleri iki yol olarak sunulur (uzman değerlendirmesi notu).
+import { ARAC } from '../../data/arac-adlari.js';
 import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import OzCevap from '../../components/OzCevap.astro';
@@ -32,11 +33,11 @@ const sema = [
       { '@type': 'HowToStep', position: 3, name: 'Süreleri görün', text: 'Tebliğ tarihine göre 15 gün (sulh ceza) ve 60 gün (idare mahkemesi) seçenekleri.' },
     ],
   },
-  { '@type': 'WebPage', name: 'Kuyu cezası hesaplayıcı', description: OZ_CEVAP, inLanguage: 'tr-TR' },
+  { '@type': 'WebPage', name: ARAC.ceza.ad, description: OZ_CEVAP, inLanguage: 'tr-TR' },
 ];
 ---
-<Sayfa baslik="Kuyu cezası ve süre hesaplayıcı" aciklama={OZ_CEVAP} tarayiciBaslik="Kuyu Cezası Hesaplayıcı: 167 m.18 ve Süreler" sema={sema}>
-  <SayfaBasi etiket="Hesaplayıcı" baslik="İdari para cezası ve süre hesaplayıcı" ozet="167 sayılı Kanun m.18 ceza aralıkları, yetkili merci ve itiraz/dava süreleri." />
+<Sayfa baslik={ARAC.ceza.ad} aciklama={OZ_CEVAP} tarayiciBaslik={`${ARAC.ceza.ad}: 167 m.18`} sema={sema}>
+  <SayfaBasi etiket="Hesaplayıcı" baslik={ARAC.ceza.ad} ozet="167 sayılı Kanun m.18 ceza aralıkları, yetkili merci ve itiraz/dava süreleri." />
   <OzCevap metin={OZ_CEVAP} etiket="Özet" />
 
   <form id="hc-form" class="hc-form">

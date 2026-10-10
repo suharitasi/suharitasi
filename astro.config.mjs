@@ -226,7 +226,7 @@ function llmsOlustur() {
     ['radar/', 'Karar & tazelik radarı'],
     ['veri/', 'Açık veri kataloğu (JSON API)'],
     ['su-riski-endeksi/', 'Su riski endeksi (il/havza)'],
-    ['kuyu-karar-motoru/', 'Kuyu karar motoru (süre, merci, evrak)'],
+    ['kuyu-karar-motoru/', 'Tebliğ Aldım: Süre ve İtiraz Yolu (süre, merci, evrak)'],
     ['su-hukuku/', 'Su hukuku omurga sayfası (karar matrisi)'],
     ['rehberler/', 'Mevzuat rehberleri'],
     ['mevzuat/', 'Mevzuat maddeleri (madde madde)'],

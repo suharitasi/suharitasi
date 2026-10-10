@@ -3,6 +3,7 @@
 // İl + işlem + tebliğ tarihi → kişiselleştirilmiş yol haritası, son tarih
 // takvimi, yetkili merci, evrak listesi ve dilekçe ön taslağı.
 // Bilgilendirme amaçlıdır; somut dosyada hukuki görüş uzman değerlendirmesi ister.
+import { ARAC } from '../data/arac-adlari.js';
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
@@ -17,7 +18,7 @@ import { tumIller } from '../data/islem-matrisi.js';
 
 // Görünür ad tercihi (FAZ 1, v5.2): H1 ve tüm yönlendirme metinlerinde tam ad,
 // menüde/bağlantı etiketlerinde kısa ad kullanılır. URL DEĞİŞMEZ (kanonik koruma).
-const SIHIRBAZ_AD = 'DSİ Kuyu Ruhsatı & İdari Ceza İtiraz Sihirbazı';
+const SIHIRBAZ_AD = ARAC.teblig.ad; // DURAK 1 D: eski ad "DSİ Kuyu Ruhsatı & İdari Ceza İtiraz Sihirbazı"
 
 const OZ_CEVAP =
   'İlinizi, işlemi ve tebliğ tarihinizi seçin: kuyu ruhsatı, ceza itirazı veya kapatma ' +

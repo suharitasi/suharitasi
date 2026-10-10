@@ -28,7 +28,7 @@ import grace from '../../data/canli/grace-havza.json';
 // 10.10.2026 (brif 1.1): uydu penceresinin SON ÖLÇÜM AYI metinde yazılır (kaynak gecikmeli).
 const graceSonAy: string = Object.values((grace as any).havzalar ?? {}).reduce((s: string, h: any) => { const k = Object.keys(h?.seri ?? {}).sort().at(-1) ?? ''; return k > s ? k : s; }, '');
 const graceSonAyMetni = graceSonAy ? ` (son ölçüm ${graceSonAy})` : '';
-import { SITE_ADI, YAZAR, VERI_KATALOGU, KURUM_SOSYAL } from '../data/site';
+import { SITE_ADI, YAZAR, VERI_KATALOGU, KURUM_SOSYAL, YAZAR_BARO_SEMA } from '../data/site';
 import AcilDestekBar from '../components/AcilDestekBar.astro';
 import CfAnalitik from '../components/CfAnalitik.astro';
 import Analitik from '../components/Analitik.astro';
@@ -101,7 +101,7 @@ const jsonLd = JSON.stringify({
       areaServed: { '@type': 'Country', name: 'Türkiye' },
       sameAs: KURUM_SOSYAL,
       telephone: '+90 532 449 71 44',
-      founder: { '@type': 'Person', name: YAZAR.adSade, jobTitle: YAZAR.unvan },
+      founder: { '@type': 'Person', name: YAZAR.adSade, jobTitle: YAZAR.unvan, ...YAZAR_BARO_SEMA },
     },
     {
       '@type': 'WebSite',

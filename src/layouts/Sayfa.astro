@@ -6,7 +6,7 @@
 import PaylasilanMenu from '../components/PaylasilanMenu.astro';
 import AltBilgi from '../components/AltBilgi.astro';
 import GorselSlot from '../components/GorselSlot.astro';
-import { SITE_ADI, YAZAR, EPOSTA, OG_GORSEL, KURUM_SOSYAL, YAZAR_SOSYAL } from '../data/site';
+import { SITE_ADI, YAZAR, EPOSTA, OG_GORSEL, KURUM_SOSYAL, YAZAR_SOSYAL, YAZAR_BARO_SEMA } from '../data/site';
 // Hareket sözlüğü + giriş koreografisi TEK KAYNAK (ödül-üstü Faz 1).
 import '../styles/hareket.css';
 import AcilDestekBar from '../components/AcilDestekBar.astro';
@@ -198,6 +198,7 @@ const yazarSema = {
   description: YAZAR.uzmanlik,
   image: ogGorselTam,
   worksFor: { '@type': 'Organization', name: YAZAR.buro, url: YAZAR.buroUrl },
+  ...YAZAR_BARO_SEMA,
   knowsAbout: [
     'Su hukuku',
     'Yeraltı suyu mevzuatı',

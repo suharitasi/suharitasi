@@ -34,11 +34,26 @@ const rastgele = () => {
   try { return crypto.randomUUID().slice(0, 8); } catch { return Math.random().toString(36).slice(2, 10); }
 };
 
-function yonlendir(env) {
+// Hazır mesaj (brif 3.5, 10.10.2026): ?il=…&konu=… → "Merhaba, {il} ilinde {konu} konusunda bilgi almak
+// istiyorum." Parametreler yalnız harf/boşluk/kısa çizgi, en çok 60 karakter; başka bir şey yazılmaz.
+const temizParam = (v) => String(v || '').replace(/[^A-Za-zÇĞİÖŞÜçğıöşüâîû0-9 /().,'’-]/g, '').replace(/\s+/g, ' ').trim().slice(0, 60);
+export function hazirMesaj(url) {
+  if (!url) return '';
+  const il = temizParam(url.searchParams.get('il'));
+  const konu = temizParam(url.searchParams.get('konu'));
+  if (il && konu) return `Merhaba, ${il} ilinde ${konu} konusunda bilgi almak istiyorum.`;
+  if (konu) return `Merhaba, ${konu} konusunda bilgi almak istiyorum.`;
+  if (il) return `Merhaba, ${il} ilindeki durumum hakkında bilgi almak istiyorum.`;
+  return '';
+}
+
+function yonlendir(env, url) {
+  const hedef = (env && env.WA_HEDEF) || HEDEF;
+  const mesaj = hazirMesaj(url);
   return new Response(null, {
     status: 302,
     headers: {
-      Location: (env && env.WA_HEDEF) || HEDEF,
+      Location: mesaj ? `${hedef}${hedef.includes('?') ? '&' : '?'}text=${encodeURIComponent(mesaj)}` : hedef,
       'Cache-Control': 'no-store',
       'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
       'X-Kaynak': 'fn', // canlı ölçüm: bu başlık varsa isteği Function karşıladı, _redirects değil
@@ -69,7 +84,7 @@ export async function onRequest(context) {
   const { request, env } = context;
   const kv = env && env.WA_SAYAC; // bağlama yoksa undefined → sayım atlanır
   let url;
-  try { url = new URL(request.url); } catch { return yonlendir(env); }
+  try { url = new URL(request.url); } catch { return yonlendir(env, null); }
 
   // OKUMA YOLU — yalnız gizli anahtar tanımlı VE eşleşiyorsa.
   if (kv && env.SAYAC_ANAHTAR && anahtarEsit(sayacAnahtari(request), env.SAYAC_ANAHTAR)) {
@@ -102,5 +117,5 @@ export async function onRequest(context) {
       if (typeof context.waitUntil === 'function') context.waitUntil(yaz);
     } catch { /* sayım kaybı yönlendirmeyi durdurmaz */ }
   }
-  return yonlendir(env);
+  return yonlendir(env, url);
 }

@@ -3,6 +3,7 @@
 // Mevcut "Arslan Hukuk Bürosu güvencesiyle" imza satırına DOKUNULMAZ —
 // en altta, olduğu gibi durur (kullanıcı kararı).
 // TBB uyumu: künye bilgilendirmedir; davet veya hizmet vaadi yoktur.
+import { ARAC } from '../data/arac-adlari.js';
 import { YAZAR, EPOSTA } from '../data/site';
 
 // site-architecture "orphan page yasağı" + footer sütunlama kuralı.
@@ -24,7 +25,9 @@ const bolumler = [
 
 const niyetKapilari = [
   // FAZ 1 (v5.2): bağ hedefi aynı; etiket yeni görünür adla güncellendi.
-  { ad: 'Kuyu Ruhsat & İtiraz Sihirbazı', yol: '/kuyu-karar-motoru/' },
+  { ad: ARAC.teblig.ad, yol: ARAC.teblig.yol },
+  { ad: ARAC.tarla.ad, yol: ARAC.tarla.yol },
+  { ad: ARAC.ceza.ad, yol: ARAC.ceza.yol },
   { ad: 'Riskim ne?', yol: '/su-riski-endeksi/' },
   { ad: 'Kısıt var mı?', yol: '/kuyu-kisit-sorgu/' },
   { ad: 'Hesapla', yol: '/hesaplayicilar/' },

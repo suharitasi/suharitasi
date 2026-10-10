@@ -87,7 +87,8 @@ const ilSayisi = say(iller.length, 'il sayfası');
 // Veri değişirse build DÜŞER → onaylı cümle ancak bilinçli güncellenir.
 // (R3-Line5 komut-kipi kapanışı son cümlede zaten var; ek yapılmadı.)
 export const OZ_CEVAP =
-  'Nerede su çıkar? Cevap il il, resmî veriyle: 12 havza planından 472 ' +
+  // DURAK 1 D (10.10.2026): araç adı "Tarlamda Su Çıkar mı?" — onaylı cümlenin yalnız açılış sorusu değişti.
+  'Tarlamda su çıkar mı? Cevap il il, resmî veriyle: 12 havza planından 472 ' +
   "yeraltı suyu kütlesi, 347'si il sınırına eşlendi. 1963'ten bu yana 289 " +
   'Resmî Gazete kaydı tarandı. İlinizi seçin.';
 {

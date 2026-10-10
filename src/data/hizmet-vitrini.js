@@ -1,4 +1,5 @@
 // ANA SAYFA HİZMET VİTRİNİ — "Hizmet ve İstihbarat Merkezi" (Adım 1).
+import { ARAC } from './arac-adlari.js';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { SAYILAR } from './kapi.js';
@@ -70,11 +71,11 @@ export const VITRIN_KOLONLARI = [
   {
     no: '04',
     kicker: '167 Sayılı YAS Denetimi',
-    ad: 'Kuyu Ruhsatı & Kısıt Karar Motoru',
+    ad: ARAC.teblig.ad,
     metin:
       'Havzanızın yeraltı suyu tahsis kısıtını, DSİ kuyu açma izin rejimini ve ' +
       'ruhsatsız kuyu idari para cezası riskini mevzuata göre anında hesaplayın.',
-    cta: 'Kuyu Karar Motorunu Başlat',
+    cta: `${ARAC.teblig.ad} — başlat`,
     hedef: '/kuyu-karar-motoru/',
     ikon: 'motor',
     aksan: '#0C4A6E',

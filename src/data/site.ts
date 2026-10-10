@@ -11,6 +11,9 @@ export const YAZAR = {
   unvan: 'Avukat',
   buro: 'Arslan Hukuk Bürosu',
   buroUrl: 'https://arslanhukuk.tr',
+  // DURAK 1 C (sahip, 10.10.2026): baro ve sicil yayımlanır; posta adresi HİÇBİR yerde yayımlanmaz.
+  baro: "İstanbul 2 No'lu Barosu",
+  sicil: '1560',
   // Nesnel, davetsiz: TBB reklam yasağı uyumu — hizmet vaadi/çağrı yok.
   // uzmanlik: hazırlayanın kim olduğu zaten söylenmişse tek başına kullanılır
   // (/hakkinda/). bio: kutunun tek başına durduğu yerde tam hali (YazarKutusu).
@@ -49,6 +52,12 @@ export const KURUM_SOSYAL: string[] = [
   "https://doi.org/10.5281/zenodo.23002678",
   // ör: 'https://www.linkedin.com/company/suharitasi',
 ];
+
+/** Person düğümlerine eklenen baro üyeliği ve sicil (schema.org memberOf + identifier). */
+export const YAZAR_BARO_SEMA = {
+  memberOf: { '@type': 'Organization', name: YAZAR.baro },
+  identifier: { '@type': 'PropertyValue', propertyID: `${YAZAR.baro} sicil no`, value: YAZAR.sicil },
+};
 
 export const YAZAR_SOSYAL: string[] = [
   // ör: 'https://www.linkedin.com/in/serdararslan',

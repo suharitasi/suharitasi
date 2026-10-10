@@ -52,8 +52,8 @@
         .then(function (j) {
           if (j && j.ok) {
             form.reset();
-            yaz('Talebiniz alındı. En kısa sürede dönüş yapılacaktır. ' +
-              'Acilse <a href="/whatsapp/">WhatsApp</a> veya telefonla ulaşabilirsiniz.', 'ok');
+            // DURAK 1 C (10.10.2026): gönderim sonrası ekran yalnız alındı bilgisi + iletişim adresi; süre/ücret vaadi yok.
+            yaz('Talebiniz alındı. İletişim: <a href="mailto:hukuk@arslanhukuk.tr">hukuk@arslanhukuk.tr</a>', 'ok');
           } else {
             throw new Error((j && j.hata) || 'gönderilemedi');
           }

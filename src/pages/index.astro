@@ -28,7 +28,7 @@ import Hizmetler from '../components/anasayfa/Hizmetler.astro';
 import Surec from '../components/anasayfa/Surec.astro';
 import Hakkinda from '../components/anasayfa/Hakkinda.astro';
 import Iletisim from '../components/anasayfa/Iletisim.astro';
-import { YAZAR, EPOSTA, KURUM_SOSYAL } from '../data/site';
+import { YAZAR, EPOSTA, KURUM_SOSYAL, YAZAR_BARO_SEMA } from '../data/site';
 import '../styles/anasayfa-v2.css';
 
 // U1 (satis-uygula 28.07): eski öz-cevap alt metni ve beş-sayılı envanter
@@ -111,6 +111,7 @@ const sahneVeri = SAHNELER.map((s) => ({
       "description": YAZAR.uzmanlik,
       "image": "https://suharitasi.com/og-suharitasi.v1.png",
       "worksFor": { "@type": "Organization", "name": YAZAR.buro, "url": YAZAR.buroUrl },
+      ...YAZAR_BARO_SEMA,
       "knowsAbout": ["Su hukuku", "Yeraltı suyu mevzuatı", "İdari yargı", "Kamulaştırma hukuku", "Şirketler hukuku"]
     },
     {
