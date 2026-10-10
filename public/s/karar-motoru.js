@@ -63,6 +63,7 @@ try { SURE = JSON.parse(document.getElementById('sure-kurallar').textContent); }
     var teblig = teEl.value;
 
     var sureHtml = '';
+    var sureler = [];
     var dal = ktEl ? ktEl.value : '';
     if (teblig && SURE) {
       var yollar = dal ? [dal] : ['kabahat', 'idari', 'birlikte'];
@@ -71,6 +72,7 @@ try { SURE = JSON.parse(document.getElementById('sure-kurallar').textContent); }
         var y = SURE.yollar[id]; var r = sonGun(teblig, id, SURE); if (!r) return '';
         r.notlar.forEach(function (n) { if (notlar.indexOf(n) < 0) notlar.push(n); });
         var k = kalanGun(r.son);
+        sureler.push({ ad: y.ad, son: tr(r.son), kalan: k });
         return '<li><strong>' + kacir(y.ad) + '</strong> — ' + kacir(y.merci) + ': son gün <strong>' + tr(r.son) + '</strong> (' +
           (k >= 0 ? k + ' gün kaldı' : 'süre geçmiş olabilir') + ') · ' + kacir(y.dayanak) + '</li>';
       }).join('');
@@ -106,7 +108,7 @@ try { SURE = JSON.parse(document.getElementById('sure-kurallar').textContent); }
 
     document.dispatchEvent(new CustomEvent('km-taslak', { detail: {
       il: il, islem: islem, islemAd: islemAdi(islem), merci: merci,
-      teblig: teblig || '', tarih: tarih || '', dayanak: d.dayanak,
+      teblig: teblig || '', tarih: tarih || '', dayanak: d.dayanak, sureler: sureler,
     } }));
   }
 

@@ -3,8 +3,11 @@
 //
 // Kuyu Sihirbazı'ndaki taslağı CANLI denetler (saf Vanilla JS, harici
 // kütüphane/sunucu YOK):
-//   Kural A — Tarih & hak düşürücü süre (İYUK m. 7): tebliğ üzerinden 45 günü
-//             aşan dosyada kırmızı uyarı.
+//   Kural A — Süre: sihirbazın tek süre modülüyle (src/data/sure-hesap.js ←
+//             data/kamu/sure-tablosu.json) hesapladığı her yolun son günü olayla gelir;
+//             son 15 gün içinde ya da son gün geçmişse kırmızı uyarı (DURAK 1 A-b, 10.10.2026:
+//             bileşenin kendi 60 gün hesabı ve süre geçtikten sonra İYUK m.11 önerisi kaldırıldı —
+//             2577 m.11/1 başvuruyu "idari dava açma süresi içinde" arar).
 //   Kural B — Hasım düzeltmesi: taslakta "DSİ Şube" geçiyorsa hasımın tüzel
 //             kişiliği haiz "DSİ Genel Müdürlüğü" olması gerektiği uyarısı.
 //   Kural C — Delil/belge durumu: açıklamada ruhsat/kullanma belgesi
@@ -40,8 +43,6 @@ import HukukDanismanlik from './HukukDanismanlik.astro';
 
   <script type="application/json" id="dd-veri" set:html={JSON.stringify({
     kurallar: {
-      a: 'Dikkat: İYUK m. 7 uyarınca 60 günlük dava açma süresinin son 15 günündesiniz; yürütmeyi durdurma talepli idari dava aciliyet kesbetmektedir.',
-      aGecmis: '60 günlük dava açma süresi geçmiş görünüyor; İYUK m. 11 uyarınca üst makama başvuru veya olağanüstü kanun yolları değerlendirilmelidir.',
       b: "İdari Yargılama Usulü Kanunu uyarınca hasım tüzel kişiliği haiz 'DSİ Genel Müdürlüğü' olarak gösterilmelidir.",
       c: 'Açıklamalar bölümünde arama/kullanma belgesi veya ruhsat durumuna değinilmiyor; delil ve belge durumu dilekçeye eklenmelidir.',
     },
@@ -58,21 +59,6 @@ import HukukDanismanlik from './HukukDanismanlik.astro';
   const KURAL = JSON.parse(veriEl?.textContent || '{}').kurallar || {};
 
   let ctx: any = {};
-
-  function trTarih(iso: string) {
-    const d = new Date(iso + 'T00:00:00');
-    return Number.isNaN(d.getTime())
-      ? ''
-      : d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
-  }
-
-  function gunFarki(iso: string) {
-    const d = new Date(iso + 'T00:00:00');
-    if (Number.isNaN(d.getTime())) return null;
-    const b = new Date();
-    b.setHours(0, 0, 0, 0);
-    return Math.round((b.getTime() - d.getTime()) / 86400000);
-  }
 
   // Dinamik yer tutucular: seçilen il/merci/tarih/dayanak taslağa enjekte edilir.
   function taslakOlustur(c: any) {
@@ -116,15 +102,12 @@ import HukukDanismanlik from './HukukDanismanlik.astro';
     const metin = taslak?.value || '';
     const kutular: any[] = [];
 
-    // Kural A — tarih & hak düşürücü süre (İYUK m. 7)
-    if (ctx.teblig) {
-      const gecen = gunFarki(ctx.teblig);
-      if (gecen != null && gecen > 45) {
-        kutular.push({
-          tip: 'kirmizi',
-          baslik: 'Hak düşürücü süre',
-          metin: gecen > 60 ? KURAL.aGecmis : KURAL.a,
-        });
+    // Kural A — süre (sihirbazın tek süre modülünden gelen son günler)
+    for (const s of ctx.sureler || []) {
+      if (s.kalan < 0) {
+        kutular.push({ tip: 'kirmizi', baslik: 'Süre', metin: `${s.ad}: hesaplanan son gün (${s.son}) geçmiş görünüyor. Tebliğ tarihi ve süre somut dosyada kontrol edilmelidir.` });
+      } else if (s.kalan <= 15) {
+        kutular.push({ tip: 'kirmizi', baslik: 'Süre', metin: `${s.ad}: son gün ${s.son} (${s.kalan} gün kaldı).` });
       }
     }
 
