@@ -121,7 +121,7 @@ Tek kaynak: data/kamu/sure-tablosu.json (yollar, birebir madde metinleri, tatil 
 
 Hesap kuralları ve dayanakları: 60 gün — 2577 m.7/1, m.7/2-a; tebliği izleyen gün başlar, tatil günleri dahil, son gün tatile rastlarsa izleyen çalışma gününe uzar, ara vermeye rastlarsa ara verme bitiminden 7 gün uzar (2577 m.8; ara verme 20 Temmuz–31 Ağustos, 2577 m.61/1 — tek idare mahkemeli yerlerde uygulanmaz, bu yüzden ayrı not). Tatil: Pazar ve 2429 m.2 sabit günleri (1 Ocak, 23 Nisan, 1 Mayıs, 19 Mayıs, 15 Temmuz, 30 Ağustos, 29 Ekim). Dini bayramlar hesaba katılmadı (tarihleri resmî kaynaktan bu turda çekilemedi; Diyanet sayfası sorgu formuyla çalışıyor) — not düşülüyor. Cumartesi ve arefe (2429: 13.00'ten itibaren) tatil sayılmadı — gösterilen tarih erken olabilir, geç olamaz. 15 gün — 5326 m.27/1; 5326'da süre hesabı kuralı yok ve CMK'ya genel atıf bulunamadı → tebliğ tarihine 15 gün eklenir, tatil uzaması uygulanmaz, "doğrulanamadı" notu gösterilir. Aynı işlemde para cezası + kapatma → 5326 m.27/8 (idari yargı, 60 gün).
 
-Doldurulan hücreler (18):
+Resmî dayanaklı süre hücresi olan satırlar (18; bunların 15'i bu turda dolduruldu, 3'ü önceden doluydu):
 - [baraj-kamulastirmasi] Usulüne uygun kamulaştırma → Tebligat ya da gazete ilanından itibaren 30 gün: idari yargıda iptal, adli yargıda düzeltim (2942 m.14)
 - [baraj-kamulastirmasi] İmar kısıtlılığı → İmar planı yürürlüğünden itibaren beş yıl (2942 Ek m.1)
 - [jeotermal-ruhsat] Geçiş rejimi ve yetki uyuşmazlığı → Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)
@@ -157,4 +157,24 @@ Doğrulanamadı kalan hücreler (13; arama sürüyor):
 - [yeralti-suyu-isletme-sahasi] Sürekli denetim ve uygunsuzluk tespiti
 
 Ayrıca düzeltilen hata: süre sayacı "İdari para cezası" türünde de 60 gün (idare mahkemesi) hesaplıyordu; artık sulh ceza, 15 gün. Sayacın "süre geçtiyse 2577 m.11 uyarınca üst makama başvuru" önerisi kaldırıldı (m.11 başvurusu ancak "idari dava açma süresi içinde" yapılabilir — 2577 m.11/1 metni); yerine nötr cümle (onaya).
+
+
+## DURAK 1 sonrası — d) Emsal: sonuç
+
+Yöntem (10.10.2026): Danıştay karar arama sunucusunda (karararama.danistay.gov.tr) esas ve karar numarasıyla detaylı arama + karar metninde esas/karar numarası, daire ve karar tarihi kontrolü.
+
+- Önceki 11 künye yeniden doğrulandı (önceki turda erişim hatası veren 13. Daire 2022/1487 E., 2023/870 K. dahil).
+- **Yeni doğrulanan 9 künye** (ikincil kaynağa bağlı ya da kaynaksız iken resmî metinde bulundu; ikincil bağlantılar kaynak_onceki alanında saklandı) — sahip kararı gereği dizine alındı ("yalnız resmî sunucuda doğrulanan" ölçütü):
+  - Danıştay 8. Daire 2018/6147 E., 2024/72 K. — karar tarihi 17.01.2024 — https://karararama.danistay.gov.tr/getDokuman?id=1053502600&arananKelime=2018/61476147%2C2024/7272
+  - Danıştay 8. Daire 2023/663 E., 2023/829 K. — karar tarihi 24.02.2023 — https://karararama.danistay.gov.tr/getDokuman?id=986587100&arananKelime=2023/663663%2C2023/829829
+  - Danıştay 8. Daire 2021/5225 E., 2023/6171 K. — karar tarihi 23.11.2023 — https://karararama.danistay.gov.tr/getDokuman?id=1047987800&arananKelime=2021/52255225%2C2023/61716171
+  - Danıştay 13. Daire 2020/1093 E., 2023/2584 K. — karar tarihi 24.05.2023 — https://karararama.danistay.gov.tr/getDokuman?id=1012015000&arananKelime=2020/10931093%2C2023/25842584
+  - Danıştay 10. Daire 2017/40 E., 2021/4632 K. — karar tarihi 07.10.2021 — https://karararama.danistay.gov.tr/getDokuman?id=721349200&arananKelime=2017/4040%2C2021/46324632
+  - Danıştay 13. Daire 2015/4133 E., 2021/4015 K. — karar tarihi 25.11.2021 — https://karararama.danistay.gov.tr/getDokuman?id=735283600&arananKelime=2015/41334133%2C2021/40154015
+  - Danıştay 8. Daire 2018/2016 E., 2020/4396 K. — karar tarihi 14.10.2020 — https://karararama.danistay.gov.tr/getDokuman?id=677647400&arananKelime=2018/20162016%2C2020/43964396
+  - Danıştay 13. Daire 2013/263 E., 2018/2731 K. — karar tarihi 08.10.2018 — https://karararama.danistay.gov.tr/getDokuman?id=585424600&arananKelime=2013/263263%2C2018/27312731
+  - Danıştay 13. Daire 2012/253 E., 2018/3787 K. — karar tarihi 07.12.2018 — https://karararama.danistay.gov.tr/getDokuman?id=585634000&arananKelime=2012/253253%2C2018/37873787
+- **Künye çelişkisi (1):** "Danıştay 8. Daire 2022/3005 E., 2022/3470 K." numaraları resmî sunucuda İdare Dava Daireleri Kurulu kararına (01.12.2022) çıkıyor. Rehberlerde "künye çelişkisi, doğrulanamadı" diye işaretlendi. Karar: daire "İdare Dava Daireleri Kurulu" diye düzeltilip içeriğin rehberdeki iddiayı (arama belgesi rejimi) karşılayıp karşılamadığı sizin değerlendirmenizle mi dizine alınsın, yoksa doğrulanamadı olarak mı kalsın?
+- **Doğrulanamadı (5, tümü Yargıtay):** 7.HD 2024/1239–2024/2246; 7.HD 2023/5423–2024/4816; 7.HD 2023/4572–2023/5915; 14.HD 2013/5715–2013/7588; 7.HD 2011/3727–2012/3244. Yargıtay karar arama sunucusuna (karararama.yargitay.gov.tr) bu sunucudan bağlanılamıyor (zaman aşımı); başka bir ağdan denenmesi gerekir. Rehberlerdeki 11 atıf "(resmî kaynaktan doğrulanamadı)" diye işaretlendi; ayrı ve dizine kapalı sayfada: /emsal-kararlar/dogrulanamadi/.
+- Özetler: doğrulanan künyelerin özet (ozet) alanlarının bir kısmı ikincil kaynaktan gelmiştir; özetin karar metnine uygunluğu ayrıca kontrol edilmedi (4.4 karar sayfalarında resmî metinden alıntı kullanılacak).
 

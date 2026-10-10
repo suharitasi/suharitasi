@@ -70,8 +70,8 @@ Durum: **yapıldı** (kanıtlı) · **sürüyor** · **onay bekliyor** (hukuki y
 | 4.1–4.10 Yeni değer | başlanmadı | hayır | 4.1/4.2 A-a/A-b tablolarına bağlı |
 | A-a Ceza tutarı yeniden değerleme | onay bekliyor | hayır | 18/18 tebliğ RG'den; 2026: a 30.138–151.192, b 15.029–60.408 TL; 7 yüzey + API tek kaynaktan (ölçüldü); eksik yılda derleme durur |
 | A-b Süreler, 5326 m.27, 28 hücre | onay bekliyor | hayır | süre tablosu + tek hesap modülü (5 yüzey); 28 hücreden 18 resmî metinle dolduruldu, 13 doğrulanamadı (arama sürüyor); sihirbaza m.27/8 dalı; sayaçtaki 60-gün hatası düzeltildi |
-| A-c Tahsis sırası | onay bekliyor | hayır | rehber düzeltildi; madde sayfası ↔ rehber bağı sırada |
-| A-d Emsal (11 dizinde) | başlanmadı | hayır |  |
+| A-c Tahsis sırası | onay bekliyor | hayır | rehber düzeltildi; m.7 ve Tüzük m.15 sayfaları rehbere bağlandı |
+| A-d Emsal | sürüyor | hayır | dizinde resmî sunucuda doğrulanan 20 (11 + 9 yeni); 1 künye çelişkisi + 5 Yargıtay (sunucuya erişilemedi) dizine kapalı ayrı sayfada; atıflar işaretlendi; karar sayfaları (4.4) sırada |
 | A-e Avukat ifadeleri listesi | başlanmadı | — | sonraki durakta sohbete |
 | A-f Lisans/form beyanları, sihirbaz KVKK kutusu | sürüyor | hayır | form beyanları + onay kutusu onaya; lisans beyanı sırada |
 | B Kapatma kayıtları il eşlemesi | yapıldı | hayır (önizleme) | Ergene ×3 notla; il sayıları tek kaynak (ölçüldü) |

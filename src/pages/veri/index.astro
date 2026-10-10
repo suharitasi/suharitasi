@@ -20,7 +20,7 @@ import HukukSerhi from '../../components/HukukSerhi.astro';
 import { kisitNormalize, islemJoin } from '../../data/ortak-normalize.js';
 import ilKurum from '../../../data/il-kurum.json';
 import havzaVeri from '../../../data/havza-veri.json';
-import emsalVeri from '../../../data/kamu/emsal-kararlar.json';
+import { EMSAL_DOGRULANAN } from '../../data/emsal.js';
 import suIslemleri from '../../../data/kamu/su-islemleri.json';
 import hangiKapi from '../../../data/kamu/hangi-kapi.json';
 import suBirimleri from '../../../data/kamu/su-birimleri.json';
@@ -81,7 +81,8 @@ const havzalar = havzaVeri.havzalar.map((h) => ({
   ara: `${h.no} ${h.ad}`,
 }));
 
-const emsal = emsalVeri.kararlar.map((k) => ({
+// DURAK 1 A-d: yalnız resmî sunucuda doğrulanan künyeler.
+const emsal = EMSAL_DOGRULANAN.map((k) => ({
   ...k,
   ara: `${k.merci} ${k.konu} ${k.esas} ${k.karar} ${k.yil} ${k.ozet} ${(k.rehberler || []).join(' ')}`,
 }));

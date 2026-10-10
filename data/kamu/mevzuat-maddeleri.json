@@ -237,7 +237,9 @@
       "merci": null,
       "sure": null,
       "yorum": null,
-      "rehberler": [],
+      "rehberler": [
+        "su-tahsisi-oncelik-sirasi"
+      ],
       "emsaller": []
     },
     {
@@ -4979,7 +4981,9 @@
       "merci": null,
       "sure": null,
       "yorum": null,
-      "rehberler": [],
+      "rehberler": [
+        "su-tahsisi-oncelik-sirasi"
+      ],
       "emsaller": []
     },
     {

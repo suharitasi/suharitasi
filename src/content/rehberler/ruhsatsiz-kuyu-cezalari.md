@@ -22,7 +22,7 @@ karar:
     merci: "Mahallî mülkî amir (valilik/kaymakamlık)"
     sure: "Para cezasına tebliğden itibaren 15 gün, sulh ceza (5326 m.27/1); kapatma aynı işlemdeyse idari yargı, 60 gün (5326 m.27/8)"
     ceza: "167 m.18/a: {{CEZA_18A}}; kuyu kapatma"
-    emsal: "Danıştay 8.D. 2022/3005 E., 2022/3470 K. — arama belgesi rejimin çekirdeği"
+    emsal: "Danıştay 2022/3005 E., 2022/3470 K. (künye çelişkisi, doğrulanamadı) — arama belgesi rejimin çekirdeği"
   - senaryo: "Belge şartlarına aykırı su kullanma (m.10-11 ihlali)"
     merci: "Mahallî mülkî amir"
     sure: "Para cezasına tebliğden itibaren 15 gün, sulh ceza (5326 m.27/1); kapatma aynı işlemdeyse idari yargı, 60 gün (5326 m.27/8)"
@@ -32,7 +32,7 @@ karar:
     merci: "İdari yargı (iptal davası)"
     sure: "Ceza: 15 gün sulh ceza (5326 m.27/1); kapatma: 60 gün idare mahkemesi (2577 m.7); aynı işlemdeyse ikisi idari yargıda (5326 m.27/8)"
     ceza: "—"
-    emsal: "Yargıtay 7.HD 2011/3727 E., 2012/3244 K. — kuyu suyu 167 rejimine tabi"
+    emsal: "Yargıtay 7.HD 2011/3727 E., 2012/3244 K. (resmî kaynaktan doğrulanamadı) — kuyu suyu 167 rejimine tabi"
 ---
 
 Ruhsatsız kuyu iki ayrı yoldan yaptırıma yol açar: ya kuyu baştan
@@ -89,7 +89,7 @@ Bu rehberde andığımız hükümlerin birebir metni bağımsız mevzuat sayfala
 
 Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
-- Yargıtay 7. Hukuk Dairesi 2011/3727 E., 2012/3244 K. — kuyu suyu
+- Yargıtay 7. Hukuk Dairesi 2011/3727 E., 2012/3244 K. (resmî kaynaktan doğrulanamadı) — kuyu suyu
   kullanan tarafa belediye su idaresince "kaçak su bedeli" yüklenemez;
   kuyu suyu 167 sayılı rejime tabidir, belediye yalnızca atık su bedeli
   talep edebilir. (ikincil kaynak; resmî doğrulama bekliyor)
@@ -97,7 +97,7 @@ Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma du
   yeraltı/kaynak suyu kullanımı DSİ tarafından tespit edilebilir; yerel
   idare bu suyu abonelik ve tarife konusu yapamaz; fazla kullanım
   önlenip DSİ'ye bildirilir. (ikincil kaynak; resmî doğrulama bekliyor)
-- Danıştay 8. Daire 2022/3005 E., 2022/3470 K. — 167'nin arama belgesi
+- Danıştay 2022/3005 E., 2022/3470 K. (resmî sunucuda İdare Dava Daireleri Kurulu kararı; künye çelişkisi, doğrulanamadı) — 167'nin arama belgesi
   mekanizması yeraltı suyu rejiminin çekirdeğidir.
 
 Ortak çizgi: ruhsatsız veya izin aşımı kullanımlar yaptırımsız kalmaz;

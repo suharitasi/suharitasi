@@ -3,15 +3,15 @@
 //
 // Künyeler rehberlerde yayımlanmış hâliyle data/kamu/emsal-kararlar.json'dan
 // gelir; buraya rehberlerde geçmeyen künye EKLENMEZ (uydurma yasağı).
-// Doğrulama durumu dürüstçe gösterilir: 'kaynakli' (ikincil kaynak bağlantısı
-// var) / 'kunye' (yalnız künye, nihai doğrulama sürüyor).
+// 10.10.2026 (sahip kararı DURAK 1 A-d): dizinde YALNIZ resmî karar arama sunucusunda
+// doğrulanan künyeler; doğrulanamayanlar /emsal-kararlar/dogrulanamadi/ (noindex) sayfasında.
 import Sayfa from '../layouts/Sayfa.astro';
 import { TARIH } from '../data/guncellik.js';
 import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
 import CtaBlok from '../components/CtaBlok.astro';
-import emsal from '../../data/kamu/emsal-kararlar.json';
+import { EMSAL_DOGRULANAN, EMSAL_DOGRULANAMAYAN, EMSAL_SERH, EMSAL_DOGRULAMA_TARIHI } from '../data/emsal.js';
 import mevzuat from '../../data/kamu/mevzuat-maddeleri.json';
 
 // İki yönlü bağ: hangi emsal hangi maddelere bağlı (madde.emsaller ters çevrilir).
@@ -31,14 +31,14 @@ for (const m of mevzuat.maddeler) {
 
 const OZ_CEVAP =
   'Türkiye\'de su hukukuna yön veren Danıştay ve Yargıtay kararlarından derlenmiş ' +
-  'emsal dizini: yeraltı suyu belgeleri, izin aşımı, kaynak suyu kiralama, jeotermal ' +
-  'geçiş rejimi ve komşu su uyuşmazlıkları. Her künye ilgili rehbere ve (varsa) ' +
-  'karar kaynağına bağlanır.';
+  'emsal dizini: yeraltı suyu belgeleri, izin aşımı, kaynak suyu kiralama ve jeotermal ' +
+  'geçiş rejimi. Listedeki her künye resmî karar arama sunucusunda doğrulanmıştır ' +
+  've karar metnine bağlanır.';
 
 const kok = new URL('/', Astro.site).href;
 const canonical = new URL('/emsal-kararlar/', Astro.site).href;
 
-const kararlar = [...emsal.kararlar].sort((a, b) => b.yil - a.yil || a.merci.localeCompare(b.merci, 'tr'));
+const kararlar = [...EMSAL_DOGRULANAN].sort((a, b) => b.yil - a.yil || a.merci.localeCompare(b.merci, 'tr'));
 
 const sema = [
   {
@@ -54,7 +54,8 @@ const sema = [
         name: `${k.merci} ${k.esas} E., ${k.karar} K.`,
         about: k.konu,
         description: k.ozet,
-        ...(k.kaynak ? { sameAs: k.kaynak } : {}),
+        sameAs: k.resmi_dogrulama.url,
+        dateCreated: k.resmi_dogrulama.karar_tarihi.split('.').reverse().join('-'),
       },
     })),
   },
@@ -79,7 +80,11 @@ const sema = [
   <SayfaBasi etiket="Emsal kararlar" baslik="Su hukuku emsal kararları" ozet="Danıştay ve Yargıtay'ın su hukukuna yön veren kararlarından derlenmiş dizin; her künye ilgili rehbere bağlı." />
   <OzCevap metin={OZ_CEVAP} etiket="Kanun özeti" />
 
-  <p class="em-serh">{emsal.serh}</p>
+  <p class="em-serh">{EMSAL_SERH}</p>
+  <p class="em-serh">Bu listedeki {kararlar.length} künyenin her biri {EMSAL_DOGRULAMA_TARIHI} tarihinde resmî karar arama
+    sunucusunda (karararama.danistay.gov.tr) esas ve karar numarasıyla aranmış ve karar metninde doğrulanmıştır.
+    Doğrulanamayan {EMSAL_DOGRULANAMAYAN.length} künye ayrı sayfada, gerekçesiyle:
+    <a href="/emsal-kararlar/dogrulanamadi/">doğrulanamayan künyeler</a>.</p>
 
   <label class="em-arama">
     <span>Karar ara</span>
@@ -112,7 +117,7 @@ const sema = [
         {kararlar.map((k) => (
           <tr data-karar={k.id}>
             <th scope="row">{k.merci}</th>
-            <td class="em-kunye">{k.esas} E.<br />{k.karar} K.<br /><span class="em-yil">{k.yil}</span></td>
+            <td class="em-kunye">{k.esas} E.<br />{k.karar} K.<br /><span class="em-yil">karar tarihi {k.resmi_dogrulama.karar_tarihi}</span></td>
             <td>{k.konu}</td>
             <td>
               {k.ozet}
@@ -121,9 +126,8 @@ const sema = [
             <td>{k.rehberler.map((r, i) => (<>{i > 0 && ' · '}<a href={`/rehberler/${r}/`}>{r}</a></>))}</td>
             <td>{(maddeByEmsal[k.id] ?? []).map((m, i) => (<>{i > 0 && ' · '}<a href={m.yol}>{m.ad}</a></>))}{!(maddeByEmsal[k.id] ?? []).length && <span class="em-kunye-bekliyor">—</span>}</td>
             <td>
-              {k.kaynak
-                ? <a href={k.kaynak} target="_blank" rel="noopener" class="em-ok">kaynaklı</a>
-                : <span class="em-kunye-bekliyor">künye</span>}
+              <a href={k.resmi_dogrulama.url} target="_blank" rel="noopener" class="em-ok">resmî metin</a>
+              <span class="em-yil">doğrulandı {k.resmi_dogrulama.tarih.split('-').reverse().join('.')}</span>
             </td>
           </tr>
         ))}

@@ -8,7 +8,7 @@ import OzCevap from '../../../components/OzCevap.astro';
 import CtaBlok from '../../../components/CtaBlok.astro';
 import HukukSerhi from '../../../components/HukukSerhi.astro';
 import mevzuat from '../../../../data/kamu/mevzuat-maddeleri.json';
-import emsal from '../../../../data/kamu/emsal-kararlar.json';
+import { emsalById as EMSAL_ID, dogrulandiMi } from '../../../data/emsal.js';
 import { MEVZUAT_EDITORYAL } from '../../../data/mevzuat-editoryal.js';
 import SayfaQr from '../../../components/SayfaQr.astro';
 import CezaTutarTablosu from '../../../components/CezaTutarTablosu.astro';
@@ -38,7 +38,7 @@ function slugla(s) {
 }
 
 const { m } = Astro.props;
-const emsalById = Object.fromEntries(emsal.kararlar.map((k) => [k.id, k]));
+const emsalById = EMSAL_ID;
 const ilgiliEmsaller = m.emsaller.map((id) => emsalById[id]).filter(Boolean);
 
 const kok = new URL('/', Astro.site).href;
@@ -166,7 +166,9 @@ const sema = [
       <ul class="mv-emsaller">
         {ilgiliEmsaller.map((k) => (
           <li>
-            <a href="/emsal-kararlar/">{k.merci} {k.esas} E., {k.karar} K.</a>
+            {dogrulandiMi(k)
+              ? <a href={k.resmi_dogrulama.url} target="_blank" rel="noopener">{k.merci} {k.esas} E., {k.karar} K. ({k.resmi_dogrulama.karar_tarihi})</a>
+              : <><a href="/emsal-kararlar/dogrulanamadi/">{k.merci} {k.esas} E., {k.karar} K.</a> <em>(resmî kaynaktan doğrulanamadı)</em></>}
             <span> — {k.konu}</span>
           </li>
         ))}

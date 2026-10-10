@@ -15,7 +15,7 @@ import OzCevap from '../components/OzCevap.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
 import surum from '../../data/kamu/mevzuat-surum.json';
 import degisiklik from '../../data/kamu/mevzuat-degisiklik.json';
-import emsalVeri from '../../data/kamu/emsal-kararlar.json';
+import { EMSAL_DOGRULANAN, EMSAL_DOGRULANAMAYAN } from '../data/emsal.js';
 import adayVeri from '../../data/emsal-adaylari.json';
 
 const sonKontrol = typeof surum.son_kontrol === 'string' ? surum.son_kontrol.slice(0, 10) : null;
@@ -23,16 +23,17 @@ const izlenenMevzuat = Object.keys(surum.mevzuatlar ?? {}).length;
 const izlenenMadde = Object.values(surum.mevzuatlar ?? {}).reduce((t, m) => t + Object.keys(m).length, 0);
 const degisiklikSayi = (degisiklik.kayitlar ?? []).length;
 
-const kararlar = [...(emsalVeri.kararlar ?? [])].sort((a, b) => b.yil - a.yil);
+// DURAK 1 A-d: dizin yalnız resmî sunucuda doğrulanan künyeler.
+const kararlar = [...EMSAL_DOGRULANAN].sort((a, b) => b.yil - a.yil);
 const yilDagilim = kararlar.reduce((d, k) => ((d[k.yil] = (d[k.yil] ?? 0) + 1), d), {});
 const yilMaks = Math.max(1, ...Object.values(yilDagilim));
-const kaynakli = kararlar.filter((k) => k.dogrulama === 'kaynakli').length;
-const kunye = kararlar.filter((k) => k.dogrulama === 'kunye').length;
+const kaynakli = kararlar.length;
+const kunye = EMSAL_DOGRULANAMAYAN.length;
 const adaySayi = (adayVeri.adaylar ?? []).length;
 
 const OZ_CEVAP =
   'Su hukukunda iki sessiz sinyal izlenir: yargı kararları ve veri tazeliği. ' +
-  'Emsal dizini ' + kararlar.length + ' künye taşır (' + kaynakli + ' kaynaklı, ' + kunye + ' künye); ' +
+  'Emsal dizini resmî karar arama sunucusunda doğrulanmış ' + kararlar.length + ' künye taşır (' + kunye + ' künye doğrulanamadı, ayrı sayfada); ' +
   'doğrulama bekleyen aday havuzunda ' + adaySayi + ' kayıt vardır. Mevzuat madde ' +
   'değişiklikleri ayrı radarda izlenir. Başvuru onay oranı gibi türev istatistik ' +
   'ÜRETİLMEZ; her kayıt kaynağına bağlıdır.';
@@ -83,14 +84,14 @@ const sema = [
   <section class="rd-bolum" aria-label="Yargı kararı radarı">
     <h2>Yargı kararı radarı</h2>
     <p class="rd-aciklama">
-      Yayımlı emsal kararlar künye rehberlerde geçtiği hâliyle derlenir. Kaynağı
-      olan kayıtlar "kaynaklı", yalnız künye aktarılanlar "künye" işaretlidir ve
-      nihai doğrulaması sürer. Yeni künyeler aday havuzundan, resmî metin süzgecinden
-      geçtikten sonra yayına alınır.
+      Dizindeki her künye resmî karar arama sunucusunda esas ve karar numarasıyla
+      aranmış ve karar metninde doğrulanmıştır (10.10.2026). Doğrulanamayan künyeler
+      <a href="/emsal-kararlar/dogrulanamadi/">ayrı sayfada</a> gerekçesiyle durur.
+      Yeni künyeler aday havuzundan, resmî metin süzgecinden geçtikten sonra yayına alınır.
     </p>
     <p class="rd-durum">
       Yayımlı künye: <strong>{kararlar.length}</strong> ·
-      Kaynaklı: <strong>{kaynakli}</strong> ·
+      Doğrulanamayan: <strong>{kunye}</strong> ·
       Doğrulama bekleyen aday: <strong>{adaySayi}</strong>
     </p>
     <h3 class="rd-alt">Karar yıllarına göre dağılım</h3>

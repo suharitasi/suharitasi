@@ -27,7 +27,7 @@ karar:
     merci: "DSİ (ilin bağlı olduğu bölge müdürlüğü)"
     sure: "Başvuruya bir ay içinde cevap (Yeraltı Suları Tüzüğü m.13)"
     ceza: "Belgesiz açım yasak; 167 m.18 yaptırımları"
-    emsal: "167 m.8; Yargıtay 7.HD 2011/3727 E., 2012/3244 K."
+    emsal: "167 m.8; Yargıtay 7.HD 2011/3727 E., 2012/3244 K. (resmî kaynaktan doğrulanamadı)"
   - senaryo: "Bulunan suyu kullanma"
     merci: "DSİ"
     sure: "Arama belgesine dayanarak bir ay içinde müracaat (167 m.10)"
@@ -130,9 +130,9 @@ atlanmamasıdır.
 
 Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
-- Yargıtay 7. Hukuk Dairesi 2011/3727 E., 2012/3244 K. — kuyu suyu 167
+- Yargıtay 7. Hukuk Dairesi 2011/3727 E., 2012/3244 K. (resmî kaynaktan doğrulanamadı) — kuyu suyu 167
   sayılı rejime tabidir; kararda arama belgesinin bir yıllık süreli
   olduğuna açık atıf vardır. (ikincil kaynak; resmî doğrulama bekliyor)
-- Danıştay 8. Daire 2022/3005 E., 2022/3470 K. — 167'nin arama belgesi
+- Danıştay 2022/3005 E., 2022/3470 K. (resmî sunucuda İdare Dava Daireleri Kurulu kararı; künye çelişkisi, doğrulanamadı) — 167'nin arama belgesi
   mekanizması yeraltı suyu rejiminin çekirdeğidir.
 

@@ -8,7 +8,7 @@ import OzCevap from '../../components/OzCevap.astro';
 import CtaBlok from '../../components/CtaBlok.astro';
 import HukukSerhi from '../../components/HukukSerhi.astro';
 import mevzuat from '../../../data/kamu/mevzuat-maddeleri.json';
-import emsal from '../../../data/kamu/emsal-kararlar.json';
+import { emsalById as EMSAL_ID, dogrulandiMi } from '../../data/emsal.js';
 
 const OZ_CEVAP =
   'Türkiye su hukukunun çekirdek maddeleri tek yerde, aranabilir: 167 sayılı Kanun ' +
@@ -25,7 +25,7 @@ const slug = (s) =>
     .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 const maddeler = mevzuat.maddeler;
-const emsalById = Object.fromEntries(emsal.kararlar.map((k) => [k.id, k]));
+const emsalById = EMSAL_ID;
 
 // Kanuna göre grupla (kaynak sırası korunur).
 const gruplar = [];
@@ -80,7 +80,7 @@ const sema = [
             <a href={`/mevzuat/${slug(m.kanunKisa)}/${slug(m.madde)}/`}>
               <span class="mv-madde">{m.madde}</span>
               <span class="mv-baslik">{m.baslik}</span>
-              {m.emsaller.length > 0 && <span class="mv-emsal">{m.emsaller.length} emsal</span>}
+              {m.emsaller.filter((id) => dogrulandiMi(emsalById[id])).length > 0 && <span class="mv-emsal">{m.emsaller.filter((id) => dogrulandiMi(emsalById[id])).length} emsal</span>}
             </a>
           </li>
         ))}

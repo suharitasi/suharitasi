@@ -21,12 +21,12 @@ karar:
     merci: "Asliye hukuk mahkemesi (el atmanın önlenmesi)"
     sure: "Doğrulanamadı (resmî metinde süre bulunamadı)"
     ceza: "—"
-    emsal: "Yargıtay 7.HD 2024/1239 E., 2024/2246 K. — TMK 718 ve 756 birlikte uygulanır"
+    emsal: "Yargıtay 7.HD 2024/1239 E., 2024/2246 K. (resmî kaynaktan doğrulanamadı) — TMK 718 ve 756 birlikte uygulanır"
   - senaryo: "Başkasının arazisindeki kaynak hakkı"
     merci: "Tapu kütüğü (irtifak tescili)"
     sure: "Doğrulanamadı (resmî metinde süre bulunamadı)"
     ceza: "—"
-    emsal: "Yargıtay 14.HD 2013/5715 E., 2013/7588 K. — irtifakla kurulur"
+    emsal: "Yargıtay 14.HD 2013/5715 E., 2013/7588 K. (resmî kaynaktan doğrulanamadı) — irtifakla kurulur"
   - senaryo: "Suyu yetmeyen komşunun yararlanması"
     merci: "İdare (kullanma belgesi) / komşuluk"
     sure: "Doğrulanamadı (resmî metinde süre bulunamadı)"
@@ -108,17 +108,17 @@ tazmin etmesi ve tesis masraflarına katılması gerekir.
 
 Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
-- Yargıtay 14. Hukuk Dairesi 2013/5715 E., 2013/7588 K. — kaynaklar
+- Yargıtay 14. Hukuk Dairesi 2013/5715 E., 2013/7588 K. (resmî kaynaktan doğrulanamadı) — kaynaklar
   bazı özel durumlarda özel mülkiyete konu olmayabilir; genel halde
   arazi maliki kaynak üzerinde irtifak tanıyabilir; kaynağa el atma
   halinde el atmanın önlenmesi davası açılabilir. (ikincil kaynak; resmî doğrulama bekliyor)
-- Yargıtay 7. Hukuk Dairesi 2024/1239 E., 2024/2246 K. — suya
+- Yargıtay 7. Hukuk Dairesi 2024/1239 E., 2024/2246 K. (resmî kaynaktan doğrulanamadı) — suya
   müdahalenin önlenmesi ve kal isteminde TMK 718 ve 756 birlikte
   uygulanır; kaynak/yeraltı suyu ayrımı önemlidir.
-- Yargıtay 7. Hukuk Dairesi 2023/4572 E., 2023/5915 K. — el atmanın
+- Yargıtay 7. Hukuk Dairesi 2023/4572 E., 2023/5915 K. (resmî kaynaktan doğrulanamadı) — el atmanın
   önlenmesi ve su rejimi kurulması isteminde TMK 718 ve 756'ya
   dayanılır.
-- Yargıtay 7. Hukuk Dairesi 2023/5423 E., 2024/4816 K. — el atmanın
+- Yargıtay 7. Hukuk Dairesi 2023/5423 E., 2024/4816 K. (resmî kaynaktan doğrulanamadı) — el atmanın
   önlenmesi, ecrimisil, eski hale getirme ve kal taleplerinde TMK 718
   ve 756'nın uygulama alanı.
 
