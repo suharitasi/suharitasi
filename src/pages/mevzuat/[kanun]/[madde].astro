@@ -157,6 +157,7 @@ const sema = [
   {ilgiliEmsaller.length > 0 && (
     <section class="mv-bolum" aria-label="İlgili emsal kararlar">
       <h2>Bu maddeye bağlı emsal kararlar</h2>
+      <p class="mv-anonim">Özetlerdeki "…" Danıştay metnindeki anonimleştirmedir; kesme değildir.</p>
       <ul class="mv-emsaller">
         {ilgiliEmsaller.map((k) => (
           <li>
@@ -181,6 +182,7 @@ const sema = [
 </Sayfa>
 
 <style>
+  .mv-anonim { font-size: 0.84rem; color: var(--metin-soluk); margin: 0 0 0.6rem; }
   .mv-metin {
     margin: 0.4rem 0 1.2rem;
     padding: 1rem 1.2rem;
