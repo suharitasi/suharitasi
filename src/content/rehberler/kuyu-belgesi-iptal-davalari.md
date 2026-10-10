@@ -88,20 +88,17 @@ m.13 ve m.18) dayanır.
 
 ## Emsal kararlar
 
-Karar künyeleri yayın öncesi doğrulama sürecindedir.
+Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
 - Danıştay 8. Daire 2018/6147 E., 2024/72 K. — mevcut belgeye dayalı
   statü idarece dikkate alınmalıdır; 167 belgesi 5686 rejimine otomatik
-  intibak ettirilemez.
-  ([Apilex](https://app.apilex.ai/shared-document/9894-ec23-cd16-d777.md))
+  intibak ettirilemez. (ikincil kaynak; resmî doğrulama bekliyor)
 - Danıştay 8. Daire 2023/663 E., 2023/829 K. — izin aşımı tespiti
-  DSİ'nindir; yerel idare tarife/abonelik konusu yapamaz.
-  ([Apilex](https://app.apilex.ai/shared-document/4c54-1b94-efc8-457c.md))
+  DSİ'nindir; yerel idare tarife/abonelik konusu yapamaz. (ikincil kaynak; resmî doğrulama bekliyor)
 - Danıştay 8. Daire 2021/5225 E., 2023/6171 K. — yetkisiz idarece
   tesis edilen işlem iptal edilebilir; 5686 rejiminde yetkisiz idarenin
   167 mantığıyla idari para cezası tesis etmesi yetki yönünden
-  sakattır.
-  ([Apilex](https://app.apilex.ai/shared-document/937c-5e3e-330c-3e32.md))
+  sakattır. (ikincil kaynak; resmî doğrulama bekliyor)
 - Danıştay 10. Daire 2017/40 E., 2021/4632 K. — sondaj kuyusunun
   çevredeki kaynak sularına etkisi bakımından teknik değerlendirme
   yapılmalıdır; yalnızca soyut gerekçeyle işlem tesis edilemez.

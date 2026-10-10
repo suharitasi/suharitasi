@@ -67,12 +67,14 @@ const sema = [{
             <span class="risk-dolgu" style={`width:${r.puan ?? 0}%;background:${r.renk}`}></span>
           </span>
           <span class="risk-puan">{r.puan ?? '—'}</span>
+          <span class="risk-guven" title="veri güveni: kullanılan / tanımlı gösterge">{r.veriGuveni ? `${r.veriGuveni.kullanilan}/${r.veriGuveni.toplam}` : ''}</span>
           <span class="risk-seviye" style={`color:${SEVIYE_METIN[r.seviye] ?? 'var(--risk-notr-metin)'}`}>{r.seviye === 'yuksek' ? 'YÜKSEK' : r.seviye === 'orta' ? 'ORTA' : r.seviye === 'dusuk' ? 'DÜŞÜK' : 'HESAPLANAMADI'}</span>
         </a>
       ))}
     </div>
   </Katman>
 
+  <p class="risk-yontem-not"><strong>Veri güveni:</strong> her satırdaki "k/5" o havzada kaç göstergenin verisi olduğunu söyler. Verisi olmayan gösterge puana katılmaz; kalan ağırlıklar kendi aralarında yeniden normalize edilir. Bu yüzden <strong>farklı veri güvenine sahip havzaların puanları birbiriyle doğrudan kıyaslanamaz</strong> (örnek: tek barajlı bir havzanın baraj bileşeni o havzanın puanını tek başına belirleyebilir). Ağırlıklar (%30/%25/%20/%15/%10) sitenin editoryal tercihidir, resmî bir yöntem değildir; değiştirilmemiştir.</p>
   <Katman baslik="Risk Göstergeleri" ipucu={`${Object.keys(AGIRLIK).length} tanımlı bileşen · ${gostergeIfade} hesaplanır`} ton="murekkep">
     <div class="gosterge-grid">
       <div class="gosterge-kart">
@@ -113,6 +115,8 @@ const sema = [{
 </Sayfa>
 
 <style>
+  .risk-guven { font-family: var(--mono); font-size: 0.68rem; color: var(--metin-soluk); margin-left: 0.5rem; }
+  .risk-yontem-not { font-size: 0.88rem; color: var(--metin-soluk); max-width: 76ch; margin: 0.4rem 0 1.4rem; }
   .risk-listesi { display: flex; flex-direction: column; gap: 0.35rem; }
   .risk-satir {
     display: flex; align-items: center; gap: 0.6rem;

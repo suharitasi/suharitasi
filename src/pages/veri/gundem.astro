@@ -7,7 +7,7 @@ import SayfaBasi from '../../components/SayfaBasi.astro';
 import OzCevap from '../../components/OzCevap.astro';
 import CtaBlok from '../../components/CtaBlok.astro';
 import HukukSerhi from '../../components/HukukSerhi.astro';
-import { EN_RISKLI, REZERV_AZALAN, EN_KURAK, KISIT_ILLER, SON_KAPATMA, GUNDEM_SAYI } from '../../data/gundem.js';
+import { EN_RISKLI, REZERV_AZALAN, EN_KURAK, YAGIS_ULUSAL_DEGISIM, KISIT_ILLER, SON_KAPATMA, GUNDEM_SAYI } from '../../data/gundem.js';
 
 // Çapraz ağ (FAZ 5, v5.2): havza sayfası yolu TEK KAYNAKTAN — içerik
 // koleksiyonunun kanonik slug'ı. Önceki sürüm ad-hoc slugify kullanıyordu ve
@@ -19,8 +19,8 @@ const havzaYolu = Object.fromEntries(
 
 const OZ_CEVAP =
   'Su Haritası verisinden otomatik derlenen gündem: en yüksek su riskli havzalar, ' +
-  'rezervi en hızlı azalan bölgeler, son 12 ayda yağışı düşen havzalar, en çok ' +
-  'tahsise kapatma kaydı olan iller ve en yeni Resmî Gazete kapatma ilanları. ' +
+  'rezervi en hızlı azalan bölgeler, son 12 ayda yağış değişimi, en çok ' +
+  'tahsise kapatma kaydı olan iller ve en yeni Resmî Gazete kapatma/kısıt kayıtları. ' +
   'Her başlık resmî veriden türetilir; yorum değil, veridir.';
 
 const kok = new URL('/', Astro.site).href;
@@ -50,11 +50,16 @@ const sema = [
   </section>
 
   <section class="gd-bolum">
-    <h2>Son 12 ayda yağışı en çok düşen havzalar</h2>
-    <ol class="gd-liste">{EN_KURAK.map((h) => (
-      <li>{havzaYolu[h.no] ? <a href={havzaYolu[h.no]}>{h.ad}</a> : h.ad} <span class="gd-deger">{h.degisim}%</span> <span class="gd-not">12 ay değişim</span></li>
-    ))}</ol>
-  </section>
+    <h2>Son 12 ayda yağış değişimi</h2>
+    {EN_KURAK.length ? (
+      <ol class="gd-liste">{EN_KURAK.map((h) => (
+        <li><a href={`/havzalar/${h.no}/`}>{h.ad}</a> <span class="gd-deger">{h.degisim > 0 ? '+' : ''}{h.degisim}%</span></li>
+      ))}</ol>
+    ) : (
+      <p class="gd-not">Türkiye geneli (CHIRPS, son 12 ay ↔ önceki 12 ay): <strong>{YAGIS_ULUSAL_DEGISIM != null ? `${YAGIS_ULUSAL_DEGISIM > 0 ? '+' : ''}${YAGIS_ULUSAL_DEGISIM}%` : 'veri yok'}</strong>.
+        Havza bazında kırılım bu sürümde yayımlanmıyor: kaynak işlemede havza alan ortalaması henüz hesaplanmıyor (ulusal seri havzalara kopyalanıyordu); havza sıralaması bu yüzden kaldırıldı, kırılım hesaplanınca geri gelecek.</p>
+    )}
+    </section>
 
   <section class="gd-bolum">
     <h2>En çok tahsise kapatma/kısıt kaydı olan iller</h2>
@@ -64,7 +69,8 @@ const sema = [
   </section>
 
   <section class="gd-bolum">
-    <h2>En yeni Resmî Gazete kapatma/kısıt ilanları</h2>
+    <h2>En yeni tahsise kapatma / kısıt kayıtları (Resmî Gazete)</h2>
+    <p class="gd-not">Yalnız "tahsise kapatma" ve "kısıt" türündeki kayıtlar; işletme sahası ilanlarının tamamı için <a href="/arsiv/resmi-gazete/">Resmî Gazete arşivi</a>.</p>
     <ul class="gd-kayitlar">{SON_KAPATMA.map((k) => (
       <li><span class="gd-tarih">{k.tarih}</span> {k.il && <strong>{k.il}</strong>} {k.saha} {k.kaynak && <a href={k.kaynak} target="_blank" rel="noopener">RG</a>}</li>
     ))}</ul>

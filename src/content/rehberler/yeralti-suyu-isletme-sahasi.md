@@ -96,14 +96,13 @@ Bu rehberde andığımız hükümlerin birebir metni bağımsız mevzuat sayfala
 
 ## Emsal kararlar
 
-Karar künyeleri yayın öncesi doğrulama sürecindedir.
+Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
 - Danıştay 8. Daire 2018/6147 E., 2024/72 K. — 167 kapsamındaki
   yeraltı suyu kullanım belgesi 5686 rejimine otomatik intibak
   ettirilemez; mevcut belgeye sahip kuyular yönünden ret hukuka aykırı,
-  belgesiz kuyu yönünden ret hukuka uygundur.
-  ([Apilex](https://app.apilex.ai/shared-document/9894-ec23-cd16-d777.md))
+  belgesiz kuyu yönünden ret hukuka uygundur. (ikincil kaynak; resmî doğrulama bekliyor)
 
 İlan öncesi açılmış kuyuların kazanılmış hakları hakkında doğrudan
-içtihat, kaynak araştırmanın veri tabanında bulunmamaktadır.
+içtihat bulunamadı (doğrulanmış karar yok).
 

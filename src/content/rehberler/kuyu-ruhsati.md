@@ -126,12 +126,11 @@ atlanmamasıdır.
 
 ## Emsal kararlar
 
-Karar künyeleri yayın öncesi doğrulama sürecindedir.
+Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
 - Yargıtay 7. Hukuk Dairesi 2011/3727 E., 2012/3244 K. — kuyu suyu 167
   sayılı rejime tabidir; kararda arama belgesinin bir yıllık süreli
-  olduğuna açık atıf vardır.
-  ([Apilex](https://app.apilex.ai/shared-document/b60c-29c3-2224-1cd8.md))
+  olduğuna açık atıf vardır. (ikincil kaynak; resmî doğrulama bekliyor)
 - Danıştay 8. Daire 2022/3005 E., 2022/3470 K. — 167'nin arama belgesi
   mekanizması yeraltı suyu rejiminin çekirdeğidir.
 

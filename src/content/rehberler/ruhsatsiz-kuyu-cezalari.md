@@ -81,18 +81,16 @@ Bu rehberde andığımız hükümlerin birebir metni bağımsız mevzuat sayfala
 
 ## Emsal kararlar
 
-Karar künyeleri yayın öncesi doğrulama sürecindedir.
+Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
 - Yargıtay 7. Hukuk Dairesi 2011/3727 E., 2012/3244 K. — kuyu suyu
   kullanan tarafa belediye su idaresince "kaçak su bedeli" yüklenemez;
   kuyu suyu 167 sayılı rejime tabidir, belediye yalnızca atık su bedeli
-  talep edebilir.
-  ([Apilex](https://app.apilex.ai/shared-document/b60c-29c3-2224-1cd8.md))
+  talep edebilir. (ikincil kaynak; resmî doğrulama bekliyor)
 - Danıştay 8. Daire 2023/663 E., 2023/829 K. — izin kapsamını aşan
   yeraltı/kaynak suyu kullanımı DSİ tarafından tespit edilebilir; yerel
   idare bu suyu abonelik ve tarife konusu yapamaz; fazla kullanım
-  önlenip DSİ'ye bildirilir.
-  ([Apilex](https://app.apilex.ai/shared-document/4c54-1b94-efc8-457c.md))
+  önlenip DSİ'ye bildirilir. (ikincil kaynak; resmî doğrulama bekliyor)
 - Danıştay 8. Daire 2022/3005 E., 2022/3470 K. — 167'nin arama belgesi
   mekanizması yeraltı suyu rejiminin çekirdeğidir.
 

@@ -56,14 +56,15 @@ const sema = [
     <h2>Havza risk karnesi (25)</h2>
     <div class="sr-kaydir" tabindex="0" role="region">
       <table class="sr-tablo">
-        <caption>Havza · skor · kategori · bileşenler (yüksek=risk).</caption>
-        <thead><tr><th scope="col">Havza</th><th scope="col">Skor</th><th scope="col">Kategori</th><th scope="col">Uydu</th><th scope="col">Baraj</th><th scope="col">YAS</th><th scope="col">Tahsis</th><th scope="col">Yüzey</th></tr></thead>
+        <caption>Havza · skor · kategori · veri güveni · bileşenler (yüksek=risk). Veri güveni düşük havzaların skoru, tam bileşenli havzalarla doğrudan kıyaslanamaz: eksik bileşen puana katılmaz, kalan ağırlıklar kendi aralarında normalize edilir.</caption>
+        <thead><tr><th scope="col">Havza</th><th scope="col">Skor</th><th scope="col">Kategori</th><th scope="col">Veri güveni<span class="sr-meal">kullanılan / tanımlı gösterge</span></th><th scope="col">Uydu</th><th scope="col">Baraj</th><th scope="col">YAS</th><th scope="col">Tahsis</th><th scope="col">Yüzey</th></tr></thead>
         <tbody>
           {HAVZA_RISK.map((h) => (
             <tr data-havza={h.ad}>
               <th scope="row">{h.ad}</th>
               <td class="sr-skor">{h.puan ?? '—'}</td>
               <td><span class={`sr-kat sr-${katSinif(h.kategori)}`}>{h.kategori}</span></td>
+              <td class="sr-guven">{h.veriGuveni ? `${h.veriGuveni.kullanilan}/${h.veriGuveni.toplam}` : '—'}{h.veriGuveni && h.veriGuveni.eksik.length ? <span class="sr-meal">eksik: {h.veriGuveni.eksik.map((k) => ({grace:'uydu',baraj:'baraj',yas:'YAS',tahsis:'tahsis',yuzeysuyu:'yüzey'})[k] ?? k).join(', ')}</span> : null}</td>
               <td>{h.bilesenler.grace ?? '—'}</td>
               <td>{h.bilesenler.baraj ?? '—'}</td>
               <td>{h.bilesenler.yas ?? '—'}</td>
@@ -110,6 +111,8 @@ const sema = [
 </Sayfa>
 
 <style>
+  .sr-guven { font-family: var(--mono); white-space: nowrap; }
+  .sr-meal { display: block; font-size: 0.66rem; font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--metin-soluk); }
   .sr-formul { font-size: 0.9rem; color: var(--metin-soluk); max-width: 68ch; margin-bottom: 0.5rem; }
   .sr-ozet { font-size: 0.95rem; margin-bottom: 1.2rem; }
   .sr-sec { display: flex; flex-direction: column; gap: 0.3rem; max-width: 26rem; margin-bottom: 0.9rem; }

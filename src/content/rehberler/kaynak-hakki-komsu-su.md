@@ -78,7 +78,7 @@ tazmin etmesi ve tesis masraflarına katılması gerekir.
 | --- | --- | --- | --- |
 | Kaynak | Arazinin bütünleyici parçası | TMK m.756 | Tescille kurulur |
 | Yeraltı suyu | Kamu yararına ait su | TMK m.756 | Malik mutlak hak sahibi değildir |
-| Mecra irtifakı | İrtifak hakkı | TMK m.757-761 (tam metin veri setinde yok) | Somut olayda ayrıca değerlendirilir |
+| Mecra irtifakı | İrtifak hakkı | TMK m.757-761 (madde metni bu sitede yer almıyor) | Somut olayda ayrıca değerlendirilir |
 | Komşu suyu kullanımı | Şartlı yararlanma | Yeraltı Suları Tüzüğü m.16 | Zarar ve masraf katılımı gerekir |
 
 ## Madde metni
@@ -106,13 +106,12 @@ tazmin etmesi ve tesis masraflarına katılması gerekir.
 
 ## Emsal kararlar
 
-Karar künyeleri yayın öncesi doğrulama sürecindedir.
+Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
 - Yargıtay 14. Hukuk Dairesi 2013/5715 E., 2013/7588 K. — kaynaklar
   bazı özel durumlarda özel mülkiyete konu olmayabilir; genel halde
   arazi maliki kaynak üzerinde irtifak tanıyabilir; kaynağa el atma
-  halinde el atmanın önlenmesi davası açılabilir.
-  ([Apilex](https://app.apilex.ai/shared-document/adca-5a75-43e2-24a7_6.md))
+  halinde el atmanın önlenmesi davası açılabilir. (ikincil kaynak; resmî doğrulama bekliyor)
 - Yargıtay 7. Hukuk Dairesi 2024/1239 E., 2024/2246 K. — suya
   müdahalenin önlenmesi ve kal isteminde TMK 718 ve 756 birlikte
   uygulanır; kaynak/yeraltı suyu ayrımı önemlidir.

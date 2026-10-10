@@ -105,16 +105,14 @@ veya ölçümsüz kiralama iptal riski taşır.
 
 ## Emsal kararlar
 
-Karar künyeleri yayın öncesi doğrulama sürecindedir.
+Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
 - Danıştay 13. Daire 2013/263 E., 2018/2731 K. — kaynak suyu kiralama
   işinde 2886'ya uygun ihale yapılmadan, yalnızca ölçüm ve kullanım
-  bedeli tespitiyle kiralama hukuka aykırıdır.
-  ([Apilex](https://app.apilex.ai/shared-document/536d-4fa9-71d7-89da.md))
+  bedeli tespitiyle kiralama hukuka aykırıdır. (ikincil kaynak; resmî doğrulama bekliyor)
 - Danıştay 13. Daire 2015/4133 E., 2021/4015 K. — 167, kaynak suyu
   kiralamasını 2886'ya bağlar; idare yasal dayanak olmaksızın düzenleme
-  yapamaz.
-  ([Apilex](https://app.apilex.ai/shared-document/7e0f-ccaa-c43d-1200.md))
+  yapamaz. (ikincil kaynak; resmî doğrulama bekliyor)
 - Danıştay 13. Daire 2020/1093 E., 2023/2584 K. — su kaynağının
   kiralanmasına ilişkin encümen kararı ve 2886'ya dayalı sözleşmeden
   doğan uyuşmazlıkta aynı eksen. (Bu karar ilk üretimde 2020/1104 E.,
@@ -125,6 +123,5 @@ Karar künyeleri yayın öncesi doğrulama sürecindedir.
   ve taşınmazın durumuna göre değerlendirme yapılır.
 - Danıştay 8. Daire 2018/2016 E., 2020/4396 K. — özel mülkiyete konu
   arazilerden çıkan ve sadece kendi ihtiyacı için kullanılan kaynak
-  sularının kiralanabileceğine dair açık düzenleme yoktur.
-  ([Apilex](https://app.apilex.ai/shared-document/5563-8f8b-3621-1c3e.md))
+  sularının kiralanabileceğine dair açık düzenleme yoktur. (ikincil kaynak; resmî doğrulama bekliyor)
 

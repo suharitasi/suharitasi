@@ -27,8 +27,8 @@ const azalan = graceVar
 
 const OZ_CEVAP =
   `Bu sayfa ölçüm değil, istatistiksel tahmindir: ${graceVar.length} havza için ` +
-  `uydu ölçümlerine dayalı 6 aylık su değişimi, ${barajVar.length} havza için son ` +
-  `60 günün hızına göre baraj doluluğunun 30 gün sonraki tahmini. Her değer olası ` +
+  `uydu ölçümlerine dayalı 6 aylık su değişimi (son uydu ölçümü ${ayMetni(graceSonOlcum)}), ${barajVar.length} havza için son ` +
+  `${barajPencere} günün hızına göre baraj doluluğunun 30 gün sonraki tahmini (son ölçüm ${barajSonGozlem}). Her değer olası ` +
   `alt–üst bantla verilir; gerçekleşme garanti edilmez.`;
 
 const sema = [
@@ -52,6 +52,15 @@ const sema = [
   },
 ];
 const isaret = (v: number) => (v > 0 ? '+' : '');
+const AY_ADI = ['', 'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+const ayMetni = (ym: string) => { const [y, m] = String(ym || '').split('-'); return m ? `${AY_ADI[Number(m)]} ${y}` : ym; };
+const graceSonOlcum = graceVar[0]?.grace?.son_gozlem ?? '';
+const graceUfukAy = graceVar[0]?.grace?.projeksiyon?.[5]?.ay ?? '';
+const uretimAy = String(tahmin.uretim || '').slice(0, 7);
+const ufukGecmiste = graceUfukAy && uretimAy && graceUfukAy < uretimAy;
+const barajSonGozlem = barajVar[0]?.baraj?.son_gozlem ?? '';
+const barajPencere = barajVar[0]?.baraj?.pencere_gun ?? 60;
+const kirpilanVar = barajVar.some((k: any) => (k.baraj.projeksiyon.find((p: any) => p.gun === 30) ?? {}).kirpildi);
 ---
 <Sayfa
   baslik="Tahminsel analitik: havza su projeksiyonu"
@@ -60,7 +69,7 @@ const isaret = (v: number) => (v > 0 ? '+' : '');
   metaAciklamaHam="25 havzanın 6 aylık su depolama ve baraj doluluğu projeksiyonu; her değer olası bant ve kaynağıyla. Ölçüm değil, istatistiksel tahmindir."
   sema={sema}
 >
-  <SayfaBasi etiket="Tahminsel analitik" baslik="Havza su projeksiyonu: 6 aylık istatistiksel tahmin" ozet={`${tahmin.havza_sayisi} havza · uydu su ölçümü + baraj doluluğu · her sayı geçmiş veriden hesaplanan tahmindir; sade karşılıklar sayfada.`} />
+  <SayfaBasi etiket="Tahminsel analitik" baslik="Havza su projeksiyonu: 6 aylık istatistiksel tahmin" ozet={`${tahmin.havza_sayisi} havza · uydu su ölçümü (son: ${ayMetni(graceSonOlcum)}) + baraj doluluğu (son: ${barajSonGozlem}) · her sayı geçmiş veriden hesaplanan projeksiyondur.`} />
   <OzCevap metin={OZ_CEVAP} etiket="Özet" />
 
   <p class="th-uyari" role="note">
@@ -71,22 +80,30 @@ const isaret = (v: number) => (v > 0 ? '+' : '');
   </p>
 
   <section class="th-bolum">
-    <h2>6 Aylık Su Projeksiyonu — suyu en hızlı azalan 6 havza</h2>
-    <p class="th-not">Aylık değişim (cm): eksi değer suyun azaldığını gösterir. "Güvenilir Trend mi? (Tesadüf Değil)" sütunu, bu değişimin tesadüfi dalgalanma değil gerçek bir yön olup olmadığını söyler. Yani: havzanın toplam suyu son aylarda azalıyor mu, artıyor mu?</p>
+    <h2>6 aylık su projeksiyonu — eğilimi en hızlı azalan 6 havza</h2>
+    <p class="th-not">
+      <strong>Son uydu ölçümü: {ayMetni(graceSonOlcum)}.</strong> Projeksiyon bu ölçümden sonraki 6 ayı ({ayMetni(graceVar[0]?.grace?.projeksiyon?.[0]?.ay)} – {ayMetni(graceUfukAy)}) kapsar.
+      {ufukGecmiste && <> <strong>Bu aylar bugün itibarıyla geçmişte kaldı:</strong> uydu verisi kaynakta (NASA GSFC) henüz yeni ay yayımlamadı; yeni veri gelince tablo kendiliğinden güncellenir. Değerler "gelecek tahmini" değil, son ölçüme dayanan projeksiyondur.</>}
+    </p>
+    <p class="th-not">Eğilim (cm/ay): mevsim etkisi ayıklanmış uzun dönem değişim; eksi değer suyun azaldığını gösterir. Sıralama bu eğilime göredir (mevsimden arındırılmış). "Projeksiyon" sütunu = eğilim payı + mevsim payı; ikisi ayrı gösterilir. "Güvenilir eğilim mi?" sütunu değişimin tesadüfi dalgalanma olmadığını (Mann-Kendall, p&lt;0,05) söyler.</p>
     <table class="th-tablo">
       <thead><tr>
         <th>Havza</th>
-        <th>Son değer<span class="th-meal">en güncel aylık ölçüm (cm)</span></th>
-        <th>Aylık Su Seviyesi Değişimi<span class="th-meal">su seviyesi ayda kaç cm değişiyor</span></th>
-        <th>6 ay sonra (tahmin)<span class="th-meal">beklenen değer, olası bantla</span></th>
-        <th>Güvenilir Trend mi? (Tesadüf Değil)<span class="th-meal">bu değişim tesadüf mü, gerçek yön mü?</span></th>
+        <th>Son ölçüm (cm)<span class="th-meal">{ayMetni(graceSonOlcum)}</span></th>
+        <th>Eğilim<span class="th-meal">cm/ay · mevsimden arındırılmış</span></th>
+        <th>Eğilim payı (6 ay)<span class="th-meal">eğilim × 6 ay, cm</span></th>
+        <th>Mevsim payı<span class="th-meal">hedef ay ile son ay arasındaki mevsim farkı, cm</span></th>
+        <th>Projeksiyon — {ayMetni(graceUfukAy)}<span class="th-meal">son ölçüm + eğilim + mevsim; %95 bant</span></th>
+        <th>Güvenilir eğilim mi?<span class="th-meal">tesadüf değil</span></th>
       </tr></thead>
       <tbody>
         {azalan.map((k: any) => (
           <tr>
             <td><a href={`/havzalar/${k.ad.toLowerCase().replace(/ı/g, 'i').replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ş/g, 's').replace(/ö/g, 'o').replace(/ç/g, 'c').replace(/ /g, '-').replace('-kapali', '-kapali')}/`}>{k.ad}</a></td>
-            <td>{k.grace.son_deger}</td>
+            <td>{k.grace.son_deger} <span class="th-aralik">({ayMetni(k.grace.son_gozlem)})</span></td>
             <td>{isaret(k.grace.egilim_aylik_cm)}{k.grace.egilim_aylik_cm}</td>
+            <td>{isaret(k.grace.projeksiyon[5]?.egilim_payi_cm)}{k.grace.projeksiyon[5]?.egilim_payi_cm}</td>
+            <td>{isaret(k.grace.projeksiyon[5]?.mevsim_payi_cm)}{k.grace.projeksiyon[5]?.mevsim_payi_cm}</td>
             <td>{k.grace.projeksiyon[5]?.deger} <span class="th-aralik">[{k.grace.projeksiyon[5]?.alt95} … {k.grace.projeksiyon[5]?.ust95}]</span></td>
             <td>{k.grace.mk_anlamli ? 'evet' : 'hayır'}</td>
           </tr>
@@ -96,15 +113,15 @@ const isaret = (v: number) => (v > 0 ? '+' : '');
   </section>
 
   <section class="th-bolum">
-    <h2>Baraj doluluğu — 30 gün sonrası için tahmin</h2>
-    <p class="th-not">Son 60 günün günlük değişimine bakılarak 30. gün için tahmin (yüzde puan). Örneklem kısa olduğundan güven düşüktür; bant geniştir. Yani: baraj bugünkü hızla değişirse bir ay sonra doluluk hangi aralıkta olur?</p>
+    <h2>Baraj doluluğu — son ölçümden 30 gün sonrası için tahmin</h2>
+    <p class="th-not"><strong>Son baraj ölçümü: {barajSonGozlem}</strong> (EPİAŞ, günlük). Son {barajPencere} günün günlük değişimi son ölçülen doluluğa eklenerek 30. gün hesaplanır (yüzde puan). Doluluk fiziksel olarak %0–100 arasındadır; hesap bu aralığın dışına çıkarsa sınıra kırpılır ve "sınıra dayandı" diye işaretlenir. Örneklem kısa olduğundan güven düşüktür; bant geniştir.</p>
     <table class="th-tablo">
       <thead><tr>
         <th>Havza</th>
-        <th>Bugün (%)<span class="th-meal">son ölçülen ortalama doluluk</span></th>
-        <th>Günlük değişim<span class="th-meal">doluluk günde kaç puan değişiyor</span></th>
-        <th>30 gün sonra (tahmin)<span class="th-meal">bir ay sonra beklenen doluluk</span></th>
-        <th>Olası bant (%80)<span class="th-meal">alt–üst sınır; değerin bu aralıkta kalması beklenir</span></th>
+        <th>Son ölçüm (%)<span class="th-meal">{barajSonGozlem} · havzadaki barajların ortalama doluluğu</span></th>
+        <th>Günlük değişim<span class="th-meal">son {barajPencere} gün · puan/gün</span></th>
+        <th>30 gün sonra (tahmin)<span class="th-meal">son ölçüm + 30 × günlük değişim</span></th>
+        <th>Olası bant (%80)<span class="th-meal">alt–üst sınır; 0–100'e kırpılmış</span></th>
       </tr></thead>
       <tbody>
         {barajVar.sort((a: any, b: any) => a.baraj.egilim_gunluk_puan - b.baraj.egilim_gunluk_puan).map((k: any) => {
@@ -114,20 +131,21 @@ const isaret = (v: number) => (v > 0 ? '+' : '');
               <td>{k.ad}</td>
               <td>{k.baraj.son_deger}</td>
               <td>{isaret(k.baraj.egilim_gunluk_puan)}{k.baraj.egilim_gunluk_puan}</td>
-              <td>{t30.deger}</td>
+              <td>{t30.deger}{t30.kirpildi && <span class="th-aralik"> (sınıra dayandı)</span>}</td>
               <td class="th-aralik">[{t30.alt80} … {t30.ust80}]</td>
             </tr>
           );
         })}
       </tbody>
     </table>
+    {kirpilanVar && <p class="th-not">"Sınıra dayandı": bugünkü hızın 30 gün sürmesi hâlinde doluluk %0'a (ya da %100'e) ulaşır; değer bu sınırda gösterilir. Bu, tahminin güvenilirliğinin düşük olduğunu da gösterir.</p>}
   </section>
 
   <p class="th-kaynak">
     Bu sayılar nasıl üretiliyor: geçmiş aylık değerlerden mevsim etkisi ayıklanır,
     en uygun düz çizgi çıkarılır ve değişimin tesadüf olup olmadığı test edilir;
     ayrıntılı yöntem aşağıdaki kapalı bölümdedir.
-    Ham projeksiyon verisi: <a href="/veri/kuraklik.json">/veri/kuraklik.json</a> · üretim {tahmin.uretim}.
+    Ham projeksiyon verisi: <a href="/veri/kuraklik.json">/veri/kuraklik.json</a> · hesap {tahmin.uretim} · son uydu ölçümü {ayMetni(graceSonOlcum)} · son baraj ölçümü {barajSonGozlem}.
   </p>
 
   <details class="th-detay">

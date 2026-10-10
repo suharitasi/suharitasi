@@ -26,7 +26,7 @@ karar:
     merci: "İdari / adli yargı"
     sure: "Doğrulanmış süre yok"
     ceza: "Bedel / tazminat sorunu"
-    emsal: "Doğrulanmış içtihat yok (veri tabanında bulunmuyor)"
+    emsal: "Doğrulanmış içtihat yok"
   - senaryo: "İmar kısıtlılığı"
     merci: "İdare"
     sure: "İmar planı yürürlüğünden itibaren beş yıl (2942 Ek m.1)"
@@ -36,7 +36,7 @@ karar:
     merci: "Adli yargı"
     sure: "Doğrulanmış süre yok"
     ceza: "Fiilî kullanım bedeli tartışması"
-    emsal: "Doğrulanmış içtihat yok (veri tabanında bulunmuyor)"
+    emsal: "Doğrulanmış içtihat yok"
 ---
 
 Baraj ve gölet projeleri, geniş arazilerin kamulaştırılmasını veya
@@ -110,9 +110,9 @@ hükümleri ve mevcut belge/hak durumu sonucu belirler.
 
 ## Emsal kararlar
 
-Karar künyeleri yayın öncesi doğrulama sürecindedir.
+Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
 Su altında kalan taşınmazlara ilişkin güncel Yargıtay içtihadı, kaynak
-araştırmanın veri tabanında bulunmamaktadır; bu başlıkta doğrudan
+için doğrulanmış içtihat bulunamadı; bu başlıkta doğrudan
 içtihat künyesi verilememektedir.
 

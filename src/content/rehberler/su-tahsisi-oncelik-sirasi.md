@@ -105,7 +105,7 @@ ihtiyaç öncelikleri birlikte değerlendirilir.
 
 ## Emsal kararlar
 
-Karar künyeleri yayın öncesi doğrulama sürecindedir.
+Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
 Bu başlık altında kaynak araştırmada doğrudan içtihat künyesi yer
 almamaktadır; tahsisle bağlantılı belge uyuşmazlıkları için

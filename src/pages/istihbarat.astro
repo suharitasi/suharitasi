@@ -95,30 +95,8 @@ const sema = [
   </p>
 
   <section class="ih-bolum" aria-labelledby="ih-eposta-baslik">
-    <h2 id="ih-eposta-baslik">E-posta aboneliği</h2>
-    <p class="ih-aciklama">
-      İl seçin, e-posta adresinizi bırakın. Gönderim servisi bağlandığında yeni
-      Resmî Gazete kayıtları ve mevzuat değişiklikleri bu adreslere iletilir.
-      Kayıt KVKK açık rızasıyla alınır; istediğiniz an çıkabilirsiniz.
-    </p>
-    <form id="takip-form" class="ih-form">
-      <label>İl
-        <select name="konu">
-          <option value="tum-turkiye">Tüm Türkiye</option>
-          {AKISLAR.map((a) => <option value={a.slug}>{a.il}</option>)}
-        </select>
-      </label>
-      <label>E-posta
-        <input type="email" name="eposta" required autocomplete="email" placeholder="ornek@eposta.com" />
-      </label>
-      <label class="ih-onay">
-        <input type="checkbox" name="onay" required />
-        <span><a href="/gizlilik/">Gizlilik ve KVKK</a> metnini okudum; e-postamın yalnız su istihbaratı bildirimi için işlenmesine onay veriyorum.</span>
-      </label>
-      <div class="ih-tuzak" aria-hidden="true">Boş bırakın <input type="text" name="website" tabindex="-1" autocomplete="off" /></div>
-      <button type="submit">Abone ol</button>
-      <p class="ih-form-durum" id="takip-durum" aria-live="polite"></p>
-    </form>
+    <h2 id="ih-eposta-baslik">E-posta bildirimi</h2>
+    <p class="ih-aciklama">E-posta bildirimi şimdilik açık değil: gönderim altyapısı bağlanmadan adres toplanmıyor. Yeni kayıtları takip etmek için aşağıdaki il bazlı RSS akışlarını kullanın; e-posta bildirimi açıldığında burada duyurulur.</p>
   </section>
 
   <section class="ih-bolum" aria-labelledby="ih-iller-baslik">
@@ -160,7 +138,7 @@ const sema = [
   </nav>
 
   <HukukSerhi />
-<script slot="ek-script" type="module" src="/s/takip.js" is:inline></script>
+
 <script slot="ek-script" type="module" src="/s/istihbarat.js" is:inline></script>
 </Sayfa>
 

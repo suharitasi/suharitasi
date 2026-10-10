@@ -149,6 +149,9 @@ export function havzaRisk(no) {
     seviye,
     renk,
     gostergeSayisi: katkiVerenler.length,
+    // 10.10.2026 (brif 1.3): veri güveni = kullanılan gösterge / tanımlı gösterge.
+    // Eksik bileşenle hesaplanan puan, tam bileşenli puanla DOĞRUDAN KIYASLANAMAZ.
+    veriGuveni: { kullanilan: katkiVerenler.length, toplam: Object.keys(W).length, eksik: Object.keys(W).filter((k) => g[k] == null), oran: Math.round((katkiVerenler.length / Object.keys(W).length) * 100) },
     detay: {
       grace: kalem('grace', { egim: gSonuc?.egim, yon: gSonuc?.yon }),
       baraj: kalem('baraj', { barajSayisi: bDoluluk?.barajSayisi ?? 0, ortalamaDoluluk: bDoluluk?.ortalama ?? null, sonOlcumTarihi: bDoluluk?.sonOlcumTarihi ?? null }),

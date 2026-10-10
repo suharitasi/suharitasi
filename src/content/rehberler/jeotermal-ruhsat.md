@@ -96,16 +96,14 @@ işletme ruhsatına zamanında başvuru hayatidir.
 
 ## Emsal kararlar
 
-Karar künyeleri yayın öncesi doğrulama sürecindedir.
+Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
 - Danıştay 8. Daire 2018/6147 E., 2024/72 K. — geçiş rejimi: 167
   kapsamındaki kullanım belgesi 5686 rejimine otomatik intibak
-  ettirilemez.
-  ([Apilex](https://app.apilex.ai/shared-document/9894-ec23-cd16-d777.md))
+  ettirilemez. (ikincil kaynak; resmî doğrulama bekliyor)
 - Danıştay 8. Daire 2021/5225 E., 2023/6171 K. — yetki: 5686 rejiminde
   yetkisiz idarenin 167 mantığıyla idari para cezası tesis etmesi yetki
-  yönünden sakattır.
-  ([Apilex](https://app.apilex.ai/shared-document/937c-5e3e-330c-3e32.md))
+  yönünden sakattır. (ikincil kaynak; resmî doğrulama bekliyor)
 
 Bu iki karar birlikte, 5686 uyuşmazlıklarında hem geçiş rejiminin hem
 yetki unsurunun belirleyici olduğunu gösterir.

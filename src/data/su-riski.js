@@ -28,6 +28,7 @@ export const HAVZA_RISK = havzaVeri.havzalar.map((hv) => {
   const r = havzaRisk(hv.no);
   return {
     no: hv.no, ad: hv.ad, puan: r.puan, kategori: katSinif(r.seviye),
+    veriGuveni: r.veriGuveni,
     bilesenler: {
       grace: r.detay.grace.skor, baraj: r.detay.baraj.skor, yas: r.detay.yas.skor,
       tahsis: r.detay.tahsis.skor, yuzeysuyu: r.detay.yuzeysuyu.skor,

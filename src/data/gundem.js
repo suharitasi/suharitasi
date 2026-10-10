@@ -34,12 +34,16 @@ export const REZERV_AZALAN = [...HAVZA_RISK]
   .sort((a, b) => a.ham.graceEgim - b.ham.graceEgim)
   .slice(0, 5);
 
-// Son 12 ayda yağışı en çok düşen (kuraklık sinyali)
-export const EN_KURAK = HAVZA_RISK
-  .map((h) => ({ no: h.no, ad: h.ad, degisim: yagisDegisim(h.ad) }))
-  .filter((x) => x.degisim != null)
-  .sort((a, b) => a.degisim - b.degisim)
-  .slice(0, 5);
+// Son 12 ayda yağış değişimi — 10.10.2026 (brif 1.2/1.4): chirps.json'daki havza
+// serileri ülke ortalamasının KOPYASIDIR (chirps-cek.py havza_agirlikli çağrılmıyor);
+// bu yüzden havza sıralaması üretilmez, yalnız ULUSAL değişim ve sınır notu verilir.
+// Havza kırılımı hesaplanınca (aylik serileri farklılaşınca) liste kendiliğinden döner.
+const _yagisSerileri = Object.values(chirps.havzalar || {}).map((h) => JSON.stringify(h?.aylik || {}));
+export const YAGIS_HAVZA_KIRILIMI_VAR = new Set(_yagisSerileri).size > 1;
+export const YAGIS_ULUSAL_DEGISIM = yagisDegisim(Object.keys(chirps.havzalar || {})[0]);
+export const EN_KURAK = YAGIS_HAVZA_KIRILIMI_VAR
+  ? HAVZA_RISK.map((h) => ({ no: h.no, ad: h.ad, degisim: yagisDegisim(h.ad) })).filter((x) => x.degisim != null).sort((a, b) => a.degisim - b.degisim).slice(0, 5)
+  : [];
 
 // Tahsise kapatma/kısıt kayıtları (normalize edilmiş TEK kaynak).
 const KAPATMA = KAYITLAR.filter((r) => /tahsise kapatma|kısıt|kisit/i.test(r.durum || ''));
