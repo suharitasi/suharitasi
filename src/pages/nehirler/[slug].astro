@@ -17,7 +17,7 @@ import GeoDisaAktar from '../../components/GeoDisaAktar.astro';
 // eeat-audit (27.09.2026): yazar kutusu içerik sayfalarına bağlandı —
 // künye sayfa düzeyinde görünür (yalnız SSS + veri vardı).
 import YazarKutusu from '../../components/YazarKutusu.astro';
-import { tumNehirler, nehirOzet,
+import { tumNehirler, nehirOzet, nehirDizinKarari,
          GOLNEHIR_ERISIM, GOLNEHIR_KAPSAM_NEHIR, GOLNEHIR_LISANS, kaynakBagi } from '../../data/gol-nehir.js';
 
 export async function getStaticPaths() {
@@ -152,7 +152,7 @@ const sema = [{
 }];
 ---
 
-<Sayfa baslik={`${nehir.ad} — Türkiye Nehirleri`} tarayiciBaslik={tarayiciBaslik} aciklama={aciklamaZengin} sema={sema}>
+<Sayfa baslik={`${nehir.ad} — Türkiye Nehirleri`} tarayiciBaslik={tarayiciBaslik} aciklama={aciklamaZengin} sema={sema} robots={nehirDizinKarari(nehir).dizin ? undefined : 'noindex, follow'}>
   <SayfaBasi etiket="Nehir" baslik={nehir.ad} tarih={TARIH.golNehir ? new Date(TARIH.golNehir) : undefined} />
 
   <NehirSnippet nehir={nehir} havza={anaHavza} ozet={ozet} />

@@ -287,3 +287,59 @@ export function havzaninGolleri(havzaSlug) {
 export function havzaninNehirleri(havzaSlug) {
   return tumNehirler().filter((n) => n.cografya.havzalar.some((h) => h.slug === havzaSlug));
 }
+
+// ── DİZİN EŞİĞİ (brif 2.4, 10.10.2026) ─────────────────────────────────────────
+// Göl: bilinen adı (jenerik/adsız kayıtlar zaten yayından çekildi) + en az BİR ek veri
+// (koruma statüsü, baraj künyesi, doluluk). Nehir: en az İKİ ek veri (kaynak, döküldüğü
+// yer, geçtiği iller, üzerindeki barajlar). Eşiği geçmeyen sayfa silinmez, noindex alır;
+// 4.9 zenginleştirmesiyle veri eklenince eşik kendiliğinden yeniden uygulanır.
+// Doluluk: EPİAŞ Şeffaflık Platformu günlük aktif doluluk kaydı; göl yalnız ad kökü VE havza
+// adı birlikte eşleşirse bağlanır (ad tek başına yetmez: "Sorgun" iki ayrı havzada).
+import { readFileSync as _oku, readdirSync as _dizin, existsSync as _var } from 'node:fs';
+import { join as _katil } from 'node:path';
+const _tr = (s) => String(s).toLocaleLowerCase('tr').replace(/ı/g, 'i').replace(/ş/g, 's').replace(/ğ/g, 'g')
+  .replace(/ü/g, 'u').replace(/ö/g, 'o').replace(/ç/g, 'c');
+const _barajKoku = (s) => _tr(s).replace(/\s*\(.*?\)\s*/g, ' ').replace(/\b(baraj(i)?|baraj golu|golu|gol|hes|regulatoru)\b/g, '')
+  .replace(/[^a-z0-9]+/g, ' ').trim();
+let _doluluk = null;
+function barajDoluluklari() {
+  if (_doluluk) return _doluluk;
+  _doluluk = { tarih: null, kayitlar: [] };
+  const kok = _katil(process.cwd(), 'data/arsiv/baraj');
+  if (!_var(kok)) return _doluluk;
+  const gunler = _dizin(kok).filter((g) => /^\d{4}-\d{2}-\d{2}$/.test(g) && _var(_katil(kok, g, 'active-fullness.s1.json'))).sort();
+  const son = gunler.at(-1);
+  if (!son) return _doluluk;
+  const items = JSON.parse(_oku(_katil(kok, son, 'active-fullness.s1.json'), 'utf8')).items ?? [];
+  _doluluk = { tarih: son, kayitlar: items.map((x) => ({ ad: x.dam, havza: x.basin, oran: x.activeFullnessAmount, kok: _barajKoku(x.dam) })) };
+  return _doluluk;
+}
+export function golDoluluk(gol) {
+  const d = barajDoluluklari();
+  const k = _barajKoku(gol.ad);
+  const havzalar = (gol.cografya?.havzalar ?? []).map((h) => h.ad.replace(/\s*Havzası\s*$/, ''));
+  const m = d.kayitlar.filter((x) => x.kok === k && havzalar.includes(x.havza));
+  if (m.length !== 1 || !Number.isFinite(m[0].oran)) return null;
+  return { baraj: m[0].ad, havza: m[0].havza, oran: m[0].oran, tarih: d.tarih };
+}
+export function golEkVeri(gol) {
+  return { korumaStatusu: null, barajKunyesi: null, doluluk: golDoluluk(gol) };
+}
+export function golDizinKarari(gol) {
+  const e = golEkVeri(gol);
+  const n = [e.korumaStatusu, e.barajKunyesi, e.doluluk].filter(Boolean).length;
+  return { dizin: n >= 1, ekVeri: n, neden: n >= 1 ? 'en az bir ek veri' : 'koruma statüsü, baraj künyesi ya da doluluk verisi yok' };
+}
+export function nehirEkVeri(nehir) {
+  return {
+    kaynak: null,
+    dokulduguYer: nehir.dokuldugu_yer || nehir.kolu_oldugu_akarsu || null,
+    gectigiIller: (nehir.cografya?.iller ?? []).length ? nehir.cografya.iller : null,
+    barajlar: null,
+  };
+}
+export function nehirDizinKarari(nehir) {
+  const e = nehirEkVeri(nehir);
+  const n = [e.kaynak, e.dokulduguYer, e.gectigiIller, e.barajlar].filter(Boolean).length;
+  return { dizin: n >= 2, ekVeri: n, neden: n >= 2 ? 'en az iki ek veri' : `ek veri ${n}/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)` };
+}
