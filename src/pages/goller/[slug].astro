@@ -15,7 +15,7 @@ import GeoOnizleme from '../../components/GeoOnizleme.astro';
 import GeoDisaAktar from '../../components/GeoDisaAktar.astro';
 // eeat-audit (27.09.2026): yazar kutusu göl sayfalarına bağlandı.
 import YazarKutusu from '../../components/YazarKutusu.astro';
-import { tumGoller, golOzet, golTipi, golTurSerhi,
+import { tumGoller, golOzet, golTipi, golTurSerhi, golDizinKarari, golDoluluk,
          GOLNEHIR_ERISIM, GOLNEHIR_KAPSAM_GOL, GOLNEHIR_LISANS, kaynakBagi } from '../../data/gol-nehir.js';
 
 export async function getStaticPaths() {
@@ -23,11 +23,16 @@ export async function getStaticPaths() {
 }
 
 const { gol } = Astro.props;
+// brif 2.4 (10.10.2026): ek verisi olmayan göl sayfası noindex (src/data/gol-nehir.js → golDizinKarari).
+const dizin = golDizinKarari(gol).dizin;
+const doluluk = golDoluluk(gol);
 const ozet = golOzet(gol);
 const tur = golTipi(gol);
 // Faz E (08.09.2026): tür şerhi — yerel düzeltme dayanağı ya da kaynak çelişkisi.
 const turSerhi = golTurSerhi(gol);
 const il = gol.cografya.il;
+const iller = gol.cografya.iller ?? (il ? [il] : []);
+const illerMetni = iller.map((x) => x.ad).join(', ');
 const dsiBolge = il ? (tumIlProfilleri().find((x) => x.slug === il.slug)?.dsiBolgeleri ?? []) : [];
 const havza = gol.cografya.havzalar[0] ?? null;
 // P2 (24.09.2026): aynı havzadaki diğer göller (en çok 2) — statik iç link.
@@ -52,7 +57,7 @@ if (tarayiciBaslik.length > 60)
 // C5 (V5): FAQ soruları ölçülen sorgu kalıplarına ("nerede", "yüzey alanı")
 // ayrıştırılır; her cevap veriden. "kapalı havza mı" sorusu VERİSİZ olduğundan
 // eklenmez (uydurma yasağı).
-const konumCevabi = `${gol.ad} ${il ? `${il.ad} ili sınırlarındadır` : 'Türkiye sınırları içindedir'} (merkez koordinatı ${gol.merkez[1].toFixed(4)}°K, ${gol.merkez[0].toFixed(4)}°D).`;
+const konumCevabi = `${gol.ad} ${iller.length ? `${illerMetni} ${iller.length > 1 ? 'illeri' : 'ili'} sınırlarındadır` : 'Türkiye sınırları içindedir'} (merkez koordinatı ${gol.merkez[1].toFixed(4)}°K, ${gol.merkez[0].toFixed(4)}°D).`;
 const alanCevabi = gol.alan_km2 != null
   ? `${gol.ad} yaklaşık ${gol.alan_km2.toLocaleString('tr-TR')} km² yüzey alanına sahiptir.`
   : `${gol.ad} için yüzey alanı verisi kaynakta yer almıyor.`;
@@ -86,7 +91,7 @@ const sema = [{
     ...(gol.tip_duzeltme
       ? [{ '@type': 'PropertyValue', name: 'Tür kaynağı', value: gol.tip_duzeltme.kaynak }] : []),
   ],
-  containedInPlace: { '@type': 'Place', name: il ? `${il.ad}, Türkiye` : 'Türkiye' },
+  containedInPlace: iller.length ? iller.map((x) => ({ '@type': 'Place', name: `${x.ad}, Türkiye` })) : { '@type': 'Place', name: 'Türkiye' },
 }, {
   '@type': 'FAQPage',
   // Damga (25.08.2026): OSM/Natural Earth çekim tarihi (gol-nehir.js künyesi).
@@ -98,7 +103,7 @@ const sema = [{
 }];
 ---
 
-<Sayfa baslik={`${gol.ad} — Türkiye Gölleri`} tarayiciBaslik={tarayiciBaslik} aciklama={ozet} sema={sema}>
+<Sayfa baslik={`${gol.ad} — Türkiye Gölleri`} tarayiciBaslik={tarayiciBaslik} aciklama={ozet} sema={sema} robots={dizin ? undefined : 'noindex, follow'}>
   <SayfaBasi etiket="Göl" baslik={gol.ad} tarih={TARIH.golNehir ? new Date(TARIH.golNehir) : undefined} />
 
   <OzCevap metin={ozet} etiket="Özet bilgi" />
@@ -119,14 +124,20 @@ const sema = [{
           <dd><data value={gol.alan_km2}>{sayi(gol.alan_km2, 1)} km²</data></dd>
         </div>
       )}
+      {doluluk && (
+        <div class="kunye-satir">
+          <dt>Baraj doluluğu</dt>
+          <dd>%{sayi(doluluk.oran, 1)} aktif doluluk ({doluluk.baraj}, {doluluk.havza} havzası; EPİAŞ Şeffaflık Platformu, {doluluk.tarih.split('-').reverse().join('.')} kaydı)</dd>
+        </div>
+      )}
       <div class="kunye-satir">
         <dt>Koordinat</dt>
         <dd><data value={`${gol.merkez[1].toFixed(4)},${gol.merkez[0].toFixed(4)}`}>{gol.merkez[1].toFixed(4)}°K, {gol.merkez[0].toFixed(4)}°D</data></dd>
       </div>
       {il && (
         <div class="kunye-satir">
-          <dt>İl</dt>
-          <dd><a href={`/kuyu-ruhsati/${il.slug}/`}>{il.ad}</a></dd>
+          <dt>İl(ler)</dt>
+          <dd>{iller.map((x, i) => <>{i > 0 && ', '}<a href={`/kuyu-ruhsati/${x.slug}/`}>{x.ad}</a></>)}</dd>
         </div>
       )}
       {havza && (
@@ -218,9 +229,9 @@ const sema = [{
   <nav class="ilgili" aria-label="İlgili içerik">
     <h2>İlgili su verisi ve mevzuat</h2>
     <div class="capraz">
-      {il && <a href={`/kuyu-ruhsati/${il.slug}/`}>{il.ad} kuyu ruhsatı</a>}
+      {iller.map((x) => <a href={`/kuyu-ruhsati/${x.slug}/`}>{x.ad} kuyu ruhsatı</a>)}
       {havza && <a href={`/havzalar/${havza.slug}/`}>{havza.ad} verisi</a>}
-      <a href="/nerede-su-cikar/">İlinizde su nerede çıkar</a>
+      <a href="/nerede-su-cikar/">Tarlamda su çıkar mı?</a>
       <a href="/rehberler/">Su hukuku rehberleri</a>
     </div>
   </nav>

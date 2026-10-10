@@ -12,6 +12,7 @@
 // (src/data/kapi.js — build anında sayılır) ya da KAYNAKLAR.md künyesinden
 // gelir. SSS cevapları mevcut sayfalardan birebir (src/data/kapi-sss.js,
 // ham-metin doğrulamalı). Model bilgisinden jeoloji/hukuk cümlesi yazılmadı.
+import { ARAC } from '../data/arac-adlari.js';
 import { getCollection } from 'astro:content';
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
@@ -49,7 +50,7 @@ const sema = [
     '@type': 'WebPage',
     // Damga (25.08.2026): il potansiyel derlemelerinin veri kaydı tarihi.
     ...(TARIH.potansiyel ? { dateModified: TARIH.potansiyel } : {}),
-    name: 'Nerede su çıkar?',
+    name: ARAC.tarla.ad,
     description: OZ_CEVAP,
     url: canonical,
     inLanguage: 'tr-TR',
@@ -77,12 +78,12 @@ const sema = [
 ];
 ---
 <Sayfa
-  baslik="Nerede su çıkar?"
-  tarayiciBaslik="Arazimde Su Çıkar mı? Parsel Bazlı Sorgulama | Su Haritası"
+  baslik={ARAC.tarla.ad}
+  tarayiciBaslik={`${ARAC.tarla.ad} İl Bazında Yeraltı Suyu Verisi | Su Haritası`}
   aciklama={OZ_CEVAP}
-  metaAciklamaHam="Türkiye hidrojeolojik haritası ve DSİ kuyu verileriyle arazinizin yeraltı su tablası derinliğini, debi tahminini ve sondaj uygunluğunu parsel parsel sorgulayın."
+  metaAciklamaHam="Türkiye hidrojeolojik haritası ve DSİ kuyu verileriyle il ve havza düzeyinde yeraltı suyu potansiyeli, kısıt ve ruhsat verisi; parsel düzeyinde tahmin değildir, saha etüdü yerine geçmez."
   sema={sema}>
-  <SayfaBasi etiket="Giriş kapısı" baslik="Nerede su çıkar?" tarih={TARIH.potansiyel ? new Date(TARIH.potansiyel) : undefined} />
+  <SayfaBasi etiket="Giriş kapısı" baslik={ARAC.tarla.ad} tarih={TARIH.potansiyel ? new Date(TARIH.potansiyel) : undefined} />
   <OzCevap metin={OZ_CEVAP} />
 
   {/* NİYET-YÖNLENDİRME HUB'I (2026-09-21): kapı "su nerede çıkar" cevabını

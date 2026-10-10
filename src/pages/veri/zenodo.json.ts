@@ -4,9 +4,8 @@
 // tarafından seçilmeden iddia edilmez. Sayılar build-time veriden gelir.
 import type { APIRoute } from 'astro';
 import { SAYILAR } from '../../data/kapi.js';
-import { ANA_SAYI, DETAY_SAYI, SON_TARIH_METIN } from '../../data/su-verimliligi.js';
+import { ANA_SAYI, DETAY_SAYI } from '../../data/su-verimliligi.js';
 import { IL_SAYISI } from '../../data/istihbarat.js';
-import { DOI, DOI_ATANDI } from '../../data/doi.js';
 
 const SITE = 'https://suharitasi.com';
 
@@ -31,9 +30,9 @@ export const GET: APIRoute = () => {
       { identifier: SITE, relation: 'isAlternateIdentifier', scheme: 'url' },
       { identifier: `${SITE}/llms.txt`, relation: 'isDocumentedBy', scheme: 'url' },
     ],
-    notes: `Yeşil su verimliliği belgesi son başvuru: ${SON_TARIH_METIN}.`,
+    // 10.10.2026: hukuki son tarih notu metaveriden çıkarıldı (hukuki metin onaysız yayımlanmaz);
+    // eski yazılım kaydının DOI'si yeni sürüme yazılmaz — Zenodo yeni sürüme kendi DOI'sini verir.
   };
-  if (DOI_ATANDI) metadata.doi = DOI;
 
   const govde = {
     _not:

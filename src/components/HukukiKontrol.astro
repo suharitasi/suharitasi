@@ -1,0 +1,8 @@
+---
+// "Son hukuki kontrol" satırı (KARARLAR §73). Tarih: src/data/hukuki-kontrol.js.
+import { SON_HUKUKI_KONTROL } from '../data/hukuki-kontrol.js';
+---
+<p class="hukuki-kontrol">Son hukuki kontrol: <time datetime={SON_HUKUKI_KONTROL.split('.').reverse().join('-')}>{SON_HUKUKI_KONTROL}</time></p>
+<style>
+  .hukuki-kontrol { margin: 1.2rem 0 0; font-family: var(--mono); font-size: 0.7rem; color: var(--metin-soluk); }
+</style>

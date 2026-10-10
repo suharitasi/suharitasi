@@ -105,7 +105,7 @@ const sema = [
     {KAPATMA_KAYITLARI.map((k) => (
       <li>
         <p class="ar-kapatma-kunye">
-          RG {k.tarih}
+          <strong>{(k.il && k.il.length) ? k.il.join(', ') : (k.ilNotu || 'İl belirtilmemiş (doğrulanamadı)')}</strong> · RG {k.tarih}
           {k.sayi != null && <> · Sayı {k.sayi}{k.sayiKaynak === 'cikarim' && '*'}</>}
           {' '}· {k.durum}
         </p>

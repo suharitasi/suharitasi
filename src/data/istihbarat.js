@@ -3,7 +3,10 @@
 // mevzuat değişiklik kayıtları. RSS ve e-posta aboneliğinin veri kaynağı.
 // UYDURMA YASAĞI: item'lar yalnız doğrulanmış kayıtlardan (rg-zaman.js,
 // mevzuat-degisiklik.json) kurulur; "yeni kayıt var" iddiası üretilmez.
-import { KAYITLAR, IL_DAGILIM } from './rg-zaman.js';
+// 10.10.2026: il akışları TEKİL İLANDAN (kisit-sorgu.js) — il sayfaları ve kısıt sorgusuyla aynı sayı.
+import { IL_DAGILIM } from './rg-zaman.js';
+import { KAYITLAR } from './kisit-sorgu.js';
+import { rgSayiTuret } from './rg-sayi.js';
 import { tumIller } from './islem-matrisi.js';
 import { ilSlug } from './il-profil.js';
 import mevzuatLog from '../../data/kamu/mevzuat-degisiklik.json';
@@ -36,7 +39,7 @@ export const AKISLAR = tumIller().map((il) => {
     return {
       title: `${k.saha || 'Resmî Gazete ilanı'} — ${k.durum}`,
       link: k.kaynak,
-      desc: `${yer}. Resmî Gazete ${k.tarih}${k.sayi != null ? ` · Sayı ${k.sayi}` : ''}. Yeraltı suyu işletme sahası kaydı.`,
+      desc: `${yer}. Resmî Gazete ${k.tarih}${rgSayiTuret(k.kaynak) != null ? ` · Sayı ${rgSayiTuret(k.kaynak)}` : ''}. Yeraltı suyu işletme sahası kaydı.`,
       date: tarihCoz(k.tarih) || new Date(),
     };
   });
@@ -64,7 +67,7 @@ export function tumItemlari() {
   const items = KAYITLAR.map((k) => ({
     title: `${k.saha || 'Resmî Gazete ilanı'} — ${k.durum}`,
     link: k.kaynak,
-    desc: `${k.il.length ? k.il.join(', ') + '. ' : ''}Resmî Gazete ${k.tarih}${k.sayi != null ? ` · Sayı ${k.sayi}` : ''}.`,
+    desc: `${k.il.length ? k.il.join(', ') + '. ' : ''}Resmî Gazete ${k.tarih}${rgSayiTuret(k.kaynak) != null ? ` · Sayı ${rgSayiTuret(k.kaynak)}` : ''}.`,
     date: tarihCoz(k.tarih) || new Date(),
   }));
   const birlesik = [...items, ...ulusalMevzuatItemlari()];

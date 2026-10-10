@@ -32,7 +32,7 @@ const goster = hukukiYonlendirmeGoster(Astro.url.pathname);
         <span class="cta-etiket">Telefon</span>
         <span class="cta-deger">{TELEFON.gorunur}</span>
       </a>
-      <a class="cta-btn cta-wa" href="/whatsapp/" rel="nofollow noopener" data-olay="whatsapp">
+      <a class="cta-btn cta-wa" href={`/whatsapp/?konu=${encodeURIComponent(konu)}`} rel="nofollow noopener" data-olay="whatsapp">
         <span class="cta-etiket">WhatsApp</span>
         <span class="cta-deger">Mesaj gönderin</span>
       </a>

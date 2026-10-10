@@ -158,7 +158,8 @@ D1-D4 + amaç özeti; ENGEL varsa uygulama başlamaz).
 maliyeti bir denetim turu; yanlış KÜÇÜK seçmenin maliyeti denetimsiz
 giren yayın/veri değişikliğidir.
 
-## AY İLKESİ — dağıtım ve dayanıklılık dönemi (2026-07-28)
+## AY İLKESİ — dağıtım ve dayanıklılık dönemi (2026-07-28) — KAPANDI 10.10.2026 (KARARLAR §71)
+**Bu ilke 10.10.2026'da sahibin kararıyla kapandı; kayıt KARARLAR §71.** Aşağıdaki metin tarihsel kayıttır.
 Önümüzdeki dönemde **yeni ÖZELLİK açılmaz.** Öncelik iki bacaktır:
 (1) DAĞITIM — sitenin dış dünyaya ulaşması (indeks, atıf, temas,
 analitik), (2) DAYANIKLILIK — verinin ve üretimin kaybolmaması

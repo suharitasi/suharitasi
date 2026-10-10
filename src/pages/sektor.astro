@@ -114,7 +114,7 @@ const sema = [
         <p class="sk-aciklama">{s.aciklama}</p>
         <div class="sk-baglar">
           {s.persona && (
-            <a class="sk-birincil" href={`/durumum/${s.persona.slug}/`}>
+            <a class="sk-birincil" href={s.persona.yol}>
               → {s.persona.ad} profili
             </a>
           )}
@@ -141,7 +141,7 @@ const sema = [
   </div>
 
   <nav class="sk-capraz" aria-label="İlgili bölümler">
-    <a href="/durumum/">→ Tüm sektör profilleri (43)</a>
+    <a href="/durumum/">→ Tüm sektör profilleri ({personalar.length})</a>
     <a href="/su-hukuku/">→ Su hukuku omurga sayfası</a>
     <a href="/islem-matrisi/">→ 20 su işlemi matrisi</a>
     <a href="/emsal-kararlar/">→ Emsal kararlar</a>

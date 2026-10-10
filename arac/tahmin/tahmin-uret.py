@@ -33,6 +33,7 @@ sys.path.insert(0, str(KOK / "arac"))
 from yaz_atomik import json_yaz  # noqa: E402 — atomik yazım (04.10.2026 denetimi)
 OUT = KOK / "data" / "tahmin" / "kuraklik-projeksiyonu.json"
 UFUK_AY = 6
+BARAJ_PENCERE_GUN = 60
 
 
 def _aylar(anahtarlar: list[str]) -> np.ndarray:
@@ -104,12 +105,16 @@ def main() -> int:
         z, p = mann_kendall(arindirilmis)
         n = len(x)
         proj = []
+        son_ay = int(ay[-1].split("-")[1])
         for i in range(1, UFUK_AY + 1):
             hedef_ay = int(ay_ekle(ay[-1], i).split("-")[1])
+            egilim_payi = slope * i
+            mevsim_payi = mevsim[hedef_ay] - mevsim[son_ay]
             d = icpt + slope * (n - 1 + i) + mevsim[hedef_ay]
             k = math.sqrt(i)
             proj.append({
                 "ay": ay_ekle(ay[-1], i), "deger": round(d, 2),
+                "egilim_payi_cm": round(egilim_payi, 2), "mevsim_payi_cm": round(mevsim_payi, 2),
                 "alt80": round(d - 1.2816 * sd * k, 2), "ust80": round(d + 1.2816 * sd * k, 2),
                 "alt95": round(d - 1.96 * sd * k, 2), "ust95": round(d + 1.96 * sd * k, 2),
             })
@@ -117,6 +122,7 @@ def main() -> int:
             "birim": "cm eşdeğer su (karasal su depolama anomalisi)",
             "son_gozlem": ay[-1], "son_deger": round(float(x[-1]), 2), "seri_uzunluk": n,
             "egilim_aylik_cm": round(slope, 3),
+            "egilim_yillik_cm": round(slope * 12, 2),
             "mk_z": round(z, 2), "mk_p": round(p, 4), "mk_anlamli": bool(p < 0.05),
             "projeksiyon": proj,
         }
@@ -132,20 +138,27 @@ def main() -> int:
         if len(gunler) < 30:
             continue
         tam = np.array([float(np.mean(gunluk[g])) for g in gunler], dtype=float)
-        pencere = tam[-90:] if len(tam) > 90 else tam
+        # Pencere 60 gün: sayfadaki "son 60 günün hızı" ifadesiyle aynı (10.10.2026 brifi 1.1).
+        pencere = tam[-BARAJ_PENCERE_GUN:] if len(tam) > BARAJ_PENCERE_GUN else tam
         icpt, slope, sd = ols(pencere)
         z, p = mann_kendall(pencere)
-        n = len(pencere)
+        son = float(tam[-1])
+        # Projeksiyon SON GÖZLEME bağlanır (regresyon doğrusunun ucuna değil) ve
+        # doluluk fiziksel aralığa (0–100) kırpılır; bantlar da kırpılır.
+        # Eski hesap doğru ucundan uzatıyor ve eksi doluluk üretiyordu (Marmara −21,25).
+        kirp = lambda v: round(max(0.0, min(100.0, v)), 2)
         havzalar.setdefault(ad, {})["baraj"] = {
             "birim": "% ortalama doluluk",
-            "son_gozlem": gunler[-1], "son_deger": round(float(tam[-1]), 2), "seri_uzunluk": len(tam),
+            "son_gozlem": gunler[-1], "son_deger": round(son, 2), "seri_uzunluk": len(tam),
+            "pencere_gun": int(len(pencere)),
             "egilim_gunluk_puan": round(slope, 3),
             "mk_z": round(z, 2), "mk_p": round(p, 4), "mk_anlamli": bool(p < 0.05),
-            "ufuk_gun": 60, "guven": f"kısa vadeli (örneklem ~{len(tam)} gün)",
+            "ufuk_gun": 60, "guven": f"kısa vadeli (örneklem {len(pencere)} gün, seri {len(tam)} gün)",
             "projeksiyon": [
-                {"gun": d, "deger": round(icpt + slope * (n - 1 + d), 2),
-                 "alt80": round(icpt + slope * (n - 1 + d) - 1.2816 * sd * math.sqrt(d), 2),
-                 "ust80": round(icpt + slope * (n - 1 + d) + 1.2816 * sd * math.sqrt(d), 2)}
+                {"gun": d, "deger": kirp(son + slope * d),
+                 "alt80": kirp(son + slope * d - 1.2816 * sd * math.sqrt(d)),
+                 "ust80": kirp(son + slope * d + 1.2816 * sd * math.sqrt(d)),
+                 "kirpildi": bool((son + slope * d) < 0 or (son + slope * d) > 100)}
                 for d in (7, 30, 60)
             ],
         }
@@ -154,7 +167,8 @@ def main() -> int:
         "_not": "İSTATİSTİKSEL TAHMİN/PROJEKSİYON — ÖLÇÜM DEĞİLDİR. Kaynak: GRACE (NASA, aylık) + EPİAŞ baraj doluluğu (günlük). Yöntem: mevsimsel ayrıştırma + OLS trend + Mann-Kendall. Ölçülen verilerle karıştırılmaz.",
         "tur": "tahmin",
         "yontem": {"ad": "Mevsimsel ayrıştırma + en-küçük-kareler trend + Mann-Kendall",
-                   "kutuphane": "numpy (saf; ağır bağımlılık yok)", "surum": 2},
+                   "kutuphane": "numpy (saf; ağır bağımlılık yok)", "surum": 3,
+                   "notlar": ["GRACE: 6 ay sonra = son gözlem noktasındaki doğru + mevsim bileşeni; egilim_payi_cm ve mevsim_payi_cm ayrı verilir.", "Baraj: projeksiyon son gözleme bağlı (son_deger + eğim×gün), 0–100 kırpılır; pencere 60 gün."]},
         "ufuk_ay": UFUK_AY,
         "uretim": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "havza_sayisi": len(havzalar),

@@ -21,12 +21,12 @@ const HIZMETLER = [
   },
   {
     ikon: 'karar',
-    ad: 'LegalTech Kuyu Karar Motoru',
+    ad: ARAC.teblig.ad,
     metin:
       '167 sayılı YAS kapsamında idari yaptırımlara ve ruhsat süreçlerine ' +
       'karşı teknik/mevzuat karar destek mekanizması.',
     hedef: '/kuyu-karar-motoru/',
-    cta: 'Karar motorunu aç',
+    cta: `${ARAC.teblig.ad} — aç`,
   },
   {
     ikon: 'veri',
@@ -52,6 +52,7 @@ const HIZMETLER = [
 // olduğu hissini veren, kopyala-çalıştır hızlı başlangıç. Değerler CANLI
 // API'den doğrulandı (25 havza, api:v1); uydurma sayı yok. Sayı disiplini:
 // 25 = havza-veri.json havza sayısı (build'de aşağıda assert edilir).
+import { ARAC } from '../../data/arac-adlari.js';
 import havzaVeri from '../../../data/havza-veri.json';
 const HAVZA_SAYISI = havzaVeri.havzalar.length;
 const TERMINAL =

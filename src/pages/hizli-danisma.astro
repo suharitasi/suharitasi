@@ -5,6 +5,7 @@
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
 import HukukSerhi from '../components/HukukSerhi.astro';
+import OnayBekliyor from '../components/OnayBekliyor.astro';
 import { EPOSTA, TELEFON } from '../data/site';
 
 const aciklama =
@@ -71,9 +72,10 @@ const mailKonu = 'Hızlı danışma talebi';
       <a class="hd-mail" href={`mailto:${EPOSTA}?subject=${encodeURIComponent(mailKonu)}`} data-olay="eposta">veya e-posta gönder</a>
     </div>
     <p class="hd-durum" id="danisma-durum" aria-live="polite"></p>
+    <OnayBekliyor kaynak="Saklama süresi beyanı (brif 1.5)" />
     <p class="hd-not">
       Bu form hukuki görüş vermez; talebinizi iletir. Gönderilen bilgiler yalnız
-      dönüş amacıyla işlenir ve talep kapanınca silinir.
+      dönüş amacıyla işlenir ve en geç 180 gün sonra kendiliğinden silinir.
     </p>
   </form>
 

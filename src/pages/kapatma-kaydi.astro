@@ -38,8 +38,8 @@ const canonical = new URL('/kapatma-kaydi/', Astro.site).href;
    damıtılmış cevap. Sayılar veriden gelir, elle yazılmaz. */
 const OZ_CEVAP =
   `Resmî Gazete'de yeraltı suyu tahsisine kapatma veya kısıt hükmü içeren ` +
-  `${KAPATMA_OZET.sayi} ilan pasajı derlendi (${KAPATMA_OZET.ilkYil}-${KAPATMA_OZET.sonYil}). ` +
-  `Aşağıdan bir yer adı aratıp bu kayıtlarda geçip geçmediğini görebilirsiniz. ` +
+  `${KAPATMA_OZET.sayi} ilan kaydı derlendi (${KAPATMA_OZET.ilkYil}-${KAPATMA_OZET.sonYil}), il adıyla. ` +
+  `İl ya da yer adı aratıp bu kayıtlarda geçip geçmediğini görebilirsiniz. ` +
   `Kayıt çıkmaması orada kapatma olmadığını göstermez; güncel durum DSİ'den teyit edilir.`;
 
 // Öz-cevap 280 karakter kapısı: aşarsa build DÜŞER (sessiz bayatlama yok).
@@ -78,8 +78,8 @@ const sema = [
           '@type': 'Answer',
           text:
             'Kayıt çıkmaması o yerde tahsise kapatma olmadığı anlamına gelmez. ' +
-            'Bu liste Resmî Gazete taramasından derlenmiş sınırlı bir kayıt ' +
-            'kümesidir ve il eşlemesi yapılmamıştır. Kuyu açmadan önce güncel ' +
+            'Bu liste Resmî Gazete ilanlarından derlenmiş sınırlı bir kayıt ' +
+            'kümesidir; il adı ilan metninden alınmıştır. Kuyu açmadan önce güncel ' +
             'durum Devlet Su İşleri’nin ilgili bölge müdürlüğünden teyit edilmelidir.',
         },
       },
@@ -91,7 +91,7 @@ const sema = [
     ],
   },
   // Dataset şeması (gsc-mcp turu 25.08.2026, brief 5.3): alanlar KAPATMA_OZET
-  // ve KAPATMA_SERHI kayıtlarından; il eşlemesi yapılmadığı şerhi description'a
+  // ve KAPATMA_SERHI kayıtlarından; il eşlemesinin dayanağı (10.10.2026) description'a
   // aynen taşınır (dürüstlük etiketi şemada da görünür), lisans yazılmaz.
   {
     '@type': 'Dataset',
@@ -109,7 +109,7 @@ const sema = [
   <OzCevap metin={OZ_CEVAP} />
 
   <div class="kk-arama" hidden id="kk-arama">
-    <label for="kk-giris">Bir yer adı yazın (ilçe, ova, mevkii)</label>
+    <label for="kk-giris">Bir il ya da yer adı yazın (il, ilçe, ova, mevkii)</label>
     <input id="kk-giris" type="search" autocomplete="off" spellcheck="false"
            placeholder="örn. Ereğli" aria-describedby="kk-durum" />
     <p id="kk-durum" class="kk-durum" role="status" aria-live="polite"></p>
@@ -121,7 +121,7 @@ const sema = [
     <p class="kk-yok-bas">Bu kayıtlarda eşleşme bulunamadı.</p>
     <p><strong>Bu, orada tahsise kapatma olmadığı anlamına gelmez.</strong>
       Liste Resmî Gazete taramasından derlenmiş sınırlı bir kümedir
-      ({KAPATMA_OZET.ilkYil}-{KAPATMA_OZET.sonYil}) ve il eşlemesi yapılmamıştır.
+      ({KAPATMA_OZET.ilkYil}-{KAPATMA_OZET.sonYil}); il adı yalnız ilan metninden alınır.
       Güncel durum yalnız Devlet Su İşleri’nin ilgili bölge müdürlüğünden
       teyit edilir.</p>
     <p>Ne yapabilirsiniz: <a href="/hangi-kurum/">hangi kuruma başvurulur</a> ·
@@ -138,13 +138,15 @@ const sema = [
       ayrışırsa arama sessizce boş sonuç döndürürdü. */}
   <ol class="kk-liste" id="kk-liste">
     {KAPATMA_KAYITLARI.map((k) => (
-      <li data-metin={aranabilir(`${k.pasaj} ${k.tarih} ${k.durum}`)}>
+      <li data-metin={aranabilir(`${(k.il || []).join(' ')} ${k.saha || ''} ${k.pasaj} ${k.tarih} ${k.durum}`)}>
         <p class="kk-kunye">
-          RG {k.tarih}
+          <strong>{(k.il && k.il.length) ? k.il.join(', ') : (k.ilNotu || 'İl belirtilmemiş (doğrulanamadı)')}</strong> · RG {k.tarih}
           {k.sayi != null && <> · Sayı {k.sayi}{k.sayiKaynak === 'cikarim' && '*'}</>}
           {' '}· {k.durum}
         </p>
+        {k.saha && <p class="kk-saha">{k.saha}</p>}
         <p class="kk-pasaj">&#8220;{k.pasaj}&#8230;&#8221;</p>
+        {k.ilKaynagi && <p class="kk-ilk">İl dayanağı: {k.ilKaynagi}</p>}
         <p class="kk-git"><a href={k.url} rel="nofollow">Resmî Gazete kaydı</a></p>
       </li>
     ))}
@@ -218,6 +220,8 @@ const sema = [
 </Sayfa>
 
 <style>
+  .kk-saha { font-weight: 600; margin: 0.2rem 0; }
+  .kk-ilk { font-size: 0.8rem; color: var(--metin-soluk); margin: 0.2rem 0 0; }
   .kk-arama { margin: 1.5rem 0 1rem; }
   .kk-arama label { display: block; font-size: 0.95rem; margin-bottom: 0.4rem; }
   .kk-arama input {

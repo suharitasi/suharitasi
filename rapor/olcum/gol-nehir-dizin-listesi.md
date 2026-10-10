@@ -1,0 +1,350 @@
+# Göl ve nehir sayfaları — dizin eşiği (brif 2.4, 2026-10-10)
+
+Sayfalar silinmez; eşiği geçmeyen sayfa robots noindex alır, site haritası ve llms.txt'den düşer. 4.9 zenginleştirmesiyle veri eklenince eşik kendiliğinden yeniden uygulanır.
+
+- Göl: bilinen adı + en az bir ek veri (koruma statüsü, baraj künyesi, doluluk). Bugün sitede koruma statüsü ve baraj künyesi verisi yok; doluluk yalnız EPİAŞ günlük kaydıyla ad kökü ve havza adı birlikte eşleşen göllerde.
+- Nehir: en az iki ek veri (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar). Bugün sitede kaynak ve baraj verisi yok; döküldüğü yer (ya da kolu olduğu akarsu) ve geçtiği iller sayılır.
+
+Sayılar: göl 243 → açık 9; nehir 91 → açık 33.
+
+## Açık kalan göller (9)
+- /goller/gumusoren-baraj-golu/ — Gümüşören Baraj Gölü (doluluk: GÜMÜŞÖREN)
+- /goller/camligoze-baraj-golu/ — Çamlıgöze Baraj Gölü (doluluk: ÇAMLIGÖZE)
+- /goller/pamukluk-baraj-golu/ — Pamukluk Baraj Gölü (doluluk: PAMUKLUK)
+- /goller/alakopru-baraj-golu/ — Alaköprü Baraj Gölü (doluluk: ALAKÖPRÜ)
+- /goller/esen-1-baraj-golu/ — Eşen-1 Baraj Gölü (doluluk: EŞEN 1)
+- /goller/yalnizardic-baraj-golu/ — Yalnızardıç Baraj Gölü (doluluk: YALNIZARDIÇ)
+- /goller/arac-baraj-golu/ — Araç Baraj Gölü (doluluk: ARAÇ BARAJI)
+- /goller/balkusan-baraji-golu/ — Balkusan Barajı Gölü (doluluk: BALKUSAN)
+- /goller/gokceler-baraj-golu/ — Gökçeler Baraj Gölü (doluluk: GÖKÇELER)
+
+## Açık kalan nehirler (33)
+- /nehirler/delice-cayi/ — Delice Çayı
+- /nehirler/porsuk-cayi/ — Porsuk Çayı
+- /nehirler/yanarsu-cayi/ — Yanarsu Çayı
+- /nehirler/meric/ — Meriç
+- /nehirler/hezil-cayi/ — Hezil Çayı
+- /nehirler/nilufer-cayi/ — Nilüfer Çayı
+- /nehirler/gordes-cayi/ — Gördes Çayı
+- /nehirler/kocasu-cayi/ — Kocasu Çayı
+- /nehirler/gokirmak/ — Gökırmak
+- /nehirler/kars-cayi/ — Kars Çayı
+- /nehirler/goksu-cayi/ — Göksu Çayı (Bursa)
+- /nehirler/munzur-cayi/ — Munzur Çayı
+- /nehirler/ankara-cayi/ — Ankara Çayı
+- /nehirler/korkun-cayi/ — Körkün Çayı
+- /nehirler/savrun-cayi/ — Savrun Çayı
+- /nehirler/cakit-suyu/ — Çakıt Suyu
+- /nehirler/yildiz-cayi/ — Yıldız Çayı
+- /nehirler/aksu-cayi/ — Aksu Çayı
+- /nehirler/botan-cayi/ — Botan Çayı
+- /nehirler/karakas-cayi/ — Karakaş Çayı
+- /nehirler/karasu/ — Karasu
+- /nehirler/sorkan-cayi/ — Sorkan Çayı
+- /nehirler/peri-cayi/ — Peri Çayı
+- /nehirler/sarim-cayi/ — Sarım Çayı
+- /nehirler/tohma-cayi/ — Tohma Çayı
+- /nehirler/seriyan-cayi/ — Şeriyan Çayı
+- /nehirler/karacay/ — Karacay
+- /nehirler/calti-cayi/ — Çaltı Çayı
+- /nehirler/mudurnu-cayi/ — Mudurnu Çayı
+- /nehirler/ala-cay/ — Ala Çay
+- /nehirler/gayt-cayi/ — Gayt Çayı
+- /nehirler/pulumur-cayi/ — Pülümür Çayı
+- /nehirler/tersakan-cayi/ — Tersakan Çayı
+
+## Kapatılan göller (234)
+- /goller/van-golu/ — Van Gölü
+- /goller/tuz-golu/ — Tuz Gölü
+- /goller/keban-baraj-golu/ — Keban Baraj Gölü
+- /goller/ataturk-baraj-golu/ — Atatürk Baraj Gölü
+- /goller/beysehir-golu/ — Beyşehir Gölü
+- /goller/egirdir-golu/ — Eğirdir Gölü
+- /goller/karakaya-baraj-golu/ — Karakaya Baraj Gölü
+- /goller/salda-golu/ — Salda Gölü
+- /goller/sugla-golu/ — Suğla Gölü
+- /goller/reyhanli-baraj-golu/ — Reyhanlı Baraj Gölü
+- /goller/arin-golu/ — Arin Gölü
+- /goller/mardin-depolamasi/ — Mardin Depolaması
+- /goller/kars-baraj-golu/ — Kars Baraj Gölü
+- /goller/balikli-gol/ — Balıklı Göl
+- /goller/kovada-golu/ — Kovada Gölü
+- /goller/avlan-golu/ — Avlan Gölü
+- /goller/altinyazi-baraj-golu/ — Altınyazı Baraj Gölü
+- /goller/ambar-baraj-golu/ — Ambar Baraj Gölü
+- /goller/demirozu-baraj-golu/ — Demirözü Baraj Gölü
+- /goller/paradeniz/ — Paradeniz
+- /goller/baskoy-baraj-golu/ — Başköy Baraj Gölü
+- /goller/afsar-baraj-golu/ — Afşar Baraj Gölü
+- /goller/golhisar-golu/ — Gölhisar Gölü
+- /goller/pecenek-baraj-golu/ — Peçenek Baraj Gölü
+- /goller/gernek-golu/ — Gernek Gölü
+- /goller/beydag-baraj-golu/ — Beydağ Baraj Gölü
+- /goller/agcasar-baraj-golu/ — Ağcaşar Baraj Gölü
+- /goller/akgol/ — Akgöl
+- /goller/pabucdere-baraj-golu/ — Pabuçdere Baraj Gölü
+- /goller/gokpinar-baraj-golu/ — Gökpınar Baraj Gölü
+- /goller/todurge-golu/ — Tödürge Gölü
+- /goller/karatas-golu/ — Karataş Gölü
+- /goller/gozegol/ — Gözegöl
+- /goller/orenler-baraj-golu/ — Örenler Baraj Gölü
+- /goller/azapli-gol/ — Azaplı Göl
+- /goller/gavur-golu/ — Gavur Gölü
+- /goller/sultankoy-baraj-golu/ — Sultanköy Baraj Gölü
+- /goller/sultansuyu-baraj-golu/ — Sultansuyu Baraj Gölü
+- /goller/sulakyurt-baraj-golu/ — Sulakyurt Baraj Gölü
+- /goller/yeleken-goleti/ — Yeleken Göleti
+- /goller/kutlu-aktas-goleti/ — Kutlu Aktaş Göleti
+- /goller/goktas-i-goleti/ — Göktaş I Göleti
+- /goller/dilimli-baraj-golu/ — Dilimli Baraj Gölü
+- /goller/akyay-golu/ — Akyay Gölü
+- /goller/altinapa-baraj-golu/ — Altınapa Baraj Gölü
+- /goller/turnacayiri-baraj-golu/ — Turnaçayırı Baraj Gölü
+- /goller/madra-baraj-golu/ — Madra Baraj Gölü
+- /goller/cogun-baraj-golu/ — Çoğun Baraj Gölü
+- /goller/yazir-golu/ — Yazır Gölü
+- /goller/karaova-baraj-golu/ — Karaova Baraj Gölü
+- /goller/marmaris-baraj-golu/ — Marmaris Baraj Gölü
+- /goller/suphan-golu/ — Süphan Gölü
+- /goller/yayik-goleti/ — Yayık Göleti
+- /goller/19-mayis-baraj-golu/ — 19 Mayıs Baraj Gölü
+- /goller/damluca-baraj-golu/ — Damluca Baraj Gölü
+- /goller/golbasi-golu/ — Gölbaşı Gölü
+- /goller/kozanli-golu/ — Kozanlı Gölü
+- /goller/daridere-baraj-golu/ — Darıdere Baraj Gölü
+- /goller/belevi-goleti/ — Belevi Göleti
+- /goller/sadak-baraj-golu/ — Sadak Baraj Gölü
+- /goller/guzelce-baraj-golu/ — Güzelce Baraj Gölü
+- /goller/tuzla-golu/ — Tuzla Gölü
+- /goller/kargi-baraj-golu/ — Kargı Baraj Gölü
+- /goller/topcam-baraj-golu/ — Topçam Baraj Gölü
+- /goller/kale-goleti/ — Kale Göleti
+- /goller/kucuk-akdogan-golu/ — Küçük Akdoğan Gölü
+- /goller/bayburt-baraj-golu/ — Bayburt Baraj Gölü
+- /goller/sikke-goleti/ — Sikke Göleti
+- /goller/cavdir-baraj-golu/ — Çavdır Baraj Gölü
+- /goller/cakmak-baraj-golu/ — Çakmak Baraj Gölü
+- /goller/doyduk-baraj-golu/ — Doyduk Baraj Gölü
+- /goller/derbi-goleti/ — Derbi Göleti
+- /goller/pamuklu-golu/ — Pamuklu Gölü
+- /goller/mentas-baraj-golu/ — Mentaş Baraj Gölü
+- /goller/kuru-gol/ — Kuru Göl
+- /goller/sarimsakli-baraji/ — Sarımsaklı Barajı
+- /goller/aygir-golu/ — Aygır Gölü
+- /goller/akyar-baraj-golu/ — Akyar Baraj Gölü
+- /goller/hersek-lagunu/ — Hersek Lagünü
+- /goller/seferihisar-baraj-golu/ — Seferihisar Baraj Gölü
+- /goller/karacomak-baraj-golu/ — Karaçomak Baraj Gölü
+- /goller/gulbahar-baraj-golu/ — Gülbahar Baraj Gölü
+- /goller/baslar-baraj-golu/ — Başlar Baraj Gölü
+- /goller/gursogut-baraj-golu/ — Gürsöğüt Baraj Gölü
+- /goller/azap-golu/ — Azap Gölü
+- /goller/sutgolu/ — Sütgölü
+- /goller/belpinar-baraj-goleti/ — Belpınar Baraj Göleti
+- /goller/cagsere-goleti/ — Çağsere Göleti
+- /goller/caltikoru-baraj-golu/ — Çaltıkoru Baraj Gölü
+- /goller/yalintas-goleti/ — Yalıntaş Göleti
+- /goller/sarioglan-baraji/ — Sarıoğlan Barajı
+- /goller/demirdoven-baraj-golu/ — Demirdöven Baraj Gölü
+- /goller/mumcular-baraj-golu/ — Mumcular Baraj Gölü
+- /goller/akhasan-baraj-golu/ — Akhasan Baraj Gölü
+- /goller/siddikli-baraj-golu/ — Sıddıklı Baraj Gölü
+- /goller/halilan-goleti/ — Halilan Göleti
+- /goller/golkoy-baraj-golu/ — Gölköy Baraj Gölü
+- /goller/eymir-golu/ — Eymir Gölü
+- /goller/yildizeli-caglayan-goleti/ — Yıldızeli Çağlayan Göleti
+- /goller/hamzabey-goleti/ — Hamzabey Göleti
+- /goller/ariklar-baraj-golu/ — Arıklar Baraj Gölü
+- /goller/kumkoy-goleti/ — Kumköy Göleti
+- /goller/yahyasaray-baraj-golu/ — Yahyasaray Baraj Gölü
+- /goller/yenikoy-goleti/ — Yeniköy Göleti
+- /goller/abant-golu/ — Abant Gölü
+- /goller/boztepe-baraj-golu/ — Boztepe Baraj Gölü
+- /goller/degirmenci-goleti/ — Değirmenci Göleti
+- /goller/cengilli-golu/ — Çengilli Gölü
+- /goller/gokce-baraj-golu/ — Gökçe Baraj Gölü
+- /goller/uzungol/ — Uzungöl
+- /goller/altinoluk-baraj-golu/ — Altınoluk Baraj Gölü
+- /goller/sirimtas-baraj-golu/ — Sırımtaş Baraj Gölü
+- /goller/kureysler-baraj-golu/ — Kureyşler Baraj Gölü
+- /goller/tahtali-goleti/ — Tahtalı Göleti
+- /goller/yenihayat-baraj-golu/ — Yenihayat Baraj Gölü
+- /goller/ayvacik-baraj-golu/ — Ayvacık Baraj Gölü
+- /goller/acigol/ — Acıgöl
+- /goller/cerkesli-goleti/ — Çerkeşli Göleti
+- /goller/sarikum-golu/ — Sarıkum Gölü
+- /goller/uluborlu-baraj-golu/ — Uluborlu Baraj Gölü
+- /goller/hatap-baraj-golu/ — Hatap Baraj Gölü
+- /goller/inekli-gol/ — İnekli Göl
+- /goller/yukari-ciftlik-goleti/ — Yukarı Çiftlik Göleti
+- /goller/yildiz-goleti/ — Yıldız Göleti
+- /goller/kazgolu/ — Kazgölü
+- /goller/kurucay-baraj-golu/ — Kuruçay Baraj Gölü
+- /goller/degirmenkoy-goleti/ — Değirmenköy Göleti
+- /goller/alic-goleti/ — Alıç Göleti
+- /goller/karamanli-baraji/ — Karamanlı Barajı
+- /goller/koyceyiz-goleti/ — Köyceyiz Göleti
+- /goller/turkmenli-baraj-golu/ — Türkmenli Baraj Gölü
+- /goller/gokceada-baraj-golu/ — Gökçeada Baraj Gölü
+- /goller/hidirmentes-golu/ — Hıdırmenteş Gölü
+- /goller/hanoglu-goleti/ — Hanoğlu Göleti
+- /goller/aci-gol/ — Acı Göl
+- /goller/simenit-golu/ — Simenit Gölü
+- /goller/uludere-inceler-baraj-golu/ — Uludere İnceler Baraj Gölü
+- /goller/nergizlik-baraj-golu/ — Nergizlik Baraj Gölü
+- /goller/yuzuncu-yil-goleti/ — Yüzüncü Yıl Göleti
+- /goller/aksakli-goleti/ — Aksaklı Göleti
+- /goller/kavakdere-baraj-golu/ — Kavakdere Baraj Gölü
+- /goller/mursal-baraj-golu/ — Mursal Baraj Gölü
+- /goller/cerkezmusellim-goleti/ — Çerkezmüsellim Göleti
+- /goller/degirmi-goleti/ — Değirmi Göleti
+- /goller/saribugday-baraj-golu/ — Sarıbuğday Baraj Gölü
+- /goller/sarayozu-baraj-golu/ — Sarayözü Baraj Gölü
+- /goller/demirtas-baraj-golu/ — Demirtaş Baraj Gölü
+- /goller/sucati-baraj-golu/ — Suçatı Baraj Gölü
+- /goller/babasultan-baraj-golu/ — Babasultan Baraj Gölü
+- /goller/naipkoy-baraj-golu/ — Naipköy Baraj Gölü
+- /goller/saribeyler-baraj-golu/ — Sarıbeyler Baraj Gölü
+- /goller/derince-baraj-golu/ — Derince Baraj Gölü
+- /goller/sogulca-goleti/ — Soğulca Göleti
+- /goller/ayranci-baraj-golu/ — Ayrancı Baraj Gölü
+- /goller/derinoz-baraj-golu/ — Derinöz Baraj Gölü
+- /goller/kalecik-baraj-golu/ — Kalecik Baraj Gölü
+- /goller/kultepe-baraj-golu/ — Kültepe Baraj Gölü
+- /goller/cip-baraj-golu/ — Cip Baraj Gölü
+- /goller/aydinlar-akbas-baraj-golu/ — Aydınlar-Akbaş Baraj Gölü
+- /goller/golcuk-golu/ — Gölcük Gölü (Isparta)
+- /goller/yaylakavak-baraj-golu/ — Yaylakavak Baraj Gölü
+- /goller/orucbeyli-goleti/ — Oruçbeyli Göleti
+- /goller/kasimlar-baraj-golu/ — Kasımlar Baraj Gölü
+- /goller/golcuk/ — Gölcük (İzmir)
+- /goller/demirci-goleti/ — Demirci Göleti
+- /goller/aladerecam-baraj-golu/ — Aladereçam Baraj Gölü
+- /goller/derebucak-baraj-golu/ — Derebucak Baraj Gölü
+- /goller/yavaslar-baraj-golu/ — Yavaşlar Baraj Gölü
+- /goller/adali-baraj-golu/ — Adalı Baraj Gölü
+- /goller/sorgun-baraj-golu/ — Sorgun Baraj Gölü
+- /goller/bayindir-baraji/ — Bayındır Barajı
+- /goller/akcay-baraj-golu/ — Akçay Baraj Gölü
+- /goller/yapialtin-baraj-golu/ — Yapıaltın Baraj Gölü
+- /goller/caybogazi-baraj-golu/ — Çayboğazı Baraj Gölü
+- /goller/keskin-75-yil-baraj-golu/ — Keskin 75.Yıl Baraj Gölü
+- /goller/alpu-goleti/ — Alpu Göleti
+- /goller/aktas-baraj-golu/ — Aktaş Baraj Gölü
+- /goller/atasu-baraj-golu/ — Atasu Baraj Gölü
+- /goller/geckinli-goleti/ — Geçkinli Göleti
+- /goller/poyrazlar-golu/ — Poyrazlar Gölü
+- /goller/akin-goleti/ — Akın Göleti
+- /goller/konak-goleti/ — Konak Göleti
+- /goller/senkaya-goleti/ — Şenkaya Göleti
+- /goller/dirsekli-goleti/ — Dirsekli Göleti
+- /goller/nilufer-baraj-golu/ — Nilüfer Baraj Gölü
+- /goller/kuzayca-goleti/ — Kuzayca Göleti
+- /goller/akkaya-baraj-golu/ — Akkaya Baraj Gölü
+- /goller/kozlu-baraj-golu/ — Kozlu Baraj Gölü
+- /goller/govelek-golu/ — Gövelek Gölü
+- /goller/lota-golu/ — Lota Gölü
+- /goller/kurtbey-goleti/ — Kurtbey Göleti
+- /goller/mercan-goleti/ — Mercan Göleti
+- /goller/hakkibeyli-goleti/ — Hakkıbeyli Göleti
+- /goller/camkoy-goleti/ — Çamköy Göleti
+- /goller/barakli-baraj-golu/ — Baraklı Baraj Gölü
+- /goller/kocakent-baraj-golu/ — Kocakent Baraj Gölü
+- /goller/asagi-tulgali-goleti/ — Aşağı Tulgalı Göleti
+- /goller/aladag-goleti/ — Aladağ Göleti
+- /goller/cavuskoy-goleti/ — Çavuşköy Göleti
+- /goller/yesilkoy-goleti/ — Yeşilköy Göleti
+- /goller/medik-baraj-goleti/ — Medik Baraj Göleti
+- /goller/koruluk-baraj-golu/ — Koruluk Baraj Gölü
+- /goller/ilegi-goleti/ — İleği Göleti
+- /goller/degirmenozu-baraj-golu/ — Değirmenözü Baraj Gölü
+- /goller/damsa-baraj-golu/ — Damsa Baraj Gölü
+- /goller/catal-golu/ — Çatal Gölü
+- /goller/elekci-golu/ — Elekçi Gölü
+- /goller/sariot-golu/ — Sarıot Gölü
+- /goller/bozarmut-goleti/ — Bozarmut Göleti
+- /goller/fehimli-goleti/ — Fehimli Göleti
+- /goller/kocadere-goleti/ — Kocadere Göleti
+- /goller/camurlu-goleti/ — Çamurlu Göleti
+- /goller/sabanozu-goleti/ — Şabanözü Göleti
+- /goller/polat-baraj-golu/ — Polat Baraj Gölü
+- /goller/akbenli-goleti/ — Akbenli Göleti
+- /goller/ulas-golu/ — Ulaş Gölü
+- /goller/guluc-baraj-golu/ — Gülüç Baraj Gölü
+- /goller/gogem-goleti/ — Göğem Göleti
+- /goller/biyikali-goleti/ — Bıyıkali Göleti
+- /goller/kirankoy-goleti/ — Kıranköy Göleti
+- /goller/cilingoz-goleti/ — Çilingöz Göleti
+- /goller/osmankalfalar-goleti/ — Osmankalfalar Göleti
+- /goller/aslandag-baraj-golu/ — Aslandağ Baraj Gölü
+- /goller/ikizce-goleti/ — İkizce Göleti
+- /goller/samli-goleti/ — Şamlı Göleti
+- /goller/gunesli-baraji/ — Güneşli Barajı
+- /goller/karliova-golu/ — Karlıova Gölü
+- /goller/huyukkisla-goleti/ — Hüyükkışla Göleti
+- /goller/yusufoglan-baraj-golu/ — Yusufoğlan Baraj Gölü
+- /goller/gediksaray-goleti/ — Gediksaray Göleti
+- /goller/kucuklu-goleti/ — Küçüklü Göleti
+- /goller/delicay-baraj-golu/ — Deliçay Baraj Gölü
+- /goller/igdeli-goleti/ — İğdeli Göleti
+- /goller/durucay-goleti/ — Duruçay Göleti
+
+## Kapatılan nehirler (58)
+- /nehirler/kizilirmak/ — Kızılırmak · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/dicle-nehri/ — Dicle Nehri · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/sakarya-nehri/ — Sakarya Nehri · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/buyuk-menderes/ — Büyük Menderes · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/ceyhan/ — Ceyhan · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/murat-nehri/ — Murat Nehri · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/simav-cayi/ — Simav Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/gediz-nehri/ — Gediz Nehri · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/orhaneli-cayi/ — Orhaneli Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/yesilirmak/ — Yeşilırmak · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/asi-nehri/ — Asi Nehri · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/banaz-cayi/ — Banaz Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/firat/ — Fırat · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/emet-cayi/ — Emet Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/coruh/ — Çoruh · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/kura-nehri/ — Kura Nehri · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/seyhan/ — Seyhan · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/aras-nehri/ — Aras Nehri · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/devrekani-cayi/ — Devrekani Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/aladag-cayi/ — Aladağ Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/kirmir-cayi/ — Kirmir Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/melet-irmagi/ — Melet Irmağı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/dalaman-cayi/ — Dalaman Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/devrez-cayi/ — Devrez Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/cekerek-cayi/ — Çekerek Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/ermenek-cayi/ — Ermenek Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/filyos-cayi/ — Filyos Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/goksu-nehri/ — Göksu Nehri (Mersin) · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/oltu-cayi/ — Oltu Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/acicay/ — Acıçay · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/karamenderes-nehri/ — Karamenderes Nehri · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/tuzla-cayi/ — Tuzla Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/zap-suyu/ — Zap Suyu · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/hurman-cayi/ — Hurman Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/catak-cayi/ — Çatak Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/aydinlar-cayi/ — Aydınlar Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/buyuk-melen-cayi/ — Büyük Melen Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/ergene-nehri/ — Ergene Nehri · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/limonlu-cayi/ — Limonlu Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/esen-cayi/ — Eşen Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/mutludere/ — Mutludere · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/bakircay/ — Bakırçay · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/basur-cayi/ — Başur Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/biga-cayi/ — Biga Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/bolu-cayi/ — Bolu Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/goksu/ — Göksu (Adana) · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/kelkit-cayi/ — Kelkit Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/cigli-suyu/ — Çığlı Suyu · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/kocacay/ — Kocaçay · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/koprucay/ — Köprüçay · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/mustafakemalpasa-cayi/ — Mustafakemalpaşa Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/zamanti/ — Zamantı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/harsit-cayi/ — Harşit Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/arac-cayi/ — Araç Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/curi-deresi/ — Curi Deresi · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/gokcay/ — Gökçay · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/kezer-cayi/ — Kezer Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)
+- /nehirler/yaglidere-cayi/ — Yağlıdere Çayı · ek veri 1/2 (kaynak, döküldüğü yer, geçtiği iller, üzerindeki barajlar)

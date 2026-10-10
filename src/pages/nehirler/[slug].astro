@@ -17,7 +17,7 @@ import GeoDisaAktar from '../../components/GeoDisaAktar.astro';
 // eeat-audit (27.09.2026): yazar kutusu içerik sayfalarına bağlandı —
 // künye sayfa düzeyinde görünür (yalnız SSS + veri vardı).
 import YazarKutusu from '../../components/YazarKutusu.astro';
-import { tumNehirler, nehirOzet,
+import { tumNehirler, nehirOzet, nehirDizinKarari,
          GOLNEHIR_ERISIM, GOLNEHIR_KAPSAM_NEHIR, GOLNEHIR_LISANS, kaynakBagi } from '../../data/gol-nehir.js';
 
 export async function getStaticPaths() {
@@ -28,6 +28,8 @@ const { nehir } = Astro.props;
 const ozet = nehirOzet(nehir);
 const havzalar = nehir.cografya.havzalar;
 const il = nehir.cografya.il;
+const iller = nehir.cografya.iller ?? (il ? [il] : []);
+const illerMetni = iller.map((x) => x.ad).join(', ');
 // P2 (24.09.2026): "İlgili Havza Varlıkları" tablosu — bağlı havza(lar) ve
 // aynı havzadaki diğer akarsular. Yalnız gerçek eşlemeden türetilir; havzada
 // daha az kardeş varsa eldeki kadar gösterilir (uydurma yok).
@@ -69,11 +71,14 @@ const kolu = nehir.kolu_oldugu_akarsu || null;
 const LATIN_BASLIK = /^[A-Za-zÇĞİÖŞÜçğıöşü0-9\s'’.\-()]+$/;
 const koluLatin = (kolu && LATIN_BASLIK.test(kolu)) ? kolu : null;
 const SUF = ' | Su Haritası';
+// 10.10.2026 (brif 1.10): "Nereye Dökülür?" yalnız döküldüğü yer VERİDE varsa vaat edilir.
+const dokulduguVar = Boolean(nehir.dokuldugu_yer);
 const titleAdaylari = (koluLatin
-  ? [`${nehir.ad} Hangi Akarsuyun Kolu, Nereye Dökülür?`,
+  ? [`${nehir.ad} Hangi Akarsuyun Kolu${dokulduguVar ? ', Nereye Dökülür' : ''}?`,
      `${nehir.ad} Hangi Akarsuyun Kolu?`]
-  : [`${nehir.ad} Nerede ve Nereye Dökülür?`,
-     `${nehir.ad} Nerede, Nereye Dökülür?`]
+  : (dokulduguVar
+     ? [`${nehir.ad} Nerede ve Nereye Dökülür?`, `${nehir.ad} Nerede, Nereye Dökülür?`]
+     : [`${nehir.ad} Nerede, Hangi İllerden Geçer?`])
 ).concat([`${nehir.ad} Nerede?`]).map((t) => t + SUF);
 const tarayiciBaslik = titleAdaylari.find((t) => t.length <= 60) ?? `${nehir.ad}${SUF}`;
 if (tarayiciBaslik.length > 60)
@@ -82,7 +87,7 @@ if (tarayiciBaslik.length > 60)
 // C5 (V5): FAQ soruları ölçülen sorgu kalıplarına ("nerede", "hangi havzadan
 // geçer") ayrıştırılır; her cevap veriden. "kolu/kapalı havza" sorusu VERİSİZ
 // olduğundan eklenmez (uydurma yasağı).
-const konumCevabi = `${nehir.ad} hattı ${il ? `${il.ad} ili sınırlarından geçer` : 'Türkiye sınırları içinde akar'} (merkez koordinatı ${nehir.merkez[1].toFixed(4)}°K, ${nehir.merkez[0].toFixed(4)}°D).`;
+const konumCevabi = `${nehir.ad} hattı ${iller.length ? `${illerMetni} ${iller.length > 1 ? 'illerinden' : 'ili sınırlarından'} geçer` : 'Türkiye sınırları içinde akar'} (merkez koordinatı ${nehir.merkez[1].toFixed(4)}°K, ${nehir.merkez[0].toFixed(4)}°D).`;
 const havzaCevabi = havzalar.length === 0
   ? 'Örneklenmiş hat noktaları 25 havza çokgeninden hiçbiriyle kesişmedi; bu geometrik örneklemedir, hidrografik tescil değildir.'
   : havzalar.length === 1
@@ -91,7 +96,7 @@ const havzaCevabi = havzalar.length === 0
 
 // Meta açıklama: dolu veri varsa somut olgu (konum + dökülür/kolu) + öz-cevap;
 // yoksa yalnız mevcut öz-cevap (uydurma yok).
-const konumCumlesi = il ? `${il.ad} ilinden geçer` : 'Türkiye sınırları içinde akar';
+const konumCumlesi = iller.length ? `${illerMetni} ${iller.length > 1 ? 'illerinden' : 'ilinden'} geçer` : 'Türkiye sınırları içinde akar';
 const aciklamaZengin = dokulur
   ? `${nehir.ad}, ${konumCumlesi}; döküldüğü yer: ${dokulur}. ${ozet}`
   : (kolu
@@ -135,7 +140,7 @@ const sema = [{
     ...(nehir.kolu_oldugu_akarsu
       ? [{ '@type': 'PropertyValue', name: 'Kolu olduğu akarsu', value: nehir.kolu_oldugu_akarsu }] : []),
   ],
-  containedInPlace: { '@type': 'Place', name: il ? `${il.ad}, Türkiye` : 'Türkiye' },
+  containedInPlace: iller.length ? iller.map((x) => ({ '@type': 'Place', name: `${x.ad}, Türkiye` })) : { '@type': 'Place', name: 'Türkiye' },
 }, {
   '@type': 'FAQPage',
   // Damga (25.08.2026): OSM/Natural Earth çekim tarihi (gol-nehir.js künyesi).
@@ -147,7 +152,7 @@ const sema = [{
 }];
 ---
 
-<Sayfa baslik={`${nehir.ad} — Türkiye Nehirleri`} tarayiciBaslik={tarayiciBaslik} aciklama={aciklamaZengin} sema={sema}>
+<Sayfa baslik={`${nehir.ad} — Türkiye Nehirleri`} tarayiciBaslik={tarayiciBaslik} aciklama={aciklamaZengin} sema={sema} robots={nehirDizinKarari(nehir).dizin ? undefined : 'noindex, follow'}>
   <SayfaBasi etiket="Nehir" baslik={nehir.ad} tarih={TARIH.golNehir ? new Date(TARIH.golNehir) : undefined} />
 
   <NehirSnippet nehir={nehir} havza={anaHavza} ozet={ozet} />
@@ -181,8 +186,8 @@ const sema = [{
       )}
       {il && (
         <div class="kunye-satir">
-          <dt>Örneklenen il</dt>
-          <dd><a href={`/kuyu-ruhsati/${il.slug}/`}>{il.ad}</a></dd>
+          <dt>Geçtiği iller (örneklem)</dt>
+          <dd>{iller.map((x, i) => <>{i > 0 && ', '}<a href={`/kuyu-ruhsati/${x.slug}/`}>{x.ad}</a></>)}</dd>
         </div>
       )}
       {kolu && (
@@ -275,8 +280,8 @@ const sema = [{
     <h2>İlgili su verisi ve mevzuat</h2>
     <div class="capraz">
       {havzalar.map((h) => <a href={`/havzalar/${h.slug}/`}>{h.ad} verisi</a>)}
-      {il && <a href={`/kuyu-ruhsati/${il.slug}/`}>{il.ad} kuyu ruhsatı</a>}
-      <a href="/nerede-su-cikar/">İlinizde su nerede çıkar</a>
+      {iller.map((x) => <a href={`/kuyu-ruhsati/${x.slug}/`}>{x.ad} kuyu ruhsatı</a>)}
+      <a href="/nerede-su-cikar/">Tarlamda su çıkar mı?</a>
       <a href="/rehberler/">Su hukuku rehberleri</a>
     </div>
   </nav>

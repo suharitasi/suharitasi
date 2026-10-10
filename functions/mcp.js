@@ -37,7 +37,7 @@ const KAYNAK_ACIKLAMA = {
   havzalar: '25 su havzası künyesi (yağış alanı, rezerv, NHYP)',
   iller: '81 il → DSİ bölgesi, havza ve su idaresi eşlemesi',
   mevzuat: '469 mevzuat maddesi (resmî metin + kaynak)',
-  emsal: 'Danıştay/Yargıtay su hukuku emsal kararları',
+  emsal: 'Resmî karar arama sunucusunda doğrulanmış su hukuku emsal kararları',
   sozluk: '126 su hukuku/yönetimi terimi',
   islemler: '20 idari su işlemi → kurum, dayanak, başvuru kanalı',
   suRiski: 'İl/havza Su Riski Endeksi (şeffaf bileşik gösterge)',
@@ -148,7 +148,7 @@ const ARACLAR = [
   },
   {
     name: 'emsal_sorgu',
-    description: 'Danıştay/Yargıtay su hukuku emsal kararlarını arar (künye + özet + kaynak). Konu, merci veya yılla.',
+    description: 'Resmî karar arama sunucusunda doğrulanmış su hukuku emsal kararlarını arar (künye, karar tarihi, karar metninden dava konusu alıntısı, resmî metin ve karar sayfası bağlantısı). Konu, merci veya yılla.',
     inputSchema: {
       type: 'object',
       properties: {

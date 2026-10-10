@@ -12,7 +12,7 @@ const tr = (s) =>
 
 /* — Arama — */
 const kutu = document.getElementById('durumum-ara');
-const kartlar = [...document.querySelectorAll('#durumum-izgara .pk')];
+const kartlar = [...document.querySelectorAll('#durumum-izgara .pk, #durumum-izgara .pk-satir')];
 const bos = document.getElementById('durumum-bos');
 if (kutu && kartlar.length) {
   kutu.addEventListener('input', () => {

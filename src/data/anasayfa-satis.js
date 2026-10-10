@@ -8,6 +8,7 @@
 // her build'de veriden SAYIP cümledekiyle karşılaştırır. Veri değişirse
 // build DÜŞER ve onaylı cümlenin bilinçli güncellenmesi gerekir — sessiz
 // bayatlama da, onaysız metin değişimi de imkânsız.
+import { RG_SAYIM } from './rg-kaynak.js';
 import { SAYILAR } from './kapi.js';
 import havzaVeri from '../../data/havza-veri.json';
 
@@ -32,7 +33,7 @@ export const META_ACIKLAMA =
 // (= 25 havza sayfası = geojson 25 feature) · 419 = isletme-sahalari
 // 109 başlık + 310 pasaj · 1963 = en eski rg_tarih yılı (419/419 tarihli).
 export const HERO_ALT =
-  "472 yeraltısuyu kütlesi, 25 havza ve 1963'e uzanan 419 Resmî Gazete " +
+  `472 yeraltısuyu kütlesi, 25 havza ve 1963'e uzanan ${RG_SAYIM.toplam} Resmî Gazete ` +
   'kaydı — hepsi kaynağı gösterilmiş tek haritada. Kuyu ruhsatı, su davası, ' +
   'tahsis ve mevzuat da aynı çatıda: hangi işlem, hangi kurum, hangi süre.';
 

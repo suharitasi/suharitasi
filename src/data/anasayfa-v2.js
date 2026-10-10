@@ -1,3 +1,4 @@
+import { ARAC } from './arac-adlari.js';
 // ANA SAYFA v2 (emil + v0 spesifikasyonu, brief 2026-07-27).
 // Altı uçuşan soru + altı hizmet kartı + "Veriler" menü rotaları.
 // HEDEF KURALI (brief FAZ 1): her hedef build çıktısında (dist) GERÇEKTEN
@@ -112,26 +113,18 @@ export const SUREC = [
 //   sadece ana menüden kaldırılmıştır. Alt sayfalardan ve site içi linklerden
 //   erişilebilir.
 export const VERI_ROTALARI = [
-  // FAZ 1 (v5.2): "Kuyu Karar Motoru" gizli rota gibi kalıyordu; ana menüye
-  // kısa adıyla görünür bağ eklendi. Hedef rota DEĞİŞMEZ (kanonik koruma).
-  // 27.09.2026: görünür adlar TEK SATIRA sığacak kadar kısaltıldı (navbar
-  // sarmalanınca çubuk 108px'e çıkıp içeriği örtüyordu). Rotalar AYNI.
-  { ad: 'Kuyu Ruhsat & İtiraz', yol: '/kuyu-karar-motoru/' },
-  { ad: 'Su Nerede Çıkar?', yol: '/ilce-sorgu/' },
-  // '/su-hukuku/' HUB (13.09.2026): 25.08'de kapanan rota, kullanıcı talebiyle
-  // yeniden açıldı — bu kez rehberleri, cezaları ve mevzuatı tek omurgada
-  // toplayan, filtrelenebilir karar matrisi taşıyan giriş sayfası olarak.
+  // BRİF 3.2 + DURAK 1 D (10.10.2026): menü en çok altı madde; araç adları tek kaynaktan.
+  // Çıkan bölümler (/rehberler/, /havza-riski/, /tahmin/, /nehirler/, /goller/, /api-dokumantasyonu/)
+  // /su-hukuku/ ve /veri/ sayfalarından ve alt bilgiden bağlıdır (ölçüldü). Kuyu Cezası ve Süreler
+  // Tebliğ Aldım akışında, Su Hukuku'nda ve alt bilgide. /harita/ brif 2.9 gereği menüde.
+  { ad: ARAC.teblig.ad, yol: ARAC.teblig.yol },
+  { ad: ARAC.tarla.ad, yol: ARAC.tarla.yol },
   { ad: 'Su Hukuku', yol: '/su-hukuku/' },
-  { ad: 'Rehberler', yol: '/rehberler/' },
-  { ad: 'Harita & Katmanlar', yol: '/' },
-  { ad: 'Havza & Veri', yol: '/havza-riski/' },
-  { ad: 'Nehirler', yol: '/nehirler/' },
-  { ad: 'Göller', yol: '/goller/' },
-  // FAZ 4 (04.10.2026): tahminsel analitik + açık veri API yüzeyleri.
-  { ad: 'Tahmin', yol: '/tahmin/' },
-  { ad: 'API', yol: '/api-dokumantasyonu/' },
+  { ad: 'Harita', yol: '/harita/' },
+  { ad: 'Veri', yol: '/veri/' },
   { ad: 'İletişim', yol: '/#iletisim' },
 ];
+if (VERI_ROTALARI.length > 6) throw new Error('anasayfa-v2: menü en çok altı madde (brif 3.2).');
 
 // Build-time assert (sessiz hata yasağı): zorunlu alanlar + yerel yol biçimi.
 for (const s of SORULAR_V2) {

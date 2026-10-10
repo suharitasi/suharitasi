@@ -1,0 +1,845 @@
+{
+ "_not": "Emsal karar sayfalarındaki alıntılar (brif 4.4). Her parça resmî karar metninden birebir kesilmiştir (arac/emsal-alinti-uret.py); bu sitenin yorumu ya da özeti değildir. anilan_maddeler: karar metninde kanun numarası ve madde numarasıyla açıkça anılan ve sitede metni bulunan maddeler.",
+ "erisim": "2026-10-10",
+ "kaynak_sunucu": "karararama.danistay.gov.tr",
+ "kararlar": {
+  "danistay-8-daire-2025-5198-2025-10204": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararının \"Hukuki değerlendirme\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "İzmir ili, Dikili ilçesinde bulunan davacı ... Tatil Sitesine ait su kuyusunun yapılan inceleme sonucu jeotermal kaynak olarak değerlendirildiği ve bu kapsamda yeraltısuyu kullanma belgesi bulunmadığından bahisle 5686 sayılı Jeotermal Kaynaklar ve Doğal Mineralli Sular Kanunu'nun 11/4. maddesi uyarınca kuyu başının mühürlenerek faaliyetinin durdurulmasına ve davacı siteye 129.104,60-TL idari para cezası verilmesine ilişkin İzmir Valiliği Yatırım İzleme ve Koordinasyon Başkanlığının ...tarih ve ... sayılı işleminin iptali istenilmiştir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "Davalı idarece ''yeraltı suyu kullanım belgesi'' olmayan davacının yöneticisi olduğu site hakkında, 5686 sayılı Kanuna dayanılarak, idari para cezası verilmesinde, davalı idarenin yetkisi bulunmadığından, dava konusu işlemin yetki unsuru yönünden sakat olup bu yönüyle iptaline karar verilmesi gerektiği sonucuna varılmıştır.",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Ayrıca 5686 sayılı Kanun uyarınca verilecek bir idari para cezasının anılan Kanun'da yer almayan ''yeraltı suyu kullanım belgesine'' dayandırılmasına olanak bulunmamaktadır.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "Temyiz isteminin kısmen kabulüne, kısmen reddine,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "a) Dava konusu işlemin, davacı site adına ...-TL idari para cezası verilmesine yönelik kısmı yönünden verilen kararın BOZULMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "b) Dava konusu işlemin, davacı sitenin kullandığı suyun jeotermal kaynak olarak belirlenmesi ile yeraltı suyu kullanma belgesi olmadığından kuyunun mühürlenmesine yönelik kısmı yönünden verilen kararın ONANMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Kesin olarak, 23/12/2025 tarihinde oybirliği ile karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": [
+    {
+     "kanun": "5686",
+     "madde": "Madde 11"
+    }
+   ]
+  },
+  "danistay-8-daire-2024-2630-2025-6289": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararında aktarılan \"İlk Derece Mahkemesi kararının özeti\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "Davacı şirketin, kaynak suyu kiralama sözleşmesi imzalamak için yapılan davete icabet etmediği yeraltı suyu işletme sahası içerisinde olması nedeniyle İl Sağlık Müdürlüğünden ticari amaçlı su satışı yapmak üzere aldığı üretim izin belgesi üzerinden 10/05/2017 tarihi dikkate alınarak kamu alacağı oluşturulduğundan bahisle ihtarnamede yazılı 2.250.612,32-TL'nin son ödeme tarihine kadar ödenmemesi halinde tahsili için yasal yollara başvurulacağına dair İstanbul Su ve Kanalizasyon Genel Müdürlüğü'nün ... tarih ve ... sayılı işleminin iptali istenilmiştir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "dava konusu yazı ve ekindeki ihtarnamenin, ön bildirim niteliğinde bir işlem olduğu, dolayısıyla hukuk aleminde değişiklik yaratmayan, bir başka deyişle idari davaya konu edilebilen kesin ve yürütülebilir nitelikte bir işlem olmadığı gerekçesiyle davanın incelenmeksizin reddine karar verilmiştir.",
+     "bas_kesik": true,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "Temyiz isteminin reddine,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "... Bölge İdare Mahkemesi ... İdari Dava Dairesinin ... tarih ve E:..., K:... sayılı kararının ONANMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Kesin olarak, 26/06/2025 tarihinde oybirliği ile karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": []
+  },
+  "danistay-8-daire-2024-532-2025-6286": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararında aktarılan \"İlk Derece Mahkemesi kararının özeti\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "Davacı şirketin, kaynak suyu kiralama sözleşmesi imzalamak için yapılan davete icabet etmediği yeraltı suyu işletme sahası içerisinde olması nedeniyle İl Sağlık Müdürlüğünden ticari amaçlı su satışı yapmak üzere aldığı üretim izin belgesi üzerinden 10/05/2017 tarihi dikkate alınarak kamu alacağı oluşturulduğundan bahisle ihtarnamede yazılı 3.250.884,48-TL'nin son ödeme tarihine kadar ödenmemesi halinde tahsili için yasal yollara başvurulacağına dair İstanbul Su ve Kanalizasyon Genel Müdürlüğü'nün ... tarih ve ... sayılı işleminin iptali istenilmiştir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "herhangi bir yaptırım öngörmeyen, davacının hukuk dünyasında -doğrudan veya dolaylı olarak- bir değişiklik yaratmayan, muhatap yönünden doğrudan icra edilemeyen, yürütülme kabiliyeti olmayan dava konusu belgenin; hazırlık ve/veya bilgilendirme mahiyetinde bir belge olduğu görülmekle davacıya yönelik tesis edilen bilgilendirici işlemin icrailik kazanmadığı dikkate alındığında söz konusu işlemin idari işlem olarak kabul edilmesinin mümkün olmadığı gerekçesiyle davanın incelenmeksizin reddine karar verilmiştir.",
+     "bas_kesik": true,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "Temyiz isteminin reddine,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "... Bölge İdare Mahkemesi ... İdari Dava Dairesinin ... tarih ve E:..., K:... sayılı kararının ONANMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Kesin olarak, 26/06/2025 tarihinde oybirliği ile karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": []
+  },
+  "danistay-8-daire-2024-2635-2025-6285": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararında aktarılan \"İlk Derece Mahkemesi kararının özeti\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "Davacı şirketin, kaynak suyu kiralama sözleşmesi imzalamak için yapılan davete icabet etmediği yeraltı suyu işletme sahası içerisinde olması nedeniyle İl Sağlık Müdürlüğünden ticari amaçlı su satışı yapmak üzere aldığı üretim izin belgesi üzerinden 10/05/2017 tarihi dikkate alınarak kamu alacağı oluşturulduğundan bahisle ihtarnamede yazılı 7.001.904,98-TL'nin son ödeme tarihine kadar ödenmemesi halinde tahsili için yasal yollara başvurulacağına dair İstanbul Su ve Kanalizasyon Genel Müdürlüğü'nün ... tarih ve ... sayılı işleminin iptali istenilmiştir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "ön bildirim niteliğinde bir işlem olduğu, dolayısıyla bu işlem dışında, kaynak ve yer altı suyu izinsiz işletme bedelinin ilgili mevzuatı uyarınca tahsiline yönelik ayrıca işlem tesis edilmesi gerektiğinden hukuk aleminde değişiklik yaratmadığı, bir başka deyişle, idari davaya konu edilebilen kesin ve yürütülebilir nitelikte bir işlem olmadığı gerekçesiyle davanın incelenmeksizin reddine karar verilmiştir.",
+     "bas_kesik": true,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "Temyiz isteminin reddine,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "... Bölge İdare Mahkemesi ... İdari Dava Dairesinin ... tarih ve E:..., K:... sayılı kararının ONANMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Kesin olarak, 26/06/2025 tarihinde oybirliği ile karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": []
+  },
+  "danistay-8-daire-2024-2079-2025-6287": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararında aktarılan \"İlk Derece Mahkemesi kararının özeti\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "Davacı şirketin, kaynak suyu kiralama sözleşmesi imzalamak için yapılan davete icabet etmediği yeraltı suyu işletme sahası içerisinde olması nedeniyle İl Sağlık Müdürlüğünden ticari amaçlı su satışı yapmak üzere aldığı üretim izin belgesi üzerinden 09/05/2017 tarihi dikkate alınarak kamu alacağı oluşturulduğundan bahisle 2.100.571,49-TL tutarında kaynak ve yeraltı suyu izinsiz işletme bedelinin ödenmesi gerektiği, buna ilişkin yasal sürecin devam ettiğine ilişkin İstanbul Su ve Kanalizasyon İdaresi Genel Müdürlüğü'nün ... tarihli ... sayılı işleminin iptali istenilmiştir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "ön bildirim niteliğinde bir işlem olduğu, dolayısıyla bu işlem dışında, kaynak ve yer altı suyu izinsiz işletme bedelinin ilgili mevzuatı uyarınca tahsiline yönelik ayrıca işlem tesis edilmesi gerektiğinden hukuk aleminde değişiklik yaratmadığı, bir başka deyişle, idari davaya konu edilebilen kesin ve yürütülebilir nitelikte bir işlem olmadığı gerekçesiyle davanın incelenmeksizin reddine karar verilmiştir.",
+     "bas_kesik": true,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "Temyiz isteminin reddine,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "... Bölge İdare Mahkemesi ... İdari Dava Dairesinin ... tarih ve E:..., K:... sayılı kararının ONANMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Kesin olarak, 26/06/2025 tarihinde oybirliği ile karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": []
+  },
+  "danistay-8-daire-2024-4487-2025-6288": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararında aktarılan \"İlk Derece Mahkemesi kararının özeti\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "Davacı şirketin, kaynak suyu kiralama sözleşmesi imzalamak için yapılan davete icabet etmediği yeraltı suyu işletme sahası içerisinde olması nedeniyle İl Sağlık Müdürlüğünden ticari amaçlı su satışı yapmak üzere aldığı üretim izin belgesi üzerinden 10/05/2017 tarihi dikkate alınarak kamu alacağı oluşturulduğundan bahisle ihtarnamede yazılı 3.301.517,68-TL'nin son ödeme tarihine kadar ödenmemesi halinde tahsili için yasal yollara başvurulacağına dair İstanbul Su ve Kanalizasyon Genel Müdürlüğü'nün ... tarih ve ... sayılı işleminin iptali istenilmiştir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "ön bildirim niteliğinde bir işlem olduğu, dolayısıyla bu işlem dışında, kaynak ve yer altı suyu izinsiz işletme bedelinin ilgili mevzuatı uyarınca tahsiline yönelik ayrıca işlem tesis edilmesi gerektiğinden hukuk aleminde değişiklik yaratmadığı, bir başka deyişle, idari davaya konu edilebilen kesin ve yürütülebilir nitelikte bir işlem olmadığı gerekçesiyle davanın incelenmeksizin reddine karar verilmiştir.",
+     "bas_kesik": true,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "Temyiz isteminin reddine,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "... Bölge İdare Mahkemesi ... İdari Dava Dairesinin ... tarih ve E:..., K:... sayılı kararının ONANMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Kesin olarak, 26/06/2025 tarihinde oybirliği ile karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": []
+  },
+  "danistay-13-daire-2025-44-2025-778": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararında aktarılan \"İlk Derece Mahkemesi kararının özeti\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "İstanbul ili, Sarıyer ilçesi, ... ... Sokak, No:... adresinde kain kaynak suyunun, 167 sayılı Yeraltı Suları Hakkında Kanun'un 4. maddesi ile İSKİ Genel Müdürlüğü Taşınır, Taşınmaz, Kaynak ve Hakların Değerlendirilmesine İlişkin Usul ve Esaslar Hakkında Yönetmeliğin 24. maddesi uyarınca pazarlık usulüyle kiralanmasına ilişkin 21/04/2022 tarihinde gerçekleştirilen ihalenin iptali istenilmiştir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "dolayısıyla ihaleden 21/04/2022 tarihinde haberdar olan davacı tarafından, 2577 sayılı Kanun'un 20/A maddesi uyarınca otuz gün içerisinde, nihai olarak 20/05/2022 tarihine kadar dava açılması gerekirken, bu tarih geçirildikten çok sonra 13/09/2024 tarihinde açılan davanın süre aşımı nedeniyle esasının incelenmesine olanak bulunmadığı sonucuna varılmıştır.",
+     "bas_kesik": true,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "Davacının temyiz isteminin reddine,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Davanın yukarıda özetlenen gerekçeyle süre aşımı yönünden reddi yolundaki... İdare Mahkemesinin... tarih ve E:..., K:... sayılı temyize konu kararında, 2577 sayılı İdari Yargılama Usulü Kanunu'nun 49. maddesinde sayılan bozma nedenlerinden hiçbirisi bulunmadığından anılan Mahkeme kararının ONANMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "2577 sayılı Kanun'un 20/A maddesinin ikinci fıkrasının (i) bendi uyarınca kesin olarak (karar düzeltme yolu kapalı olmak üzere), 17/02/2025 tarihinde oybirliğiyle karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": [
+    {
+     "kanun": "167",
+     "madde": "Madde 4"
+    }
+   ]
+  },
+  "danistay-8d-2018-6147": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararının \"Hukuki değerlendirme\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "Davacılar tarafından; Urla İlçesi, ...Köyü, ...mevkiinde kullanılmakta olan kuyularına taksir, intibak ve işletme ruhsatı verilmesi talebinin reddine ilişkin İzmir Valiliği Yatırım İzleme ve Koordinasyon Başkanlığı'nın ...tarih ve ...sayılı işleminin iptali istenilmiştir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "Bu durumda, davacılar tarafından Urla İlçesi, ...Köyü, ...mevkiinde kullanılmakta olan kuyularına taksir, intibak ve işletme ruhsatı verilmesi talebinin, 5686 sayılı Jeotermal Kaynaklar ve Doğal Mineralli Sular Kanunu'nun geçici 1. ve 2. maddesi kapsamında bulunmadığı gibi aynı Kanunun 6. maddesinin 6. fıkrası kapsamına da girmediği anlaşıldığından, davanın reddine karar verilmesi gerekirken dava konusu işlemin, yeraltı suyu kullanma belgesine sahip iki adet kuyu yönünden iptaline ilişkin Mahkeme kararına yönelik istinaf isteminin reddinde hukuki isabet bulunmamaktadır.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "Temyiz isteminin kabulüne,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "...Bölge İdare Mahkemesi ...İdari Dava Dairesinin ...gün ve E:..., K:...sayılı kararının BOZULMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Kesin olarak, 17/01/2024 tarihinde oybirliği ile karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": [
+    {
+     "kanun": "5686",
+     "madde": "Madde 6"
+    }
+   ]
+  },
+  "danistay-8d-2023-663": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararının \"Hukuki değerlendirme\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "Davacı şirket tarafından, Bursa Su ve Kanalizasyon İdaresi Yönetim Kurulu'nun … tarih ve … sayılı \"Kuyu Suyu Abone Tarife Belirleme\" hakkındaki kararı uyarınca, kuyu suyu aboneliği tarifesinin işyeri içme suyu bedelinin 1/3'i olarak uygulanmasına ilişkin Bursa Büyükşehir Belediye Meclisi'nin … tarihli ve … sayılı kararının iptali istenilmiştir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "Bu durumda; Bölge İdare Mahkemesi kararına karşı en geç 24/11/2022 tarihinde temyiz isteminde bulunulması gerekirken, 02/12/2022 tarihinde kayıtlara alınan dilekçe ile temyiz isteminde bulunulduğu anlaşıldığından, temyiz başvurusunun esasının süre aşımı nedeniyle incelenmesinin mümkün olmadığı sonucuna ulaşılmaktadır.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "TEMYİZ İSTEMİNİN SÜRE AŞIMI NEDENİYLE REDDİNE,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "2577 sayılı İdari Yargılama Usulü Kanunu'nun 50. maddesi uyarınca, bu kararın taraflara tebliğini ve bir örneğinin de ... İdari Dava Dairesi'ne gönderilmesini teminen dosyanın ... İdare Mahkemesine gönderilmesine, kesin olarak, 24/02/2023 tarihinde oybirliği ile karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": [
+    {
+     "kanun": "167",
+     "madde": "Madde 4"
+    }
+   ]
+  },
+  "danistay-8d-2021-5225": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararının \"Hukuki değerlendirme\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "İzmir ili, Dikili ilçesi, ... Mahallesi'nde bulunan davacı site tarafından, şikayet üzerine site içerisinde içme ve kullanma suyu olarak kullanılan sondaj kuyusunda yapılan inceleme neticesinde, anılan kaynağın jeotermal kaynak olarak tespit edildiği ve bu suretle Yeraltısuyu Kullanma Belgesi bulunmadığından bahisle kuyunun mühürlenmesi ve 129.104,60 TL para cezası verilmesine ilişkin İzmir Valiliği Yatırım İzleme ve Koordinasyon Başkanlığı'nın ... tarih ve ... sayılı işleminin iptali istenilmiştir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "Uyuşmazlıkta dava konusu suların niteliği için gerekli tüm testlerin yapılamadığı, ayrıca bu testlerin davanın tarafı olmayan ve bu konuda menfaati bulunan kişi tarafından yaptırılması ve bilirkişilerce de bu sonuçlar esas alınarak değerlendirme yapılması nedenleriyle dava konusu suyun niteliğine ilişkin belirlemenin sağlıklı olmadığı sonucuna varılmıştır.",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Bu nedenle davacı site tarafından kullanılan suyun niteliği belirlendikten sonra Mahkemece idari para cezası verilmesine ilişkin işlemin yetkili makam tarafından verilip verilmediği hususu da dikkate alarak yeniden karar vermesi gerektiği açıktır.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "... Bölge İdare Mahkemesi ... İdari Dava Dairesinin ... tarih ve E:..., K:... sayılı kararının BOZULMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Kesin olarak 23/11/2023 tarihinde oybirliği ile karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": [
+    {
+     "kanun": "5686",
+     "madde": "Madde 3"
+    }
+   ]
+  },
+  "danistay-13d-2020-1093": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararında aktarılan \"İlk Derece Mahkemesi kararının özeti\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "Muğla ili, Fethiye ilçesi, … Köyü, …Mevkiinde bulunan Göçengözü kaynağı ile Çukurcagözü deresinden 300 lt/sn, Gayrancı deresinden 300 lt/sn olmak üzere toplam 600 lt/sn kapasite miktarındaki suyun müdahil …’a kiraya verilmesine ilişkin … tarih ve … sayılı Muğla İl Encümeni kararı ile bu karara dayanılarak düzenlenen 07/03/2007 başlangıç tarihli ve 10 yıl süreli su kaynağı kiralama sözleşmesinin Göçengözü kaynağı ile Çukurcagözü deresine yönelik kısmının iptali istenilmiştir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "bu durumda, mevzuat uyarınca il genel meclisinde bulunan yetkinin, il encümenince kullanılması nedeniyle, ihale yapılmasına ilişkin encümen kararında ve bu karara istinaden imzalanan 10 yıllık kira sözleşmesinde yetki unsuru yönünden hukuka uygunluk bulunmadığı sonucuna varılmıştır.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "Davalı ve davalı yanında müdahilin temyiz istemlerinin reddine,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Dava konusu işlemin yukarıda özetlenen gerekçeyle iptali yolundaki … İdare Mahkemesi'nin … tarih ve E:…, K:… sayılı temyize konu kararında, 2577 sayılı İdari Yargılama Usulü Kanunu'nun 49. maddesinde sayılan bozma nedenlerinden hiçbirisi bulunmadığından anılan Mahkeme kararının ONANMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "2577 sayılı Kanun'un Geçici 8. maddesi uyarınca, bu kararın tebliğ tarihini izleyen 15 (on beş) gün içerisinde kararın düzeltilmesi yolu açık olmak üzere, 24/05/2023 tarihinde oybirliğiyle karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": [
+    {
+     "kanun": "167",
+     "madde": "Madde 4"
+    }
+   ]
+  },
+  "danistay-13-daire-2020-1104-2023-4576": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararında aktarılan \"İlk Derece Mahkemesi kararının özeti\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "Muğla ili, … ilçesi, … Köyü, … mevkiinde bulunan … kaynak suyunun 5 lt/sn'lik kısmının 10 (on) yıl süreyle kiralanmasına ilişkin Muğla İl Encümeni'nin … tarih ve … sayılı işleminin iptali istenilmiştir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "bu durumda, mevzuat uyarınca il genel meclisinde bulunan yetkinin, il encümenince kullanılması nedeniyle, ihale yapılmasına ilişkin encümen kararında yetki unsuru yönünden hukuka uygunluk bulunmadığı sonucuna varılmıştır.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "Davalının temyiz isteminin reddine,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Dava konusu işlemin yukarıda özetlenen gerekçeyle iptali yolundaki …. İdare Mahkemesi'nin … tarih ve E:…, K:… sayılı temyize konu kararında, 2577 sayılı İdari Yargılama Usulü Kanunu'nun 49. maddesinde sayılan bozma nedenlerinden hiçbirisi bulunmadığından anılan Mahkeme kararının ONANMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "2577 sayılı Kanun'un Geçici 8. maddesi uyarınca, bu kararın tebliğ tarihini izleyen 15 (on beş) gün içerisinde kararın düzeltilmesi yolu açık olmak üzere, 08/11/2023 tarihinde oybirliğiyle karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": [
+    {
+     "kanun": "167",
+     "madde": "Madde 4"
+    }
+   ]
+  },
+  "danistay-13-daire-2021-2712-2023-4291": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararında aktarılan \"İlk Derece Mahkemesi kararının özeti\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "İstanbul ili, Eyüp ilçesi, Göktürk beldesi, Paşaalanı mevkii ormanlık alan sınırları dahilinde bulunan kaynak suyunun 10 yıl süreyle müdahil ... Ticaret ve Sanayi Limited Şirketi'ne kiraya verilmesine ilişkin İstanbul İl Daimi Encümeni'nin … tarih ve … sayılı kararına dayanak teşkil eden İstanbul İl Genel Meclisi'nin … tarih ve … sayılı kararının iptali istenilmiştir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "dava konusu kaynak suyunun bulunduğu ormanlık alanda yapılan keşif sonucunda düzenlenen 15/10/2020 tarihli Bilirkişi Raporu'nda, \"dava konusu kaynağın Göktürk Sulama Göleti su toplama havzası içinde olduğu ve anılan göleti beslediği, söz konusu havzanın jeolojik ve hidrojeolojik özellikleri nedeniyle havzadan alınacak bir damla suyun dahi Göktürk Sulama Göleti'nin beslenmesinde olumsuz etki yapacağı, havza içindeki yüzey ve yeraltı sularının sondaj, pompaj, kaptaj, yüzey ve yeraltı suyu drenajı vb. yöntemler ile toplanarak havza dışına çıkarılmasının gölete gelecek su miktarının azalmasına neden olacağı ve göletin fonksiyonunu olumsuz etkileyeceği\" yönündeki somut veriler dikkate alınarak dava konusu işlemde hukuka uygunluk bulunmadığı sonucuna varılmıştır.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "Davalının temyiz isteminin reddine,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Dava konusu işlemin yukarıda özetlenen gerekçeyle iptali yolundaki ... İdare Mahkemesi'nin … tarih ve E:…, K:… sayılı temyize konu kararında, 2577 sayılı İdari Yargılama Usulü Kanunu'nun 49. maddesinde sayılan bozma nedenlerinden hiçbirisi bulunmadığından anılan Mahkeme kararının ONANMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "2577 sayılı Kanun'un 20/A maddesinin ikinci fıkrasının (i) bendi uyarınca kesin olarak (karar düzeltme yolu kapalı olmak üzere), 24/10/2023 tarihinde oybirliğiyle karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": []
+  },
+  "danistay-13-daire-2020-1499-2023-2585": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararında aktarılan \"İlk Derece Mahkemesi kararının özeti\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "Muğla ili, Fethiye ilçesi, … Köyü, …Mevkiinde bulunan Göçengözü kaynak suyunun 50 lt/sn kısmının …'ye kiraya verilmesine ilişkin … tarih ve … sayılı Muğla İl Encümen kararı ile bu karara dayanılarak düzenlenen 05/03/2007 başlangıç tarihli 10 yıl süreli su kaynağı kiralama sözleşmesinin iptali istenilmektedir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "bu durumda, mevzuat uyarınca il genel meclisinde bulunan yetkinin, il encümenince kullanılması nedeniyle, ihale yapılmasına ilişkin encümen kararında ve bu karara istinaden imzalanan 10 yıllık kira sözleşmesinde yetki unsuru yönünden hukuka uygunluk bulunmadığı sonucuna varılmıştır.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "Davalının temyiz isteminin reddine,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Dava konusu işlemin yukarıda özetlenen gerekçeyle iptali yolundaki … İdare Mahkemesi'nin … tarih ve E:…, K:… sayılı temyize konu kararında, 2577 sayılı İdari Yargılama Usulü Kanunu'nun 49. maddesinde sayılan bozma nedenlerinden hiçbirisi bulunmadığından anılan Mahkeme kararının ONANMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "2577 sayılı Kanun'un Geçici 8. maddesi uyarınca, bu kararın tebliğ tarihini izleyen 15 (on beş) gün içerisinde kararın düzeltilmesi yolu açık olmak üzere, 24/05/2023 tarihinde oybirliğiyle karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": [
+    {
+     "kanun": "167",
+     "madde": "Madde 4"
+    }
+   ]
+  },
+  "danistay-13-daire-2022-1487-2023-870": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararında aktarılan \"İlk Derece Mahkemesi kararının özeti\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "Tarım ve Orman Bakanlığı Destek Hizmetleri Daire Başkanlığı'nca … tarihinde belli istekliler arasında ihale usulü ile gerçekleştirilen … kayıt numaralı \"Batı Akdeniz Havzası Su Tahsis Planı Hazırlanması Projesi Danışmanlık Hizmet Alım İşi\" ihalesinin iptali istenilmiştir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "işbu davaya konu ihalenin ise planlama değil su tahsisine yönelik danışmanlık hizmeti işinden ibaret olduğu",
+     "bas_kesik": true,
+     "son_kesik": true
+    },
+    {
+     "metin": "dava konusu ihalede hukuka aykırılık bulunmadığı sonucuna varılmıştır.",
+     "bas_kesik": true,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "Davacının temyiz isteminin reddine,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Davanın yukarıda özetlenen gerekçeyle reddi yolundaki ... İdare Mahkemesi'nin … tarih ve E:…, K:… sayılı temyize konu kararında, 2577 sayılı İdari Yargılama Usulü Kanunu'nun 49. maddesinde sayılan bozma nedenlerinden hiçbirisi bulunmadığından anılan Mahkeme kararının ONANMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "2577 sayılı Kanun'un 20/A maddesinin ikinci fıkrasının (i) bendi uyarınca kesin olarak (karar düzeltme yolu kapalı olmak üzere), 28/02/2023 tarihinde oybirliğiyle karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": []
+  },
+  "danistay-10d-2017-40": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararının \"Hukuki değerlendirme\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "Davacı tarafından; mülkiyetinde bulunan Malatya ili, Yeşilyurt ilçesi, … Mahallesi, … parsel sayılı taşınmaz üzerinde bir adet sondaj kuyusu açmak amacıyla yeraltı suyu arama belgesi verilmesi istemiyle yapılan başvurunun reddine ilişkin Devlet Su İşleri 9. Bölge Müdürlüğü 92. Şube Müdürlüğünün … tarih ve … sayılı işleminin iptali istenilmiştir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "Uyuşmazlıkta, İdare Mahkemesince, davacının açmak istediği kuyunun diğer kuyulara, kaynak sularına ve yüzey sularına etkisi araştırılamadan; davacının talebi üzerine hazırlanan ve davalı idarenin katılımının olmadığı … Sulh Hukuk Mahkemesinin … D.İş sayılı dava dosyasında yaptırılan bilirkişi incelemesi sonucu düzenlenen rapor hükme esas alınarak karar verilmesi, adil yargılanma hakkı kapsamında çelişmeli yargılama ilkesine aykırı görülmüştür.",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Bu itibarla, İdare Mahkemesince keşif ve bilirkişi incelemesi yaptırılmak suretiyle davacının açmak istediği kuyunun diğer kuyulara, kaynak sularına ve yüzey sularına etkisi araştırılarak karar verilmesi gerekmekte olup, söz konusu usul işletilmeden eksik inceleme sonucu verilen dava konusu işlemin iptali yönündeki İdare Mahkemesi kararında hukuki isabet bulunmamaktadır.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "Dava konusu işlemin iptaline ilişkin temyize konu … İdare Mahkemesinin … tarih ve E:… , K:… sayılı kararının BOZULMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "2577 sayılı Kanun'un (Geçici 8. maddesi uyarınca uygulanmasına devam edilen) 54. maddesinin 1. fıkrası uyarınca bu kararın tebliğ tarihini izleyen günden itibaren 15 (on beş) gün içinde karar düzeltme yolu açık olmak üzere, 07/10/2021 tarihinde oy birliğiyle karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": []
+  },
+  "danistay-13d-2015-4133": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararının \"Hukuki değerlendirme\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "Hatay ili, Hassa ilçesi, ... Köyü, ... Mevkiinde bulunan Keçipınarı kaynak suyunun 1 lt/sn'lik kısmının kiraya verilmesine ilişkin 19/03/2013 tarihli işlemin iptali istenilmiştir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "Dava konusu su kaynağının, kullanışının özelliği veya idareye yararlı olması nedeniyle kapalı veya açık teklif usülleriyle ihalesinin uygun olmaması nedeniyle pazarlık usulüyle ihale edilmesinin zorunlu olduğuna ilişkin olarak davalı idarece bir karar alınmadığı ve 2886 sayılı Kanun'un 51/g maddesi uyarınca pazarlık usulüyle ihaleye çıkılmasının zorunlu olduğunun ortaya konulmadığı göz önünde bulundurulduğunda dava konusu kaynağın 1 yıl süreyle kiralanmak üzere 2886 sayılı Kanun'un 51/g maddesi uyarınca pazarlık usulüyle ihale edilmesine ilişkin dava konusu Encümen kararında hukuka uygunluk işlemin iptali yolundaki İdare Mahkemesi kararında sonucu itibarıyla hukuka aykırılık bulunmamaktadır.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "Davalının temyiz isteminin reddine,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Dava konusu işlemin iptali yolundaki ... İdare Mahkemesi'nin ... tarih ve E:..., K:... sayılı temyize konu kararında, 2577 sayılı İdari Yargılama Usulü Kanunu'nun 49. maddesinde sayılan bozma nedenlerinden hiçbirisi bulunmadığından anılan Mahkeme kararının yukarıda belirtilen GEREKÇEYLE ONANMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "2577 sayılı Kanun'un 20/A maddesinin ikinci fıkrasının (i) bendi uyarınca kesin olarak (karar düzeltme yolu kapalı olmak üzere), 25/11/2021 tarihinde oybirliğiyle karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": [
+    {
+     "kanun": "2886",
+     "madde": "Madde 51"
+    },
+    {
+     "kanun": "167",
+     "madde": "Madde 1"
+    },
+    {
+     "kanun": "2886",
+     "madde": "Madde 36"
+    },
+    {
+     "kanun": "2886",
+     "madde": "Madde 17"
+    }
+   ]
+  },
+  "danistay-8d-2018-2016": {
+   "uyusmazlik_bolum": "Danıştay kararının dava konusunu anlatan kısmı",
+   "gerekce_bolum": "Danıştay kararının gerekçe kısmı",
+   "sonuc_bolum": "Danıştay kararının hüküm kısmı",
+   "uyusmazlik": [
+    {
+     "metin": "Dava; 25/12/2014 tarihli BUSKİ Genel Kurulu kararı ile yürürlüğe giren İçme Suyu Kaynaklarının Ticari Amaçla Kiralanması ve Denetimine İlişkin Yönetmeliğin \"Kapsam\" başlıklı 2. maddesindeki \"...ve özel mülkiyete konu arazilerden kendiliğinden çıkan veya çıkarılan suların....\" ibaresi ile \"Kiralama\" başlıklı 5. maddesinin 1. fıkrasındaki \"... özel mülkiyete konu arazilerden kendiliğinden çıkan kaynaklar veya çıkarılan yeraltı suları...\" ibaresinin iptali istemiyle açılmıştır.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "Olayda, yeraltı suları ile kaynak sularının farklı hukuki rejimlere tabi olduğu, 167 sayılı Kanun'da yeraltı suları ile Hazinenin özel mülkiyetinde veya Devletin hüküm ve tasarrufu altında bulunan yerlerdeki kaynak sularının il özel idaresince 2886 sayılı Kanun hükümlerine uyularak kiraya verilebileceğinin düzenlendiği, özel mülkiyete konu arazilerden çıkan ve sadece kendi ihtiyacı için kullanılan kaynak sularının kiraya verilebileceğine dair açık düzenleme bulunmadığı, bu durumda Yönetmeliğin yasalarda verilen tüm durumları düzenlemediği anlaşıldığından dava konusu eksik düzenlemelerde hukuka uyarlık bulunmamaktadır.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "karar düzeltme istemi kabul edilerek Danıştay Sekizinci Dairesinin 04/12/2017 tarihli ve E:2016/5233, K:2017/8637 sayılı kararı kaldırılarak işin esası yeniden incelendi.",
+     "bas_kesik": true,
+     "son_kesik": false
+    },
+    {
+     "metin": "Açıklanan nedenlerle, ... İdare Mahkemesinin … tarihli ve E:…, K:… sayılı kararının bozulmasına, dosyanın yeniden bir karar verilmek üzere anılan Mahkemeye gönderilmesine, 14/10/2020 tarihinde oybirliğiyle karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": [
+    {
+     "kanun": "167",
+     "madde": "Madde 1"
+    }
+   ]
+  },
+  "danistay-13d-2013-263": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararının \"Hukuki değerlendirme\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "... ili, ... ilçesi, ... mevkiinde bulunan kaynak suyunun, isimli kişiye 3 yıl süre ile kiraya verilmesine ilişkin ... İl Özel İdaresi İl Encümeni'nin 10/10/2007 tarih ve ... sayılı kararının iptali istenilmiştir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "Aktarılan mevzuat hükümleri uyarınca, 4916 sayılı Kanun'un 22. maddesinin yürürlük tarihi olan 19/07/2003 tarihinden önce Devletin hüküm ve tasarrufu altında bulunan yerlerdeki kaynak sularının kiralanmasında Maliye Bakanlığı'nın (Milli Emlak Genel Müdürlüğü), anılan tarihten sonra Devletin hüküm ve tasarrufu altında bulunan yerlerdeki kaynak sularının kiralanmasında ise il özel idarelerinin yetkili olduğu, söz konusu kiralama yetkisinin de 2886 sayılı Devlet İhale Kanunu'na uygun olarak kullanılması gerektiği açık olduğundan, söz konusu içme suyu kaynağının 2886 sayılı Kanun uyarınca herhangi bir ihale yapılmaksızın müdahile kiralanmasına ilişkin dava konusu işlemde hukuka uygunluk bulunmamaktadır.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "Tarafların ve müdahilin temyiz istemlerinin reddine,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Dava konusu işlemin iptali yolundaki ... İdare Mahkemesi'nin ... tarih ve E: ..., K: ... sayılı temyize konu kararında, 2577 sayılı İdari Yargılama Usulü Kanunu'nun 49. maddesinde sayılan bozma nedenlerinden hiçbirisi bulunmadığından anılan Mahkeme kararının yukarıda belirtilen GEREKÇEYLE ONANMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "2577 sayılı Kanun'un 20/A maddesinin ikinci fıkrasının (i) bendi uyarınca kesin olarak (karar düzeltme yolu kapalı olmak üzere), 08/10/2018 tarihinde oybirliğiyle karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": [
+    {
+     "kanun": "167",
+     "madde": "Madde 4"
+    },
+    {
+     "kanun": "2886",
+     "madde": "Madde 50"
+    },
+    {
+     "kanun": "2886",
+     "madde": "Madde 51"
+    }
+   ]
+  },
+  "danistay-13d-2012-253": {
+   "uyusmazlik_bolum": "Danıştay kararının \"Yargılama süreci\" bölümündeki \"Dava konusu istem\" kısmı",
+   "gerekce_bolum": "Danıştay kararında aktarılan \"İlk Derece Mahkemesi kararının özeti\" bölümü",
+   "sonuc_bolum": "Danıştay kararının \"Karar sonucu\" bölümü",
+   "uyusmazlik": [
+    {
+     "metin": "Davacı tarafından, mülkiyeti kendisine ait taşınmazdan çıkan kaynak suyun davalı il özel idaresi tarafından kiraya verilmek üzere ihaleye çıkarılmasına ilişkin 21/03/2011 tarih ve 4785 sayılı işlemin iptali istenilmiştir.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "gerekce": [
+    {
+     "metin": "167 sayılı Yeraltı Suları Hakkında Kanunun 4. maddesine göre il özel idarelerinin yalnızca Hazinenin özel mülkiyetinde veya Devletin hüküm ve tasarrufu altında bulunan yerlerdeki kaynak suları kiraya verebileceği, özel mülkiyete konu taşınmazdan çıkan kaynak suyu hakkında 167 sayılı Kanunun 4. maddesi uyarınca il özel idarelerince kiralama yapılması olanağının bulunmadığı",
+     "bas_kesik": true,
+     "son_kesik": true
+    },
+    {
+     "metin": "davacıya ait taşınmazdan çıkan suyun niteliği ortaya konulmadan tesis olunan dava konusu işlemde hukuka ve mevzuata uygunluk bulunmadığı gerekçesiyle işlemin iptaline karar verilmiştir.",
+     "bas_kesik": true,
+     "son_kesik": false
+    }
+   ],
+   "sonuc": [
+    {
+     "metin": "Davalının temyiz isteminin reddine,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Dava konusu işlemin yukarıda özetlenen gerekçeyle iptali yolundaki ... İdare Mahkemesi'nin ... tarih ve E: ..., K: ... sayılı temyize konu kararında, 2577 sayılı İdari Yargılama Usulü Kanunu'nun 49. maddesinde sayılan bozma nedenlerinden hiçbirisi bulunmadığından anılan Mahkeme kararının ONANMASINA,",
+     "bas_kesik": false,
+     "son_kesik": false
+    },
+    {
+     "metin": "Bu kararın tebliğ tarihini izleyen 15 (on beş) gün içerisinde kararın düzeltilmesi yolu açık olmak üzere, 07/12/2018 tarihinde oybirliğiyle karar verildi.",
+     "bas_kesik": false,
+     "son_kesik": false
+    }
+   ],
+   "anilan_maddeler": [
+    {
+     "kanun": "2886",
+     "madde": "Madde 51"
+    },
+    {
+     "kanun": "167",
+     "madde": "Madde 4"
+    },
+    {
+     "kanun": "167",
+     "madde": "Madde 2"
+    }
+   ]
+  }
+ }
+}

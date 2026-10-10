@@ -16,7 +16,7 @@ import HukukSerhi from '../../components/HukukSerhi.astro';
 const _naceTarih = [...new Set(personalar.filter((p) => p.nace).map((p) => p.sonTarihMetni).filter(Boolean))];
 const ozCevap =
   'Sektörünüzü seçin; yükümlülüğünüzü, son başvuru tarihini ve ilk adımları ' +
-  'tek ekranda görün. Yeşil su verimliliği belgesi yükümlüsü sektörler için ' +
+  'bir arada görün. Yeşil su verimliliği belgesi yükümlüsü sektörler için ' +
   (_naceTarih.length === 1 ? `son başvuru ${_naceTarih[0]}. ` : '') +
   'Listede yoksanız doğrudan ulaşın.';
 
@@ -65,7 +65,7 @@ const sema = [
       '@type': 'ListItem',
       position: i + 1,
       name: p.ad,
-      url: new URL(`/durumum/${p.slug}/`, Astro.site).href,
+      url: new URL(p.yol, Astro.site).href,
     })),
   },
 ];
@@ -109,16 +109,32 @@ const sema = [
         <p class="grup-not">Su Verimliliği Yönetmeliği Ek-2’de sayılan NACE
           kodu bazında faaliyetler{naceSonTarihMetni ? `; son başvuru ${naceSonTarihMetni}` : ''}.</p>
         {naceDayanak && <p class="grup-not grup-dayanak">Dayanak: {naceDayanak}</p>}
-        <div class="izgara">
-          {nace.map((p) => (
-            <a class="pk" href={`/durumum/${p.slug}/`}
-               data-ara={`${p.ad} ${p.yukumluluk} nace ${p.nace ?? ''}`.toLocaleLowerCase('tr-TR')}>
-              <span class="pk-k">NACE {p.nace}</span>
-              <span class="pk-ad">{p.ad}</span>
-              <span class="pk-y">{p.yukumluluk}</span>
-              {p.sonTarihMetni && <span class="pk-t">Son başvuru {p.sonTarihMetni}</span>}
-            </a>
-          ))}
+        {/* brif 2.5 (10.10.2026): 31 NACE sayfası bu tabloda birleşti; eski adresler satıra 301. */}
+        <div class="nace-kaydir">
+          <table class="nace-tablo">
+            <caption>Su Verimliliği Yönetmeliği Ek-2'deki NACE ana faaliyetleri ({nace.length})</caption>
+            <thead>
+              <tr>
+                <th scope="col">NACE</th>
+                <th scope="col">Faaliyet</th>
+                <th scope="col">Yükümlülük</th>
+                <th scope="col">Son başvuru</th>
+                <th scope="col">Ek-2 kaydı</th>
+              </tr>
+            </thead>
+            <tbody>
+              {nace.map((p) => (
+                <tr id={`nace-${p.nace}`} class="pk-satir"
+                    data-ara={`${p.ad} ${p.yukumluluk} nace ${p.nace ?? ''}`.toLocaleLowerCase('tr-TR')}>
+                  <th scope="row">{p.nace}</th>
+                  <td>{p.ad.replace(/\s*\(NACE \d+\)\s*$/, '')}</td>
+                  <td>{p.yukumluluk}</td>
+                  <td>{p.sonTarihMetni ?? 'doğrulanmadı'}</td>
+                  <td>{(p.dayanak.find((d) => /Ek-2 NACE listesi/.test(d)) ?? '').replace(/\s*\(OCR.*$/, '')}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
     )}
@@ -137,6 +153,13 @@ const sema = [
 </Sayfa>
 
 <style>
+  .nace-kaydir { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .nace-tablo { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+  .nace-tablo caption { text-align: left; font-size: 0.82rem; color: var(--metin-soluk); padding-bottom: 0.4rem; }
+  .nace-tablo th, .nace-tablo td { text-align: left; vertical-align: top; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--cizgi); }
+  .nace-tablo thead th { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--metin-soluk); }
+  .nace-tablo tbody th { font-family: var(--mono); }
+  .nace-tablo tr:target { background: var(--zemin-kart); outline: 2px solid var(--su-400); }
   .ara { margin: 0 0 1.6rem; max-width: 560px; }
   .ara input {
     width: 100%;

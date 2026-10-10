@@ -9,13 +9,13 @@ import SayfaBasi from '../../components/SayfaBasi.astro';
 import { TARIH } from '../../data/guncellik.js';
 import OzCevap from '../../components/OzCevap.astro';
 import { getCollection } from 'astro:content';
-import { personalar, yonetmelik } from '../../data/persona.js';
+import { sayfaliPersonalar, personalar, yonetmelik } from '../../data/persona.js';
 import { EPOSTA, YAZAR } from '../../data/site';
 import HukukSerhi from '../../components/HukukSerhi.astro';
 import naceEk2Veri from '../../../data/lead/nace-ek2.json';
 
 export async function getStaticPaths() {
-  return personalar.map((p) => ({ params: { persona: p.slug }, props: { p } }));
+  return sayfaliPersonalar.map((p) => ({ params: { persona: p.slug }, props: { p } }));
 }
 
 const { p } = Astro.props;
@@ -76,7 +76,7 @@ for (const o of [...ozelOrtak, ...halka]) {
 }
 const benzerler = secilen
   .sort((a, b) => a.ad.localeCompare(b.ad, 'tr'))
-  .map((o) => ({ yol: `/durumum/${o.slug}/`, ad: o.ad }));
+  .map((o) => ({ yol: o.yol, ad: o.ad }));
 
 const tarihli = !!p.sonTarihMetni;
 

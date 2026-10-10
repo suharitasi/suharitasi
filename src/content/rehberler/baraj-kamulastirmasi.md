@@ -2,7 +2,9 @@
 baslik: "Baraj kamulaştırması, kamulaştırmasız el atma ve ecrimisil"
 ozet: "Baraj ve gölet projelerinde taşınmazı su altında kalanların hukuki durumu: 2942 sayılı Kamulaştırma Kanunu çerçevesi, kamulaştırmasız el atma ve ecrimisil tartışması, 6200 sayılı Kanun'un geçiş hükümleri."
 tarih: 2026-07-14
-guncelleme: 2026-07-25
+guncelleme: 2026-10-10
+onayBekliyor: true
+onayKaynak: "Karar tablosu süre hücreleri: 2577 m.7, m.8, m.10; 167 m.13; 2942 m.14; 5326 m.27/1, m.27/8 (resmî metinler, erişim 10.10.2026)"
 kume: uyusmazlik
 ozCevap: "Baraj ve göletlerde taşınmazı su altında kalanların çerçevesi 2942 sayılı Kamulaştırma Kanunu'dur. Üç ihtimal: usulüne uygun kamulaştırmada uyuşmazlık bedel üzerinde; kamulaştırmasız el atmada bedel/tazminat; ecrimisilde fiilî kullanım bedeli. Sonucu ilan ve fiilî el atma tarihi belirler."
 seoBaslik: "Baraj Kamulaştırması: Bedel, El Atma ve Ecrimisil"
@@ -19,14 +21,14 @@ ilgili: [su-tahsisi-oncelik-sirasi, kaynak-hakki-komsu-su, kuyu-belgesi-iptal-da
 karar:
   - senaryo: "Usulüne uygun kamulaştırma"
     merci: "İdare; uyuşmazlıkta kamulaştırma mahkemesi"
-    sure: "Doğrulanmış süre yok"
+    sure: "Tebligat ya da gazete ilanından itibaren 30 gün: idari yargıda iptal, adli yargıda düzeltim (2942 m.14)"
     ceza: "Uyuşmazlık bedelin miktarı üzerinde"
     emsal: "2942 s.K. m.1"
   - senaryo: "Kamulaştırmasız el atma (taşınmaz su altında)"
     merci: "İdari / adli yargı"
-    sure: "Doğrulanmış süre yok"
+    sure: "Doğrulanamadı (resmî metinde süre bulunamadı)"
     ceza: "Bedel / tazminat sorunu"
-    emsal: "Doğrulanmış içtihat yok (veri tabanında bulunmuyor)"
+    emsal: "Doğrulanmış içtihat yok"
   - senaryo: "İmar kısıtlılığı"
     merci: "İdare"
     sure: "İmar planı yürürlüğünden itibaren beş yıl (2942 Ek m.1)"
@@ -34,9 +36,9 @@ karar:
     emsal: "2942 s.K. Ek m.1"
   - senaryo: "Ecrimisil (fiilî kullanım bedeli)"
     merci: "Adli yargı"
-    sure: "Doğrulanmış süre yok"
+    sure: "Doğrulanamadı (resmî metinde süre bulunamadı)"
     ceza: "Fiilî kullanım bedeli tartışması"
-    emsal: "Doğrulanmış içtihat yok (veri tabanında bulunmuyor)"
+    emsal: "Doğrulanmış içtihat yok"
 ---
 
 Baraj ve gölet projeleri, geniş arazilerin kamulaştırılmasını veya
@@ -110,9 +112,9 @@ hükümleri ve mevcut belge/hak durumu sonucu belirler.
 
 ## Emsal kararlar
 
-Karar künyeleri yayın öncesi doğrulama sürecindedir.
+Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
 Su altında kalan taşınmazlara ilişkin güncel Yargıtay içtihadı, kaynak
-araştırmanın veri tabanında bulunmamaktadır; bu başlıkta doğrudan
+için doğrulanmış içtihat bulunamadı; bu başlıkta doğrudan
 içtihat künyesi verilememektedir.
 

@@ -3,6 +3,10 @@
 // İl + işlem + tebliğ tarihi → kişiselleştirilmiş yol haritası, son tarih
 // takvimi, yetkili merci, evrak listesi ve dilekçe ön taslağı.
 // Bilgilendirme amaçlıdır; somut dosyada hukuki görüş uzman değerlendirmesi ister.
+import { ARAC } from '../data/arac-adlari.js';
+import { cezaAraligi } from '../data/ceza-tutar.js';
+import OnayBekliyor from '../components/OnayBekliyor.astro';
+import sureKurallari from '../../data/kamu/sure-tablosu.json';
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
 import OzCevap from '../components/OzCevap.astro';
@@ -17,7 +21,7 @@ import { tumIller } from '../data/islem-matrisi.js';
 
 // Görünür ad tercihi (FAZ 1, v5.2): H1 ve tüm yönlendirme metinlerinde tam ad,
 // menüde/bağlantı etiketlerinde kısa ad kullanılır. URL DEĞİŞMEZ (kanonik koruma).
-const SIHIRBAZ_AD = 'DSİ Kuyu Ruhsatı & İdari Ceza İtiraz Sihirbazı';
+const SIHIRBAZ_AD = ARAC.teblig.ad; // DURAK 1 D: eski ad "DSİ Kuyu Ruhsatı & İdari Ceza İtiraz Sihirbazı"
 
 const OZ_CEVAP =
   'İlinizi, işlemi ve tebliğ tarihinizi seçin: kuyu ruhsatı, ceza itirazı veya kapatma ' +
@@ -59,6 +63,7 @@ const sema = [
   <div class="km-ust">
   <SayfaBasi etiket="Kuyu sorunu" baslik={SIHIRBAZ_AD} ozet="İl + işlem + tebliğ tarihi → süre, yetkili merci, evrak listesi ve düzenlenebilir dilekçe taslağı." />
   <OzCevap metin={OZ_CEVAP} etiket="Özet" />
+  <OnayBekliyor kaynak="Ceza aralıkları: 167 m.18 + 5326 m.17/7 + VUK Genel Tebliğleri 387–585 (DURAK 1 A-a, 10.10.2026)" />
 
   <form id="km-form" class="km-form">
     <label>İl
@@ -75,6 +80,15 @@ const sema = [
     </label>
     <label>Tebliğ tarihi
       <input type="date" id="km-teblig" />
+    </label>
+    {/* DURAK 1 A-b (10.10.2026): önerilen ayrı dal — 5326 m.27/8 (onay bekliyor). */}
+    <label>Tebliğ edilen kararda neler var?
+      <select id="km-karar-turu">
+        <option value="">— Bilmiyorum / hepsini göster —</option>
+        <option value="kabahat">Yalnız idari para cezası</option>
+        <option value="idari">Yalnız kuyu kapatma ya da belge reddi/iptali</option>
+        <option value="birlikte">Para cezası ve kuyu kapatma aynı kararda</option>
+      </select>
     </label>
     <label>Belge durumu (varsa)
       <select id="km-belge">
@@ -138,9 +152,11 @@ const sema = [
 
   <OnDegerlendirmeCagri konum="iptal" />
 
-  <CtaBlok konu="Kuyu cezası / kapatma" baslik="Dosyanızı avukata inceletın" metin="Süre kaybı hak kaybıdır. Evrakınızı ve tebliğ tarihinizi iletin; yol haritasını değerlendirelim." />
+  <CtaBlok konu="Kuyu cezası / kapatma" baslik="Dosyanızı avukata inceletin" metin="Süre kaybı hak kaybıdır. Evrakınızı ve tebliğ tarihinizi iletin; yol haritasını değerlendirelim." />
   <HukukSerhi />
   </div>
+<script slot="ek-script" type="application/json" id="sure-kurallar" set:html={JSON.stringify(sureKurallari).replace(/</g, '\\u003c')} />
+<script slot="ek-script" type="application/json" id="km-ceza" set:html={JSON.stringify({ a: cezaAraligi('a'), b: cezaAraligi('b') }).replace(/</g, '\\u003c')} />
 <script slot="ek-script" type="module" src="/s/karar-motoru.js" is:inline></script>
 </Sayfa>
 

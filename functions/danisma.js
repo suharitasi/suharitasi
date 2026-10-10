@@ -8,7 +8,9 @@
 // - KVKK: yalnız kullanıcının açık rızasıyla (onay alanı) alınan alanlar yazılır;
 //   honeypot doluysa istek sessizce yutulur.
 // - KV bağı yoksa (env.WA_SAYAC tanımsız) 503 döner — form istemcide mailto'ya düşer.
-// - Kişisel veri: ad, telefon, il, konu, mesaj. IP/UA SAKLANMAZ.
+// - Kişisel veri: ad, telefon, (varsa) e-posta, il, konu, mesaj. IP/UA SAKLANMAZ.
+//   (10.10.2026, brif 1.5: ana sayfa iletişim formu da bu uca bağlandı; e-posta
+//   isteğe bağlı alan olarak eklendi.)
 // - Gövde sınırı 12 KB; metin alanları kontrol karakterlerinden arınır
 //   (terminal/ANSI kaçışları lead görüntüleyicisine sızamaz).
 import { rateLimit } from './_limit.js';
@@ -59,6 +61,7 @@ export async function onRequest(context) {
   const lead = {
     ad: kirp(veri.ad, 120),
     telefon: kirp(veri.telefon, 40),
+    eposta: kirp(veri.eposta, 160),
     il: kirp(veri.il, 60),
     konu: kirp(veri.konu, 120),
     mesaj: kirp(veri.mesaj, 4000),

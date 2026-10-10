@@ -80,12 +80,27 @@ export function ornekNoktalar(geometry, adet = 24) {
  *  { turkiyede, il: {ad,slug}|null, havzalar: [{ad,no,slug}...] } */
 export function cografyaEsle(geometry) {
   const noktalar = ornekNoktalar(geometry);
-  let il = null;
+  // 10.10.2026 (brif 1.11): tek il yerine örnek noktaların düştüğü BÜTÜN iller
+  // toplanır ("geçtiği iller"); `il` geriye uyum için ilk eşleşen ildir.
+  const ilSet = new Map();
   const havzaSet = new Map();
   for (const n of noktalar) {
-    if (!il) il = ilBul(n);
+    const i = ilBul(n);
+    if (i && !ilSet.has(i.slug)) ilSet.set(i.slug, { ad: i.ad, slug: i.slug });
     const h = havzaBul(n);
     if (h && !havzaSet.has(h.slug)) havzaSet.set(h.slug, h);
   }
-  return { turkiyede: il !== null, il, havzalar: [...havzaSet.values()] };
+  let iller = [...ilSet.values()];
+  // 10.10.2026 (brif 1.11, Gölcük/Isparta vakası): birincil il, örnek noktaların
+  // sırasına değil, geometrinin AĞIRLIK MERKEZİNİN düştüğü ile göre seçilir;
+  // sınıra yakın küçük göllerde ilk örnek nokta komşu ile düşebiliyordu.
+  if (noktalar.length) {
+    const mx = noktalar.reduce((s, n) => s + n[0], 0) / noktalar.length;
+    const my = noktalar.reduce((s, n) => s + n[1], 0) / noktalar.length;
+    const merkezIl = ilBul([mx, my]);
+    if (merkezIl) {
+      iller = [{ ad: merkezIl.ad, slug: merkezIl.slug }, ...iller.filter((i) => i.slug !== merkezIl.slug)];
+    }
+  }
+  return { turkiyede: iller.length > 0, il: iller[0] ?? null, iller, havzalar: [...havzaSet.values()] };
 }

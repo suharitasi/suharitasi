@@ -48,7 +48,7 @@ const { konu, personalar = [] } = Astro.props;
       {personalar.map((x, i) => (
         <>
           {i > 0 && ' · '}
-          <a href={`/durumum/${x.slug}/`}>{x.ad}</a>
+          <a href={x.yol ?? `/durumum/${x.slug}/`}>{x.ad}</a>
         </>
       ))}
     </p>

@@ -78,45 +78,27 @@ const cokIlliler = p.kutleler.filter((k) => k.cokIlli);
   )}
 
   <h3>Resmî Gazete'de işletme sahası kayıtları</h3>
-  {p.rgKayitlari.length + p.rgEkKayitlari.length > 0 ? (
+  {p.rgKayitlari.length > 0 ? (
     <>
-      {p.rgKayitlari.length > 0 && (
-        <ul class="pot-rg">
-          {p.rgKayitlari.map((k) => (
-            <li>
-              {k.metin}
-              <span class="pot-kunye">
-                RG {k.tarih}
-                {k.sayi != null && <> · Sayı {k.sayi}{k.sayiKaynak === 'cikarim' && '*'}</>}
-                {' '}· {k.durum} ·{' '}
-                <a href={httpsle(k.url)} rel="nofollow">fihrist kaydı</a>
-              </span>
-            </li>
-          ))}
-        </ul>
-      )}
-      {p.rgEkKayitlari.length > 0 && (
-        <details class="pot-katman">
-          <summary>RG ilan pasajları ({p.rgEkKayitlari.length}) — taranmış
-            arşivden, dizgi hatası içerebilir</summary>
-          <p class="pot-dipnot">* işaretli sayılar Resmî Gazete arşiv
-            bağlantısından türetilmiştir (ilan kaydı sayıyı ayrı alan olarak
-            vermez); yöntem 109 künyeli kayıtta doğrulanmıştır.</p>
-          <ul class="pot-rg">
-            {p.rgEkKayitlari.map((k) => (
-              <li>
-                <span class="pot-pasaj">“{k.metin.slice(0, 260)}…”</span>
-                <span class="pot-kunye">
-                  RG {k.tarih}
-                  {k.sayi != null && <> · Sayı {k.sayi}{k.sayiKaynak === 'cikarim' && '*'}</>}
-                  {' '}· {k.durum} ·{' '}
-                  <a href={httpsle(k.url)} rel="nofollow">kaynak</a>
-                </span>
-              </li>
-            ))}
-          </ul>
-        </details>
-      )}
+      <p class="pot-dipnot">{p.rgKayitlari.length} tekil ilan (aynı gazete sayısındaki başlık ve ilan
+        metni tek kayıttır). İl eşlemesi ilan metnindeki il adından ya da ilçe adının resmî ilçe–il
+        dizinindeki karşılığından yapılmıştır; dayanağı her kaydın altında yazılıdır. * işaretli
+        gazete sayıları arşiv bağlantısından türetilmiştir (yöntem 109 künyeli kayıtta doğrulandı).</p>
+      <ul class="pot-rg">
+        {p.rgKayitlari.map((k) => (
+          <li>
+            {k.saha && <strong class="pot-saha">{k.saha}</strong>}
+            {k.pasaj && <span class="pot-pasaj">“{k.pasaj.slice(0, 260)}…”</span>}
+            <span class="pot-kunye">
+              RG {k.tarih}
+              {k.sayi != null && <> · Sayı {k.sayi}{k.sayiKaynak === 'cikarim' && '*'}</>}
+              {' '}· {k.durum}
+              {k.ilKaynagi && <> · il dayanağı: {k.ilKaynagi}</>} ·{' '}
+              <a href={httpsle(k.url)} rel="nofollow">Resmî Gazete</a>
+            </span>
+          </li>
+        ))}
+      </ul>
     </>
   ) : (
     <p>Taranan Resmî Gazete kayıtlarında {p.il} için işletme sahası kaydı
@@ -206,6 +188,7 @@ const cokIlliler = p.kutleler.filter((k) => k.cokIlli);
 </section>
 
 <style>
+  .pot-saha { display: block; font-weight: 600; margin-bottom: 0.15rem; }
   .pot h2 {
     font-family: var(--serif);
     font-size: 1.5rem;

@@ -5,6 +5,8 @@ import { fileURLToPath } from 'node:url';
 import { join, relative } from 'node:path';
 // Normalizasyon TEK KAYNAK: src/data/ortak-normalize.js (src/data modülleriyle aynı).
 import { kisitNormalize, islemJoin } from './src/data/ortak-normalize.js';
+import { cezaYerlestir } from './src/data/ceza-tutar.js';
+import { EMSAL_YAYIN } from './src/data/emsal.js';
 
 const SITE = 'https://suharitasi.com';
 
@@ -101,9 +103,9 @@ function kisitJsonOlustur() {
         const kok = fileURLToPath(dir);
         const proje = fileURLToPath(new URL('.', import.meta.url));
         const oku = (p) => JSON.parse(readFileSync(join(proje, p), 'utf8'));
-        const ana = oku('veri/potansiyel/isletme-sahalari.json');
-        const ek = oku('veri/potansiyel/isletme-sahalari-ek.json');
-        const kayitlar = kisitNormalize(ana.kayitlar, ek.kayitlar);
+        // 10.10.2026: başlık + ilan kayıtları kaynak metinden yeniden ayrıştırılmış v2 dosyasından (rg-kaynak.js ile aynı).
+        const v2 = oku('veri/potansiyel/isletme-sahalari-v2.json');
+        const kayitlar = kisitNormalize(v2.basliklar, v2.kayitlar);
         await writeFile(join(kok, 'kisit.json'), JSON.stringify(kayitlar), 'utf8');
         logger.info(`kisit.json: ${kayitlar.length} RG kaydı`);
       },
@@ -149,9 +151,9 @@ function veriApiOlustur() {
         const mv = oku('data/kamu/mevzuat-maddeleri.json');
         await yaz('mevzuat.json', mv.maddeler.map((m) => ({
           kanunKisa: m.kanunKisa, kanun: m.kanun, tur: m.tur, madde: m.madde, metin: m.metin,
-          kaynak: m.kaynakUrl, merci: m.merci || null, sure: m.sure || null, yorum: m.yorum || null,
+          kaynak: m.kaynakUrl, merci: m.merci || null, sure: m.sure || null, yorum: m.yorum ? cezaYerlestir(m.yorum) : null,
         })));
-        await yaz('emsal.json', oku('data/kamu/emsal-kararlar.json').kararlar);
+        await yaz('emsal.json', EMSAL_YAYIN('https://suharitasi.com'));
         await yaz('sozluk.json', oku('data/kamu/su-terim-havuzu.json').terimler);
         await yaz('mevzuat-surum.json', oku('data/kamu/mevzuat-surum.json'));
         logger.info('veri API: havzalar · iller · islemler · mevzuat · emsal · sozluk');
@@ -226,7 +228,7 @@ function llmsOlustur() {
     ['radar/', 'Karar & tazelik radarı'],
     ['veri/', 'Açık veri kataloğu (JSON API)'],
     ['su-riski-endeksi/', 'Su riski endeksi (il/havza)'],
-    ['kuyu-karar-motoru/', 'Kuyu karar motoru (süre, merci, evrak)'],
+    ['kuyu-karar-motoru/', 'Tebliğ Aldım: Süre ve İtiraz Yolu (süre, merci, evrak)'],
     ['su-hukuku/', 'Su hukuku omurga sayfası (karar matrisi)'],
     ['rehberler/', 'Mevzuat rehberleri'],
     ['mevzuat/', 'Mevzuat maddeleri (madde madde)'],
@@ -320,15 +322,12 @@ function llmsOlustur() {
         // emsal özetleri, (b) 25 havzanın kısıt/durum künyesi eklenir. Tüm
         // alanlar yayımlı veri kayıtlarından okunur; URETILMEZ.
         try {
-          const emsal = JSON.parse(readFileSync(
-            new URL('./data/kamu/emsal-kararlar.json', import.meta.url), 'utf8'));
-          const d8 = (emsal.kararlar || []).filter((k) => /8\.\s*Daire/.test(k.merci || ''));
+          const d8 = EMSAL_YAYIN(SITE).filter((k) => k.merci === 'Danıştay 8. Daire');
           if (d8.length) {
-            tam += `\n## Danıştay 8. Daire — su hukuku emsal özetleri (${d8.length})\n\n`;
+            tam += `\n## Danıştay 8. Daire — su hukuku emsal künyeleri (${d8.length}; resmî karar arama sunucusunda doğrulanmış)\n\n`;
             for (const k of d8) {
-              const ozet = (k.ozet || '').replace(/\s+/g, ' ').slice(0, 320);
-              tam += `- ${k.merci} ${k.esas} E., ${k.karar} K. (${k.yil}) — ${k.konu}: ${ozet}\n`;
-              if (k.kaynak) tam += `  Kaynak: ${k.kaynak}\n`;
+              tam += `- ${k.merci} ${k.esas} E., ${k.karar} K. (karar tarihi ${k.karar_tarihi}) — ${k.konu}. Dava konusu (karar metninden alıntı): ${k.ozet}\n`;
+              tam += `  Karar sayfası: ${k.sayfa} · Resmî metin: ${k.kaynak}\n`;
             }
             tam += `\nTam liste: ${SITE}/emsal-kararlar/\n`;
           }

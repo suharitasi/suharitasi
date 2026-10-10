@@ -25,7 +25,10 @@ import '../styles/hareket.css';
 import havzaVeri from '../../data/havza-veri.json';
 import yasVeri from '../../data/canli/havza-yas.json';
 import grace from '../../data/canli/grace-havza.json';
-import { SITE_ADI, YAZAR, VERI_KATALOGU, KURUM_SOSYAL } from '../data/site';
+// 10.10.2026 (brif 1.1): uydu penceresinin SON ÖLÇÜM AYI metinde yazılır (kaynak gecikmeli).
+const graceSonAy: string = Object.values((grace as any).havzalar ?? {}).reduce((s: string, h: any) => { const k = Object.keys(h?.seri ?? {}).sort().at(-1) ?? ''; return k > s ? k : s; }, '');
+const graceSonAyMetni = graceSonAy ? ` (son ölçüm ${graceSonAy})` : '';
+import { SITE_ADI, YAZAR, VERI_KATALOGU, KURUM_SOSYAL, YAZAR_BARO_SEMA } from '../data/site';
 import AcilDestekBar from '../components/AcilDestekBar.astro';
 import CfAnalitik from '../components/CfAnalitik.astro';
 import Analitik from '../components/Analitik.astro';
@@ -49,8 +52,8 @@ const potYil = havzaVeri.havzalar[0].yuzeysuyuYili ?? 2024;
 // yüzden baraj iddiası ETMEZ — sayfanın gerçekten gösterdiğini anlatır.
 const ozCevap =
   `Türkiye'nin ${havzaSayisi} su havzası tek haritada: her havzanın yüzey suyu ` +
-  'potansiyeli, yeraltı suyu işletme rezervi ve uydu su ölçümüyle son 5 yılın ' +
-  'yeraltı suyu eğilimi. Kartlar en hızlı azalan havzadan başlar; her kart o ' +
+  'potansiyeli, yeraltı suyu işletme rezervi ve uydu su ölçümüyle son 5 yılın' +
+  `${graceSonAyMetni} yeraltı suyu eğilimi. Kartlar en hızlı azalan havzadan başlar; her kart o ` +
   'havzanın veri künyesine açılır.';
 if (ozCevap.length > 280) {
   // Sessiz hata yasağı: sınır aşılırsa build DÜŞER, kırpılıp sessizce bozulmaz.
@@ -98,7 +101,7 @@ const jsonLd = JSON.stringify({
       areaServed: { '@type': 'Country', name: 'Türkiye' },
       sameAs: KURUM_SOSYAL,
       telephone: '+90 532 449 71 44',
-      founder: { '@type': 'Person', name: YAZAR.adSade, jobTitle: YAZAR.unvan },
+      founder: { '@type': 'Person', name: YAZAR.adSade, jobTitle: YAZAR.unvan, ...YAZAR_BARO_SEMA },
     },
     {
       '@type': 'WebSite',
@@ -132,7 +135,7 @@ const jsonLd = JSON.stringify({
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'TRY' },
       featureList: [
         '25 havza künyesi (yüzey suyu potansiyeli, YAS işletme rezervi)',
-        'GRACE uydu ölçümüyle son 5 yıl su depolaması eğilimi',
+        `GRACE uydu ölçümüyle son 5 yıl su depolaması eğilimi${graceSonAyMetni}`,
         'Havza hukuki durum köprüsü',
       ],
       publisher: { '@id': `${KOK_URL}#kurum` },
@@ -151,7 +154,7 @@ const jsonLd = JSON.stringify({
       description:
         `Türkiye'nin ${havzaSayisi} su havzası için havza bazında yüzey suyu potansiyeli ` +
         `(DSİ ${potYil}), yeraltı suyu işletme rezervi (DSİ Tablo 1.3) ve NASA ` +
-        'GRACE/GRACE-FO toplam su depolaması anomalisinin son 5 yıllık eğimi. ' +
+        `GRACE/GRACE-FO toplam su depolaması anomalisinin son 5 yıllık eğimi${graceSonAyMetni}. ` +
         'GRACE değeri DEĞİŞİM verisidir (2004-2009 ortalamasına göre), mutlak su ' +
         'miktarı değildir; havza ortalamaları yarım-derece grid yaklaşığıdır.',
       inLanguage: 'tr-TR',

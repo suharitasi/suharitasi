@@ -2,7 +2,9 @@
 baslik: "Su tahsisinde öncelik sırası ve tahsis kriterleri"
 ozet: "DSİ'ye su tahsis başvurusu nasıl yapılır, talepler hangi ölçütlerle değerlendirilir: Su Tahsisleri Hakkında Yönetmelik m.8-10 ve Yeraltı Suları Tüzüğü m.15'teki kullanım öncelik sıralaması (içme, temizlik, hayvan sulaması, zirai sulama, sanayi, sportif tesisler)."
 tarih: 2026-07-14
-guncelleme: 2026-07-25
+guncelleme: 2026-10-10
+onayBekliyor: true
+onayKaynak: "Su Tahsisleri Hakkında Yönetmelik m.7 ve Yeraltı Suları Tüzüğü m.15 (sitedeki madde metinleri, 10.10.2026) — 'bağlayıcı sıra yok' cümlesi düzeltildi"
 kume: surec
 ozCevap: "Su tahsis talebi DSİ'ye yapılır (Su Tahsisleri Yönetmeliği m.8) ve suyun miktar-kalitesi ile kullanım önceliğine göre değerlendirilir (m.10). Öncelik sırası Yeraltı Suları Tüzüğü m.15'ten gelir: içme, temizlik/belediye, hayvan sulaması, zirai sulama, maden-sanayi, sportif tesisler."
 seoBaslik: "Su Tahsisi: Başvuru Şartları ve Öncelik Sırası"
@@ -12,27 +14,27 @@ sss:
   - soru: "Su tahsisi hangi ölçütlere göre değerlendirilir?"
     cevap: "Suyun miktarı ve kalitesi, kullanım öncelikleri, mevcut ve tasarlanan projeler ile yıllara göre ihtiyaçlar birlikte değerlendirilir (m.10)."
   - soru: "Su kullanımında öncelik sırası nedir?"
-    cevap: "Yeraltı Suları Tüzüğü m.15'e göre içme, temizlik/belediye, hayvan sulaması, zirai sulama, maden-sanayi ve sportif tesisler."
+    cevap: "Su Tahsisleri Hakkında Yönetmelik m.7: içme ve kullanma suyu, çevresel su ihtiyacı, tarımsal sulama ve su ürünleri, enerji ve sınai su, ticari-turizm-madencilik ve sair ihtiyaçlar sırasıyla. Yeraltı suyunda faydalı ihtiyaç hesabı için Yeraltı Suları Tüzüğü m.15 ayrı sıra verir."
 ilgili: [kuyu-ruhsati, kaynak-suyu-kiralama, yeralti-suyu-isletme-sahasi]
 karar:
   - senaryo: "Su tahsisi talebi"
     merci: "DSİ"
-    sure: "Doğrulanmış süre yok"
+    sure: "30 gün içinde cevap verilmezse istek reddedilmiş sayılır; 60 gün içinde idare mahkemesi (2577 m.10/2, m.7)"
     ceza: "—"
     emsal: "Su Tahsisleri Hakkında Yönetmelik m.8"
   - senaryo: "Talebin değerlendirilmesi"
     merci: "DSİ"
-    sure: "Doğrulanmış süre yok"
+    sure: "Doğrulanamadı (resmî metinde süre bulunamadı)"
     ceza: "—"
     emsal: "m.10 — miktar, kalite ve kullanım önceliği birlikte"
   - senaryo: "Kullanım öncelik sırası"
     merci: "DSİ"
-    sure: "Doğrulanmış süre yok"
+    sure: "Doğrulanamadı (resmî metinde süre bulunamadı)"
     ceza: "—"
     emsal: "Yeraltı Suları Tüzüğü m.15 — içme ilk sırada"
   - senaryo: "Yürürlükten önceki eski tahsisler"
     merci: "DSİ"
-    sure: "Doğrulanmış süre yok"
+    sure: "Doğrulanamadı (resmî metinde süre bulunamadı)"
     ceza: "—"
     emsal: "6200 s.K. Geçici m.13 — mevcut durum korunur"
 ---
@@ -59,13 +61,28 @@ verileri ile beslenim koşulları.
 
 ## Öncelik sırası nereden gelir?
 
-Yönetmelik metinlerinde "önce içme, sonra sulama..." şeklinde sayısal
-bağlayıcı bir sıra yoktur; sıralama **Yeraltı Suları Tüzüğü m.15'in
-faydalı ihtiyaç hesabından** gelir. Tüzük m.15, faydalı ihtiyaç
-hesabında açık bir sıralama yapar: içme, temizlik, belediye hizmetleri,
-hayvan sulaması, zirai sulama, maden ve sanayi suyu, sportif ve benzeri
-tesisler. 167 sayılı Kanun'un 4. maddesi de kuyu sahibinin yalnızca
-kendi faydalı ihtiyacı kadar su kullanabileceğini söyler.
+İki ayrı sıra vardır ve ikisi de yazılıdır:
+
+1. **Su kaynaklarının kullanım amaçları için** Su Tahsisleri Hakkında
+   Yönetmelik m.7/1 açık bir öncelik sırası koyar — "suyun miktarı,
+   kalitesi, havzanın özelliği, zorunlu ihtiyaçlar ve şartlar başka türlü
+   bir çözüm yolu gerektirmedikçe": (a) içme ve kullanma suyu, (b) çevresel
+   su ihtiyacı, (c) tarımsal sulama ve su ürünleri yetiştiriciliği,
+   (ç) enerji üretimi ve sınai su ihtiyaçları, (d) ticari, turizm,
+   rekreasyon, madencilik, taşıma, ulaşım ile sair su ihtiyaçları. Kaynak
+   yeterliyse m.7/2 uyarınca havza planları çerçevesinde birden fazla amaca,
+   bu sıra gözetilerek izin verilebilir
+   ([madde metni](/mevzuat/su-tahsisleri-yon/madde-7/)).
+2. **Yeraltı suyunda faydalı ihtiyaç hesabı için** Yeraltı Suları Tüzüğü
+   m.15 ayrı bir sıra verir: içme, temizlik, belediye hizmetleri, hayvan
+   sulaması, zirai sulama, maden ve sanayi suyu, sportif ve benzeri
+   tesisler; faydalı ihtiyaç için ayrılan su, deponun emniyetli verimini
+   aşamaz ([madde metni](/mevzuat/yas-tuzugu/madde-15/)).
+
+167 sayılı Kanun'un 4. maddesi de kuyu sahibinin yalnızca kendi faydalı
+ihtiyacı kadar su kullanabileceğini söyler. Bu rehberin önceki sürümünde
+yer alan "bağlayıcı bir sıra yoktur" cümlesi Yönetmelik m.7 karşısında
+yanlıştı; 10.10.2026'da düzeltildi.
 
 Eski tahsisler yönünden hukuki güvenlik 6200 sayılı Kanun'un Geçici
 13. maddesiyle sağlanır: maddenin yürürlüğünden önce yapılmış su
@@ -73,23 +90,30 @@ tahsisleri mevcut hukuki durumlarını korur.
 
 ## Su tahsisinde öncelik sırası nedir?
 
-| Öncelik sırası | Kaynak | Uygulama alanı | Hukukî temel |
-| --- | --- | --- | --- |
-| 1 | İçme | İçme ve insan tüketimi | Yeraltı Suları Tüzüğü m.15 |
-| 2 | Temizlik / belediye hizmetleri | Şehir ve kasaba ihtiyaçları | Yeraltı Suları Tüzüğü m.15 |
-| 3 | Hayvan sulaması | Zirai ve hayvansal kullanım | Yeraltı Suları Tüzüğü m.15 |
-| 4 | Zirai sulama | Tarımsal kullanım | Yeraltı Suları Tüzüğü m.15 |
-| 5 | Maden ve sanayi suyu | Endüstriyel kullanım | Yeraltı Suları Tüzüğü m.15 |
-| 6 | Sportif ve benzeri tesisler | Tesis bazlı kullanım | Yeraltı Suları Tüzüğü m.15 |
+| Sıra | Su Tahsisleri Yönetmeliği m.7 (su kaynakları, genel) | Yeraltı Suları Tüzüğü m.15 (yeraltı suyu, faydalı ihtiyaç) |
+| --- | --- | --- |
+| 1 | İçme ve kullanma suyu | İçme |
+| 2 | Çevresel su ihtiyacı | Temizlik |
+| 3 | Tarımsal sulama ve su ürünleri yetiştiriciliği | Belediye hizmetleri |
+| 4 | Enerji üretimi ve sınai su ihtiyaçları | Hayvan sulaması |
+| 5 | Ticari, turizm, rekreasyon, madencilik, taşıma, ulaşım ve sair | Zirai sulama |
+| 6 | — | Maden ve sanayi suyu |
+| 7 | — | Sportif ve benzeri tesisler |
+
+Yönetmelik sırası "şartlar başka türlü bir çözüm yolu gerektirmedikçe"
+uygulanır (m.7/1); Tüzük sırası faydalı ihtiyaç miktarının tespitinde
+gözetilir (m.15).
 
 ## Madde metni
 
 Bu rehberde andığımız hükümlerin birebir metni bağımsız mevzuat sayfalarındadır:
 
+- [Madde 7](/mevzuat/su-tahsisleri-yon/madde-7/)
 - [Madde 8](/mevzuat/su-tahsisleri-yon/madde-8/)
 - [Madde 9](/mevzuat/su-tahsisleri-yon/madde-9/)
 - [Madde 10](/mevzuat/su-tahsisleri-yon/madde-10/)
 - [Geçici Madde 13](/mevzuat/6200/gecici-madde-13/)
+- [Yeraltı Suları Tüzüğü Madde 15](/mevzuat/yas-tuzugu/madde-15/)
 
 ## Dikkat
 
@@ -105,7 +129,7 @@ ihtiyaç öncelikleri birlikte değerlendirilir.
 
 ## Emsal kararlar
 
-Karar künyeleri yayın öncesi doğrulama sürecindedir.
+Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
 Bu başlık altında kaynak araştırmada doğrudan içtihat künyesi yer
 almamaktadır; tahsisle bağlantılı belge uyuşmazlıkları için

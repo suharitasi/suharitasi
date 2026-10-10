@@ -13,6 +13,9 @@ import YazarKutusu from '../../components/YazarKutusu.astro';
 import IlgiliRehberler from '../../components/IlgiliRehberler.astro';
 import SonrakiAdim from '../../components/SonrakiAdim.astro';
 import RehberKapanis from '../../components/RehberKapanis.astro';
+import CezaTutarTablosu from '../../components/CezaTutarTablosu.astro';
+import { CEZA_YIL, CEZA_GUNCEL } from '../../data/ceza-tutar.js';
+const cezaGuncel = (b: 'a' | 'b') => `${CEZA_GUNCEL[b][0].toLocaleString('tr-TR')}–${CEZA_GUNCEL[b][1].toLocaleString('tr-TR')} TL`;
 import { personalar as tumPersonalar } from '../../data/persona.js';
 // Madde 11 / C2 — eşleşme veriden gelir (bkz. rehberler/[slug].astro).
 const ilgiliPersonalar = tumPersonalar
@@ -419,10 +422,13 @@ const sema = [
         ceza mahallî mülkî amir tarafından verilir.
       </p>
       <p class="apilex-not">
-        Yukarıdaki tutarlar <strong>2008 metnindeki tabandır</strong>; idari
-        para cezaları her yıl yeniden değerleme oranıyla artmaktadır. Güncel
-        tutar için: <span class="apilex-bosluk">[APILEX teyit]</span>.
+        Yukarıdaki tutarlar <strong>kanun metnindeki (2008) tutarlardır</strong>; idari
+        para cezaları her takvim yılı başında yeniden değerleme oranında artırılarak
+        uygulanır (5326 sayılı Kabahatler Kanunu m.17/7). {CEZA_YIL} yılında uygulanan aralık
+        m.18/a için <strong>{cezaGuncel('a')}</strong>, m.18/b için <strong>{cezaGuncel('b')}</strong>;
+        yıl yıl hesap ve dayanakları aşağıdaki tabloda.
       </p>
+      <CezaTutarTablosu baslikDuzeyi="h3" />
     </div>
 
     <h2 id="dikkat">DSİ başvurusunda nelere dikkat edilmeli?</h2>

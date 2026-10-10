@@ -13,7 +13,7 @@ const havzalar = Object.keys(baraj.havzalar)
   .sort((a, b) => a.localeCompare(b, 'tr'));
 
 const OZ_CEVAP =
-  'Su Haritası alarm aboneliği: seçtiğiniz havzanın baraj doluluğu belirlediğiniz ' +
+  `Su Haritası alarm aboneliği (${havzalar.length} havza için kurulabilir — EPİAŞ günlük baraj verisi olan havzalar; 25 havzanın tamamı değil): seçtiğiniz havzanın baraj doluluğu belirlediğiniz ` +
   'eşiği aştığında (ör. %40 altına düşerse) otomatik e-posta alırsınız. Eşikler ' +
   'EPİAŞ günlük verisine karşı sunucu tarafında denetlenir; IP saklanmaz.';
 ---

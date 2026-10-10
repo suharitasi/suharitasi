@@ -47,6 +47,7 @@ const emsalKararlar = oku('data/kamu/emsal-kararlar.json');
 const RG_ARSIV_DOSYALAR = [
   'veri/potansiyel/isletme-sahalari.json',
   'veri/potansiyel/isletme-sahalari-ek.json',
+  'veri/potansiyel/isletme-sahalari-v2.json',
 ];
 
 /** İl sayfalarının dayandığı potansiyel derlemeleri (il-profil.js kümesi). */
@@ -58,6 +59,7 @@ const POTANSIYEL_DOSYALAR = [
   'veri/potansiyel/mta-katalog.json',
   'veri/potansiyel/isletme-sahalari.json',
   'veri/potansiyel/isletme-sahalari-ek.json',
+  'veri/potansiyel/isletme-sahalari-v2.json',
 ];
 
 export const TARIH = {

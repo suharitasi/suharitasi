@@ -4,6 +4,7 @@ import Sayfa from '../../layouts/Sayfa.astro';
 import SayfaBasi from '../../components/SayfaBasi.astro';
 import Bulten from '../../components/Bulten.astro';
 import HukukSerhi from '../../components/HukukSerhi.astro';
+import OnayBekliyor from '../../components/OnayBekliyor.astro';
 
 export async function getStaticPaths() {
   const girisler = await getCollection('su-kanunu');
@@ -46,6 +47,7 @@ const sema = [{
     tarih={damga}
     ozCevap
   />
+  {bultenli && <OnayBekliyor kaynak="Su Kanunu taslak takibi metni (brif 1.13, 10.10.2026 yeniden yazıldı)" />}
   <div class="icerik">
     <Content />
     {kardesler.length > 0 && (

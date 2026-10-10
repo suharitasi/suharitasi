@@ -9,13 +9,11 @@
 //   2026-07-27: DOI/açık-erişim URL'siz künye yayınlanmaz).
 import yasKutleleri from '../../veri/potansiyel/yas-kutleleri.json';
 import kutleIl from '../../veri/potansiyel/kutle-il.json';
-import isletme from '../../veri/potansiyel/isletme-sahalari.json';
-import isletmeEk from '../../veri/potansiyel/isletme-sahalari-ek.json';
+import { ilGruplari } from './kisit-sorgu.js';
 import zengin from '../../veri/potansiyel/zenginlestirme.json';
 import morfoloji from '../../veri/potansiyel/morfoloji.json';
 import { sayiIle } from './rg-sayi.js';
 import { akademikBasilir } from './akademik-suzgec.js';
-import { pasajIlleri } from './ortak-normalize.js';
 
 // Faz D (08.09.2026): OpenAlex başlıklarında HTML varlık kalıntısı (58 başlıkta
 // &amp;#039; / &#039; / &quot; / &lt; …) sayfada harfiyen basılıyordu — çözülür.
@@ -91,26 +89,15 @@ export function ilPotansiyel(ilAdi) {
     durumsuz: kutleler.filter((k) => !k.durumKaynaginda).length,
   };
 
-  // (c) işletme/kapalı saha kayıtları (başlık + ek pasaj kayıtları)
-  const rgKayitlari = isletme.kayitlar
-    .filter((k) => Array.isArray(k.il) && k.il.includes(ilAdi))
-    .map((k) => ({
-      tur: 'baslik', metin: k.saha_adi, durum: k.durum,
-      tarih: k.rg_tarih, url: k.kaynak_url,
-      ...sayiIle(k),
-    }));
-  // İl yakınlık kuralı (EK-2/2): pasajda il adı anahtar ifadeye yakın değilse
-  // kayıt bu ilin sayfasına girmez (ortak-normalize.js — kisit-sorgu ile aynı kural).
-  const rgEkKayitlari = isletmeEk.kayitlar
-    .filter((k) => Array.isArray(k.il) && pasajIlleri(k.pasaj, k.il, k.ilceler).includes(ilAdi))
-    .map((k) => ({
-      tur: 'pasaj', metin: k.pasaj, durum: k.durum,
-      tarih: k.rg_tarih, url: k.kaynak_url,
-      // Pasaj kayıtları API'den sayı taşımaz; arşiv URL'sinden türetilir
-      // (yöntem ve iki bağımsız doğrulaması: src/data/rg-sayi.js).
-      ...sayiIle(k),
-    }));
-
+  // (c) işletme/kapalı saha kayıtları — TEK KAYNAK (10.10.2026, sahip kararı B): tekil ilan
+  // (gazete sayısı + durum) grupları, kisit-sorgu.js / istihbarat / arşiv ile aynı sayı. Fihrist
+  // başlığı ve aynı sayıdaki ilan alıntısı tek kayıtta birleşir; il dayanağı kayıtla birlikte gösterilir.
+  const rgKayitlari = ilGruplari(ilAdi).map((g) => ({
+    saha: g.saha, pasaj: g.pasaj, durum: g.durum, tarih: g.tarih, url: g.kaynak,
+    ilKaynagi: g.ilKaynagi.join(' · '),
+    // Gazete sayısı arşiv URL'sinden türetilir (yöntem ve iki bağımsız doğrulaması: src/data/rg-sayi.js).
+    ...sayiIle({ kaynak_url: g.kaynak }),
+  }));
   // (d) morfoloji
   const morf = morfoloji.iller[ilAdi] ?? null;
 
@@ -154,7 +141,7 @@ export function ilPotansiyel(ilAdi) {
       `${ilAdi} için yayımlı nehir havza yönetim planlarında il eşlemesi doğrulanmış yeraltı suyu kütlesi kaydı yoktur.`
     );
   }
-  const rgToplam = rgKayitlari.length + rgEkKayitlari.length;
+  const rgToplam = rgKayitlari.length;
   if (rgToplam > 0) {
     cumleler.push(`Resmî Gazete'de ${sayidan(rgToplam, 'işletme sahası kaydı')} bulunur.`);
   }
@@ -170,7 +157,7 @@ export function ilPotansiyel(ilAdi) {
 
   return {
     il: ilAdi, ozCevap, kutleler, dagilim,
-    rgKayitlari, rgEkKayitlari, morf, mta, akademik, akademikElenen, osm,
+    rgKayitlari, morf, mta, akademik, akademikElenen, osm,
     tuik: 'veri yok',
     // Faz D: süzgeç her künyeyi elerse boş başlık BIRAKILMAZ, sebep yazılır
     // (sessiz kaybolma yok — 3 il: Adıyaman, Karabük, Şırnak).

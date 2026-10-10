@@ -181,7 +181,8 @@ const iller = tumIller();
           if (yanit.ok && j && j.ok) {
             if (durum) {
               durum.className = 'pt-durum pt-ok';
-              durum.textContent = 'Talebiniz alındı. Teknik veriler için sizinle iletişime geçilecektir.';
+              // DURAK 1 C (10.10.2026): yalnız alındı bilgisi + iletişim adresi.
+              durum.textContent = 'Talebiniz alındı. İletişim: hukuk@arslanhukuk.tr';
             }
             if (dugme) { dugme.disabled = true; dugme.textContent = 'Talep alındı'; }
           } else {

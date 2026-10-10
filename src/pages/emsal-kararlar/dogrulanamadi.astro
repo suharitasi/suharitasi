@@ -1,0 +1,30 @@
+---
+// /emsal-kararlar/dogrulanamadi/ — resmî kaynakta doğrulanamayan künyeler (DURAK 1 A-d, 10.10.2026).
+// Dizine kapalı (noindex); site haritası ve llms.txt üreticileri noindex sayfaları dışarıda bırakır.
+import Sayfa from '../../layouts/Sayfa.astro';
+import SayfaBasi from '../../components/SayfaBasi.astro';
+import { EMSAL_DOGRULANAMAYAN, EMSAL_DOGRULAMA_TARIHI } from '../../data/emsal.js';
+
+const DURUM = { dogrulanamadi: 'Doğrulanamadı', kunye_celiskisi: 'Künye çelişkisi' } as Record<string, string>;
+---
+<Sayfa baslik="Doğrulanamayan emsal künyeleri" aciklama="Resmî karar arama sunucusunda doğrulanamayan künyeler ve gerekçeleri." robots="noindex, follow">
+  <SayfaBasi etiket="Emsal kararlar" baslik="Doğrulanamayan emsal künyeleri" ozet={`Bu künyeler ${EMSAL_DOGRULAMA_TARIHI} tarihinde resmî kaynakta doğrulanamadı; doğrulama denemesi sürüyor. Kesinleşmiş içtihat gibi kullanılmamalıdır.`} />
+  <div class="icerik">
+    <p><a href="/emsal-kararlar/">← Doğrulanmış emsal kararlar</a></p>
+    <ul class="ed-liste">
+      {EMSAL_DOGRULANAMAYAN.map((k) => (
+        <li>
+          <strong>{k.merci} {k.esas} E., {k.karar} K.</strong> — {DURUM[k.resmi_dogrulama.durum] ?? 'Doğrulanamadı'}
+          <br /><span class="ed-not">{k.resmi_dogrulama.not}</span>
+          {k.resmi_dogrulama.url && <><br /><a href={k.resmi_dogrulama.url} target="_blank" rel="noopener">Resmî sunucudaki eşleşen kayıt</a></>}
+          <br /><span class="ed-not">Konu: {k.konu} · İlgili rehber: {k.rehberler.map((r, i) => (<>{i > 0 && ' · '}<a href={`/rehberler/${r}/`}>{r}</a></>))}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Sayfa>
+<style>
+  .ed-liste { list-style: none; padding: 0; }
+  .ed-liste li { padding: 0.8rem 0; border-bottom: 1px solid var(--cizgi); }
+  .ed-not { font-size: 0.88rem; color: var(--metin-soluk); }
+</style>

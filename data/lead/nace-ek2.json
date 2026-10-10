@@ -1,872 +1,873 @@
 {
- "durum": "ek-2-ocr-cikarildi",
- "aciklama": "Su Verimliliği Yönetmeliği Ek-2 (NACE kodu bazında faaliyetler) OCR ile çıkarıldı. Kaynak taranmış/görüntü-tabanlı ekler PDF'i (sayfa 3-9). Araç: pdftoppm 600dpi + ImageMagick ön-işleme + tesseract 5.3.4 -l tur --psm 4.",
- "kaynak_ek_url": "https://www.resmigazete.gov.tr/eskiler/2024/12/20241227-3-1.pdf",
- "arsiv_dosyasi": "data/arsiv/mevzuat/su-verimliligi-yonetmeligi-ekler-20241227-3-1.pdf",
- "arsiv_sha256": "e69d5b524b45049834becc4fe115b1cafec2f9d25f364c28266e35a2a6311212",
- "ocr_arac": "tesseract 5.3.4 (tur) + pdftoppm 600dpi + convert -colorspace Gray -normalize -sharpen",
- "kayit_tarihi": "2026-07-21",
- "guven_kurali": "Ana faaliyet (2-haneli NACE) satırları temiz OCR'dan birebir transkripsiyon = dogrulandi. Detay alt-kodlar (NN.NN) regex ile çıkarıldı: yalnız NN.NN deseni temiz olanlar dogrulandi; nokta düşmüş/bozuk desen dogrulanmadi (sessiz düzeltme YOK — ham korunur). Çok-satırlı/bitişik-kolon satırlar otomatik ayrıştırılamadı; bunlar detay listesine GİRMEDİ (sayılar altta).",
- "sayimlar": {
-  "anaFaaliyet_toplam": 31,
-  "anaFaaliyet_dogrulandi": 31,
-  "detay_yakalanan": 90,
-  "detay_dogrulandi": 83,
-  "detay_dogrulanmadi": 7,
-  "detay_nominal_yaklasik": 148,
-  "detay_ayristirilamayan_yaklasik": 58
- },
- "yonetmelik_atif": "Ek-2'de yer alan NACE kodu bazında faaliyetler en fazla beş yıl içinde (2029-12-27) yeşil su verimliliği belgesi için başvuru yapmakla yükümlüdür (gövde md.(3)).",
- "anaFaaliyetler": [
-  {
-   "sira": 1,
-   "kod": "01",
-   "ad": "Bitkisel ve hayvansal üretim ile avcılık ve ilgili hizmet faaliyetleri",
-   "kisaAd": "Tarımsal ve hayvansal üretim",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 2,
-   "kod": "03",
-   "ad": "Balıkçılık ve su ürünleri yetiştiriciliği",
-   "kisaAd": "Balıkçılık ve su ürünleri yetiştiriciliği",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 3,
-   "kod": "05",
-   "ad": "Kömür ve linyit çıkartılması",
-   "kisaAd": "Kömür ve linyit çıkarımı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 4,
-   "kod": "07",
-   "ad": "Metal cevherleri madenciliği",
-   "kisaAd": "Metal cevherleri madenciliği",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 5,
-   "kod": "08",
-   "ad": "Diğer madencilik ve taş ocakçılığı",
-   "kisaAd": "Diğer madencilik ve taş ocakçılığı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 6,
-   "kod": "09",
-   "ad": "Madenciliği destekleyici hizmet faaliyetleri",
-   "kisaAd": "Madenciliği destekleyici hizmetler",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 7,
-   "kod": "10",
-   "ad": "Gıda ürünlerinin imalatı",
-   "kisaAd": "Gıda ürünleri imalatı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 8,
-   "kod": "11",
-   "ad": "İçeceklerin imalatı",
-   "kisaAd": "İçecek imalatı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 9,
-   "kod": "12",
-   "ad": "Tütün ürünleri imalatı",
-   "kisaAd": "Tütün ürünleri imalatı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 10,
-   "kod": "13",
-   "ad": "Tekstil ürünlerinin imalatı",
-   "kisaAd": "Tekstil ürünleri imalatı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 11,
-   "kod": "14",
-   "ad": "Giyim eşyalarının imalatı",
-   "kisaAd": "Giyim eşyası imalatı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 12,
-   "kod": "15",
-   "ad": "Deri ve ilgili ürünlerin imalatı",
-   "kisaAd": "Deri ve ilgili ürünler imalatı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 13,
-   "kod": "16",
-   "ad": "Ağaç, ağaç ürünleri ve mantar ürünleri imalatı (mobilya hariç); saz, saman ve benzeri malzemelerden örülerek yapılan eşyaların imalatı",
-   "kisaAd": "Ağaç ve ağaç ürünleri imalatı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 14,
-   "kod": "17",
-   "ad": "Kağıt ve kağıt ürünlerinin imalatı",
-   "kisaAd": "Kağıt ve kağıt ürünleri imalatı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 15,
-   "kod": "19",
-   "ad": "Kok kömürü ve rafine edilmiş petrol ürünleri imalatı",
-   "kisaAd": "Kok kömürü ve rafine petrol ürünleri imalatı",
-   "guven": "dogrulandi",
-   "not": "OCR 2-haneli kod gürültülüydü; alt-kod 19.20 ile çapraz doğrulandı."
-  },
-  {
-   "sira": 16,
-   "kod": "20",
-   "ad": "Kimyasalların ve kimyasal ürünlerin imalatı",
-   "kisaAd": "Kimyasal madde ve ürün imalatı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 17,
-   "kod": "21",
-   "ad": "Temel eczacılık ürünlerinin ve eczacılığa ilişkin malzemelerin imalatı",
-   "kisaAd": "Temel eczacılık ürünleri imalatı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 18,
-   "kod": "22",
-   "ad": "Kauçuk ve plastik ürünlerin imalatı",
-   "kisaAd": "Kauçuk ve plastik ürünler imalatı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 19,
-   "kod": "23",
-   "ad": "Diğer metalik olmayan mineral ürünlerin imalatı",
-   "kisaAd": "Metalik olmayan mineral ürünler imalatı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 20,
-   "kod": "24",
-   "ad": "Ana metal sanayii",
-   "kisaAd": "Ana metal sanayii",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 21,
-   "kod": "25",
-   "ad": "Fabrikasyon metal ürünleri imalatı (makine ve teçhizat hariç)",
-   "kisaAd": "Fabrikasyon metal ürünleri imalatı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 22,
-   "kod": "26",
-   "ad": "Bilgisayarların, elektronik ve optik ürünlerin imalatı",
-   "kisaAd": "Bilgisayar, elektronik ve optik ürün imalatı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 23,
-   "kod": "27",
-   "ad": "Elektrikli teçhizat imalatı",
-   "kisaAd": "Elektrikli teçhizat imalatı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 24,
-   "kod": "28",
-   "ad": "Başka yerde sınıflandırılmamış makine ve ekipman imalatı",
-   "kisaAd": "Makine ve ekipman imalatı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 25,
-   "kod": "29",
-   "ad": "Motorlu kara taşıtı, treyler (römork) ve yarı treyler (yarı römork) imalatı",
-   "kisaAd": "Motorlu kara taşıtı imalatı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 26,
-   "kod": "30",
-   "ad": "Diğer ulaşım araçlarının imalatı",
-   "kisaAd": "Diğer ulaşım araçları imalatı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 27,
-   "kod": "32",
-   "ad": "Diğer imalatlar",
-   "kisaAd": "Diğer imalatlar",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 28,
-   "kod": "33",
-   "ad": "Makine ve ekipmanların kurulumu ve onarımı",
-   "kisaAd": "Makine ve ekipman kurulum-onarımı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 29,
-   "kod": "35",
-   "ad": "Elektrik, gaz, buhar ve havalandırma sistemi üretim ve dağıtımı",
-   "kisaAd": "Elektrik, gaz ve buhar üretim-dağıtımı",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 30,
-   "kod": "38",
-   "ad": "Atığın toplanması, ıslahı ve bertarafı faaliyetleri; maddelerin geri kazanımı",
-   "kisaAd": "Atık toplama, ıslah ve geri kazanım",
-   "guven": "dogrulandi"
-  },
-  {
-   "sira": 31,
-   "kod": "42",
-   "ad": "Bina dışı yapıların inşaatı",
-   "kisaAd": "Bina dışı yapı inşaatı",
-   "guven": "dogrulandi"
-  }
- ],
- "detayKodlar": [
-  {
-   "sira": 2,
-   "hamKod": "01.42",
-   "aciklama": "Diğer sığır ve manda yetiştiriciliği",
-   "guven": "dogrulandi",
-   "kod": "01.42"
-  },
-  {
-   "sira": 5,
-   "hamKod": "01.47",
-   "aciklama": "Kümes hayvanları yetiştiriciliği",
-   "guven": "dogrulandi",
-   "kod": "01.47"
-  },
-  {
-   "sira": 6,
-   "hamKod": "01.49",
-   "aciklama": "Diğer hayvan yetiştiriciliği",
-   "guven": "dogrulandi",
-   "kod": "01.49"
-  },
-  {
-   "sira": 7,
-   "hamKod": "24.20",
-   "aciklama": "ımalatı",
-   "guven": "dogrulandi",
-   "kod": "24.20"
-  },
-  {
-   "sira": 15,
-   "hamKod": "10.11",
-   "aciklama": "Etin işlenmesi ve saklanması",
-   "guven": "dogrulandi",
-   "kod": "10.11"
-  },
-  {
-   "sira": 16,
-   "hamKod": "10.12",
-   "aciklama": "Kümes hayvanları etlerinin işlenmesi ve saklanması",
-   "guven": "dogrulandi",
-   "kod": "10.12"
-  },
-  {
-   "sira": 17,
-   "hamKod": "10.13",
-   "aciklama": "Bt ve kümes hayvanları etlerinden üretilen ürünlerin imalatı",
-   "guven": "dogrulandi",
-   "kod": "10.13"
-  },
-  {
-   "sira": 18,
-   "hamKod": "10.20",
-   "aciklama": "saklanması",
-   "guven": "dogrulandi",
-   "kod": "10.20"
-  },
-  {
-   "sira": 20,
-   "hamKod": "10.32",
-   "aciklama": "Sebze ve meyve suyu imalatı",
-   "guven": "dogrulandi",
-   "kod": "10.32"
-  },
-  {
-   "sira": 21,
-   "hamKod": "10.39",
-   "aciklama": "Başka yerde sınıflandırılmamış meyve ve sebzelerin işlenmesi ve",
-   "guven": "dogrulandi",
-   "kod": "10.39"
-  },
-  {
-   "sira": 24,
-   "hamKod": "10.51",
-   "aciklama": "Süthane işletmeciliği ve peynir imalatı",
-   "guven": "dogrulandi",
-   "kod": "10.51"
-  },
-  {
-   "sira": 25,
-   "hamKod": "10.52",
-   "aciklama": "Dondurma imalatı",
-   "guven": "dogrulandi",
-   "kod": "10.52"
-  },
-  {
-   "sira": 26,
-   "hamKod": "10.61",
-   "aciklama": "Öğütülmüş hububat ve sebze ürünleri imalatı",
-   "guven": "dogrulandi",
-   "kod": "10.61"
-  },
-  {
-   "sira": 27,
-   "hamKod": "10.62",
-   "aciklama": "Nişasta ve nişastalı ürünlerin imalatı",
-   "guven": "dogrulandi",
-   "kod": "10.62"
-  },
-  {
-   "sira": 28,
-   "hamKod": "10.71",
-   "aciklama": "Ekmek, taze pastane ürünleri ve taze kek imalatı",
-   "guven": "dogrulandi",
-   "kod": "10.71"
-  },
-  {
-   "sira": 29,
-   "hamKod": "1041",
-   "aciklama": "Sıvı ve katı yağ imalatı",
-   "guven": "dogrulanmadi",
-   "kod": null
-  },
-  {
-   "sira": 30,
-   "hamKod": "10.73",
-   "aciklama": "Makarna, şehriye, kuskus ve benzeri unlu mamullerin imalatı",
-   "guven": "dogrulandi",
-   "kod": "10.73"
-  },
-  {
-   "sira": 31,
-   "hamKod": "10.81",
-   "aciklama": "Şeker imalatı",
-   "guven": "dogrulandi",
-   "kod": "10.81"
-  },
-  {
-   "sira": 32,
-   "hamKod": "10.82",
-   "aciklama": "Kakao, çikolata ve şekerleme imalatı",
-   "guven": "dogrulandi",
-   "kod": "10.82"
-  },
-  {
-   "sira": 33,
-   "hamKod": "10.83",
-   "aciklama": "Kahve ve çayın işlenmesi",
-   "guven": "dogrulandi",
-   "kod": "10.83"
-  },
-  {
-   "sira": 34,
-   "hamKod": "10.84",
-   "aciklama": "Baharat, sos, sirke ve diğer çeşni maddelerinin imalatı",
-   "guven": "dogrulandi",
-   "kod": "10.84"
-  },
-  {
-   "sira": 35,
-   "hamKod": "10.85",
-   "aciklama": "Hazır yemeklerin imalatı",
-   "guven": "dogrulandi",
-   "kod": "10.85"
-  },
-  {
-   "sira": 36,
-   "hamKod": "10.89",
-   "aciklama": "Başka yerde sınıflandırılmamış diğer gıda maddelerinin imalatı",
-   "guven": "dogrulandi",
-   "kod": "10.89"
-  },
-  {
-   "sira": 37,
-   "hamKod": "11.01",
-   "aciklama": "Alkollü içeceklerin damıtılması, arıtılması ve harmanlanması",
-   "guven": "dogrulandi",
-   "kod": "11.01"
-  },
-  {
-   "sira": 38,
-   "hamKod": "11.02",
-   "aciklama": "Üzümden şarap imalatı",
-   "guven": "dogrulandi",
-   "kod": "11.02"
-  },
-  {
-   "sira": 40,
-   "hamKod": "1107",
-   "aciklama": "Alkolsüz içeceklerin imalatı; maden sularının ve diğer şişelenmiş suların",
-   "guven": "dogrulanmadi",
-   "kod": null
-  },
-  {
-   "sira": 42,
-   "hamKod": "13.10",
-   "aciklama": "Tekstil elyafının hazırlanması ve bükülmesi",
-   "guven": "dogrulandi",
-   "kod": "13.10"
-  },
-  {
-   "sira": 43,
-   "hamKod": "13.20",
-   "aciklama": "Dokuma",
-   "guven": "dogrulandi",
-   "kod": "13.20"
-  },
-  {
-   "sira": 46,
-   "hamKod": "13.92",
-   "aciklama": "Giyim eşyası dışındaki tamamlanmış tekstil ürünlerinin imalatı",
-   "guven": "dogrulandi",
-   "kod": "13.92"
-  },
-  {
-   "sira": 47,
-   "hamKod": "13.93",
-   "aciklama": "Halı ve kilim imalatı",
-   "guven": "dogrulandi",
-   "kod": "13.93"
-  },
-  {
-   "sira": 48,
-   "hamKod": "1395",
-   "aciklama": "Dokusuz kumaşların ve dokusuz kumaştan yapılan ürünlerin imalatı,",
-   "guven": "dogrulanmadi",
-   "kod": null
-  },
-  {
-   "sira": 50,
-   "hamKod": "13.99",
-   "aciklama": "Başka yerde sınıflandırılmamış diğer tekstillerin imalatı",
-   "guven": "dogrulandi",
-   "kod": "13.99"
-  },
-  {
-   "sira": 52,
-   "hamKod": "15.11",
-   "aciklama": "Derinin tabaklanması ve işlenmesi; kürkün işlenmesi ve boyanması",
-   "guven": "dogrulandi",
-   "kod": "15.11"
-  },
-  {
-   "sira": 54,
-   "hamKod": "15.20",
-   "aciklama": "Ayakkabı, bot, terlik vb. imalatı",
-   "guven": "dogrulandi",
-   "kod": "15.20"
-  },
-  {
-   "sira": 55,
-   "hamKod": "16.10",
-   "aciklama": "Ağaçların biçilmesi ve planyalanması",
-   "guven": "dogrulandi",
-   "kod": "16.10"
-  },
-  {
-   "sira": 59,
-   "hamKod": "16.29",
-   "aciklama": "talan. 1",
-   "guven": "dogrulandi",
-   "kod": "16.29"
-  },
-  {
-   "sira": 60,
-   "hamKod": "17.11",
-   "aciklama": "Kağıt hamuru imalatı",
-   "guven": "dogrulandi",
-   "kod": "17.11"
-  },
-  {
-   "sira": 64,
-   "hamKod": "20.11",
-   "aciklama": "Sanayi gazları imalatı",
-   "guven": "dogrulandi",
-   "kod": "20.11"
-  },
-  {
-   "sira": 65,
-   "hamKod": "20.12",
-   "aciklama": "Boya maddeleri ve pigment imalatı",
-   "guven": "dogrulandi",
-   "kod": "20.12"
-  },
-  {
-   "sira": 66,
-   "hamKod": "20.13",
-   "aciklama": "Diğer inorganik temel kimyasal maddelerin imalatı",
-   "guven": "dogrulandi",
-   "kod": "20.13"
-  },
-  {
-   "sira": 69,
-   "hamKod": "20.16",
-   "aciklama": "Birincil formda plastik hammaddelerin imalatı",
-   "guven": "dogrulandi",
-   "kod": "20.16"
-  },
-  {
-   "sira": 70,
-   "hamKod": "20.17",
-   "aciklama": "Birincil formda sentetik kauçuk imalatı",
-   "guven": "dogrulandi",
-   "kod": "20.17"
-  },
-  {
-   "sira": 71,
-   "hamKod": "20.20",
-   "aciklama": "Haşere ilaçları ve diğer zirai-kimyasal ürünlerin imalatı",
-   "guven": "dogrulandi",
-   "kod": "20.20"
-  },
-  {
-   "sira": 75,
-   "hamKod": "20.59",
-   "aciklama": "Başka yerde sınıflandırılmamış diğer kimyasal ürünlerin imalatı",
-   "guven": "dogrulandi",
-   "kod": "20.59"
-  },
-  {
-   "sira": 76,
-   "hamKod": "20.60",
-   "aciklama": "Suni veya sentetik elyaf imalatı",
-   "guven": "dogrulandi",
-   "kod": "20.60"
-  },
-  {
-   "sira": 78,
-   "hamKod": "22.11",
-   "aciklama": "İç ve dış lastik imalatı; İastiğe sırt geçirilmesi ve yeniden işlenmesi",
-   "guven": "dogrulandi",
-   "kod": "22.11"
-  },
-  {
-   "sira": 79,
-   "hamKod": "22.19",
-   "aciklama": "Diğer kauçuk ürünleri imalatı",
-   "guven": "dogrulandi",
-   "kod": "22.19"
-  },
-  {
-   "sira": 80,
-   "hamKod": "22.21",
-   "aciklama": "Plastik tabaka, levha, tüp ve profil imalatı",
-   "guven": "dogrulandi",
-   "kod": "22.21"
-  },
-  {
-   "sira": 82,
-   "hamKod": "22.23",
-   "aciklama": "Plastik inşaat malzemesi imalatı",
-   "guven": "dogrulandi",
-   "kod": "22.23"
-  },
-  {
-   "sira": 83,
-   "hamKod": "22.29",
-   "aciklama": "Diğer plastik ürünlerin imalatı",
-   "guven": "dogrulandi",
-   "kod": "22.29"
-  },
-  {
-   "sira": 84,
-   "hamKod": "23.11",
-   "aciklama": "Düz cam imalatı",
-   "guven": "dogrulandi",
-   "kod": "23.11"
-  },
-  {
-   "sira": 85,
-   "hamKod": "23.13",
-   "aciklama": "Çukur cam imalatı",
-   "guven": "dogrulandi",
-   "kod": "23.13"
-  },
-  {
-   "sira": 86,
-   "hamKod": "23.14",
-   "aciklama": "Cam elyafı imalatı",
-   "guven": "dogrulandi",
-   "kod": "23.14"
-  },
-  {
-   "sira": 87,
-   "hamKod": "23.20",
-   "aciklama": "Ateşe dayanıklı (refrakter) ürünlerin imalatı",
-   "guven": "dogrulandi",
-   "kod": "23.20"
-  },
-  {
-   "sira": 88,
-   "hamKod": "23.31",
-   "aciklama": "Seramik karo ve kaldırım taşları imalatı",
-   "guven": "dogrulandi",
-   "kod": "23.31"
-  },
-  {
-   "sira": 91,
-   "hamKod": "23.52",
-   "aciklama": "Kireç ve alçı imalatı",
-   "guven": "dogrulandi",
-   "kod": "23.52"
-  },
-  {
-   "sira": 92,
-   "hamKod": "23.61",
-   "aciklama": "İnşaat amaçlı beton ürünlerin imalatı",
-   "guven": "dogrulandi",
-   "kod": "23.61"
-  },
-  {
-   "sira": 93,
-   "hamKod": "23.62",
-   "aciklama": "İnşaat amaçlı alçı ürünlerin imalatı",
-   "guven": "dogrulandi",
-   "kod": "23.62"
-  },
-  {
-   "sira": 94,
-   "hamKod": "23.64",
-   "aciklama": "Toz harç imalatı",
-   "guven": "dogrulandi",
-   "kod": "23.64"
-  },
-  {
-   "sira": 95,
-   "hamKod": "2399",
-   "aciklama": "Başka yerde sınıflandırılmamış metalik olmayan diğer mineral ürünlerin",
-   "guven": "dogrulanmadi",
-   "kod": null
-  },
-  {
-   "sira": 96,
-   "hamKod": "24.10",
-   "aciklama": "Ana demir ve çelik ürünleri ile ferro alaşımların imalatı",
-   "guven": "dogrulandi",
-   "kod": "24.10"
-  },
-  {
-   "sira": 98,
-   "hamKod": "2431",
-   "aciklama": "Barların soğuk çekilmesi",
-   "guven": "dogrulanmadi",
-   "kod": null
-  },
-  {
-   "sira": 99,
-   "hamKod": "24.37",
-   "aciklama": "Dar şeritlerin soğuk haddelenmesi",
-   "guven": "dogrulandi",
-   "kod": "24.37"
-  },
-  {
-   "sira": 102,
-   "hamKod": "24.47",
-   "aciklama": "Alüminyum üretimi",
-   "guven": "dogrulandi",
-   "kod": "24.47"
-  },
-  {
-   "sira": 103,
-   "hamKod": "24.51",
-   "aciklama": "Demir döküm",
-   "guven": "dogrulandi",
-   "kod": "24.51"
-  },
-  {
-   "sira": 104,
-   "hamKod": "24.52",
-   "aciklama": "Çelik dökümü",
-   "guven": "dogrulandi",
-   "kod": "24.52"
-  },
-  {
-   "sira": 105,
-   "hamKod": "24.53",
-   "aciklama": "Hafif metallerin dökümü",
-   "guven": "dogrulandi",
-   "kod": "24.53"
-  },
-  {
-   "sira": 106,
-   "hamKod": "24.54",
-   "aciklama": "Diğer demir dışı metallerin dökümü",
-   "guven": "dogrulandi",
-   "kod": "24.54"
-  },
-  {
-   "sira": 108,
-   "hamKod": "2591",
-   "aciklama": "Merkezi ısıtma radyatörleri (elektrikli radyatörler hariç) ve sıcak su",
-   "guven": "dogrulanmadi",
-   "kod": null
-  },
-  {
-   "sira": 109,
-   "hamKod": "75 30",
-   "aciklama": "Buhar jeneratörü imalatı, merkezi ısıtma sıcak su kazanları (boylerleri)",
-   "guven": "dogrulanmadi",
-   "kod": null
-  },
-  {
-   "sira": 110,
-   "hamKod": "25.50",
-   "aciklama": "metalürjisi",
-   "guven": "dogrulandi",
-   "kod": "25.50"
-  },
-  {
-   "sira": 113,
-   "hamKod": "25.71",
-   "aciklama": "Çatal-bıçak takımları ve diğer kesici aletlerin imalatı",
-   "guven": "dogrulandi",
-   "kod": "25.71"
-  },
-  {
-   "sira": 114,
-   "hamKod": "25.73",
-   "aciklama": "Eİ aletleri, takım tezgahı uçları, testere ağızları vb. imalatı",
-   "guven": "dogrulandi",
-   "kod": "25.73"
-  },
-  {
-   "sira": 115,
-   "hamKod": "25.92",
-   "aciklama": "Metalden hafif paketleme malzemeleri imalatı",
-   "guven": "dogrulandi",
-   "kod": "25.92"
-  },
-  {
-   "sira": 116,
-   "hamKod": "25.93",
-   "aciklama": "Tel ürünleri, zincir ve yayların imalatı",
-   "guven": "dogrulandi",
-   "kod": "25.93"
-  },
-  {
-   "sira": 117,
-   "hamKod": "25.94",
-   "aciklama": "Bağlantı malzemelerinin ve vida makinesi ürünlerinin imalatı",
-   "guven": "dogrulandi",
-   "kod": "25.94"
-  },
-  {
-   "sira": 118,
-   "hamKod": "25.99",
-   "aciklama": "Başka yerde sınıflandırılmamış diğer fabrikasyon metal ürünlerin imalatı",
-   "guven": "dogrulandi",
-   "kod": "25.99"
-  },
-  {
-   "sira": 121,
-   "hamKod": "27.11",
-   "aciklama": "Elektrik motorlarının, jeneratörlerin ve transformatörlerin imalatı",
-   "guven": "dogrulandi",
-   "kod": "27.11"
-  },
-  {
-   "sira": 122,
-   "hamKod": "27.12",
-   "aciklama": "Elektrik dağıtım ve kontrol cihazları imalatı",
-   "guven": "dogrulandi",
-   "kod": "27.12"
-  },
-  {
-   "sira": 123,
-   "hamKod": "27.20",
-   "aciklama": "Akümülatör ve pil imalatı",
-   "guven": "dogrulandi",
-   "kod": "27.20"
-  },
-  {
-   "sira": 125,
-   "hamKod": "27.32",
-   "aciklama": "Diğer elektronik ve elektrik telleri ve kablolarının imalatı",
-   "guven": "dogrulandi",
-   "kod": "27.32"
-  },
-  {
-   "sira": 126,
-   "hamKod": "27.40",
-   "aciklama": "Elektrikli aydınlatma ekipmanlarının imalatı",
-   "guven": "dogrulandi",
-   "kod": "27.40"
-  },
-  {
-   "sira": 127,
-   "hamKod": "27.51",
-   "aciklama": "Elekirikli ev aletlerinin imalatı",
-   "guven": "dogrulandi",
-   "kod": "27.51"
-  },
-  {
-   "sira": 129,
-   "hamKod": "28.14",
-   "aciklama": "Diğer musluk ve valf/vana imalatı",
-   "guven": "dogrulandi",
-   "kod": "28.14"
-  },
-  {
-   "sira": 130,
-   "hamKod": "28.15",
-   "aciklama": "Rulman, dişli/dişli takımı, şanzıman ve tahrik elemanlarının imalatı",
-   "guven": "dogrulandi",
-   "kod": "28.15"
-  },
-  {
-   "sira": 133,
-   "hamKod": "28.97",
-   "aciklama": "Maden, taş ocağı ve inşaat makineleri imalatı",
-   "guven": "dogrulandi",
-   "kod": "28.97"
-  },
-  {
-   "sira": 134,
-   "hamKod": "28.94",
-   "aciklama": "Tekstil, giyim eşyası ve deri üretiminde kullanılan makinelerin imalatı",
-   "guven": "dogrulandi",
-   "kod": "28.94"
-  },
-  {
-   "sira": 135,
-   "hamKod": "28.99",
-   "aciklama": "Başka yerde sınıflandırılmamış diğer özel amaçlı makinelerin imalatı",
-   "guven": "dogrulandi",
-   "kod": "28.99"
-  },
-  {
-   "sira": 136,
-   "hamKod": "29.10",
-   "aciklama": "Motorlu kara taşıtlarının imalatı",
-   "guven": "dogrulandi",
-   "kod": "29.10"
-  },
-  {
-   "sira": 138,
-   "hamKod": "29.32",
-   "aciklama": "Motorlu kara taşıtları için diğer parça ve aksesuarların imalatı",
-   "guven": "dogrulandi",
-   "kod": "29.32"
-  }
- ]
+  "durum": "ek-2-ocr-cikarildi",
+  "aciklama": "Su Verimliliği Yönetmeliği Ek-2 (NACE kodu bazında faaliyetler) OCR ile çıkarıldı. Kaynak taranmış/görüntü-tabanlı ekler PDF'i (sayfa 3-9). Araç: pdftoppm 600dpi + ImageMagick ön-işleme + tesseract 5.3.4 -l tur --psm 4.",
+  "kaynak_ek_url": "https://www.resmigazete.gov.tr/eskiler/2024/12/20241227-3-1.pdf",
+  "arsiv_dosyasi": "data/arsiv/mevzuat/su-verimliligi-yonetmeligi-ekler-20241227-3-1.pdf",
+  "arsiv_sha256": "e69d5b524b45049834becc4fe115b1cafec2f9d25f364c28266e35a2a6311212",
+  "ocr_arac": "tesseract 5.3.4 (tur) + pdftoppm 600dpi + convert -colorspace Gray -normalize -sharpen",
+  "kayit_tarihi": "2026-07-21",
+  "guven_kurali": "Ana faaliyet (2-haneli NACE) satırları temiz OCR'dan birebir transkripsiyon = dogrulandi. Detay alt-kodlar (NN.NN) regex ile çıkarıldı: yalnız NN.NN deseni temiz olanlar dogrulandi; nokta düşmüş/bozuk desen dogrulanmadi (sessiz düzeltme YOK — ham korunur). Çok-satırlı/bitişik-kolon satırlar otomatik ayrıştırılamadı; bunlar detay listesine GİRMEDİ (sayılar altta). 10.10.2026 eki: 'ocr-tamamlandi' (resmî ek taramasından satır satır okunup tamamlandı) doğrulanmış sayılır; 'ocr-okunamadi' ve 'ocr-kismi' sayılmaz.",
+  "sayimlar": {
+    "anaFaaliyet_toplam": 31,
+    "anaFaaliyet_dogrulandi": 31,
+    "detay_yakalanan": 90,
+    "detay_dogrulandi": 84,
+    "detay_dogrulanmadi": 6,
+    "detay_nominal_yaklasik": 148,
+    "detay_ayristirilamayan_yaklasik": 58
+  },
+  "yonetmelik_atif": "Ek-2'de yer alan NACE kodu bazında faaliyetler en fazla beş yıl içinde (2029-12-27) yeşil su verimliliği belgesi için başvuru yapmakla yükümlüdür (gövde md.(3)).",
+  "anaFaaliyetler": [
+    {
+      "sira": 1,
+      "kod": "01",
+      "ad": "Bitkisel ve hayvansal üretim ile avcılık ve ilgili hizmet faaliyetleri",
+      "kisaAd": "Tarımsal ve hayvansal üretim",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 2,
+      "kod": "03",
+      "ad": "Balıkçılık ve su ürünleri yetiştiriciliği",
+      "kisaAd": "Balıkçılık ve su ürünleri yetiştiriciliği",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 3,
+      "kod": "05",
+      "ad": "Kömür ve linyit çıkartılması",
+      "kisaAd": "Kömür ve linyit çıkarımı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 4,
+      "kod": "07",
+      "ad": "Metal cevherleri madenciliği",
+      "kisaAd": "Metal cevherleri madenciliği",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 5,
+      "kod": "08",
+      "ad": "Diğer madencilik ve taş ocakçılığı",
+      "kisaAd": "Diğer madencilik ve taş ocakçılığı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 6,
+      "kod": "09",
+      "ad": "Madenciliği destekleyici hizmet faaliyetleri",
+      "kisaAd": "Madenciliği destekleyici hizmetler",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 7,
+      "kod": "10",
+      "ad": "Gıda ürünlerinin imalatı",
+      "kisaAd": "Gıda ürünleri imalatı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 8,
+      "kod": "11",
+      "ad": "İçeceklerin imalatı",
+      "kisaAd": "İçecek imalatı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 9,
+      "kod": "12",
+      "ad": "Tütün ürünleri imalatı",
+      "kisaAd": "Tütün ürünleri imalatı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 10,
+      "kod": "13",
+      "ad": "Tekstil ürünlerinin imalatı",
+      "kisaAd": "Tekstil ürünleri imalatı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 11,
+      "kod": "14",
+      "ad": "Giyim eşyalarının imalatı",
+      "kisaAd": "Giyim eşyası imalatı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 12,
+      "kod": "15",
+      "ad": "Deri ve ilgili ürünlerin imalatı",
+      "kisaAd": "Deri ve ilgili ürünler imalatı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 13,
+      "kod": "16",
+      "ad": "Ağaç, ağaç ürünleri ve mantar ürünleri imalatı (mobilya hariç); saz, saman ve benzeri malzemelerden örülerek yapılan eşyaların imalatı",
+      "kisaAd": "Ağaç ve ağaç ürünleri imalatı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 14,
+      "kod": "17",
+      "ad": "Kağıt ve kağıt ürünlerinin imalatı",
+      "kisaAd": "Kağıt ve kağıt ürünleri imalatı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 15,
+      "kod": "19",
+      "ad": "Kok kömürü ve rafine edilmiş petrol ürünleri imalatı",
+      "kisaAd": "Kok kömürü ve rafine petrol ürünleri imalatı",
+      "guven": "dogrulandi",
+      "not": "OCR 2-haneli kod gürültülüydü; alt-kod 19.20 ile çapraz doğrulandı."
+    },
+    {
+      "sira": 16,
+      "kod": "20",
+      "ad": "Kimyasalların ve kimyasal ürünlerin imalatı",
+      "kisaAd": "Kimyasal madde ve ürün imalatı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 17,
+      "kod": "21",
+      "ad": "Temel eczacılık ürünlerinin ve eczacılığa ilişkin malzemelerin imalatı",
+      "kisaAd": "Temel eczacılık ürünleri imalatı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 18,
+      "kod": "22",
+      "ad": "Kauçuk ve plastik ürünlerin imalatı",
+      "kisaAd": "Kauçuk ve plastik ürünler imalatı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 19,
+      "kod": "23",
+      "ad": "Diğer metalik olmayan mineral ürünlerin imalatı",
+      "kisaAd": "Metalik olmayan mineral ürünler imalatı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 20,
+      "kod": "24",
+      "ad": "Ana metal sanayii",
+      "kisaAd": "Ana metal sanayii",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 21,
+      "kod": "25",
+      "ad": "Fabrikasyon metal ürünleri imalatı (makine ve teçhizat hariç)",
+      "kisaAd": "Fabrikasyon metal ürünleri imalatı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 22,
+      "kod": "26",
+      "ad": "Bilgisayarların, elektronik ve optik ürünlerin imalatı",
+      "kisaAd": "Bilgisayar, elektronik ve optik ürün imalatı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 23,
+      "kod": "27",
+      "ad": "Elektrikli teçhizat imalatı",
+      "kisaAd": "Elektrikli teçhizat imalatı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 24,
+      "kod": "28",
+      "ad": "Başka yerde sınıflandırılmamış makine ve ekipman imalatı",
+      "kisaAd": "Makine ve ekipman imalatı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 25,
+      "kod": "29",
+      "ad": "Motorlu kara taşıtı, treyler (römork) ve yarı treyler (yarı römork) imalatı",
+      "kisaAd": "Motorlu kara taşıtı imalatı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 26,
+      "kod": "30",
+      "ad": "Diğer ulaşım araçlarının imalatı",
+      "kisaAd": "Diğer ulaşım araçları imalatı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 27,
+      "kod": "32",
+      "ad": "Diğer imalatlar",
+      "kisaAd": "Diğer imalatlar",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 28,
+      "kod": "33",
+      "ad": "Makine ve ekipmanların kurulumu ve onarımı",
+      "kisaAd": "Makine ve ekipman kurulum-onarımı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 29,
+      "kod": "35",
+      "ad": "Elektrik, gaz, buhar ve havalandırma sistemi üretim ve dağıtımı",
+      "kisaAd": "Elektrik, gaz ve buhar üretim-dağıtımı",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 30,
+      "kod": "38",
+      "ad": "Atığın toplanması, ıslahı ve bertarafı faaliyetleri; maddelerin geri kazanımı",
+      "kisaAd": "Atık toplama, ıslah ve geri kazanım",
+      "guven": "dogrulandi"
+    },
+    {
+      "sira": 31,
+      "kod": "42",
+      "ad": "Bina dışı yapıların inşaatı",
+      "kisaAd": "Bina dışı yapı inşaatı",
+      "guven": "dogrulandi"
+    }
+  ],
+  "detayKodlar": [
+    {
+      "sira": 2,
+      "hamKod": "01.42",
+      "aciklama": "Diğer sığır ve manda yetiştiriciliği",
+      "guven": "dogrulandi",
+      "kod": "01.42"
+    },
+    {
+      "sira": 5,
+      "hamKod": "01.47",
+      "aciklama": "Kümes hayvanları yetiştiriciliği",
+      "guven": "dogrulandi",
+      "kod": "01.47"
+    },
+    {
+      "sira": 6,
+      "hamKod": "01.49",
+      "aciklama": "Diğer hayvan yetiştiriciliği",
+      "guven": "dogrulandi",
+      "kod": "01.49"
+    },
+    {
+      "sira": 7,
+      "hamKod": "24.20",
+      "aciklama": "NACE 24.20 — açıklama kaynak taramasında (Ek-2 OCR) okunamadı",
+      "guven": "ocr-okunamadi",
+      "kod": "24.20"
+    },
+    {
+      "sira": 15,
+      "hamKod": "10.11",
+      "aciklama": "Etin işlenmesi ve saklanması",
+      "guven": "dogrulandi",
+      "kod": "10.11"
+    },
+    {
+      "sira": 16,
+      "hamKod": "10.12",
+      "aciklama": "Kümes hayvanları etlerinin işlenmesi ve saklanması",
+      "guven": "dogrulandi",
+      "kod": "10.12"
+    },
+    {
+      "sira": 17,
+      "hamKod": "10.13",
+      "aciklama": "Bt ve kümes hayvanları etlerinden üretilen ürünlerin imalatı",
+      "guven": "dogrulandi",
+      "kod": "10.13"
+    },
+    {
+      "sira": 18,
+      "hamKod": "10.20",
+      "aciklama": "Balık, kabuklu deniz hayvanları ve yumuşakçaların işlenmesi ve saklanması",
+      "guven": "dogrulandi",
+      "kod": "10.20"
+    },
+    {
+      "sira": 20,
+      "hamKod": "10.32",
+      "aciklama": "Sebze ve meyve suyu imalatı",
+      "guven": "dogrulandi",
+      "kod": "10.32"
+    },
+    {
+      "sira": 21,
+      "hamKod": "10.39",
+      "aciklama": "Başka yerde sınıflandırılmamış meyve ve sebzelerin işlenmesi ve saklanması",
+      "guven": "ocr-tamamlandi",
+      "kod": "10.39"
+    },
+    {
+      "sira": 24,
+      "hamKod": "10.51",
+      "aciklama": "Süthane işletmeciliği ve peynir imalatı",
+      "guven": "dogrulandi",
+      "kod": "10.51"
+    },
+    {
+      "sira": 25,
+      "hamKod": "10.52",
+      "aciklama": "Dondurma imalatı",
+      "guven": "dogrulandi",
+      "kod": "10.52"
+    },
+    {
+      "sira": 26,
+      "hamKod": "10.61",
+      "aciklama": "Öğütülmüş hububat ve sebze ürünleri imalatı",
+      "guven": "dogrulandi",
+      "kod": "10.61"
+    },
+    {
+      "sira": 27,
+      "hamKod": "10.62",
+      "aciklama": "Nişasta ve nişastalı ürünlerin imalatı",
+      "guven": "dogrulandi",
+      "kod": "10.62"
+    },
+    {
+      "sira": 28,
+      "hamKod": "10.71",
+      "aciklama": "Ekmek, taze pastane ürünleri ve taze kek imalatı",
+      "guven": "dogrulandi",
+      "kod": "10.71"
+    },
+    {
+      "sira": 29,
+      "hamKod": "1041",
+      "aciklama": "Sıvı ve katı yağ imalatı",
+      "guven": "dogrulanmadi",
+      "kod": "10.41"
+    },
+    {
+      "sira": 30,
+      "hamKod": "10.73",
+      "aciklama": "Makarna, şehriye, kuskus ve benzeri unlu mamullerin imalatı",
+      "guven": "dogrulandi",
+      "kod": "10.73"
+    },
+    {
+      "sira": 31,
+      "hamKod": "10.81",
+      "aciklama": "Şeker imalatı",
+      "guven": "dogrulandi",
+      "kod": "10.81"
+    },
+    {
+      "sira": 32,
+      "hamKod": "10.82",
+      "aciklama": "Kakao, çikolata ve şekerleme imalatı",
+      "guven": "dogrulandi",
+      "kod": "10.82"
+    },
+    {
+      "sira": 33,
+      "hamKod": "10.83",
+      "aciklama": "Kahve ve çayın işlenmesi",
+      "guven": "dogrulandi",
+      "kod": "10.83"
+    },
+    {
+      "sira": 34,
+      "hamKod": "10.84",
+      "aciklama": "Baharat, sos, sirke ve diğer çeşni maddelerinin imalatı",
+      "guven": "dogrulandi",
+      "kod": "10.84"
+    },
+    {
+      "sira": 35,
+      "hamKod": "10.85",
+      "aciklama": "Hazır yemeklerin imalatı",
+      "guven": "dogrulandi",
+      "kod": "10.85"
+    },
+    {
+      "sira": 36,
+      "hamKod": "10.89",
+      "aciklama": "Başka yerde sınıflandırılmamış diğer gıda maddelerinin imalatı",
+      "guven": "dogrulandi",
+      "kod": "10.89"
+    },
+    {
+      "sira": 37,
+      "hamKod": "11.01",
+      "aciklama": "Alkollü içeceklerin damıtılması, arıtılması ve harmanlanması",
+      "guven": "dogrulandi",
+      "kod": "11.01"
+    },
+    {
+      "sira": 38,
+      "hamKod": "11.02",
+      "aciklama": "Üzümden şarap imalatı",
+      "guven": "dogrulandi",
+      "kod": "11.02"
+    },
+    {
+      "sira": 40,
+      "hamKod": "1107",
+      "aciklama": "Alkolsüz içeceklerin imalatı; maden sularının ve diğer şişelenmiş suların",
+      "guven": "dogrulanmadi",
+      "kod": "11.07"
+    },
+    {
+      "sira": 42,
+      "hamKod": "13.10",
+      "aciklama": "Tekstil elyafının hazırlanması ve bükülmesi",
+      "guven": "dogrulandi",
+      "kod": "13.10"
+    },
+    {
+      "sira": 43,
+      "hamKod": "13.20",
+      "aciklama": "Dokuma",
+      "guven": "dogrulandi",
+      "kod": "13.20"
+    },
+    {
+      "sira": 46,
+      "hamKod": "13.92",
+      "aciklama": "Giyim eşyası dışındaki tamamlanmış tekstil ürünlerinin imalatı",
+      "guven": "dogrulandi",
+      "kod": "13.92"
+    },
+    {
+      "sira": 47,
+      "hamKod": "13.93",
+      "aciklama": "Halı ve kilim imalatı",
+      "guven": "dogrulandi",
+      "kod": "13.93"
+    },
+    {
+      "sira": 48,
+      "hamKod": "1395",
+      "aciklama": "Dokusuz kumaşların ve dokusuz kumaştan yapılan ürünlerin imalatı, giyim eşyası hariç",
+      "guven": "ocr-tamamlandi",
+      "kod": "13.95"
+    },
+    {
+      "sira": 50,
+      "hamKod": "13.99",
+      "aciklama": "Başka yerde sınıflandırılmamış diğer tekstillerin imalatı",
+      "guven": "dogrulandi",
+      "kod": "13.99"
+    },
+    {
+      "sira": 52,
+      "hamKod": "15.11",
+      "aciklama": "Derinin tabaklanması ve işlenmesi; kürkün işlenmesi ve boyanması",
+      "guven": "dogrulandi",
+      "kod": "15.11"
+    },
+    {
+      "sira": 54,
+      "hamKod": "15.20",
+      "aciklama": "Ayakkabı, bot, terlik vb. imalatı",
+      "guven": "dogrulandi",
+      "kod": "15.20"
+    },
+    {
+      "sira": 55,
+      "hamKod": "16.10",
+      "aciklama": "Ağaçların biçilmesi ve planyalanması",
+      "guven": "dogrulandi",
+      "kod": "16.10"
+    },
+    {
+      "sira": 59,
+      "hamKod": "16.29",
+      "aciklama": "NACE 16.29 — açıklama kaynak taramasında (Ek-2 OCR) okunamadı",
+      "guven": "ocr-okunamadi",
+      "kod": "16.29"
+    },
+    {
+      "sira": 60,
+      "hamKod": "17.11",
+      "aciklama": "Kağıt hamuru imalatı",
+      "guven": "dogrulandi",
+      "kod": "17.11"
+    },
+    {
+      "sira": 64,
+      "hamKod": "20.11",
+      "aciklama": "Sanayi gazları imalatı",
+      "guven": "dogrulandi",
+      "kod": "20.11"
+    },
+    {
+      "sira": 65,
+      "hamKod": "20.12",
+      "aciklama": "Boya maddeleri ve pigment imalatı",
+      "guven": "dogrulandi",
+      "kod": "20.12"
+    },
+    {
+      "sira": 66,
+      "hamKod": "20.13",
+      "aciklama": "Diğer inorganik temel kimyasal maddelerin imalatı",
+      "guven": "dogrulandi",
+      "kod": "20.13"
+    },
+    {
+      "sira": 69,
+      "hamKod": "20.16",
+      "aciklama": "Birincil formda plastik hammaddelerin imalatı",
+      "guven": "dogrulandi",
+      "kod": "20.16"
+    },
+    {
+      "sira": 70,
+      "hamKod": "20.17",
+      "aciklama": "Birincil formda sentetik kauçuk imalatı",
+      "guven": "dogrulandi",
+      "kod": "20.17"
+    },
+    {
+      "sira": 71,
+      "hamKod": "20.20",
+      "aciklama": "Haşere ilaçları ve diğer zirai-kimyasal ürünlerin imalatı",
+      "guven": "dogrulandi",
+      "kod": "20.20"
+    },
+    {
+      "sira": 75,
+      "hamKod": "20.59",
+      "aciklama": "Başka yerde sınıflandırılmamış diğer kimyasal ürünlerin imalatı",
+      "guven": "dogrulandi",
+      "kod": "20.59"
+    },
+    {
+      "sira": 76,
+      "hamKod": "20.60",
+      "aciklama": "Suni veya sentetik elyaf imalatı",
+      "guven": "dogrulandi",
+      "kod": "20.60"
+    },
+    {
+      "sira": 78,
+      "hamKod": "22.11",
+      "aciklama": "İç ve dış lastik imalatı; İastiğe sırt geçirilmesi ve yeniden işlenmesi",
+      "guven": "dogrulandi",
+      "kod": "22.11"
+    },
+    {
+      "sira": 79,
+      "hamKod": "22.19",
+      "aciklama": "Diğer kauçuk ürünleri imalatı",
+      "guven": "dogrulandi",
+      "kod": "22.19"
+    },
+    {
+      "sira": 80,
+      "hamKod": "22.21",
+      "aciklama": "Plastik tabaka, levha, tüp ve profil imalatı",
+      "guven": "dogrulandi",
+      "kod": "22.21"
+    },
+    {
+      "sira": 82,
+      "hamKod": "22.23",
+      "aciklama": "Plastik inşaat malzemesi imalatı",
+      "guven": "dogrulandi",
+      "kod": "22.23"
+    },
+    {
+      "sira": 83,
+      "hamKod": "22.29",
+      "aciklama": "Diğer plastik ürünlerin imalatı",
+      "guven": "dogrulandi",
+      "kod": "22.29"
+    },
+    {
+      "sira": 84,
+      "hamKod": "23.11",
+      "aciklama": "Düz cam imalatı",
+      "guven": "dogrulandi",
+      "kod": "23.11"
+    },
+    {
+      "sira": 85,
+      "hamKod": "23.13",
+      "aciklama": "Çukur cam imalatı",
+      "guven": "dogrulandi",
+      "kod": "23.13"
+    },
+    {
+      "sira": 86,
+      "hamKod": "23.14",
+      "aciklama": "Cam elyafı imalatı",
+      "guven": "dogrulandi",
+      "kod": "23.14"
+    },
+    {
+      "sira": 87,
+      "hamKod": "23.20",
+      "aciklama": "Ateşe dayanıklı (refrakter) ürünlerin imalatı",
+      "guven": "dogrulandi",
+      "kod": "23.20"
+    },
+    {
+      "sira": 88,
+      "hamKod": "23.31",
+      "aciklama": "Seramik karo ve kaldırım taşları imalatı",
+      "guven": "dogrulandi",
+      "kod": "23.31"
+    },
+    {
+      "sira": 91,
+      "hamKod": "23.52",
+      "aciklama": "Kireç ve alçı imalatı",
+      "guven": "dogrulandi",
+      "kod": "23.52"
+    },
+    {
+      "sira": 92,
+      "hamKod": "23.61",
+      "aciklama": "İnşaat amaçlı beton ürünlerin imalatı",
+      "guven": "dogrulandi",
+      "kod": "23.61"
+    },
+    {
+      "sira": 93,
+      "hamKod": "23.62",
+      "aciklama": "İnşaat amaçlı alçı ürünlerin imalatı",
+      "guven": "dogrulandi",
+      "kod": "23.62"
+    },
+    {
+      "sira": 94,
+      "hamKod": "23.64",
+      "aciklama": "Toz harç imalatı",
+      "guven": "dogrulandi",
+      "kod": "23.64"
+    },
+    {
+      "sira": 95,
+      "hamKod": "2399",
+      "aciklama": "Başka yerde sınıflandırılmamış metalik olmayan diğer mineral ürünlerin",
+      "guven": "ocr-kismi",
+      "kod": "23.99"
+    },
+    {
+      "sira": 96,
+      "hamKod": "24.10",
+      "aciklama": "Ana demir ve çelik ürünleri ile ferro alaşımların imalatı",
+      "guven": "dogrulandi",
+      "kod": "24.10"
+    },
+    {
+      "sira": 98,
+      "hamKod": "2431",
+      "aciklama": "Barların soğuk çekilmesi",
+      "guven": "dogrulanmadi",
+      "kod": "24.31"
+    },
+    {
+      "sira": 99,
+      "hamKod": "24.37",
+      "aciklama": "Dar şeritlerin soğuk haddelenmesi",
+      "guven": "dogrulandi",
+      "kod": "24.37"
+    },
+    {
+      "sira": 102,
+      "hamKod": "24.47",
+      "aciklama": "Alüminyum üretimi",
+      "guven": "dogrulandi",
+      "kod": "24.47"
+    },
+    {
+      "sira": 103,
+      "hamKod": "24.51",
+      "aciklama": "Demir döküm",
+      "guven": "dogrulandi",
+      "kod": "24.51"
+    },
+    {
+      "sira": 104,
+      "hamKod": "24.52",
+      "aciklama": "Çelik dökümü",
+      "guven": "dogrulandi",
+      "kod": "24.52"
+    },
+    {
+      "sira": 105,
+      "hamKod": "24.53",
+      "aciklama": "Hafif metallerin dökümü",
+      "guven": "dogrulandi",
+      "kod": "24.53"
+    },
+    {
+      "sira": 106,
+      "hamKod": "24.54",
+      "aciklama": "Diğer demir dışı metallerin dökümü",
+      "guven": "dogrulandi",
+      "kod": "24.54"
+    },
+    {
+      "sira": 108,
+      "hamKod": "2591",
+      "aciklama": "Merkezi ısıtma radyatörleri (elektrikli radyatörler hariç) ve sıcak su kazanları (boylerleri) imalatı",
+      "guven": "ocr-tamamlandi",
+      "kod": "25.91"
+    },
+    {
+      "sira": 109,
+      "hamKod": "75 30",
+      "aciklama": "Buhar jeneratörü imalatı, merkezi ısıtma sıcak su kazanları (boylerleri) hariç",
+      "guven": "ocr-tamamlandi",
+      "kod": "25.30"
+    },
+    {
+      "sira": 110,
+      "hamKod": "25.50",
+      "aciklama": "Metallerin dövülmesi, preslenmesi, baskılanması ve yuvarlanması; toz metalürjisi",
+      "guven": "dogrulandi",
+      "kod": "25.50"
+    },
+    {
+      "sira": 113,
+      "hamKod": "25.71",
+      "aciklama": "Çatal-bıçak takımları ve diğer kesici aletlerin imalatı",
+      "guven": "dogrulandi",
+      "kod": "25.71"
+    },
+    {
+      "sira": 114,
+      "hamKod": "25.73",
+      "aciklama": "Eİ aletleri, takım tezgahı uçları, testere ağızları vb. imalatı",
+      "guven": "dogrulandi",
+      "kod": "25.73"
+    },
+    {
+      "sira": 115,
+      "hamKod": "25.92",
+      "aciklama": "Metalden hafif paketleme malzemeleri imalatı",
+      "guven": "dogrulandi",
+      "kod": "25.92"
+    },
+    {
+      "sira": 116,
+      "hamKod": "25.93",
+      "aciklama": "Tel ürünleri, zincir ve yayların imalatı",
+      "guven": "dogrulandi",
+      "kod": "25.93"
+    },
+    {
+      "sira": 117,
+      "hamKod": "25.94",
+      "aciklama": "Bağlantı malzemelerinin ve vida makinesi ürünlerinin imalatı",
+      "guven": "dogrulandi",
+      "kod": "25.94"
+    },
+    {
+      "sira": 118,
+      "hamKod": "25.99",
+      "aciklama": "Başka yerde sınıflandırılmamış diğer fabrikasyon metal ürünlerin imalatı",
+      "guven": "dogrulandi",
+      "kod": "25.99"
+    },
+    {
+      "sira": 121,
+      "hamKod": "27.11",
+      "aciklama": "Elektrik motorlarının, jeneratörlerin ve transformatörlerin imalatı",
+      "guven": "dogrulandi",
+      "kod": "27.11"
+    },
+    {
+      "sira": 122,
+      "hamKod": "27.12",
+      "aciklama": "Elektrik dağıtım ve kontrol cihazları imalatı",
+      "guven": "dogrulandi",
+      "kod": "27.12"
+    },
+    {
+      "sira": 123,
+      "hamKod": "27.20",
+      "aciklama": "Akümülatör ve pil imalatı",
+      "guven": "dogrulandi",
+      "kod": "27.20"
+    },
+    {
+      "sira": 125,
+      "hamKod": "27.32",
+      "aciklama": "Diğer elektronik ve elektrik telleri ve kablolarının imalatı",
+      "guven": "dogrulandi",
+      "kod": "27.32"
+    },
+    {
+      "sira": 126,
+      "hamKod": "27.40",
+      "aciklama": "Elektrikli aydınlatma ekipmanlarının imalatı",
+      "guven": "dogrulandi",
+      "kod": "27.40"
+    },
+    {
+      "sira": 127,
+      "hamKod": "27.51",
+      "aciklama": "Elektrikli ev aletlerinin imalatı",
+      "guven": "dogrulandi",
+      "kod": "27.51"
+    },
+    {
+      "sira": 129,
+      "hamKod": "28.14",
+      "aciklama": "Diğer musluk ve valf/vana imalatı",
+      "guven": "dogrulandi",
+      "kod": "28.14"
+    },
+    {
+      "sira": 130,
+      "hamKod": "28.15",
+      "aciklama": "Rulman, dişli/dişli takımı, şanzıman ve tahrik elemanlarının imalatı",
+      "guven": "dogrulandi",
+      "kod": "28.15"
+    },
+    {
+      "sira": 133,
+      "hamKod": "28.97",
+      "aciklama": "Maden, taş ocağı ve inşaat makineleri imalatı",
+      "guven": "dogrulandi",
+      "kod": "28.97"
+    },
+    {
+      "sira": 134,
+      "hamKod": "28.94",
+      "aciklama": "Tekstil, giyim eşyası ve deri üretiminde kullanılan makinelerin imalatı",
+      "guven": "dogrulandi",
+      "kod": "28.94"
+    },
+    {
+      "sira": 135,
+      "hamKod": "28.99",
+      "aciklama": "Başka yerde sınıflandırılmamış diğer özel amaçlı makinelerin imalatı",
+      "guven": "dogrulandi",
+      "kod": "28.99"
+    },
+    {
+      "sira": 136,
+      "hamKod": "29.10",
+      "aciklama": "Motorlu kara taşıtlarının imalatı",
+      "guven": "dogrulandi",
+      "kod": "29.10"
+    },
+    {
+      "sira": 138,
+      "hamKod": "29.32",
+      "aciklama": "Motorlu kara taşıtları için diğer parça ve aksesuarların imalatı",
+      "guven": "dogrulandi",
+      "kod": "29.32"
+    }
+  ],
+  "duzeltme_notu": "10.10.2026: Ek-2 OCR ile satır satır karşılaştırıldı (brif 1.8); 10.20 ve 25.50 tamamlandı, 16.29 ve 24.20 kaynakta okunamadı diye işaretlendi, satır sonu kesilen açıklamalar devam satırıyla tamamlandı ya da \"ocr-kismi\" işaretlendi; eksik \"kod\" alanları hamKod rakamlarından türetildi."
 }

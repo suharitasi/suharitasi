@@ -5,12 +5,11 @@
 // Gazete sayısı rg-sayi.js'in DOĞRULANMIŞ URL→sayı çıkarımıyla türetilir.
 // Bu katman yalnız ARŞİV GÖRÜNÜMÜ üretir; "açık/kapalı" sınıflaması
 // ÜRETMEZ (bkz. src/data/kisit-sorgu.js aynı ilke).
-import ana from '../../veri/potansiyel/isletme-sahalari.json';
-import ek from '../../veri/potansiyel/isletme-sahalari-ek.json';
+import { RG_BASLIK, RG_ILAN, RG_HAM, RG_SAYIM, RG_GRUPLAR } from './rg-kaynak.js';
 import { sayiIle } from './rg-sayi.js';
-import { kisitNormalize } from './ortak-normalize.js';
 
-const HAM = [...ana.kayitlar, ...ek.kayitlar];
+// 10.10.2026: kaynak rg-kaynak.js (başlık + yeniden ayrıştırılmış ilan kayıtları).
+const HAM = RG_HAM;
 
 function yilCikar(tarih) {
   const m = /^(\d{2})\.(\d{2})\.(\d{4})$/.exec(tarih || '');
@@ -34,6 +33,7 @@ export const KAYITLAR = HAM.map((k) => {
     il,
     ilce,
     durum: k.durum || 'belirsiz',
+    ilNotu: k.il_notu || '',
     tur: duz(k.mevzuat_turu),
     sayi: sayi.sayi,
     kaynak: k.kaynak_url || '',
@@ -61,9 +61,11 @@ export const YIL_DAGILIM = [...yilHaritasi.entries()]
   .sort((a, b) => a.yil - b.yil);
 export const YIL_MAKS = Math.max(...YIL_DAGILIM.map((y) => y.sayi));
 
+// İl dağılımı TEKİL İLANDAN sayılır (10.10.2026, sahip kararı B): il sayfaları, istihbarat ve kısıt
+// sorgusu ile aynı sayı. Ham kayıt listesi aşağıda ayrıca durur.
 const ilHaritasi = new Map();
-for (const k of KAYITLAR) {
-  for (const il of k.il) ilHaritasi.set(il, (ilHaritasi.get(il) || 0) + 1);
+for (const g of RG_GRUPLAR) {
+  for (const il of g.il) ilHaritasi.set(il, (ilHaritasi.get(il) || 0) + 1);
 }
 export const IL_DAGILIM = [...ilHaritasi.entries()]
   .map(([il, sayi]) => ({ il, sayi }))
@@ -76,15 +78,17 @@ export const ILLI_DEGIL = TOPLAM - ILLI_TOPLAM;
 export const SAYILI_TOPLAM = KAYITLAR.filter((k) => k.sayi != null).length;
 // Mükerrersizleştirme (aynı normalizasyon /kisit.json ile ortak) — künyede
 // "419 ham kayıt, N tekil ilan" notu için. Çelişki değil, ölçüm.
-export const TEKIL_ILAN = kisitNormalize(ana.kayitlar, ek.kayitlar).length;
+export const TEKIL_ILAN = RG_SAYIM.tekil;
+export const TEKIL_ILSIZ = RG_SAYIM.tekilIlsiz;
 
 // — Build-time assert (sessiz hata yasağı) —
 {
-  if (TOPLAM !== 419) throw new Error(`rg-zaman: 419 kayıt beklenirken ${TOPLAM} bulundu.`);
-  if (YIL_ILK !== 1963 || YIL_SON !== 2017) {
-    throw new Error(`rg-zaman: yıl aralığı 1963–2017 beklenirken ${YIL_ILK}–${YIL_SON} bulundu.`);
+  // Sabit sayı yerine kaynak dosyanın kendi künyesiyle tutarlılık (10.10.2026, brif 2.1).
+  if (TOPLAM !== RG_SAYIM.toplam) throw new Error(`rg-zaman: ${RG_SAYIM.toplam} kayıt beklenirken ${TOPLAM} bulundu.`);
+  if (YIL_ILK !== 1963 || YIL_SON < 2017) {
+    throw new Error(`rg-zaman: yıl aralığı 1963'ten en az 2017'ye uzanmalı; ${YIL_ILK}–${YIL_SON} bulundu.`);
   }
-  if (IL_SAYISI !== 70) throw new Error(`rg-zaman: 70 il beklenirken ${IL_SAYISI} bulundu.`);
+  if (!IL_SAYISI) throw new Error('rg-zaman: hiçbir kayıt il taşımıyor.');
   const kaynaksiz = KAYITLAR.filter((k) => !k.kaynak).length;
   if (kaynaksiz) throw new Error(`rg-zaman: ${kaynaksiz} kaydın resmî kaynak URL'si yok.`);
 }

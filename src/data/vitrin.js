@@ -12,7 +12,7 @@ import { join } from 'node:path';
 import yasKutleleri from '../../veri/potansiyel/yas-kutleleri.json';
 import kutleIl from '../../veri/potansiyel/kutle-il.json';
 import isletme from '../../veri/potansiyel/isletme-sahalari.json';
-import isletmeEk from '../../veri/potansiyel/isletme-sahalari-ek.json';
+import { RG_ILAN, RG_SAYIM, RG_ILAN_NOTU } from './rg-kaynak.js';
 import zengin from '../../veri/potansiyel/zenginlestirme.json';
 import { AKADEMIK_SAYIM } from './potansiyel.js';
 import graceTurkiye from '../../data/canli/grace-turkiye.json';
@@ -53,7 +53,7 @@ function dosyaSay(gorece) {
 }
 
 // — RG işletme sahası arşivi —
-const rgKayitlar = [...isletme.kayitlar, ...isletmeEk.kayitlar];
+const rgKayitlar = [...isletme.kayitlar, ...RG_ILAN];
 const rgToplam = pozitif(rgKayitlar.length, 'RG kaydı');
 const rgYillar = rgKayitlar
   .map((k) => /^(\d{2})\.(\d{2})\.(\d{4})$/.exec(k.rg_tarih || ''))
@@ -109,7 +109,7 @@ const oz = zengin.ozet;
    Elenenler ve gerekçesi (kayda geçsin diye burada):
      · akademik künye (1.979) — (a) DÜŞER: OpenAlex'te toplu sorgulanabilir.
      · MTA katalog (356)      — (a) DÜŞER: MTA e-ticaret katalogunda toplu.
-     · GRACE serisi (254 ay)  — (a) ve (c) DÜŞER: NASA yayını + ruhsata dolaylı.
+     · GRACE serisi (254 ay, 2002-04 – 2026-03)  — (a) ve (c) DÜŞER: NASA yayını + ruhsata dolaylı.
      · morfoloji (81 il)      — (c) DÜŞER: türev gösterge, işleme dolaylı bağlı.
    Üç şartı da sağlayan ilk üç, kayıt sayısına göre: kütleler > RG > kurum. */
 export const KANIT_BANDI = [
@@ -140,9 +140,9 @@ export const KANIT_BANDI = [
 export const ARSIV_SETLERI = [
   {
     ad: 'Resmî Gazete — yeraltı suyu işletme sahası ilanları',
-    kaynak: 'T.C. Resmî Gazete (resmigazete.gov.tr) — başlık araması + ilan/arşiv içerik taraması',
+    kaynak: 'T.C. Resmî Gazete (resmigazete.gov.tr) — başlık araması + ilan/arşiv metninden yeniden ayrıştırma (10.10.2026)',
     kapsam: `${rgIlk}-${rgSon}`,
-    sayim: `${rgToplam} kayıt (${isletme.kayitlar.length} başlık + ${isletmeEk.kayitlar.length} ilan pasajı) · ${rgIl} ile eşlendi · ${rgSayiliToplam}'inde gazete sayısı künyeli`,
+    sayim: `${rgToplam} kayıt (${isletme.kayitlar.length} başlık + ${RG_ILAN.length} ilan kaydı; ${RG_SAYIM.ilanIlDogrulanamadi} ilan kaydında il doğrulanamadı) · ${rgIl} ile eşlendi · ${rgSayiliToplam}'inde gazete sayısı künyeli`,
     erisim: 'Her kayıt il sayfalarında künyesiyle görüntülenir; kaynak bağlantısı Resmî Gazete arşivine gider.',
     yol: '/nerede-su-cikar/',
   },
@@ -188,7 +188,7 @@ export const ARSIV_SETLERI = [
   },
   {
     ad: 'Kurum × işlem yetki matrisi',
-    kaynak: 'Mevzuat metinleri (Apilex araştırma çıktısı) + kurum kuruluş düzenlemeleri',
+    kaynak: 'Mevzuat metinleri (ikincil araştırma çıktısı; resmî doğrulama bekliyor) + kurum kuruluş düzenlemeleri',
     kapsam: `${islemSayisi} su işlemi`,
     sayim: `${kurumSayisi} kurum kaydı`,
     erisim: 'Tamamı "Hangi kurum?" sayfasında tablo olarak görüntülenir.',
@@ -235,7 +235,8 @@ if (ARSIV_OZ_CEVAP.length > 280) {
    %100 doğrulanamıyorsa yayımlanmaz (GUNLUK 28.07 kuralı). Bunun yerine RG
    pasajının KENDİSİ alıntılanır — sitede zaten kullanılan desen
    (IlPotansiyel "RG ilan pasajları … dizgi hatası içerebilir"). */
-const kapatmaHam = isletmeEk.kayitlar.filter((k) => /tahsise kapatma/i.test(k.durum || ''));
+// 10.10.2026: kaynak v2 ilan kayıtları (il kaynaktan doğrulanmış; rg-kaynak.js).
+const kapatmaHam = RG_ILAN.filter((k) => /tahsise kapatma/i.test(k.durum || ''));
 if (!kapatmaHam.length) throw new Error('vitrin: tahsise kapatma kaydı bulunamadı.');
 for (const k of kapatmaHam) {
   if (!/^\d{2}\.\d{2}\.\d{4}$/.test(k.rg_tarih || '')) {
@@ -250,6 +251,10 @@ export const KAPATMA_KAYITLARI = kapatmaHam
     tarih: k.rg_tarih,
     durum: k.durum,
     url: k.kaynak_url,
+    il: k.il,
+    ilNotu: k.il_notu || '',
+    ilKaynagi: k.il_kaynagi,
+    saha: k.saha_adi,
     // Gazete sayısı: ilan kayıtları API'den sayı taşımaz, arşiv URL'sinden
     // türetilir (yöntem + iki bağımsız doğrulama: src/data/rg-sayi.js).
     // Türetilemeyende alan yok — uydurulmaz.
@@ -267,7 +272,7 @@ export const KAPATMA_OZET = {
 
 // Şerh METNİ tek kaynak: sayfada da, şemada da bu kullanılır — sapmasın.
 export const KAPATMA_SERHI =
-  'Bu kayıtların hangi ile ait olduğu doğrulanmadı; il eşlemesi yapılmamıştır. ' +
-  'Kayıtlar Resmî Gazete arşivinin taranmasıyla derlenmiştir ve pasajlar dizgi ' +
-  'hatası içerebilir. İlan tarihi itibarıyla verilen bilgidir; güncel durum ' +
-  'Devlet Su İşleri\'nden teyit edilmelidir.';
+  RG_ILAN_NOTU + ' ' +
+  'Kayıtlar Resmî Gazete ilan ve arşiv sayfalarının metninden derlenmiştir; eski ' +
+  'sayıların pasajları dizgi hatası içerebilir. İlan tarihi itibarıyla verilen ' +
+  'bilgidir; güncel durum Devlet Su İşleri\'nden teyit edilmelidir.';

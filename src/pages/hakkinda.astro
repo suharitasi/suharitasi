@@ -2,6 +2,10 @@
 import Sayfa from '../layouts/Sayfa.astro';
 import SayfaBasi from '../components/SayfaBasi.astro';
 import { YAZAR, EPOSTA } from '../data/site';
+import OnayBekliyor from '../components/OnayBekliyor.astro';
+
+// Sayfa tarihi (brif 3.4): son içerik değişikliği.
+const SAYFA_TARIHI = new Date('2026-10-10');
 
 const kok = new URL('/', Astro.site).href;
 
@@ -18,10 +22,12 @@ const sema = [];
   baslik="Hakkında"
   aciklama="suharitasi.com: Türkiye'nin su verisi, havzaları ve su mevzuatını tek haritada birleştiren bağımsız bilgi portalı. İçeriği kim, hangi yöntemle hazırlıyor."
   sema={sema}
+  guncelleme={SAYFA_TARIHI}
 >
   <SayfaBasi
     baslik="Hakkında"
     ozet="Bu portalın ne olduğu, içeriği kimin hazırladığı ve verinin hangi yöntemle derlendiği."
+    tarih={SAYFA_TARIHI}
     ozCevap
   />
   <div class="icerik">
@@ -38,6 +44,7 @@ const sema = [];
       <a href={YAZAR.buroUrl} target="_blank" rel="noopener">{YAZAR.ad} ({YAZAR.buro})</a>{' '}
       tarafından hazırlanmaktadır. {YAZAR.uzmanlik}
     </p>
+    <p>Baro ve sicil: {YAZAR.baro}, sicil no {YAZAR.sicil}.</p>
     <p>
       Rehberlerin her biri yayın ve güncelleme tarihiyle birlikte yayımlanır;
       mevzuat değiştiğinde ilgili rehber güncellenir ve tarihi yenilenir.
@@ -55,8 +62,8 @@ const sema = [];
         alıntı olduğu görsel olarak ayrılır.
       </li>
       <li>
-        Emsal karar künyeleri resmî kaynaktan doğrulanana kadar
-        "doğrulama sürecindedir" şerhiyle yayımlanır; şerh kalkmadan karar
+        Emsal karar künyeleri resmî karar sunucusundan (karararama.danistay.gov.tr)
+        doğrulanır; doğrulanamayan künye "doğrulanamadı" etiketiyle yayımlanır ve
         kesinleşmiş içtihat gibi sunulmaz.
       </li>
       <li>
@@ -65,7 +72,7 @@ const sema = [];
       </li>
     </ul>
 
-    <h2>Veri kaynağı politikası nedir?</h2>
+    <h2 id="veri-kaynagi-politikasi">Veri kaynağı politikası nedir?</h2>
     <ul>
       <li>
         Sayısal veriler kamu kurumlarının açık kaynaklarından derlenir —
@@ -88,6 +95,33 @@ const sema = [];
         derlenmiştir; iller havzalara kısmen girebildiğinden eşleşmeler
         yaklaşıktır ve bu not ilgili sayfalarda görünür.
       </li>
+    </ul>
+
+    <h2 id="duzeltme-politikasi">Hata bildirimi ve düzeltme</h2>
+    <OnayBekliyor kaynak="Taslak (DURAK 1 C, 10.10.2026) — kişisel bilgi içermez; sitede uygulanan yöntemi anlatır." />
+    <ul>
+      <li>Bir veri, kaynak ya da hukuki bilgi hatası{' '}
+        <a href={`mailto:${EPOSTA}`}>{EPOSTA}</a> adresine bildirilebilir.</li>
+      <li>Bildirilen hata, sayfanın dayandığı resmî kaynakla karşılaştırılır. Hata
+        doğrulanırsa ilgili sayfa düzeltilir ve sayfadaki güncelleme tarihi yenilenir.</li>
+      <li>Hata kaynağın kendisindeyse (ör. kurumun yayımladığı tabloda) kaynak değeri
+        değiştirilmez; sayfada durum not olarak belirtilir.</li>
+      <li>Resmî kaynakta doğrulanamayan bilgi düzeltilmiş gibi sunulmaz; "doğrulanamadı"
+        diye işaretlenir.</li>
+    </ul>
+
+    <h2 id="arac-kullanimi">Hangi araçlar kullanılıyor?</h2>
+    <OnayBekliyor kaynak="Taslak (DURAK 1 C, 10.10.2026) — kişisel bilgi içermez." />
+    <ul>
+      <li>Kamu kaynaklarından veri indirme, tablo okuma ve sayfa üretimi yazılımla
+        yapılır; bu yazılımın geliştirilmesinde yapay zekâ destekli bir kodlama aracı
+        (Claude Code) kullanılır.</li>
+      <li>Taranmış eski belgelerin (ör. 1960–1980 Resmî Gazete sayıları) metni optik
+        karakter tanıma ile okunur; bu metinler dizgi hatası içerebilir ve her alıntı
+        resmî kaynağa bağlantıyla verilir.</li>
+      <li>Hukuki metinler yalnız resmî kaynağa dayanır; kaynak ve erişim tarihi
+        metnin yanında yazılır. Hukuki metin taşıyan sayfalarda son hukuki kontrol
+        tarihi gösterilir.</li>
     </ul>
 
     <h2>İletişim</h2>

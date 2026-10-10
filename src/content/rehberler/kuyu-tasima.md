@@ -2,6 +2,8 @@
 baslik: "Kuyu taşıma: kuruyan, çöken veya kirlenen kuyuda hukuki yol"
 ozet: "Kuruyan, çöken veya kirlenen bir yeraltı suyu kuyusunda ıslah-tadil ile yeni arama/kullanma belgesi arasındaki ayrım; kuyu taşımanın neden çoğu kez yeni ruhsat gerektirdiği; DSİ'ye sunulacak teknik ve hukuki evrakın tam listesi ve başvuru şeması."
 tarih: 2026-07-21
+onayBekliyor: true
+onayKaynak: "Karar tablosu süre hücreleri: 2577 m.7, m.8, m.10; 167 m.13; 2942 m.14; 5326 m.27/1, m.27/8 (resmî metinler, erişim 10.10.2026)"
 kume: surec
 ilgili: [kuyu-ruhsati, ruhsatsiz-kuyu-cezalari, kuyu-belgesi-iptal-davalari, yeralti-suyu-isletme-sahasi]
 ozCevap: "Kuyu taşınması hukuken çoğu kez 'aynı ruhsatı başka yere götürmek' değildir: yeni noktada sondaj gerekiyorsa yeni arama, ardından yeni kullanma belgesi alınır. Mevcut kuyu onarılabiliyorsa ıslah-tadil yeterli olabilir. Bu belgeler harca ve damga resmine tabi değildir (167 s.K. m.12)."
@@ -9,17 +11,17 @@ seoBaslik: "Kuyu Taşıma: Kuruyan Kuyuda Yeni Ruhsat ve Islah"
 karar:
   - senaryo: "Kuruyan/çöken kuyu (onarılabilir)"
     merci: "DSİ"
-    sure: "Doğrulanmış süre yok"
+    sure: "Başvuruya bir ay içinde cevap (167 m.13); ret işlemine karşı 60 gün, idare mahkemesi (2577 m.7)"
     ceza: "Belgeler harç ve damga resminden muaf (167 m.12)"
     emsal: "Islah-tadil belgesi (167)"
   - senaryo: "Kuyu taşıma (yeni noktada sondaj)"
     merci: "DSİ"
-    sure: "Doğrulanmış süre yok"
+    sure: "Başvuruya bir ay içinde cevap (167 m.13); ret işlemine karşı 60 gün, idare mahkemesi (2577 m.7)"
     ceza: "Belgeler harç ve damga resminden muaf (167 m.12)"
     emsal: "Yeni arama + yeni kullanma belgesi gerekir"
   - senaryo: "Kirlenen kuyu"
     merci: "DSİ; sağlık/çevre incelemesi"
-    sure: "Doğrulanmış süre yok"
+    sure: "Doğrulanamadı (resmî metinde süre bulunamadı)"
     ceza: "Çoğu kez yeni izin gerekir"
     emsal: "Doğrulanmış içtihat yok"
 ---

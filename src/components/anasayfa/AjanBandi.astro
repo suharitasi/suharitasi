@@ -11,7 +11,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import mevzuat from '../../../data/kamu/mevzuat-maddeleri.json';
-import emsal from '../../../data/kamu/emsal-kararlar.json';
+import { EMSAL_DOGRULANAN } from '../../data/emsal.js';
 import havzaVeri from '../../../data/havza-veri.json';
 
 const mcpKaynak = readFileSync(join(process.cwd(), 'functions', 'mcp.js'), 'utf8');
@@ -19,7 +19,7 @@ const aracSayi = [...mcpKaynak.matchAll(/^ {4}name: '([a-z_]+)',/gm)].length;
 if (aracSayi !== 8) throw new Error(`ajan-bandi: MCP araç sayısı beklenen 8 değil (${aracSayi}).`);
 
 const maddeler = mevzuat.maddeler.length;
-const emsaller = emsal.kararlar.length;
+const emsaller = EMSAL_DOGRULANAN.length;
 const havzalar = havzaVeri.havzalar.length;
 
 const KARTLAR = [
@@ -64,7 +64,7 @@ const IKONLAR = {
       <p class="v2-bolum-kicker">Açık altyapı</p>
       <h2>Veri yalnız insanlar için değil, makineler için de okunur</h2>
       <p class="v2-intro">
-        {havzalar} havza ve {maddeler} mevzuat maddesinin tamamı; JSON uçları,
+        {havzalar} havzanın JSON uçları ve {maddeler} mevzuat maddesinin arama dizini (/veri/mevzuat-arama.json),
         OpenAPI şeması ve {aracSayi} araçlık bir MCP ucuyla yapay zekâ
         ajanlarına ve geliştiricilere de açık. Amaç, su hukuku bilgisinin
         kaynağı gösterilmiş biçimde dolaşmasıdır.

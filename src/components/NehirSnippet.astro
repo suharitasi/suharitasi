@@ -75,7 +75,7 @@ const satirlar = [
   {havza && (
     <p class="nh-kopru">
       Bu akarsuyun yeraltı su rezervi ve kuyu kısıtları için →
-      <a href={`/havzalar/${havza.slug}/`}>{havza.ad} Havzası Hidrojeoloji Raporu</a>.
+      <a href={`/havzalar/${havza.slug}/`}>{String(havza.ad).replace(/\s*Havzası\s*$/, '')} Havzası Hidrojeoloji Raporu</a>.
     </p>
   )}
 </div>

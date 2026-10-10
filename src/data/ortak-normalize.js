@@ -75,32 +75,51 @@ export function pasajIlleri(pasaj, adayIller, ilceler = null, pencere = PENCERE)
   return yakin.length ? yakin : iller;
 }
 
-export function kisitNormalize(anaKayitlar = [], ekKayitlar = []) {
-  const gorulen = new Set();
-  const out = [];
+/** RG kayıtlarını TEKİL İLANA indirir (10.10.2026, sahip kararı B + brif 2.1): aynı Resmî Gazete
+ *  sayısı (kaynak URL + tarih) ve aynı durum tek kayıttır; iller birleşir. Başlık (fihrist) kaydı ile
+ *  aynı sayıdaki ilan pasajı böylece iki kez sayılmaz. İl'siz gruplar da döner (ilNotu ile); il
+ *  sayfası ve kisit.json yalnız illi grupları kullanır (kisitNormalize). */
+export function rgGruplari(anaKayitlar = [], ekKayitlar = []) {
+  const gruplar = new Map();
   for (const k of [...anaKayitlar, ...ekKayitlar]) {
     const ilHam = k.il;
     let iller = (Array.isArray(ilHam) ? ilHam : (ilHam ? [ilHam] : [])).filter((x) => x && !BELIRSIZ.test(x));
-    // Pasaj (saha adı taşımayan OCR) kaydında il listesi yakınlık kuralından geçer.
-    if (!k.saha_adi && k.pasaj) iller = pasajIlleri(k.pasaj, iller, k.ilceler);
-    if (!iller.length) continue;
+    // Eski pasaj kaydında (il_kaynagi yok) il listesi yakınlık kuralından geçer; v2 kaydında il
+    // kaynak metinden doğrulanmıştır.
+    if (!k.saha_adi && k.pasaj && !k.il_kaynagi) iller = pasajIlleri(k.pasaj, iller, k.ilceler);
+    const anahtar = `${k.kaynak_url || ''}|${k.rg_tarih || ''}|${k.durum || ''}`;
+    let g = gruplar.get(anahtar);
+    if (!g) {
+      g = { il: new Set(), ilce: new Set(), durum: k.durum || 'belirsiz', tarih: k.rg_tarih || '', kaynak: k.kaynak_url || '', saha: '', pasaj: '', ilNotu: '', ilKaynagi: new Set(), kayit: 0 };
+      gruplar.set(anahtar, g);
+    }
+    g.kayit += 1;
+    for (const il of iller) g.il.add(il);
+    if (k.ilceler && typeof k.ilceler === 'object') for (const ic of Object.keys(k.ilceler)) g.ilce.add(ic);
     const saha = (k.saha_adi || '').replace(/\s+/g, ' ').trim().slice(0, 200);
-    const anahtar = `${k.kaynak_url || ''}|${k.rg_tarih || ''}|${k.durum || ''}|${ilKimlik(iller)}`;
-    if (gorulen.has(anahtar)) continue;
-    gorulen.add(anahtar);
-    out.push({
-      il: iller,
-      ilce: k.ilceler && typeof k.ilceler === 'object' ? Object.keys(k.ilceler) : [],
-      durum: k.durum || 'belirsiz',
-      tarih: k.rg_tarih || '',
-      kaynak: k.kaynak_url || '',
-      saha,
-    });
+    if (!g.saha && saha) g.saha = saha;
+    if (!g.pasaj && k.pasaj) g.pasaj = String(k.pasaj).replace(/\s+/g, ' ').trim();
+    if (!g.ilNotu && k.il_notu) g.ilNotu = k.il_notu;
+    if (k.il_kaynagi && iller.length) g.ilKaynagi.add(k.il_kaynagi);
   }
+  const out = [...gruplar.values()].map((g) => ({
+    il: [...g.il].sort((a, b) => a.localeCompare(b, 'tr')),
+    ilce: [...g.ilce],
+    durum: g.durum, tarih: g.tarih, kaynak: g.kaynak, saha: g.saha, pasaj: g.pasaj,
+    ilNotu: g.il.size ? '' : (g.ilNotu || ''),
+    ilKaynagi: [...g.ilKaynagi], kayit: g.kayit,
+  }));
   // tarih "DD.MM.YYYY" — sözlük sırası gün'e göre bozar; YYYYMMDD'ye çevir.
   const tarihAnahtar = (t) => String(t || '').split('.').reverse().join('');
   out.sort((a, b) => tarihAnahtar(b.tarih).localeCompare(tarihAnahtar(a.tarih)));
   return out;
+}
+
+/** İl eşlemeli tekil ilanlar (kisit.json ve il sayfaları). Alanlar geriye uyumlu. */
+export function kisitNormalize(anaKayitlar = [], ekKayitlar = []) {
+  return rgGruplari(anaKayitlar, ekKayitlar)
+    .filter((g) => g.il.length)
+    .map(({ il, ilce, durum, tarih, kaynak, saha }) => ({ il, ilce, durum, tarih, kaynak, saha }));
 }
 
 /** Su işlemlerini yetkili kurum + dayanak + kanalla birleştir. */

@@ -2,8 +2,10 @@
 baslik: "Kuyu ruhsatı: yeraltı suyu arama, kullanma ve ıslah-tadil belgeleri"
 ozet: "167 sayılı Yeraltı Suları Hakkında Kanun uyarınca kuyu açmadan önce alınması zorunlu arama belgesi, suyu kullanmak için gereken kullanma belgesi ve mevcut kuyuya müdahale için ıslah-tadil belgesi: kimden, hangi belgelerle, hangi sürede alınır."
 tarih: 2026-07-14
-guncelleme: 2026-07-26
+guncelleme: 2026-10-10
 ilKurumTablosu: true
+onayBekliyor: true
+onayKaynak: "Karar tablosu süre hücreleri: 2577 m.7, m.8, m.10; 167 m.13; 2942 m.14; 5326 m.27/1, m.27/8 (resmî metinler, erişim 10.10.2026)"
 kume: surec
 kalip: 2
 cozer:
@@ -25,7 +27,7 @@ karar:
     merci: "DSİ (ilin bağlı olduğu bölge müdürlüğü)"
     sure: "Başvuruya bir ay içinde cevap (Yeraltı Suları Tüzüğü m.13)"
     ceza: "Belgesiz açım yasak; 167 m.18 yaptırımları"
-    emsal: "167 m.8; Yargıtay 7.HD 2011/3727 E., 2012/3244 K."
+    emsal: "167 m.8; Yargıtay 7.HD 2011/3727 E., 2012/3244 K. (resmî kaynaktan doğrulanamadı)"
   - senaryo: "Bulunan suyu kullanma"
     merci: "DSİ"
     sure: "Arama belgesine dayanarak bir ay içinde müracaat (167 m.10)"
@@ -33,7 +35,7 @@ karar:
     emsal: "167 m.10"
   - senaryo: "Mevcut kuyuda teknik müdahale (ıslah-tadil)"
     merci: "DSİ"
-    sure: "Doğrulanmış süre yok"
+    sure: "Başvuruya bir ay içinde cevap (167 m.13); ret işlemine karşı 60 gün, idare mahkemesi (2577 m.7)"
     ceza: "Belgeler harç ve damga resminden muaf (167 m.12)"
     emsal: "167 m.11"
 ---
@@ -126,12 +128,11 @@ atlanmamasıdır.
 
 ## Emsal kararlar
 
-Karar künyeleri yayın öncesi doğrulama sürecindedir.
+Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
-- Yargıtay 7. Hukuk Dairesi 2011/3727 E., 2012/3244 K. — kuyu suyu 167
+- Yargıtay 7. Hukuk Dairesi 2011/3727 E., 2012/3244 K. (resmî kaynaktan doğrulanamadı) — kuyu suyu 167
   sayılı rejime tabidir; kararda arama belgesinin bir yıllık süreli
-  olduğuna açık atıf vardır.
-  ([Apilex](https://app.apilex.ai/shared-document/b60c-29c3-2224-1cd8.md))
-- Danıştay 8. Daire 2022/3005 E., 2022/3470 K. — 167'nin arama belgesi
+  olduğuna açık atıf vardır. (ikincil kaynak; resmî doğrulama bekliyor)
+- Danıştay 2022/3005 E., 2022/3470 K. (resmî sunucuda İdare Dava Daireleri Kurulu kararı; künye çelişkisi, doğrulanamadı) — 167'nin arama belgesi
   mekanizması yeraltı suyu rejiminin çekirdeğidir.
 

@@ -34,6 +34,23 @@ const enYeniTarih = _tarihler.length ? new Date(Math.max(..._tarihler)) : undefi
     ozet="Yürürlükteki su mevzuatının kütüphanesi ve Su Kanunu taslağının tarih + kaynak bağlantılı takibi."
     ozCevap
   />
+  {/* 10.10.2026 (brif 1.13): gövde ince ve başlıksızdı; bölümün ne olduğu ve
+      nasıl okunacağı başlıklarla verildi. Hukuki nitelendirme yok. */}
+  <div class="icerik sv-giris">
+    <h2>Bu bölümde ne var?</h2>
+    <p>İki sayfa: <strong>Su Kanunu taslağı takibi</strong> (TBMM ve Bakanlık
+      kaynaklarından tarih + bağlantı ile izlenen gelişmeler; her girişte görünür
+      "son kontrol" tarihi) ve <strong>yürürlükteki su mevzuatı kütüphanesi</strong>
+      (kanun, tüzük, yönetmelik metinlerine madde düzeyinde erişim; tam metinler
+      <a href="/mevzuat/">/mevzuat/</a> altında).</p>
+    <h2>Nasıl okunur?</h2>
+    <p>Taslak sayfasında her kayıt "resmî" (TBMM ya da Bakanlık belgesi) ya da
+      "basın" (ikincil kaynak) diye işaretlidir; resmî kaynakta bulunamayan
+      bilgi "doğrulanamadı" diye yazılır, sayfadan çıkarılmaz. Resmî Gazete'de
+      yayımlanan değişiklikler ayrı sayfada, <a href="/mevzuat/degisiklikler/">mevzuat
+      değişiklikleri</a> altında izlenir.</p>
+    <h2>Sayfalar</h2>
+  </div>
   <ul class="sv-liste">
     {girisler.map((g, i) => (
       <li>
@@ -55,6 +72,8 @@ const enYeniTarih = _tarihler.length ? new Date(Math.max(..._tarihler)) : undefi
 </Sayfa>
 
 <style>
+  .sv-giris { margin-bottom: 1.2rem; }
+  .sv-giris h2 { font-size: 1.15rem; margin: 1rem 0 0.3rem; }
   .sv-liste { list-style: none; }
 
   .sv-liste li + li { border-top: 1px solid var(--cizgi); }

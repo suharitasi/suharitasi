@@ -2,34 +2,37 @@
 baslik: "Ruhsatsız kuyu açmanın ve belge dışı su kullanmanın cezaları"
 ozet: "Belgesiz kuyu açmanın, kasten yanlış bilgi vermenin ve belge şartlarına aykırı su kullanmanın yaptırımları: 167 sayılı Kanun m.18 uyarınca idari para cezası ve kuyu kapatma; cezayı mahallî mülkî amir verir."
 tarih: 2026-07-14
-guncelleme: 2026-07-25
+guncelleme: 2026-10-10
+onayBekliyor: true
+onayKaynak: "167 s. Kanun m.18 (5728 m.270, RG 08.02.2008); 5326 s. Kanun m.17/7; VUK Genel Tebliğleri 387–585 (Resmî Gazete) — erişim 10.10.2026; 2026 tutarları yeni hesap"
+cezaTablosu: true
 kume: uyusmazlik
-ozCevap: "Belgesiz kuyu açmak veya belge dışına çıkmak 167 s.K. m.18 uyarınca idari para cezası doğurur: m.18/a kapsamında 1.000–5.000 TL, m.18/b kapsamında 500–2.000 TL. Ceza yanında kuyu kapatılır ve masraf açtırandan alınır. Cezayı DSİ değil, mahallî mülkî amir (valilik/kaymakamlık) verir."
+ozCevap: "Belgesiz kuyu açmak veya belge dışına çıkmak 167 s.K. m.18 uyarınca idari para cezası doğurur; {{CEZA_YIL}} yılında uygulanan aralık m.18/a için {{CEZA_18A_GUNCEL}}, m.18/b için {{CEZA_18B_GUNCEL}} (kanun metni 1.000–5.000 ve 500–2.000 TL). Ceza yanında kuyu kapatılır. Cezayı mahallî mülkî amir verir."
 seoBaslik: "Ruhsatsız Kuyu Cezası: Kaçak Sondaj ve Kapatma"
 sss:
   - soru: "Belgesiz kuyu açmanın cezası nedir?"
-    cevap: "167 sayılı Kanun m.18/a uyarınca 1.000–5.000 TL idari para cezası verilir; ceza yanında kuyu kapatılır, kapatma masrafı açtırandan alınır."
+    cevap: "167 sayılı Kanun m.18/a uyarınca idari para cezası verilir: {{CEZA_18A}}. Ceza yanında kuyu kapatılır, kapatma masrafı açtırandan alınır."
   - soru: "Belge kapsamı dışında su kullanmanın yaptırımı nedir?"
-    cevap: "Belge şartlarına aykırı çekim veya izin dışı amaçla kullanım m.18/b kapsamında 500–2.000 TL idari para cezası doğurur; kuyu kapatılabilir."
+    cevap: "Belge şartlarına aykırı çekim veya izin dışı amaçla kullanım m.18/b kapsamında idari para cezası doğurur: {{CEZA_18B}}. Kuyu kapatılabilir."
   - soru: "Ruhsatsız kuyu cezasını hangi makam verir?"
     cevap: "Cezayı DSİ değil, mahallî mülkî amir (valilik veya kaymakamlık) verir."
 ilgili: [kuyu-ruhsati, kuyu-belgesi-iptal-davalari, yeralti-suyu-isletme-sahasi]
 karar:
   - senaryo: "Belgesiz kuyu açma veya kasten yanlış bilgi verme"
     merci: "Mahallî mülkî amir (valilik/kaymakamlık)"
-    sure: "Doğrulanmış süre yok (tespit sonrası yaptırım)"
-    ceza: "167 m.18/a: 1.000–5.000 TL; kuyu kapatma, masraf açtırandan alınır"
-    emsal: "Danıştay 8.D. 2022/3005 E., 2022/3470 K. — arama belgesi rejimin çekirdeği"
+    sure: "Para cezasına tebliğden itibaren 15 gün, sulh ceza (5326 m.27/1); kapatma aynı işlemdeyse idari yargı, 60 gün (5326 m.27/8)"
+    ceza: "167 m.18/a: {{CEZA_18A}}; kuyu kapatma"
+    emsal: "Danıştay 2022/3005 E., 2022/3470 K. (künye çelişkisi, doğrulanamadı) — arama belgesi rejimin çekirdeği"
   - senaryo: "Belge şartlarına aykırı su kullanma (m.10-11 ihlali)"
     merci: "Mahallî mülkî amir"
-    sure: "Doğrulanmış süre yok"
-    ceza: "167 m.18/b: 500–2.000 TL; ayrıca kuyu kapatma"
-    emsal: "Danıştay 8.D. 2023/663 E., 2023/829 K. — izin aşımını DSİ tespit eder"
+    sure: "Para cezasına tebliğden itibaren 15 gün, sulh ceza (5326 m.27/1); kapatma aynı işlemdeyse idari yargı, 60 gün (5326 m.27/8)"
+    ceza: "167 m.18/b: {{CEZA_18B}}; ayrıca kuyu kapatma"
+    emsal: "Danıştay 8.D. 2023/663 E., 2023/829 K. — temyiz süre aşımından reddedildi; ilk derece gerekçesi: izin aşımını DSİ tespit eder"
   - senaryo: "Kesilen cezaya veya kapatma kararına karşı yargı yolu"
     merci: "İdari yargı (iptal davası)"
-    sure: "Doğrulanmış süre yok"
+    sure: "Ceza: 15 gün sulh ceza (5326 m.27/1); kapatma: 60 gün idare mahkemesi (2577 m.7); aynı işlemdeyse ikisi idari yargıda (5326 m.27/8)"
     ceza: "—"
-    emsal: "Yargıtay 7.HD 2011/3727 E., 2012/3244 K. — kuyu suyu 167 rejimine tabi"
+    emsal: "Yargıtay 7.HD 2011/3727 E., 2012/3244 K. (resmî kaynaktan doğrulanamadı) — kuyu suyu 167 rejimine tabi"
 ---
 
 Ruhsatsız kuyu iki ayrı yoldan yaptırıma yol açar: ya kuyu baştan
@@ -58,7 +61,7 @@ edilebilir; içtihat bölümündeki kararlar bu ekseni gösterir.
 
 ## Ruhsatsız kuyuya hangi cezalar uygulanır?
 
-| Fiil | Kanuni dayanak | Para cezası | Ek sonuç | Yetkili |
+| Fiil | Kanuni dayanak | Para cezası (kanun metni) | Ek sonuç | Yetkili |
 | --- | --- | --- | --- | --- |
 | Belgesiz kuyu açma | 167 m.18/a | 1.000 - 5.000 TL | Kuyu kapatma / mahzur yoksa belge verilmesi | Mahallî mülkî amir |
 | Kasten yanlış bilgi verme | 167 m.18/a | 1.000 - 5.000 TL | Kuyu kapatma | Mahallî mülkî amir |
@@ -66,7 +69,10 @@ edilebilir; içtihat bölümündeki kararlar bu ekseni gösterir.
 | Şartlara riayet etmeme | 167 m.18/b | 500 - 2.000 TL | Kuyu kapatma | Mahallî mülkî amir |
 
 Tablodaki tutarlar 2008 tarihli 5728 sayılı Kanun'la belirlenen kanuni
-alt ve üst sınırlardır.
+alt ve üst sınırlardır. İdari para cezaları her takvim yılı başında yeniden
+değerleme oranında artırılarak uygulanır (5326 sayılı Kabahatler Kanunu
+m.17/7); içinde bulunulan yılda uygulanan tutarlar ve yıl yıl hesap, sayfanın
+sonundaki tabloda dayanaklarıyla verilmiştir.
 
 ## Madde metni
 
@@ -81,19 +87,14 @@ Bu rehberde andığımız hükümlerin birebir metni bağımsız mevzuat sayfala
 
 ## Emsal kararlar
 
-Karar künyeleri yayın öncesi doğrulama sürecindedir.
+Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
-- Yargıtay 7. Hukuk Dairesi 2011/3727 E., 2012/3244 K. — kuyu suyu
+- Yargıtay 7. Hukuk Dairesi 2011/3727 E., 2012/3244 K. (resmî kaynaktan doğrulanamadı) — kuyu suyu
   kullanan tarafa belediye su idaresince "kaçak su bedeli" yüklenemez;
   kuyu suyu 167 sayılı rejime tabidir, belediye yalnızca atık su bedeli
-  talep edebilir.
-  ([Apilex](https://app.apilex.ai/shared-document/b60c-29c3-2224-1cd8.md))
-- Danıştay 8. Daire 2023/663 E., 2023/829 K. — izin kapsamını aşan
-  yeraltı/kaynak suyu kullanımı DSİ tarafından tespit edilebilir; yerel
-  idare bu suyu abonelik ve tarife konusu yapamaz; fazla kullanım
-  önlenip DSİ'ye bildirilir.
-  ([Apilex](https://app.apilex.ai/shared-document/4c54-1b94-efc8-457c.md))
-- Danıştay 8. Daire 2022/3005 E., 2022/3470 K. — 167'nin arama belgesi
+  talep edebilir. (ikincil kaynak; resmî doğrulama bekliyor)
+- Danıştay 8. Daire 2023/663 E., 2023/829 K. — Danıştay temyiz istemini süre aşımı nedeniyle reddetmiştir; esasa ilişkin gerekçe ilk derece mahkemesinindir: yeraltı ve kaynak sularının izinsiz ya da verilen izin kapsamını aşan kullanımının Devlet Su İşleri tarafından tespit edilebileceği, bu kullanımı ücretlendirme ve abone yapma yetkisi bulunmayan idarenin kuyu suyu aboneliği tarifesi belirleyemeyeceği gerekçesiyle belediye meclisi kararı iptal edilmiş, istinaf başvurusu reddedilmiştir. ([karar sayfası ve resmî metin](/emsal-kararlar/danistay-8-daire-2023-663-2023-829/), erişim 10.10.2026)
+- Danıştay 2022/3005 E., 2022/3470 K. (resmî sunucuda İdare Dava Daireleri Kurulu kararı; künye çelişkisi, doğrulanamadı) — 167'nin arama belgesi
   mekanizması yeraltı suyu rejiminin çekirdeğidir.
 
 Ortak çizgi: ruhsatsız veya izin aşımı kullanımlar yaptırımsız kalmaz;

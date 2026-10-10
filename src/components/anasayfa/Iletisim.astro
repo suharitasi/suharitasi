@@ -1,11 +1,13 @@
 ---
-// İLETİŞİM (v0, M7 süzgeciyle) — statik site, sunucu yok: form JS ile
-// mailto: gövdesine çevrilir (encodeURIComponent). Harici form servisi YOK.
+// İLETİŞİM (v0, M7 süzgeciyle). 10.10.2026 (brif 1.5): mailto gövdesi
+// kaldırıldı; form hızlı danışma ile aynı sunucu işlevine (/danisma, KV,
+// ~180 gün) gider; KVKK onayı ve tuzak alanı eklendi. Harici form servisi YOK.
 // JS kapalı: form gizlenir, doğrudan mailto linki görünür (noscript).
 // M7: telefon künyede DOĞRULANAMADI → telefon bloğu KONMADI.
 //     "İstanbul" konumu sitede DOĞRULANAMADI → konum bloğu KONMADI.
 //     (İkisi de rapora/kuyruğa yazıldı.)
 import { EPOSTA, YAZAR } from '../../data/site';
+import HukukiKontrol from '../HukukiKontrol.astro';
 ---
 <section class="v2-bolum v2-iletisim" id="iletisim" aria-label="İletişim">
   <div class="v2-ic">
@@ -40,25 +42,28 @@ import { EPOSTA, YAZAR } from '../../data/site';
           </span>
           {YAZAR.buro}
         </a>
-        <p class="v2-kanal-not">Mesajınız doğrudan e-posta olarak iletilir;
-          form bir sunucuya veri göndermez.</p>
+        <p class="v2-kanal-not">Mesajınız sitenin kendi form hizmetine iletilir
+          (hızlı danışma formuyla aynı yol); yalnız size dönüş için kullanılır ve
+          en geç 180 gün sonra kendiliğinden silinir. Ayrıntı:
+          <a href="/gizlilik/">Gizlilik ve KVKK</a>.</p>
+        <HukukiKontrol />
       </div>
       </div>
       {/* v0 alan adları/etiketleri/placeholder'ları; gönderim MAILTO kalır
           (A2 ÖZEL). Telefon = ziyaretçinin kendi numarası (form alanı,
           uydurma değil). */}
-      <form class="v2-form" id="v2-form" data-olay-form="iletisim-form">
+      <form class="v2-form" id="v2-form" data-olay-form="iletisim-form" data-danisma-form>
         <label>Ad Soyad
           <input type="text" name="ad" autocomplete="name" required
                  placeholder="Adınız ve soyadınız" />
         </label>
         <div class="v2-form-iki">
           <label>Telefon
-            <input type="tel" name="tel" autocomplete="tel"
+            <input type="tel" name="telefon" autocomplete="tel" required
                    placeholder="05xx xxx xx xx" />
           </label>
-          <label>E-posta
-            <input type="email" name="eposta" autocomplete="email" required
+          <label>E-posta (isteğe bağlı)
+            <input type="email" name="eposta" autocomplete="email"
                    placeholder="ornek@eposta.com" />
           </label>
         </div>
@@ -66,7 +71,17 @@ import { EPOSTA, YAZAR } from '../../data/site';
           <textarea name="mesaj" rows="4" required
                     placeholder="Örn. Kuyu ruhsatı başvurumu nasıl yapabilirim?"></textarea>
         </label>
+        <div class="v2-tuzak" aria-hidden="true">Bu alanı boş bırakın
+          <input type="text" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+        <label class="v2-onay">
+          <input type="checkbox" name="onay" required />
+          <span><a href="/gizlilik/">Gizlilik ve KVKK aydınlatma metnini</a> okudum;
+            iletişim bilgilerimin yalnız bu talebe dönüş amacıyla işlenmesine onay
+            veriyorum.</span>
+        </label>
         <button type="submit">Mesajı Gönder</button>
+        <p class="v2-durum" data-danisma-durum aria-live="polite"></p>
       </form>
     </div>
   </div>
@@ -76,17 +91,13 @@ import { EPOSTA, YAZAR } from '../../data/site';
     olamayacağı için /assets/noscript.css'e taşındı (o dosya yalnız JS kapalı
     iken, menü noscript'i üzerinden yüklenir). */}
 
-<script>
-  // Form → mailto gövdesi. Sunucu yok; alanlar encodeURIComponent ile konur.
-  const form = document.getElementById('v2-form');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const v = new FormData(form);
-    const konu = encodeURIComponent(`Ön görüşme talebi — ${v.get('ad')}`);
-    const tel = v.get('tel') ? `\nTelefon: ${v.get('tel')}` : '';
-    const govde = encodeURIComponent(
-      `Ad: ${v.get('ad')}\nE-posta: ${v.get('eposta')}${tel}\n\n${v.get('mesaj')}`
-    );
-    location.href = `mailto:hukuk@arslanhukuk.tr?subject=${konu}&body=${govde}`;
-  });
-</script>
+<script type="module" src="/s/danisma.js" is:inline></script>
+
+<style>
+  .v2-tuzak { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .v2-onay { display: flex !important; flex-direction: row !important; align-items: flex-start; gap: 0.6rem; font-size: 0.86rem; }
+  .v2-onay input { width: auto; margin-top: 0.25rem; }
+  .v2-durum { margin: 0.6rem 0 0; font-size: 0.9rem; min-height: 1.2em; }
+  .v2-durum.ok { color: var(--su-700); }
+  .v2-durum.hata { color: var(--kehribar); }
+</style>

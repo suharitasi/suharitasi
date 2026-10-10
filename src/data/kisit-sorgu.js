@@ -8,17 +8,21 @@
 // (böyle bir resmî sınıflama kamuya açık yayımlanmamıştır). Yalnızca gerçek
 // RG ilanlarını ile göre gruplar. Kullanıcı kaydın kendisini ve resmî linkini
 // görür; yorumu uzman yapar.
-import ana from '../../veri/potansiyel/isletme-sahalari.json';
-import ek from '../../veri/potansiyel/isletme-sahalari-ek.json';
+import { RG_BASLIK, RG_ILAN, RG_GRUPLAR } from './rg-kaynak.js';
 import { kisitNormalize } from './ortak-normalize.js';
 
 // Normalizasyon + mükerrer eleme TEK KAYNAK: ortak-normalize.js
 // (aynı mantık astro.config'teki kisit-json kancasında da kullanılır).
-export const KAYITLAR = kisitNormalize(ana.kayitlar, ek.kayitlar);
+export const KAYITLAR = kisitNormalize(RG_BASLIK, RG_ILAN);
 
-/** Bir ile ait RG kayıtları (il eşlemesi doğrulanmış olanlar). */
+/** Bir ile ait RG kayıtları (il eşlemesi doğrulanmış tekil ilanlar). */
 export function ilKayitlari(il) {
   return KAYITLAR.filter((r) => r.il.includes(il));
+}
+
+/** Aynı tekil ilanlar, alıntı (pasaj) ve il dayanağıyla — il sayfası listesi için. Sayı ilKayitlari ile aynıdır. */
+export function ilGruplari(il) {
+  return RG_GRUPLAR.filter((g) => g.il.includes(il));
 }
 
 // ÖLÜ KOD SİLİNDİ (04.10.2026 denetimi): kisitKayitlari — 0 çağrı (ölçüldü).

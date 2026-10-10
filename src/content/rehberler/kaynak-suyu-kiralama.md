@@ -2,7 +2,9 @@
 baslik: "Kaynak suyu kiralama: yetki, ihale zorunluluğu ve sözleşme"
 ozet: "Kaynak sularının kim tarafından, hangi usulle kiraya verilebileceği: 167 sayılı Kanun m.4, 5393 sayılı Belediye Kanunu m.15 ve 831 sayılı Sular Hakkında Kanun çerçevesi; 2886 sayılı Devlet İhale Kanunu'na uygun ihale zorunluluğu."
 tarih: 2026-07-14
-guncelleme: 2026-07-25
+guncelleme: 2026-10-10
+onayBekliyor: true
+onayKaynak: "Karar tablosu süre hücreleri: 2577 m.7, m.8, m.10; 167 m.13; 2942 m.14; 5326 m.27/1, m.27/8 (resmî metinler, erişim 10.10.2026)"
 kume: surec
 ozCevap: "Kaynak suyu kiralamada iki soru belirleyici: kim yetkili ve hangi usul. Kullanım fazlası ile Devletin yerlerindeki sular il özel idaresince (167 s.K. m.4), kaynak suyunu belediye işletir/işlettirir (5393 m.15) — tümü 2886'ya göre ihaleyle yapılır. İhalesiz kiralama hukuka aykırıdır."
 seoBaslik: "Kaynak Suyu Kiralama: İhale, Yetki ve Sözleşme"
@@ -17,17 +19,17 @@ ilgili: [kaynak-hakki-komsu-su, su-tahsisi-oncelik-sirasi, jeotermal-ruhsat]
 karar:
   - senaryo: "Kaynağı kiraya verme (yetki sorunu)"
     merci: "İl özel idaresi / belediye"
-    sure: "Doğrulanmış süre yok (şartname ve sözleşme)"
+    sure: "Doğrulanamadı (resmî metinde süre bulunamadı)"
     ceza: "—"
     emsal: "Danıştay 13.D. 2013/263 E., 2018/2731 K. — ihalesiz kiralama hukuka aykırı"
   - senaryo: "İhalesiz kiralama"
     merci: "İdare → idari yargı"
-    sure: "Doğrulanmış süre yok"
+    sure: "Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)"
     ceza: "—"
-    emsal: "Danıştay 13.D. 2015/4133 E., 2021/4015 K. — 167, kiralamayı 2886'ya bağlar"
+    emsal: "Danıştay 13.D. 2015/4133 E., 2021/4015 K. — pazarlık usulü (2886 m.51/g) koşulları"
   - senaryo: "Özel mülkiyetteki kaynağın kiralanabilirliği"
     merci: "İdare → idari yargı"
-    sure: "Doğrulanmış süre yok"
+    sure: "Yazılı bildirimi izleyen günden itibaren 60 gün, idare mahkemesi (2577 m.7; süre hesabı m.8)"
     ceza: "—"
     emsal: "Danıştay 8.D. 2018/2016 E., 2020/4396 K. — açık düzenleme yok"
 ---
@@ -105,26 +107,11 @@ veya ölçümsüz kiralama iptal riski taşır.
 
 ## Emsal kararlar
 
-Karar künyeleri yayın öncesi doğrulama sürecindedir.
+Künyelerin resmî karar sunucusunda (karararama.danistay.gov.tr) doğrulanma durumu her kararın yanında belirtilir; doğrulanamayan künye "doğrulanamadı" etiketiyle durur.
 
-- Danıştay 13. Daire 2013/263 E., 2018/2731 K. — kaynak suyu kiralama
-  işinde 2886'ya uygun ihale yapılmadan, yalnızca ölçüm ve kullanım
-  bedeli tespitiyle kiralama hukuka aykırıdır.
-  ([Apilex](https://app.apilex.ai/shared-document/536d-4fa9-71d7-89da.md))
-- Danıştay 13. Daire 2015/4133 E., 2021/4015 K. — 167, kaynak suyu
-  kiralamasını 2886'ya bağlar; idare yasal dayanak olmaksızın düzenleme
-  yapamaz.
-  ([Apilex](https://app.apilex.ai/shared-document/7e0f-ccaa-c43d-1200.md))
-- Danıştay 13. Daire 2020/1093 E., 2023/2584 K. — su kaynağının
-  kiralanmasına ilişkin encümen kararı ve 2886'ya dayalı sözleşmeden
-  doğan uyuşmazlıkta aynı eksen. (Bu karar ilk üretimde 2020/1104 E.,
-  2023/4576 K. olarak künyelenmişti; çelişki doğrulanacaktır.)
-- Danıştay 13. Daire 2012/253 E., 2018/3787 K. — belediye adına kaynak
-  suyu işletme ruhsatı bulunan taşınmazdan çıkan kaynağın il özel
-  idarelerince kiraya verilmesi sınırlıdır; kaynağın hukuki niteliğine
-  ve taşınmazın durumuna göre değerlendirme yapılır.
-- Danıştay 8. Daire 2018/2016 E., 2020/4396 K. — özel mülkiyete konu
-  arazilerden çıkan ve sadece kendi ihtiyacı için kullanılan kaynak
-  sularının kiralanabileceğine dair açık düzenleme yoktur.
-  ([Apilex](https://app.apilex.ai/shared-document/5563-8f8b-3621-1c3e.md))
+- Danıştay 13. Daire 2013/263 E., 2018/2731 K. — Devletin hüküm ve tasarrufu altındaki yerde bulunan içme suyu kaynağının 2886 sayılı Kanun uyarınca herhangi bir ihale yapılmaksızın kiralanmasına ilişkin işlemde hukuka uygunluk bulunmadığı; yetkisiz merciin yaptığı işletme ve imtiyaz sözleşmesinin müktesep hak kazandırmayacağı belirtilmiş, iptal kararı gerekçe değiştirilerek onanmıştır. ([karar sayfası ve resmî metin](/emsal-kararlar/danistay-13-daire-2013-263-2018-2731/), erişim 10.10.2026)
+- Danıştay 13. Daire 2015/4133 E., 2021/4015 K. — 2886 sayılı Kanun kapsamındaki ihalelerde açık ihale ve kapalı teklif usullerinin öncelikle uygulanacağı; kaynak suyunun 51/g maddesi uyarınca pazarlık usulüyle kiralanabilmesi için o maddedeki koşulların bir arada gerçekleşmesi ve pazarlık usulünün zorunlu olduğunun idarece ortaya konulması gerektiği belirtilmiş, encümen kararını iptal eden karar gerekçe değiştirilerek onanmıştır. ([karar sayfası ve resmî metin](/emsal-kararlar/danistay-13-daire-2015-4133-2021-4015/), erişim 10.10.2026)
+- Danıştay 13. Daire 2020/1093 E., 2023/2584 K. — on yıllık kiralamada il genel meclisinde bulunan yetkinin il encümenince kullanılması nedeniyle encümen kararında ve buna dayanan kira sözleşmesinde yetki unsuru yönünden hukuka uygunluk bulunmadığına ilişkin ilk derece kararı onanmıştır; aynı gerekçe [2020/1104 E., 2023/4576 K.](/emsal-kararlar/danistay-13-daire-2020-1104-2023-4576/) ve [2020/1499 E., 2023/2585 K.](/emsal-kararlar/danistay-13-daire-2020-1499-2023-2585/) kararlarında da yer alır. ([karar sayfası ve resmî metin](/emsal-kararlar/danistay-13-daire-2020-1093-2023-2584/), erişim 10.10.2026)
+- Danıştay 13. Daire 2012/253 E., 2018/3787 K. — 167 sayılı Kanun'un 4. maddesine göre il özel idarelerinin yalnızca Hazinenin özel mülkiyetinde veya Devletin hüküm ve tasarrufu altında bulunan yerlerdeki kaynak sularını kiraya verebileceği; taşınmazdan çıkan suyun kaynak suyu mu yeraltı suyu mu olduğu teknik raporla ortaya konulmadan ihaleye çıkılamayacağı gerekçesiyle işlemi iptal eden ilk derece kararı onanmıştır. ([karar sayfası ve resmî metin](/emsal-kararlar/danistay-13-daire-2012-253-2018-3787/), erişim 10.10.2026)
+- Danıştay 8. Daire 2018/2016 E., 2020/4396 K. — özel mülkiyete konu arazilerden çıkan ve sadece kendi ihtiyacı için kullanılan kaynak sularının kiraya verilebileceğine dair açık düzenleme bulunmadığı, bu nedenle kiralama yönetmeliğinin dava konusu eksik düzenlemelerinde hukuka uyarlık bulunmadığı belirtilmiştir. ([karar sayfası ve resmî metin](/emsal-kararlar/danistay-8-daire-2018-2016-2020-4396/), erişim 10.10.2026)
 

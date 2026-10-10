@@ -107,19 +107,7 @@ const sema = [
 
   <section class="mr-bolum mr-takip" aria-label="Değişiklik takibi">
     <h2>Değişiklik olunca haber alın</h2>
-    <p>Bir hüküm değiştiğinde e-posta ile bilgilendirilmek için adresinizi bırakın. (Gönderim servisi bağlandığında aktive edilir; aboneler şimdiden kaydedilir.)</p>
-    <form id="takip-form" class="mr-form">
-      <label>E-posta
-        <input type="email" name="eposta" required autocomplete="email" placeholder="ornek@eposta.com" />
-      </label>
-      <label class="mr-onay">
-        <input type="checkbox" name="onay" required />
-        <span><a href="/gizlilik/">Gizlilik ve KVKK</a> metnini okudum; e-postamın yalnız mevzuat değişikliği bildirimi için işlenmesine onay veriyorum.</span>
-      </label>
-      <div class="mr-tuzak" aria-hidden="true">Boş bırakın <input type="text" name="website" tabindex="-1" autocomplete="off" /></div>
-      <button type="submit">Takip et</button>
-      <p class="mr-form-durum" id="takip-durum" aria-live="polite"></p>
-    </form>
+    <p>E-posta bildirimi şimdilik açık değil: gönderim altyapısı bağlanmadan adres toplanmıyor. Değişiklikleri <a href="/feed.xml">site RSS akışından</a> izleyebilirsiniz; e-posta bildirimi açıldığında burada duyurulur.</p>
   </section>
 
   <nav class="mr-capraz" aria-label="İlgili bölümler">
@@ -130,7 +118,7 @@ const sema = [
 
   <CtaBlok konu="Mevzuat değişikliği" baslik="Değişen hüküm dosyanızı etkiliyor mu?" metin="Mevzuat değişikliğinin somut durumunuza etkisini değerlendirelim." />
   <HukukSerhi />
-<script slot="ek-script" type="module" src="/s/takip.js" is:inline></script>
+
 </Sayfa>
 
 

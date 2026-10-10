@@ -8,15 +8,21 @@ import OzCevap from '../../../components/OzCevap.astro';
 import CtaBlok from '../../../components/CtaBlok.astro';
 import HukukSerhi from '../../../components/HukukSerhi.astro';
 import mevzuat from '../../../../data/kamu/mevzuat-maddeleri.json';
-import emsal from '../../../../data/kamu/emsal-kararlar.json';
+import { emsalById as EMSAL_ID, dogrulandiMi, emsalYol, tamMerci } from '../../../data/emsal.js';
 import { MEVZUAT_EDITORYAL } from '../../../data/mevzuat-editoryal.js';
 import SayfaQr from '../../../components/SayfaQr.astro';
+import CezaTutarTablosu from '../../../components/CezaTutarTablosu.astro';
+import { cezaYerlestir } from '../../../data/ceza-tutar.js';
 // eeat-audit (27.09.2026): yazar kutusu mevzuat madde sayfalarına bağlandı.
 import YazarKutusu from '../../../components/YazarKutusu.astro';
 // 07.10.2026 denetimi (sahip kararı EK-2/1): başlık/açıklama/öz-cevap ve dizin
 // kararı tek yardımcıdan (src/data/mevzuat-metin.js) — kelime ortası kırpım yok,
 // gövdesiz/kesik sayfa veri-koşullu noindex (metin tamamlanınca kendiliğinden açılır).
-import { maddeTarayiciBaslik, maddeAciklama, maddeOzCevap, maddeIndekslenir, metinDurumu } from '../../../data/mevzuat-metin.js';
+import { maddeTarayiciBaslik, maddeAciklama, maddeOzCevap, metinDurumu } from '../../../data/mevzuat-metin.js';
+import { maddeDizinKarari } from '../../../data/mevzuat-dizin.js';
+import { komsuMaddeler, maddeYolu, maddeyiAnanRehberler, resmiKontrol, degisiklikIsaretleri } from '../../../data/madde-baglari.js';
+import { EMSAL_DOGRULANAN, emsalAlinti, kunyeKisa } from '../../../data/emsal.js';
+import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const slug = (s) =>
@@ -36,7 +42,7 @@ function slugla(s) {
 }
 
 const { m } = Astro.props;
-const emsalById = Object.fromEntries(emsal.kararlar.map((k) => [k.id, k]));
+const emsalById = EMSAL_ID;
 const ilgiliEmsaller = m.emsaller.map((id) => emsalById[id]).filter(Boolean);
 
 const kok = new URL('/', Astro.site).href;
@@ -58,7 +64,16 @@ const tarayiciBaslik = maddeTarayiciBaslik(m, editoryal);
 // Dizin kararı: gövdesi olmayan (boş / yalnız mülga notu), kesik ya da yürürlük
 // tablosu artığı taşıyan madde noindex alır; sitemap ve llms üreticileri bu
 // işareti okuyup sayfayı atlar (adres değişmez, sayfa silinmez).
-const indekslenir = maddeIndekslenir(m);
+// 10.10.2026 (brif 2.2): su ile bağı olmayan ve yalnız yürürlük/yürütme bildiren maddeler de kapalı (src/data/mevzuat-dizin.js).
+const indekslenir = maddeDizinKarari(m).dizin;
+const { onceki, sonraki } = komsuMaddeler(m);
+const rehberAd = Object.fromEntries((await getCollection('rehberler')).map((r) => [r.id, r.data.baslik]));
+const tumRehberler = [...new Set([...m.rehberler, ...maddeyiAnanRehberler(m)])].filter((r) => rehberAd[r]);
+const buYol = maddeYolu(m);
+const ananKararlar = EMSAL_DOGRULANAN.filter((k) => !m.emsaller.includes(k.id) && (emsalAlinti(k)?.anilanMaddeler ?? []).some((a) => a.yol === buYol));
+const kontrol = resmiKontrol(m);
+const isaretler = degisiklikIsaretleri(m.metin);
+const h1 = m.baslik ? `${m.kanun} — ${m.madde}: ${m.baslik}` : `${m.kanun} — ${m.madde}`;
 const durum = metinDurumu(m.metin);
 
 const sema = [
@@ -95,8 +110,8 @@ const sema = [
   },
 ];
 ---
-<Sayfa baslik={`${m.kanun} — ${m.madde}`} aciklama={aciklama} tarayiciBaslik={tarayiciBaslik} sema={sema} robots={indekslenir ? undefined : 'noindex, follow'}>
-  <SayfaBasi etiket={`${m.tur} · madde`} baslik={`${m.kanun} — ${m.madde}`} ozet={baslikMetni} />
+<Sayfa baslik={h1} aciklama={aciklama} tarayiciBaslik={tarayiciBaslik} sema={sema} robots={indekslenir ? undefined : 'noindex, follow'}>
+  <SayfaBasi etiket={`${m.tur} · madde`} baslik={h1} ozet={m.baslik ? undefined : baslikMetni} />
   <OzCevap metin={oz} etiket="Madde özeti" />
 
   {editoryal && (
@@ -120,7 +135,16 @@ const sema = [
   <p class="mv-kaynak">
     Kaynak: <a href={m.kaynakUrl} target="_blank" rel="noopener">resmî tam metin (mevzuat.gov.tr)</a>.
     Metin resmî kaynaktan birebir aktarılmıştır; yürürlükteki güncel metin için resmî kaynak esastır.
+    {kontrol.kapsamda && kontrol.tarih && <> Resmî metin son kontrol: <time>{kontrol.tarih}</time> (haftalık karşılaştırma{kontrol.kayitlar.length ? `; ${kontrol.kayitlar.length} değişiklik kaydı` : '; bu maddede değişiklik kaydı yok'}).</>}
   </p>
+
+  {isaretler.length > 0 && (
+    <section class="mv-bolum" aria-label="Değişiklik geçmişi">
+      <h2>Değişiklik geçmişi</h2>
+      <p class="mv-anonim">Resmî metnin içindeki değişiklik işaretleri (birebir):</p>
+      <ul class="mv-degisiklik">{isaretler.map((x) => <li>{x}</li>)}</ul>
+    </section>
+  )}
 
   {/* Sahip kararı EK-2/1a (08.10.2026): içeriği olmayan bölüm hiç gösterilmez;
       merci/süre/yorum notu yalnız doğrulanmış veri varsa basılır. */}
@@ -137,19 +161,22 @@ const sema = [
   {m.yorum && (
     <section class="mv-bolum" aria-label="Gerekçe ve yorum">
       <h2>Gerekçe / yorum</h2>
-      <p class="mv-yorum">{m.yorum}</p>
+      <p class="mv-yorum">{cezaYerlestir(m.yorum)}</p>
     </section>
   )}
+
+  {/* DURAK 1 A-a: 167 m.18 sayfasında kanun metni + yılın uygulanan tutarı, yıl yıl tablo (onay bekliyor). */}
+  {m.id === '167-madde-18' && <CezaTutarTablosu />}
 
   {(durum.kesik || durum.kirli) && (
     <p class="mv-veri-yok">Bu maddenin aktarılan metni eksik ya da kaynak tablosu artığı içeriyor; tam metin için resmî kaynak esastır.</p>
   )}
 
-  {m.rehberler.length > 0 && (
+  {tumRehberler.length > 0 && (
     <section class="mv-bolum" aria-label="Bu maddeyi kullanan rehberler">
       <h2>Bu maddeyi kullanan rehberler</h2>
       <nav class="mv-capraz">
-        {m.rehberler.map((r) => <a href={`/rehberler/${r}/`}>→ {r}</a>)}
+        {tumRehberler.map((r) => <a href={`/rehberler/${r}/`}>→ {rehberAd[r]}</a>)}
       </nav>
     </section>
   )}
@@ -160,13 +187,27 @@ const sema = [
       <ul class="mv-emsaller">
         {ilgiliEmsaller.map((k) => (
           <li>
-            <a href="/emsal-kararlar/">{k.merci} {k.esas} E., {k.karar} K.</a>
+            {dogrulandiMi(k)
+              ? <><a href={emsalYol(k)}>{tamMerci(k)} {k.esas} E., {k.karar} K.</a> ({k.resmi_dogrulama.karar_tarihi}; <a href={k.resmi_dogrulama.url} target="_blank" rel="noopener">resmî metin</a>)</>
+              : <><a href="/emsal-kararlar/dogrulanamadi/">{k.merci} {k.esas} E., {k.karar} K.</a> <em>(resmî kaynaktan doğrulanamadı)</em></>}
             <span> — {k.konu}</span>
           </li>
         ))}
       </ul>
     </section>
   )}
+
+  {ananKararlar.length > 0 && (
+    <section class="mv-bolum" aria-label="Bu maddeyi anan kararlar">
+      <h2>Karar metninde bu maddeyi anan emsal kararlar</h2>
+      <ul class="mv-emsaller">{ananKararlar.map((k) => <li><a href={emsalYol(k)}>{kunyeKisa(k)}</a> ({k.resmi_dogrulama.karar_tarihi})</li>)}</ul>
+    </section>
+  )}
+
+  <nav class="mv-komsu" aria-label="Önceki ve sonraki madde">
+    {onceki ? <a href={maddeYolu(onceki)} rel="prev">← {onceki.madde}</a> : <span></span>}
+    {sonraki ? <a href={maddeYolu(sonraki)} rel="next">{sonraki.madde} →</a> : <span></span>}
+  </nav>
 
   <nav class="mv-capraz mv-geri" aria-label="İlgili bölümler">
     <a href="/mevzuat/">→ Tüm mevzuat maddeleri</a>
@@ -181,6 +222,9 @@ const sema = [
 </Sayfa>
 
 <style>
+  .mv-komsu { display: flex; justify-content: space-between; gap: 1rem; margin: 1.2rem 0; padding: 0.7rem 0; border-top: 1px solid var(--cizgi); border-bottom: 1px solid var(--cizgi); }
+  .mv-degisiklik { margin: 0; padding-left: 1.2rem; font-size: 0.9rem; }
+  .mv-anonim { font-size: 0.84rem; color: var(--metin-soluk); margin: 0 0 0.6rem; }
   .mv-metin {
     margin: 0.4rem 0 1.2rem;
     padding: 1rem 1.2rem;

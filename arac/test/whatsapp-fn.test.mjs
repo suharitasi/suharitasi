@@ -109,3 +109,18 @@ const kaydet = (ad, ok, ek = '') => { sonuc.push([ad, ok, ek]); console.log(`${o
 const kalan = sonuc.filter((s) => !s[1]);
 console.log(`\nSONUÇ: ${sonuc.length - kalan.length}/${sonuc.length} geçti`);
 assert.equal(kalan.length, 0, 'kalan var');
+
+// Hazır mesaj (brif 3.5, 10.10.2026): il + konu → text parametresi; zararlı karakter atılır.
+{
+  const r = await onRequest({ request: new Request(URL_ + '?il=Konya&konu=kuyu%20ruhsat%C4%B1'), env: {} });
+  const yer = r.headers.get('location');
+  if (r.status !== 302 || !yer.startsWith('https://wa.me/905324497144?text=') || !decodeURIComponent(yer.split('text=')[1]).includes('Konya ilinde kuyu ruhsatı konusunda')) {
+    console.error('KALDI · hazır mesaj', r.status, yer); process.exit(1);
+  }
+  const r2 = await onRequest({ request: new Request(URL_ + '?konu=%3Cscript%3Ealert(1)%3C%2Fscript%3E'), env: {} });
+  const m2 = decodeURIComponent(r2.headers.get('location').split('text=')[1] || '');
+  if (/[<>]/.test(m2)) { console.error('KALDI · temizlik', m2); process.exit(1); }
+  const r3 = await onRequest({ request: new Request(URL_), env: {} });
+  if (r3.headers.get('location') !== 'https://wa.me/905324497144') { console.error('KALDI · parametresiz', r3.headers.get('location')); process.exit(1); }
+  console.log('GEÇTİ · hazır mesaj (il+konu, temizlik, parametresiz)');
+}
